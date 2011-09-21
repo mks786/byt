@@ -1,0 +1,372 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Agente" xml:space="preserve">
+    <value>MYPTAGENTE</value>
+  </data>
+  <data name="AgregarAgente" xml:space="preserve">
+    <value>MYPTAGENTE</value>
+  </data>
+  <data name="AgregarBoletin" xml:space="preserve">
+    <value>MYPTBOLETIN</value>
+  </data>
+  <data name="AgregarEstado" xml:space="preserve">
+    <value>MYP_ESTADOS</value>
+  </data>
+  <data name="AgregarEstatus" xml:space="preserve">
+    <value>MYP_TESTADOS</value>
+  </data>
+  <data name="AgregarInteresado" xml:space="preserve">
+    <value>MYP_INTERESADOS</value>
+  </data>
+  <data name="AgregarInternacional" xml:space="preserve">
+    <value>MYPTINT</value>
+  </data>
+  <data name="AgregarNacional" xml:space="preserve">
+    <value>MYPTNAC</value>
+  </data>
+  <data name="AgregarObjeto" xml:space="preserve">
+    <value>SEGTOBJ</value>
+  </data>
+  <data name="AgregarPais" xml:space="preserve">
+    <value>MYP_PAISES</value>
+  </data>
+  <data name="AgregarPoder" xml:space="preserve">
+    <value>MYP_PODERES</value>
+  </data>
+  <data name="AgregarResolucion" xml:space="preserve">
+    <value>MYP_RESOLBOL</value>
+  </data>
+  <data name="AgregarRol" xml:space="preserve">
+    <value>SEGMROL</value>
+  </data>
+  <data name="AgregarTipoFecha" xml:space="preserve">
+    <value>MYP_TFECHAS</value>
+  </data>
+  <data name="AgregarTipoInfobol" xml:space="preserve">
+    <value>MYP_TINFOBOL</value>
+  </data>
+  <data name="AgregarUsuario" xml:space="preserve">
+    <value>SEGTUSU</value>
+  </data>
+  <data name="Boletin" xml:space="preserve">
+    <value>MYPTBOLETIN</value>
+  </data>
+  <data name="ConsultarAgente" xml:space="preserve">
+    <value>MYPTAGENTE</value>
+  </data>
+  <data name="ConsultarAgentes" xml:space="preserve">
+    <value>MYPTAGENTE</value>
+  </data>
+  <data name="ConsultarBoletin" xml:space="preserve">
+    <value>MYPTBOLETIN</value>
+  </data>
+  <data name="ConsultarEstado" xml:space="preserve">
+    <value>MYP_ESTADOS</value>
+  </data>
+  <data name="ConsultarEstatus" xml:space="preserve">
+    <value>MYP_TESTADOS</value>
+  </data>
+  <data name="ConsultarEstatuses" xml:space="preserve">
+    <value>MYP_TESTADOS</value>
+  </data>
+  <data name="ConsultarInteresado" xml:space="preserve">
+    <value>MYP_INTERESADOS</value>
+  </data>
+  <data name="ConsultarInternacional" xml:space="preserve">
+    <value>MYPTINT</value>
+  </data>
+  <data name="ConsultarInternacionales" xml:space="preserve">
+    <value>MYPTINT</value>
+  </data>
+  <data name="ConsultarNacional" xml:space="preserve">
+    <value>MYPTNAC</value>
+  </data>
+  <data name="ConsultarObjeto" xml:space="preserve">
+    <value>SEGTOBJ</value>
+  </data>
+  <data name="ConsultarObjetos" xml:space="preserve">
+    <value>SEGTOBJ</value>
+  </data>
+  <data name="ConsultarPais" xml:space="preserve">
+    <value>MYP_PAISES</value>
+  </data>
+  <data name="ConsultarPaises" xml:space="preserve">
+    <value>MYP_PAISES</value>
+  </data>
+  <data name="ConsultarPoder" xml:space="preserve">
+    <value>MYP_PODERES</value>
+  </data>
+  <data name="ConsultarPoderes" xml:space="preserve">
+    <value>MYP_PODERES</value>
+  </data>
+  <data name="ConsultarResolucion" xml:space="preserve">
+    <value>MYP_RESOLBOL</value>
+  </data>
+  <data name="ConsultarResoluciones" xml:space="preserve">
+    <value>MYP_RESOLBOL</value>
+  </data>
+  <data name="ConsultarRol" xml:space="preserve">
+    <value>SEGMROL</value>
+  </data>
+  <data name="ConsultarRoles" xml:space="preserve">
+    <value>SEGMROL</value>
+  </data>
+  <data name="ConsultarTipoFecha" xml:space="preserve">
+    <value>MYP_TFECHAS</value>
+  </data>
+  <data name="ConsultarTipoInfobol" xml:space="preserve">
+    <value>MYP_TINFOBOL</value>
+  </data>
+  <data name="ConsultarUsuario" xml:space="preserve">
+    <value>SEGTUSU</value>
+  </data>
+  <data name="ConsultarUsuarios" xml:space="preserve">
+    <value>SEGTUSU</value>
+  </data>
+  <data name="EliminarBoletin" xml:space="preserve">
+    <value>MYPTBOLETIN</value>
+  </data>
+  <data name="EliminarEstado" xml:space="preserve">
+    <value>MYP_ESTADOS</value>
+  </data>
+  <data name="EliminarEstatus" xml:space="preserve">
+    <value>MYP_TESTADOS</value>
+  </data>
+  <data name="EliminarFecha" xml:space="preserve">
+    <value>MYP_TFECHAS</value>
+  </data>
+  <data name="EliminarInteresado" xml:space="preserve">
+    <value>MYP_INTERESADOS</value>
+  </data>
+  <data name="EliminarInternacional" xml:space="preserve">
+    <value>MYPTINT</value>
+  </data>
+  <data name="EliminarNacional" xml:space="preserve">
+    <value>MYPTNAC</value>
+  </data>
+  <data name="EliminarObjeto" xml:space="preserve">
+    <value>SEGTOBJ</value>
+  </data>
+  <data name="EliminarPais" xml:space="preserve">
+    <value>MYP_PAISES</value>
+  </data>
+  <data name="EliminarPoder" xml:space="preserve">
+    <value>MYP_PODERES</value>
+  </data>
+  <data name="EliminarResolucion" xml:space="preserve">
+    <value>MYP_RESOLBOL</value>
+  </data>
+  <data name="EliminarRol" xml:space="preserve">
+    <value>SEGMROL</value>
+  </data>
+  <data name="EliminarTipoInfobol" xml:space="preserve">
+    <value>MYP_TINFOBOL</value>
+  </data>
+  <data name="EliminarUsuario" xml:space="preserve">
+    <value>SEGTUSU</value>
+  </data>
+  <data name="Estado" xml:space="preserve">
+    <value>MYP_ESTADOS</value>
+  </data>
+  <data name="Estatus" xml:space="preserve">
+    <value>MYP_TESTADOS</value>
+  </data>
+  <data name="Interesado" xml:space="preserve">
+    <value>MYP_INTERESADOS</value>
+  </data>
+  <data name="Internacional" xml:space="preserve">
+    <value>MYPTINAC</value>
+  </data>
+  <data name="ListaAuditorias" xml:space="preserve">
+    <value>SEG_AUDITORIAS</value>
+  </data>
+  <data name="ListaPoderes" xml:space="preserve">
+    <value>LST_PODERES</value>
+  </data>
+  <data name="ModificarBoletin" xml:space="preserve">
+    <value>MYPTBOLETIN</value>
+  </data>
+  <data name="ModificarEstado" xml:space="preserve">
+    <value>MYP_ESTADOS</value>
+  </data>
+  <data name="ModificarEstatus" xml:space="preserve">
+    <value>MYP_TESTADOS</value>
+  </data>
+  <data name="ModificarFecha" xml:space="preserve">
+    <value>MYP_TFECHAS</value>
+  </data>
+  <data name="ModificarInteresado" xml:space="preserve">
+    <value>MYP_INTERESADOS</value>
+  </data>
+  <data name="ModificarInternacional" xml:space="preserve">
+    <value>MYPTINT</value>
+  </data>
+  <data name="ModificarNacional" xml:space="preserve">
+    <value>MYPTNAC</value>
+  </data>
+  <data name="ModificarObjeto" xml:space="preserve">
+    <value>SEGTOBJ</value>
+  </data>
+  <data name="ModificarPais" xml:space="preserve">
+    <value>MYP_PAISES</value>
+  </data>
+  <data name="ModificarPoder" xml:space="preserve">
+    <value>MYP_PODERES</value>
+  </data>
+  <data name="ModificarResolucion" xml:space="preserve">
+    <value>MYP_RESOLBOL</value>
+  </data>
+  <data name="ModificarRol" xml:space="preserve">
+    <value>SEGMROL</value>
+  </data>
+  <data name="ModificarTipoInfobol" xml:space="preserve">
+    <value>MYP_TINFOBOL</value>
+  </data>
+  <data name="ModificarUsuario" xml:space="preserve">
+    <value>SEGTUSU</value>
+  </data>
+  <data name="Nacional" xml:space="preserve">
+    <value>MYPTNAC</value>
+  </data>
+  <data name="Objeto" xml:space="preserve">
+    <value>SEGTOBJ</value>
+  </data>
+  <data name="Pais" xml:space="preserve">
+    <value>MYP_PAISES</value>
+  </data>
+  <data name="Poder" xml:space="preserve">
+    <value>MYP_PODERES</value>
+  </data>
+  <data name="Resolucion" xml:space="preserve">
+    <value>MYP_RESOLBOL</value>
+  </data>
+  <data name="Rol" xml:space="preserve">
+    <value>SEGMROL</value>
+  </data>
+  <data name="TipoFecha" xml:space="preserve">
+    <value>MYP_TFECHAS</value>
+  </data>
+  <data name="TipoInfobol" xml:space="preserve">
+    <value>MYP_TINFOBOL</value>
+  </data>
+  <data name="Usuario" xml:space="preserve">
+    <value>SEGTUSU</value>
+  </data>
+</root>

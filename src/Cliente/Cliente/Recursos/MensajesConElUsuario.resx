@@ -1,0 +1,318 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="ConfirmacionEliminarEstado" xml:space="preserve">
+    <value>¿Seguro que desea eliminar el estado?</value>
+  </data>
+  <data name="AgenteEliminado" xml:space="preserve">
+    <value>Agente eliminado con éxito</value>
+  </data>
+  <data name="AgenteInsertado" xml:space="preserve">
+    <value>Agente insertado con éxito</value>
+  </data>
+  <data name="AgenteModificado" xml:space="preserve">
+    <value>Agente modificado con éxito</value>
+  </data>
+  <data name="ConfirmacionEliminarAgente" xml:space="preserve">
+    <value>¿Seguro que desea eliminar el agente?</value>
+  </data>
+  <data name="ConfirmacionEliminarObjeto" xml:space="preserve">
+    <value>¿Seguro que desea eliminar el objeto?</value>
+  </data>
+  <data name="ConfirmacionEliminarRol" xml:space="preserve">
+    <value>¿Seguro que desea eliminar el rol?</value>
+  </data>
+  <data name="ConfirmacionEliminarUsuario" xml:space="preserve">
+    <value>¿Seguro que desea eliminar el usuario?</value>
+  </data>
+  <data name="ErrorConexionServidor" xml:space="preserve">
+    <value>No se ha podido establecer conexión con el servidor</value>
+  </data>
+  <data name="ErrorInesperado" xml:space="preserve">
+    <value>Se ha producido un error inesperado</value>
+  </data>
+  <data name="ErrorRemoting" xml:space="preserve">
+    <value>Se produjo un error con los objetos del servidor</value>
+  </data>
+  <data name="EstadoEliminado" xml:space="preserve">
+    <value>Estado eliminado con éxito</value>
+  </data>
+  <data name="EstadoInsertado" xml:space="preserve">
+    <value>Estado insertado con éxito</value>
+  </data>
+  <data name="EstadoModificado" xml:space="preserve">
+    <value>Estado modificado con éxito</value>
+  </data>
+  <data name="IdOClaveIncorrectos" xml:space="preserve">
+    <value>Usuario o clave incorrectos</value>
+  </data>
+  <data name="IdOClaveObligatorio" xml:space="preserve">
+    <value>Debe ingresar tanto el usuario como la contraseña</value>
+  </data>
+  <data name="ObjetoEliminado" xml:space="preserve">
+    <value>Objeto eliminado con éxito</value>
+  </data>
+  <data name="ObjetoInsertado" xml:space="preserve">
+    <value>Objeto insertado con éxito</value>
+  </data>
+  <data name="ObjetoModificado" xml:space="preserve">
+    <value>Objeto modificado con éxito</value>
+  </data>
+  <data name="RolEliminado" xml:space="preserve">
+    <value>Rol eliminado con éxito</value>
+  </data>
+  <data name="RolInsertado" xml:space="preserve">
+    <value>Rol insertado con éxito</value>
+  </data>
+  <data name="RolModificado" xml:space="preserve">
+    <value>Rol modificado con éxito</value>
+  </data>
+  <data name="UsuarioEliminado" xml:space="preserve">
+    <value>Usuario eliminado con éxito</value>
+  </data>
+  <data name="UsuarioInsertado" xml:space="preserve">
+    <value>Usuario insertado con éxito</value>
+  </data>
+  <data name="UsuarioModificado" xml:space="preserve">
+    <value>Usuario modificado con éxito</value>
+  </data>
+  <data name="ConfirmacionEliminarNacional" xml:space="preserve">
+    <value>¿Seguro que desea eliminar la clase nacional?</value>
+  </data>
+  <data name="NacionalEliminado" xml:space="preserve">
+    <value>Clase nacional eliminado con éxito</value>
+  </data>
+  <data name="NacionalInsertado" xml:space="preserve">
+    <value>Clase nacional insertado con éxito</value>
+  </data>
+  <data name="NacionalModificado" xml:space="preserve">
+    <value>Clase nacional modificado con éxito</value>
+  </data>
+  <data name="ConfirmacionEliminarPais" xml:space="preserve">
+    <value>¿Seguro que desea eliminar el país?</value>
+  </data>
+  <data name="PaisEliminado" xml:space="preserve">
+    <value>País eliminado con éxito</value>
+  </data>
+  <data name="PaisInsertado" xml:space="preserve">
+    <value>País insertado con éxito</value>
+  </data>
+  <data name="PaisModificado" xml:space="preserve">
+    <value>País modificado con éxito</value>
+  </data>
+  <data name="ConfirmacionEliminarInternacional" xml:space="preserve">
+    <value>¿Seguro que desea eliminar la clase internacional?</value>
+  </data>
+  <data name="InternacionalEliminado" xml:space="preserve">
+    <value>Clase internacional eliminado con éxito</value>
+  </data>
+  <data name="InternacionalInsertado" xml:space="preserve">
+    <value>Clase internacional insertado con éxito</value>
+  </data>
+  <data name="InternacionalModificado" xml:space="preserve">
+    <value>Clase internacional modificado con éxito</value>
+  </data>
+  <data name="ConfirmacionEliminarTipoInfobol" xml:space="preserve">
+    <value>¿Seguro que desea eliminar el tipo de infobol?</value>
+  </data>
+  <data name="TipoInfobolEliminado" xml:space="preserve">
+    <value>Tipo de infobol eliminado con éxito</value>
+  </data>
+  <data name="TipoInfobolInsertado" xml:space="preserve">
+    <value>Tipo de infobol insertado con éxito</value>
+  </data>
+  <data name="TipoInfobolModificado" xml:space="preserve">
+    <value>Tipo de infobol modificado con éxito</value>
+  </data>
+  <data name="BoletinEliminado" xml:space="preserve">
+    <value>Boletin eliminado con éxito</value>
+  </data>
+  <data name="BoletinInsertado" xml:space="preserve">
+    <value>Boletin insertado con éxito</value>
+  </data>
+  <data name="BoletinModificado" xml:space="preserve">
+    <value>Boletin modificado con éxito</value>
+  </data>
+  <data name="ConfirmacionEliminarBoletin" xml:space="preserve">
+    <value>¿Seguro que desea eliminar el boletin?</value>
+  </data>
+  <data name="TipoFechaEliminado" xml:space="preserve">
+    <value>Tipo de fecha eliminado con éxito</value>
+  </data>
+  <data name="TipoFechaInsertado" xml:space="preserve">
+    <value>Tipo de fecha insertado con éxito</value>
+  </data>
+  <data name="TipoFechaModificado" xml:space="preserve">
+    <value>Tipo de fecha modificado con éxito</value>
+  </data>
+  <data name="ConfirmacionEliminarTipoFecha" xml:space="preserve">
+    <value>¿Seguro que desea eliminar el tipo de Fecha?</value>
+  </data>
+  <data name="ConfirmacionEliminarResolucion" xml:space="preserve">
+    <value>¿Seguro que desea eliminar la resolución?</value>
+  </data>
+  <data name="ResolucionEliminado" xml:space="preserve">
+    <value>Resolución eliminada con éxito</value>
+  </data>
+  <data name="ResolucionInsertado" xml:space="preserve">
+    <value>Resolución insertada con éxito</value>
+  </data>
+  <data name="ResolucionModificado" xml:space="preserve">
+    <value>Resolución modificada con éxito</value>
+  </data>
+  <data name="ConfirmacionEliminarEstatus" xml:space="preserve">
+    <value>¿Seguro que desea eliminar el estatus?</value>
+  </data>
+  <data name="EstatusEliminado" xml:space="preserve">
+    <value>Estatus eliminado con éxito</value>
+  </data>
+  <data name="EstatusInsertado" xml:space="preserve">
+    <value>Estatus insertado con éxito</value>
+  </data>
+  <data name="EstatusModificado" xml:space="preserve">
+    <value>Estatus modificado con éxito</value>
+  </data>
+  <data name="ConfirmacionEliminarPoder" xml:space="preserve">
+    <value>¿Seguro que desea eliminar el poder?</value>
+  </data>
+  <data name="PoderEliminado" xml:space="preserve">
+    <value>Poder eliminado con éxito</value>
+  </data>
+  <data name="PoderInsertado" xml:space="preserve">
+    <value>Poder insertado con éxito</value>
+  </data>
+  <data name="PoderModificado" xml:space="preserve">
+    <value>Poder modificado con éxito</value>
+  </data>
+  <data name="ErrorPoderNoEncontrado" xml:space="preserve">
+    <value>Archivo del poder no encontrado.</value>
+  </data>
+  <data name="ConfirmacionEliminarInteresado" xml:space="preserve">
+    <value>¿Seguro que desea eliminar el interesado?</value>
+  </data>
+  <data name="InteresadoEliminado" xml:space="preserve">
+    <value>Interesado eliminado con éxito</value>
+  </data>
+  <data name="InteresadoInsertado" xml:space="preserve">
+    <value>Interesado insertado con éxito</value>
+  </data>
+  <data name="InteresadoModificado" xml:space="preserve">
+    <value>Interesado modificado con éxito</value>
+  </data>
+</root>

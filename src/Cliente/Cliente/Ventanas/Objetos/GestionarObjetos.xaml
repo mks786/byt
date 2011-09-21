@@ -1,0 +1,85 @@
+﻿<Page x:Class="Trascend.Bolet.Cliente.Ventanas.Objetos.GestionarObjetos"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      mc:Ignorable="d" 
+      d:DesignHeight="550" d:DesignWidth="800"
+      xmlns:recurso="clr-namespace:Trascend.Bolet.Cliente.Recursos"
+	Title="{x:Static recurso:Etiquetas.titleGestionarObjeto}">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="40"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="40"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="40"/>
+        </Grid.RowDefinitions>
+        <GroupBox Grid.Column="1" Grid.Row="1" Margin="5">
+            <Grid Name="_gridDatos" DataContext="{Binding}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="120"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="80"/>
+                    <RowDefinition Height="30"/>
+                </Grid.RowDefinitions>
+                <TextBlock VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="8,0,0,5">Todos los roles.</TextBlock>
+                <TextBlock Grid.Column="2" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="8,0,0,5">Todos los objetos.</TextBlock>
+                <TextBlock Grid.Column="4" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="8,0,0,5">Objetos que posee el rol.</TextBlock>
+                <ListView Name="_lstRol" Grid.Row="1" Grid.RowSpan="3" Margin="8,0,0,5" ItemsSource="{Binding}" SelectionMode="Single">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="{x:Static recurso:Etiquetas.lblRol}" DisplayMemberBinding="{Binding Path=Rol}"/>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+
+                <WrapPanel Grid.Row="4" Grid.Column="2" VerticalAlignment="Bottom" HorizontalAlignment="Right" Orientation="Vertical">
+                    <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                        <Label>
+                            <TextBlock Text="{x:Static recurso:Etiquetas.lblDescripcion}"/>
+                        </Label>
+                        <TextBox Name="_txtDescripcion" Width="100"></TextBox>
+                    </WrapPanel>
+                    <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="50,5,0,5">
+                        <Button Name="_btnConsultar" Width="100" IsDefault="True">
+                            <TextBlock Text="{x:Static recurso:Etiquetas.btnConsultar}"/>
+                        </Button>
+                    </WrapPanel>
+                </WrapPanel>
+                <ListView Name="_lstObjeto" Grid.Column="2" Grid.Row="1" Grid.RowSpan="3" ItemsSource="{Binding}" SelectionMode="Single">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="{x:Static recurso:Etiquetas.lblDescripcion}" DisplayMemberBinding="{Binding Path=Rol}"/>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+                <WrapPanel Grid.Column="3" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Center"  Margin="5" Orientation="Vertical">
+                    <Button Name="_btnAgregar" Height="25" Width="90">Agregar</Button>
+                    <Button Name="_btnQuitar" Height="25" Margin="0,20,0,0" Width="90">Remover</Button>
+                </WrapPanel>
+                <ListView Name="_lstObjXRol" Grid.Row="1" Grid.Column="4" Grid.RowSpan="3" ItemsSource="{Binding}" SelectionMode="Single">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="{x:Static recurso:Etiquetas.lblDescripcion}" DisplayMemberBinding="{Binding Path=Rol}"/>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </Grid>
+        </GroupBox>
+    </Grid>
+</Page>

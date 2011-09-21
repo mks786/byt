@@ -1,0 +1,55 @@
+﻿<Page x:Class="Trascend.Bolet.Cliente.Ventanas.Interesados.ListaPoderes"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      mc:Ignorable="d" 
+      d:DesignHeight="550" d:DesignWidth="800"
+      xmlns:recurso="clr-namespace:Trascend.Bolet.Cliente.Recursos" Loaded="Page_Loaded">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="500"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="40"/>
+        </Grid.RowDefinitions>
+
+        <!--Resultados-->
+        <GroupBox Grid.Column="1" Grid.Row="0"  Margin="5">
+            <ListView Name="_lstResultados" ItemsSource="{Binding}" 
+                      MouseDoubleClick="_lstResultados_MouseDoubleClick" SelectionMode="Single"
+                      Style="{DynamicResource EstiloListView}">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Id}" Width="120">
+                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="Id" Content="{x:Static recurso:Etiquetas.lsvId}"/>
+                        </GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=NumPoder}" Width="150">
+                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="NumPoder" Content="{x:Static recurso:Etiquetas.lsvNumPoder}"/>
+                        </GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Facultad}" Width="150">
+                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="Facultad" Content="{x:Static recurso:Etiquetas.lsvFacultad}"/>
+                        </GridViewColumn>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </GroupBox>
+
+        <!--Botones Regresar-->
+        <GroupBox Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="1" BorderBrush="{x:Null}">
+            <WrapPanel Grid.Row="2" Grid.ColumnSpan="3" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="5" Orientation="Horizontal">
+                <Button Name="_btnAgregar" VerticalAlignment="Bottom" Height="25" Width="90" Click="_btnAgregar_Click">
+                    <TextBlock Text="{x:Static recurso:Etiquetas.btnNuevo}"/>
+                </Button>
+                <Button Name="_btnRegresar" VerticalAlignment="Bottom" Height="25" Width="90" Click="_btnRegresar_Click">
+                    <TextBlock Text="{x:Static recurso:Etiquetas.btnRegresar}"/>
+                </Button>
+            </WrapPanel>
+        </GroupBox>
+
+    </Grid>
+</Page>

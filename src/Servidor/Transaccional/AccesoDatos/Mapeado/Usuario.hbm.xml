@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+                   assembly="Trascend.Bolet.ObjetosComunes"
+                   namespace="Trascend.Bolet.ObjetosComunes.Entidades">
+
+  <class name="Usuario" table="SEG_USUARIOS">
+    <id name="Id" column="USR_ID" />
+    <property name="NombreCompleto" column="USR_NAME" type="string"/>
+    <property name="Password" column="PASSWD" type="string"/>
+    <property name="Iniciales" column="INICIALES" type="string"/>
+    <property name="Email" column="EMAIL" type="string"/>
+    <!--<property name="EmailEdo" column="EMAIL_EDO" type="string"/>-->
+    <property name="Autorizar" column="AUTO" type="char"/>
+
+    <many-to-one name="Rol" class="Rol" lazy="false">
+      <column name="ROL_ID"/>
+    </many-to-one>
+    
+    <many-to-one name="Departamento" class="Departamento" lazy="false">
+      <column name="CODDPTO"/>
+    </many-to-one>
+
+  </class>
+
+</hibernate-mapping>
+
+

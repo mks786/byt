@@ -1,0 +1,126 @@
+﻿<Page x:Class="Trascend.Bolet.Cliente.Ventanas.Objetos.GestionarObjetosXRoles"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      mc:Ignorable="d" 
+      d:DesignHeight="550" d:DesignWidth="800"
+      xmlns:recurso="clr-namespace:Trascend.Bolet.Cliente.Recursos"
+	Title="{x:Static recurso:Etiquetas.titleGestionarObjeto}" Loaded="Page_Loaded">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="40"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="40"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="40"/>
+        </Grid.RowDefinitions>
+        <GroupBox Grid.Column="1" Grid.Row="1" Margin="5">
+            <Grid Name="_gridDatos" DataContext="{Binding}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition />
+                    <ColumnDefinition Width="120"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="120"/>
+                    <RowDefinition Height="30"/>
+                </Grid.RowDefinitions>
+                <TextBlock VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="8,0,0,5">Todos los roles.</TextBlock>
+                <TextBlock Grid.Column="2" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="8,0,0,5">Todos los objetos.</TextBlock>
+                <TextBlock Grid.Column="4" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="8,0,0,5">Objetos que posee el rol.</TextBlock>
+                <ListView Name="_lstRol" Grid.Row="1" Grid.RowSpan="3" Margin="8,0,0,5" 
+                          ItemsSource="{Binding}" SelectionMode="Single" 
+                          SelectionChanged="_lstRol_SelectionChanged" Style="{DynamicResource EstiloListView}">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn DisplayMemberBinding="{Binding Path=Id}" Width="120">
+                                <GridViewColumnHeader Click="_OrdenarRoles_Click" Tag="Id" Content="{x:Static recurso:Etiquetas.lsvId}"/>
+                            </GridViewColumn>
+                            <GridViewColumn DisplayMemberBinding="{Binding Path=Descripcion}" Width="150">
+                                <GridViewColumnHeader Click="_OrdenarRoles_Click" Tag="Descripcion" Content="{x:Static recurso:Etiquetas.lsvDescripcion}"/>
+                            </GridViewColumn>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+
+                <WrapPanel Grid.Row="4" Grid.Column="2" VerticalAlignment="Bottom" HorizontalAlignment="Right" Orientation="Vertical" Margin="0,0,0,0">
+                    <Separator Margin="0,0,0,5"/>
+                    <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
+                        <Label>
+                            <TextBlock Text="{x:Static recurso:Etiquetas.lblId}"/>
+                        </Label>
+                        <TextBox Name="_txtId" Width="100" MaxLength="255"></TextBox>
+                    </WrapPanel>
+                    <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
+                        <Label>
+                            <TextBlock Text="{x:Static recurso:Etiquetas.lblDescripcion}"/>
+                        </Label>
+                        <TextBox Name="_txtDescripcion" Width="100" MaxLength="255"></TextBox>
+                    </WrapPanel>
+                    <Separator Margin="0,5,0,5"/>
+                    <WrapPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,5,0,5">
+                        <Button Name="_btnConsultar" Width="100" IsDefault="True" Click="_btnConsultar_Click">
+                            <TextBlock Text="{x:Static recurso:Etiquetas.btnConsultar}"/>
+                        </Button>
+                    </WrapPanel>
+                    <Separator Margin="0,5,0,5"/>
+                </WrapPanel>
+                <ListView Name="_lstObjeto" Grid.Column="2" Grid.Row="1" Grid.RowSpan="3" 
+                          ItemsSource="{Binding}" SelectionMode="Extended" 
+                          MouseDoubleClick="_lstObjeto_MouseDoubleClick" Style="{DynamicResource EstiloListView}">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn DisplayMemberBinding="{Binding Path=Id}" Width="120">
+                                <GridViewColumnHeader Click="_OrdenarObjetos_Click" Tag="Id" Content="{x:Static recurso:Etiquetas.lsvId}"/>
+                            </GridViewColumn>
+                            <GridViewColumn DisplayMemberBinding="{Binding Path=Descripcion}" Width="150">
+                                <GridViewColumnHeader Click="_OrdenarObjetos_Click" Tag="Descripcion" Content="{x:Static recurso:Etiquetas.lsvDescripcion}"/>
+                            </GridViewColumn>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+                <WrapPanel Grid.Column="3" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Center"  Margin="5" Orientation="Vertical">
+                    <Button Name="_btnAgregar" Height="25" Width="50" Click="_btnAgregar_Click">
+                        <TextBlock Text="{x:Static recurso:Etiquetas.btnAgregar}"/>
+                    </Button>
+                    <Button Name="_btnQuitar" Height="25" Margin="0,20,0,0" Width="50" Click="_btnQuitar_Click">
+                        <TextBlock Text="{x:Static recurso:Etiquetas.btnQuitar}"/>
+                    </Button>
+                </WrapPanel>
+                <ListView Name="_lstObjXRol" Grid.Row="1" Grid.Column="4" Grid.RowSpan="3" 
+                          ItemsSource="{Binding}" SelectionMode="Extended" 
+                          MouseDoubleClick="_lstObjXRol_MouseDoubleClick" Style="{DynamicResource EstiloListView}">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn DisplayMemberBinding="{Binding Path=Id}" Width="120">
+                                <GridViewColumnHeader Click="_OrdenarRolesXObjetos_Click" Tag="Id" Content="{x:Static recurso:Etiquetas.lsvId}"/>
+                            </GridViewColumn>
+                            <GridViewColumn DisplayMemberBinding="{Binding Path=Descripcion}" Width="150">
+                                <GridViewColumnHeader Click="_OrdenarRolesXObjetos_Click" Tag="Descripcion" Content="{x:Static recurso:Etiquetas.lsvDescripcion}"/>
+                            </GridViewColumn>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </Grid>
+        </GroupBox>
+        <GroupBox Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="3" BorderBrush="{x:Null}">
+            <StackPanel HorizontalAlignment="Right" VerticalAlignment="Bottom">
+                <Button Name="_btnCancelar" Width="100" Click="_btnCancelar_Click">
+                    <TextBlock Text="{x:Static recurso:Etiquetas.btnCancelar}"/>
+                </Button>
+            </StackPanel>
+        </GroupBox>
+    </Grid>
+</Page>

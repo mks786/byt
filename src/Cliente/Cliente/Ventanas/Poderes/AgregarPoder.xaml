@@ -1,0 +1,146 @@
+﻿<Page x:Class="Trascend.Bolet.Cliente.Ventanas.Poderes.AgregarPoder"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      mc:Ignorable="d" 
+      xmlns:reglas="clr-namespace:Trascend.Bolet.Cliente.Validaciones"
+      d:DesignHeight="550" d:DesignWidth="800"
+      xmlns:recurso="clr-namespace:Trascend.Bolet.Cliente.Recursos"
+      xmlns:conv="clr-namespace:Trascend.Bolet.Cliente.Transformadores"
+	Title="{x:Static recurso:Etiquetas.titleAgregarUsuario}" Loaded="Page_Loaded">
+    <Page.Resources>
+        <conv:DosValresAUno x:Key="convertir"></conv:DosValresAUno>
+        <Style x:Key="ElementInError" TargetType="{x:Type FrameworkElement}">
+            <Style.Triggers>
+                <Trigger Property="Validation.HasError" Value="True">
+                    <Setter Property="ToolTip"
+                    Value="{Binding (Validation.Errors)[0].ErrorContent, RelativeSource={x:Static RelativeSource.Self}}"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Page.Resources>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="100"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="10"/>
+        </Grid.RowDefinitions>
+        
+        <GroupBox Grid.Column="1" Grid.Row="1">
+            <Grid Name="_gridDatos" DataContext="{Binding}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="100"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="200"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <Label Grid.Column="0" Grid.Row="1" VerticalAlignment="Center" HorizontalContentAlignment="Right">
+                    <TextBlock Text="{x:Static recurso:Etiquetas.lblNumPoder}"/>
+                </Label>
+                <TextBox Name="_txtNumPoder" Grid.Column="1" Grid.Row="1" VerticalAlignment="Center"  
+                         HorizontalAlignment="Left" Width="180" SpellCheck.IsEnabled="True" MaxLength="255"
+                         ToolTip="{Binding ElementName=_txtNumPoder, Path=(Validation.Errors)[0].ErrorContent}">
+                    <TextBox.Text>
+                        <Binding Path="NumPoder" UpdateSourceTrigger="PropertyChanged">
+                            <Binding.ValidationRules>
+                                <reglas:Obligatorio ValidatesOnTargetUpdated="True" />
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </TextBox.Text>
+                </TextBox>
+
+
+                <Label Grid.Column="0" Grid.Row="2" VerticalAlignment="Center" HorizontalContentAlignment="Right">
+                    <TextBlock Text="{x:Static recurso:Etiquetas.lblBoletin}"/>
+                </Label>
+                <ComboBox Grid.Column="1" Grid.Row="2" Name="_cbxBoletin" HorizontalAlignment="Left" Width="180" Height="20"  ItemsSource="{Binding}">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock>
+                                <TextBlock.Text>
+                                    <MultiBinding Converter="{StaticResource convertir}">
+                                        <Binding Path="Id" />
+                                        <Binding Path="FechaBoletin" />
+                                    </MultiBinding>
+                                </TextBlock.Text>
+                            </TextBlock>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+
+                <Label Grid.Column="0" Grid.Row="3" VerticalAlignment="Center" HorizontalContentAlignment="Right">
+                    <TextBlock Text="{x:Static recurso:Etiquetas.lblInteresado}"/>
+                </Label>
+                <ListView Grid.Column="1" Grid.Row="3" Name="_lstInteresados" ItemsSource="{Binding}" 
+                      SelectionMode="Single"
+                      Style="{DynamicResource EstiloListView}">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn DisplayMemberBinding="{Binding Path=Id}" Width="45">
+                                <GridViewColumnHeader Click="_Ordenar_Click" Tag="Id" Content="{x:Static recurso:Etiquetas.lsvId}"/>
+                            </GridViewColumn>
+                            <GridViewColumn DisplayMemberBinding="{Binding Path=Nombre}" Width="300">
+                                <GridViewColumnHeader Click="_Ordenar_Click" Tag="Nombre" Content="{x:Static recurso:Etiquetas.lsvNombre}"/>
+                            </GridViewColumn>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+
+                <Label Grid.Column="0" Grid.Row="4" VerticalAlignment="Center" HorizontalContentAlignment="Right">
+                    <TextBlock Text="{x:Static recurso:Etiquetas.lblFacultad}"/>
+                </Label>
+                <TextBox Grid.Column="1" Grid.Row="4" Name="_txtFacultad" VerticalAlignment="Center"  
+                         HorizontalAlignment="Left" Width="180" Text="{Binding Path=Facultad}"></TextBox>
+
+                <Label Grid.Column="0" Grid.Row="5" VerticalAlignment="Center" HorizontalContentAlignment="Right">
+                    <TextBlock Text="{x:Static recurso:Etiquetas.lblAnexo}"/>
+                </Label>
+                <TextBox Grid.Column="1" Grid.Row="5" Name="_txtAnexo" VerticalAlignment="Center"  
+                         HorizontalAlignment="Left" Width="180" Text="{Binding Path=Anexo}"></TextBox>
+
+                <Label Grid.Column="0" Grid.Row="6" VerticalAlignment="Center" HorizontalContentAlignment="Right">
+                    <TextBlock Text="{x:Static recurso:Etiquetas.lblObservaciones}"/>
+                </Label>
+                <TextBox Grid.Column="1" Grid.Row="6" Name="_txtObservaciones" VerticalAlignment="Center"  
+                         HorizontalAlignment="Left" Width="180" Text="{Binding Path=Observaciones}"></TextBox>
+            </Grid>
+        </GroupBox>
+
+        <WrapPanel Grid.Row="2" Grid.ColumnSpan="3" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="5" Orientation="Horizontal">
+            <Button Name="_btnAceptar"  VerticalAlignment="Bottom" Height="25" Width="90" 
+                    Click="_btnAceptar_Click"  IsDefault="True">
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding ElementName=_txtNumPoder,Path=(Validation.HasError)}" Value="True">
+                                <Setter Property="IsEnabled" Value="False" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+                <TextBlock Name="_txbAceptar" Text="{x:Static recurso:Etiquetas.btnAceptar}"/>
+            </Button>
+            <Button Name="_btnCancelar" VerticalAlignment="Bottom" Height="25" Width="90" Click="_btnCancelar_Click">
+                <TextBlock Name="_txbCancelar" Text="{x:Static recurso:Etiquetas.btnCancelar}"/>
+            </Button>
+        </WrapPanel>
+    </Grid>
+</Page>

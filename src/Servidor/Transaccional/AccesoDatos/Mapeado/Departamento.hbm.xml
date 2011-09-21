@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+                   assembly="Trascend.Bolet.ObjetosComunes"
+                   namespace="Trascend.Bolet.ObjetosComunes.Entidades">
+
+  <class name="Departamento" table="DPTOS">
+    <id name="Id" column="CODDPTO" />
+    <property name="Descripcion" column="DESC_DPTO" type="string"/>
+    
+    <bag name="Usuarios">
+      <key column="ROL_ID"/>
+      <one-to-many class="Usuario"/>
+    </bag>
+  </class>
+
+</hibernate-mapping>
+
+

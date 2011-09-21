@@ -1,0 +1,113 @@
+﻿<Window x:Class="Trascend.Bolet.Cliente.Ventanas.Principales.VentanaPrincipal"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:resx="clr-namespace:Trascend.Bolet.Cliente.Recursos"
+        Title="{x:Static resx:Etiquetas.titlePrincipal}"
+        Width="800" Height="600"
+        MinWidth="800" MinHeight="600"
+        WindowStartupLocation="CenterScreen"
+        Icon="/Trascend.Bolet.Cliente;component/images/bolet.ico"  Closing="Window_Closing"
+        WindowStyle="SingleBorderWindow"
+        WindowState = "Maximized">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20" />
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Menu Name="_menuPrincipal" Height="20" VerticalAlignment="Top" Grid.ColumnSpan="2" Grid.Row="0">
+            <MenuItem Name="_menuItemArchivo" Header="{x:Static resx:Etiquetas.menuItemArchivo}">
+                <MenuItem Name="_menuItemSalir" Header="{x:Static resx:Etiquetas.menuItemSalir}" Click="btnSalir_Click" InputGestureText="Alt+F4"></MenuItem>
+            </MenuItem>
+            <MenuItem Name="_menuItemEditar" Header="{x:Static resx:Etiquetas.menuItemEditar}">
+                <MenuItem Name="_menuItemCortar" Header="{x:Static resx:Etiquetas.menuItemCortar}" Command="ApplicationCommands.Cut"/>
+                <MenuItem Name="_menuItemCopiar" Header="{x:Static resx:Etiquetas.menuItemCopiar}" Command="ApplicationCommands.Copy"/>
+                <MenuItem Name="_menuItemPegar" Header="{x:Static resx:Etiquetas.menuItemPegar}" Command="ApplicationCommands.Paste"/>
+            </MenuItem>
+            <MenuItem Name="_menuItemHistoria" Header="{x:Static resx:Etiquetas.menuItemHistoria}">
+                <MenuItem Name="_menuItemAgente" Visibility="Collapsed" Header="{x:Static resx:Etiquetas.menuItemAgente}">
+                    <MenuItem Name="_menuItemAgenteConsultar" Header="{x:Static resx:Etiquetas.menuItemConsultar}" Click="_menuItemAgenteConsultar_Click"/>
+                    <MenuItem Name="_menuItemAgenteAgregar" Header="{x:Static resx:Etiquetas.menuItemAgregar}" Click="_menuItemAgenteAgregar_Click"/>
+                    <!--<MenuItem Name="_menuItemUsuarioModificar" Header="{x:Static resx:Etiquetas.menuItemUsuarioModificar}"></MenuItem>-->
+                </MenuItem>
+                <MenuItem Name="_menuItemBoletin" Visibility="Collapsed" Header="{x:Static resx:Etiquetas.menuItemBoletin}">
+                    <MenuItem Name="_menuItemBoletinConsultar" Header="{x:Static resx:Etiquetas.menuItemConsultar}" Click="_menuItemBoletinConsultar_Click"/>
+                    <MenuItem Name="_menuItemBoletinAgregar" Header="{x:Static resx:Etiquetas.menuItemAgregar}" Click="_menuItemBoletinAgregar_Click"/>
+                    <!--<MenuItem Name="_menuItemUsuarioModificar" Header="{x:Static resx:Etiquetas.menuItemUsuarioModificar}"></MenuItem>-->
+                </MenuItem>
+                <MenuItem Name="_menuItemInternacional" Visibility="Collapsed" Header="{x:Static resx:Etiquetas.menuItemInternacional}">
+                    <MenuItem Name="_menuItemInternacionalConsultar" Header="{x:Static resx:Etiquetas.menuItemConsultar}" Click="_menuItemInternacionalConsultar_Click"/>
+                    <MenuItem Name="_menuItemInternacionalAgregar" Header="{x:Static resx:Etiquetas.menuItemAgregar}" Click="_menuItemInternacionalAgregar_Click"/>
+                    <!--<MenuItem Name="_menuItemUsuarioModificar" Header="{x:Static resx:Etiquetas.menuItemUsuarioModificar}"></MenuItem>-->
+                </MenuItem>
+                <MenuItem Name="_menuItemNacional" Visibility="Collapsed" Header="{x:Static resx:Etiquetas.menuItemNacional}">
+                    <MenuItem Name="_menuItemNacionalConsultar" Header="{x:Static resx:Etiquetas.menuItemConsultar}" Click="_menuItemNacionalConsultar_Click"/>
+                    <MenuItem Name="_menuItemNacionalAgregar" Header="{x:Static resx:Etiquetas.menuItemAgregar}" Click="_menuItemNacionalAgregar_Click"/>
+                    <!--<MenuItem Name="_menuItemUsuarioModificar" Header="{x:Static resx:Etiquetas.menuItemUsuarioModificar}"></MenuItem>-->
+                </MenuItem>
+                <MenuItem Name="_menuItemEstado" Visibility="Collapsed" Header="{x:Static resx:Etiquetas.menuItemEstado}">
+                    <MenuItem Name="_menuItemEstadoConsultar" Header="{x:Static resx:Etiquetas.menuItemConsultar}" Click="_menuItemEstadoConsultar_Click"/>
+                    <MenuItem Name="_menuItemEstadoAgregar" Header="{x:Static resx:Etiquetas.menuItemAgregar}" Click="_menuItemEstadoAgregar_Click"/>
+                    <!--<MenuItem Name="_menuItemUsuarioModificar" Header="{x:Static resx:Etiquetas.menuItemUsuarioModificar}"></MenuItem>-->
+                </MenuItem>
+                <MenuItem Name="_menuItemEstatus" Visibility="Collapsed" Header="{x:Static resx:Etiquetas.menuItemEstatus}">
+                    <MenuItem Name="_menuItemEstatusConsultar" Header="{x:Static resx:Etiquetas.menuItemConsultar}" Click="_menuItemEstatusConsultar_Click"/>
+                    <MenuItem Name="_menuItemEstatusAgregar" Header="{x:Static resx:Etiquetas.menuItemAgregar}" Click="_menuItemEstatusAgregar_Click"/>
+                    <!--<MenuItem Name="_menuItemUsuarioModificar" Header="{x:Static resx:Etiquetas.menuItemUsuarioModificar}"></MenuItem>-->
+                </MenuItem>
+                <MenuItem Name="_menuItemInteresado" Visibility="Collapsed" Header="{x:Static resx:Etiquetas.menuItemInteresado}">
+                    <MenuItem Name="_menuItemInteresadoConsultar" Header="{x:Static resx:Etiquetas.menuItemConsultar}" Click="_menuItemInteresadoConsultar_Click"/>
+                    <MenuItem Name="_menuItemInteresadoAgregar" Header="{x:Static resx:Etiquetas.menuItemAgregar}" Click="_menuItemInteresadoAgregar_Click"/>
+                    <!--<MenuItem Name="_menuItemUsuarioModificar" Header="{x:Static resx:Etiquetas.menuItemUsuarioModificar}"></MenuItem>-->
+                </MenuItem>
+                <MenuItem Name="_menuItemObjeto" Visibility="Collapsed" Header="{x:Static resx:Etiquetas.menuItemObjetivo}">
+                    <MenuItem Name="_menuItemObjetoConsultar" Header="{x:Static resx:Etiquetas.menuItemConsultar}" Click="_menuItemObjetoConsultar_Click"></MenuItem>
+                    <MenuItem Name="_menuItemObjetoAgregar" Header="{x:Static resx:Etiquetas.menuItemAgregar}" Click="_menuItemObjetoAgregar_Click"></MenuItem>
+                    <MenuItem Name="_menuItemGestionarObjetosXRoles" Header="{x:Static resx:Etiquetas.menuItemGestionarObjetosXRoles}" Click="_menuItemGestionarObjetosXRoles_Click"></MenuItem>
+                    <!--<MenuItem Name="_menuItemObjetivoModificar" Header="{x:Static resx:Etiquetas.menuItemUsuarioModificar}"></MenuItem>-->
+                </MenuItem>
+                <MenuItem Name="_menuItemPais" Visibility="Collapsed" Header="{x:Static resx:Etiquetas.menuItemPais}">
+                    <MenuItem Name="_menuItemPaisConsultar" Header="{x:Static resx:Etiquetas.menuItemConsultar}" Click="_menuItemPaisConsultar_Click"/>
+                    <MenuItem Name="_menuItemPaisAgregar" Header="{x:Static resx:Etiquetas.menuItemAgregar}" Click="_menuItemPaisAgregar_Click"/>
+                    <!--<MenuItem Name="_menuItemPaisModificar" Header="{x:Static resx:Etiquetas.menuItemUsuarioModificar}"></MenuItem>-->
+                </MenuItem>
+                <MenuItem Name="_menuItemPoder" Visibility="Collapsed" Header="{x:Static resx:Etiquetas.menuItemPoder}">
+                    <MenuItem Name="_menuItemPoderConsultar" Header="{x:Static resx:Etiquetas.menuItemConsultar}" Click="_menuItemPoderConsultar_Click"/>
+                    <MenuItem Name="_menuItemPoderAgregar" Header="{x:Static resx:Etiquetas.menuItemAgregar}" Click="_menuItemPoderAgregar_Click"/>
+                    <MenuItem Name="_menuItemGestionarPoderesXAgentes" Header="{x:Static resx:Etiquetas.menuItemGestionarPoderesXAgentes}" Click="_menuItemGestionarPoderesXAgentes_Click"></MenuItem>
+                    <!--<MenuItem Name="_menuItemPaisModificar" Header="{x:Static resx:Etiquetas.menuItemUsuarioModificar}"></MenuItem>-->
+                </MenuItem>
+                <MenuItem Name="_menuItemResolucion" Visibility="Collapsed" Header="{x:Static resx:Etiquetas.menuItemResolucion}">
+                    <MenuItem Name="_menuItemResolucionConsultar" Header="{x:Static resx:Etiquetas.menuItemConsultar}" Click="_menuItemResolucionConsultar_Click"/>
+                    <MenuItem Name="_menuItemResolucionAgregar" Header="{x:Static resx:Etiquetas.menuItemAgregar}" Click="_menuItemResolucionAgregar_Click"/>
+                    <!--<MenuItem Name="_menuItemPaisModificar" Header="{x:Static resx:Etiquetas.menuItemUsuarioModificar}"></MenuItem>-->
+                </MenuItem>
+                <MenuItem Name="_menuItemRol" Visibility="Collapsed"  Header="{x:Static resx:Etiquetas.menuItemRol}">
+                    <MenuItem Name="_menuItemRolConsultar" Header="{x:Static resx:Etiquetas.menuItemConsultar}" Click="_menuItemRolConsultar_Click"></MenuItem>
+                    <MenuItem Name="_menuItemRolAgregar" Header="{x:Static resx:Etiquetas.menuItemAgregar}" Click="_menuItemRolAgregar_Click"></MenuItem>
+                    <!--<MenuItem Name="_menuItemRolModificar" Header="{x:Static resx:Etiquetas.menuItemUsuarioModificar}"></MenuItem>-->
+                </MenuItem>
+                <MenuItem Name="_menuItemTipoFecha" Visibility="Collapsed" Header="{x:Static resx:Etiquetas.menuItemTipoFecha}">
+                    <MenuItem Name="_menuItemTipoFechaConsultar" Header="{x:Static resx:Etiquetas.menuItemConsultar}" Click="_menuItemTipoFechaConsultar_Click"/>
+                    <MenuItem Name="_menuItemTipoFechaAgregar" Header="{x:Static resx:Etiquetas.menuItemAgregar}" Click="_menuItemTipoFechaAgregar_Click"/>
+                    <!--<MenuItem Name="_menuItemUsuarioModificar" Header="{x:Static resx:Etiquetas.menuItemUsuarioModificar}"></MenuItem>-->
+                </MenuItem>
+                <MenuItem Name="_menuItemTipoInfobol" Visibility="Collapsed" Header="{x:Static resx:Etiquetas.menuItemTipoInfobol}">
+                    <MenuItem Name="_menuItemTipoInfobolConsultar" Header="{x:Static resx:Etiquetas.menuItemConsultar}" Click="_menuItemTipoInfobolConsultar_Click"/>
+                    <MenuItem Name="_menuItemTipoInfobolAgregar" Header="{x:Static resx:Etiquetas.menuItemAgregar}" Click="_menuItemTipoInfobolAgregar_Click"/>
+                    <!--<MenuItem Name="_menuItemUsuarioModificar" Header="{x:Static resx:Etiquetas.menuItemUsuarioModificar}"></MenuItem>-->
+                </MenuItem>
+                <MenuItem Name="_menuItemUsuario" Visibility="Collapsed" Header="{x:Static resx:Etiquetas.menuItemUsuario}">
+                    <MenuItem Name="_menuItemUsuarioConsultar" Header="{x:Static resx:Etiquetas.menuItemConsultar}" Click="_menuItemUsuarioConsultar_Click"/>
+                    <MenuItem Name="_menuItemUsuarioAgregar" Header="{x:Static resx:Etiquetas.menuItemAgregar}" Click="_menuItemUsuarioAgregar_Click"/>
+                    <!--<MenuItem Name="_menuItemUsuarioModificar" Header="{x:Static resx:Etiquetas.menuItemUsuarioModificar}"></MenuItem>-->
+                </MenuItem>
+            </MenuItem>
+            <MenuItem Name="_menuItemAyuda" Header="{x:Static resx:Etiquetas.menuItemAyuda}">
+                <MenuItem Name="_menuItemAyudaAcerca" Header="{x:Static resx:Etiquetas.menuItemAyudaAcerca}" ></MenuItem>
+            </MenuItem>
+
+        </Menu>
+        <Frame Name="_framePrincipal" Grid.Row="1" NavigationUIVisibility="Hidden" Style="{DynamicResource EstiloFrameVentanaPrincipal}"></Frame>
+    </Grid>
+</Window>

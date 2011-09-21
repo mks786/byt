@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+                   assembly="Trascend.Bolet.ObjetosComunes"
+                   namespace="Trascend.Bolet.ObjetosComunes.Entidades">
+
+  <class name="Poder" table="MYP_PODERES">
+    <id name="Id" column="CPODER" />
+    <property name="NumPoder" column="CFOMENTO" type="string"/>
+    <property name="Fecha" column="FPUBLICACION" type="DateTime"/>
+    <property name="Facultad" column="XFACULTAD" type="string"/>
+    <property name="Anexo" column="XANEXO" type="string"/>
+    <property name="Observaciones" column="XOBSERVACION" type="string"/>
+
+    <many-to-one name="Boletin" class="Boletin">
+      <column name="CBOLETIN_PUBLICACION"/>
+    </many-to-one>
+    
+    <many-to-one name="Interesado" class="Interesado">
+      <column name="CINTERESADO"/>
+    </many-to-one>
+
+    <bag name="Agentes" table="MYP_APODERADOS">
+      <key column="CPODER"/>
+      <many-to-many column="CAGENTE" class="Agente" not-found="ignore"/>
+    </bag>
+  </class>
+
+</hibernate-mapping>
+
+

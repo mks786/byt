@@ -1,0 +1,684 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{84CD6464-5709-4BE7-818D-5CE3FE2CF171}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Trascend.Bolet.Cliente</RootNamespace>
+    <AssemblyName>Trascend.Bolet.Cliente</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>Trascend.Bolet.Cliente.App</StartupObject>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="LinFu.DynamicProxy">
+      <HintPath>..\..\..\lib\LinFu.DynamicProxy.dll</HintPath>
+    </Reference>
+    <Reference Include="NHibernate">
+      <HintPath>..\..\..\lib\NHibernate.dll</HintPath>
+    </Reference>
+    <Reference Include="NHibernate.ByteCode.LinFu">
+      <HintPath>..\..\..\lib\NHibernate.ByteCode.LinFu.dll</HintPath>
+    </Reference>
+    <Reference Include="NLog, Version=1.0.0.505, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL" />
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Ayuda\SortAdorner.cs" />
+    <Compile Include="Contratos\Agentes\IAgregarAgente.cs" />
+    <Compile Include="Contratos\Agentes\IConsultarAgente.cs" />
+    <Compile Include="Contratos\Agentes\IConsultarAgentes.cs" />
+    <Compile Include="Contratos\Auditorias\IConsultarAuditorias.cs" />
+    <Compile Include="Contratos\Interesados\IAgregarInteresado.cs" />
+    <Compile Include="Contratos\Interesados\IListaPoderes.cs" />
+    <Compile Include="Contratos\Interesados\IConsultarInteresado.cs" />
+    <Compile Include="Contratos\Interesados\IConsultarInteresados.cs" />
+    <Compile Include="Contratos\Poderes\IAgregarPoder.cs" />
+    <Compile Include="Contratos\Poderes\IConsultarPoder.cs" />
+    <Compile Include="Contratos\Poderes\IConsultarPoderes.cs" />
+    <Compile Include="Contratos\Estatuses\IAgregarEstatus.cs" />
+    <Compile Include="Contratos\Estatuses\IConsultarEstatus.cs" />
+    <Compile Include="Contratos\Estatuses\IConsultarEstatuses.cs" />
+    <Compile Include="Contratos\Poderes\IGestionarPoderesXAgentes.cs" />
+    <Compile Include="Contratos\TipoFechas\IAgregarTipoFecha.cs" />
+    <Compile Include="Contratos\TipoFechas\IConsultarTipoFecha.cs" />
+    <Compile Include="Contratos\TipoFechas\IConsultarTipoFechas.cs" />
+    <Compile Include="Contratos\Resoluciones\IAgregarResolucion.cs" />
+    <Compile Include="Contratos\Resoluciones\IConsultarResolucion.cs" />
+    <Compile Include="Contratos\Resoluciones\IConsultarResoluciones.cs" />
+    <Compile Include="Contratos\TipoInfoboles\IAgregarTipoInfobol.cs" />
+    <Compile Include="Contratos\TipoInfoboles\IConsultarTipoInfobol.cs" />
+    <Compile Include="Contratos\TipoInfoboles\IConsultarTipoInfoboles.cs" />
+    <Compile Include="Contratos\Internacionales\IAgregarInternacional.cs" />
+    <Compile Include="Contratos\Internacionales\IConsultarInternacional.cs" />
+    <Compile Include="Contratos\Internacionales\IConsultarInternacionales.cs" />
+    <Compile Include="Contratos\Paises\IAgregarPais.cs" />
+    <Compile Include="Contratos\Paises\IConsultarPais.cs" />
+    <Compile Include="Contratos\Paises\IConsultarPaises.cs" />
+    <Compile Include="Contratos\Boletines\IAgregarBoletin.cs" />
+    <Compile Include="Contratos\Boletines\IConsultarBoletin.cs" />
+    <Compile Include="Contratos\Boletines\IConsultarBoletines.cs" />
+    <Compile Include="Contratos\Estados\IAgregarEstado.cs" />
+    <Compile Include="Contratos\Estados\IConsultarEstado.cs" />
+    <Compile Include="Contratos\Estados\IConsultarEstados.cs" />
+    <Compile Include="Contratos\Nacionales\IAgregarNacional.cs" />
+    <Compile Include="Contratos\Nacionales\IConsultarNacional.cs" />
+    <Compile Include="Contratos\Nacionales\IConsultarNacionales.cs" />
+    <Compile Include="Contratos\Principales\IPaginaPrincipal.cs" />
+    <Compile Include="Contratos\Roles\IAgregarRol.cs" />
+    <Compile Include="Contratos\Roles\IConsultarRol.cs" />
+    <Compile Include="Contratos\Roles\IConsultarRoles.cs" />
+    <Compile Include="Contratos\Logines\ILogin.cs" />
+    <Compile Include="Contratos\Objetos\IAgregarObjeto.cs" />
+    <Compile Include="Contratos\Objetos\IConsultarObjeto.cs" />
+    <Compile Include="Contratos\Objetos\IConsultarObjetos.cs" />
+    <Compile Include="Contratos\Objetos\IGestionarObjetosXRoles.cs" />
+    <Compile Include="Contratos\Principales\IVentanaPrincipal.cs" />
+    <Compile Include="Contratos\Usuarios\IAgregarUsuario.cs" />
+    <Compile Include="Contratos\Usuarios\IConsultarUsuario.cs" />
+    <Compile Include="Contratos\Usuarios\IConsultarUsuarios.cs" />
+    <Compile Include="Contratos\IPaginaBase.cs" />
+    <Compile Include="App.cs" />
+    <Compile Include="Presentadores\Agentes\PresentadorAgregarAgente.cs" />
+    <Compile Include="Presentadores\Agentes\PresentadorConsultarAgente.cs" />
+    <Compile Include="Presentadores\Agentes\PresentadorConsultarAgentes.cs" />
+    <Compile Include="Presentadores\Auditorias\PresentadorListaAuditorias.cs" />
+    <Compile Include="Presentadores\Interesados\PresentadorAgregarInteresado.cs" />
+    <Compile Include="Presentadores\Interesados\PresentadorConsultarInteresado.cs" />
+    <Compile Include="Presentadores\Interesados\PresentadorConsultarInteresados.cs" />
+    <Compile Include="Presentadores\Interesados\PresentadorListaPoderes.cs" />
+    <Compile Include="Presentadores\Poderes\PresentadorAgregarPoder.cs" />
+    <Compile Include="Presentadores\Poderes\PresentadorConsultarPoder.cs" />
+    <Compile Include="Presentadores\Poderes\PresentadorConsultarPoderes.cs" />
+    <Compile Include="Presentadores\Estatuses\PresentadorAgregarEstatus.cs" />
+    <Compile Include="Presentadores\Estatuses\PresentadorConsultarEstatus.cs" />
+    <Compile Include="Presentadores\Estatuses\PresentadorConsultarEstatuses.cs" />
+    <Compile Include="Presentadores\Poderes\PresentadorGestionarPoderesXAgentes.cs" />
+    <Compile Include="Presentadores\TipoFechas\PresentadorAgregarTipoFecha.cs" />
+    <Compile Include="Presentadores\TipoFechas\PresentadorConsultarTipoFecha.cs" />
+    <Compile Include="Presentadores\TipoFechas\PresentadorConsultarTipoFechas.cs" />
+    <Compile Include="Presentadores\Resoluciones\PresentadorAgregarResolucion.cs" />
+    <Compile Include="Presentadores\Resoluciones\PresentadorConsultarResolucion.cs" />
+    <Compile Include="Presentadores\Resoluciones\PresentadorConsultarResoluciones.cs" />
+    <Compile Include="Presentadores\TipoInfoboles\PresentadorAgregarTipoInfobol.cs" />
+    <Compile Include="Presentadores\TipoInfoboles\PresentadorConsultarTipoInfobol.cs" />
+    <Compile Include="Presentadores\TipoInfoboles\PresentadorConsultarTipoInfoboles.cs" />
+    <Compile Include="Presentadores\Internacionales\PresentadorAgregarInternacional.cs" />
+    <Compile Include="Presentadores\Internacionales\PresentadorConsultarInternacional.cs" />
+    <Compile Include="Presentadores\Internacionales\PresentadorConsultarInternacionales.cs" />
+    <Compile Include="Presentadores\Paises\PresentadorAgregarPais.cs" />
+    <Compile Include="Presentadores\Paises\PresentadorConsultarPais.cs" />
+    <Compile Include="Presentadores\Paises\PresentadorConsultarPaises.cs" />
+    <Compile Include="Presentadores\Boletines\PresentadorAgregarBoletin.cs" />
+    <Compile Include="Presentadores\Boletines\PresentadorConsultarBoletin.cs" />
+    <Compile Include="Presentadores\Boletines\PresentadorConsultarBoletines.cs" />
+    <Compile Include="Presentadores\Estados\PresentadorAgregarEstado.cs" />
+    <Compile Include="Presentadores\Estados\PresentadorConsultarEstado.cs" />
+    <Compile Include="Presentadores\Estados\PresentadorConsultarEstados.cs" />
+    <Compile Include="Presentadores\Nacionales\PresentadorAgregarNacional.cs" />
+    <Compile Include="Presentadores\Nacionales\PresentadorConsultarNacional.cs" />
+    <Compile Include="Presentadores\Nacionales\PresentadorConsultarNacionales.cs" />
+    <Compile Include="Presentadores\Principales\PresentadorPaginaPrincipal.cs" />
+    <Compile Include="Presentadores\Roles\PresentadorAgregarRol.cs" />
+    <Compile Include="Presentadores\Roles\PresentadorConsultarRol.cs" />
+    <Compile Include="Presentadores\Roles\PresentadorConsultarRoles.cs" />
+    <Compile Include="Presentadores\Logines\PresentadorLogin.cs" />
+    <Compile Include="Presentadores\Objetos\PresentadorAgregarObjeto.cs" />
+    <Compile Include="Presentadores\Objetos\PresentadorConsultarObjeto.cs" />
+    <Compile Include="Presentadores\Objetos\PresentadorConsultarObjetos.cs" />
+    <Compile Include="Presentadores\Objetos\PresentadorGestionarObjetosXRoles.cs" />
+    <Compile Include="Presentadores\PresentadorBase.cs" />
+    <Compile Include="Presentadores\Principales\PresentadorVentanaPrincipal.cs" />
+    <Compile Include="Presentadores\Usuarios\PresentadorAgregarUsuario.cs" />
+    <Compile Include="Presentadores\Usuarios\PresentadorConsultarUsuarios.cs" />
+    <Compile Include="Presentadores\Usuarios\PresentadorConsultarUsuario.cs" />
+    <Compile Include="Recursos\Etiquetas.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Etiquetas.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Recursos\Ids.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Ids.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Recursos\MensajesConElUsuario.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MensajesConElUsuario.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Recursos\MensajesValidaciones.Designer.cs">
+      <DependentUpon>MensajesValidaciones.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Transformadores\DosValoresAUno.cs" />
+    <Compile Include="Transformadores\EnteroMinimoABlanco.cs" />
+    <Compile Include="Transformadores\FechaABlanco.cs" />
+    <Compile Include="Validaciones\SoloNumeros.cs" />
+    <Compile Include="Validaciones\CorreoElectronico.cs" />
+    <Compile Include="Validaciones\LongitudMaxima.cs" />
+    <Compile Include="Validaciones\Obligatorio.cs" />
+    <Compile Include="Ventanas\Agentes\AgregarAgente.xaml.cs">
+      <DependentUpon>AgregarAgente.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Agentes\ConsultarAgente.xaml.cs">
+      <DependentUpon>ConsultarAgente.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Agentes\ConsultarAgentes.xaml.cs">
+      <DependentUpon>ConsultarAgentes.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Auditorias\ListaAuditorias.xaml.cs">
+      <DependentUpon>ListaAuditorias.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Interesados\AgregarInteresado.xaml.cs">
+      <DependentUpon>AgregarInteresado.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Interesados\ConsultarInteresado.xaml.cs">
+      <DependentUpon>ConsultarInteresado.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Interesados\ConsultarInteresados.xaml.cs">
+      <DependentUpon>ConsultarInteresados.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Interesados\ListaPoderes.xaml.cs">
+      <DependentUpon>ListaPoderes.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Poderes\AgregarPoder.xaml.cs">
+      <DependentUpon>AgregarPoder.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Poderes\ConsultarPoder.xaml.cs">
+      <DependentUpon>ConsultarPoder.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Poderes\ConsultarPoderes.xaml.cs">
+      <DependentUpon>ConsultarPoderes.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Estatuses\AgregarEstatus.xaml.cs">
+      <DependentUpon>AgregarEstatus.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Estatuses\ConsultarEstatus.xaml.cs">
+      <DependentUpon>ConsultarEstatus.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Estatuses\ConsultarEstatuses.xaml.cs">
+      <DependentUpon>ConsultarEstatuses.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Poderes\GestionarPoderesXAgentes.xaml.cs">
+      <DependentUpon>GestionarPoderesXAgentes.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\TipoFechas\AgregarTipoFecha.xaml.cs">
+      <DependentUpon>AgregarTipoFecha.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\TipoFechas\ConsultarTipoFecha.xaml.cs">
+      <DependentUpon>ConsultarTipoFecha.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\TipoFechas\ConsultarTipoFechas.xaml.cs">
+      <DependentUpon>ConsultarTipoFechas.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Resoluciones\AgregarResolucion.xaml.cs">
+      <DependentUpon>AgregarResolucion.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Resoluciones\ConsultarResolucion.xaml.cs">
+      <DependentUpon>ConsultarResolucion.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Resoluciones\ConsultarResoluciones.xaml.cs">
+      <DependentUpon>ConsultarResoluciones.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\TipoInfoboles\AgregarTipoInfobol.xaml.cs">
+      <DependentUpon>AgregarTipoInfobol.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\TipoInfoboles\ConsultarTipoInfobol.xaml.cs">
+      <DependentUpon>ConsultarTipoInfobol.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\TipoInfoboles\ConsultarTipoInfoboles.xaml.cs">
+      <DependentUpon>ConsultarTipoInfoboles.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Internacionales\AgregarInternacional.xaml.cs">
+      <DependentUpon>AgregarInternacional.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Internacionales\ConsultarInternacional.xaml.cs">
+      <DependentUpon>ConsultarInternacional.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Internacionales\ConsultarInternacionales.xaml.cs">
+      <DependentUpon>ConsultarInternacionales.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Paises\AgregarPais.xaml.cs">
+      <DependentUpon>AgregarPais.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Paises\ConsultarPais.xaml.cs">
+      <DependentUpon>ConsultarPais.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Paises\ConsultarPaises.xaml.cs">
+      <DependentUpon>ConsultarPaises.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Boletines\AgregarBoletin.xaml.cs">
+      <DependentUpon>AgregarBoletin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Boletines\ConsultarBoletin.xaml.cs">
+      <DependentUpon>ConsultarBoletin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Boletines\ConsultarBoletines.xaml.cs">
+      <DependentUpon>ConsultarBoletines.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Estados\AgregarEstado.xaml.cs">
+      <DependentUpon>AgregarEstado.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Estados\ConsultarEstado.xaml.cs">
+      <DependentUpon>ConsultarEstado.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Estados\ConsultarEstados.xaml.cs">
+      <DependentUpon>ConsultarEstados.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Nacionales\AgregarNacional.xaml.cs">
+      <DependentUpon>AgregarNacional.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Nacionales\ConsultarNacional.xaml.cs">
+      <DependentUpon>ConsultarNacional.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Nacionales\ConsultarNacionales.xaml.cs">
+      <DependentUpon>ConsultarNacionales.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Objetos\AgregarObjeto.xaml.cs">
+      <DependentUpon>AgregarObjeto.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Objetos\ConsultarObjeto.xaml.cs">
+      <DependentUpon>ConsultarObjeto.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Objetos\ConsultarObjetos.xaml.cs">
+      <DependentUpon>ConsultarObjetos.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Objetos\GestionarObjetosXRoles.xaml.cs">
+      <DependentUpon>GestionarObjetosXRoles.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Principales\PaginaPrincipal.xaml.cs">
+      <DependentUpon>PaginaPrincipal.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Roles\AgregarRol.xaml.cs">
+      <DependentUpon>AgregarRol.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Roles\ConsultarRol.xaml.cs">
+      <DependentUpon>ConsultarRol.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Roles\ConsultarRoles.xaml.cs">
+      <DependentUpon>ConsultarRoles.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Usuarios\ConsultarUsuarios.xaml.cs">
+      <DependentUpon>ConsultarUsuarios.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Usuarios\ConsultarUsuario.xaml.cs">
+      <DependentUpon>ConsultarUsuario.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Usuarios\AgregarUsuario.xaml.cs">
+      <DependentUpon>AgregarUsuario.xaml</DependentUpon>
+    </Compile>
+    <Page Include="Ventanas\Agentes\AgregarAgente.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\Agentes\ConsultarAgente.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\Agentes\ConsultarAgentes.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Estilos\EstiloPrincipal.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Ventanas\Auditorias\ListaAuditorias.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Ventanas\Interesados\AgregarInteresado.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\Interesados\ConsultarInteresado.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\Interesados\ConsultarInteresados.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\Interesados\ListaPoderes.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\Poderes\AgregarPoder.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\Poderes\ConsultarPoder.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\Poderes\ConsultarPoderes.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\Estatuses\AgregarEstatus.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\Estatuses\ConsultarEstatus.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\Estatuses\ConsultarEstatuses.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\Poderes\GestionarPoderesXAgentes.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\TipoFechas\AgregarTipoFecha.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\TipoFechas\ConsultarTipoFecha.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\TipoFechas\ConsultarTipoFechas.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\Resoluciones\AgregarResolucion.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\Resoluciones\ConsultarResolucion.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\Resoluciones\ConsultarResoluciones.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\TipoInfoboles\AgregarTipoInfobol.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\TipoInfoboles\ConsultarTipoInfobol.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\TipoInfoboles\ConsultarTipoInfoboles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\Internacionales\AgregarInternacional.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\Internacionales\ConsultarInternacional.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\Internacionales\ConsultarInternacionales.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\Paises\AgregarPais.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\Paises\ConsultarPais.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\Paises\ConsultarPaises.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\Boletines\AgregarBoletin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Ventanas\Boletines\ConsultarBoletin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Ventanas\Boletines\ConsultarBoletines.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Ventanas\Estados\AgregarEstado.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Ventanas\Estados\ConsultarEstado.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Ventanas\Estados\ConsultarEstados.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Ventanas\Logines\Login.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Ventanas\Nacionales\AgregarNacional.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Ventanas\Nacionales\ConsultarNacional.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Ventanas\Nacionales\ConsultarNacionales.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Ventanas\Objetos\AgregarObjeto.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Ventanas\Objetos\ConsultarObjeto.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Ventanas\Objetos\ConsultarObjetos.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Ventanas\Objetos\GestionarObjetosXRoles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Ventanas\Principales\PaginaPrincipal.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Ventanas\Principales\VentanaPrincipal.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="Ventanas\Logines\Login.xaml.cs">
+      <DependentUpon>Login.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Principales\VentanaPrincipal.xaml.cs">
+      <DependentUpon>VentanaPrincipal.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="Ventanas\Roles\AgregarRol.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\Roles\ConsultarRol.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Ventanas\Roles\ConsultarRoles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Ventanas\Usuarios\ConsultarUsuarios.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Ventanas\Usuarios\ConsultarUsuario.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Ventanas\Usuarios\AgregarUsuario.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Recursos\Etiquetas.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Etiquetas.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Recursos\Ids.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Ids.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Recursos\MensajesConElUsuario.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>MensajesConElUsuario.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Recursos\MensajesValidaciones.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>MensajesValidaciones.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="app.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="NLog.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.0,Profile=Client">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4 Client Profile %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\logoBolet.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\bolet.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Comun\ObjetosComunes\ObjetosComunes.csproj">
+      <Project>{15437671-F551-4B4B-9E06-283A1D241CE0}</Project>
+      <Name>ObjetosComunes</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

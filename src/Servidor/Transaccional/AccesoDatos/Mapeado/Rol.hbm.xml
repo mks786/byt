@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+                   assembly="Trascend.Bolet.ObjetosComunes"
+                   namespace="Trascend.Bolet.ObjetosComunes.Entidades">
+
+  <class name="Rol" table="SEG_ROLES">
+    
+    <id name="Id" column="ROL_ID" />
+    <property name="Descripcion" column="ROL_DESC" type="string"/>
+    
+    <bag name="Usuarios">
+      <key column="ROL_ID"/>
+      <one-to-many class="Usuario"/>
+    </bag>
+
+    <bag name="Objetos" table="SEG_OBJXROL">
+      <key column="ROL_ID"/>
+      <many-to-many column="OBJ_ID" class="Objeto" not-found="ignore"/>
+    </bag>
+    
+  </class>
+
+</hibernate-mapping>
+
+

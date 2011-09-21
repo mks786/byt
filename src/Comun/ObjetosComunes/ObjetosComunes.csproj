@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{15437671-F551-4B4B-9E06-283A1D241CE0}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Trascend.Bolet.ObjetosComunes</RootNamespace>
+    <AssemblyName>Trascend.Bolet.ObjetosComunes</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ContratosServicios\IInteresadoServicios.cs" />
+    <Compile Include="ContratosServicios\IPoderServicios.cs" />
+    <Compile Include="ContratosServicios\IEstatusServicios.cs" />
+    <Compile Include="ContratosServicios\ITipoFechaServicios.cs" />
+    <Compile Include="ContratosServicios\IResolucionServicios.cs" />
+    <Compile Include="ContratosServicios\ITipoInfobolServicios.cs" />
+    <Compile Include="ContratosServicios\IInternacionalServicios.cs" />
+    <Compile Include="ContratosServicios\IBoletinServicios.cs" />
+    <Compile Include="ContratosServicios\INacionalServicios.cs" />
+    <Compile Include="ContratosServicios\IPaisServicios.cs" />
+    <Compile Include="ContratosServicios\IAgenteServicios.cs" />
+    <Compile Include="ContratosServicios\IDepartamentoServicios.cs" />
+    <Compile Include="ContratosServicios\IEstadoServicios.cs" />
+    <Compile Include="ContratosServicios\IObjetoServicios.cs" />
+    <Compile Include="ContratosServicios\IRolServicios.cs" />
+    <Compile Include="ContratosServicios\IServicioBase.cs" />
+    <Compile Include="Entidades\Auditoria.cs" />
+    <Compile Include="Entidades\Agente.cs" />
+    <Compile Include="Entidades\Contador.cs" />
+    <Compile Include="Entidades\ContadorAuditoria.cs" />
+    <Compile Include="Entidades\Estatus.cs" />
+    <Compile Include="Entidades\Interesado.cs" />
+    <Compile Include="Entidades\Poder.cs" />
+    <Compile Include="Entidades\TipoFecha.cs" />
+    <Compile Include="Entidades\Resolucion.cs" />
+    <Compile Include="Entidades\TipoInfobol.cs" />
+    <Compile Include="Entidades\Internacional.cs" />
+    <Compile Include="Entidades\Boletin.cs" />
+    <Compile Include="Entidades\Nacional.cs" />
+    <Compile Include="Entidades\Pais.cs" />
+    <Compile Include="Entidades\Departamento.cs" />
+    <Compile Include="ContratosServicios\IUsuarioServicios.cs" />
+    <Compile Include="Entidades\Estado.cs" />
+    <Compile Include="Entidades\Objeto.cs" />
+    <Compile Include="Entidades\Rol.cs" />
+    <Compile Include="Entidades\Usuario.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

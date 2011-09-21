@@ -1,0 +1,640 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="btnAceptar" xml:space="preserve">
+    <value>Aceptar</value>
+  </data>
+  <data name="btnAgregar" xml:space="preserve">
+    <value>&gt;&gt;</value>
+  </data>
+  <data name="btnCancelar" xml:space="preserve">
+    <value>Cancelar</value>
+  </data>
+  <data name="btnConsultar" xml:space="preserve">
+    <value>Consultar</value>
+  </data>
+  <data name="btnEliminar" xml:space="preserve">
+    <value>Eliminar</value>
+  </data>
+  <data name="btnModificar" xml:space="preserve">
+    <value>Modificar</value>
+  </data>
+  <data name="btnQuitar" xml:space="preserve">
+    <value>&lt;&lt;</value>
+  </data>
+  <data name="btnRegresar" xml:space="preserve">
+    <value>Regresar</value>
+  </data>
+  <data name="cbiCasado" xml:space="preserve">
+    <value>Casado(a)</value>
+  </data>
+  <data name="cbiDivorciado" xml:space="preserve">
+    <value>Divorciado(a)</value>
+  </data>
+  <data name="cbiFemenino" xml:space="preserve">
+    <value>Femenino</value>
+  </data>
+  <data name="cbiMasculino" xml:space="preserve">
+    <value>Masculino</value>
+  </data>
+  <data name="cbiNinguno" xml:space="preserve">
+    <value />
+    <comment>Se utiliza aún estando vacio</comment>
+  </data>
+  <data name="cbiSoltero" xml:space="preserve">
+    <value>Soltero(a)</value>
+  </data>
+  <data name="cbiViudo" xml:space="preserve">
+    <value>Viudo(a)</value>
+  </data>
+  <data name="dpkText" xml:space="preserve">
+    <value>Selecionar una fecha</value>
+  </data>
+  <data name="lblAnexo" xml:space="preserve">
+    <value>Anexo:</value>
+  </data>
+  <data name="lblAutorizar" xml:space="preserve">
+    <value>Autorizar:</value>
+  </data>
+  <data name="lblBoletin" xml:space="preserve">
+    <value>Boletin:</value>
+  </data>
+  <data name="lblCCI" xml:space="preserve">
+    <value>CCI:</value>
+  </data>
+  <data name="lblCodigo" xml:space="preserve">
+    <value>Codigo:</value>
+  </data>
+  <data name="lblDepartamento" xml:space="preserve">
+    <value>Departamento:</value>
+  </data>
+  <data name="lblDescripcion" xml:space="preserve">
+    <value>Descripción:</value>
+  </data>
+  <data name="lblDescripcionIngles" xml:space="preserve">
+    <value>Descripción (Ingles):</value>
+  </data>
+  <data name="lblDomicilio" xml:space="preserve">
+    <value>Domicilio:</value>
+  </data>
+  <data name="lblEmail" xml:space="preserve">
+    <value>Email:</value>
+  </data>
+  <data name="lblEstadoCivil" xml:space="preserve">
+    <value>Estado Civil:</value>
+  </data>
+  <data name="lblFacultad" xml:space="preserve">
+    <value>Facultad:</value>
+  </data>
+  <data name="lblFecha" xml:space="preserve">
+    <value>Fecha:</value>
+  </data>
+  <data name="lblFechaBoletin" xml:space="preserve">
+    <value>Fecha:</value>
+  </data>
+  <data name="lblFechaBoletinVence" xml:space="preserve">
+    <value>Fecha de vencimiento:</value>
+  </data>
+  <data name="lblFechaImpresion" xml:space="preserve">
+    <value>Fecha de impresión:</value>
+  </data>
+  <data name="lblId" xml:space="preserve">
+    <value>Id:</value>
+  </data>
+  <data name="lblIniciales" xml:space="preserve">
+    <value>Iniciales:</value>
+  </data>
+  <data name="lblInteresado" xml:space="preserve">
+    <value>Interesado:</value>
+  </data>
+  <data name="lblIntroducirUsuarioYPassword" xml:space="preserve">
+    <value>Por favor, introduzca su Usuario y Contraseña</value>
+  </data>
+  <data name="lblLogin" xml:space="preserve">
+    <value>Usuario:</value>
+  </data>
+  <data name="lblNacionalidad" xml:space="preserve">
+    <value>Nacionalidad:</value>
+  </data>
+  <data name="lblNombre" xml:space="preserve">
+    <value>Nombre:</value>
+  </data>
+  <data name="lblNombreCompleto" xml:space="preserve">
+    <value>Nombre Completo:</value>
+  </data>
+  <data name="lblNombreEspanol" xml:space="preserve">
+    <value>Nombre en español:</value>
+  </data>
+  <data name="lblNombreIngles" xml:space="preserve">
+    <value>Nombre en inglés:</value>
+  </data>
+  <data name="lblNumeroAbogado" xml:space="preserve">
+    <value>Número del Abogado:</value>
+  </data>
+  <data name="lblNumeroImpresoAbogado" xml:space="preserve">
+    <value>Número Impreso Abogado:</value>
+  </data>
+  <data name="lblNumeroPropiedad" xml:space="preserve">
+    <value>Número de la Propiedad:</value>
+  </data>
+  <data name="lblNumPoder" xml:space="preserve">
+    <value>Nº del Poder:</value>
+  </data>
+  <data name="lblObservaciones" xml:space="preserve">
+    <value>Observaciones:</value>
+  </data>
+  <data name="lblPagina" xml:space="preserve">
+    <value>Pagina:</value>
+  </data>
+  <data name="lblPassword" xml:space="preserve">
+    <value>Contraseña:</value>
+  </data>
+  <data name="lblProximoPaso" xml:space="preserve">
+    <value>Proximo Evento:</value>
+  </data>
+  <data name="lblProximoPasoIngles" xml:space="preserve">
+    <value>Proximo Evento (Ingles):</value>
+  </data>
+  <data name="lblRegion" xml:space="preserve">
+    <value>Region:</value>
+  </data>
+  <data name="lblRol" xml:space="preserve">
+    <value>Rol:</value>
+  </data>
+  <data name="lblSalir" xml:space="preserve">
+    <value>Salir</value>
+  </data>
+  <data name="lblSexo" xml:space="preserve">
+    <value>Género:</value>
+  </data>
+  <data name="lblTelefono" xml:space="preserve">
+    <value>Telefono:</value>
+  </data>
+  <data name="lblTipoPersona" xml:space="preserve">
+    <value>Tipo de persona:</value>
+  </data>
+  <data name="lblVolumen" xml:space="preserve">
+    <value>Volumen:</value>
+  </data>
+  <data name="lsvCodigo" xml:space="preserve">
+    <value>Descripción (Ingles):</value>
+  </data>
+  <data name="lsvDescripcion" xml:space="preserve">
+    <value>Descripción</value>
+  </data>
+  <data name="lsvDescripcionIngles" xml:space="preserve">
+    <value>Descripción (Ingles)</value>
+  </data>
+  <data name="lsvEmail" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="lsvFechaBoletin" xml:space="preserve">
+    <value>Fecha</value>
+  </data>
+  <data name="lsvFechaBoletinVence" xml:space="preserve">
+    <value>Fecha de vencimiento</value>
+  </data>
+  <data name="lsvFechaImpresion" xml:space="preserve">
+    <value>Fecha de impresion</value>
+  </data>
+  <data name="lsvId" xml:space="preserve">
+    <value>Id</value>
+  </data>
+  <data name="lsvIdBoletin" xml:space="preserve">
+    <value>Id del Boletin</value>
+  </data>
+  <data name="lsvNacionalidad" xml:space="preserve">
+    <value>Nacionalidad</value>
+  </data>
+  <data name="lsvNombre" xml:space="preserve">
+    <value>Nombre</value>
+  </data>
+  <data name="lsvProximoPaso" xml:space="preserve">
+    <value>Proximo Evento</value>
+  </data>
+  <data name="lsvProximoPasoIngles" xml:space="preserve">
+    <value>Proximo Evento (Ingles)</value>
+  </data>
+  <data name="lsvRegion" xml:space="preserve">
+    <value>Region</value>
+  </data>
+  <data name="lsvTelefono" xml:space="preserve">
+    <value>Teléfono</value>
+  </data>
+  <data name="menuItemAgente" xml:space="preserve">
+    <value>Agente</value>
+  </data>
+  <data name="menuItemAgregar" xml:space="preserve">
+    <value>Agregar</value>
+  </data>
+  <data name="menuItemArchivo" xml:space="preserve">
+    <value>_Archivo</value>
+  </data>
+  <data name="menuItemAyuda" xml:space="preserve">
+    <value>Ayuda</value>
+  </data>
+  <data name="menuItemAyudaAcerca" xml:space="preserve">
+    <value>Acerca de</value>
+  </data>
+  <data name="menuItemBoletin" xml:space="preserve">
+    <value>Boletin</value>
+  </data>
+  <data name="menuItemConsultar" xml:space="preserve">
+    <value>Consultar</value>
+  </data>
+  <data name="menuItemCopiar" xml:space="preserve">
+    <value>Copiar</value>
+  </data>
+  <data name="menuItemCortar" xml:space="preserve">
+    <value>Cortar</value>
+  </data>
+  <data name="menuItemEditar" xml:space="preserve">
+    <value>_Editar</value>
+  </data>
+  <data name="menuItemEstado" xml:space="preserve">
+    <value>Estado</value>
+  </data>
+  <data name="menuItemEstatus" xml:space="preserve">
+    <value>Estatus</value>
+  </data>
+  <data name="menuItemGestionarObjetosXRoles" xml:space="preserve">
+    <value>Gestionar Objetos por Roles</value>
+  </data>
+  <data name="menuItemHistoria" xml:space="preserve">
+    <value>Historia</value>
+  </data>
+  <data name="menuItemInternacional" xml:space="preserve">
+    <value>Clase Internacional</value>
+  </data>
+  <data name="menuItemNacional" xml:space="preserve">
+    <value>Clase Nacional</value>
+  </data>
+  <data name="menuItemObjetivo" xml:space="preserve">
+    <value>Objeto</value>
+  </data>
+  <data name="menuItemPais" xml:space="preserve">
+    <value>Pais</value>
+  </data>
+  <data name="menuItemPegar" xml:space="preserve">
+    <value>Pegar</value>
+  </data>
+  <data name="menuItemResolucion" xml:space="preserve">
+    <value>Resolución</value>
+  </data>
+  <data name="menuItemRol" xml:space="preserve">
+    <value>Rol</value>
+  </data>
+  <data name="menuItemSalir" xml:space="preserve">
+    <value>Salir</value>
+  </data>
+  <data name="menuItemTipoFecha" xml:space="preserve">
+    <value>Tipo de Fecha</value>
+  </data>
+  <data name="menuItemTipoInfobol" xml:space="preserve">
+    <value>Tipo de Infobol</value>
+  </data>
+  <data name="menuItemUsuario" xml:space="preserve">
+    <value>Usuario</value>
+  </data>
+  <data name="titleAgregarBoletin" xml:space="preserve">
+    <value>Agregar Boletin</value>
+  </data>
+  <data name="titleAgregarEstado" xml:space="preserve">
+    <value>Agregar Estado</value>
+  </data>
+  <data name="titleAgregarEstatus" xml:space="preserve">
+    <value>Agregar Estatus</value>
+  </data>
+  <data name="titleAgregarInternacional" xml:space="preserve">
+    <value>Agregar Clase Internacional</value>
+  </data>
+  <data name="titleAgregarNacional" xml:space="preserve">
+    <value>Agregar Clase Nacional</value>
+  </data>
+  <data name="titleAgregarObjeto" xml:space="preserve">
+    <value>Agregar Objeto</value>
+  </data>
+  <data name="titleAgregarPais" xml:space="preserve">
+    <value>AgregarPais</value>
+  </data>
+  <data name="titleAgregarResolucion" xml:space="preserve">
+    <value>Agregar Resolucion</value>
+  </data>
+  <data name="titleAgregarRol" xml:space="preserve">
+    <value>Agregar Rol</value>
+  </data>
+  <data name="titleAgregarTipoFecha" xml:space="preserve">
+    <value>Agregar Tipo de Fecha</value>
+  </data>
+  <data name="titleAgregarTipoInfobol" xml:space="preserve">
+    <value>Agregar Tipo de Infobol</value>
+  </data>
+  <data name="titleAgregarUsuario" xml:space="preserve">
+    <value>Agregar Usuario</value>
+  </data>
+  <data name="titleConsultarAgente" xml:space="preserve">
+    <value>Consultar Agente</value>
+  </data>
+  <data name="titleConsultarAgentes" xml:space="preserve">
+    <value>Consultar Agentes</value>
+  </data>
+  <data name="titleConsultarBoletin" xml:space="preserve">
+    <value>Consultar Boletin</value>
+  </data>
+  <data name="titleConsultarBoletines" xml:space="preserve">
+    <value>Consultar Boletines</value>
+  </data>
+  <data name="titleConsultarEstado" xml:space="preserve">
+    <value>Consultar Estado</value>
+  </data>
+  <data name="titleConsultarEstados" xml:space="preserve">
+    <value>Consultar Estados</value>
+  </data>
+  <data name="titleConsultarEstatus" xml:space="preserve">
+    <value>Consultar Estatus</value>
+  </data>
+  <data name="titleConsultarEstatuses" xml:space="preserve">
+    <value>Consultar Estatus</value>
+  </data>
+  <data name="titleConsultarInternacional" xml:space="preserve">
+    <value>Consultar Clase Internacional</value>
+  </data>
+  <data name="titleConsultarInternacionales" xml:space="preserve">
+    <value>Consultar Clases Internacionales</value>
+  </data>
+  <data name="titleConsultarNacional" xml:space="preserve">
+    <value>Consultar Clase Nacional</value>
+  </data>
+  <data name="titleConsultarNacionales" xml:space="preserve">
+    <value>Consultar Clase Nacionales</value>
+  </data>
+  <data name="titleConsultarObjeto" xml:space="preserve">
+    <value>Consultar Objeto</value>
+  </data>
+  <data name="titleConsultarObjetos" xml:space="preserve">
+    <value>Consultar Objetos</value>
+  </data>
+  <data name="titleConsultarPais" xml:space="preserve">
+    <value>Consultar Pais</value>
+  </data>
+  <data name="titleConsultarPaises" xml:space="preserve">
+    <value>Consultar Paises</value>
+  </data>
+  <data name="titleConsultarResolucion" xml:space="preserve">
+    <value>Consultar Resolucion</value>
+  </data>
+  <data name="titleConsultarResoluciones" xml:space="preserve">
+    <value>Consultar Resoluciones</value>
+  </data>
+  <data name="titleConsultarRol" xml:space="preserve">
+    <value>Consultar Rol</value>
+  </data>
+  <data name="titleConsultarRoles" xml:space="preserve">
+    <value>Consultar Roles</value>
+  </data>
+  <data name="titleConsultarTipoFecha" xml:space="preserve">
+    <value>Consultar Tipo de Fecha</value>
+  </data>
+  <data name="titleConsultarTipoFechas" xml:space="preserve">
+    <value>Consultar Tipo de Fechas</value>
+  </data>
+  <data name="titleConsultarTipoInfobol" xml:space="preserve">
+    <value>Consultar Tipo de Infobol</value>
+  </data>
+  <data name="titleConsultarTipoInfoboles" xml:space="preserve">
+    <value>Consultar Tipo de Infoboles</value>
+  </data>
+  <data name="titleConsultarUsuario" xml:space="preserve">
+    <value>Consultar Usuario</value>
+  </data>
+  <data name="titleConsultarUsuarios" xml:space="preserve">
+    <value>Consultar Usuarios</value>
+  </data>
+  <data name="titleGestionarObjeto" xml:space="preserve">
+    <value>Gestionar Relacion Objeto con Rol</value>
+  </data>
+  <data name="titleGestionarObjetosXRoles" xml:space="preserve">
+    <value>Gestionar objetos por roles</value>
+  </data>
+  <data name="titleLogin" xml:space="preserve">
+    <value>Bolet &amp; Terrero</value>
+  </data>
+  <data name="titlePaginaPrincipal" xml:space="preserve">
+    <value>Principal</value>
+  </data>
+  <data name="titlePrincipal" xml:space="preserve">
+    <value>Bolet &amp; Terrero</value>
+  </data>
+  <data name="titleAgregarPoder" xml:space="preserve">
+    <value>Agregar Poder</value>
+  </data>
+  <data name="titleConsultarPoder" xml:space="preserve">
+    <value>Consultar Poder</value>
+  </data>
+  <data name="titleConsultarPoderes" xml:space="preserve">
+    <value>Consultar Poderes</value>
+  </data>
+  <data name="menuItemPoder" xml:space="preserve">
+    <value>Poder</value>
+  </data>
+  <data name="lsvFecha" xml:space="preserve">
+    <value>Fecha</value>
+  </data>
+  <data name="lsvNumPoder" xml:space="preserve">
+    <value>Nº del Poder</value>
+  </data>
+  <data name="lsvFacultad" xml:space="preserve">
+    <value>Facultad</value>
+  </data>
+  <data name="menuItemGestionarPoderesXAgentes" xml:space="preserve">
+    <value>Gestionar Poderes con Agentes</value>
+  </data>
+  <data name="titleGestionarPoderesXAgentes" xml:space="preserve">
+    <value>Gestionar Relacion de Poderes con Agentes</value>
+  </data>
+  <data name="btnAuditoria" xml:space="preserve">
+    <value>Auditoria</value>
+  </data>
+  <data name="lsvUsuario" xml:space="preserve">
+    <value>Usuario</value>
+  </data>
+  <data name="titleListaAuditorias" xml:space="preserve">
+    <value>Lista de Auditorias</value>
+  </data>
+  <data name="lsvOperacion" xml:space="preserve">
+    <value>Operacion</value>
+  </data>
+  <data name="btnVerPoder" xml:space="preserve">
+    <value>Ver Poder</value>
+  </data>
+  <data name="lblAlerta" xml:space="preserve">
+    <value>Alerta:</value>
+  </data>
+  <data name="lblCorporacion" xml:space="preserve">
+    <value>Corporación:</value>
+  </data>
+  <data name="lblRegMercantil" xml:space="preserve">
+    <value>Reg. Mercantil:</value>
+  </data>
+  <data name="lblRMercantil" xml:space="preserve">
+    <value>R. Mercantil:</value>
+  </data>
+  <data name="menuItemInteresado" xml:space="preserve">
+    <value>Interesado</value>
+  </data>
+  <data name="titleAgregarInteresado" xml:space="preserve">
+    <value>Agregar Interesado</value>
+  </data>
+  <data name="titleConsultarInteresado" xml:space="preserve">
+    <value>Consultar Interesado</value>
+  </data>
+  <data name="titleConsultarInteresados" xml:space="preserve">
+    <value>Consultar Interesados</value>
+  </data>
+  <data name="cbiJuridica" xml:space="preserve">
+    <value>Juridica</value>
+  </data>
+  <data name="cbiNatural" xml:space="preserve">
+    <value>Natural</value>
+  </data>
+  <data name="lblCi" xml:space="preserve">
+    <value>Ci:</value>
+  </data>
+  <data name="lblCiudad" xml:space="preserve">
+    <value>Ciudad:</value>
+  </data>
+  <data name="lblEstado" xml:space="preserve">
+    <value>Estado:</value>
+  </data>
+  <data name="lblPais" xml:space="preserve">
+    <value>Pais:</value>
+  </data>
+  <data name="btnNuevo" xml:space="preserve">
+    <value>Nuevo Poder</value>
+  </data>
+  <data name="titleListaPoderes" xml:space="preserve">
+    <value>Lista de Poderes</value>
+  </data>
+  <data name="btnVerPoderes" xml:space="preserve">
+    <value>Ver Poderes</value>
+  </data>
+  <data name="titleAgregarAgente" xml:space="preserve">
+    <value>Agregar Agente</value>
+  </data>
+</root>
