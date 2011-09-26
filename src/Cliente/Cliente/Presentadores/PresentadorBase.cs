@@ -300,6 +300,5 @@ namespace Trascend.Bolet.Cliente.Presentadores
 
             calendario.BlackoutDates.Add(new CalendarDateRange(new DateTime(0001, 1, 1), dia));
         }
-
     }
 }

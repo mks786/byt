@@ -52,7 +52,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Estados
             try
             {
                 //crear titulo
-                this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleConsultarEstados,
+                this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleConsultarEstado,
                     Recursos.Ids.ConsultarEstado);
             }
             catch (Exception ex)

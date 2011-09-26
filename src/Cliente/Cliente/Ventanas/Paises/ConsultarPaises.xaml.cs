@@ -89,6 +89,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.Paises
                 this._presentador.CargarPagina();
                 EstaCargada = true;
             }
+            else
+                this._presentador.ActualizarTitulo();
         }
 
         private void _btnCancelar_Click(object sender, RoutedEventArgs e)

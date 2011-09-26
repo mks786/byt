@@ -49,6 +49,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.Resoluciones
             }
         }
 
+        public void ActualizarTitulo()
+        {
+            this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleConsultarResoluciones,
+                Recursos.Ids.ConsultarResolucion);
+        }
+
         /// <summary>
         /// Método que carga los datos iniciales a mostrar en la página
         /// </summary>
@@ -63,8 +69,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Resoluciones
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-                this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleConsultarResoluciones,
-                    Recursos.Ids.ConsultarResolucion);
+                ActualizarTitulo();
 
                 this._resoluciones = this._resolucionServicios.ConsultarTodos();
                 this._ventana.Resultados = this._resoluciones;

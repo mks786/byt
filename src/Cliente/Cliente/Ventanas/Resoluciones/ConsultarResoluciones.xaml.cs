@@ -135,7 +135,13 @@ namespace Trascend.Bolet.Cliente.Ventanas.Resoluciones
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            this._presentador.CargarPagina();
+            if (!EstaCargada)
+            {
+                this._presentador.CargarPagina();
+                EstaCargada = true;
+            }
+            else
+                this._presentador.ActualizarTitulo();
         }
     }
 }

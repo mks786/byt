@@ -49,7 +49,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.TipoFechas
             try
             {
                 //crear titulo
-                this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleConsultarTipoFechas,
+                this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleConsultarTipoFecha,
                     Recursos.Ids.ConsultarTipoFecha);
             }
             catch (Exception ex)

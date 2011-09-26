@@ -99,8 +99,8 @@
                     <TextBlock Text="{x:Static recurso:Etiquetas.lblInteresado}"/>
                 </Label>
                 <ListView Grid.Column="2" Grid.Row="4" Name="_lstInteresados" ItemsSource="{Binding}" 
-                      SelectionMode="Single"
-                      Style="{DynamicResource EstiloListView}" IsEnabled="false">
+                      SelectionMode="Single" IsEnabled="False"
+                      Style="{DynamicResource EstiloListView}">
                     <ListView.View>
                         <GridView>
                             <GridViewColumn DisplayMemberBinding="{Binding Path=Id}" Width="45">

@@ -198,6 +198,9 @@
   <data name="ConsultarNacional" xml:space="preserve">
     <value>MYPTNAC</value>
   </data>
+  <data name="ConsultarNacionales" xml:space="preserve">
+    <value>MYPTNAC</value>
+  </data>
   <data name="ConsultarObjeto" xml:space="preserve">
     <value>SEGTOBJ</value>
   </data>
@@ -231,7 +234,13 @@
   <data name="ConsultarTipoFecha" xml:space="preserve">
     <value>MYP_TFECHAS</value>
   </data>
+  <data name="ConsultarTipoFechas" xml:space="preserve">
+    <value>MYP_TFECHAS</value>
+  </data>
   <data name="ConsultarTipoInfobol" xml:space="preserve">
+    <value>MYP_TINFOBOL</value>
+  </data>
+  <data name="ConsultarTipoInfoboles" xml:space="preserve">
     <value>MYP_TINFOBOL</value>
   </data>
   <data name="ConsultarUsuario" xml:space="preserve">

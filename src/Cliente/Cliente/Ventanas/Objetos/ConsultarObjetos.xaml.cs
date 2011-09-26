@@ -107,6 +107,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.Objetos
                 this._presentador.CargarPagina();
                 EstaCargada = true;
             }
+            else
+                this._presentador.ActualizarTitulo();
         }
     }
 }

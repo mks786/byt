@@ -46,6 +46,13 @@ namespace Trascend.Bolet.Cliente.Presentadores.Estados
             }
         }
 
+        public void ActualizarTitulo()
+        {
+
+            this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleConsultarEstados,
+                Recursos.Ids.ConsultarEstado);
+        }
+
         /// <summary>
         /// Método que carga los datos iniciales a mostrar en la página
         /// </summary>
@@ -60,8 +67,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Estados
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-                this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleConsultarEstados,
-                    Recursos.Ids.ConsultarEstado);
+                ActualizarTitulo();
 
                 this._estados = this._estadoServicios.ConsultarTodos();
                 this._ventana.Resultados = this._estados;

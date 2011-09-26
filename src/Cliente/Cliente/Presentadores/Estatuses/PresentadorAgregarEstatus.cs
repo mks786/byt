@@ -47,8 +47,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Estatuses
 
             try
             {
-                this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleAgregarUsuario,
-                    Recursos.Ids.AgregarUsuario);
+                this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleAgregarEstatus,
+                    Recursos.Ids.AgregarEstatus);
                 this._ventana.FocoPredeterminado();
             }
             catch (ApplicationException ex)

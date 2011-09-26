@@ -104,6 +104,10 @@ namespace Trascend.Bolet.Cliente.Ventanas.Estados
                 this._presentador.CargarPagina();
                 EstaCargada = true;
             }
+            else
+            {
+                this._presentador.ActualizarTitulo();
+            }
         }
     }
 }

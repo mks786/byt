@@ -46,6 +46,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.Paises
             }
         }
 
+        public void ActualizarTitulo()
+        {
+            this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleConsultarPaises,
+                Recursos.Ids.ConsultarPaises);
+        }
+
         /// <summary>
         /// Método que carga los datos iniciales a mostrar en la página
         /// </summary>
@@ -60,8 +66,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Paises
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-                this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleConsultarPaises,
-                    Recursos.Ids.ConsultarPaises);
+                ActualizarTitulo();
                 
                 this._paises = this._paisServicios.ConsultarTodos();
                 this._ventana.Resultados = this._paises;

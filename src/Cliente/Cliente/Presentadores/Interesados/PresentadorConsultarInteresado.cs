@@ -67,8 +67,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Interesados
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-                this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleConsultarPoder,
-                    Recursos.Ids.ConsultarPoder);
+                this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleConsultarInteresado,
+                    Recursos.Ids.ConsultarInteresado);
 
                 Interesado interesado = (Interesado)this._ventana.Interesado;
 

@@ -75,8 +75,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Boletines
 
         private void _dpkFechaBoletin_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (EstaCargada)
-                this._presentador.DeshabilitarDias(this._dpkFechaBoletinVence, this._dpkFechaBoletin.SelectedDate.Value.AddDays(-1));
+            this._presentador.DeshabilitarDias(this._dpkFechaBoletinVence, this._dpkFechaBoletin.SelectedDate.Value.AddDays(-1));
         }
 
         private void _txtId_PreviewKeyDown(object sender, KeyEventArgs e)

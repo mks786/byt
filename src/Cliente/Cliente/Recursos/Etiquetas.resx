@@ -431,7 +431,7 @@
     <value>Agregar Objeto</value>
   </data>
   <data name="titleAgregarPais" xml:space="preserve">
-    <value>AgregarPais</value>
+    <value>Agregar Pais</value>
   </data>
   <data name="titleAgregarResolucion" xml:space="preserve">
     <value>Agregar Resolucion</value>
@@ -482,7 +482,7 @@
     <value>Consultar Clase Nacional</value>
   </data>
   <data name="titleConsultarNacionales" xml:space="preserve">
-    <value>Consultar Clase Nacionales</value>
+    <value>Consultar Clases Nacionales</value>
   </data>
   <data name="titleConsultarObjeto" xml:space="preserve">
     <value>Consultar Objeto</value>
@@ -512,13 +512,13 @@
     <value>Consultar Tipo de Fecha</value>
   </data>
   <data name="titleConsultarTipoFechas" xml:space="preserve">
-    <value>Consultar Tipo de Fechas</value>
+    <value>Consultar Tipos de Fechas</value>
   </data>
   <data name="titleConsultarTipoInfobol" xml:space="preserve">
     <value>Consultar Tipo de Infobol</value>
   </data>
   <data name="titleConsultarTipoInfoboles" xml:space="preserve">
-    <value>Consultar Tipo de Infoboles</value>
+    <value>Consultar Tipos de Infoboles</value>
   </data>
   <data name="titleConsultarUsuario" xml:space="preserve">
     <value>Consultar Usuario</value>

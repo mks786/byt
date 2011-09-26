@@ -150,6 +150,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.Poderes
                 this._presentador.CargarPagina();
                 EstaCargada = true;
             }
+            else
+                this._presentador.ActualizarTitulo();
         }
 
     }

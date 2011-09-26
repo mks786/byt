@@ -52,7 +52,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Resoluciones
 
             try
             {
-                this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleConsultarResoluciones,
+                this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleConsultarResolucion,
                     Recursos.Ids.ConsultarResolucion);
 
                 Resolucion resolucion = (Resolucion) this._ventana.Resolucion;

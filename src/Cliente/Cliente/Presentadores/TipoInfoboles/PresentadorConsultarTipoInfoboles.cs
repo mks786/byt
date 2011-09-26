@@ -45,6 +45,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.TipoInfoboles
             }
         }
 
+        public void ActualizarTitulo()
+        {
+            this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleConsultarTipoInfoboles,
+                Recursos.Ids.ConsultarTipoInfoboles);
+        }
+
         /// <summary>
         /// Método que carga los datos iniciales a mostrar en la página
         /// </summary>
@@ -59,8 +65,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.TipoInfoboles
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-                this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleConsultarTipoInfoboles,
-                    Recursos.Ids.ConsultarTipoInfobol);
+                ActualizarTitulo();
 
                 this._tipoInfoboles = this._tipoInfobolServicios.ConsultarTodos();
                 this._ventana.Resultados = this._tipoInfoboles;

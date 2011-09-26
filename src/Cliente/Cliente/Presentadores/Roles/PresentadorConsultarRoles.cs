@@ -45,6 +45,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.Roles
             }
         }
 
+        public void ActualizarTitulo()
+        {
+            this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleConsultarRoles,
+                Recursos.Ids.ConsultarRoles);
+        }
+
         /// <summary>
         /// Método que carga los datos iniciales a mostrar en la página
         /// </summary>
@@ -59,8 +65,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Roles
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-                this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleConsultarRoles,
-                    Recursos.Ids.ConsultarRoles);
+                ActualizarTitulo();
 
                 this._ventana.Resultados = this._rolServicios.ConsultarTodos();
                 this._roles = this._rolServicios.ConsultarTodos();

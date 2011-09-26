@@ -52,6 +52,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.Interesados
             }
         }
 
+        public void ActualizarTitulo()
+        {
+            this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleConsultarInteresados,
+            Recursos.Ids.ConsultarInteresado);
+        }
+
         /// <summary>
         /// Método que carga los datos iniciales a mostrar en la página
         /// </summary>
@@ -66,8 +72,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Interesados
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-                this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleConsultarInteresados,
-                    Recursos.Ids.ConsultarInteresado);
+                this.ActualizarTitulo();
 
                 this._ventana.InteresadoFiltrar = new Interesado();
 

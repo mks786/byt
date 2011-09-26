@@ -49,7 +49,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Nacionales
             try
             {
                 //crear titulo
-                this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleConsultarNacionales,
+                this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleConsultarNacional,
                     Recursos.Ids.ConsultarNacional);
             }
             catch (Exception ex)

@@ -45,6 +45,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.Objetos
             }
         }
 
+        public void ActualizarTitulo()
+        {
+            this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleConsultarObjetos,
+                Recursos.Ids.ConsultarObjetos);
+        }
+
         /// <summary>
         /// Método que carga los datos iniciales a mostrar en la página
         /// </summary>
@@ -59,8 +65,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Objetos
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-                this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleConsultarObjetos,
-                    Recursos.Ids.ConsultarObjetos);
+                ActualizarTitulo();
                 
                 this._objetos = this._objetoServicios.ConsultarTodos();
                 this._ventana.Resultados = this._objetos;

@@ -46,6 +46,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.Agentes
             }
         }
 
+        public void ActualizarTitulo()
+        {
+            this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleConsultarAgentes,
+            Recursos.Ids.ConsultarAgentes);
+        }
+
         /// <summary>
         /// Método que carga los datos iniciales a mostrar en la página
         /// </summary>
@@ -60,9 +66,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Agentes
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-                this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleConsultarAgentes,
-                    Recursos.Ids.ConsultarAgentes);
-                
+                ActualizarTitulo();
+
                 this._agentes = this._agenteServicios.ConsultarTodos();
                 this._ventana.Resultados = this._agentes;
                 this._ventana.AgenteFiltrar = new Agente();

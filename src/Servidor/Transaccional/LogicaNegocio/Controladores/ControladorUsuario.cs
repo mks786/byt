@@ -134,7 +134,8 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
                 ComandoBase<Usuario> comando = FabricaComandosUsuario.ObtenerComandoAutenticarUsuario(usuario);
                 comando.Ejecutar();
                 usuarioAutenticado = comando.Receptor.ObjetoAlmacenado;
-                usuarioAutenticado = CrearSesion(usuarioAutenticado);
+                if (usuarioAutenticado != null)
+                    usuarioAutenticado = CrearSesion(usuarioAutenticado);
 
                 #region trace
                 if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))

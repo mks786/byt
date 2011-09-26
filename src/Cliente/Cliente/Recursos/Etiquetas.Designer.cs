@@ -1213,7 +1213,7 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to AgregarPais.
+        ///   Looks up a localized string similar to Agregar Pais.
         /// </summary>
         public static string titleAgregarPais {
             get {
@@ -1393,7 +1393,7 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Consultar Clase Nacionales.
+        ///   Looks up a localized string similar to Consultar Clases Nacionales.
         /// </summary>
         public static string titleConsultarNacionales {
             get {
@@ -1501,7 +1501,7 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Consultar Tipo de Fechas.
+        ///   Looks up a localized string similar to Consultar Tipos de Fechas.
         /// </summary>
         public static string titleConsultarTipoFechas {
             get {
@@ -1519,7 +1519,7 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Consultar Tipo de Infoboles.
+        ///   Looks up a localized string similar to Consultar Tipos de Infoboles.
         /// </summary>
         public static string titleConsultarTipoInfoboles {
             get {

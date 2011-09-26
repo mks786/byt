@@ -23,6 +23,8 @@
                 <GradientStop Color="#FFFFFF" Offset="0.5" />
                 <GradientStop Color="#EEEBE2" Offset="1" />
             </LinearGradientBrush>
+            <!--<SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="Blue"/>
+            <SolidColorBrush x:Key="{x:Static SystemColors.ControlBrushKey}" Color="LightBlue"/>-->
         </Style.Resources>
         <Setter Property="Background" Value="{StaticResource Gradiente}"/>
         <Setter Property="Foreground" Value="Black"/>

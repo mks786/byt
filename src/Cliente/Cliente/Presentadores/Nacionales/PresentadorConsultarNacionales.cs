@@ -47,6 +47,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.Nacionales
             }
         }
 
+        public void ActualizarTitulo()
+        {
+            this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleConsultarNacionales,
+                Recursos.Ids.ConsultarNacionales);
+        }
+
         /// <summary>
         /// Método que carga los datos iniciales a mostrar en la página
         /// </summary>
@@ -61,8 +67,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Nacionales
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-                this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleConsultarNacionales,
-                    Recursos.Ids.ConsultarNacional);
+                ActualizarTitulo();
 
                 this._nacionales = this._nacionalServicios.ConsultarTodos();
                 this._ventana.Resultados = this._nacionales;

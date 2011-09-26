@@ -7,7 +7,7 @@
       xmlns:reglas="clr-namespace:Trascend.Bolet.Cliente.Validaciones"
       d:DesignHeight="550" d:DesignWidth="800"
       xmlns:recurso="clr-namespace:Trascend.Bolet.Cliente.Recursos"
-	Title="{x:Static recurso:Etiquetas.titleAgregarNacional}" Loaded="Page_Loaded">
+	Title="{x:Static recurso:Etiquetas.titleAgregarInternacional}" Loaded="Page_Loaded">
 
 
     <Grid>
@@ -54,7 +54,7 @@
                 <Label Grid.Column="0" Grid.Row="2" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                     <TextBlock Text="{x:Static recurso:Etiquetas.lblDescripcion}"/>
                 </Label>
-                <TextBox Name="_txtDescripcion" Grid.Column="2" Grid.Row="2" VerticalAlignment="Center" IsEnabled="true" 
+                <TextBox Name="_txtDescripcion" Grid.Column="2" Grid.Row="2" VerticalAlignment="Center" IsEnabled="true"
                          HorizontalAlignment="Left" Width="180" SpellCheck.IsEnabled="True"
                          ToolTip="{Binding ElementName=_txtDescripcion, Path=(Validation.Errors)[0].ErrorContent}" MaxLength="2000">
                     <TextBox.Text>

@@ -120,7 +120,13 @@ namespace Trascend.Bolet.Cliente.Ventanas.Boletines
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            this._presentador.CargarPagina();
+            if (!EstaCargada)
+            {
+                this._presentador.CargarPagina();
+                EstaCargada = true;
+            }
+            else
+                this._presentador.ActualizarTitulo();
         }
 
         private void _dpkFechaBoletin_SelectedDateChanged(object sender, SelectionChangedEventArgs e)

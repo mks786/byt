@@ -47,6 +47,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.Internacionales
             }
         }
 
+        public void ActualizarTitulo()
+        {
+            this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleConsultarInternacionales,
+            Recursos.Ids.ConsultarInternacionales);
+        }
+
         /// <summary>
         /// Método que carga los datos iniciales a mostrar en la página
         /// </summary>
@@ -61,8 +67,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Internacionales
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-                this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleConsultarInternacionales,
-                    Recursos.Ids.ConsultarInternacional);
+                ActualizarTitulo();
 
                 this._internacionales = this._internacionalServicios.ConsultarTodos();
                 this._ventana.Resultados = this._internacionales;

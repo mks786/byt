@@ -49,7 +49,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.TipoInfoboles
             try
             {
                 //crear titulo
-                this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleConsultarTipoInfoboles,
+                this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleConsultarTipoInfobol,
                     Recursos.Ids.ConsultarTipoInfobol);
             }
             catch (Exception ex)

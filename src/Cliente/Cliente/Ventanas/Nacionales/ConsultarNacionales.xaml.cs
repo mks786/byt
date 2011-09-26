@@ -108,6 +108,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.Nacionales
                 this._presentador.CargarPagina();
                 EstaCargada = true;
             }
+            else
+                this._presentador.ActualizarTitulo();
         }
 
         private void _txtId_PreviewKeyDown(object sender, KeyEventArgs e)

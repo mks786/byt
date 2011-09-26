@@ -47,6 +47,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.TipoFechas
             }
         }
 
+        public void ActualizarTitulo()
+        {
+            this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleConsultarTipoFechas,
+                Recursos.Ids.ConsultarTipoFechas);
+        }
+
         /// <summary>
         /// Método que carga los datos iniciales a mostrar en la página
         /// </summary>
@@ -61,8 +67,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.TipoFechas
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-                this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleConsultarTipoFechas,
-                    Recursos.Ids.ConsultarTipoFecha);
+                ActualizarTitulo();
 
                 this._tipoFechas = this._tipoFechaServicios.ConsultarTodos();
                 this._ventana.Resultados = this._tipoFechas;

@@ -304,6 +304,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to MYPTNAC.
+        /// </summary>
+        public static string ConsultarNacionales {
+            get {
+                return ResourceManager.GetString("ConsultarNacionales", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to SEGTOBJ.
         /// </summary>
         public static string ConsultarObjeto {
@@ -403,11 +412,29 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to MYP_TFECHAS.
+        /// </summary>
+        public static string ConsultarTipoFechas {
+            get {
+                return ResourceManager.GetString("ConsultarTipoFechas", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to MYP_TINFOBOL.
         /// </summary>
         public static string ConsultarTipoInfobol {
             get {
                 return ResourceManager.GetString("ConsultarTipoInfobol", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to MYP_TINFOBOL.
+        /// </summary>
+        public static string ConsultarTipoInfoboles {
+            get {
+                return ResourceManager.GetString("ConsultarTipoInfoboles", resourceCulture);
             }
         }
         
