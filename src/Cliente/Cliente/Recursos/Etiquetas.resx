@@ -637,4 +637,85 @@
   <data name="titleAgregarAgente" xml:space="preserve">
     <value>Agregar Agente</value>
   </data>
+  <data name="lblContribuyente" xml:space="preserve">
+    <value>Contribuyente:</value>
+  </data>
+  <data name="lblFax" xml:space="preserve">
+    <value>Fax:</value>
+  </data>
+  <data name="menuItemAsociado" xml:space="preserve">
+    <value>Asociado</value>
+  </data>
+  <data name="tittleAgregarAsociado" xml:space="preserve">
+    <value>Agregar Asociado</value>
+  </data>
+  <data name="btnConectividad" xml:space="preserve">
+    <value>Conectividad</value>
+  </data>
+  <data name="btnContactos" xml:space="preserve">
+    <value>Contactos</value>
+  </data>
+  <data name="btnCorrespondencias" xml:space="preserve">
+    <value>Correspondencias</value>
+  </data>
+  <data name="btnCXPINT" xml:space="preserve">
+    <value>CXP INT</value>
+  </data>
+  <data name="btnEdoCta" xml:space="preserve">
+    <value>Edo. Cta</value>
+  </data>
+  <data name="btnGestiones" xml:space="preserve">
+    <value>Gestiones</value>
+  </data>
+  <data name="btnJustificaciones" xml:space="preserve">
+    <value>Justificaciones</value>
+  </data>
+  <data name="btnNdp" xml:space="preserve">
+    <value>NDP</value>
+  </data>
+  <data name="btnSaldos" xml:space="preserve">
+    <value>Saldos</value>
+  </data>
+  <data name="btnVerExpediente" xml:space="preserve">
+    <value>Expediente</value>
+  </data>
+  <data name="lblCorrespondencia" xml:space="preserve">
+    <value>Correspondencia:</value>
+  </data>
+  <data name="lblDescuento" xml:space="preserve">
+    <value>Descuento:</value>
+  </data>
+  <data name="lblDias" xml:space="preserve">
+    <value>Dias</value>
+  </data>
+  <data name="lblFacturacion" xml:space="preserve">
+    <value>Facturacion:</value>
+  </data>
+  <data name="lblIdioma" xml:space="preserve">
+    <value>Idioma:</value>
+  </data>
+  <data name="lblInstrucciones" xml:space="preserve">
+    <value>Instrucciones:</value>
+  </data>
+  <data name="lblMoneda" xml:space="preserve">
+    <value>Moneda:</value>
+  </data>
+  <data name="lblNit" xml:space="preserve">
+    <value>NIT:</value>
+  </data>
+  <data name="lblPorVencer" xml:space="preserve">
+    <value>Por Vencer:</value>
+  </data>
+  <data name="lblRif" xml:space="preserve">
+    <value>RIF:</value>
+  </data>
+  <data name="lblTotal" xml:space="preserve">
+    <value>Total:</value>
+  </data>
+  <data name="lblVencidoA" xml:space="preserve">
+    <value>Vencido a:</value>
+  </data>
+  <data name="lblWeb" xml:space="preserve">
+    <value>Web:</value>
+  </data>
 </root>

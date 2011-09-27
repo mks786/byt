@@ -205,6 +205,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to FAC_ASOCIADOS.
+        /// </summary>
+        public static string Asociado {
+            get {
+                return ResourceManager.GetString("Asociado", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to MYPTBOLETIN.
         /// </summary>
         public static string Boletin {

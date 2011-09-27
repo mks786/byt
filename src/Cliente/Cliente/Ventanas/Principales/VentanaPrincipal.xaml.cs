@@ -221,6 +221,16 @@ namespace Trascend.Bolet.Cliente.Ventanas.Principales
             this._presentador.AgregarInteresado();
         }
 
+        private void _menuItemAsociadoConsultar_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.ConsultarAsociados();
+        }
+
+        private void _menuItemAsociadoAgregar_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.AgregarAsociado();
+        }
+
         #endregion
 
         #endregion

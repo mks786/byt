@@ -165,6 +165,9 @@
   <data name="AgregarUsuario" xml:space="preserve">
     <value>SEGTUSU</value>
   </data>
+  <data name="Asociado" xml:space="preserve">
+    <value>FAC_ASOCIADOS</value>
+  </data>
   <data name="Boletin" xml:space="preserve">
     <value>MYPTBOLETIN</value>
   </data>

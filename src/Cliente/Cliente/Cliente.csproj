@@ -227,6 +227,9 @@
     <Compile Include="Ventanas\Agentes\ConsultarAgentes.xaml.cs">
       <DependentUpon>ConsultarAgentes.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Ventanas\Asociados\AgregarAsociado.xaml.cs">
+      <DependentUpon>AgregarAsociado.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Ventanas\Auditorias\ListaAuditorias.xaml.cs">
       <DependentUpon>ListaAuditorias.xaml</DependentUpon>
     </Compile>
@@ -381,6 +384,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Estilos\EstiloPrincipal.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Ventanas\Asociados\AgregarAsociado.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -23,6 +23,7 @@ using Trascend.Bolet.Cliente.Ventanas.TipoFechas;
 using Trascend.Bolet.Cliente.Ventanas.Estatuses;
 using Trascend.Bolet.Cliente.Ventanas.Poderes;
 using Trascend.Bolet.Cliente.Ventanas.Interesados;
+using Trascend.Bolet.Cliente.Ventanas.Asociados;
 
 namespace Trascend.Bolet.Cliente.Presentadores.Principales
 {
@@ -305,6 +306,22 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
             this._ventana.Contenedor.Navigate(new AgregarInteresado());
         }
 
+        /// <summary>
+        /// Método que coloca la página "ConsultarAsociados" en el Frame principal
+        /// </summary>
+        public void ConsultarAsociados()
+        {
+            //this._ventana.Contenedor.Navigate(new ConsultarAsociados());
+        }
+
+        /// <summary>
+        /// Método que coloca la página "AgregarAsociado" en el Frame principal
+        /// </summary>
+        public void AgregarAsociado()
+        {
+            this._ventana.Contenedor.Navigate(new AgregarAsociado());
+        }
+
         #endregion
 
         /// <summary>
@@ -370,6 +387,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
                             {
                                 case "_menuItemAgente":
                                     if (objeto.Id.Equals(Recursos.Ids.Agente))
+                                        itemNivel2.Visibility = System.Windows.Visibility.Visible;
+                                    break;
+                                case "_menuItemAsociado":
+                                    if (objeto.Id.Equals(Recursos.Ids.Asociado))
                                         itemNivel2.Visibility = System.Windows.Visibility.Visible;
                                     break;
                                 case "_menuItemBoletin":
