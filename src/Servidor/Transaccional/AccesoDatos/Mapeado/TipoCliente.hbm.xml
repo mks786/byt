@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+                   assembly="Trascend.Bolet.ObjetosComunes"
+                   namespace="Trascend.Bolet.ObjetosComunes.Entidades">
+
+  <class name="TipoCliente" table="FAC_TIPO_ASO">
+    <id name="Id" column="CTIPO" type="string"/>
+    <property name="Descripcion" column="XDESCRIP" type="string"/>
+  </class>
+</hibernate-mapping>
+
+
+

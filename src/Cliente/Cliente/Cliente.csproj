@@ -88,6 +88,9 @@
     <Compile Include="Contratos\Agentes\IConsultarAgente.cs" />
     <Compile Include="Contratos\Agentes\IConsultarAgentes.cs" />
     <Compile Include="Contratos\Auditorias\IConsultarAuditorias.cs" />
+    <Compile Include="Contratos\Asociados\IAgregarAsociado.cs" />
+    <Compile Include="Contratos\Asociados\IConsultarAsociado.cs" />
+    <Compile Include="Contratos\Asociados\IConsultarAsociados.cs" />
     <Compile Include="Contratos\Interesados\IAgregarInteresado.cs" />
     <Compile Include="Contratos\Interesados\IListaPoderes.cs" />
     <Compile Include="Contratos\Interesados\IConsultarInteresado.cs" />

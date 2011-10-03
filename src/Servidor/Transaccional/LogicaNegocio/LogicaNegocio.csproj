@@ -60,6 +60,12 @@
     <Compile Include="Controladores\ControladorPoder.cs" />
     <Compile Include="Controladores\ControladorAuditoria.cs" />
     <Compile Include="Controladores\ControladorInteresado.cs" />
+    <Compile Include="Controladores\ControladorEtiqueta.cs" />
+    <Compile Include="Controladores\ControladorDetallePago.cs" />
+    <Compile Include="Controladores\ControladorTipoCliente.cs" />
+    <Compile Include="Controladores\ControladorTarifa.cs" />
+    <Compile Include="Controladores\ControladorMoneda.cs" />
+    <Compile Include="Controladores\ControladorIdioma.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

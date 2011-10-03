@@ -54,13 +54,13 @@
                     <Label Grid.Column="1" Grid.Row="0" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblCodigo}"/>
                     </Label>
-                    <TextBox Grid.Column="2" Grid.Row="0" Name="_txtCodigo" VerticalAlignment="Center" 
+                    <TextBox Grid.Column="2" Grid.Row="0" Name="_txtCodigoDatos" VerticalAlignment="Center" 
                          HorizontalAlignment="Left" Width="100" Text="{Binding Path=Codigo}"></TextBox>
 
                     <Label Grid.Column="3" Grid.Row="0" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblTipoPersona}"/>
                     </Label>
-                    <ComboBox Grid.Column="4" Grid.Row="0" Name="_cbxTipoPersona" HorizontalAlignment="Left" Width="80" Height="20" SelectedIndex="0">
+                    <ComboBox Grid.Column="4" Grid.Row="0" Name="_cbxTipoPersonaDatos" HorizontalAlignment="Left" Width="80" Height="20" SelectedIndex="0">
                         <ComboBoxItem>
                             <TextBlock Text="{x:Static recurso:Etiquetas.cbiJuridica}"/>
                         </ComboBoxItem>
@@ -72,87 +72,88 @@
                     <Label Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblNombre}"/>
                     </Label>
-                    <TextBox Grid.Column="2" Grid.Row="1" Name="_txtNombre" VerticalAlignment="Center" 
+                    <TextBox Grid.Column="2" Grid.Row="1" Name="_txtNombreDatos" VerticalAlignment="Center" 
                          HorizontalAlignment="Left" Width="250" Text="{Binding Path=Nombre}" Grid.ColumnSpan="4"></TextBox>
 
                     <Label Grid.Column="1" Grid.Row="2" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblDomicilio}"/>
                     </Label>
-                    <TextBox Grid.Column="2" Grid.Row="2" Name="_txtDomicilio" VerticalAlignment="Center" 
+                    <TextBox Grid.Column="2" Grid.Row="2" Name="_txtDomicilioDatos" VerticalAlignment="Center" 
                          HorizontalAlignment="Left" Width="250" Text="{Binding Path=Nombre}" Grid.ColumnSpan="4"></TextBox>
                     
                     <Label Grid.Column="1" Grid.Row="3" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblPais}"/>
                     </Label>
-                    <ComboBox Grid.Column="2" Grid.Row="3" Grid.ColumnSpan="4"  Name="_cbxPais" HorizontalAlignment="Left" Width="140" Height="20" ItemsSource="{Binding}" DisplayMemberPath="NombreEspanol" >
+                    <ComboBox Grid.Column="2" Grid.Row="3" Grid.ColumnSpan="4"  Name="_cbxPaisDatos" HorizontalAlignment="Left" Width="140" Height="20" ItemsSource="{Binding}" DisplayMemberPath="NombreEspanol" >
                     </ComboBox>
                     
                     <Label Grid.Column="3" Grid.Row="3" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblContribuyente}"/>
                     </Label>
-                    <CheckBox  Name="_cbxContribuyente" Grid.Column="4" Grid.Row="3" VerticalAlignment="Center"
+                    <CheckBox  Name="_cbxContribuyenteDatos" Grid.Column="4" Grid.Row="3" VerticalAlignment="Center"
                          HorizontalAlignment="Left" IsChecked="{Binding Path=Contribuyente}">
                     </CheckBox>
 
                     <Label Grid.Column="1" Grid.Row="4" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblRif}"/>
                     </Label>
-                    <TextBox Grid.Column="2" Grid.Row="4" Name="_txtRif" VerticalAlignment="Center" 
+                    <TextBox Grid.Column="2" Grid.Row="4" Name="_txtRifDatos" VerticalAlignment="Center" 
                          HorizontalAlignment="Left" Width="100" Text="{Binding Path=Rif}" Grid.ColumnSpan="3"></TextBox>
 
                     <Label Grid.Column="3" Grid.Row="4" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblNit}"/>
                     </Label>
-                    <TextBox Grid.Column="4" Grid.Row="4" Name="_txtNit" VerticalAlignment="Center" 
+                    <TextBox Grid.Column="4" Grid.Row="4" Name="_txtNitDatos" VerticalAlignment="Center" 
                          HorizontalAlignment="Left" Width="100" Text="{Binding Path=Nit}" Grid.ColumnSpan="3"></TextBox>
 
                     <Label Grid.Column="1" Grid.Row="5" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblIdioma}"/>
                     </Label>
-                    <ComboBox Grid.Column="2" Grid.Row="5" Grid.ColumnSpan="2" Name="_cbxIdioma" HorizontalAlignment="Left" Width="140" Height="20" ItemsSource="{Binding}" DisplayMemberPath="Descripcion" >
+                    <ComboBox Grid.Column="2" Grid.Row="5" Grid.ColumnSpan="2" Name="_cbxIdiomaDatos" HorizontalAlignment="Left" Width="140" Height="20" ItemsSource="{Binding}" DisplayMemberPath="Descripcion" >
                     </ComboBox>
 
                     <Label Grid.Column="3" Grid.Row="5" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblMoneda}"/>
                     </Label>
-                    <ComboBox Grid.Column="4" Grid.Row="5" Grid.ColumnSpan="2" Name="_cbxMoneda" HorizontalAlignment="Left" Width="140" Height="20" ItemsSource="{Binding}" DisplayMemberPath="Descripcion" >
+                    <ComboBox Grid.Column="4" Grid.Row="5" Grid.ColumnSpan="2" Name="_cbxMonedaDatos" HorizontalAlignment="Left" Width="140" Height="20" ItemsSource="{Binding}" DisplayMemberPath="Descripcion" >
                     </ComboBox>
 
                     <Label Grid.Column="1" Grid.Row="6" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblDescuento}"/>
                     </Label>
-                    <TextBox Grid.Column="2" Grid.Row="6" Name="_txtDescuento" VerticalAlignment="Center" 
+                    <TextBox Grid.Column="2" Grid.Row="6" Name="_txtDescuentoDatos" VerticalAlignment="Center" 
                          HorizontalAlignment="Left" Width="50" Text="{Binding Path=Descuento}" Grid.ColumnSpan="3"></TextBox>
+                    
                     <Label Grid.Column="1" Grid.Row="7" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblTelefono}"/>
                     </Label>
-                    <TextBox Grid.Column="2" Grid.Row="7" Name="_txtTelefono1" VerticalAlignment="Center" 
+                    <TextBox Grid.Column="2" Grid.Row="7" Name="_txtTelefono1Datos" VerticalAlignment="Center" 
                          HorizontalAlignment="Left" Width="100" Text="{Binding Path=Telefono1}" Grid.ColumnSpan="3"></TextBox>
-                    <TextBox Grid.Column="3" Grid.Row="7" Name="_txtTelefono2" VerticalAlignment="Center" 
+                    <TextBox Grid.Column="3" Grid.Row="7" Name="_txtTelefono2Datos" VerticalAlignment="Center" 
                          HorizontalAlignment="Left" Width="100" Text="{Binding Path=Telefono2}" Grid.ColumnSpan="3"></TextBox>
-                    <TextBox Grid.Column="4" Grid.Row="7" Name="_txtTelefono3" VerticalAlignment="Center" 
+                    <TextBox Grid.Column="4" Grid.Row="7" Name="_txtTelefono3Datos" VerticalAlignment="Center" 
                          HorizontalAlignment="Left" Width="100" Text="{Binding Path=Telefono3}" Grid.ColumnSpan="3"></TextBox>
 
                     <Label Grid.Column="1" Grid.Row="8" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblFax}"/>
                     </Label>
-                    <TextBox Grid.Column="2" Grid.Row="8" Name="_txtFax1" VerticalAlignment="Center" 
+                    <TextBox Grid.Column="2" Grid.Row="8" Name="_txtFax1Datos" VerticalAlignment="Center" 
                          HorizontalAlignment="Left" Width="100" Text="{Binding Path=_txtFax1}" Grid.ColumnSpan="3"></TextBox>
-                    <TextBox Grid.Column="3" Grid.Row="8" Name="_txtFax2" VerticalAlignment="Center" 
+                    <TextBox Grid.Column="3" Grid.Row="8" Name="_txtFax2Datos" VerticalAlignment="Center" 
                          HorizontalAlignment="Left" Width="100" Text="{Binding Path=_txtFax2}" Grid.ColumnSpan="3"></TextBox>
-                    <TextBox Grid.Column="4" Grid.Row="8" Name="_txtFax3" VerticalAlignment="Center" 
+                    <TextBox Grid.Column="4" Grid.Row="8" Name="_txtFax3Datos" VerticalAlignment="Center" 
                          HorizontalAlignment="Left" Width="100" Text="{Binding Path=_txtFax3}" Grid.ColumnSpan="3"></TextBox>
 
                     <Label Grid.Column="1" Grid.Row="9" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblEmail}"/>
                     </Label>
-                    <TextBox Grid.Column="2" Grid.Row="9" Name="_txtEmail" VerticalAlignment="Center" 
+                    <TextBox Grid.Column="2" Grid.Row="9" Name="_txtEmailDatos" VerticalAlignment="Center" 
                          HorizontalAlignment="Left" Width="100" Text="{Binding Path=Nombre}" Grid.ColumnSpan="3"></TextBox>
                     
                     <Label Grid.Column="3" Grid.Row="9" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblEmail}"/>
                     </Label>
-                    <TextBox Grid.Column="4" Grid.Row="9" Name="_txtWeb" VerticalAlignment="Center" 
+                    <TextBox Grid.Column="4" Grid.Row="9" Name="_txtWebDatos" VerticalAlignment="Center" 
                          HorizontalAlignment="Left" Width="100" Text="{Binding Path=Web}" Grid.ColumnSpan="3"></TextBox>
                     
                     <Label Grid.Column="1" Grid.Row="10" VerticalAlignment="Center" HorizontalContentAlignment="Right">
@@ -162,90 +163,292 @@
                     <Label Grid.Column="2" Grid.Row="10" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblCorrespondencia}"/>
                     </Label>
-                    <CheckBox  Name="_cbxCorrespondencia" Grid.Column="3" Grid.Row="10" VerticalAlignment="Center"
+                    <CheckBox  Name="_cbxCorrespondenciaDatos" Grid.Column="3" Grid.Row="10" VerticalAlignment="Center"
                          HorizontalAlignment="Left" IsChecked="{Binding Path=Correspondencia}">
                     </CheckBox>
 
                     <Label Grid.Column="3" Grid.Row="10" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblFacturacion}"/>
                     </Label>
-                    <CheckBox  Name="_cbxFacturacion" Grid.Column="4" Grid.Row="10" VerticalAlignment="Center"
+                    <CheckBox  Name="_cbxFacturacionDatos" Grid.Column="4" Grid.Row="10" VerticalAlignment="Center"
                          HorizontalAlignment="Left" IsChecked="{Binding Path=Facturacion}">
                     </CheckBox>
                     
                     <!--control de facturacion-->
-                    <Button  Grid.Column="1" Grid.Row="12" Name="_btnCXPINT" HorizontalAlignment="Center" VerticalAlignment="Center" Height="25" Width="90">
-                        <TextBlock Name="_txbCXPINT" Text="{x:Static recurso:Etiquetas.btnCXPINT}"/>
+                    <Button  Grid.Column="1" Grid.Row="12" Name="_btnCXPINTDatos" HorizontalAlignment="Center" VerticalAlignment="Center" Height="25" Width="90">
+                        <TextBlock Name="_txbCXPINTDatos" Text="{x:Static recurso:Etiquetas.btnCXPINT}"/>
                     </Button>
-                    <TextBox Grid.Column="2" Grid.Row="12" Name="_txtSaldoPendiente" VerticalAlignment="Center" 
-                         HorizontalAlignment="Center" Width="100" Text="{Binding Path=SaldoPendiente}"></TextBox>
+                    <TextBox Grid.Column="2" Grid.Row="12" Name="_txtSaldoPendienteDatos" VerticalAlignment="Center" 
+                         HorizontalAlignment="Left" Width="100" Text="{Binding Path=SaldoPendiente}" Margin="20,0,0,0"></TextBox>
 
-                    <Button  Grid.Column="1" Grid.Row="13" Name="_btnSaldos" HorizontalAlignment="Center" VerticalAlignment="Center" Height="25" Width="90">
-                        <TextBlock Name="_txbSaldos" Text="{x:Static recurso:Etiquetas.btnSaldos}"/>
+                    <Button  Grid.Column="1" Grid.Row="13" Name="_btnSaldosDatos" HorizontalAlignment="Center" VerticalAlignment="Center" Height="25" Width="90">
+                        <TextBlock Name="_txbSaldosDatos" Text="{x:Static recurso:Etiquetas.btnSaldos}"/>
                     </Button>
-                    <TextBox Grid.Column="2" Grid.Row="13" Name="_txtDias" VerticalAlignment="Center" 
-                         HorizontalAlignment="Center" Width="100" Text="{Binding Path=Dias}"></TextBox>
-                    <Label Grid.Column="2" Grid.Row="13" VerticalAlignment="Center" HorizontalContentAlignment="Center" Margin="130,0,0,0">
+
+                    <TextBox Grid.Column="2" Grid.Row="13" Name="_txtDiasDatos" VerticalAlignment="Center" 
+                         HorizontalAlignment="Left" Width="30" Text="{Binding Path=Dias}" Margin="20,0,0,0"></TextBox>
+                    <Label Grid.Column="2" Grid.Row="13" VerticalAlignment="Center" HorizontalContentAlignment="Center" Margin="5,0,0,0">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblDias}"/>
                     </Label>
-                    <WrapPanel Grid.Column="3" Grid.Row="13" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="5" Orientation="Horizontal">
 
-                        <Button Name="_btnEdoCta" HorizontalAlignment="Center" VerticalAlignment="Center" Height="25" Width="90">
-                            <TextBlock Name="_txbEdoCta" Text="{x:Static recurso:Etiquetas.btnEdoCta}"/>
+                    <WrapPanel Grid.Column="2" Grid.Row="13" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="80,0,0,5" Orientation="Horizontal" Grid.ColumnSpan="2" >
+                        <Button Name="_btnEdoCtaDatos" HorizontalAlignment="Center" VerticalAlignment="Center" Height="25" Width="60">
+                            <TextBlock Name="_txbEdoCtaDatos" Text="{x:Static recurso:Etiquetas.btnEdoCta}"/>
                         </Button>
-                        <Button Name="_btnNDP" HorizontalAlignment="Center" VerticalAlignment="Center" Height="25" Width="90">
-                            <TextBlock Name="_txbNDP" Text="{x:Static recurso:Etiquetas.btnNdp}"/>
+                        <Button Name="_btnNDPDatos" HorizontalAlignment="Center" VerticalAlignment="Center" Height="25" Width="60">
+                            <TextBlock Name="_txbNDPDatos" Text="{x:Static recurso:Etiquetas.btnNdp}"/>
                         </Button>
                     </WrapPanel>
 
                     <Label Grid.Column="1" Grid.Row="14" VerticalAlignment="Top" HorizontalContentAlignment="Center">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblVencidoA}"/>
                     </Label>
-                    <TextBox Grid.Column="1" Grid.Row="14" Name="_txtVencidoA" VerticalAlignment="Bottom" 
+                    <TextBox Grid.Column="1" Grid.Row="14" Name="_txtVencidoADatos" VerticalAlignment="Bottom" 
                          HorizontalAlignment="Center" Width="100" Text="{Binding Path=Web}"></TextBox>
 
-                    <Label Grid.Column="2" Grid.Row="14" VerticalAlignment="Top" HorizontalContentAlignment="Center">
-                        <TextBlock Text="{x:Static recurso:Etiquetas.lblPorVencer}"/>
+                    <Label Grid.Column="2" Grid.Row="14" VerticalAlignment="Top" HorizontalContentAlignment="Left">
+                        <TextBlock Text="{x:Static recurso:Etiquetas.lblPorVencer}" Margin="40,0,0,0"/>
                     </Label>
-                    <TextBox Grid.Column="2" Grid.Row="14" Name="_txtPorVencer" VerticalAlignment="Bottom" 
-                         HorizontalAlignment="Center" Width="100" Text="{Binding Path=PorVencer}"></TextBox>
+                    <TextBox Grid.Column="2" Grid.Row="14" Name="_txtPorVencerDatos" VerticalAlignment="Bottom" 
+                         HorizontalAlignment="Left" Width="100" Text="{Binding Path=PorVencer}" Margin="20,0,0,0"></TextBox>
 
-                    <Label Grid.Column="3" Grid.Row="14" VerticalAlignment="Top" HorizontalContentAlignment="Center">
+                    <Label Grid.Column="3" Grid.Row="14" VerticalAlignment="Top" HorizontalContentAlignment="Left" Margin="25,0,0,0">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblTotal}"/>
                     </Label>
-                    <TextBox Grid.Column="3" Grid.Row="14" Name="_txtTotal" VerticalAlignment="Bottom" 
-                         HorizontalAlignment="Center" Width="100" Text="{Binding Path=Total}"></TextBox>
-
+                    <TextBox Grid.Column="3" Grid.Row="14" Name="_txtTotalDatos" VerticalAlignment="Bottom" 
+                         HorizontalAlignment="Left" Width="100" Text="{Binding Path=Total}"></TextBox>
+                    <!--fin control de facturacion-->
+                    
                     <WrapPanel Grid.Column="3" Grid.Row="13" Grid.ColumnSpan="3" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="5" Orientation="Horizontal">
-                        <Button Name="_btnConectividad" VerticalAlignment="Bottom" Height="25" Width="90">
-                            <TextBlock Name="_txbConectividad" Text="{x:Static recurso:Etiquetas.btnConectividad}"/>
+                        <Button Name="_btnConectividadDatos" VerticalAlignment="Bottom" Height="25" Width="90">
+                            <TextBlock Name="_txbConectividadDatos" Text="{x:Static recurso:Etiquetas.btnConectividad}"/>
                         </Button>
-                        <Button Name="_btnAuditoria" VerticalAlignment="Bottom" Height="25" Width="90">
-                            <TextBlock Name="_txbAuditoria" Text="{x:Static recurso:Etiquetas.btnAuditoria}"/>
+                        <Button Name="_btnAuditoriaDatos" VerticalAlignment="Bottom" Height="25" Width="90">
+                            <TextBlock Name="_txbAuditoriaDatos" Text="{x:Static recurso:Etiquetas.btnAuditoria}"/>
                         </Button>
-                        <Button Name="_btnVerExpediente" VerticalAlignment="Bottom" Height="25" Width="90">
-                            <TextBlock Name="_txbVerExpediente" Text="{x:Static recurso:Etiquetas.btnVerExpediente}"/>
+                        <Button Name="_btnVerExpedienteDatos" VerticalAlignment="Bottom" Height="25" Width="90">
+                            <TextBlock Name="_txbVerExpedienteDatos" Text="{x:Static recurso:Etiquetas.btnVerExpediente}"/>
                         </Button>
                     </WrapPanel>
 
                     <WrapPanel Grid.Column="3" Grid.Row="14" Grid.ColumnSpan="3" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="5" Orientation="Horizontal">
-                        <Button Name="_btnContactos" VerticalAlignment="Bottom" Height="25" Width="90">
-                            <TextBlock Name="_txbContactos" Text="{x:Static recurso:Etiquetas.btnContactos}"/>
+                        <Button Name="_btnContactosDatos" VerticalAlignment="Bottom" Height="25" Width="90">
+                            <TextBlock Name="_txbContactosDatos" Text="{x:Static recurso:Etiquetas.btnContactos}"/>
                         </Button>
-                        <Button Name="_btnGestiones" VerticalAlignment="Bottom" Height="25" Width="90">
-                            <TextBlock Name="_txbGestiones" Text="{x:Static recurso:Etiquetas.btnGestiones}"/>
+                        <Button Name="_btnGestionesDatos" VerticalAlignment="Bottom" Height="25" Width="90">
+                            <TextBlock Name="_txbGestionesDatos" Text="{x:Static recurso:Etiquetas.btnGestiones}"/>
                         </Button>
-                        <Button Name="_btnJustificaciones" VerticalAlignment="Bottom" Height="25" Width="90">
-                            <TextBlock Name="_txbJustificaciones" Text="{x:Static recurso:Etiquetas.btnJustificaciones}"/>
+                        <Button Name="_btnJustificacionesDatos" VerticalAlignment="Bottom" Height="25" Width="90">
+                            <TextBlock Name="_txbJustificacionesDatos" Text="{x:Static recurso:Etiquetas.btnJustificaciones}"/>
                         </Button>
-                        <Button Name="_btnCorrespondencias" VerticalAlignment="Bottom" Height="25" Width="90">
-                            <TextBlock Name="_txbCorrespondencias" Text="{x:Static recurso:Etiquetas.btnCorrespondencias}"/>
+                        <Button Name="_btnCorrespondenciasDatos" VerticalAlignment="Bottom" Height="25" Width="90">
+                            <TextBlock Name="_txbCorrespondenciasDatos" Text="{x:Static recurso:Etiquetas.btnCorrespondencias}"/>
                         </Button>
                     </WrapPanel>
                 </Grid>
             </TabItem>
             <TabItem Header="Administracion" Name="tabAministracion">
-                <Grid />
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition Height="40"/>
+                    </Grid.RowDefinitions>
+
+                    <Label Grid.Column="1" Grid.Row="0" VerticalAlignment="Center" HorizontalContentAlignment="Right">
+                        <TextBlock Text="{x:Static recurso:Etiquetas.lblCodigo}"/>
+                    </Label>
+                    <TextBox Grid.Column="2" Grid.Row="0" Name="_txtCodigoAdministracion" VerticalAlignment="Center" 
+                         HorizontalAlignment="Left" Width="100" Text="{Binding Path=Codigo}"></TextBox>
+
+                    <Label Grid.Column="3" Grid.Row="0" VerticalAlignment="Center" HorizontalContentAlignment="Right">
+                        <TextBlock Text="{x:Static recurso:Etiquetas.lblNombre}"/>
+                    </Label>
+                    <TextBox Grid.Column="4" Grid.Row="0" Name="_txtNombreAdministracion" VerticalAlignment="Center" 
+                         HorizontalAlignment="Left" Width="250" Text="{Binding Path=Nombre}" Grid.ColumnSpan="2"></TextBox>
+
+                    <Label Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" HorizontalContentAlignment="Right">
+                        <TextBlock Text="{x:Static recurso:Etiquetas.lblDescuento}"/>
+                    </Label>
+                    <TextBox Grid.Column="2" Grid.Row="1" Name="_txtDescuentoAdministracion" VerticalAlignment="Center" 
+                         HorizontalAlignment="Left" Width="50" Text="{Binding Path=Descuento}" Grid.ColumnSpan="3"></TextBox>
+
+                    <Label Grid.Column="3" Grid.Row="1" VerticalAlignment="Center" HorizontalContentAlignment="Right">
+                        <TextBlock Text="{x:Static recurso:Etiquetas.lblDiasCredito}"/>
+                    </Label>
+                    <TextBox Grid.Column="4" Grid.Row="1" Name="_txtDiasCreditoAdministracion" VerticalAlignment="Center" 
+                         HorizontalAlignment="Left" Width="30" Text="{Binding Path=DiasCredito}" Grid.ColumnSpan="4"></TextBox>
+
+                    <Label Grid.Column="1" Grid.Row="2" VerticalAlignment="Center" HorizontalContentAlignment="Right">
+                        <TextBlock Text="{x:Static recurso:Etiquetas.lblTipoPersona}"/>
+                    </Label>
+                    <ComboBox Grid.Column="2" Grid.Row="2" Grid.ColumnSpan="4"  Name="_cbxTipoPersonaAdministracion" HorizontalAlignment="Left" Width="140" Height="20" ItemsSource="{Binding}" DisplayMemberPath="NombreEspanol" >
+                    </ComboBox>
+
+                    <Label Grid.Column="1" Grid.Row="3" VerticalAlignment="Center" HorizontalContentAlignment="Right">
+                        <TextBlock Text="{x:Static recurso:Etiquetas.lblActivo}"/>
+                    </Label>
+                    <CheckBox Grid.Column="2" Grid.Row="3" Name="_cbxActivoAdministracion" VerticalAlignment="Center"
+                         HorizontalAlignment="Left" IsChecked="{Binding Path=Correspondencia}">
+                    </CheckBox>
+
+                    <Label Grid.Column="2" Grid.Row="3" VerticalAlignment="Center" HorizontalContentAlignment="Right">
+                        <TextBlock Text="{x:Static recurso:Etiquetas.lblEdoCuenta}"/>
+                    </Label>
+                    <CheckBox  Grid.Column="3" Grid.Row="3" Name="_cbxEdoCuentaAdministracion" VerticalAlignment="Center"
+                         HorizontalAlignment="Left" IsChecked="{Binding Path=EdoCuenta}">
+                    </CheckBox>
+
+                    <Label Grid.Column="1" Grid.Row="4" VerticalAlignment="Center" HorizontalContentAlignment="Right">
+                        <TextBlock Text="{x:Static recurso:Etiquetas.lblPendienteStatement}"/>
+                    </Label>
+                    <CheckBox Grid.Column="2" Grid.Row="4" Name="_cbxPendienteStatementAdministracion" VerticalAlignment="Center"
+                         HorizontalAlignment="Left" IsChecked="{Binding Path=PendienteStatement}">
+                    </CheckBox>
+
+                    <Label Grid.Column="2" Grid.Row="4" VerticalAlignment="Center" HorizontalContentAlignment="Right">
+                        <TextBlock Text="{x:Static recurso:Etiquetas.lblIsf}"/>
+                    </Label>
+                    <CheckBox  Grid.Column="3" Grid.Row="4" Name="_cbxIsfAdministracion" VerticalAlignment="Center"
+                         HorizontalAlignment="Left" IsChecked="{Binding Path=Isf}">
+                    </CheckBox>
+
+                    <Label Grid.Column="3" Grid.Row="3" VerticalAlignment="Center" HorizontalContentAlignment="Right">
+                        <TextBlock Text="{x:Static recurso:Etiquetas.lblEdoCuentaDigital}"/>
+                    </Label>
+                    <CheckBox Grid.Column="4" Grid.Row="3" Name="_cbxEdoCuentaDigitalAdministracion" VerticalAlignment="Center"
+                         HorizontalAlignment="Left" IsChecked="{Binding Path=EdoCuentaDigital}">
+                    </CheckBox>
+
+                    <Label Grid.Column="1" Grid.Row="5" VerticalAlignment="Center" HorizontalContentAlignment="Right">
+                        <TextBlock Text="{x:Static recurso:Etiquetas.lblAlerta}"/>
+                    </Label>
+                    <CheckBox  Grid.Column="2" Grid.Row="5" Name="_cbxAlertaAdministracion" VerticalAlignment="Center"
+                         HorizontalAlignment="Left" IsChecked="{Binding Path=Correspondencia}">
+                    </CheckBox>
+                    <TextBox Grid.Column="2" Grid.Row="5" Name="_txtAlarmaAdministracion" VerticalAlignment="Center" 
+                         HorizontalAlignment="Left" Width="250" Text="{Binding Path=Alarma}" Grid.ColumnSpan="4" Margin="30,0,0,0"></TextBox>
+
+                    <Label Grid.Column="1" Grid.Row="6" VerticalAlignment="Center" HorizontalContentAlignment="Right">
+                        <TextBlock Text="{x:Static recurso:Etiquetas.lblTarifas}"/>
+                    </Label>
+                    <ComboBox Grid.Column="2" Grid.Row="6" Grid.ColumnSpan="4"  Name="_cbxTarifasAdministracion" HorizontalAlignment="Left" Width="140" Height="20" ItemsSource="{Binding}" DisplayMemberPath="NombreEspanol" >
+                    </ComboBox>
+
+                    <Label Grid.Column="3" Grid.Row="6" VerticalAlignment="Center" HorizontalContentAlignment="Right">
+                        <TextBlock Text="{x:Static recurso:Etiquetas.lblEtiqueta}"/>
+                    </Label>
+                    <ComboBox Grid.Column="4" Grid.Row="6" Grid.ColumnSpan="4"  Name="_cbxEtiquetaAdministracion" HorizontalAlignment="Left" Width="140" Height="20" ItemsSource="{Binding}" DisplayMemberPath="NombreEspanol" >
+                    </ComboBox>
+                    
+                    <Label Grid.Column="1" Grid.Row="7" VerticalAlignment="Center" HorizontalContentAlignment="Right">
+                        <TextBlock Text="{x:Static recurso:Etiquetas.lblFormaPago}"/>
+                    </Label>
+                    <ComboBox Grid.Column="2" Grid.Row="7" Grid.ColumnSpan="4"  Name="_cbxFormaPagoAdministracion" HorizontalAlignment="Left" Width="140" Height="20" ItemsSource="{Binding}" DisplayMemberPath="NombreEspanol" >
+                    </ComboBox>
+
+                    <Button  Grid.Column="4" Grid.Row="7" Name="_btnTrasferenciaAdministracion" HorizontalAlignment="Center" VerticalAlignment="Center" Height="25" Width="90">
+                        <TextBlock Name="_txbTrasferenciaAdministracion" Text="{x:Static recurso:Etiquetas.btnTrasferencia}"/>
+                    </Button>
+
+                    <!--control de facturacion-->
+                    <Button  Grid.Column="1" Grid.Row="12" Name="_btnCXPINTAdministracion" HorizontalAlignment="Center" VerticalAlignment="Center" Height="25" Width="90">
+                        <TextBlock Name="_txbCXPINTAdministracion" Text="{x:Static recurso:Etiquetas.btnCXPINT}"/>
+                    </Button>
+                    <TextBox Grid.Column="2" Grid.Row="12" Name="_txtSaldoPendienteAdministracion" VerticalAlignment="Center" 
+                         HorizontalAlignment="Left" Width="100" Text="{Binding Path=SaldoPendiente}" Margin="20,0,0,0"></TextBox>
+
+                    <Button  Grid.Column="1" Grid.Row="13" Name="_btnSaldosAdministracion" HorizontalAlignment="Center" VerticalAlignment="Center" Height="25" Width="90">
+                        <TextBlock Name="_txbSaldosAdministracion" Text="{x:Static recurso:Etiquetas.btnSaldos}"/>
+                    </Button>
+
+                    <TextBox Grid.Column="2" Grid.Row="13" Name="_txtDiasAdministracion" VerticalAlignment="Center" 
+                         HorizontalAlignment="Left" Width="30" Text="{Binding Path=Dias}" Margin="20,0,0,0"></TextBox>
+                    <Label Grid.Column="2" Grid.Row="13" VerticalAlignment="Center" HorizontalContentAlignment="Center" Margin="5,0,0,0">
+                        <TextBlock Text="{x:Static recurso:Etiquetas.lblDias}"/>
+                    </Label>
+
+                    <WrapPanel Grid.Column="2" Grid.Row="13" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="80,0,0,5" Orientation="Horizontal" Grid.ColumnSpan="2" >
+                        <Button Name="_btnEdoCtaAdministracion" HorizontalAlignment="Center" VerticalAlignment="Center" Height="25" Width="60">
+                            <TextBlock Name="_txbEdoCtaAdministracion" Text="{x:Static recurso:Etiquetas.btnEdoCta}"/>
+                        </Button>
+                        <Button Name="_btnNDPAdministracion" HorizontalAlignment="Center" VerticalAlignment="Center" Height="25" Width="60">
+                            <TextBlock Name="_txbNDPAdministracion" Text="{x:Static recurso:Etiquetas.btnNdp}"/>
+                        </Button>
+                    </WrapPanel>
+
+                    <Label Grid.Column="1" Grid.Row="14" VerticalAlignment="Top" HorizontalContentAlignment="Center">
+                        <TextBlock Text="{x:Static recurso:Etiquetas.lblVencidoA}"/>
+                    </Label>
+                    <TextBox Grid.Column="1" Grid.Row="14" Name="_txtVencidoAAdministracion" VerticalAlignment="Bottom" 
+                         HorizontalAlignment="Center" Width="100" Text="{Binding Path=Web}"></TextBox>
+
+                    <Label Grid.Column="2" Grid.Row="14" VerticalAlignment="Top" HorizontalContentAlignment="Left">
+                        <TextBlock Text="{x:Static recurso:Etiquetas.lblPorVencer}" Margin="40,0,0,0"/>
+                    </Label>
+                    <TextBox Grid.Column="2" Grid.Row="14" Name="_txtPorVencerAdministracion" VerticalAlignment="Bottom" 
+                         HorizontalAlignment="Left" Width="100" Text="{Binding Path=PorVencer}" Margin="20,0,0,0"></TextBox>
+
+                    <Label Grid.Column="3" Grid.Row="14" VerticalAlignment="Top" HorizontalContentAlignment="Left" Margin="25,0,0,0">
+                        <TextBlock Text="{x:Static recurso:Etiquetas.lblTotal}"/>
+                    </Label>
+                    <TextBox Grid.Column="3" Grid.Row="14" Name="_txtTotalAdministracion" VerticalAlignment="Bottom" 
+                         HorizontalAlignment="Left" Width="100" Text="{Binding Path=Total}"></TextBox>
+                    <!--fin control de facturacion-->
+
+                    <WrapPanel Grid.Column="3" Grid.Row="13" Grid.ColumnSpan="3" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="5" Orientation="Horizontal">
+                        <Button Name="_btnDesicionComiteAdministracion" VerticalAlignment="Bottom" Height="25" Width="90">
+                            <TextBlock Name="_txbDesicionComiteAdministracion" Text="{x:Static recurso:Etiquetas.btnDesicionComite}"/>
+                        </Button>
+                        <Button Name="_btnConectividadAdministracion" VerticalAlignment="Bottom" Height="25" Width="90">
+                            <TextBlock Name="_txbConectividadAdministracion" Text="{x:Static recurso:Etiquetas.btnConectividad}"/>
+                        </Button>
+                        <Button Name="_btnAuditoriaAdministracion" VerticalAlignment="Bottom" Height="25" Width="90">
+                            <TextBlock Name="_txbAuditoriaAdministracion" Text="{x:Static recurso:Etiquetas.btnAuditoria}"/>
+                        </Button>
+                        <Button Name="_btnVerExpedienteAdministracion" VerticalAlignment="Bottom" Height="25" Width="90">
+                            <TextBlock Name="_txbVerExpedienteAdministracion" Text="{x:Static recurso:Etiquetas.btnVerExpediente}"/>
+                        </Button>
+                        <Button Name="_btnExpRecuperacionAdministracion" VerticalAlignment="Bottom" Height="25" Width="90">
+                            <TextBlock Name="_txbExpRecuperacionAdministracion" Text="{x:Static recurso:Etiquetas.btnExpRecuperacion}"/>
+                        </Button>
+                    </WrapPanel>
+
+                    <WrapPanel Grid.Column="3" Grid.Row="14" Grid.ColumnSpan="3" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="5" Orientation="Horizontal">
+                        <Button Name="_btnContactosAdministracion" VerticalAlignment="Bottom" Height="25" Width="90">
+                            <TextBlock Name="_txbContactosAdministracion" Text="{x:Static recurso:Etiquetas.btnContactos}"/>
+                        </Button>
+                        <Button Name="_btnGestionesAdministracion" VerticalAlignment="Bottom" Height="25" Width="90">
+                            <TextBlock Name="_txbGestionesAdministracion" Text="{x:Static recurso:Etiquetas.btnGestiones}"/>
+                        </Button>
+                        <Button Name="_btnJustificacionesAdministracion" VerticalAlignment="Bottom" Height="25" Width="90">
+                            <TextBlock Name="_txbJustificacionesAdministracion" Text="{x:Static recurso:Etiquetas.btnJustificaciones}"/>
+                        </Button>
+                        <Button Name="_btnCorrespondenciasAdministracion" VerticalAlignment="Bottom" Height="25" Width="90">
+                            <TextBlock Name="_txbCorrespondenciasAdministracion" Text="{x:Static recurso:Etiquetas.btnCorrespondencias}"/>
+                        </Button>
+                    </WrapPanel>
+                </Grid>
             </TabItem>
         </TabControl>
         <WrapPanel Grid.Row="2" Grid.ColumnSpan="3" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="5" Orientation="Horizontal">

@@ -43,6 +43,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Implementacion\AgenteServicios.cs" />
+    <Compile Include="Implementacion\DetallePagoServicios.cs" />
+    <Compile Include="Implementacion\TipoClienteServicios.cs" />
+    <Compile Include="Implementacion\TarifaServicios.cs" />
+    <Compile Include="Implementacion\MonedaServicios.cs" />
+    <Compile Include="Implementacion\IdiomaServicios.cs" />
+    <Compile Include="Implementacion\EtiquetaServicios.cs" />
     <Compile Include="Implementacion\InteresadoServicios.cs" />
     <Compile Include="Implementacion\PoderServicios.cs" />
     <Compile Include="Implementacion\EstatusServicios.cs" />

@@ -43,6 +43,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ContratosServicios\IDetallePagoServicios.cs" />
+    <Compile Include="ContratosServicios\ITipoClienteServicios.cs" />
+    <Compile Include="ContratosServicios\ITarifaServicios.cs" />
+    <Compile Include="ContratosServicios\IMonedaServicios.cs" />
+    <Compile Include="ContratosServicios\IIdiomaServicios.cs" />
+    <Compile Include="ContratosServicios\IEtiquetaServicios.cs" />
     <Compile Include="ContratosServicios\IInteresadoServicios.cs" />
     <Compile Include="ContratosServicios\IPoderServicios.cs" />
     <Compile Include="ContratosServicios\IEstatusServicios.cs" />
@@ -63,6 +69,12 @@
     <Compile Include="Entidades\Agente.cs" />
     <Compile Include="Entidades\Contador.cs" />
     <Compile Include="Entidades\ContadorAuditoria.cs" />
+    <Compile Include="Entidades\DetallePago.cs" />
+    <Compile Include="Entidades\Tarifa.cs" />
+    <Compile Include="Entidades\Etiqueta.cs" />
+    <Compile Include="Entidades\TipoCliente.cs" />
+    <Compile Include="Entidades\Moneda.cs" />
+    <Compile Include="Entidades\Idioma.cs" />
     <Compile Include="Entidades\Estatus.cs" />
     <Compile Include="Entidades\Interesado.cs" />
     <Compile Include="Entidades\Poder.cs" />

@@ -61,6 +61,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Contrato\IDaoDetallePago.cs" />
+    <Compile Include="Contrato\IDaoTipoCliente.cs" />
+    <Compile Include="Contrato\IDaoTarifa.cs" />
+    <Compile Include="Contrato\IDaoMoneda.cs" />
+    <Compile Include="Contrato\IDaoIdioma.cs" />
+    <Compile Include="Contrato\IDaoEtiqueta.cs" />
     <Compile Include="Contrato\IDaoInteresado.cs" />
     <Compile Include="Contrato\IDaoContadorAuditoria.cs" />
     <Compile Include="Contrato\IDaoContador.cs" />
@@ -82,6 +88,12 @@
     <Compile Include="Contrato\IDaoBase.cs" />
     <Compile Include="Contrato\IDaoUsuario.cs" />
     <Compile Include="Contrato\IFabricaDaoBase.cs" />
+    <Compile Include="Dao\NHibernate\DaoDetallePagoNHibernate.cs" />
+    <Compile Include="Dao\NHibernate\DaoTipoClienteNHibernate.cs" />
+    <Compile Include="Dao\NHibernate\DaoTarifaNHibernate.cs" />
+    <Compile Include="Dao\NHibernate\DaoMonedaNHibernate.cs" />
+    <Compile Include="Dao\NHibernate\DaoIdiomaNHibernate.cs" />
+    <Compile Include="Dao\NHibernate\DaoEtiquetaNHibernate.cs" />
     <Compile Include="Dao\NHibernate\DaoInteresadoNHibernate.cs" />
     <Compile Include="Dao\NHibernate\DaoContadorAuditoriaNHibernate.cs" />
     <Compile Include="Dao\NHibernate\DaoContadorNHibernate.cs" />
@@ -223,6 +235,36 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Mapeado\ContadorAuditoria.hbm.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Mapeado\Idioma.hbm.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Mapeado\Moneda.hbm.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Mapeado\TipoCliente.hbm.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Mapeado\Etiqueta.hbm.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Mapeado\Tarifa.hbm.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Mapeado\DetallePago.hbm.xml">
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>

@@ -661,8 +661,14 @@
   <data name="btnCXPINT" xml:space="preserve">
     <value>CXP INT</value>
   </data>
+  <data name="btnDesicionComite" xml:space="preserve">
+    <value>Desición Comite</value>
+  </data>
   <data name="btnEdoCta" xml:space="preserve">
     <value>Edo. Cta</value>
+  </data>
+  <data name="btnExpRecuperacion" xml:space="preserve">
+    <value>Exp. Recuperación</value>
   </data>
   <data name="btnGestiones" xml:space="preserve">
     <value>Gestiones</value>
@@ -676,8 +682,14 @@
   <data name="btnSaldos" xml:space="preserve">
     <value>Saldos</value>
   </data>
+  <data name="btnTrasferencia" xml:space="preserve">
+    <value>Datos Transferencia</value>
+  </data>
   <data name="btnVerExpediente" xml:space="preserve">
     <value>Expediente</value>
+  </data>
+  <data name="lblActivo" xml:space="preserve">
+    <value>Activo:</value>
   </data>
   <data name="lblCorrespondencia" xml:space="preserve">
     <value>Correspondencia:</value>
@@ -688,8 +700,23 @@
   <data name="lblDias" xml:space="preserve">
     <value>Dias</value>
   </data>
+  <data name="lblDiasCredito" xml:space="preserve">
+    <value>Día de Crédito:</value>
+  </data>
+  <data name="lblEdoCuenta" xml:space="preserve">
+    <value>Envío Estado de Cuenta:</value>
+  </data>
+  <data name="lblEdoCuentaDigital" xml:space="preserve">
+    <value>Envío Estado de Cuenta solo digital:</value>
+  </data>
+  <data name="lblEtiqueta" xml:space="preserve">
+    <value>Etiqueta:</value>
+  </data>
   <data name="lblFacturacion" xml:space="preserve">
     <value>Facturacion:</value>
+  </data>
+  <data name="lblFormaPago" xml:space="preserve">
+    <value>Forma de Pago:</value>
   </data>
   <data name="lblIdioma" xml:space="preserve">
     <value>Idioma:</value>
@@ -697,17 +724,26 @@
   <data name="lblInstrucciones" xml:space="preserve">
     <value>Instrucciones:</value>
   </data>
+  <data name="lblIsf" xml:space="preserve">
+    <value>ISF:</value>
+  </data>
   <data name="lblMoneda" xml:space="preserve">
     <value>Moneda:</value>
   </data>
   <data name="lblNit" xml:space="preserve">
     <value>NIT:</value>
   </data>
+  <data name="lblPendienteStatement" xml:space="preserve">
+    <value>Pendiente con Statement:</value>
+  </data>
   <data name="lblPorVencer" xml:space="preserve">
     <value>Por Vencer:</value>
   </data>
   <data name="lblRif" xml:space="preserve">
     <value>RIF:</value>
+  </data>
+  <data name="lblTarifas" xml:space="preserve">
+    <value>Tarifas:</value>
   </data>
   <data name="lblTotal" xml:space="preserve">
     <value>Total:</value>

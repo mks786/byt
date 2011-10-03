@@ -137,5 +137,41 @@ namespace Trascend.Bolet.AccesoDatos.Fabrica
         /// </summary>
         /// <returns>IDaoInteresado</returns>
         public abstract IDaoInteresado ObtenerDaoInteresado();
+
+        /// <summary>
+        /// Método que devuelve el DaoEtiqueta del manejador que se esté utilizando
+        /// </summary>
+        /// <returns>IDaoEtiqueta</returns>
+        public abstract IDaoEtiqueta ObtenerDaoEtiqueta();
+
+        /// <summary>
+        /// Método que devuelve el DaoIdioma del manejador que se esté utilizando
+        /// </summary>
+        /// <returns>IDaoIdioma</returns>
+        public abstract IDaoIdioma ObtenerDaoIdioma();
+
+        /// <summary>
+        /// Método que devuelve el DaoMoneda del manejador que se esté utilizando
+        /// </summary>
+        /// <returns>IDaoMoneda</returns>
+        public abstract IDaoMoneda ObtenerDaoMoneda();
+
+        /// <summary>
+        /// Método que devuelve el DaoTarifa del manejador que se esté utilizando
+        /// </summary>
+        /// <returns>IDaoTarifa</returns>
+        public abstract IDaoTarifa ObtenerDaoTarifa();
+
+        /// <summary>
+        /// Método que devuelve el DaoTipoCliente del manejador que se esté utilizando
+        /// </summary>
+        /// <returns>IDaoTipoCliente</returns>
+        public abstract IDaoTipoCliente ObtenerDaoTipoCliente();
+
+        /// <summary>
+        /// Método que devuelve el DaoDetallePago del manejador que se esté utilizando
+        /// </summary>
+        /// <returns>IDaoDetallePago</returns>
+        public abstract IDaoDetallePago ObtenerDaoDetallePago();
     }
 }

@@ -46,6 +46,7 @@
     <Compile Include="Comandos\ComandosAgente\ComandoConsultarAgentesYPoderes.cs" />
     <Compile Include="Comandos\ComandosAuditoria\ComandoAuditoriaPorFkyTabla.cs" />
     <Compile Include="Comandos\ComandosContador\ComandoConsultarPorIdContador.cs" />
+    <Compile Include="Comandos\ComandosDetallePago\ComandoConsultarTodosDetallePagos.cs" />
     <Compile Include="Comandos\ComandosEstado\ComandoConsultarTodosEstados.cs" />
     <Compile Include="Comandos\ComandosAgente\ComandoEliminarAgente.cs" />
     <Compile Include="Comandos\ComandosAgente\ComandoInsertarOModificarAgente.cs" />
@@ -55,6 +56,9 @@
     <Compile Include="Comandos\ComandosDepartamento\ComandoConsultarDepartamentoPorId.cs" />
     <Compile Include="Comandos\ComandosEstado\ComandoEliminarEstado.cs" />
     <Compile Include="Comandos\ComandosEstado\ComandoInsertarOModificarEstado.cs" />
+    <Compile Include="Comandos\ComandosEtiqueta\ComandoConsultarTodosEtiquetas.cs" />
+    <Compile Include="Comandos\ComandosIdioma\ComandoConsultarTodosIdiomas.cs" />
+    <Compile Include="Comandos\ComandosMoneda\ComandoConsultarTodosMonedas.cs" />
     <Compile Include="Comandos\ComandosNacional\ComandoConsultarTodosNacionales.cs" />
     <Compile Include="Comandos\ComandosNacional\ComandoEliminarNacional.cs" />
     <Compile Include="Comandos\ComandosNacional\ComandoInsertarOModificarNacional.cs" />
@@ -67,6 +71,8 @@
     <Compile Include="Comandos\ComandosRol\ComandoElimarRol.cs" />
     <Compile Include="Comandos\ComandosRol\ComandoInsertarOModificarRol.cs" />
     <Compile Include="Comandos\ComandosRol\ComandoConsultarRolesYObjetos.cs" />
+    <Compile Include="Comandos\ComandosTarifa\ComandoConsultarTodosTarifas.cs" />
+    <Compile Include="Comandos\ComandosTipoCliente\ComandoConsultarTodosTipoClientes.cs" />
     <Compile Include="Comandos\ComandosUsuario\ComandoAutentificarUsuario.cs" />
     <Compile Include="Comandos\ComandosUsuario\ComandoEliminarUsuario.cs" />
     <Compile Include="Comandos\ComandosPais\ComandoConsultarTodosPaises.cs" />
@@ -103,6 +109,12 @@
     <Compile Include="Comandos\ComandosUsuario\ComandoConsultarTodosUsuarios.cs" />
     <Compile Include="Comandos\ComandosUsuario\ComandoConsultarUsuarioPorID.cs" />
     <Compile Include="Comandos\ComandosUsuario\ComandoInsertarOModificarUsuario.cs" />
+    <Compile Include="Fabrica\FabricaComandosDetallePago.cs" />
+    <Compile Include="Fabrica\FabricaComandosTipoCliente.cs" />
+    <Compile Include="Fabrica\FabricaComandosTarifa.cs" />
+    <Compile Include="Fabrica\FabricaComandosMoneda.cs" />
+    <Compile Include="Fabrica\FabricaComandosIdioma.cs" />
+    <Compile Include="Fabrica\FabricaComandosEtiqueta.cs" />
     <Compile Include="Fabrica\FabricaComandosInteresado.cs" />
     <Compile Include="Fabrica\FabricaComandosContadorAuditoria.cs" />
     <Compile Include="Fabrica\FabricaComandosContador.cs" />

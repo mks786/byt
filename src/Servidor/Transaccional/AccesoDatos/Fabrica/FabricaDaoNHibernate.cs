@@ -201,5 +201,59 @@ namespace Trascend.Bolet.AccesoDatos.Fabrica
         {
             return new DaoInteresadoNHibernate();
         }
+
+        /// <summary>
+        /// Método que devuelve el DaoEtiqueta
+        /// </summary>
+        /// <returns>IDaoEtiqueta</returns>
+        public override IDaoEtiqueta ObtenerDaoEtiqueta()
+        {
+            return new DaoEtiquetaNHibernate();
+        }
+
+        /// <summary>
+        /// Método que devuelve el DaoIdioma
+        /// </summary>
+        /// <returns>IDaoIdioma</returns>
+        public override IDaoIdioma ObtenerDaoIdioma()
+        {
+            return new DaoIdiomaNHibernate();
+        }
+
+        /// <summary>
+        /// Método que devuelve el DaoMoneda
+        /// </summary>
+        /// <returns>IDaoMoneda</returns>
+        public override IDaoMoneda ObtenerDaoMoneda()
+        {
+            return new DaoMonedaNHibernate();
+        }
+
+        /// <summary>
+        /// Método que devuelve el DaoTarifa
+        /// </summary>
+        /// <returns>IDaoTarifa</returns>
+        public override IDaoTarifa ObtenerDaoTarifa()
+        {
+            return new DaoTarifaNHibernate();
+        }
+
+        /// <summary>
+        /// Método que devuelve el DaoTipoCliente
+        /// </summary>
+        /// <returns>IDaoTipoCliente</returns>
+        public override IDaoTipoCliente ObtenerDaoTipoCliente()
+        {
+            return new DaoTipoClienteNHibernate();
+        }
+
+        /// <summary>
+        /// Método que devuelve el DaoDetallePago
+        /// </summary>
+        /// <returns>IDaoDetallePago</returns>
+        public override IDaoDetallePago ObtenerDaoDetallePago()
+        {
+            return new DaoDetallePagoNHibernate();
+        }
     }
 }
