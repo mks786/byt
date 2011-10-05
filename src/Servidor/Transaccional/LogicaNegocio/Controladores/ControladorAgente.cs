@@ -26,7 +26,7 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-                ComandoBase <IList<Agente>> comando = FabricaComandosAgente.ObtenerComandoConsultarTodos();
+                ComandoBase<IList<Agente>> comando = FabricaComandosAgente.ObtenerComandoConsultarTodos();
                 comando.Ejecutar();
                 retorno = comando.Receptor.ObjetoAlmacenado;
 

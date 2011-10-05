@@ -50,8 +50,8 @@
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
 
-                <Label Grid.Column="0" Grid.Row="1" VerticalAlignment="Center" HorizontalContentAlignment="Right">
-                    <TextBlock Text="{x:Static recurso:Etiquetas.lblId}"/>
+                <Label Grid.Column="0" Grid.Row="1" VerticalAlignment="Center"  HorizontalContentAlignment="Right">
+                    <TextBlock Text="{x:Static recurso:Etiquetas.lblId}"/> 
                 </Label>
                 <TextBox Grid.Column="1" Grid.Row="1" Name="_txtId" VerticalAlignment="Center" MaxLength="16" 
                          HorizontalAlignment="Left" Width="180"

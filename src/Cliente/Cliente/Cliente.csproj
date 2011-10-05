@@ -145,6 +145,9 @@
     <Compile Include="Presentadores\Agentes\PresentadorConsultarAgente.cs" />
     <Compile Include="Presentadores\Agentes\PresentadorConsultarAgentes.cs" />
     <Compile Include="Presentadores\Auditorias\PresentadorListaAuditorias.cs" />
+    <Compile Include="Presentadores\Asociados\PresentadorAgregarAsociado.cs" />
+    <Compile Include="Presentadores\Asociados\PresentadorConsultarAsociado.cs" />
+    <Compile Include="Presentadores\Asociados\PresentadorConsultarAsociados.cs" />
     <Compile Include="Presentadores\Interesados\PresentadorAgregarInteresado.cs" />
     <Compile Include="Presentadores\Interesados\PresentadorConsultarInteresado.cs" />
     <Compile Include="Presentadores\Interesados\PresentadorConsultarInteresados.cs" />

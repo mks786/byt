@@ -65,9 +65,9 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
                 // si es una insercion
                 if(interesado.Operacion.Equals("CREATE"))
                 {
-                    ComandoBase<Contador> comandoContadorInteresadoPoximoValor = FabricaComandosContador.ObtenerComandoConsultarPorId("MYP_INTERESADOS");
-                    comandoContadorInteresadoPoximoValor.Ejecutar();
-                    Contador contador = comandoContadorInteresadoPoximoValor.Receptor.ObjetoAlmacenado;
+                    ComandoBase<Contador> comandoContadorInteresadoProximoValor = FabricaComandosContador.ObtenerComandoConsultarPorId("MYP_INTERESADOS");
+                    comandoContadorInteresadoProximoValor.Ejecutar();
+                    Contador contador = comandoContadorInteresadoProximoValor.Receptor.ObjetoAlmacenado;
                     interesado.Id = contador.ProximoValor++;
                     comandoInteresadoContador = FabricaComandosContador.ObtenerComandoInsertarOModificar(contador);
                 }

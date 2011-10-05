@@ -997,6 +997,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Tipo Cliente:.
+        /// </summary>
+        public static string lblTipoCliente {
+            get {
+                return ResourceManager.GetString("lblTipoCliente", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Tipo de persona:.
         /// </summary>
         public static string lblTipoPersona {
@@ -1492,6 +1501,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Agregar Asociado.
+        /// </summary>
+        public static string titleAgregarAsociado {
+            get {
+                return ResourceManager.GetString("titleAgregarAsociado", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Agregar Boletin.
         /// </summary>
         public static string titleAgregarBoletin {
@@ -1956,15 +1974,6 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string titlePrincipal {
             get {
                 return ResourceManager.GetString("titlePrincipal", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Agregar Asociado.
-        /// </summary>
-        public static string tittleAgregarAsociado {
-            get {
-                return ResourceManager.GetString("tittleAgregarAsociado", resourceCulture);
             }
         }
     }

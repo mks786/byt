@@ -56,7 +56,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         /// <summary>
         /// Propiedad que asigna u obtiene la operacion de la moneda
         /// </summary>
-        public virtual string Operacon
+        public virtual string Operacion
         {
             get { return _operacon; }
             set { _operacon = value; }

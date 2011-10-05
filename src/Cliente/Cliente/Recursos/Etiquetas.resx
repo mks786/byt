@@ -646,7 +646,7 @@
   <data name="menuItemAsociado" xml:space="preserve">
     <value>Asociado</value>
   </data>
-  <data name="tittleAgregarAsociado" xml:space="preserve">
+  <data name="titleAgregarAsociado" xml:space="preserve">
     <value>Agregar Asociado</value>
   </data>
   <data name="btnConectividad" xml:space="preserve">
@@ -753,5 +753,8 @@
   </data>
   <data name="lblWeb" xml:space="preserve">
     <value>Web:</value>
+  </data>
+  <data name="lblTipoCliente" xml:space="preserve">
+    <value>Tipo Cliente:</value>
   </data>
 </root>

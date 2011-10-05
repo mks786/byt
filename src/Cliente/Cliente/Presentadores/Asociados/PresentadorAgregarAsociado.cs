@@ -14,7 +14,13 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
     class PresentadorAgregarAsociado : PresentadorBase
     {
         private IAgregarAsociado _ventana;
-        //private IAgenteServicios _agenteServicios;
+        private IDetallePagoServicios _detallePagoServicios;
+        private IEtiquetaServicios _etiquetaServicios;
+        private IIdiomaServicios _idiomaServicios;
+        private IMonedaServicios _monedaServicios;
+        private ITarifaServicios _tarifaServicios;
+        private ITipoClienteServicios _tipoClienteServicios;
+        private IPaisServicios _paisServicios;
         private static PaginaPrincipal _paginaPrincipal = PaginaPrincipal.ObtenerInstancia;
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
@@ -28,8 +34,20 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
             {
                 this._ventana = ventana;
                 //this._ventana.Asociado = new Asociado();
-                //this._agenteServicios = (IAgenteServicios)Activator.GetObject(typeof(IAgenteServicios),
-                //    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["AgenteServicios"]);
+                this._detallePagoServicios = (IDetallePagoServicios)Activator.GetObject(typeof(IDetallePagoServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["DetallePagoServicios"]);
+                this._etiquetaServicios = (IEtiquetaServicios)Activator.GetObject(typeof(IEtiquetaServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["EtiquetaServicios"]);
+                this._idiomaServicios = (IIdiomaServicios)Activator.GetObject(typeof(IIdiomaServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["IdiomaServicios"]);
+                this._monedaServicios = (IMonedaServicios)Activator.GetObject(typeof(IMonedaServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["MonedaServicios"]);
+                this._tarifaServicios = (ITarifaServicios)Activator.GetObject(typeof(ITarifaServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["TarifaServicios"]);
+                this._tipoClienteServicios = (ITipoClienteServicios)Activator.GetObject(typeof(ITipoClienteServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["TipoClienteServicios"]);
+                this._paisServicios = (IPaisServicios)Activator.GetObject(typeof(IPaisServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["PaisServicios"]);
             }
             catch (Exception ex)
             {
@@ -49,7 +67,15 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
             {
                 //this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleAgregarAsociado,
                 //    Recursos.Ids.AgregarAsociado);
-                //this._ventana.FocoPredeterminado();
+
+                this._ventana.DetallesPagos = this._detallePagoServicios.ConsultarTodos();
+                this._ventana.Etiquetas = this._etiquetaServicios.ConsultarTodos();
+                this._ventana.Idiomas = this._idiomaServicios.ConsultarTodos();
+                this._ventana.Monedas = this._monedaServicios.ConsultarTodos();
+                this._ventana.Paises = this._paisServicios.ConsultarTodos();
+                this._ventana.Tarifas = this._tarifaServicios.ConsultarTodos();
+                this._ventana.TiposClientes = this._tipoClienteServicios.ConsultarTodos();
+                this._ventana.FocoPredeterminado();
             }
             catch (ApplicationException ex)
             {
