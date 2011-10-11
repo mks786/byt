@@ -105,10 +105,17 @@
     <Compile Include="Comandos\ComandosInteresado\ComandoConsultarTodosPoderes.cs" />
     <Compile Include="Comandos\ComandosInteresado\ComandoEliminarPoder.cs" />
     <Compile Include="Comandos\ComandosInteresado\ComandoInsertarOModificarPoder.cs" />
+    <Compile Include="Comandos\ComandosAsociado\ComandoConsultarTodosAsocaidos.cs" />
+    <Compile Include="Comandos\ComandosAsociado\ComandoEliminarAsociado.cs" />
+    <Compile Include="Comandos\ComandosAsociado\ComandoInsertarOModificarAsociado.cs" />
+    <Compile Include="Comandos\ComandosContadorFac\ComandoConsultarPorIdComandosContadorFac.cs" />
+    <Compile Include="Comandos\ComandosContadorFac\ComandoInsertarOModificarComandosContadorFac.cs" />
     <Compile Include="Comandos\Receptor.cs" />
     <Compile Include="Comandos\ComandosUsuario\ComandoConsultarTodosUsuarios.cs" />
     <Compile Include="Comandos\ComandosUsuario\ComandoConsultarUsuarioPorID.cs" />
     <Compile Include="Comandos\ComandosUsuario\ComandoInsertarOModificarUsuario.cs" />
+    <Compile Include="Fabrica\FabricaComandosContadorFac.cs" />
+    <Compile Include="Fabrica\FabricaComandosAsociado.cs" />
     <Compile Include="Fabrica\FabricaComandosDetallePago.cs" />
     <Compile Include="Fabrica\FabricaComandosTipoCliente.cs" />
     <Compile Include="Fabrica\FabricaComandosTarifa.cs" />

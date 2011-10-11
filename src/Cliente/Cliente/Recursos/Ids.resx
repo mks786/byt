@@ -123,6 +123,9 @@
   <data name="AgregarAgente" xml:space="preserve">
     <value>MYPTAGENTE</value>
   </data>
+  <data name="AgregarAsociado" xml:space="preserve">
+    <value>FAC_ASOCIADOS</value>
+  </data>
   <data name="AgregarBoletin" xml:space="preserve">
     <value>MYPTBOLETIN</value>
   </data>
@@ -176,6 +179,12 @@
   </data>
   <data name="ConsultarAgentes" xml:space="preserve">
     <value>MYPTAGENTE</value>
+  </data>
+  <data name="ConsultarAsociado" xml:space="preserve">
+    <value>FAC_ASOCIADOS</value>
+  </data>
+  <data name="ConsultarAsociados" xml:space="preserve">
+    <value>FAC_ASOCIADOS</value>
   </data>
   <data name="ConsultarBoletin" xml:space="preserve">
     <value>MYPTBOLETIN</value>
@@ -252,6 +261,9 @@
   <data name="ConsultarUsuarios" xml:space="preserve">
     <value>SEGTUSU</value>
   </data>
+  <data name="EliminarAsociado" xml:space="preserve">
+    <value>FAC_ASOCIADOS</value>
+  </data>
   <data name="EliminarBoletin" xml:space="preserve">
     <value>MYPTBOLETIN</value>
   </data>
@@ -311,6 +323,9 @@
   </data>
   <data name="ListaPoderes" xml:space="preserve">
     <value>LST_PODERES</value>
+  </data>
+  <data name="ModificarAsociado" xml:space="preserve">
+    <value>FAC_ASOCIADOS</value>
   </data>
   <data name="ModificarBoletin" xml:space="preserve">
     <value>MYPTBOLETIN</value>

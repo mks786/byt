@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ContratosServicios\IAsociadoServicios.cs" />
     <Compile Include="ContratosServicios\IDetallePagoServicios.cs" />
     <Compile Include="ContratosServicios\ITipoClienteServicios.cs" />
     <Compile Include="ContratosServicios\ITarifaServicios.cs" />
@@ -70,6 +71,7 @@
     <Compile Include="Entidades\Contador.cs" />
     <Compile Include="Entidades\ContadorAuditoria.cs" />
     <Compile Include="Entidades\Asociado.cs" />
+    <Compile Include="Entidades\ContadorFac.cs" />
     <Compile Include="Entidades\DetallePago.cs" />
     <Compile Include="Entidades\Tarifa.cs" />
     <Compile Include="Entidades\Etiqueta.cs" />

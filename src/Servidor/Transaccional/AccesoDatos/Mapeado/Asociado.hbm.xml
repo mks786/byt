@@ -3,12 +3,60 @@
                    assembly="Trascend.Bolet.ObjetosComunes"
                    namespace="Trascend.Bolet.ObjetosComunes.Entidades">
 
-  <class name="Asociado" table="MYP_ASOCIADOS">
+  <class name="Asociado" table="FAC_ASOCIADOS">
     <id name="Id" column="CASOCIADO" />
     <property name="Nombre" column="XASOCIADO" type="string"/>
+    <property name="TipoPersona" column="IPERSONA" type="char"/>
+    <property name="Domicilio" column="XDOMICILIO" type="string"/>
+    <property name="Contribuyente" column="ICONTRIBUYENTE" type="string"/>
+    <property name="Rif" column="XRIF" type="string"/>
+    <property name="Nit" column="XNIT" type="string"/>
+    <property name="Descuento" column="PDESCUENTO" type="string"/>
+    <property name="Telefono1" column="XTELEFONO1" type="string"/>
+    <property name="Telefono2" column="XTELEFONO2" type="string"/>
+    <property name="Telefono3" column="XTELEFONO3" type="string"/>
+    <property name="Fax1" column="XFAX1" type="string"/>
+    <property name="Fax2" column="XFAX2" type="string"/>
+    <property name="Fax3" column="XFAX3" type="string"/>
+    <property name="Email" column="XEMAIL" type="string"/>
+    <property name="Web" column="XWEB" type="string"/>
+    <property name="DiaCredito" column="DIASC" type="int"/>
+    <property name="Activo" column="IACTIVO" type="string"/>
+    <property name="EdoCuenta" column="IESTADO" type="char"/>
+    <property name="EdoCuentaDigital" column="IDIGITAL" type="string"/>
+    <property name="PendienteStatement" column="ITSF" type="char"/>
+    <property name="Isf" column="ISP" type="char"/>
+    <property name="Alerta" column="IALERTA" type="char"/>
+    <property name="AlarmaDescripcion" column="XALERTA" type="string"/>
 
+    <many-to-one name="Pais" class="Pais">
+      <column name="CPAIS"/>
+    </many-to-one>
+
+    <many-to-one name="Idioma" class="Idioma">
+      <column name="CIDIOMA"/>
+    </many-to-one>
+
+    <many-to-one name="Moneda" class="Moneda">
+      <column name="CMONEDA"/>
+    </many-to-one>
+
+    <many-to-one name="TipoCliente" class="TipoCliente">
+      <column name="CTIPO"/>
+    </many-to-one>
+
+    <many-to-one name="Tarifa" class="Tarifa">
+      <column name="COD_TAR"/>
+    </many-to-one>
+
+    <many-to-one name="Etiqueta" class="Etiqueta">
+      <column name="CODETI"/>
+    </many-to-one>
+
+    <many-to-one name="DetallePago" class="DetallePago">
+      <column name="CODPG"/>
+    </many-to-one>
   </class>
 
 </hibernate-mapping>
-
 

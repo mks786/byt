@@ -8,12 +8,14 @@ using Trascend.Bolet.Cliente.Contratos.Asociados;
 using Trascend.Bolet.Cliente.Ventanas.Principales;
 using Trascend.Bolet.ObjetosComunes.ContratosServicios;
 using Trascend.Bolet.ObjetosComunes.Entidades;
+using System.Collections.Generic;
 
 namespace Trascend.Bolet.Cliente.Presentadores.Asociados
 {
     class PresentadorAgregarAsociado : PresentadorBase
     {
         private IAgregarAsociado _ventana;
+        private IAsociadoServicios _asociadoServicios;
         private IDetallePagoServicios _detallePagoServicios;
         private IEtiquetaServicios _etiquetaServicios;
         private IIdiomaServicios _idiomaServicios;
@@ -33,7 +35,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
             try
             {
                 this._ventana = ventana;
-                //this._ventana.Asociado = new Asociado();
+                this._ventana.Asociado = new Asociado();
+                this._asociadoServicios = (IAsociadoServicios)Activator.GetObject(typeof(IAsociadoServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["AsociadoServicios"]);
                 this._detallePagoServicios = (IDetallePagoServicios)Activator.GetObject(typeof(IDetallePagoServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["DetallePagoServicios"]);
                 this._etiquetaServicios = (IEtiquetaServicios)Activator.GetObject(typeof(IEtiquetaServicios),
@@ -65,16 +69,51 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
 
             try
             {
-                //this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleAgregarAsociado,
-                //    Recursos.Ids.AgregarAsociado);
+                this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleAgregarAsociado,
+                    Recursos.Ids.AgregarAsociado);
 
-                this._ventana.DetallesPagos = this._detallePagoServicios.ConsultarTodos();
-                this._ventana.Etiquetas = this._etiquetaServicios.ConsultarTodos();
-                this._ventana.Idiomas = this._idiomaServicios.ConsultarTodos();
-                this._ventana.Monedas = this._monedaServicios.ConsultarTodos();
-                this._ventana.Paises = this._paisServicios.ConsultarTodos();
-                this._ventana.Tarifas = this._tarifaServicios.ConsultarTodos();
-                this._ventana.TiposClientes = this._tipoClienteServicios.ConsultarTodos();
+                IList<DetallePago> detallesPagos = this._detallePagoServicios.ConsultarTodos();
+                DetallePago primerDetallePago = new DetallePago();
+                primerDetallePago.Id = "NGN";
+                detallesPagos.Insert(0, primerDetallePago);
+                this._ventana.DetallesPagos = detallesPagos;
+
+                IList<Etiqueta> etiquetas = this._etiquetaServicios.ConsultarTodos();
+                Etiqueta primeraEtiqueta = new Etiqueta();
+                primeraEtiqueta.Id = "NGN";
+                etiquetas.Insert(0, primeraEtiqueta);
+                this._ventana.Etiquetas = etiquetas;
+
+                IList<Idioma> idiomas = this._idiomaServicios.ConsultarTodos();
+                Idioma primerIdioma = new Idioma();
+                primerIdioma.Id = "NGN";
+                idiomas.Insert(0, primerIdioma);
+                this._ventana.Idiomas = idiomas;
+
+                IList<Moneda> monedas = this._monedaServicios.ConsultarTodos();
+                Moneda primeraMoneda = new Moneda();
+                primeraMoneda.Id = "NGN";
+                monedas.Insert(0, primeraMoneda);
+                this._ventana.Monedas = monedas;
+
+                IList<Pais> paises = this._paisServicios.ConsultarTodos();
+                Pais primerPais= new Pais();
+                primerPais.Id = int.MinValue;
+                paises.Insert(0, primerPais);
+                this._ventana.Paises = paises;
+
+                IList<Tarifa> tarifas = this._tarifaServicios.ConsultarTodos();
+                Tarifa primeraTarifa= new Tarifa();
+                primeraTarifa.Id = "NGN";
+                tarifas.Insert(0, primeraTarifa);
+                this._ventana.Tarifas = tarifas;
+
+                IList<TipoCliente> tiposClientes = this._tipoClienteServicios.ConsultarTodos();
+                TipoCliente primerTipoCliente = new TipoCliente();
+                primerTipoCliente.Id = "NGN";
+                tiposClientes.Insert(0, primerTipoCliente);
+                this._ventana.TiposClientes = tiposClientes;
+
                 this._ventana.FocoPredeterminado();
             }
             catch (ApplicationException ex)
@@ -110,14 +149,21 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
         {
             try
             {
-                //Asociado asociado = (Asociado)this._ventana.Asociado;
+                Asociado asociado = (Asociado)this._ventana.Asociado;
 
-                //asociado.TipoPersona = this._ventana.TipoPersona;
+                asociado.Operacion = "CREATE";
+                asociado.TipoPersona = this._ventana.TipoPersona;
+                asociado.Pais = ((Pais)this._ventana.Pais).Id != int.MinValue ? (Pais)this._ventana.Pais : null;
+                asociado.Idioma = !((Idioma)this._ventana.Idioma).Id.Equals("NGN") ? (Idioma)this._ventana.Idioma : null;
+                asociado.Moneda = !((Moneda)this._ventana.Moneda).Id.Equals("NGN") ? (Moneda)this._ventana.Moneda : null;
+                asociado.Tarifa = !((Tarifa)this._ventana.Tarifa).Id.Equals("NGN") ? (Tarifa)this._ventana.Tarifa : null;
+                asociado.TipoCliente = !((TipoCliente)this._ventana.TipoCliente).Id.Equals("NGN") ? (TipoCliente)this._ventana.TipoCliente : null;
+                asociado.Etiqueta = !((Etiqueta)this._ventana.Etiqueta).Id.Equals("NGN") ? (Etiqueta)this._ventana.Etiqueta : null;
 
-                //bool exitoso = this._asociadoServicios.InsertarOModificar(asociado, UsuarioLogeado.Hash);
-
-                //if (exitoso)
-                //    this.Navegar(Recursos.MensajesConElUsuario.AsociadoInsertado,false);
+               bool exitoso = this._asociadoServicios.InsertarOModificar(asociado, UsuarioLogeado.Hash);
+                
+               if (exitoso)
+                    this.Navegar(Recursos.MensajesConElUsuario.AsociadoInsertado, false);
             }
             catch (ApplicationException ex)
             {

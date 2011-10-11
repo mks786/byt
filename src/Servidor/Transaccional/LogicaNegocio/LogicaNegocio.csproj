@@ -66,6 +66,7 @@
     <Compile Include="Controladores\ControladorTarifa.cs" />
     <Compile Include="Controladores\ControladorMoneda.cs" />
     <Compile Include="Controladores\ControladorIdioma.cs" />
+    <Compile Include="Controladores\ControladorAsociado.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

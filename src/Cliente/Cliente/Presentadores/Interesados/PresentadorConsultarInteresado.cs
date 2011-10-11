@@ -272,6 +272,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Interesados
                 #endregion
 
                 IList<Poder> poderes = this._poderServicios.ConsultarPoderesPorInteresado((Interesado)this._ventana.Interesado);
+
                 _paginaPrincipal.MensajeUsuario = Recursos.MensajesConElUsuario.PoderEliminado;
                 this.Navegar(new ListaPoderes(poderes, (Interesado)this._ventana.Interesado));
 

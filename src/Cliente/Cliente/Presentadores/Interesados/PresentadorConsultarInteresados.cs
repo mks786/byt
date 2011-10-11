@@ -274,7 +274,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Interesados
                 logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
 
-            this.Navegar(new ConsultarInteresado(this._ventana.InteresadoSeleccionado));
+            if (this._ventana.InteresadoSeleccionado != null)
+                this.Navegar(new ConsultarInteresado(this._ventana.InteresadoSeleccionado));
 
             #region trace
             if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))

@@ -8,17 +8,17 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
     {
         #region Atributos
 
-        private string _id;
+        private int _id;
         private string _nombre;
         private char _tipoPersona;
         private string _domicilio;
         private Pais _pais;
-        private char _contribuyente;
+        private string _contribuyente;
         private string _rif;
         private string _nit;
         private Idioma _idioma;
         private Moneda _moneda;
-        //private string _descuento;
+        private int _descuento;
         private string _telefono1;
         private string _telefono2;
         private string _telefono3;
@@ -31,7 +31,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         private TipoCliente _tipoCliente;
         private string _activo;
         private char _edoCuenta;
-        private char _edoCuentaDigital;
+        private string _edoCuentaDigital;
         private char _pendienteStatement;
         private char _isf;
         private char _alerta;
@@ -39,6 +39,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         private Tarifa _tarifa;
         private Etiqueta _etiqueta;
         private DetallePago _detallePago;
+        private string _operacion;
 
         #endregion
 
@@ -47,13 +48,21 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         /// <summary>
         /// Constructor predeterminado
         /// </summary>
-        public Asociado() { }
+        public Asociado()
+        {
+            this._activo = "NO";
+            this._contribuyente = "NO";
+            this._edoCuentaDigital = "NO";
+            this._edoCuenta = 'F';
+            this._isf = 'F';
+            this._alerta = 'F';
+        }
 
         /// <summary>
         /// Constructor que inicializa el condigo del asociado
         /// </summary>
         /// <param name="codigo">Codigo del asociado</param>
-        public Asociado(string id)
+        public Asociado(int id)
         {
             this._id = id;
         }
@@ -65,7 +74,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         /// <summary>
         /// Propiedad que asigna u obtiene el código del asociado
         /// </summary>
-        public virtual string Id
+        public virtual int Id
         {
             get { return this._id; }
             set { this._id = value; }
@@ -110,10 +119,31 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         /// <summary>
         /// Propiedad que asigna u obtiene si un asociado es contribuyente o no
         /// </summary>
-        public virtual char Contribuyente
+        public virtual string Contribuyente
         {
             get { return _contribuyente; }
             set { _contribuyente = value; }
+        }
+
+        /// <summary>
+        /// Propiedad que asigna u obtiene el booleano de contribuyente
+        /// </summary>
+        public virtual bool BContribuyente
+        {
+            get
+            {
+                if (this.Contribuyente.Equals("SI"))
+                    return true;
+                else
+                    return false;
+            }
+            set
+            {
+                if (value)
+                    this.Contribuyente = "SI";
+                else
+                    this.Contribuyente = "NO";
+            }
         }
 
         /// <summary>
@@ -155,11 +185,11 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         /// <summary>
         /// Propiedad que asigna u obtiene el descuento del asociado
         /// </summary>
-        //public virtual string Descuento
-        //{
-        //    get { return _descuento; }
-        //    set { _descuento = value; }
-        //}
+        public virtual int Descuento
+        {
+            get { return _descuento; }
+            set { _descuento = value; }
+        }
 
         /// <summary>
         /// Propiedad que asigna u obtiene el telefono1 del asociado
@@ -261,6 +291,27 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         }
 
         /// <summary>
+        /// Propiedad que asigna u obtiene el booleano de activo
+        /// </summary>
+        public virtual bool BActivo
+        {
+            get
+            {
+                if (this.Activo.Equals("SI"))
+                    return true;
+                else
+                    return false;
+            }
+            set
+            {
+                if (value)
+                    this.Activo = "SI";
+                else
+                    this.Activo = "NO";
+            }
+        }
+
+        /// <summary>
         /// Propiedad que asigna u obtiene si se le manda estados de cuenta
         /// </summary>
         public virtual char EdoCuenta
@@ -270,12 +321,55 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         }
 
         /// <summary>
+        /// Propiedad que asigna u obtiene el booleano del estado de cuenta
+        /// </summary>
+        public virtual bool BEdoCuenta
+        {
+            get
+            {
+                if (this.EdoCuenta.Equals('T'))
+                    return true;
+                else
+                    return false;
+            }
+            set
+            {
+                if (value)
+                    this.EdoCuenta = 'T';
+                else
+                    this.EdoCuenta = 'F';
+            }
+        }
+
+        /// <summary>
         /// Propiedad que asigna u obtiene si se le manda estados de cuentas digitales
         /// </summary>
-        public virtual char EdoCuentaDigital
+        public virtual string EdoCuentaDigital
         {
             get { return _edoCuentaDigital; }
             set { _edoCuentaDigital = value; }
+        }
+
+
+        /// <summary>
+        /// Propiedad que asigna u obtiene el booleano del estado de cuenta digital
+        /// </summary>
+        public virtual bool BEdoCuentaDigital
+        {
+            get
+            {
+                if (this.EdoCuentaDigital.Equals("SI"))
+                    return true;
+                else
+                    return false;
+            }
+            set
+            {
+                if (value)
+                    this.EdoCuentaDigital = "SI";
+                else
+                    this.EdoCuentaDigital = "NO";
+            }
         }
 
         /// <summary>
@@ -288,6 +382,27 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         }
 
         /// <summary>
+        /// Propiedad que asigna u obtiene el booleano del estado de pendiente con statement
+        /// </summary>
+        public virtual bool BPendienteStatement
+        {
+            get
+            {
+                if (this.PendienteStatement.Equals('T'))
+                    return true;
+                else
+                    return false;
+            }
+            set
+            {
+                if (value)
+                    this.PendienteStatement = 'T';
+                else
+                    this.PendienteStatement = 'F';
+            }
+        }
+
+        /// <summary>
         /// Propiedad que asigna u obtiene si tiene isf
         /// </summary>
         public virtual char Isf
@@ -297,12 +412,54 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         }
 
         /// <summary>
+        /// Propiedad que asigna u obtiene el booleano del estado de Isf
+        /// </summary>
+        public virtual bool BIsf
+        {
+            get
+            {
+                if (this.Isf.Equals('T'))
+                    return true;
+                else
+                    return false;
+            }
+            set
+            {
+                if (value)
+                    this.Isf = 'T';
+                else
+                    this.Isf = 'F';
+            }
+        }
+
+        /// <summary>
         /// Propiedad que asigna u obtiene si tiene alerta
         /// </summary>
         public virtual char Alerta
         {
             get { return _alerta; }
             set { _alerta = value; }
+        }
+
+        /// <summary>
+        /// Propiedad que asigna u obtiene el booleano del estado de Alerta
+        /// </summary>
+        public virtual bool BAlerta
+        {
+            get
+            {
+                if (this.Alerta.Equals('T'))
+                    return true;
+                else
+                    return false;
+            }
+            set
+            {
+                if (value)
+                    this.Alerta = 'T';
+                else
+                    this.Alerta = 'F';
+            }
         }
 
         /// <summary>
@@ -339,6 +496,15 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         {
             get { return _detallePago; }
             set { _detallePago = value; }
+        }
+
+        /// <summary>
+        /// Propiedad que asigna u obtiene la operacion
+        /// </summary>
+        public virtual string Operacion
+        {
+            get { return _operacion; }
+            set { _operacion = value; }
         }
 
         #endregion

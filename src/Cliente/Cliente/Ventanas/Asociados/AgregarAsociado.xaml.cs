@@ -17,8 +17,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.Asociados
 
         public object Asociado
         {
-            get { throw new System.NotImplementedException(); }
-            set { throw new System.NotImplementedException(); }
+            get { return this._tbcPestañas.DataContext; }
+            set { this._tbcPestañas.DataContext = value; }
         }
 
         public object Pais
@@ -166,5 +166,6 @@ namespace Trascend.Bolet.Cliente.Ventanas.Asociados
                 EstaCargada = true;
             }
         }
+        
     }
 }

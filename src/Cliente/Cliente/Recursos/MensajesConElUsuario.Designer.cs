@@ -88,6 +88,33 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Agente eliminado con éxito.
+        /// </summary>
+        internal static string AsociadoEliminado {
+            get {
+                return ResourceManager.GetString("AsociadoEliminado", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Agente insertado con éxito.
+        /// </summary>
+        internal static string AsociadoInsertado {
+            get {
+                return ResourceManager.GetString("AsociadoInsertado", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Agente modificado con éxito.
+        /// </summary>
+        internal static string AsociadoModificado {
+            get {
+                return ResourceManager.GetString("AsociadoModificado", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Boletin eliminado con éxito.
         /// </summary>
         internal static string BoletinEliminado {
@@ -120,6 +147,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         internal static string ConfirmacionEliminarAgente {
             get {
                 return ResourceManager.GetString("ConfirmacionEliminarAgente", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ¿Seguro que desea eliminar el agente?.
+        /// </summary>
+        internal static string ConfirmacionEliminarAsociado {
+            get {
+                return ResourceManager.GetString("ConfirmacionEliminarAsociado", resourceCulture);
             }
         }
         

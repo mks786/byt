@@ -255,5 +255,23 @@ namespace Trascend.Bolet.AccesoDatos.Fabrica
         {
             return new DaoDetallePagoNHibernate();
         }
+
+        /// <summary>
+        /// Método que devuelve el DaoAsociado
+        /// </summary>
+        /// <returns>IDaoAsociado</returns>
+        public override IDaoAsociado ObtenerDaoAsociado()
+        {
+            return new DaoAsociadoNHibernate();
+        }
+
+        /// <summary>
+        /// Método que devuelve el DaoContadorFac
+        /// </summary>
+        /// <returns>IDaoContadorFac</returns>
+        public override IDaoContadorFac ObtenerDaoContadorFac()
+        {
+            return new DaoContadorFacNHibernate();
+        }
     }
 }

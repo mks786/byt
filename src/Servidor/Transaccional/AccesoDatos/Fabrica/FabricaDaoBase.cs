@@ -173,5 +173,17 @@ namespace Trascend.Bolet.AccesoDatos.Fabrica
         /// </summary>
         /// <returns>IDaoDetallePago</returns>
         public abstract IDaoDetallePago ObtenerDaoDetallePago();
+
+        /// <summary>
+        /// Método que devuelve el DaoAsociado del manejador que se esté utilizando
+        /// </summary>
+        /// <returns>IDaoAsociado</returns>
+        public abstract IDaoAsociado ObtenerDaoAsociado();
+
+        /// <summary>
+        /// Método que devuelve el DaoContadorFac del manejador que se esté utilizando
+        /// </summary>
+        /// <returns>IDaoContadorFac</returns>
+        public abstract IDaoContadorFac ObtenerDaoContadorFac();
     }
 }

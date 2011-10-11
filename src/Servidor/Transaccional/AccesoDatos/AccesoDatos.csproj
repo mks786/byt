@@ -61,6 +61,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Contrato\IDaoContadorFac.cs" />
+    <Compile Include="Contrato\IDaoAsociado.cs" />
     <Compile Include="Contrato\IDaoDetallePago.cs" />
     <Compile Include="Contrato\IDaoTipoCliente.cs" />
     <Compile Include="Contrato\IDaoTarifa.cs" />
@@ -88,6 +90,8 @@
     <Compile Include="Contrato\IDaoBase.cs" />
     <Compile Include="Contrato\IDaoUsuario.cs" />
     <Compile Include="Contrato\IFabricaDaoBase.cs" />
+    <Compile Include="Dao\NHibernate\DaoContadorFacNHibernate.cs" />
+    <Compile Include="Dao\NHibernate\DaoAsociadoNHibernate.cs" />
     <Compile Include="Dao\NHibernate\DaoDetallePagoNHibernate.cs" />
     <Compile Include="Dao\NHibernate\DaoTipoClienteNHibernate.cs" />
     <Compile Include="Dao\NHibernate\DaoTarifaNHibernate.cs" />
@@ -270,6 +274,11 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Mapeado\Asociado.hbm.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Mapeado\ContadorFac.hbm.xml">
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>

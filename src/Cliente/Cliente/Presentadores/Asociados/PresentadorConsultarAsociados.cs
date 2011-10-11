@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Configuration;
-using System.Linq;
 using System.Net.Sockets;
 using System.Runtime.Remoting;
 using System.Windows.Controls;
@@ -11,7 +10,6 @@ using System.Windows.Input;
 using NLog;
 using Trascend.Bolet.Cliente.Ayuda;
 using Trascend.Bolet.Cliente.Contratos.Asociados;
-using Trascend.Bolet.Cliente.Ventanas.Asociados;
 using Trascend.Bolet.Cliente.Ventanas.Principales;
 using Trascend.Bolet.ObjetosComunes.ContratosServicios;
 using Trascend.Bolet.ObjetosComunes.Entidades;
@@ -24,8 +22,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
         private IConsultarAsociados _ventana;
-        //private IAgenteServicios _agenteServicios;
-        //private IList<Agente> _agentes;
+        private IAsociadoServicios _asociadoServicios;
+        private IList<Asociado> _asociados;
 
         /// <summary>
         /// Constructor Predeterminado
@@ -36,8 +34,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
             try
             {
                 this._ventana = ventana;
-                //this._agenteServicios = (IAgenteServicios)Activator.GetObject(typeof(IAgenteServicios),
-                //    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["AgenteServicios"]);
+                this._asociadoServicios = (IAsociadoServicios)Activator.GetObject(typeof(IAsociadoServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["AsociadoServicios"]);
             }
             catch (Exception ex)
             {
@@ -48,8 +46,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
 
         public void ActualizarTitulo()
         {
-            //this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleConsultarAsociados,
-            //Recursos.Ids.ConsultarAsociados);
+            this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleConsultarAsociados,
+            Recursos.Ids.ConsultarAsociados);
         }
 
         /// <summary>
@@ -68,10 +66,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
 
                 ActualizarTitulo();
 
-                //this._agentes = this._agenteServicios.ConsultarTodos();
-                //this._ventana.Resultados = this._agentes;
-                //this._ventana.AgenteFiltrar = new Agente();
-                //this._ventana.FocoPredeterminado();
+                this._asociados = this._asociadoServicios.ConsultarTodos();
+                this._ventana.Resultados = this._asociados;
+                this._ventana.AsociadoFiltrar = new Asociado();
+                this._ventana.FocoPredeterminado();
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))

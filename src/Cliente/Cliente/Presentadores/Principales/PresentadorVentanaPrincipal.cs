@@ -311,7 +311,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
         /// </summary>
         public void ConsultarAsociados()
         {
-            //this._ventana.Contenedor.Navigate(new ConsultarAsociados());
+            this._ventana.Contenedor.Navigate(new ConsultarAsociados());
         }
 
         /// <summary>

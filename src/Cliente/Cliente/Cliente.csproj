@@ -236,6 +236,9 @@
     <Compile Include="Ventanas\Asociados\AgregarAsociado.xaml.cs">
       <DependentUpon>AgregarAsociado.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Ventanas\Asociados\ConsultarAsociados.xaml.cs">
+      <DependentUpon>ConsultarAsociados.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Ventanas\Auditorias\ListaAuditorias.xaml.cs">
       <DependentUpon>ListaAuditorias.xaml</DependentUpon>
     </Compile>
@@ -396,6 +399,10 @@
     <Page Include="Ventanas\Asociados\AgregarAsociado.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Ventanas\Asociados\ConsultarAsociados.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Ventanas\Auditorias\ListaAuditorias.xaml">
       <SubType>Designer</SubType>

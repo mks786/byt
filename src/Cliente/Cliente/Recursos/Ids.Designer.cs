@@ -79,6 +79,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to FAC_ASOCIADOS.
+        /// </summary>
+        public static string AgregarAsociado {
+            get {
+                return ResourceManager.GetString("AgregarAsociado", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to MYPTBOLETIN.
         /// </summary>
         public static string AgregarBoletin {
@@ -237,6 +246,24 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string ConsultarAgentes {
             get {
                 return ResourceManager.GetString("ConsultarAgentes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to FAC_ASOCIADOS.
+        /// </summary>
+        public static string ConsultarAsociado {
+            get {
+                return ResourceManager.GetString("ConsultarAsociado", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to FAC_ASOCIADOS.
+        /// </summary>
+        public static string ConsultarAsociados {
+            get {
+                return ResourceManager.GetString("ConsultarAsociados", resourceCulture);
             }
         }
         
@@ -466,6 +493,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to FAC_ASOCIADOS.
+        /// </summary>
+        public static string EliminarAsociado {
+            get {
+                return ResourceManager.GetString("EliminarAsociado", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to MYPTBOLETIN.
         /// </summary>
         public static string EliminarBoletin {
@@ -642,6 +678,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string ListaPoderes {
             get {
                 return ResourceManager.GetString("ListaPoderes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to FAC_ASOCIADOS.
+        /// </summary>
+        public static string ModificarAsociado {
+            get {
+                return ResourceManager.GetString("ModificarAsociado", resourceCulture);
             }
         }
         

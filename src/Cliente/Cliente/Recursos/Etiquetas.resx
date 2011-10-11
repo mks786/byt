@@ -757,4 +757,7 @@
   <data name="lblTipoCliente" xml:space="preserve">
     <value>Tipo Cliente:</value>
   </data>
+  <data name="titleConsultarAsociados" xml:space="preserve">
+    <value>Consultar Asociados</value>
+  </data>
 </root>
