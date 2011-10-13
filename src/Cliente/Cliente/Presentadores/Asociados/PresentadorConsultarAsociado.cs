@@ -15,7 +15,14 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
     {
 
         private IConsultarAsociado _ventana;
-        //private IAgenteServicios _agenteServicios;
+        private IAsociadoServicios _asociadoServicios;
+        private IDetallePagoServicios _detallePagoServicios;
+        private IEtiquetaServicios _etiquetaServicios;
+        private IIdiomaServicios _idiomaServicios;
+        private IMonedaServicios _monedaServicios;
+        private ITarifaServicios _tarifaServicios;
+        private ITipoClienteServicios _tipoClienteServicios;
+        private IPaisServicios _paisServicios;
         private static PaginaPrincipal _paginaPrincipal = PaginaPrincipal.ObtenerInstancia;
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
@@ -28,14 +35,25 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
         {
             try
             {
+
                 this._ventana = ventana;
                 this._ventana.Asociado = asociado;
-
-                //this._ventana.SetEstadoCivil = BuscarEstadoCivil(((Agente) agente).EstadoCivil);
-                //this._ventana.SetSexo = BuscarSexo(((Agente) agente).Sexo);
-
-                //this._agenteServicios = (IAgenteServicios)Activator.GetObject(typeof(IAgenteServicios),
-                //    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["AgenteServicios"]);
+                this._asociadoServicios = (IAsociadoServicios)Activator.GetObject(typeof(IAsociadoServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["AsociadoServicios"]);
+                this._detallePagoServicios = (IDetallePagoServicios)Activator.GetObject(typeof(IDetallePagoServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["DetallePagoServicios"]);
+                this._etiquetaServicios = (IEtiquetaServicios)Activator.GetObject(typeof(IEtiquetaServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["EtiquetaServicios"]);
+                this._idiomaServicios = (IIdiomaServicios)Activator.GetObject(typeof(IIdiomaServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["IdiomaServicios"]);
+                this._monedaServicios = (IMonedaServicios)Activator.GetObject(typeof(IMonedaServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["MonedaServicios"]);
+                this._tarifaServicios = (ITarifaServicios)Activator.GetObject(typeof(ITarifaServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["TarifaServicios"]);
+                this._tipoClienteServicios = (ITipoClienteServicios)Activator.GetObject(typeof(ITipoClienteServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["TipoClienteServicios"]);
+                this._paisServicios = (IPaisServicios)Activator.GetObject(typeof(IPaisServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["PaisServicios"]);
             }
             catch (Exception ex)
             {
@@ -58,9 +76,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-                //this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleConsultarAsociado,
-                //    Recursos.Ids.ConsultarAsociado);
-                //this._ventana.FocoPredeterminado();
+                this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleConsultarAsociado,
+                    Recursos.Ids.ConsultarAsociado);
+
+                this._ventana.FocoPredeterminado();
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))

@@ -208,7 +208,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Asociados
 
         private void _lstResultados_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            this._presentador.IrConsultarAgente();
+            this._presentador.IrConsultarAsociado();
         }
 
         private void _Ordenar_Click(object sender, RoutedEventArgs e)

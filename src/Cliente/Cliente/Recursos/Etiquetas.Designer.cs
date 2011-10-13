@@ -1654,6 +1654,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Consultar Asociado.
+        /// </summary>
+        public static string titleConsultarAsociado {
+            get {
+                return ResourceManager.GetString("titleConsultarAsociado", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Consultar Asociados.
         /// </summary>
         public static string titleConsultarAsociados {

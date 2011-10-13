@@ -760,4 +760,7 @@
   <data name="titleConsultarAsociados" xml:space="preserve">
     <value>Consultar Asociados</value>
   </data>
+  <data name="titleConsultarAsociado" xml:space="preserve">
+    <value>Consultar Asociado</value>
+  </data>
 </root>
