@@ -84,35 +84,19 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
                 etiquetas.Insert(0, primeraEtiqueta);
                 this._ventana.Etiquetas = etiquetas;
 
-                IList<Idioma> idiomas = this._idiomaServicios.ConsultarTodos();
-                Idioma primerIdioma = new Idioma();
-                primerIdioma.Id = "NGN";
-                idiomas.Insert(0, primerIdioma);
-                this._ventana.Idiomas = idiomas;
-
-                IList<Moneda> monedas = this._monedaServicios.ConsultarTodos();
-                Moneda primeraMoneda = new Moneda();
-                primeraMoneda.Id = "NGN";
-                monedas.Insert(0, primeraMoneda);
-                this._ventana.Monedas = monedas;
-
-                IList<Pais> paises = this._paisServicios.ConsultarTodos();
-                Pais primerPais= new Pais();
-                primerPais.Id = int.MinValue;
-                paises.Insert(0, primerPais);
-                this._ventana.Paises = paises;
-
                 IList<Tarifa> tarifas = this._tarifaServicios.ConsultarTodos();
                 Tarifa primeraTarifa= new Tarifa();
                 primeraTarifa.Id = "NGN";
                 tarifas.Insert(0, primeraTarifa);
                 this._ventana.Tarifas = tarifas;
 
-                IList<TipoCliente> tiposClientes = this._tipoClienteServicios.ConsultarTodos();
-                TipoCliente primerTipoCliente = new TipoCliente();
-                primerTipoCliente.Id = "NGN";
-                tiposClientes.Insert(0, primerTipoCliente);
-                this._ventana.TiposClientes = tiposClientes;
+                this._ventana.Idiomas = this._idiomaServicios.ConsultarTodos();
+
+                this._ventana.Monedas = this._monedaServicios.ConsultarTodos();
+
+                this._ventana.Paises = this._paisServicios.ConsultarTodos();
+
+                this._ventana.TiposClientes = this._tipoClienteServicios.ConsultarTodos();
 
                 this._ventana.FocoPredeterminado();
             }
@@ -153,11 +137,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
 
                 asociado.Operacion = "CREATE";
                 asociado.TipoPersona = this._ventana.TipoPersona;
-                asociado.Pais = ((Pais)this._ventana.Pais).Id != int.MinValue ? (Pais)this._ventana.Pais : null;
-                asociado.Idioma = !((Idioma)this._ventana.Idioma).Id.Equals("NGN") ? (Idioma)this._ventana.Idioma : null;
-                asociado.Moneda = !((Moneda)this._ventana.Moneda).Id.Equals("NGN") ? (Moneda)this._ventana.Moneda : null;
+                asociado.Pais = (Pais)this._ventana.Pais;
+                asociado.Idioma = (Idioma)this._ventana.Idioma;
+                asociado.Moneda = (Moneda)this._ventana.Moneda;
+                asociado.TipoCliente = (TipoCliente)this._ventana.TipoCliente;
                 asociado.Tarifa = !((Tarifa)this._ventana.Tarifa).Id.Equals("NGN") ? (Tarifa)this._ventana.Tarifa : null;
-                asociado.TipoCliente = !((TipoCliente)this._ventana.TipoCliente).Id.Equals("NGN") ? (TipoCliente)this._ventana.TipoCliente : null;
                 asociado.Etiqueta = !((Etiqueta)this._ventana.Etiqueta).Id.Equals("NGN") ? (Etiqueta)this._ventana.Etiqueta : null;
 
                bool exitoso = this._asociadoServicios.InsertarOModificar(asociado, UsuarioLogeado.Hash);

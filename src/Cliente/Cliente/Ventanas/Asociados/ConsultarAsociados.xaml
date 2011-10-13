@@ -43,72 +43,70 @@
                 </WrapPanel>
                 <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
                     <Label>
-                        <TextBlock Text="{x:Static recurso:Etiquetas.lblTelefono}"/>
+                        <TextBlock Text="{x:Static recurso:Etiquetas.lblTipoPersona}"/>
                     </Label>
-                    <TextBox Name="_txtTelefono" Width="150" MaxLength="30"  Text="{Binding Path=Telefono}"></TextBox>
-                </WrapPanel>
-                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
-                    <Label>
-                        <TextBlock Text="{x:Static recurso:Etiquetas.lblEstadoCivil}"/>
-                    </Label>
-                    <ComboBox Name="_cbxEstadoCivil" Width="150" SelectedIndex="0">
+                    <ComboBox Grid.Column="4" Grid.Row="0" Name="_cbxTipoPersona" HorizontalAlignment="Left" Width="80" Height="20" SelectedIndex="0">
                         <ComboBoxItem>
-                            <TextBlock Text="{x:Static recurso:Etiquetas.cbiNinguno}"/>
+                            <TextBlock Text=""/>
                         </ComboBoxItem>
                         <ComboBoxItem>
-                            <TextBlock Text="{x:Static recurso:Etiquetas.cbiSoltero}"/>
+                            <TextBlock Text="{x:Static recurso:Etiquetas.cbiJuridica}"/>
                         </ComboBoxItem>
                         <ComboBoxItem>
-                            <TextBlock Text="{x:Static recurso:Etiquetas.cbiCasado}"/>
-                        </ComboBoxItem>
-                        <ComboBoxItem>
-                            <TextBlock Text="{x:Static recurso:Etiquetas.cbiDivorciado}"/>
-                        </ComboBoxItem>
-                        <ComboBoxItem>
-                            <TextBlock Text="{x:Static recurso:Etiquetas.cbiViudo}"/>
+                            <TextBlock Text="{x:Static recurso:Etiquetas.cbiNatural}"/>
                         </ComboBoxItem>
                     </ComboBox>
                 </WrapPanel>
                 <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
                     <Label>
-                        <TextBlock Text="{x:Static recurso:Etiquetas.lblSexo}"/>
+                        <TextBlock Text="{x:Static recurso:Etiquetas.lblPais}"/>
                     </Label>
-                    <ComboBox Name="_cbxSexo" Width="150" SelectedIndex="0">
-                        <ComboBoxItem>
-                            <TextBlock Text="{x:Static recurso:Etiquetas.cbiNinguno}"/>
-                        </ComboBoxItem>
-                        <ComboBoxItem>
-                            <TextBlock Text="{x:Static recurso:Etiquetas.cbiMasculino}"/>
-                        </ComboBoxItem>
-                        <ComboBoxItem>
-                            <TextBlock Text="{x:Static recurso:Etiquetas.cbiFemenino}"/>
-                        </ComboBoxItem>
+                    <ComboBox Name="_cbxPais" Width="150" ItemsSource="{Binding}" DisplayMemberPath="NombreEspanol" >
                     </ComboBox>
                 </WrapPanel>
                 <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
                     <Label>
-                        <TextBlock Text="{x:Static recurso:Etiquetas.lblNumeroAbogado}"/>
+                        <TextBlock Text="{x:Static recurso:Etiquetas.lblIdioma}"/>
                     </Label>
-                    <TextBox Name="_txtNumeroAbogado" Width="150" MaxLength="255"  Text="{Binding Path=NumeroAbogado}"></TextBox>
+                    <ComboBox Name="_cbxIdioma" Width="150" ItemsSource="{Binding}" DisplayMemberPath="Descripcion" >
+                    </ComboBox>
                 </WrapPanel>
                 <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
                     <Label>
-                        <TextBlock Text="{x:Static recurso:Etiquetas.lblNumeroImpresoAbogado}"/>
+                        <TextBlock Text="{x:Static recurso:Etiquetas.lblMoneda}"/>
                     </Label>
-                    <TextBox Name="_txtNumeroImpresoAbogado" Width="150" MaxLength="255"  Text="{Binding Path=NumeroImpresoAbogado}"></TextBox>
+                    <ComboBox Name="_cbxMoneda" Width="150" ItemsSource="{Binding}" DisplayMemberPath="Descripcion" >
+                    </ComboBox>
                 </WrapPanel>
                 <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
                     <Label>
-                        <TextBlock Text="{x:Static recurso:Etiquetas.lblNumeroPropiedad}"/>
+                        <TextBlock Text="{x:Static recurso:Etiquetas.lblTipoCliente}"/>
                     </Label>
-                    <TextBox Name="_txtNumeroPropiedad" Width="150" MaxLength="255"  Text="{Binding Path=NumeroPropiedad}"></TextBox>
+                    <ComboBox Name="_cbxTipoCliente" Width="150" ItemsSource="{Binding}" DisplayMemberPath="Descripcion" >
+                    </ComboBox>
                 </WrapPanel>
                 <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
                     <Label>
-                        <TextBlock Text="{x:Static recurso:Etiquetas.lblCCI}"/>
+                        <TextBlock Text="{x:Static recurso:Etiquetas.lblTarifas}"/>
                     </Label>
-                    <TextBox Name="_txtCCI" Width="150" MaxLength="255"  Text="{Binding Path=CCI}"></TextBox>
+                    <ComboBox Name="_cbxTarifa" Width="150" ItemsSource="{Binding}" DisplayMemberPath="Descripcion" >
+                    </ComboBox>
                 </WrapPanel>
+                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
+                    <Label>
+                        <TextBlock Text="{x:Static recurso:Etiquetas.lblEtiqueta}"/>
+                    </Label>
+                    <ComboBox Name="_cbxEtiqueta" Width="150" ItemsSource="{Binding}" DisplayMemberPath="Descripcion1" >
+                    </ComboBox>
+                </WrapPanel>
+                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
+                    <Label>
+                        <TextBlock Text="{x:Static recurso:Etiquetas.lblFormaPago}"/>
+                    </Label>
+                    <ComboBox Name="_cbxDetallePago" Width="150" ItemsSource="{Binding}" DisplayMemberPath="Descripcion" >
+                    </ComboBox>
+                </WrapPanel>
+
                 <Separator Margin="0,5,0,5"/>
                 <WrapPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,5,0,5">
                     <Button Name="_btnConsultar" Width="100" IsDefault="True" Click="_btnConsultar_Click">
@@ -128,10 +126,10 @@
                         <GridViewColumn DisplayMemberBinding="{Binding Path=Id}" Width="120">
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="Id" Content="{x:Static recurso:Etiquetas.lsvId}"/>
                         </GridViewColumn>
-                        <GridViewColumn DisplayMemberBinding="{Binding Path=Nombre}" Width="120">
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Nombre}" Width="300">
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="Nombre" Content="{x:Static recurso:Etiquetas.lsvNombre}"/>
                         </GridViewColumn>
-                        <GridViewColumn DisplayMemberBinding="{Binding Path=Telefono}" Width="120">
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Domicilio}" Width="300">
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="Telefono" Content="{x:Static recurso:Etiquetas.lsvTelefono}"/>
                         </GridViewColumn>
                     </GridView>

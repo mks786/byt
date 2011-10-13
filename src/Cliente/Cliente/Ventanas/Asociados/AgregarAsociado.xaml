@@ -119,7 +119,7 @@
                     <Label Grid.Column="3" Grid.Row="3" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblContribuyente}"/>
                     </Label>
-                    <CheckBox  Name="_cbxContribuyenteDatos" Grid.Column="4" Grid.Row="3" VerticalAlignment="Center"
+                    <CheckBox  Name="_chkContribuyenteDatos" Grid.Column="4" Grid.Row="3" VerticalAlignment="Center"
                          HorizontalAlignment="Left" IsChecked="{Binding Path=BContribuyente}">
                     </CheckBox>
 
@@ -359,42 +359,42 @@
                     <Label Grid.Column="1" Grid.Row="4" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblActivo}"/>
                     </Label>
-                    <CheckBox Grid.Column="2" Grid.Row="4" Name="_cbxActivoAdministracion" VerticalAlignment="Center"
+                    <CheckBox Grid.Column="2" Grid.Row="4" Name="_chkActivoAdministracion" VerticalAlignment="Center"
                          HorizontalAlignment="Left" IsChecked="{Binding Path=BActivo}">
                     </CheckBox>
 
                     <!--<Label Grid.Column="2" Grid.Row="4" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblEdoCuenta}"/>
                     </Label>-->
-                    <CheckBox  Grid.Column="3" Grid.Row="4" Name="_cbxEdoCuentaAdministracion" VerticalAlignment="Center"
+                    <CheckBox  Grid.Column="3" Grid.Row="4" Name="_chkEdoCuentaAdministracion" VerticalAlignment="Center"
                          HorizontalAlignment="Left" IsChecked="{Binding Path=BEdoCuenta}">
                     </CheckBox>
 
                     <Label Grid.Column="1" Grid.Row="5" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblPendienteStatement}"/>
                     </Label>
-                    <CheckBox Grid.Column="2" Grid.Row="5" Name="_cbxPendienteStatementAdministracion" VerticalAlignment="Center"
+                    <CheckBox Grid.Column="2" Grid.Row="5" Name="_chkPendienteStatementAdministracion" VerticalAlignment="Center"
                          HorizontalAlignment="Left" IsChecked="{Binding Path=BPendienteStatement}">
                     </CheckBox>
 
                     <!--<Label Grid.Column="2" Grid.Row="5" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblIsf}"/>
                     </Label>-->
-                    <CheckBox  Grid.Column="3" Grid.Row="5" Name="_cbxIsfAdministracion" VerticalAlignment="Center"
+                    <CheckBox  Grid.Column="3" Grid.Row="5" Name="_chkIsfAdministracion" VerticalAlignment="Center"
                          HorizontalAlignment="Left" IsChecked="{Binding Path=BIsf}">
                     </CheckBox>
 
                     <!--<Label Grid.Column="3" Grid.Row="4" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblEdoCuentaDigital}"/>
                     </Label>-->
-                    <CheckBox Grid.Column="4" Grid.Row="4" Name="_cbxEdoCuentaDigitalAdministracion" VerticalAlignment="Center"
+                    <CheckBox Grid.Column="4" Grid.Row="4" Name="_chkEdoCuentaDigitalAdministracion" VerticalAlignment="Center"
                          HorizontalAlignment="Left" IsChecked="{Binding Path=BEdoCuentaDigital}">
                     </CheckBox>
 
                     <Label Grid.Column="1" Grid.Row="6" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblAlerta}"/>
                     </Label>
-                    <CheckBox  Grid.Column="2" Grid.Row="6" Name="_cbxAlertaAdministracion" VerticalAlignment="Center"
+                    <CheckBox  Grid.Column="2" Grid.Row="6" Name="_chkAlertaAdministracion" VerticalAlignment="Center"
                          HorizontalAlignment="Left" IsChecked="{Binding Path=BAlerta}">
                     </CheckBox>
                     <TextBox Grid.Column="2" Grid.Row="6" Name="_txtAlarmaAdministracion" VerticalAlignment="Center" 

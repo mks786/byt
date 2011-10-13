@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Configuration;
@@ -23,6 +24,13 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
 
         private IConsultarAsociados _ventana;
         private IAsociadoServicios _asociadoServicios;
+        private IDetallePagoServicios _detallePagoServicios;
+        private IEtiquetaServicios _etiquetaServicios;
+        private IIdiomaServicios _idiomaServicios;
+        private IMonedaServicios _monedaServicios;
+        private ITarifaServicios _tarifaServicios;
+        private ITipoClienteServicios _tipoClienteServicios;
+        private IPaisServicios _paisServicios;
         private IList<Asociado> _asociados;
 
         /// <summary>
@@ -36,6 +44,20 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
                 this._ventana = ventana;
                 this._asociadoServicios = (IAsociadoServicios)Activator.GetObject(typeof(IAsociadoServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["AsociadoServicios"]);
+                this._detallePagoServicios = (IDetallePagoServicios)Activator.GetObject(typeof(IDetallePagoServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["DetallePagoServicios"]);
+                this._etiquetaServicios = (IEtiquetaServicios)Activator.GetObject(typeof(IEtiquetaServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["EtiquetaServicios"]);
+                this._idiomaServicios = (IIdiomaServicios)Activator.GetObject(typeof(IIdiomaServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["IdiomaServicios"]);
+                this._monedaServicios = (IMonedaServicios)Activator.GetObject(typeof(IMonedaServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["MonedaServicios"]);
+                this._tarifaServicios = (ITarifaServicios)Activator.GetObject(typeof(ITarifaServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["TarifaServicios"]);
+                this._tipoClienteServicios = (ITipoClienteServicios)Activator.GetObject(typeof(ITipoClienteServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["TipoClienteServicios"]);
+                this._paisServicios = (IPaisServicios)Activator.GetObject(typeof(IPaisServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["PaisServicios"]);
             }
             catch (Exception ex)
             {
@@ -69,6 +91,49 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
                 this._asociados = this._asociadoServicios.ConsultarTodos();
                 this._ventana.Resultados = this._asociados;
                 this._ventana.AsociadoFiltrar = new Asociado();
+
+                IList<DetallePago> detallesPagos = this._detallePagoServicios.ConsultarTodos();
+                DetallePago primerDetallePago = new DetallePago();
+                primerDetallePago.Id = "NGN";
+                detallesPagos.Insert(0, primerDetallePago);
+                this._ventana.DetallesPagos = detallesPagos;
+
+                IList<Etiqueta> etiquetas = this._etiquetaServicios.ConsultarTodos();
+                Etiqueta primeraEtiqueta = new Etiqueta();
+                primeraEtiqueta.Id = "NGN";
+                etiquetas.Insert(0, primeraEtiqueta);
+                this._ventana.Etiquetas = etiquetas;
+
+                IList<Tarifa> tarifas = this._tarifaServicios.ConsultarTodos();
+                Tarifa primeraTarifa = new Tarifa();
+                primeraTarifa.Id = "NGN";
+                tarifas.Insert(0, primeraTarifa);
+                this._ventana.Tarifas = tarifas;
+
+                IList<Idioma> idiomas = this._idiomaServicios.ConsultarTodos();
+                Idioma primerIdioma = new Idioma();
+                primerIdioma.Id = "NGN";
+                idiomas.Insert(0, primerIdioma);
+                this._ventana.Idiomas = idiomas;
+
+                IList<Moneda> monedas = this._monedaServicios.ConsultarTodos();
+                Moneda primeraMoneda = new Moneda();
+                primeraMoneda.Id = "NGN";
+                monedas.Insert(0, primeraMoneda);
+                this._ventana.Monedas = monedas;
+
+                IList<Pais> paises = this._paisServicios.ConsultarTodos();
+                Pais primerPais = new Pais();
+                primerPais.Id = int.MinValue;
+                paises.Insert(0, primerPais);
+                this._ventana.Paises = paises;
+
+                IList<TipoCliente> tiposCLientes = this._tipoClienteServicios.ConsultarTodos();
+                TipoCliente primerTipoCliente = new TipoCliente();
+                primerTipoCliente.Id = "NGN";
+                tiposCLientes.Insert(0, primerTipoCliente);
+                this._ventana.TiposClientes = tiposCLientes;
+
                 this._ventana.FocoPredeterminado();
 
                 #region trace
@@ -115,87 +180,106 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-                //Agente agente = (Agente) this._ventana.AgenteFiltrar;
+                Asociado asociado = (Asociado) this._ventana.AsociadoFiltrar;
 
-                //IEnumerable<Agente> agentesFiltrados = this._agentes;
+                IEnumerable<Asociado> asociadosFiltrados = this._asociados;
 
-                //if (!string.IsNullOrEmpty(agente.Id))
+                //if (asociado.Id != int.MinValue)
                 //{
-                //    agentesFiltrados = from a in agentesFiltrados
-                //                       where a.Id.ToLower().Contains(agente.Id.ToLower())
+                //    asociadosFiltrados = from a in asociadosFiltrados
+                //                       where a.Id == asociado.Id
                 //                       select a;
                 //}
 
-                //if (!string.IsNullOrEmpty(agente.Nombre))
-                //{
-                //    agentesFiltrados = from a in agentesFiltrados
-                //                       where a.Nombre != null && 
-                //                       a.Nombre.ToLower().Contains(agente.Nombre.ToLower())
-                //                       select a;
-                //}
+                if (!string.IsNullOrEmpty(asociado.Nombre))
+                {
+                    asociadosFiltrados = from a in asociadosFiltrados
+                                       where a.Nombre != null &&
+                                       a.Nombre.ToLower().Contains(asociado.Nombre.ToLower())
+                                       select a;
+                }
 
-                //if (!string.IsNullOrEmpty(agente.Domicilio))
-                //{
-                //    agentesFiltrados = from a in agentesFiltrados
-                //                       where a.Domicilio != null && 
-                //                       a.Domicilio.ToLower().Contains(agente.Domicilio.ToLower())
-                //                       select a;
-                //}
+                if (!string.IsNullOrEmpty(asociado.Domicilio))
+                {
+                    asociadosFiltrados = from a in asociadosFiltrados
+                                       where a.Domicilio != null &&
+                                       a.Domicilio.ToLower().Contains(asociado.Domicilio.ToLower())
+                                       select a;
+                }
 
-                //if (!string.IsNullOrEmpty(agente.Telefono))
-                //{
-                //    agentesFiltrados = from a in agentesFiltrados
-                //                       where a.Telefono != null && a.Telefono.ToLower().Contains(agente.Telefono.ToLower())
-                //                       select a;
-                //}
+                if (!string.IsNullOrEmpty(this._ventana.TipoCliente.ToString()) && !this._ventana.TipoCliente.Equals(' '))
+                {
+                    asociadosFiltrados = from a in asociadosFiltrados
+                                         where a.TipoCliente != null && 
+                                         a.TipoCliente == this._ventana.TipoCliente
+                                         select a;
+                }
 
-                //if (!string.IsNullOrEmpty(this._ventana.EstadoCivil.ToString()) && !this._ventana.EstadoCivil.Equals(' '))
-                //{
-                //    agentesFiltrados = from a in agentesFiltrados
-                //                       where a.EstadoCivil.ToString().ToLower().Contains(agente.EstadoCivil.ToString().ToLower())
-                //                       select a;
-                //}
+                if (this._ventana.Pais != null && ((Pais)this._ventana.Pais).Id != int.MinValue)
+                {
+                    asociadosFiltrados = from a in asociadosFiltrados
+                                         where a.Pais != null &&  
+                                         a.Pais.Id == ((Pais)this._ventana.Pais).Id
+                                        select a;
 
-                //if (!string.IsNullOrEmpty(this._ventana.Sexo.ToString()) && !this._ventana.Sexo.Equals(' '))
-                //{
-                //    agentesFiltrados = from a in agentesFiltrados
-                //                       where a.Sexo.ToString().ToLower().Contains(agente.Sexo.ToString().ToLower())
-                //                       select a;
-                //}
+                }
 
-                //if (!string.IsNullOrEmpty(agente.NumeroAbogado))
-                //{
-                //    agentesFiltrados = from a in agentesFiltrados
-                //                       where a.NumeroAbogado != null && 
-                //                       a.NumeroAbogado.ToLower().Contains(agente.NumeroAbogado.ToLower())
-                //                       select a;
-                //}
+                if (this._ventana.Idioma != null && !((Idioma)this._ventana.Idioma).Id.Equals("NGN"))
+                {
+                    asociadosFiltrados = from a in asociadosFiltrados
+                                         where a.Idioma != null && 
+                                         a.Idioma.Id.Contains(((Idioma)this._ventana.Idioma).Id)
+                                         select a;
 
-                //if (!string.IsNullOrEmpty(agente.NumeroImpresoAbogado))
-                //{
-                //    agentesFiltrados = from a in agentesFiltrados
-                //                       where a.NumeroImpresoAbogado != null && 
-                //                       a.NumeroImpresoAbogado.ToLower().Contains(agente.NumeroImpresoAbogado.ToLower())
-                //                       select a;
-                //}
+                }
 
-                //if (!string.IsNullOrEmpty(agente.NumeroPropiedad))
-                //{
-                //    agentesFiltrados = from a in agentesFiltrados
-                //                       where a.NumeroPropiedad != null && 
-                //                       a.NumeroPropiedad.ToLower().Contains(agente.NumeroPropiedad.ToLower())
-                //                       select a;
-                //}
+                if (this._ventana.Moneda != null && !((Moneda)this._ventana.Moneda).Id.Equals("NGN"))
+                {
+                    asociadosFiltrados = from a in asociadosFiltrados
+                                         where a.Moneda != null && 
+                                         a.Moneda.Id.Contains(((Moneda)this._ventana.Moneda).Id)
+                                         select a;
 
-                //if (!string.IsNullOrEmpty(agente.CCI))
-                //{
-                //    agentesFiltrados = from a in agentesFiltrados
-                //                       where a.CCI != null && 
-                //                       a.CCI.ToLower().Contains(agente.CCI.ToLower())
-                //                       select a;
-                //}
+                }
 
-                //this._ventana.Resultados = agentesFiltrados.ToList<Agente>();
+                if (this._ventana.Tarifa != null && !((Tarifa)this._ventana.Tarifa).Id.Equals("NGN"))
+                {
+                    asociadosFiltrados = from a in asociadosFiltrados
+                                         where a.Tarifa != null &&  
+                                         a.Tarifa.Id.Contains(((Tarifa)this._ventana.Tarifa).Id)
+                                         select a;
+
+                }
+
+                if (this._ventana.TipoCliente != null && !((TipoCliente)this._ventana.TipoCliente).Id.Equals("NGN"))
+                {
+                    asociadosFiltrados = from a in asociadosFiltrados
+                                         where a.TipoCliente != null && 
+                                         a.TipoCliente.Id.Contains(((TipoCliente)this._ventana.TipoCliente).Id)
+                                         select a;
+
+                }
+
+                if (this._ventana.Etiqueta != null && !((Etiqueta)this._ventana.Etiqueta).Id.Equals("NGN"))
+                {
+                    asociadosFiltrados = from a in asociadosFiltrados
+                                         where a.Etiqueta != null && 
+                                         a.Etiqueta.Id.Contains(((Etiqueta)this._ventana.Etiqueta).Id)
+                                         select a;
+
+                }
+
+                if (this._ventana.DetallePago != null && !((DetallePago)this._ventana.DetallePago).Id.Equals("NGN"))
+                {
+                    asociadosFiltrados = from a in asociadosFiltrados
+                                         where a.DetallePago != null && 
+                                         a.DetallePago.Id.Contains(((DetallePago)this._ventana.DetallePago).Id)
+                                         select a;
+
+                }
+
+
+                this._ventana.Resultados = asociadosFiltrados.ToList<Asociado>();
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -210,16 +294,17 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
         }
 
         /// <summary>
-        /// Método que invoca una nueva página "ConsultarAgente" y la instancia con el objeto seleccionado
+        /// Método que invoca una nueva página "ConsultarAsociado" y la instancia con el objeto seleccionado
         /// </summary>
-        public void IrConsultarAgente()
+        public void IrConsultarAsociado()
         {
             #region trace
             if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
                 logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
 
-            //this.Navegar(new ConsultarAgente(this._ventana.AgenteSeleccionado));
+            if(this._ventana.AsociadoSeleccionado != null)
+                this.Navegar(new ConsultarAsociado(this._ventana.AsociadoSeleccionado));
 
             #region trace
             if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))

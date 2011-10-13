@@ -66,23 +66,109 @@ namespace Trascend.Bolet.Cliente.Ventanas.Asociados
             set { this._lstResultados.DataContext = value; }
         }
 
-        public char EstadoCivil
+
+        public object Pais
         {
-            get
-            {
-                if (!string.IsNullOrEmpty(this._cbxEstadoCivil.Text))
-                    return ((string)this._cbxEstadoCivil.Text)[0];
-                else
-                    return ' ';
-            }
+            get { return this._cbxPais.SelectedItem; }
+            set { this._cbxPais.SelectedItem = value; }
         }
 
-        public char Sexo
+        public object Paises
+        {
+            get { return this._cbxPais.DataContext; }
+            set { this._cbxPais.DataContext = value; }
+        }
+
+        public object Idioma
+        {
+            get { return this._cbxIdioma.SelectedItem; }
+            set { this._cbxIdioma.SelectedItem = value; }
+        }
+
+        public object Idiomas
+        {
+            get { return this._cbxIdioma.DataContext; }
+            set { this._cbxIdioma.DataContext = value; }
+        }
+
+        public object Moneda
+        {
+            get { return this._cbxMoneda.SelectedItem; }
+            set { this._cbxMoneda.SelectedItem = value; }
+        }
+
+        public object Monedas
+        {
+            get { return this._cbxMoneda.DataContext; }
+            set { this._cbxMoneda.DataContext = value; }
+        }
+
+        public object Descuento
+        {
+            get { throw new System.NotImplementedException(); }
+            set { throw new System.NotImplementedException(); }
+        }
+
+        public object Descuentos
+        {
+            get { throw new System.NotImplementedException(); }
+            set { throw new System.NotImplementedException(); }
+        }
+
+        public object TipoCliente
+        {
+            get { return this._cbxTipoCliente.SelectedItem; }
+            set { this._cbxTipoCliente.SelectedItem = value; }
+        }
+
+        public object TiposClientes
+        {
+            get { return this._cbxTipoCliente.DataContext; }
+            set { this._cbxTipoCliente.DataContext = value; }
+        }
+
+        public object Etiqueta
+        {
+            get { return this._cbxEtiqueta.SelectedItem; }
+            set { this._cbxEtiqueta.SelectedItem = value; }
+        }
+
+        public object Etiquetas
+        {
+            get { return this._cbxEtiqueta.DataContext; }
+            set { this._cbxEtiqueta.DataContext = value; }
+        }
+
+        public object DetallePago
+        {
+            get { return this._cbxDetallePago.SelectedItem; }
+            set { this._cbxDetallePago.SelectedItem = value; }
+        }
+
+        public object DetallesPagos
+        {
+            get { return this._cbxDetallePago.DataContext; }
+            set { this._cbxDetallePago.DataContext = value; }
+        }
+
+        public object Tarifa
+        {
+            get { return this._cbxTarifa.SelectedItem; }
+            set { this._cbxTarifa.SelectedItem = value; }
+        }
+
+        public object Tarifas
+        {
+            get { return this._cbxTarifa.DataContext; }
+            set { this._cbxTarifa.DataContext = value; }
+        }
+
+        public char TipoPersona
         {
             get
             {
-                if (!string.IsNullOrEmpty(this._cbxSexo.Text))
-                    return (this._cbxSexo.Text)[0];
+                if (!string.IsNullOrEmpty(this._cbxTipoPersona.Text))
+                    return ((string)this._cbxTipoPersona.Text)[0];
                 else
                     return ' ';
             }

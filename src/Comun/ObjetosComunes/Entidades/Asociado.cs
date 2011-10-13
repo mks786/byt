@@ -8,7 +8,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
     {
         #region Atributos
 
-        private int _id;
+        private int? _id;
         private string _nombre;
         private char _tipoPersona;
         private string _domicilio;
@@ -74,7 +74,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         /// <summary>
         /// Propiedad que asigna u obtiene el código del asociado
         /// </summary>
-        public virtual int Id
+        public virtual int? Id
         {
             get { return this._id; }
             set { this._id = value; }
