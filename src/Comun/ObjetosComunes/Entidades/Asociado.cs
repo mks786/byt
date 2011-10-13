@@ -8,7 +8,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
     {
         #region Atributos
 
-        private int? _id;
+        private int _id;
         private string _nombre;
         private char _tipoPersona;
         private string _domicilio;
@@ -74,7 +74,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         /// <summary>
         /// Propiedad que asigna u obtiene el código del asociado
         /// </summary>
-        public virtual int? Id
+        public virtual int Id
         {
             get { return this._id; }
             set { this._id = value; }
@@ -132,7 +132,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         {
             get
             {
-                if (this.Contribuyente.Equals("SI"))
+                if (this.Contribuyente != null && this.Contribuyente.Equals("SI"))
                     return true;
                 else
                     return false;
@@ -297,7 +297,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         {
             get
             {
-                if (this.Activo.Equals("SI"))
+                if (this.Activo != null && this.Activo.Equals("SI"))
                     return true;
                 else
                     return false;
@@ -327,7 +327,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         {
             get
             {
-                if (this.EdoCuenta.Equals('T'))
+                if (this.EdoCuenta != null && this.EdoCuenta.Equals('T'))
                     return true;
                 else
                     return false;
@@ -358,7 +358,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         {
             get
             {
-                if (this.EdoCuentaDigital.Equals("SI"))
+                if (this.EdoCuentaDigital != null && this.EdoCuentaDigital.Equals("SI"))
                     return true;
                 else
                     return false;
@@ -388,7 +388,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         {
             get
             {
-                if (this.PendienteStatement.Equals('T'))
+                if (this.PendienteStatement != null && this.PendienteStatement.Equals('T'))
                     return true;
                 else
                     return false;
@@ -418,7 +418,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         {
             get
             {
-                if (this.Isf.Equals('T'))
+                if (this.Isf != null && this.Isf.Equals('T'))
                     return true;
                 else
                     return false;
@@ -448,7 +448,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         {
             get
             {
-                if (this.Alerta.Equals('T'))
+                if (this.Alerta != null && this.Alerta.Equals('T'))
                     return true;
                 else
                     return false;

@@ -55,7 +55,7 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
                 auditoria.Fecha = System.DateTime.Now;
                 auditoria.Operacion = asociado.Operacion;
                 auditoria.Tabla = "FAC_ASOCIADOS";
-                auditoria.Fk = asociado.Id.Value;
+                auditoria.Fk = asociado.Id;
 
                 ComandoBase<bool> comando = FabricaComandosAsociado.ObtenerComandoInsertarOModificar(asociado);
                 ComandoBase<bool> comandoAuditoria = FabricaComandosAuditoria.ObtenerComandoInsertarOModificar(auditoria);

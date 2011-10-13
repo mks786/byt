@@ -286,6 +286,144 @@ namespace Trascend.Bolet.Cliente.Presentadores
         }
 
         /// <summary>
+        /// Método que busca un estado dentro de una lista de Idiomas
+        /// </summary>
+        /// <param name="monedas">Lista de idiomas</param>
+        /// <param name="idiomaBuscado">Idioma a buscar</param>
+        /// <returns>Idioma dentro de la lista</returns>
+        public Idioma BuscarIdioma(IList<Idioma> idiomas, Idioma idiomaBuscado)
+        {
+            Idioma retorno = null;
+
+            if (idiomaBuscado != null)
+                foreach (Idioma idioma in idiomas)
+                {
+                    if (idioma.Id.Equals(idiomaBuscado.Id))
+                    {
+                        retorno = idioma;
+                        break;
+                    }
+                }
+
+            return retorno;
+        }
+
+        /// <summary>
+        /// Método que busca un estado dentro de una lista de Monedas
+        /// </summary>
+        /// <param name="monedas">Lista de idiomas</param>
+        /// <param name="monedaBuscado">Moneda a buscar</param>
+        /// <returns>Moneda dentro de la lista</returns>
+        public Moneda BuscarMoneda(IList<Moneda> monedas, Moneda monedaBuscado)
+        {
+            Moneda retorno = null;
+
+            if (monedaBuscado != null)
+                foreach (Moneda moneda in monedas)
+                {
+                    if (moneda.Id.Equals(monedaBuscado.Id))
+                    {
+                        retorno = moneda;
+                        break;
+                    }
+                }
+
+            return retorno;
+        }
+
+        /// <summary>
+        /// Método que busca un estado dentro de una lista de TipoClientes
+        /// </summary>
+        /// <param name="tipoClientes">Lista de TipoClientes</param>
+        /// <param name="tipoClienteBuscado">TipoCliente a buscar</param>
+        /// <returns>TipoCliente dentro de la lista</returns>
+        public TipoCliente BuscarTipoCliente(IList<TipoCliente> tipoClientes, TipoCliente tipoClienteBuscado)
+        {
+            TipoCliente retorno = null;
+
+            if (tipoClienteBuscado != null)
+                foreach (TipoCliente tipoCliente in tipoClientes)
+                {
+                    if (tipoCliente.Id.Equals(tipoClienteBuscado.Id))
+                    {
+                        retorno = tipoCliente;
+                        break;
+                    }
+                }
+
+            return retorno;
+        }
+
+        /// <summary>
+        /// Método que busca un estado dentro de una lista de Tarifas
+        /// </summary>
+        /// <param name="tarifas">Lista de Tarifas</param>
+        /// <param name="tarifaBuscado">Tarifa a buscar</param>
+        /// <returns>Tarifa dentro de la lista</returns>
+        public Tarifa BuscarTarifa(IList<Tarifa> tarifas, Tarifa tarifaBuscado)
+        {
+            Tarifa retorno = null;
+
+            if (tarifaBuscado != null)
+                foreach (Tarifa tarifa in tarifas)
+                {
+                    if (tarifa.Id.Equals(tarifaBuscado.Id))
+                    {
+                        retorno = tarifa;
+                        break;
+                    }
+                }
+
+            return retorno;
+        }
+
+        /// <summary>
+        /// Método que busca un estado dentro de una lista de Etiquetas
+        /// </summary>
+        /// <param name="etiquetas">Lista de Etiquetas</param>
+        /// <param name="etiquetaBuscado">Etiqueta a buscar</param>
+        /// <returns>Etiqueta dentro de la lista</returns>
+        public Etiqueta BuscarEtiqueta(IList<Etiqueta> etiquetas, Etiqueta etiquetaBuscado)
+        {
+            Etiqueta retorno = null;
+
+            if (etiquetaBuscado != null)
+                foreach (Etiqueta tarifa in etiquetas)
+                {
+                    if (tarifa.Id.Equals(etiquetaBuscado.Id))
+                    {
+                        retorno = tarifa;
+                        break;
+                    }
+                }
+
+            return retorno;
+        }
+
+        /// <summary>
+        /// Método que busca un estado dentro de una lista de DetallesPagos
+        /// </summary>
+        /// <param name="detallesPagos">Lista de DetallesPagos</param>
+        /// <param name="detallePagoBuscado">DetallePago a buscar</param>
+        /// <returns>DetallePago dentro de la lista</returns>
+        public DetallePago BuscarDetallePago(IList<DetallePago> detallesPagos, DetallePago detallePagoBuscado)
+        {
+            DetallePago retorno = null;
+
+            if (detallePagoBuscado != null)
+                foreach (DetallePago detallePago in detallesPagos)
+                {
+                    if (detallePago.Id.Equals(detallePagoBuscado.Id))
+                    {
+                        retorno = detallePago;
+                        break;
+                    }
+                }
+
+            return retorno;
+        }
+
+        /// <summary>
         /// Metodo que deshabilita las fechas en un calendario desde el dia 1 hasta el dia pasado por parametro
         /// </summary>
         /// <param name="calendario">Calendario a modificar</param>

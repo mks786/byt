@@ -185,12 +185,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
 
                 IEnumerable<Asociado> asociadosFiltrados = this._asociados;
 
-                //if (asociado.Id != int.MinValue)
-                //{
-                //    asociadosFiltrados = from a in asociadosFiltrados
-                //                       where a.Id == asociado.Id
-                //                       select a;
-                //}
+                if (!string.IsNullOrEmpty(this._ventana.Id))
+                {
+                    asociadosFiltrados = from a in asociadosFiltrados
+                                         where a.Id == int.Parse(this._ventana.Id)
+                                         select a;
+                }
 
                 if (!string.IsNullOrEmpty(asociado.Nombre))
                 {
@@ -208,11 +208,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
                                        select a;
                 }
 
-                if (!string.IsNullOrEmpty(this._ventana.TipoCliente.ToString()) && !this._ventana.TipoCliente.Equals(' '))
+                if (!string.IsNullOrEmpty(this._ventana.TipoPersona.ToString()) && !this._ventana.TipoPersona.Equals(' '))
                 {
                     asociadosFiltrados = from a in asociadosFiltrados
-                                         where a.TipoCliente != null && 
-                                         a.TipoCliente == this._ventana.TipoCliente
+                                         where a.TipoPersona != null &&
+                                         a.TipoPersona == this._ventana.TipoPersona
                                          select a;
                 }
 
@@ -255,7 +255,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
                 if (this._ventana.TipoCliente != null && !((TipoCliente)this._ventana.TipoCliente).Id.Equals("NGN"))
                 {
                     asociadosFiltrados = from a in asociadosFiltrados
-                                         where a.TipoCliente != null && 
+                                         where a.TipoCliente != null &&
                                          a.TipoCliente.Id.Contains(((TipoCliente)this._ventana.TipoCliente).Id)
                                          select a;
 

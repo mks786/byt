@@ -34,9 +34,9 @@ namespace Trascend.Bolet.Cliente.Contratos.Asociados
 
         object Etiquetas { get; set; }
 
-        object FormaPago { get; set; }
+        object DetallePago { get; set; }
 
-        object FormasPagos { get; set; }
+        object DetallesPagos { get; set; }
 
         object Tarifa { get; set; }
 
@@ -46,6 +46,7 @@ namespace Trascend.Bolet.Cliente.Contratos.Asociados
 
         string SetTipoPersona { set; }
 
-        
+        void ArchivoNoEncontrado();
+
     }
 }

@@ -259,33 +259,6 @@
                     <TextBox Grid.Column="3" Grid.Row="14" Name="_txtTotalDatos" VerticalAlignment="Bottom" 
                          HorizontalAlignment="Left" Width="100" Text="{Binding Path=Total}"></TextBox>
                     <!--fin control de facturacion-->
-                    
-                    <WrapPanel Grid.Column="3" Grid.Row="13" Grid.ColumnSpan="3" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="5" Orientation="Horizontal">
-                        <Button Name="_btnConectividadDatos" VerticalAlignment="Bottom" Height="25" Width="90">
-                            <TextBlock Name="_txbConectividadDatos" Text="{x:Static recurso:Etiquetas.btnConectividad}"/>
-                        </Button>
-                        <Button Name="_btnAuditoriaDatos" VerticalAlignment="Bottom" Height="25" Width="90">
-                            <TextBlock Name="_txbAuditoriaDatos" Text="{x:Static recurso:Etiquetas.btnAuditoria}"/>
-                        </Button>
-                        <Button Name="_btnVerExpedienteDatos" VerticalAlignment="Bottom" Height="25" Width="90">
-                            <TextBlock Name="_txbVerExpedienteDatos" Text="{x:Static recurso:Etiquetas.btnVerExpediente}"/>
-                        </Button>
-                    </WrapPanel>
-
-                    <WrapPanel Grid.Column="3" Grid.Row="14" Grid.ColumnSpan="3" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="5" Orientation="Horizontal">
-                        <Button Name="_btnContactosDatos" VerticalAlignment="Bottom" Height="25" Width="90">
-                            <TextBlock Name="_txbContactosDatos" Text="{x:Static recurso:Etiquetas.btnContactos}"/>
-                        </Button>
-                        <Button Name="_btnGestionesDatos" VerticalAlignment="Bottom" Height="25" Width="90">
-                            <TextBlock Name="_txbGestionesDatos" Text="{x:Static recurso:Etiquetas.btnGestiones}"/>
-                        </Button>
-                        <Button Name="_btnJustificacionesDatos" VerticalAlignment="Bottom" Height="25" Width="90">
-                            <TextBlock Name="_txbJustificacionesDatos" Text="{x:Static recurso:Etiquetas.btnJustificaciones}"/>
-                        </Button>
-                        <Button Name="_btnCorrespondenciasDatos" VerticalAlignment="Bottom" Height="25" Width="90">
-                            <TextBlock Name="_txbCorrespondenciasDatos" Text="{x:Static recurso:Etiquetas.btnCorrespondencias}"/>
-                        </Button>
-                    </WrapPanel>
                 </Grid>
             </TabItem>
             <TabItem Header="Administracion" Name="_tabAministracion">
@@ -316,11 +289,11 @@
                         <RowDefinition Height="40"/>
                     </Grid.RowDefinitions>
 
-                    <Label Grid.Column="1" Grid.Row="0" VerticalAlignment="Center" HorizontalContentAlignment="Right">
+                    <!--<Label Grid.Column="1" Grid.Row="0" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblCodigo}"/>
                     </Label>
                     <TextBox Grid.Column="2" Grid.Row="0" Name="_txtCodigoAdministracion" VerticalAlignment="Center" 
-                         HorizontalAlignment="Left" Width="100" Text="{Binding Path=Id}"></TextBox>
+                         HorizontalAlignment="Left" Width="100" Text="{Binding Path=Id}"></TextBox>-->
 
                     <Label Grid.Column="3" Grid.Row="0" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblNombre}"/>
@@ -363,9 +336,9 @@
                          HorizontalAlignment="Left" IsChecked="{Binding Path=BActivo}">
                     </CheckBox>
 
-                    <!--<Label Grid.Column="2" Grid.Row="4" VerticalAlignment="Center" HorizontalContentAlignment="Right">
+                    <Label Grid.Column="2" Grid.Row="4" VerticalAlignment="Center" HorizontalAlignment="Right" Width="130">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblEdoCuenta}"/>
-                    </Label>-->
+                    </Label>
                     <CheckBox  Grid.Column="3" Grid.Row="4" Name="_chkEdoCuentaAdministracion" VerticalAlignment="Center"
                          HorizontalAlignment="Left" IsChecked="{Binding Path=BEdoCuenta}">
                     </CheckBox>
@@ -377,16 +350,16 @@
                          HorizontalAlignment="Left" IsChecked="{Binding Path=BPendienteStatement}">
                     </CheckBox>
 
-                    <!--<Label Grid.Column="2" Grid.Row="5" VerticalAlignment="Center" HorizontalContentAlignment="Right">
+                    <Label Grid.Column="2" Grid.Row="5" VerticalAlignment="Center" HorizontalAlignment="Right" Width="30">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblIsf}"/>
-                    </Label>-->
+                    </Label>
                     <CheckBox  Grid.Column="3" Grid.Row="5" Name="_chkIsfAdministracion" VerticalAlignment="Center"
                          HorizontalAlignment="Left" IsChecked="{Binding Path=BIsf}">
                     </CheckBox>
 
-                    <!--<Label Grid.Column="3" Grid.Row="4" VerticalAlignment="Center" HorizontalContentAlignment="Right">
+                    <Label Grid.Column="3" Grid.Row="4" VerticalAlignment="Center" HorizontalAlignment="Right" Width="185">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblEdoCuentaDigital}"/>
-                    </Label>-->
+                    </Label>
                     <CheckBox Grid.Column="4" Grid.Row="4" Name="_chkEdoCuentaDigitalAdministracion" VerticalAlignment="Center"
                          HorizontalAlignment="Left" IsChecked="{Binding Path=BEdoCuentaDigital}">
                     </CheckBox>
@@ -469,39 +442,6 @@
                     <TextBox Grid.Column="3" Grid.Row="14" Name="_txtTotalAdministracion" VerticalAlignment="Bottom" 
                          HorizontalAlignment="Left" Width="100" Text="{Binding Path=Total}"></TextBox>
                     <!--fin control de facturacion-->
-
-                    <WrapPanel Grid.Column="3" Grid.Row="12" Grid.ColumnSpan="3" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="5" Orientation="Horizontal" Grid.RowSpan="2">
-                        <Button Name="_btnDesicionComiteAdministracion" VerticalAlignment="Bottom" Height="25" Width="90">
-                            <TextBlock Name="_txbDesicionComiteAdministracion" Text="{x:Static recurso:Etiquetas.btnDesicionComite}"/>
-                        </Button>
-                        <Button Name="_btnConectividadAdministracion" VerticalAlignment="Bottom" Height="25" Width="90">
-                            <TextBlock Name="_txbConectividadAdministracion" Text="{x:Static recurso:Etiquetas.btnConectividad}"/>
-                        </Button>
-                        <Button Name="_btnAuditoriaAdministracion" VerticalAlignment="Bottom" Height="25" Width="90">
-                            <TextBlock Name="_txbAuditoriaAdministracion" Text="{x:Static recurso:Etiquetas.btnAuditoria}"/>
-                        </Button>
-                        <Button Name="_btnVerExpedienteAdministracion" VerticalAlignment="Bottom" Height="25" Width="90">
-                            <TextBlock Name="_txbVerExpedienteAdministracion" Text="{x:Static recurso:Etiquetas.btnVerExpediente}"/>
-                        </Button>
-                        <Button Name="_btnExpRecuperacionAdministracion" VerticalAlignment="Bottom" Height="25" Width="90">
-                            <TextBlock Name="_txbExpRecuperacionAdministracion" Text="{x:Static recurso:Etiquetas.btnExpRecuperacion}"/>
-                        </Button>
-                    </WrapPanel>
-
-                    <WrapPanel Grid.Column="3" Grid.Row="13" Grid.ColumnSpan="3" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="5" Orientation="Horizontal" Grid.RowSpan="2">
-                        <Button Name="_btnContactosAdministracion" VerticalAlignment="Bottom" Height="25" Width="90">
-                            <TextBlock Name="_txbContactosAdministracion" Text="{x:Static recurso:Etiquetas.btnContactos}"/>
-                        </Button>
-                        <Button Name="_btnGestionesAdministracion" VerticalAlignment="Bottom" Height="25" Width="90">
-                            <TextBlock Name="_txbGestionesAdministracion" Text="{x:Static recurso:Etiquetas.btnGestiones}"/>
-                        </Button>
-                        <Button Name="_btnJustificacionesAdministracion" VerticalAlignment="Bottom" Height="25" Width="90">
-                            <TextBlock Name="_txbJustificacionesAdministracion" Text="{x:Static recurso:Etiquetas.btnJustificaciones}"/>
-                        </Button>
-                        <Button Name="_btnCorrespondenciasAdministracion" VerticalAlignment="Bottom" Height="25" Width="90">
-                            <TextBlock Name="_txbCorrespondenciasAdministracion" Text="{x:Static recurso:Etiquetas.btnCorrespondencias}"/>
-                        </Button>
-                    </WrapPanel>
                 </Grid>
             </TabItem>
         </TabControl>

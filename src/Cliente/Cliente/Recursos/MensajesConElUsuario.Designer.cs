@@ -286,6 +286,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Archivo del asociado no encontrado..
+        /// </summary>
+        internal static string ErrorAsociadoNoEncontrado {
+            get {
+                return ResourceManager.GetString("ErrorAsociadoNoEncontrado", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to No se ha podido establecer conexión con el servidor.
         /// </summary>
         internal static string ErrorConexionServidor {

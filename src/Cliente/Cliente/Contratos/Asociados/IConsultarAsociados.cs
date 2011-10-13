@@ -43,6 +43,8 @@ namespace Trascend.Bolet.Cliente.Contratos.Asociados
 
         object Tarifas { get; set; }
 
+        string Id { get; set; }
+
         char TipoPersona { get; }
 
         GridViewColumnHeader CurSortCol { get; set; }

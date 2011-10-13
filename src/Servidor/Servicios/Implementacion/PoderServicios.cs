@@ -78,7 +78,11 @@ namespace Trascend.Bolet.Servicios.Implementacion
             return exitoso;
         }
 
-
+        /// <summary>
+        /// Metodo que consulta la lista de auiditorias de una tabla
+        /// </summary>
+        /// <param name="auditoria">Auditoria a filtrar</param>
+        /// <returns>Lista de auditorias</returns>
         public IList<Auditoria> AuditoriaPorFkyTabla(Auditoria auditoria)
         {
             #region trace

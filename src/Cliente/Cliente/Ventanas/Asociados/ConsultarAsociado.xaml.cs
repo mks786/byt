@@ -144,45 +144,70 @@ namespace Trascend.Bolet.Cliente.Ventanas.Asociados
         {
             set
             {
-                //this._txtNombrey.IsEnabled = value;
-                //this._txtDomicilio.IsEnabled = value;
-                //this._txtTelefono.IsEnabled = value;
-                //this._cbxEstadoCivil.IsEnabled = value;
-                //this._cbxSexo.IsEnabled = value;
-                //this._txtNumeroAbogado.IsEnabled = value;
-                //this._txtNumeroImpresoAbogado.IsEnabled = value;
-                //this._txtNumeroPropiedad.IsEnabled = value;
-                //this._txtCCI.IsEnabled = value;
+                this._txtNombreDatos.IsEnabled = value;
+                this._txtNombreAdministracion.IsEnabled = value;
+                this._txtDomicilioDatos.IsEnabled = value;
+                this._txtTelefono1Datos.IsEnabled = value;
+                this._txtTelefono2Datos.IsEnabled = value;
+                this._txtTelefono3Datos.IsEnabled = value;
+                this._txtFax1Datos.IsEnabled = value;
+                this._txtFax2Datos.IsEnabled = value;
+                this._txtFax3Datos.IsEnabled = value;
+                this._txtEmailDatos.IsEnabled = value;
+                this._txtWebDatos.IsEnabled = value;
+                this._txtDescuentoDatos.IsEnabled = value;
+                this._txtRifDatos.IsEnabled = value;
+                this._txtNitDatos.IsEnabled = value;
+                this._txtAlarmaAdministracion.IsEnabled = value;
+                this._txtDiasCreditoAdministracion.IsEnabled = value;
+                this._txtDescuentoAdministracion.IsEnabled = value;
+
+                this._cbxTipoPersonaDatos.IsEnabled = value;
+                this._cbxPaisDatos.IsEnabled = value;
+                this._cbxIdiomaDatos.IsEnabled = value;
+                this._cbxMonedaDatos.IsEnabled = value;
+                this._cbxTipoClienteAdministracion.IsEnabled = value;
+                this._cbxTarifaAdministracion.IsEnabled = value;
+                this._cbxEtiquetaAdministracion.IsEnabled = value;
+                this._cbxDetallePagoAdministracion.IsEnabled = value;
+
+                this._chkContribuyenteDatos.IsEnabled = value;
+                this._chkActivoAdministracion.IsEnabled = value;
+                this._chkAlertaAdministracion.IsEnabled = value;
+                this._chkEdoCuentaAdministracion.IsEnabled = value;
+                this._chkEdoCuentaDigitalAdministracion.IsEnabled = value;
+                this._chkIsfAdministracion.IsEnabled = value;
+                this._chkPendienteStatementAdministracion.IsEnabled = value;
+                this._chkContribuyenteDatos.IsEnabled = value;
             }
         }
 
 
         public string TextoBotonModificar
         {
-            get { throw new System.NotImplementedException(); }
-            set { throw new System.NotImplementedException(); }
-        }
-
-        public object FormaPago
-        {
-            get { throw new System.NotImplementedException(); }
-            set { throw new System.NotImplementedException(); }
-        }
-
-        public object FormasPagos
-        {
-            get { throw new System.NotImplementedException(); }
-            set { throw new System.NotImplementedException(); }
+            get { return this._txbModificar.Text; }
+            set { this._txbModificar.Text = value; }
         }
 
         public char GetTipoPersona
         {
-            get { throw new System.NotImplementedException(); }
+            get
+            {
+                if (!string.IsNullOrEmpty(this._cbxTipoPersonaDatos.Text))
+                    return (this._cbxTipoPersonaDatos.Text)[0];
+                else
+                    return ' ';
+            }
         }
 
         public string SetTipoPersona
         {
-            set { throw new System.NotImplementedException(); }
+            set { this._cbxTipoPersonaDatos.Text = value; }
+        }
+
+        public void ArchivoNoEncontrado()
+        {
+            MessageBox.Show(Recursos.MensajesConElUsuario.ErrorAsociadoNoEncontrado, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
         }
 
         #endregion
@@ -205,6 +230,16 @@ namespace Trascend.Bolet.Cliente.Ventanas.Asociados
             this._presentador.Regresar();
         }
 
+        private void _btnAuditoria_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.Auditoria();
+        }
+
+        private void _btnVerExpediente_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.AbrirExpediente();
+        }
+
         private void _btnEliminar_Click(object sender, RoutedEventArgs e)
         {
             if (MessageBoxResult.Yes == MessageBox.Show(Recursos.MensajesConElUsuario.ConfirmacionEliminarAsociado,
@@ -221,11 +256,6 @@ namespace Trascend.Bolet.Cliente.Ventanas.Asociados
                 this._presentador.CargarPagina();
                 EstaCargada = true;
             }
-        }
-
-        private void _btnCancelar_Click(object sender, RoutedEventArgs e)
-        {
-
         }
     }
 }

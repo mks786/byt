@@ -37,6 +37,12 @@ namespace Trascend.Bolet.Cliente.Ventanas.Asociados
             set { this._lstResultados = value; }
         }
 
+        public string Id
+        {
+            get { return this._txtId.Text; }
+            set { this._txtId.Text = value; }
+        }
+
         public bool EstaCargada
         {
             get { return this._cargada; }

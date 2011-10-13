@@ -27,7 +27,7 @@
                     <Label>
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblId}"/>
                     </Label>
-                    <TextBox Name="_txtId" Width="150" MaxLength="2"  Text="{Binding Path=Id}" ></TextBox>
+                    <TextBox Name="_txtId" Width="150" MaxLength="2" ></TextBox>
                 </WrapPanel>
                 <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
                     <Label>
@@ -45,7 +45,7 @@
                     <Label>
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblTipoPersona}"/>
                     </Label>
-                    <ComboBox Grid.Column="4" Grid.Row="0" Name="_cbxTipoPersona" HorizontalAlignment="Left" Width="80" Height="20" SelectedIndex="0">
+                    <ComboBox Grid.Column="4" Grid.Row="0" Name="_cbxTipoPersona" HorizontalAlignment="Left" Width="150" Height="20" SelectedIndex="0">
                         <ComboBoxItem>
                             <TextBlock Text=""/>
                         </ComboBoxItem>

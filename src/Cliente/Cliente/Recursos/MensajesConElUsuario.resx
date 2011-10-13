@@ -327,4 +327,7 @@
   <data name="ConfirmacionEliminarAsociado" xml:space="preserve">
     <value>¿Seguro que desea eliminar el agente?</value>
   </data>
+  <data name="ErrorAsociadoNoEncontrado" xml:space="preserve">
+    <value>Archivo del asociado no encontrado.</value>
+  </data>
 </root>
