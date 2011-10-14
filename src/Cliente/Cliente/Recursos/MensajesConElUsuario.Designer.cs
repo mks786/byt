@@ -295,6 +295,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Contacto insertado con éxito.
+        /// </summary>
+        internal static string ContactoInsertado {
+            get {
+                return ResourceManager.GetString("ContactoInsertado", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to No se ha podido establecer conexión con el servidor.
         /// </summary>
         internal static string ErrorConexionServidor {
@@ -453,6 +462,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         internal static string InternacionalModificado {
             get {
                 return ResourceManager.GetString("InternacionalModificado", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Justificación modificada con éxito.
+        /// </summary>
+        internal static string JustificacionModificado {
+            get {
+                return ResourceManager.GetString("JustificacionModificado", resourceCulture);
             }
         }
         

@@ -43,7 +43,7 @@
         <GroupBox Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="1" BorderBrush="{x:Null}">
             <WrapPanel Grid.Row="2" Grid.ColumnSpan="3" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="5" Orientation="Horizontal">
                 <Button Name="_btnAgregar" VerticalAlignment="Bottom" Height="25" Width="90" Click="_btnAgregar_Click">
-                    <TextBlock Text="{x:Static recurso:Etiquetas.btnNuevo}"/>
+                    <TextBlock Text="{x:Static recurso:Etiquetas.btnNuevoPoder}"/>
                 </Button>
                 <Button Name="_btnRegresar" VerticalAlignment="Bottom" Height="25" Width="90" Click="_btnRegresar_Click">
                     <TextBlock Text="{x:Static recurso:Etiquetas.btnRegresar}"/>

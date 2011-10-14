@@ -273,5 +273,32 @@ namespace Trascend.Bolet.AccesoDatos.Fabrica
         {
             return new DaoContadorFacNHibernate();
         }
+
+        /// <summary>
+        /// Método que devuelve el DaoConcepto
+        /// </summary>
+        /// <returns>IDaoConcepto</returns>
+        public override IDaoConcepto ObtenerDaoConcepto()
+        {
+            return new DaoConceptoNHibernate();
+        }
+
+        /// <summary>
+        /// Método que devuelve el DaoJustificacion
+        /// </summary>
+        /// <returns>IDaoJustificacion</returns>
+        public override IDaoJustificacion ObtenerDaoJustificacion()
+        {
+            return new DaoJustificacionNHibernate();
+        }
+
+        /// <summary>
+        /// Método que devuelve el DaoContacto
+        /// </summary>
+        /// <returns>IDaoContacto</returns>
+        public override IDaoContacto ObtenerDaoContacto()
+        {
+            return new DaoContactoNHibernate();
+        }
     }
 }

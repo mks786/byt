@@ -61,8 +61,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Contrato\IDaoContacto.cs" />
     <Compile Include="Contrato\IDaoContadorFac.cs" />
     <Compile Include="Contrato\IDaoAsociado.cs" />
+    <Compile Include="Contrato\IDaoJustificacion.cs" />
+    <Compile Include="Contrato\IDaoConcepto.cs" />
     <Compile Include="Contrato\IDaoDetallePago.cs" />
     <Compile Include="Contrato\IDaoTipoCliente.cs" />
     <Compile Include="Contrato\IDaoTarifa.cs" />
@@ -90,8 +93,11 @@
     <Compile Include="Contrato\IDaoBase.cs" />
     <Compile Include="Contrato\IDaoUsuario.cs" />
     <Compile Include="Contrato\IFabricaDaoBase.cs" />
+    <Compile Include="Dao\NHibernate\DaoContactoNHibernate.cs" />
     <Compile Include="Dao\NHibernate\DaoContadorFacNHibernate.cs" />
     <Compile Include="Dao\NHibernate\DaoAsociadoNHibernate.cs" />
+    <Compile Include="Dao\NHibernate\DaoJustificacionNHibernate.cs" />
+    <Compile Include="Dao\NHibernate\DaoConceptoNHibernate.cs" />
     <Compile Include="Dao\NHibernate\DaoDetallePagoNHibernate.cs" />
     <Compile Include="Dao\NHibernate\DaoTipoClienteNHibernate.cs" />
     <Compile Include="Dao\NHibernate\DaoTarifaNHibernate.cs" />
@@ -279,6 +285,16 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Mapeado\ContadorFac.hbm.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Mapeado\Concepto.hbm.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Mapeado\Justificacion.hbm.xml">
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>

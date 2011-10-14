@@ -58,5 +58,35 @@
     </many-to-one>
   </class>
 
+  
+  <!--<bag name="Justificaciones" table="FAC_ASO_JUST" fetch="join" inverse="true">
+    <key>
+       <column name="CASOCIADO"/>
+       <column name="CCARTA"/>
+    </key>
+    <one-to-many name="Justificacion" class="Justificacion">
+      <column name="CCARTA"/>
+    </one-to-many>
+  </bag>-->
+
+  <!--<set name="Justificaciones" inverse="true">
+    <key>
+      <column name="CCARTA"/>
+      <column name="CASOCIADO"/>
+    </key>
+    <one-to-many class="Justificacion"/>
+  </set>-->
+
+  <!--<bag name="Justificaciones"
+          fetch="join"
+          inverse="true"
+          cascade="save-update">
+    <key>
+      <column name="CCARTA"/>
+      <column name="CASOCIADO"/>
+    </key>
+    <one-to-many class="Justificacion"/>
+  </bag>-->
+
 </hibernate-mapping>
 

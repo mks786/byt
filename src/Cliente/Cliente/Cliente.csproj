@@ -87,14 +87,20 @@
     <Compile Include="Contratos\Agentes\IAgregarAgente.cs" />
     <Compile Include="Contratos\Agentes\IConsultarAgente.cs" />
     <Compile Include="Contratos\Agentes\IConsultarAgentes.cs" />
+    <Compile Include="Contratos\Asociados\IListaContactos.cs" />
+    <Compile Include="Contratos\Asociados\IListaJustificaciones.cs" />
     <Compile Include="Contratos\Auditorias\IConsultarAuditorias.cs" />
     <Compile Include="Contratos\Asociados\IAgregarAsociado.cs" />
     <Compile Include="Contratos\Asociados\IConsultarAsociado.cs" />
     <Compile Include="Contratos\Asociados\IConsultarAsociados.cs" />
+    <Compile Include="Contratos\Contactos\IAgregarContacto.cs" />
+    <Compile Include="Contratos\Contactos\IConsultarContacto.cs" />
     <Compile Include="Contratos\Interesados\IAgregarInteresado.cs" />
     <Compile Include="Contratos\Interesados\IListaPoderes.cs" />
     <Compile Include="Contratos\Interesados\IConsultarInteresado.cs" />
     <Compile Include="Contratos\Interesados\IConsultarInteresados.cs" />
+    <Compile Include="Contratos\Justificaciones\IAgregarJustificacion.cs" />
+    <Compile Include="Contratos\Justificaciones\IConsultarJustificacion.cs" />
     <Compile Include="Contratos\Poderes\IAgregarPoder.cs" />
     <Compile Include="Contratos\Poderes\IConsultarPoder.cs" />
     <Compile Include="Contratos\Poderes\IConsultarPoderes.cs" />
@@ -144,14 +150,20 @@
     <Compile Include="Presentadores\Agentes\PresentadorAgregarAgente.cs" />
     <Compile Include="Presentadores\Agentes\PresentadorConsultarAgente.cs" />
     <Compile Include="Presentadores\Agentes\PresentadorConsultarAgentes.cs" />
+    <Compile Include="Presentadores\Asociados\PresentadorListaContactos.cs" />
+    <Compile Include="Presentadores\Asociados\PresentadorListaJustificaciones.cs" />
     <Compile Include="Presentadores\Auditorias\PresentadorListaAuditorias.cs" />
     <Compile Include="Presentadores\Asociados\PresentadorAgregarAsociado.cs" />
     <Compile Include="Presentadores\Asociados\PresentadorConsultarAsociado.cs" />
     <Compile Include="Presentadores\Asociados\PresentadorConsultarAsociados.cs" />
+    <Compile Include="Presentadores\Contactos\PresentadorAgregarContacto.cs" />
+    <Compile Include="Presentadores\Contactos\PresentadorConsultarContacto.cs" />
     <Compile Include="Presentadores\Interesados\PresentadorAgregarInteresado.cs" />
     <Compile Include="Presentadores\Interesados\PresentadorConsultarInteresado.cs" />
     <Compile Include="Presentadores\Interesados\PresentadorConsultarInteresados.cs" />
     <Compile Include="Presentadores\Interesados\PresentadorListaPoderes.cs" />
+    <Compile Include="Presentadores\Justificaciones\PresentadorAgregarJustificacion.cs" />
+    <Compile Include="Presentadores\Justificaciones\PresentadorConsultarJustificacion.cs" />
     <Compile Include="Presentadores\Poderes\PresentadorAgregarPoder.cs" />
     <Compile Include="Presentadores\Poderes\PresentadorConsultarPoder.cs" />
     <Compile Include="Presentadores\Poderes\PresentadorConsultarPoderes.cs" />
@@ -242,8 +254,20 @@
     <Compile Include="Ventanas\Asociados\ConsultarAsociados.xaml.cs">
       <DependentUpon>ConsultarAsociados.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Ventanas\Asociados\ListaContactos.xaml.cs">
+      <DependentUpon>ListaContactos.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Asociados\ListaJustificaciones.xaml.cs">
+      <DependentUpon>ListaJustificaciones.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Ventanas\Auditorias\ListaAuditorias.xaml.cs">
       <DependentUpon>ListaAuditorias.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Contactos\ConsultarContacto.xaml.cs">
+      <DependentUpon>ConsultarContacto.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Contactos\AgregarContacto.xaml.cs">
+      <DependentUpon>AgregarContacto.xaml</DependentUpon>
     </Compile>
     <Compile Include="Ventanas\Interesados\AgregarInteresado.xaml.cs">
       <DependentUpon>AgregarInteresado.xaml</DependentUpon>
@@ -256,6 +280,12 @@
     </Compile>
     <Compile Include="Ventanas\Interesados\ListaPoderes.xaml.cs">
       <DependentUpon>ListaPoderes.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Justificaciones\AgregarJustificacion.xaml.cs">
+      <DependentUpon>AgregarJustificacion.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Justificaciones\ConsultarJustificacion.xaml.cs">
+      <DependentUpon>ConsultarJustificacion.xaml</DependentUpon>
     </Compile>
     <Compile Include="Ventanas\Poderes\AgregarPoder.xaml.cs">
       <DependentUpon>AgregarPoder.xaml</DependentUpon>
@@ -411,9 +441,25 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Ventanas\Asociados\ListaContactos.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\Asociados\ListaJustificaciones.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Ventanas\Auditorias\ListaAuditorias.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Ventanas\Contactos\ConsultarContacto.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\Contactos\AgregarContacto.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Ventanas\Interesados\AgregarInteresado.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -428,6 +474,14 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Ventanas\Interesados\ListaPoderes.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\Justificaciones\AgregarJustificacion.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\Justificaciones\ConsultarJustificacion.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

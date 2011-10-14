@@ -6,6 +6,7 @@ using System.Windows.Input;
 using NLog;
 using Trascend.Bolet.Cliente.Contratos.Asociados;
 using Trascend.Bolet.Cliente.Ventanas.Principales;
+using Trascend.Bolet.Cliente.Ventanas.Asociados;
 using Trascend.Bolet.ObjetosComunes.ContratosServicios;
 using Trascend.Bolet.ObjetosComunes.Entidades;
 using System.Collections.Generic;
@@ -99,19 +100,28 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
                 this._ventana.Monedas = monedas;
                 this._ventana.Moneda = this.BuscarMoneda(monedas, asociado.Moneda);
 
-                IList<Tarifa> tarifas = this._tarifaServicios.ConsultarTodos();
-                this._ventana.Tarifas = tarifas;
-                this._ventana.Tarifa = this.BuscarTarifa(tarifas, asociado.Tarifa);
-
                 IList<TipoCliente> tiposClientes = this._tipoClienteServicios.ConsultarTodos();
                 this._ventana.TiposClientes = tiposClientes;
                 this._ventana.TipoCliente = this.BuscarTipoCliente(tiposClientes, asociado.TipoCliente);
 
+                IList<Tarifa> tarifas = this._tarifaServicios.ConsultarTodos();
+                Tarifa primeraTarifa = new Tarifa();
+                primeraTarifa.Id = "NGN";
+                tarifas.Insert(0, primeraTarifa);
+                this._ventana.Tarifas = tarifas;
+                this._ventana.Tarifa = this.BuscarTarifa(tarifas, asociado.Tarifa);
+
                 IList<Etiqueta> etiquetas = this._etiquetaServicios.ConsultarTodos();
+                Etiqueta primeraEtiqueta = new Etiqueta();
+                primeraEtiqueta.Id = "NGN";
+                etiquetas.Insert(0, primeraEtiqueta);
                 this._ventana.Etiquetas = etiquetas;
                 this._ventana.Etiqueta = this.BuscarEtiqueta(etiquetas, asociado.Etiqueta);
 
                 IList<DetallePago> detallesPagos = this._detallePagoServicios.ConsultarTodos();
+                DetallePago primerDetallePago = new DetallePago();
+                primerDetallePago.Id = "NGN";
+                detallesPagos.Insert(0, primerDetallePago);
                 this._ventana.DetallesPagos = detallesPagos;
                 this._ventana.DetallePago = this.BuscarDetallePago(detallesPagos, asociado.DetallePago);
 
@@ -164,9 +174,15 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
                     asociado.Idioma = (Idioma)this._ventana.Idioma;
                     asociado.Moneda = (Moneda)this._ventana.Moneda;
                     asociado.TipoCliente = (TipoCliente)this._ventana.TipoCliente;
-                    asociado.Tarifa = !((Tarifa)this._ventana.Tarifa).Id.Equals("NGN") ? (Tarifa)this._ventana.Tarifa : null;
-                    asociado.Etiqueta = !((Etiqueta)this._ventana.Etiqueta).Id.Equals("NGN") ? (Etiqueta)this._ventana.Etiqueta : null;
-                    asociado.DetallePago = !((DetallePago)this._ventana.DetallePago).Id.Equals("NGN") ? (DetallePago)this._ventana.DetallePago : null;
+
+                    if ((Tarifa)this._ventana.Tarifa != null)
+                        asociado.Tarifa = !((Tarifa)this._ventana.Tarifa).Id.Equals("NGN")  ? (Tarifa)this._ventana.Tarifa : null;
+
+                    if ((Etiqueta)this._ventana.Etiqueta != null)
+                        asociado.Etiqueta = !((Etiqueta)this._ventana.Etiqueta).Id.Equals("NGN") ? (Etiqueta)this._ventana.Etiqueta : null;
+
+                    if ((DetallePago)this._ventana.DetallePago != null)
+                        asociado.DetallePago = !((DetallePago)this._ventana.DetallePago).Id.Equals("NGN") ? (DetallePago)this._ventana.DetallePago : null;
 
                     bool exitoso = this._asociadoServicios.InsertarOModificar(asociado, UsuarioLogeado.Hash);
 
@@ -241,6 +257,39 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
                 this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
             }
         }
+
+        public void IrListaJustificaciones()
+        {
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+            this.Navegar(new ListaJustificaciones(this._ventana.Asociado));
+
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+        }
+
+        public void IrListaContactos()
+        {
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+            this.Navegar(new ListaContactos(this._ventana.Asociado));
+
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+        }
+
+        
 
         public void Auditoria()
         {

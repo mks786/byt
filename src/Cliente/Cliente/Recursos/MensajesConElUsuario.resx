@@ -330,4 +330,10 @@
   <data name="ErrorAsociadoNoEncontrado" xml:space="preserve">
     <value>Archivo del asociado no encontrado.</value>
   </data>
+  <data name="JustificacionModificado" xml:space="preserve">
+    <value>Justificación modificada con éxito</value>
+  </data>
+  <data name="ContactoInsertado" xml:space="preserve">
+    <value>Contacto insertado con éxito</value>
+  </data>
 </root>

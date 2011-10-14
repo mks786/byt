@@ -164,7 +164,7 @@
     <value>Viudo(a)</value>
   </data>
   <data name="dpkText" xml:space="preserve">
-    <value>Selecionar una fecha</value>
+    <value>Seleccionar una fecha</value>
   </data>
   <data name="lblAnexo" xml:space="preserve">
     <value>Anexo:</value>
@@ -625,7 +625,7 @@
   <data name="lblPais" xml:space="preserve">
     <value>Pais:</value>
   </data>
-  <data name="btnNuevo" xml:space="preserve">
+  <data name="btnNuevoPoder" xml:space="preserve">
     <value>Nuevo Poder</value>
   </data>
   <data name="titleListaPoderes" xml:space="preserve">
@@ -762,5 +762,59 @@
   </data>
   <data name="titleConsultarAsociado" xml:space="preserve">
     <value>Consultar Asociado</value>
+  </data>
+  <data name="btnNuevoJustificacion" xml:space="preserve">
+    <value>Nueva Justificación</value>
+  </data>
+  <data name="lsvCarta" xml:space="preserve">
+    <value>Carta</value>
+  </data>
+  <data name="lsvConcepto" xml:space="preserve">
+    <value>Concepto</value>
+  </data>
+  <data name="lblCarta" xml:space="preserve">
+    <value>Carta:</value>
+  </data>
+  <data name="lblConcepto" xml:space="preserve">
+    <value>Concepto:</value>
+  </data>
+  <data name="titleAgregarJustificacion" xml:space="preserve">
+    <value>AgregarJustificación</value>
+  </data>
+  <data name="titleListaJustificaciones" xml:space="preserve">
+    <value>Lista Justificaciones</value>
+  </data>
+  <data name="lblAsociado" xml:space="preserve">
+    <value>Asociado:</value>
+  </data>
+  <data name="lsvAsociado" xml:space="preserve">
+    <value>Asociado</value>
+  </data>
+  <data name="titleConsultarJustificacion" xml:space="preserve">
+    <value>Consultar Justificación</value>
+  </data>
+  <data name="btnNuevoContacto" xml:space="preserve">
+    <value>Nuevo Contacto</value>
+  </data>
+  <data name="cbiMarcas" xml:space="preserve">
+    <value>Marcas</value>
+  </data>
+  <data name="cbiPatentes" xml:space="preserve">
+    <value>Patentes</value>
+  </data>
+  <data name="lblCargo" xml:space="preserve">
+    <value>Cargo:</value>
+  </data>
+  <data name="lblFuncion" xml:space="preserve">
+    <value>Funcion:</value>
+  </data>
+  <data name="lsvFax" xml:space="preserve">
+    <value>Fax</value>
+  </data>
+  <data name="titleConsultarContacto" xml:space="preserve">
+    <value>Consultar Contacto</value>
+  </data>
+  <data name="lblNumero" xml:space="preserve">
+    <value>Número:</value>
   </data>
 </root>

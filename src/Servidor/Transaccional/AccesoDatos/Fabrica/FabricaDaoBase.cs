@@ -175,6 +175,18 @@ namespace Trascend.Bolet.AccesoDatos.Fabrica
         public abstract IDaoDetallePago ObtenerDaoDetallePago();
 
         /// <summary>
+        /// Método que devuelve el DaoConcepto del manejador que se esté utilizando
+        /// </summary>
+        /// <returns>IDaoMoneda</returns>
+        public abstract IDaoConcepto ObtenerDaoConcepto();
+
+        /// <summary>
+        /// Método que devuelve el DaoJustificacion del manejador que se esté utilizando
+        /// </summary>
+        /// <returns>IDaoJustificacion</returns>
+        public abstract IDaoJustificacion ObtenerDaoJustificacion();
+
+        /// <summary>
         /// Método que devuelve el DaoAsociado del manejador que se esté utilizando
         /// </summary>
         /// <returns>IDaoAsociado</returns>
@@ -185,5 +197,11 @@ namespace Trascend.Bolet.AccesoDatos.Fabrica
         /// </summary>
         /// <returns>IDaoContadorFac</returns>
         public abstract IDaoContadorFac ObtenerDaoContadorFac();
+
+        /// <summary>
+        /// Método que devuelve el DaoContacto del manejador que se esté utilizando
+        /// </summary>
+        /// <returns>IDaoContacto</returns>
+        public abstract IDaoContacto ObtenerDaoContacto();
     }
 }

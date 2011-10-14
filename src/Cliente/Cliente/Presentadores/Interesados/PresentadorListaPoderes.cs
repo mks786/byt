@@ -97,7 +97,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Interesados
                 logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
 
-            this.Navegar(new AgregarPoder(this._interesado));
+            //this.Navegar(new AgregarPoder(this._interesado));
 
             #region trace
             if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))

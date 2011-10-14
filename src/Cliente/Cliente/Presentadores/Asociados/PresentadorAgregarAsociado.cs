@@ -9,6 +9,7 @@ using Trascend.Bolet.Cliente.Ventanas.Principales;
 using Trascend.Bolet.ObjetosComunes.ContratosServicios;
 using Trascend.Bolet.ObjetosComunes.Entidades;
 using System.Collections.Generic;
+using Trascend.Bolet.Cliente.Ventanas.Asociados;
 
 namespace Trascend.Bolet.Cliente.Presentadores.Asociados
 {

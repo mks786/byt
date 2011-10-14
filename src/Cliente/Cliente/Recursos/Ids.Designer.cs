@@ -133,6 +133,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to FAC_CONJUST.
+        /// </summary>
+        public static string AgregarJustificacion {
+            get {
+                return ResourceManager.GetString("AgregarJustificacion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to MYPTNAC.
         /// </summary>
         public static string AgregarNacional {
@@ -277,6 +286,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to FAC_CONTACTOS.
+        /// </summary>
+        public static string ConsultarContacto {
+            get {
+                return ResourceManager.GetString("ConsultarContacto", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to MYP_ESTADOS.
         /// </summary>
         public static string ConsultarEstado {
@@ -327,6 +345,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string ConsultarInternacionales {
             get {
                 return ResourceManager.GetString("ConsultarInternacionales", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to FAC_ASO_JUST.
+        /// </summary>
+        public static string ConsultarJustificaciones {
+            get {
+                return ResourceManager.GetString("ConsultarJustificaciones", resourceCulture);
             }
         }
         

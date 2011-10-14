@@ -438,5 +438,28 @@ namespace Trascend.Bolet.Cliente.Presentadores
 
             calendario.BlackoutDates.Add(new CalendarDateRange(new DateTime(0001, 1, 1), dia));
         }
+
+        /// <summary>
+        /// Método que busca un concepto dentro de una lista de conceptos
+        /// </summary>
+        /// <param name="estados">Lista de conceptos</param>
+        /// <param name="estadoBuscado">concepto a buscar</param>
+        /// <returns>Concepto dentro de la lista</returns>
+        public Concepto BuscarConcepto(IList<Concepto> conceptos, Concepto conceptoBuscado)
+        {
+            Concepto retorno = null;
+
+            if (conceptoBuscado != null)
+                foreach (Concepto concepto in conceptos)
+                {
+                    if (concepto.Id.Equals(conceptoBuscado.Id))
+                    {
+                        retorno = concepto;
+                        break;
+                    }
+                }
+
+            return retorno;
+        }
     }
 }

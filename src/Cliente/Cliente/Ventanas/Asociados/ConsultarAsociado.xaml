@@ -272,13 +272,13 @@
                     </WrapPanel>
 
                     <WrapPanel Grid.Column="3" Grid.Row="14" Grid.ColumnSpan="3" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="5" Orientation="Horizontal">
-                        <Button Name="_btnContactosDatos" VerticalAlignment="Bottom" Height="25" Width="90">
+                        <Button Name="_btnContactosDatos" VerticalAlignment="Bottom" Height="25" Width="90" Click="_btnContactosDatos_Click">
                             <TextBlock Name="_txbContactosDatos" Text="{x:Static recurso:Etiquetas.btnContactos}"/>
                         </Button>
                         <Button Name="_btnGestionesDatos" VerticalAlignment="Bottom" Height="25" Width="90">
                             <TextBlock Name="_txbGestionesDatos" Text="{x:Static recurso:Etiquetas.btnGestiones}"/>
                         </Button>
-                        <Button Name="_btnJustificacionesDatos" VerticalAlignment="Bottom" Height="25" Width="90">
+                        <Button Name="_btnJustificacionesDatos" VerticalAlignment="Bottom" Height="25" Width="90" Click="_btnJustificacionesDatos_Click">
                             <TextBlock Name="_txbJustificacionesDatos" Text="{x:Static recurso:Etiquetas.btnJustificaciones}"/>
                         </Button>
                         <Button Name="_btnCorrespondenciasDatos" VerticalAlignment="Bottom" Height="25" Width="90">
@@ -490,13 +490,13 @@
                     </WrapPanel>
 
                     <WrapPanel Grid.Column="3" Grid.Row="13" Grid.ColumnSpan="3" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="5" Orientation="Horizontal" Grid.RowSpan="2">
-                        <Button Name="_btnContactosAdministracion" VerticalAlignment="Bottom" Height="25" Width="90">
+                        <Button Name="_btnContactosAdministracion" VerticalAlignment="Bottom" Height="25" Width="90" Click="_btnContactosDatos_Click">
                             <TextBlock Name="_txbContactosAdministracion" Text="{x:Static recurso:Etiquetas.btnContactos}"/>
                         </Button>
                         <Button Name="_btnGestionesAdministracion" VerticalAlignment="Bottom" Height="25" Width="90">
                             <TextBlock Name="_txbGestionesAdministracion" Text="{x:Static recurso:Etiquetas.btnGestiones}"/>
                         </Button>
-                        <Button Name="_btnJustificacionesAdministracion" VerticalAlignment="Bottom" Height="25" Width="90">
+                        <Button Name="_btnJustificacionesAdministracion" VerticalAlignment="Bottom" Height="25" Width="90" Click="_btnJustificacionesDatos_Click">
                             <TextBlock Name="_txbJustificacionesAdministracion" Text="{x:Static recurso:Etiquetas.btnJustificaciones}"/>
                         </Button>
                         <Button Name="_btnCorrespondenciasAdministracion" VerticalAlignment="Bottom" Height="25" Width="90">

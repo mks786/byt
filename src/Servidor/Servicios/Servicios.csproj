@@ -44,6 +44,8 @@
   <ItemGroup>
     <Compile Include="Implementacion\AgenteServicios.cs" />
     <Compile Include="Implementacion\AsociadoServicios.cs" />
+    <Compile Include="Implementacion\ConceptoServicios.cs" />
+    <Compile Include="Implementacion\JustificacionServicios.cs" />
     <Compile Include="Implementacion\DetallePagoServicios.cs" />
     <Compile Include="Implementacion\TipoClienteServicios.cs" />
     <Compile Include="Implementacion\TarifaServicios.cs" />

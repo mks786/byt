@@ -40,6 +40,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         private Etiqueta _etiqueta;
         private DetallePago _detallePago;
         private string _operacion;
+        private IList<Justificacion> _justificaciones;
 
         #endregion
 
@@ -505,6 +506,16 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         {
             get { return _operacion; }
             set { _operacion = value; }
+        }
+
+        /// <summary>
+        /// Propiedad que asigna u obtiene la lista de justificaciones
+        /// de un asociado
+        /// </summary>
+        public virtual IList<Justificacion> Justificaciones
+        {
+            get { return _justificaciones; }
+            set { _justificaciones = value; }
         }
 
         #endregion

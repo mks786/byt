@@ -141,6 +141,9 @@
   <data name="AgregarInternacional" xml:space="preserve">
     <value>MYPTINT</value>
   </data>
+  <data name="AgregarJustificacion" xml:space="preserve">
+    <value>FAC_CONJUST</value>
+  </data>
   <data name="AgregarNacional" xml:space="preserve">
     <value>MYPTNAC</value>
   </data>
@@ -189,6 +192,9 @@
   <data name="ConsultarBoletin" xml:space="preserve">
     <value>MYPTBOLETIN</value>
   </data>
+  <data name="ConsultarContacto" xml:space="preserve">
+    <value>FAC_CONTACTOS</value>
+  </data>
   <data name="ConsultarEstado" xml:space="preserve">
     <value>MYP_ESTADOS</value>
   </data>
@@ -206,6 +212,9 @@
   </data>
   <data name="ConsultarInternacionales" xml:space="preserve">
     <value>MYPTINT</value>
+  </data>
+  <data name="ConsultarJustificaciones" xml:space="preserve">
+    <value>FAC_ASO_JUST</value>
   </data>
   <data name="ConsultarNacional" xml:space="preserve">
     <value>MYPTNAC</value>

@@ -45,6 +45,7 @@
     <Compile Include="Comandos\ComandoBase.cs" />
     <Compile Include="Comandos\ComandosAgente\ComandoConsultarAgentesYPoderes.cs" />
     <Compile Include="Comandos\ComandosAuditoria\ComandoAuditoriaPorFkyTabla.cs" />
+    <Compile Include="Comandos\ComandosConcepto\ComandoConsultarTodosConceptos.cs" />
     <Compile Include="Comandos\ComandosContador\ComandoConsultarPorIdContador.cs" />
     <Compile Include="Comandos\ComandosDetallePago\ComandoConsultarTodosDetallePagos.cs" />
     <Compile Include="Comandos\ComandosEstado\ComandoConsultarTodosEstados.cs" />
@@ -58,6 +59,7 @@
     <Compile Include="Comandos\ComandosEstado\ComandoInsertarOModificarEstado.cs" />
     <Compile Include="Comandos\ComandosEtiqueta\ComandoConsultarTodosEtiquetas.cs" />
     <Compile Include="Comandos\ComandosIdioma\ComandoConsultarTodosIdiomas.cs" />
+    <Compile Include="Comandos\ComandosJustificacion\ComandoInsertarOModificarJustificacion.cs" />
     <Compile Include="Comandos\ComandosMoneda\ComandoConsultarTodosMonedas.cs" />
     <Compile Include="Comandos\ComandosNacional\ComandoConsultarTodosNacionales.cs" />
     <Compile Include="Comandos\ComandosNacional\ComandoEliminarNacional.cs" />
@@ -116,6 +118,8 @@
     <Compile Include="Comandos\ComandosUsuario\ComandoInsertarOModificarUsuario.cs" />
     <Compile Include="Fabrica\FabricaComandosContadorFac.cs" />
     <Compile Include="Fabrica\FabricaComandosAsociado.cs" />
+    <Compile Include="Fabrica\FabricaComandosJustificacion.cs" />
+    <Compile Include="Fabrica\FabricaComandosConcepto.cs" />
     <Compile Include="Fabrica\FabricaComandosDetallePago.cs" />
     <Compile Include="Fabrica\FabricaComandosTipoCliente.cs" />
     <Compile Include="Fabrica\FabricaComandosTarifa.cs" />
@@ -153,7 +157,9 @@
       <Name>AccesoDatos</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Comandos\ComandosContacto\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
