@@ -817,4 +817,7 @@
   <data name="lblNumero" xml:space="preserve">
     <value>Número:</value>
   </data>
+  <data name="lsvDomicilio" xml:space="preserve">
+    <value>Domicilio</value>
+  </data>
 </root>

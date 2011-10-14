@@ -1195,6 +1195,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Domicilio.
+        /// </summary>
+        public static string lsvDomicilio {
+            get {
+                return ResourceManager.GetString("lsvDomicilio", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Email.
         /// </summary>
         public static string lsvEmail {

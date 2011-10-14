@@ -130,7 +130,7 @@
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="Nombre" Content="{x:Static recurso:Etiquetas.lsvNombre}"/>
                         </GridViewColumn>
                         <GridViewColumn DisplayMemberBinding="{Binding Path=Domicilio}" Width="300">
-                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="Telefono" Content="{x:Static recurso:Etiquetas.lsvTelefono}"/>
+                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="Telefono" Content="{x:Static recurso:Etiquetas.lsvDomicilio}"/>
                         </GridViewColumn>
                     </GridView>
                 </ListView.View>
