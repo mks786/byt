@@ -50,8 +50,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-                this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleListaJustificaciones,
-                    Recursos.Ids.ConsultarJustificaciones);
+                this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleListaContactos,
+                    Recursos.Ids.Contacto);
                 
                 this._ventana.Contactos = this._asociado.Justificaciones;
                 this._ventana.FocoPredeterminado();

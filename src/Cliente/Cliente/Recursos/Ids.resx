@@ -270,6 +270,9 @@
   <data name="ConsultarUsuarios" xml:space="preserve">
     <value>SEGTUSU</value>
   </data>
+  <data name="Contacto" xml:space="preserve">
+    <value>FAC_CONTACTOS</value>
+  </data>
   <data name="EliminarAsociado" xml:space="preserve">
     <value>FAC_ASOCIADOS</value>
   </data>

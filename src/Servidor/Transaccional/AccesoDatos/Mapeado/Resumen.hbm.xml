@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+                   assembly="Trascend.Bolet.ObjetosComunes"
+                   namespace="Trascend.Bolet.ObjetosComunes.Entidades">
+  <class name="Resumen" table="RESUMEN">
+    <id name="Id" access="property" column="CODRES" length="4">
+      <generator class="assigned" />
+    </id>
+    <property name="Descripcion" type="String" column="DESC_RES" length="255" />
+    <property name="Seg" type="String" column="ISEG" length="1" />
+    <property name="Dias" type="Double" column="`NDIAS`" length="22" />
+
+    <many-to-one name="Cartas" class="Carta">
+      <column name="CODRES"/>
+    </many-to-one>
+    
+  </class>
+
+</hibernate-mapping>
+
+

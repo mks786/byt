@@ -77,6 +77,8 @@
     <Compile Include="Entidades\ContadorAuditoria.cs" />
     <Compile Include="Entidades\Asociado.cs" />
     <Compile Include="Entidades\ContadorFac.cs" />
+    <Compile Include="Entidades\Carta.cs" />
+    <Compile Include="Entidades\Resumen.cs" />
     <Compile Include="Entidades\DetallePago.cs" />
     <Compile Include="Entidades\Justificacion.cs" />
     <Compile Include="Entidades\Tarifa.cs" />

@@ -520,6 +520,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to FAC_CONTACTOS.
+        /// </summary>
+        public static string Contacto {
+            get {
+                return ResourceManager.GetString("Contacto", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to FAC_ASOCIADOS.
         /// </summary>
         public static string EliminarAsociado {

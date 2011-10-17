@@ -10,10 +10,10 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
     {
         #region Atributos
 
-        private int _id;
         private Concepto _concepto;
         private DateTime? _fecha;
         private Asociado _asociado;
+        private Carta _id;
 
         #endregion
 
@@ -28,7 +28,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         /// Constructor que inicializa el id de la Justificacion
         /// </summary>
         /// <param name="id">Id del Poder</param>
-        public Justificacion(int id)
+        public Justificacion(Carta id)
         {
             this._id = id;
         }
@@ -60,14 +60,6 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
             return base.ToString();
         }
 
-        /// <summary>
-        /// Propiedad que asigna u obtiene el id de la Justificacion
-        /// </summary>
-        public virtual int Id
-        {
-            get { return _id; }
-            set { _id = value; }
-        }
 
         /// <summary>
         /// Propiedad que asigna u obtiene el objeto de tipo Concepto de la Justificacion
@@ -93,6 +85,13 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         {
             get { return _asociado; }
             set { _asociado = value; }
+        }
+
+
+        public virtual Carta Id
+        {
+            get { return _id; }
+            set { _id = value; }
         }
 
 

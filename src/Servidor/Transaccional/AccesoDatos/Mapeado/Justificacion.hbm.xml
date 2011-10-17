@@ -4,24 +4,35 @@
                    namespace="Trascend.Bolet.ObjetosComunes.Entidades">
 
   <class name="Justificacion" table="FAC_ASO_JUST">
+    <!--<composite-id>
+      <key-many-to-one name="Id" class="Carta">
+        <column column="CCARTA" />
+      </key-many-to-one>
+      <key-many-to-one name="Asociado" class="Asociado">
+        <column column="CASOCIADO" />
+      </key-many-to-one>
+    </composite-id>-->
+
+
     <composite-id>
-      <key-property name="Id" column="CCARTA" type="int"></key-property>
-      <key-property name="Asociado" column="CASOCIADO" type="int"></key-property>
+      <key-property name="Id" column="CCARTA"/>
+        
+      <key-property name="Asociado" column="CASOCIADO"/>
     </composite-id>
 
     <property name="Fecha" column="FECHA" type="DateTime"/>
-    
+
     <many-to-one name="Concepto" class="Concepto">
       <column name="CCONCEPTO"/>
     </many-to-one>
-    
+
     <many-to-one name="Asociado" class="Asociado">
       <column name="CASOCIADO"/>
     </many-to-one>
 
-
+    <many-to-one name="Id" class="Carta">
+      <column name="CCARTA"/>
+    </many-to-one>
   </class>
 
 </hibernate-mapping>
-
-

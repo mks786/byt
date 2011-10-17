@@ -49,8 +49,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Contactos
 
             try
             {
-                this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleAgregarAgente,
-                    Recursos.Ids.AgregarAgente);
+                this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleAgregarContacto,
+                    Recursos.Ids.Contacto);
                 this._ventana.borrarId();
                 this._ventana.FocoPredeterminado();
             }

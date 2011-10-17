@@ -1654,6 +1654,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Agregar Contacto.
+        /// </summary>
+        public static string titleAgregarContacto {
+            get {
+                return ResourceManager.GetString("titleAgregarContacto", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Agregar Estado.
         /// </summary>
         public static string titleAgregarEstado {
@@ -2118,6 +2127,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string titleListaAuditorias {
             get {
                 return ResourceManager.GetString("titleListaAuditorias", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Contactos.
+        /// </summary>
+        public static string titleListaContactos {
+            get {
+                return ResourceManager.GetString("titleListaContactos", resourceCulture);
             }
         }
         

@@ -58,7 +58,18 @@
     </many-to-one>
   </class>
 
-  
+  <set name="Justificaciones" inverse="true">
+    <key>
+      <column name="CASOCIADO"/>
+    </key>
+    <one-to-many class="Justificacion"/>
+  </set>
+
+  <!--<bag name="Justificaciones">
+    <key column="CASOCIADO"/>
+    <one-to-many class="Justificacion" not-found="ignore"/>
+  </bag>-->
+
   <!--<bag name="Justificaciones" table="FAC_ASO_JUST" fetch="join" inverse="true">
     <key>
        <column name="CASOCIADO"/>
@@ -69,13 +80,12 @@
     </one-to-many>
   </bag>-->
 
-  <!--<set name="Justificaciones" inverse="true">
+  <!--<bag name="Justificaciones" inverse="true">
     <key>
-      <column name="CCARTA"/>
       <column name="CASOCIADO"/>
     </key>
     <one-to-many class="Justificacion"/>
-  </set>-->
+  </bag>-->
 
   <!--<bag name="Justificaciones"
           fetch="join"

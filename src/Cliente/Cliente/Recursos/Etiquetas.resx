@@ -820,4 +820,10 @@
   <data name="lsvDomicilio" xml:space="preserve">
     <value>Domicilio</value>
   </data>
+  <data name="titleAgregarContacto" xml:space="preserve">
+    <value>Agregar Contacto</value>
+  </data>
+  <data name="titleListaContactos" xml:space="preserve">
+    <value>Contactos</value>
+  </data>
 </root>
