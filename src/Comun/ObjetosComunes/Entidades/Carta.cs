@@ -8,7 +8,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
     {
         #region Atributos
 
-        private string _id;
+        private int _id;
         private DateTime _fecha;
         private string _medio;
         private Asociado _asociado;
@@ -51,7 +51,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         /// Constructor que inicializa el Id de la carta
         /// </summary>
         /// <param name="id">Id del Agente</param>
-        public Carta(string id)
+        public Carta(int id)
         {
             this._id = id;
         }
@@ -61,7 +61,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         #region Propiedades
 
 
-        public virtual string Id
+        public virtual int Id
         {
             get { return _id; }
             set { _id = value; }

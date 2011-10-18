@@ -44,6 +44,7 @@
   <ItemGroup>
     <Compile Include="Comandos\ComandoBase.cs" />
     <Compile Include="Comandos\ComandosAgente\ComandoConsultarAgentesYPoderes.cs" />
+    <Compile Include="Comandos\ComandosAsociado\ComandoConsultarAsociadoConTodo.cs" />
     <Compile Include="Comandos\ComandosAuditoria\ComandoAuditoriaPorFkyTabla.cs" />
     <Compile Include="Comandos\ComandosConcepto\ComandoConsultarTodosConceptos.cs" />
     <Compile Include="Comandos\ComandosContador\ComandoConsultarPorIdContador.cs" />

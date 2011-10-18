@@ -25,10 +25,10 @@
                       Style="{DynamicResource EstiloListView}">
                 <ListView.View>
                     <GridView>
-                        <GridViewColumn DisplayMemberBinding="{Binding Path=Id}" Width="120">
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Carta.Id}" Width="120">
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="Id" Content="{x:Static recurso:Etiquetas.lsvCarta}"/>
                         </GridViewColumn>
-                        <GridViewColumn DisplayMemberBinding="{Binding Path=Carta}" Width="150">
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Asociado.Id}" Width="150">
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="Carta" Content="{x:Static recurso:Etiquetas.lsvAsociado}"/>
                         </GridViewColumn>
                         <GridViewColumn DisplayMemberBinding="{Binding Path=Fecha}" Width="150">

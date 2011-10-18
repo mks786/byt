@@ -56,8 +56,13 @@
     <many-to-one name="DetallePago" class="DetallePago">
       <column name="CODPG"/>
     </many-to-one>
+
+    <bag name="Cartas">
+      <key column="CODIGO"/>
+      <one-to-many class="Carta" not-found="ignore"/>
+    </bag>
     
-    <bag name="Justificaciones" table="FAC_ASO_JUST" lazy="false">
+    <bag name="Justificaciones" table="FAC_ASO_JUST">
       <key column="CASOCIADO"/>
       <composite-element class="Justificacion">
         <parent name="Asociado"/>

@@ -41,6 +41,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         private DetallePago _detallePago;
         private string _operacion;
         private IList<Justificacion> _justificaciones;
+        private IList<Carta> _cartas;
 
         #endregion
 
@@ -516,6 +517,13 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         {
             get { return _justificaciones; }
             set { _justificaciones = value; }
+        }
+
+
+        public virtual IList<Carta> Cartas
+        {
+            get { return _cartas; }
+            set { _cartas = value; }
         }
 
         #endregion

@@ -92,7 +92,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
                 IList<Pais> paises = this._paisServicios.ConsultarTodos();
                 this._ventana.Paises = paises;
                 this._ventana.Pais = this.BuscarPais(paises, asociado.Pais);
-
+                
                 IList<Idioma> idiomas = this._idiomaServicios.ConsultarTodos();
                 this._ventana.Idiomas = idiomas;
                 this._ventana.Idioma = this.BuscarIdioma(idiomas, asociado.Idioma);

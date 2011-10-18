@@ -35,5 +35,16 @@ namespace Trascend.Bolet.Comandos.Fabrica
         {
             return new ComandoConsultarTodosAsociados();
         }
+
+        /// <summary>
+        /// Método que devuelve el Comando para consultar un asociado con todas sus referencias
+        /// </summary>
+        /// <returns>Asocaido con todo</returns>
+        public static ComandoBase<Asociado> ObtenerComandoConsultarAsociadoConTodo(Asociado asociado)
+        {
+            return new ComandoConsultarAsociadoConTodo(asociado);
+        }
+
+        
     }
 }

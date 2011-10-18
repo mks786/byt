@@ -3,14 +3,34 @@
                    assembly="Trascend.Bolet.ObjetosComunes"
                    namespace="Trascend.Bolet.ObjetosComunes.Entidades">
   <class name="Carta" table="`ENTRADA`">
-    <id name="Id" access="property" column="`CODIGO`">
-      <generator class="assigned" />
-    </id>
-    <property name="Acuse" type="String" column="`ACUSE`" length="1" />
-    <property name="AcuseEnvio" type="String" column="`ACUSE_ENV`" length="1" />
+    <id name="Id" column="CODIGO" type="int"/>
+    <property name="Acuse" type="char" column="`ACUSE`"/>
+    <property name="AcuseEnvio" type="char" column="`ACUSE_ENV`"/>
+    <property name="DescripcionDepartamento" type="String" column="`DEPARTAMENTO`"/>
+    <property name="DetalleResumen" type="String" column="`DETALLE_RES`"/>
+    <property name="Fecha" type="DateTime" column="`FECHA`"/>
+    <property name="FechaAlt" type="DateTime" column="`FECHA_ALT`"/>
+    <property name="FechaD" type="DateTime" column="`FECHA_D`"/>
+    <property name="FechaEnvioAcuse" type="DateTime" column="`FECHA_ENV_ACUSE`"/>
+    <property name="FechaL" type="DateTime" column="`FECHA_L`" length="7" />
+    <property name="FechaReal" type="DateTime" column="`FECHA_REAL`"/>
+    <property name="Iniciales" type="String" column="`INICIALES`"/>
+    <property name="IRev" type="char" column="`IREV`" />
+    <property name="Medio" type="String" column="`MEDIO`" length="3" />
+    <property name="MedioAcuse" type="String" column="`MEDIO_ACUSE`"/>
+    <property name="Persona" type="String" column="`PERSONA`"/>
+    <property name="Receptor" type="String" column="`RECEPTOR`"/>
+    <property name="Referencia" type="String" column="`REFERENCIA`"/>
+    <property name="DescripcionResumen" type="String" column="`RESUMEN`"/>
+    <property name="Salida" type="Double" column="`SALIDA`"/>
+    <property name="Anexo" type="String" column="`XANEXO`"/>
+    <property name="AnexoFecha" type="DateTime" column="`XANEXO_FECHA`"/>
+    <property name="AnexoMedio" type="String" column="`XANEXO_MEDIO`"/>
+    <property name="AnexoTracking" type="String" column="`XANEXO_TRACKING`"/>
+    <property name="Tracking" type="String" column="`XTRACKING`"/>
     
     <many-to-one name="Asociado" class="Asociado">
-      <column name="CASOCIADO"/>
+      <column name="ASOCIADO"/>
     </many-to-one>
 
     <many-to-one name="Departamento" class="Departamento">
@@ -21,30 +41,7 @@
       <column name="CODRES"/>
     </many-to-one>
     
-    <property name="DescripcionDepartamento" type="String" column="`DEPARTAMENTO`" length="254" />
-    <property name="DetalleResumen" type="String" column="`DETALLE_RES`" length="200" />
-    <property name="Fecha" type="DateTime" column="`FECHA`" length="7" />
-    <property name="FechaAlt" type="DateTime" column="`FECHA_ALT`" length="7" />
-    <property name="FechaD" type="DateTime" column="`FECHA_D`" length="7" />
-    <property name="FechaEnvioAcuse" type="DateTime" column="`FECHA_ENV_ACUSE`" length="7" />
-    <property name="FechaL" type="DateTime" column="`FECHA_L`" length="7" />
-    <property name="FechaReal" type="DateTime" column="`FECHA_REAL`" length="7" />
-    <property name="Iniciales" type="String" column="`INICIALES`" length="3" />
-    <property name="IRev" type="String" column="`IREV`" length="1" />
-    <property name="Medio" type="String" column="`MEDIO`" length="3" />
-    <property name="MedioAcuse" type="String" column="`MEDIO_ACUSE`" length="3" />
-    <property name="Persona" type="String" column="`PERSONA`" length="254" />
-    <property name="Receptor" type="String" column="`RECEPTOR`" length="3" />
-    <property name="Referencia" type="String" column="`REFERENCIA`" length="600" />
-    <property name="DescripcionResumen" type="String" column="`RESUMEN`" length="254" />
-    <property name="Salida" type="Double" column="`SALIDA`" length="22" />
-    <property name="Anexo" type="String" column="`XANEXO`" length="2000" />
-    <property name="AnexoFecha" type="DateTime" column="`XANEXO_FECHA`" length="7" />
-    <property name="AnexoMedio" type="String" column="`XANEXO_MEDIO`" length="3" />
-    <property name="AnexoTracking" type="String" column="`XANEXO_TRACKING`" length="2000" />
-    <property name="Tracking" type="String" column="`XTRACKING`" length="2000" />
-
-    <bag name="Justificaciones" table="FAC_ASO_JUST" lazy="false">
+    <bag name="Justificaciones" table="FAC_ASO_JUST">
       <key column="CCARTA"/>
       <composite-element class="Justificacion">
         <parent name="Carta"/>

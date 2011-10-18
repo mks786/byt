@@ -152,6 +152,38 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
 
             return retorno;
         }
+        /// <summary>
+        /// Método que consulta un asociado con todas sus dependencias
+        /// </summary>
+        /// <returns>Asociado completo</returns>
+        public static Asociado ConsultarAsociadoConTodo(Asociado asociado)
+        {
+            Asociado retorno;
+
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                ComandoBase<Asociado> comando = FabricaComandosAsociado.ObtenerComandoConsultarAsociadoConTodo(asociado);
+                comando.Ejecutar();
+                retorno = comando.Receptor.ObjetoAlmacenado;
+
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (ApplicationException ex)
+            {
+                logger.Error(ex.Message);
+                throw ex;
+            }
+
+            return retorno;
+        }
     }
 }
 

@@ -121,6 +121,10 @@
     <value>Select distinct(a) from Agente a left join fetch a.Poderes order by a.Id</value>
     <comment>Selecciona todos los agentes y sus objetos</comment>
   </data>
+  <data name="ObtenerAsociadoConTodo" xml:space="preserve">
+    <value>Select distinct(a) from Asociado a left join fetch a.Justificaciones where a.Id = '{0}' order by a.Id</value>
+    <comment>Selecciona el asociado con todas sus listas</comment>
+  </data>
   <data name="ObtenerAuditoriaPorFKYTabla" xml:space="preserve">
     <value>Select a from Auditoria a where a.Fk = '{0}' and a.Tabla = '{1}'</value>
     <comment>Selecciona todas las auditorias que poseen una FK en una tabla espacifica</comment>
