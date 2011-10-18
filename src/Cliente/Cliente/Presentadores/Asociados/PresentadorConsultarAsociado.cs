@@ -84,6 +84,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
                     Recursos.Ids.ConsultarAsociado);
 
 
+                this._ventana.Asociado = this._asociadoServicios.ConsultarAsociadoConTodo((Asociado)this._ventana.Asociado);
                 Asociado asociado = (Asociado)this._ventana.Asociado;
 
                 this._ventana.SetTipoPersona = BuscarTipoPersona(asociado.TipoPersona);
@@ -264,6 +265,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
             if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
                 logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
+
+
 
             this.Navegar(new ListaJustificaciones(this._ventana.Asociado));
 

@@ -211,8 +211,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
                 if (!string.IsNullOrEmpty(this._ventana.TipoPersona.ToString()) && !this._ventana.TipoPersona.Equals(' '))
                 {
                     asociadosFiltrados = from a in asociadosFiltrados
-                                         where a.TipoPersona != null &&
-                                         a.TipoPersona == this._ventana.TipoPersona
+                                         where a.TipoPersona == this._ventana.TipoPersona
                                          select a;
                 }
 

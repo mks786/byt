@@ -111,5 +111,11 @@ namespace Trascend.Bolet.Servicios.Implementacion
 
             return auditorias;
         }
+
+
+        public Asociado ConsultarAsociadoConTodo(Asociado asociado)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -44,12 +44,17 @@
     <property name="AnexoTracking" type="String" column="`XANEXO_TRACKING`" length="2000" />
     <property name="Tracking" type="String" column="`XTRACKING`" length="2000" />
 
-    <set name="Justificaciones" inverse="true">
-      <key>
-        <column name="CCARTA"/>
-      </key>
-      <one-to-many class="Justificacion"/>
-    </set>
+    <bag name="Justificaciones" table="FAC_ASO_JUST" lazy="false">
+      <key column="CCARTA"/>
+      <composite-element class="Justificacion">
+        <parent name="Carta"/>
+        <many-to-one name="Asociado" class="Asociado" column="CASOCIADO"/>
+        <property name="Fecha" column="FECHA" type="DateTime"/>
+        <many-to-one name="Concepto" class="Concepto">
+          <column name="CCONCEPTO"/>
+        </many-to-one>
+      </composite-element>
+    </bag>
     
   </class>
 </hibernate-mapping>

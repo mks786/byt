@@ -7,5 +7,6 @@ namespace Trascend.Bolet.ObjetosComunes.ContratosServicios
     public interface IAsociadoServicios: IServicioBase<Asociado>
     {
         IList<Auditoria> AuditoriaPorFkyTabla(Auditoria auditoria);
+        Asociado ConsultarAsociadoConTodo(Asociado asociado);
     }
 }

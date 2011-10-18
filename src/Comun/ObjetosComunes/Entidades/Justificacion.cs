@@ -13,7 +13,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         private Concepto _concepto;
         private DateTime? _fecha;
         private Asociado _asociado;
-        private Carta _id;
+        private Carta _carta;
 
         #endregion
 
@@ -24,14 +24,6 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         /// </summary>
         public Justificacion() { }
 
-        /// <summary>
-        /// Constructor que inicializa el id de la Justificacion
-        /// </summary>
-        /// <param name="id">Id del Poder</param>
-        public Justificacion(Carta id)
-        {
-            this._id = id;
-        }
 
         #endregion
 
@@ -88,10 +80,10 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         }
 
 
-        public virtual Carta Id
+        public virtual Carta Carta
         {
-            get { return _id; }
-            set { _id = value; }
+            get { return _carta; }
+            set { _carta = value; }
         }
 
 

@@ -229,6 +229,10 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
             set { _fechaD = value; }
         }
 
+        /// <summary>
+        /// Propiedad que asigna u obtiene la lista de justificaciones
+        /// de un asociado
+        /// </summary>
         public virtual IList<Justificacion> Justificaciones
         {
             get { return _justificaciones; }
