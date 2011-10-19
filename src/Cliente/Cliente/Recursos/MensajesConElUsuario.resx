@@ -336,4 +336,7 @@
   <data name="ContactoInsertado" xml:space="preserve">
     <value>Contacto insertado con éxito</value>
   </data>
+  <data name="ConfirmacionEliminarJustificacion" xml:space="preserve">
+    <value>¿Seguro que desea eliminar la justificacion?</value>
+  </data>
 </root>

@@ -80,6 +80,32 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
         }
 
         /// <summary>
+        /// Metodo que verifica si existe una entidad
+        /// </summary>
+        /// <param name="entidad">Entidad a verificar</param>
+        /// <returns>True si existe, false en caso contrario</returns>
+        public bool VerificarExistencia(T entidad)
+        {
+            bool existe;
+
+            try
+            {
+                existe = Session.Contains(entidad);
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                throw new ApplicationException(Recursos.Errores.ExObtenerPorId);
+            }
+            finally
+            {
+                Session.Close();
+            }
+
+            return existe;
+        }
+
+        /// <summary>
         /// Método que obtiene el elemento de la entidad por su id y 
         /// lo bloquea hasta que sea actualizado
         /// </summary>

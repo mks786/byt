@@ -89,8 +89,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.Justificaciones
 
         private void _btnEliminar_Click(object sender, RoutedEventArgs e)
         {
-            //if (MessageBoxResult.Yes == MessageBox.Show(Recursos.MensajesConElUsuario.ConfirmacionEliminarPoder, "Eliminar Poder", MessageBoxButton.YesNo, MessageBoxImage.Question))
-            //    this._presentador.Eliminar();
+            if (MessageBoxResult.Yes == MessageBox.Show(Recursos.MensajesConElUsuario.ConfirmacionEliminarJustificacion, "Eliminar Justificacion", MessageBoxButton.YesNo, MessageBoxImage.Question))
+                this._presentador.Eliminar();
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)

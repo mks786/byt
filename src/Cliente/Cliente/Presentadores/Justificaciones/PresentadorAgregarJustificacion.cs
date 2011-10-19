@@ -21,8 +21,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Justificaciones
     {
         private IAgregarJustificacion _ventana;
         private IConceptoServicios _conceptoServicios;
-        private IJustificacionServicios _justificacionServicios;
-        private Asociado _asociado;
+        private IAsociadoServicios _asociadoServicios;
         private static PaginaPrincipal _paginaPrincipal = PaginaPrincipal.ObtenerInstancia;
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
@@ -35,12 +34,15 @@ namespace Trascend.Bolet.Cliente.Presentadores.Justificaciones
             try
             {
                 this._ventana = ventana;
-                this._ventana.Justificacion = new Justificacion();
-                this._asociado = (Asociado)asociado;
+                Carta carta = new Carta();
+                Justificacion justificacion = new Justificacion();
+                justificacion.Carta = carta;
+                justificacion.Asociado = (Asociado)asociado;
+                this._ventana.Justificacion = justificacion;
                 this._conceptoServicios = (IConceptoServicios)Activator.GetObject(typeof(IConceptoServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["ConceptoServicios"]);
-                this._justificacionServicios = (IJustificacionServicios)Activator.GetObject(typeof(IJustificacionServicios),
-                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["JustificacionServicios"]);
+                this._asociadoServicios = (IAsociadoServicios)Activator.GetObject(typeof(IAsociadoServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["AsociadoServicios"]);
             }
             catch (Exception ex)
             {
@@ -106,12 +108,17 @@ namespace Trascend.Bolet.Cliente.Presentadores.Justificaciones
             {
                 Justificacion justificacion = (Justificacion)this._ventana.Justificacion;
                 justificacion.Concepto = !((Concepto)this._ventana.Concepto).Id.Equals("NGN") ? (Concepto)this._ventana.Concepto : null;
-                justificacion.Asociado = (Asociado)this._asociado;
 
-                bool exitoso = this._justificacionServicios.InsertarOModificar(justificacion, UsuarioLogeado.Hash);
+                Asociado asociado = new Asociado();
+                asociado = ((Justificacion)this._ventana.Justificacion).Asociado;
+
+                asociado.Justificaciones.Add(justificacion);
+                asociado.Operacion = "MODIFY";
+
+                bool exitoso = this._asociadoServicios.InsertarOModificar(asociado, UsuarioLogeado.Hash);
 
                 if (exitoso)
-                    this.Navegar(new ListaJustificaciones(this._asociado));
+                    this.Navegar(new ListaJustificaciones(justificacion.Asociado));
             }
             catch (ApplicationException ex)
             {

@@ -1,21 +1,15 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Configuration;
 using System.Net.Sockets;
 using System.Runtime.Remoting;
 using System.Windows.Input;
 using NLog;
 using Trascend.Bolet.Cliente.Contratos.Justificaciones;
+using Trascend.Bolet.Cliente.Ventanas.Asociados;
 using Trascend.Bolet.Cliente.Ventanas.Principales;
 using Trascend.Bolet.ObjetosComunes.ContratosServicios;
 using Trascend.Bolet.ObjetosComunes.Entidades;
-using System.Collections.Generic;
-using Trascend.Bolet.Cliente.Ventanas.Auditorias;
-using System.ComponentModel;
-using System.Windows.Controls;
-using System.Windows.Documents;
-using Trascend.Bolet.Cliente.Ayuda;
-using System.Linq;
-using Trascend.Bolet.Cliente.Ventanas.Poderes;
 
 namespace Trascend.Bolet.Cliente.Presentadores.Justificaciones
 {
@@ -23,7 +17,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Justificaciones
     {
         private IConsultarJustificacion _ventana;
         private IConceptoServicios _conceptoServicios;
-        private IJustificacionServicios _justificacionServicios;
+        private IAsociadoServicios _asociadoServicios;
         private static PaginaPrincipal _paginaPrincipal = PaginaPrincipal.ObtenerInstancia;
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
@@ -37,8 +31,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Justificaciones
             {
                 this._ventana = ventana;
                 this._ventana.Justificacion = justificacion;
-                this._justificacionServicios = (IJustificacionServicios)Activator.GetObject(typeof(IJustificacionServicios),
-                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["JustificacionServicios"]);
+                this._asociadoServicios = (IAsociadoServicios)Activator.GetObject(typeof(IAsociadoServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["AsociadoServicios"]);
                 this._conceptoServicios = (IConceptoServicios)Activator.GetObject(typeof(IConceptoServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["ConceptoServicios"]);
             }
@@ -64,6 +58,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Justificaciones
 
                 this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleConsultarJustificacion,
                     Recursos.Ids.ConsultarJustificaciones);
+
                 IList<Concepto> conceptos = this._conceptoServicios.ConsultarTodos();
                 this._ventana.Conceptos = conceptos;
                 this._ventana.Concepto = this.BuscarConcepto(conceptos,((Justificacion)this._ventana.Justificacion).Concepto);
@@ -109,13 +104,16 @@ namespace Trascend.Bolet.Cliente.Presentadores.Justificaciones
                 else
                 {
                     Justificacion justificacion = (Justificacion)this._ventana.Justificacion;
-                    justificacion.Concepto = (Concepto)this._ventana.Concepto;
-                    bool exitoso = this._justificacionServicios.InsertarOModificar(justificacion, UsuarioLogeado.Hash);
+                    justificacion.Concepto = !((Concepto)this._ventana.Concepto).Id.Equals("NGN") ? (Concepto)this._ventana.Concepto : null;
+
+                    Asociado asociado = new Asociado();
+                    asociado = ((Justificacion)this._ventana.Justificacion).Asociado;
+
+                    asociado.Operacion = "MODIFY";
+
+                    bool exitoso = this._asociadoServicios.InsertarOModificar(asociado, UsuarioLogeado.Hash);
                     if (exitoso)
-                    {
-                        _paginaPrincipal.MensajeUsuario = Recursos.MensajesConElUsuario.JustificacionModificado;
-                        this.Navegar(_paginaPrincipal);
-                    }
+                        this.Navegar(new ListaJustificaciones(justificacion.Asociado));
                 }
 
                 #region trace
@@ -145,52 +143,63 @@ namespace Trascend.Bolet.Cliente.Presentadores.Justificaciones
             }
         }
 
-        //public void Eliminar()
-        //{
-        //    try
-        //    {
-        //        #region trace
-        //        if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
-        //            logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
-        //        #endregion
-        //        Poder poder = (Poder)this._ventana.Poder;
+        public void Eliminar()
+        {
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
 
-        //        poder.Boletin = (Boletin)this._ventana.Boletin;
-        //        poder.Operacion = "DELETE";
+                Justificacion justificacion = (Justificacion)this._ventana.Justificacion;
 
-        //        bool exitoso = this._justificacionServicios.Eliminar(poder, UsuarioLogeado.Hash);
-        //        if (exitoso)
-        //        {
-        //            _paginaPrincipal.MensajeUsuario = Recursos.MensajesConElUsuario.PoderEliminado;
-        //            this.Navegar(_paginaPrincipal);
-        //        }
+                Asociado asociado = new Asociado();
+                asociado = ((Justificacion)this._ventana.Justificacion).Asociado;
 
-        //        #region trace
-        //        if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
-        //            logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
-        //        #endregion
-        //    }
-        //    catch (ApplicationException ex)
-        //    {
-        //        logger.Error(ex.Message);
-        //        this.Navegar(ex.Message, true);
-        //    }
-        //    catch (RemotingException ex)
-        //    {
-        //        logger.Error(ex.Message);
-        //        this.Navegar(Recursos.MensajesConElUsuario.ErrorRemoting, true);
-        //    }
-        //    catch (SocketException ex)
-        //    {
-        //        logger.Error(ex.Message);
-        //        this.Navegar(Recursos.MensajesConElUsuario.ErrorConexionServidor, true);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        logger.Error(ex.Message);
-        //        this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
-        //    }
-        //}
+                asociado.Operacion = "MODIFY";
+
+                //Justificacion auxJustificacion;
+                //foreach (Justificacion justificacionAEliminar in asociado.Justificaciones)
+                //{
+                //    if (justificacionAEliminar.Carta.Id == justificacion.Carta.Id)
+                //    {
+                //        auxJustificacion = justificacionAEliminar;
+                //    }
+                //}
+
+                asociado.Justificaciones.Remove(justificacion);
+
+                bool exitoso = this._asociadoServicios.InsertarOModificar(asociado, UsuarioLogeado.Hash);
+                if (exitoso)
+                    this.Navegar(new ListaJustificaciones(justificacion.Asociado));
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (ApplicationException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(ex.Message, true);
+            }
+            catch (RemotingException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorRemoting, true);
+            }
+            catch (SocketException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorConexionServidor, true);
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
+            }
+        }
 
         //public void Auditoria()
         //{
