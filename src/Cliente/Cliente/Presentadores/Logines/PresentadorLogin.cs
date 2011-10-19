@@ -8,6 +8,7 @@ using Trascend.Bolet.Cliente.Ventanas.Principales;
 using Trascend.Bolet.ObjetosComunes.ContratosServicios;
 using Trascend.Bolet.ObjetosComunes.Entidades;
 using System.Windows.Input;
+using System.Collections.Generic;
 
 namespace Trascend.Bolet.Cliente.Presentadores.Logines
 {
@@ -50,7 +51,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Logines
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
-
+                
                 if (!string.IsNullOrEmpty(this._ventana.Id) && !string.IsNullOrEmpty(this._ventana.Password))
                 {
                     Usuario usuario = new Usuario();

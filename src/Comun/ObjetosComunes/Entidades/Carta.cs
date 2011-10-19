@@ -37,6 +37,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         private DateTime? _fechaReal;
         private DateTime? _fechaD;
         private IList<Justificacion> _justificaciones;
+        private IList<Contacto> _contactos;
 
         #endregion
 
@@ -50,7 +51,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         /// <summary>
         /// Constructor que inicializa el Id de la carta
         /// </summary>
-        /// <param name="id">Id del Agente</param>
+        /// <param name="id">Id de la carta</param>
         public Carta(int id)
         {
             this._id = id;
@@ -237,6 +238,12 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         {
             get { return _justificaciones; }
             set { _justificaciones = value; }
+        }
+
+        public virtual IList<Contacto> Contactos
+        {
+            get { return _contactos; }
+            set { _contactos = value; }
         }
 
         #endregion

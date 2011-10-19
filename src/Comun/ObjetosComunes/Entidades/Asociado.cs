@@ -18,7 +18,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         private string _nit;
         private Idioma _idioma;
         private Moneda _moneda;
-        private int _descuento;
+        private float _descuento;
         private string _telefono1;
         private string _telefono2;
         private string _telefono3;
@@ -41,6 +41,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         private DetallePago _detallePago;
         private string _operacion;
         private IList<Justificacion> _justificaciones;
+        private IList<Contacto> _contactos;
         private IList<Carta> _cartas;
 
         #endregion
@@ -187,7 +188,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         /// <summary>
         /// Propiedad que asigna u obtiene el descuento del asociado
         /// </summary>
-        public virtual int Descuento
+        public virtual float Descuento
         {
             get { return _descuento; }
             set { _descuento = value; }
@@ -329,7 +330,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         {
             get
             {
-                if (this.EdoCuenta != null && this.EdoCuenta.Equals('T'))
+                if (this.EdoCuenta.Equals('T'))
                     return true;
                 else
                     return false;
@@ -390,7 +391,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         {
             get
             {
-                if (this.PendienteStatement != null && this.PendienteStatement.Equals('T'))
+                if (this.PendienteStatement.Equals('T'))
                     return true;
                 else
                     return false;
@@ -420,7 +421,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         {
             get
             {
-                if (this.Isf != null && this.Isf.Equals('T'))
+                if (this.Isf.Equals('T'))
                     return true;
                 else
                     return false;
@@ -450,7 +451,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         {
             get
             {
-                if (this.Alerta != null && this.Alerta.Equals('T'))
+                if (this.Alerta.Equals('T'))
                     return true;
                 else
                     return false;
@@ -519,6 +520,11 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
             set { _justificaciones = value; }
         }
 
+        public virtual IList<Contacto> Contactos
+        {
+            get { return _contactos; }
+            set { _contactos = value; }
+        }
 
         public virtual IList<Carta> Cartas
         {

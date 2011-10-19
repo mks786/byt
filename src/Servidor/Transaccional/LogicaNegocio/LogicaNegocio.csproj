@@ -69,6 +69,7 @@
     <Compile Include="Controladores\ControladorAsociado.cs" />
     <Compile Include="Controladores\ControladorConcepto.cs" />
     <Compile Include="Controladores\ControladorJustificacion.cs" />
+    <Compile Include="Controladores\ControladorContacto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

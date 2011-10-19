@@ -80,7 +80,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         }
 
 
-        public virtual Carta Carta
+        public virtual Carta Carta  
         {
             get { return _carta; }
             set { _carta = value; }

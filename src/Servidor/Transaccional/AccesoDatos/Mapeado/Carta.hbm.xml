@@ -52,7 +52,22 @@
         </many-to-one>
       </composite-element>
     </bag>
-    
+
+    <!--<bag name="Contactos">
+      <key>
+        <column name="CNUMERO" />
+        <column name="CASOCIADO" />
+      </key>
+      <one-to-many class="Contacto" not-found="ignore"/>
+    </bag>-->
+    <bag name="Contactos" inverse="true">
+      <key>
+        <!-- foreign key -->
+        <column name="CNUMERO"/>
+      </key>
+      <one-to-many class="Contacto" not-found="ignore"/>
+    </bag>
+
   </class>
 </hibernate-mapping>
 

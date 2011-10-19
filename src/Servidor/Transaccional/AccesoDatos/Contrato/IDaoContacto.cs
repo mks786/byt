@@ -5,6 +5,6 @@ namespace Trascend.Bolet.AccesoDatos.Contrato
 {
     public interface IDaoContacto : IDaoBase<Contacto, int>
     {
-
+        IList<Contacto> ObtenerContactosPorAsociado(Asociado asociado);
     }
 }

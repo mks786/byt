@@ -7,7 +7,7 @@
     <id name="Id" column="CMONEDA" type="string"/>
     <property name="Descripcion" column="XMONEDA" type="string"/>
     <property name="Operacion" column="OPERACION" type="string"/>
-    <property name="Tasa" column="TASA" type="int"/>
+    <property name="Tasa" column="TASA" type="float"/>
   </class>
 </hibernate-mapping>
 

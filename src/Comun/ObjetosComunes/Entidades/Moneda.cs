@@ -11,7 +11,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         private string _id;
         private string _descripcion;
         private string _operacon;
-        private int _tasa;
+        private float? _tasa;
 
         #endregion
 
@@ -65,7 +65,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         /// <summary>
         /// Propiedad que asigna u obtiene la tasa de la moneda
         /// </summary>
-        public virtual int Tasa
+        public virtual float? Tasa
         {
             get { return _tasa; }
             set { _tasa = value; }

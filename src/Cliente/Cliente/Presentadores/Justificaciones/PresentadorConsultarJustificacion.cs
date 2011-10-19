@@ -60,6 +60,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Justificaciones
                     Recursos.Ids.ConsultarJustificaciones);
 
                 IList<Concepto> conceptos = this._conceptoServicios.ConsultarTodos();
+                Concepto primerConcepto = new Concepto();
+                primerConcepto.Descripcion = string.Empty;
+                primerConcepto.Id = "NGN";
+                conceptos.Insert(0, primerConcepto);
                 this._ventana.Conceptos = conceptos;
                 this._ventana.Concepto = this.BuscarConcepto(conceptos,((Justificacion)this._ventana.Justificacion).Concepto);
                 this._ventana.FocoPredeterminado();
@@ -104,7 +108,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Justificaciones
                 else
                 {
                     Justificacion justificacion = (Justificacion)this._ventana.Justificacion;
-                    justificacion.Concepto = !((Concepto)this._ventana.Concepto).Id.Equals("NGN") ? (Concepto)this._ventana.Concepto : null;
+
+                    if ((Concepto)this._ventana.Concepto != null)
+                        justificacion.Concepto = !((Concepto)this._ventana.Concepto).Id.Equals("NGN") ? (Concepto)this._ventana.Concepto : null;
 
                     Asociado asociado = new Asociado();
                     asociado = ((Justificacion)this._ventana.Justificacion).Asociado;

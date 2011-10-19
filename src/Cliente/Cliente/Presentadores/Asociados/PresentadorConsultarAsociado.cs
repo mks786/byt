@@ -27,6 +27,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
         private ITarifaServicios _tarifaServicios;
         private ITipoClienteServicios _tipoClienteServicios;
         private IPaisServicios _paisServicios;
+        private IContactoServicios _contactoServicios;
         private static PaginaPrincipal _paginaPrincipal = PaginaPrincipal.ObtenerInstancia;
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
@@ -58,6 +59,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["TipoClienteServicios"]);
                 this._paisServicios = (IPaisServicios)Activator.GetObject(typeof(IPaisServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["PaisServicios"]);
+                this._contactoServicios = (IContactoServicios)Activator.GetObject(typeof(IContactoServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["ContactoServicios"]);
             }
             catch (Exception ex)
             {
@@ -85,7 +88,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
 
 
                 this._ventana.Asociado = this._asociadoServicios.ConsultarAsociadoConTodo((Asociado)this._ventana.Asociado);
+
                 Asociado asociado = (Asociado)this._ventana.Asociado;
+
+                asociado.Contactos = this._contactoServicios.ConsultarTodos();
 
                 this._ventana.SetTipoPersona = BuscarTipoPersona(asociado.TipoPersona);
 

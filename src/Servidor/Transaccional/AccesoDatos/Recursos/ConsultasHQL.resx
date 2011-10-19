@@ -129,6 +129,10 @@
     <value>Select a from Auditoria a where a.Fk = '{0}' and a.Tabla = '{1}'</value>
     <comment>Selecciona todas las auditorias que poseen una FK en una tabla espacifica</comment>
   </data>
+  <data name="ObtenerContactosPorAsociado" xml:space="preserve">
+    <value>Select c from Contacto c where c.Asociado.id = '{0}'</value>
+    <comment>Selecciona todos los contactos de un asociado</comment>
+  </data>
   <data name="ObtenerPoderesPorInteresado" xml:space="preserve">
     <value>Select p from Poder p where p.Interesado.Id = '{0}'</value>
     <comment>Selecciona todas los poderes que posee un interesado</comment>

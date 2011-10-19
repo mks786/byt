@@ -88,6 +88,15 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Select c from Contacto c where c.Asociado.id = &apos;{0}&apos;.
+        /// </summary>
+        public static string ObtenerContactosPorAsociado {
+            get {
+                return ResourceManager.GetString("ObtenerContactosPorAsociado", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select p from Poder p where p.Interesado.Id = &apos;{0}&apos;.
         /// </summary>
         public static string ObtenerPoderesPorInteresado {

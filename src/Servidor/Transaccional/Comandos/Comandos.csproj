@@ -47,6 +47,8 @@
     <Compile Include="Comandos\ComandosAsociado\ComandoConsultarAsociadoConTodo.cs" />
     <Compile Include="Comandos\ComandosAuditoria\ComandoAuditoriaPorFkyTabla.cs" />
     <Compile Include="Comandos\ComandosConcepto\ComandoConsultarTodosConceptos.cs" />
+    <Compile Include="Comandos\ComandosContacto\ComandoConsultarTodosContactos.cs" />
+    <Compile Include="Comandos\ComandosContacto\ComandoConsultarContactosPorAsociado.cs" />
     <Compile Include="Comandos\ComandosContador\ComandoConsultarPorIdContador.cs" />
     <Compile Include="Comandos\ComandosDetallePago\ComandoConsultarTodosDetallePagos.cs" />
     <Compile Include="Comandos\ComandosEstado\ComandoConsultarTodosEstados.cs" />
@@ -117,6 +119,7 @@
     <Compile Include="Comandos\ComandosUsuario\ComandoConsultarTodosUsuarios.cs" />
     <Compile Include="Comandos\ComandosUsuario\ComandoConsultarUsuarioPorID.cs" />
     <Compile Include="Comandos\ComandosUsuario\ComandoInsertarOModificarUsuario.cs" />
+    <Compile Include="Fabrica\FabricaComandosContacto.cs" />
     <Compile Include="Fabrica\FabricaComandosContadorFac.cs" />
     <Compile Include="Fabrica\FabricaComandosAsociado.cs" />
     <Compile Include="Fabrica\FabricaComandosJustificacion.cs" />
@@ -158,9 +161,7 @@
       <Name>AccesoDatos</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Comandos\ComandosContacto\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

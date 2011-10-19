@@ -4,14 +4,14 @@
                    namespace="Trascend.Bolet.ObjetosComunes.Entidades">
 
   <class name="Asociado" table="FAC_ASOCIADOS">
-    <id name="Id" column="CASOCIADO" />
+    <id name="Id" column="CASOCIADO"/>
     <property name="Nombre" column="XASOCIADO" type="string"/>
     <property name="TipoPersona" column="IPERSONA" type="char"/>
     <property name="Domicilio" column="XDOMICILIO" type="string"/>
     <property name="Contribuyente" column="ICONTRIBUYENTE" type="string"/>
     <property name="Rif" column="XRIF" type="string"/>
     <property name="Nit" column="XNIT" type="string"/>
-    <property name="Descuento" column="PDESCUENTO" type="int"/>
+    <property name="Descuento" column="PDESCUENTO" type="float"/>
     <property name="Telefono1" column="XTELEFONO1" type="string"/>
     <property name="Telefono2" column="XTELEFONO2" type="string"/>
     <property name="Telefono3" column="XTELEFONO3" type="string"/>
@@ -61,7 +61,32 @@
       <key column="CODIGO"/>
       <one-to-many class="Carta" not-found="ignore"/>
     </bag>
-    
+
+    <!--<bag name="Contactos" inverse="true">
+      <key>
+        --><!-- foreign key --><!--
+        <column name="CNUMERO"/>
+      </key>
+      <one-to-many class="Contacto" not-found="ignore"/>
+    </bag>-->
+
+    <bag name="Contactos" table="FAC_CONTACTOS" inverse="true" generic="true">
+      <key column="CNUMERO"/>
+      <composite-element class="Contacto">
+        <many-to-one name="Asociado" class="Asociado" column="CASOCIADO"/>
+      </composite-element>
+    </bag>
+
+
+
+    <!--<bag name="Contactos">
+      <key>    
+        <column name="CNUMERO" />
+        <column name="CASOCIADO" />
+      </key>
+      <one-to-many class="Contacto" not-found="ignore"/>
+    </bag>-->
+
     <bag name="Justificaciones" table="FAC_ASO_JUST">
       <key column="CASOCIADO"/>
       <composite-element class="Justificacion">

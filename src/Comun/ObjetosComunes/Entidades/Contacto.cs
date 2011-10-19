@@ -24,10 +24,9 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
 
         private string _cargo;
 
-        private string _correspondencia;
+        private Carta _carta;
         
         private string _departamento;
-
 
         #endregion
 
@@ -39,7 +38,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         public Contacto() { }
 
         /// <summary>
-        /// Constructor que inicializa el Id del Agente
+        /// Constructor que inicializa el Id del Contacto
         /// </summary>
         /// <param name="id">Id del Agente</param>
         public Contacto(int id)
@@ -51,6 +50,22 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
 
         #region Propiedades
 
+        public override bool Equals(object obj)
+        {
+            if ((this.Id == ((Contacto)obj).Id) && (this.Asociado.Id == ((Contacto)obj).Asociado.Id))
+                return true;
+            return false;
+        }
+
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
+        }
+
+        public override string ToString()
+        {
+            return base.ToString();
+        }
 
         public virtual Asociado Asociado
         {
@@ -100,10 +115,10 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
             get { return _cargo; }
             set { _cargo = value; }
         }
-        public virtual string Correspondencia
+        public virtual Carta Carta
         {
-            get { return _correspondencia; }
-            set { _correspondencia = value; }
+            get { return _carta; }
+            set { _carta = value; }
         }
 
         #endregion
