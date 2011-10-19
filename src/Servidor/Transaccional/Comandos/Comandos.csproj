@@ -46,6 +46,7 @@
     <Compile Include="Comandos\ComandosAgente\ComandoConsultarAgentesYPoderes.cs" />
     <Compile Include="Comandos\ComandosAsociado\ComandoConsultarAsociadoConTodo.cs" />
     <Compile Include="Comandos\ComandosAuditoria\ComandoAuditoriaPorFkyTabla.cs" />
+    <Compile Include="Comandos\ComandosCarta\ComandoVerificarExistenciaCarta.cs" />
     <Compile Include="Comandos\ComandosConcepto\ComandoConsultarTodosConceptos.cs" />
     <Compile Include="Comandos\ComandosContacto\ComandoConsultarTodosContactos.cs" />
     <Compile Include="Comandos\ComandosContacto\ComandoConsultarContactosPorAsociado.cs" />
@@ -120,6 +121,7 @@
     <Compile Include="Comandos\ComandosUsuario\ComandoConsultarUsuarioPorID.cs" />
     <Compile Include="Comandos\ComandosUsuario\ComandoInsertarOModificarUsuario.cs" />
     <Compile Include="Fabrica\FabricaComandosContacto.cs" />
+    <Compile Include="Fabrica\FabricaComandosCarta.cs" />
     <Compile Include="Fabrica\FabricaComandosContadorFac.cs" />
     <Compile Include="Fabrica\FabricaComandosAsociado.cs" />
     <Compile Include="Fabrica\FabricaComandosJustificacion.cs" />

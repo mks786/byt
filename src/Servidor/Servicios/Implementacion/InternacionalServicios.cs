@@ -90,5 +90,11 @@ namespace Trascend.Bolet.Servicios.Implementacion
             return exitoso;
         }
 
+
+
+        public bool VerificarExistencia(Internacional entidad)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

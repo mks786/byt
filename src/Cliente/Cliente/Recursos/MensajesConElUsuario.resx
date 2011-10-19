@@ -339,4 +339,7 @@
   <data name="ConfirmacionEliminarJustificacion" xml:space="preserve">
     <value>¿Seguro que desea eliminar la justificacion?</value>
   </data>
+  <data name="ErrorCartaNoEncontrada" xml:space="preserve">
+    <value>La carta que introdujo no esta en el sistema.</value>
+  </data>
 </root>

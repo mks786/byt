@@ -300,5 +300,14 @@ namespace Trascend.Bolet.AccesoDatos.Fabrica
         {
             return new DaoContactoNHibernate();
         }
+
+        /// <summary>
+        /// Método que devuelve el DaoCarta
+        /// </summary>
+        /// <returns>IDaoCarta</returns>
+        public override IDaoCarta ObtenerDaoCarta()
+        {
+            return new DaoCartaNHibernate();
+        }
     }
 }

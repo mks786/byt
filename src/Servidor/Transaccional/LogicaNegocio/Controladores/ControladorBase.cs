@@ -70,8 +70,7 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
                     break;
                 }
         }
-
-
+        
         /// <summary>
         /// Metodo que devuleve la lista de auditorias que presenta una entidad
         /// </summary>

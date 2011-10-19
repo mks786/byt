@@ -90,5 +90,11 @@ namespace Trascend.Bolet.Servicios.Implementacion
             return exitoso;
         }
 
+
+
+        public bool VerificarExistencia(TipoFecha entidad)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

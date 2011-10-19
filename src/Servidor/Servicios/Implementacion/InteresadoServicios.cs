@@ -99,5 +99,11 @@ namespace Trascend.Bolet.Servicios.Implementacion
 
             return auditorias;
         }
+
+
+        public bool VerificarExistencia(Interesado entidad)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

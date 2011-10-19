@@ -313,6 +313,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to La carta que introdujo no esta en el sistema..
+        /// </summary>
+        internal static string ErrorCartaNoEncontrada {
+            get {
+                return ResourceManager.GetString("ErrorCartaNoEncontrada", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to No se ha podido establecer conexión con el servidor.
         /// </summary>
         internal static string ErrorConexionServidor {

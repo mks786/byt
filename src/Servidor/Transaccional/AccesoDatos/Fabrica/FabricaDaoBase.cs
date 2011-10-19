@@ -203,5 +203,11 @@ namespace Trascend.Bolet.AccesoDatos.Fabrica
         /// </summary>
         /// <returns>IDaoContacto</returns>
         public abstract IDaoContacto ObtenerDaoContacto();
+
+        /// <summary>
+        /// Método que devuelve el DaoCarta del manejador que se esté utilizando
+        /// </summary>
+        /// <returns>IDaoCarta</returns>
+        public abstract IDaoCarta ObtenerDaoCarta();
     }
 }

@@ -90,5 +90,11 @@ namespace Trascend.Bolet.Servicios.Implementacion
 
             return exitoso;
         }
+
+
+        public bool VerificarExistencia(Objeto entidad)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

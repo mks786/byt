@@ -9,6 +9,8 @@ namespace Trascend.Bolet.Cliente.Contratos.Justificaciones
 
         void BorrarId();
 
+        void mensaje(string mensaje);
+
         object Conceptos { get; set; }
 
         object Concepto { get; set; }

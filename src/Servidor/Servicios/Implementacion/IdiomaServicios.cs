@@ -54,5 +54,11 @@ namespace Trascend.Bolet.Servicios.Implementacion
         {
             throw new NotImplementedException();
         }
+
+
+        public bool VerificarExistencia(Idioma entidad)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

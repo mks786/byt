@@ -117,5 +117,11 @@ namespace Trascend.Bolet.Servicios.Implementacion
 
             return poderes;
         }
+
+
+        public bool VerificarExistencia(Poder entidad)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

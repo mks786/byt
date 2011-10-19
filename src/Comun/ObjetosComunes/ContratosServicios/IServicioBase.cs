@@ -14,5 +14,7 @@ namespace Trascend.Bolet.ObjetosComunes.ContratosServicios
         bool InsertarOModificar(Entidad entidad, int hash);
 
         bool Eliminar(Entidad entidad, int hash);
+
+        bool VerificarExistencia(Entidad entidad);
     }
 }

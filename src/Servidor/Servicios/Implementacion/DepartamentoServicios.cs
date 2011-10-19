@@ -48,5 +48,11 @@ namespace Trascend.Bolet.Servicios.Implementacion
         {
             throw new NotImplementedException();
         }
+
+
+        public bool VerificarExistencia(Departamento entidad)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

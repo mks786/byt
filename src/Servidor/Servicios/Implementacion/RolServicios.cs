@@ -101,5 +101,11 @@ namespace Trascend.Bolet.Servicios.Implementacion
 
             return roles;
         }
+
+
+        public bool VerificarExistencia(Rol entidad)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

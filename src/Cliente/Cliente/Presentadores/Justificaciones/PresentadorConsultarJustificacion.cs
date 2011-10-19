@@ -165,15 +165,6 @@ namespace Trascend.Bolet.Cliente.Presentadores.Justificaciones
 
                 asociado.Operacion = "MODIFY";
 
-                //Justificacion auxJustificacion;
-                //foreach (Justificacion justificacionAEliminar in asociado.Justificaciones)
-                //{
-                //    if (justificacionAEliminar.Carta.Id == justificacion.Carta.Id)
-                //    {
-                //        auxJustificacion = justificacionAEliminar;
-                //    }
-                //}
-
                 asociado.Justificaciones.Remove(justificacion);
 
                 bool exitoso = this._asociadoServicios.InsertarOModificar(asociado, UsuarioLogeado.Hash);

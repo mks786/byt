@@ -22,6 +22,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Justificaciones
         private IAgregarJustificacion _ventana;
         private IConceptoServicios _conceptoServicios;
         private IAsociadoServicios _asociadoServicios;
+        private ICartaServicios _cartaServicios;
         private static PaginaPrincipal _paginaPrincipal = PaginaPrincipal.ObtenerInstancia;
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
@@ -43,6 +44,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Justificaciones
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["ConceptoServicios"]);
                 this._asociadoServicios = (IAsociadoServicios)Activator.GetObject(typeof(IAsociadoServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["AsociadoServicios"]);
+                this._cartaServicios = (ICartaServicios)Activator.GetObject(typeof(ICartaServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["CartaServicios"]);
             }
             catch (Exception ex)
             {
@@ -106,19 +109,28 @@ namespace Trascend.Bolet.Cliente.Presentadores.Justificaciones
         {
             try
             {
-                Justificacion justificacion = (Justificacion)this._ventana.Justificacion;
-                justificacion.Concepto = !((Concepto)this._ventana.Concepto).Id.Equals("NGN") ? (Concepto)this._ventana.Concepto : null;
+                if (this._cartaServicios.VerificarExistencia(((Justificacion)this._ventana.Justificacion).Carta))
+                {
+                    Justificacion justificacion = (Justificacion)this._ventana.Justificacion;
+                    justificacion.Concepto = !((Concepto)this._ventana.Concepto).Id.Equals("NGN") ? (Concepto)this._ventana.Concepto : null;
 
-                Asociado asociado = new Asociado();
-                asociado = ((Justificacion)this._ventana.Justificacion).Asociado;
+                    Asociado asociado = new Asociado();
+                    asociado = ((Justificacion)this._ventana.Justificacion).Asociado;
 
-                asociado.Justificaciones.Add(justificacion);
-                asociado.Operacion = "MODIFY";
+                    asociado.Justificaciones.Add(justificacion);
+                    asociado.Operacion = "MODIFY";
 
-                bool exitoso = this._asociadoServicios.InsertarOModificar(asociado, UsuarioLogeado.Hash);
+                    bool exitoso = this._asociadoServicios.InsertarOModificar(asociado, UsuarioLogeado.Hash);
 
-                if (exitoso)
-                    this.Navegar(new ListaJustificaciones(justificacion.Asociado));
+                    if (exitoso)
+                        this.Navegar(new ListaJustificaciones(justificacion.Asociado));
+                }
+                else
+                {
+                    this._ventana.mensaje(Recursos.MensajesConElUsuario.ErrorCartaNoEncontrada);
+                }
+
+
             }
             catch (ApplicationException ex)
             {

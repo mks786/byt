@@ -136,5 +136,11 @@ namespace Trascend.Bolet.Servicios.Implementacion
             }
             return asociadoConTodo;
         }
+
+
+        public bool VerificarExistencia(Asociado entidad)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

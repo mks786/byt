@@ -51,6 +51,12 @@ namespace Trascend.Bolet.Cliente.Ventanas.Justificaciones
             this._txtCarta.Focus();
         }
 
+
+        public void mensaje(string mensaje)
+        {
+            MessageBox.Show(mensaje, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+        }
+
         #endregion
 
 
@@ -86,6 +92,5 @@ namespace Trascend.Bolet.Cliente.Ventanas.Justificaciones
                 EstaCargada = true;
             }
         }
-
     }
 }

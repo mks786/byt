@@ -15,7 +15,7 @@ namespace Trascend.Bolet.AccesoDatos.Contrato
 
         bool Eliminar(T entidad);
 
-        bool VerificarExistencia(T entidad);
+        bool VerificarExistencia(Id id);
 
     }
 }

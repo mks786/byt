@@ -84,13 +84,17 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
         /// </summary>
         /// <param name="entidad">Entidad a verificar</param>
         /// <returns>True si existe, false en caso contrario</returns>
-        public bool VerificarExistencia(T entidad)
+        public bool VerificarExistencia(Id id)
         {
-            bool existe;
+            bool existe = false;
+            T entidad;
 
             try
             {
-                existe = Session.Contains(entidad);
+                entidad = Session.Get<T>(id);
+
+                if (entidad != null)
+                    existe = true;
             }
             catch (Exception ex)
             {

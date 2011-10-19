@@ -54,5 +54,11 @@ namespace Trascend.Bolet.Servicios.Implementacion
         {
             throw new NotImplementedException();
         }
+
+
+        public bool VerificarExistencia(Moneda entidad)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
