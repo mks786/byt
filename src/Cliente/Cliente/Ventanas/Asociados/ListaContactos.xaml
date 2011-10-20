@@ -9,7 +9,7 @@
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="560"/>
+            <ColumnDefinition Width="540"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
@@ -25,6 +25,9 @@
                       Style="{DynamicResource EstiloListView}">
                 <ListView.View>
                     <GridView>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Id}" Width="120">
+                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="Id" Content="{x:Static recurso:Etiquetas.lsvId}"/>
+                        </GridViewColumn>
                         <GridViewColumn DisplayMemberBinding="{Binding Path=Nombre}" Width="120">
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="Nombre" Content="{x:Static recurso:Etiquetas.lsvNombre}"/>
                         </GridViewColumn>
@@ -33,9 +36,6 @@
                         </GridViewColumn>
                         <GridViewColumn DisplayMemberBinding="{Binding Path=Telefono}" Width="150">
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="Telefono" Content="{x:Static recurso:Etiquetas.lsvTelefono}"/>
-                        </GridViewColumn>
-                        <GridViewColumn DisplayMemberBinding="{Binding Path=Email}" Width="150">
-                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="Email" Content="{x:Static recurso:Etiquetas.lsvFax}"/>
                         </GridViewColumn>
                     </GridView>
                 </ListView.View>

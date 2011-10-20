@@ -50,12 +50,26 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
 
         #region Propiedades
 
+
         public override bool Equals(object obj)
         {
-            if ((this.Id == ((Contacto)obj).Id) && (this.Asociado.Id == ((Contacto)obj).Asociado.Id))
+            if (obj == null)
+                return false;
+            var t = obj as Contacto;
+            if (t == null)
+                return false;
+            if ((Id == (t.Id)) && (Asociado.Id == (t.Asociado.Id)))
                 return true;
             return false;
+
         }
+
+        //public override bool Equals(object obj)
+        //{
+        //    if ((this.Id == ((Contacto)obj).Id) && (this.Asociado.Id == ((Contacto)obj).Asociado.Id))
+        //        return true;
+        //    return false;
+        //}
 
         public override int GetHashCode()
         {

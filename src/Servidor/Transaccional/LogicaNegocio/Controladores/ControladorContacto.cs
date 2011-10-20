@@ -73,6 +73,40 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
             }
             return retorno;
         }
+
+        /// <summary>
+        /// Método que inserta o modifica un Contacto
+        /// </summary>
+        /// <param name="agente">Contacto a insertar/modificar</param>
+        /// <param name="hash"></param>
+        /// <returns>True si la modificación fue exitosa, en caso contrario False</returns>
+        public static bool InsertarOModificar(Contacto contacto, int hash)
+        {
+            bool exitoso = false;
+
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                ComandoBase<bool> comando = FabricaComandosContacto.ObtenerComandoInsertarOModificar(contacto);
+                comando.Ejecutar();
+                exitoso = comando.Receptor.ObjetoAlmacenado;
+
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (ApplicationException ex)
+            {
+                logger.Error(ex.Message);
+                throw ex;
+            }
+            return exitoso;
+        }  
     }
 }
 

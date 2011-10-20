@@ -122,7 +122,7 @@
     <comment>Selecciona todos los agentes y sus objetos</comment>
   </data>
   <data name="ObtenerAsociadoConTodo" xml:space="preserve">
-    <value>Select distinct(a) from Asociado a left join fetch a.Justificaciones where a.Id = '{0}' order by a.Id</value>
+    <value>Select distinct(a) from Asociado a left outer join fetch a.Justificaciones where a.Id = '{0}' order by a.Id</value>
     <comment>Selecciona el asociado con todas sus listas</comment>
   </data>
   <data name="ObtenerAuditoriaPorFKYTabla" xml:space="preserve">

@@ -38,7 +38,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Contactos
                 this._txtCorrespondencia.IsEnabled = value;
                 this._cbxDepartamento.IsEnabled = value;
                 this._txtEmail.IsEnabled = value;
-                this._txtFuncion.IsEnabled = value;
+                this._cbxUso.IsEnabled = value;
             }
         }
 

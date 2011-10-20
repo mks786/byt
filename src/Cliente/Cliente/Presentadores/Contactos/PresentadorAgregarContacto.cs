@@ -15,7 +15,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Contactos
     {
         private IAgregarContacto _ventana;
         private IContactoServicios _contactoServicios;
+        private IAsociadoServicios _asociadoServicios;
+        private ICartaServicios _cartaServicios;
         private Asociado _asociado;
+        private Carta _carta;
         private static PaginaPrincipal _paginaPrincipal = PaginaPrincipal.ObtenerInstancia;
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
@@ -27,11 +30,21 @@ namespace Trascend.Bolet.Cliente.Presentadores.Contactos
         {
             try
             {
+
                 this._ventana = ventana;
                 this._asociado = (Asociado)asociado;
+                this._carta = new Carta();
                 this._ventana.Contacto = new Contacto();
+                ((Contacto)this._ventana.Contacto).Carta = this._carta;
+                ((Contacto)this._ventana.Contacto).Asociado = this._asociado;
+
+
                 this._contactoServicios = (IContactoServicios)Activator.GetObject(typeof(IContactoServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["ContactoServicios"]);
+                this._asociadoServicios = (IAsociadoServicios)Activator.GetObject(typeof(IAsociadoServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["AsociadoServicios"]);
+                this._cartaServicios = (ICartaServicios)Activator.GetObject(typeof(ICartaServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["CartaServicios"]);
             }
             catch (Exception ex)
             {
@@ -87,12 +100,17 @@ namespace Trascend.Bolet.Cliente.Presentadores.Contactos
         {
             try
             {
-                Contacto contacto = (Contacto)this._ventana.Contacto;
 
-                bool exitoso = this._contactoServicios.InsertarOModificar(contacto,UsuarioLogeado.Hash);
+                if (this._cartaServicios.VerificarExistencia(((Contacto)this._ventana.Contacto).Carta))
+                {
+                    Contacto contacto = (Contacto)this._ventana.Contacto;
 
-                if (exitoso)
-                    this.Navegar(Recursos.MensajesConElUsuario.AgenteInsertado,false);
+                    bool exitoso = this._contactoServicios.InsertarOModificar(contacto, UsuarioLogeado.Hash);
+
+                    if (exitoso)
+                        this.Navegar(Recursos.MensajesConElUsuario.AgenteInsertado, false);
+
+                }
             }
             catch (ApplicationException ex)
             {

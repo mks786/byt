@@ -826,4 +826,37 @@
   <data name="titleListaContactos" xml:space="preserve">
     <value>Contactos</value>
   </data>
+  <data name="cbiAdministracion" xml:space="preserve">
+    <value>Administración</value>
+  </data>
+  <data name="cbiAdministracionMarcasPatentes" xml:space="preserve">
+    <value>Administración, Marcas y Patentes</value>
+  </data>
+  <data name="cbiAdministracionYMarcas" xml:space="preserve">
+    <value>Administración y Marcas</value>
+  </data>
+  <data name="cbiAdministracionYPatentes" xml:space="preserve">
+    <value>Administración y Patentes</value>
+  </data>
+  <data name="cbiLegal" xml:space="preserve">
+    <value>Legal</value>
+  </data>
+  <data name="cbiMarcasYPatentes" xml:space="preserve">
+    <value>Marcas y Patentes</value>
+  </data>
+  <data name="cbiSoloAdministracion" xml:space="preserve">
+    <value>Sólo Administración</value>
+  </data>
+  <data name="cbiSoloEstadoDeCuenta" xml:space="preserve">
+    <value>Sólo Estado de Cuenta</value>
+  </data>
+  <data name="cbiSoloMarca" xml:space="preserve">
+    <value>Sólo Marcas</value>
+  </data>
+  <data name="cbiSoloPatente" xml:space="preserve">
+    <value>Sólo Patentes</value>
+  </data>
+  <data name="lblUso" xml:space="preserve">
+    <value>Uso:</value>
+  </data>
 </root>

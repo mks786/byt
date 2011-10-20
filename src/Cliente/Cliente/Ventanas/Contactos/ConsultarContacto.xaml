@@ -44,15 +44,24 @@
                     <Label>
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblDepartamento}"/>
                     </Label>
-                    <ComboBox Name="_cbxDepartamento" Width="150" SelectedIndex="0" IsEnabled="False">
+                    <ComboBox Name="_cbxDepartamento" Width="150" SelectedIndex="0" >
+                        <ComboBoxItem>
+                            <TextBlock Text="{x:Static recurso:Etiquetas.cbiNinguno}" Tag="NGN"/>
+                        </ComboBoxItem>
+                        <ComboBoxItem>
+                            <TextBlock Text="{x:Static recurso:Etiquetas.cbiLegal}"/>
+                        </ComboBoxItem>
                         <ComboBoxItem>
                             <TextBlock Text="{x:Static recurso:Etiquetas.cbiMarcas}"/>
                         </ComboBoxItem>
                         <ComboBoxItem>
                             <TextBlock Text="{x:Static recurso:Etiquetas.cbiPatentes}"/>
                         </ComboBoxItem>
+                        <ComboBoxItem>
+                            <TextBlock Text="{x:Static recurso:Etiquetas.cbiAdministracion}"/>
+                        </ComboBoxItem>
                     </ComboBox>
-                    
+
                 </WrapPanel>
                 <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
                     <Label>
@@ -74,9 +83,37 @@
                 </WrapPanel>
                 <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
                     <Label>
-                        <TextBlock Text="{x:Static recurso:Etiquetas.lblFuncion}"/>
+                        <TextBlock Text="{x:Static recurso:Etiquetas.lblUso}"/>
                     </Label>
-                    <TextBox Name="_txtFuncion" Width="150" MaxLength="255"  Text="{Binding Path=Funcion}" IsEnabled="False"/>
+                    <ComboBox Name="_cbxUso" Width="150" SelectedIndex="0" >
+                        <ComboBoxItem>
+                            <TextBlock Text="{x:Static recurso:Etiquetas.cbiNinguno}" Tag="NGN"/>
+                        </ComboBoxItem>
+                        <ComboBoxItem>
+                            <TextBlock Text="{x:Static recurso:Etiquetas.cbiSoloAdministracion}"/>
+                        </ComboBoxItem>
+                        <ComboBoxItem>
+                            <TextBlock Text="{x:Static recurso:Etiquetas.cbiSoloEstadoDeCuenta}"/>
+                        </ComboBoxItem>
+                        <ComboBoxItem>
+                            <TextBlock Text="{x:Static recurso:Etiquetas.cbiSoloMarca}"/>
+                        </ComboBoxItem>
+                        <ComboBoxItem>
+                            <TextBlock Text="{x:Static recurso:Etiquetas.cbiSoloPatente}"/>
+                        </ComboBoxItem>
+                        <ComboBoxItem>
+                            <TextBlock Text="{x:Static recurso:Etiquetas.cbiAdministracionYMarcas}"/>
+                        </ComboBoxItem>
+                        <ComboBoxItem>
+                            <TextBlock Text="{x:Static recurso:Etiquetas.cbiAdministracionYPatentes}"/>
+                        </ComboBoxItem>
+                        <ComboBoxItem>
+                            <TextBlock Text="{x:Static recurso:Etiquetas.cbiMarcasYPatentes}"/>
+                        </ComboBoxItem>
+                        <ComboBoxItem>
+                            <TextBlock Text="{x:Static recurso:Etiquetas.cbiAdministracionMarcasPatentes}"/>
+                        </ComboBoxItem>
+                    </ComboBox>
                 </WrapPanel>
                 <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
                     <Label>

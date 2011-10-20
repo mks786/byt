@@ -86,12 +86,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
                 this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleConsultarAsociado,
                     Recursos.Ids.ConsultarAsociado);
 
-
                 this._ventana.Asociado = this._asociadoServicios.ConsultarAsociadoConTodo((Asociado)this._ventana.Asociado);
 
-                Asociado asociado = (Asociado)this._ventana.Asociado;
+               Asociado asociado = (Asociado)this._ventana.Asociado;
 
-                asociado.Contactos = this._contactoServicios.ConsultarTodos();
+                asociado.Contactos = this._contactoServicios.ConsultarContactosPorAsociado(asociado);
 
                 this._ventana.SetTipoPersona = BuscarTipoPersona(asociado.TipoPersona);
 

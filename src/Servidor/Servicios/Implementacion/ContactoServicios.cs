@@ -40,17 +40,12 @@ namespace Trascend.Bolet.Servicios.Implementacion
             return contactos;
         }
 
-        public Concepto ConsultarPorId(Concepto concepto)
+        public Contacto ConsultarPorId(Contacto contacto)
         {
             throw new NotImplementedException();
         }
 
-        public bool InsertarOModificar(Concepto concepto, int hash)
-        {
-            throw new NotImplementedException();
-        }
-
-        public bool Eliminar(Concepto concepto, int hash)
+        public bool Eliminar(Contacto contacto, int hash)
         {
             throw new NotImplementedException();
         }
@@ -72,21 +67,22 @@ namespace Trascend.Bolet.Servicios.Implementacion
             return contactos;
         }
 
-        public Contacto ConsultarPorId(Contacto entidad)
-        {
-            throw new NotImplementedException();
-        }
-
         public bool InsertarOModificar(Contacto entidad, int hash)
         {
-            throw new NotImplementedException();
-        }
+            #region trace
+            if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
 
-        public bool Eliminar(Contacto entidad, int hash)
-        {
-            throw new NotImplementedException();
-        }
+            bool exitoso = ControladorContacto.InsertarOModificar(entidad, hash);
 
+            #region trace
+            if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+            return exitoso;
+        }
 
         public bool VerificarExistencia(Contacto entidad)
         {

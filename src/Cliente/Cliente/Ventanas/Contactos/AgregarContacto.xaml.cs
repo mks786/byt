@@ -46,11 +46,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Contactos
             
         }
 
-        private void _btnModificar_Click(object sender, RoutedEventArgs e)
-        {
-            //this._presentador.Modificar();
-        }
-
+ 
         private void _btnRegresar_Click(object sender, RoutedEventArgs e)
         {
             this._presentador.Regresar();
@@ -72,6 +68,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Contactos
                 this._presentador.CargarPagina();
                 EstaCargada = true;
             }
+        }
+
+        private void _btnAceptar_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.Aceptar();
         }
 
 

@@ -23,8 +23,8 @@
       <column name="CCORRESPONDENCIA"/>
     </many-to-one>
 
-    <many-to-one name="Asociado" class="Asociado">
+    <!--<many-to-one name="Asociado" class="Asociado">
       <column name="CASOCIADO"/>
-    </many-to-one>
+    </many-to-one>-->
   </class>
 </hibernate-mapping>
