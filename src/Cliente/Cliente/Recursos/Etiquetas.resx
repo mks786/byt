@@ -859,4 +859,52 @@
   <data name="lblUso" xml:space="preserve">
     <value>Uso:</value>
   </data>
+  <data name="lblAba" xml:space="preserve">
+    <value>Aba:</value>
+  </data>
+  <data name="lblBancoBeneficiario" xml:space="preserve">
+    <value>Banco Beneficiario:</value>
+  </data>
+  <data name="lblBancoInt" xml:space="preserve">
+    <value>Banco Int:</value>
+  </data>
+  <data name="lblBeneficiario" xml:space="preserve">
+    <value>Beneficiario:</value>
+  </data>
+  <data name="lblCuenta" xml:space="preserve">
+    <value>Cuenta:</value>
+  </data>
+  <data name="lblDireccion" xml:space="preserve">
+    <value>Direccion:</value>
+  </data>
+  <data name="lblSwif" xml:space="preserve">
+    <value>Swif:</value>
+  </data>
+  <data name="lblSwifInt" xml:space="preserve">
+    <value>Swif Int:</value>
+  </data>
+  <data name="lsvBancoBeneficiario" xml:space="preserve">
+    <value>Banco Beneficiario</value>
+  </data>
+  <data name="lsvBeneficiario" xml:space="preserve">
+    <value>Beneficiario</value>
+  </data>
+  <data name="lsvCuenta" xml:space="preserve">
+    <value>Cuenta</value>
+  </data>
+  <data name="titleAgregarDatosTransferencia" xml:space="preserve">
+    <value>Agregar Datos de Transferencia</value>
+  </data>
+  <data name="titleConsultarDatosTransferencia" xml:space="preserve">
+    <value>Consultar Datos de Transferencia</value>
+  </data>
+  <data name="titleListaDatosTransferencia" xml:space="preserve">
+    <value>Lista de Datos de Transferencia</value>
+  </data>
+  <data name="btnNuevoDatosCredito" xml:space="preserve">
+    <value>Nuevos Datos</value>
+  </data>
+  <data name="lblSwiftInt" xml:space="preserve">
+    <value>Swift Int:</value>
+  </data>
 </root>

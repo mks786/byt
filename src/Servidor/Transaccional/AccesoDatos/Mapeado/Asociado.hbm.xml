@@ -62,9 +62,15 @@
       <one-to-many class="Carta" not-found="ignore"/>
     </bag>
 
+    <bag name="DatosTransferencias" table="FAC_ASO_TRANF" inverse="true" generic="true">
+      <key column="CNUMERO"/>
+      <composite-element class="Contacto">
+        <many-to-one name="Asociado" class="Asociado" column="CASOCIADO"/>
+      </composite-element>
+    </bag>
 
     <bag name="Contactos" table="FAC_CONTACTOS" inverse="true" generic="true">
-      <key column="CNUMERO"/>
+      <key column="NSECUEN"/>
       <composite-element class="Contacto">
         <many-to-one name="Asociado" class="Asociado" column="CASOCIADO"/>
       </composite-element>
@@ -79,9 +85,6 @@
       </composite-id>
       <one-to-many class="Contacto" not-found="ignore"/>
     </bag>-->
-
-
-
 
     <bag name="Justificaciones" table="FAC_ASO_JUST">
       <key column="CASOCIADO"/>

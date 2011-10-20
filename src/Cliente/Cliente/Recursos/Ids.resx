@@ -195,6 +195,9 @@
   <data name="ConsultarContacto" xml:space="preserve">
     <value>FAC_CONTACTOS</value>
   </data>
+  <data name="ConsultarDatosTransferencia" xml:space="preserve">
+    <value>FAC_ASO_TRANF</value>
+  </data>
   <data name="ConsultarEstado" xml:space="preserve">
     <value>MYP_ESTADOS</value>
   </data>
@@ -273,11 +276,17 @@
   <data name="Contacto" xml:space="preserve">
     <value>FAC_CONTACTOS</value>
   </data>
+  <data name="DatosTransferencia" xml:space="preserve">
+    <value>FAC_ASO_TRANF</value>
+  </data>
   <data name="EliminarAsociado" xml:space="preserve">
     <value>FAC_ASOCIADOS</value>
   </data>
   <data name="EliminarBoletin" xml:space="preserve">
     <value>MYPTBOLETIN</value>
+  </data>
+  <data name="EliminarDatosTransferencia" xml:space="preserve">
+    <value>FAC_ASO_TRANF</value>
   </data>
   <data name="EliminarEstado" xml:space="preserve">
     <value>MYP_ESTADOS</value>
@@ -333,6 +342,9 @@
   <data name="ListaAuditorias" xml:space="preserve">
     <value>SEG_AUDITORIAS</value>
   </data>
+  <data name="ListaDatosTransferencia" xml:space="preserve">
+    <value>FAC_ASO_TRANF</value>
+  </data>
   <data name="ListaPoderes" xml:space="preserve">
     <value>LST_PODERES</value>
   </data>
@@ -341,6 +353,9 @@
   </data>
   <data name="ModificarBoletin" xml:space="preserve">
     <value>MYPTBOLETIN</value>
+  </data>
+  <data name="ModificarDatosTransferencia" xml:space="preserve">
+    <value>FAC_ASO_TRANF</value>
   </data>
   <data name="ModificarEstado" xml:space="preserve">
     <value>MYP_ESTADOS</value>

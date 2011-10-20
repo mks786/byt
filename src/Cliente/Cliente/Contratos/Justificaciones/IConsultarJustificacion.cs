@@ -14,7 +14,5 @@ namespace Trascend.Bolet.Cliente.Contratos.Justificaciones
         bool HabilitarCampos { set; }
 
         string TextoBotonModificar { get; set; }
-
-        bool EstaCargada { get; set; }
     }
 }

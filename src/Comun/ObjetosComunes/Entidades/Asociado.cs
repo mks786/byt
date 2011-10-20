@@ -43,6 +43,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         private IList<Justificacion> _justificaciones;
         private IList<Contacto> _contactos;
         private IList<Carta> _cartas;
+        private IList<DatosTransferencia> _datosTransferencias;
 
         #endregion
 
@@ -530,6 +531,12 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         {
             get { return _cartas; }
             set { _cartas = value; }
+        }
+
+        public virtual IList<DatosTransferencia> DatosTransferencias
+        {
+            get { return _datosTransferencias; }
+            set { _datosTransferencias = value; }
         }
 
         #endregion

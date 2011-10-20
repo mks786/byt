@@ -169,6 +169,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ¿Seguro que desea eliminar los datos de la transferencia?.
+        /// </summary>
+        internal static string ConfirmacionEliminarDatosTransferencia {
+            get {
+                return ResourceManager.GetString("ConfirmacionEliminarDatosTransferencia", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ¿Seguro que desea eliminar el estado?.
         /// </summary>
         internal static string ConfirmacionEliminarEstado {

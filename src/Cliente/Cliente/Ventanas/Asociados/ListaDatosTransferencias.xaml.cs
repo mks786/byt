@@ -11,16 +11,16 @@ namespace Trascend.Bolet.Cliente.Ventanas.Asociados
     /// <summary>
     /// Interaction logic for ListaAuditorias.xaml
     /// </summary>
-    public partial class ListaJustificaciones : Page, IListaJustificaciones
+    public partial class ListaDatosTransferencias : Page, IListaDatosTransferencia
     {
         
         private GridViewColumnHeader _CurSortCol = null;
         private SortAdorner _CurAdorner = null;
-        private PresentadorListaJustificaciones _presentador;
+        private PresentadorListaDatosTransferencia _presentador;
         private bool _cargada;
 
 
-        #region IListaListaJustificaciones
+        #region IListaDatosTransferencia
 
         public bool EstaCargada
         {
@@ -28,13 +28,13 @@ namespace Trascend.Bolet.Cliente.Ventanas.Asociados
             set { this._cargada = value; }
         }
 
-        public object Justificaciones
+        public object DatosTransferencias
         {
             get { return this._lstResultados.DataContext; }
             set { this._lstResultados.DataContext = value; }
         }
 
-        public object JustificacionSeleccionada
+        public object DatosTransferenciaSeleccionada
         {
             get { return this._lstResultados.SelectedItem; }
         }
@@ -64,11 +64,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Asociados
 
         #endregion
 
-        public ListaJustificaciones(object asociado)
+        public ListaDatosTransferencias(object asociado)
         {
             InitializeComponent();
             this._cargada= false;
-            this._presentador = new PresentadorListaJustificaciones(this, asociado);
+            this._presentador = new PresentadorListaDatosTransferencia(this, asociado);
 
         }
 
@@ -93,12 +93,12 @@ namespace Trascend.Bolet.Cliente.Ventanas.Asociados
 
         private void _btnAgregar_Click(object sender, RoutedEventArgs e)
         {
-            this._presentador.IrAgregarJustificacion();
+            this._presentador.IrAgregarDatosTransferencia();
         }
 
         private void _lstResultados_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            this._presentador.IrConsultarJustificacion();
+            this._presentador.IrConsultarDatosTransferencia();
         }
     }
 }

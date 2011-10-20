@@ -223,6 +223,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Nuevos Datos.
+        /// </summary>
+        public static string btnNuevoDatosCredito {
+            get {
+                return ResourceManager.GetString("btnNuevoDatosCredito", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Nueva Justificación.
         /// </summary>
         public static string btnNuevoJustificacion {
@@ -502,6 +511,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Aba:.
+        /// </summary>
+        public static string lblAba {
+            get {
+                return ResourceManager.GetString("lblAba", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Activo:.
         /// </summary>
         public static string lblActivo {
@@ -543,6 +561,33 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string lblAutorizar {
             get {
                 return ResourceManager.GetString("lblAutorizar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Banco Beneficiario:.
+        /// </summary>
+        public static string lblBancoBeneficiario {
+            get {
+                return ResourceManager.GetString("lblBancoBeneficiario", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Banco Int:.
+        /// </summary>
+        public static string lblBancoInt {
+            get {
+                return ResourceManager.GetString("lblBancoInt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Beneficiario:.
+        /// </summary>
+        public static string lblBeneficiario {
+            get {
+                return ResourceManager.GetString("lblBeneficiario", resourceCulture);
             }
         }
         
@@ -646,6 +691,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cuenta:.
+        /// </summary>
+        public static string lblCuenta {
+            get {
+                return ResourceManager.GetString("lblCuenta", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Departamento:.
         /// </summary>
         public static string lblDepartamento {
@@ -696,6 +750,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string lblDiasCredito {
             get {
                 return ResourceManager.GetString("lblDiasCredito", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Direccion:.
+        /// </summary>
+        public static string lblDireccion {
+            get {
+                return ResourceManager.GetString("lblDireccion", resourceCulture);
             }
         }
         
@@ -1159,6 +1222,33 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Swif:.
+        /// </summary>
+        public static string lblSwif {
+            get {
+                return ResourceManager.GetString("lblSwif", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Swif Int:.
+        /// </summary>
+        public static string lblSwifInt {
+            get {
+                return ResourceManager.GetString("lblSwifInt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Swift Int:.
+        /// </summary>
+        public static string lblSwiftInt {
+            get {
+                return ResourceManager.GetString("lblSwiftInt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Tarifas:.
         /// </summary>
         public static string lblTarifas {
@@ -1249,6 +1339,24 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Banco Beneficiario.
+        /// </summary>
+        public static string lsvBancoBeneficiario {
+            get {
+                return ResourceManager.GetString("lsvBancoBeneficiario", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Beneficiario.
+        /// </summary>
+        public static string lsvBeneficiario {
+            get {
+                return ResourceManager.GetString("lsvBeneficiario", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Carta.
         /// </summary>
         public static string lsvCarta {
@@ -1272,6 +1380,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string lsvConcepto {
             get {
                 return ResourceManager.GetString("lsvConcepto", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cuenta.
+        /// </summary>
+        public static string lsvCuenta {
+            get {
+                return ResourceManager.GetString("lsvCuenta", resourceCulture);
             }
         }
         
@@ -1762,6 +1879,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Agregar Datos de Transferencia.
+        /// </summary>
+        public static string titleAgregarDatosTransferencia {
+            get {
+                return ResourceManager.GetString("titleAgregarDatosTransferencia", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Agregar Estado.
         /// </summary>
         public static string titleAgregarEstado {
@@ -1947,6 +2073,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string titleConsultarContacto {
             get {
                 return ResourceManager.GetString("titleConsultarContacto", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Consultar Datos de Transferencia.
+        /// </summary>
+        public static string titleConsultarDatosTransferencia {
+            get {
+                return ResourceManager.GetString("titleConsultarDatosTransferencia", resourceCulture);
             }
         }
         
@@ -2235,6 +2370,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string titleListaContactos {
             get {
                 return ResourceManager.GetString("titleListaContactos", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Lista de Datos de Transferencia.
+        /// </summary>
+        public static string titleListaDatosTransferencia {
+            get {
+                return ResourceManager.GetString("titleListaDatosTransferencia", resourceCulture);
             }
         }
         

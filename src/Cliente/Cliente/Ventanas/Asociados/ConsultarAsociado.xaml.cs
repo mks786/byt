@@ -179,6 +179,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Asociados
                 this._chkIsfAdministracion.IsEnabled = value;
                 this._chkPendienteStatementAdministracion.IsEnabled = value;
                 this._chkContribuyenteDatos.IsEnabled = value;
+
             }
         }
 
@@ -266,6 +267,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Asociados
         private void _btnContactosDatos_Click(object sender, RoutedEventArgs e)
         {
             this._presentador.IrListaContactos();
+        }
+
+        private void _btnTrasferenciaAdministracion_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.IrListaDatosTransferencia();
         }
     }
 }

@@ -87,6 +87,7 @@
     <Compile Include="Contratos\Agentes\IAgregarAgente.cs" />
     <Compile Include="Contratos\Agentes\IConsultarAgente.cs" />
     <Compile Include="Contratos\Agentes\IConsultarAgentes.cs" />
+    <Compile Include="Contratos\Asociados\IListaDatosTransferencia.cs" />
     <Compile Include="Contratos\Asociados\IListaContactos.cs" />
     <Compile Include="Contratos\Asociados\IListaJustificaciones.cs" />
     <Compile Include="Contratos\Auditorias\IConsultarAuditorias.cs" />
@@ -95,6 +96,8 @@
     <Compile Include="Contratos\Asociados\IConsultarAsociados.cs" />
     <Compile Include="Contratos\Contactos\IAgregarContacto.cs" />
     <Compile Include="Contratos\Contactos\IConsultarContacto.cs" />
+    <Compile Include="Contratos\DatosTransferencias\IAgregarIAgregarDatosTransferencia.cs" />
+    <Compile Include="Contratos\DatosTransferencias\IConsultarIConsultarDatosTransferencia.cs" />
     <Compile Include="Contratos\Interesados\IAgregarInteresado.cs" />
     <Compile Include="Contratos\Interesados\IListaPoderes.cs" />
     <Compile Include="Contratos\Interesados\IConsultarInteresado.cs" />
@@ -150,6 +153,7 @@
     <Compile Include="Presentadores\Agentes\PresentadorAgregarAgente.cs" />
     <Compile Include="Presentadores\Agentes\PresentadorConsultarAgente.cs" />
     <Compile Include="Presentadores\Agentes\PresentadorConsultarAgentes.cs" />
+    <Compile Include="Presentadores\Asociados\PresentadorListaDatosTransferencia.cs" />
     <Compile Include="Presentadores\Asociados\PresentadorListaContactos.cs" />
     <Compile Include="Presentadores\Asociados\PresentadorListaJustificaciones.cs" />
     <Compile Include="Presentadores\Auditorias\PresentadorListaAuditorias.cs" />
@@ -158,6 +162,8 @@
     <Compile Include="Presentadores\Asociados\PresentadorConsultarAsociados.cs" />
     <Compile Include="Presentadores\Contactos\PresentadorAgregarContacto.cs" />
     <Compile Include="Presentadores\Contactos\PresentadorConsultarContacto.cs" />
+    <Compile Include="Presentadores\DatosTransferencias\PresentadorAgregarDatosTransferencia.cs" />
+    <Compile Include="Presentadores\DatosTransferencias\PresentadorConsultarDatosTransferencia.cs" />
     <Compile Include="Presentadores\Interesados\PresentadorAgregarInteresado.cs" />
     <Compile Include="Presentadores\Interesados\PresentadorConsultarInteresado.cs" />
     <Compile Include="Presentadores\Interesados\PresentadorConsultarInteresados.cs" />
@@ -254,6 +260,9 @@
     <Compile Include="Ventanas\Asociados\ConsultarAsociados.xaml.cs">
       <DependentUpon>ConsultarAsociados.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Ventanas\Asociados\ListaDatosTransferencias.xaml.cs">
+      <DependentUpon>ListaDatosTransferencias.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Ventanas\Asociados\ListaContactos.xaml.cs">
       <DependentUpon>ListaContactos.xaml</DependentUpon>
     </Compile>
@@ -268,6 +277,12 @@
     </Compile>
     <Compile Include="Ventanas\Contactos\AgregarContacto.xaml.cs">
       <DependentUpon>AgregarContacto.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\DatosTransferencias\AgregarDatosTransferencia.xaml.cs">
+      <DependentUpon>AgregarDatosTransferencia.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\DatosTransferencias\ConsultarDatosTransferencia.xaml.cs">
+      <DependentUpon>ConsultarDatosTransferencia.xaml</DependentUpon>
     </Compile>
     <Compile Include="Ventanas\Interesados\AgregarInteresado.xaml.cs">
       <DependentUpon>AgregarInteresado.xaml</DependentUpon>
@@ -441,6 +456,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Ventanas\Asociados\ListaDatosTransferencias.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Ventanas\Asociados\ListaContactos.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -458,6 +477,14 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Ventanas\Contactos\AgregarContacto.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\DatosTransferencias\AgregarDatosTransferencia.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\DatosTransferencias\ConsultarDatosTransferencia.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

@@ -342,4 +342,7 @@
   <data name="ErrorCartaNoEncontrada" xml:space="preserve">
     <value>La carta que introdujo no esta en el sistema.</value>
   </data>
+  <data name="ConfirmacionEliminarDatosTransferencia" xml:space="preserve">
+    <value>¿Seguro que desea eliminar los datos de la transferencia?</value>
+  </data>
 </root>

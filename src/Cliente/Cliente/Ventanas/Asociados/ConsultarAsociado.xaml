@@ -420,7 +420,8 @@
                               Height="20" ItemsSource="{Binding}" DisplayMemberPath="Descripcion" SelectedIndex="0" IsEnabled="False">
                     </ComboBox>
 
-                    <Button  Grid.Column="4" Grid.Row="8" Name="_btnTrasferenciaAdministracion" HorizontalAlignment="Center" VerticalAlignment="Center" Height="25" Width="90" IsEnabled="False">
+                    <Button  Grid.Column="4" Grid.Row="8" Name="_btnTrasferenciaAdministracion" HorizontalAlignment="Center" 
+                             VerticalAlignment="Center" Height="25" Width="90" Click="_btnTrasferenciaAdministracion_Click">
                         <TextBlock Name="_txbTrasferenciaAdministracion" Text="{x:Static recurso:Etiquetas.btnTrasferencia}"/>
                     </Button>
 

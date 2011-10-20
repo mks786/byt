@@ -28,6 +28,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
         private ITipoClienteServicios _tipoClienteServicios;
         private IPaisServicios _paisServicios;
         private IContactoServicios _contactoServicios;
+        private IDatosTransferenciaServicios _datosTransferenciaServicios;
         private static PaginaPrincipal _paginaPrincipal = PaginaPrincipal.ObtenerInstancia;
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
@@ -61,6 +62,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["PaisServicios"]);
                 this._contactoServicios = (IContactoServicios)Activator.GetObject(typeof(IContactoServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["ContactoServicios"]);
+                this._datosTransferenciaServicios = (IDatosTransferenciaServicios)Activator.GetObject(typeof(IDatosTransferenciaServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["DatosTransferenciaServicios"]);
             }
             catch (Exception ex)
             {
@@ -90,7 +93,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
 
                Asociado asociado = (Asociado)this._ventana.Asociado;
 
-                asociado.Contactos = this._contactoServicios.ConsultarContactosPorAsociado(asociado);
+               asociado.Contactos = this._contactoServicios.ConsultarContactosPorAsociado(asociado);
+               asociado.DatosTransferencias = this._datosTransferenciaServicios.ConsultarDatosTransferenciaPorAsociado(asociado);
 
                 this._ventana.SetTipoPersona = BuscarTipoPersona(asociado.TipoPersona);
 
@@ -281,7 +285,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
             #endregion
 
         }
-
+        
         public void IrListaContactos()
         {
             #region trace
@@ -297,7 +301,20 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
             #endregion
         }
 
-        
+        public void IrListaDatosTransferencia()
+        {
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+            this.Navegar(new ListaDatosTransferencias(this._ventana.Asociado));
+
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+        }
 
         public void Auditoria()
         {

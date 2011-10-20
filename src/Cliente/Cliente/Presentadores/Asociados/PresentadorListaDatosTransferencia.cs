@@ -1,27 +1,21 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Configuration;
-using System.Net.Sockets;
-using System.Runtime.Remoting;
-using System.Windows.Input;
-using NLog;
-using Trascend.Bolet.Cliente.Contratos.Asociados;
-using Trascend.Bolet.Cliente.Ventanas.Principales;
-using Trascend.Bolet.ObjetosComunes.ContratosServicios;
-using Trascend.Bolet.ObjetosComunes.Entidades;
-using Trascend.Bolet.Cliente.Ventanas.Asociados;
-using Trascend.Bolet.Cliente.Ventanas.Contactos;
-using Trascend.Bolet.Cliente.Ventanas.Justificaciones;
-using System.Collections.Generic;
 using System.Windows.Controls;
 using System.Windows.Documents;
-using System.ComponentModel;
+using System.Windows.Input;
+using NLog;
 using Trascend.Bolet.Cliente.Ayuda;
+using Trascend.Bolet.Cliente.Contratos.Asociados;
+using Trascend.Bolet.Cliente.Ventanas.DatosTransferencias;
+using Trascend.Bolet.Cliente.Ventanas.Principales;
+using Trascend.Bolet.ObjetosComunes.Entidades;
 
 namespace Trascend.Bolet.Cliente.Presentadores.Asociados
 {
-    class PresentadorListaContactos : PresentadorBase
+    class PresentadorListaDatosTransferencia : PresentadorBase
     {
-        private IListaContactos _ventana;
+        private IListaDatosTransferencia _ventana;
         private Asociado _asociado;
         private static PaginaPrincipal _paginaPrincipal = PaginaPrincipal.ObtenerInstancia;
         private static Logger logger = LogManager.GetCurrentClassLogger();
@@ -30,7 +24,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
         /// Constructor Predeterminado
         /// </summary>
         /// <param name="ventana">página que satisface el contrato</param>
-        public PresentadorListaContactos(IListaContactos ventana, object asociado)
+        public PresentadorListaDatosTransferencia(IListaDatosTransferencia ventana, object asociado)
         {
             this._ventana = ventana;
             this._asociado = (Asociado)asociado;
@@ -50,10 +44,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-                this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleListaContactos,
-                    Recursos.Ids.Contacto);
+                this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleListaDatosTransferencia,
+                    Recursos.Ids.ConsultarDatosTransferencia);
                 
-                this._ventana.Contactos = this._asociado.Justificaciones;
+                this._ventana.DatosTransferencias = this._asociado.DatosTransferencias;
                 this._ventana.FocoPredeterminado();
 
                 #region trace
@@ -73,17 +67,34 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
         }
 
         /// <summary>
-        /// Método que invoca una nueva página "Consultar Justificación" y la instancia con el objeto seleccionado
+        /// Método que invoca una nueva página "ConsultarDatosTransferencia" y la instancia con el objeto seleccionado
         /// </summary>
-        public void IrConsultarContacto()
+        public void IrConsultarDatosTransferencia()
         {
             #region trace
             if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
                 logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
 
-            if (this._ventana.ContactoSeleccionado!=null)
-                this.Navegar(new ConsultarContacto(this._ventana.ContactoSeleccionado));
+
+            ((DatosTransferencia)this._ventana.DatosTransferenciaSeleccionada).Asociado = this._asociado;
+
+            this.Navegar(new ConsultarDatosTransferencia(this._ventana.DatosTransferenciaSeleccionada));
+
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+        }
+
+        public void IrAgregarDatosTransferencia()
+        {
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+            this.Navegar(new AgregarDatosTransferencia(this._asociado));
 
             #region trace
             if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -118,21 +129,6 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
             AdornerLayer.GetAdornerLayer(this._ventana.CurSortCol).Add(this._ventana.CurAdorner);
             this._ventana.ListaResultados.Items.SortDescriptions.Add(
                 new SortDescription(field, newDir));
-
-            #region trace
-            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
-                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
-            #endregion
-        }
-
-        public void IrAgregarContacto()
-        {
-            #region trace
-            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
-                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
-            #endregion
-
-            this.Navegar(new AgregarContacto(this._asociado));
 
             #region trace
             if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
