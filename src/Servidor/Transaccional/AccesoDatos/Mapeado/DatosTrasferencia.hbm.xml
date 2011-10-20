@@ -5,7 +5,7 @@
 
   <class name="DatosTransferencia" table="FAC_ASO_TRANF">
     <composite-id>
-      <key-property name="Casociado" column="`CASOCIADO`" />
+      <key-property name="Id" column="`NSECUEN`" />
       <key-many-to-one name="Asociado" column="CASOCIADO" class="Asociado"/>
     </composite-id>
     
@@ -17,10 +17,6 @@
     <property name="Direccion" type="String" column="`DIRECCION`"/>
     <property name="Swif" type="String" column="`SWIF`"/>
     <property name="SwiftInt" type="String" column="`SWIFT_INT`"/>
-    
-    <many-to-one name="Asociado" class="Asociado">
-      <column name="CASOCIADO"/>
-    </many-to-one>
   </class>
 </hibernate-mapping>
 
