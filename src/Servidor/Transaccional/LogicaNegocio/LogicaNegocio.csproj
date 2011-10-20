@@ -71,6 +71,7 @@
     <Compile Include="Controladores\ControladorJustificacion.cs" />
     <Compile Include="Controladores\ControladorContacto.cs" />
     <Compile Include="Controladores\ControladorCarta.cs" />
+    <Compile Include="Controladores\ControladorDatosTransferencia.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

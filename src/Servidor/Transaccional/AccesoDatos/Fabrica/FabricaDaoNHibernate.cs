@@ -309,5 +309,14 @@ namespace Trascend.Bolet.AccesoDatos.Fabrica
         {
             return new DaoCartaNHibernate();
         }
+
+        /// <summary>
+        /// Método que devuelve el DaoDatosTransferencia
+        /// </summary>
+        /// <returns>IDaoDatosTransferencia</returns>
+        public override IDaoDatosTransferencia ObtenerDaoDatosTransferencia()
+        {
+            return new DaoDatosTransferenciaNHibernate();
+        }
     }
 }

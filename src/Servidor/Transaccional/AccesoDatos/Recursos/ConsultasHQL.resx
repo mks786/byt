@@ -133,6 +133,10 @@
     <value>Select c from Contacto c where c.Asociado.id = '{0}'</value>
     <comment>Selecciona todos los contactos de un asociado</comment>
   </data>
+  <data name="ObtenerDatosTransferenciaPorAsociado" xml:space="preserve">
+    <value>Select d from DatosTransferencia d where d.Asociado.id = '{0}'</value>
+    <comment>Selecciona todos los datos de transferencia de un asociado</comment>
+  </data>
   <data name="ObtenerPoderesPorInteresado" xml:space="preserve">
     <value>Select p from Poder p where p.Interesado.Id = '{0}'</value>
     <comment>Selecciona todas los poderes que posee un interesado</comment>

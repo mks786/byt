@@ -209,5 +209,11 @@ namespace Trascend.Bolet.AccesoDatos.Fabrica
         /// </summary>
         /// <returns>IDaoCarta</returns>
         public abstract IDaoCarta ObtenerDaoCarta();
+
+        /// <summary>
+        /// Método que devuelve el DaoDatosTransferencia del manejador que se esté utilizando
+        /// </summary>
+        /// <returns>IDaoDatosTransferencia</returns>
+        public abstract IDaoDatosTransferencia ObtenerDaoDatosTransferencia();
     }
 }

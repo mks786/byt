@@ -51,6 +51,7 @@
     <Compile Include="Comandos\ComandosContacto\ComandoConsultarTodosContactos.cs" />
     <Compile Include="Comandos\ComandosContacto\ComandoConsultarContactosPorAsociado.cs" />
     <Compile Include="Comandos\ComandosContador\ComandoConsultarPorIdContador.cs" />
+    <Compile Include="Comandos\ComandosDatosTransferencia\ComandoConsultarDatosTransferenciaPorAsociado.cs" />
     <Compile Include="Comandos\ComandosDetallePago\ComandoConsultarTodosDetallePagos.cs" />
     <Compile Include="Comandos\ComandosEstado\ComandoConsultarTodosEstados.cs" />
     <Compile Include="Comandos\ComandosAgente\ComandoEliminarAgente.cs" />
@@ -116,10 +117,14 @@
     <Compile Include="Comandos\ComandosAsociado\ComandoInsertarOModificarAsociado.cs" />
     <Compile Include="Comandos\ComandosContadorFac\ComandoConsultarPorIdComandosContadorFac.cs" />
     <Compile Include="Comandos\ComandosContadorFac\ComandoInsertarOModificarComandosContadorFac.cs" />
+    <Compile Include="Comandos\ComandosDatosTransferencia\ComandoConsultarTodosDatosTransferencia.cs" />
+    <Compile Include="Comandos\ComandosDatosTransferencia\ComandoEliminarDatosTransferencia.cs" />
+    <Compile Include="Comandos\ComandosDatosTransferencia\ComandoInsertarOModificarDatosTransferencia.cs" />
     <Compile Include="Comandos\Receptor.cs" />
     <Compile Include="Comandos\ComandosUsuario\ComandoConsultarTodosUsuarios.cs" />
     <Compile Include="Comandos\ComandosUsuario\ComandoConsultarUsuarioPorID.cs" />
     <Compile Include="Comandos\ComandosUsuario\ComandoInsertarOModificarUsuario.cs" />
+    <Compile Include="Fabrica\FabricaComandosDatosTransferencia.cs" />
     <Compile Include="Fabrica\FabricaComandosContacto.cs" />
     <Compile Include="Fabrica\FabricaComandosCarta.cs" />
     <Compile Include="Fabrica\FabricaComandosContadorFac.cs" />
