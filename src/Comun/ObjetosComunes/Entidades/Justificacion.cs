@@ -22,36 +22,21 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         /// <summary>
         /// Constructor Predeterminado de la Justificacion
         /// </summary>
-        public Justificacion() { }
+        public Justificacion() { }        
+        
+        /// <summary>
+        /// Constructor donde se setea la clave primaria
+        /// </summary>
+        public Justificacion(Carta carta, Asociado asociado) 
+        {
+            this._carta = carta;
+            this._asociado = asociado;
+        }
 
 
         #endregion
 
         #region Propiedades
-
-        public override bool Equals(object obj)
-        {
-
-            return base.Equals(obj);
-
-            //bool igual = false;
-
-            //if ((this._id == ((Justificacion)obj).Id) && (this._asociado.Id == ((Justificacion)obj).Asociado.Id))
-            //    igual = true;
-
-            //return igual;
-        }
-
-        public override int GetHashCode()
-        {
-            return base.GetHashCode();
-        }
-
-        public override string ToString()
-        {
-            return base.ToString();
-        }
-
 
         /// <summary>
         /// Propiedad que asigna u obtiene el objeto de tipo Concepto de la Justificacion
@@ -70,6 +55,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
             get { return _fecha; }
             set { _fecha = value; }
         }
+
         /// <summary>
         /// Propiedad que asigna u obtiene el asociado de una justificacion
         /// </summary>
@@ -79,7 +65,9 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
             set { _asociado = value; }
         }
 
-
+        /// <summary>
+        /// Propiedad que asigna u obtiene la carta de una justificacion
+        /// </summary>
         public virtual Carta Carta  
         {
             get { return _carta; }

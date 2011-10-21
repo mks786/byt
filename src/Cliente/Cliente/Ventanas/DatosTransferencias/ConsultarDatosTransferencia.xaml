@@ -61,63 +61,63 @@
                     <TextBlock Text="{x:Static recurso:Etiquetas.lblAsociado}"/>
                 </Label>
                 <TextBox Grid.Column="1" Grid.Row="1" Name="_txtIdAsociado" VerticalAlignment="Center" IsEnabled="False" 
-                         HorizontalAlignment="Left" Width="180" Text="{Binding Path=Asociado.Nombre}">
+                         HorizontalAlignment="Left" Width="180" MaxLength="8" Text="{Binding Path=Asociado.Nombre}">
                 </TextBox>
 
                 <Label Grid.Column="0" Grid.Row="2" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                     <TextBlock Text="{x:Static recurso:Etiquetas.lblBeneficiario}"/>
                 </Label>
                 <TextBox Name="_txtBeneficiario" Grid.Column="2" Grid.Row="2" VerticalAlignment="Center" IsEnabled="False" 
-                         HorizontalAlignment="Left" Width="180" SpellCheck.IsEnabled="True" MaxLength="255" Text="{Binding Path=Beneficiario}">
+                         HorizontalAlignment="Left" Width="180" SpellCheck.IsEnabled="True" MaxLength="200" Text="{Binding Path=Beneficiario}">
                 </TextBox>
 
                 <Label Grid.Column="0" Grid.Row="3" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                     <TextBlock Text="{x:Static recurso:Etiquetas.lblBancoBeneficiario}"/>
                 </Label>
                 <TextBox Name="_txtBancoBenef" Grid.Column="2" Grid.Row="3" VerticalAlignment="Center" IsEnabled="False" 
-                         HorizontalAlignment="Left" Width="180" SpellCheck.IsEnabled="True" MaxLength="255" Text="{Binding Path=BancoBenef}">
+                         HorizontalAlignment="Left" Width="180" SpellCheck.IsEnabled="True" MaxLength="200" Text="{Binding Path=BancoBenef}">
                 </TextBox>
 
                 <Label Grid.Column="0" Grid.Row="4" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                     <TextBlock Text="{x:Static recurso:Etiquetas.lblDireccion}"/>
                 </Label>
                 <TextBox Name="_txtDireccion" Grid.Column="2" Grid.Row="4" VerticalAlignment="Center" IsEnabled="False" 
-                         HorizontalAlignment="Left" Width="180" SpellCheck.IsEnabled="True" MaxLength="255" Text="{Binding Path=Direccion}">
+                         HorizontalAlignment="Left" Width="180" SpellCheck.IsEnabled="True" MaxLength="300" Text="{Binding Path=Direccion}">
                 </TextBox>
 
                 <Label Grid.Column="0" Grid.Row="5" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                     <TextBlock Text="{x:Static recurso:Etiquetas.lblCuenta}"/>
                 </Label>
                 <TextBox Name="_txtCuenta" Grid.Column="2" Grid.Row="5" VerticalAlignment="Center" IsEnabled="False" 
-                         HorizontalAlignment="Left" Width="180" SpellCheck.IsEnabled="True" MaxLength="255" Text="{Binding Path=Cuenta}">
+                         HorizontalAlignment="Left" Width="180" SpellCheck.IsEnabled="True" MaxLength="40" Text="{Binding Path=Cuenta}">
                 </TextBox>
 
                 <Label Grid.Column="0" Grid.Row="6" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                     <TextBlock Text="{x:Static recurso:Etiquetas.lblAba}"/>
                 </Label>
                 <TextBox Name="_txtAba" Grid.Column="2" Grid.Row="6" VerticalAlignment="Center" IsEnabled="False" 
-                         HorizontalAlignment="Left" Width="180" SpellCheck.IsEnabled="True" MaxLength="255" Text="{Binding Path=Aba}">
+                         HorizontalAlignment="Left" Width="180" SpellCheck.IsEnabled="True" MaxLength="40" Text="{Binding Path=Aba}">
                 </TextBox>
 
                 <Label Grid.Column="0" Grid.Row="7" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                     <TextBlock Text="{x:Static recurso:Etiquetas.lblSwif}"/>
                 </Label>
                 <TextBox Name="_txtSwif" Grid.Column="2" Grid.Row="7" VerticalAlignment="Center" IsEnabled="False" 
-                         HorizontalAlignment="Left" Width="180" SpellCheck.IsEnabled="True" MaxLength="255" Text="{Binding Path=Swif}">
+                         HorizontalAlignment="Left" Width="180" SpellCheck.IsEnabled="True" MaxLength="40" Text="{Binding Path=Swif}">
                 </TextBox>
 
                 <Label Grid.Column="0" Grid.Row="8" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                     <TextBlock Text="{x:Static recurso:Etiquetas.lblBancoInt}"/>
                 </Label>
                 <TextBox Name="_txtBancoInt" Grid.Column="2" Grid.Row="8" VerticalAlignment="Center" IsEnabled="False" 
-                         HorizontalAlignment="Left" Width="180" SpellCheck.IsEnabled="True" MaxLength="255" Text="{Binding Path=BancoInt}">
+                         HorizontalAlignment="Left" Width="180" SpellCheck.IsEnabled="True" MaxLength="200" Text="{Binding Path=BancoInt}">
                 </TextBox>
 
                 <Label Grid.Column="0" Grid.Row="9" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                     <TextBlock Text="{x:Static recurso:Etiquetas.lblSwiftInt}"/>
                 </Label>
                 <TextBox Name="_txtSwiftInt" Grid.Column="2" Grid.Row="9" VerticalAlignment="Center" IsEnabled="False" 
-                         HorizontalAlignment="Left" Width="180" SpellCheck.IsEnabled="True" MaxLength="255" Text="{Binding Path=SwiftInt}">
+                         HorizontalAlignment="Left" Width="180" SpellCheck.IsEnabled="True" MaxLength="40" Text="{Binding Path=SwiftInt}">
                 </TextBox>
 
             </Grid>

@@ -56,7 +56,7 @@
                     <TextBlock Text="{x:Static recurso:Etiquetas.lblCarta}"/>
                 </Label>
                 <TextBox Name="_txtCarta" Grid.Column="1" Grid.Row="1" VerticalAlignment="Center"  
-                         HorizontalAlignment="Left" Width="180" SpellCheck.IsEnabled="True" MaxLength="255"
+                         HorizontalAlignment="Left" Width="180" SpellCheck.IsEnabled="True" MaxLength="8"
                          ToolTip="{Binding ElementName=_txtCarta, Path=(Validation.Errors)[0].ErrorContent}">
                     <TextBox.Text>
                         <Binding Path="Carta.Id" UpdateSourceTrigger="PropertyChanged">

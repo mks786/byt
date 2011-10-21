@@ -29,7 +29,8 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         public DatosTransferencia() { }
 
         /// <summary>
-        /// Constructor que inicializa el condigo del idioma
+        /// Constructor que inicializa el condigo de los datos de transferencia
+        /// 
         /// </summary>
         /// <param name="codigo">Codigo del status</param>
         public DatosTransferencia(int id)
@@ -59,7 +60,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         }
 
         /// <summary>
-        /// Propiedad que asigna u obtiene el código del idioma
+        /// Propiedad que asigna u obtiene el código de los datos de transferencia
         /// </summary>
         public virtual int Id
         {
