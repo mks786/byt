@@ -108,7 +108,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Justificaciones
                 else
                 {
                     Justificacion justificacion = (Justificacion)this._ventana.Justificacion;
-
+                    
                     if ((Concepto)this._ventana.Concepto != null)
                         justificacion.Concepto = !((Concepto)this._ventana.Concepto).Id.Equals("NGN") ? (Concepto)this._ventana.Concepto : null;
 

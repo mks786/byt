@@ -15,7 +15,7 @@ namespace Trascend.Bolet.Comandos.Comandos.ComandosContacto
         /// <summary>
         /// Constructor predeterminado
         /// </summary>
-        /// <param name="usuario">Justificacion a insertar o modificar</param>
+        /// <param name="usuario">Contacto a insertar o modificar</param>
         public ComandoInsertarOModificarContacto(Contacto contacto)
         {
             this._contacto = contacto;

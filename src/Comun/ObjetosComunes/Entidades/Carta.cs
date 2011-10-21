@@ -8,7 +8,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
     {
         #region Atributos
 
-        private int _id;
+        private int? _id;
         private DateTime _fecha;
         private string _medio;
         private Asociado _asociado;
@@ -62,7 +62,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         #region Propiedades
 
 
-        public virtual int Id
+        public virtual int? Id
         {
             get { return _id; }
             set { _id = value; }

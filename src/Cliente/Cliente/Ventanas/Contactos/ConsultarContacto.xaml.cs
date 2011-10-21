@@ -6,7 +6,7 @@ using Trascend.Bolet.Cliente.Presentadores.Contactos;
 namespace Trascend.Bolet.Cliente.Ventanas.Contactos
 {
     /// <summary>
-    /// Interaction logic for ConsultarObjeto.xaml
+    /// Interaction logic for ConsultarContacto.xaml
     /// </summary>
     public partial class ConsultarContacto : Page, IConsultarContacto
     {
@@ -24,7 +24,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Contactos
 
         public void FocoPredeterminado()
         {
-            this._txtNombre.Focus();
+            this._btnModificar.Focus();
         }
 
         public bool HabilitarCampos
@@ -54,6 +54,62 @@ namespace Trascend.Bolet.Cliente.Ventanas.Contactos
             set{this._gridDatos.DataContext = value;}
         }
 
+        public string getDepartamento
+        {
+            get
+            {
+                if (!string.Equals("",this._cbxDepartamento.Text)) 
+                {
+                    return ((string)this._cbxDepartamento.Text);
+                }
+                return "";
+            }
+        }
+
+         public string setDepartamento
+        {
+            set
+            {
+                this._cbxDepartamento.Text = value ; 
+            }
+        }
+
+         public string setFuncion
+         {
+             set
+             {
+                 this._cbxUso.Text = value;
+             }
+         }
+
+         public string getFuncion
+         {
+             get
+             {
+                 if (!string.Equals("", this._cbxUso.Text))
+                 {
+                     return ((string)this._cbxUso.Text);
+                 }
+                 return "";
+             }
+         }
+
+         public string getCorrespondencia
+         {
+             get { return this._txtCorrespondencia.Text; }
+         }
+
+         public string setCorrespondencia
+         {
+             set { this._txtCorrespondencia.Text = value; }
+         }
+
+         public void mensaje(string mensaje)
+         {
+             MessageBox.Show(mensaje, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+         }
+
+
         #endregion
 
         public ConsultarContacto(object contacto)
@@ -76,8 +132,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.Contactos
 
         private void _btnEliminar_Click(object sender, RoutedEventArgs e)
         {
-            if (MessageBoxResult.Yes == MessageBox.Show(Recursos.MensajesConElUsuario.ConfirmacionEliminarAgente,
-                "Eliminar Agente", MessageBoxButton.YesNo, MessageBoxImage.Question))
+            if (MessageBoxResult.Yes == MessageBox.Show(Recursos.MensajesConElUsuario.ConfirmacionEliminarContacto,
+                "Eliminar Contacto", MessageBoxButton.YesNo, MessageBoxImage.Question))
             {
                 this._presentador.Eliminar();
             }

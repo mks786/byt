@@ -38,27 +38,27 @@
                     <Label>
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblNombre}"/>
                     </Label>
-                    <TextBox Name="_txtNombre" Width="150" MaxLength="2"  Text="{Binding Path=Nombre}" IsEnabled="False"/>
+                    <TextBox Name="_txtNombre" Width="150" MaxLength="30"  Text="{Binding Path=Nombre}" IsEnabled="False"/>
                 </WrapPanel>
                 <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
                     <Label>
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblDepartamento}"/>
                     </Label>
-                    <ComboBox Name="_cbxDepartamento" Width="150" SelectedIndex="0" >
+                    <ComboBox Name="_cbxDepartamento" Width="150" SelectedIndex="0" IsEnabled="False">
                         <ComboBoxItem>
                             <TextBlock Text="{x:Static recurso:Etiquetas.cbiNinguno}" Tag="NGN"/>
                         </ComboBoxItem>
                         <ComboBoxItem>
-                            <TextBlock Text="{x:Static recurso:Etiquetas.cbiLegal}"/>
+                            <TextBlock Text="{x:Static recurso:Etiquetas.cbiLegal}" Tag="LEG"/>
                         </ComboBoxItem>
                         <ComboBoxItem>
-                            <TextBlock Text="{x:Static recurso:Etiquetas.cbiMarcas}"/>
+                            <TextBlock Text="{x:Static recurso:Etiquetas.cbiMarcas}" Tag="MAR"/>
                         </ComboBoxItem>
                         <ComboBoxItem>
-                            <TextBlock Text="{x:Static recurso:Etiquetas.cbiPatentes}"/>
+                            <TextBlock Text="{x:Static recurso:Etiquetas.cbiPatentes}" Tag="PAT"/>
                         </ComboBoxItem>
                         <ComboBoxItem>
-                            <TextBlock Text="{x:Static recurso:Etiquetas.cbiAdministracion}"/>
+                            <TextBlock Text="{x:Static recurso:Etiquetas.cbiAdministracion}" Tag="ADM"/>
                         </ComboBoxItem>
                     </ComboBox>
 
@@ -85,33 +85,33 @@
                     <Label>
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblUso}"/>
                     </Label>
-                    <ComboBox Name="_cbxUso" Width="150" SelectedIndex="0" >
+                    <ComboBox Name="_cbxUso" Width="150" SelectedIndex="0" IsEnabled="False">
                         <ComboBoxItem>
                             <TextBlock Text="{x:Static recurso:Etiquetas.cbiNinguno}" Tag="NGN"/>
                         </ComboBoxItem>
                         <ComboBoxItem>
-                            <TextBlock Text="{x:Static recurso:Etiquetas.cbiSoloAdministracion}"/>
+                            <TextBlock Text="{x:Static recurso:Etiquetas.cbiSoloAdministracion}" Tag="A"/>
                         </ComboBoxItem>
                         <ComboBoxItem>
-                            <TextBlock Text="{x:Static recurso:Etiquetas.cbiSoloEstadoDeCuenta}"/>
+                            <TextBlock Text="{x:Static recurso:Etiquetas.cbiSoloEstadoDeCuenta}" Tag="EDO"/>
                         </ComboBoxItem>
                         <ComboBoxItem>
-                            <TextBlock Text="{x:Static recurso:Etiquetas.cbiSoloMarca}"/>
+                            <TextBlock Text="{x:Static recurso:Etiquetas.cbiSoloMarca}" Tag="M"/>
                         </ComboBoxItem>
                         <ComboBoxItem>
-                            <TextBlock Text="{x:Static recurso:Etiquetas.cbiSoloPatente}"/>
+                            <TextBlock Text="{x:Static recurso:Etiquetas.cbiSoloPatente}" Tag="P"/>
                         </ComboBoxItem>
                         <ComboBoxItem>
-                            <TextBlock Text="{x:Static recurso:Etiquetas.cbiAdministracionYMarcas}"/>
+                            <TextBlock Text="{x:Static recurso:Etiquetas.cbiAdministracionYMarcas}" Tag="AM"/>
                         </ComboBoxItem>
                         <ComboBoxItem>
-                            <TextBlock Text="{x:Static recurso:Etiquetas.cbiAdministracionYPatentes}"/>
+                            <TextBlock Text="{x:Static recurso:Etiquetas.cbiAdministracionYPatentes}" Tag="AP"/>
                         </ComboBoxItem>
                         <ComboBoxItem>
-                            <TextBlock Text="{x:Static recurso:Etiquetas.cbiMarcasYPatentes}"/>
+                            <TextBlock Text="{x:Static recurso:Etiquetas.cbiMarcasYPatentes}" Tag="MP"/>
                         </ComboBoxItem>
                         <ComboBoxItem>
-                            <TextBlock Text="{x:Static recurso:Etiquetas.cbiAdministracionMarcasPatentes}"/>
+                            <TextBlock Text="{x:Static recurso:Etiquetas.cbiAdministracionMarcasPatentes}" Tag="AMP"/>
                         </ComboBoxItem>
                     </ComboBox>
                 </WrapPanel>
@@ -125,7 +125,7 @@
                     <Label>
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblCorrespondencia}"/>
                     </Label>
-                    <TextBox Name="_txtCorrespondencia" Width="150" MaxLength="255"  Text="{Binding Path=Correspondencia}" IsEnabled="False"/>
+                    <TextBox Name="_txtCorrespondencia" Width="150" MaxLength="255" IsEnabled="False"/>
                 </WrapPanel>
                 <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0"></WrapPanel>
             </StackPanel>

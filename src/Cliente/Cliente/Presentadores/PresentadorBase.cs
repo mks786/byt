@@ -461,5 +461,129 @@ namespace Trascend.Bolet.Cliente.Presentadores
 
             return retorno;
         }
+
+        /// <summary>
+        /// Método que busca un concepto dentro de una lista de conceptos
+        /// </summary>
+        /// <param name="estados">Lista de conceptos</param>
+        /// <param name="estadoBuscado">concepto a buscar</param>
+        /// <returns>Concepto dentro de la lista</returns>
+        public string BuscarDepartamentoContacto(string departamentoBuscado)
+        {
+            string retorno = "NGN";
+            switch (departamentoBuscado) 
+            {
+                case "LEG":
+                    retorno = Recursos.Etiquetas.cbiLegal;
+                    break;
+                case "MAR":
+                    retorno = Recursos.Etiquetas.cbiMarcas;
+                    break;
+                case "PAT":
+                    retorno = Recursos.Etiquetas.cbiPatentes;
+                    break;
+                case "ADM":
+                    retorno = Recursos.Etiquetas.cbiAdministracion;
+                    break;
+                default:
+                    break;
+            }
+
+            return retorno;
+        }
+
+        public string BuscarFuncionContacto(string funcionBuscada)
+        {
+            string retorno = "NGN";
+            switch (funcionBuscada)
+            {
+                case "A":
+                    retorno = Recursos.Etiquetas.cbiSoloAdministracion;
+                    break;
+                case "EDO":
+                    retorno = Recursos.Etiquetas.cbiSoloEstadoDeCuenta;
+                    break;
+                case "M":
+                    retorno = Recursos.Etiquetas.cbiSoloMarca;
+                    break;
+                case "P":
+                    retorno = Recursos.Etiquetas.cbiSoloPatente;
+                    break;
+                case "AM":
+                    retorno = Recursos.Etiquetas.cbiAdministracionYPatentes;
+                    break;
+                case "AP":
+                    retorno = Recursos.Etiquetas.cbiAdministracionYPatentes;
+                    break;
+                case "MP":
+                    retorno = Recursos.Etiquetas.cbiMarcasYPatentes;
+                    break;
+                case "AMP":
+                    retorno = Recursos.Etiquetas.cbiAdministracionMarcasPatentes;
+                    break;
+                default:
+                    break;
+            }
+
+            return retorno;
+        }
+
+        public string transformarDepartamento(string departamento)
+        {
+            string retorno = "";
+            switch (departamento)
+            {
+                case "Legal":
+                    retorno = "LEG";
+                    break;
+                case "Marcas":
+                    retorno = "MAR";
+                    break;
+                case "Patentes":
+                    retorno = "PAT";
+                    break;
+                case "Administración":
+                    retorno = "ADM";
+                    break;
+                default:
+                    break;
+            }
+            return retorno;
+        }
+
+        public string transformarFuncion(string funcion)
+        {
+            string retorno = "";
+            switch (funcion)
+            {
+                case "Sólo Administración":
+                    retorno = "A";
+                    break;
+                case "Sólo Estado De Cuenta":
+                    retorno = "EDO";
+                    break;
+                case "Sólo Marcas":
+                    retorno = "M";
+                    break;
+                case "Sólo Patentes":
+                    retorno = "P";
+                    break;
+                case "Administración y Marcas":
+                    retorno = "AM";
+                    break;
+                case "Administración y Patentes":
+                    retorno = "AP";
+                    break;
+                case "Marcas y Patentes":
+                    retorno = "MP";
+                    break;
+                case "Administración, Marcas y Patentes":
+                    retorno = "AMP";
+                    break;
+                default:
+                    break;
+            }
+            return retorno;
+        }
     }
 }

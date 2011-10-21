@@ -5,7 +5,7 @@ using System.Runtime.Remoting;
 using System.Windows.Input;
 using NLog;
 using Trascend.Bolet.Cliente.Contratos.Contactos;
-using Trascend.Bolet.Cliente.Ventanas.Principales;
+using Trascend.Bolet.Cliente.Ventanas.Asociados;
 using Trascend.Bolet.ObjetosComunes.ContratosServicios;
 using Trascend.Bolet.ObjetosComunes.Entidades;
 
@@ -19,7 +19,6 @@ namespace Trascend.Bolet.Cliente.Presentadores.Contactos
         private ICartaServicios _cartaServicios;
         private Asociado _asociado;
         private Carta _carta;
-        private static PaginaPrincipal _paginaPrincipal = PaginaPrincipal.ObtenerInstancia;
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
         /// <summary>
@@ -39,6 +38,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Contactos
                 ((Contacto)this._ventana.Contacto).Asociado = this._asociado;
 
 
+
                 this._contactoServicios = (IContactoServicios)Activator.GetObject(typeof(IContactoServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["ContactoServicios"]);
                 this._asociadoServicios = (IAsociadoServicios)Activator.GetObject(typeof(IAsociadoServicios),
@@ -49,7 +49,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Contactos
             catch (Exception ex)
             {
                 logger.Error(ex.Message);
-                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado,true);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
             }
         }
 
@@ -94,23 +94,44 @@ namespace Trascend.Bolet.Cliente.Presentadores.Contactos
         }
 
         /// <summary>
-        /// Método que realiza toda la lógica para agregar al Usuario dentro de la base de datos
+        /// Método que realiza toda la lógica para agregar al contacto dentro de la base de datos
         /// </summary>
         public void Aceptar()
         {
             try
             {
+                bool exitoso = false;
+                Contacto contacto = (Contacto)this._ventana.Contacto;
+                Carta carta = new Carta();
+                contacto.Departamento = this.transformarDepartamento(this._ventana.getDepartamento);
+                contacto.Funcion = this.transformarFuncion(this._ventana.getFuncion);
 
-                if (this._cartaServicios.VerificarExistencia(((Contacto)this._ventana.Contacto).Carta))
+                if (!string.IsNullOrEmpty(this._ventana.getCorrespondencia))
                 {
-                    Contacto contacto = (Contacto)this._ventana.Contacto;
+                    carta.Id = int.Parse(this._ventana.getCorrespondencia);
 
-                    bool exitoso = this._contactoServicios.InsertarOModificar(contacto, UsuarioLogeado.Hash);
-
-                    if (exitoso)
-                        this.Navegar(Recursos.MensajesConElUsuario.AgenteInsertado, false);
-
+                    if (this._cartaServicios.VerificarExistencia(carta))
+                    {
+                        contacto.Carta = carta;
+                        exitoso = this._contactoServicios.InsertarOModificar(contacto, UsuarioLogeado.Hash);
+                    }
+                    else
+                    {
+                        this._ventana.mensaje(Recursos.MensajesConElUsuario.ErrorCorrespondenciaNoEncontrada);
+                    }
                 }
+                else
+                {
+                    contacto.Carta = null;
+                    exitoso = this._contactoServicios.InsertarOModificar(contacto, UsuarioLogeado.Hash);
+                }
+
+                if (exitoso)
+                {
+                    this._asociado.Contactos.Insert(0,contacto);
+                    this.Navegar(new ListaContactos(this._asociado));
+                }
+
             }
             catch (ApplicationException ex)
             {

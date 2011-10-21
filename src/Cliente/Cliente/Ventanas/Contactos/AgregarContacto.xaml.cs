@@ -26,6 +26,57 @@ namespace Trascend.Bolet.Cliente.Ventanas.Contactos
             set{this._gridDatos.DataContext = value;}
         }
 
+
+        public string getDepartamento
+        {
+            get
+            {
+                if (!string.Equals("", this._cbxDepartamento.Text))
+                {
+                    return ((string)this._cbxDepartamento.Text);
+                }
+                return "";
+            }
+        }
+
+        public string setDepartamento
+        {
+            set
+            {
+                this._cbxDepartamento.Text = value;
+            }
+        }
+
+        public string setFuncion
+        {
+            set
+            {
+                this._cbxUso.Text = value;
+            }
+        }
+
+        public string getFuncion
+        {
+            get
+            {
+                if (!string.Equals("", this._cbxUso.Text))
+                {
+                    return ((string)this._cbxUso.Text);
+                }
+                return "";
+            }
+        }
+
+        public string getCorrespondencia
+        {
+            get { return this._txtCorrespondencia.Text; }
+        }
+
+        public string setCorrespondencia
+        {
+            set { this._txtCorrespondencia.Text = value; }
+        }
+
         public bool EstaCargada
         {
             get { return this._cargada; }
@@ -36,6 +87,12 @@ namespace Trascend.Bolet.Cliente.Ventanas.Contactos
         {
             this._txtNumero.Focus();
         }
+
+        public void mensaje(string mensaje)
+        {
+            MessageBox.Show(mensaje, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+        }
+
         #endregion
 
         public AgregarContacto(object contacto)
@@ -74,6 +131,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Contactos
         {
             this._presentador.Aceptar();
         }
+
 
 
     }

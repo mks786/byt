@@ -82,9 +82,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
                 logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
 
-            if (this._ventana.ContactoSeleccionado!=null)
+            if (this._ventana.ContactoSeleccionado != null)
+            {
+                ((Contacto)this._ventana.ContactoSeleccionado).Asociado = this._asociado;
                 this.Navegar(new ConsultarContacto(this._ventana.ContactoSeleccionado));
-
+            }
             #region trace
             if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
                 logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);

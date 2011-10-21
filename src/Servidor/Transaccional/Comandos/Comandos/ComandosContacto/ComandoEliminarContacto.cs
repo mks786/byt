@@ -1,24 +1,27 @@
 ﻿using System;
-using System.Configuration;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 using NLog;
+using Trascend.Bolet.ObjetosComunes.Entidades;
+using System.Configuration;
 using Trascend.Bolet.AccesoDatos.Contrato;
 using Trascend.Bolet.AccesoDatos.Fabrica;
-using Trascend.Bolet.ObjetosComunes.Entidades;
 
-namespace Trascend.Bolet.Comandos.Comandos.ComandosCarta
+namespace Trascend.Bolet.Comandos.Comandos.ComandosContacto
 {
-    public class ComandoVerificarExistenciaCarta : ComandoBase<bool>
+    public class ComandoEliminarContacto : ComandoBase<bool>
     {
         private static Logger logger = LogManager.GetCurrentClassLogger();
-        private Carta _carta;
+        private Contacto _contacto;
 
         /// <summary>
         /// Constructor predeterminado
         /// </summary>
-        /// <param name="carta">Carta a consultar</param>
-        public ComandoVerificarExistenciaCarta(Carta carta)
+        /// <param name="agente">Contacto a eliminar</param>
+        public ComandoEliminarContacto(Contacto contacto)
         {
-            this._carta = carta;
+            this._contacto = contacto;
         }
 
         /// <summary>
@@ -33,8 +36,8 @@ namespace Trascend.Bolet.Comandos.Comandos.ComandosCarta
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-                IDaoCarta dao = FabricaDaoBase.ObtenerFabricaDao().ObtenerDaoCarta();
-                this.Receptor = new Receptor<bool>(dao.VerificarExistencia(this._carta.Id.Value));
+                IDaoContacto dao = FabricaDaoBase.ObtenerFabricaDao().ObtenerDaoContacto();
+                 this.Receptor = new Receptor<bool>(dao.Eliminar(this._contacto));
 
                 #region trace
                 if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))

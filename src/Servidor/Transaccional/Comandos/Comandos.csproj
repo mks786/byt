@@ -50,6 +50,7 @@
     <Compile Include="Comandos\ComandosConcepto\ComandoConsultarTodosConceptos.cs" />
     <Compile Include="Comandos\ComandosContacto\ComandoConsultarTodosContactos.cs" />
     <Compile Include="Comandos\ComandosContacto\ComandoConsultarContactosPorAsociado.cs" />
+    <Compile Include="Comandos\ComandosContacto\ComandoEliminarContacto.cs" />
     <Compile Include="Comandos\ComandosContacto\ComandoInsertarOModificarContacto.cs" />
     <Compile Include="Comandos\ComandosContador\ComandoConsultarPorIdContador.cs" />
     <Compile Include="Comandos\ComandosDatosTransferencia\ComandoConsultarDatosTransferenciaPorAsociado.cs" />

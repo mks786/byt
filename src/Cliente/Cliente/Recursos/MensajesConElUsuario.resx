@@ -345,4 +345,13 @@
   <data name="ConfirmacionEliminarDatosTransferencia" xml:space="preserve">
     <value>¿Seguro que desea eliminar los datos de la transferencia?</value>
   </data>
+  <data name="ContactoModificado" xml:space="preserve">
+    <value>Contacto modificado con éxito</value>
+  </data>
+  <data name="ErrorCorrespondenciaNoEncontrada" xml:space="preserve">
+    <value>La correspondencia que introdujo no esta en el sistema.</value>
+  </data>
+  <data name="ConfirmacionEliminarContacto" xml:space="preserve">
+    <value>¿Seguro que dese eliminar el contacto?</value>
+  </data>
 </root>

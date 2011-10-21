@@ -15,7 +15,7 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
         /// <summary>
-        /// Método que consulta la lista de todos las monedas
+        /// Método que consulta la lista de todos los contactos
         /// </summary>
         /// <returns>Lista con todos las monedas</returns>
         public static IList<Contacto> ConsultarTodos()
@@ -106,7 +106,47 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
                 throw ex;
             }
             return exitoso;
-        }  
+        }
+
+        /// <summary>
+        /// Método que elimina un contacto
+        /// </summary>
+        /// <param name="usuario">Contacto a eliminar</param>
+        /// <param name="hash">Hash del contacto que va a realizar la operacion</param>
+        /// <returns>True si la eliminacion fue exitosa, en caso contrario False</returns>
+        public static bool Eliminar(Contacto contacto, int hash)
+        {
+            bool exitoso = false;
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                ComandoBase<bool> comando = FabricaComandosContacto.ObtenerComandoEliminarContacto(contacto);
+                comando.Ejecutar();
+                exitoso = true;
+
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (ApplicationException ex)
+            {
+                logger.Error(ex.Message);
+                throw ex;
+            }
+
+            return exitoso;
+        }
+    
     }
+
+
+
+
+
 }
 

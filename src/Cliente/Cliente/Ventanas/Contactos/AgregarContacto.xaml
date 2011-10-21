@@ -140,7 +140,7 @@
                     <Label>
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblCorrespondencia}"/>
                     </Label>
-                    <TextBox Name="_txtCorrespondencia" Width="150" MaxLength="255"  Text="{Binding Path=Carta.Id}" />
+                    <TextBox Name="_txtCorrespondencia" Width="150" MaxLength="255"  Text="" />
                 </WrapPanel>
                 <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0"></WrapPanel>
             </StackPanel>
@@ -149,6 +149,15 @@
         <WrapPanel Grid.Row="2" Grid.ColumnSpan="3" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="5" Orientation="Horizontal">
             <Button Name="_btnAceptar" VerticalAlignment="Bottom" Height="25" Width="90"
                     Click="_btnAceptar_Click">
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding ElementName=_txtNumero,Path=(Validation.HasError)}" Value="True">
+                                <Setter Property="IsEnabled" Value="False" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
                 <TextBlock Name="_txbAceptar" Text="{x:Static recurso:Etiquetas.btnAceptar}"/>
             </Button>
             <Button Name="_btnRegresar" VerticalAlignment="Bottom" Height="25" Width="90"

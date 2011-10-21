@@ -50,7 +50,11 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
 
         #region Propiedades
 
-
+        /// <summary>
+        /// Sobreescritura del metodo Equals debido a que la clase tiene id compuesto
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
         public override bool Equals(object obj)
         {
             if (obj == null)
@@ -64,71 +68,108 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
 
         }
 
-        //public override bool Equals(object obj)
-        //{
-        //    if ((this.Id == ((Contacto)obj).Id) && (this.Asociado.Id == ((Contacto)obj).Asociado.Id))
-        //        return true;
-        //    return false;
-        //}
-
+        /// <summary>
+        /// Sobreescritura del metodo GetHashCode debido a que la clase tiene id compuesto
+        /// </summary>
+        /// <returns></returns>
         public override int GetHashCode()
         {
             return base.GetHashCode();
         }
 
+        /// <summary>
+        /// Sobreescritura del metodo ToString debido a que la clase tiene id compuesto
+        /// </summary>
+        /// <returns></returns>
         public override string ToString()
         {
             return base.ToString();
         }
 
+        /// <summary>
+        /// Propiedad que asigna y obtiene el asociado dueño de el contacto
+        /// </summary>
         public virtual Asociado Asociado
         {
             get { return _asociado; }
             set { _asociado = value; }
         }
 
+        /// <summary>
+        /// Propiedad que asigna y obtiene el Id del contacto
+        /// </summary>
         public virtual int Id
         {
             get { return _id; }
             set { _id = value; }
         }
 
+        /// <summary>
+        /// Propiedad que asigna y obtiene el nombre del contacto
+        /// </summary>
         public virtual string Nombre
         {
             get { return _nombre; }
             set { _nombre = value; }
         }
 
+        /// <summary>
+        /// Propiedad que asigna y obtiene el Departamento del contacto
+        /// </summary>
         public virtual string Departamento
         {
             get { return _departamento; }
             set { _departamento = value; }
         }
+
+        /// <summary>
+        /// Propiedad que asigna y obtiene el telefono del contacto
+        /// </summary>
         public virtual string Telefono
         {
             get { return _telefono; }
             set { _telefono = value; }
         }
+
+        /// <summary>
+        /// Propiedad que asigna y obtiene el fax del contacto
+        /// </summary>
         public virtual string Fax
         {
             get { return _fax; }
             set { _fax = value; }
         }
+
+        /// <summary>
+        /// Propiedad que asigna y obtiene el email del contacto
+        /// </summary>
         public virtual string Email
         {
             get { return _email; }
             set { _email = value; }
         }
+
+        /// <summary>
+        /// Propiedad que asigna y obtiene la funcion del contacto
+        /// </summary>
         public virtual string Funcion
         {
             get { return _funcion; }
             set { _funcion = value; }
         }
+
+        /// <summary>
+        /// Propiedad que asigna y obtiene el cargo del contacto
+        /// </summary>
         public virtual string Cargo
         {
             get { return _cargo; }
             set { _cargo = value; }
         }
+
+        /// <summary>
+        /// Propiedad que asigna y obtiene la carta del contacto
+        /// </summary>
         public virtual Carta Carta
         {
             get { return _carta; }

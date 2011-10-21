@@ -22,17 +22,17 @@ namespace Trascend.Bolet.Comandos.Fabrica
         }
 
         /// <summary>
-        /// 
+        /// Metodo que devuelve el comando para eliminar a un contacto
         /// </summary>
-        /// <param name="contacto"></param>
+        /// <param name="contacto">contacto a eliminar</param>
         /// <returns></returns>
         public static ComandoBase<bool> ObtenerComandoEliminarContacto(Contacto contacto)
         {
-            throw new NotImplementedException();
+            return new ComandoEliminarContacto(contacto);
         }
 
         /// <summary>
-        /// Método que devulve una lista con todas las monedas
+        /// 
         /// </summary>
         /// <returns></returns>
         public static ComandoBase<IList<Contacto>> ObtenerComandoConsultarTodos()
@@ -40,6 +40,11 @@ namespace Trascend.Bolet.Comandos.Fabrica
             return new ComandoConsultarTodosContactos();
         }
 
+        /// <summary>
+        /// Metodo que devuelve el comando para consultar todos los contactos de un asociado
+        /// </summary>
+        /// <param name="asociado"></param>
+        /// <returns></returns>
         public static ComandoBase<IList<Contacto>> ObtenerComandoConsultarContactosPorAsociado(Asociado asociado)
         {
             return new ComandoConsultarContactosPorAsociado(asociado);

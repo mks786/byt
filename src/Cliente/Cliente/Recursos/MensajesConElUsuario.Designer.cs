@@ -178,6 +178,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ¿Seguro que dese eliminar el contacto?.
+        /// </summary>
+        internal static string ConfirmacionEliminarContacto {
+            get {
+                return ResourceManager.GetString("ConfirmacionEliminarContacto", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ¿Seguro que desea eliminar el estado?.
         /// </summary>
         internal static string ConfirmacionEliminarEstado {
@@ -313,6 +322,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Contacto modificado con éxito.
+        /// </summary>
+        internal static string ContactoModificado {
+            get {
+                return ResourceManager.GetString("ContactoModificado", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Archivo del asociado no encontrado..
         /// </summary>
         internal static string ErrorAsociadoNoEncontrado {
@@ -336,6 +354,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         internal static string ErrorConexionServidor {
             get {
                 return ResourceManager.GetString("ErrorConexionServidor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to La correspondencia que introdujo no esta en el sistema..
+        /// </summary>
+        internal static string ErrorCorrespondenciaNoEncontrada {
+            get {
+                return ResourceManager.GetString("ErrorCorrespondenciaNoEncontrada", resourceCulture);
             }
         }
         
