@@ -20,12 +20,12 @@ namespace Trascend.Bolet.Cliente.Ventanas.Contactos
         {
             this._txtNumero.Text = string.Empty;
         }
+
         public object Contacto
         {
             get{return this._gridDatos.DataContext;}
             set{this._gridDatos.DataContext = value;}
         }
-
 
         public string getDepartamento
         {
@@ -95,15 +95,14 @@ namespace Trascend.Bolet.Cliente.Ventanas.Contactos
 
         #endregion
 
-        public AgregarContacto(object contacto)
+        public AgregarContacto(object asociado)
         {
             InitializeComponent();
             this._cargada = false;
-            this._presentador = new PresentadorAgregarContacto(this, contacto);
+            this._presentador = new PresentadorAgregarContacto(this, asociado);
             
         }
 
- 
         private void _btnRegresar_Click(object sender, RoutedEventArgs e)
         {
             this._presentador.Regresar();

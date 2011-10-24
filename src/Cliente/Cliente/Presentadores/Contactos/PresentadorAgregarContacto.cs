@@ -18,7 +18,6 @@ namespace Trascend.Bolet.Cliente.Presentadores.Contactos
         private IAsociadoServicios _asociadoServicios;
         private ICartaServicios _cartaServicios;
         private Asociado _asociado;
-        private Carta _carta;
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
         /// <summary>
@@ -32,12 +31,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Contactos
 
                 this._ventana = ventana;
                 this._asociado = (Asociado)asociado;
-                this._carta = new Carta();
                 this._ventana.Contacto = new Contacto();
-                ((Contacto)this._ventana.Contacto).Carta = this._carta;
+                //((Contacto)this._ventana.Contacto).Carta = this._carta;
                 ((Contacto)this._ventana.Contacto).Asociado = this._asociado;
-
-
 
                 this._contactoServicios = (IContactoServicios)Activator.GetObject(typeof(IContactoServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["ContactoServicios"]);
@@ -102,12 +98,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.Contactos
             {
                 bool exitoso = false;
                 Contacto contacto = (Contacto)this._ventana.Contacto;
-                Carta carta = new Carta();
                 contacto.Departamento = this.transformarDepartamento(this._ventana.getDepartamento);
                 contacto.Funcion = this.transformarFuncion(this._ventana.getFuncion);
 
                 if (!string.IsNullOrEmpty(this._ventana.getCorrespondencia))
                 {
+                    Carta carta = new Carta();
                     carta.Id = int.Parse(this._ventana.getCorrespondencia);
 
                     if (this._cartaServicios.VerificarExistencia(carta))

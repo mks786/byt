@@ -53,7 +53,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
                 this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleListaContactos,
                     Recursos.Ids.Contacto);
                 
-                this._ventana.Contactos = this._asociado.Justificaciones;
+                this._ventana.Contactos = ((Asociado)this._asociado).Contactos;
                 this._ventana.FocoPredeterminado();
 
                 #region trace
