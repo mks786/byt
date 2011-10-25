@@ -32,6 +32,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Nacionales
             set { this._gridDatos.DataContext = value; }
         }
 
+        public void Mensaje(string mensaje)
+        {
+            MessageBox.Show(mensaje, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+        }
+
         #endregion
 
         public AgregarNacional()

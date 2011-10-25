@@ -113,6 +113,39 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
 
             return retorno;
         }
+
+        /// <summary>
+        /// Verifica si el TipoInfobol existe
+        /// </summary>
+        /// <param name="TipoInfobol">TipoInfobol a verificar</param>
+        /// <returns>True de existir, false en caso conrario</returns>
+        public static bool VerificarExistencia(TipoInfobol TipoInfobol)
+        {
+            bool existe = false;
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                ComandoBase<bool> comando = FabricaComandosTipoInfobol.ObtenerComandoVerificarExistenciaTipoInfobol(TipoInfobol);
+                comando.Ejecutar();
+                existe = comando.Receptor.ObjetoAlmacenado;
+
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (ApplicationException ex)
+            {
+                logger.Error(ex.Message);
+                throw ex;
+            }
+
+            return existe;
+        }
     }
 }
 

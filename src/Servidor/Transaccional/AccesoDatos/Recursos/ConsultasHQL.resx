@@ -149,4 +149,8 @@
     <value>Select u from Usuario u left join fetch u.Rol as rol left join fetch rol.Objetos where u.Id = '{0}' and u.Password = '{1}'</value>
     <comment>Selecciona el usuario, rol y objetos, si el Id y el Password concuerdan con algún usuario de la BD</comment>
   </data>
+  <data name="VerificarExistenciaResolucion" xml:space="preserve">
+    <value>Select r from Resolucion r where r.Id = {0} and r.FechaResolucion = '{1}' and r.Boletin.Id =  {2}</value>
+    <comment>Verifica si existe una resolucion por sus ids</comment>
+  </data>
 </root>

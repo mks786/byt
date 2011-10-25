@@ -55,6 +55,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Resoluciones
             set { this._cbxBoletin.SelectedItem = value; }
         }
 
+        public void Mensaje(string mensaje)
+        {
+            MessageBox.Show(mensaje, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+        }
+
         #endregion
 
         public AgregarResolucion()

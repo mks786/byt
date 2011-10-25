@@ -8,5 +8,7 @@ namespace Trascend.Bolet.Cliente.Contratos.Resoluciones
         object Boletines { get; set; }
 
         object Boletin { get; set; }
+
+        void Mensaje(string mensaje);
     }
 }

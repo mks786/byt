@@ -92,9 +92,21 @@ namespace Trascend.Bolet.Servicios.Implementacion
 
 
 
-        public bool VerificarExistencia(Nacional entidad)
+        public bool VerificarExistencia(Nacional nacional)
         {
-            throw new NotImplementedException();
+            #region trace
+            if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+            bool exitoso = ControladorNacional.VerificarExistencia(nacional);
+
+            #region trace
+            if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+            return exitoso;
         }
     }
 }

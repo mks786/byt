@@ -88,7 +88,7 @@
 
         <WrapPanel Grid.Row="2" Grid.ColumnSpan="3" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="5" Orientation="Horizontal">
             <Button Name="_btnModificar"  VerticalAlignment="Bottom" Height="25" Width="90" 
-                    Click="_btnModificar_Click">
+                    Click="_btnModificar_Click" IsDefault="True">
                 <Button.Style>
                     <Style TargetType="Button">
                         <Style.Triggers>

@@ -9,5 +9,7 @@ namespace Trascend.Bolet.Cliente.Contratos.Objetos
         string Id { get; }
 
         string Descripcion { get; }
+
+        void Mensaje(string mensaje);
     }
 }

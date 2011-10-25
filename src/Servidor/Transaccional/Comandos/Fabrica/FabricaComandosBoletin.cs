@@ -37,5 +37,15 @@ namespace Trascend.Bolet.Comandos.Fabrica
         {
             return new ComandoConsultarTodosBoletines();
         }
+
+        /// <summary>
+        /// Método que devuelve el Comando verificar existencia
+        /// </summary>
+        /// <param name="boletin">Boletin a verificar</param>
+        /// <returns>True: si se realizo el comando con exito; False: en caso contrario</returns>
+        public static ComandoBase<bool> ObtenerComandoVerificarExistenciaBoletin(Boletin boletin)
+        {
+            return new ComandoVerificarExistenciaBoletin(boletin);
+        }
     }
 }

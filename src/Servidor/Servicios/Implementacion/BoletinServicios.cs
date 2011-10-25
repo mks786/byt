@@ -90,10 +90,21 @@ namespace Trascend.Bolet.Servicios.Implementacion
             return exitoso;
         }
 
-
-        public bool VerificarExistencia(Boletin entidad)
+        public bool VerificarExistencia(Boletin boletin)
         {
-            throw new NotImplementedException();
+            #region trace
+            if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+            bool exitoso = ControladorBoletin.VerificarExistencia(boletin);
+
+            #region trace
+            if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+            return exitoso;
         }
     }
 }

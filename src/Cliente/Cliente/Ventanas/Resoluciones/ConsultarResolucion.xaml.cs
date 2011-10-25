@@ -55,8 +55,6 @@ namespace Trascend.Bolet.Cliente.Ventanas.Resoluciones
         {
             set 
             { 
-                this._dpkFechaResolucion.IsEnabled = value;
-                this._cbxBoletin.IsEnabled = value;
                 this._txtVolumen.IsEnabled = value;
                 this._txtPagina.IsEnabled = value;
             }

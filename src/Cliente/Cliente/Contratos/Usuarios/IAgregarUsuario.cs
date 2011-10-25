@@ -12,10 +12,12 @@ namespace Trascend.Bolet.Cliente.Contratos.Usuarios
 
         object Rol { get; set; }
 
+        object Roles { get; set; }
+
         object Departamento { get; set; }
 
         object Departamentos { get; set; }
 
-        object Roles { get; set; }
+        void Mensaje(string mensaje);
     }
 }

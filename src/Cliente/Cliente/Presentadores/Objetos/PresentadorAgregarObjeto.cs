@@ -100,11 +100,16 @@ namespace Trascend.Bolet.Cliente.Presentadores.Objetos
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-                if (this._objetoServicios.InsertarOModificar((Objeto)this._ventana.Objeto, UsuarioLogeado.Hash))
+                if (!this._objetoServicios.VerificarExistencia((Objeto)this._ventana.Objeto))
                 {
-                    PaginaPrincipal paginaPrincipal = PaginaPrincipal.ObtenerInstancia;
-                    paginaPrincipal.MensajeUsuario = Recursos.MensajesConElUsuario.ObjetoInsertado;
-                    this.Navegar(paginaPrincipal);
+                    if (this._objetoServicios.InsertarOModificar((Objeto)this._ventana.Objeto, UsuarioLogeado.Hash))
+                    {
+                        this.Navegar(Recursos.MensajesConElUsuario.ObjetoInsertado, false);
+                    }
+                }
+                else
+                {
+                    this._ventana.Mensaje(Recursos.MensajesConElUsuario.ErrorObjetoRepetido);
                 }
                  
                 #region trace

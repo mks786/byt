@@ -113,6 +113,39 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
 
             return retorno;
         }
+
+        /// <summary>
+        /// Verifica si el agente existe
+        /// </summary>
+        /// <param name="internacional">Internacional a verificar</param>
+        /// <returns>True de existir, false en caso conrario</returns>
+        public static bool VerificarExistencia(Internacional internacional)
+        {
+            bool existe = false;
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                ComandoBase<bool> comando = FabricaComandosInternacional.ObtenerComandoVerificarExistenciaInternacional(internacional);
+                comando.Ejecutar();
+                existe = comando.Receptor.ObjetoAlmacenado;
+
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (ApplicationException ex)
+            {
+                logger.Error(ex.Message);
+                throw ex;
+            }
+
+            return existe;
+        }
     }
 }
 

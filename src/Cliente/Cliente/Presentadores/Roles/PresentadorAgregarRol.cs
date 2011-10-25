@@ -84,9 +84,16 @@ namespace Trascend.Bolet.Cliente.Presentadores.Roles
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-                if (this._rolServicios.InsertarOModificar((Rol)this._ventana.Rol, UsuarioLogeado.Hash))
+                if (!this._rolServicios.VerificarExistencia((Rol)this._ventana.Rol))
                 {
-                    this.Navegar(Recursos.MensajesConElUsuario.RolInsertado,false);
+                    if (this._rolServicios.InsertarOModificar((Rol)this._ventana.Rol, UsuarioLogeado.Hash))
+                    {
+                        this.Navegar(Recursos.MensajesConElUsuario.RolInsertado, false);
+                    }
+                }
+                else
+                {
+                    this._ventana.Mensaje(Recursos.MensajesConElUsuario.ErrorRolRepetido);
                 }
 
                 #region trace

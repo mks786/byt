@@ -115,10 +115,18 @@ namespace Trascend.Bolet.Cliente.Presentadores.Usuarios
                 Departamento departamento = (Departamento)this._ventana.Departamento;
                 usuario.Departamento = departamento;
 
-                bool exitoso = this._usuarioServicios.InsertarOModificar(usuario,UsuarioLogeado.Hash);
+                if (!this._usuarioServicios.VerificarExistencia(usuario))
+                {
 
-                if (exitoso)
-                    this.Navegar(Recursos.MensajesConElUsuario.UsuarioInsertado,false);
+                    bool exitoso = this._usuarioServicios.InsertarOModificar(usuario, UsuarioLogeado.Hash);
+
+                    if (exitoso)
+                        this.Navegar(Recursos.MensajesConElUsuario.UsuarioInsertado, false);
+                }
+                else
+                {
+                    this._ventana.Mensaje(Recursos.MensajesConElUsuario.ErrorUsuarioRepetido);
+                }
             }
             catch (ApplicationException ex)
             {

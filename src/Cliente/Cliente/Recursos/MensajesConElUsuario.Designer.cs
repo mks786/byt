@@ -169,20 +169,20 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ¿Seguro que desea eliminar los datos de la transferencia?.
-        /// </summary>
-        internal static string ConfirmacionEliminarDatosTransferencia {
-            get {
-                return ResourceManager.GetString("ConfirmacionEliminarDatosTransferencia", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to ¿Seguro que dese eliminar el contacto?.
         /// </summary>
         internal static string ConfirmacionEliminarContacto {
             get {
                 return ResourceManager.GetString("ConfirmacionEliminarContacto", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ¿Seguro que desea eliminar los datos de la transferencia?.
+        /// </summary>
+        internal static string ConfirmacionEliminarDatosTransferencia {
+            get {
+                return ResourceManager.GetString("ConfirmacionEliminarDatosTransferencia", resourceCulture);
             }
         }
         
@@ -331,11 +331,29 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to El agente que intenta introducir ya existe.
+        /// </summary>
+        internal static string ErrorAgenteRepetido {
+            get {
+                return ResourceManager.GetString("ErrorAgenteRepetido", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Archivo del asociado no encontrado..
         /// </summary>
         internal static string ErrorAsociadoNoEncontrado {
             get {
                 return ResourceManager.GetString("ErrorAsociadoNoEncontrado", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to El boletin que intenta introducir ya existe.
+        /// </summary>
+        internal static string ErrorBoletinRepetido {
+            get {
+                return ResourceManager.GetString("ErrorBoletinRepetido", resourceCulture);
             }
         }
         
@@ -367,11 +385,65 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to El estado que intenta introducir ya existe.
+        /// </summary>
+        internal static string ErrorEstadoRepetido {
+            get {
+                return ResourceManager.GetString("ErrorEstadoRepetido", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to El estatus que intenta introducir ya existe.
+        /// </summary>
+        internal static string ErrorEstatusRepetido {
+            get {
+                return ResourceManager.GetString("ErrorEstatusRepetido", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Se ha producido un error inesperado.
         /// </summary>
         internal static string ErrorInesperado {
             get {
                 return ResourceManager.GetString("ErrorInesperado", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to La clase internacional que intenta introducir ya existe.
+        /// </summary>
+        internal static string ErrorInternacionalRepetido {
+            get {
+                return ResourceManager.GetString("ErrorInternacionalRepetido", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to La clase nacial que intenta introducir ya existe.
+        /// </summary>
+        internal static string ErrorNacionalRepetido {
+            get {
+                return ResourceManager.GetString("ErrorNacionalRepetido", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to El objeto que intenta introducir ya existe.
+        /// </summary>
+        internal static string ErrorObjetoRepetido {
+            get {
+                return ResourceManager.GetString("ErrorObjetoRepetido", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to La pais que intenta introducir ya existe.
+        /// </summary>
+        internal static string ErrorPaisRepetido {
+            get {
+                return ResourceManager.GetString("ErrorPaisRepetido", resourceCulture);
             }
         }
         
@@ -390,6 +462,51 @@ namespace Trascend.Bolet.Cliente.Recursos {
         internal static string ErrorRemoting {
             get {
                 return ResourceManager.GetString("ErrorRemoting", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to La resolucion que intenta introducir ya existe.
+        /// </summary>
+        internal static string ErrorResolucionRepetido {
+            get {
+                return ResourceManager.GetString("ErrorResolucionRepetido", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to El rol que intenta introducir ya existe.
+        /// </summary>
+        internal static string ErrorRolRepetido {
+            get {
+                return ResourceManager.GetString("ErrorRolRepetido", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to El tipo de fecha que intenta introducir ya existe.
+        /// </summary>
+        internal static string ErrorTipoFechaRepetido {
+            get {
+                return ResourceManager.GetString("ErrorTipoFechaRepetido", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to El tipo de infobol que intenta introducir ya existe.
+        /// </summary>
+        internal static string ErrorTipoInfoBolRepetido {
+            get {
+                return ResourceManager.GetString("ErrorTipoInfoBolRepetido", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to El usuario que intenta introducir ya existe.
+        /// </summary>
+        internal static string ErrorUsuarioRepetido {
+            get {
+                return ResourceManager.GetString("ErrorUsuarioRepetido", resourceCulture);
             }
         }
         

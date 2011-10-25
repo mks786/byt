@@ -92,9 +92,21 @@ namespace Trascend.Bolet.Servicios.Implementacion
 
 
 
-        public bool VerificarExistencia(TipoFecha entidad)
+        public bool VerificarExistencia(TipoFecha tipoFecha)
         {
-            throw new NotImplementedException();
+            #region trace
+            if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+            bool exitoso = ControladorTipoFecha.VerificarExistencia(tipoFecha);
+
+            #region trace
+            if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+            return exitoso;
         }
     }
 }

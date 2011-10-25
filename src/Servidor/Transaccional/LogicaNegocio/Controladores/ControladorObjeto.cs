@@ -111,6 +111,72 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
 
             return retorno;
         }
+
+        /// <summary>
+        /// Verifica si el agente existe
+        /// </summary>
+        /// <param name="objeto">Objeto a verificar</param>
+        /// <returns>True de existir, false en caso conrario</returns>
+        public static bool VerificarExistencia(Objeto objeto)
+        {
+            bool existe = false;
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                ComandoBase<bool> comando = FabricaComandosObjeto.ObtenerComandoVerificarExistenciaObjeto(objeto);
+                comando.Ejecutar();
+                existe = comando.Receptor.ObjetoAlmacenado;
+
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (ApplicationException ex)
+            {
+                logger.Error(ex.Message);
+                throw ex;
+            }
+
+            return existe;
+        }
+
+        /// <summary>
+        /// Verifica si el agente existe
+        /// </summary>
+        /// <param name="usuario">Usuario a verificar</param>
+        /// <returns>True de existir, false en caso conrario</returns>
+        public static bool VerificarExistencia(Usuario usuario)
+        {
+            bool existe = false;
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                ComandoBase<bool> comando = FabricaComandosUsuario.ObtenerComandoVerificarExistenciaUsuario(usuario);
+                comando.Ejecutar();
+                existe = comando.Receptor.ObjetoAlmacenado;
+
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (ApplicationException ex)
+            {
+                logger.Error(ex.Message);
+                throw ex;
+            }
+
+            return existe;
+        }
     }
 }
 

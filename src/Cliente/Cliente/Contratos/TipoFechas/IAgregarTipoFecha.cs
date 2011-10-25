@@ -8,5 +8,7 @@ namespace Trascend.Bolet.Cliente.Contratos.TipoFechas
     interface IAgregarTipoFecha: IPaginaBase
     {
         object TipoFecha { get; set; }
+
+        void Mensaje(string mensaje);
     }
 }

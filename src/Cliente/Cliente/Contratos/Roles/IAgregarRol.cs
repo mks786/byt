@@ -9,5 +9,7 @@ namespace Trascend.Bolet.Cliente.Contratos.Roles
         string Id { get; }
 
         string Descripcion { get; }
+
+        void Mensaje(string mensaje);
     }
 }

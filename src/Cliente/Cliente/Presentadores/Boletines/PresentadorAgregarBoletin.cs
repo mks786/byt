@@ -88,10 +88,19 @@ namespace Trascend.Bolet.Cliente.Presentadores.Boletines
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-                if (this._boletinServicios.InsertarOModificar((Boletin)this._ventana.Boletin, UsuarioLogeado.Hash))
+                if (!this._boletinServicios.VerificarExistencia((Boletin)this._ventana.Boletin))
                 {
-                    this.Navegar(Recursos.MensajesConElUsuario.BoletinInsertado, false);
+                    if (this._boletinServicios.InsertarOModificar((Boletin)this._ventana.Boletin, UsuarioLogeado.Hash))
+                    {
+                        this.Navegar(Recursos.MensajesConElUsuario.BoletinInsertado, false);
+                    }
                 }
+                else
+                {
+                    this._ventana.Mensaje(Recursos.MensajesConElUsuario.ErrorBoletinRepetido);
+                }
+
+
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))

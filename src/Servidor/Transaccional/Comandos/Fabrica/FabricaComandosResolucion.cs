@@ -37,5 +37,15 @@ namespace Trascend.Bolet.Comandos.Fabrica
         {
             return new ComandoConsultarTodosResoluciones();
         }
+
+        /// <summary>
+        /// Método que devuelve el Comando verificar existencia
+        /// </summary>
+        /// <param name="resolucion">Resolucion a verificar</param>
+        /// <returns>True: si se realizo el comando con exito; False: en caso contrario</returns>
+        public static ComandoBase<bool> ObtenerComandoVerificarExistenciaResolucion(Resolucion resolucion)
+        {
+            return new ComandoVerificarExistenciaResolucion(resolucion);
+        }
     }
 }

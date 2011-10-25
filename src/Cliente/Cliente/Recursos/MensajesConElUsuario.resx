@@ -354,4 +354,43 @@
   <data name="ConfirmacionEliminarContacto" xml:space="preserve">
     <value>¿Seguro que dese eliminar el contacto?</value>
   </data>
+  <data name="ErrorAgenteRepetido" xml:space="preserve">
+    <value>El agente que intenta introducir ya existe</value>
+  </data>
+  <data name="ErrorBoletinRepetido" xml:space="preserve">
+    <value>El boletin que intenta introducir ya existe</value>
+  </data>
+  <data name="ErrorEstatusRepetido" xml:space="preserve">
+    <value>El estatus que intenta introducir ya existe</value>
+  </data>
+  <data name="ErrorEstadoRepetido" xml:space="preserve">
+    <value>El estado que intenta introducir ya existe</value>
+  </data>
+  <data name="ErrorInternacionalRepetido" xml:space="preserve">
+    <value>La clase internacional que intenta introducir ya existe</value>
+  </data>
+  <data name="ErrorNacionalRepetido" xml:space="preserve">
+    <value>La clase nacial que intenta introducir ya existe</value>
+  </data>
+  <data name="ErrorObjetoRepetido" xml:space="preserve">
+    <value>El objeto que intenta introducir ya existe</value>
+  </data>
+  <data name="ErrorPaisRepetido" xml:space="preserve">
+    <value>La pais que intenta introducir ya existe</value>
+  </data>
+  <data name="ErrorResolucionRepetido" xml:space="preserve">
+    <value>La resolucion que intenta introducir ya existe</value>
+  </data>
+  <data name="ErrorRolRepetido" xml:space="preserve">
+    <value>El rol que intenta introducir ya existe</value>
+  </data>
+  <data name="ErrorTipoFechaRepetido" xml:space="preserve">
+    <value>El tipo de fecha que intenta introducir ya existe</value>
+  </data>
+  <data name="ErrorTipoInfoBolRepetido" xml:space="preserve">
+    <value>El tipo de infobol que intenta introducir ya existe</value>
+  </data>
+  <data name="ErrorUsuarioRepetido" xml:space="preserve">
+    <value>El usuario que intenta introducir ya existe</value>
+  </data>
 </root>

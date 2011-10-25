@@ -93,6 +93,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Asociados
 
         private void _btnAgregar_Click(object sender, RoutedEventArgs e)
         {
+            this._btnAgregar.Focus();
             this._presentador.IrAgregarJustificacion();
         }
 

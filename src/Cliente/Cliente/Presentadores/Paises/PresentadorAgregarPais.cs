@@ -86,10 +86,17 @@ namespace Trascend.Bolet.Cliente.Presentadores.Paises
             {
                 Pais pais = (Pais)this._ventana.Pais;
 
-                bool exitoso = this._paisServicios.InsertarOModificar(pais,UsuarioLogeado.Hash);
+                if (!this._paisServicios.VerificarExistencia(pais))
+                {
+                    bool exitoso = this._paisServicios.InsertarOModificar(pais, UsuarioLogeado.Hash);
 
-                if (exitoso)
-                    this.Navegar(Recursos.MensajesConElUsuario.PaisInsertado,false);
+                    if (exitoso)
+                        this.Navegar(Recursos.MensajesConElUsuario.PaisInsertado, false);
+                }
+                else
+                {
+                    this._ventana.Mensaje(Recursos.MensajesConElUsuario.ErrorPaisRepetido);
+                }
             }
             catch (ApplicationException ex)
             {

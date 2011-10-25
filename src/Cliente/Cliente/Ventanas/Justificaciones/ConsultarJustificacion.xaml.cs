@@ -84,6 +84,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Justificaciones
 
         private void _btnModificar_Click(object sender, RoutedEventArgs e)
         {
+            this._btnModificar.Focus();
             this._presentador.Modificar();
         }
 
@@ -100,21 +101,6 @@ namespace Trascend.Bolet.Cliente.Ventanas.Justificaciones
                 this._presentador.CargarPagina();
                 EstaCargada = true;
             }
-        }
-
-        private void _btnAuditoria_Click(object sender, RoutedEventArgs e)
-        {
-            //this._presentador.Auditoria();
-        }
-
-        private void _btnVerPoder_Click(object sender, RoutedEventArgs e)
-        {
-            //this._presentador.AbrirPoder();
-        }
-
-        private void _Ordenar_Click(object sender, RoutedEventArgs e)
-        {
-            //this._presentador.OrdenarColumna(sender as GridViewColumnHeader);
         }
     }
 }

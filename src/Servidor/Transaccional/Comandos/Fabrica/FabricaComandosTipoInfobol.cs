@@ -35,5 +35,15 @@ namespace Trascend.Bolet.Comandos.Fabrica
         {
             return new ComandoConsultarTodosTipoInfoboles();
         }
+
+        /// <summary>
+        /// Método que devuelve el Comando verificar existencia
+        /// </summary>
+        /// <param name="tipoInfobol">TipoInfobol a verificar</param>
+        /// <returns>True: si se realizo el comando con exito; False: en caso contrario</returns>
+        public static ComandoBase<bool> ObtenerComandoVerificarExistenciaTipoInfobol(TipoInfobol tipoInfobol)
+        {
+            return new ComandoVerificarExistenciaTipoInfoBol(tipoInfobol);
+        }
     }
 }

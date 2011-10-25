@@ -8,5 +8,7 @@ namespace Trascend.Bolet.Cliente.Contratos.TipoInfoboles
     interface IAgregarTipoInfobol: IPaginaBase
     {
         object TipoInfobol { get; set; }
+
+        void Mensaje(string mensaje);
     }
 }

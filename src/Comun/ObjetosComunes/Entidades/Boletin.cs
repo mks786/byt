@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Trascend.Bolet.ObjetosComunes.Entidades
 {
@@ -10,7 +11,8 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         private int _id;
         private DateTime _fechaBoletin;
         private DateTime? _fechaBoletinVence;
-
+        //private IList<Resolucion> _resoluciones;
+        
         #endregion
 
         #region Constructores
@@ -60,6 +62,14 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
             set { _fechaBoletinVence = value; }
         }
 
+        ///// <summary>
+        ///// Propiedad que asigna la lista de resoluciones
+        ///// </summary>
+        //public virtual IList<Resolucion> Resoluciones
+        //{
+        //    get { return _resoluciones; }
+        //    set { _resoluciones = value; }
+        //}
 
         #endregion
     }

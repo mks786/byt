@@ -52,7 +52,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Justificaciones
         }
 
 
-        public void mensaje(string mensaje)
+        public void Mensaje(string mensaje)
         {
             MessageBox.Show(mensaje, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
         }
@@ -77,6 +77,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Justificaciones
 
         private void _btnAceptar_Click(object sender, RoutedEventArgs e)
         {
+            this._btnAceptar.Focus();
             this._presentador.Aceptar();
         }
 

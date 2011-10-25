@@ -94,11 +94,19 @@ namespace Trascend.Bolet.Cliente.Presentadores.Resoluciones
 
                 Resolucion resolucion = (Resolucion) this._ventana.Resolucion;
                 resolucion.Boletin = (Boletin) this._ventana.Boletin;
-                bool exitoso = this._resolucionServicios.InsertarOModificar(resolucion, UsuarioLogeado.Hash);
 
-                if (exitoso)
+                if (!this._resolucionServicios.VerificarExistencia(resolucion))
                 {
-                    this.Navegar(Recursos.MensajesConElUsuario.ResolucionInsertado, false);
+                    bool exitoso = this._resolucionServicios.InsertarOModificar(resolucion, UsuarioLogeado.Hash);
+
+                    if (exitoso)
+                    {
+                        this.Navegar(Recursos.MensajesConElUsuario.ResolucionInsertado, false);
+                    }
+                }
+                else
+                {
+                    this._ventana.Mensaje(Recursos.MensajesConElUsuario.ErrorResolucionRepetido);
                 }
 
                 #region trace

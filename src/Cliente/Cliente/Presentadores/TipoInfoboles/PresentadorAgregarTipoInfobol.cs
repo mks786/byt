@@ -84,9 +84,16 @@ namespace Trascend.Bolet.Cliente.Presentadores.TipoInfoboles
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-                if (this._tipoInfobolServicios.InsertarOModificar((TipoInfobol)this._ventana.TipoInfobol, UsuarioLogeado.Hash))
+                if (!this._tipoInfobolServicios.VerificarExistencia((TipoInfobol)this._ventana.TipoInfobol))
                 {
-                    this.Navegar(Recursos.MensajesConElUsuario.TipoInfobolInsertado,false);
+                    if (this._tipoInfobolServicios.InsertarOModificar((TipoInfobol)this._ventana.TipoInfobol, UsuarioLogeado.Hash))
+                    {
+                        this.Navegar(Recursos.MensajesConElUsuario.TipoInfobolInsertado, false);
+                    }
+                }
+                else
+                {
+                    this._ventana.Mensaje(Recursos.MensajesConElUsuario.ErrorTipoInfoBolRepetido);
                 }
 
                 #region trace

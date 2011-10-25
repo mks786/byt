@@ -131,5 +131,14 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
                 return ResourceManager.GetString("ObtenerUsuarioPorIdYPassword", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select r from Resolucion r where r.Id = {0} and r.FechaResolucion = &apos;{1}&apos; and r.Boletin.Id =  {2}.
+        /// </summary>
+        public static string VerificarExistenciaResolucion {
+            get {
+                return ResourceManager.GetString("VerificarExistenciaResolucion", resourceCulture);
+            }
+        }
     }
 }

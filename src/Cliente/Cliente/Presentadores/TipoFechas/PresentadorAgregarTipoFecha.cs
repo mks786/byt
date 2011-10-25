@@ -84,9 +84,18 @@ namespace Trascend.Bolet.Cliente.Presentadores.TipoFechas
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-                if (this._tipoFechaServicios.InsertarOModificar((TipoFecha)this._ventana.TipoFecha, UsuarioLogeado.Hash))
+
+
+                if (!this._tipoFechaServicios.VerificarExistencia((TipoFecha)this._ventana.TipoFecha))
                 {
-                    this.Navegar(Recursos.MensajesConElUsuario.TipoFechaInsertado,false);
+                    if (this._tipoFechaServicios.InsertarOModificar((TipoFecha)this._ventana.TipoFecha, UsuarioLogeado.Hash))
+                    {
+                        this.Navegar(Recursos.MensajesConElUsuario.TipoFechaInsertado, false);
+                    }
+                }
+                else
+                {
+                    this._ventana.Mensaje(Recursos.MensajesConElUsuario.ErrorTipoFechaRepetido);
                 }
 
                 #region trace

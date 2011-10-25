@@ -84,9 +84,16 @@ namespace Trascend.Bolet.Cliente.Presentadores.Nacionales
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-                if (this._nacionalServicios.InsertarOModificar((Nacional)this._ventana.Nacional, UsuarioLogeado.Hash))
+                if (!this._nacionalServicios.VerificarExistencia((Nacional)this._ventana.Nacional))
                 {
-                    this.Navegar(Recursos.MensajesConElUsuario.NacionalInsertado,false);
+                    if (this._nacionalServicios.InsertarOModificar((Nacional)this._ventana.Nacional, UsuarioLogeado.Hash))
+                    {
+                        this.Navegar(Recursos.MensajesConElUsuario.NacionalInsertado, false);
+                    }
+                }
+                else
+                {
+                    this._ventana.Mensaje(Recursos.MensajesConElUsuario.ErrorNacionalRepetido);
                 }
 
                 #region trace

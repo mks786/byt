@@ -8,5 +8,7 @@ namespace Trascend.Bolet.Cliente.Contratos.Agentes
         char EstadoCivil { get; }
 
         char Sexo { get; }
+
+        void Mensaje(string mensaje);
     }
 }

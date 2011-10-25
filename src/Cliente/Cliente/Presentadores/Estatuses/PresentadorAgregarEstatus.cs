@@ -86,10 +86,17 @@ namespace Trascend.Bolet.Cliente.Presentadores.Estatuses
             {
                 Estatus estatus = (Estatus)this._ventana.Estatus;
 
-                bool exitoso = this._estatusServicios.InsertarOModificar(estatus,UsuarioLogeado.Hash);
+                if (!this._estatusServicios.VerificarExistencia(estatus))
+                {
+                    bool exitoso = this._estatusServicios.InsertarOModificar(estatus, UsuarioLogeado.Hash);
 
-                if (exitoso)
-                    this.Navegar(Recursos.MensajesConElUsuario.EstatusInsertado,false);
+                    if (exitoso)
+                        this.Navegar(Recursos.MensajesConElUsuario.EstatusInsertado, false);
+                }
+                else
+                {
+                    this._ventana.Mensaje(Recursos.MensajesConElUsuario.ErrorEstatusRepetido);
+                }
             }
             catch (ApplicationException ex)
             {

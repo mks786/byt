@@ -18,6 +18,41 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         #region Propiedades
 
         /// <summary>
+        /// Sobreescritura del metodo Equals debido a que la clase tiene id compuesto
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        public override bool Equals(object obj)
+        {
+            if (obj == null)
+                return false;
+            var t = obj as Resolucion;
+            if (t == null)
+                return false;
+            if ((Id == (t.Id)) && (Boletin.Id == (t.Boletin.Id)) && (FechaResolucion == t.FechaResolucion))
+                return true;
+            return false;
+
+        }
+
+        /// <summary>
+        /// Sobreescritura del metodo GetHashCode debido a que la clase tiene id compuesto
+        /// </summary>
+        /// <returns></returns>
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
+        }
+
+        /// <summary>
+        /// Sobreescritura del metodo ToString debido a que la clase tiene id compuesto
+        /// </summary>
+        /// <returns></returns>
+        public override string ToString()
+        {
+            return base.ToString();
+        }
+        /// <summary>
         /// Propiedad que asigna el id de la auditoria
         /// </summary>
         public virtual string Id

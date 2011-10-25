@@ -54,6 +54,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Agentes
             }
         }
 
+        public void Mensaje(string mensaje)
+        {
+            MessageBox.Show(mensaje, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+        }
+
         #endregion
 
         public AgregarAgente()

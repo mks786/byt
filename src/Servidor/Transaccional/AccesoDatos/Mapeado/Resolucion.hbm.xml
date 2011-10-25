@@ -4,14 +4,18 @@
                    namespace="Trascend.Bolet.ObjetosComunes.Entidades">
 
   <class name="Resolucion" table="MYP_RESOLBOL">
-    <id name="Id" column="XRESOL" />
-    <property name="FechaResolucion" column="FRESOL" type="DateTime"/>
+    <composite-id>
+      <key-property name="Id" column="XRESOL"/>
+      <key-property name="FechaResolucion" column="FRESOL"/>
+      <key-many-to-one name="Boletin" column="CBOLETIN" class="Boletin"/>
+    </composite-id>
+    <!--<property name="FechaResolucion" column="FRESOL" type="DateTime"/>-->
     <property name="Volumen" column="XVOL" type="string"/>
     <property name="Pagina" column="XPAG" type="string"/>
     
-    <many-to-one name="Boletin" class="Boletin" lazy="false">
+    <!--<many-to-one name="Boletin" class="Boletin" lazy="false">
       <column name="CBOLETIN"/>
-    </many-to-one>
+    </many-to-one>-->
     
   </class>
 

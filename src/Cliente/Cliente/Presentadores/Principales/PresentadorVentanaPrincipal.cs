@@ -402,7 +402,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
                                         itemNivel2.Visibility = System.Windows.Visibility.Visible;
                                     break;
                                 case "_menuItemEstatus":
-                                    if (objeto.Id.Equals(Recursos.Ids.Estatus))
+                                    if (objeto.Id.Equals(Recursos.Ids.Estado))
                                         itemNivel2.Visibility = System.Windows.Visibility.Visible;
                                     break;
                                 case "_menuItemInteresado":

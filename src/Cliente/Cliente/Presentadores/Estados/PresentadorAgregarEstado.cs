@@ -83,9 +83,18 @@ namespace Trascend.Bolet.Cliente.Presentadores.Estados
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-                if (this._estadoServicios.InsertarOModificar((Estado)this._ventana.Estado, UsuarioLogeado.Hash))
+
+                if (!this._estadoServicios.VerificarExistencia((Estado)this._ventana.Estado))
                 {
-                    this.Navegar(Recursos.MensajesConElUsuario.EstadoInsertado,false);
+
+                    if (this._estadoServicios.InsertarOModificar((Estado)this._ventana.Estado, UsuarioLogeado.Hash))
+                    {
+                        this.Navegar(Recursos.MensajesConElUsuario.EstadoInsertado, false);
+                    }
+                }
+                else
+                {
+                    this._ventana.Mensaje(Recursos.MensajesConElUsuario.ErrorEstadoRepetido);
                 }
 
                 #region trace

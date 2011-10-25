@@ -89,10 +89,18 @@ namespace Trascend.Bolet.Cliente.Presentadores.Agentes
                 agente.EstadoCivil = this._ventana.EstadoCivil;
                 agente.Sexo = this._ventana.Sexo;
 
-                bool exitoso = this._agenteServicios.InsertarOModificar(agente,UsuarioLogeado.Hash);
+                if (!this._agenteServicios.VerificarExistencia(agente))
+                {                    
+                    bool exitoso = this._agenteServicios.InsertarOModificar(agente,UsuarioLogeado.Hash);
 
-                if (exitoso)
-                    this.Navegar(Recursos.MensajesConElUsuario.AgenteInsertado,false);
+                    if (exitoso)
+                        this.Navegar(Recursos.MensajesConElUsuario.AgenteInsertado,false);
+                }
+                else
+                {
+                    this._ventana.Mensaje(Recursos.MensajesConElUsuario.ErrorAgenteRepetido);
+                }
+
             }
             catch (ApplicationException ex)
             {

@@ -86,9 +86,21 @@ namespace Trascend.Bolet.Servicios.Implementacion
         }
 
 
-        public bool VerificarExistencia(Estatus entidad)
+        public bool VerificarExistencia(Estatus estatus)
         {
-            throw new NotImplementedException();
+            #region trace
+            if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+            bool exitoso = ControladorEstatus.VerificarExistencia(estatus);
+
+            #region trace
+            if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+            return exitoso;
         }
     }
 }

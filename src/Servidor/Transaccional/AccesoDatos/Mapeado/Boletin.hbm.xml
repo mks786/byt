@@ -7,7 +7,17 @@
     <id name="Id" column="CBOLETIN" />
     <property name="FechaBoletin" column="FBOLETIN" type="DateTime"/>
     <property name="FechaBoletinVence" column="FBOLETINV" type="DateTime"/>
-    
+
+    <!--<bag name="Resoluciones" table="MYP_RESOLBOL" inverse="true" generic="true">
+      <key>
+        <column name="XRESOL"/>
+        <column name="FRESOL"/>
+       </key>
+      <composite-element class="Resolucion">
+        <property name="additionalProperty" type="string"/>
+        <many-to-one name="Boletin" class="Boletin" column="CBOLETIN"/>
+      </composite-element>
+    </bag>-->
   </class>
 
 </hibernate-mapping>

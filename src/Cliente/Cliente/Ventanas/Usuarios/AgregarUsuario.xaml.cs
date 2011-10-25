@@ -57,6 +57,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Usuarios
             set { this._cbxRol.DataContext = value; }
         }
 
+        public void Mensaje(string mensaje)
+        {
+            MessageBox.Show(mensaje, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+        }
+
         #endregion
 
         public AgregarUsuario()

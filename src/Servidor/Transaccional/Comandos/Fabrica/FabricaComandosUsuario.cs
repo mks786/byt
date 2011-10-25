@@ -54,6 +54,16 @@ namespace Trascend.Bolet.Comandos.Fabrica
         {
             return new ComandoAutentificarUsuario(usuario);
         }
+
+        /// <summary>
+        /// Método que devuelve el Comando verificar existencia
+        /// </summary>
+        /// <param name="usuario">Usuario a verificar</param>
+        /// <returns>True: si se realizo el comando con exito; False: en caso contrario</returns>
+        public static ComandoBase<bool> ObtenerComandoVerificarExistenciaUsuario(Usuario usuario)
+        {
+            return new ComandoVerificarExistenciaUsuario(usuario);
+        }
     }
     
 }

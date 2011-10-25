@@ -45,5 +45,15 @@ namespace Trascend.Bolet.Comandos.Fabrica
         {
             throw new NotImplementedException();
         }
+
+        /// <summary>
+        /// Método que devuelve el Comando verificar existencia
+        /// </summary>
+        /// <param name="estatus">Estatus a verificar</param>
+        /// <returns>True: si se realizo el comando con exito; False: en caso contrario</returns>
+        public static ComandoBase<bool> ObtenerComandoVerificarExistenciaEstatus(Estatus estatus)
+        {
+            return new ComandoVerificarExistenciaEstatus(estatus);
+        }
     }
 }

@@ -32,6 +32,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.TipoInfoboles
             set { this._gridDatos.DataContext = value; }
         }
 
+        public void Mensaje(string mensaje)
+        {
+            MessageBox.Show(mensaje, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+        }
+
         #endregion
 
         public AgregarTipoInfobol()

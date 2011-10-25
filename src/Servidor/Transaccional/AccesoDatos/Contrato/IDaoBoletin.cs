@@ -2,7 +2,7 @@
 
 namespace Trascend.Bolet.AccesoDatos.Contrato
 {
-    public interface IDaoBoletin : IDaoBase<Boletin, string>
+    public interface IDaoBoletin : IDaoBase<Boletin, int>
     {
 
     }

@@ -127,7 +127,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Justificaciones
                 }
                 else
                 {
-                    this._ventana.mensaje(Recursos.MensajesConElUsuario.ErrorCartaNoEncontrada);
+                    this._ventana.Mensaje(Recursos.MensajesConElUsuario.ErrorCartaNoEncontrada);
                 }
 
 

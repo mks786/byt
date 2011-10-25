@@ -42,6 +42,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Roles
             get { return this._txtDescripcion.Text; }
         }
 
+        public void Mensaje(string mensaje)
+        {
+            MessageBox.Show(mensaje, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+        }
+
         #endregion
 
         public AgregarRol()

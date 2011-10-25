@@ -90,10 +90,21 @@ namespace Trascend.Bolet.Servicios.Implementacion
             return agentes;
         }
 
-
-        public bool VerificarExistencia(Agente entidad)
+        public bool VerificarExistencia(Agente agente)
         {
-            throw new NotImplementedException();
+            #region trace
+            if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+            bool exitoso = ControladorAgente.VerificarExistencia(agente);
+
+            #region trace
+            if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+            return exitoso;
         }
     }
 }
