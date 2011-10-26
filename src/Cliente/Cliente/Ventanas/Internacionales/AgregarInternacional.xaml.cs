@@ -2,6 +2,7 @@
 using System.Windows.Controls;
 using Trascend.Bolet.Cliente.Contratos.Internacionales;
 using Trascend.Bolet.Cliente.Presentadores.Internacionales;
+using System.Windows.Input;
 
 namespace Trascend.Bolet.Cliente.Ventanas.Internacionales
 {
@@ -73,6 +74,21 @@ namespace Trascend.Bolet.Cliente.Ventanas.Internacionales
                 e.Handled = true;
             else
                 e.Handled = false;
+        }
+
+
+        private void _txtId_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (System.Text.RegularExpressions.Regex.IsMatch(this._txtId.Text, "[^0-9]"))
+            {
+                this._txtId.Text = "";
+            }
+        }
+
+        private void _txtId_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (!System.Text.RegularExpressions.Regex.IsMatch(e.Key.ToString(), "\\d+"))
+                e.Handled = true;
         }
 
    

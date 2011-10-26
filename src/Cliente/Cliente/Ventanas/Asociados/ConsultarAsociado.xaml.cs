@@ -1,7 +1,9 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using Trascend.Bolet.Cliente.Contratos.Asociados;
 using Trascend.Bolet.Cliente.Presentadores.Asociados;
+using Trascend.Bolet.ControlesByT;
 
 namespace Trascend.Bolet.Cliente.Ventanas.Asociados
 {
@@ -15,6 +17,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Asociados
         private bool _cargada;
 
         #region IconsultarAsociado
+
 
         public object Asociado
         {
@@ -272,6 +275,29 @@ namespace Trascend.Bolet.Cliente.Ventanas.Asociados
         private void _btnTrasferenciaAdministracion_Click(object sender, RoutedEventArgs e)
         {
             this._presentador.IrListaDatosTransferencia();
+        }
+
+        private void _soloNumero_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (System.Text.RegularExpressions.Regex.IsMatch(this._txtDiasCreditoAdministracion.Text, "[^0-9]"))
+            {
+                this._txtDiasCreditoAdministracion.Text = "";
+            }
+        }
+
+        private void _soloNumero_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (!System.Text.RegularExpressions.Regex.IsMatch(e.Key.ToString(), "\\d+"))
+                e.Handled = true;
+
+        }
+
+        private void _txtDescuentoAdministracion_KeyDown(object sender, KeyEventArgs e)
+        {
+
+            if (!System.Text.RegularExpressions.Regex.IsMatch(e.Key.ToString(), "^\\$?(\\d{1,3},?(\\d{3},?)*\\d{3}(.\\d{0,3})?|\\d{1,3}(.\\d{2})?)$"))
+                e.Handled = true;
+            
         }
     }
 }

@@ -54,6 +54,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Principales
             get { return this._menuPrincipal; }
         }
 
+        public void mensaje(string mensaje)
+        {
+            MessageBox.Show(mensaje, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+        }
+
         #endregion
 
         #region Eventos del menú
@@ -240,12 +245,21 @@ namespace Trascend.Bolet.Cliente.Ventanas.Principales
         private void btnSalir_Click(object sender, RoutedEventArgs e)
         {
             //Al ejecutar la siClienteente línea se dispara el evento "Window_Closing"
+
             this.Close();
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            this._presentador.Salir();
+            if (MessageBoxResult.Yes == MessageBox.Show(Recursos.MensajesConElUsuario.ConfirmacionSalirDelSistema,
+                "Salir del sistema", MessageBoxButton.YesNo, MessageBoxImage.Question))
+            {
+                this._presentador.Salir();
+            }
+            else
+            {
+                e.Cancel = true;
+            }
         }
 
         #endregion

@@ -11,6 +11,7 @@ using Trascend.Bolet.ObjetosComunes.ContratosServicios;
 using Trascend.Bolet.ObjetosComunes.Entidades;
 using System.Collections.Generic;
 using Trascend.Bolet.Cliente.Ventanas.Auditorias;
+using Trascend.Bolet.Cliente.Ventanas.Detalles;
 using System.ComponentModel;
 
 namespace Trascend.Bolet.Cliente.Presentadores.Asociados
@@ -314,6 +315,13 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
             if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
                 logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
+        }
+
+        public void irDetalle()
+        {
+            VentanaPrincipal.ObtenerInstancia.IsEnabled = false;
+            Detalle ventanaDetalle = Detalle.ObtenerInstancia;
+            ventanaDetalle.Show();
         }
 
         public void Auditoria()

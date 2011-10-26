@@ -48,5 +48,6 @@ namespace Trascend.Bolet.Cliente.Contratos.Asociados
 
         void ArchivoNoEncontrado();
 
+
     }
 }

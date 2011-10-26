@@ -313,6 +313,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ¿Seguro que desea salir del Sistema?.
+        /// </summary>
+        internal static string ConfirmacionSalirDelSistema {
+            get {
+                return ResourceManager.GetString("ConfirmacionSalirDelSistema", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Contacto insertado con éxito.
         /// </summary>
         internal static string ContactoInsertado {

@@ -53,7 +53,16 @@
                     <Label>
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblNombre}"/>
                     </Label>
-                    <TextBox Name="_txtNombre" Width="150" MaxLength="25"  Text="{Binding Path=Nombre}" />
+                    <TextBox Name="_txtNombre" Width="150" MaxLength="25" 
+                             ToolTip="{Binding ElementName=_txtNumero, Path=(Validation.Errors)[0].ErrorContent}">
+                        <TextBox.Text>
+                            <Binding Path="Nombre" UpdateSourceTrigger="PropertyChanged">
+                                <Binding.ValidationRules>
+                                    <reglas:Obligatorio ValidatesOnTargetUpdated="True" />
+                                </Binding.ValidationRules>
+                            </Binding>
+                        </TextBox.Text>
+                    </TextBox>
                 </WrapPanel>
                 <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
                     <Label>
@@ -147,12 +156,15 @@
         </GroupBox>
 
         <WrapPanel Grid.Row="2" Grid.ColumnSpan="3" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="5" Orientation="Horizontal">
-            <Button Name="_btnAceptar" VerticalAlignment="Bottom" Height="25" Width="90"
+            <Button IsDefault="True" Name="_btnAceptar" VerticalAlignment="Bottom" Height="25" Width="90"
                     Click="_btnAceptar_Click">
                 <Button.Style>
                     <Style TargetType="Button">
                         <Style.Triggers>
                             <DataTrigger Binding="{Binding ElementName=_txtNumero,Path=(Validation.HasError)}" Value="True">
+                                <Setter Property="IsEnabled" Value="False" />
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding ElementName=_txtNombre,Path=(Validation.HasError)}" Value="True">
                                 <Setter Property="IsEnabled" Value="False" />
                             </DataTrigger>
                         </Style.Triggers>

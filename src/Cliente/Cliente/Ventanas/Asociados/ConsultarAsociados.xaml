@@ -27,7 +27,7 @@
                     <Label>
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblId}"/>
                     </Label>
-                    <TextBox Name="_txtId" Width="150" MaxLength="4" ></TextBox>
+                    <TextBox Name="_txtId" Width="150" MaxLength="4" KeyUp="_txtId_KeyUp" KeyDown="_txtId_KeyDown" ></TextBox>
                 </WrapPanel>
                 <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
                     <Label>

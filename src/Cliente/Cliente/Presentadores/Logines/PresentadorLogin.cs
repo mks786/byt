@@ -56,7 +56,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Logines
                 {
                     Usuario usuario = new Usuario();
                     usuario.Id = this._ventana.Id;
-                    usuario.Password = this._ventana.Password;
+                    usuario.Password = this._ventana.Password.ToUpper();
 
                     usuario = this._usuarioServicios.Autenticar(usuario);
 

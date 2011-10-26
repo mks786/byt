@@ -393,4 +393,7 @@
   <data name="ErrorUsuarioRepetido" xml:space="preserve">
     <value>El usuario que intenta introducir ya existe</value>
   </data>
+  <data name="ConfirmacionSalirDelSistema" xml:space="preserve">
+    <value>¿Seguro que desea salir del Sistema?</value>
+  </data>
 </root>

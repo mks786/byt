@@ -68,8 +68,10 @@
     <Reference Include="System" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -98,6 +100,7 @@
     <Compile Include="Contratos\Contactos\IConsultarContacto.cs" />
     <Compile Include="Contratos\DatosTransferencias\IAgregarIAgregarDatosTransferencia.cs" />
     <Compile Include="Contratos\DatosTransferencias\IConsultarIConsultarDatosTransferencia.cs" />
+    <Compile Include="Contratos\Detalles\IVentanaDetalle.cs" />
     <Compile Include="Contratos\Interesados\IAgregarInteresado.cs" />
     <Compile Include="Contratos\Interesados\IListaPoderes.cs" />
     <Compile Include="Contratos\Interesados\IConsultarInteresado.cs" />
@@ -164,6 +167,7 @@
     <Compile Include="Presentadores\Contactos\PresentadorConsultarContacto.cs" />
     <Compile Include="Presentadores\DatosTransferencias\PresentadorAgregarDatosTransferencia.cs" />
     <Compile Include="Presentadores\DatosTransferencias\PresentadorConsultarDatosTransferencia.cs" />
+    <Compile Include="Presentadores\Detalles\PresentadorVentanaDetalle.cs" />
     <Compile Include="Presentadores\Interesados\PresentadorAgregarInteresado.cs" />
     <Compile Include="Presentadores\Interesados\PresentadorConsultarInteresado.cs" />
     <Compile Include="Presentadores\Interesados\PresentadorConsultarInteresados.cs" />
@@ -283,6 +287,9 @@
     </Compile>
     <Compile Include="Ventanas\DatosTransferencias\ConsultarDatosTransferencia.xaml.cs">
       <DependentUpon>ConsultarDatosTransferencia.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Detalles\Detalle.xaml.cs">
+      <DependentUpon>Detalle.xaml</DependentUpon>
     </Compile>
     <Compile Include="Ventanas\Interesados\AgregarInteresado.xaml.cs">
       <DependentUpon>AgregarInteresado.xaml</DependentUpon>
@@ -485,6 +492,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Ventanas\DatosTransferencias\ConsultarDatosTransferencia.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\Detalles\Detalle.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -778,6 +789,10 @@
     <ProjectReference Include="..\..\Comun\ObjetosComunes\ObjetosComunes.csproj">
       <Project>{15437671-F551-4B4B-9E06-283A1D241CE0}</Project>
       <Name>ObjetosComunes</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ControlesByT\ControlesByT.csproj">
+      <Project>{95CC239A-6E33-40B3-92D1-F67AF9ACC66E}</Project>
+      <Name>ControlesByT</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />

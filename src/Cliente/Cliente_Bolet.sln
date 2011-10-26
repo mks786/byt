@@ -9,6 +9,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Cliente", "Cliente", "{6ED3
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ObjetosComunes", "..\Comun\ObjetosComunes\ObjetosComunes.csproj", "{15437671-F551-4B4B-9E06-283A1D241CE0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ControlesByT", "ControlesByT\ControlesByT.csproj", "{95CC239A-6E33-40B3-92D1-F67AF9ACC66E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,12 +41,23 @@ Global
 		{15437671-F551-4B4B-9E06-283A1D241CE0}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{15437671-F551-4B4B-9E06-283A1D241CE0}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{15437671-F551-4B4B-9E06-283A1D241CE0}.Release|x86.ActiveCfg = Release|Any CPU
+		{95CC239A-6E33-40B3-92D1-F67AF9ACC66E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{95CC239A-6E33-40B3-92D1-F67AF9ACC66E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{95CC239A-6E33-40B3-92D1-F67AF9ACC66E}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{95CC239A-6E33-40B3-92D1-F67AF9ACC66E}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{95CC239A-6E33-40B3-92D1-F67AF9ACC66E}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{95CC239A-6E33-40B3-92D1-F67AF9ACC66E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{95CC239A-6E33-40B3-92D1-F67AF9ACC66E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{95CC239A-6E33-40B3-92D1-F67AF9ACC66E}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{95CC239A-6E33-40B3-92D1-F67AF9ACC66E}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{95CC239A-6E33-40B3-92D1-F67AF9ACC66E}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{84CD6464-5709-4BE7-818D-5CE3FE2CF171} = {6ED3479D-98D4-472D-94CA-234E405F5465}
+		{95CC239A-6E33-40B3-92D1-F67AF9ACC66E} = {6ED3479D-98D4-472D-94CA-234E405F5465}
 		{15437671-F551-4B4B-9E06-283A1D241CE0} = {F46B25AC-38EE-4B21-9985-0044F83BC2CC}
 	EndGlobalSection
 EndGlobal

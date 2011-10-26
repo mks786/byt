@@ -128,6 +128,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Contactos
 
         private void _btnAceptar_Click(object sender, RoutedEventArgs e)
         {
+            this._btnAceptar.Focus();
             this._presentador.Aceptar();
         }
 

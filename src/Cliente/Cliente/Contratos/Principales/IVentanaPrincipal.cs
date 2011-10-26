@@ -7,5 +7,7 @@ namespace Trascend.Bolet.Cliente.Contratos.Principales
         Frame Contenedor { get; }
 
         Menu Menu { get; }
+
+        void mensaje(string mensaje);
     }
 }
