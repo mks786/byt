@@ -31,6 +31,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
         private IContactoServicios _contactoServicios;
         private IDatosTransferenciaServicios _datosTransferenciaServicios;
         private static PaginaPrincipal _paginaPrincipal = PaginaPrincipal.ObtenerInstancia;
+        private IList<Auditoria> _auditorias;
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
         /// <summary>
@@ -69,7 +70,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
             catch (Exception ex)
             {
                 logger.Error(ex.Message);
-                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado,true);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
             }
         }
 
@@ -92,17 +93,17 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
 
                 this._ventana.Asociado = this._asociadoServicios.ConsultarAsociadoConTodo((Asociado)this._ventana.Asociado);
 
-               Asociado asociado = (Asociado)this._ventana.Asociado;
+                Asociado asociado = (Asociado)this._ventana.Asociado;
 
-               asociado.Contactos = this._contactoServicios.ConsultarContactosPorAsociado(asociado);
-               asociado.DatosTransferencias = this._datosTransferenciaServicios.ConsultarDatosTransferenciaPorAsociado(asociado);
+                asociado.Contactos = this._contactoServicios.ConsultarContactosPorAsociado(asociado);
+                asociado.DatosTransferencias = this._datosTransferenciaServicios.ConsultarDatosTransferenciaPorAsociado(asociado);
 
                 this._ventana.SetTipoPersona = BuscarTipoPersona(asociado.TipoPersona);
 
                 IList<Pais> paises = this._paisServicios.ConsultarTodos();
                 this._ventana.Paises = paises;
                 this._ventana.Pais = this.BuscarPais(paises, asociado.Pais);
-                
+
                 IList<Idioma> idiomas = this._idiomaServicios.ConsultarTodos();
                 this._ventana.Idiomas = idiomas;
                 this._ventana.Idioma = this.BuscarIdioma(idiomas, asociado.Idioma);
@@ -136,6 +137,21 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
                 this._ventana.DetallesPagos = detallesPagos;
                 this._ventana.DetallePago = this.BuscarDetallePago(detallesPagos, asociado.DetallePago);
 
+                Auditoria auditoria = new Auditoria();
+                auditoria.Fk = ((Asociado)this._ventana.Asociado).Id;
+                auditoria.Tabla = "FAC_ASOCIADOS";
+
+                _auditorias = this._asociadoServicios.AuditoriaPorFkyTabla(auditoria);
+
+                if (asociado.Justificaciones.Count > 0)
+                    this._ventana.pintarJustificacion();
+                if (asociado.Contactos.Count > 0)
+                    this._ventana.pintarContacto();
+                if (asociado.DatosTransferencias.Count > 0)
+                    this._ventana.pintarDatosTransferencia();
+                if (_auditorias.Count > 0)
+                    this._ventana.pintarAuditoria();
+
                 this._ventana.FocoPredeterminado();
 
                 #region trace
@@ -146,7 +162,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
             catch (Exception ex)
             {
                 logger.Error(ex.Message);
-                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado,true);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
             }
             finally
             {
@@ -187,7 +203,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
                     asociado.TipoCliente = (TipoCliente)this._ventana.TipoCliente;
 
                     if ((Tarifa)this._ventana.Tarifa != null)
-                        asociado.Tarifa = !((Tarifa)this._ventana.Tarifa).Id.Equals("NGN")  ? (Tarifa)this._ventana.Tarifa : null;
+                        asociado.Tarifa = !((Tarifa)this._ventana.Tarifa).Id.Equals("NGN") ? (Tarifa)this._ventana.Tarifa : null;
 
                     if ((Etiqueta)this._ventana.Etiqueta != null)
                         asociado.Etiqueta = !((Etiqueta)this._ventana.Etiqueta).Id.Equals("NGN") ? (Etiqueta)this._ventana.Etiqueta : null;
@@ -286,7 +302,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
             #endregion
 
         }
-        
+
         public void IrListaContactos()
         {
             #region trace
@@ -333,13 +349,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-                Auditoria auditoria = new Auditoria();
-                auditoria.Fk = ((Asociado)this._ventana.Asociado).Id;
-                auditoria.Tabla = "FAC_ASOCIADOS";
 
-                IList<Auditoria> auditorias = this._asociadoServicios.AuditoriaPorFkyTabla(auditoria);
-                _paginaPrincipal.MensajeUsuario = Recursos.MensajesConElUsuario.PoderEliminado;
-                this.Navegar(new ListaAuditorias(auditorias));
+                this.Navegar(new ListaAuditorias(_auditorias));
 
 
                 #region trace

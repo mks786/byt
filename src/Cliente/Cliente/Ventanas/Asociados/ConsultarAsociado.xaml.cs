@@ -4,6 +4,7 @@ using System.Windows.Input;
 using Trascend.Bolet.Cliente.Contratos.Asociados;
 using Trascend.Bolet.Cliente.Presentadores.Asociados;
 using Trascend.Bolet.ControlesByT;
+using System.Windows.Media;
 
 namespace Trascend.Bolet.Cliente.Ventanas.Asociados
 {
@@ -217,6 +218,30 @@ namespace Trascend.Bolet.Cliente.Ventanas.Asociados
             MessageBox.Show(Recursos.MensajesConElUsuario.ErrorAsociadoNoEncontrado, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
         }
 
+
+        public void pintarJustificacion()
+        {
+
+            this._btnJustificacionesAdministracion.Background = Brushes.LightGreen;
+            this._btnJustificacionesDatos.Background = Brushes.LightGreen;
+        }
+
+        public void pintarContacto()
+        {
+            this._btnContactosAdministracion.Background = Brushes.LightGreen;
+            this._btnContactosDatos.Background = Brushes.LightGreen;
+        }
+
+        public void pintarDatosTransferencia()
+        {
+            this._btnTrasferenciaAdministracion.Background = Brushes.LightGreen;
+        }
+
+        public void pintarAuditoria()
+        {
+            this._btnAuditoriaAdministracion.Background = Brushes.LightGreen;
+            this._btnAuditoriaDatos.Background = Brushes.LightGreen;
+        }
         #endregion
 
         public ConsultarAsociado(object asociado)

@@ -46,6 +46,14 @@ namespace Trascend.Bolet.Cliente.Contratos.Asociados
 
         string SetTipoPersona { set; }
 
+        void pintarJustificacion();
+
+        void pintarContacto();
+
+        void pintarDatosTransferencia();
+
+        void pintarAuditoria();
+
         void ArchivoNoEncontrado();
 
 

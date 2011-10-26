@@ -169,32 +169,32 @@ namespace Trascend.Bolet.Cliente.Ventanas.Asociados
         }
 
 
-        private void _soloNumero_KeyUp(object sender, KeyEventArgs e)
-        {
-            if (System.Text.RegularExpressions.Regex.IsMatch(this._txtDiasCreditoAdministracion.Text, "[^0-9]"))
-            {
-                this._txtDiasCreditoAdministracion.Text = "";
-            }
-        }
+        //private void _soloNumero_KeyUp(object sender, KeyEventArgs e)
+        //{
+        //    if (System.Text.RegularExpressions.Regex.IsMatch(this._txtDiasCreditoAdministracion.Text, "[^0-9]"))
+        //    {
+        //        this._txtDiasCreditoAdministracion.Text = "";
+        //    }
+        //}
 
-        private void _soloNumero_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (!System.Text.RegularExpressions.Regex.IsMatch(e.Key.ToString(), "\\d+"))
-                e.Handled = true;
+        //private void _soloNumero_KeyDown(object sender, KeyEventArgs e)
+        //{
+        //    if (!System.Text.RegularExpressions.Regex.IsMatch(e.Key.ToString(), "\\d+"))
+        //        e.Handled = true;
 
-        }
+        //}
 
-        private void _txtDescuentoAdministracion_KeyDown(object sender, KeyEventArgs e)
-        {
-            if ((!string.Equals(e.Key.ToString(),"OemComma"))||(this._txtDescuentoAdministracion.Text.Contains(",")))
-            {
-                if (!System.Text.RegularExpressions.Regex.IsMatch(e.Key.ToString(), "\\d+"))
-                    e.Handled = true;
-            }
+        //private void _txtDescuentoAdministracion_KeyDown(object sender, KeyEventArgs e)
+        //{
+        //    if ((!string.Equals(e.Key.ToString(),"OemComma"))||(this._txtDescuentoAdministracion.Text.Contains(",")))
+        //    {
+        //        if (!System.Text.RegularExpressions.Regex.IsMatch(e.Key.ToString(), "\\d+"))
+        //            e.Handled = true;
+        //    }
 
             //if (!System.Text.RegularExpressions.Regex.IsMatch(e.Key.ToString(), "\\d+"))
             //    e.Handled = true;
-        }
+        
 
         private void _chkAlertaAdministracion_Click(object sender, RoutedEventArgs e)
         {
@@ -208,5 +208,10 @@ namespace Trascend.Bolet.Cliente.Ventanas.Asociados
             }
         }
 
+
+        //private void _btnJustificacionesDatos_Click(object sender, RoutedEventArgs e)
+        //{
+        //    this._presentador.IrListaJustificaciones();
+        //}
     }
 }
