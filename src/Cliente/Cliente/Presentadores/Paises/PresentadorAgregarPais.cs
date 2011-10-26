@@ -85,6 +85,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Paises
             try
             {
                 Pais pais = (Pais)this._ventana.Pais;
+                pais.Region = !this._ventana.Region.Equals("") ? this._ventana.Region : null;
 
                 if (!this._paisServicios.VerificarExistencia(pais))
                 {

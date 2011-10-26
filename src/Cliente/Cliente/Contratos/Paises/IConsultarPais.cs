@@ -8,6 +8,8 @@ namespace Trascend.Bolet.Cliente.Contratos.Paises
 
         bool HabilitarCampos { set; }
 
+        string Region { get; set; }
+
         string TextoBotonModificar { get; set; }        
     }
 }

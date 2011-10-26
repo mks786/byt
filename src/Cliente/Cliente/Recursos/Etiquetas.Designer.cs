@@ -349,6 +349,60 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to AFRICA.
+        /// </summary>
+        public static string cbiAfrica {
+            get {
+                return ResourceManager.GetString("cbiAfrica", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AMERICA CENTRAL.
+        /// </summary>
+        public static string cbiAmericaCentral {
+            get {
+                return ResourceManager.GetString("cbiAmericaCentral", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AMERICA DEL NORTE.
+        /// </summary>
+        public static string cbiAmericaNorte {
+            get {
+                return ResourceManager.GetString("cbiAmericaNorte", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AMERICA DEL SUR.
+        /// </summary>
+        public static string cbiAmericaSur {
+            get {
+                return ResourceManager.GetString("cbiAmericaSur", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ASIA.
+        /// </summary>
+        public static string cbiAsia {
+            get {
+                return ResourceManager.GetString("cbiAsia", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to CARIBE.
+        /// </summary>
+        public static string cbiCaribe {
+            get {
+                return ResourceManager.GetString("cbiCaribe", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Casado(a).
         /// </summary>
         public static string cbiCasado {
@@ -363,6 +417,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string cbiDivorciado {
             get {
                 return ResourceManager.GetString("cbiDivorciado", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to EUROPA.
+        /// </summary>
+        public static string cbiEuropa {
+            get {
+                return ResourceManager.GetString("cbiEuropa", resourceCulture);
             }
         }
         

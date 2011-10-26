@@ -58,7 +58,29 @@
                     <Label>
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblRegion}"/>
                     </Label>
-                    <TextBox Name="_txtRegion" Width="150" MaxLength="50"  Text="{Binding Path=Region}"/>
+<ComboBox Name="_cbxRegion" Width="150" SelectedIndex="0">
+                        <ComboBoxItem>
+                            <TextBlock Text=""/>
+                        </ComboBoxItem>
+                        <ComboBoxItem>
+                            <TextBlock Text="{x:Static recurso:Etiquetas.cbiAfrica}"/>
+                        </ComboBoxItem>
+                        <ComboBoxItem>
+                            <TextBlock Text="{x:Static recurso:Etiquetas.cbiAmericaCentral}"/>
+                        </ComboBoxItem>
+                        <ComboBoxItem>
+                            <TextBlock Text="{x:Static recurso:Etiquetas.cbiAmericaNorte}"/>
+                        </ComboBoxItem>
+                        <ComboBoxItem>
+                            <TextBlock Text="{x:Static recurso:Etiquetas.cbiAmericaSur}"/>
+                        </ComboBoxItem>
+                        <ComboBoxItem>
+                            <TextBlock Text="{x:Static recurso:Etiquetas.cbiAsia}"/>
+                        </ComboBoxItem>
+                        <ComboBoxItem>
+                            <TextBlock Text="{x:Static recurso:Etiquetas.cbiEuropa}"/>
+                        </ComboBoxItem>
+                    </ComboBox>
                 </WrapPanel>
                 <Separator Margin="0,5,0,5"/>
                 <WrapPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,5,0,5">

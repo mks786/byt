@@ -35,14 +35,20 @@ namespace Trascend.Bolet.Cliente.Ventanas.Paises
 
         public bool HabilitarCampos
         {
-            set 
+            set
             {
                 this._txtCodigo.IsEnabled = value;
                 this._txtNombreIngles.IsEnabled = value;
                 this._txtNombreEspanol.IsEnabled = value;
                 this._txtNacionalidad.IsEnabled = value;
-                this._txtRegion.IsEnabled = value;
+                this._cbxRegion.IsEnabled = value;
             }
+        }
+
+        public string Region
+        {
+            get { return (string)this._cbxRegion.Text; }
+            set { this._cbxRegion.Text = value; }
         }
 
         public string TextoBotonModificar
@@ -58,7 +64,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Paises
             InitializeComponent();
             this._cargada = false;
             this._presentador = new PresentadorConsultarPais(this, pais);
-            
+
         }
 
         private void _btnModificar_Click(object sender, RoutedEventArgs e)

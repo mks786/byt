@@ -5,6 +5,8 @@ namespace Trascend.Bolet.Cliente.Contratos.Paises
     {
         object Pais { get; set; }
 
+        string Region { get; }
+
         void Mensaje(string mensaje);
     }
 }

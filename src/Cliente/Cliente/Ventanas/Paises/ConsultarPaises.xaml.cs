@@ -54,6 +54,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Paises
             set { this._txtId.Text = value; }
         }
 
+        public string Region
+        {
+            get { return (string)this._cbxRegion.Text; }
+        }
+
         public GridViewColumnHeader CurSortCol
         {
             get { return _CurSortCol; }

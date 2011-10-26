@@ -118,6 +118,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Paises
                 #endregion
 
                 Pais pais = (Pais) this._ventana.PaisFiltrar;
+                pais.Region = !this._ventana.Region.Equals("") ? this._ventana.Region : null;
 
                 IEnumerable<Pais> paisesFiltrados = this._paises;
 

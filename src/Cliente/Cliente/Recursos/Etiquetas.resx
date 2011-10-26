@@ -907,4 +907,25 @@
   <data name="lblSwiftInt" xml:space="preserve">
     <value>Swift Int:</value>
   </data>
+  <data name="cbiAfrica" xml:space="preserve">
+    <value>AFRICA</value>
+  </data>
+  <data name="cbiAmericaCentral" xml:space="preserve">
+    <value>AMERICA CENTRAL</value>
+  </data>
+  <data name="cbiAmericaNorte" xml:space="preserve">
+    <value>AMERICA DEL NORTE</value>
+  </data>
+  <data name="cbiAmericaSur" xml:space="preserve">
+    <value>AMERICA DEL SUR</value>
+  </data>
+  <data name="cbiAsia" xml:space="preserve">
+    <value>ASIA</value>
+  </data>
+  <data name="cbiCaribe" xml:space="preserve">
+    <value>CARIBE</value>
+  </data>
+  <data name="cbiEuropa" xml:space="preserve">
+    <value>EUROPA</value>
+  </data>
 </root>

@@ -13,6 +13,8 @@ namespace Trascend.Bolet.Cliente.Contratos.Paises
 
         string Id { get; set; }
 
+        string Region { get; }
+
         GridViewColumnHeader CurSortCol { get; set; }
 
         SortAdorner CurAdorner { get; set; }

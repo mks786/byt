@@ -30,6 +30,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Paises
             {
                 this._ventana = ventana;
                 this._ventana.Pais = pais;
+                this._ventana.Region = ((Pais)this._ventana.Pais).Region;
 
                 this._paisServicios = (IPaisServicios)Activator.GetObject(typeof(IPaisServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["PaisServicios"]);
@@ -99,6 +100,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Paises
                 else
                 {
                     Pais pais = (Pais)this._ventana.Pais;
+                    pais.Region = !this._ventana.Region.Equals("") ? this._ventana.Region : null;
 
                     if (this._paisServicios.InsertarOModificar(pais, UsuarioLogeado.Hash))
                     {
