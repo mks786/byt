@@ -277,20 +277,20 @@ namespace Trascend.Bolet.Cliente.Ventanas.Asociados
             this._presentador.IrListaDatosTransferencia();
         }
 
-        private void _soloNumero_KeyUp(object sender, KeyEventArgs e)
-        {
-            if (System.Text.RegularExpressions.Regex.IsMatch(this._txtDiasCreditoAdministracion.Text, "[^0-9]"))
-            {
-                this._txtDiasCreditoAdministracion.Text = "";
-            }
-        }
+        //private void _soloNumero_KeyUp(object sender, KeyEventArgs e)
+        //{
+        //    if (System.Text.RegularExpressions.Regex.IsMatch(this._txtDiasCreditoAdministracion.Text, "[^0-9]"))
+        //    {
+        //        this._txtDiasCreditoAdministracion.Text = "";
+        //    }
+        //}
 
-        private void _soloNumero_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (!System.Text.RegularExpressions.Regex.IsMatch(e.Key.ToString(), "\\d+"))
-                e.Handled = true;
+        //private void _soloNumero_KeyDown(object sender, KeyEventArgs e)
+        //{
+        //    if (!System.Text.RegularExpressions.Regex.IsMatch(e.Key.ToString(), "\\d+"))
+        //        e.Handled = true;
 
-        }
+        //}
 
         private void _txtDescuentoAdministracion_KeyDown(object sender, KeyEventArgs e)
         {

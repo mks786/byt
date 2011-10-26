@@ -1,4 +1,6 @@
-﻿namespace Trascend.Bolet.ControlesByT.Ventanas
+﻿using Trascend.Bolet.ControlesByT;
+
+namespace Trascend.Bolet.ControlesByT.Ventanas
 {
     partial class ChildWindow
     {
@@ -40,6 +42,7 @@
             this._detalle.Name = "_detalle";
             this._detalle.Size = new System.Drawing.Size(268, 198);
             this._detalle.TabIndex = 0;
+            this._detalle.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this._detalle_KeyPress);
             // 
             // _btnAceptar
             // 
@@ -68,8 +71,8 @@
             this.MaximumSize = new System.Drawing.Size(300, 300);
             this.MinimumSize = new System.Drawing.Size(300, 300);
             this.Name = "ChildWindow";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Bolet & Terrero - Zoom";
-            this.Load += new System.EventHandler(this.ChildWindow_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -79,5 +82,6 @@
 
         private System.Windows.Forms.TextBox _detalle;
         private System.Windows.Forms.Button _btnAceptar;
+
     }
 }
