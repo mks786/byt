@@ -192,15 +192,21 @@ namespace Trascend.Bolet.Cliente.Ventanas.Asociados
                     e.Handled = true;
             }
 
-            
-
             //if (!System.Text.RegularExpressions.Regex.IsMatch(e.Key.ToString(), "\\d+"))
             //    e.Handled = true;
         }
 
-        //private void _btnJustificacionesDatos_Click(object sender, RoutedEventArgs e)
-        //{
-        //    this._presentador.IrListaJustificaciones();
-        //}
+        private void _chkAlertaAdministracion_Click(object sender, RoutedEventArgs e)
+        {
+            if (!this._chkAlertaAdministracion.IsChecked.Value)
+            {
+                this._txtAlarmaAdministracion.IsEnabled = false;
+            }
+            else
+            {
+                this._txtAlarmaAdministracion.IsEnabled = true;
+            }
+        }
+
     }
 }

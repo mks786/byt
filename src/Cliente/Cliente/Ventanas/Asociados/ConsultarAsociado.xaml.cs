@@ -161,7 +161,10 @@ namespace Trascend.Bolet.Cliente.Ventanas.Asociados
                 this._txtDescuentoDatos.IsEnabled = value;
                 this._txtRifDatos.IsEnabled = value;
                 this._txtNitDatos.IsEnabled = value;
-                this._txtAlarmaAdministracion.IsEnabled = value;
+
+                if(this._chkAlertaAdministracion.IsChecked.Value)
+                    this._txtAlarmaAdministracion.IsEnabled = value;
+                
                 this._txtDiasCreditoAdministracion.IsEnabled = value;
                 this._txtDescuentoAdministracion.IsEnabled = value;
 
@@ -298,6 +301,21 @@ namespace Trascend.Bolet.Cliente.Ventanas.Asociados
             if (!System.Text.RegularExpressions.Regex.IsMatch(e.Key.ToString(), "^\\$?(\\d{1,3},?(\\d{3},?)*\\d{3}(.\\d{0,3})?|\\d{1,3}(.\\d{2})?)$"))
                 e.Handled = true;
             
+        }
+
+        private void _chkAlertaAdministracion_Click(object sender, RoutedEventArgs e)
+        {
+            if (this._chkAlertaAdministracion.IsEnabled)
+            {
+                if (!this._chkAlertaAdministracion.IsChecked.Value)
+                {
+                    this._txtAlarmaAdministracion.IsEnabled = false;
+                }
+                else
+                {
+                    this._txtAlarmaAdministracion.IsEnabled = true;
+                }
+            }
         }
     }
 }

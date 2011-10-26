@@ -279,7 +279,7 @@
                         <RowDefinition Height="19" />
                         <RowDefinition Height="30"/>
                         <RowDefinition Height="30"/>
-                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="85"/>
                         <RowDefinition Height="30"/>
                         <RowDefinition Height="30"/>
                         <RowDefinition Height="30"/>
@@ -369,10 +369,12 @@
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblAlerta}"/>
                     </Label>
                     <CheckBox  Grid.Column="2" Grid.Row="6" Name="_chkAlertaAdministracion" VerticalAlignment="Center"
-                         HorizontalAlignment="Left" IsChecked="{Binding Path=BAlerta}">
+                         HorizontalAlignment="Left" IsChecked="{Binding Path=BAlerta}" Click="_chkAlertaAdministracion_Click">
                     </CheckBox>
-                    <custom:ByTTextBox  Grid.Column="2" Grid.Row="6" Name="_txtAlarmaAdministracion" VerticalAlignment="Center" 
-                         HorizontalAlignment="Left" Width="250" Text="{Binding Path=AlarmaDescripcion}" Grid.ColumnSpan="3" Margin="30,0,0,0"></custom:ByTTextBox>
+                    <custom:ByTTextBox Grid.Column="2" Grid.Row="6" Name="_txtAlarmaAdministracion" VerticalAlignment="Center" 
+                         HorizontalAlignment="Left" Width="250" Text="{Binding Path=AlarmaDescripcion}" Grid.ColumnSpan="3" Margin="30,0,0,0"
+                         TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" AcceptsReturn="True"
+                             Height="75" SpellCheck.IsEnabled="True" IsEnabled="False"></custom:ByTTextBox>
 
                     <Label Grid.Column="1" Grid.Row="7" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblTarifas}"/>

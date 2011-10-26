@@ -48,7 +48,7 @@
                     <RowDefinition Height="200"/>
                     <RowDefinition Height="30"/>
                     <RowDefinition Height="30"/>
-                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="85"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
 
@@ -56,7 +56,7 @@
                     <TextBlock Text="{x:Static recurso:Etiquetas.lblNumPoder}"/>
                 </Label>
                 <TextBox Name="_txtNumPoder" Grid.Column="1" Grid.Row="1" VerticalAlignment="Center"  
-                         HorizontalAlignment="Left" Width="180" SpellCheck.IsEnabled="True" MaxLength="255"
+                         HorizontalAlignment="Left" Width="180" SpellCheck.IsEnabled="True" MaxLength="15"
                          ToolTip="{Binding ElementName=_txtNumPoder, Path=(Validation.Errors)[0].ErrorContent}">
                     <TextBox.Text>
                         <Binding Path="NumPoder" UpdateSourceTrigger="PropertyChanged">
@@ -108,19 +108,20 @@
                     <TextBlock Text="{x:Static recurso:Etiquetas.lblFacultad}"/>
                 </Label>
                 <TextBox Grid.Column="1" Grid.Row="4" Name="_txtFacultad" VerticalAlignment="Center"  
-                         HorizontalAlignment="Left" Width="180" Text="{Binding Path=Facultad}"></TextBox>
+                         HorizontalAlignment="Left" Width="180" Text="{Binding Path=Facultad}" MaxLength="255"></TextBox>
 
                 <Label Grid.Column="0" Grid.Row="5" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                     <TextBlock Text="{x:Static recurso:Etiquetas.lblAnexo}"/>
                 </Label>
                 <TextBox Grid.Column="1" Grid.Row="5" Name="_txtAnexo" VerticalAlignment="Center"  
-                         HorizontalAlignment="Left" Width="180" Text="{Binding Path=Anexo}"></TextBox>
+                         HorizontalAlignment="Left" Width="180" Text="{Binding Path=Anexo}" MaxLength="255"></TextBox>
 
                 <Label Grid.Column="0" Grid.Row="6" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                     <TextBlock Text="{x:Static recurso:Etiquetas.lblObservaciones}"/>
                 </Label>
                 <TextBox Grid.Column="1" Grid.Row="6" Name="_txtObservaciones" VerticalAlignment="Center"  
-                         HorizontalAlignment="Left" Width="180" Text="{Binding Path=Observaciones}"></TextBox>
+                         HorizontalAlignment="Left" Width="180" Height="75" Text="{Binding Path=Observaciones}" MaxLength="2000" 
+                         TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" AcceptsReturn="True" SpellCheck.IsEnabled="True"></TextBox>
             </Grid>
         </GroupBox>
 

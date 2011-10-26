@@ -49,7 +49,7 @@
                     <TextBlock Text="{x:Static recurso:Etiquetas.lblId}"/>
                 </Label>
                 <TextBox Grid.Column="1" Grid.Row="1" Name="_txtId" VerticalAlignment="Center" IsEnabled="False" 
-                         HorizontalAlignment="Left" Width="180" Text="{Binding Path=Id}"></TextBox>
+                         HorizontalAlignment="Left" Width="180" Text="{Binding Path=Id}" MaxLength="16"></TextBox>
                 
                 <Label Grid.Column="0" Grid.Row="2" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                     <TextBlock Text="{x:Static recurso:Etiquetas.lblDescripcion}"/>
