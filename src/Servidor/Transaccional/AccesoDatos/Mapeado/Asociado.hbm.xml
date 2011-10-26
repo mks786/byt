@@ -64,7 +64,7 @@
 
     <bag name="DatosTransferencias" table="FAC_ASO_TRANF" inverse="true" generic="true">
       <key column="CNUMERO"/>
-      <composite-element class="Contacto">
+      <composite-element class="DatosTransferencia">
         <many-to-one name="Asociado" class="Asociado" column="CASOCIADO"/>
       </composite-element>
     </bag>
