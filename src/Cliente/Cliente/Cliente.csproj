@@ -98,6 +98,9 @@
     <Compile Include="Contratos\Asociados\IConsultarAsociados.cs" />
     <Compile Include="Contratos\Contactos\IAgregarContacto.cs" />
     <Compile Include="Contratos\Contactos\IConsultarContacto.cs" />
+    <Compile Include="Contratos\Resumenes\IAgregarResumen.cs" />
+    <Compile Include="Contratos\Resumenes\IConsultarResumen.cs" />
+    <Compile Include="Contratos\Resumenes\IConsultarResumenes.cs" />
     <Compile Include="Contratos\DatosTransferencias\IAgregarIAgregarDatosTransferencia.cs" />
     <Compile Include="Contratos\DatosTransferencias\IConsultarIConsultarDatosTransferencia.cs" />
     <Compile Include="Contratos\Detalles\IVentanaDetalle.cs" />

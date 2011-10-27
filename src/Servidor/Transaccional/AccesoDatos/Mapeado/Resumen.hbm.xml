@@ -8,9 +8,9 @@
     <property name="Seg" type="char" column="ISEG" />
     <property name="Dias" type="int" column="`NDIAS`" />
 
-    <bag name="Cartas" table="MYP_APODERADOS">
+    <bag name="Cartas" table="ENTRADA">
       <key column="CODRES"/>
-      <many-to-many column="CODRES" class="Carta" not-found="ignore"/>
+      <many-to-many column="CODIGO" class="Carta" not-found="ignore"/>
     </bag>
   </class>
 
