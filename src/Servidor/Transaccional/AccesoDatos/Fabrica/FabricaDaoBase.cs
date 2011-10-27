@@ -215,5 +215,12 @@ namespace Trascend.Bolet.AccesoDatos.Fabrica
         /// </summary>
         /// <returns>IDaoDatosTransferencia</returns>
         public abstract IDaoDatosTransferencia ObtenerDaoDatosTransferencia();
+
+        /// <summary>
+        /// Método que devuelve el DaoResumen del manejador que se esté utilizando
+        /// </summary>
+        /// <returns>IDaoResumen</returns>
+        public abstract IDaoResumen ObtenerDaoResumen();
+        
     }
 }

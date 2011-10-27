@@ -8,17 +8,17 @@ using Trascend.Bolet.ObjetosComunes.Entidades;
 
 namespace Trascend.Bolet.Servicios.Implementacion
 {
-    public class BoletinServicios : MarshalByRefObject, IBoletinServicios
+    public class ResumenServicios : MarshalByRefObject, IResumenServicios
     {
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
         /// <summary>
-        /// Servicio que obtiene todos los boletines
+        /// Servicio que obtiene todos los Resumenes
         /// </summary>
-        /// <returns>Lista con todos los boletines</returns>
-        public IList<Boletin> ConsultarTodos()
+        /// <returns>Lista con todos los Resumenes</returns>
+        public IList<Resumen> ConsultarTodos()
         {
-            IList<Boletin> boletines;
+            IList<Resumen> resumenes;
             try
             {
                 #region trace
@@ -26,7 +26,7 @@ namespace Trascend.Bolet.Servicios.Implementacion
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-                boletines = ControladorBoletin.ConsultarTodos();
+                resumenes = ControladorResumen.ConsultarTodos();
 
                 #region trace
                 if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
@@ -37,10 +37,10 @@ namespace Trascend.Bolet.Servicios.Implementacion
             {
                 throw ex;
             }
-            return boletines;
+            return resumenes;
         }
 
-        public Boletin ConsultarPorId(Boletin boletin)
+        public Resumen ConsultarPorId(Resumen resumen)
         {
             throw new NotImplementedException();
         }
@@ -48,17 +48,17 @@ namespace Trascend.Bolet.Servicios.Implementacion
         /// <summary>
         /// Servicio que insertar o modifica un nacional
         /// </summary>
-        /// <param name="boletin">Boletin que se va a insertar o modificar</param>
+        /// <param name="resumen">Resumen que se va a insertar o modificar</param>
         /// <param name="hash">Hash del usuario que esta realiando la operacion</param>
         /// <returns>True: si la inserción o modificación fue exitosa; False: en caso contrario</returns>
-        public bool InsertarOModificar(Boletin boletin, int hash)
+        public bool InsertarOModificar(Resumen resumen, int hash)
         {
             #region trace
             if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
                 logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
 
-            bool exitoso = ControladorBoletin.InsertarOModificar(boletin, hash);
+            bool exitoso = ControladorResumen.InsertarOModificar(resumen, hash);
 
             #region trace
             if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
@@ -71,16 +71,16 @@ namespace Trascend.Bolet.Servicios.Implementacion
         /// <summary>
         /// Servicio que elimina un nacional
         /// </summary>
-        /// <param name="boletin">Boletin que se va a eliminar</param>
+        /// <param name="resumen">Resumen que se va a eliminar</param>
         /// <returns>True: si la eliminacion fue exitosa; False: en caso contrario</returns>
-        public bool Eliminar(Boletin boletin, int hash)
+        public bool Eliminar(Resumen resumen, int hash)
         {
             #region trace
             if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
                 logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
 
-            bool exitoso = ControladorBoletin.Eliminar(boletin, hash);
+            bool exitoso = ControladorResumen.Eliminar(resumen, hash);
 
             #region trace
             if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
@@ -90,14 +90,14 @@ namespace Trascend.Bolet.Servicios.Implementacion
             return exitoso;
         }
 
-        public bool VerificarExistencia(Boletin boletin)
+        public bool VerificarExistencia(Resumen resumen)
         {
             #region trace
             if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
                 logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
 
-            bool exitoso = ControladorBoletin.VerificarExistencia(boletin);
+            bool exitoso = ControladorResumen.VerificarExistencia(resumen);
 
             #region trace
             if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))

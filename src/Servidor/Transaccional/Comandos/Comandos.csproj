@@ -47,7 +47,7 @@
     <Compile Include="Comandos\ComandosAgente\ComandoVerificarExistenciaAgente.cs" />
     <Compile Include="Comandos\ComandosAsociado\ComandoConsultarAsociadoConTodo.cs" />
     <Compile Include="Comandos\ComandosAuditoria\ComandoAuditoriaPorFkyTabla.cs" />
-    <Compile Include="Comandos\ComandosBoletin\ComandoVerificarExistenciaBoletin.cs" />
+    <Compile Include="Comandos\ComandosResumen\ComandoVerificarExistenciaResumen.cs" />
     <Compile Include="Comandos\ComandosCarta\ComandoVerificarExistenciaCarta.cs" />
     <Compile Include="Comandos\ComandosConcepto\ComandoConsultarTodosConceptos.cs" />
     <Compile Include="Comandos\ComandosContacto\ComandoConsultarTodosContactos.cs" />
@@ -105,9 +105,9 @@
     <Compile Include="Comandos\ComandosTipoInfobol\ComandoConsultarTodosTipoInfobol.cs" />
     <Compile Include="Comandos\ComandosTipoInfobol\ComandoEliminarTipoInfobol.cs" />
     <Compile Include="Comandos\ComandosTipoInfobol\ComandoInsertarOModificarTipoInfobol.cs" />
-    <Compile Include="Comandos\ComandosBoletin\ComandoConsultarTodosBoletines.cs" />
-    <Compile Include="Comandos\ComandosBoletin\ComandoEliminarBoletin.cs" />
-    <Compile Include="Comandos\ComandosBoletin\ComandoInsertarOModificarBoletin.cs" />
+    <Compile Include="Comandos\ComandosResumen\ComandoConsultarTodosResumenes.cs" />
+    <Compile Include="Comandos\ComandosResumen\ComandoEliminarResumen.cs" />
+    <Compile Include="Comandos\ComandosResumen\ComandoInsertarOModificarResumen.cs" />
     <Compile Include="Comandos\ComandosResolucion\ComandoConsultarTodosResoluciones.cs" />
     <Compile Include="Comandos\ComandosResolucion\ComandoEliminarResolucion.cs" />
     <Compile Include="Comandos\ComandosResolucion\ComandoInsertarOModificarResolucion.cs" />
@@ -135,10 +135,15 @@
     <Compile Include="Comandos\ComandosDatosTransferencia\ComandoEliminarDatosTransferencia.cs" />
     <Compile Include="Comandos\ComandosDatosTransferencia\ComandoInsertarOModificarDatosTransferencia.cs" />
     <Compile Include="Comandos\ComandosUsuario\ComandoVerificarExistenciaUsuario.cs" />
+    <Compile Include="Comandos\ComandosBoletin\ComandoConsultarTodosBoletines.cs" />
+    <Compile Include="Comandos\ComandosBoletin\ComandoEliminarBoletin.cs" />
+    <Compile Include="Comandos\ComandosBoletin\ComandoInsertarOModificarBoletin.cs" />
+    <Compile Include="Comandos\ComandosBoletin\ComandoVerificarExistenciaBoletin.cs" />
     <Compile Include="Comandos\Receptor.cs" />
     <Compile Include="Comandos\ComandosUsuario\ComandoConsultarTodosUsuarios.cs" />
     <Compile Include="Comandos\ComandosUsuario\ComandoConsultarUsuarioPorID.cs" />
     <Compile Include="Comandos\ComandosUsuario\ComandoInsertarOModificarUsuario.cs" />
+    <Compile Include="Fabrica\FabricaComandosResumen.cs" />
     <Compile Include="Fabrica\FabricaComandosDatosTransferencia.cs" />
     <Compile Include="Fabrica\FabricaComandosContacto.cs" />
     <Compile Include="Fabrica\FabricaComandosCarta.cs" />

@@ -3,17 +3,15 @@
                    assembly="Trascend.Bolet.ObjetosComunes"
                    namespace="Trascend.Bolet.ObjetosComunes.Entidades">
   <class name="Resumen" table="RESUMEN">
-    <id name="Id" access="property" column="CODRES" length="4">
-      <generator class="assigned" />
-    </id>
-    <property name="Descripcion" type="String" column="DESC_RES" length="255" />
-    <property name="Seg" type="String" column="ISEG" length="1" />
-    <property name="Dias" type="Double" column="`NDIAS`" length="22" />
+    <id name="Id" column="CODRES" type="int"/>
+    <property name="Descripcion" type="string" column="DESC_RES" />
+    <property name="Seg" type="char" column="ISEG" />
+    <property name="Dias" type="int" column="`NDIAS`" />
 
-    <many-to-one name="Cartas" class="Carta">
-      <column name="CODRES"/>
-    </many-to-one>
-    
+    <bag name="Cartas" table="MYP_APODERADOS">
+      <key column="CODRES"/>
+      <many-to-many column="CODRES" class="Carta" not-found="ignore"/>
+    </bag>
   </class>
 
 </hibernate-mapping>

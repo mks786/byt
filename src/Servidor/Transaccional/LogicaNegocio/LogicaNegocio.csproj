@@ -72,6 +72,7 @@
     <Compile Include="Controladores\ControladorContacto.cs" />
     <Compile Include="Controladores\ControladorCarta.cs" />
     <Compile Include="Controladores\ControladorDatosTransferencia.cs" />
+    <Compile Include="Controladores\ControladorResumen.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
