@@ -718,6 +718,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to CodRes:.
+        /// </summary>
+        public static string lblCodRes {
+            get {
+                return ResourceManager.GetString("lblCodRes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Concepto:.
         /// </summary>
         public static string lblConcepto {
@@ -1276,6 +1285,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Seguimiento:.
+        /// </summary>
+        public static string lblSeguimiento {
+            get {
+                return ResourceManager.GetString("lblSeguimiento", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Género:.
         /// </summary>
         public static string lblSexo {
@@ -1434,6 +1452,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string lsvCodigo {
             get {
                 return ResourceManager.GetString("lsvCodigo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to CodRes.
+        /// </summary>
+        public static string lsvCodRes {
+            get {
+                return ResourceManager.GetString("lsvCodRes", resourceCulture);
             }
         }
         
@@ -1627,6 +1654,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Seguimiento.
+        /// </summary>
+        public static string lsvSeguimiento {
+            get {
+                return ResourceManager.GetString("lsvSeguimiento", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Teléfono.
         /// </summary>
         public static string lsvTelefono {
@@ -1659,6 +1695,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string menuItemAgregar {
             get {
                 return ResourceManager.GetString("menuItemAgregar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Anexo.
+        /// </summary>
+        public static string menuItemAnexo {
+            get {
+                return ResourceManager.GetString("menuItemAnexo", resourceCulture);
             }
         }
         
@@ -1722,6 +1767,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string menuItemCopiar {
             get {
                 return ResourceManager.GetString("menuItemCopiar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Correspondencia.
+        /// </summary>
+        public static string menuItemCorrespondencia {
+            get {
+                return ResourceManager.GetString("menuItemCorrespondencia", resourceCulture);
             }
         }
         
@@ -1857,6 +1911,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string menuItemResolucion {
             get {
                 return ResourceManager.GetString("menuItemResolucion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Resumen.
+        /// </summary>
+        public static string menuItemResumen {
+            get {
+                return ResourceManager.GetString("menuItemResumen", resourceCulture);
             }
         }
         

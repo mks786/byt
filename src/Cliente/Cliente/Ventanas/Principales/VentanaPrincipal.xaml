@@ -24,6 +24,18 @@
                 <MenuItem Name="_menuItemCopiar" Header="{x:Static resx:Etiquetas.menuItemCopiar}" Command="ApplicationCommands.Copy"/>
                 <MenuItem Name="_menuItemPegar" Header="{x:Static resx:Etiquetas.menuItemPegar}" Command="ApplicationCommands.Paste"/>
             </MenuItem>
+            <MenuItem Name="_menuItemCorrespondencia" Header="{x:Static resx:Etiquetas.menuItemCorrespondencia}">
+                <MenuItem Name="_menuItemAnexo" Visibility="Collapsed" Header="{x:Static resx:Etiquetas.menuItemAnexo}">
+                    <MenuItem Name="_menuItemAnexoConsultar" Header="{x:Static resx:Etiquetas.menuItemConsultar}" Click="_menuItemAnexoConsultar_Click"/>
+                    <MenuItem Name="_menuItemAnexoAgregar" Header="{x:Static resx:Etiquetas.menuItemAgregar}" Click="_menuItemAnexoAgregar_Click"/>
+                    <!--<MenuItem Name="_menuItemUsuarioModificar" Header="{x:Static resx:Etiquetas.menuItemUsuarioModificar}"></MenuItem>-->
+                </MenuItem>
+                <MenuItem Name="_menuItemResumen" Visibility="Collapsed" Header="{x:Static resx:Etiquetas.menuItemResumen}">
+                    <MenuItem Name="_menuItemResumenConsultar" Header="{x:Static resx:Etiquetas.menuItemConsultar}" Click="_menuItemResumenConsultar_Click"/>
+                    <MenuItem Name="_menuItemResumenAgregar" Header="{x:Static resx:Etiquetas.menuItemAgregar}" Click="_menuItemResumenAgregar_Click"/>
+                    <!--<MenuItem Name="_menuItemUsuarioModificar" Header="{x:Static resx:Etiquetas.menuItemUsuarioModificar}"></MenuItem>-->
+                </MenuItem>
+            </MenuItem>
             <MenuItem Name="_menuItemHistoria" Header="{x:Static resx:Etiquetas.menuItemHistoria}">
                 <MenuItem Name="_menuItemAgente" Visibility="Collapsed" Header="{x:Static resx:Etiquetas.menuItemAgente}">
                     <MenuItem Name="_menuItemAgenteConsultar" Header="{x:Static resx:Etiquetas.menuItemConsultar}" Click="_menuItemAgenteConsultar_Click"/>

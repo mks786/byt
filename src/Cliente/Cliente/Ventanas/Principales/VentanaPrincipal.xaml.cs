@@ -63,6 +63,30 @@ namespace Trascend.Bolet.Cliente.Ventanas.Principales
 
         #region Eventos del menú
 
+        #region Correspondencia
+
+        private void _menuItemAnexoConsultar_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void _menuItemAnexoAgregar_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void _menuItemResumenConsultar_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void _menuItemResumenAgregar_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        #endregion
+
         #region Historia
 
         private void _menuItemAgenteAgregar_Click(object sender, RoutedEventArgs e)

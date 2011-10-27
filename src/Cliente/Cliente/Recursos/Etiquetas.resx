@@ -928,4 +928,25 @@
   <data name="cbiEuropa" xml:space="preserve">
     <value>EUROPA</value>
   </data>
+  <data name="lblCodRes" xml:space="preserve">
+    <value>CodRes:</value>
+  </data>
+  <data name="lblSeguimiento" xml:space="preserve">
+    <value>Seguimiento:</value>
+  </data>
+  <data name="lsvCodRes" xml:space="preserve">
+    <value>CodRes</value>
+  </data>
+  <data name="lsvSeguimiento" xml:space="preserve">
+    <value>Seguimiento</value>
+  </data>
+  <data name="menuItemAnexo" xml:space="preserve">
+    <value>Anexo</value>
+  </data>
+  <data name="menuItemCorrespondencia" xml:space="preserve">
+    <value>Correspondencia</value>
+  </data>
+  <data name="menuItemResumen" xml:space="preserve">
+    <value>Resumen</value>
+  </data>
 </root>
