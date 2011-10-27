@@ -18,7 +18,7 @@ namespace Trascend.Bolet.ControlesByT.Ventanas
             this._textBox = descripcion;
             this._detalle.Text = this._textBox.Text;
             this._detalle.AcceptsReturn = true;
-            this._detalle.MaxLength = this._textBox.TamanoMaximo;
+            this._detalle.MaxLength = descripcion.TamanoMaximo;
         }
 
         private void _btnAceptar_Click(object sender, EventArgs e)

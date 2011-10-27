@@ -8,27 +8,42 @@ using Trascend.Bolet.ControlesByT.Ventanas;
 
 namespace Trascend.Bolet.ControlesByT
 {
+    /// <summary>
+    /// TextBox personalizado con la funcionalidad F5, esta funcionalidad
+    /// consiste que al presionar la tecla "F5" se crea un PopUp donde se
+    /// puede visualizar y editar el texto de una mejor manera
+    /// </summary>
     public class ByTTextBox : TextBox
     {
 
         private bool _soloNumero;
         private bool _soloPorcentaje;
-
+        private int _tamanoMaximo;
 
         #region Propiedades
 
+        /// <summary>
+        /// Propiedad que obtiene y setea el tamaño maximo de el
+        /// campo de texto
+        /// </summary>
         public int TamanoMaximo
         {
             get { return this.MaxLength; }
             set { this.MaxLength = value; }
         }
 
+        /// <summary>
+        /// Propiedad que determina si el campo es de solo numero
+        /// </summary>
         public bool SoloNumero
         {
             get { return _soloNumero; }
             set { _soloNumero = value; }
         }
 
+        /// <summary>
+        /// Propiedad que determina si el campo solo acepta Float
+        /// </summary>
         public bool SoloPorcentaje
         {
             get { return _soloPorcentaje; }
@@ -37,6 +52,11 @@ namespace Trascend.Bolet.ControlesByT
 
         #endregion
 
+        /// <summary>
+        /// Sobreescritura del metodo OnKeyDown. En este metodo se implementa la funcionalidad del
+        /// PopUp
+        /// </summary>
+        /// <param name="e"></param>
         protected override void OnKeyDown(System.Windows.Input.KeyEventArgs e)
         {
             if (e.Key == System.Windows.Input.Key.F5)
