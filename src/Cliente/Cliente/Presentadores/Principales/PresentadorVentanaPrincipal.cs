@@ -25,6 +25,7 @@ using Trascend.Bolet.Cliente.Ventanas.Estatuses;
 using Trascend.Bolet.Cliente.Ventanas.Poderes;
 using Trascend.Bolet.Cliente.Ventanas.Interesados;
 using Trascend.Bolet.Cliente.Ventanas.Asociados;
+using Trascend.Bolet.Cliente.Ventanas.Resumenes;
 
 namespace Trascend.Bolet.Cliente.Presentadores.Principales
 {
@@ -324,6 +325,22 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
         }
 
         /// <summary>
+        /// Método que coloca la página "ConsultarResumenes" en el Frame principal
+        /// </summary>
+        public void ConsultarResumenes()
+        {
+            this._ventana.Contenedor.Navigate(new ConsultarResumenes());
+        }
+
+        /// <summary>
+        /// Método que coloca la página "AgregarResumen" en el Frame principal
+        /// </summary>
+        public void AgregarResumen()
+        {
+            this._ventana.Contenedor.Navigate(new AgregarResumen());
+        }
+
+        /// <summary>
         /// Método que coloca la página "AgregarAnexo" en el Frame principal
         /// </summary>
         public void AgregarAnexo()
@@ -451,6 +468,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
                                         itemNivel2.Visibility = System.Windows.Visibility.Visible;
                                     break;
                                 case "_menuItemResolucion":
+                                    if (objeto.Id.Equals(Recursos.Ids.Resolucion))
+                                        itemNivel2.Visibility = System.Windows.Visibility.Visible;
+                                    break;
+                                case "_menuItemResumen":
                                     if (objeto.Id.Equals(Recursos.Ids.Resolucion))
                                         itemNivel2.Visibility = System.Windows.Visibility.Visible;
                                     break;

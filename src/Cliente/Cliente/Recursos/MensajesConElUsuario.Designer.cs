@@ -304,6 +304,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ¿Seguro que dese eliminar el Resumen?.
+        /// </summary>
+        internal static string ConfirmacionEliminarResumen {
+            get {
+                return ResourceManager.GetString("ConfirmacionEliminarResumen", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ¿Seguro que desea eliminar el rol?.
         /// </summary>
         internal static string ConfirmacionEliminarRol {
@@ -507,6 +516,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         internal static string ErrorResolucionRepetido {
             get {
                 return ResourceManager.GetString("ErrorResolucionRepetido", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to El Resumen que intenta introducir ya existe.
+        /// </summary>
+        internal static string ErrorResumenRepetido {
+            get {
+                return ResourceManager.GetString("ErrorResumenRepetido", resourceCulture);
             }
         }
         
@@ -813,6 +831,33 @@ namespace Trascend.Bolet.Cliente.Recursos {
         internal static string ResolucionModificado {
             get {
                 return ResourceManager.GetString("ResolucionModificado", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Resumen eliminado con éxito.
+        /// </summary>
+        internal static string ResumenEliminado {
+            get {
+                return ResourceManager.GetString("ResumenEliminado", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Resumen insertado con éxito.
+        /// </summary>
+        internal static string ResumenInsertado {
+            get {
+                return ResourceManager.GetString("ResumenInsertado", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Resumen modificado con éxito.
+        /// </summary>
+        internal static string ResumenModificado {
+            get {
+                return ResourceManager.GetString("ResumenModificado", resourceCulture);
             }
         }
         

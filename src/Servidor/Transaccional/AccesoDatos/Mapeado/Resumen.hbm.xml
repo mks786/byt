@@ -3,7 +3,7 @@
                    assembly="Trascend.Bolet.ObjetosComunes"
                    namespace="Trascend.Bolet.ObjetosComunes.Entidades">
   <class name="Resumen" table="RESUMEN">
-    <id name="Id" column="CODRES" type="int"/>
+    <id name="Id" column="CODRES" type="string"/>
     <property name="Descripcion" type="string" column="DESC_RES" />
     <property name="Seg" type="char" column="ISEG" />
     <property name="Dias" type="int" column="`NDIAS`" />

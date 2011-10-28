@@ -698,7 +698,7 @@
     <value>Descuento:</value>
   </data>
   <data name="lblDias" xml:space="preserve">
-    <value>Dias</value>
+    <value>Dias:</value>
   </data>
   <data name="lblDiasCredito" xml:space="preserve">
     <value>Día de Crédito:</value>
@@ -948,6 +948,15 @@
   </data>
   <data name="menuItemResumen" xml:space="preserve">
     <value>Resumen</value>
+  </data>
+  <data name="titleAgregarResumen" xml:space="preserve">
+    <value>Agregar Resumen</value>
+  </data>
+  <data name="titleConsultarResumen" xml:space="preserve">
+    <value>Consultar Resumen</value>
+  </data>
+  <data name="titleConsultarResumenes" xml:space="preserve">
+    <value>Consultar Resumenes</value>
   </data>
   <data name="titleConsultarAnexo" xml:space="preserve">
     <value>Anexo</value>

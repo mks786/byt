@@ -159,6 +159,9 @@
   <data name="AgregarResolucion" xml:space="preserve">
     <value>MYP_RESOLBOL</value>
   </data>
+  <data name="AgregarResumen" xml:space="preserve">
+    <value>MYPTAGENTE</value>
+  </data>
   <data name="AgregarRol" xml:space="preserve">
     <value>SEGMROL</value>
   </data>
@@ -249,6 +252,12 @@
   <data name="ConsultarResoluciones" xml:space="preserve">
     <value>MYP_RESOLBOL</value>
   </data>
+  <data name="ConsultarResuemenes" xml:space="preserve">
+    <value>MYPTAGENTE</value>
+  </data>
+  <data name="ConsultarResumen" xml:space="preserve">
+    <value>MYPTAGENTE</value>
+  </data>
   <data name="ConsultarRol" xml:space="preserve">
     <value>SEGMROL</value>
   </data>
@@ -317,6 +326,9 @@
   </data>
   <data name="EliminarResolucion" xml:space="preserve">
     <value>MYP_RESOLBOL</value>
+  </data>
+  <data name="EliminarResumen" xml:space="preserve">
+    <value>MYPTAGENTE</value>
   </data>
   <data name="EliminarRol" xml:space="preserve">
     <value>SEGMROL</value>
@@ -410,6 +422,9 @@
   </data>
   <data name="Resolucion" xml:space="preserve">
     <value>MYP_RESOLBOL</value>
+  </data>
+  <data name="Resumen" xml:space="preserve">
+    <value>MYPTAGENTE</value>
   </data>
   <data name="Rol" xml:space="preserve">
     <value>SEGMROL</value>

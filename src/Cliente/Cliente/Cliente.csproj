@@ -178,6 +178,9 @@
     <Compile Include="Presentadores\Asociados\PresentadorConsultarAsociados.cs" />
     <Compile Include="Presentadores\Contactos\PresentadorAgregarContacto.cs" />
     <Compile Include="Presentadores\Contactos\PresentadorConsultarContacto.cs" />
+    <Compile Include="Presentadores\Resumenes\PresentadorAgregarResumen.cs" />
+    <Compile Include="Presentadores\Resumenes\PresentadorConsultarResumen.cs" />
+    <Compile Include="Presentadores\Resumenes\PresentadorConsultarResumenes.cs" />
     <Compile Include="Presentadores\DatosTransferencias\PresentadorAgregarDatosTransferencia.cs" />
     <Compile Include="Presentadores\DatosTransferencias\PresentadorConsultarDatosTransferencia.cs" />
     <Compile Include="Presentadores\Detalles\PresentadorVentanaDetalle.cs" />
@@ -351,6 +354,15 @@
     </Compile>
     <Compile Include="Ventanas\Poderes\GestionarPoderesXAgentes.xaml.cs">
       <DependentUpon>GestionarPoderesXAgentes.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Resumenes\AgregarResumen.xaml.cs">
+      <DependentUpon>AgregarResumen.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Resumenes\ConsultarResumen.xaml.cs">
+      <DependentUpon>ConsultarResumen.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Resumenes\ConsultarResumenes.xaml.cs">
+      <DependentUpon>ConsultarResumenes.xaml</DependentUpon>
     </Compile>
     <Compile Include="Ventanas\TipoFechas\AgregarTipoFecha.xaml.cs">
       <DependentUpon>AgregarTipoFecha.xaml</DependentUpon>
@@ -582,6 +594,18 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Ventanas\Poderes\GestionarPoderesXAgentes.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\Resumenes\AgregarResumen.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\Resumenes\ConsultarResumen.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\Resumenes\ConsultarResumenes.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

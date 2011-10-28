@@ -1,7 +1,7 @@
 ﻿
 namespace Trascend.Bolet.Cliente.Contratos.Resumenes
 {
-    interface IConsultarBoletin : IPaginaBase
+    interface IConsultarResumen : IPaginaBase
     {
         object Resumen { get; set; }
 

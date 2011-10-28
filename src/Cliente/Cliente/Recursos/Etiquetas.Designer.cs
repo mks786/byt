@@ -808,7 +808,7 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Dias.
+        ///   Looks up a localized string similar to Dias:.
         /// </summary>
         public static string lblDias {
             get {
@@ -2113,6 +2113,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Agregar Resumen.
+        /// </summary>
+        public static string titleAgregarResumen {
+            get {
+                return ResourceManager.GetString("titleAgregarResumen", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Agregar Rol.
         /// </summary>
         public static string titleAgregarRol {
@@ -2397,6 +2406,24 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string titleConsultarResoluciones {
             get {
                 return ResourceManager.GetString("titleConsultarResoluciones", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Consultar Resumen.
+        /// </summary>
+        public static string titleConsultarResumen {
+            get {
+                return ResourceManager.GetString("titleConsultarResumen", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Consultar Resumenes.
+        /// </summary>
+        public static string titleConsultarResumenes {
+            get {
+                return ResourceManager.GetString("titleConsultarResumenes", resourceCulture);
             }
         }
         

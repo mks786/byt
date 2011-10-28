@@ -77,12 +77,12 @@ namespace Trascend.Bolet.Cliente.Ventanas.Principales
 
         private void _menuItemResumenConsultar_Click(object sender, RoutedEventArgs e)
         {
-
+            this._presentador.ConsultarResumenes();
         }
 
         private void _menuItemResumenAgregar_Click(object sender, RoutedEventArgs e)
         {
-
+            this._presentador.AgregarResumen();
         }
 
         #endregion

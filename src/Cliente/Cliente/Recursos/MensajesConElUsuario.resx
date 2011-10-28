@@ -396,6 +396,15 @@
   <data name="ConfirmacionSalirDelSistema" xml:space="preserve">
     <value>¿Seguro que desea salir del Sistema?</value>
   </data>
+  <data name="ConfirmacionEliminarResumen" xml:space="preserve">
+    <value>¿Seguro que dese eliminar el Resumen?</value>
+  </data>
+  <data name="ResumenEliminado" xml:space="preserve">
+    <value>Resumen eliminado con éxito</value>
+  </data>
+  <data name="ResumenInsertado" xml:space="preserve">
+    <value>Resumen insertado con éxito</value>
+  </data>
   <data name="AnexoModificado" xml:space="preserve">
     <value>Anexo Modificado con éxito</value>
   </data>
@@ -404,5 +413,11 @@
   </data>
   <data name="AnexoInsertado" xml:space="preserve">
     <value>Anexo insertado con éxito</value>
+  </data>
+  <data name="ResumenModificado" xml:space="preserve">
+    <value>Resumen modificado con éxito</value>
+  </data>
+  <data name="ErrorResumenRepetido" xml:space="preserve">
+    <value>El Resumen que intenta introducir ya existe</value>
   </data>
 </root>

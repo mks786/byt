@@ -11,7 +11,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         private string _id;
         private string _descripcion;
         private char _seg;
-        private double _dias;
+        private int _dias;
         private IList<Carta> _cartas;
 
         #endregion
@@ -66,9 +66,30 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         }
 
         /// <summary>
+        /// Propiedad que asigna u obtiene el booleano de autorizar el Usuario
+        /// </summary>
+        public virtual bool BSeg
+        {
+            get
+            {
+                if (this.Seg != null && this.Seg.Equals('T'))
+                    return true;
+                else
+                    return false;
+            }
+            set
+            {
+                if (value)
+                    this.Seg = 'T';
+                else
+                    this.Seg = 'F';
+            }
+        }
+
+        /// <summary>
         /// Propiedad que asigna u obtiene los dias del Resumen
         /// </summary>
-        public virtual double Dias
+        public virtual int Dias
         {
             get { return _dias; }
             set { _dias = value; }

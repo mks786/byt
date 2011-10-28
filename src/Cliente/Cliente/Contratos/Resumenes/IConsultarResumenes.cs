@@ -4,13 +4,15 @@ using Trascend.Bolet.Cliente.Ayuda;
 
 namespace Trascend.Bolet.Cliente.Contratos.Resumenes
 {
-    interface IConsultarBoletines : IPaginaBase
+    interface IConsultarResumenes : IPaginaBase
     {
         object ResumenSeleccionado { get; }
 
         object ResumenFiltrar { get; set; }
 
         object Resultados { get; set; }
+
+        string Dias { get; }
 
         GridViewColumnHeader CurSortCol { get; set; }
 
