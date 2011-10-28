@@ -98,6 +98,9 @@
     <Compile Include="Contratos\Asociados\IConsultarAsociados.cs" />
     <Compile Include="Contratos\Contactos\IAgregarContacto.cs" />
     <Compile Include="Contratos\Contactos\IConsultarContacto.cs" />
+    <Compile Include="Contratos\Anexos\IAgregarAnexo.cs" />
+    <Compile Include="Contratos\Anexos\IConsultarAnexo.cs" />
+    <Compile Include="Contratos\Anexos\IConsultarAnexos.cs" />
     <Compile Include="Contratos\Resumenes\IAgregarResumen.cs" />
     <Compile Include="Contratos\Resumenes\IConsultarResumen.cs" />
     <Compile Include="Contratos\Resumenes\IConsultarResumenes.cs" />
@@ -159,6 +162,13 @@
     <Compile Include="Presentadores\Agentes\PresentadorAgregarAgente.cs" />
     <Compile Include="Presentadores\Agentes\PresentadorConsultarAgente.cs" />
     <Compile Include="Presentadores\Agentes\PresentadorConsultarAgentes.cs" />
+    <Compile Include="Presentadores\Anexos\PresentadorAgregarAnexo.cs" />
+    <Compile Include="Presentadores\Anexos\PresentadorConsultarAnexo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Presentadores\Anexos\PresentadorConsultarAnexos.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Presentadores\Asociados\PresentadorListaDatosTransferencia.cs" />
     <Compile Include="Presentadores\Asociados\PresentadorListaContactos.cs" />
     <Compile Include="Presentadores\Asociados\PresentadorListaJustificaciones.cs" />
@@ -258,6 +268,9 @@
     <Compile Include="Ventanas\Agentes\ConsultarAgentes.xaml.cs">
       <DependentUpon>ConsultarAgentes.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Ventanas\Anexos\AgregarAnexo.xaml.cs">
+      <DependentUpon>AgregarAnexo.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Ventanas\Asociados\AgregarAsociado.xaml.cs">
       <DependentUpon>AgregarAsociado.xaml</DependentUpon>
     </Compile>
@@ -284,6 +297,12 @@
     </Compile>
     <Compile Include="Ventanas\Contactos\AgregarContacto.xaml.cs">
       <DependentUpon>AgregarContacto.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Anexos\ConsultarAnexo.xaml.cs">
+      <DependentUpon>ConsultarAnexo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Anexos\ConsultarAnexos.xaml.cs">
+      <DependentUpon>ConsultarAnexos.xaml</DependentUpon>
     </Compile>
     <Compile Include="Ventanas\DatosTransferencias\AgregarDatosTransferencia.xaml.cs">
       <DependentUpon>AgregarDatosTransferencia.xaml</DependentUpon>
@@ -454,6 +473,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Ventanas\Anexos\AgregarAnexo.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Ventanas\Asociados\AgregarAsociado.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -487,6 +510,14 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Ventanas\Contactos\AgregarContacto.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\Anexos\ConsultarAnexo.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\Anexos\ConsultarAnexos.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

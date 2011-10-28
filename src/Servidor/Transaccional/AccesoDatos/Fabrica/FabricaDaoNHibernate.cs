@@ -327,5 +327,14 @@ namespace Trascend.Bolet.AccesoDatos.Fabrica
         {
             return new DaoResumenNHibernate();
         }
+
+        /// <summary>
+        /// Método que devuelve el DaoAnexo
+        /// </summary>
+        /// <returns>IDaoAnexo</returns>
+        public override IDaoAnexo ObtenerDaoAnexo()
+        {
+            return new DaoAnexoNHibernate();
+        }
     }
 }

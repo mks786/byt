@@ -88,6 +88,24 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Anexo insertado con éxito.
+        /// </summary>
+        internal static string AnexoInsertado {
+            get {
+                return ResourceManager.GetString("AnexoInsertado", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Anexo Modificado con éxito.
+        /// </summary>
+        internal static string AnexoModificado {
+            get {
+                return ResourceManager.GetString("AnexoModificado", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Agente eliminado con éxito.
         /// </summary>
         internal static string AsociadoEliminado {
@@ -147,6 +165,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         internal static string ConfirmacionEliminarAgente {
             get {
                 return ResourceManager.GetString("ConfirmacionEliminarAgente", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ¿Seguro que desea eliminar el Anexo?.
+        /// </summary>
+        internal static string ConfirmacionEliminarAnexo {
+            get {
+                return ResourceManager.GetString("ConfirmacionEliminarAnexo", resourceCulture);
             }
         }
         

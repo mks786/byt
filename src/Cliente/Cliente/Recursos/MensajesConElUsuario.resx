@@ -396,4 +396,13 @@
   <data name="ConfirmacionSalirDelSistema" xml:space="preserve">
     <value>¿Seguro que desea salir del Sistema?</value>
   </data>
+  <data name="AnexoModificado" xml:space="preserve">
+    <value>Anexo Modificado con éxito</value>
+  </data>
+  <data name="ConfirmacionEliminarAnexo" xml:space="preserve">
+    <value>¿Seguro que desea eliminar el Anexo?</value>
+  </data>
+  <data name="AnexoInsertado" xml:space="preserve">
+    <value>Anexo insertado con éxito</value>
+  </data>
 </root>

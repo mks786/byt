@@ -7,6 +7,7 @@ using System.Windows.Input;
 using NLog;
 using Trascend.Bolet.Cliente.Contratos.Principales;
 using Trascend.Bolet.Cliente.Ventanas.Agentes;
+using Trascend.Bolet.Cliente.Ventanas.Anexos;
 using Trascend.Bolet.Cliente.Ventanas.Boletines;
 using Trascend.Bolet.Cliente.Ventanas.Estados;
 using Trascend.Bolet.Cliente.Ventanas.Internacionales;
@@ -322,6 +323,22 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
             this._ventana.Contenedor.Navigate(new AgregarAsociado());
         }
 
+        /// <summary>
+        /// Método que coloca la página "AgregarAnexo" en el Frame principal
+        /// </summary>
+        public void AgregarAnexo()
+        {
+            this._ventana.Contenedor.Navigate(new AgregarAnexo());
+        }
+
+        /// <summary>
+        /// Método que coloca la página "ConsultarAnexos" en el Frame principal
+        /// </summary>
+        public void ConsultarAnexos()
+        {
+            this._ventana.Contenedor.Navigate(new ConsultarAnexos());
+        }
+
         #endregion
 
         /// <summary>
@@ -386,6 +403,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
                             switch (itemNivel2.Name)
                             {
                                 case "_menuItemAgente":
+                                    if (objeto.Id.Equals(Recursos.Ids.Agente))
+                                        itemNivel2.Visibility = System.Windows.Visibility.Visible;
+                                    break;
+                                case "_menuItemAnexo":
                                     if (objeto.Id.Equals(Recursos.Ids.Agente))
                                         itemNivel2.Visibility = System.Windows.Visibility.Visible;
                                     break;

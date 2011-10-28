@@ -67,12 +67,12 @@ namespace Trascend.Bolet.Cliente.Ventanas.Principales
 
         private void _menuItemAnexoConsultar_Click(object sender, RoutedEventArgs e)
         {
-
+            this._presentador.ConsultarAnexos();
         }
 
         private void _menuItemAnexoAgregar_Click(object sender, RoutedEventArgs e)
         {
-
+            this._presentador.AgregarAnexo();
         }
 
         private void _menuItemResumenConsultar_Click(object sender, RoutedEventArgs e)

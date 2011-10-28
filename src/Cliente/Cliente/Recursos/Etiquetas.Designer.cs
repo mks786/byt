@@ -709,7 +709,7 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Codigo:.
+        ///   Looks up a localized string similar to Código:.
         /// </summary>
         public static string lblCodigo {
             get {
@@ -1447,7 +1447,7 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Descripción (Ingles):.
+        ///   Looks up a localized string similar to Código.
         /// </summary>
         public static string lsvCodigo {
             get {
@@ -1978,6 +1978,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Agregar Anexo.
+        /// </summary>
+        public static string titleAgregarAnexo {
+            get {
+                return ResourceManager.GetString("titleAgregarAnexo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Agregar Asociado.
         /// </summary>
         public static string titleAgregarAsociado {
@@ -2154,6 +2163,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string titleConsultarAgentes {
             get {
                 return ResourceManager.GetString("titleConsultarAgentes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Anexo.
+        /// </summary>
+        public static string titleConsultarAnexo {
+            get {
+                return ResourceManager.GetString("titleConsultarAnexo", resourceCulture);
             }
         }
         

@@ -42,6 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controladores\ControladorAnexo.cs" />
     <Compile Include="Controladores\ControladorEstado.cs" />
     <Compile Include="Controladores\ControladorObjeto.cs" />
     <Compile Include="Controladores\ControladorUsuario.cs" />

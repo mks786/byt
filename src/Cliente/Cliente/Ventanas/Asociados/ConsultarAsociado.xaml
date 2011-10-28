@@ -153,7 +153,8 @@
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblDescuento}"/>
                     </Label>
                     <custom:ByTTextBox MaxLength="7" Grid.Column="2" Grid.Row="6" Name="_txtDescuentoDatos" VerticalAlignment="Center" 
-                         HorizontalAlignment="Left" Width="230" Text="{Binding Path=Descuento}" Grid.ColumnSpan="3" IsEnabled="False"></custom:ByTTextBox>
+                         HorizontalAlignment="Left" Width="230" Text="{Binding Path=Descuento}" Grid.ColumnSpan="3" IsEnabled="False"
+                         SoloPorcentaje="True"></custom:ByTTextBox>
 
                     <Label Grid.Column="1" Grid.Row="7" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblTelefono}"/>

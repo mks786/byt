@@ -45,6 +45,10 @@
     <Compile Include="Comandos\ComandoBase.cs" />
     <Compile Include="Comandos\ComandosAgente\ComandoConsultarAgentesYPoderes.cs" />
     <Compile Include="Comandos\ComandosAgente\ComandoVerificarExistenciaAgente.cs" />
+    <Compile Include="Comandos\ComandosAnexo\ComandoConsultarTodosAnexos.cs" />
+    <Compile Include="Comandos\ComandosAnexo\ComandoEliminarAnexo.cs" />
+    <Compile Include="Comandos\ComandosAnexo\ComandoInsertarOModificarAnexo.cs" />
+    <Compile Include="Comandos\ComandosAnexo\ComandoVerificarExistenciaAnexo.cs" />
     <Compile Include="Comandos\ComandosAsociado\ComandoConsultarAsociadoConTodo.cs" />
     <Compile Include="Comandos\ComandosAuditoria\ComandoAuditoriaPorFkyTabla.cs" />
     <Compile Include="Comandos\ComandosResumen\ComandoVerificarExistenciaResumen.cs" />
@@ -143,6 +147,8 @@
     <Compile Include="Comandos\ComandosUsuario\ComandoConsultarTodosUsuarios.cs" />
     <Compile Include="Comandos\ComandosUsuario\ComandoConsultarUsuarioPorID.cs" />
     <Compile Include="Comandos\ComandosUsuario\ComandoInsertarOModificarUsuario.cs" />
+    <Compile Include="Fabrica\FabricaComandoAuditoria.cs" />
+    <Compile Include="Fabrica\FabricaComandosAnexo.cs" />
     <Compile Include="Fabrica\FabricaComandosResumen.cs" />
     <Compile Include="Fabrica\FabricaComandosDatosTransferencia.cs" />
     <Compile Include="Fabrica\FabricaComandosContacto.cs" />

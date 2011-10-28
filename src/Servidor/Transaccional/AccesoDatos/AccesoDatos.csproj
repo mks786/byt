@@ -61,7 +61,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Contrato\IDaoResumen.cs" />
+    <Compile Include="Contrato\IDaoAnexo.cs" />
     <Compile Include="Contrato\IDaoDatosTransferencia.cs" />
     <Compile Include="Contrato\IDaoCarta.cs" />
     <Compile Include="Contrato\IDaoContacto.cs" />
@@ -70,6 +70,7 @@
     <Compile Include="Contrato\IDaoJustificacion.cs" />
     <Compile Include="Contrato\IDaoConcepto.cs" />
     <Compile Include="Contrato\IDaoDetallePago.cs" />
+    <Compile Include="Contrato\IDaoResumen.cs" />
     <Compile Include="Contrato\IDaoTipoCliente.cs" />
     <Compile Include="Contrato\IDaoTarifa.cs" />
     <Compile Include="Contrato\IDaoMoneda.cs" />
@@ -96,7 +97,7 @@
     <Compile Include="Contrato\IDaoBase.cs" />
     <Compile Include="Contrato\IDaoUsuario.cs" />
     <Compile Include="Contrato\IFabricaDaoBase.cs" />
-    <Compile Include="Dao\NHibernate\DaoResumenNHibernate.cs" />
+    <Compile Include="Dao\NHibernate\DaoAnexoNHibernate.cs" />
     <Compile Include="Dao\NHibernate\DaoDatosTransferenciaNHibernate.cs" />
     <Compile Include="Dao\NHibernate\DaoCartaNHibernate.cs" />
     <Compile Include="Dao\NHibernate\DaoContactoNHibernate.cs" />
@@ -105,6 +106,7 @@
     <Compile Include="Dao\NHibernate\DaoJustificacionNHibernate.cs" />
     <Compile Include="Dao\NHibernate\DaoConceptoNHibernate.cs" />
     <Compile Include="Dao\NHibernate\DaoDetallePagoNHibernate.cs" />
+    <Compile Include="Dao\NHibernate\DaoResumenNHibernate.cs" />
     <Compile Include="Dao\NHibernate\DaoTipoClienteNHibernate.cs" />
     <Compile Include="Dao\NHibernate\DaoTarifaNHibernate.cs" />
     <Compile Include="Dao\NHibernate\DaoMonedaNHibernate.cs" />
@@ -316,6 +318,11 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Mapeado\DatosTrasferencia.hbm.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Mapeado\Anexo.hbm.xml">
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>

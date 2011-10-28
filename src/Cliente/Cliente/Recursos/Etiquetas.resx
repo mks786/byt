@@ -179,7 +179,7 @@
     <value>CCI:</value>
   </data>
   <data name="lblCodigo" xml:space="preserve">
-    <value>Codigo:</value>
+    <value>Código:</value>
   </data>
   <data name="lblDepartamento" xml:space="preserve">
     <value>Departamento:</value>
@@ -293,7 +293,7 @@
     <value>Volumen:</value>
   </data>
   <data name="lsvCodigo" xml:space="preserve">
-    <value>Descripción (Ingles):</value>
+    <value>Código</value>
   </data>
   <data name="lsvDescripcion" xml:space="preserve">
     <value>Descripción</value>
@@ -948,5 +948,11 @@
   </data>
   <data name="menuItemResumen" xml:space="preserve">
     <value>Resumen</value>
+  </data>
+  <data name="titleConsultarAnexo" xml:space="preserve">
+    <value>Anexo</value>
+  </data>
+  <data name="titleAgregarAnexo" xml:space="preserve">
+    <value>Agregar Anexo</value>
   </data>
 </root>
