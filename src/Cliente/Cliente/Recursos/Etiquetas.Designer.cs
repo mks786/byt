@@ -970,6 +970,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Formato:.
+        /// </summary>
+        public static string lblFormato {
+            get {
+                return ResourceManager.GetString("lblFormato", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Funcion:.
         /// </summary>
         public static string lblFuncion {
@@ -1573,6 +1582,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Formato.
+        /// </summary>
+        public static string lsvFormato {
+            get {
+                return ResourceManager.GetString("lsvFormato", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Id.
         /// </summary>
         public static string lsvId {
@@ -1861,6 +1879,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Medio.
+        /// </summary>
+        public static string menuItemMedio {
+            get {
+                return ResourceManager.GetString("menuItemMedio", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Clase Nacional.
         /// </summary>
         public static string menuItemNacional {
@@ -2068,6 +2095,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Agregar Medio.
+        /// </summary>
+        public static string titleAgregarMedio {
+            get {
+                return ResourceManager.GetString("titleAgregarMedio", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Agregar Clase Nacional.
         /// </summary>
         public static string titleAgregarNacional {
@@ -2181,6 +2217,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string titleConsultarAnexo {
             get {
                 return ResourceManager.GetString("titleConsultarAnexo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Consultar Anexos.
+        /// </summary>
+        public static string titleConsultarAnexos {
+            get {
+                return ResourceManager.GetString("titleConsultarAnexos", resourceCulture);
             }
         }
         
@@ -2316,6 +2361,24 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string titleConsultarJustificacion {
             get {
                 return ResourceManager.GetString("titleConsultarJustificacion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Consultar Medio.
+        /// </summary>
+        public static string titleConsultarMedio {
+            get {
+                return ResourceManager.GetString("titleConsultarMedio", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Consultar Medios.
+        /// </summary>
+        public static string titleConsultarMedios {
+            get {
+                return ResourceManager.GetString("titleConsultarMedios", resourceCulture);
             }
         }
         

@@ -106,6 +106,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Boletines
             this._dpkFechaBoletinVence.BlackoutDates.Clear();
             this._dpkFechaBoletin.Text = string.Empty;
             this._dpkFechaBoletinVence.Text = string.Empty;
+            validarCamposVacios();
         }
 
         private void _lstResultados_MouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -157,6 +158,20 @@ namespace Trascend.Bolet.Cliente.Ventanas.Boletines
         {
             if (!System.Text.RegularExpressions.Regex.IsMatch(e.Key.ToString(), "\\d+"))
                 e.Handled = true;
+        }
+
+        private void validarCamposVacios()
+        {
+            bool todosCamposVacios = true;
+
+            if (!this._txtId.Text.Equals(""))
+            {
+                todosCamposVacios = false;
+                this._txtId.Focus();
+            }
+
+            if (todosCamposVacios)
+                this._txtId.Focus();
         }
 
     }

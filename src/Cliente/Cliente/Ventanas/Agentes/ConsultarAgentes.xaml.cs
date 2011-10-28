@@ -116,8 +116,9 @@ namespace Trascend.Bolet.Cliente.Ventanas.Agentes
 
         private void _btnConsultar_Click(object sender, RoutedEventArgs e)
         {
-            this._btnConsultar.Focus();
-            this._presentador.Consultar();
+                this._btnConsultar.Focus();
+                this._presentador.Consultar();
+                validarCamposVacios();
         }
 
         private void _lstResultados_MouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -128,6 +129,74 @@ namespace Trascend.Bolet.Cliente.Ventanas.Agentes
         private void _Ordenar_Click(object sender, RoutedEventArgs e)
         {
             this._presentador.OrdenarColumna(sender as GridViewColumnHeader);
+        }
+
+
+        private void validarCamposVacios()
+        {
+            bool todosCamposVacios = true;
+            if (!this._txtId.Text.Equals(""))
+            {
+                todosCamposVacios = false;
+                this._txtId.Focus();
+            }
+
+            if (!this._txtNombre.Text.Equals(""))
+            {
+                todosCamposVacios = false;
+                this._txtNombre.Focus();
+            }
+
+            if (!this._txtDomicilio.Text.Equals(""))
+            {
+                todosCamposVacios = false;
+                this._txtDomicilio.Focus();
+            }
+
+            if (!this._txtTelefono.Text.Equals(""))
+            {
+                todosCamposVacios = false;
+                this._txtTelefono.Focus();
+            }
+
+            if ((this._cbxEstadoCivil.SelectedIndex != 0) && (this._cbxEstadoCivil.SelectedIndex != -1))
+            {
+                todosCamposVacios = false;
+                this._cbxEstadoCivil.Focus();
+            }
+
+            if ((this._cbxSexo.SelectedIndex != 0) && (this._cbxSexo.SelectedIndex != -1))
+            {
+                todosCamposVacios = false;
+                this._cbxSexo.Focus();
+            }
+
+            if (!this._txtNumeroImpresoAbogado.Text.Equals(""))
+            {
+                todosCamposVacios = false;
+                this._txtNumeroImpresoAbogado.Focus();
+            }
+
+            if (!this._txtNumeroAbogado.Text.Equals(""))
+            {
+                todosCamposVacios = false;
+                this._txtNumeroAbogado.Focus();
+            }
+
+            if (!this._txtNumeroPropiedad.Text.Equals(""))
+            {
+                todosCamposVacios = false;
+                this._txtNumeroPropiedad.Focus();
+            }
+
+            if (!this._txtCCI.Text.Equals(""))
+            {
+                todosCamposVacios = false;
+                this._txtCCI.Focus();
+            }
+
+            if (todosCamposVacios)
+                this._txtId.Focus();
         }
     }
 }

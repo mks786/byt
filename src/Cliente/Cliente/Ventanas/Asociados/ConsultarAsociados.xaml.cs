@@ -210,6 +210,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Asociados
         {
             this._btnConsultar.Focus();
             this._presentador.Consultar();
+            validarCamposVacios();
         }
 
         private void _lstResultados_MouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -222,18 +223,79 @@ namespace Trascend.Bolet.Cliente.Ventanas.Asociados
             this._presentador.OrdenarColumna(sender as GridViewColumnHeader);
         }
 
-        private void _txtId_KeyUp(object sender, KeyEventArgs e)
+        private void validarCamposVacios()
         {
-            if (System.Text.RegularExpressions.Regex.IsMatch(this._txtId.Text, "[^0-9]"))
+            bool todosCamposVacios = true;
+            if (!this._txtId.Text.Equals(""))
             {
-                this._txtId.Text = "";
+                todosCamposVacios = false;
+                this._txtId.Focus();
             }
-        }
 
-        private void _txtId_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (!System.Text.RegularExpressions.Regex.IsMatch(e.Key.ToString(), "\\d+"))
-                e.Handled = true;
+            if (!this._txtNombre.Text.Equals(""))
+            {
+                todosCamposVacios = false;
+                this._txtNombre.Focus();
+            }
+
+            if (!this._txtDomicilio.Text.Equals(""))
+            {
+                todosCamposVacios = false;
+                this._txtDomicilio.Focus();
+            }
+
+            if ((this._cbxTipoPersona.SelectedIndex != 0) && (this._cbxTipoPersona.SelectedIndex != -1))
+            {
+                todosCamposVacios = false;
+                this._cbxTipoPersona.Focus();
+            }
+
+            if ((this._cbxPais.SelectedIndex != 0) && (this._cbxPais.SelectedIndex != -1))
+            {
+                todosCamposVacios = false;
+                this._cbxPais.Focus();
+            }
+
+            if ((this._cbxIdioma.SelectedIndex != 0) && (this._cbxIdioma.SelectedIndex != -1))
+            {
+                todosCamposVacios = false;
+                this._cbxIdioma.Focus();
+            }
+
+            if ((this._cbxMoneda.SelectedIndex != 0) && (this._cbxMoneda.SelectedIndex != -1))
+            {
+                todosCamposVacios = false;
+                this._cbxMoneda.Focus();
+            }
+
+            if ((this._cbxTipoCliente.SelectedIndex != 0) && (this._cbxTipoCliente.SelectedIndex != -1))
+            {
+                todosCamposVacios = false;
+                this._cbxTipoCliente.Focus();
+            }
+
+            if ((this._cbxTarifa.SelectedIndex != 0) && (this._cbxTarifa.SelectedIndex != -1))
+            {
+                todosCamposVacios = false;
+                this._cbxTarifa.Focus();
+            }
+
+            if ((this._cbxEtiqueta.SelectedIndex != 0) && (this._cbxEtiqueta.SelectedIndex != -1))
+            {
+                todosCamposVacios = false;
+                this._cbxEtiqueta.Focus();
+            }
+
+            if ((this._cbxDetallePago.SelectedIndex != 0) && (this._cbxDetallePago.SelectedIndex != -1))
+            {
+                todosCamposVacios = false;
+                this._cbxDetallePago.Focus();
+            }
+
+            if (todosCamposVacios)
+            {
+                this._txtId.Focus();
+            }
         }
     }
 }

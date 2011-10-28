@@ -85,6 +85,17 @@ namespace Trascend.Bolet.Cliente.Ventanas.Principales
             this._presentador.AgregarResumen();
         }
 
+        private void _menuItemMedioConsultar_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.ConsultarMedios();
+        }
+
+        private void _menuItemMedioAgregar_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.AgregarMedio();
+        }
+
+
         #endregion
 
         #region Historia
@@ -296,6 +307,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Principales
         }
 
         #endregion
+
 
     }
 }

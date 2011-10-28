@@ -16,8 +16,9 @@ namespace Trascend.Bolet.ControlesByT
     public class ByTTextBox : TextBox
     {
 
-        private bool _soloNumero;
-        private bool _soloPorcentaje;
+        private bool _soloNumero = false;
+        private bool _soloPorcentaje = false;
+        private bool _filtro = false;
         private int _tamanoMaximo;
 
         #region Propiedades
@@ -50,6 +51,14 @@ namespace Trascend.Bolet.ControlesByT
             set { _soloPorcentaje = value; }
         }
 
+
+
+        public bool Filtro
+        {
+            get { return _filtro; }
+            set { _filtro = value; }
+        }
+
         #endregion
 
         /// <summary>
@@ -67,7 +76,16 @@ namespace Trascend.Bolet.ControlesByT
             if (SoloNumero)
             {
                 if (!System.Text.RegularExpressions.Regex.IsMatch(e.Key.ToString(), "\\d+"))
-                    e.Handled = true;
+
+                    if (Filtro)
+                    {
+                        if (e.Key != System.Windows.Input.Key.Enter)
+                        {
+                            e.Handled = true;
+                        }
+                    }
+                    else
+                        e.Handled = true;
             }
             if (SoloPorcentaje)
             {

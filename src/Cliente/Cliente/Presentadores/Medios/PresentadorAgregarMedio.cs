@@ -4,18 +4,17 @@ using System.Net.Sockets;
 using System.Runtime.Remoting;
 using System.Windows.Input;
 using NLog;
-using Trascend.Bolet.Cliente.Contratos.Anexos;
+using Trascend.Bolet.Cliente.Contratos.Medios;
 using Trascend.Bolet.Cliente.Ventanas.Principales;
 using Trascend.Bolet.ObjetosComunes.ContratosServicios;
 using Trascend.Bolet.ObjetosComunes.Entidades;
 
-namespace Trascend.Bolet.Cliente.Presentadores.Anexos
+namespace Trascend.Bolet.Cliente.Presentadores.Medios
 {
-    class PresentadorConsultarAnexo : PresentadorBase
+    class PresentadorAgregarMedio : PresentadorBase
     {
-
-        private IConsultarAnexo _ventana;
-        private IAnexoServicios _anexoServicios;
+        private IAgregarMedio _ventana;
+        private IMedioServicios _medioServicios;
         private static PaginaPrincipal _paginaPrincipal = PaginaPrincipal.ObtenerInstancia;
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
@@ -23,16 +22,14 @@ namespace Trascend.Bolet.Cliente.Presentadores.Anexos
         /// Constructor predeterminado
         /// </summary>
         /// <param name="ventana">Página que satisface el contrato</param>
-        /// <param name="anexo">Pais a mostrar</param>
-        public PresentadorConsultarAnexo(IConsultarAnexo ventana, object anexo)
+        public PresentadorAgregarMedio(IAgregarMedio ventana)
         {
             try
             {
                 this._ventana = ventana;
-                this._ventana.Anexo = anexo;
-
-                this._anexoServicios = (IAnexoServicios)Activator.GetObject(typeof(IAnexoServicios),
-                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["AnexoServicios"]);
+                this._medioServicios = (IMedioServicios)Activator.GetObject(typeof(IMedioServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["MedioServicios"]);
+                this._ventana.Medio = new Medio();
             }
             catch (Exception ex)
             {
@@ -55,8 +52,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Anexos
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-                this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleConsultarAnexo,"");
-                this._ventana.FocoPredeterminado();
+                this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleAgregarMedio,"");
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -75,10 +71,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Anexos
         }
 
         /// <summary>
-        /// Método que dependiendo del estado de la página, habilita los campos o 
-        /// modifica los datos del usuario
+        /// Método que agrega un Estado
         /// </summary>
-        public void Modificar()
+        public void AgregarMedio()
         {
             try
             {
@@ -87,65 +82,18 @@ namespace Trascend.Bolet.Cliente.Presentadores.Anexos
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-                //Habilitar campos
-                if (this._ventana.TextoBotonModificar == Recursos.Etiquetas.btnModificar)
-                {
-                    this._ventana.HabilitarCampos = true;
-                    this._ventana.TextoBotonModificar = Recursos.Etiquetas.btnAceptar;
-                }
 
-                //Modifica los datos del Pais
-                else
+                if (!this._medioServicios.VerificarExistencia((Medio)this._ventana.Medio))
                 {
-                    Anexo anexo = (Anexo)this._ventana.Anexo;
 
-                    if (this._anexoServicios.InsertarOModificar(anexo, UsuarioLogeado.Hash))
+                    if (this._medioServicios.InsertarOModificar((Medio)this._ventana.Medio, UsuarioLogeado.Hash))
                     {
-                        _paginaPrincipal.MensajeUsuario = Recursos.MensajesConElUsuario.AnexoModificado;
-                        this.Navegar(_paginaPrincipal);
+                        this.Navegar(Recursos.MensajesConElUsuario.MedioInsertado, false);
                     }
                 }
-
-                #region trace
-                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
-                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
-                #endregion
-            }
-            catch (ApplicationException ex)
-            {
-                logger.Error(ex.Message);
-                this.Navegar(ex.Message, true);
-            }
-            catch (RemotingException ex)
-            {
-                logger.Error(ex.Message);
-                this.Navegar(Recursos.MensajesConElUsuario.ErrorRemoting, true);
-            }
-            catch (SocketException ex)
-            {
-                logger.Error(ex.Message);
-                this.Navegar(Recursos.MensajesConElUsuario.ErrorConexionServidor, true);
-            }
-            catch (Exception ex)
-            {
-                logger.Error(ex.Message);
-                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
-            }
-        }
-
-        public void Eliminar()
-        {
-            try
-            {
-                #region trace
-                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
-                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
-                #endregion
-
-                if (this._anexoServicios.Eliminar((Anexo)this._ventana.Anexo, UsuarioLogeado.Hash))
+                else
                 {
-                    _paginaPrincipal.MensajeUsuario = Recursos.MensajesConElUsuario.PaisEliminado;
-                    this.Navegar(_paginaPrincipal);
+                    this._ventana.Mensaje(Recursos.MensajesConElUsuario.ErrorEstadoRepetido);
                 }
 
                 #region trace

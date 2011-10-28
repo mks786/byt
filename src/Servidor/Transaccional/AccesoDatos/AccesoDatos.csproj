@@ -61,6 +61,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Contrato\IDaoMedio.cs" />
     <Compile Include="Contrato\IDaoAnexo.cs" />
     <Compile Include="Contrato\IDaoDatosTransferencia.cs" />
     <Compile Include="Contrato\IDaoCarta.cs" />
@@ -97,6 +98,7 @@
     <Compile Include="Contrato\IDaoBase.cs" />
     <Compile Include="Contrato\IDaoUsuario.cs" />
     <Compile Include="Contrato\IFabricaDaoBase.cs" />
+    <Compile Include="Dao\NHibernate\DaoMedioNHibernate.cs" />
     <Compile Include="Dao\NHibernate\DaoAnexoNHibernate.cs" />
     <Compile Include="Dao\NHibernate\DaoDatosTransferenciaNHibernate.cs" />
     <Compile Include="Dao\NHibernate\DaoCartaNHibernate.cs" />
@@ -323,6 +325,11 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Mapeado\Anexo.hbm.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Mapeado\Medio.hbm.xml">
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>

@@ -143,10 +143,15 @@
     <Compile Include="Comandos\ComandosBoletin\ComandoEliminarBoletin.cs" />
     <Compile Include="Comandos\ComandosBoletin\ComandoInsertarOModificarBoletin.cs" />
     <Compile Include="Comandos\ComandosBoletin\ComandoVerificarExistenciaBoletin.cs" />
+    <Compile Include="Comandos\ComandosMedio\ComandoConsultarTodosMedios.cs" />
+    <Compile Include="Comandos\ComandosMedio\ComandoEliminarMedio.cs" />
+    <Compile Include="Comandos\ComandosMedio\ComandoInsertarOModificarMedio.cs" />
+    <Compile Include="Comandos\ComandosMedio\ComandoVerificarExistenciaMedio.cs" />
     <Compile Include="Comandos\Receptor.cs" />
     <Compile Include="Comandos\ComandosUsuario\ComandoConsultarTodosUsuarios.cs" />
     <Compile Include="Comandos\ComandosUsuario\ComandoConsultarUsuarioPorID.cs" />
     <Compile Include="Comandos\ComandosUsuario\ComandoInsertarOModificarUsuario.cs" />
+    <Compile Include="Fabrica\FabricaComandosMedio.cs" />
     <Compile Include="Fabrica\FabricaComandoAuditoria.cs" />
     <Compile Include="Fabrica\FabricaComandosAnexo.cs" />
     <Compile Include="Fabrica\FabricaComandosResumen.cs" />

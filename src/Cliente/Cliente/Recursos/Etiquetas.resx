@@ -964,4 +964,25 @@
   <data name="titleAgregarAnexo" xml:space="preserve">
     <value>Agregar Anexo</value>
   </data>
+  <data name="lblFormato" xml:space="preserve">
+    <value>Formato:</value>
+  </data>
+  <data name="menuItemMedio" xml:space="preserve">
+    <value>Medio</value>
+  </data>
+  <data name="lsvFormato" xml:space="preserve">
+    <value>Formato</value>
+  </data>
+  <data name="titleAgregarMedio" xml:space="preserve">
+    <value>Agregar Medio</value>
+  </data>
+  <data name="titleConsultarMedio" xml:space="preserve">
+    <value>Consultar Medio</value>
+  </data>
+  <data name="titleConsultarAnexos" xml:space="preserve">
+    <value>Consultar Anexos</value>
+  </data>
+  <data name="titleConsultarMedios" xml:space="preserve">
+    <value>Consultar Medios</value>
+  </data>
 </root>

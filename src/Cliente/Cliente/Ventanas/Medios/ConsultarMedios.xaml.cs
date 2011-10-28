@@ -2,22 +2,22 @@
 using System.Windows.Controls;
 using System.Windows.Input;
 using Trascend.Bolet.Cliente.Ayuda;
-using Trascend.Bolet.Cliente.Contratos.Anexos;
-using Trascend.Bolet.Cliente.Presentadores.Anexos;
+using Trascend.Bolet.Cliente.Contratos.Medios;
+using Trascend.Bolet.Cliente.Presentadores.Medios;
 
-namespace Trascend.Bolet.Cliente.Ventanas.Anexos
+namespace Trascend.Bolet.Cliente.Ventanas.Medios
 {
     /// <summary>
     /// Interaction logic for ConsultarObjetos.xaml
     /// </summary>
-    public partial class ConsultarAnexos : Page, IConsultarAnexos
+    public partial class ConsultarMedios : Page, IConsultarMedios
     {
         private GridViewColumnHeader _CurSortCol = null;
         private SortAdorner _CurAdorner = null;
-        private PresentadorConsultarAnexos _presentador;
+        private PresentadorConsultarMedios _presentador;
         private bool _cargada;
 
-        #region IConsultarAnexos
+        #region IConsultarMedios
 
         public bool EstaCargada
         {
@@ -30,13 +30,13 @@ namespace Trascend.Bolet.Cliente.Ventanas.Anexos
             this._txtId.Focus();
         }
 
-        public object AnexoFiltrar
+        public object MedioFiltrar
         {
             get { return this._splFiltro.DataContext; }
             set { this._splFiltro.DataContext = value; }
         }
 
-        public object AnexoSeleccionado
+        public object MedioSeleccionado
         {
             get { return this._lstResultados.SelectedItem; }
 
@@ -75,11 +75,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Anexos
 
         #endregion
 
-        public ConsultarAnexos()
+        public ConsultarMedios()
         {
             InitializeComponent();
             this._cargada = false;
-            this._presentador = new PresentadorConsultarAnexos(this);
+            this._presentador = new PresentadorConsultarMedios(this);
 
         }
 
@@ -101,13 +101,14 @@ namespace Trascend.Bolet.Cliente.Ventanas.Anexos
 
         private void _btnConsultar_Click(object sender, RoutedEventArgs e)
         {
-            this._btnConsultar.Focus();
-            this._presentador.Consultar();
+                this._btnConsultar.Focus();
+                this._presentador.Consultar();
+                validarCamposVacios();
         }
 
         private void _lstResultados_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            this._presentador.IrConsultarAnexo();
+            this._presentador.IrConsultarMedio();
         }
 
         private void _Ordenar_Click(object sender, RoutedEventArgs e)
@@ -124,14 +125,21 @@ namespace Trascend.Bolet.Cliente.Ventanas.Anexos
                 this._txtId.Focus();
             }
 
-            if (!this._txtDescripcion.Text.Equals(""))
+            if (!this._txtNombre.Text.Equals(""))
             {
                 todosCamposVacios = false;
-                this._txtDescripcion.Focus();
+                this._txtNombre.Focus();
+            }
+
+            if (!this._txtFormato.Text.Equals(""))
+            {
+                todosCamposVacios = false;
+                this._txtFormato.Focus();
             }
 
             if (todosCamposVacios)
                 this._txtId.Focus();
         }
+
     }
 }

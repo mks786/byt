@@ -74,6 +74,7 @@
     <Compile Include="Controladores\ControladorCarta.cs" />
     <Compile Include="Controladores\ControladorDatosTransferencia.cs" />
     <Compile Include="Controladores\ControladorResumen.cs" />
+    <Compile Include="Controladores\ControladorMedio.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

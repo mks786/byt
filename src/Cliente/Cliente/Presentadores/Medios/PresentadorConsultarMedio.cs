@@ -4,18 +4,18 @@ using System.Net.Sockets;
 using System.Runtime.Remoting;
 using System.Windows.Input;
 using NLog;
-using Trascend.Bolet.Cliente.Contratos.Anexos;
+using Trascend.Bolet.Cliente.Contratos.Medios;
 using Trascend.Bolet.Cliente.Ventanas.Principales;
 using Trascend.Bolet.ObjetosComunes.ContratosServicios;
 using Trascend.Bolet.ObjetosComunes.Entidades;
 
-namespace Trascend.Bolet.Cliente.Presentadores.Anexos
+namespace Trascend.Bolet.Cliente.Presentadores.Medios
 {
-    class PresentadorConsultarAnexo : PresentadorBase
+    class PresentadorConsultarMedio : PresentadorBase
     {
 
-        private IConsultarAnexo _ventana;
-        private IAnexoServicios _anexoServicios;
+        private IConsultarMedio _ventana;
+        private IMedioServicios _medioServicios;
         private static PaginaPrincipal _paginaPrincipal = PaginaPrincipal.ObtenerInstancia;
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
@@ -23,16 +23,16 @@ namespace Trascend.Bolet.Cliente.Presentadores.Anexos
         /// Constructor predeterminado
         /// </summary>
         /// <param name="ventana">Página que satisface el contrato</param>
-        /// <param name="anexo">Pais a mostrar</param>
-        public PresentadorConsultarAnexo(IConsultarAnexo ventana, object anexo)
+        /// <param name="medio">Pais a mostrar</param>
+        public PresentadorConsultarMedio(IConsultarMedio ventana, object medio)
         {
             try
             {
                 this._ventana = ventana;
-                this._ventana.Anexo = anexo;
+                this._ventana.Medio = medio;
 
-                this._anexoServicios = (IAnexoServicios)Activator.GetObject(typeof(IAnexoServicios),
-                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["AnexoServicios"]);
+                this._medioServicios = (IMedioServicios)Activator.GetObject(typeof(IMedioServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["MedioServicios"]);
             }
             catch (Exception ex)
             {
@@ -55,7 +55,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Anexos
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-                this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleConsultarAnexo,"");
+                this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleConsultarMedio,"");
                 this._ventana.FocoPredeterminado();
 
                 #region trace
@@ -97,11 +97,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Anexos
                 //Modifica los datos del Pais
                 else
                 {
-                    Anexo anexo = (Anexo)this._ventana.Anexo;
+                    Medio medio = (Medio)this._ventana.Medio;
 
-                    if (this._anexoServicios.InsertarOModificar(anexo, UsuarioLogeado.Hash))
+                    if (this._medioServicios.InsertarOModificar(medio, UsuarioLogeado.Hash))
                     {
-                        _paginaPrincipal.MensajeUsuario = Recursos.MensajesConElUsuario.AnexoModificado;
+                        _paginaPrincipal.MensajeUsuario = Recursos.MensajesConElUsuario.MedioModificado;
                         this.Navegar(_paginaPrincipal);
                     }
                 }
@@ -142,7 +142,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Anexos
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-                if (this._anexoServicios.Eliminar((Anexo)this._ventana.Anexo, UsuarioLogeado.Hash))
+                if (this._medioServicios.Eliminar((Medio)this._ventana.Medio, UsuarioLogeado.Hash))
                 {
                     _paginaPrincipal.MensajeUsuario = Recursos.MensajesConElUsuario.PaisEliminado;
                     this.Navegar(_paginaPrincipal);

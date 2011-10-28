@@ -101,6 +101,9 @@
     <Compile Include="Contratos\Anexos\IAgregarAnexo.cs" />
     <Compile Include="Contratos\Anexos\IConsultarAnexo.cs" />
     <Compile Include="Contratos\Anexos\IConsultarAnexos.cs" />
+    <Compile Include="Contratos\Medios\IAgregarMedio.cs" />
+    <Compile Include="Contratos\Medios\IConsultarMedio.cs" />
+    <Compile Include="Contratos\Medios\IConsultarMedios.cs" />
     <Compile Include="Contratos\Resumenes\IAgregarResumen.cs" />
     <Compile Include="Contratos\Resumenes\IConsultarResumen.cs" />
     <Compile Include="Contratos\Resumenes\IConsultarResumenes.cs" />
@@ -181,6 +184,9 @@
     <Compile Include="Presentadores\Resumenes\PresentadorAgregarResumen.cs" />
     <Compile Include="Presentadores\Resumenes\PresentadorConsultarResumen.cs" />
     <Compile Include="Presentadores\Resumenes\PresentadorConsultarResumenes.cs" />
+    <Compile Include="Presentadores\Medios\PresentadorAgregarMedio.cs" />
+    <Compile Include="Presentadores\Medios\PresentadorConsultarMedio.cs" />
+    <Compile Include="Presentadores\Medios\PresentadorConsultarMedios.cs" />
     <Compile Include="Presentadores\DatosTransferencias\PresentadorAgregarDatosTransferencia.cs" />
     <Compile Include="Presentadores\DatosTransferencias\PresentadorConsultarDatosTransferencia.cs" />
     <Compile Include="Presentadores\Detalles\PresentadorVentanaDetalle.cs" />
@@ -306,6 +312,15 @@
     </Compile>
     <Compile Include="Ventanas\Anexos\ConsultarAnexos.xaml.cs">
       <DependentUpon>ConsultarAnexos.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Medios\AgregarMedio.xaml.cs">
+      <DependentUpon>AgregarMedio.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Medios\ConsultarMedio.xaml.cs">
+      <DependentUpon>ConsultarMedio.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Medios\ConsultarMedios.xaml.cs">
+      <DependentUpon>ConsultarMedios.xaml</DependentUpon>
     </Compile>
     <Compile Include="Ventanas\DatosTransferencias\AgregarDatosTransferencia.xaml.cs">
       <DependentUpon>AgregarDatosTransferencia.xaml</DependentUpon>
@@ -530,6 +545,18 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Ventanas\Anexos\ConsultarAnexos.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\Medios\AgregarMedio.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\Medios\ConsultarMedio.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\Medios\ConsultarMedios.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

@@ -259,6 +259,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ¿Seguro que desea eliminar el Medio?.
+        /// </summary>
+        internal static string ConfirmacionEliminarMedio {
+            get {
+                return ResourceManager.GetString("ConfirmacionEliminarMedio", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ¿Seguro que desea eliminar la clase nacional?.
         /// </summary>
         internal static string ConfirmacionEliminarNacional {
@@ -696,6 +705,24 @@ namespace Trascend.Bolet.Cliente.Recursos {
         internal static string JustificacionModificado {
             get {
                 return ResourceManager.GetString("JustificacionModificado", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Medio insertado con éxito.
+        /// </summary>
+        internal static string MedioInsertado {
+            get {
+                return ResourceManager.GetString("MedioInsertado", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Medio modificado con éxito.
+        /// </summary>
+        internal static string MedioModificado {
+            get {
+                return ResourceManager.GetString("MedioModificado", resourceCulture);
             }
         }
         

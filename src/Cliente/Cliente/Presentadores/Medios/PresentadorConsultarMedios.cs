@@ -10,34 +10,34 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using NLog;
 using Trascend.Bolet.Cliente.Ayuda;
-using Trascend.Bolet.Cliente.Contratos.Anexos;
-using Trascend.Bolet.Cliente.Ventanas.Anexos;
+using Trascend.Bolet.Cliente.Contratos.Medios;
+using Trascend.Bolet.Cliente.Ventanas.Medios;
 using Trascend.Bolet.Cliente.Ventanas.Principales;
 using Trascend.Bolet.ObjetosComunes.ContratosServicios;
 using Trascend.Bolet.ObjetosComunes.Entidades;
 
-namespace Trascend.Bolet.Cliente.Presentadores.Anexos
+namespace Trascend.Bolet.Cliente.Presentadores.Medios
 {
-    class PresentadorConsultarAnexos : PresentadorBase
+    class PresentadorConsultarMedios : PresentadorBase
     {
         private static PaginaPrincipal _paginaPrincipal = PaginaPrincipal.ObtenerInstancia;
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
-        private IConsultarAnexos _ventana;
-        private IAnexoServicios _anexoServicios;
-        private IList<Anexo> _anexos;
+        private IConsultarMedios _ventana;
+        private IMedioServicios _medioServicios;
+        private IList<Medio> _medios;
 
         /// <summary>
         /// Constructor Predeterminado
         /// </summary>
         /// <param name="ventana">página que satisface el contrato</param>
-        public PresentadorConsultarAnexos(IConsultarAnexos ventana)
+        public PresentadorConsultarMedios(IConsultarMedios ventana)
         {
             try
             {
                 this._ventana = ventana;
-                this._anexoServicios = (IAnexoServicios)Activator.GetObject(typeof(IAnexoServicios),
-                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["AnexoServicios"]);
+                this._medioServicios = (IMedioServicios)Activator.GetObject(typeof(IMedioServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["MedioServicios"]);
             }
             catch (Exception ex)
             {
@@ -48,7 +48,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Anexos
 
         public void ActualizarTitulo()
         {
-            this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleConsultarAnexos,"");
+            this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleConsultarMedios,"");
         }
 
         /// <summary>
@@ -67,9 +67,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Anexos
 
                 ActualizarTitulo();
                 
-                this._anexos = this._anexoServicios.ConsultarTodos();
-                this._ventana.Resultados = this._anexos;
-                this._ventana.AnexoFiltrar = new Anexo();
+                this._medios = this._medioServicios.ConsultarTodos();
+                this._ventana.Resultados = this._medios;
+                this._ventana.MedioFiltrar = new Medio();
                 this._ventana.FocoPredeterminado();
 
                 #region trace
@@ -116,26 +116,34 @@ namespace Trascend.Bolet.Cliente.Presentadores.Anexos
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-                Anexo anexo = (Anexo) this._ventana.AnexoFiltrar;
+                Medio medio = (Medio)this._ventana.MedioFiltrar;
 
-                IEnumerable<Anexo> anexosFiltrados = this._anexos;
+                IEnumerable<Medio> mediosFiltrados = this._medios;
 
                if (!string.Equals("",this._ventana.Id))
                 {
-                    anexosFiltrados = from a in anexosFiltrados
+                    mediosFiltrados = from a in mediosFiltrados
                                       where a.Id.ToLower().Contains(this._ventana.Id.ToLower())
                                        select a;
                 }
 
-                if (!string.IsNullOrEmpty(((Anexo)this._ventana.AnexoFiltrar).Descripcion))
-                {
-                    anexosFiltrados = from p in anexosFiltrados
-                                      where p.Descripcion != null &&
-                                       p.Descripcion.ToLower().Contains(anexo.Descripcion.ToLower())
-                                       select p;
-                }
+               if (!string.IsNullOrEmpty(((Medio)this._ventana.MedioFiltrar).Nombre))
+               {
+                   mediosFiltrados = from p in mediosFiltrados
+                                     where p.Nombre != null &&
+                                      p.Nombre.ToLower().Contains(medio.Nombre.ToLower())
+                                     select p;
+               }
 
-                this._ventana.Resultados = anexosFiltrados.ToList<Anexo>();
+               if (!string.IsNullOrEmpty(((Medio)this._ventana.MedioFiltrar).Formato))
+               {
+                   mediosFiltrados = from p in mediosFiltrados
+                                     where p.Formato != null &&
+                                      p.Formato.ToLower().Contains(medio.Formato.ToLower())
+                                     select p;
+               }
+
+                this._ventana.Resultados = mediosFiltrados.ToList<Medio>();
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -152,14 +160,14 @@ namespace Trascend.Bolet.Cliente.Presentadores.Anexos
          ///<summary>
          //Método que invoca una nueva página "ConsultarPais" y la instancia con el objeto seleccionado
          /// </summary>
-        public void IrConsultarAnexo()
+        public void IrConsultarMedio()
         {
             #region trace
             if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
                 logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
 
-            this.Navegar(new ConsultarAnexo(this._ventana.AnexoSeleccionado));
+            this.Navegar(new ConsultarMedio(this._ventana.MedioSeleccionado));
 
             #region trace
             if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))

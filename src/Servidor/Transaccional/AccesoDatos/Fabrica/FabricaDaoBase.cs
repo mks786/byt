@@ -221,12 +221,18 @@ namespace Trascend.Bolet.AccesoDatos.Fabrica
         /// </summary>
         /// <returns>IDaoResumen</returns>
         public abstract IDaoResumen ObtenerDaoResumen();
-        
+
 
         /// <summary>
         /// Método que devuelve el DaoAnexo del manejador que se esté utilizando
         /// </summary>
         /// <returns>IDaoAnexo</returns>
         public abstract IDaoAnexo ObtenerDaoAnexo();
+
+        /// <summary>
+        /// Método que devuelve el DaoMedio del manejador que se esté utilizando
+        /// </summary>
+        /// <returns>IDaoMedio</returns>
+        public abstract IDaoMedio ObtenerDaoMedio();
     }
 }

@@ -420,4 +420,13 @@
   <data name="ErrorResumenRepetido" xml:space="preserve">
     <value>El Resumen que intenta introducir ya existe</value>
   </data>
+  <data name="ConfirmacionEliminarMedio" xml:space="preserve">
+    <value>¿Seguro que desea eliminar el Medio?</value>
+  </data>
+  <data name="MedioInsertado" xml:space="preserve">
+    <value>Medio insertado con éxito</value>
+  </data>
+  <data name="MedioModificado" xml:space="preserve">
+    <value>Medio modificado con éxito</value>
+  </data>
 </root>
