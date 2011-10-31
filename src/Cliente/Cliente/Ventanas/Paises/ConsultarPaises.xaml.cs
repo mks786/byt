@@ -107,6 +107,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Paises
         {
             this._btnConsultar.Focus();
             this._presentador.Consultar();
+            validarCamposVacios();
         }
 
         private void _lstResultados_MouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -117,6 +118,55 @@ namespace Trascend.Bolet.Cliente.Ventanas.Paises
         private void _Ordenar_Click(object sender, RoutedEventArgs e)
         {
             this._presentador.OrdenarColumna(sender as GridViewColumnHeader);
+        }
+
+        private void validarCamposVacios()
+        {
+            bool todosCamposVacios = true;
+            if (!this._txtId.Text.Equals(""))
+            {
+                todosCamposVacios = false;
+                this._txtId.Focus();
+            }
+
+            if (!this._txtCodigo.Text.Equals(""))
+            {
+                todosCamposVacios = false;
+                this._txtCodigo.Focus();
+            }
+
+            if (!this._txtNombreIngles.Text.Equals(""))
+            {
+                todosCamposVacios = false;
+                this._txtNombreIngles.Focus();
+            }
+
+            if (!this._txtNombreEspanol.Text.Equals(""))
+            {
+                todosCamposVacios = false;
+                this._txtNombreEspanol.Focus();
+            }
+
+            if (!this._txtNacionalidad.Text.Equals(""))
+            {
+                todosCamposVacios = false;
+                this._txtNacionalidad.Focus();
+            }
+
+            if (!this._txtNacionalidad.Text.Equals(""))
+            {
+                todosCamposVacios = false;
+                this._txtNacionalidad.Focus();
+            }
+
+            if ((this._cbxRegion.SelectedIndex != 0) && (this._cbxRegion.SelectedIndex != -1))
+            {
+                todosCamposVacios = false;
+                this._cbxRegion.Focus();
+            }
+
+            if (todosCamposVacios)
+                this._txtId.Focus();
         }
     }
 }

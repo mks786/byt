@@ -8,6 +8,8 @@ using NLog;
 using Trascend.Bolet.Cliente.Contratos.Principales;
 using Trascend.Bolet.Cliente.Ventanas.Agentes;
 using Trascend.Bolet.Cliente.Ventanas.Anexos;
+using Trascend.Bolet.Cliente.Ventanas.Categorias;
+using Trascend.Bolet.Cliente.Ventanas.Anexos;
 using Trascend.Bolet.Cliente.Ventanas.Boletines;
 using Trascend.Bolet.Cliente.Ventanas.Estados;
 using Trascend.Bolet.Cliente.Ventanas.Internacionales;
@@ -373,6 +375,22 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
             this._ventana.Contenedor.Navigate(new ConsultarMedios());
         }
 
+        /// <summary>
+        /// Método que coloca la página "ConsultarAnexos" en el Frame principal
+        /// </summary>
+        public void ConsultarCategorias()
+        {
+            this._ventana.Contenedor.Navigate(new ConsultarCategorias());
+        }
+
+        /// <summary>
+        /// Método que coloca la página "ConsultarAnexos" en el Frame principal
+        /// </summary>
+        public void AgregarCategoria()
+        {
+            this._ventana.Contenedor.Navigate(new AgregarCategoria());
+        }
+
         #endregion
 
         /// <summary>
@@ -450,6 +468,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
                                     break;
                                 case "_menuItemBoletin":
                                     if (objeto.Id.Equals(Recursos.Ids.Boletin))
+                                        itemNivel2.Visibility = System.Windows.Visibility.Visible;
+                                    break;
+                                case "_menuItemCategoria":
+                                    if (objeto.Id.Equals(Recursos.Ids.Agente))
                                         itemNivel2.Visibility = System.Windows.Visibility.Visible;
                                     break;
                                 case "_menuItemEstado":

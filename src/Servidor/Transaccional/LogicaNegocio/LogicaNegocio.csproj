@@ -75,6 +75,7 @@
     <Compile Include="Controladores\ControladorDatosTransferencia.cs" />
     <Compile Include="Controladores\ControladorResumen.cs" />
     <Compile Include="Controladores\ControladorMedio.cs" />
+    <Compile Include="Controladores\ControladorCategoria.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -1771,6 +1771,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Categoría.
+        /// </summary>
+        public static string menuItemCategoria {
+            get {
+                return ResourceManager.GetString("menuItemCategoria", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Consultar.
         /// </summary>
         public static string menuItemConsultar {
@@ -2032,6 +2041,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Agregar Categoría.
+        /// </summary>
+        public static string titleAgregarCategoria {
+            get {
+                return ResourceManager.GetString("titleAgregarCategoria", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Agregar Contacto.
         /// </summary>
         public static string titleAgregarContacto {
@@ -2262,6 +2280,24 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string titleConsultarBoletines {
             get {
                 return ResourceManager.GetString("titleConsultarBoletines", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Consultar Categoría.
+        /// </summary>
+        public static string titleConsultarCategoria {
+            get {
+                return ResourceManager.GetString("titleConsultarCategoria", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Consultar Categorías.
+        /// </summary>
+        public static string titleConsultarCategorias {
+            get {
+                return ResourceManager.GetString("titleConsultarCategorias", resourceCulture);
             }
         }
         

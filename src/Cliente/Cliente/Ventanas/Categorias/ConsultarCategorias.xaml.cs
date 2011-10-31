@@ -2,22 +2,58 @@
 using System.Windows.Controls;
 using System.Windows.Input;
 using Trascend.Bolet.Cliente.Ayuda;
-using Trascend.Bolet.Cliente.Contratos.TipoFechas;
-using Trascend.Bolet.Cliente.Presentadores.TipoFechas;
+using Trascend.Bolet.Cliente.Contratos.Categorias;
+using Trascend.Bolet.Cliente.Presentadores.Categorias;
 
-namespace Trascend.Bolet.Cliente.Ventanas.TipoFechas
+namespace Trascend.Bolet.Cliente.Ventanas.Categorias
 {
     /// <summary>
-    /// Interaction logic for ConsultarTipoFechas.xaml
+    /// Interaction logic for ConsultarObjetos.xaml
     /// </summary>
-    public partial class ConsultarTipoFechas: Page, IConsultarTipoFechas
+    public partial class ConsultarCategorias : Page, IConsultarCategorias
     {
         private GridViewColumnHeader _CurSortCol = null;
         private SortAdorner _CurAdorner = null;
-        private PresentadorConsultarTipoFechas _presentador;
+        private PresentadorConsultarCategorias _presentador;
         private bool _cargada;
 
-        #region IConsultarFechas
+        #region IConsultarCategorias
+
+        public bool EstaCargada
+        {
+            get { return this._cargada; }
+            set { this._cargada = value; }
+        }
+
+        public void FocoPredeterminado()
+        {
+            this._txtId.Focus();
+        }
+
+        public object CategoriaFiltrar
+        {
+            get { return this._splFiltro.DataContext; }
+            set { this._splFiltro.DataContext = value; }
+        }
+
+        public object CategoriaSeleccionado
+        {
+            get { return this._lstResultados.SelectedItem; }
+
+        }
+
+        public object Resultados
+        {
+            get { return this._lstResultados.DataContext; }
+            set { this._lstResultados.DataContext = value; }
+        }
+
+        public string Id
+        {
+            get { return this._txtId.Text; }
+            set { this._txtId.Text = value; }
+        }
+
 
         public GridViewColumnHeader CurSortCol
         {
@@ -31,39 +67,6 @@ namespace Trascend.Bolet.Cliente.Ventanas.TipoFechas
             set { _CurAdorner = value; }
         }
 
-        public bool EstaCargada
-        {
-            get { return this._cargada; }
-            set { this._cargada = value; }
-        }
-
-        public void FocoPredeterminado()
-        {
-            this._txtId.Focus();
-        }
-
-        public object TipoFechaSeleccionada
-        {
-            get { return this._lstResultados.SelectedItem; }
-            
-        }
-
-        public string Id
-        {
-            get { return this._txtId.Text; }
-        }
-
-        public string Descripcion
-        {
-            get { return this._txtDescripcion.Text; }
-        }
-
-        public object Resultados
-        {
-            get { return this._lstResultados.DataContext; }
-            set { this._lstResultados.DataContext = value; }
-        }
-
         public ListView ListaResultados
         {
             get { return this._lstResultados; }
@@ -72,12 +75,23 @@ namespace Trascend.Bolet.Cliente.Ventanas.TipoFechas
 
         #endregion
 
-        public ConsultarTipoFechas()
+        public ConsultarCategorias()
         {
             InitializeComponent();
             this._cargada = false;
-            this._presentador = new PresentadorConsultarTipoFechas(this);
+            this._presentador = new PresentadorConsultarCategorias(this);
 
+        }
+
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            if (!EstaCargada)
+            {
+                this._presentador.CargarPagina();
+                EstaCargada = true;
+            }
+            else
+                this._presentador.ActualizarTitulo();
         }
 
         private void _btnCancelar_Click(object sender, RoutedEventArgs e)
@@ -94,23 +108,12 @@ namespace Trascend.Bolet.Cliente.Ventanas.TipoFechas
 
         private void _lstResultados_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            this._presentador.IrConsultarTipoFecha();
+            this._presentador.IrConsultarCategoria();
         }
 
         private void _Ordenar_Click(object sender, RoutedEventArgs e)
         {
             this._presentador.OrdenarColumna(sender as GridViewColumnHeader);
-        }
-
-        private void Page_Loaded(object sender, RoutedEventArgs e)
-        {
-            if (!EstaCargada)
-            {
-                this._presentador.CargarPagina();
-                EstaCargada = true;
-            }
-            else
-                this._presentador.ActualizarTitulo();
         }
 
         private void validarCamposVacios()
@@ -131,6 +134,5 @@ namespace Trascend.Bolet.Cliente.Ventanas.TipoFechas
             if (todosCamposVacios)
                 this._txtId.Focus();
         }
-
     }
 }

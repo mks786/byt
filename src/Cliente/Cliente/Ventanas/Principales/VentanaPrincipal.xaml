@@ -30,6 +30,11 @@
                     <MenuItem Name="_menuItemAnexoAgregar" Header="{x:Static resx:Etiquetas.menuItemAgregar}" Click="_menuItemAnexoAgregar_Click"/>
                     <!--<MenuItem Name="_menuItemUsuarioModificar" Header="{x:Static resx:Etiquetas.menuItemUsuarioModificar}"></MenuItem>-->
                 </MenuItem>
+                <MenuItem Name="_menuItemCategoria" Visibility="Collapsed" Header="{x:Static resx:Etiquetas.menuItemCategoria}">
+                    <MenuItem Name="_menuItemCategoriaConsultar" Header="{x:Static resx:Etiquetas.menuItemConsultar}" Click="_menuItemCategoriaConsultar_Click"/>
+                    <MenuItem Name="_menuItemCategoriaAgregar" Header="{x:Static resx:Etiquetas.menuItemAgregar}" Click="_menuItemCategoriaAgregar_Click"/>
+                    <!--<MenuItem Name="_menuItemUsuarioModificar" Header="{x:Static resx:Etiquetas.menuItemUsuarioModificar}"></MenuItem>-->
+                </MenuItem>
                 <MenuItem Name="_menuItemMedio" Visibility="Collapsed" Header="{x:Static resx:Etiquetas.menuItemMedio}">
                     <MenuItem Name="_menuItemMedioConsultar" Header="{x:Static resx:Etiquetas.menuItemConsultar}" Click="_menuItemMedioConsultar_Click"/>
                     <MenuItem Name="_menuItemMedioAgregar" Header="{x:Static resx:Etiquetas.menuItemAgregar}" Click="_menuItemMedioAgregar_Click"/>

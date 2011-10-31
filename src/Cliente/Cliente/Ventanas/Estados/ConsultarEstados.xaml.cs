@@ -85,6 +85,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Estados
         {
             this._btnConsultar.Focus();
             this._presentador.Consultar();
+            validarCamposVacios();
         }
 
         private void _lstResultados_MouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -108,6 +109,26 @@ namespace Trascend.Bolet.Cliente.Ventanas.Estados
             {
                 this._presentador.ActualizarTitulo();
             }
+        }
+
+
+        private void validarCamposVacios()
+        {
+            bool todosCamposVacios = true;
+            if (!this._txtId.Text.Equals(""))
+            {
+                todosCamposVacios = false;
+                this._txtId.Focus();
+            }
+
+            if (!this._txtDescripcion.Text.Equals(""))
+            {
+                todosCamposVacios = false;
+                this._txtDescripcion.Focus();
+            }
+
+            if (todosCamposVacios)
+                this._txtId.Focus();
         }
     }
 }

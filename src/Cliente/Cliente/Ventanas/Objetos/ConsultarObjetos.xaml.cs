@@ -77,7 +77,6 @@ namespace Trascend.Bolet.Cliente.Ventanas.Objetos
             InitializeComponent();
             this._cargada = false;
             this._presentador = new PresentadorConsultarObjetos(this);
-
         }
 
         private void _btnCancelar_Click(object sender, RoutedEventArgs e)
@@ -110,5 +109,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Objetos
             else
                 this._presentador.ActualizarTitulo();
         }
+
+
     }
 }

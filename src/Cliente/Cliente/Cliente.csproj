@@ -101,6 +101,9 @@
     <Compile Include="Contratos\Anexos\IAgregarAnexo.cs" />
     <Compile Include="Contratos\Anexos\IConsultarAnexo.cs" />
     <Compile Include="Contratos\Anexos\IConsultarAnexos.cs" />
+    <Compile Include="Contratos\Categorias\IAgregarAnexo.cs" />
+    <Compile Include="Contratos\Categorias\IConsultarAnexo.cs" />
+    <Compile Include="Contratos\Categorias\IConsultarAnexos.cs" />
     <Compile Include="Contratos\Medios\IAgregarMedio.cs" />
     <Compile Include="Contratos\Medios\IConsultarMedio.cs" />
     <Compile Include="Contratos\Medios\IConsultarMedios.cs" />
@@ -181,6 +184,9 @@
     <Compile Include="Presentadores\Asociados\PresentadorConsultarAsociados.cs" />
     <Compile Include="Presentadores\Contactos\PresentadorAgregarContacto.cs" />
     <Compile Include="Presentadores\Contactos\PresentadorConsultarContacto.cs" />
+    <Compile Include="Presentadores\Categorias\PresentadorAgregarCategoria.cs" />
+    <Compile Include="Presentadores\Categorias\PresentadorConsultarCategoria.cs" />
+    <Compile Include="Presentadores\Categorias\PresentadorConsultarCategorias.cs" />
     <Compile Include="Presentadores\Resumenes\PresentadorAgregarResumen.cs" />
     <Compile Include="Presentadores\Resumenes\PresentadorConsultarResumen.cs" />
     <Compile Include="Presentadores\Resumenes\PresentadorConsultarResumenes.cs" />
@@ -313,6 +319,15 @@
     <Compile Include="Ventanas\Anexos\ConsultarAnexos.xaml.cs">
       <DependentUpon>ConsultarAnexos.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Ventanas\Categorias\AgregarCategoria.xaml.cs">
+      <DependentUpon>AgregarCategoria.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Categorias\ConsultarCategoria.xaml.cs">
+      <DependentUpon>ConsultarCategoria.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Categorias\ConsultarCategorias.xaml.cs">
+      <DependentUpon>ConsultarCategorias.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Ventanas\Medios\AgregarMedio.xaml.cs">
       <DependentUpon>AgregarMedio.xaml</DependentUpon>
     </Compile>
@@ -348,6 +363,9 @@
     </Compile>
     <Compile Include="Ventanas\Justificaciones\ConsultarJustificacion.xaml.cs">
       <DependentUpon>ConsultarJustificacion.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Objetos\GestionarObjetos.xaml.cs">
+      <DependentUpon>GestionarObjetos.xaml</DependentUpon>
     </Compile>
     <Compile Include="Ventanas\Poderes\AgregarPoder.xaml.cs">
       <DependentUpon>AgregarPoder.xaml</DependentUpon>
@@ -548,6 +566,18 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Ventanas\Categorias\AgregarCategoria.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\Categorias\ConsultarCategoria.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\Categorias\ConsultarCategorias.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Ventanas\Medios\AgregarMedio.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -593,6 +623,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Ventanas\Justificaciones\ConsultarJustificacion.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\Objetos\GestionarObjetos.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

@@ -121,6 +121,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Usuarios
         private void _btnConsultar_Click(object sender, RoutedEventArgs e)
         {
             this._presentador.Consultar();
+            validarCamposVacios();
         }
 
         private void _lstResultados_MouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -142,6 +143,49 @@ namespace Trascend.Bolet.Cliente.Ventanas.Usuarios
             }
             else
                 this._presentador.ActualizarTitulo();
+        }
+
+        private void validarCamposVacios()
+        {
+            bool todosCamposVacios = true;
+            if (!this._txtId.Text.Equals(""))
+            {
+                todosCamposVacios = false;
+                this._txtId.Focus();
+            }
+
+            if (!this._txtNombre.Text.Equals(""))
+            {
+                todosCamposVacios = false;
+                this._txtNombre.Focus();
+            }
+
+            if (!this._txtIniciales.Text.Equals(""))
+            {
+                todosCamposVacios = false;
+                this._txtIniciales.Focus();
+            }
+
+            if ((this._cbxRol.SelectedIndex != 0) && (this._cbxRol.SelectedIndex != -1))
+            {
+                todosCamposVacios = false;
+                this._cbxRol.Focus();
+            }
+
+            if ((this._cbxDepartamento.SelectedIndex != 0) && (this._cbxDepartamento.SelectedIndex != -1))
+            {
+                todosCamposVacios = false;
+                this._cbxDepartamento.Focus();
+            }
+
+            if (!this._txtEmail.Text.Equals(""))
+            {
+                todosCamposVacios = false;
+                this._txtEmail.Focus();
+            }
+
+            if (todosCamposVacios)
+                this._txtId.Focus();
         }
     }
 }

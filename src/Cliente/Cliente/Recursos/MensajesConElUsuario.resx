@@ -429,4 +429,16 @@
   <data name="MedioModificado" xml:space="preserve">
     <value>Medio modificado con éxito</value>
   </data>
+  <data name="CategoriaEliminado" xml:space="preserve">
+    <value>Categoría eliminada con éxito</value>
+  </data>
+  <data name="CategoriaInsertado" xml:space="preserve">
+    <value>Categoría agregada con éxito</value>
+  </data>
+  <data name="CategoriaModificado" xml:space="preserve">
+    <value>Categoría modificada con éxito</value>
+  </data>
+  <data name="ConfirmacionEliminarCategoria" xml:space="preserve">
+    <value>¿Seguro que desea eliminar la categoría?</value>
+  </data>
 </root>

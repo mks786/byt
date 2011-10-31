@@ -96,6 +96,19 @@ namespace Trascend.Bolet.Cliente.Ventanas.Principales
         }
 
 
+
+        private void _menuItemCategoriaConsultar_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.ConsultarCategorias();
+        }
+
+        private void _menuItemCategoriaAgregar_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.AgregarCategoria();
+
+        }
+
+
         #endregion
 
         #region Historia

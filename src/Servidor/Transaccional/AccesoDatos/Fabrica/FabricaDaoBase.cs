@@ -234,5 +234,11 @@ namespace Trascend.Bolet.AccesoDatos.Fabrica
         /// </summary>
         /// <returns>IDaoMedio</returns>
         public abstract IDaoMedio ObtenerDaoMedio();
+
+        /// <summary>
+        /// Método que devuelve el DaoCategoria del manejador que se esté utilizando
+        /// </summary>
+        /// <returns>IDaoCategoria</returns>
+        public abstract IDaoCategoria ObtenerDaoCategoria();
     }
 }

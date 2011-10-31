@@ -147,10 +147,15 @@
     <Compile Include="Comandos\ComandosMedio\ComandoEliminarMedio.cs" />
     <Compile Include="Comandos\ComandosMedio\ComandoInsertarOModificarMedio.cs" />
     <Compile Include="Comandos\ComandosMedio\ComandoVerificarExistenciaMedio.cs" />
+    <Compile Include="Comandos\ComandosCategoria\ComandoConsultarTodosCategorias.cs" />
+    <Compile Include="Comandos\ComandosCategoria\ComandoEliminarCategoria.cs" />
+    <Compile Include="Comandos\ComandosCategoria\ComandoInsertarOModificarCategoria.cs" />
+    <Compile Include="Comandos\ComandosCategoria\ComandoVerificarExistenciaCategoria.cs" />
     <Compile Include="Comandos\Receptor.cs" />
     <Compile Include="Comandos\ComandosUsuario\ComandoConsultarTodosUsuarios.cs" />
     <Compile Include="Comandos\ComandosUsuario\ComandoConsultarUsuarioPorID.cs" />
     <Compile Include="Comandos\ComandosUsuario\ComandoInsertarOModificarUsuario.cs" />
+    <Compile Include="Fabrica\FabricaComandosCategoria.cs" />
     <Compile Include="Fabrica\FabricaComandosMedio.cs" />
     <Compile Include="Fabrica\FabricaComandoAuditoria.cs" />
     <Compile Include="Fabrica\FabricaComandosAnexo.cs" />

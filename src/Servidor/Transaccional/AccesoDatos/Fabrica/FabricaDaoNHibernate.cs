@@ -345,5 +345,14 @@ namespace Trascend.Bolet.AccesoDatos.Fabrica
         {
             return new DaoMedioNHibernate();
         }
+
+        /// <summary>
+        /// Método que devuelve el DaoCategoria
+        /// </summary>
+        /// <returns>IDaoCategoria</returns>
+        public override IDaoCategoria ObtenerDaoCategoria()
+        {
+            return new DaoCategoriaNHibernate();
+        }
     }
 }

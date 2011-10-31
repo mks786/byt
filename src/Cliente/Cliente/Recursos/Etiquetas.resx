@@ -985,4 +985,16 @@
   <data name="titleConsultarMedios" xml:space="preserve">
     <value>Consultar Medios</value>
   </data>
+  <data name="titleConsultarCategoria" xml:space="preserve">
+    <value>Consultar Categoría</value>
+  </data>
+  <data name="titleConsultarCategorias" xml:space="preserve">
+    <value>Consultar Categorías</value>
+  </data>
+  <data name="menuItemCategoria" xml:space="preserve">
+    <value>Categoría</value>
+  </data>
+  <data name="titleAgregarCategoria" xml:space="preserve">
+    <value>Agregar Categoría</value>
+  </data>
 </root>

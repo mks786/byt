@@ -160,6 +160,33 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Categoría eliminada con éxito.
+        /// </summary>
+        internal static string CategoriaEliminado {
+            get {
+                return ResourceManager.GetString("CategoriaEliminado", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Categoría agregada con éxito.
+        /// </summary>
+        internal static string CategoriaInsertado {
+            get {
+                return ResourceManager.GetString("CategoriaInsertado", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Categoría modificada con éxito.
+        /// </summary>
+        internal static string CategoriaModificado {
+            get {
+                return ResourceManager.GetString("CategoriaModificado", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ¿Seguro que desea eliminar el agente?.
         /// </summary>
         internal static string ConfirmacionEliminarAgente {
@@ -192,6 +219,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         internal static string ConfirmacionEliminarBoletin {
             get {
                 return ResourceManager.GetString("ConfirmacionEliminarBoletin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ¿Seguro que desea eliminar la categoría?.
+        /// </summary>
+        internal static string ConfirmacionEliminarCategoria {
+            get {
+                return ResourceManager.GetString("ConfirmacionEliminarCategoria", resourceCulture);
             }
         }
         

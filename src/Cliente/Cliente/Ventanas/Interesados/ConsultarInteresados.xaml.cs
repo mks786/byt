@@ -140,6 +140,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Interesados
         {
             this._btnConsultar.Focus();
             this._presentador.Consultar();
+            validarCamposVacios();
         }
 
         private void _lstResultados_MouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -161,6 +162,91 @@ namespace Trascend.Bolet.Cliente.Ventanas.Interesados
             }
             else
                 this._presentador.ActualizarTitulo();
+        }
+
+        private void validarCamposVacios()
+        {
+            bool todosCamposVacios = true;
+            if (!this._txtId.Text.Equals(""))
+            {
+                todosCamposVacios = false;
+                this._txtId.Focus();
+            }
+
+            if ((this._cbxTipoPersona.SelectedIndex != 0) && (this._cbxTipoPersona.SelectedIndex != -1))
+            {
+                todosCamposVacios = false;
+                this._cbxTipoPersona.Focus();
+            }
+
+            if (!this._txtNombre.Text.Equals(""))
+            {
+                todosCamposVacios = false;
+                this._txtNombre.Focus();
+            }
+
+            if (!this._txtCiudad.Text.Equals(""))
+            {
+                todosCamposVacios = false;
+                this._txtCiudad.Focus();
+            }
+
+            if (!this._txtEstado.Text.Equals(""))
+            {
+                todosCamposVacios = false;
+                this._txtEstado.Focus();
+            }
+
+            if ((this._cbxPais.SelectedIndex != 0) && (this._cbxPais.SelectedIndex != -1))
+            {
+                todosCamposVacios = false;
+                this._cbxPais.Focus();
+            }
+
+            if ((this._cbxNacionalidad.SelectedIndex != 0) && (this._cbxNacionalidad.SelectedIndex != -1))
+            {
+                todosCamposVacios = false;
+                this._cbxNacionalidad.Focus();
+            }
+
+            if ((this._cbxCorporacion.SelectedIndex != 0) && (this._cbxCorporacion.SelectedIndex != -1))
+            {
+                todosCamposVacios = false;
+                this._cbxCorporacion.Focus();
+            }
+
+            if (!this._txtCi.Text.Equals(""))
+            {
+                todosCamposVacios = false;
+                this._txtCi.Focus();
+            }
+
+            if (!this._txtRMercantil.Text.Equals(""))
+            {
+                todosCamposVacios = false;
+                this._txtRMercantil.Focus();
+            }
+
+            if (!this._txtRegMercantil.Text.Equals(""))
+            {
+                todosCamposVacios = false;
+                this._txtRegMercantil.Focus();
+            }
+
+            if (!this._txtDomicilio.Text.Equals(""))
+            {
+                todosCamposVacios = false;
+                this._txtDomicilio.Focus();
+            }
+
+            if (!this._txtAlerta.Text.Equals(""))
+            {
+                todosCamposVacios = false;
+                this._txtAlerta.Focus();
+            }
+
+            if (todosCamposVacios)
+                this._txtId.Focus();
         }
     }
 }
