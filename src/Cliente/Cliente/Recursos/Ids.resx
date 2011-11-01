@@ -156,6 +156,9 @@
   <data name="AgregarPoder" xml:space="preserve">
     <value>MYP_PODERES</value>
   </data>
+  <data name="AgregarRemitente" xml:space="preserve">
+    <value>MYPTAGENTE</value>
+  </data>
   <data name="AgregarResolucion" xml:space="preserve">
     <value>MYP_RESOLBOL</value>
   </data>
@@ -246,6 +249,12 @@
   <data name="ConsultarPoderes" xml:space="preserve">
     <value>MYP_PODERES</value>
   </data>
+  <data name="ConsultarRemitente" xml:space="preserve">
+    <value>MYPTAGENTE</value>
+  </data>
+  <data name="ConsultarRemitentes" xml:space="preserve">
+    <value>MYPTAGENTE</value>
+  </data>
   <data name="ConsultarResolucion" xml:space="preserve">
     <value>MYP_RESOLBOL</value>
   </data>
@@ -323,6 +332,9 @@
   </data>
   <data name="EliminarPoder" xml:space="preserve">
     <value>MYP_PODERES</value>
+  </data>
+  <data name="EliminarRemitente" xml:space="preserve">
+    <value>MYPTBOLETIN</value>
   </data>
   <data name="EliminarResolucion" xml:space="preserve">
     <value>MYP_RESOLBOL</value>
@@ -419,6 +431,9 @@
   </data>
   <data name="Poder" xml:space="preserve">
     <value>MYP_PODERES</value>
+  </data>
+  <data name="Remitente" xml:space="preserve">
+    <value>MYPTAGENTE</value>
   </data>
   <data name="Resolucion" xml:space="preserve">
     <value>MYP_RESOLBOL</value>

@@ -29,6 +29,7 @@ using Trascend.Bolet.Cliente.Ventanas.Poderes;
 using Trascend.Bolet.Cliente.Ventanas.Interesados;
 using Trascend.Bolet.Cliente.Ventanas.Asociados;
 using Trascend.Bolet.Cliente.Ventanas.Resumenes;
+using Trascend.Bolet.Cliente.Ventanas.Remitentes;
 
 namespace Trascend.Bolet.Cliente.Presentadores.Principales
 {
@@ -344,6 +345,22 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
         }
 
         /// <summary>
+        /// Método que coloca la página "ConsultarRemitentes" en el Frame principal
+        /// </summary>
+        public void ConsultarRemitentes()
+        {
+            this._ventana.Contenedor.Navigate(new ConsultarRemitentes());
+        }
+
+        /// <summary>
+        /// Método que coloca la página "AgregarRemitente" en el Frame principal
+        /// </summary>
+        public void AgregarRemitente()
+        {
+            this._ventana.Contenedor.Navigate(new AgregarRemitente());
+        }
+
+        /// <summary>
         /// Método que coloca la página "AgregarAnexo" en el Frame principal
         /// </summary>
         public void AgregarAnexo()
@@ -508,6 +525,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
                                     break;
                                 case "_menuItemPoder":
                                     if (objeto.Id.Equals(Recursos.Ids.Poder))
+                                        itemNivel2.Visibility = System.Windows.Visibility.Visible;
+                                    break;
+                                case "_menuItemRemitente":
+                                    if (objeto.Id.Equals(Recursos.Ids.Remitente))
                                         itemNivel2.Visibility = System.Windows.Visibility.Visible;
                                     break;
                                 case "_menuItemResolucion":

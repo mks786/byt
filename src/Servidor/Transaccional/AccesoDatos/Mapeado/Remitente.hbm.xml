@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+                   assembly="Trascend.Bolet.ObjetosComunes"
+                   namespace="Trascend.Bolet.ObjetosComunes.Entidades">
+
+  <class name="Remitente" table="REMITENTE">
+    <id name="Id" column="CODRED" />
+    <property name="Descripcion" column="DESCRIPCION" type="string"/>
+    <property name="TipoRemitente" column="TIPO_REM" type="char"/>
+    <property name="Direccion" column="DIRECCION" type="string"/>
+    <property name="Ciudad" column="CIUDAD" type="string"/>
+    <property name="Estado" column="ESTADO" type="string"/>
+    <property name="Telefono" column="TELEFONO" type="string"/>
+    <property name="Fax" column="FAX" type="string"/>
+
+    <many-to-one name="Pais" class="Pais">
+      <column name="CPAIS"/>
+    </many-to-one>
+
+  </class>
+
+</hibernate-mapping>
+
+

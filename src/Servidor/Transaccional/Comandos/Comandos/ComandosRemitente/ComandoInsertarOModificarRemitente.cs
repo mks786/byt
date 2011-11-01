@@ -5,20 +5,20 @@ using Trascend.Bolet.AccesoDatos.Contrato;
 using Trascend.Bolet.AccesoDatos.Fabrica;
 using Trascend.Bolet.ObjetosComunes.Entidades;
 
-namespace Trascend.Bolet.Comandos.Comandos.ComandosInteresado
+namespace Trascend.Bolet.Comandos.Comandos.ComandosRemitente
 {
-    public class ComandoInsertarOModificarInteresado : ComandoBase<bool>
+    public class ComandoInsertarOModificarRemitente : ComandoBase<bool>
     {
         private static Logger logger = LogManager.GetCurrentClassLogger();
-        Interesado _interesado;
+        Remitente _remitente;
 
         /// <summary>
         /// Constructor predeterminado
         /// </summary>
-        /// <param name="usuario">Usuario a insertar o modificar</param>
-        public ComandoInsertarOModificarInteresado(Interesado interesado)
+        /// <param name="remitente">Remitente a insertar o modificar</param>
+        public ComandoInsertarOModificarRemitente(Remitente remitente)
         {
-            this._interesado = interesado;
+            this._remitente = remitente;
         }
 
         /// <summary>
@@ -33,8 +33,8 @@ namespace Trascend.Bolet.Comandos.Comandos.ComandosInteresado
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-                IDaoInteresado dao = FabricaDaoBase.ObtenerFabricaDao().ObtenerDaoInteresado();
-                this.Receptor = new Receptor<bool>(dao.InsertarOModificar(this._interesado));
+                IDaoRemitente dao = FabricaDaoBase.ObtenerFabricaDao().ObtenerDaoRemitente();
+                this.Receptor = new Receptor<bool>(dao.InsertarOModificar(this._remitente));
 
                 #region trace
                 if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))

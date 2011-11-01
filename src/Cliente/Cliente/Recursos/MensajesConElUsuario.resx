@@ -420,6 +420,21 @@
   <data name="ErrorResumenRepetido" xml:space="preserve">
     <value>El Resumen que intenta introducir ya existe</value>
   </data>
+  <data name="ConfirmacionEliminarRemitente" xml:space="preserve">
+    <value>¿Seguro que desea eliminar el remitente?</value>
+  </data>
+  <data name="ErrorRemitenteRepetido" xml:space="preserve">
+    <value>El remitente que intenta introducir ya existe</value>
+  </data>
+  <data name="RemitenteEliminado" xml:space="preserve">
+    <value>Remitente eliminado con éxito</value>
+  </data>
+  <data name="RemitenteInsertado" xml:space="preserve">
+    <value>Remitente insertado con éxito</value>
+  </data>
+  <data name="RemitenteModificado" xml:space="preserve">
+    <value>Remitente modificado con éxito</value>
+  </data>
   <data name="ConfirmacionEliminarMedio" xml:space="preserve">
     <value>¿Seguro que desea eliminar el Medio?</value>
   </data>

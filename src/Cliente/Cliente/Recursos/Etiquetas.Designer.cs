@@ -502,11 +502,29 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Otro.
+        /// </summary>
+        public static string cbiOtro {
+            get {
+                return ResourceManager.GetString("cbiOtro", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Patentes.
         /// </summary>
         public static string cbiPatentes {
             get {
                 return ResourceManager.GetString("cbiPatentes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Proveedor.
+        /// </summary>
+        public static string cbiProveedor {
+            get {
+                return ResourceManager.GetString("cbiProveedor", resourceCulture);
             }
         }
         
@@ -1357,6 +1375,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Tipo:.
+        /// </summary>
+        public static string lblTipo {
+            get {
+                return ResourceManager.GetString("lblTipo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Tipo Cliente:.
         /// </summary>
         public static string lblTipoCliente {
@@ -1506,6 +1533,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string lsvDescripcionIngles {
             get {
                 return ResourceManager.GetString("lsvDescripcionIngles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Direccion.
+        /// </summary>
+        public static string lsvDireccion {
+            get {
+                return ResourceManager.GetString("lsvDireccion", resourceCulture);
             }
         }
         
@@ -1942,6 +1978,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Remitente.
+        /// </summary>
+        public static string menuItemRemitente {
+            get {
+                return ResourceManager.GetString("menuItemRemitente", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Resolución.
         /// </summary>
         public static string menuItemResolucion {
@@ -2154,6 +2199,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string titleAgregarPoder {
             get {
                 return ResourceManager.GetString("titleAgregarPoder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Agregar Remitente.
+        /// </summary>
+        public static string titleAgregarRemitente {
+            get {
+                return ResourceManager.GetString("titleAgregarRemitente", resourceCulture);
             }
         }
         
@@ -2487,6 +2541,24 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string titleConsultarPoderes {
             get {
                 return ResourceManager.GetString("titleConsultarPoderes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Consultar Remitente.
+        /// </summary>
+        public static string titleConsultarRemitente {
+            get {
+                return ResourceManager.GetString("titleConsultarRemitente", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Consultar Remitentes.
+        /// </summary>
+        public static string titleConsultarRemitentes {
+            get {
+                return ResourceManager.GetString("titleConsultarRemitentes", resourceCulture);
             }
         }
         

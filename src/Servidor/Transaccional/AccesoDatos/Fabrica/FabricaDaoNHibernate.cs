@@ -338,6 +338,15 @@ namespace Trascend.Bolet.AccesoDatos.Fabrica
         }
 
         /// <summary>
+        /// Método que devuelve el DaoRemitente
+        /// </summary>
+        /// <returns>IDaoRemitente</returns>
+        public override IDaoRemitente ObtenerDaoRemitente()
+        {
+            return new DaoRemitenteNHibernate();
+        }
+
+        /// <summary>
         /// Método que devuelve el DaoMedio
         /// </summary>
         /// <returns>IDaoMedio</returns>

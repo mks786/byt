@@ -178,6 +178,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to MYPTAGENTE.
+        /// </summary>
+        public static string AgregarRemitente {
+            get {
+                return ResourceManager.GetString("AgregarRemitente", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to MYP_RESOLBOL.
         /// </summary>
         public static string AgregarResolucion {
@@ -448,6 +457,24 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to MYPTAGENTE.
+        /// </summary>
+        public static string ConsultarRemitente {
+            get {
+                return ResourceManager.GetString("ConsultarRemitente", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to MYPTAGENTE.
+        /// </summary>
+        public static string ConsultarRemitentes {
+            get {
+                return ResourceManager.GetString("ConsultarRemitentes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to MYP_RESOLBOL.
         /// </summary>
         public static string ConsultarResolucion {
@@ -678,6 +705,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string EliminarPoder {
             get {
                 return ResourceManager.GetString("EliminarPoder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to MYPTBOLETIN.
+        /// </summary>
+        public static string EliminarRemitente {
+            get {
+                return ResourceManager.GetString("EliminarRemitente", resourceCulture);
             }
         }
         
@@ -966,6 +1002,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string Poder {
             get {
                 return ResourceManager.GetString("Poder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to MYPTAGENTE.
+        /// </summary>
+        public static string Remitente {
+            get {
+                return ResourceManager.GetString("Remitente", resourceCulture);
             }
         }
         

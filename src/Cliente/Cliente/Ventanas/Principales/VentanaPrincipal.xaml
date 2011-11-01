@@ -45,6 +45,11 @@
                     <MenuItem Name="_menuItemResumenAgregar" Header="{x:Static resx:Etiquetas.menuItemAgregar}" Click="_menuItemResumenAgregar_Click"/>
                     <!--<MenuItem Name="_menuItemUsuarioModificar" Header="{x:Static resx:Etiquetas.menuItemUsuarioModificar}"></MenuItem>-->
                 </MenuItem>
+                <MenuItem Name="_menuItemRemitente" Visibility="Collapsed" Header="{x:Static resx:Etiquetas.menuItemRemitente}">
+                    <MenuItem Name="_menuItemRemitenteConsultar" Header="{x:Static resx:Etiquetas.menuItemConsultar}" Click="_menuItemRemitenteConsultar_Click"/>
+                    <MenuItem Name="_menuItemRemitenteAgregar" Header="{x:Static resx:Etiquetas.menuItemAgregar}" Click="_menuItemRemitenteAgregar_Click"/>
+                    <!--<MenuItem Name="_menuItemUsuarioModificar" Header="{x:Static resx:Etiquetas.menuItemUsuarioModificar}"></MenuItem>-->
+                </MenuItem>
             </MenuItem>
             <MenuItem Name="_menuItemHistoria" Header="{x:Static resx:Etiquetas.menuItemHistoria}">
                 <MenuItem Name="_menuItemAgente" Visibility="Collapsed" Header="{x:Static resx:Etiquetas.menuItemAgente}">

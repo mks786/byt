@@ -51,6 +51,9 @@
     <Compile Include="Comandos\ComandosAnexo\ComandoVerificarExistenciaAnexo.cs" />
     <Compile Include="Comandos\ComandosAsociado\ComandoConsultarAsociadoConTodo.cs" />
     <Compile Include="Comandos\ComandosAuditoria\ComandoAuditoriaPorFkyTabla.cs" />
+    <Compile Include="Comandos\ComandosInteresado\ComandoConsultarTodosInteresados.cs" />
+    <Compile Include="Comandos\ComandosInteresado\ComandoEliminarInteresado.cs" />
+    <Compile Include="Comandos\ComandosInteresado\ComandoInsertarOModificarInteresado.cs" />
     <Compile Include="Comandos\ComandosResumen\ComandoVerificarExistenciaResumen.cs" />
     <Compile Include="Comandos\ComandosCarta\ComandoVerificarExistenciaCarta.cs" />
     <Compile Include="Comandos\ComandosConcepto\ComandoConsultarTodosConceptos.cs" />
@@ -127,9 +130,6 @@
     <Compile Include="Comandos\ComandosContador\ComandoInsertarOModificarContador.cs" />
     <Compile Include="Comandos\ComandosContadorAuditoria\ComandoConsultarPorIdContadorAuditoria.cs" />
     <Compile Include="Comandos\ComandosContadorAuditoria\ComandoInsertarOModificarContadorAuditoria.cs" />
-    <Compile Include="Comandos\ComandosInteresado\ComandoConsultarTodosPoderes.cs" />
-    <Compile Include="Comandos\ComandosInteresado\ComandoEliminarPoder.cs" />
-    <Compile Include="Comandos\ComandosInteresado\ComandoInsertarOModificarPoder.cs" />
     <Compile Include="Comandos\ComandosAsociado\ComandoConsultarTodosAsocaidos.cs" />
     <Compile Include="Comandos\ComandosAsociado\ComandoEliminarAsociado.cs" />
     <Compile Include="Comandos\ComandosAsociado\ComandoInsertarOModificarAsociado.cs" />
@@ -143,6 +143,9 @@
     <Compile Include="Comandos\ComandosBoletin\ComandoEliminarBoletin.cs" />
     <Compile Include="Comandos\ComandosBoletin\ComandoInsertarOModificarBoletin.cs" />
     <Compile Include="Comandos\ComandosBoletin\ComandoVerificarExistenciaBoletin.cs" />
+    <Compile Include="Comandos\ComandosRemitente\ComandoConsultarTodosRemitentes.cs" />
+    <Compile Include="Comandos\ComandosRemitente\ComandoEliminarRemitent.cs" />
+    <Compile Include="Comandos\ComandosRemitente\ComandoInsertarOModificarRemitente.cs" />
     <Compile Include="Comandos\ComandosMedio\ComandoConsultarTodosMedios.cs" />
     <Compile Include="Comandos\ComandosMedio\ComandoEliminarMedio.cs" />
     <Compile Include="Comandos\ComandosMedio\ComandoInsertarOModificarMedio.cs" />
@@ -155,6 +158,7 @@
     <Compile Include="Comandos\ComandosUsuario\ComandoConsultarTodosUsuarios.cs" />
     <Compile Include="Comandos\ComandosUsuario\ComandoConsultarUsuarioPorID.cs" />
     <Compile Include="Comandos\ComandosUsuario\ComandoInsertarOModificarUsuario.cs" />
+    <Compile Include="Fabrica\FabricaComandosRemitente.cs" />
     <Compile Include="Fabrica\FabricaComandosCategoria.cs" />
     <Compile Include="Fabrica\FabricaComandosMedio.cs" />
     <Compile Include="Fabrica\FabricaComandoAuditoria.cs" />

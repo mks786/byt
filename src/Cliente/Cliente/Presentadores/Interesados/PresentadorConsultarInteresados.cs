@@ -18,7 +18,7 @@ using Trascend.Bolet.ObjetosComunes.Entidades;
 
 namespace Trascend.Bolet.Cliente.Presentadores.Interesados
 {
-    class PresentadorConsultarPoderes : PresentadorBase
+    class PresentadorConsultarInteresados : PresentadorBase
     {
         private static PaginaPrincipal _paginaPrincipal = PaginaPrincipal.ObtenerInstancia;
         private static Logger logger = LogManager.GetCurrentClassLogger();
@@ -33,7 +33,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Interesados
         /// Constructor Predeterminado
         /// </summary>
         /// <param name="ventana">página que satisface el contrato</param>
-        public PresentadorConsultarPoderes(IConsultarInteresados ventana)
+        public PresentadorConsultarInteresados(IConsultarInteresados ventana)
         {
             try
             {

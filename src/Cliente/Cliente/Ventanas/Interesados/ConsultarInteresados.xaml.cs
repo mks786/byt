@@ -14,7 +14,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Interesados
     {
         private GridViewColumnHeader _CurSortCol = null;
         private SortAdorner _CurAdorner = null;
-        private PresentadorConsultarPoderes _presentador;
+        private PresentadorConsultarInteresados _presentador;
         private bool _cargada;
 
         #region IConsultarPoderes
@@ -128,7 +128,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Interesados
         {
             InitializeComponent();
             this._cargada = false;
-            this._presentador = new PresentadorConsultarPoderes(this);
+            this._presentador = new PresentadorConsultarInteresados(this);
         }
 
         private void _btnCancelar_Click(object sender, RoutedEventArgs e)

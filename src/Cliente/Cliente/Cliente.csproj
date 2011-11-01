@@ -101,6 +101,9 @@
     <Compile Include="Contratos\Anexos\IAgregarAnexo.cs" />
     <Compile Include="Contratos\Anexos\IConsultarAnexo.cs" />
     <Compile Include="Contratos\Anexos\IConsultarAnexos.cs" />
+    <Compile Include="Contratos\Remitentes\IAgregarRemitente.cs" />
+    <Compile Include="Contratos\Remitentes\IConsultarRemitente.cs" />
+    <Compile Include="Contratos\Remitentes\IConsultarRemitentes.cs" />
     <Compile Include="Contratos\Categorias\IAgregarAnexo.cs" />
     <Compile Include="Contratos\Categorias\IConsultarAnexo.cs" />
     <Compile Include="Contratos\Categorias\IConsultarAnexos.cs" />
@@ -184,6 +187,9 @@
     <Compile Include="Presentadores\Asociados\PresentadorConsultarAsociados.cs" />
     <Compile Include="Presentadores\Contactos\PresentadorAgregarContacto.cs" />
     <Compile Include="Presentadores\Contactos\PresentadorConsultarContacto.cs" />
+    <Compile Include="Presentadores\Remitentes\PresentadorAgregarRemitente.cs" />
+    <Compile Include="Presentadores\Remitentes\PresentadorConsultarRemitente.cs" />
+    <Compile Include="Presentadores\Remitentes\PresentadorConsultarRemitentes.cs" />
     <Compile Include="Presentadores\Categorias\PresentadorAgregarCategoria.cs" />
     <Compile Include="Presentadores\Categorias\PresentadorConsultarCategoria.cs" />
     <Compile Include="Presentadores\Categorias\PresentadorConsultarCategorias.cs" />
@@ -318,6 +324,15 @@
     </Compile>
     <Compile Include="Ventanas\Anexos\ConsultarAnexos.xaml.cs">
       <DependentUpon>ConsultarAnexos.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Remitentes\AgregarRemitente.xaml.cs">
+      <DependentUpon>AgregarRemitente.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Remitentes\ConsultarRemitente.xaml.cs">
+      <DependentUpon>ConsultarRemitente.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Remitentes\ConsultarRemitentes.xaml.cs">
+      <DependentUpon>ConsultarRemitentes.xaml</DependentUpon>
     </Compile>
     <Compile Include="Ventanas\Categorias\AgregarCategoria.xaml.cs">
       <DependentUpon>AgregarCategoria.xaml</DependentUpon>
@@ -587,6 +602,18 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Ventanas\Medios\ConsultarMedios.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\Remitentes\AgregarRemitente.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\Remitentes\ConsultarRemitente.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\Remitentes\ConsultarRemitentes.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

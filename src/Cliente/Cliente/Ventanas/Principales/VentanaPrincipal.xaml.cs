@@ -85,6 +85,15 @@ namespace Trascend.Bolet.Cliente.Ventanas.Principales
             this._presentador.AgregarResumen();
         }
 
+        private void _menuItemRemitenteAgregar_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.AgregarRemitente();
+        }
+
+        private void _menuItemRemitenteConsultar_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.ConsultarRemitentes();
+        }
         private void _menuItemMedioConsultar_Click(object sender, RoutedEventArgs e)
         {
             this._presentador.ConsultarMedios();

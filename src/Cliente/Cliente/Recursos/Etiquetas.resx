@@ -964,6 +964,30 @@
   <data name="titleAgregarAnexo" xml:space="preserve">
     <value>Agregar Anexo</value>
   </data>
+  <data name="titleAgregarRemitente" xml:space="preserve">
+    <value>Agregar Remitente</value>
+  </data>
+  <data name="titleConsultarRemitente" xml:space="preserve">
+    <value>Consultar Remitente</value>
+  </data>
+  <data name="titleConsultarRemitentes" xml:space="preserve">
+    <value>Consultar Remitentes</value>
+  </data>
+  <data name="lblTipo" xml:space="preserve">
+    <value>Tipo:</value>
+  </data>
+  <data name="cbiOtro" xml:space="preserve">
+    <value>Otro</value>
+  </data>
+  <data name="cbiProveedor" xml:space="preserve">
+    <value>Proveedor</value>
+  </data>
+  <data name="menuItemRemitente" xml:space="preserve">
+    <value>Remitente</value>
+  </data>
+  <data name="lsvDireccion" xml:space="preserve">
+    <value>Direccion</value>
+  </data>
   <data name="lblFormato" xml:space="preserve">
     <value>Formato:</value>
   </data>

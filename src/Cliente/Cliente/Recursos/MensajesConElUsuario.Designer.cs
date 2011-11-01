@@ -340,6 +340,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ¿Seguro que desea eliminar el remitente?.
+        /// </summary>
+        internal static string ConfirmacionEliminarRemitente {
+            get {
+                return ResourceManager.GetString("ConfirmacionEliminarRemitente", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ¿Seguro que desea eliminar la resolución?.
         /// </summary>
         internal static string ConfirmacionEliminarResolucion {
@@ -543,6 +552,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         internal static string ErrorPoderNoEncontrado {
             get {
                 return ResourceManager.GetString("ErrorPoderNoEncontrado", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to El remitente que intenta introducir ya existe.
+        /// </summary>
+        internal static string ErrorRemitenteRepetido {
+            get {
+                return ResourceManager.GetString("ErrorRemitenteRepetido", resourceCulture);
             }
         }
         
@@ -867,6 +885,33 @@ namespace Trascend.Bolet.Cliente.Recursos {
         internal static string PoderModificado {
             get {
                 return ResourceManager.GetString("PoderModificado", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remitente eliminado con éxito.
+        /// </summary>
+        internal static string RemitenteEliminado {
+            get {
+                return ResourceManager.GetString("RemitenteEliminado", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remitente insertado con éxito.
+        /// </summary>
+        internal static string RemitenteInsertado {
+            get {
+                return ResourceManager.GetString("RemitenteInsertado", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remitente modificado con éxito.
+        /// </summary>
+        internal static string RemitenteModificado {
+            get {
+                return ResourceManager.GetString("RemitenteModificado", resourceCulture);
             }
         }
         
