@@ -45,7 +45,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Internacionales
         public object InternacionalSeleccionado
         {
             get { return this._lstResultados.SelectedItem; }
-            
+
         }
 
         public string Id
@@ -121,7 +121,6 @@ namespace Trascend.Bolet.Cliente.Ventanas.Internacionales
             else
                 e.Handled = false;
         }
-
 
         private void _txtId_KeyUp(object sender, KeyEventArgs e)
         {

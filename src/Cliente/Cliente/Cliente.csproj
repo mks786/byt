@@ -201,7 +201,6 @@
     <Compile Include="Presentadores\Medios\PresentadorConsultarMedios.cs" />
     <Compile Include="Presentadores\DatosTransferencias\PresentadorAgregarDatosTransferencia.cs" />
     <Compile Include="Presentadores\DatosTransferencias\PresentadorConsultarDatosTransferencia.cs" />
-    <Compile Include="Presentadores\Detalles\PresentadorVentanaDetalle.cs" />
     <Compile Include="Presentadores\Interesados\PresentadorAgregarInteresado.cs" />
     <Compile Include="Presentadores\Interesados\PresentadorConsultarInteresado.cs" />
     <Compile Include="Presentadores\Interesados\PresentadorConsultarInteresados.cs" />
@@ -357,9 +356,6 @@
     </Compile>
     <Compile Include="Ventanas\DatosTransferencias\ConsultarDatosTransferencia.xaml.cs">
       <DependentUpon>ConsultarDatosTransferencia.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Ventanas\Detalles\Detalle.xaml.cs">
-      <DependentUpon>Detalle.xaml</DependentUpon>
     </Compile>
     <Compile Include="Ventanas\Interesados\AgregarInteresado.xaml.cs">
       <DependentUpon>AgregarInteresado.xaml</DependentUpon>
@@ -622,10 +618,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Ventanas\DatosTransferencias\ConsultarDatosTransferencia.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Ventanas\Detalles\Detalle.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

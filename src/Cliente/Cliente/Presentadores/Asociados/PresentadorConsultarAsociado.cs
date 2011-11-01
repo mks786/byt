@@ -11,7 +11,6 @@ using Trascend.Bolet.ObjetosComunes.ContratosServicios;
 using Trascend.Bolet.ObjetosComunes.Entidades;
 using System.Collections.Generic;
 using Trascend.Bolet.Cliente.Ventanas.Auditorias;
-using Trascend.Bolet.Cliente.Ventanas.Detalles;
 using System.ComponentModel;
 
 namespace Trascend.Bolet.Cliente.Presentadores.Asociados
@@ -333,12 +332,6 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
             #endregion
         }
 
-        public void irDetalle()
-        {
-            VentanaPrincipal.ObtenerInstancia.IsEnabled = false;
-            Detalle ventanaDetalle = Detalle.ObtenerInstancia;
-            ventanaDetalle.Show();
-        }
 
         public void Auditoria()
         {

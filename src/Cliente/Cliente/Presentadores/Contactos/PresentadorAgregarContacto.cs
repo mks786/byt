@@ -28,7 +28,6 @@ namespace Trascend.Bolet.Cliente.Presentadores.Contactos
         {
             try
             {
-
                 this._ventana = ventana;
                 this._asociado = (Asociado)asociado;
                 this._ventana.Contacto = new Contacto();
@@ -124,7 +123,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Contactos
 
                 if (exitoso)
                 {
-                    this._asociado.Contactos.Insert(0,contacto);
+                    this._asociado.Contactos.Insert(0, contacto);
                     this.Navegar(new ListaContactos(this._asociado));
                 }
 

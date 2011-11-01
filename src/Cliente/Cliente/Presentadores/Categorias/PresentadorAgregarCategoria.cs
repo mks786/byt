@@ -71,9 +71,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Categorias
         }
 
         /// <summary>
-        /// Método que agrega un Estado
+        /// Método que agrega una Categoria
         /// </summary>
-        public void AgregarAnexo()
+        public void AgregarCategoria()
         {
             try
             {
@@ -81,7 +81,6 @@ namespace Trascend.Bolet.Cliente.Presentadores.Categorias
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
-
 
                 if (!this._categoriaServicios.VerificarExistencia((Categoria)this._ventana.Categoria))
                 {

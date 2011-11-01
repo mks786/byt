@@ -14,7 +14,6 @@ namespace Trascend.Bolet.Cliente.Presentadores.Contactos
 {
     class PresentadorConsultarContacto : PresentadorBase
     {
-
         private IConsultarContacto _ventana;
         private IAsociadoServicios _asociadoServicios;
         private ICartaServicios _cartaServicios;
@@ -105,7 +104,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Contactos
                     this._ventana.HabilitarCampos = true;
                     this._ventana.TextoBotonModificar = Recursos.Etiquetas.btnAceptar;
                 }
-                //Modifica los datos del Agente
+                //Modifica los datos del Contacto
                 else
                 {
                     bool exitoso = false;

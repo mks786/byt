@@ -22,7 +22,6 @@ namespace Trascend.Bolet.Cliente.Presentadores.Anexos
     {
         private static PaginaPrincipal _paginaPrincipal = PaginaPrincipal.ObtenerInstancia;
         private static Logger logger = LogManager.GetCurrentClassLogger();
-
         private IConsultarAnexos _ventana;
         private IAnexoServicios _anexoServicios;
         private IList<Anexo> _anexos;
@@ -42,13 +41,16 @@ namespace Trascend.Bolet.Cliente.Presentadores.Anexos
             catch (Exception ex)
             {
                 logger.Error(ex.Message);
-                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado,true);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
             }
         }
 
+        /// <summary>
+        /// Metodo que se encarga de cambiar el titulo de la ventana
+        /// </summary>
         public void ActualizarTitulo()
         {
-            this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleConsultarAnexos,"");
+            this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleConsultarAnexos, "");
         }
 
         /// <summary>
@@ -66,7 +68,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Anexos
                 #endregion
 
                 ActualizarTitulo();
-                
+
                 this._anexos = this._anexoServicios.ConsultarTodos();
                 this._ventana.Resultados = this._anexos;
                 this._ventana.AnexoFiltrar = new Anexo();
@@ -116,15 +118,15 @@ namespace Trascend.Bolet.Cliente.Presentadores.Anexos
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-                Anexo anexo = (Anexo) this._ventana.AnexoFiltrar;
+                Anexo anexo = (Anexo)this._ventana.AnexoFiltrar;
 
                 IEnumerable<Anexo> anexosFiltrados = this._anexos;
 
-               if (!string.Equals("",this._ventana.Id))
+                if (!string.Equals("", this._ventana.Id))
                 {
                     anexosFiltrados = from a in anexosFiltrados
                                       where a.Id.ToLower().Contains(this._ventana.Id.ToLower())
-                                       select a;
+                                      select a;
                 }
 
                 if (!string.IsNullOrEmpty(((Anexo)this._ventana.AnexoFiltrar).Descripcion))
@@ -132,7 +134,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Anexos
                     anexosFiltrados = from p in anexosFiltrados
                                       where p.Descripcion != null &&
                                        p.Descripcion.ToLower().Contains(anexo.Descripcion.ToLower())
-                                       select p;
+                                      select p;
                 }
 
                 this._ventana.Resultados = anexosFiltrados.ToList<Anexo>();
@@ -149,9 +151,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Anexos
             }
         }
 
-         ///<summary>
-         //Método que invoca una nueva página "ConsultarPais" y la instancia con el objeto seleccionado
-         /// </summary>
+        ///<summary>
+        //Método que invoca una nueva página "ConsultarAnexo" y la instancia con el objeto seleccionado
+        /// </summary>
         public void IrConsultarAnexo()
         {
             #region trace

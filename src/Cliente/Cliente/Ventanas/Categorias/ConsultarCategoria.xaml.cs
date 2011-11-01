@@ -6,7 +6,7 @@ using Trascend.Bolet.Cliente.Presentadores.Categorias;
 namespace Trascend.Bolet.Cliente.Ventanas.Categorias
 {
     /// <summary>
-    /// Interaction logic for ConsultarObjeto.xaml
+    /// Interaction logic for ConsultarCategoria.xaml
     /// </summary>
     public partial class ConsultarCategoria : Page, IConsultarCategoria
     {

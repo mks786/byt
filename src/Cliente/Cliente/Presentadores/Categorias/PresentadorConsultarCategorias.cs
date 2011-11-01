@@ -22,7 +22,6 @@ namespace Trascend.Bolet.Cliente.Presentadores.Categorias
     {
         private static PaginaPrincipal _paginaPrincipal = PaginaPrincipal.ObtenerInstancia;
         private static Logger logger = LogManager.GetCurrentClassLogger();
-
         private IConsultarCategorias _ventana;
         private ICategoriaServicios _categoriaServicios;
         private IList<Categoria> _categorias;
@@ -42,13 +41,16 @@ namespace Trascend.Bolet.Cliente.Presentadores.Categorias
             catch (Exception ex)
             {
                 logger.Error(ex.Message);
-                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado,true);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
             }
         }
 
+        /// <summary>
+        /// Método que se encarga de actualizar el título de la ventana
+        /// </summary>
         public void ActualizarTitulo()
         {
-            this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleConsultarCategorias,"");
+            this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleConsultarCategorias, "");
         }
 
         /// <summary>
@@ -66,7 +68,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Categorias
                 #endregion
 
                 ActualizarTitulo();
-                
+
                 this._categorias = this._categoriaServicios.ConsultarTodos();
                 this._ventana.Resultados = this._categorias;
                 this._ventana.CategoriaFiltrar = new Categoria();
@@ -120,19 +122,19 @@ namespace Trascend.Bolet.Cliente.Presentadores.Categorias
 
                 IEnumerable<Categoria> categoriasFiltrados = this._categorias;
 
-               if (!string.Equals("",this._ventana.Id))
+                if (!string.Equals("", this._ventana.Id))
                 {
                     categoriasFiltrados = from a in categoriasFiltrados
-                                      where a.Id.ToLower().Contains(this._ventana.Id.ToLower())
-                                       select a;
+                                          where a.Id.ToLower().Contains(this._ventana.Id.ToLower())
+                                          select a;
                 }
 
                 if (!string.IsNullOrEmpty(((Categoria)this._ventana.CategoriaFiltrar).Descripcion))
                 {
                     categoriasFiltrados = from p in categoriasFiltrados
-                                      where p.Descripcion != null &&
-                                       p.Descripcion.ToLower().Contains(categoria.Descripcion.ToLower())
-                                       select p;
+                                          where p.Descripcion != null &&
+                                           p.Descripcion.ToLower().Contains(categoria.Descripcion.ToLower())
+                                          select p;
                 }
 
                 this._ventana.Resultados = categoriasFiltrados.ToList<Categoria>();
@@ -149,9 +151,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Categorias
             }
         }
 
-         ///<summary>
-         //Método que invoca una nueva página "ConsultarPais" y la instancia con el objeto seleccionado
-         /// </summary>
+        ///<summary>
+        //Método que invoca una nueva página "ConsultarCategoria" y la instancia con el objeto seleccionado
+        /// </summary>
         public void IrConsultarCategoria()
         {
             #region trace

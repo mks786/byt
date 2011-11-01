@@ -13,7 +13,6 @@ namespace Trascend.Bolet.Cliente.Presentadores.Medios
 {
     class PresentadorConsultarMedio : PresentadorBase
     {
-
         private IConsultarMedio _ventana;
         private IMedioServicios _medioServicios;
         private static PaginaPrincipal _paginaPrincipal = PaginaPrincipal.ObtenerInstancia;
@@ -23,7 +22,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Medios
         /// Constructor predeterminado
         /// </summary>
         /// <param name="ventana">Página que satisface el contrato</param>
-        /// <param name="medio">Pais a mostrar</param>
+        /// <param name="medio">Medio a mostrar</param>
         public PresentadorConsultarMedio(IConsultarMedio ventana, object medio)
         {
             try
@@ -37,7 +36,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Medios
             catch (Exception ex)
             {
                 logger.Error(ex.Message);
-                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado,true);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
             }
         }
 
@@ -55,7 +54,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Medios
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-                this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleConsultarMedio,"");
+                this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleConsultarMedio, "");
                 this._ventana.FocoPredeterminado();
 
                 #region trace
@@ -66,7 +65,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Medios
             catch (Exception ex)
             {
                 logger.Error(ex.Message);
-                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado,true);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
             }
             finally
             {
@@ -76,7 +75,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Medios
 
         /// <summary>
         /// Método que dependiendo del estado de la página, habilita los campos o 
-        /// modifica los datos del usuario
+        /// modifica los datos del Medio
         /// </summary>
         public void Modificar()
         {
@@ -94,7 +93,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Medios
                     this._ventana.TextoBotonModificar = Recursos.Etiquetas.btnAceptar;
                 }
 
-                //Modifica los datos del Pais
+                //Modifica los datos del Medio
                 else
                 {
                     Medio medio = (Medio)this._ventana.Medio;
@@ -133,6 +132,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Medios
             }
         }
 
+        /// <summary>
+        /// Método que se encarga de eliminar un Medio
+        /// </summary>
         public void Eliminar()
         {
             try

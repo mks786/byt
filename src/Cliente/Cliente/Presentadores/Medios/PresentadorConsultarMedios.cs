@@ -42,13 +42,16 @@ namespace Trascend.Bolet.Cliente.Presentadores.Medios
             catch (Exception ex)
             {
                 logger.Error(ex.Message);
-                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado,true);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
             }
         }
 
+        /// <summary>
+        /// Método que se encarga de cambiar el titulo de la ventana
+        /// </summary>
         public void ActualizarTitulo()
         {
-            this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleConsultarMedios,"");
+            this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleConsultarMedios, "");
         }
 
         /// <summary>
@@ -66,7 +69,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Medios
                 #endregion
 
                 ActualizarTitulo();
-                
+
                 this._medios = this._medioServicios.ConsultarTodos();
                 this._ventana.Resultados = this._medios;
                 this._ventana.MedioFiltrar = new Medio();
@@ -120,28 +123,28 @@ namespace Trascend.Bolet.Cliente.Presentadores.Medios
 
                 IEnumerable<Medio> mediosFiltrados = this._medios;
 
-               if (!string.Equals("",this._ventana.Id))
+                if (!string.Equals("", this._ventana.Id))
                 {
                     mediosFiltrados = from a in mediosFiltrados
                                       where a.Id.ToLower().Contains(this._ventana.Id.ToLower())
-                                       select a;
+                                      select a;
                 }
 
-               if (!string.IsNullOrEmpty(((Medio)this._ventana.MedioFiltrar).Nombre))
-               {
-                   mediosFiltrados = from p in mediosFiltrados
-                                     where p.Nombre != null &&
-                                      p.Nombre.ToLower().Contains(medio.Nombre.ToLower())
-                                     select p;
-               }
+                if (!string.IsNullOrEmpty(((Medio)this._ventana.MedioFiltrar).Nombre))
+                {
+                    mediosFiltrados = from p in mediosFiltrados
+                                      where p.Nombre != null &&
+                                       p.Nombre.ToLower().Contains(medio.Nombre.ToLower())
+                                      select p;
+                }
 
-               if (!string.IsNullOrEmpty(((Medio)this._ventana.MedioFiltrar).Formato))
-               {
-                   mediosFiltrados = from p in mediosFiltrados
-                                     where p.Formato != null &&
-                                      p.Formato.ToLower().Contains(medio.Formato.ToLower())
-                                     select p;
-               }
+                if (!string.IsNullOrEmpty(((Medio)this._ventana.MedioFiltrar).Formato))
+                {
+                    mediosFiltrados = from p in mediosFiltrados
+                                      where p.Formato != null &&
+                                       p.Formato.ToLower().Contains(medio.Formato.ToLower())
+                                      select p;
+                }
 
                 this._ventana.Resultados = mediosFiltrados.ToList<Medio>();
 
@@ -157,9 +160,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Medios
             }
         }
 
-         ///<summary>
-         //Método que invoca una nueva página "ConsultarPais" y la instancia con el objeto seleccionado
-         /// </summary>
+        ///<summary>
+        //Método que invoca una nueva página "ConsultarMedio" y la instancia con el objeto seleccionado
+        /// </summary>
         public void IrConsultarMedio()
         {
             #region trace

@@ -71,7 +71,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Anexos
         }
 
         /// <summary>
-        /// Método que agrega un Estado
+        /// Método que agrega un Anexo
         /// </summary>
         public void AgregarAnexo()
         {

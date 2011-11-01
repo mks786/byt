@@ -164,6 +164,9 @@ namespace Trascend.Bolet.Cliente.Ventanas.Interesados
                 this._presentador.ActualizarTitulo();
         }
 
+        /// <summary>
+        /// Método que se encarga de posicionar el cursor en los campos del filto
+        /// </summary>
         private void validarCamposVacios()
         {
             bool todosCamposVacios = true;

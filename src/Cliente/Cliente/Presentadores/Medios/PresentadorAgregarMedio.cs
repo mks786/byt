@@ -34,7 +34,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Medios
             catch (Exception ex)
             {
                 logger.Error(ex.Message);
-                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado,true);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
             }
         }
 
@@ -52,7 +52,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Medios
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-                this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleAgregarMedio,"");
+                this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleAgregarMedio, "");
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -62,7 +62,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Medios
             catch (Exception ex)
             {
                 logger.Error(ex.Message);
-                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado,true);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
             }
             finally
             {
@@ -71,7 +71,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Medios
         }
 
         /// <summary>
-        /// Método que agrega un Estado
+        /// Método que agrega un Medio
         /// </summary>
         public void AgregarMedio()
         {

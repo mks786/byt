@@ -223,6 +223,9 @@ namespace Trascend.Bolet.Cliente.Ventanas.Asociados
             this._presentador.OrdenarColumna(sender as GridViewColumnHeader);
         }
 
+        /// <summary>
+        /// Método que se encarga de posicionar el cursor en los campos del filto
+        /// </summary>
         private void validarCamposVacios()
         {
             bool todosCamposVacios = true;

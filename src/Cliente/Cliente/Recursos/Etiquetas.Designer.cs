@@ -2284,7 +2284,7 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Anexo.
+        ///   Looks up a localized string similar to Consultar Anexo.
         /// </summary>
         public static string titleConsultarAnexo {
             get {

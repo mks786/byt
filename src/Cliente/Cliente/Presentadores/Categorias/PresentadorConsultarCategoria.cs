@@ -13,7 +13,6 @@ namespace Trascend.Bolet.Cliente.Presentadores.Categorias
 {
     class PresentadorConsultarCategoria : PresentadorBase
     {
-
         private IConsultarCategoria _ventana;
         private ICategoriaServicios _categoriaServicios;
         private static PaginaPrincipal _paginaPrincipal = PaginaPrincipal.ObtenerInstancia;
@@ -23,7 +22,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Categorias
         /// Constructor predeterminado
         /// </summary>
         /// <param name="ventana">Página que satisface el contrato</param>
-        /// <param name="categoria">Pais a mostrar</param>
+        /// <param name="categoria">Categoria a mostrar</param>
         public PresentadorConsultarCategoria(IConsultarCategoria ventana, object categoria)
         {
             try
@@ -94,7 +93,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Categorias
                     this._ventana.TextoBotonModificar = Recursos.Etiquetas.btnAceptar;
                 }
 
-                //Modifica los datos del Pais
+                //Modifica los datos de la Categoria
                 else
                 {
                     Categoria categoria = (Categoria)this._ventana.Categoria;
@@ -133,6 +132,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Categorias
             }
         }
 
+        /// <summary>
+        /// Método que se encarga de eliminar la Categoria
+        /// </summary>
         public void Eliminar()
         {
             try

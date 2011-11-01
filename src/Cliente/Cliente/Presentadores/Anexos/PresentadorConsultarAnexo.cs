@@ -23,7 +23,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Anexos
         /// Constructor predeterminado
         /// </summary>
         /// <param name="ventana">Página que satisface el contrato</param>
-        /// <param name="anexo">Pais a mostrar</param>
+        /// <param name="anexo">Anexo a mostrar</param>
         public PresentadorConsultarAnexo(IConsultarAnexo ventana, object anexo)
         {
             try
@@ -133,6 +133,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Anexos
             }
         }
 
+        /// <summary>
+        /// Metodo que se encarga de eliminar un Anexo
+        /// </summary>
         public void Eliminar()
         {
             try

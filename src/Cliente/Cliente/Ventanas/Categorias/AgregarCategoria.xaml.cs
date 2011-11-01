@@ -6,7 +6,7 @@ using Trascend.Bolet.Cliente.Presentadores.Categorias;
 namespace Trascend.Bolet.Cliente.Ventanas.Categorias
 {
     /// <summary>
-    /// Interaction logic for AgregarAnexo.xaml
+    /// Interaction logic for AgregarCategoria.xaml
     /// </summary>
     public partial class AgregarCategoria : Page, IAgregarCategoria
     {
@@ -26,9 +26,9 @@ namespace Trascend.Bolet.Cliente.Ventanas.Categorias
             this._txtId.Focus();
         }
 
-        public object  Categoria
+        public object Categoria
         {
-	        get { return this._gridDatos.DataContext; }
+            get { return this._gridDatos.DataContext; }
             set { this._gridDatos.DataContext = value; }
         }
 
@@ -48,7 +48,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Categorias
 
         private void _btnAceptar_Click(object sender, RoutedEventArgs e)
         {
-            this._presentador.AgregarAnexo();
+            this._presentador.AgregarCategoria();
         }
 
         private void _btnCancelar_Click(object sender, RoutedEventArgs e)
@@ -65,6 +65,5 @@ namespace Trascend.Bolet.Cliente.Ventanas.Categorias
             }
         }
 
-   
     }
 }
