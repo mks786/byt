@@ -240,6 +240,25 @@ namespace Trascend.Bolet.Cliente.Presentadores
         }
 
         /// <summary>
+        /// Busca el tipo de remitente correspondiente a la inicial que se le esté pasando
+        /// </summary>
+        /// <param name="tipoRemitente">Inicial del tipo del remintente</param>
+        /// <returns>El tipo de remitente correspondiente</returns>
+        public string BuscarTipoRemitente(char tipoRemitente)
+        {
+            string retorno;
+
+            if (Recursos.Etiquetas.cbiProveedor[0].Equals(tipoRemitente))
+                retorno = Recursos.Etiquetas.cbiProveedor;
+            else if (Recursos.Etiquetas.cbiOtro[0].Equals(tipoRemitente))
+                retorno = Recursos.Etiquetas.cbiOtro;
+            else
+                retorno = Recursos.Etiquetas.cbiNinguno;
+
+            return retorno;
+        }
+
+        /// <summary>
         /// Método que busca un Pais dentro de una lista de paises
         /// </summary>
         /// <param name="paises">Lista de paises</param>

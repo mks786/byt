@@ -38,6 +38,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Remitentes
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["RemitenteServicios"]);
                 this._paisServicios = (IPaisServicios)Activator.GetObject(typeof(IPaisServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["PaisServicios"]);
+                this._ventana.SetTipoRemitente = BuscarTipoRemitente(((Remitente)remitente).TipoRemitente);
             }
             catch (Exception ex)
             {
@@ -68,7 +69,6 @@ namespace Trascend.Bolet.Cliente.Presentadores.Remitentes
                 IList<Pais> paises = this._paisServicios.ConsultarTodos();
                 this._ventana.Paises = paises;
 
-                //this._ventana.SetTipoRemitente = BuscarTipoRemitente(((Remitente)remitente).TipoRemitente);
                 this._ventana.Pais = this.BuscarPais(paises, remitente.Pais);
 
                 this._ventana.FocoPredeterminado();

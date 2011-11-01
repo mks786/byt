@@ -114,7 +114,7 @@
                         <GridViewColumn DisplayMemberBinding="{Binding Path=Id}" Width="120">
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="Id" Content="{x:Static recurso:Etiquetas.lsvId}"/>
                         </GridViewColumn>
-                        <GridViewColumn DisplayMemberBinding="{Binding Path=Id}" Width="200">
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Descripcion}" Width="200">
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="Descripcion" Content="{x:Static recurso:Etiquetas.lsvDescripcion}"/>
                         </GridViewColumn>
                         <GridViewColumn DisplayMemberBinding="{Binding Path=Direccion}" Width="200">

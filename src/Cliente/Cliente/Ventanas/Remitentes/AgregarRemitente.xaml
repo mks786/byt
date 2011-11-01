@@ -60,9 +60,6 @@
                     </Label>
                     <ComboBox Name="_cbxTipoRemitente" Width="150" SelectedIndex="0">
                         <ComboBoxItem>
-                            <TextBlock Text="{x:Static recurso:Etiquetas.cbiNinguno}"/>
-                        </ComboBoxItem>
-                        <ComboBoxItem>
                             <TextBlock Text="{x:Static recurso:Etiquetas.cbiProveedor}"/>
                         </ComboBoxItem>
                         <ComboBoxItem>

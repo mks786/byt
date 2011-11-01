@@ -13,7 +13,6 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Trascend.Bolet.Cliente.Contratos.Remitentes;
 using Trascend.Bolet.Cliente.Presentadores.Remitentes;
-using Trascend.Bolet.ObjetosComunes.Entidades;
 
 namespace Trascend.Bolet.Cliente.Ventanas.Remitentes
 {
@@ -73,18 +72,18 @@ namespace Trascend.Bolet.Cliente.Ventanas.Remitentes
 
         public char GetTipoRemitente
         {
-            get { throw new NotImplementedException(); }
+            get
+            {
+                if (!string.IsNullOrEmpty(this._cbxTipoRemitente.Text))
+                    return ((string)this._cbxTipoRemitente.Text)[0];
+                else
+                    return ' ';
+            }
         }
 
         public string SetTipoRemitente
         {
-            set { throw new NotImplementedException(); }
-        }
-
-        public object Remitente
-        {
-            get { return this._gridDatos.DataContext; }
-            set { this._gridDatos.DataContext = value; }
+            set { this._cbxTipoRemitente.Text = value; }
         }
 
         public object Paises
@@ -106,7 +105,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Remitentes
         {
 
             InitializeComponent();
-            this._presentador = new PresentadorConsultarRemitente(this, (Remitente)remitente);
+            this._presentador = new PresentadorConsultarRemitente(this, remitente);
             this._cargada = false;
         }
 

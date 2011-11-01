@@ -117,6 +117,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Remitentes
         {
             this._btnConsultar.Focus();
             this._presentador.Consultar();
+            this.validarCamposVacios();
         }
 
         private void _lstResultados_MouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -138,6 +139,70 @@ namespace Trascend.Bolet.Cliente.Ventanas.Remitentes
             }
             else
                 this._presentador.ActualizarTitulo();
+        }
+
+        private void validarCamposVacios()
+        {
+            bool todosCamposVacios = true;
+
+            if (!this._txtId.Text.Equals(""))
+            {
+                todosCamposVacios = false;
+                this._txtId.Focus();
+            }
+
+            if (!this._txtDescripcion.Text.Equals(""))
+            {
+                todosCamposVacios = false;
+                this._txtDescripcion.Focus();
+            }
+
+            if (!this._txtDireccion.Text.Equals(""))
+            {
+                todosCamposVacios = false;
+                this._txtDireccion.Focus();
+            }
+
+            if ((this._cbxTipoRemitente.SelectedIndex != 0) && (this._cbxTipoRemitente.SelectedIndex != -1))
+            {
+                todosCamposVacios = false;
+                this._cbxTipoRemitente.Focus();
+            }
+
+            if ((this._cbxPais.SelectedIndex != 0) && (this._cbxPais.SelectedIndex != -1))
+            {
+                todosCamposVacios = false;
+                this._cbxPais.Focus();
+            }
+
+            if (!this._txtCiudad.Text.Equals(""))
+            {
+                todosCamposVacios = false;
+                this._txtCiudad.Focus();
+            }
+
+            if (!this._txtEstado.Text.Equals(""))
+            {
+                todosCamposVacios = false;
+                this._txtEstado.Focus();
+            }
+
+            if (!this._txtTelefono.Text.Equals(""))
+            {
+                todosCamposVacios = false;
+                this._txtTelefono.Focus();
+            }
+
+            if (!this._txtFax.Text.Equals(""))
+            {
+                todosCamposVacios = false;
+                this._txtFax.Focus();
+            }
+
+            if (todosCamposVacios)
+            {
+                this._txtId.Focus();
+            }
         }
     }
 }

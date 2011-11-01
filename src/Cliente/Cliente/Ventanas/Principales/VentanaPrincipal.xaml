@@ -40,14 +40,14 @@
                     <MenuItem Name="_menuItemMedioAgregar" Header="{x:Static resx:Etiquetas.menuItemAgregar}" Click="_menuItemMedioAgregar_Click"/>
                     <!--<MenuItem Name="_menuItemUsuarioModificar" Header="{x:Static resx:Etiquetas.menuItemUsuarioModificar}"></MenuItem>-->
                 </MenuItem>
-                <MenuItem Name="_menuItemResumen" Visibility="Collapsed" Header="{x:Static resx:Etiquetas.menuItemResumen}">
-                    <MenuItem Name="_menuItemResumenConsultar" Header="{x:Static resx:Etiquetas.menuItemConsultar}" Click="_menuItemResumenConsultar_Click"/>
-                    <MenuItem Name="_menuItemResumenAgregar" Header="{x:Static resx:Etiquetas.menuItemAgregar}" Click="_menuItemResumenAgregar_Click"/>
-                    <!--<MenuItem Name="_menuItemUsuarioModificar" Header="{x:Static resx:Etiquetas.menuItemUsuarioModificar}"></MenuItem>-->
-                </MenuItem>
                 <MenuItem Name="_menuItemRemitente" Visibility="Collapsed" Header="{x:Static resx:Etiquetas.menuItemRemitente}">
                     <MenuItem Name="_menuItemRemitenteConsultar" Header="{x:Static resx:Etiquetas.menuItemConsultar}" Click="_menuItemRemitenteConsultar_Click"/>
                     <MenuItem Name="_menuItemRemitenteAgregar" Header="{x:Static resx:Etiquetas.menuItemAgregar}" Click="_menuItemRemitenteAgregar_Click"/>
+                    <!--<MenuItem Name="_menuItemUsuarioModificar" Header="{x:Static resx:Etiquetas.menuItemUsuarioModificar}"></MenuItem>-->
+                </MenuItem>
+                <MenuItem Name="_menuItemResumen" Visibility="Collapsed" Header="{x:Static resx:Etiquetas.menuItemResumen}">
+                    <MenuItem Name="_menuItemResumenConsultar" Header="{x:Static resx:Etiquetas.menuItemConsultar}" Click="_menuItemResumenConsultar_Click"/>
+                    <MenuItem Name="_menuItemResumenAgregar" Header="{x:Static resx:Etiquetas.menuItemAgregar}" Click="_menuItemResumenAgregar_Click"/>
                     <!--<MenuItem Name="_menuItemUsuarioModificar" Header="{x:Static resx:Etiquetas.menuItemUsuarioModificar}"></MenuItem>-->
                 </MenuItem>
             </MenuItem>
