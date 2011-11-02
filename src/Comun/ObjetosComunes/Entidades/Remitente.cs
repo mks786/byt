@@ -15,7 +15,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         private char _tipoRemintente;
         private string _direccion;
         private string _ciudad;
-        private string _estado;  
+        private string _estado;
         private Pais _pais;
         private string _telefono;
         private string _fax;  
