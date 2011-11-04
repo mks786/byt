@@ -9,6 +9,8 @@ namespace Trascend.Bolet.Cliente.Contratos.Poderes
 
         bool HabilitarCampos { set; }
 
+        string NombreInteresado { get; set; }
+
         string TextoBotonModificar { get; set; }
 
         object Boletines { get; set; }

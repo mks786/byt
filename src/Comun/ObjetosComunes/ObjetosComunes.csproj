@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ContratosServicios\ICartaOutServicios.cs" />
     <Compile Include="ContratosServicios\IRemitenteServicios.cs" />
     <Compile Include="ContratosServicios\ICategoriaServicios.cs" />
     <Compile Include="ContratosServicios\IMedioServicios.cs" />
@@ -86,6 +87,7 @@
     <Compile Include="Entidades\ContadorFac.cs" />
     <Compile Include="Entidades\Carta.cs" />
     <Compile Include="Entidades\Anexo.cs" />
+    <Compile Include="Entidades\CartaOut.cs" />
     <Compile Include="Entidades\Remitente.cs" />
     <Compile Include="Entidades\Categoria.cs" />
     <Compile Include="Entidades\Medio.cs" />

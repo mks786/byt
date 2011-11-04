@@ -101,6 +101,7 @@
     <Compile Include="Contratos\Anexos\IAgregarAnexo.cs" />
     <Compile Include="Contratos\Anexos\IConsultarAnexo.cs" />
     <Compile Include="Contratos\Anexos\IConsultarAnexos.cs" />
+    <Compile Include="Contratos\CartaOuts\IConsultarCartaOuts.cs" />
     <Compile Include="Contratos\Remitentes\IAgregarRemitente.cs" />
     <Compile Include="Contratos\Remitentes\IConsultarRemitente.cs" />
     <Compile Include="Contratos\Remitentes\IConsultarRemitentes.cs" />
@@ -185,6 +186,7 @@
     <Compile Include="Presentadores\Asociados\PresentadorAgregarAsociado.cs" />
     <Compile Include="Presentadores\Asociados\PresentadorConsultarAsociado.cs" />
     <Compile Include="Presentadores\Asociados\PresentadorConsultarAsociados.cs" />
+    <Compile Include="Presentadores\CartaOuts\PresentadorConsultarCartaOuts.cs" />
     <Compile Include="Presentadores\Contactos\PresentadorAgregarContacto.cs" />
     <Compile Include="Presentadores\Contactos\PresentadorConsultarContacto.cs" />
     <Compile Include="Presentadores\Remitentes\PresentadorAgregarRemitente.cs" />

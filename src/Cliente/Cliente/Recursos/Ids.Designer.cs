@@ -241,6 +241,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to MAANEXO.
+        /// </summary>
+        public static string Anexo {
+            get {
+                return ResourceManager.GetString("Anexo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to FAC_ASOCIADOS.
         /// </summary>
         public static string Asociado {
@@ -255,6 +264,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string Boletin {
             get {
                 return ResourceManager.GetString("Boletin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to COR_TENTRADA.
+        /// </summary>
+        public static string Categoria {
+            get {
+                return ResourceManager.GetString("Categoria", resourceCulture);
             }
         }
         
@@ -826,6 +844,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to MEDIO.
+        /// </summary>
+        public static string Medio {
+            get {
+                return ResourceManager.GetString("Medio", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to FAC_ASOCIADOS.
         /// </summary>
         public static string ModificarAsociado {
@@ -1006,7 +1033,7 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to MYPTAGENTE.
+        ///   Looks up a localized string similar to COR_REMI.
         /// </summary>
         public static string Remitente {
             get {
@@ -1024,7 +1051,7 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to MYPTAGENTE.
+        ///   Looks up a localized string similar to COR_RESUMEN.
         /// </summary>
         public static string Resumen {
             get {

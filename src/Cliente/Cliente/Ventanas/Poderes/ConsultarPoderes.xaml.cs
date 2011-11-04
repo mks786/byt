@@ -110,6 +110,15 @@ namespace Trascend.Bolet.Cliente.Ventanas.Poderes
             set { this._lstResultados = value; }
         }
 
+        public string IdInteresadoFiltrar
+        {
+            get { return this._txtIdInteresado.Text; }
+        }
+        public string NombreInteresadoFiltrar
+        {
+            get { return this._txtNombreInteresado.Text; }
+        }
+
         #endregion
 
         /// <summary>
@@ -131,6 +140,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Poderes
         {
             this._btnConsultar.Focus();
             this._presentador.Consultar();
+            validarCamposVacios();
         }
 
         private void _lstResultados_MouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -152,6 +162,69 @@ namespace Trascend.Bolet.Cliente.Ventanas.Poderes
             }
             else
                 this._presentador.ActualizarTitulo();
+        }
+
+        private void _btnConsultarInteresado_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.BuscarInteresado();
+        }
+
+        private void _btnConsultarInteresadoFocus(object sender, RoutedEventArgs e)
+        {
+            this._btnConsultar.IsDefault = false;
+            this._btnConsultarInteresado.IsDefault = true;
+        }
+
+        private void _btnConsultarFocus(object sender, RoutedEventArgs e)
+        {
+            this._btnConsultar.IsDefault = true;
+            this._btnConsultarInteresado.IsDefault = false;
+        }
+
+        /// <summary>
+        /// Método que se encarga de posicionar el cursor en los campos del filto
+        /// </summary>
+        private void validarCamposVacios()
+        {
+            bool todosCamposVacios = true;
+            if (!this._txtId.Text.Equals(""))
+            {
+                todosCamposVacios = false;
+                this._txtId.Focus();
+            }
+
+            if (!this._txtNumPoder.Text.Equals(""))
+            {
+                todosCamposVacios = false;
+                this._txtNumPoder.Focus();
+            }
+
+            if ((this._cbxBoletin.SelectedIndex != 0) && (this._cbxBoletin.SelectedIndex != -1))
+            {
+                todosCamposVacios = false;
+                this._cbxBoletin.Focus();
+            }
+
+            if (!this._txtFacultad.Text.Equals(""))
+            {
+                todosCamposVacios = false;
+                this._txtFacultad.Focus();
+            }
+
+            if (!this._txtAnexo.Text.Equals(""))
+            {
+                todosCamposVacios = false;
+                this._txtAnexo.Focus();
+            }
+
+            if (!this._txtObservaciones.Text.Equals(""))
+            {
+                todosCamposVacios = false;
+                this._txtObservaciones.Focus();
+            }
+
+            if (todosCamposVacios)
+                this._txtId.Focus();
         }
 
     }

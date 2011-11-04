@@ -247,5 +247,11 @@ namespace Trascend.Bolet.AccesoDatos.Fabrica
         /// </summary>
         /// <returns>IDaoCategoria</returns>
         public abstract IDaoCategoria ObtenerDaoCategoria();
+
+        /// <summary>
+        /// Método que devuelve el DaoCartaOut del manejador que se esté utilizando
+        /// </summary>
+        /// <returns>IDaoCategoria</returns>
+        public abstract IDaoCartaOut ObtenerDaoCartaOut();
     }
 }

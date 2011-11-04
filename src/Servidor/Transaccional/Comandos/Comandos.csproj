@@ -51,6 +51,7 @@
     <Compile Include="Comandos\ComandosAnexo\ComandoVerificarExistenciaAnexo.cs" />
     <Compile Include="Comandos\ComandosAsociado\ComandoConsultarAsociadoConTodo.cs" />
     <Compile Include="Comandos\ComandosAuditoria\ComandoAuditoriaPorFkyTabla.cs" />
+    <Compile Include="Comandos\ComandosCartaOut\ComandoConsultarTodosCartaOuts.cs" />
     <Compile Include="Comandos\ComandosInteresado\ComandoConsultarTodosInteresados.cs" />
     <Compile Include="Comandos\ComandosInteresado\ComandoEliminarInteresado.cs" />
     <Compile Include="Comandos\ComandosInteresado\ComandoInsertarOModificarInteresado.cs" />
@@ -158,6 +159,7 @@
     <Compile Include="Comandos\ComandosUsuario\ComandoConsultarTodosUsuarios.cs" />
     <Compile Include="Comandos\ComandosUsuario\ComandoConsultarUsuarioPorID.cs" />
     <Compile Include="Comandos\ComandosUsuario\ComandoInsertarOModificarUsuario.cs" />
+    <Compile Include="Fabrica\FabricaComandosCartaOut.cs" />
     <Compile Include="Fabrica\FabricaComandosRemitente.cs" />
     <Compile Include="Fabrica\FabricaComandosCategoria.cs" />
     <Compile Include="Fabrica\FabricaComandosMedio.cs" />

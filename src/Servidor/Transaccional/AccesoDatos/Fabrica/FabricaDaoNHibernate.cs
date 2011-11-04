@@ -363,5 +363,14 @@ namespace Trascend.Bolet.AccesoDatos.Fabrica
         {
             return new DaoCategoriaNHibernate();
         }
+
+        /// <summary>
+        /// Método que devuelve el DaoCartaOut
+        /// </summary>
+        /// <returns>IDaoCartaOut</returns>
+        public override IDaoCartaOut ObtenerDaoCartaOut()
+        {
+            return new DaoCartaOutNHibernate();
+        }
     }
 }

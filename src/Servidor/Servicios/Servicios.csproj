@@ -48,6 +48,7 @@
     <Compile Include="Implementacion\ConceptoServicios.cs" />
     <Compile Include="Implementacion\ContactoServicios.cs" />
     <Compile Include="Implementacion\CartaServicios.cs" />
+    <Compile Include="Implementacion\CartaOutServicios.cs" />
     <Compile Include="Implementacion\RemitenteServicios.cs" />
     <Compile Include="Implementacion\CategoriaServicios.cs" />
     <Compile Include="Implementacion\MedioServicios.cs" />

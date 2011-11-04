@@ -61,6 +61,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Contrato\IDaoCartaOut.cs" />
     <Compile Include="Contrato\IDaoRemitente.cs" />
     <Compile Include="Contrato\IDaoCategoria.cs" />
     <Compile Include="Contrato\IDaoMedio.cs" />
@@ -100,6 +101,7 @@
     <Compile Include="Contrato\IDaoBase.cs" />
     <Compile Include="Contrato\IDaoUsuario.cs" />
     <Compile Include="Contrato\IFabricaDaoBase.cs" />
+    <Compile Include="Dao\NHibernate\DaoCartaOutNHibernate.cs" />
     <Compile Include="Dao\NHibernate\DaoRemitenteNHibernate.cs" />
     <Compile Include="Dao\NHibernate\DaoCategoriaNHibernate.cs" />
     <Compile Include="Dao\NHibernate\DaoMedioNHibernate.cs" />

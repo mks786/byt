@@ -28,6 +28,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Poderes
         private IPoderServicios _poderServicios;
         private IInteresadoServicios _interesadoServicios;
         private IList<Poder> _poderes;
+        private IList<Interesado> _interesados;
 
         /// <summary>
         /// Constructor Predeterminado
@@ -38,7 +39,6 @@ namespace Trascend.Bolet.Cliente.Presentadores.Poderes
             try
             {
                 this._ventana = ventana;
-                
                 this._poderServicios = (IPoderServicios)Activator.GetObject(typeof(IPoderServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["PoderServicios"]);
                 this._boletinServicios = (IBoletinServicios)Activator.GetObject(typeof(IBoletinServicios),
@@ -89,6 +89,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Poderes
                 primerInteresado.Id = int.MinValue;
                 interesados.Insert(0, primerInteresado);
                 this._ventana.Interesados = interesados;
+                this._interesados = interesados;
 
                 this._ventana.FocoPredeterminado();
                 #region trace
@@ -258,6 +259,31 @@ namespace Trascend.Bolet.Cliente.Presentadores.Poderes
             if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
                 logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
+        }
+
+        public void BuscarInteresado()
+        {
+            IEnumerable<Interesado> interesadosFiltrados = (IList<Interesado>)this._interesados;
+
+            if (!string.IsNullOrEmpty(this._ventana.IdInteresadoFiltrar))
+            {
+                interesadosFiltrados = from p in interesadosFiltrados
+                                       where p.Id == int.Parse(this._ventana.IdInteresadoFiltrar)
+                                       select p;
+            }
+
+            if (!string.IsNullOrEmpty(this._ventana.NombreInteresadoFiltrar))
+            {
+                interesadosFiltrados = from p in interesadosFiltrados
+                                       where p.Nombre != null &&
+                                       p.Nombre.ToLower().Contains(this._ventana.NombreInteresadoFiltrar.ToLower())
+                                       select p;
+            }
+
+            if (interesadosFiltrados.ToList<Interesado>().Count != 0)
+                this._ventana.Interesados = interesadosFiltrados.ToList<Interesado>();
+            else
+                this._ventana.Interesados = this._interesados;
         }
     }
 }

@@ -40,7 +40,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Poderes
 
         public bool HabilitarCampos
         {
-            set 
+            set
             {
                 this._txtNumPoder.IsEnabled = value;
                 this._txtFacultad.IsEnabled = value;
@@ -48,6 +48,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Poderes
                 this._lstInteresados.IsEnabled = value;
                 this._txtAnexo.IsEnabled = value;
                 this._txtObservaciones.IsEnabled = value;
+                this._txtInteresado.IsEnabled = value;
             }
         }
 
@@ -73,16 +74,16 @@ namespace Trascend.Bolet.Cliente.Ventanas.Poderes
         public object Interesados
         {
             get { return this._lstInteresados.DataContext; }
-            set { this._lstInteresados.DataContext = value;}
+            set { this._lstInteresados.DataContext = value; }
         }
 
         public object Interesado
         {
             get { return this._lstInteresados.SelectedItem; }
-            set 
-            { 
-                this._lstInteresados.SelectedItem = value; 
-                this._lstInteresados.ScrollIntoView(value); 
+            set
+            {
+                this._lstInteresados.SelectedItem = value;
+                this._lstInteresados.ScrollIntoView(value);
             }
         }
 
@@ -109,13 +110,19 @@ namespace Trascend.Bolet.Cliente.Ventanas.Poderes
             set { this._lstInteresados = value; }
         }
 
+        public string NombreInteresado
+        {
+            get { return this._txtInteresado.Text; }
+            set { this._txtInteresado.Text = value; }
+        }
+
         #endregion
 
-        public ConsultarPoder(object poder,object Boletines,object Interesados)
+        public ConsultarPoder(object poder, object Boletines, object Interesados)
         {
             InitializeComponent();
             this._cargada = false;
-            this._presentador = new PresentadorConsultarPoder(this, poder,Boletines,Interesados);
+            this._presentador = new PresentadorConsultarPoder(this, poder, Boletines, Interesados);
         }
 
         public ConsultarPoder(object poder)
@@ -165,5 +172,27 @@ namespace Trascend.Bolet.Cliente.Ventanas.Poderes
             this._presentador.OrdenarColumna(sender as GridViewColumnHeader);
         }
 
+        private void _txtInteresado_GotFocus(object sender, RoutedEventArgs e)
+        {
+            this._txtInteresado.Visibility = System.Windows.Visibility.Hidden;
+            this._lstInteresados.Visibility = System.Windows.Visibility.Visible;
+            this._lstInteresados.Height = 240;
+        }
+
+        private void _lstInteresados_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            this._txtInteresado.Visibility = System.Windows.Visibility.Visible;
+            this._lstInteresados.Visibility = System.Windows.Visibility.Hidden;
+            this._lstInteresados.Height = 30;
+            this._presentador.cambiarInteresado();
+        }
+
+        //private void _lstInteresados_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
+        //{
+        //    this._txtInteresado.Visibility = System.Windows.Visibility.Visible;
+        //    this._lstInteresados.Visibility = System.Windows.Visibility.Hidden;
+        //    this._lstInteresados.Height = 30;
+        //    this._presentador.cambiarInteresado();
+        //}
     }
 }

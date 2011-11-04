@@ -476,7 +476,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
                                         itemNivel2.Visibility = System.Windows.Visibility.Visible;
                                     break;
                                 case "_menuItemAnexo":
-                                    if (objeto.Id.Equals(Recursos.Ids.Agente))
+                                    if (objeto.Id.Equals(Recursos.Ids.Anexo))
                                         itemNivel2.Visibility = System.Windows.Visibility.Visible;
                                     break;
                                 case "_menuItemAsociado":
@@ -488,7 +488,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
                                         itemNivel2.Visibility = System.Windows.Visibility.Visible;
                                     break;
                                 case "_menuItemCategoria":
-                                    if (objeto.Id.Equals(Recursos.Ids.Agente))
+                                    if (objeto.Id.Equals(Recursos.Ids.Categoria))
                                         itemNivel2.Visibility = System.Windows.Visibility.Visible;
                                     break;
                                 case "_menuItemEstado":
@@ -508,7 +508,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
                                         itemNivel2.Visibility = System.Windows.Visibility.Visible;
                                     break;
                                 case "_menuItemMedio":
-                                    if (objeto.Id.Equals(Recursos.Ids.Agente))
+                                    if (objeto.Id.Equals(Recursos.Ids.Medio))
                                         itemNivel2.Visibility = System.Windows.Visibility.Visible;
                                     break;
                                 case "_menuItemNacional":
@@ -536,7 +536,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
                                         itemNivel2.Visibility = System.Windows.Visibility.Visible;
                                     break;
                                 case "_menuItemResumen":
-                                    if (objeto.Id.Equals(Recursos.Ids.Resolucion))
+                                    if (objeto.Id.Equals(Recursos.Ids.Resumen))
                                         itemNivel2.Visibility = System.Windows.Visibility.Visible;
                                     break;
                                 case "_menuItemRol":

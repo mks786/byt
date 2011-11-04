@@ -48,7 +48,7 @@
                     <RowDefinition Height="30"/>
                     <RowDefinition Height="30"/>
                     <RowDefinition Height="30"/>
-                    <RowDefinition Height="200"/>
+                    <RowDefinition Height="Auto"/>
                     <RowDefinition Height="30"/>
                     <RowDefinition Height="30"/>
                     <RowDefinition Height="85"/>
@@ -98,9 +98,11 @@
                 <Label Grid.Column="0" Grid.Row="4" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                     <TextBlock Text="{x:Static recurso:Etiquetas.lblInteresado}"/>
                 </Label>
+                <TextBox Grid.Column="2" Grid.Row="4" Name="_txtInteresado" VerticalAlignment="Center" IsEnabled="False" 
+                         HorizontalAlignment="Left" Width="180" Text="" MaxLength="255" GotFocus="_txtInteresado_GotFocus" GotKeyboardFocus="_txtInteresado_GotFocus" ></TextBox>
                 <ListView Grid.Column="2" Grid.Row="4" Name="_lstInteresados" ItemsSource="{Binding}" 
                       SelectionMode="Single" IsEnabled="False"
-                      Style="{DynamicResource EstiloListView}">
+                      Style="{DynamicResource EstiloListView}" Visibility="Hidden" Height="30" MouseDoubleClick="_lstInteresados_MouseDoubleClick">
                     <ListView.View>
                         <GridView>
                             <GridViewColumn DisplayMemberBinding="{Binding Path=Id}" Width="45">
@@ -128,7 +130,7 @@
                 <Label Grid.Column="0" Grid.Row="7" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                     <TextBlock Text="{x:Static recurso:Etiquetas.lblObservaciones}"/>
                 </Label>
-<TextBox Grid.Column="1" Grid.Row="6" Name="_txtObservaciones" VerticalAlignment="Center"  
+<TextBox Grid.Column="1" Grid.Row="7" Name="_txtObservaciones" VerticalAlignment="Center"  
                          HorizontalAlignment="Left" Width="180" Height="75" Text="{Binding Path=Observaciones}" MaxLength="2000" 
                          TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" AcceptsReturn="True" SpellCheck.IsEnabled="True" IsEnabled="False"></TextBox>
             </Grid>

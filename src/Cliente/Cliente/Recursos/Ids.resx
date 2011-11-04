@@ -177,11 +177,17 @@
   <data name="AgregarUsuario" xml:space="preserve">
     <value>SEGTUSU</value>
   </data>
+  <data name="Anexo" xml:space="preserve">
+    <value>MAANEXO</value>
+  </data>
   <data name="Asociado" xml:space="preserve">
     <value>FAC_ASOCIADOS</value>
   </data>
   <data name="Boletin" xml:space="preserve">
     <value>MYPTBOLETIN</value>
+  </data>
+  <data name="Categoria" xml:space="preserve">
+    <value>COR_TENTRADA</value>
   </data>
   <data name="ConsultarAgente" xml:space="preserve">
     <value>MYPTAGENTE</value>
@@ -372,6 +378,9 @@
   <data name="ListaPoderes" xml:space="preserve">
     <value>LST_PODERES</value>
   </data>
+  <data name="Medio" xml:space="preserve">
+    <value>MEDIO</value>
+  </data>
   <data name="ModificarAsociado" xml:space="preserve">
     <value>FAC_ASOCIADOS</value>
   </data>
@@ -433,13 +442,13 @@
     <value>MYP_PODERES</value>
   </data>
   <data name="Remitente" xml:space="preserve">
-    <value>MYPTAGENTE</value>
+    <value>COR_REMI</value>
   </data>
   <data name="Resolucion" xml:space="preserve">
     <value>MYP_RESOLBOL</value>
   </data>
   <data name="Resumen" xml:space="preserve">
-    <value>MYPTAGENTE</value>
+    <value>COR_RESUMEN</value>
   </data>
   <data name="Rol" xml:space="preserve">
     <value>SEGMROL</value>

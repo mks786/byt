@@ -119,6 +119,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Poderes
 
                 this._ventana.Interesados = this._interesados;
                 this._ventana.Interesado = this.BuscarInteresado(this._interesados, poder.Interesado);
+                this._ventana.NombreInteresado = ((Interesado)this._ventana.Interesado).Nombre;
                 this._ventana.FocoPredeterminado();
 
                 #region trace
@@ -353,6 +354,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Poderes
             if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
                 logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
+        }
+
+        public void cambiarInteresado()
+        {
+            this._ventana.NombreInteresado = ((Interesado)this._ventana.Interesado).Nombre;
         }
     }
 }

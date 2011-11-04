@@ -11,6 +11,10 @@ namespace Trascend.Bolet.Cliente.Contratos.Poderes
 
         string Id { get; }
 
+        string IdInteresadoFiltrar { get; }
+
+        string NombreInteresadoFiltrar { get; }
+
         string NumPoder { get; }
 
         object Boletines { get; set; }
@@ -26,7 +30,7 @@ namespace Trascend.Bolet.Cliente.Contratos.Poderes
         string Anexo { get; }
 
         string Observaciones { get; }
-        
+
         GridViewColumnHeader CurSortCol { get; set; }
 
         SortAdorner CurAdorner { get; set; }
