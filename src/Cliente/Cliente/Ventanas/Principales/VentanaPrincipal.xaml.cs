@@ -117,7 +117,15 @@ namespace Trascend.Bolet.Cliente.Ventanas.Principales
 
         }
 
+        private void _menuItemTransferirPlantilla_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.TransferirPlantilla();
+        }
 
+        private void _menuItemCartaConsultar_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.ConsultarCartas();
+        }
         #endregion
 
         #region Historia
@@ -329,6 +337,10 @@ namespace Trascend.Bolet.Cliente.Ventanas.Principales
         }
 
         #endregion
+
+
+
+
 
 
     }

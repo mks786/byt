@@ -61,6 +61,33 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Select c from Carta c where .
+        /// </summary>
+        public static string CabeceraObtenerCarta {
+            get {
+                return ResourceManager.GetString("CabeceraObtenerCarta", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to c.Id = {0}.
+        /// </summary>
+        public static string FiltroObtenerCartaId {
+            get {
+                return ResourceManager.GetString("FiltroObtenerCartaId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to c.Asociado.Id = {0}.
+        /// </summary>
+        public static string FiltroObtenerCartaIdAsociado {
+            get {
+                return ResourceManager.GetString("FiltroObtenerCartaIdAsociado", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select distinct(a) from Agente a left join fetch a.Poderes order by a.Id.
         /// </summary>
         public static string ObtenerAgentesYPoderes {

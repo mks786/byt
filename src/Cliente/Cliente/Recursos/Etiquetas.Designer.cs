@@ -277,6 +277,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Transferir.
+        /// </summary>
+        public static string btnTransferir {
+            get {
+                return ResourceManager.GetString("btnTransferir", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Datos Transferencia.
         /// </summary>
         public static string btnTrasferencia {
@@ -1276,6 +1285,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Resumen:.
+        /// </summary>
+        public static string lblResumen {
+            get {
+                return ResourceManager.GetString("lblResumen", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to RIF:.
         /// </summary>
         public static string lblRif {
@@ -1645,6 +1663,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Medio.
+        /// </summary>
+        public static string lsvMedio {
+            get {
+                return ResourceManager.GetString("lsvMedio", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Nacionalidad.
         /// </summary>
         public static string lsvNacionalidad {
@@ -1704,6 +1731,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string lsvRegion {
             get {
                 return ResourceManager.GetString("lsvRegion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Resumen.
+        /// </summary>
+        public static string lsvResumen {
+            get {
+                return ResourceManager.GetString("lsvResumen", resourceCulture);
             }
         }
         
@@ -1803,6 +1839,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string menuItemBoletin {
             get {
                 return ResourceManager.GetString("menuItemBoletin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Carta.
+        /// </summary>
+        public static string menuItemCarta {
+            get {
+                return ResourceManager.GetString("menuItemCarta", resourceCulture);
             }
         }
         
@@ -2037,6 +2082,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string menuItemTipoInfobol {
             get {
                 return ResourceManager.GetString("menuItemTipoInfobol", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Transferir Plantilla.
+        /// </summary>
+        public static string menuItemTransferirPlantilla {
+            get {
+                return ResourceManager.GetString("menuItemTransferirPlantilla", resourceCulture);
             }
         }
         

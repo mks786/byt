@@ -1021,4 +1021,22 @@
   <data name="titleAgregarCategoria" xml:space="preserve">
     <value>Agregar Categoría</value>
   </data>
+  <data name="lblResumen" xml:space="preserve">
+    <value>Resumen:</value>
+  </data>
+  <data name="lsvMedio" xml:space="preserve">
+    <value>Medio</value>
+  </data>
+  <data name="lsvResumen" xml:space="preserve">
+    <value>Resumen</value>
+  </data>
+  <data name="btnTransferir" xml:space="preserve">
+    <value>Transferir</value>
+  </data>
+  <data name="menuItemTransferirPlantilla" xml:space="preserve">
+    <value>Transferir Plantilla</value>
+  </data>
+  <data name="menuItemCarta" xml:space="preserve">
+    <value>Carta</value>
+  </data>
 </root>

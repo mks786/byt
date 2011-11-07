@@ -37,7 +37,6 @@ namespace Trascend.Bolet.Comandos.Fabrica
         public static ComandoBase<IList<Carta>> ObtenerComandoConsultarTodos()
         {
             throw new NotImplementedException();
-            //return new ComandoConsultarTodosBoletines();
         }
 
         /// <summary>
@@ -48,6 +47,11 @@ namespace Trascend.Bolet.Comandos.Fabrica
         public static ComandoBase<bool> ObtenerComandoVerificarExistenciaCarta(Carta carta)
         {
             return new ComandoVerificarExistenciaCarta(carta);
+        }
+
+        public static ComandoBase<IList<Carta>> ObtenerComandoConsultarCartasFiltro(Carta carta)
+        {
+            return new ComandoConsultarCartasFiltro(carta);
         }
     }
 }

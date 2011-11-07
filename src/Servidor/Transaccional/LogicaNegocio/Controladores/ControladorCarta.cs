@@ -41,6 +41,40 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
 
             return existe;
         }
+
+
+        /// <summary>
+        /// Método que consulta la lista de todos los boletines
+        /// </summary>
+        /// <returns>Lista con todos los boletines</returns>
+        public static IList<Carta> ConsultarTodos()
+        {
+            IList<Carta> retorno;
+
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                ComandoBase<IList<Carta>> comando = FabricaComandosCarta.ObtenerComandoConsultarTodos();
+                comando.Ejecutar();
+                retorno = comando.Receptor.ObjetoAlmacenado;
+
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (ApplicationException ex)
+            {
+                logger.Error(ex.Message);
+                throw ex;
+            }
+
+            return retorno;
+        }
         ///// <summary>
         ///// Método que inserta o modifica un boletin
         ///// </summary>
@@ -140,6 +174,35 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
 
         //    return retorno;
         //}
+
+        public static IList<Carta> ConsultarCartasFiltro(Carta carta)
+        {
+            IList<Carta> retorno;
+
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                ComandoBase<IList<Carta>> comando = FabricaComandosCarta.ObtenerComandoConsultarCartasFiltro(carta);
+                comando.Ejecutar();
+                retorno = comando.Receptor.ObjetoAlmacenado;
+
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (ApplicationException ex)
+            {
+                logger.Error(ex.Message);
+                throw ex;
+            }
+
+            return retorno;
+        }
     }
 }
 

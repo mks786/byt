@@ -1,0 +1,173 @@
+﻿<Page x:Class="Trascend.Bolet.Cliente.Ventanas.CartasOuts.ConsultarCartasOuts"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      mc:Ignorable="d" 
+      d:DesignHeight="550" d:DesignWidth="800"
+      xmlns:recurso="clr-namespace:Trascend.Bolet.Cliente.Recursos"
+      xmlns:conv="clr-namespace:Trascend.Bolet.Cliente.Transformadores"
+	Title="{x:Static recurso:Etiquetas.titleConsultarPoderes}" Loaded="Page_Loaded">
+    <Page.Resources>
+        <conv:DosValresAUno x:Key="convertirADosValores"></conv:DosValresAUno>
+        <conv:EnteroMinimoABlanco x:Key="convertir"></conv:EnteroMinimoABlanco>
+        <Style TargetType="{x:Type DatePickerTextBox}">
+            <Setter Property="Text" Value="{x:Static recurso:Etiquetas.dpkText}" />
+        </Style>
+    </Page.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="440"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="40"/>
+        </Grid.RowDefinitions>
+
+        <!--Área de Filtrado-->
+        <GroupBox Grid.Column="0" Grid.Row="0" Margin="5">
+            <StackPanel Name="_splFiltro" DataContext="{Binding}" VerticalAlignment="Center">
+                <Separator Margin="0,0,0,5"/>
+                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,180,0">
+                    <Label>
+                        <TextBlock Text="{x:Static recurso:Etiquetas.lblId}"/>
+                    </Label>
+                    <TextBox Name="_txtId" Text="{Binding Path=Id}" Width="150" MaxLength="8"
+                             GotFocus="_btnConsultarFocus" GotKeyboardFocus="_btnConsultarFocus"/>
+                </WrapPanel>
+                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,180,0">
+                    <Label>
+                        <TextBlock Text="{x:Static recurso:Etiquetas.lblResumen}"/>
+                    </Label>
+                    <TextBox Name="_txtResumen" Text="" Width="150" MaxLength="15"
+                             GotFocus="_btnConsultarFocus" GotKeyboardFocus="_btnConsultarFocus"/>
+                </WrapPanel>
+                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,180,0">
+                    <Label VerticalAlignment="Center" HorizontalContentAlignment="Right">
+                        <TextBlock Text="{x:Static recurso:Etiquetas.lblFechaBoletin}"/>
+                    </Label>
+                    <DatePicker Name="_dpkFecha" Width="150" Focusable="False" BorderBrush="{x:Null}" SelectedDateChanged="_dpkFecha_SelectedDateChanged">
+                        <DatePicker.SelectedDate>
+                            <Binding Path="Fecha" UpdateSourceTrigger="PropertyChanged"/>
+                        </DatePicker.SelectedDate>
+                    </DatePicker>
+                </WrapPanel>
+                
+
+                <Separator Margin="0,5,0,5"/>
+                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,14,0">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="84"/>
+                            <ColumnDefinition Width="316"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="25"/>
+                            <RowDefinition Height="30"/>
+                            <RowDefinition Height="30"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Label VerticalAlignment="Center" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Left">
+                            <TextBlock Text="{x:Static recurso:Etiquetas.lblAsociado}"/>
+                        </Label>
+                        <Label VerticalAlignment="Center" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Right">
+                            <TextBlock Text="{x:Static recurso:Etiquetas.lblId}"/>
+                        </Label>
+                        <TextBox Name="_txtIdAsociado" Text="" Width="150" MaxLength="15" Grid.Row="1" Grid.Column="1" Height="25" HorizontalAlignment="Left"
+                                 GotFocus="_btnConsultarInteresadoFocus" GotKeyboardFocus="_btnConsultarInteresadoFocus"/>
+                        <Label VerticalAlignment="Center" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Right">
+                            <TextBlock Text="{x:Static recurso:Etiquetas.lblNombre}"/>
+                        </Label>
+                        <TextBox Name="_txtNombreAsociado" Text="" Width="150" MaxLength="15" Grid.Row="2" Grid.Column="1" Height="25" HorizontalAlignment="Left"
+                                 GotFocus="_btnConsultarInteresadoFocus" GotKeyboardFocus="_btnConsultarInteresadoFocus"/>
+
+                        <Button Name="_btnConsultarAsociado" Width="100" IsDefault="False" Grid.Row="2" Grid.Column="1" Height="25" HorizontalAlignment="Right" Click="_btnConsultarAsociado_Click">
+                            <TextBlock Text="{x:Static recurso:Etiquetas.btnConsultar}"/>
+                        </Button>
+                        <!--Path=Id, Converter={StaticResource convertir}-->
+                        <ListView Height="198" Name="_lstAsociados" ItemsSource="{Binding}" 
+                      SelectionMode="Single"
+                      Style="{DynamicResource EstiloListView}" Grid.Row="3" Grid.ColumnSpan="2">
+                            <ListView.View>
+                                <GridView>
+                                    <GridViewColumn Width="45">
+                                        <GridViewColumnHeader Click="_Ordenar_Click" Tag="Id" Content="{x:Static recurso:Etiquetas.lsvId}"/>
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBlock>
+                                                <TextBlock.Text>
+                                                    <Binding Path="Id" Converter="{StaticResource convertir}"/>
+                                                </TextBlock.Text>
+                                                </TextBlock>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                    <GridViewColumn DisplayMemberBinding="{Binding Path=Nombre}" Width="250">
+                                        <GridViewColumnHeader Click="_Ordenar_Click" Tag="Nombre" Content="{x:Static recurso:Etiquetas.lsvNombre}"/>
+                                    </GridViewColumn>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                    </Grid>
+                </WrapPanel>
+
+                <Separator Margin="0,5,0,5"/>
+                <Button Name="_btnConsultar" Width="100" IsDefault="True" Click="_btnConsultar_Click">
+                    <TextBlock Text="{x:Static recurso:Etiquetas.btnConsultar}"/>
+                </Button>
+                <Separator Margin="0,5,0,5"/>
+            </StackPanel>
+        </GroupBox>
+
+        <!--Resultados-->
+        <GroupBox Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="2" Margin="5">
+            <ListView Name="_lstResultados" ItemsSource="{Binding}" 
+                      MouseDoubleClick="_lstResultados_MouseDoubleClick" SelectionMode="Single"
+                      Style="{DynamicResource EstiloListView}">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Id}" Width="120">
+                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="Id" Content="{x:Static recurso:Etiquetas.lsvId}"/>
+                        </GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Resumen.Descripcion}" Width="150">
+                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="Resumen.Descripcion" Content="{x:Static recurso:Etiquetas.lsvResumen}"/>
+                        </GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Asociado.Nombre}" Width="150">
+                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="Asociado.Nombre" Content="{x:Static recurso:Etiquetas.lsvAsociado}"/>
+                        </GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Medio}" Width="150">
+                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="Medio" Content="{x:Static recurso:Etiquetas.lsvMedio}"/>
+                        </GridViewColumn>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+            <!--<DataGrid Name="_dataGridResultados" ItemsSource="{Binding}">
+                <DataGrid.Columns>
+                    <DataGridHyperlinkColumn Header="Nombre Completo" 
+                        Binding="{Binding Path=NombreCompleto, ValidatesOnExceptions=True}">
+                    </DataGridHyperlinkColumn>
+                    <DataGridTextColumn Header="Email" 
+                        Binding="{Binding Path=Email, ValidatesOnExceptions=True}">
+                    </DataGridTextColumn>
+                </DataGrid.Columns>
+            </DataGrid>-->
+        </GroupBox>
+
+        <!--Botones Aceptar|Cancelar-->
+        <GroupBox Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="1" BorderBrush="{x:Null}">
+            <StackPanel HorizontalAlignment="Right" VerticalAlignment="Bottom" Orientation="Horizontal">
+                <Button Name="_btnTransferir" Width="100" Click="_btnTransferir_Click">
+                    <TextBlock Text="{x:Static recurso:Etiquetas.btnTransferir}" />
+                </Button>
+                <Button Name="_btnCancelar" Width="100" Click="_btnCancelar_Click">
+                    <TextBlock Text="{x:Static recurso:Etiquetas.btnCancelar}"/>
+                </Button>
+            </StackPanel>
+        </GroupBox>
+
+    </Grid>
+</Page>

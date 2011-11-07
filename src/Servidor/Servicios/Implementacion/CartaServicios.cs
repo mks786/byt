@@ -18,28 +18,48 @@ namespace Trascend.Bolet.Servicios.Implementacion
         /// <returns>Lista con todos los boletines</returns>
         public IList<Carta> ConsultarTodos()
         {
-            throw new NotImplementedException();
-            //IList<Carta> carta;
-            //try
-            //{
-            //    #region trace
-            //    if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
-            //        logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
-            //    #endregion
+            IList<Carta> carta;
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
 
-            //    carta = ControladorCarta.ConsultarTodos();
+                carta = ControladorCarta.ConsultarTodos();
 
-            //    #region trace
-            //    if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
-            //        logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
-            //    #endregion
-            //}
-            //catch (ApplicationException ex)
-            //{
-            //    throw ex;
-            //}
-            //return carta;
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (ApplicationException ex)
+            {
+                throw ex;
+            }
+            return carta;
         }
+        //IList<Carta> carta;
+        //try
+        //{
+        //    #region trace
+        //    if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+        //        logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+        //    #endregion
+
+        //    carta = ControladorCarta.ConsultarTodos();
+
+        //    #region trace
+        //    if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+        //        logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+        //    #endregion
+        //}
+        //catch (ApplicationException ex)
+        //{
+        //    throw ex;
+        //}
+        //return carta;
+
 
         public Carta ConsultarPorId(Carta carta)
         {
@@ -113,6 +133,25 @@ namespace Trascend.Bolet.Servicios.Implementacion
             #endregion
 
             return exitoso;
+        }
+
+        public IList<Carta> ObtenerCartasFiltro(Carta carta)
+        {
+            #region trace
+            if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+            IList<Carta> cartas;
+
+            cartas = ControladorCarta.ConsultarCartasFiltro(carta);
+
+            return cartas;
+
+            #region trace
+            if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
         }
     }
 }

@@ -52,6 +52,7 @@
     <Compile Include="Comandos\ComandosAsociado\ComandoConsultarAsociadoConTodo.cs" />
     <Compile Include="Comandos\ComandosAuditoria\ComandoAuditoriaPorFkyTabla.cs" />
     <Compile Include="Comandos\ComandosCartaOut\ComandoConsultarTodosCartaOuts.cs" />
+    <Compile Include="Comandos\ComandosCarta\ComandoConsultarCartasFiltro.cs" />
     <Compile Include="Comandos\ComandosInteresado\ComandoConsultarTodosInteresados.cs" />
     <Compile Include="Comandos\ComandosInteresado\ComandoEliminarInteresado.cs" />
     <Compile Include="Comandos\ComandosInteresado\ComandoInsertarOModificarInteresado.cs" />

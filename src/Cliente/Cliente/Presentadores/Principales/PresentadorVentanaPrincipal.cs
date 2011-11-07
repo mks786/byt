@@ -9,7 +9,8 @@ using Trascend.Bolet.Cliente.Contratos.Principales;
 using Trascend.Bolet.Cliente.Ventanas.Agentes;
 using Trascend.Bolet.Cliente.Ventanas.Anexos;
 using Trascend.Bolet.Cliente.Ventanas.Categorias;
-using Trascend.Bolet.Cliente.Ventanas.Anexos;
+using Trascend.Bolet.Cliente.Ventanas.Cartas;
+using Trascend.Bolet.Cliente.Ventanas.CartasOuts;
 using Trascend.Bolet.Cliente.Ventanas.Boletines;
 using Trascend.Bolet.Cliente.Ventanas.Estados;
 using Trascend.Bolet.Cliente.Ventanas.Internacionales;
@@ -408,6 +409,15 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
             this._ventana.Contenedor.Navigate(new AgregarCategoria());
         }
 
+        public void TransferirPlantilla()
+        {
+            this._ventana.Contenedor.Navigate(new ConsultarCartasOuts());
+        }
+
+        public void ConsultarCartas()
+        {
+            this._ventana.Contenedor.Navigate(new ConsultarCartas());
+        }
         #endregion
 
         /// <summary>
@@ -491,6 +501,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
                                     if (objeto.Id.Equals(Recursos.Ids.Categoria))
                                         itemNivel2.Visibility = System.Windows.Visibility.Visible;
                                     break;
+                                case "_menuItemCarta":
+                                    if (objeto.Id.Equals(Recursos.Ids.Categoria))
+                                        itemNivel2.Visibility = System.Windows.Visibility.Visible;
+                                    break;
                                 case "_menuItemEstado":
                                     if (objeto.Id.Equals(Recursos.Ids.Estado))
                                         itemNivel2.Visibility = System.Windows.Visibility.Visible;
@@ -549,6 +563,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
                                     break;
                                 case "_menuItemTipoInfobol":
                                     if (objeto.Id.Equals(Recursos.Ids.TipoInfobol))
+                                        itemNivel2.Visibility = System.Windows.Visibility.Visible;
+                                    break;
+                                case "_menuItemTransferirPlantilla":
+                                    if (objeto.Id.Equals(Recursos.Ids.Asociado))
                                         itemNivel2.Visibility = System.Windows.Visibility.Visible;
                                     break;
                                 case "_menuItemUsuario":
