@@ -10,33 +10,37 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using NLog;
 using Trascend.Bolet.Cliente.Ayuda;
-using Trascend.Bolet.Cliente.Contratos.CartaOuts;
-using Trascend.Bolet.Cliente.Ventanas.Anexos;
+using Trascend.Bolet.Cliente.Contratos.Cartas;
 using Trascend.Bolet.Cliente.Ventanas.Principales;
 using Trascend.Bolet.ObjetosComunes.ContratosServicios;
 using Trascend.Bolet.ObjetosComunes.Entidades;
 
-namespace Trascend.Bolet.Cliente.Presentadores.Anexos
+namespace Trascend.Bolet.Cliente.Presentadores.CartasOuts
 {
-    class PresentadorConsultarCartaOuts : PresentadorBase
+    class PresentadorConsultarCartasOuts : PresentadorBase
     {
         private static PaginaPrincipal _paginaPrincipal = PaginaPrincipal.ObtenerInstancia;
         private static Logger logger = LogManager.GetCurrentClassLogger();
-        private IConsultarCartaOuts _ventana;
+
+        private IConsultarCartas _ventana;
         private ICartaOutServicios _cartaOutServicios;
+        private IAsociadoServicios _asociadoServicios;
         private IList<CartaOut> _cartas;
+        private IList<Asociado> _asociados;
 
         /// <summary>
         /// Constructor Predeterminado
         /// </summary>
         /// <param name="ventana">página que satisface el contrato</param>
-        public PresentadorConsultarCartaOuts(IConsultarCartaOuts ventana)
+        public PresentadorConsultarCartasOuts(IConsultarCartas ventana)
         {
             try
             {
                 this._ventana = ventana;
                 this._cartaOutServicios = (ICartaOutServicios)Activator.GetObject(typeof(ICartaOutServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["CartaOutServicios"]);
+                this._asociadoServicios = (IAsociadoServicios)Activator.GetObject(typeof(IAsociadoServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["AsociadoServicios"]);
             }
             catch (Exception ex)
             {
@@ -45,12 +49,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Anexos
             }
         }
 
-        /// <summary>
-        /// Metodo que se encarga de cambiar el titulo de la ventana
-        /// </summary>
         public void ActualizarTitulo()
         {
-            this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleConsultarAnexos, "");
+            this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleConsultarPoderes,
+                Recursos.Ids.ConsultarPoderes);
         }
 
         /// <summary>
@@ -71,9 +73,15 @@ namespace Trascend.Bolet.Cliente.Presentadores.Anexos
 
                 this._cartas = this._cartaOutServicios.ConsultarTodos();
                 this._ventana.Resultados = this._cartas;
-                this._ventana.CartaOutFiltrar = new CartaOut();
-                this._ventana.FocoPredeterminado();
 
+                IList<Asociado> asociados = this._asociadoServicios.ConsultarTodos();
+                Asociado primerAsociado = new Asociado();
+                primerAsociado.Id = int.MinValue;
+                asociados.Insert(0, primerAsociado);
+                this._ventana.Asociados = asociados;
+                this._asociados = asociados;
+
+                this._ventana.FocoPredeterminado();
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
                     logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
@@ -118,74 +126,24 @@ namespace Trascend.Bolet.Cliente.Presentadores.Anexos
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-                CartaOut cartaOut = (CartaOut)this._ventana.CartaOutFiltrar;
+                IEnumerable<CartaOut> cartasFiltradas = this._cartas;
 
-                IEnumerable<CartaOut> cartasOutFiltrados = this._cartas;
-
-                if (!string.Equals("", this._ventana.Id))
+                if (!string.IsNullOrEmpty(this._ventana.Id))
                 {
-                    cartasOutFiltrados = from a in cartasOutFiltrados
-                                      where a.Id == this._ventana.Id
-                                      select a;
+                    cartasFiltradas = from p in cartasFiltradas
+                                      where p.Id == Int32.Parse(this._ventana.Id)
+                                      select p;
                 }
 
-                if (!string.IsNullOrEmpty(((CartaOut)this._ventana.CartaOutFiltrar).Medio))
+                if (!string.IsNullOrEmpty(this._ventana.Fecha))
                 {
-                    cartasOutFiltrados = from p in cartasOutFiltrados
-                                         where p.Medio != null &&
-                                          p.Medio.Contains(cartaOut.Medio)
-                                         select p;
+                    DateTime fechaAux = DateTime.Parse(this._ventana.Fecha);
+                    cartasFiltradas = from p in cartasFiltradas
+                                      where p.Fecha.Equals(fechaAux)
+                                      select p;
                 }
 
-                if (!string.IsNullOrEmpty((this._ventana.IdAsociado).ToString()))
-                {
-                    cartasOutFiltrados = from p in cartasOutFiltrados
-                                         where p.Id != null &&
-                                          p.Asociado.Id == this._ventana.IdAsociado
-                                         select p;
-                }
-
-                if (!string.IsNullOrEmpty(((CartaOut)this._ventana.CartaOutFiltrar).DescripcionDepartamento))
-                {
-                    cartasOutFiltrados = from p in cartasOutFiltrados
-                                         where p.DescripcionDepartamento != null &&
-                                          p.DescripcionDepartamento.Contains(cartaOut.DescripcionDepartamento)
-                                         select p;
-                }
-
-                if (!string.IsNullOrEmpty(((CartaOut)this._ventana.CartaOutFiltrar).Persona))
-                {
-                    cartasOutFiltrados = from p in cartasOutFiltrados
-                                         where p.Persona != null &&
-                                          p.Persona.Contains(cartaOut.Persona)
-                                         select p;
-                }
-
-                if (!string.IsNullOrEmpty(((CartaOut)this._ventana.CartaOutFiltrar).Referencia))
-                {
-                    cartasOutFiltrados = from p in cartasOutFiltrados
-                                         where p.Referencia != null &&
-                                          p.Referencia.Contains(cartaOut.Referencia)
-                                         select p;
-                }
-
-                if (!string.IsNullOrEmpty(((CartaOut)this._ventana.CartaOutFiltrar).Receptor))
-                {
-                    cartasOutFiltrados = from p in cartasOutFiltrados
-                                         where p.Receptor != null &&
-                                          p.Receptor.Contains(cartaOut.Receptor)
-                                         select p;
-                }
-
-                //if (!string.IsNullOrEmpty(((CartaOut)this._ventana.CartaOutFiltrar).))
-                //{
-                //    cartasOutFiltrados = from p in cartasOutFiltrados
-                //                         where p.Receptor != null &&
-                //                          p.Receptor.Contains(cartaOut.Receptor)
-                //                         select p;
-                //}
-
-                this._ventana.Resultados = cartasOutFiltrados.ToList<CartaOut>();
+                this._ventana.Resultados = cartasFiltradas.ToList<CartaOut>();
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -199,23 +157,23 @@ namespace Trascend.Bolet.Cliente.Presentadores.Anexos
             }
         }
 
-        ///<summary>
-        //Método que invoca una nueva página "ConsultarAnexo" y la instancia con el objeto seleccionado
+        /// <summary>
+        /// Método que invoca una nueva página "ConsultarPoder" y la instancia con el objeto seleccionado
         /// </summary>
-        //public void IrConsultarAnexo()
-        //{
-        //    #region trace
-        //    if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
-        //        logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
-        //    #endregion
+        public void IrConsultarPoder()
+        {
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
 
-        //    this.Navegar(new ConsultarAnexo(this._ventana.CartaOutSeleccionado));
+            //this.Navegar(new ConsultarPoder(this._ventana.PoderSeleccionado, this._ventana.Boletines, this._ventana.Interesados));
 
-        //    #region trace
-        //    if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
-        //        logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
-        //    #endregion
-        //}
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+        }
 
         /// <summary>
         /// Método que ordena una columna
@@ -249,6 +207,31 @@ namespace Trascend.Bolet.Cliente.Presentadores.Anexos
             if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
                 logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
+        }
+
+        public void BuscarAsociado()
+        {
+            IEnumerable<Asociado> asociadosFiltrados = (IList<Asociado>)this._asociados;
+
+            if (!string.IsNullOrEmpty(this._ventana.IdAsociadoFiltrar))
+            {
+                asociadosFiltrados = from p in asociadosFiltrados
+                                     where p.Id == int.Parse(this._ventana.IdAsociadoFiltrar)
+                                     select p;
+            }
+
+            if (!string.IsNullOrEmpty(this._ventana.NombreAsociadoFiltrar))
+            {
+                asociadosFiltrados = from p in asociadosFiltrados
+                                     where p.Nombre != null &&
+                                     p.Nombre.ToLower().Contains(this._ventana.NombreAsociadoFiltrar.ToLower())
+                                     select p;
+            }
+
+            if (asociadosFiltrados.ToList<Asociado>().Count != 0)
+                this._ventana.Asociados = asociadosFiltrados.ToList<Asociado>();
+            else
+                this._ventana.Asociados = this._asociados;
         }
     }
 }
