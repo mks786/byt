@@ -112,6 +112,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.CartasOuts
             get { return this._lstAsociados.SelectedItem; }
             set { this._lstAsociados.SelectedItem = value; }
         }
+        
+        public void Mensaje(string mensaje)
+        {
+            throw new System.NotImplementedException();
+        }
         #endregion
 
         /// <summary>
@@ -211,7 +216,5 @@ namespace Trascend.Bolet.Cliente.Ventanas.CartasOuts
         {
 
         }
-
-
     }
 }

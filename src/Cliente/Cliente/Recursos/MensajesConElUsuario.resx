@@ -456,4 +456,7 @@
   <data name="ConfirmacionEliminarCategoria" xml:space="preserve">
     <value>¿Seguro que desea eliminar la categoría?</value>
   </data>
+  <data name="ErrorFiltroIncompleto" xml:space="preserve">
+    <value>Disculpe debe llenar dos o mas filtros para la consulta</value>
+  </data>
 </root>

@@ -61,11 +61,20 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Select c from Carta c where .
+        ///   Looks up a localized string similar to Select c from Carta c left join fetch c.Resumen as resumen left join fetch c.Asociado as asociado where .
         /// </summary>
         public static string CabeceraObtenerCarta {
             get {
                 return ResourceManager.GetString("CabeceraObtenerCarta", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to c.Fecha between &apos;{0}&apos; and &apos;{1}&apos;.
+        /// </summary>
+        public static string FiltroObtenerCartaFecha {
+            get {
+                return ResourceManager.GetString("FiltroObtenerCartaFecha", resourceCulture);
             }
         }
         
@@ -79,11 +88,20 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to c.Asociado.Id = {0}.
+        ///   Looks up a localized string similar to asociado.Id = {0}.
         /// </summary>
         public static string FiltroObtenerCartaIdAsociado {
             get {
                 return ResourceManager.GetString("FiltroObtenerCartaIdAsociado", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to upper(resumen.Descripcion) like &apos;%{0}%&apos;.
+        /// </summary>
+        public static string FiltroObtenerCartaResumen {
+            get {
+                return ResourceManager.GetString("FiltroObtenerCartaResumen", resourceCulture);
             }
         }
         

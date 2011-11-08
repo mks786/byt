@@ -30,6 +30,20 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
                 filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerCartaIdAsociado, carta.Asociado.Id);
                 variosFiltros = true;
             }
+            if ((null != carta.Resumen) && (!carta.Resumen.Descripcion.Equals("")))
+            {
+                if (variosFiltros)
+                    filtro += " and ";
+                filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerCartaResumen, carta.Resumen.Descripcion);
+            }
+            if ((null != carta.Fecha) && (!carta.Fecha.Equals(DateTime.MinValue)))
+            {
+                if (variosFiltros)
+                    filtro += " and ";
+                string fecha = String.Format("{0:dd/MM/yy}", carta.Fecha);
+                string fecha2 = String.Format("{0:dd/MM/yy}", carta.Fecha.AddDays(1));
+                filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerCartaFecha, fecha, fecha2);
+            }
             IQuery query = Session.CreateQuery(cabecera + filtro);
             cartas = query.List<Carta>();
             return cartas;

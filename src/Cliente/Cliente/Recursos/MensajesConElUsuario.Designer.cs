@@ -502,6 +502,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Disculpe debe llenar dos o mas filtros para la consulta.
+        /// </summary>
+        internal static string ErrorFiltroIncompleto {
+            get {
+                return ResourceManager.GetString("ErrorFiltroIncompleto", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Se ha producido un error inesperado.
         /// </summary>
         internal static string ErrorInesperado {

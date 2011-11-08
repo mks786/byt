@@ -45,7 +45,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
             catch (Exception ex)
             {
                 logger.Error(ex.Message);
-                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado,true);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
             }
         }
 
@@ -126,21 +126,48 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
+                bool consultaResumen = false;
+                int filtroValido = 0;//Variable utilizada para limitar a que el filtro se ejecute solo cuando 
+                //dos filtros sean utilizados
+
                 Carta cartaAuxiliar = new Carta();
 
                 if (!this._ventana.Id.Equals(""))
+                {
+                    filtroValido = 2;
                     cartaAuxiliar.Id = int.Parse(this._ventana.Id);
+                }
 
-                //if (!this._ventana.ResumenFiltrar.Equals(""))
-                //    cartaAuxiliar.Resumen = int.Parse(this._ventana.Id);
+                if ((null != this._ventana.Asociado) && (((Asociado)this._ventana.Asociado).Id != int.MinValue))
+                {
+                    cartaAuxiliar.Asociado = (Asociado)this._ventana.Asociado;
+                    filtroValido++;
+                }
 
 
                 if (!this._ventana.ResumenFiltrar.Equals(""))
-                    cartaAuxiliar.Resumen.Descripcion = this._ventana.ResumenFiltrar;
+                {
+                    filtroValido++;
+                    consultaResumen = true;
+                    Resumen resumenAux = new Resumen();
+                    resumenAux.Descripcion = this._ventana.ResumenFiltrar;
+                    cartaAuxiliar.Resumen = resumenAux;
+                }
 
-                cartaAuxiliar.Asociado = (Asociado)this._ventana.Asociado;
-                this._cartas = this._cartaServicios.ObtenerCartasFiltro(cartaAuxiliar);
-                this._ventana.Resultados = this._cartas;
+                if (!this._ventana.Fecha.Equals(""))
+                {
+                    DateTime fechaCarta = DateTime.Parse(this._ventana.Fecha);
+                    filtroValido = 2;
+                    cartaAuxiliar.Fecha = fechaCarta;
+                }
+
+                if ((filtroValido >= 2) || ((!consultaResumen) && (filtroValido > 0)))
+                {
+                    this._cartas = this._cartaServicios.ObtenerCartasFiltro(cartaAuxiliar);
+                    this._ventana.Resultados = this._cartas;
+                }
+                else
+                    this._ventana.Mensaje(Recursos.MensajesConElUsuario.ErrorFiltroIncompleto);
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -213,16 +240,16 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
             if (!string.IsNullOrEmpty(this._ventana.IdAsociadoFiltrar))
             {
                 asociadosFiltrados = from p in asociadosFiltrados
-                                       where p.Id == int.Parse(this._ventana.IdAsociadoFiltrar)
-                                       select p;
+                                     where p.Id == int.Parse(this._ventana.IdAsociadoFiltrar)
+                                     select p;
             }
 
             if (!string.IsNullOrEmpty(this._ventana.NombreAsociadoFiltrar))
             {
                 asociadosFiltrados = from p in asociadosFiltrados
-                                       where p.Nombre != null &&
-                                       p.Nombre.ToLower().Contains(this._ventana.NombreAsociadoFiltrar.ToLower())
-                                       select p;
+                                     where p.Nombre != null &&
+                                     p.Nombre.ToLower().Contains(this._ventana.NombreAsociadoFiltrar.ToLower())
+                                     select p;
             }
 
             if (asociadosFiltrados.ToList<Asociado>().Count != 0)

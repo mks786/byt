@@ -98,9 +98,6 @@ namespace Trascend.Bolet.Cliente.Ventanas.Cartas
             set { this._lstResultados = value; }
         }
 
-
-
-
         public object Asociados
         {
             get { return this._lstAsociados.DataContext; }
@@ -112,6 +109,12 @@ namespace Trascend.Bolet.Cliente.Ventanas.Cartas
             get { return this._lstAsociados.SelectedItem; }
             set { this._lstAsociados.SelectedItem = value; }
         }
+
+        public void Mensaje(string mensaje)
+        {
+            MessageBox.Show(mensaje, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+        }
+
         #endregion
 
         /// <summary>
@@ -133,6 +136,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Cartas
         {
             this._btnConsultar.Focus();
             this._presentador.Consultar();
+            this._dpkFecha.Text = string.Empty;
             validarCamposVacios();
         }
 

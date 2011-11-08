@@ -29,5 +29,7 @@ namespace Trascend.Bolet.Cliente.Contratos.Cartas
         SortAdorner CurAdorner { get; set; }
 
         ListView ListaResultados { get; set; }
+
+        void Mensaje(string mensaje);
     }
 }
