@@ -1099,7 +1099,43 @@
   <data name="menuItemEntradaAlterna" xml:space="preserve">
     <value>Entrada Alterna</value>
   </data>
-  <data name="lsvMedio" xml:space="preserve">
-    <value>Medio</value>
+  <data name="lblAnexos" xml:space="preserve">
+    <value>Anexos:</value>
+  </data>
+  <data name="lblFechaReal" xml:space="preserve">
+    <value>Fecha real:</value>
+  </data>
+  <data name="lblModificado" xml:space="preserve">
+    <value>Modificado:</value>
+  </data>
+  <data name="lblPersona" xml:space="preserve">
+    <value>Persona:</value>
+  </data>
+  <data name="lblReferencia" xml:space="preserve">
+    <value>Referencia:</value>
+  </data>
+  <data name="lblTipoAnexo" xml:space="preserve">
+    <value>Tipo Anexo:</value>
+  </data>
+  <data name="lblTitleConfirmacion" xml:space="preserve">
+    <value>Confirmación</value>
+  </data>
+  <data name="lblTitleRemitente" xml:space="preserve">
+    <value>Remitente</value>
+  </data>
+  <data name="lblTitleResponsable" xml:space="preserve">
+    <value>Responsable</value>
+  </data>
+  <data name="lblTracking" xml:space="preserve">
+    <value>Tracking:</value>
+  </data>
+  <data name="lblTrackingGuia" xml:space="preserve">
+    <value>Tracking Guia:</value>
+  </data>
+  <data name="btnAgregarSimbolo" xml:space="preserve">
+    <value>+</value>
+  </data>
+  <data name="btnEliminarSimbolo" xml:space="preserve">
+    <value>-</value>
   </data>
 </root>

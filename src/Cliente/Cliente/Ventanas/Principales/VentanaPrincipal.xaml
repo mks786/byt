@@ -32,7 +32,7 @@
                 </MenuItem>
                 <MenuItem Name="_menuItemCarta" Visibility="Collapsed" Header="{x:Static resx:Etiquetas.menuItemCarta}">
                     <MenuItem Name="_menuItemCartaConsultar" Header="{x:Static resx:Etiquetas.menuItemConsultar}" Click="_menuItemCartaConsultar_Click"/>
-                    <MenuItem Name="_menuItemCartaAgregar" Header="{x:Static resx:Etiquetas.menuItemAgregar}"/>
+                    <MenuItem Name="_menuItemCartaAgregar" Header="{x:Static resx:Etiquetas.menuItemAgregar}" Click="_menuItemCartaAgregar_Click"/>
                     <!--<MenuItem Name="_menuItemUsuarioModificar" Header="{x:Static resx:Etiquetas.menuItemUsuarioModificar}"></MenuItem>-->
                 </MenuItem>
                 <MenuItem Name="_menuItemCategoria" Visibility="Collapsed" Header="{x:Static resx:Etiquetas.menuItemCategoria}">

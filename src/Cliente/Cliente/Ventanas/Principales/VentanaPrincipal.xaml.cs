@@ -128,9 +128,15 @@ namespace Trascend.Bolet.Cliente.Ventanas.Principales
         {
             this._presentador.AgregarEntradaAlterna();
         }
+
         private void _menuItemCartaConsultar_Click(object sender, RoutedEventArgs e)
         {
             this._presentador.ConsultarCartas();
+        }
+
+        private void _menuItemCartaAgregar_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.AgregarCarta();
         }
 
         #endregion
@@ -344,6 +350,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Principales
         }
 
         #endregion
+
         
 
 

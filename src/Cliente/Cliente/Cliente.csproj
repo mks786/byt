@@ -191,6 +191,7 @@
     <Compile Include="Presentadores\Asociados\PresentadorAgregarAsociado.cs" />
     <Compile Include="Presentadores\Asociados\PresentadorConsultarAsociado.cs" />
     <Compile Include="Presentadores\Asociados\PresentadorConsultarAsociados.cs" />
+    <Compile Include="Presentadores\Cartas\PresentadorAgregarCarta.cs" />
     <Compile Include="Presentadores\Cartas\PresentadorConsultarCartas.cs" />
     <Compile Include="Presentadores\Contactos\PresentadorAgregarContacto.cs" />
     <Compile Include="Presentadores\Contactos\PresentadorConsultarContacto.cs" />
@@ -321,6 +322,9 @@
     </Compile>
     <Compile Include="Ventanas\Auditorias\ListaAuditorias.xaml.cs">
       <DependentUpon>ListaAuditorias.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Cartas\AgregarCarta.xaml.cs">
+      <DependentUpon>AgregarCarta.xaml</DependentUpon>
     </Compile>
     <Compile Include="Ventanas\Contactos\ConsultarContacto.xaml.cs">
       <DependentUpon>ConsultarContacto.xaml</DependentUpon>
@@ -582,6 +586,10 @@
     <Page Include="Ventanas\Auditorias\ListaAuditorias.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Ventanas\Cartas\AgregarCarta.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Ventanas\Contactos\ConsultarContacto.xaml">
       <Generator>MSBuild:Compile</Generator>
