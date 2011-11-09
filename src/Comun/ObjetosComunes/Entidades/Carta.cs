@@ -38,6 +38,8 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         private DateTime? _fechaD;
         private IList<Justificacion> _justificaciones;
         private IList<Contacto> _contactos;
+        private IList<Anexo> _anexos;
+        private IList<Anexo> _anexosConfirmacion;
 
         #endregion
 
@@ -61,43 +63,63 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
 
         #region Propiedades
 
-
+        /// <summary>
+        /// Propiedad que asigna u obtiene el id
+        /// </summary>
         public virtual int? Id
         {
             get { return _id; }
             set { _id = value; }
         }
 
+        /// <summary>
+        /// Propiedad que asigna u obtiene la fecha
+        /// </summary>
         public virtual DateTime Fecha
         {
             get { return _fecha; }
             set { _fecha = value; }
         }
 
+        /// <summary>
+        /// Propiedad que asigna u obtiene el medio
+        /// </summary>
         public virtual string Medio
         {
             get { return _medio; }
             set { _medio = value; }
         }
 
+        /// <summary>
+        /// Propiedad que asigna u obtiene el asociado
+        /// </summary>
         public virtual Asociado Asociado
         {
             get { return _asociado; }
             set { _asociado = value; }
         }
 
+        /// <summary>
+        /// Propiedad que asigna u obtiene la descripcion del departamento
+        /// </summary>
         public virtual string DescripcionDepartamento
         {
             get { return _descripcionDepartamento; }
             set { _descripcionDepartamento = value; }
         }
 
+        /// <summary>
+        /// Propiedad que asigna u obtiene la persona
+        /// </summary>
         public virtual string Persona
         {
             get { return _persona; }
             set { _persona = value; }
         }
 
+        /// <summary>
+        /// Propiedad que asigna u obtiene la referencia
+        /// </summary>
         public virtual string Referencia
         {
             get { return _referencia; }
@@ -244,6 +266,18 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         {
             get { return _contactos; }
             set { _contactos = value; }
+        }
+
+        public virtual IList<Anexo> Anexos
+        {
+            get { return _anexos; }
+            set { _anexos = value; }
+        }
+
+        public virtual IList<Anexo> AnexosConfirmacion
+        {
+            get { return _anexosConfirmacion; }
+            set { _anexosConfirmacion = value; }
         }
 
         #endregion

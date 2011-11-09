@@ -74,20 +74,19 @@ namespace Trascend.Bolet.Servicios.Implementacion
         /// <returns>True: si la inserción o modificación fue exitosa; False: en caso contrario</returns>
         public bool InsertarOModificar(Carta carta, int hash)
         {
-            throw new NotImplementedException();
-            //#region trace
-            //if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
-            //    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
-            //#endregion
+            #region trace
+            if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
 
-            //bool exitoso = ControladorCarta.InsertarOModificar(carta, hash);
+            bool exitoso = ControladorCarta.InsertarOModificar(carta, hash);
 
-            //#region trace
-            //if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
-            //    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
-            //#endregion
+            #region trace
+            if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
 
-            //return exitoso;
+            return exitoso;
         }
 
         /// <summary>
@@ -97,20 +96,19 @@ namespace Trascend.Bolet.Servicios.Implementacion
         /// <returns>True: si la eliminacion fue exitosa; False: en caso contrario</returns>
         public bool Eliminar(Carta carta, int hash)
         {
-            throw new NotImplementedException();
-            //#region trace
-            //if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
-            //    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
-            //#endregion
+            #region trace
+            if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
 
-            //bool exitoso = ControladorCarta.Eliminar(carta, hash);
+            bool exitoso = ControladorCarta.Eliminar(carta, hash);
 
-            //#region trace
-            //if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
-            //    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
-            //#endregion
+            #region trace
+            if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
 
-            //return exitoso;
+            return exitoso;
         }
 
         /// <summary>
@@ -135,6 +133,11 @@ namespace Trascend.Bolet.Servicios.Implementacion
             return exitoso;
         }
 
+        /// <summary>
+        /// Servicio que consulta una serie de cartas por uno o mas parametros
+        /// </summary>
+        /// <param name="carta">Carta que contiene los parametros de la consulta</param>
+        /// <returns>Lista de cartas filtradas</returns>
         public IList<Carta> ObtenerCartasFiltro(Carta carta)
         {
             #region trace

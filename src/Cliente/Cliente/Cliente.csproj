@@ -96,7 +96,9 @@
     <Compile Include="Contratos\Asociados\IAgregarAsociado.cs" />
     <Compile Include="Contratos\Asociados\IConsultarAsociado.cs" />
     <Compile Include="Contratos\Asociados\IConsultarAsociados.cs" />
+    <Compile Include="Contratos\Cartas\IAgregarCarta.cs" />
     <Compile Include="Contratos\Cartas\IConsultarCartas.cs" />
+    <Compile Include="Contratos\Cartas\IConsultarCarta.cs" />
     <Compile Include="Contratos\Contactos\IAgregarContacto.cs" />
     <Compile Include="Contratos\Contactos\IConsultarContacto.cs" />
     <Compile Include="Contratos\Anexos\IAgregarAnexo.cs" />

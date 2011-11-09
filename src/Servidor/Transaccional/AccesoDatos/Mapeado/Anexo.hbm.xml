@@ -6,6 +6,16 @@
   <class name="Anexo" table="ANEXOS">
     <id name="Id" column="COANEXO" type="string"/>
     <property name="Descripcion" column="XDESCRIP" type="string"/>
+
+    <bag name="Cartas" table="COR_ANEXO">
+      <key column="COANEXO"/>
+      <many-to-many column="CODIGO" class="Carta" not-found="ignore"/>
+    </bag>
+    
+    <bag name="CartasConfirmadas" table="COR_ANEXO_CNF">
+      <key column="COANEXO"/>
+      <many-to-many column="CODIGO" class="Carta" not-found="ignore"/>
+    </bag>
   </class>
 </hibernate-mapping>
 

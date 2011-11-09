@@ -10,7 +10,9 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
 
         private string _id;
         private string _descripcion;
-
+        private IList<Carta> _cartas;
+        private IList<Carta> _cartasConfirmadas;
+                
         #endregion
 
         #region Constructores
@@ -51,6 +53,23 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
             set { this._descripcion = value; }
         }
 
+        /// <summary>
+        /// Propiedad que asigna u obtiene las cartas de un anexo
+        /// </summary>
+        public virtual IList<Carta> Cartas
+        {
+            get { return _cartas; }
+            set { _cartas = value; }
+        }
+
+        /// <summary>
+        /// Propiedad que asigna u obtiene las cartas confirmadas de un anexo
+        /// </summary>
+        public virtual IList<Carta> CartasConfirmadas
+        {
+            get { return _cartasConfirmadas; }
+            set { _cartasConfirmadas = value; }
+        }
 
         #endregion
     }

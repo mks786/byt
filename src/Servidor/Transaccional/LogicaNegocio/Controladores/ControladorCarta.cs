@@ -81,32 +81,32 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
         ///// <param name="boletin">Boletin a insertar o modificar</param>
         ///// <param name="hash">Hash del usuario que realiza la operacion</param>
         ///// <returns>True: si la modificación fue exitosa; false: en caso contrario</returns>
-        //public static bool InsertarOModificar(Boletin boletin, int hash)
-        //{
-        //    bool exitoso = false;
-        //    try
-        //    {
-        //        #region trace
-        //        if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
-        //            logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
-        //        #endregion
+        public static bool InsertarOModificar(Carta carta, int hash)
+        {
+            bool exitoso = false;
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
 
-        //        ComandoBase<bool> comando = FabricaComandosBoletin.ObtenerComandoInsertarOModificar(boletin);
-        //        comando.Ejecutar();
-        //        exitoso = true;
+                ComandoBase<bool> comando = FabricaComandosCarta.ObtenerComandoInsertarOModificar(carta);
+                comando.Ejecutar();
+                exitoso = true;
 
-        //        #region trace
-        //        if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
-        //            logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
-        //        #endregion
-        //    }
-        //    catch (ApplicationException ex)
-        //    {
-        //        logger.Error(ex.Message);
-        //        throw ex;
-        //    }
-        //    return exitoso;
-        //}
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (ApplicationException ex)
+            {
+                logger.Error(ex.Message);
+                throw ex;
+            }
+            return exitoso;
+        }
 
         ///// <summary>
         ///// Método que elimina un boletin
@@ -114,33 +114,33 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
         ///// <param name="boletin">Boletin a eliminar</param>
         ///// <param name="hash">Hash del usuario que realiza la operacion</param>
         ///// <returns>True si la eliminacion fue exitosa, en caso contrario False</returns>
-        //public static bool Eliminar(Boletin boletin, int hash)
-        //{
-        //    bool exitoso = false;
-        //    try
-        //    {
-        //        #region trace
-        //        if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
-        //            logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
-        //        #endregion
+        public static bool Eliminar(Carta carta, int hash)
+        {
+            bool exitoso = false;
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
 
-        //        ComandoBase<bool> comando = FabricaComandosBoletin.ObtenerComandoEliminarBoletin(boletin);
-        //        comando.Ejecutar();
-        //        exitoso = true;
+                ComandoBase<bool> comando = FabricaComandosCarta.ObtenerComandoEliminarCarta(carta);
+                comando.Ejecutar();
+                exitoso = true;
 
-        //        #region trace
-        //        if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
-        //            logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
-        //        #endregion
-        //    }
-        //    catch (ApplicationException ex)
-        //    {
-        //        logger.Error(ex.Message);
-        //        throw ex;
-        //    }
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (ApplicationException ex)
+            {
+                logger.Error(ex.Message);
+                throw ex;
+            }
 
-        //    return exitoso;
-        //}
+            return exitoso;
+        }
 
         ///// <summary>
         ///// Método que consulta la lista de todos los boletines
