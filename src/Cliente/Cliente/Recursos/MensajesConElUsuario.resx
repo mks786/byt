@@ -459,4 +459,19 @@
   <data name="ErrorFiltroIncompleto" xml:space="preserve">
     <value>Disculpe debe llenar dos o mas filtros para la consulta</value>
   </data>
+  <data name="ConfirmacionEliminarEntradaAlterna" xml:space="preserve">
+    <value>¿Seguro que desea eliminar la entrada alterna?</value>
+  </data>
+  <data name="EntradaAlternaEliminado" xml:space="preserve">
+    <value>Entrada alterna eliminado con éxito</value>
+  </data>
+  <data name="EntradaAlternaInsertado" xml:space="preserve">
+    <value>Entrada alterna insertado con éxito</value>
+  </data>
+  <data name="EntradaAlternaModificado" xml:space="preserve">
+    <value>Entrada alterna modificado con éxito</value>
+  </data>
+  <data name="ErrorEntradaAlternaRepetido" xml:space="preserve">
+    <value>La entrada alterna que intenta introducir ya existe</value>
+  </data>
 </root>

@@ -104,8 +104,6 @@ namespace Trascend.Bolet.Cliente.Ventanas.Principales
             this._presentador.AgregarMedio();
         }
 
-
-
         private void _menuItemCategoriaConsultar_Click(object sender, RoutedEventArgs e)
         {
             this._presentador.ConsultarCategorias();
@@ -117,15 +115,24 @@ namespace Trascend.Bolet.Cliente.Ventanas.Principales
 
         }
 
+        private void _menuItemEntradaAlternaConsultar_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.ConsultarEntradasAlternas();
+        }
         private void _menuItemTransferirPlantilla_Click(object sender, RoutedEventArgs e)
         {
             this._presentador.TransferirPlantilla();
         }
 
+        private void _menuItemEntradaAlternaAgregar_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.AgregarEntradaAlterna();
+        }
         private void _menuItemCartaConsultar_Click(object sender, RoutedEventArgs e)
         {
             this._presentador.ConsultarCartas();
         }
+
         #endregion
 
         #region Historia
@@ -337,8 +344,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Principales
         }
 
         #endregion
-
-
+        
 
 
 

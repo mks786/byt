@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+                   assembly="Trascend.Bolet.ObjetosComunes"
+                   namespace="Trascend.Bolet.ObjetosComunes.Entidades">
+
+  <class name="EntradaAlterna" table="ENTRADA_ALT">
+    <id name="Id" column="CODIGO" />
+    <property name="Fecha" column="FECHA" type="DateTime"/>
+    <property name="Hora" column="HORA" type="DateTime"/>
+    <property name="Descripcion" column="DESCRIPCION" type="string"/>
+    <property name="DescripcionDestinatario" column="XDESCRIP" type="string"/>
+    <property name="CodigoDestinatartio" column="COD_DEST" type="string"/>
+    <property name="Receptor" column="RECEPTOR" type="string"/>
+    <property name="TipoDestinatario" column="TIPO_DEST" type="char"/>
+
+    <many-to-one name="Medio" class="Medio">
+      <column name="MEDIO"/>
+    </many-to-one>
+    
+    <many-to-one name="Remitente" class="Remitente">
+      <column name="CODRED"/>
+    </many-to-one>
+
+    <many-to-one name="Categoria" class="Categoria">
+      <column name="TIPO_ENTRADA"/>
+    </many-to-one>
+  </class>
+
+</hibernate-mapping>
+
+

@@ -1039,4 +1039,67 @@
   <data name="menuItemCarta" xml:space="preserve">
     <value>Carta</value>
   </data>
+  <data name="btnRemitente" xml:space="preserve">
+    <value>Remitente</value>
+  </data>
+  <data name="btnTipoEntrada" xml:space="preserve">
+    <value>Tipo Entrada</value>
+  </data>
+  <data name="lblCodigoDestinatario" xml:space="preserve">
+    <value>Codigo Destinatario:</value>
+  </data>
+  <data name="lblEntrada" xml:space="preserve">
+    <value>Entrada:</value>
+  </data>
+  <data name="lblFechaEntrada" xml:space="preserve">
+    <value>Fecha Entrada:</value>
+  </data>
+  <data name="lblHora" xml:space="preserve">
+    <value>Hora:</value>
+  </data>
+  <data name="lblMedio" xml:space="preserve">
+    <value>Medio:</value>
+  </data>
+  <data name="lblReceptor" xml:space="preserve">
+    <value>Receptor:</value>
+  </data>
+  <data name="lblRemitente" xml:space="preserve">
+    <value>Remitente:</value>
+  </data>
+  <data name="lblTipoDestinatario" xml:space="preserve">
+    <value>Tipo de Destinatario:</value>
+  </data>
+  <data name="lblTipoEntrada" xml:space="preserve">
+    <value>Tipo Entrada:</value>
+  </data>
+  <data name="lsvEntrada" xml:space="preserve">
+    <value>Entrada</value>
+  </data>
+  <data name="lsvFechaEntrada" xml:space="preserve">
+    <value>Fecha Entrada</value>
+  </data>
+  <data name="cbiDepartamento" xml:space="preserve">
+    <value>Dpto</value>
+  </data>
+  <data name="cbiPersona" xml:space="preserve">
+    <value>Persona</value>
+  </data>
+  <data name="titleAgregarEntradaAlterna" xml:space="preserve">
+    <value>Agregar Entrada Alterna</value>
+  </data>
+  <data name="titleConsultarEntradaAlterna" xml:space="preserve">
+    <value>Consultar Entrada Alterna</value>
+  </data>
+  <data name="titleConsultarEntradasAlternas" xml:space="preserve">
+    <value>Consultar Entradas Alternas </value>
+  </data>
+  <data name="lblCategoria" xml:space="preserve">
+    <value>Categoria:</value>
+  </data>
+  <data name="menuItemEntradaAlterna" xml:space="preserve">
+    <value>Entrada Alterna</value>
+  </data>
+  <data name="lsvMedio" xml:space="preserve">
+    <value>Medio</value>
+  </data>
 </root>

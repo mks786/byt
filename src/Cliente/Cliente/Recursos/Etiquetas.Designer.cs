@@ -268,6 +268,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Remitente.
+        /// </summary>
+        public static string btnRemitente {
+            get {
+                return ResourceManager.GetString("btnRemitente", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Saldos.
         /// </summary>
         public static string btnSaldos {
@@ -282,6 +291,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string btnTransferir {
             get {
                 return ResourceManager.GetString("btnTransferir", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tipo Entrada.
+        /// </summary>
+        public static string btnTipoEntrada {
+            get {
+                return ResourceManager.GetString("btnTipoEntrada", resourceCulture);
             }
         }
         
@@ -421,6 +439,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Dpto.
+        /// </summary>
+        public static string cbiDepartamento {
+            get {
+                return ResourceManager.GetString("cbiDepartamento", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Divorciado(a).
         /// </summary>
         public static string cbiDivorciado {
@@ -525,6 +552,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string cbiPatentes {
             get {
                 return ResourceManager.GetString("cbiPatentes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Persona.
+        /// </summary>
+        public static string cbiPersona {
+            get {
+                return ResourceManager.GetString("cbiPersona", resourceCulture);
             }
         }
         
@@ -709,6 +745,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Categoria:.
+        /// </summary>
+        public static string lblCategoria {
+            get {
+                return ResourceManager.GetString("lblCategoria", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to CCI:.
         /// </summary>
         public static string lblCCI {
@@ -741,6 +786,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string lblCodigo {
             get {
                 return ResourceManager.GetString("lblCodigo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Codigo Destinatario:.
+        /// </summary>
+        public static string lblCodigoDestinatario {
+            get {
+                return ResourceManager.GetString("lblCodigoDestinatario", resourceCulture);
             }
         }
         
@@ -898,6 +952,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Entrada:.
+        /// </summary>
+        public static string lblEntrada {
+            get {
+                return ResourceManager.GetString("lblEntrada", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Estado:.
         /// </summary>
         public static string lblEstado {
@@ -979,6 +1042,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Fecha Entrada:.
+        /// </summary>
+        public static string lblFechaEntrada {
+            get {
+                return ResourceManager.GetString("lblFechaEntrada", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Fecha de impresión:.
         /// </summary>
         public static string lblFechaImpresion {
@@ -1011,6 +1083,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string lblFuncion {
             get {
                 return ResourceManager.GetString("lblFuncion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hora:.
+        /// </summary>
+        public static string lblHora {
+            get {
+                return ResourceManager.GetString("lblHora", resourceCulture);
             }
         }
         
@@ -1083,6 +1164,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string lblLogin {
             get {
                 return ResourceManager.GetString("lblLogin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Medio:.
+        /// </summary>
+        public static string lblMedio {
+            get {
+                return ResourceManager.GetString("lblMedio", resourceCulture);
             }
         }
         
@@ -1267,6 +1357,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Receptor:.
+        /// </summary>
+        public static string lblReceptor {
+            get {
+                return ResourceManager.GetString("lblReceptor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Region:.
         /// </summary>
         public static string lblRegion {
@@ -1281,6 +1380,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string lblRegMercantil {
             get {
                 return ResourceManager.GetString("lblRegMercantil", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remitente:.
+        /// </summary>
+        public static string lblRemitente {
+            get {
+                return ResourceManager.GetString("lblRemitente", resourceCulture);
             }
         }
         
@@ -1407,6 +1515,24 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string lblTipoCliente {
             get {
                 return ResourceManager.GetString("lblTipoCliente", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tipo de Destinatario:.
+        /// </summary>
+        public static string lblTipoDestinatario {
+            get {
+                return ResourceManager.GetString("lblTipoDestinatario", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tipo Entrada:.
+        /// </summary>
+        public static string lblTipoEntrada {
+            get {
+                return ResourceManager.GetString("lblTipoEntrada", resourceCulture);
             }
         }
         
@@ -1582,6 +1708,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Entrada.
+        /// </summary>
+        public static string lsvEntrada {
+            get {
+                return ResourceManager.GetString("lsvEntrada", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Facultad.
         /// </summary>
         public static string lsvFacultad {
@@ -1623,6 +1758,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string lsvFechaBoletinVence {
             get {
                 return ResourceManager.GetString("lsvFechaBoletinVence", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fecha Entrada.
+        /// </summary>
+        public static string lsvFechaEntrada {
+            get {
+                return ResourceManager.GetString("lsvFechaEntrada", resourceCulture);
             }
         }
         
@@ -1906,6 +2050,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Entrada Alterna.
+        /// </summary>
+        public static string menuItemEntradaAlterna {
+            get {
+                return ResourceManager.GetString("menuItemEntradaAlterna", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Estado.
         /// </summary>
         public static string menuItemEstado {
@@ -2167,6 +2320,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Agregar Entrada Alterna.
+        /// </summary>
+        public static string titleAgregarEntradaAlterna {
+            get {
+                return ResourceManager.GetString("titleAgregarEntradaAlterna", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Agregar Estado.
         /// </summary>
         public static string titleAgregarEstado {
@@ -2424,6 +2586,24 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string titleConsultarDatosTransferencia {
             get {
                 return ResourceManager.GetString("titleConsultarDatosTransferencia", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Consultar Entrada Alterna.
+        /// </summary>
+        public static string titleConsultarEntradaAlterna {
+            get {
+                return ResourceManager.GetString("titleConsultarEntradaAlterna", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Consultar Entradas Alternas .
+        /// </summary>
+        public static string titleConsultarEntradasAlternas {
+            get {
+                return ResourceManager.GetString("titleConsultarEntradasAlternas", resourceCulture);
             }
         }
         

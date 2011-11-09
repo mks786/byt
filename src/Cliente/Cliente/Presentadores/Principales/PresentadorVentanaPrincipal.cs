@@ -10,7 +10,6 @@ using Trascend.Bolet.Cliente.Ventanas.Agentes;
 using Trascend.Bolet.Cliente.Ventanas.Anexos;
 using Trascend.Bolet.Cliente.Ventanas.Categorias;
 using Trascend.Bolet.Cliente.Ventanas.Cartas;
-using Trascend.Bolet.Cliente.Ventanas.CartasOuts;
 using Trascend.Bolet.Cliente.Ventanas.Boletines;
 using Trascend.Bolet.Cliente.Ventanas.Estados;
 using Trascend.Bolet.Cliente.Ventanas.Internacionales;
@@ -31,6 +30,7 @@ using Trascend.Bolet.Cliente.Ventanas.Interesados;
 using Trascend.Bolet.Cliente.Ventanas.Asociados;
 using Trascend.Bolet.Cliente.Ventanas.Resumenes;
 using Trascend.Bolet.Cliente.Ventanas.Remitentes;
+using Trascend.Bolet.Cliente.Ventanas.EntradasAlternas;
 
 namespace Trascend.Bolet.Cliente.Presentadores.Principales
 {
@@ -404,6 +404,22 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
         /// <summary>
         /// Método que coloca la página "ConsultarAnexos" en el Frame principal
         /// </summary>
+        public void AgregarEntradaAlterna()
+        {
+            this._ventana.Contenedor.Navigate(new AgregarEntradaAlterna());
+        }
+
+        /// <summary>
+        /// Método que coloca la página "ConsultarAnexos" en el Frame principal
+        /// </summary>
+        public void ConsultarEntradasAlternas()
+        {
+            this._ventana.Contenedor.Navigate(new ConsultarEntradasAlternas());
+        }
+
+        /// <summary>
+        /// Método que coloca la página "ConsultarAnexos" en el Frame principal
+        /// </summary>
         public void AgregarCategoria()
         {
             this._ventana.Contenedor.Navigate(new AgregarCategoria());
@@ -411,7 +427,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
 
         public void TransferirPlantilla()
         {
-            this._ventana.Contenedor.Navigate(new ConsultarCartasOuts());
+            //this._ventana.Contenedor.Navigate(new ConsultarCartasOuts());
         }
 
         public void ConsultarCartas()
@@ -499,6 +515,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
                                     break;
                                 case "_menuItemCategoria":
                                     if (objeto.Id.Equals(Recursos.Ids.Categoria))
+                                        itemNivel2.Visibility = System.Windows.Visibility.Visible;
+                                    break;
+                                case "_menuItemEntradaAlterna":
+                                    if (objeto.Id.Equals(Recursos.Ids.EntradaAlterna))
                                         itemNivel2.Visibility = System.Windows.Visibility.Visible;
                                     break;
                                 case "_menuItemCarta":

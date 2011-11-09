@@ -97,6 +97,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to MYPTAGENTE.
+        /// </summary>
+        public static string AgregarEntradaAlterna {
+            get {
+                return ResourceManager.GetString("AgregarEntradaAlterna", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to MYP_ESTADOS.
         /// </summary>
         public static string AgregarEstado {
@@ -336,6 +345,24 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string ConsultarDatosTransferencia {
             get {
                 return ResourceManager.GetString("ConsultarDatosTransferencia", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to MYPTAGENTE.
+        /// </summary>
+        public static string ConsultarEntradaAlterna {
+            get {
+                return ResourceManager.GetString("ConsultarEntradaAlterna", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to MYPTAGENTE.
+        /// </summary>
+        public static string ConsultarEntradaAlternas {
+            get {
+                return ResourceManager.GetString("ConsultarEntradaAlternas", resourceCulture);
             }
         }
         
@@ -646,6 +673,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to MYPTAGENTE.
+        /// </summary>
+        public static string EliminarEntradaAlterna {
+            get {
+                return ResourceManager.GetString("EliminarEntradaAlterna", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to MYP_ESTADOS.
         /// </summary>
         public static string EliminarEstado {
@@ -781,6 +817,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to MYPTAGENTE.
+        /// </summary>
+        public static string EntradaAlterna {
+            get {
+                return ResourceManager.GetString("EntradaAlterna", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to MYP_ESTADOS.
         /// </summary>
         public static string Estado {
@@ -876,6 +921,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string ModificarDatosTransferencia {
             get {
                 return ResourceManager.GetString("ModificarDatosTransferencia", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to MYPTAGENTE.
+        /// </summary>
+        public static string ModificarEntradaAlterna {
+            get {
+                return ResourceManager.GetString("ModificarEntradaAlterna", resourceCulture);
             }
         }
         

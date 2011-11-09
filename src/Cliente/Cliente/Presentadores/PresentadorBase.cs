@@ -138,6 +138,30 @@ namespace Trascend.Bolet.Cliente.Presentadores
         }
         
         /// <summary>
+        /// Método que busca un Departamento dentro de una lista de usuarios
+        /// </summary>
+        /// <param name="usuarios">Lista de usuarios</param>
+        /// <param name="iniciales">Iniciales a buscar</param>
+        /// <returns>Usuario dentro de la lista</returns>
+        public Usuario BuscarPersonaPorInicial(IList<Usuario> usuarios, string iniciales)
+        {
+            Usuario retorno = null;
+
+            if (usuarios != null)
+                foreach (Usuario usuario in usuarios)
+                {
+                    if (usuario.
+                        Iniciales.Equals(iniciales))
+                    {
+                        retorno = usuario;
+                        break;
+                    }
+                }
+
+            return retorno;
+        }
+
+        /// <summary>
         /// Método que busca un Interesado dentro de una lista de interesados
         /// </summary>
         /// <param name="interesados">Lista de interesados</param>
@@ -200,7 +224,6 @@ namespace Trascend.Bolet.Cliente.Presentadores
             return retorno;
         }
 
-
         /// <summary>
         /// Busca el tipode persona correspondiente a la inicial que se le esté pasando
         /// </summary>
@@ -214,6 +237,26 @@ namespace Trascend.Bolet.Cliente.Presentadores
                 retorno = Recursos.Etiquetas.cbiJuridica;
             else
                 retorno = Recursos.Etiquetas.cbiNatural;
+
+            return retorno;
+        }
+
+
+        /// <summary>
+        /// Busca el tipo de destinatario correspondiente a la inicial que se le esté pasando
+        /// </summary>
+        /// <param name="tipoDestinatario">Inicial del tipo de Destinatario</param>
+        /// <returns>El tipo de destinatario correspondiente</returns>
+        public string BuscarTipoDestinatario(char tipoDestinatario)
+        {
+            string retorno;
+
+            if (Recursos.Etiquetas.cbiPersona[0] == tipoDestinatario)
+                retorno = Recursos.Etiquetas.cbiPersona;
+            else if (Recursos.Etiquetas.cbiDepartamento[0] == tipoDestinatario)
+                retorno = Recursos.Etiquetas.cbiDepartamento;
+            else
+                retorno = Recursos.Etiquetas.cbiNinguno;
 
             return retorno;
         }
@@ -328,6 +371,121 @@ namespace Trascend.Bolet.Cliente.Presentadores
         }
 
         /// <summary>
+        /// Método que busca un estado dentro de una lista de remitentes
+        /// </summary>
+        /// <param name="medios">Lista de Medios</param>
+        /// <param name="medioBuscado">Medio a buscar</param>
+        /// <returns>Medio dentro de la lista</returns>
+        public Medio BuscarMedios(IList<Medio> medios, Medio medioBuscado)
+        {
+            Medio retorno = null;
+
+            if (medioBuscado != null)
+                foreach (Medio remitente in medios)
+                {
+                    if (remitente.Id.Equals(medioBuscado.Id))
+                    {
+                        retorno = remitente;
+                        break;
+                    }
+                }
+
+            return retorno;
+        }
+
+        /// <summary>
+        /// Método que busca un estado dentro de una lista de remitentes
+        /// </summary>
+        /// <param name="medios">Lista de Medios</param>
+        /// <param name="medioBuscado">Medio a buscar</param>
+        /// <returns>Medio dentro de la lista</returns>
+        public Medio BuscarMedio(IList<Medio> medios, Medio medioBuscado)
+        {
+            Medio retorno = null;
+
+            if (medioBuscado != null)
+                foreach (Medio medio in medios)
+                {
+                    if (medio.Id.Equals(medioBuscado.Id))
+                    {
+                        retorno = medio;
+                        break;
+                    }
+                }
+
+            return retorno;
+        }
+
+        /// <summary>
+        /// Método que busca un estado dentro de una lista de receptores
+        /// </summary>
+        /// <param name="receptores">Lista de receptores</param>
+        /// <param name="receptorBuscado">Receptor a buscar</param>
+        /// <returns>Receptor dentro de la lista</returns>
+        public Usuario BuscarReceptor(IList<Usuario> receptores, string receptorBuscado)
+        {
+            Usuario retorno = null;
+
+            if (receptorBuscado != null)
+                foreach (Usuario receptor in receptores)
+                {
+                    if (receptor.Iniciales.Equals(receptorBuscado))
+                    {
+                        retorno = receptor;
+                        break;
+                    }
+                }
+
+            return retorno;
+        }
+
+        /// <summary>
+        /// Método que busca un estado dentro de una lista de remitentes
+        /// </summary>
+        /// <param name="remitentes">Lista de remitentes</param>
+        /// <param name="remitenteBuscado">Remitente a buscar</param>
+        /// <returns>Remitente dentro de la lista</returns>
+        public Remitente BuscarRemitente(IList<Remitente> remitentes, Remitente remitenteBuscado)
+        {
+            Remitente retorno = null;
+
+            if (remitenteBuscado != null)
+                foreach (Remitente remitente in remitentes)
+                {
+                    if (remitente.Id.Equals(remitenteBuscado.Id))
+                    {
+                        retorno = remitente;
+                        break;
+                    }
+                }
+
+            return retorno;
+        }
+
+        /// <summary>
+        /// Método que busca un estado dentro de una lista de categorias
+        /// </summary>
+        /// <param name="categorias">Lista de categorias</param>
+        /// <param name="categoriaBuscado">Categoria a buscar</param>
+        /// <returns>Categoria dentro de la lista</returns>
+        public Categoria BuscarCategoria(IList<Categoria> categorias, Categoria categoriaBuscado)
+        {
+            Categoria retorno = null;
+
+            if (categoriaBuscado != null)
+                foreach (Categoria categoria in categorias)
+                {
+                    if (categoria.Id.Equals(categoriaBuscado.Id))
+                    {
+                        retorno = categoria;
+                        break;
+                    }
+                }
+
+            return retorno;
+        }
+
+        /// <summary>
         /// Método que busca un estado dentro de una lista de Monedas
         /// </summary>
         /// <param name="monedas">Lista de idiomas</param>
@@ -348,6 +506,22 @@ namespace Trascend.Bolet.Cliente.Presentadores
                 }
 
             return retorno;
+        }
+
+        public void CargarComboBoxTiempo(object horas, object minutos)
+        {
+            ((ComboBox)horas).Items.Add("");
+            ((ComboBox)minutos).Items.Add("");
+
+            for (int i = 1; i < 25; i++)
+            {
+                ((ComboBox)horas).Items.Add(i.ToString());
+            }
+
+            for (int i = 0; i < 60; i++)
+            {
+                ((ComboBox)minutos).Items.Add(i.ToString());
+            }
         }
 
         /// <summary>

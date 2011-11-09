@@ -129,6 +129,9 @@
   <data name="AgregarBoletin" xml:space="preserve">
     <value>MYPTBOLETIN</value>
   </data>
+  <data name="AgregarEntradaAlterna" xml:space="preserve">
+    <value>MYPTAGENTE</value>
+  </data>
   <data name="AgregarEstado" xml:space="preserve">
     <value>MYP_ESTADOS</value>
   </data>
@@ -209,6 +212,12 @@
   </data>
   <data name="ConsultarDatosTransferencia" xml:space="preserve">
     <value>FAC_ASO_TRANF</value>
+  </data>
+  <data name="ConsultarEntradaAlterna" xml:space="preserve">
+    <value>MYPTAGENTE</value>
+  </data>
+  <data name="ConsultarEntradaAlternas" xml:space="preserve">
+    <value>MYPTAGENTE</value>
   </data>
   <data name="ConsultarEstado" xml:space="preserve">
     <value>MYP_ESTADOS</value>
@@ -312,6 +321,9 @@
   <data name="EliminarDatosTransferencia" xml:space="preserve">
     <value>FAC_ASO_TRANF</value>
   </data>
+  <data name="EliminarEntradaAlterna" xml:space="preserve">
+    <value>MYPTAGENTE</value>
+  </data>
   <data name="EliminarEstado" xml:space="preserve">
     <value>MYP_ESTADOS</value>
   </data>
@@ -357,6 +369,9 @@
   <data name="EliminarUsuario" xml:space="preserve">
     <value>SEGTUSU</value>
   </data>
+  <data name="EntradaAlterna" xml:space="preserve">
+    <value>MYPTAGENTE</value>
+  </data>
   <data name="Estado" xml:space="preserve">
     <value>MYP_ESTADOS</value>
   </data>
@@ -389,6 +404,9 @@
   </data>
   <data name="ModificarDatosTransferencia" xml:space="preserve">
     <value>FAC_ASO_TRANF</value>
+  </data>
+  <data name="ModificarEntradaAlterna" xml:space="preserve">
+    <value>MYPTAGENTE</value>
   </data>
   <data name="ModificarEstado" xml:space="preserve">
     <value>MYP_ESTADOS</value>

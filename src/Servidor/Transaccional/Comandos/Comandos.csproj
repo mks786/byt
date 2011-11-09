@@ -53,6 +53,8 @@
     <Compile Include="Comandos\ComandosAuditoria\ComandoAuditoriaPorFkyTabla.cs" />
     <Compile Include="Comandos\ComandosCartaOut\ComandoConsultarTodosCartaOuts.cs" />
     <Compile Include="Comandos\ComandosCarta\ComandoConsultarCartasFiltro.cs" />
+    <Compile Include="Comandos\ComandosCarta\ComandoEliminarCarta.cs" />
+    <Compile Include="Comandos\ComandosCarta\ComandoInsertarOModificarCarta.cs" />
     <Compile Include="Comandos\ComandosInteresado\ComandoConsultarTodosInteresados.cs" />
     <Compile Include="Comandos\ComandosInteresado\ComandoEliminarInteresado.cs" />
     <Compile Include="Comandos\ComandosInteresado\ComandoInsertarOModificarInteresado.cs" />
@@ -156,10 +158,15 @@
     <Compile Include="Comandos\ComandosCategoria\ComandoEliminarCategoria.cs" />
     <Compile Include="Comandos\ComandosCategoria\ComandoInsertarOModificarCategoria.cs" />
     <Compile Include="Comandos\ComandosCategoria\ComandoVerificarExistenciaCategoria.cs" />
+    <Compile Include="Comandos\ComandosEntradaAlterna\ComandoConsultarTodosBoletines.cs" />
+    <Compile Include="Comandos\ComandosEntradaAlterna\ComandoEliminarBoletin.cs" />
+    <Compile Include="Comandos\ComandosEntradaAlterna\ComandoInsertarOModificarBoletin.cs" />
+    <Compile Include="Comandos\ComandosEntradaAlterna\ComandoVerificarExistenciaBoletin.cs" />
     <Compile Include="Comandos\Receptor.cs" />
     <Compile Include="Comandos\ComandosUsuario\ComandoConsultarTodosUsuarios.cs" />
     <Compile Include="Comandos\ComandosUsuario\ComandoConsultarUsuarioPorID.cs" />
     <Compile Include="Comandos\ComandosUsuario\ComandoInsertarOModificarUsuario.cs" />
+    <Compile Include="Fabrica\FabricaComandosEntradaAlterna.cs" />
     <Compile Include="Fabrica\FabricaComandosCartaOut.cs" />
     <Compile Include="Fabrica\FabricaComandosRemitente.cs" />
     <Compile Include="Fabrica\FabricaComandosCategoria.cs" />

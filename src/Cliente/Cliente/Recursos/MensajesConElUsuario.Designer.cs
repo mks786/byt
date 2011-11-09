@@ -250,6 +250,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ¿Seguro que desea eliminar la entrada alterna?.
+        /// </summary>
+        internal static string ConfirmacionEliminarEntradaAlterna {
+            get {
+                return ResourceManager.GetString("ConfirmacionEliminarEntradaAlterna", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ¿Seguro que desea eliminar el estado?.
         /// </summary>
         internal static string ConfirmacionEliminarEstado {
@@ -430,6 +439,33 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Entrada alterna eliminado con éxito.
+        /// </summary>
+        internal static string EntradaAlternaEliminado {
+            get {
+                return ResourceManager.GetString("EntradaAlternaEliminado", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Entrada alterna insertado con éxito.
+        /// </summary>
+        internal static string EntradaAlternaInsertado {
+            get {
+                return ResourceManager.GetString("EntradaAlternaInsertado", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Entrada alterna modificado con éxito.
+        /// </summary>
+        internal static string EntradaAlternaModificado {
+            get {
+                return ResourceManager.GetString("EntradaAlternaModificado", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to El agente que intenta introducir ya existe.
         /// </summary>
         internal static string ErrorAgenteRepetido {
@@ -480,6 +516,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         internal static string ErrorCorrespondenciaNoEncontrada {
             get {
                 return ResourceManager.GetString("ErrorCorrespondenciaNoEncontrada", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to La entrada alterna que intenta introducir ya existe.
+        /// </summary>
+        internal static string ErrorEntradaAlternaRepetido {
+            get {
+                return ResourceManager.GetString("ErrorEntradaAlternaRepetido", resourceCulture);
             }
         }
         
