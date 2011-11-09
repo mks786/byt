@@ -10,6 +10,7 @@ using Trascend.Bolet.Cliente.Ventanas.Agentes;
 using Trascend.Bolet.Cliente.Ventanas.Anexos;
 using Trascend.Bolet.Cliente.Ventanas.Categorias;
 using Trascend.Bolet.Cliente.Ventanas.Cartas;
+//using Trascend.Bolet.Cliente.Ventanas.CartasOuts;
 using Trascend.Bolet.Cliente.Ventanas.Boletines;
 using Trascend.Bolet.Cliente.Ventanas.Estados;
 using Trascend.Bolet.Cliente.Ventanas.Internacionales;
