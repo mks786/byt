@@ -11,6 +11,12 @@ namespace Trascend.Bolet.Cliente.Contratos.Cartas
 
         object Asociados { get; set; }
 
+        string NombreAsociado { get; set; }
+
+        string idAsociadoFiltrar { get; set; }
+
+        string NombreAsociadoFiltrar { get; set; }
+
         object Receptor { get; set; }
 
         object Receptores { get; set; }
@@ -38,6 +44,14 @@ namespace Trascend.Bolet.Cliente.Contratos.Cartas
         object Medio { get; set; }
 
         object Medios { get; set; }
+
+        object MedioTracking { get; set; }
+
+        object MediosTracking { get; set; }
+
+        object MedioTrackingConfirmacion { get; set; }
+
+        object MediosTrackingConfirmacion { get; set; }
 
         object Anexo { get; set; }
 

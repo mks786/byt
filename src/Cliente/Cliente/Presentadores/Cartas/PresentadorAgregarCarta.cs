@@ -4,6 +4,7 @@ using System.Net.Sockets;
 using System.Runtime.Remoting;
 using System.Windows.Input;
 using NLog;
+using System.Linq;
 using Trascend.Bolet.Cliente.Contratos.Cartas;
 using Trascend.Bolet.Cliente.Ventanas.Principales;
 using Trascend.Bolet.ObjetosComunes.ContratosServicios;
@@ -17,6 +18,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
     {
         private IAgregarCarta _ventana;
         private ICartaServicios _cartaServicios;
+        private IResumenServicios _resumenServicios;
         private IMedioServicios _medioServicios;
         private IAsociadoServicios _asociadoServicios;
         private IUsuarioServicios _usuarioServicios;
@@ -25,6 +27,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
         private IDepartamentoServicios _departamentoServicios;
         private static PaginaPrincipal _paginaPrincipal = PaginaPrincipal.ObtenerInstancia;
         private static Logger logger = LogManager.GetCurrentClassLogger();
+        private IList<Asociado> _asociados;
+        private IList<Anexo> _anexos;
+        private IList<Anexo> _anexosConfirmacion;
 
         /// <summary>
         /// Constructor predeterminado
@@ -38,6 +43,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
                 this._ventana.Carta = new Carta();
                 this._cartaServicios = (ICartaServicios)Activator.GetObject(typeof(ICartaServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["CartaServicios"]);
+                this._resumenServicios = (IResumenServicios)Activator.GetObject(typeof(IResumenServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["ResumenServicios"]);
                 this._medioServicios = (IMedioServicios)Activator.GetObject(typeof(IMedioServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["MedioServicios"]);
                 this._usuarioServicios = (IUsuarioServicios)Activator.GetObject(typeof(IUsuarioServicios),
@@ -74,24 +81,28 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
 
                 this._ventana.Receptores = this._usuarioServicios.ConsultarTodos();
 
-                IList<Anexo> anexos = this._anexoServicios.ConsultarTodos();
+                _anexos = this._anexoServicios.ConsultarTodos();
                 Anexo primerAnexo = new Anexo();
                 primerAnexo.Id = "NGN";
-                anexos.Insert(0, primerAnexo);
-                this._ventana.Anexos = anexos;
-                this._ventana.AnexosConfirmacion = anexos;
-
-                IList<Contacto> contactos = this._contactoServicios.ConsultarTodos();
-                Contacto primerContacto = new Contacto();
-                primerContacto.Id = int.MinValue;
-                contactos.Insert(0, primerContacto);
-                this._ventana.Personas = contactos;
-
-                this._ventana.Personas = this._ventana.Receptores;
+                _anexos.Insert(0, primerAnexo);
+                this._ventana.Anexos = _anexos;
+                _anexosConfirmacion = this._anexoServicios.ConsultarTodos();
+                _anexosConfirmacion.Insert(0, primerAnexo);
+                this._ventana.AnexosConfirmacion = _anexosConfirmacion;
+                //this._ventana.Personas = this._ventana.Receptores;
 
                 this._ventana.Asociados = this._asociadoServicios.ConsultarTodos();
 
+                this._asociados = (IList<Asociado>)this._ventana.Asociados;
+
                 this._ventana.Departamentos = this._departamentoServicios.ConsultarTodos();
+
+                this._ventana.MediosTracking = this._ventana.Medios;
+
+                this._ventana.MediosTrackingConfirmacion = this._ventana.Medios;
+
+                this._ventana.Resumenes = this._resumenServicios.ConsultarTodos();
+
 
                 this._ventana.FocoPredeterminado();
             }
@@ -128,36 +139,40 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
         {
             try
             {
-                //EntradaAlterna entradaAlterna = (EntradaAlterna)this._ventana.EntradaAlterna;
+                Carta carta = (Carta)this._ventana.Carta;
 
-                //entradaAlterna.Medio = (Medio)this._ventana.Medio;
-                //entradaAlterna.Receptor = ((Usuario)this._ventana.Receptor).Iniciales;
-                //entradaAlterna.Remitente = !((Remitente)this._ventana.Remitente).Id.Equals("NGN") ? (Remitente)this._ventana.Remitente : null;
-                //entradaAlterna.Categoria = !((Categoria)this._ventana.Categoria).Id.Equals("NGN") ? (Categoria)this._ventana.Categoria : null;
-                //entradaAlterna.TipoDestinatario = this._ventana.TipoDestinatario;
+                carta.Medio = ((Medio)this._ventana.Medio).Id;
+                carta.Receptor = ((Usuario)this._ventana.Receptor).Iniciales;
+                carta.Departamento = (Departamento)this._ventana.Departamento;
+                carta.Asociado = ((Asociado)this._ventana.Asociado);
+                carta.Persona = ((Contacto)this._ventana.Persona).Nombre;
+                //carta.Receptor = ((Usuario)this._ventana.Receptor).Iniciales;
+                //carta.Remitente = !((Remitente)this._ventana.Remitente).Id.Equals("NGN") ? (Remitente)this._ventana.Remitente : null;
+                //carta.Categoria = !((Categoria)this._ventana.Categoria).Id.Equals("NGN") ? (Categoria)this._ventana.Categoria : null;
+                //carta.TipoDestinatario = this._ventana.TipoDestinatario;
 
                 //if (!this._ventana.Hora.Equals(""))
-                //    entradaAlterna.Hora = new DateTime(entradaAlterna.Fecha.Value.Year, entradaAlterna.Fecha.Value.Month, entradaAlterna.Fecha.Value.Day,
+                //    carta.Hora = new DateTime(entradaAlterna.Fecha.Value.Year, entradaAlterna.Fecha.Value.Month, entradaAlterna.Fecha.Value.Day,
                 //        !this._ventana.Hora.Equals(" ") ? int.Parse((string)this._ventana.Hora) : 0,
                 //        !this._ventana.Minuto.Equals(" ") ? int.Parse((string)this._ventana.Minuto) : 0, 0);
 
-                //if (entradaAlterna.TipoDestinatario != ' ')
+                //if (carta.TipoDestinatario != ' ')
                 //{
-                //    entradaAlterna.CodigoDestinatartio = entradaAlterna.TipoDestinatario == 'D' ? ((Departamento)_ventana.Departamento).Id : ((Usuario)_ventana.Persona).Iniciales;
-                //    entradaAlterna.DescripcionDestinatario = entradaAlterna.TipoDestinatario == 'D' ? ((Departamento)_ventana.Departamento).Descripcion : ((Usuario)_ventana.Persona).NombreCompleto;
+                //    carta.CodigoDestinatartio = entradaAlterna.TipoDestinatario == 'D' ? ((Departamento)_ventana.Departamento).Id : ((Usuario)_ventana.Persona).Iniciales;
+                //    carta.DescripcionDestinatario = entradaAlterna.TipoDestinatario == 'D' ? ((Departamento)_ventana.Departamento).Descripcion : ((Usuario)_ventana.Persona).NombreCompleto;
                 //}
 
-                //if (!this._cartaServicios.VerificarExistencia(entradaAlterna))
-                //{
-                //    bool exitoso = this._cartaServicios.InsertarOModificar(entradaAlterna, UsuarioLogeado.Hash);
+                if (!this._cartaServicios.VerificarExistencia(carta))
+                {
+                    bool exitoso = this._cartaServicios.InsertarOModificar(carta, UsuarioLogeado.Hash);
 
-                //    if (exitoso)
-                //        this.Navegar(Recursos.MensajesConElUsuario.EntradaAlternaInsertado, false);
-                //}
-                //else
-                //{
-                //    this._ventana.Mensaje(Recursos.MensajesConElUsuario.ErrorAgenteRepetido);
-                //}
+                    if (exitoso)
+                        this.Navegar(Recursos.MensajesConElUsuario.EntradaAlternaInsertado, false);
+                }
+                else
+                {
+                    this._ventana.Mensaje(Recursos.MensajesConElUsuario.ErrorAgenteRepetido);
+                }
 
             }
             catch (ApplicationException ex)
@@ -180,6 +195,138 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
                 logger.Error(ex.Message);
                 this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
             }
+        }
+
+        public void CambiarAsociado()
+        {
+            try
+            {
+                Asociado asociado = this._asociadoServicios.ConsultarAsociadoConTodo((Asociado)this._ventana.Asociado);
+                asociado.Contactos = this._contactoServicios.ConsultarContactosPorAsociado(asociado);
+                this._ventana.NombreAsociado = ((Asociado)this._ventana.Asociado).Nombre;
+                this._ventana.Personas = asociado.Contactos;
+            }
+            catch (ApplicationException e)
+            {
+                this._ventana.Personas = null;
+            }
+        }
+
+        public void BuscarAsociado()
+        {
+            IEnumerable<Asociado> asociadosFiltrados = this._asociados;
+
+            if (!string.IsNullOrEmpty(this._ventana.idAsociadoFiltrar))
+            {
+                asociadosFiltrados = from p in asociadosFiltrados
+                                     where p.Id == int.Parse(this._ventana.idAsociadoFiltrar)
+                                     select p;
+            }
+
+            if (!string.IsNullOrEmpty(this._ventana.NombreAsociadoFiltrar))
+            {
+                asociadosFiltrados = from p in asociadosFiltrados
+                                     where p.Nombre != null &&
+                                     p.Nombre.ToLower().Contains(this._ventana.NombreAsociadoFiltrar.ToLower())
+                                     select p;
+            }
+
+            if (asociadosFiltrados.ToList<Asociado>().Count != 0)
+                this._ventana.Asociados = asociadosFiltrados.ToList<Asociado>();
+            else
+                this._ventana.Asociados = this._asociados;
+        }
+
+        public bool AgregarAnexoCarta()
+        {
+            IList<Anexo> anexosCarta;
+            bool retorno = false;
+            if ((null != (Anexo)this._ventana.Anexo) && (!((Anexo)this._ventana.Anexo).Id.Equals("NGN")))
+            {
+                if (null == ((Carta)this._ventana.Carta).Anexos)
+                    anexosCarta = new List<Anexo>();
+                else
+                    anexosCarta = ((Carta)this._ventana.Carta).Anexos;
+
+                anexosCarta.Add((Anexo)this._ventana.Anexo);
+                ((Carta)this._ventana.Carta).Anexos = anexosCarta;
+                this._ventana.AnexosCarta = anexosCarta.ToList<Anexo>();
+                this._anexos.Remove((Anexo)this._ventana.Anexo);
+                this._ventana.Anexos = this._anexos.ToList<Anexo>();
+                retorno = true;
+            }
+            return retorno;
+        }
+
+        public bool AgregarAnexoCartaConfirmacion()
+        {
+            IList<Anexo> anexosCarta;
+            bool retorno = false;
+            if ((null != (Anexo)this._ventana.AnexoConfirmacion) && (!((Anexo)this._ventana.AnexoConfirmacion).Id.Equals("NGN")))
+            {
+                if (null == ((Carta)this._ventana.Carta).AnexosConfirmacion)
+                    anexosCarta = new List<Anexo>();
+                else
+                    anexosCarta = ((Carta)this._ventana.Carta).AnexosConfirmacion;
+
+                anexosCarta.Add((Anexo)this._ventana.AnexoConfirmacion);
+                ((Carta)this._ventana.Carta).AnexosConfirmacion = anexosCarta;
+                this._ventana.AnexosConfirmacionCarta = anexosCarta.ToList<Anexo>();
+                this._anexosConfirmacion.Remove((Anexo)this._ventana.AnexoConfirmacion);
+                this._ventana.AnexosConfirmacion = this._anexosConfirmacion.ToList<Anexo>();
+                retorno = true;
+            }
+            return retorno;
+        }
+
+        public bool DeshabilitarAnexosCarta()
+        {
+            IList<Anexo> anexosCarta;
+            bool respuesta = false;
+
+            if (null != ((Anexo)this._ventana.AnexoCarta))
+            {
+                if (null == ((Carta)this._ventana.Carta).Anexos)
+                    anexosCarta = new List<Anexo>();
+                else
+                    anexosCarta = ((Carta)this._ventana.Carta).Anexos;
+
+                anexosCarta.Remove((Anexo)this._ventana.AnexoCarta);
+                ((Carta)this._ventana.Carta).Anexos = anexosCarta;
+                this._anexos.Add((Anexo)this._ventana.AnexoCarta);
+                this._ventana.AnexosCarta = anexosCarta.ToList<Anexo>();
+                this._ventana.Anexos = this._anexos.ToList<Anexo>();
+
+                if (anexosCarta.Count == 0)
+                    respuesta = true;
+
+            }
+            return respuesta;
+        }
+
+        public bool DeshabilitarAnexosCartaConfirmacion()
+        {
+            IList<Anexo> anexosCarta;
+            bool respuesta = false;
+
+            if (null != ((Anexo)this._ventana.AnexoConfirmacionCarta))
+            {
+                if (null == ((Carta)this._ventana.Carta).AnexosConfirmacion)
+                    anexosCarta = new List<Anexo>();
+                else
+                    anexosCarta = ((Carta)this._ventana.Carta).AnexosConfirmacion;
+
+                anexosCarta.Remove((Anexo)this._ventana.AnexoConfirmacionCarta);
+                ((Carta)this._ventana.Carta).AnexosConfirmacion = anexosCarta;
+                this._anexosConfirmacion.Add((Anexo)this._ventana.AnexoConfirmacionCarta);
+                this._ventana.AnexosConfirmacionCarta = anexosCarta.ToList<Anexo>();
+                this._ventana.AnexosConfirmacion = this._anexosConfirmacion.ToList<Anexo>();
+
+                if (anexosCarta.Count == 0)
+                    respuesta = true;
+
+            }
+            return respuesta;
         }
     }
 }

@@ -151,6 +151,30 @@ namespace Trascend.Bolet.Cliente.Ventanas.Cartas
             set { this._cbxMedio.DataContext = value; }
         }
 
+
+        public object MedioTracking
+        {
+            get { return this._cbxMedioTracking.SelectedItem; }
+            set { this._cbxMedioTracking.SelectedItem = value; }
+        }
+
+        public object MediosTracking
+        {
+            get { return this._cbxMedioTracking.DataContext; }
+            set { this._cbxMedioTracking.DataContext = value; }
+        }
+
+        public object MedioTrackingConfirmacion
+        {
+            get { return this._cbxMedioTrackingConfirmacion.SelectedItem; }
+            set { this._cbxMedioTrackingConfirmacion.SelectedItem = value; }
+        }
+
+        public object MediosTrackingConfirmacion
+        {
+            get { return this._cbxMedioTrackingConfirmacion.DataContext; }
+            set { this._cbxMedioTrackingConfirmacion.DataContext = value; }
+        }
         public object Anexo
         {
             get { return this._cbxAnexo.SelectedItem; }
@@ -210,6 +234,23 @@ namespace Trascend.Bolet.Cliente.Ventanas.Cartas
             //this._txtNombreDatos.Focus();
         }
 
+        public string NombreAsociado
+        {
+            get { return this._txtAsociado.Text; }
+            set { this._txtAsociado.Text = value; }
+        }
+
+        public string idAsociadoFiltrar
+        {
+            get { return this._txtIdAsociado.Text; }
+            set { this._txtIdAsociado.Text = value; }
+        }
+
+        public string NombreAsociadoFiltrar
+        {
+            get { return this._txtNombreAsociado.Text; }
+            set { this._txtNombreAsociado.Text = value; }
+        }
         #endregion
 
         public AgregarCarta()
@@ -233,18 +274,73 @@ namespace Trascend.Bolet.Cliente.Ventanas.Cartas
         {
             if (!EstaCargada)
             {
-                //this._presentador.CargarPagina();
+                this._presentador.CargarPagina();
                 EstaCargada = true;
             }
         }
 
         private void _txtAsociado_GotFocus(object sender, RoutedEventArgs e)
         {
+            this._txtAsociado.Visibility = System.Windows.Visibility.Collapsed;
+            this._lstAsociados.Visibility = System.Windows.Visibility.Visible;
+            this._lstAsociados.IsEnabled = true;
+            this._btnConsultarAsociado.Visibility = System.Windows.Visibility.Visible;
+            this._txtIdAsociado.Visibility = System.Windows.Visibility.Visible;
+            this._txtNombreAsociado.Visibility = System.Windows.Visibility.Visible;
+            this._lblIdAsociado.Visibility = System.Windows.Visibility.Visible;
+            this._lblNombreAsociado.Visibility = System.Windows.Visibility.Visible;
 
         }
 
         private void _lstAsociados_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
+            this._presentador.CambiarAsociado();
+            this._lstAsociados.Visibility = System.Windows.Visibility.Collapsed;
+            this._btnConsultarAsociado.Visibility = System.Windows.Visibility.Collapsed;
+            this._txtIdAsociado.Visibility = System.Windows.Visibility.Collapsed;
+            this._txtNombreAsociado.Visibility = System.Windows.Visibility.Collapsed;
+            this._txtAsociado.Visibility = System.Windows.Visibility.Visible;
+            this._lblIdAsociado.Visibility = System.Windows.Visibility.Collapsed;
+            this._lblNombreAsociado.Visibility = System.Windows.Visibility.Collapsed;
+
+        }
+
+        private void _btnConsultarAsociado_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.BuscarAsociado();
+        }
+
+        private void _btnMas_Click(object sender, RoutedEventArgs e)
+        {
+
+            if ((this._presentador.AgregarAnexoCarta()) && (this._lstAnexosCarta.Visibility == System.Windows.Visibility.Collapsed))
+                this._lstAnexosCarta.Visibility = System.Windows.Visibility.Visible;
+
+        }
+
+        private void _btnMenos_Click(object sender, RoutedEventArgs e)
+        {
+            if (this._presentador.DeshabilitarAnexosCarta())
+            {
+                this._lstAnexosCarta.Visibility = System.Windows.Visibility.Collapsed;
+            }
+
+        }
+
+        private void _btnMasConfirmacion_Click(object sender, RoutedEventArgs e)
+        {
+
+            if ((this._presentador.AgregarAnexoCartaConfirmacion()) && (this._lstAnexosCartaConfirmacion.Visibility == System.Windows.Visibility.Collapsed))
+                this._lstAnexosCartaConfirmacion.Visibility = System.Windows.Visibility.Visible;
+
+        }
+
+        private void _btnMenosConfirmacion_Click(object sender, RoutedEventArgs e)
+        {
+            if (this._presentador.DeshabilitarAnexosCartaConfirmacion())
+            {
+                this._lstAnexosCartaConfirmacion.Visibility = System.Windows.Visibility.Collapsed;
+            }
 
         }
 
@@ -293,5 +389,9 @@ namespace Trascend.Bolet.Cliente.Ventanas.Cartas
         //{
         //    this._presentador.IrListaJustificaciones();
         //}
+
+
+
+
     }
 }
