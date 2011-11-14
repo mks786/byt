@@ -251,6 +251,13 @@ namespace Trascend.Bolet.Cliente.Ventanas.Cartas
             get { return this._txtNombreAsociado.Text; }
             set { this._txtNombreAsociado.Text = value; }
         }
+
+        public string FormatoTracking
+        {
+            get { return this._lsbFormato.Text; }
+            set { this._lsbFormato.Text = value; }
+        }
+
         #endregion
 
         public AgregarCarta()
@@ -342,6 +349,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Cartas
                 this._lstAnexosCartaConfirmacion.Visibility = System.Windows.Visibility.Collapsed;
             }
 
+        }
+
+        private void _cbxMedioTracking_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            this._presentador.CarmbiarFormatoTracking();
         }
 
 
