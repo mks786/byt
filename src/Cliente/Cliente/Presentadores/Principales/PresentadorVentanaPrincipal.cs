@@ -435,10 +435,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
         {
             this._ventana.Contenedor.Navigate(new ConsultarCartas());
         }
+
         public void AgregarCarta()
         {
             this._ventana.Contenedor.Navigate(new AgregarCarta());
         }
+
         #endregion
 
         /// <summary>

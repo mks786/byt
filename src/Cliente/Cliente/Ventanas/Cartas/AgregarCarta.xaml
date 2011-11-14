@@ -117,8 +117,7 @@
             <Label Grid.Column="8" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Center">
                 <TextBlock Text="{x:Static recurso:Etiquetas.lblMedio}"/>
             </Label>
-            <ComboBox Grid.Column="9" Grid.Row="0" Name="_cbxMedio" HorizontalAlignment="Left" Width="80" Height="20"  ItemsSource="{Binding}"
-                          >
+            <ComboBox Grid.Column="9" Grid.Row="0" Name="_cbxMedio" HorizontalAlignment="Left" Width="80" Height="20"  ItemsSource="{Binding}" SelectedIndex="0" >
                 <ComboBox.ItemTemplate>
                     <DataTemplate>
                         <TextBlock>
@@ -185,7 +184,7 @@
                 <TextBlock Text="{x:Static recurso:Etiquetas.lblReceptor}"/>
             </Label>
             <ComboBox Grid.Column="7" Grid.Row="1" Grid.ColumnSpan="4" Name="_cbxReceptor" HorizontalAlignment="Left" Width="200" Height="20"  ItemsSource="{Binding}"
-                           >
+                           SelectedIndex="0">
                 <ComboBox.ItemTemplate>
                     <DataTemplate>
                         <TextBlock>
@@ -229,7 +228,7 @@
             <Label Grid.Column="1" Grid.Row="6" HorizontalAlignment="Right" VerticalAlignment="Center">
                 <TextBlock Text="{x:Static recurso:Etiquetas.lblResumen}"/>
             </Label>
-            <TextBox Name="_txtResumen" Text="{Binding Path=DetalleResumen}" Grid.Column="2" Grid.Row="6" Grid.ColumnSpan="8" Height="20" Width="520" HorizontalAlignment="Left"></TextBox>
+            <TextBox Name="_txtResumen" Text="{Binding Path=DescripcionResumen}" Grid.Column="2" Grid.Row="6" Grid.ColumnSpan="8" Height="20" Width="520" HorizontalAlignment="Left"></TextBox>
             <ComboBox Grid.Column="9" Grid.Row="6" Grid.ColumnSpan="4" Name="_cbxResumen" HorizontalAlignment="Left" Width="100" Height="20"  ItemsSource="{Binding}"
                           >
                 <ComboBox.ItemTemplate>
@@ -267,8 +266,7 @@
             <Label Grid.Column="6" Grid.Row="7" HorizontalAlignment="Right" VerticalAlignment="Center">
                 <TextBlock Text="{x:Static recurso:Etiquetas.lblDepartamento}"/>
             </Label>
-            <ComboBox Grid.Column="7" Grid.Row="7" Grid.ColumnSpan="4"  Name="_cbxDepartamento" HorizontalAlignment="Left" Width="200" Height="20"  ItemsSource="{Binding}"
-                           >
+            <ComboBox Grid.Column="7" Grid.Row="7" Grid.ColumnSpan="4"  Name="_cbxDepartamento" HorizontalAlignment="Left" Width="200" Height="20"  ItemsSource="{Binding}">
                 <ComboBox.ItemTemplate>
                     <DataTemplate>
                         <TextBlock>

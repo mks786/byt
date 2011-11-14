@@ -41,6 +41,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
             {
                 this._ventana = ventana;
                 this._ventana.Carta = new Carta();
+                ((Carta)this._ventana.Carta).Fecha = System.DateTime.Now;
                 this._cartaServicios = (ICartaServicios)Activator.GetObject(typeof(ICartaServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["CartaServicios"]);
                 this._resumenServicios = (IResumenServicios)Activator.GetObject(typeof(IResumenServicios),
@@ -74,35 +75,45 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
 
             try
             {
-                this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleAgregarEntradaAlterna,
-                    Recursos.Ids.AgregarEntradaAlterna);
+                this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleAgregarCarta,
+                    Recursos.Ids.AgregarCarta);
 
                 this._ventana.Medios = this._medioServicios.ConsultarTodos();
 
                 this._ventana.Receptores = this._usuarioServicios.ConsultarTodos();
 
-                _anexos = this._anexoServicios.ConsultarTodos();
+                this._anexos = this._anexoServicios.ConsultarTodos();
                 Anexo primerAnexo = new Anexo();
                 primerAnexo.Id = "NGN";
-                _anexos.Insert(0, primerAnexo);
+                this._anexos.Insert(0, primerAnexo);
                 this._ventana.Anexos = _anexos;
-                _anexosConfirmacion = this._anexoServicios.ConsultarTodos();
-                _anexosConfirmacion.Insert(0, primerAnexo);
+                this._anexosConfirmacion = this._anexoServicios.ConsultarTodos();
+                this._anexosConfirmacion.Insert(0, primerAnexo);
                 this._ventana.AnexosConfirmacion = _anexosConfirmacion;
                 //this._ventana.Personas = this._ventana.Receptores;
 
-                this._ventana.Asociados = this._asociadoServicios.ConsultarTodos();
+                this._asociados = this._asociadoServicios.ConsultarTodos();
+                this._ventana.Asociados = this._asociados;
 
-                this._asociados = (IList<Asociado>)this._ventana.Asociados;
+                IList<Departamento> departamentos = this._departamentoServicios.ConsultarTodos();
+                Departamento primeraTarifa = new Departamento();
+                primeraTarifa.Id = "NGN";
+                departamentos.Insert(0, primeraTarifa);
+                this._ventana.Departamentos = departamentos;
 
-                this._ventana.Departamentos = this._departamentoServicios.ConsultarTodos();
+                IList<Medio> mediosTracking = (IList<Medio>)this._ventana.Medios;
+                Medio primerosMediosTracking = new Medio();
+                primerosMediosTracking.Id = "NGN";
+                mediosTracking.Insert(0, primerosMediosTracking);
+                this._ventana.MediosTracking = mediosTracking;
 
-                this._ventana.MediosTracking = this._ventana.Medios;
+                this._ventana.MediosTrackingConfirmacion = mediosTracking;
 
-                this._ventana.MediosTrackingConfirmacion = this._ventana.Medios;
-
-                this._ventana.Resumenes = this._resumenServicios.ConsultarTodos();
-
+                IList<Resumen> resumenes = this._resumenServicios.ConsultarTodos();
+                Resumen primeraResumen = new Resumen();
+                primeraResumen.Id = "NGN";
+                resumenes.Insert(0, primeraResumen);
+                this._ventana.Resumenes = resumenes;
 
                 this._ventana.FocoPredeterminado();
             }
@@ -143,24 +154,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
 
                 carta.Medio = ((Medio)this._ventana.Medio).Id;
                 carta.Receptor = ((Usuario)this._ventana.Receptor).Iniciales;
-                carta.Departamento = (Departamento)this._ventana.Departamento;
-                carta.Asociado = ((Asociado)this._ventana.Asociado);
-                carta.Persona = ((Contacto)this._ventana.Persona).Nombre;
-                //carta.Receptor = ((Usuario)this._ventana.Receptor).Iniciales;
-                //carta.Remitente = !((Remitente)this._ventana.Remitente).Id.Equals("NGN") ? (Remitente)this._ventana.Remitente : null;
-                //carta.Categoria = !((Categoria)this._ventana.Categoria).Id.Equals("NGN") ? (Categoria)this._ventana.Categoria : null;
-                //carta.TipoDestinatario = this._ventana.TipoDestinatario;
-
-                //if (!this._ventana.Hora.Equals(""))
-                //    carta.Hora = new DateTime(entradaAlterna.Fecha.Value.Year, entradaAlterna.Fecha.Value.Month, entradaAlterna.Fecha.Value.Day,
-                //        !this._ventana.Hora.Equals(" ") ? int.Parse((string)this._ventana.Hora) : 0,
-                //        !this._ventana.Minuto.Equals(" ") ? int.Parse((string)this._ventana.Minuto) : 0, 0);
-
-                //if (carta.TipoDestinatario != ' ')
-                //{
-                //    carta.CodigoDestinatartio = entradaAlterna.TipoDestinatario == 'D' ? ((Departamento)_ventana.Departamento).Id : ((Usuario)_ventana.Persona).Iniciales;
-                //    carta.DescripcionDestinatario = entradaAlterna.TipoDestinatario == 'D' ? ((Departamento)_ventana.Departamento).Descripcion : ((Usuario)_ventana.Persona).NombreCompleto;
-                //}
+                carta.Departamento = !((Departamento)this._ventana.Departamento).Id.Equals("NGN") ? (Departamento)this._ventana.Departamento : null;
+                carta.Asociado = !((Asociado)this._ventana.Asociado).Id.Equals("NGN") ? (Asociado)this._ventana.Asociado : null;
+                carta.Persona = !((Contacto)this._ventana.Persona).Id.Equals("NGN") ? ((Contacto)this._ventana.Persona).Nombre : null;
 
                 if (!this._cartaServicios.VerificarExistencia(carta))
                 {

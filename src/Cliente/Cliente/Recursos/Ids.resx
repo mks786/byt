@@ -129,6 +129,9 @@
   <data name="AgregarBoletin" xml:space="preserve">
     <value>MYPTBOLETIN</value>
   </data>
+  <data name="AgregarCarta" xml:space="preserve">
+    <value>MYPTAGENTE</value>
+  </data>
   <data name="AgregarEntradaAlterna" xml:space="preserve">
     <value>MYPTAGENTE</value>
   </data>
@@ -189,6 +192,9 @@
   <data name="Boletin" xml:space="preserve">
     <value>MYPTBOLETIN</value>
   </data>
+  <data name="Carta" xml:space="preserve">
+    <value>MYPTAGENTE</value>
+  </data>
   <data name="Categoria" xml:space="preserve">
     <value>COR_TENTRADA</value>
   </data>
@@ -206,6 +212,12 @@
   </data>
   <data name="ConsultarBoletin" xml:space="preserve">
     <value>MYPTBOLETIN</value>
+  </data>
+  <data name="ConsultarCarta" xml:space="preserve">
+    <value>MYPTAGENTE</value>
+  </data>
+  <data name="ConsultarCartas" xml:space="preserve">
+    <value>MYPTAGENTE</value>
   </data>
   <data name="ConsultarContacto" xml:space="preserve">
     <value>FAC_CONTACTOS</value>
@@ -318,6 +330,9 @@
   <data name="EliminarBoletin" xml:space="preserve">
     <value>MYPTBOLETIN</value>
   </data>
+  <data name="EliminarCarta" xml:space="preserve">
+    <value>MYPTAGENTE</value>
+  </data>
   <data name="EliminarDatosTransferencia" xml:space="preserve">
     <value>FAC_ASO_TRANF</value>
   </data>
@@ -401,6 +416,9 @@
   </data>
   <data name="ModificarBoletin" xml:space="preserve">
     <value>MYPTBOLETIN</value>
+  </data>
+  <data name="ModificarCarta" xml:space="preserve">
+    <value>MYPTAGENTE</value>
   </data>
   <data name="ModificarDatosTransferencia" xml:space="preserve">
     <value>FAC_ASO_TRANF</value>

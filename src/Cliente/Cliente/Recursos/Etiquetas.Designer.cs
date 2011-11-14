@@ -2410,6 +2410,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Agregar Carta.
+        /// </summary>
+        public static string titleAgregarCarta {
+            get {
+                return ResourceManager.GetString("titleAgregarCarta", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Agregar Categoría.
         /// </summary>
         public static string titleAgregarCategoria {
@@ -2667,6 +2676,24 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string titleConsultarBoletines {
             get {
                 return ResourceManager.GetString("titleConsultarBoletines", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Consultar Carta.
+        /// </summary>
+        public static string titleConsultarCarta {
+            get {
+                return ResourceManager.GetString("titleConsultarCarta", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Consultar Cartas.
+        /// </summary>
+        public static string titleConsultarCartas {
+            get {
+                return ResourceManager.GetString("titleConsultarCartas", resourceCulture);
             }
         }
         

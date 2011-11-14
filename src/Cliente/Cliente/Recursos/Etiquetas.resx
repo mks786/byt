@@ -1138,4 +1138,13 @@
   <data name="btnEliminarSimbolo" xml:space="preserve">
     <value>-</value>
   </data>
+  <data name="titleAgregarCarta" xml:space="preserve">
+    <value>Agregar Carta</value>
+  </data>
+  <data name="titleConsultarCarta" xml:space="preserve">
+    <value>Consultar Carta</value>
+  </data>
+  <data name="titleConsultarCartas" xml:space="preserve">
+    <value>Consultar Cartas</value>
+  </data>
 </root>

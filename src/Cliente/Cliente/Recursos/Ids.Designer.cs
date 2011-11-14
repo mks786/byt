@@ -99,6 +99,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         /// <summary>
         ///   Looks up a localized string similar to MYPTAGENTE.
         /// </summary>
+        public static string AgregarCarta {
+            get {
+                return ResourceManager.GetString("AgregarCarta", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to MYPTAGENTE.
+        /// </summary>
         public static string AgregarEntradaAlterna {
             get {
                 return ResourceManager.GetString("AgregarEntradaAlterna", resourceCulture);
@@ -277,6 +286,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to MYPTAGENTE.
+        /// </summary>
+        public static string Carta {
+            get {
+                return ResourceManager.GetString("Carta", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to COR_TENTRADA.
         /// </summary>
         public static string Categoria {
@@ -327,6 +345,24 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string ConsultarBoletin {
             get {
                 return ResourceManager.GetString("ConsultarBoletin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to MYPTAGENTE.
+        /// </summary>
+        public static string ConsultarCarta {
+            get {
+                return ResourceManager.GetString("ConsultarCarta", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to MYPTAGENTE.
+        /// </summary>
+        public static string ConsultarCartas {
+            get {
+                return ResourceManager.GetString("ConsultarCartas", resourceCulture);
             }
         }
         
@@ -664,6 +700,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to MYPTAGENTE.
+        /// </summary>
+        public static string EliminarCarta {
+            get {
+                return ResourceManager.GetString("EliminarCarta", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to FAC_ASO_TRANF.
         /// </summary>
         public static string EliminarDatosTransferencia {
@@ -912,6 +957,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string ModificarBoletin {
             get {
                 return ResourceManager.GetString("ModificarBoletin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to MYPTAGENTE.
+        /// </summary>
+        public static string ModificarCarta {
+            get {
+                return ResourceManager.GetString("ModificarCarta", resourceCulture);
             }
         }
         
