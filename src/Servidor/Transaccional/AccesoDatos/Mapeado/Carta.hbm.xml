@@ -68,12 +68,12 @@
       <one-to-many class="Contacto" not-found="ignore"/>
     </bag>
 
-    <bag name="Anexos" table="COR_ANEXO">
+    <bag name="Anexos" table="COR_ANEXO" lazy="false">
       <key column="CODIGO"/>
       <many-to-many column="COANEXO" class="Anexo" not-found="ignore"/>
     </bag>
 
-    <bag name="AnexosConfirmacion" table="COR_ANEXO_CNF">
+    <bag name="AnexosConfirmacion" table="COR_ANEXO_CNF" lazy="false">
       <key column="CODIGO"/>
       <many-to-many column="COANEXO" class="Anexo" not-found="ignore"/>
     </bag>

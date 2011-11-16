@@ -142,7 +142,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Cartas
 
         private void _lstResultados_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            //this._presentador.IrConsultarPoder();
+            this._presentador.IrConsultarCarta();
         }
 
         private void _Ordenar_Click(object sender, RoutedEventArgs e)

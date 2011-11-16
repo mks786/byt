@@ -12,6 +12,7 @@ using NLog;
 using Trascend.Bolet.Cliente.Ayuda;
 using Trascend.Bolet.Cliente.Contratos.Cartas;
 using Trascend.Bolet.Cliente.Ventanas.Principales;
+using Trascend.Bolet.Cliente.Ventanas.Cartas;
 using Trascend.Bolet.ObjetosComunes.ContratosServicios;
 using Trascend.Bolet.ObjetosComunes.Entidades;
 
@@ -184,14 +185,14 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
         /// <summary>
         /// Método que invoca una nueva página "ConsultarPoder" y la instancia con el objeto seleccionado
         /// </summary>
-        public void IrConsultarPoder()
+        public void IrConsultarCarta()
         {
             #region trace
             if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
                 logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
 
-            //this.Navegar(new ConsultarPoder(this._ventana.PoderSeleccionado, this._ventana.Boletines, this._ventana.Interesados));
+            this.Navegar(new ConsultarCarta(this._ventana.CartaSeleccionado));
 
             #region trace
             if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))

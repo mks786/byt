@@ -14,9 +14,9 @@ using System.Windows.Controls;
 
 namespace Trascend.Bolet.Cliente.Presentadores.Cartas
 {
-    class PresentadorAgregarCarta : PresentadorBase
+    class PresentadorConsultarCarta : PresentadorBase
     {
-        private IAgregarCarta _ventana;
+        private IConsultarCarta _ventana;
         private ICartaServicios _cartaServicios;
         private IResumenServicios _resumenServicios;
         private IMedioServicios _medioServicios;
@@ -28,20 +28,24 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
         private static PaginaPrincipal _paginaPrincipal = PaginaPrincipal.ObtenerInstancia;
         private static Logger logger = LogManager.GetCurrentClassLogger();
         private IList<Asociado> _asociados;
+        private IList<Usuario> _receptores;
+        private IList<Medio> _medios;
         private IList<Anexo> _anexos;
         private IList<Anexo> _anexosConfirmacion;
+        private IList<Contacto> _personas;
+        private IList<Resumen> _resumenes;
+        private IList<Departamento> _departamentos;
 
         /// <summary>
         /// Constructor predeterminado
         /// </summary>
         /// <param name="ventana">Página que satisface el contrato</param>
-        public PresentadorAgregarCarta(IAgregarCarta ventana)
+        public PresentadorConsultarCarta(IConsultarCarta ventana, object carta)
         {
             try
             {
                 this._ventana = ventana;
-                this._ventana.Carta = new Carta();
-                ((Carta)this._ventana.Carta).Fecha = System.DateTime.Now;
+                this._ventana.Carta = carta;
                 this._cartaServicios = (ICartaServicios)Activator.GetObject(typeof(ICartaServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["CartaServicios"]);
                 this._resumenServicios = (IResumenServicios)Activator.GetObject(typeof(IResumenServicios),
@@ -72,15 +76,22 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
         public void CargarPagina()
         {
             Mouse.OverrideCursor = Cursors.Wait;
+            Carta carta = (Carta)this._ventana.Carta;
 
             try
             {
-                this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleAgregarCarta,
+                this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleConsultarCarta,
                     Recursos.Ids.AgregarCarta);
 
-                this._ventana.Medios = this._medioServicios.ConsultarTodos();
+                this._medios = this._medioServicios.ConsultarTodos();
+                this._ventana.Medios = this._medios;
+                Medio medio = new Medio();
+                medio.Id = carta.Medio;
+                this._ventana.Medio = this.BuscarMedio(this._medios, medio);
 
-                this._ventana.Receptores = this._usuarioServicios.ConsultarTodos();
+                this._receptores = this._usuarioServicios.ConsultarTodos();
+                this._ventana.Receptores = this._receptores;
+                this._ventana.Receptor = this.BuscarReceptor(this._receptores, carta.Receptor);
 
                 this._anexos = this._anexoServicios.ConsultarTodos();
                 Anexo primerAnexo = new Anexo();
@@ -90,28 +101,39 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
                 this._anexosConfirmacion = this._anexoServicios.ConsultarTodos();
                 this._anexosConfirmacion.Insert(0, primerAnexo);
                 this._ventana.AnexosConfirmacion = _anexosConfirmacion;
-                //this._ventana.Personas = this._ventana.Receptores;
 
                 this._asociados = this._asociadoServicios.ConsultarTodos();
                 this._ventana.Asociados = this._asociados;
+                this._ventana.Asociado = this.BuscarAsociado(this._asociados, carta.Asociado);
+                Asociado asociado = this._asociadoServicios.ConsultarAsociadoConTodo((Asociado)this._ventana.Asociado);
+                asociado.Contactos = this._contactoServicios.ConsultarContactosPorAsociado(asociado);
+                this._personas = asociado.Contactos;
+                this._ventana.Personas = this._personas;
+                this._ventana.Persona = BuscarContacto(this._personas, carta.Persona);
+                this._ventana.NombreAsociado = ((Carta)this._ventana.Carta).Asociado.Nombre;
 
-                IList<Departamento> departamentos = this._departamentoServicios.ConsultarTodos();
+                _departamentos = this._departamentoServicios.ConsultarTodos();
                 Departamento primeraTarifa = new Departamento();
                 primeraTarifa.Id = "NGN";
-                departamentos.Insert(0, primeraTarifa);
-                this._ventana.Departamentos = departamentos;
+                _departamentos.Insert(0, primeraTarifa);
+                this._ventana.Departamentos = _departamentos;
+                if (null != carta.Departamento)
+                    this._ventana.Departamento = this.BuscarDepartamento(this._departamentos, carta.Departamento);
 
                 IList<Medio> mediosTracking = (IList<Medio>)this._ventana.Medios;
                 Medio primerosMediosTracking = new Medio();
                 primerosMediosTracking.Id = "NGN";
                 mediosTracking.Insert(0, primerosMediosTracking);
+                this._ventana.MediosTracking = mediosTracking;
+
                 this._ventana.MediosTrackingConfirmacion = mediosTracking;
 
-                IList<Resumen> resumenes = this._resumenServicios.ConsultarTodos();
+                this._resumenes = this._resumenServicios.ConsultarTodos();
                 Resumen primeraResumen = new Resumen();
                 primeraResumen.Id = "NGN";
-                resumenes.Insert(0, primeraResumen);
-                this._ventana.Resumenes = resumenes;
+                _resumenes.Insert(0, primeraResumen);
+                this._ventana.Resumenes = this._resumenes;
+                this._ventana.Resumen = this.BuscarResumen(this._resumenes, carta.Resumen.Id);
 
                 this._ventana.FocoPredeterminado();
             }
@@ -141,37 +163,144 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
             }
         }
 
+        public bool CargarAnexosCarta()
+        {
+            bool retorno = false;
+            Carta carta = (Carta)this._ventana.Carta;
+            if ((null != carta.Anexos))
+            {
+                this._ventana.AnexosCarta = carta.Anexos;
+                retorno = true;
+            }
+            this.LimpiarAnexosCarta(carta);
+            return retorno;
+        }
+
+        private void LimpiarAnexosCarta(Carta carta)
+        {
+            IList<int> indices = new List<int>();
+            foreach (Anexo anexos in carta.Anexos)
+            {
+                int index = 0;
+                foreach (Anexo anexosTotal in this._anexos)
+                {
+                    if (anexos.Id == anexosTotal.Id)
+                    {
+                        indices.Insert(0,index);
+                    }
+                    index++;
+                }
+            }
+
+            foreach (int indice in indices)
+            {
+                this._anexos.RemoveAt(indice);
+            }
+
+            this._ventana.Anexos = this._anexos;
+        }
+
+        
+
+        public bool CargarAnexosCartaConfirmacion()
+        {
+            bool retorno = false;
+            Carta carta = (Carta)this._ventana.Carta;
+            if ((null != carta.AnexosConfirmacion))
+            {
+                this._ventana.AnexosConfirmacionCarta = carta.AnexosConfirmacion;
+                retorno = true;
+            }
+            this.LimpiarAnexosCartaConfirmacion(carta);
+            return retorno;
+        }
+
+        private void LimpiarAnexosCartaConfirmacion(Carta carta)
+        {
+            IList<int> indices = new List<int>();
+            foreach (Anexo anexos in carta.AnexosConfirmacion)
+            {
+                int index = 0;
+                foreach (Anexo anexosTotal in this._anexosConfirmacion)
+                {
+                    if (anexos.Id == anexosTotal.Id)
+                    {
+                        indices.Insert(0,index);
+                    }
+                    index++;
+                }
+            }
+
+            foreach (int indice in indices)
+            {
+                this._anexosConfirmacion.RemoveAt(indice);
+            }
+
+            this._ventana.AnexosConfirmacion = this._anexosConfirmacion;
+        }
+
+        public bool verificarFormato()
+        {
+            bool trackingCorrecto = true;
+            if (((Medio)this._ventana.MedioTracking).Formato.Length == ((Carta)this._ventana.Carta).Tracking.Length)
+            {
+                for (int i = 0; i < ((Medio)this._ventana.MedioTracking).Formato.Length; i++)
+                {
+                    if (((Medio)this._ventana.MedioTracking).Formato[i] == '9')
+                    {
+                        if (!Char.IsNumber(((Carta)this._ventana.Carta).Tracking[i]))
+                            trackingCorrecto = false;
+                    }
+
+                    if (((Medio)this._ventana.MedioTracking).Formato[i] == '-')
+                    {
+                        if (((Carta)this._ventana.Carta).Tracking[i] != '-')
+                            trackingCorrecto = false;
+                    }
+                }
+            }
+            else
+            {
+                trackingCorrecto = false;
+            }
+
+            return trackingCorrecto;
+        }
+
         /// <summary>
         /// Método que realiza toda la lógica para agregar al Usuario dentro de la base de datos
         /// </summary>
-        public void Aceptar()
+        public void Modificar()
         {
-            try
+            if (this._ventana.TextoBotonModificar == Recursos.Etiquetas.btnModificar)
             {
-                bool tracking = true;
-
-                if (!String.IsNullOrEmpty(((Carta)this._ventana.Carta).Tracking))
-                    tracking = this.verificarFormato(((Medio)this._ventana.Medio).Formato, ((Carta)this._ventana.Carta).Tracking);
-
-                if (tracking && !String.IsNullOrEmpty(((Carta)this._ventana.Carta).AnexoTracking))
-                    tracking = this.verificarFormato(((Medio)this._ventana.MedioTrackingConfirmacion).Formato, ((Carta)this._ventana.Carta).AnexoTracking);
-
-                if (tracking)
+                this._ventana.HabilitarCampos = true;
+                this._ventana.TextoBotonModificar = Recursos.Etiquetas.btnAceptar;
+            }
+            else
+            {
+                try
                 {
-                    Carta carta = (Carta)this._ventana.Carta;
-                    if (null != this._ventana.Departamento)
-                        carta.Departamento = !((Departamento)this._ventana.Departamento).Id.Equals("NGN") ? (Departamento)this._ventana.Departamento : null;
-                    if (null != this._ventana.Asociado)
-                        carta.Asociado = !((Asociado)this._ventana.Asociado).Id.Equals("NGN") ? (Asociado)this._ventana.Asociado : null;
-                    if (null != this._ventana.Persona)
-                        carta.Persona = !((Contacto)this._ventana.Persona).Id.Equals("NGN") ? ((Contacto)this._ventana.Persona).Nombre : null;
+                    bool tracking = true;
 
-                    carta.Medio = ((Medio)this._ventana.Medio).Id;
-                    carta.Receptor = ((Usuario)this._ventana.Receptor).Iniciales;
-
-                    if (!this._cartaServicios.VerificarExistencia(carta))
+                    if (!String.IsNullOrEmpty(((Carta)this._ventana.Carta).Tracking))
+                        tracking = verificarFormato();
+                    if (tracking)
                     {
-                        bool exitoso = this._cartaServicios.InsertarOModificar(carta, UsuarioLogeado.Hash);
+                        Carta carta = (Carta)this._ventana.Carta;
+                        if (null != this._ventana.Departamento)
+                            carta.Departamento = !((Departamento)this._ventana.Departamento).Id.Equals("NGN") ? (Departamento)this._ventana.Departamento : null;
+                        if (null != this._ventana.Asociado)
+                            carta.Asociado = !((Asociado)this._ventana.Asociado).Id.Equals("NGN") ? (Asociado)this._ventana.Asociado : null;
+                        if (null != this._ventana.Persona)
+                            carta.Persona = !((Contacto)this._ventana.Persona).Id.Equals("NGN") ? ((Contacto)this._ventana.Persona).Nombre : null;
+
+
+
+
+                        carta.Medio = ((Medio)this._ventana.Medio).Id;
+                        carta.Receptor = ((Usuario)this._ventana.Receptor).Iniciales;
+
                         carta.Medio = ((Medio)this._ventana.Medio).Id;
                         carta.Receptor = ((Usuario)this._ventana.Receptor).Iniciales;
 
@@ -179,35 +308,36 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
                         //{
                         //    bool exitoso = this._cartaServicios.InsertarOModificar(carta, UsuarioLogeado.Hash);
 
-                        if (exitoso)
-                            this.Navegar(Recursos.MensajesConElUsuario.EntradaAlternaInsertado, false);
+                        //    if (exitoso)
+                        //        this.Navegar(Recursos.MensajesConElUsuario.EntradaAlternaInsertado, false);
+                        //}
+                        //else
+                        //{
+                        //    this._ventana.Mensaje(Recursos.MensajesConElUsuario.ErrorAgenteRepetido);
+                        //}
                     }
-                    else
-                    {
-                        this._ventana.Mensaje(Recursos.MensajesConElUsuario.ErrorAgenteRepetido);
-                    }
-                }
 
-            }
-            catch (ApplicationException ex)
-            {
-                logger.Error(ex.Message);
-                this.Navegar(ex.Message, true);
-            }
-            catch (RemotingException ex)
-            {
-                logger.Error(ex.Message);
-                this.Navegar(Recursos.MensajesConElUsuario.ErrorRemoting, true);
-            }
-            catch (SocketException ex)
-            {
-                logger.Error(ex.Message);
-                this.Navegar(Recursos.MensajesConElUsuario.ErrorConexionServidor, true);
-            }
-            catch (Exception ex)
-            {
-                logger.Error(ex.Message);
-                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
+                }
+                catch (ApplicationException ex)
+                {
+                    logger.Error(ex.Message);
+                    this.Navegar(ex.Message, true);
+                }
+                catch (RemotingException ex)
+                {
+                    logger.Error(ex.Message);
+                    this.Navegar(Recursos.MensajesConElUsuario.ErrorRemoting, true);
+                }
+                catch (SocketException ex)
+                {
+                    logger.Error(ex.Message);
+                    this.Navegar(Recursos.MensajesConElUsuario.ErrorConexionServidor, true);
+                }
+                catch (Exception ex)
+                {
+                    logger.Error(ex.Message);
+                    this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
+                }
             }
         }
 
@@ -345,12 +475,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
 
         public void CarmbiarFormatoTracking()
         {
-            this._ventana.FormatoTracking = !((Medio)this._ventana.Medio).Id.Equals("NGN") ? "Formato: " + ((Medio)this._ventana.Medio).Formato : "Formato: ";
-        }
-
-        public void CarmbiarFormatoTrackingConfirmacion()
-        {
-            this._ventana.FormatoTrackingConfirmacion = !((Medio)this._ventana.MedioTrackingConfirmacion).Id.Equals("NGN") ? "Formato: " + ((Medio)this._ventana.MedioTrackingConfirmacion).Formato : "Formato: ";
+            this._ventana.FormatoTracking = !((Medio)this._ventana.MedioTracking).Id.Equals("NGN") ? "Formato: " + ((Medio)this._ventana.MedioTracking).Formato : "Formato: ";
         }
     }
 }

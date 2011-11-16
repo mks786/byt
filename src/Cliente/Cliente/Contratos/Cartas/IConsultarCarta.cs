@@ -1,7 +1,7 @@
 ﻿
 namespace Trascend.Bolet.Cliente.Contratos.Cartas
 {
-    interface IConsultarCartra : IPaginaBase
+    interface IConsultarCarta : IPaginaBase
     {
         object Carta { get; set; }
 
@@ -9,8 +9,13 @@ namespace Trascend.Bolet.Cliente.Contratos.Cartas
 
         string TextoBotonModificar { get; set; }
 
-
         object Asociado { get; set; }
+
+        string NombreAsociado { get; set; }
+
+        string idAsociadoFiltrar { get; set; }
+
+        string NombreAsociadoFiltrar { get; set; }
 
         object Asociados { get; set; }
 
@@ -42,6 +47,14 @@ namespace Trascend.Bolet.Cliente.Contratos.Cartas
 
         object Medios { get; set; }
 
+        object MedioTracking { get; set; }
+
+        object MediosTracking { get; set; }
+
+        object MedioTrackingConfirmacion { get; set; }
+
+        object MediosTrackingConfirmacion { get; set; }
+
         object Anexo { get; set; }
 
         object Anexos { get; set; }
@@ -57,5 +70,7 @@ namespace Trascend.Bolet.Cliente.Contratos.Cartas
         object AnexoConfirmacionCarta { get; set; }
 
         object AnexosConfirmacionCarta { get; set; }
+        
+        string FormatoTracking { get; set; }
     }
 }

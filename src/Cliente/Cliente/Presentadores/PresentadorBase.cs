@@ -205,6 +205,27 @@ namespace Trascend.Bolet.Cliente.Presentadores
                 }
 
             return retorno;
+        }        /// <summary>
+        /// Método que busca un Asociado dentro de una lista de Asociados
+        /// </summary>
+        /// <param name="asociados">Lista de boletines</param>
+        /// <param name="asociadoBuscado">Boletin a buscar</param>
+        /// <returns>Boletin dentro de la lista</returns>
+        public Asociado BuscarAsociado(IList<Asociado> asociados, Asociado asociadoBuscado)
+        {
+            Asociado retorno = null;
+
+            if (asociadoBuscado != null)
+                foreach (Asociado boletin in asociados)
+                {
+                    if (boletin.Id == asociadoBuscado.Id)
+                    {
+                        retorno = boletin;
+                        break;
+                    }
+                }
+
+            return retorno;
         }
 
         /// <summary>
@@ -417,7 +438,7 @@ namespace Trascend.Bolet.Cliente.Presentadores
         }
 
         /// <summary>
-        /// Método que busca un estado dentro de una lista de receptores
+        /// Método que busca un Receptor dentro de una lista de receptores
         /// </summary>
         /// <param name="receptores">Lista de receptores</param>
         /// <param name="receptorBuscado">Receptor a buscar</param>
@@ -440,7 +461,53 @@ namespace Trascend.Bolet.Cliente.Presentadores
         }
 
         /// <summary>
-        /// Método que busca un estado dentro de una lista de remitentes
+        /// Método que busca un Contacto dentro de una lista de contactos
+        /// </summary>
+        /// <param name="contactos">Lista de contactos</param>
+        /// <param name="contactoBuscado">contacto a buscar</param>
+        /// <returns>Contacto dentro de la lista</returns>
+        public Contacto BuscarContacto(IList<Contacto> contactos, string contactoBuscado)
+        {
+            Contacto retorno = null;
+
+            if (contactoBuscado != null)
+                foreach (Contacto contacto in contactos)
+                {
+                    if (contacto.Nombre.Equals(contactoBuscado))
+                    {
+                        retorno = contacto;
+                        break;
+                    }
+                }
+
+            return retorno;
+        }
+
+        /// <summary>
+        /// Método que busca un Resumen dentro de una lista de Resumenes
+        /// </summary>
+        /// <param name="resumenes">Lista de Resumenes</param>
+        /// <param name="resumenBuscado">Resumen a buscar</param>
+        /// <returns>Resumen dentro de la lista</returns>
+        public Resumen BuscarResumen(IList<Resumen> resumenes, string resumenBuscado)
+        {
+            Resumen retorno = null;
+
+            if (resumenBuscado != null)
+                foreach (Resumen resumen in resumenes)
+                {
+                    if (resumen.Id.Equals(resumenBuscado))
+                    {
+                        retorno = resumen;
+                        break;
+                    }
+                }
+
+            return retorno;
+        }
+
+        /// <summary>
+        /// Método que busca un remitente dentro de una lista de remitentes
         /// </summary>
         /// <param name="remitentes">Lista de remitentes</param>
         /// <param name="remitenteBuscado">Remitente a buscar</param>
@@ -777,6 +844,34 @@ namespace Trascend.Bolet.Cliente.Presentadores
                     break;
             }
             return retorno;
+        }
+
+        public bool verificarFormato(string formato, string tracking)
+        {
+            bool trackingCorrecto = true;
+            if (formato.Length == tracking.Length)
+            {
+                for (int i = 0; i < formato.Length; i++)
+                {
+                    if (formato[i] == '9')
+                    {
+                        if (!Char.IsNumber(tracking[i]))
+                            trackingCorrecto = false;
+                    }
+
+                    if (formato[i] == '-')
+                    {
+                        if (tracking[i] != '-')
+                            trackingCorrecto = false;
+                    }
+                }
+            }
+            else
+            {
+                trackingCorrecto = false;
+            }
+
+            return trackingCorrecto;
         }
     }
 }
