@@ -52,8 +52,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
 
         public void ActualizarTitulo()
         {
-            this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleConsultarPoderes,
-                Recursos.Ids.ConsultarPoderes);
+            this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleConsultarCartas,
+                Recursos.Ids.ConsultarCartas);
         }
 
         /// <summary>

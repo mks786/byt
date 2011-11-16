@@ -124,7 +124,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
                 Medio primerosMediosTracking = new Medio();
                 primerosMediosTracking.Id = "NGN";
                 mediosTracking.Insert(0, primerosMediosTracking);
-                this._ventana.MediosTracking = mediosTracking;
+                //this._ventana.MediosTracking = mediosTracking;
 
                 this._ventana.MediosTrackingConfirmacion = mediosTracking;
 
@@ -239,33 +239,33 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
             this._ventana.AnexosConfirmacion = this._anexosConfirmacion;
         }
 
-        public bool verificarFormato()
-        {
-            bool trackingCorrecto = true;
-            if (((Medio)this._ventana.MedioTracking).Formato.Length == ((Carta)this._ventana.Carta).Tracking.Length)
-            {
-                for (int i = 0; i < ((Medio)this._ventana.MedioTracking).Formato.Length; i++)
-                {
-                    if (((Medio)this._ventana.MedioTracking).Formato[i] == '9')
-                    {
-                        if (!Char.IsNumber(((Carta)this._ventana.Carta).Tracking[i]))
-                            trackingCorrecto = false;
-                    }
+        //public bool verificarFormato()
+        //{
+        //    bool trackingCorrecto = true;
+        //    if (((Medio)this._ventana.MedioTracking).Formato.Length == ((Carta)this._ventana.Carta).Tracking.Length)
+        //    {
+        //        for (int i = 0; i < ((Medio)this._ventana.MedioTracking).Formato.Length; i++)
+        //        {
+        //            if (((Medio)this._ventana.MedioTracking).Formato[i] == '9')
+        //            {
+        //                if (!Char.IsNumber(((Carta)this._ventana.Carta).Tracking[i]))
+        //                    trackingCorrecto = false;
+        //            }
 
-                    if (((Medio)this._ventana.MedioTracking).Formato[i] == '-')
-                    {
-                        if (((Carta)this._ventana.Carta).Tracking[i] != '-')
-                            trackingCorrecto = false;
-                    }
-                }
-            }
-            else
-            {
-                trackingCorrecto = false;
-            }
+        //            if (((Medio)this._ventana.MedioTracking).Formato[i] == '-')
+        //            {
+        //                if (((Carta)this._ventana.Carta).Tracking[i] != '-')
+        //                    trackingCorrecto = false;
+        //            }
+        //        }
+        //    }
+        //    else
+        //    {
+        //        trackingCorrecto = false;
+        //    }
 
-            return trackingCorrecto;
-        }
+        //    return trackingCorrecto;
+        //}
 
         /// <summary>
         /// Método que realiza toda la lógica para agregar al Usuario dentro de la base de datos
@@ -284,7 +284,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
                     bool tracking = true;
 
                     if (!String.IsNullOrEmpty(((Carta)this._ventana.Carta).Tracking))
-                        tracking = verificarFormato();
+                        tracking = this.verificarFormato(((Medio)this._ventana.Medio).Formato, ((Carta)this._ventana.Carta).Tracking);
                     if (tracking)
                     {
                         Carta carta = (Carta)this._ventana.Carta;
@@ -475,7 +475,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
 
         public void CarmbiarFormatoTracking()
         {
-            this._ventana.FormatoTracking = !((Medio)this._ventana.MedioTracking).Id.Equals("NGN") ? "Formato: " + ((Medio)this._ventana.MedioTracking).Formato : "Formato: ";
+            this._ventana.FormatoTracking = !((Medio)this._ventana.Medio).Id.Equals("NGN") ? "Formato: " + ((Medio)this._ventana.Medio).Formato : "Formato: ";
+        }
+        public void CarmbiarFormatoTrackingConfirmacion()
+        {
+            this._ventana.FormatoTrackingConfirmacion = !((Medio)this._ventana.MedioTrackingConfirmacion).Id.Equals("NGN") ? "Formato: " + ((Medio)this._ventana.MedioTrackingConfirmacion).Formato : "Formato: ";
         }
     }
 }

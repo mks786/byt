@@ -152,17 +152,17 @@ namespace Trascend.Bolet.Cliente.Ventanas.Cartas
         }
 
 
-        public object MedioTracking
-        {
-            get { return this._cbxMedioTracking.SelectedItem; }
-            set { this._cbxMedioTracking.SelectedItem = value; }
-        }
+        //public object MedioTracking
+        //{
+        //    get { return this._cbxMedioTracking.SelectedItem; }
+        //    set { this._cbxMedioTracking.SelectedItem = value; }
+        //}
 
-        public object MediosTracking
-        {
-            get { return this._cbxMedioTracking.DataContext; }
-            set { this._cbxMedioTracking.DataContext = value; }
-        }
+        //public object MediosTracking
+        //{
+        //    get { return this._cbxMedioTracking.DataContext; }
+        //    set { this._cbxMedioTracking.DataContext = value; }
+        //}
 
         public object MedioTrackingConfirmacion
         {
@@ -258,6 +258,12 @@ namespace Trascend.Bolet.Cliente.Ventanas.Cartas
             set { this._lsbFormato.Text = value; }
         }
 
+        public string FormatoTrackingConfirmacion
+        {
+            get { return this._lsbFormatoConfirmacion.Text; }
+            set { this._lsbFormatoConfirmacion.Text = value; }
+        }
+
         public bool HabilitarCampos
         {
             set
@@ -274,7 +280,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Cartas
                 this._cbxContacto.IsEnabled = value;
                 this._cbxDepartamento.IsEnabled = value;
                 this._cbxMedio.IsEnabled = value;
-                this._cbxMedioTracking.IsEnabled = value;
+                //this._cbxMedioTracking.IsEnabled = value;
                 this._cbxResumen.IsEnabled = value;
                 this._cbxReceptor.IsEnabled = value;
                 this._lstAnexosCarta.IsEnabled = value;
@@ -288,6 +294,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.Cartas
                 this._dpkFechaAnexo.IsEnabled = value;
                 this._dpkFechaConfirmacion.IsEnabled = value;
                 this._dpkFechaReal.IsEnabled = value;
+                this._txtMedio.IsEnabled = value;
+                this._cbxMedioTrackingConfirmacion.IsEnabled = value;
             }
         }
 
@@ -394,10 +402,14 @@ namespace Trascend.Bolet.Cliente.Ventanas.Cartas
             }
 
         }
-
-        private void _cbxMedioTracking_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void _cbxMedio_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             this._presentador.CarmbiarFormatoTracking();
+        }
+
+        private void _cbxMedioTrackingConfirmacion_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            this._presentador.CarmbiarFormatoTrackingConfirmacion();
         }
 
 
