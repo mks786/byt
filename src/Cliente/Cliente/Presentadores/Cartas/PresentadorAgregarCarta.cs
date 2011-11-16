@@ -105,8 +105,6 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
                 Medio primerosMediosTracking = new Medio();
                 primerosMediosTracking.Id = "NGN";
                 mediosTracking.Insert(0, primerosMediosTracking);
-                this._ventana.MediosTracking = mediosTracking;
-
                 this._ventana.MediosTrackingConfirmacion = mediosTracking;
 
                 IList<Resumen> resumenes = this._resumenServicios.ConsultarTodos();
@@ -143,22 +141,22 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
             }
         }
 
-        public bool verificarFormato()
+        public bool verificarFormato(string formato, string tracking)
         {
             bool trackingCorrecto = true;
-            if (((Medio)this._ventana.MedioTracking).Formato.Length == ((Carta)this._ventana.Carta).Tracking.Length)
+            if (formato.Length == tracking.Length)
             {
-                for (int i = 0; i < ((Medio)this._ventana.MedioTracking).Formato.Length; i++)
+                for (int i = 0; i < formato.Length; i++)
                 {
-                    if (((Medio)this._ventana.MedioTracking).Formato[i] == '9')
+                    if (formato[i] == '9')
                     {
-                        if (!Char.IsNumber(((Carta)this._ventana.Carta).Tracking[i]))
+                        if (!Char.IsNumber(tracking[i]))
                             trackingCorrecto = false;
                     }
 
-                    if (((Medio)this._ventana.MedioTracking).Formato[i] == '-')
+                    if (formato[i] == '-')
                     {
-                        if (((Carta)this._ventana.Carta).Tracking[i] != '-')
+                        if (tracking[i] != '-')
                             trackingCorrecto = false;
                     }
                 }
@@ -181,7 +179,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
                 bool tracking = true;
 
                 if (!String.IsNullOrEmpty(((Carta)this._ventana.Carta).Tracking))
-                    tracking = verificarFormato();
+                    tracking = verificarFormato(((Medio)this._ventana.Medio).Formato, ((Carta)this._ventana.Carta).Tracking);
+
+                if (tracking && !String.IsNullOrEmpty(((Carta)this._ventana.Carta).AnexoTracking))
+                    tracking = verificarFormato(((Medio)this._ventana.MedioTrackingConfirmacion).Formato, ((Carta)this._ventana.Carta).AnexoTracking);
 
 
                 if (tracking)
@@ -194,17 +195,17 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
                     carta.Asociado = !((Asociado)this._ventana.Asociado).Id.Equals("NGN") ? (Asociado)this._ventana.Asociado : null;
                     carta.Persona = !((Contacto)this._ventana.Persona).Id.Equals("NGN") ? ((Contacto)this._ventana.Persona).Nombre : null;
 
-                    //if (!this._cartaServicios.VerificarExistencia(carta))
-                    //{
-                    //    bool exitoso = this._cartaServicios.InsertarOModificar(carta, UsuarioLogeado.Hash);
+                    if (!this._cartaServicios.VerificarExistencia(carta))
+                    {
+                        bool exitoso = this._cartaServicios.InsertarOModificar(carta, UsuarioLogeado.Hash);
 
-                    //    if (exitoso)
-                    //        this.Navegar(Recursos.MensajesConElUsuario.EntradaAlternaInsertado, false);
-                    //}
-                    //else
-                    //{
-                    //    this._ventana.Mensaje(Recursos.MensajesConElUsuario.ErrorAgenteRepetido);
-                    //}
+                        if (exitoso)
+                            this.Navegar(Recursos.MensajesConElUsuario.EntradaAlternaInsertado, false);
+                    }
+                    else
+                    {
+                        this._ventana.Mensaje(Recursos.MensajesConElUsuario.ErrorAgenteRepetido);
+                    }
                 }
 
             }
@@ -364,7 +365,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
 
         public void CarmbiarFormatoTracking()
         {
-            this._ventana.FormatoTracking = !((Medio)this._ventana.MedioTracking).Id.Equals("NGN") ? "Formato: " + ((Medio)this._ventana.MedioTracking).Formato : "Formato: ";
+            this._ventana.FormatoTracking = !((Medio)this._ventana.Medio).Id.Equals("NGN") ? "Formato: " + ((Medio)this._ventana.Medio).Formato : "Formato: ";
+        }
+
+        public void CarmbiarFormatoTrackingConfirmacion()
+        {
+            this._ventana.FormatoTrackingConfirmacion = !((Medio)this._ventana.MedioTrackingConfirmacion).Id.Equals("NGN") ? "Formato: " + ((Medio)this._ventana.MedioTrackingConfirmacion).Formato : "Formato: ";
         }
     }
 }

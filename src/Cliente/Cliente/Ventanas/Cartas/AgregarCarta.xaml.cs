@@ -151,19 +151,6 @@ namespace Trascend.Bolet.Cliente.Ventanas.Cartas
             set { this._cbxMedio.DataContext = value; }
         }
 
-
-        public object MedioTracking
-        {
-            get { return this._cbxMedioTracking.SelectedItem; }
-            set { this._cbxMedioTracking.SelectedItem = value; }
-        }
-
-        public object MediosTracking
-        {
-            get { return this._cbxMedioTracking.DataContext; }
-            set { this._cbxMedioTracking.DataContext = value; }
-        }
-
         public object MedioTrackingConfirmacion
         {
             get { return this._cbxMedioTrackingConfirmacion.SelectedItem; }
@@ -256,6 +243,12 @@ namespace Trascend.Bolet.Cliente.Ventanas.Cartas
         {
             get { return this._lsbFormato.Text; }
             set { this._lsbFormato.Text = value; }
+        }
+
+        public string FormatoTrackingConfirmacion
+        {
+            get { return this._lsbFormatoConfirmacion.Text; }
+            set { this._lsbFormatoConfirmacion.Text = value; }
         }
 
         #endregion
@@ -351,9 +344,14 @@ namespace Trascend.Bolet.Cliente.Ventanas.Cartas
 
         }
 
-        private void _cbxMedioTracking_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void _cbxMedio_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             this._presentador.CarmbiarFormatoTracking();
+        }
+
+        private void _cbxMedioTrackingConfirmacion_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            this._presentador.CarmbiarFormatoTrackingConfirmacion();
         }
 
 

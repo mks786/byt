@@ -45,10 +45,6 @@ namespace Trascend.Bolet.Cliente.Contratos.Cartas
 
         object Medios { get; set; }
 
-        object MedioTracking { get; set; }
-
-        object MediosTracking { get; set; }
-
         object MedioTrackingConfirmacion { get; set; }
 
         object MediosTrackingConfirmacion { get; set; }
@@ -70,6 +66,8 @@ namespace Trascend.Bolet.Cliente.Contratos.Cartas
         object AnexosConfirmacionCarta { get; set; }
 
         string FormatoTracking { get; set; }
+
+        string FormatoTrackingConfirmacion { get; set; }
 
     }
 }
