@@ -1147,4 +1147,7 @@
   <data name="titleConsultarCartas" xml:space="preserve">
     <value>Consultar Cartas</value>
   </data>
+  <data name="lblTitleResponsables" xml:space="preserve">
+    <value>Responsables</value>
+  </data>
 </root>

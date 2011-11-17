@@ -1645,6 +1645,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Responsables.
+        /// </summary>
+        public static string lblTitleResponsables {
+            get {
+                return ResourceManager.GetString("lblTitleResponsables", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Total:.
         /// </summary>
         public static string lblTotal {

@@ -2,6 +2,8 @@
 using System.Windows.Controls;
 using Trascend.Bolet.Cliente.Contratos.Medios;
 using Trascend.Bolet.Cliente.Presentadores.Medios;
+using System.IO;
+using System.Windows.Forms;
 
 namespace Trascend.Bolet.Cliente.Ventanas.Medios
 {
@@ -12,6 +14,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.Medios
     {
         private PresentadorAgregarMedio _presentador;
         private bool _cargada;
+        private Stream _imagenBytes;
+        private FileInfo _infoImagen;
 
         #region IAgregarEstado
 
@@ -26,17 +30,28 @@ namespace Trascend.Bolet.Cliente.Ventanas.Medios
             this._txtId.Focus();
         }
 
-        public object  Medio
+        public object Medio
         {
-	        get { return this._gridDatos.DataContext; }
+            get { return this._gridDatos.DataContext; }
             set { this._gridDatos.DataContext = value; }
         }
 
         public void Mensaje(string mensaje)
         {
-            MessageBox.Show(mensaje, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            System.Windows.MessageBox.Show(mensaje, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
         }
 
+        public Stream Imagen
+        {
+            get { return this._imagenBytes; }
+            set { this._imagenBytes = value; }
+        }
+
+        public FileInfo InformacionImagen
+        {
+            get { return this._infoImagen; }
+            set { this._infoImagen = value; }
+        }
         #endregion
 
         public AgregarMedio()
@@ -65,6 +80,41 @@ namespace Trascend.Bolet.Cliente.Ventanas.Medios
             }
         }
 
-   
+        private void _btnMas_Click(object sender, RoutedEventArgs e)
+        {
+            FileInfo f = null;
+
+            OpenFileDialog dlg;
+
+
+            dlg = new OpenFileDialog();
+
+            //Open the Pop-Up Window to select the file
+
+
+            DialogResult result = dlg.ShowDialog();
+
+            if (result == DialogResult.OK)
+            {
+
+                _infoImagen = new FileInfo(dlg.FileName);
+
+                using (_imagenBytes = dlg.OpenFile())
+                {
+                    ////Proceso
+                    //TextReader reader = new StreamReader(_imagenBytes);
+
+                    //string st = reader.ReadToEnd();
+
+                    this._filImagen.Text = f.Name;
+                }
+
+            }
+            else
+            {
+                dlg.Dispose();
+            }
+        }
+
     }
 }

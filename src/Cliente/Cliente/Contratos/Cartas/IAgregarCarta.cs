@@ -69,5 +69,9 @@ namespace Trascend.Bolet.Cliente.Contratos.Cartas
 
         string FormatoTrackingConfirmacion { get; set; }
 
+        object ResponsableList { get; set; }
+
+        object ResponsablesList { get; set; }
+
     }
 }

@@ -83,11 +83,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Cartas
         {
             get
             {
-                throw new System.NotImplementedException();
+                return this._cbxResponsable.SelectedItem;
             }
             set
             {
-                throw new System.NotImplementedException();
+                this._cbxResponsable.SelectedItem = value;
             }
         }
 
@@ -95,12 +95,24 @@ namespace Trascend.Bolet.Cliente.Ventanas.Cartas
         {
             get
             {
-                throw new System.NotImplementedException();
+                return this._cbxResponsable.DataContext;
             }
             set
             {
-                throw new System.NotImplementedException();
+                this._cbxResponsable.DataContext = value;
             }
+        }
+
+        public object ResponsableList 
+        {
+            get { return this._lstResponsables.SelectedItem; }
+            set { this._lstResponsables.SelectedItem = value; }
+        }
+
+        public object ResponsablesList
+        {
+            get { return this._lstResponsables.DataContext; }
+            set { this._lstResponsables.DataContext = value; }
         }
 
         public object Resumen
@@ -352,6 +364,20 @@ namespace Trascend.Bolet.Cliente.Ventanas.Cartas
         private void _cbxMedioTrackingConfirmacion_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             this._presentador.CarmbiarFormatoTrackingConfirmacion();
+        }
+
+        private void _btnMasResponsable_Click(object sender, RoutedEventArgs e)
+        {
+            if ((this._presentador.AgregarResponsable()) && (this._lstResponsables.Visibility == System.Windows.Visibility.Collapsed))
+                this._lstResponsables.Visibility = System.Windows.Visibility.Visible;
+        }
+
+        private void _btnMenosResponsable_Click(object sender, RoutedEventArgs e)
+        {
+            if (this._presentador.DeshabilitarResponsable())
+            {
+                this._lstResponsables.Visibility = System.Windows.Visibility.Collapsed;
+            }
         }
 
 

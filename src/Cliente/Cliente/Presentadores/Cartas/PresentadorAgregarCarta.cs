@@ -29,6 +29,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
         private static Logger logger = LogManager.GetCurrentClassLogger();
         private IList<Asociado> _asociados;
         private IList<Anexo> _anexos;
+        private IList<Usuario> _responsables;
         private IList<Anexo> _anexosConfirmacion;
 
         /// <summary>
@@ -112,6 +113,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
                 primeraResumen.Id = "NGN";
                 resumenes.Insert(0, primeraResumen);
                 this._ventana.Resumenes = resumenes;
+
+                this._responsables = this._usuarioServicios.ConsultarTodos();
+                Usuario primerResponsable = new Usuario();
+                primeraResumen.Id = "NGN";
+                _responsables.Insert(0, primerResponsable);
+                this._ventana.Responsables = _responsables;
 
                 this._ventana.FocoPredeterminado();
             }
@@ -346,5 +353,54 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
         {
             this._ventana.FormatoTrackingConfirmacion = !((Medio)this._ventana.MedioTrackingConfirmacion).Id.Equals("NGN") ? "Formato: " + ((Medio)this._ventana.MedioTrackingConfirmacion).Formato : "Formato: ";
         }
+
+        public bool AgregarResponsable()
+        {
+            IList<Usuario> usuariosLista;
+            bool retorno = false;
+            if ((null != (Usuario)this._ventana.Responsable) && (!((Usuario)this._ventana.Responsable).Id.Equals("NGN")))
+            {
+                if (null == ((Carta)this._ventana.Carta).Responsables)
+                    usuariosLista = new List<Usuario>();
+                else
+                    usuariosLista = ((Carta)this._ventana.Carta).Responsables;
+
+                usuariosLista.Add((Usuario)this._ventana.Responsable);
+                ((Carta)this._ventana.Carta).Responsables = usuariosLista;
+                this._ventana.ResponsablesList = usuariosLista.ToList<Usuario>();
+                this._responsables.Remove((Usuario)this._ventana.Responsable);
+                this._ventana.Responsables = this._responsables.ToList<Usuario>();
+                retorno = true;
+            }
+            return retorno;
+        }
+
+
+
+        public bool DeshabilitarResponsable()
+        {
+            IList<Usuario> responsables;
+            bool respuesta = false;
+
+            if (null != ((Usuario)this._ventana.ResponsableList))
+            {
+                if (null == ((Carta)this._ventana.Carta).Responsables)
+                    responsables = new List<Usuario>();
+                else
+                    responsables = ((Carta)this._ventana.Carta).Responsables;
+
+                responsables.Remove((Usuario)this._ventana.ResponsableList);
+                ((Carta)this._ventana.Carta).Responsables = responsables;
+                this._responsables.Add((Usuario)this._ventana.ResponsableList);
+                this._ventana.ResponsablesList = responsables.ToList<Usuario>();
+                this._ventana.Responsables = this._responsables.ToList<Usuario>();
+
+                if (responsables.Count == 0)
+                    respuesta = true;
+
+            }
+            return respuesta;
+        }
+
     }
 }

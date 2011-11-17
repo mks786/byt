@@ -39,6 +39,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         private IList<Justificacion> _justificaciones;
         private IList<Contacto> _contactos;
         private IList<Anexo> _anexos;
+        private IList<Usuario> _responsables;
         private IList<Anexo> _anexosConfirmacion;
 
         #endregion
@@ -272,6 +273,12 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         {
             get { return _anexos; }
             set { _anexos = value; }
+        }
+
+        public virtual IList<Usuario> Responsables
+        {
+            get { return _responsables; }
+            set { _responsables = value; }
         }
 
         public virtual IList<Anexo> AnexosConfirmacion
