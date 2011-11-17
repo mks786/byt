@@ -133,7 +133,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
                 primeraResumen.Id = "NGN";
                 _resumenes.Insert(0, primeraResumen);
                 this._ventana.Resumenes = this._resumenes;
-                this._ventana.Resumen = this.BuscarResumen(this._resumenes, carta.Resumen.Id);
+                if (null != carta.Resumen)
+                    this._ventana.Resumen = this.BuscarResumen(this._resumenes, carta.Resumen.Id);
 
                 this._ventana.FocoPredeterminado();
             }

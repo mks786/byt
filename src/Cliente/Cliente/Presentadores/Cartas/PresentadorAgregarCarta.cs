@@ -172,12 +172,6 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
                     if (!this._cartaServicios.VerificarExistencia(carta))
                     {
                         bool exitoso = this._cartaServicios.InsertarOModificar(carta, UsuarioLogeado.Hash);
-                        carta.Medio = ((Medio)this._ventana.Medio).Id;
-                        carta.Receptor = ((Usuario)this._ventana.Receptor).Iniciales;
-
-                        //if (!this._cartaServicios.VerificarExistencia(carta))
-                        //{
-                        //    bool exitoso = this._cartaServicios.InsertarOModificar(carta, UsuarioLogeado.Hash);
 
                         if (exitoso)
                             this.Navegar(Recursos.MensajesConElUsuario.EntradaAlternaInsertado, false);
