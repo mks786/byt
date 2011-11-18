@@ -28,7 +28,7 @@
     <property name="AnexoMedio" type="String" column="`XANEXO_MEDIO`"/>
     <property name="AnexoTracking" type="String" column="`XANEXO_TRACKING`"/>
     <property name="Tracking" type="String" column="`XTRACKING`"/>
-    
+
     <many-to-one name="Asociado" class="Asociado">
       <column name="ASOCIADO"/>
     </many-to-one>
@@ -36,11 +36,11 @@
     <many-to-one name="Departamento" class="Departamento">
       <column name="CODDPTO"/>
     </many-to-one>
-    
+
     <many-to-one name="Resumen" class="Resumen">
       <column name="CODRES"/>
     </many-to-one>
-    
+
     <bag name="Justificaciones" table="FAC_ASO_JUST">
       <key column="CCARTA"/>
       <composite-element class="Justificacion">

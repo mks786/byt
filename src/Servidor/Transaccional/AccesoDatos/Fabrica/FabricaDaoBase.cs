@@ -265,5 +265,11 @@ namespace Trascend.Bolet.AccesoDatos.Fabrica
         /// </summary>
         /// <returns>IDaoEntradaAlterna</returns>
         public abstract IDaoEntradaAlterna ObtenerDaoEntradaAlterna();
+
+        /// <summary>
+        /// Método que devuelve el DaoAsignacion del manejador que se esté utilizando
+        /// </summary>
+        /// <returns>IDaoAsignacion</returns>
+        public abstract IDaoAsignacion ObtenerDaoAsignacion();
     }
 }

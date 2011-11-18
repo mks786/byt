@@ -304,8 +304,47 @@
             </ListView>
             <Separator Grid.Column="1" Grid.Row="13" Grid.ColumnSpan="9" Margin="0,5,0,5" VerticalAlignment="Center"/>
             <Label Grid.Column="1" Grid.Row="14" HorizontalAlignment="Right" VerticalAlignment="Center">
+                <TextBlock Text="{x:Static recurso:Etiquetas.lblTitleResponsables}"/>
+            </Label>
+
+            <Separator Grid.Column="1" Grid.Row="15" Grid.ColumnSpan="9" Margin="0,5,0,5" VerticalAlignment="Center"/>
+            <Label Grid.Column="1" Grid.Row="16" HorizontalAlignment="Right" VerticalAlignment="Top">
                 <TextBlock Text="{x:Static recurso:Etiquetas.lblTitleResponsable}"/>
             </Label>
+            <ComboBox Grid.Column="2" Grid.Row="16" Grid.ColumnSpan="4" 
+                      Name="_cbxResponsable" HorizontalAlignment="Left" Width="250" Height="20" 
+                      ItemsSource="{Binding}" VerticalAlignment="Top" >
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock>
+                                <TextBlock.Text>
+                                        <Binding Path="NombreCompleto" />
+                                </TextBlock.Text>
+                        </TextBlock>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+            <Button Grid.Column="4" Grid.Row="16" Name="_btnMasResponsable" VerticalAlignment="Top" Width="25" HorizontalAlignment="Left" Click="_btnMasResponsable_Click">
+                <TextBlock Text="{x:Static recurso:Etiquetas.btnAgregarSimbolo}"></TextBlock>
+            </Button>
+            <Button Grid.Column="4" Grid.Row="16" Name="_btnMenosResponsable" VerticalAlignment="Top" Width="25" HorizontalAlignment="Left" Margin="30 0 0 0" Click="_btnMenosResponsable_Click">
+                <TextBlock Text="{x:Static recurso:Etiquetas.btnEliminarSimbolo}"></TextBlock>
+            </Button>
+
+            <ListView Grid.Column="5" Grid.Row="16" Grid.ColumnSpan="7" Width="400" Grid.RowSpan="2" Name="_lstResponsables" ItemsSource="{Binding}" 
+                      SelectionMode="Single" VerticalAlignment="Top" HorizontalAlignment="Left"
+                      Style="{DynamicResource EstiloListView}" Visibility="Collapsed" Height="90" >
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Id}" Width="80">
+                            <GridViewColumnHeader  Tag="Id" Content="{x:Static recurso:Etiquetas.lsvId}"/>
+                        </GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=NombreCompleto}" Width="300">
+                            <GridViewColumnHeader  Tag="NombreCompleto" Content="{x:Static recurso:Etiquetas.lsvNombre}"/>
+                        </GridViewColumn>
+                    </GridView>
+                </ListView.View>
+            </ListView>
 
             <Separator Grid.Column="1" Grid.Row="18" Grid.ColumnSpan="9" Margin="0,5,0,5" VerticalAlignment="Center"/>
 

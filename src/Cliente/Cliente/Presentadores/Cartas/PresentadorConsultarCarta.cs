@@ -36,6 +36,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
         private IList<Contacto> _personas;
         private IList<Resumen> _resumenes;
         private IList<Departamento> _departamentos;
+        private IList<Usuario> _responsables;
 
         /// <summary>
         /// Constructor predeterminado
@@ -127,6 +128,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
                 mediosTracking.Insert(0, primerosMediosTracking);
                 //this._ventana.MediosTracking = mediosTracking;
 
+                this._responsables = this._usuarioServicios.ConsultarTodos();
+                Usuario primerResponsable = new Usuario();
+                primerResponsable.Id = "NGN";
+                _responsables.Insert(0, primerResponsable);
+                this._ventana.Responsables = _responsables;
+
                 this._ventana.MediosTrackingConfirmacion = mediosTracking;
 
                 this._resumenes = this._resumenServicios.ConsultarTodos();
@@ -169,12 +176,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
         {
             bool retorno = false;
             Carta carta = (Carta)this._ventana.Carta;
-            if ((null != carta.Anexos))
+            if ((null != carta.Anexos) && (carta.Anexos.Count != 0))
             {
                 this._ventana.AnexosCarta = carta.Anexos;
                 retorno = true;
+                this.LimpiarAnexosCarta(carta);
             }
-            this.LimpiarAnexosCarta(carta);
             return retorno;
         }
 
@@ -188,7 +195,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
                 {
                     if (anexos.Id == anexosTotal.Id)
                     {
-                        indices.Insert(0,index);
+                        indices.Insert(0, index);
                     }
                     index++;
                 }
@@ -202,18 +209,17 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
             this._ventana.Anexos = this._anexos;
         }
 
-        
 
         public bool CargarAnexosCartaConfirmacion()
         {
             bool retorno = false;
             Carta carta = (Carta)this._ventana.Carta;
-            if ((null != carta.AnexosConfirmacion))
+            if ((null != carta.AnexosConfirmacion) && (carta.AnexosConfirmacion.Count != 0))
             {
                 this._ventana.AnexosConfirmacionCarta = carta.AnexosConfirmacion;
                 retorno = true;
+                this.LimpiarAnexosCartaConfirmacion(carta);
             }
-            this.LimpiarAnexosCartaConfirmacion(carta);
             return retorno;
         }
 
@@ -227,7 +233,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
                 {
                     if (anexos.Id == anexosTotal.Id)
                     {
-                        indices.Insert(0,index);
+                        indices.Insert(0, index);
                     }
                     index++;
                 }
@@ -240,6 +246,43 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
 
             this._ventana.AnexosConfirmacion = this._anexosConfirmacion;
         }
+
+        //public bool CargarResponsables()    
+        //{
+        //    bool retorno = false;
+        //    Carta carta = (Carta)this._ventana.Carta;
+        //    if ((null != carta.Asignaciones) && (carta.Asignaciones.Count != 0))
+        //    {
+        //        this._ventana.ResponsablesList = carta.Asignaciones;
+        //        retorno = true;
+        //        this.LimpiarResponsables(carta);
+        //    }
+        //    return retorno;
+        //}
+
+        //private void LimpiarResponsables(Carta carta)
+        //{
+        //    IList<int> indices = new List<int>();
+        //    foreach (Usuario responsables in carta.Asignaciones)
+        //    {
+        //        int index = 0;
+        //        foreach (Usuario responsablesTotal in this._responsables)
+        //        {
+        //            if (responsables.Id == responsablesTotal.Id)
+        //            {
+        //                indices.Insert(0, index);
+        //            }
+        //            index++;
+        //        }
+        //    }
+
+        //    foreach (int indice in indices)
+        //    {
+        //        this._responsables.RemoveAt(indice);
+        //    }
+
+        //    this._ventana.Responsables = this._responsables;
+        //}
 
         //public bool verificarFormato()
         //{
@@ -475,11 +518,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
             return respuesta;
         }
 
-        public void CarmbiarFormatoTracking()
+        public void CambiarFormatoTracking()
         {
             this._ventana.FormatoTracking = !((Medio)this._ventana.Medio).Id.Equals("NGN") ? "Formato: " + ((Medio)this._ventana.Medio).Formato : "Formato: ";
         }
-        public void CarmbiarFormatoTrackingConfirmacion()
+
+        public void CambiarFormatoTrackingConfirmacion()
         {
             this._ventana.FormatoTrackingConfirmacion = !((Medio)this._ventana.MedioTrackingConfirmacion).Id.Equals("NGN") ? "Formato: " + ((Medio)this._ventana.MedioTrackingConfirmacion).Formato : "Formato: ";
         }
@@ -529,5 +573,51 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
             }
         }
 
+
+        //public bool AgregarResponsable()
+        //{
+        //    IList<Usuario> usuariosLista;
+        //    bool retorno = false;
+        //    if ((null != (Usuario)this._ventana.Responsable) && (!((Usuario)this._ventana.Responsable).Id.Equals("NGN")))
+        //    {
+        //        if (null == ((Carta)this._ventana.Carta).Responsables)
+        //            usuariosLista = new List<Usuario>();
+        //        else
+        //            usuariosLista = ((Carta)this._ventana.Carta).Responsables;
+
+        //        usuariosLista.Add((Usuario)this._ventana.Responsable);
+        //        ((Carta)this._ventana.Carta).Responsables = usuariosLista;
+        //        this._ventana.ResponsablesList = usuariosLista.ToList<Usuario>();
+        //        this._responsables.Remove((Usuario)this._ventana.Responsable);
+        //        this._ventana.Responsables = this._responsables.ToList<Usuario>();
+        //        retorno = true;
+        //    }
+        //    return retorno;
+        //}
+
+        //public bool DeshabilitarResponsable()
+        //{
+        //    IList<Usuario> responsables;
+        //    bool respuesta = false;
+
+        //    if (null != ((Usuario)this._ventana.ResponsableList))
+        //    {
+        //        if (null == ((Carta)this._ventana.Carta).Responsables)
+        //            responsables = new List<Usuario>();
+        //        else
+        //            responsables = ((Carta)this._ventana.Carta).Responsables;
+
+        //        responsables.Remove((Usuario)this._ventana.ResponsableList);
+        //        ((Carta)this._ventana.Carta).Responsables = responsables;
+        //        this._responsables.Add((Usuario)this._ventana.ResponsableList);
+        //        this._ventana.ResponsablesList = responsables.ToList<Usuario>();
+        //        this._ventana.Responsables = this._responsables.ToList<Usuario>();
+
+        //        if (responsables.Count == 0)
+        //            respuesta = true;
+
+        //    }
+        //    return respuesta;
+        //}
     }
 }

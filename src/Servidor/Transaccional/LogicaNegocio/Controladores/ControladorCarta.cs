@@ -93,22 +93,25 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
 
                 ComandoBase<bool> comandoInsertarOModificarContadorAsignacion = null;
 
-                //if (carta.Asignaciones.Count != 0)
-                //{
-                //    ComandoBase<ContadorAsignacion> comandoContadorAsignacionPoximoValor = FabricaComandosContadorAsignacion.ObtenerComandoConsultarPorId("ASIGNACION");
+                if (carta.Asignaciones.Count != 0)
+                {
+                    ComandoBase<ContadorAsignacion> comandoContadorAsignacionPoximoValor = FabricaComandosContadorAsignacion.ObtenerComandoConsultarPorId("ASIGNACION");
 
-                //    comandoContadorAsignacionPoximoValor.Ejecutar();
-                //    ContadorAsignacion contadorAsignacion = comandoContadorAsignacionPoximoValor.Receptor.ObjetoAlmacenado;
+                    comandoContadorAsignacionPoximoValor.Ejecutar();
+                    ContadorAsignacion contadorAsignacion = comandoContadorAsignacionPoximoValor.Receptor.ObjetoAlmacenado;
 
-                //    foreach (Asignacion asignacion in carta.Asignaciones)
-                //    {
-                //        if (asignacion.Id == 0)
-                //            asignacion.Id = contadorAsignacion.ProximoValor++;
-                //    }
+                    foreach (Asignacion asignacion in carta.Asignaciones)
+                    {
+                        if (asignacion.Id == 0)
+                        {
+                            asignacion.Id = contadorAsignacion.ProximoValor++;
+                            asignacion.Carta = carta;
+                        }
+                    }
 
-                //    comandoInsertarOModificarContadorAsignacion = FabricaComandosContadorAsignacion.ObtenerComandoInsertarOModificar(contadorAsignacion);
+                    comandoInsertarOModificarContadorAsignacion = FabricaComandosContadorAsignacion.ObtenerComandoInsertarOModificar(contadorAsignacion);
 
-                //}
+                }
 
                 Auditoria auditoria = new Auditoria();
                 ComandoBase<ContadorAuditoria> comandoContadorAuditoriaPoximoValor = FabricaComandosContadorAuditoria.ObtenerComandoConsultarPorId("SEG_AUDITORIA");
@@ -138,7 +141,13 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
 
                     if (comandoInsertarOModificarContadorAsignacion != null)
                         comandoInsertarOModificarContadorAsignacion.Ejecutar();
+                    foreach (Asignacion asignacion in carta.Asignaciones)
+                    {
+                        ComandoBase<bool> comandoAsignacion = FabricaComandosAsignacion.ObtenerComandoInsertarOModificar(asignacion);
+                        comandoAsignacion.Ejecutar();
+                    }
                 }
+
 
                 #region trace
                 if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))

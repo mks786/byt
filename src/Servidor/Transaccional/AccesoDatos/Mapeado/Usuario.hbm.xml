@@ -19,7 +19,6 @@
     <many-to-one name="Departamento" class="Departamento" lazy="false">
       <column name="CODDPTO"/>
     </many-to-one>
-
   </class>
 
 </hibernate-mapping>

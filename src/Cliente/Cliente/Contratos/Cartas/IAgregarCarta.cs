@@ -29,6 +29,10 @@ namespace Trascend.Bolet.Cliente.Contratos.Cartas
 
         object Responsables { get; set; }
 
+        object ResponsableList { get; set; }
+
+        object ResponsablesList { get; set; }
+
         object Resumen { get; set; }
 
         object Resumenes { get; set; }
@@ -68,10 +72,6 @@ namespace Trascend.Bolet.Cliente.Contratos.Cartas
         string FormatoTracking { get; set; }
 
         string FormatoTrackingConfirmacion { get; set; }
-
-        object ResponsableList { get; set; }
-
-        object ResponsablesList { get; set; }
 
     }
 }

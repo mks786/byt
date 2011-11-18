@@ -81,29 +81,17 @@ namespace Trascend.Bolet.Cliente.Ventanas.Cartas
 
         public object Responsable
         {
-            get
-            {
-                return this._cbxResponsable.SelectedItem;
-            }
-            set
-            {
-                this._cbxResponsable.SelectedItem = value;
-            }
+            get { return this._cbxResponsable.SelectedItem; }
+            set { this._cbxResponsable.SelectedItem = value; }
         }
 
         public object Responsables
         {
-            get
-            {
-                return this._cbxResponsable.DataContext;
-            }
-            set
-            {
-                this._cbxResponsable.DataContext = value;
-            }
+            get { return this._cbxResponsable.DataContext; }
+            set { this._cbxResponsable.DataContext = value; }
         }
 
-        public object ResponsableList 
+        public object ResponsableList
         {
             get { return this._lstResponsables.SelectedItem; }
             set { this._lstResponsables.SelectedItem = value; }

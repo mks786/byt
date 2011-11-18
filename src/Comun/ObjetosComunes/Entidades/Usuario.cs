@@ -16,7 +16,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         private Rol _rol;
         private Departamento _departamento;
         private string _email;
-        //private string _emailEdo;
+        private IList<Asignacion> _asignaciones;
         private char _autorizar;
         private int _hash;
 
@@ -156,6 +156,12 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
             set { this._hash = value; }
         }
 
+
+        public virtual IList<Asignacion> Asignaciones
+        {
+            get { return _asignaciones; }
+            set { _asignaciones = value; }
+        }
 
         #endregion
     }

@@ -116,7 +116,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
 
                 this._responsables = this._usuarioServicios.ConsultarTodos();
                 Usuario primerResponsable = new Usuario();
-                primeraResumen.Id = "NGN";
+                primerResponsable.Id = "NGN";
                 _responsables.Insert(0, primerResponsable);
                 this._ventana.Responsables = _responsables;
 
@@ -356,50 +356,86 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
 
         public bool AgregarResponsable()
         {
-            IList<Usuario> usuariosLista;
             bool retorno = false;
-            if ((null != (Usuario)this._ventana.Responsable) && (!((Usuario)this._ventana.Responsable).Id.Equals("NGN")))
+            IList<Asignacion> asignacionLista;
+            if ((null != (Usuario)_ventana.Responsable) && (!((Usuario)this._ventana.Responsable).Id.Equals("NGN")))
             {
-                if (null == ((Carta)this._ventana.Carta).Responsables)
-                    usuariosLista = new List<Usuario>();
+                if (null == ((Carta)this._ventana.Carta).Asignaciones)
+                {
+                    asignacionLista = new List<Asignacion>();
+                }
                 else
-                    usuariosLista = ((Carta)this._ventana.Carta).Responsables;
+                {
+                    asignacionLista = ((Carta)this._ventana.Carta).Asignaciones;
+                }
 
-                usuariosLista.Add((Usuario)this._ventana.Responsable);
-                ((Carta)this._ventana.Carta).Responsables = usuariosLista;
-                this._ventana.ResponsablesList = usuariosLista.ToList<Usuario>();
+
+                Asignacion asignacionInsertar = new Asignacion((Usuario)this._ventana.Responsable, (Carta)this._ventana.Carta);
+                asignacionLista.Add(asignacionInsertar);
+                ((Carta)this._ventana.Carta).Asignaciones = asignacionLista;
+                IList<Usuario> usuariosLista = ListAsignacionesToUsuarios(asignacionLista);
+                this._ventana.ResponsablesList = usuariosLista;
+
                 this._responsables.Remove((Usuario)this._ventana.Responsable);
                 this._ventana.Responsables = this._responsables.ToList<Usuario>();
+
+
                 retorno = true;
             }
             return retorno;
+
         }
 
-
+        private IList<Usuario> ListAsignacionesToUsuarios(IList<Asignacion> asignaciones)
+        {
+            IList<Usuario> usuarios = new List<Usuario>();
+            foreach (Asignacion asignacion in asignaciones)
+            {
+                usuarios.Add(asignacion.Responsable);
+            }
+            return usuarios;
+        }
 
         public bool DeshabilitarResponsable()
         {
-            IList<Usuario> responsables;
-            bool respuesta = false;
-
-            if (null != ((Usuario)this._ventana.ResponsableList))
+            bool retorno = false;
+            IList<Asignacion> asignacionLista;
+            if (null != (Usuario)this._ventana.ResponsableList)
             {
-                if (null == ((Carta)this._ventana.Carta).Responsables)
-                    responsables = new List<Usuario>();
+                if (null == ((Carta)this._ventana.Carta).Asignaciones)
+                    asignacionLista = new List<Asignacion>();
                 else
-                    responsables = ((Carta)this._ventana.Carta).Responsables;
+                    asignacionLista = ((Carta)this._ventana.Carta).Asignaciones;
 
-                responsables.Remove((Usuario)this._ventana.ResponsableList);
-                ((Carta)this._ventana.Carta).Responsables = responsables;
+                IList<Usuario> usuariosLista = ListAsignacionesToUsuarios(asignacionLista);
                 this._responsables.Add((Usuario)this._ventana.ResponsableList);
-                this._ventana.ResponsablesList = responsables.ToList<Usuario>();
-                this._ventana.Responsables = this._responsables.ToList<Usuario>();
 
-                if (responsables.Count == 0)
-                    respuesta = true;
 
+                ((Carta)this._ventana.Carta).Asignaciones = RemoverResponsable(asignacionLista);
+                usuariosLista.Remove((Usuario)this._ventana.ResponsableList);
+                this._ventana.ResponsablesList = usuariosLista.ToList<Usuario>();
+                this._ventana.Responsables = this._responsables;
             }
-            return respuesta;
+
+            if (((Carta)this._ventana.Carta).Asignaciones.Count == 0)
+                retorno = true;
+
+            return retorno;
+        }
+
+        private IList<Asignacion> RemoverResponsable(IList<Asignacion> asignaciones)
+        {
+            int index = 0;
+            int borrar = 0;
+            foreach (Asignacion asignacion in asignaciones)
+            {
+                if (asignacion.Responsable.Id == ((Usuario)this._ventana.ResponsableList).Id)
+                    borrar = index;
+                index++;
+            }
+            asignaciones.RemoveAt(borrar);
+
+            return asignaciones;
         }
 
     }

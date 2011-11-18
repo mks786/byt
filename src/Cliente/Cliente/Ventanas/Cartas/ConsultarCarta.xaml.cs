@@ -81,26 +81,26 @@ namespace Trascend.Bolet.Cliente.Ventanas.Cartas
 
         public object Responsable
         {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
-                throw new System.NotImplementedException();
-            }
+            get { return this._cbxResponsable.SelectedItem; }
+            set { this._cbxResponsable.SelectedItem = value; }
         }
 
         public object Responsables
         {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
-                throw new System.NotImplementedException();
-            }
+            get { return this._cbxResponsable.DataContext; }
+            set { this._cbxResponsable.DataContext = value; }
+        }
+
+        public object ResponsableList
+        {
+            get { return this._lstResponsables.SelectedItem; }
+            set { this._lstResponsables.SelectedItem = value; }
+        }
+
+        public object ResponsablesList
+        {
+            get { return this._lstResponsables.DataContext; }
+            set { this._lstResponsables.DataContext = value; }
         }
 
         public object Resumen
@@ -334,6 +334,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.Cartas
                     this._lstAnexosCarta.Visibility = System.Windows.Visibility.Visible;
                 if (this._presentador.CargarAnexosCartaConfirmacion())
                     this._lstAnexosCartaConfirmacion.Visibility = System.Windows.Visibility.Visible;
+                //if (this._presentador.CargarResponsables())
+                //    this._lstResponsables.Visibility = System.Windows.Visibility.Visible;
                 EstaCargada = true;
             }
         }
@@ -402,19 +404,34 @@ namespace Trascend.Bolet.Cliente.Ventanas.Cartas
             }
 
         }
+
         private void _cbxMedio_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            this._presentador.CarmbiarFormatoTracking();
+            this._presentador.CambiarFormatoTracking();
         }
 
         private void _cbxMedioTrackingConfirmacion_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            this._presentador.CarmbiarFormatoTrackingConfirmacion();
+            this._presentador.CambiarFormatoTrackingConfirmacion();
         }
 
         private void _btnAuditoria_Click(object sender, RoutedEventArgs e)
         {
             this._presentador.Auditoria();
+        }
+        private void _btnMasResponsable_Click(object sender, RoutedEventArgs e)
+        {
+            //if ((this._presentador.AgregarResponsable()) && (this._lstResponsables.Visibility == System.Windows.Visibility.Collapsed))
+            //    this._lstResponsables.Visibility = System.Windows.Visibility.Visible;
+        }
+
+
+        private void _btnMenosResponsable_Click(object sender, RoutedEventArgs e)
+        {
+            //if (this._presentador.DeshabilitarResponsable())
+            //{
+            //    this._lstResponsables.Visibility = System.Windows.Visibility.Collapsed;
+            //}
         }
 
 
@@ -461,13 +478,6 @@ namespace Trascend.Bolet.Cliente.Ventanas.Cartas
         //private void _btnJustificacionesDatos_Click(object sender, RoutedEventArgs e)
         //{
         //    this._presentador.IrListaJustificaciones();
-        //}
-
-
-
-
-
-
-       
+        //}      
     }
 }

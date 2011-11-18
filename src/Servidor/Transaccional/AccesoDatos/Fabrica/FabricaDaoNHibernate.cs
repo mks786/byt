@@ -390,5 +390,14 @@ namespace Trascend.Bolet.AccesoDatos.Fabrica
         {
             return new DaoEntradaAlternaNHibernate();
         }
+
+        /// <summary>
+        /// Método que devuelve el DaoEntradaAlterna
+        /// </summary>
+        /// <returns>IDaoEntradaAlterna</returns>
+        public override IDaoAsignacion ObtenerDaoAsignacion()
+        {
+            return new DaoAsignacionNHibernate();
+        }
     }
 }

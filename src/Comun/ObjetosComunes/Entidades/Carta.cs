@@ -39,7 +39,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         private IList<Justificacion> _justificaciones;
         private IList<Contacto> _contactos;
         private IList<Anexo> _anexos;
-        private IList<Usuario> _responsables;
+        private IList<Asignacion> _asignaciones;
         private IList<Anexo> _anexosConfirmacion;
         private string _operacion;
         
@@ -276,10 +276,10 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
             set { _anexos = value; }
         }
 
-        public virtual IList<Usuario> Responsables
+        public virtual IList<Asignacion> Asignaciones
         {
-            get { return _responsables; }
-            set { _responsables = value; }
+            get { return _asignaciones; }
+            set { _asignaciones = value; }
         }
 
         public virtual IList<Anexo> AnexosConfirmacion

@@ -164,10 +164,12 @@
     <Compile Include="Comandos\ComandosEntradaAlterna\ComandoVerificarExistenciaBoletin.cs" />
     <Compile Include="Comandos\ComandosContadorAsignacion\ComandoConsultarPorIdContadorAsignacion.cs" />
     <Compile Include="Comandos\ComandosContadorAsignacion\ComandoInsertarOModificarContadorAsignacion.cs" />
+    <Compile Include="Comandos\ComandosAsignacion\ComandoInsertarOModificarAsignacion.cs" />
     <Compile Include="Comandos\Receptor.cs" />
     <Compile Include="Comandos\ComandosUsuario\ComandoConsultarTodosUsuarios.cs" />
     <Compile Include="Comandos\ComandosUsuario\ComandoConsultarUsuarioPorID.cs" />
     <Compile Include="Comandos\ComandosUsuario\ComandoInsertarOModificarUsuario.cs" />
+    <Compile Include="Fabrica\FabricaComandosAsignacion.cs" />
     <Compile Include="Fabrica\FabricaComandosContadorAsignacion.cs" />
     <Compile Include="Fabrica\FabricaComandosEntradaAlterna.cs" />
     <Compile Include="Fabrica\FabricaComandosCartaOut.cs" />
