@@ -37,7 +37,7 @@ namespace Trascend.Bolet.Comandos.Comandos.ComandosCarta
                 #endregion
 
                 IDaoCarta dao = FabricaDaoBase.ObtenerFabricaDao().ObtenerDaoCarta();
-                dao.InsertarOModificar(this._carta);
+                this.Receptor = new Receptor<bool>(dao.InsertarOModificar(this._carta));
 
                 #region trace
                 if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))

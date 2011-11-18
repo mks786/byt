@@ -91,9 +91,54 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
+                ComandoBase<bool> comandoInsertarOModificarContadorAsignacion = null;
+
+                //if (carta.Asignaciones.Count != 0)
+                //{
+                //    ComandoBase<ContadorAsignacion> comandoContadorAsignacionPoximoValor = FabricaComandosContadorAsignacion.ObtenerComandoConsultarPorId("ASIGNACION");
+
+                //    comandoContadorAsignacionPoximoValor.Ejecutar();
+                //    ContadorAsignacion contadorAsignacion = comandoContadorAsignacionPoximoValor.Receptor.ObjetoAlmacenado;
+
+                //    foreach (Asignacion asignacion in carta.Asignaciones)
+                //    {
+                //        if (asignacion.Id == 0)
+                //            asignacion.Id = contadorAsignacion.ProximoValor++;
+                //    }
+
+                //    comandoInsertarOModificarContadorAsignacion = FabricaComandosContadorAsignacion.ObtenerComandoInsertarOModificar(contadorAsignacion);
+
+                //}
+
+                Auditoria auditoria = new Auditoria();
+                ComandoBase<ContadorAuditoria> comandoContadorAuditoriaPoximoValor = FabricaComandosContadorAuditoria.ObtenerComandoConsultarPorId("SEG_AUDITORIA");
+
+                comandoContadorAuditoriaPoximoValor.Ejecutar();
+                ContadorAuditoria contadorAuditoria = comandoContadorAuditoriaPoximoValor.Receptor.ObjetoAlmacenado;
+
+
+                auditoria.Id = contadorAuditoria.ProximoValor++;
+                auditoria.Usuario = ObtenerUsuarioPorHash(hash).Id;
+                auditoria.Fecha = System.DateTime.Now;
+                auditoria.Operacion = carta.Operacion;
+                auditoria.Tabla = "ENTRADA";
+                auditoria.Fk = carta.Id;
+
                 ComandoBase<bool> comando = FabricaComandosCarta.ObtenerComandoInsertarOModificar(carta);
+                ComandoBase<bool> comandoAuditoria = FabricaComandosAuditoria.ObtenerComandoInsertarOModificar(auditoria);
+                ComandoBase<bool> comandoAuditoriaContador = FabricaComandosContadorAuditoria.ObtenerComandoInsertarOModificar(contadorAuditoria);
+
                 comando.Ejecutar();
-                exitoso = true;
+                exitoso = comando.Receptor.ObjetoAlmacenado;
+
+                if (exitoso)
+                {
+                    comandoAuditoria.Ejecutar();
+                    comandoAuditoriaContador.Ejecutar();
+
+                    if (comandoInsertarOModificarContadorAsignacion != null)
+                        comandoInsertarOModificarContadorAsignacion.Ejecutar();
+                }
 
                 #region trace
                 if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
@@ -124,9 +169,33 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-                ComandoBase<bool> comando = FabricaComandosCarta.ObtenerComandoEliminarCarta(carta);
-                comando.Ejecutar();
-                exitoso = true;
+                Auditoria auditoria = new Auditoria();
+                ComandoBase<ContadorAuditoria> comandoContadorAuditoriaPoximoValor = FabricaComandosContadorAuditoria.ObtenerComandoConsultarPorId("SEG_AUDITORIA");
+
+                comandoContadorAuditoriaPoximoValor.Ejecutar();
+                ContadorAuditoria contadorAuditoria = comandoContadorAuditoriaPoximoValor.Receptor.ObjetoAlmacenado;
+
+
+                auditoria.Id = contadorAuditoria.ProximoValor++;
+                auditoria.Usuario = ObtenerUsuarioPorHash(hash).Id;
+                auditoria.Fecha = System.DateTime.Now;
+                auditoria.Operacion = carta.Operacion;
+                auditoria.Tabla = "ENTRADA";
+                auditoria.Fk = carta.Id;
+
+                ComandoBase<bool> comandoInteresado = FabricaComandosCarta.ObtenerComandoEliminarCarta(carta);
+                ComandoBase<bool> comandoAuditoria = FabricaComandosAuditoria.ObtenerComandoInsertarOModificar(auditoria);
+                ComandoBase<bool> comandoAuditoriaContador = FabricaComandosContadorAuditoria.ObtenerComandoInsertarOModificar(contadorAuditoria);
+
+
+                comandoInteresado.Ejecutar();
+                exitoso = comandoInteresado.Receptor.ObjetoAlmacenado;
+
+                if (exitoso)
+                {
+                    comandoAuditoria.Ejecutar();
+                    comandoAuditoriaContador.Ejecutar();
+                }
 
                 #region trace
                 if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))

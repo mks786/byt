@@ -8,7 +8,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
     {
         #region Atributos
 
-        private int? _id;
+        private int _id;
         private DateTime _fecha;
         private string _medio;
         private Asociado _asociado;
@@ -41,7 +41,8 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         private IList<Anexo> _anexos;
         private IList<Usuario> _responsables;
         private IList<Anexo> _anexosConfirmacion;
-
+        private string _operacion;
+        
         #endregion
 
         #region Constructores
@@ -67,7 +68,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         /// <summary>
         /// Propiedad que asigna u obtiene el id
         /// </summary>
-        public virtual int? Id
+        public virtual int Id
         {
             get { return _id; }
             set { _id = value; }
@@ -287,6 +288,14 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
             set { _anexosConfirmacion = value; }
         }
 
+        /// <summary>
+        /// Propiedad que asigna u obtiene la operacion
+        /// </summary>
+        public virtual string Operacion
+        {
+            get { return _operacion; }
+            set { _operacion = value; }
+        }
         #endregion
     }
 }
