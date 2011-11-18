@@ -82,7 +82,6 @@ namespace Trascend.Bolet.Servicios.Implementacion
             return exitoso;
         }
 
-
         public IList<Auditoria> AuditoriaPorFkyTabla(Auditoria auditoria)
         {
             #region trace

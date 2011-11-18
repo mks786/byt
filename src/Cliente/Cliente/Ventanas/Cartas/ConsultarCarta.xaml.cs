@@ -412,6 +412,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Cartas
             this._presentador.CarmbiarFormatoTrackingConfirmacion();
         }
 
+        private void _btnAuditoria_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.Auditoria();
+        }
+
 
         //private void _soloNumero_KeyUp(object sender, KeyEventArgs e)
         //{

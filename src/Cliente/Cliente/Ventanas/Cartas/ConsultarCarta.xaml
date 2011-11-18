@@ -418,22 +418,11 @@
         <WrapPanel Grid.Row="2" Grid.ColumnSpan="3" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="5" Orientation="Horizontal">
             <Button Name="_btnAceptar"  VerticalAlignment="Bottom" Height="25" Width="90" 
                     Click="_btnAceptar_Click"  IsDefault="True">
-                <Button.Style>
-                    <Style TargetType="Button">
-                        <Style.Triggers>
-                            <DataTrigger Binding="{Binding ElementName=_txtNombreDatos,Path=(Validation.HasError)}" Value="True">
-                                <Setter Property="IsEnabled" Value="False" />
-                            </DataTrigger>
-                            <DataTrigger Binding="{Binding ElementName=_txtNombreAdministracion,Path=(Validation.HasError)}" Value="True">
-                                <Setter Property="IsEnabled" Value="False" />
-                            </DataTrigger>
-                            <DataTrigger Binding="{Binding ElementName=_txtDomicilioDatos,Path=(Validation.HasError)}" Value="True">
-                                <Setter Property="IsEnabled" Value="False" />
-                            </DataTrigger>
-                        </Style.Triggers>
-                    </Style>
-                </Button.Style>
                 <TextBlock Name="_txbAceptar" Text="{x:Static recurso:Etiquetas.btnModificar}"/>
+            </Button>
+            <Button Name="_btnAuditoria" VerticalAlignment="Bottom" Height="25" Width="90"
+                    Click="_btnAuditoria_Click">
+                <TextBlock Name="_txbAuditoria" Text="{x:Static recurso:Etiquetas.btnAuditoria}"/>
             </Button>
             <Button Name="_btnCancelar" VerticalAlignment="Bottom" Height="25" Width="90" Click="_btnCancelar_Click">Cancelar</Button>
         </WrapPanel>

@@ -7,5 +7,6 @@ namespace Trascend.Bolet.ObjetosComunes.ContratosServicios
     public interface ICartaServicios: IServicioBase<Carta>
     {
         IList<Carta> ObtenerCartasFiltro(Carta carta);
+        IList<Auditoria> AuditoriaPorFkyTabla(Auditoria auditoria);
     }
 }
