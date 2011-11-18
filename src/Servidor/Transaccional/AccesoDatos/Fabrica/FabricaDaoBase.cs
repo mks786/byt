@@ -133,6 +133,12 @@ namespace Trascend.Bolet.AccesoDatos.Fabrica
         public abstract IDaoContadorAuditoria ObtenerDaoContadorAuditoria();
 
         /// <summary>
+        /// Método que devuelve el DaoContadorAsignacion del manejador que se esté utilizando
+        /// </summary>
+        /// <returns>IDaoContadorAsignacion</returns>
+        public abstract IDaoContadorAsignacion ObtenerDaoContadorAsignacion();
+
+        /// <summary>
         /// Método que devuelve el DaoInteresado del manejador que se esté utilizando
         /// </summary>
         /// <returns>IDaoInteresado</returns>

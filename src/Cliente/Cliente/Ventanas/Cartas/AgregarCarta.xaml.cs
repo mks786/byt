@@ -24,7 +24,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Cartas
 
         public void Mensaje(string mensaje)
         {
-            throw new System.NotImplementedException();
+            MessageBox.Show(mensaje, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
         }
 
         public object Asociado

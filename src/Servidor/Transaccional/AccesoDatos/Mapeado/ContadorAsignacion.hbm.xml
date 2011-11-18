@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+                   assembly="Trascend.Bolet.ObjetosComunes"
+                   namespace="Trascend.Bolet.ObjetosComunes.Entidades">
+
+  <class name="ContadorAsignacion" table="CONTADOR">
+    <id name="Id" column="ENTIDAD" type="string"/>
+    <property name="ProximoValor" column="VALOR" type="int"/>
+    
+  </class>
+
+</hibernate-mapping>
+
+

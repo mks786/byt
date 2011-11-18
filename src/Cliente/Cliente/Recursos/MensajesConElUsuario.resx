@@ -474,4 +474,7 @@
   <data name="ErrorEntradaAlternaRepetido" xml:space="preserve">
     <value>La entrada alterna que intenta introducir ya existe</value>
   </data>
+  <data name="CartaInsertada" xml:space="preserve">
+    <value>Carta insertada con éxito</value>
+  </data>
 </root>

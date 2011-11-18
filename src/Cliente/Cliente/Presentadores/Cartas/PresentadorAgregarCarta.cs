@@ -181,7 +181,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
                         bool exitoso = this._cartaServicios.InsertarOModificar(carta, UsuarioLogeado.Hash);
 
                         if (exitoso)
-                            this.Navegar(Recursos.MensajesConElUsuario.EntradaAlternaInsertado, false);
+                            this.Navegar(Recursos.MensajesConElUsuario.CartaInsertada, false);
                     }
                     else
                     {

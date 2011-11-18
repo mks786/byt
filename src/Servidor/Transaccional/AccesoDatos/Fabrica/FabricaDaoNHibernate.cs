@@ -194,6 +194,15 @@ namespace Trascend.Bolet.AccesoDatos.Fabrica
         }
 
         /// <summary>
+        /// Método que devuelve el DaoContadorAsignacion
+        /// </summary>
+        /// <returns>IDaoContadorAsignacion</returns>
+        public override IDaoContadorAsignacion ObtenerDaoContadorAsignacion()
+        {
+            return new DaoContadorAsignacionNHibernate();
+        }
+
+        /// <summary>
         /// Método que devuelve el DaoInteresado
         /// </summary>
         /// <returns>IDaoInteresado</returns>

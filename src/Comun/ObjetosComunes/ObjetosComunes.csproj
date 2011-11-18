@@ -88,6 +88,7 @@
     <Compile Include="Entidades\ContadorFac.cs" />
     <Compile Include="Entidades\Carta.cs" />
     <Compile Include="Entidades\Anexo.cs" />
+    <Compile Include="Entidades\ContadorAsignacion.cs" />
     <Compile Include="Entidades\EntradaAlterna.cs" />
     <Compile Include="Entidades\CartaOut.cs" />
     <Compile Include="Entidades\Remitente.cs" />
