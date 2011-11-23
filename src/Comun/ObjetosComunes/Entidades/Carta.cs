@@ -35,7 +35,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         private DateTime? _fechaL;
         private char _iRev;
         private DateTime? _fechaReal;
-        private DateTime? _fechaD;
+        private DateTime? _fechaConfirmacion;
         private IList<Justificacion> _justificaciones;
         private IList<Contacto> _contactos;
         private IList<Anexo> _anexos;
@@ -248,10 +248,10 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
             set { _fechaReal = value; }
         }
 
-        public virtual DateTime? FechaD
+        public virtual DateTime? FechaConfirmacion
         {
-            get { return _fechaD; }
-            set { _fechaD = value; }
+            get { return _fechaConfirmacion; }
+            set { _fechaConfirmacion = value; }
         }
 
         /// <summary>

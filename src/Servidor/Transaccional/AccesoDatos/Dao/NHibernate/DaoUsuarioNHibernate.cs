@@ -46,5 +46,36 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
 
             return retorno;
         }
+
+        public Usuario ObtenerUsuarioPorIniciales(string iniciales) 
+        {
+            Usuario retorno = new Usuario();
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                IQuery query = Session.CreateQuery(string.Format(Recursos.ConsultasHQL.ObtenerUsuarioPorIniciales,iniciales));
+                retorno = query.UniqueResult<Usuario>();
+
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                throw new ApplicationException(Recursos.Errores.ExConsultarTodosUsuariosPorUsuario);
+            }
+            finally
+            {
+                Session.Close();
+            }
+
+            return retorno;   
+        }
     }
 }

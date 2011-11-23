@@ -294,8 +294,14 @@ namespace Trascend.Bolet.Cliente.Ventanas.Cartas
                 this._dpkFechaAnexo.IsEnabled = value;
                 this._dpkFechaConfirmacion.IsEnabled = value;
                 this._dpkFechaReal.IsEnabled = value;
-                this._txtMedio.IsEnabled = value;
+                //this._txtMedio.IsEnabled = value;
                 this._cbxMedioTrackingConfirmacion.IsEnabled = value;
+                this._lstResponsables.IsEnabled = value;
+                this._btnMasResponsable.IsEnabled = value;
+                this._btnMenosResponsable.IsEnabled = value;
+                this._cbxResponsable.IsEnabled = value;
+                this._txtIdAsociado.IsEnabled = value;
+                this._txtNombreAsociado.IsEnabled = value;
             }
         }
 
@@ -334,8 +340,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.Cartas
                     this._lstAnexosCarta.Visibility = System.Windows.Visibility.Visible;
                 if (this._presentador.CargarAnexosCartaConfirmacion())
                     this._lstAnexosCartaConfirmacion.Visibility = System.Windows.Visibility.Visible;
-                //if (this._presentador.CargarResponsables())
-                //    this._lstResponsables.Visibility = System.Windows.Visibility.Visible;
+                if (this._presentador.CargarResponsables())
+                    this._lstResponsables.Visibility = System.Windows.Visibility.Visible;
                 EstaCargada = true;
             }
         }
@@ -421,17 +427,17 @@ namespace Trascend.Bolet.Cliente.Ventanas.Cartas
         }
         private void _btnMasResponsable_Click(object sender, RoutedEventArgs e)
         {
-            //if ((this._presentador.AgregarResponsable()) && (this._lstResponsables.Visibility == System.Windows.Visibility.Collapsed))
-            //    this._lstResponsables.Visibility = System.Windows.Visibility.Visible;
+            if ((this._presentador.AgregarResponsable()) && (this._lstResponsables.Visibility == System.Windows.Visibility.Collapsed))
+                this._lstResponsables.Visibility = System.Windows.Visibility.Visible;
         }
 
 
         private void _btnMenosResponsable_Click(object sender, RoutedEventArgs e)
         {
-            //if (this._presentador.DeshabilitarResponsable())
-            //{
-            //    this._lstResponsables.Visibility = System.Windows.Visibility.Collapsed;
-            //}
+            if (this._presentador.DeshabilitarResponsable())
+            {
+                this._lstResponsables.Visibility = System.Windows.Visibility.Collapsed;
+            }
         }
 
 

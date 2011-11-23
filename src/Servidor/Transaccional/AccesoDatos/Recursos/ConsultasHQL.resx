@@ -139,6 +139,10 @@
     <value>Select distinct(a) from Agente a left join fetch a.Poderes order by a.Id</value>
     <comment>Selecciona todos los agentes y sus objetos</comment>
   </data>
+  <data name="ObtenerAsignacionesPorCarta" xml:space="preserve">
+    <value>Select a from Asignacion a where a.Carta = '{0}'</value>
+    <comment>Consulta las asignaciones de una carta determinada</comment>
+  </data>
   <data name="ObtenerAsociadoConTodo" xml:space="preserve">
     <value>Select distinct(a) from Asociado a left outer join fetch a.Justificaciones where a.Id = '{0}' order by a.Id</value>
     <comment>Selecciona el asociado con todas sus listas</comment>
@@ -166,6 +170,10 @@
   <data name="ObtenerUsuarioPorIdYPassword" xml:space="preserve">
     <value>Select u from Usuario u left join fetch u.Rol as rol left join fetch rol.Objetos where u.Id = '{0}' and u.Password = '{1}'</value>
     <comment>Selecciona el usuario, rol y objetos, si el Id y el Password concuerdan con algún usuario de la BD</comment>
+  </data>
+  <data name="ObtenerUsuarioPorIniciales" xml:space="preserve">
+    <value>Select u from Usuario u where u.Iniciales='{0}'</value>
+    <comment>Selecciona un usuario por sus iniciales</comment>
   </data>
   <data name="VerificarExistenciaResolucion" xml:space="preserve">
     <value>Select r from Resolucion r where r.Id = {0} and r.FechaResolucion = '{1}' and r.Boletin.Id =  {2}</value>

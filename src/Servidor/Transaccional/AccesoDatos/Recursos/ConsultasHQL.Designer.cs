@@ -115,6 +115,15 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Select a from Asignacion a where a.Carta = &apos;{0}&apos;.
+        /// </summary>
+        public static string ObtenerAsignacionesPorCarta {
+            get {
+                return ResourceManager.GetString("ObtenerAsignacionesPorCarta", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select distinct(a) from Asociado a left outer join fetch a.Justificaciones where a.Id = &apos;{0}&apos; order by a.Id.
         /// </summary>
         public static string ObtenerAsociadoConTodo {
@@ -174,6 +183,15 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         public static string ObtenerUsuarioPorIdYPassword {
             get {
                 return ResourceManager.GetString("ObtenerUsuarioPorIdYPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select u from Usuario u where u.Iniciales=&apos;{0}&apos;.
+        /// </summary>
+        public static string ObtenerUsuarioPorIniciales {
+            get {
+                return ResourceManager.GetString("ObtenerUsuarioPorIniciales", resourceCulture);
             }
         }
         

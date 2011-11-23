@@ -83,6 +83,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
                 this._asociados = asociados;
 
                 this._ventana.FocoPredeterminado();
+
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
                     logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);

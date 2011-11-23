@@ -412,10 +412,10 @@
                 </DatePicker.SelectedDate>
             </DatePicker>
 
-            <Label Grid.Column="6" Grid.Row="22" HorizontalAlignment="Right" VerticalAlignment="Center">
+            <!--<Label Grid.Column="6" Grid.Row="22" HorizontalAlignment="Right" VerticalAlignment="Center">
                 <TextBlock Text="{x:Static recurso:Etiquetas.lblMedio}"/>
             </Label>
-            <TextBox    Grid.ColumnSpan="2" Name="_txtMedio" Text="{Binding Path=AnexoMedio}" Grid.Column="7" Grid.Row="22" Height="20"></TextBox>
+            <TextBox MaxLength="3" Grid.ColumnSpan="2" Name="_txtMedio" Text="{Binding Path=AnexoMedio}" Grid.Column="7" Grid.Row="22" Height="20"></TextBox>-->
 
 
             <Label Grid.Column="1" Grid.Row="23" HorizontalAlignment="Right" VerticalAlignment="Center">

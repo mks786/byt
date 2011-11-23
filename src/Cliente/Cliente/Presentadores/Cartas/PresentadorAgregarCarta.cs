@@ -157,23 +157,26 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
             {
                 bool tracking = true;
 
-                if (!String.IsNullOrEmpty(((Carta)this._ventana.Carta).Tracking))
+                if (null != (((Medio)this._ventana.Medio).Formato) && (!String.IsNullOrEmpty(((Carta)this._ventana.Carta).Tracking)))
                     tracking = this.verificarFormato(((Medio)this._ventana.Medio).Formato, ((Carta)this._ventana.Carta).Tracking);
-
-                if (tracking && !String.IsNullOrEmpty(((Carta)this._ventana.Carta).AnexoTracking))
+                if (null != (((Medio)this._ventana.MedioTrackingConfirmacion)) && (null != (((Medio)this._ventana.MedioTrackingConfirmacion).Formato)) && (!String.IsNullOrEmpty(((Carta)this._ventana.Carta).AnexoTracking)))
                     tracking = this.verificarFormato(((Medio)this._ventana.MedioTrackingConfirmacion).Formato, ((Carta)this._ventana.Carta).AnexoTracking);
 
                 if (tracking)
                 {
                     Carta carta = (Carta)this._ventana.Carta;
+                    carta.Operacion = "CREATE";
                     if (null != this._ventana.Departamento)
                         carta.Departamento = !((Departamento)this._ventana.Departamento).Id.Equals("NGN") ? (Departamento)this._ventana.Departamento : null;
                     if (null != this._ventana.Asociado)
                         carta.Asociado = !((Asociado)this._ventana.Asociado).Id.Equals("NGN") ? (Asociado)this._ventana.Asociado : null;
                     if (null != this._ventana.Persona)
                         carta.Persona = !((Contacto)this._ventana.Persona).Id.Equals("NGN") ? ((Contacto)this._ventana.Persona).Nombre : null;
+                    if (null != this._ventana.Resumen)
+                        carta.Resumen = !((Resumen)this._ventana.Resumen).Id.Equals("NGN") ? ((Resumen)this._ventana.Resumen): null;
 
                     carta.Medio = ((Medio)this._ventana.Medio).Id;
+                    carta.AnexoMedio = ((Medio)this._ventana.MedioTrackingConfirmacion).Id;
                     carta.Receptor = ((Usuario)this._ventana.Receptor).Iniciales;
 
                     if (!this._cartaServicios.VerificarExistencia(carta))

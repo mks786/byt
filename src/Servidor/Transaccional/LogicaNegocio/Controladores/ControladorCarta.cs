@@ -42,7 +42,6 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
             return existe;
         }
 
-
         /// <summary>
         /// Método que consulta la lista de todos los boletines
         /// </summary>
@@ -93,7 +92,7 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
 
                 ComandoBase<bool> comandoInsertarOModificarContadorAsignacion = null;
 
-                if (carta.Asignaciones.Count != 0)
+                if ((null != carta.Asignaciones) && (carta.Asignaciones.Count != 0))
                 {
                     ComandoBase<ContadorAsignacion> comandoContadorAsignacionPoximoValor = FabricaComandosContadorAsignacion.ObtenerComandoConsultarPorId("ASIGNACION");
 
@@ -140,11 +139,14 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
                     comandoAuditoriaContador.Ejecutar();
 
                     if (comandoInsertarOModificarContadorAsignacion != null)
-                        comandoInsertarOModificarContadorAsignacion.Ejecutar();
-                    foreach (Asignacion asignacion in carta.Asignaciones)
                     {
-                        ComandoBase<bool> comandoAsignacion = FabricaComandosAsignacion.ObtenerComandoInsertarOModificar(asignacion);
-                        comandoAsignacion.Ejecutar();
+                        comandoInsertarOModificarContadorAsignacion.Ejecutar();
+                        foreach (Asignacion asignacion in carta.Asignaciones)
+                        {
+                            ComandoBase<bool> comandoAsignacion = FabricaComandosAsignacion.ObtenerComandoInsertarOModificar(asignacion);
+                            asignacion.Iniciales = asignacion.Responsable.Iniciales;
+                            comandoAsignacion.Ejecutar();
+                        }
                     }
                 }
 

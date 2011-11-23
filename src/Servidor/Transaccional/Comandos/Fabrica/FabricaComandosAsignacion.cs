@@ -17,5 +17,10 @@ namespace Trascend.Bolet.Comandos.Fabrica
         {
             return new ComandoInsertarOModificarAsignacion(asignacion);
         }
+
+        public static ComandoBase<IList<Asignacion>> ObtenerComandoConsultarAsignacionesPorCarta(Carta carta)
+        {
+            return new ComandoConsultarAsignacionesPorCarta(carta);
+        }
     }
 }

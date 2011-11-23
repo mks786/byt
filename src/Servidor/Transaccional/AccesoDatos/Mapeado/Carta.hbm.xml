@@ -10,7 +10,7 @@
     <property name="DetalleResumen" type="String" column="`DETALLE_RES`"/>
     <property name="Fecha" type="DateTime" column="`FECHA`"/>
     <property name="FechaAlt" type="DateTime" column="`FECHA_ALT`"/>
-    <property name="FechaD" type="DateTime" column="`FECHA_D`"/>
+    <property name="FechaConfirmacion" type="DateTime" column="`FECHA_D`"/>
     <property name="FechaEnvioAcuse" type="DateTime" column="`FECHA_ENV_ACUSE`"/>
     <property name="FechaL" type="DateTime" column="`FECHA_L`" length="7" />
     <property name="FechaReal" type="DateTime" column="`FECHA_REAL`"/>

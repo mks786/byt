@@ -9,6 +9,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         #region Atributos
 
         private int _id;
+        private string _iniciales;
         private Usuario _responsable;
         private Carta _carta;
 
@@ -64,6 +65,11 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
             set { _carta = value; }
         }
 
+        public virtual string Iniciales
+        {
+            get { return _iniciales; }
+            set { _iniciales = value; }
+        }
         #endregion
     }
 }

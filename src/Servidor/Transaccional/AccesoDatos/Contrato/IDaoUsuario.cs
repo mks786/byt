@@ -6,5 +6,7 @@ namespace Trascend.Bolet.AccesoDatos.Contrato
     public interface IDaoUsuario : IDaoBase<Usuario, string>
     {
         Usuario Autenticar(Usuario usuario);
+
+        Usuario ObtenerUsuarioPorIniciales(string iniciales);
     }
 }

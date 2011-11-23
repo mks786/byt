@@ -1,12 +1,12 @@
 ﻿using Trascend.Bolet.ObjetosComunes.Entidades;
 using System.Collections.Generic;
 
-namespace Trascend.Bolet.AccesoDatos.Contrato
+
+namespace Trascend.Bolet.ObjetosComunes.ContratosServicios
 {
-    public interface IDaoAsignacion : IDaoBase<Asignacion, int>
+    public interface IAsignacionServicios : IServicioBase<Asignacion>
     {
         IList<Asignacion> ObtenerAsignacionesPorCarta(Carta carta);
 
-        
     }
 }

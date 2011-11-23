@@ -477,4 +477,7 @@
   <data name="CartaInsertada" xml:space="preserve">
     <value>Carta insertada con éxito</value>
   </data>
+  <data name="CartaModificada" xml:space="preserve">
+    <value>Carta modificada con éxito</value>
+  </data>
 </root>

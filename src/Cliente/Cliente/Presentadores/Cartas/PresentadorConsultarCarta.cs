@@ -26,6 +26,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
         private IAnexoServicios _anexoServicios;
         private IContactoServicios _contactoServicios;
         private IDepartamentoServicios _departamentoServicios;
+        private IAsignacionServicios _asignacionServicios;
         private static PaginaPrincipal _paginaPrincipal = PaginaPrincipal.ObtenerInstancia;
         private static Logger logger = LogManager.GetCurrentClassLogger();
         private IList<Asociado> _asociados;
@@ -64,6 +65,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["DepartamentoServicios"]);
                 this._asociadoServicios = (IAsociadoServicios)Activator.GetObject(typeof(IAsociadoServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["AsociadoServicios"]);
+                this._asignacionServicios = (IAsignacionServicios)Activator.GetObject(typeof(IAsignacionServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["AsignacionServicios"]);
             }
             catch (Exception ex)
             {
@@ -91,6 +94,15 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
                 medio.Id = carta.Medio;
                 this._ventana.Medio = this.BuscarMedio(this._medios, medio);
 
+                IList<Medio> mediosTracking = this._medioServicios.ConsultarTodos();
+                Medio primerosMediosTracking = new Medio();
+                primerosMediosTracking.Id = "NGN";
+                mediosTracking.Insert(0, primerosMediosTracking);
+                this._ventana.MediosTrackingConfirmacion = mediosTracking;
+                Medio medioConfirmacion = new Medio();
+                medioConfirmacion.Id = carta.AnexoMedio;
+                this._ventana.MedioTrackingConfirmacion = this.BuscarMedio(mediosTracking, medioConfirmacion); ;
+
                 this._receptores = this._usuarioServicios.ConsultarTodos();
                 this._ventana.Receptores = this._receptores;
                 this._ventana.Receptor = this.BuscarReceptor(this._receptores, carta.Receptor);
@@ -106,13 +118,16 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
 
                 this._asociados = this._asociadoServicios.ConsultarTodos();
                 this._ventana.Asociados = this._asociados;
-                this._ventana.Asociado = this.BuscarAsociado(this._asociados, carta.Asociado);
-                Asociado asociado = this._asociadoServicios.ConsultarAsociadoConTodo((Asociado)this._ventana.Asociado);
-                asociado.Contactos = this._contactoServicios.ConsultarContactosPorAsociado(asociado);
-                this._personas = asociado.Contactos;
-                this._ventana.Personas = this._personas;
-                this._ventana.Persona = BuscarContacto(this._personas, carta.Persona);
-                this._ventana.NombreAsociado = ((Carta)this._ventana.Carta).Asociado.Nombre;
+                if (null != carta.Asociado)
+                {
+                    this._ventana.Asociado = this.BuscarAsociado(this._asociados, carta.Asociado);
+                    Asociado asociado = this._asociadoServicios.ConsultarAsociadoConTodo((Asociado)this._ventana.Asociado);
+                    asociado.Contactos = this._contactoServicios.ConsultarContactosPorAsociado(asociado);
+                    this._personas = asociado.Contactos;
+                    this._ventana.Personas = this._personas;
+                    this._ventana.Persona = BuscarContacto(this._personas, carta.Persona);
+                    this._ventana.NombreAsociado = ((Carta)this._ventana.Carta).Asociado.Nombre;
+                }
 
                 _departamentos = this._departamentoServicios.ConsultarTodos();
                 Departamento primeraTarifa = new Departamento();
@@ -121,12 +136,6 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
                 this._ventana.Departamentos = _departamentos;
                 if (null != carta.Departamento)
                     this._ventana.Departamento = this.BuscarDepartamento(this._departamentos, carta.Departamento);
-
-                IList<Medio> mediosTracking = (IList<Medio>)this._ventana.Medios;
-                Medio primerosMediosTracking = new Medio();
-                primerosMediosTracking.Id = "NGN";
-                mediosTracking.Insert(0, primerosMediosTracking);
-                //this._ventana.MediosTracking = mediosTracking;
 
                 this._responsables = this._usuarioServicios.ConsultarTodos();
                 Usuario primerResponsable = new Usuario();
@@ -143,6 +152,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
                 this._ventana.Resumenes = this._resumenes;
                 if (null != carta.Resumen)
                     this._ventana.Resumen = this.BuscarResumen(this._resumenes, carta.Resumen.Id);
+
+                ((Carta)this._ventana.Carta).Asignaciones = this._asignacionServicios.ObtenerAsignacionesPorCarta((Carta)this._ventana.Carta);
 
                 this._ventana.FocoPredeterminado();
             }
@@ -328,38 +339,37 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
                 {
                     bool tracking = true;
 
-                    if (!String.IsNullOrEmpty(((Carta)this._ventana.Carta).Tracking))
+                    if (null != (((Medio)this._ventana.Medio).Formato) && 
+                       (!String.IsNullOrEmpty(((Carta)this._ventana.Carta).Tracking)))
+
                         tracking = this.verificarFormato(((Medio)this._ventana.Medio).Formato, ((Carta)this._ventana.Carta).Tracking);
+
+                    if (null != (((Medio)this._ventana.MedioTrackingConfirmacion)) && 
+                       (null != (((Medio)this._ventana.MedioTrackingConfirmacion).Formato)) && 
+                       (!String.IsNullOrEmpty(((Carta)this._ventana.Carta).AnexoTracking)))
+
+                        tracking = this.verificarFormato(((Medio)this._ventana.MedioTrackingConfirmacion).Formato, ((Carta)this._ventana.Carta).AnexoTracking);
+
                     if (tracking)
                     {
                         Carta carta = (Carta)this._ventana.Carta;
+                        carta.Operacion = "MODIFY";
                         if (null != this._ventana.Departamento)
                             carta.Departamento = !((Departamento)this._ventana.Departamento).Id.Equals("NGN") ? (Departamento)this._ventana.Departamento : null;
                         if (null != this._ventana.Asociado)
                             carta.Asociado = !((Asociado)this._ventana.Asociado).Id.Equals("NGN") ? (Asociado)this._ventana.Asociado : null;
                         if (null != this._ventana.Persona)
                             carta.Persona = !((Contacto)this._ventana.Persona).Id.Equals("NGN") ? ((Contacto)this._ventana.Persona).Nombre : null;
-
-
-
-
-                        carta.Medio = ((Medio)this._ventana.Medio).Id;
-                        carta.Receptor = ((Usuario)this._ventana.Receptor).Iniciales;
+                        if (null != this._ventana.Resumen)
+                            carta.Resumen = !((Resumen)this._ventana.Resumen).Id.Equals("NGN") ? ((Resumen)this._ventana.Resumen) : null;
 
                         carta.Medio = ((Medio)this._ventana.Medio).Id;
+                        carta.AnexoMedio = ((Medio)this._ventana.MedioTrackingConfirmacion).Id;
                         carta.Receptor = ((Usuario)this._ventana.Receptor).Iniciales;
+                        bool exitoso = this._cartaServicios.InsertarOModificar(carta, UsuarioLogeado.Hash);
 
-                        //if (!this._cartaServicios.VerificarExistencia(carta))
-                        //{
-                        //    bool exitoso = this._cartaServicios.InsertarOModificar(carta, UsuarioLogeado.Hash);
-
-                        //    if (exitoso)
-                        //        this.Navegar(Recursos.MensajesConElUsuario.EntradaAlternaInsertado, false);
-                        //}
-                        //else
-                        //{
-                        //    this._ventana.Mensaje(Recursos.MensajesConElUsuario.ErrorAgenteRepetido);
-                        //}
+                        if (exitoso)
+                            this.Navegar(Recursos.MensajesConElUsuario.CartaModificada, false);
                     }
 
                 }
@@ -383,6 +393,65 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
                     logger.Error(ex.Message);
                     this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
                 }
+                //try
+                //{
+                //    bool tracking = true;
+
+                //    if (!String.IsNullOrEmpty(((Carta)this._ventana.Carta).Tracking))
+                //        tracking = this.verificarFormato(((Medio)this._ventana.Medio).Formato, ((Carta)this._ventana.Carta).Tracking);
+                //    if (tracking)
+                //    {
+                //        Carta carta = (Carta)this._ventana.Carta;
+                //        if (null != this._ventana.Departamento)
+                //            carta.Departamento = !((Departamento)this._ventana.Departamento).Id.Equals("NGN") ? (Departamento)this._ventana.Departamento : null;
+                //        if (null != this._ventana.Asociado)
+                //            carta.Asociado = !((Asociado)this._ventana.Asociado).Id.Equals("NGN") ? (Asociado)this._ventana.Asociado : null;
+                //        if (null != this._ventana.Persona)
+                //            carta.Persona = !((Contacto)this._ventana.Persona).Id.Equals("NGN") ? ((Contacto)this._ventana.Persona).Nombre : null;
+
+
+
+
+                //        carta.Medio = ((Medio)this._ventana.Medio).Id;
+                //        carta.Receptor = ((Usuario)this._ventana.Receptor).Iniciales;
+
+                //        carta.Medio = ((Medio)this._ventana.Medio).Id;
+                //        carta.Receptor = ((Usuario)this._ventana.Receptor).Iniciales;
+
+                //        //if (!this._cartaServicios.VerificarExistencia(carta))
+                //        //{
+                //        //    bool exitoso = this._cartaServicios.InsertarOModificar(carta, UsuarioLogeado.Hash);
+
+                //        //    if (exitoso)
+                //        //        this.Navegar(Recursos.MensajesConElUsuario.EntradaAlternaInsertado, false);
+                //        //}
+                //        //else
+                //        //{
+                //        //    this._ventana.Mensaje(Recursos.MensajesConElUsuario.ErrorAgenteRepetido);
+                //        //}
+                //    }
+
+                //}
+                //catch (ApplicationException ex)
+                //{
+                //    logger.Error(ex.Message);
+                //    this.Navegar(ex.Message, true);
+                //}
+                //catch (RemotingException ex)
+                //{
+                //    logger.Error(ex.Message);
+                //    this.Navegar(Recursos.MensajesConElUsuario.ErrorRemoting, true);
+                //}
+                //catch (SocketException ex)
+                //{
+                //    logger.Error(ex.Message);
+                //    this.Navegar(Recursos.MensajesConElUsuario.ErrorConexionServidor, true);
+                //}
+                //catch (Exception ex)
+                //{
+                //    logger.Error(ex.Message);
+                //    this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
+                //}
             }
         }
 
@@ -574,6 +643,125 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
         }
 
 
+        public bool AgregarResponsable()
+        {
+            bool retorno = false;
+            IList<Asignacion> asignacionLista;
+            if ((null != (Usuario)_ventana.Responsable) && (!((Usuario)this._ventana.Responsable).Id.Equals("NGN")))
+            {
+                if (null == ((Carta)this._ventana.Carta).Asignaciones)
+                {
+                    asignacionLista = new List<Asignacion>();
+                }
+                else
+                {
+                    asignacionLista = ((Carta)this._ventana.Carta).Asignaciones;
+                }
+
+
+                Asignacion asignacionInsertar = new Asignacion((Usuario)this._ventana.Responsable, (Carta)this._ventana.Carta);
+                asignacionLista.Add(asignacionInsertar);
+                ((Carta)this._ventana.Carta).Asignaciones = asignacionLista;
+                IList<Usuario> usuariosLista = ListAsignacionesToUsuarios(asignacionLista);
+                this._ventana.ResponsablesList = usuariosLista;
+
+                this._responsables.Remove((Usuario)this._ventana.Responsable);
+                this._ventana.Responsables = this._responsables.ToList<Usuario>();
+
+
+                retorno = true;
+            }
+            return retorno;
+
+        }
+
+        private IList<Usuario> ListAsignacionesToUsuarios(IList<Asignacion> asignaciones)
+        {
+            IList<Usuario> usuarios = new List<Usuario>();
+            foreach (Asignacion asignacion in asignaciones)
+            {
+                usuarios.Add(asignacion.Responsable);
+            }
+
+            return usuarios;
+        }
+
+        public bool DeshabilitarResponsable()
+        {
+            bool retorno = false;
+            IList<Asignacion> asignacionLista;
+            if (null != (Usuario)this._ventana.ResponsableList)
+            {
+                if (null == ((Carta)this._ventana.Carta).Asignaciones)
+                    asignacionLista = new List<Asignacion>();
+                else
+                    asignacionLista = ((Carta)this._ventana.Carta).Asignaciones;
+
+                IList<Usuario> usuariosLista = ListAsignacionesToUsuarios(asignacionLista);
+                this._responsables.Add((Usuario)this._ventana.ResponsableList);
+
+
+                ((Carta)this._ventana.Carta).Asignaciones = RemoverResponsable(asignacionLista);
+                usuariosLista.Remove((Usuario)this._ventana.ResponsableList);
+                this._ventana.ResponsablesList = usuariosLista.ToList<Usuario>();
+                this._ventana.Responsables = this._responsables.ToList<Usuario>();
+            }
+
+            if (((Carta)this._ventana.Carta).Asignaciones.Count == 0)
+                retorno = true;
+
+            return retorno;
+        }
+
+        private IList<Asignacion> RemoverResponsable(IList<Asignacion> asignaciones)
+        {
+            int index = 0;
+            int borrar = 0;
+            foreach (Asignacion asignacion in asignaciones)
+            {
+                if (asignacion.Responsable.Id == ((Usuario)this._ventana.ResponsableList).Id)
+                    borrar = index;
+                index++;
+            }
+            asignaciones.RemoveAt(borrar);
+
+            return asignaciones;
+        }
+
+        public bool CargarResponsables()
+        {
+            bool retorno = false;
+            IList<Usuario> responsables;
+            if (null != ((Carta)this._ventana.Carta).Asignaciones)
+            {
+                responsables = ListAsignacionesToUsuarios(((Carta)this._ventana.Carta).Asignaciones);
+                this._ventana.ResponsablesList = responsables.ToList<Usuario>();
+                LimpiarResponsables(responsables);
+                retorno = true;
+            }
+
+            return retorno;
+        }
+
+        public void LimpiarResponsables(IList<Usuario> responsables)
+        {
+            IList<int> indice = new List<int>();
+            int index = 0;
+            foreach (Usuario usuario in this._responsables)
+            {
+                foreach (Usuario usuarioCarta in responsables)
+                {
+                    if (usuario.Id == usuarioCarta.Id)
+                        indice.Add(index);
+                    index++;
+                }
+            }
+
+            foreach (int posicion in indice)
+            {
+                this._responsables.RemoveAt(posicion);
+            }
+        }
         //public bool AgregarResponsable()
         //{
         //    IList<Usuario> usuariosLista;

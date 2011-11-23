@@ -169,6 +169,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Carta modificada con éxito.
+        /// </summary>
+        internal static string CartaModificada {
+            get {
+                return ResourceManager.GetString("CartaModificada", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Categoría eliminada con éxito.
         /// </summary>
         internal static string CategoriaEliminado {

@@ -64,6 +64,11 @@ namespace Trascend.Bolet.Comandos.Fabrica
         {
             return new ComandoVerificarExistenciaUsuario(usuario);
         }
+
+        public static ComandoBase<Usuario> ObtenerComandoConsultarUsuarioPorIniciales(string iniciales)
+        {
+            return new ComandoConsultarUsuarioPorIniciales(iniciales);
+        }
     }
     
 }

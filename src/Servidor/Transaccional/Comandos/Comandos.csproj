@@ -49,6 +49,7 @@
     <Compile Include="Comandos\ComandosAnexo\ComandoEliminarAnexo.cs" />
     <Compile Include="Comandos\ComandosAnexo\ComandoInsertarOModificarAnexo.cs" />
     <Compile Include="Comandos\ComandosAnexo\ComandoVerificarExistenciaAnexo.cs" />
+    <Compile Include="Comandos\ComandosAsignacion\ComandoConsultarAsignacionesPorCarta.cs" />
     <Compile Include="Comandos\ComandosAsociado\ComandoConsultarAsociadoConTodo.cs" />
     <Compile Include="Comandos\ComandosAuditoria\ComandoAuditoriaPorFkyTabla.cs" />
     <Compile Include="Comandos\ComandosCartaOut\ComandoConsultarTodosCartaOuts.cs" />
@@ -165,6 +166,7 @@
     <Compile Include="Comandos\ComandosContadorAsignacion\ComandoConsultarPorIdContadorAsignacion.cs" />
     <Compile Include="Comandos\ComandosContadorAsignacion\ComandoInsertarOModificarContadorAsignacion.cs" />
     <Compile Include="Comandos\ComandosAsignacion\ComandoInsertarOModificarAsignacion.cs" />
+    <Compile Include="Comandos\ComandosUsuario\ComandoConsultarUsuarioPorIniciales.cs" />
     <Compile Include="Comandos\Receptor.cs" />
     <Compile Include="Comandos\ComandosUsuario\ComandoConsultarTodosUsuarios.cs" />
     <Compile Include="Comandos\ComandosUsuario\ComandoConsultarUsuarioPorID.cs" />

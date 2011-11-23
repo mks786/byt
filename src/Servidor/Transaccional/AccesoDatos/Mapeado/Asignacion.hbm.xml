@@ -6,9 +6,7 @@
   <class name="Asignacion" table="ASIGNACION">
     <id name="Id" column="CODIGO" />
 
-    <many-to-one name="Responsable" class="Usuario" lazy="false">
-      <column name="RESPONSABLE"/>
-    </many-to-one>
+    <property name="Iniciales" column="RESPONSABLE" type="string"/>
     
     <many-to-one name="Carta" class="Carta" lazy="false">
       <column name="ENTRADA"/>

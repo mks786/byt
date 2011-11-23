@@ -63,7 +63,7 @@
                 <RowDefinition Height="10"/>
                 <RowDefinition Height="30"/>
                 <RowDefinition Height="30"/>
-                <RowDefinition Height="30"/>
+                <RowDefinition Height="90"/>
                 <RowDefinition Height="10"/>
                 <RowDefinition Height="30"/>
                 <RowDefinition Height="30"/>
@@ -281,10 +281,10 @@
                     </DataTemplate>
                 </ComboBox.ItemTemplate>
             </ComboBox>
-            <Button Grid.Column="4" Grid.Row="9" Name="_btnMas" VerticalAlignment="Top" Width="25" HorizontalAlignment="Left" Click="_btnMas_Click">
+            <Button IsEnabled="False" Grid.Column="4" Grid.Row="9" Name="_btnMas" VerticalAlignment="Top" Width="25" HorizontalAlignment="Left" Click="_btnMas_Click">
                 <TextBlock Text="{x:Static recurso:Etiquetas.btnAgregarSimbolo}"></TextBlock>
             </Button>
-            <Button Grid.Column="4" Grid.Row="9" Name="_btnMenos" VerticalAlignment="Top" Width="25" HorizontalAlignment="Left" Margin="30 0 0 0" Click="_btnMenos_Click">
+            <Button IsEnabled="False" Grid.Column="4" Grid.Row="9" Name="_btnMenos" VerticalAlignment="Top" Width="25" HorizontalAlignment="Left" Margin="30 0 0 0" Click="_btnMenos_Click">
                 <TextBlock Text="{x:Static recurso:Etiquetas.btnEliminarSimbolo}"></TextBlock>
             </Button>
 
@@ -311,7 +311,7 @@
             <Label Grid.Column="1" Grid.Row="16" HorizontalAlignment="Right" VerticalAlignment="Top">
                 <TextBlock Text="{x:Static recurso:Etiquetas.lblTitleResponsable}"/>
             </Label>
-            <ComboBox Grid.Column="2" Grid.Row="16" Grid.ColumnSpan="4" 
+            <ComboBox IsEnabled="False" Grid.Column="2" Grid.Row="16" Grid.ColumnSpan="4" 
                       Name="_cbxResponsable" HorizontalAlignment="Left" Width="250" Height="20" 
                       ItemsSource="{Binding}" VerticalAlignment="Top" >
                 <ComboBox.ItemTemplate>
@@ -324,14 +324,14 @@
                     </DataTemplate>
                 </ComboBox.ItemTemplate>
             </ComboBox>
-            <Button Grid.Column="4" Grid.Row="16" Name="_btnMasResponsable" VerticalAlignment="Top" Width="25" HorizontalAlignment="Left" Click="_btnMasResponsable_Click">
+            <Button IsEnabled="False"  Grid.Column="4" Grid.Row="16" Name="_btnMasResponsable" VerticalAlignment="Top" Width="25" HorizontalAlignment="Left" Click="_btnMasResponsable_Click">
                 <TextBlock Text="{x:Static recurso:Etiquetas.btnAgregarSimbolo}"></TextBlock>
             </Button>
-            <Button Grid.Column="4" Grid.Row="16" Name="_btnMenosResponsable" VerticalAlignment="Top" Width="25" HorizontalAlignment="Left" Margin="30 0 0 0" Click="_btnMenosResponsable_Click">
+            <Button IsEnabled="False" Grid.Column="4" Grid.Row="16" Name="_btnMenosResponsable" VerticalAlignment="Top" Width="25" HorizontalAlignment="Left" Margin="30 0 0 0" Click="_btnMenosResponsable_Click">
                 <TextBlock Text="{x:Static recurso:Etiquetas.btnEliminarSimbolo}"></TextBlock>
             </Button>
 
-            <ListView Grid.Column="5" Grid.Row="16" Grid.ColumnSpan="7" Width="400" Grid.RowSpan="2" Name="_lstResponsables" ItemsSource="{Binding}" 
+            <ListView IsEnabled="False" Grid.Column="5" Grid.Row="16" Grid.ColumnSpan="7" Width="400" Grid.RowSpan="2" Name="_lstResponsables" ItemsSource="{Binding}" 
                       SelectionMode="Single" VerticalAlignment="Top" HorizontalAlignment="Left"
                       Style="{DynamicResource EstiloListView}" Visibility="Collapsed" Height="90" >
                 <ListView.View>
@@ -402,10 +402,10 @@
                 </DatePicker.SelectedDate>
             </DatePicker>
 
-            <Label Grid.Column="6" Grid.Row="22" HorizontalAlignment="Right" VerticalAlignment="Center">
+            <!--<Label Grid.Column="6" Grid.Row="22" HorizontalAlignment="Right" VerticalAlignment="Center">
                 <TextBlock Text="{x:Static recurso:Etiquetas.lblMedio}"/>
             </Label>
-            <TextBox IsEnabled="False"   Grid.ColumnSpan="2" Name="_txtMedio" Text="{Binding Path=AnexoMedio}" Grid.Column="7" Grid.Row="22" Height="20"></TextBox>
+            <TextBox IsEnabled="False"   Grid.ColumnSpan="2" Name="_txtMedio" Text="{Binding Path=AnexoMedio}" Grid.Column="7" Grid.Row="22" Height="20"></TextBox>-->
 
 
             <Label Grid.Column="1" Grid.Row="23" HorizontalAlignment="Right" VerticalAlignment="Center">
@@ -427,11 +427,11 @@
                     </DataTemplate>
                 </ComboBox.ItemTemplate>
             </ComboBox>
-            <Button Grid.Column="4" Grid.Row="24" Name="_btnMasConfirmacion" VerticalAlignment="Center" Width="25" HorizontalAlignment="Left" 
+            <Button IsEnabled="False" Grid.Column="4" Grid.Row="24" Name="_btnMasConfirmacion" VerticalAlignment="Center" Width="25" HorizontalAlignment="Left" 
                     Click="_btnMasConfirmacion_Click" Grid.RowSpan="2">
                 <TextBlock Text="{x:Static recurso:Etiquetas.btnAgregarSimbolo}"></TextBlock>
             </Button>
-            <Button Grid.Column="4" Grid.Row="24" Name="_btnMenosConfirmacion" VerticalAlignment="Center" Width="25" HorizontalAlignment="Left" 
+            <Button IsEnabled="False" Grid.Column="4" Grid.Row="24" Name="_btnMenosConfirmacion" VerticalAlignment="Center" Width="25" HorizontalAlignment="Left" 
                     Margin="30 0 0 0" Click="_btnMenosConfirmacion_Click" Grid.RowSpan="2">
                 <TextBlock Text="{x:Static recurso:Etiquetas.btnEliminarSimbolo}"></TextBlock>
             </Button>

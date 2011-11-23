@@ -79,6 +79,7 @@
     <Compile Include="Controladores\ControladorCategoria.cs" />
     <Compile Include="Controladores\ControladorEntradaAlterna.cs" />
     <Compile Include="Controladores\ControladorCartaOut.cs" />
+    <Compile Include="Controladores\ControladorAsignacion.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
