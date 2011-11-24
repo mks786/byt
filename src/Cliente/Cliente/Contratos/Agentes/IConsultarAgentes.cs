@@ -13,7 +13,9 @@ namespace Trascend.Bolet.Cliente.Contratos.Agentes
 
         char EstadoCivil { get; }
 
-        char Sexo { get; }
+        object Sexo { get; set; }
+
+        object Sexos { get; set; }
 
         GridViewColumnHeader CurSortCol { get; set; }
 

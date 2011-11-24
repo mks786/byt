@@ -147,12 +147,6 @@
   <data name="cbiDivorciado" xml:space="preserve">
     <value>Divorciado(a)</value>
   </data>
-  <data name="cbiFemenino" xml:space="preserve">
-    <value>Femenino</value>
-  </data>
-  <data name="cbiMasculino" xml:space="preserve">
-    <value>Masculino</value>
-  </data>
   <data name="cbiNinguno" xml:space="preserve">
     <value />
     <comment>Se utiliza aún estando vacio</comment>
@@ -1149,5 +1143,8 @@
   </data>
   <data name="lblTitleResponsables" xml:space="preserve">
     <value>Responsables</value>
+  </data>
+  <data name="cbiCategoriaSexo" xml:space="preserve">
+    <value>SEXO</value>
   </data>
 </root>

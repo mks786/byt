@@ -12,9 +12,9 @@ namespace Trascend.Bolet.Cliente.Contratos.Agentes
 
         char GetEstadoCivil { get; }
 
-        char GetSexo { get; }
+        object Sexo { get; set; }
 
-        string SetSexo { set; }
+        object Sexos { get; set; }
 
         string SetEstadoCivil { set; }
 

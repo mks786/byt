@@ -66,20 +66,16 @@ namespace Trascend.Bolet.Cliente.Ventanas.Agentes
             }
         }
 
-        public char GetSexo
+        public object Sexo
         {
-            get
-            {
-                if (!string.IsNullOrEmpty(this._cbxSexo.Text))
-                    return (this._cbxSexo.Text)[0];
-                else
-                    return ' ';
-            }
+            get { return this._cbxSexo.SelectedItem; }
+            set { this._cbxSexo.SelectedItem = value; }
         }
 
-        public string SetSexo
+        public object Sexos
         {
-            set { this._cbxSexo.Text = value; }
+            get { return this._cbxSexo.DataContext; }
+            set { this._cbxSexo.DataContext = value; }
         }
 
         public string SetEstadoCivil

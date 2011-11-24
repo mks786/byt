@@ -53,7 +53,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Agentes
                 this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleAgregarAgente,
                     Recursos.Ids.AgregarAgente);
 
-                this._ventana.Sexos = this._listaDatosValoresServicios.ConsultarListaDatosValoresPorParametro(new ListaDatosValores("SEXO"));
+                this._ventana.Sexos = this._listaDatosValoresServicios.ConsultarListaDatosValoresPorParametro(new ListaDatosValores(Recursos.Etiquetas.cbiCategoriaSexo));
 
                 this._ventana.FocoPredeterminado();
             }

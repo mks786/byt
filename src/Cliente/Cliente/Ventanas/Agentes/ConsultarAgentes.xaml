@@ -73,16 +73,8 @@
                     <Label>
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblSexo}"/>
                     </Label>
-                    <ComboBox Name="_cbxSexo" Width="150" SelectedIndex="0">
-                        <ComboBoxItem>
-                            <TextBlock Text="{x:Static recurso:Etiquetas.cbiNinguno}"/>
-                        </ComboBoxItem>
-                        <ComboBoxItem>
-                            <TextBlock Text="{x:Static recurso:Etiquetas.cbiMasculino}"/>
-                        </ComboBoxItem>
-                        <ComboBoxItem>
-                            <TextBlock Text="{x:Static recurso:Etiquetas.cbiFemenino}"/>
-                        </ComboBoxItem>
+                    <ComboBox Name="_cbxSexo" HorizontalAlignment="Left" Width="150" Height="20" 
+                              ItemsSource="{Binding}" DisplayMemberPath="Descripcion" SelectedIndex="0">
                     </ComboBox>
                 </WrapPanel>
                 <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">

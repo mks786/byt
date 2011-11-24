@@ -25,6 +25,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Agentes
 
         private IConsultarAgentes _ventana;
         private IAgenteServicios _agenteServicios;
+        private IListaDatosValoresServicios _listaDatosValoresServicios;
         private IList<Agente> _agentes;
 
         /// <summary>
@@ -38,6 +39,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Agentes
                 this._ventana = ventana;
                 this._agenteServicios = (IAgenteServicios)Activator.GetObject(typeof(IAgenteServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["AgenteServicios"]);
+                this._listaDatosValoresServicios = (IListaDatosValoresServicios)Activator.GetObject(typeof(IListaDatosValoresServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["ListaDatosValoresServicios"]);
             }
             catch (Exception ex)
             {
@@ -71,6 +74,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.Agentes
                 this._agentes = this._agenteServicios.ConsultarTodos();
                 this._ventana.Resultados = this._agentes;
                 this._ventana.AgenteFiltrar = new Agente();
+
+                IList<ListaDatosValores> sexos = this._listaDatosValoresServicios.ConsultarListaDatosValoresPorParametro(new ListaDatosValores("SEXO"));
+                ListaDatosValores primeraListaDatosValores = new ListaDatosValores("NGN");
+                sexos.Insert(0, primeraListaDatosValores);
+                this._ventana.Sexos = sexos;
+
                 this._ventana.FocoPredeterminado();
 
                 #region trace
@@ -158,11 +167,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.Agentes
                                        select a;
                 }
 
-                if (!string.IsNullOrEmpty(this._ventana.Sexo.ToString()) && !this._ventana.Sexo.Equals(' '))
+                if (this._ventana.Sexo != null && !((ListaDatosValores)this._ventana.Sexo).Id.Equals("NGN"))
                 {
                     agentesFiltrados = from a in agentesFiltrados
-                                       where a.Sexo.ToString().ToLower().Contains(agente.Sexo.ToString().ToLower())
+                                       where a.Sexo.ToString().ToLower().Contains(((ListaDatosValores)this._ventana.Sexo).Valor.ToLower())
                                        select a;
+
                 }
 
                 if (!string.IsNullOrEmpty(agente.NumeroAbogado))

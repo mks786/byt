@@ -233,14 +233,19 @@ namespace Trascend.Bolet.Cliente.Presentadores
         /// </summary>
         /// <param name="sexo">Inicial del sexo (género)</param>
         /// <returns>El sexo (género) correspondiente</returns>
-        public string BuscarSexo(char sexo)
+        public ListaDatosValores BuscarSexo(IList<ListaDatosValores> listasDatosValores, ListaDatosValores listaDatosValorBuscado)
         {
-            string retorno;
+            ListaDatosValores retorno = null;
 
-            if (Recursos.Etiquetas.cbiMasculino[0].Equals(sexo))
-                retorno = Recursos.Etiquetas.cbiMasculino;
-            else
-                retorno = Recursos.Etiquetas.cbiFemenino;
+            if (listaDatosValorBuscado != null)
+                foreach (ListaDatosValores listaDatosValores in listasDatosValores)
+                {
+                    if (listaDatosValores.Valor == listaDatosValorBuscado.Valor)
+                    {
+                        retorno = listaDatosValores;
+                        break;
+                    }
+                }
 
             return retorno;
         }

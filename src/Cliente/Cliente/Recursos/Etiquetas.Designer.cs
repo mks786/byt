@@ -457,6 +457,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to SEXO.
+        /// </summary>
+        public static string cbiCategoriaSexo {
+            get {
+                return ResourceManager.GetString("cbiCategoriaSexo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Dpto.
         /// </summary>
         public static string cbiDepartamento {
@@ -480,15 +489,6 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string cbiEuropa {
             get {
                 return ResourceManager.GetString("cbiEuropa", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Femenino.
-        /// </summary>
-        public static string cbiFemenino {
-            get {
-                return ResourceManager.GetString("cbiFemenino", resourceCulture);
             }
         }
         
@@ -525,15 +525,6 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string cbiMarcasYPatentes {
             get {
                 return ResourceManager.GetString("cbiMarcasYPatentes", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Masculino.
-        /// </summary>
-        public static string cbiMasculino {
-            get {
-                return ResourceManager.GetString("cbiMasculino", resourceCulture);
             }
         }
         

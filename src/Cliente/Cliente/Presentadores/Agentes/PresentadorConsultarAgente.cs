@@ -8,6 +8,7 @@ using Trascend.Bolet.Cliente.Contratos.Agentes;
 using Trascend.Bolet.Cliente.Ventanas.Principales;
 using Trascend.Bolet.ObjetosComunes.ContratosServicios;
 using Trascend.Bolet.ObjetosComunes.Entidades;
+using System.Collections.Generic;
 
 namespace Trascend.Bolet.Cliente.Presentadores.Agentes
 {
@@ -16,6 +17,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Agentes
 
         private IConsultarAgente _ventana;
         private IAgenteServicios _agenteServicios;
+        private IListaDatosValoresServicios _listaDatosValoresServicios;
         private static PaginaPrincipal _paginaPrincipal = PaginaPrincipal.ObtenerInstancia;
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
@@ -31,11 +33,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.Agentes
                 this._ventana = ventana;
                 this._ventana.Agente = agente;
 
-                this._ventana.SetEstadoCivil = BuscarEstadoCivil(((Agente) agente).EstadoCivil);
-                this._ventana.SetSexo = BuscarSexo(((Agente) agente).Sexo);
+                this._ventana.SetEstadoCivil = BuscarEstadoCivil(((Agente)agente).EstadoCivil);
 
                 this._agenteServicios = (IAgenteServicios)Activator.GetObject(typeof(IAgenteServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["AgenteServicios"]);
+                this._listaDatosValoresServicios = (IListaDatosValoresServicios)Activator.GetObject(typeof(IListaDatosValoresServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["ListaDatosValoresServicios"]);
             }
             catch (Exception ex)
             {
@@ -60,6 +63,13 @@ namespace Trascend.Bolet.Cliente.Presentadores.Agentes
 
                 this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleConsultarAgente,
                     Recursos.Ids.ConsultarAgente);
+
+                IList<ListaDatosValores> sexos = this._listaDatosValoresServicios.ConsultarListaDatosValoresPorParametro(new ListaDatosValores(Recursos.Etiquetas.cbiCategoriaSexo));
+                this._ventana.Sexos = sexos;
+                ListaDatosValores sexoAgente = new ListaDatosValores();
+                sexoAgente.Valor = ((Agente)this._ventana.Agente).Sexo.ToString();
+                this._ventana.Sexo = this.BuscarSexo(sexos, sexoAgente);
+
                 this._ventana.FocoPredeterminado();
 
                 #region trace
@@ -104,7 +114,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Agentes
                     Agente agente = (Agente)this._ventana.Agente;
 
                     agente.EstadoCivil = this._ventana.GetEstadoCivil;
-                    agente.Sexo = this._ventana.GetSexo;
+                    agente.Sexo = ((ListaDatosValores)this._ventana.Sexo).Valor[0];
 
                     if (this._agenteServicios.InsertarOModificar(agente, UsuarioLogeado.Hash))
                     {
