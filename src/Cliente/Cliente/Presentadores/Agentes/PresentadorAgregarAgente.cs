@@ -15,6 +15,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Agentes
     {
         private IAgregarAgente _ventana;
         private IAgenteServicios _agenteServicios;
+        private IListaDatosValoresServicios _listaDatosValoresServicios;
         private static PaginaPrincipal _paginaPrincipal = PaginaPrincipal.ObtenerInstancia;
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
@@ -30,6 +31,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Agentes
                 this._ventana.Agente = new Agente();
                 this._agenteServicios = (IAgenteServicios)Activator.GetObject(typeof(IAgenteServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["AgenteServicios"]);
+                this._listaDatosValoresServicios = (IListaDatosValoresServicios)Activator.GetObject(typeof(IListaDatosValoresServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["ListaDatosValoresServicios"]);
             }
             catch (Exception ex)
             {
@@ -49,6 +52,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Agentes
             {
                 this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleAgregarAgente,
                     Recursos.Ids.AgregarAgente);
+
+                this._ventana.Sexos = this._listaDatosValoresServicios.ConsultarListaDatosValoresPorParametro(new ListaDatosValores("SEXO"));
+
                 this._ventana.FocoPredeterminado();
             }
             catch (ApplicationException ex)
@@ -87,7 +93,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Agentes
                 Agente agente = (Agente)this._ventana.Agente;
 
                 agente.EstadoCivil = this._ventana.EstadoCivil;
-                agente.Sexo = this._ventana.Sexo;
+                agente.Sexo = ((ListaDatosValores)this._ventana.Sexo).Valor[0];
 
                 if (!this._agenteServicios.VerificarExistencia(agente))
                 {                    

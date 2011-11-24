@@ -399,5 +399,23 @@ namespace Trascend.Bolet.AccesoDatos.Fabrica
         {
             return new DaoAsignacionNHibernate();
         }
+
+
+
+
+
+
+
+
+
+
+        /// <summary>
+        /// Método que devuelve el DaoListaDatosValores
+        /// </summary>
+        /// <returns>IDaoListaDatosValores</returns>
+        public override IDaoListaDatosValores ObtenerDaoListaDatosValores()
+        {
+            return new DaoListaDatosValoresNHibernate();
+        }
     }
 }

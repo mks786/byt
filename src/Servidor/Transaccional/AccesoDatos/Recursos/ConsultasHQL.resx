@@ -159,6 +159,10 @@
     <value>Select d from DatosTransferencia d where d.Asociado.id = '{0}'</value>
     <comment>Selecciona todos los datos de transferencia de un asociado</comment>
   </data>
+  <data name="ObtenerListaDatosValoresPorParametro" xml:space="preserve">
+    <value>Select distinct(l) from ListaDatosValores l where l.Id = '{0}'</value>
+    <comment>Trae la lista de valores por el parametro del id</comment>
+  </data>
   <data name="ObtenerPoderesPorInteresado" xml:space="preserve">
     <value>Select p from Poder p where p.Interesado.Id = '{0}'</value>
     <comment>Selecciona todas los poderes que posee un interesado</comment>

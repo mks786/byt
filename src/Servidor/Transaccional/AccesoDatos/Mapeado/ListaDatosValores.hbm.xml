@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+                   assembly="Trascend.Bolet.ObjetosComunes"
+                   namespace="Trascend.Bolet.ObjetosComunes.Entidades">
+
+  <class name="ListaDatosValores" table="LVALORES">
+    <composite-id>
+      <key-property name="Id" column="CODGIA" />
+      <key-property name="Valor" column="CODIGO" />
+    </composite-id>
+    
+    <property name="Descripcion" type="String" column="XDETALLE"/>
+  </class>
+</hibernate-mapping>
+
+

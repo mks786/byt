@@ -271,5 +271,17 @@ namespace Trascend.Bolet.AccesoDatos.Fabrica
         /// </summary>
         /// <returns>IDaoAsignacion</returns>
         public abstract IDaoAsignacion ObtenerDaoAsignacion();
+
+
+
+
+
+
+
+        /// <summary>
+        /// Método que devuelve el DaoListaDatosValores del manejador que se esté utilizando
+        /// </summary>
+        /// <returns>DaoListaDatosValores</returns>
+        public abstract IDaoListaDatosValores ObtenerDaoListaDatosValores();
     }
 }

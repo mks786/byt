@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ContratosServicios\IListaDatosValoresServicios.cs" />
     <Compile Include="ContratosServicios\IAsignacionServicios.cs" />
     <Compile Include="ContratosServicios\IEntradaAlternaServicios.cs" />
     <Compile Include="ContratosServicios\ICartaOutServicios.cs" />
@@ -91,6 +92,7 @@
     <Compile Include="Entidades\Anexo.cs" />
     <Compile Include="Entidades\ContadorAsignacion.cs" />
     <Compile Include="Entidades\Asignacion.cs" />
+    <Compile Include="Entidades\ListaDatosValores.cs" />
     <Compile Include="Entidades\EntradaAlterna.cs" />
     <Compile Include="Entidades\CartaOut.cs" />
     <Compile Include="Entidades\Remitente.cs" />

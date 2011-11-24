@@ -61,6 +61,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Contrato\IDaoListaDatosValores.cs" />
     <Compile Include="Contrato\IDaoAsignacion.cs" />
     <Compile Include="Contrato\IDaoContadorAsignacion.cs" />
     <Compile Include="Contrato\IDaoCartaOut.cs" />
@@ -104,6 +105,7 @@
     <Compile Include="Contrato\IDaoBase.cs" />
     <Compile Include="Contrato\IDaoUsuario.cs" />
     <Compile Include="Contrato\IFabricaDaoBase.cs" />
+    <Compile Include="Dao\NHibernate\DaoListaDatosValoresNHibernate.cs" />
     <Compile Include="Dao\NHibernate\DaoAsignacionNHibernate.cs" />
     <Compile Include="Dao\NHibernate\DaoContadorAsignacionNHibernate.cs" />
     <Compile Include="Dao\NHibernate\DaoCartaOutNHibernate.cs" />
@@ -367,6 +369,11 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Mapeado\Asignacion.hbm.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Mapeado\ListaDatosValores.hbm.xml">
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>

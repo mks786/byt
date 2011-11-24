@@ -167,10 +167,12 @@
     <Compile Include="Comandos\ComandosContadorAsignacion\ComandoInsertarOModificarContadorAsignacion.cs" />
     <Compile Include="Comandos\ComandosAsignacion\ComandoInsertarOModificarAsignacion.cs" />
     <Compile Include="Comandos\ComandosUsuario\ComandoConsultarUsuarioPorIniciales.cs" />
+    <Compile Include="Comandos\ComandosListaDatosValores\ComandoConsultarListaDatosValoresPorParametro.cs" />
     <Compile Include="Comandos\Receptor.cs" />
     <Compile Include="Comandos\ComandosUsuario\ComandoConsultarTodosUsuarios.cs" />
     <Compile Include="Comandos\ComandosUsuario\ComandoConsultarUsuarioPorID.cs" />
     <Compile Include="Comandos\ComandosUsuario\ComandoInsertarOModificarUsuario.cs" />
+    <Compile Include="Fabrica\FabricaComandosListaDatosValores.cs" />
     <Compile Include="Fabrica\FabricaComandosAsignacion.cs" />
     <Compile Include="Fabrica\FabricaComandosContadorAsignacion.cs" />
     <Compile Include="Fabrica\FabricaComandosEntradaAlterna.cs" />

@@ -160,6 +160,15 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Select distinct(l) from ListaDatosValores l where l.Id = &apos;{0}&apos;.
+        /// </summary>
+        public static string ObtenerListaDatosValoresPorParametro {
+            get {
+                return ResourceManager.GetString("ObtenerListaDatosValoresPorParametro", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select p from Poder p where p.Interesado.Id = &apos;{0}&apos;.
         /// </summary>
         public static string ObtenerPoderesPorInteresado {
