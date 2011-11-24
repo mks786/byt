@@ -448,11 +448,11 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Casado(a).
+        ///   Looks up a localized string similar to CIVIL.
         /// </summary>
-        public static string cbiCasado {
+        public static string cbiCategoriaEstadoCivil {
             get {
-                return ResourceManager.GetString("cbiCasado", resourceCulture);
+                return ResourceManager.GetString("cbiCategoriaEstadoCivil", resourceCulture);
             }
         }
         
@@ -462,6 +462,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string cbiCategoriaSexo {
             get {
                 return ResourceManager.GetString("cbiCategoriaSexo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to PERSONA.
+        /// </summary>
+        public static string cbiCategoriaTipoPersona {
+            get {
+                return ResourceManager.GetString("cbiCategoriaTipoPersona", resourceCulture);
             }
         }
         

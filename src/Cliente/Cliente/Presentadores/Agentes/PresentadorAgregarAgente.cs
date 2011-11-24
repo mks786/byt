@@ -16,6 +16,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Agentes
         private IAgregarAgente _ventana;
         private IAgenteServicios _agenteServicios;
         private IListaDatosValoresServicios _listaDatosValoresServicios;
+        private IListaDatosDominioServicios _listaDatosDominioServicios;
         private static PaginaPrincipal _paginaPrincipal = PaginaPrincipal.ObtenerInstancia;
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
@@ -33,6 +34,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Agentes
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["AgenteServicios"]);
                 this._listaDatosValoresServicios = (IListaDatosValoresServicios)Activator.GetObject(typeof(IListaDatosValoresServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["ListaDatosValoresServicios"]);
+                this._listaDatosDominioServicios = (IListaDatosDominioServicios)Activator.GetObject(typeof(IListaDatosDominioServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["ListaDatosDominioServicios"]);
             }
             catch (Exception ex)
             {
@@ -53,7 +56,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Agentes
                 this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleAgregarAgente,
                     Recursos.Ids.AgregarAgente);
 
-                this._ventana.Sexos = this._listaDatosValoresServicios.ConsultarListaDatosValoresPorParametro(new ListaDatosValores(Recursos.Etiquetas.cbiCategoriaSexo));
+                this._ventana.EstadosCivil = this._listaDatosDominioServicios.
+                    ConsultarListaDatosDominioPorParametro(new ListaDatosDominio(Recursos.Etiquetas.cbiCategoriaEstadoCivil));
+                this._ventana.Sexos = this._listaDatosValoresServicios.
+                    ConsultarListaDatosValoresPorParametro(new ListaDatosValores(Recursos.Etiquetas.cbiCategoriaSexo));
 
                 this._ventana.FocoPredeterminado();
             }
@@ -92,7 +98,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Agentes
             {
                 Agente agente = (Agente)this._ventana.Agente;
 
-                agente.EstadoCivil = this._ventana.EstadoCivil;
+                agente.EstadoCivil = ((ListaDatosDominio)this._ventana.EstadoCivil).Id[0];
                 agente.Sexo = ((ListaDatosValores)this._ventana.Sexo).Valor[0];
 
                 if (!this._agenteServicios.VerificarExistencia(agente))

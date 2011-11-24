@@ -26,6 +26,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Agentes
         private IConsultarAgentes _ventana;
         private IAgenteServicios _agenteServicios;
         private IListaDatosValoresServicios _listaDatosValoresServicios;
+        private IListaDatosDominioServicios _listaDatosDominioServicios;
         private IList<Agente> _agentes;
 
         /// <summary>
@@ -41,6 +42,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Agentes
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["AgenteServicios"]);
                 this._listaDatosValoresServicios = (IListaDatosValoresServicios)Activator.GetObject(typeof(IListaDatosValoresServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["ListaDatosValoresServicios"]);
+                this._listaDatosDominioServicios = (IListaDatosDominioServicios)Activator.GetObject(typeof(IListaDatosDominioServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["ListaDatosDominioServicios"]);
             }
             catch (Exception ex)
             {
@@ -74,6 +77,13 @@ namespace Trascend.Bolet.Cliente.Presentadores.Agentes
                 this._agentes = this._agenteServicios.ConsultarTodos();
                 this._ventana.Resultados = this._agentes;
                 this._ventana.AgenteFiltrar = new Agente();
+
+                IList<ListaDatosDominio> estadosCiviles = this._listaDatosDominioServicios.
+                    ConsultarListaDatosDominioPorParametro(new ListaDatosDominio(Recursos.Etiquetas.cbiCategoriaEstadoCivil));
+                ListaDatosDominio primeraListaDatosDominios = new ListaDatosDominio();
+                primeraListaDatosDominios.Id = "NGN";
+                estadosCiviles.Insert(0, primeraListaDatosDominios);
+                this._ventana.EstadosCivil = estadosCiviles;
 
                 IList<ListaDatosValores> sexos = this._listaDatosValoresServicios.ConsultarListaDatosValoresPorParametro(new ListaDatosValores("SEXO"));
                 ListaDatosValores primeraListaDatosValores = new ListaDatosValores("NGN");
@@ -160,10 +170,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Agentes
                                        select a;
                 }
 
-                if (!string.IsNullOrEmpty(this._ventana.EstadoCivil.ToString()) && !this._ventana.EstadoCivil.Equals(' '))
+                if (!((ListaDatosDominio)this._ventana.EstadoCivil).Id.Equals("NGN"))
                 {
                     agentesFiltrados = from a in agentesFiltrados
-                                       where a.EstadoCivil.ToString().ToLower().Contains(agente.EstadoCivil.ToString().ToLower())
+                                       where a.EstadoCivil == ((ListaDatosDominio)this._ventana.EstadoCivil).Id[0]
                                        select a;
                 }
 

@@ -23,6 +23,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Interesados
         private IEstadoServicios _estadoServicios;
         private IInteresadoServicios _interesadoServicios;
         private IPoderServicios _poderServicios;
+        private IListaDatosDominioServicios _listaDatosDominioServicios;
         private static PaginaPrincipal _paginaPrincipal = PaginaPrincipal.ObtenerInstancia;
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
@@ -45,6 +46,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Interesados
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["EstadoServicios"]);
                 this._poderServicios = (IPoderServicios)Activator.GetObject(typeof(IPoderServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["PoderServicios"]);
+                this._listaDatosDominioServicios = (IListaDatosDominioServicios)Activator.GetObject(typeof(IListaDatosDominioServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["ListaDatosDominioServicios"]);
             }
             catch (Exception ex)
             {
@@ -78,10 +81,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.Interesados
                 this._ventana.Nacionalidades = paises;
                 this._ventana.Corporaciones = estados;
 
-                this._ventana.SetTipoPersona = BuscarTipoPersona(((Interesado)interesado).TipoPersona);
                 this._ventana.Pais = this.BuscarPais(paises, interesado.Pais);
                 this._ventana.Nacionalidad = this.BuscarPais(paises, interesado.Nacionalidad);
                 this._ventana.Corporacion = this.BuscarEstado(estados, interesado.Corporacion);
+                IList<ListaDatosDominio> tiposPersona = this._listaDatosDominioServicios.ConsultarListaDatosDominioPorParametro(new ListaDatosDominio("PERSONA"));
+                this._ventana.TipoPersonas = tiposPersona;
+                this._ventana.TipoPersona = BuscarTipoPersona(interesado.TipoPersona, (IList<ListaDatosDominio>)this._ventana.TipoPersonas);
 
                 this._ventana.FocoPredeterminado();
 
@@ -130,7 +135,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Interesados
                     interesado.Nacionalidad = (Pais)this._ventana.Nacionalidad;
                     interesado.Corporacion = (Estado)this._ventana.Corporacion;
                     interesado.Operacion = "MODIFY";
-                    interesado.TipoPersona = this._ventana.GetTipoPersona;
+                    //interesado.TipoPersona = this._ventana.GetTipoPersona;
 
                     bool exitoso = this._interesadoServicios.InsertarOModificar(interesado, UsuarioLogeado.Hash);
                     if (exitoso)
@@ -181,7 +186,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Interesados
                 interesado.Nacionalidad = (Pais)this._ventana.Nacionalidad;
                 interesado.Corporacion = (Estado)this._ventana.Corporacion;
                 interesado.Operacion = "DELETE";
-                interesado.TipoPersona = this._ventana.GetTipoPersona;
+                //interesado.TipoPersona = this._ventana.GetTipoPersona;
 
                 bool exitoso = this._interesadoServicios.Eliminar(interesado, UsuarioLogeado.Hash);
                 if (exitoso)

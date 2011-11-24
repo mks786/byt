@@ -8,7 +8,7 @@
       <key-property name="Id" column="`NSECUEN`" />
       <key-many-to-one name="Asociado" column="CASOCIADO" class="Asociado"/>
     </composite-id>
-    
+
     <property name="Aba" type="String" column="`ABA`"/>
     <property name="BancoBenef" type="String" column="`BANCO_BENEF`"/>
     <property name="BancoInt" type="String" column="`BANCO_INT`"/>

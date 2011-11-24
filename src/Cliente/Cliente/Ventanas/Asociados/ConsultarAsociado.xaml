@@ -70,13 +70,8 @@
                     <Label Grid.Column="3" Grid.Row="0" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblTipoPersona}"/>
                     </Label>
-                    <ComboBox Grid.Column="4" Grid.Row="0" Name="_cbxTipoPersonaDatos" HorizontalAlignment="Left" Width="230" Height="20" SelectedIndex="0" IsEnabled="False">
-                        <ComboBoxItem>
-                            <TextBlock Text="{x:Static recurso:Etiquetas.cbiJuridica}"/>
-                        </ComboBoxItem>
-                        <ComboBoxItem>
-                            <TextBlock Text="{x:Static recurso:Etiquetas.cbiNatural}"/>
-                        </ComboBoxItem>
+                    <ComboBox Grid.Column="4" Grid.Row="0" Name="_cbxTipoPersonaDatos" HorizontalAlignment="Left" Width="230" Height="20" SelectedIndex="0" IsEnabled="False" ItemsSource="{Binding}" DisplayMemberPath="Descripcion">
+                        
                     </ComboBox>
 
                     <Label Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" HorizontalContentAlignment="Right">

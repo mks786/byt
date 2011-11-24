@@ -5,7 +5,9 @@ namespace Trascend.Bolet.Cliente.Contratos.Agentes
     {
         object Agente { get; set; }
 
-        char EstadoCivil { get; }
+        object EstadosCivil { get; set; }
+
+        object EstadoCivil { get; set; }
 
         object Sexo { get; set; }
 

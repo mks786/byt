@@ -3,7 +3,7 @@ using Trascend.Bolet.AccesoDatos.Contrato;
 
 namespace Trascend.Bolet.AccesoDatos.Fabrica
 {
-    public abstract class FabricaDaoBase: IFabricaDaoBase
+    public abstract class FabricaDaoBase : IFabricaDaoBase
     {
         private static readonly string[] _manejadores = { "NHibernate" };
 
@@ -272,16 +272,17 @@ namespace Trascend.Bolet.AccesoDatos.Fabrica
         /// <returns>IDaoAsignacion</returns>
         public abstract IDaoAsignacion ObtenerDaoAsignacion();
 
-
-
-
-
-
-
         /// <summary>
         /// Método que devuelve el DaoListaDatosValores del manejador que se esté utilizando
         /// </summary>
         /// <returns>DaoListaDatosValores</returns>
         public abstract IDaoListaDatosValores ObtenerDaoListaDatosValores();
+
+        /// <summary>
+        /// Método que devuelve el DaoListaDatosDominio del manejador que se esté utilizando
+        /// </summary>
+        /// <returns>IDaoListaDatosDominio</returns>
+        public abstract IDaoListaDatosDominio ObtenerDaoListaDatosDominio();
+
     }
 }

@@ -9,9 +9,9 @@ namespace Trascend.Bolet.Cliente.Contratos.Interesados
 
         string TextoBotonModificar { get; set; }
 
-        char GetTipoPersona { get; }
+        object TipoPersona { get; set; }
 
-        string SetTipoPersona { set; }
+        object TipoPersonas { get; set; }
 
         object Paises { get; set; }
 

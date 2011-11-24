@@ -255,14 +255,15 @@ namespace Trascend.Bolet.Cliente.Presentadores
         /// </summary>
         /// <param name="tipoPersona">Inicial del tipo de persona</param>
         /// <returns>El tipo de persona correspondiente</returns>
-        public string BuscarTipoPersona(char tipoPersona)
+        public ListaDatosDominio BuscarTipoPersona(char tipoBuscado, IList<ListaDatosDominio> tipoPersonas)
         {
-            string retorno;
+            ListaDatosDominio retorno = new ListaDatosDominio();
 
-            if (Recursos.Etiquetas.cbiJuridica[0].Equals(tipoPersona))
-                retorno = Recursos.Etiquetas.cbiJuridica;
-            else
-                retorno = Recursos.Etiquetas.cbiNatural;
+            foreach (ListaDatosDominio dato in tipoPersonas)
+            {
+                if (dato.Id[0] == tipoBuscado)
+                    retorno = dato;
+            }
 
             return retorno;
         }
@@ -292,18 +293,19 @@ namespace Trascend.Bolet.Cliente.Presentadores
         /// </summary>
         /// <param name="estadoCivil">Inicial del estado civil</param>
         /// <returns>El estado civil correspondiente</returns>
-        public string BuscarEstadoCivil(char estadoCivil)
+        public ListaDatosDominio BuscarEstadoCivil(IList<ListaDatosDominio> listaDatosDominio, ListaDatosDominio listaDatosDominioBuscado)
         {
-            string retorno;
+            ListaDatosDominio retorno = null;
 
-            if (Recursos.Etiquetas.cbiSoltero[0].Equals(estadoCivil))
-                retorno = Recursos.Etiquetas.cbiSoltero;
-            else if (Recursos.Etiquetas.cbiCasado[0].Equals(estadoCivil))
-                retorno = Recursos.Etiquetas.cbiCasado;
-            else if (Recursos.Etiquetas.cbiDivorciado[0].Equals(estadoCivil))
-                retorno = Recursos.Etiquetas.cbiDivorciado;
-            else
-                retorno = Recursos.Etiquetas.cbiViudo;
+            if (listaDatosDominioBuscado != null)
+                foreach (ListaDatosDominio listaDatosDominios in listaDatosDominio)
+                {
+                    if (listaDatosDominios.Id == listaDatosDominioBuscado.Id)
+                    {
+                        retorno = listaDatosDominios;
+                        break;
+                    }
+                }
 
             return retorno;
         }

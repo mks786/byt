@@ -32,6 +32,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
         private ITarifaServicios _tarifaServicios;
         private ITipoClienteServicios _tipoClienteServicios;
         private IPaisServicios _paisServicios;
+        private IListaDatosDominioServicios _listaDatosDominioServicios;
         private IList<Asociado> _asociados;
 
         /// <summary>
@@ -59,6 +60,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["TipoClienteServicios"]);
                 this._paisServicios = (IPaisServicios)Activator.GetObject(typeof(IPaisServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["PaisServicios"]);
+                this._listaDatosDominioServicios = (IListaDatosDominioServicios)Activator.GetObject(typeof(IListaDatosDominioServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["ListaDatosDominioServicios"]);
             }
             catch (Exception ex)
             {
@@ -135,6 +138,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
                 tiposCLientes.Insert(0, primerTipoCliente);
                 this._ventana.TiposClientes = tiposCLientes;
 
+                IList<ListaDatosDominio> tiposPersona = this._listaDatosDominioServicios.ConsultarListaDatosDominioPorParametro(new ListaDatosDominio("PERSONA"));
+                ListaDatosDominio primerTipoPersona = new ListaDatosDominio();
+                primerTipoPersona.Id = "NGN";
+                tiposPersona.Insert(0, primerTipoPersona);
+                this._ventana.TipoPersonas = tiposPersona;
+
                 this._ventana.FocoPredeterminado();
 
                 #region trace
@@ -208,11 +217,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
                                        select a;
                 }
 
-                if (!string.IsNullOrEmpty(this._ventana.TipoPersona.ToString()) && !this._ventana.TipoPersona.Equals(' '))
+                if (!((ListaDatosDominio)this._ventana.TipoPersona).Id.Equals("NGN"))
                 {
-                    asociadosFiltrados = from a in asociadosFiltrados
-                                         where a.TipoPersona == this._ventana.TipoPersona
-                                         select a;
+                    asociadosFiltrados = from i in asociadosFiltrados
+                                           where i.TipoPersona == ((ListaDatosDominio)this._ventana.TipoPersona).Id[0]
+                                           select i;
                 }
 
                 if (this._ventana.Pais != null && ((Pais)this._ventana.Pais).Id != int.MinValue)

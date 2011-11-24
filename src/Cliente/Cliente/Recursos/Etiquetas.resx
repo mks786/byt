@@ -141,9 +141,6 @@
   <data name="btnRegresar" xml:space="preserve">
     <value>Regresar</value>
   </data>
-  <data name="cbiCasado" xml:space="preserve">
-    <value>Casado(a)</value>
-  </data>
   <data name="cbiDivorciado" xml:space="preserve">
     <value>Divorciado(a)</value>
   </data>
@@ -1146,5 +1143,11 @@
   </data>
   <data name="cbiCategoriaSexo" xml:space="preserve">
     <value>SEXO</value>
+  </data>
+  <data name="cbiCategoriaEstadoCivil" xml:space="preserve">
+    <value>CIVIL</value>
+  </data>
+  <data name="cbiCategoriaTipoPersona" xml:space="preserve">
+    <value>PERSONA</value>
   </data>
 </root>

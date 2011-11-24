@@ -22,6 +22,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
         private IIdiomaServicios _idiomaServicios;
         private IMonedaServicios _monedaServicios;
         private ITarifaServicios _tarifaServicios;
+        private IListaDatosDominioServicios _listaDatosDominioServicios;
         private ITipoClienteServicios _tipoClienteServicios;
         private IPaisServicios _paisServicios;
         private static PaginaPrincipal _paginaPrincipal = PaginaPrincipal.ObtenerInstancia;
@@ -53,6 +54,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["TipoClienteServicios"]);
                 this._paisServicios = (IPaisServicios)Activator.GetObject(typeof(IPaisServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["PaisServicios"]);
+                this._listaDatosDominioServicios = (IListaDatosDominioServicios)Activator.GetObject(typeof(IListaDatosDominioServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["ListaDatosDominioServicios"]);
             }
             catch (Exception ex)
             {
@@ -90,6 +93,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
                 primeraTarifa.Id = "NGN";
                 tarifas.Insert(0, primeraTarifa);
                 this._ventana.Tarifas = tarifas;
+
+                IList<ListaDatosDominio> tiposPersona = this._listaDatosDominioServicios.ConsultarListaDatosDominioPorParametro(new ListaDatosDominio("PERSONA"));
+                this._ventana.TipoPersonas = tiposPersona;
 
                 this._ventana.Idiomas = this._idiomaServicios.ConsultarTodos();
 
@@ -137,7 +143,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
                 Asociado asociado = (Asociado)this._ventana.Asociado;
 
                 asociado.Operacion = "CREATE";
-                asociado.TipoPersona = this._ventana.TipoPersona;
+                asociado.TipoPersona = ((ListaDatosDominio)this._ventana.TipoPersona).Id[0];
                 asociado.Pais = (Pais)this._ventana.Pais;
                 asociado.Idioma = (Idioma)this._ventana.Idioma;
                 asociado.Moneda = (Moneda)this._ventana.Moneda;

@@ -58,20 +58,18 @@ namespace Trascend.Bolet.Cliente.Ventanas.Interesados
             set { this._txbModificar.Text = value; }
         }
 
-        public char GetTipoPersona
+        public object TipoPersonas
         {
-            get
-            {
-                if (!string.IsNullOrEmpty(this._cbxTipoPersona.Text))
-                    return (this._cbxTipoPersona.Text)[0];
-                else
-                    return ' ';
-            }
+
+            get { return this._cbxTipoPersona.DataContext; }
+            set { this._cbxTipoPersona.DataContext = value; }
         }
 
-        public string SetTipoPersona
+        public object TipoPersona
         {
-            set { this._cbxTipoPersona.Text = value; }
+
+            get { return this._cbxTipoPersona.SelectedItem; }
+            set { this._cbxTipoPersona.SelectedItem = value; }
         }
 
         public object Paises

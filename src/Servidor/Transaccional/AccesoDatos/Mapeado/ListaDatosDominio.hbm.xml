@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+                   assembly="Trascend.Bolet.ObjetosComunes"
+                   namespace="Trascend.Bolet.ObjetosComunes.Entidades">
+
+  <class name="ListaDatosDominio" table="CFG_DOMINIOS">
+    <composite-id>
+      <key-property name="Id" column="RV_LOW_VALUE" />
+      <key-property name="Filtro" column="RV_DOMAIN"/>
+    </composite-id>
+    <property name="Descripcion" column="RV_MEANING" type="string"/>
+  </class>
+</hibernate-mapping>
+
+
+

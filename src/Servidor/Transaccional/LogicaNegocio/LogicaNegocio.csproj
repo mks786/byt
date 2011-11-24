@@ -81,6 +81,7 @@
     <Compile Include="Controladores\ControladorCartaOut.cs" />
     <Compile Include="Controladores\ControladorAsignacion.cs" />
     <Compile Include="Controladores\ControladorListaDatosValores.cs" />
+    <Compile Include="Controladores\ControladorListaDatosDominio.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

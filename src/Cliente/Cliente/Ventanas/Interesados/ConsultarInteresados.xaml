@@ -40,16 +40,8 @@
                     <Label>
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblTipoPersona}"/>
                     </Label>
-                    <ComboBox Name="_cbxTipoPersona" Width="150" SelectedIndex="0">
-                        <ComboBoxItem>
-                            <TextBlock Text=""/>
-                        </ComboBoxItem>
-                        <ComboBoxItem>
-                            <TextBlock Text="{x:Static recurso:Etiquetas.cbiJuridica}"/>
-                        </ComboBoxItem>
-                        <ComboBoxItem>
-                            <TextBlock Text="{x:Static recurso:Etiquetas.cbiNatural}"/>
-                        </ComboBoxItem>
+                    <ComboBox Name="_cbxTipoPersona" Width="150" SelectedIndex="0"
+                              ItemsSource="{Binding}" DisplayMemberPath="Descripcion">
                     </ComboBox>
                 </WrapPanel>
                 <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">

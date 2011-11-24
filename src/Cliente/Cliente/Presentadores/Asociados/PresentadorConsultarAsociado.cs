@@ -28,6 +28,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
         private ITipoClienteServicios _tipoClienteServicios;
         private IPaisServicios _paisServicios;
         private IContactoServicios _contactoServicios;
+        private IListaDatosDominioServicios _listaDatosDominioServicios;
         private IDatosTransferenciaServicios _datosTransferenciaServicios;
         private static PaginaPrincipal _paginaPrincipal = PaginaPrincipal.ObtenerInstancia;
         private IList<Auditoria> _auditorias;
@@ -65,6 +66,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["ContactoServicios"]);
                 this._datosTransferenciaServicios = (IDatosTransferenciaServicios)Activator.GetObject(typeof(IDatosTransferenciaServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["DatosTransferenciaServicios"]);
+                this._listaDatosDominioServicios = (IListaDatosDominioServicios)Activator.GetObject(typeof(IListaDatosDominioServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["ListaDatosDominioServicios"]);
             }
             catch (Exception ex)
             {
@@ -97,7 +100,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
                 asociado.Contactos = this._contactoServicios.ConsultarContactosPorAsociado(asociado);
                 asociado.DatosTransferencias = this._datosTransferenciaServicios.ConsultarDatosTransferenciaPorAsociado(asociado);
 
-                this._ventana.SetTipoPersona = BuscarTipoPersona(asociado.TipoPersona);
+                
 
                 IList<Pais> paises = this._paisServicios.ConsultarTodos();
                 this._ventana.Paises = paises;
@@ -139,6 +142,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
                 Auditoria auditoria = new Auditoria();
                 auditoria.Fk = ((Asociado)this._ventana.Asociado).Id;
                 auditoria.Tabla = "FAC_ASOCIADOS";
+
+                IList<ListaDatosDominio> tiposPersona = this._listaDatosDominioServicios.ConsultarListaDatosDominioPorParametro(new ListaDatosDominio("PERSONA"));
+                this._ventana.TipoPersonas = tiposPersona;
+                
+                this._ventana.TipoPersona = BuscarTipoPersona(asociado.TipoPersona,(IList<ListaDatosDominio>)this._ventana.TipoPersonas);
 
                 _auditorias = this._asociadoServicios.AuditoriaPorFkyTabla(auditoria);
 
@@ -195,7 +203,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
                     Asociado asociado = (Asociado)this._ventana.Asociado;
 
                     asociado.Operacion = "MODIFY";
-                    asociado.TipoPersona = this._ventana.GetTipoPersona;
+                    asociado.TipoPersona = ((ListaDatosDominio)this._ventana.TipoPersona).Id[0];
                     asociado.Pais = (Pais)this._ventana.Pais;
                     asociado.Idioma = (Idioma)this._ventana.Idioma;
                     asociado.Moneda = (Moneda)this._ventana.Moneda;

@@ -11,7 +11,9 @@ namespace Trascend.Bolet.Cliente.Contratos.Interesados
 
         string Id { get; }
 
-        char TipoPersona { get; }
+        object TipoPersona { get; set; }
+
+        object TipoPersonas { get; set; }
 
         object InteresadoFiltrar { get; set; }
 

@@ -122,15 +122,18 @@ namespace Trascend.Bolet.Cliente.Ventanas.Asociados
             set { this._cbxTarifaAdministracion.DataContext = value; }
         }
 
-        public char TipoPersona
+        public object TipoPersonas
         {
-            get
-            {
-                if (!string.IsNullOrEmpty(this._cbxTipoPersonaDatos.Text))
-                    return ((string)this._cbxTipoPersonaDatos.Text)[0];
-                else
-                    return ' ';
-            }
+
+            get { return this._cbxTipoPersonaDatos.DataContext; }
+            set { this._cbxTipoPersonaDatos.DataContext = value; }
+        }
+
+        public object TipoPersona
+        {
+
+            get { return this._cbxTipoPersonaDatos.SelectedItem; }
+            set { this._cbxTipoPersonaDatos.SelectedItem = value; }
         }
 
         public bool EstaCargada

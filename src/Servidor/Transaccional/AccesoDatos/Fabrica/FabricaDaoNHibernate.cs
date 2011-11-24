@@ -3,7 +3,7 @@ using Trascend.Bolet.AccesoDatos.Dao.NHibernate;
 
 namespace Trascend.Bolet.AccesoDatos.Fabrica
 {
-    public class FabricaDaoNHibernate: FabricaDaoBase
+    public class FabricaDaoNHibernate : FabricaDaoBase
     {
         private static FabricaDaoNHibernate _instancia;
 
@@ -119,7 +119,7 @@ namespace Trascend.Bolet.AccesoDatos.Fabrica
         {
             return new DaoResolucionNHibernate();
         }
-        
+
 
         /// <summary>
         /// Método que devuelve el DaoRol
@@ -400,15 +400,6 @@ namespace Trascend.Bolet.AccesoDatos.Fabrica
             return new DaoAsignacionNHibernate();
         }
 
-
-
-
-
-
-
-
-
-
         /// <summary>
         /// Método que devuelve el DaoListaDatosValores
         /// </summary>
@@ -416,6 +407,15 @@ namespace Trascend.Bolet.AccesoDatos.Fabrica
         public override IDaoListaDatosValores ObtenerDaoListaDatosValores()
         {
             return new DaoListaDatosValoresNHibernate();
+        }
+
+        /// <summary>
+        /// Método que devuelve el DaoEntradaAlterna
+        /// </summary>
+        /// <returns>IDaoEntradaAlterna</returns>
+        public override IDaoListaDatosDominio ObtenerDaoListaDatosDominio()
+        {
+            return new DaoListaDatosDominioNHibernate();
         }
     }
 }

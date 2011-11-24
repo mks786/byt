@@ -42,9 +42,9 @@ namespace Trascend.Bolet.Cliente.Contratos.Asociados
 
         object Tarifas { get; set; }
 
-        char GetTipoPersona { get; }
+        object TipoPersona { get; set; }
 
-        string SetTipoPersona { set; }
+        object TipoPersonas { get; set; }
 
         void pintarJustificacion();
 

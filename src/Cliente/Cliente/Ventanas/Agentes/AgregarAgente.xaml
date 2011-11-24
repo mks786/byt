@@ -82,19 +82,9 @@
                     <Label>
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblEstadoCivil}"/>
                     </Label>
-                    <ComboBox Name="_cbxEstadoCivil" Width="150" SelectedIndex="0">
-                        <ComboBoxItem>
-                            <TextBlock Text="{x:Static recurso:Etiquetas.cbiSoltero}"/>
-                        </ComboBoxItem>
-                        <ComboBoxItem>
-                            <TextBlock Text="{x:Static recurso:Etiquetas.cbiCasado}"/>
-                        </ComboBoxItem>
-                        <ComboBoxItem>
-                            <TextBlock Text="{x:Static recurso:Etiquetas.cbiDivorciado}"/>
-                        </ComboBoxItem>
-                        <ComboBoxItem>
-                            <TextBlock Text="{x:Static recurso:Etiquetas.cbiViudo}"/>
-                        </ComboBoxItem>
+                    <ComboBox Name="_cbxEstadoCivil" Width="150" SelectedIndex="0"
+                              ItemsSource="{Binding}" DisplayMemberPath="Descripcion">
+                        
                     </ComboBox>
                 </WrapPanel>
                 <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">

@@ -42,15 +42,18 @@ namespace Trascend.Bolet.Cliente.Ventanas.Interesados
             get { return this._txtId.Text; }
         }
 
-        public char TipoPersona
+        public object TipoPersonas
         {
-            get
-            {
-                if (!string.IsNullOrEmpty(this._cbxTipoPersona.Text))
-                    return ((string)this._cbxTipoPersona.Text)[0];
-                else
-                    return ' ';
-            }
+
+            get { return this._cbxTipoPersona.DataContext; }
+            set { this._cbxTipoPersona.DataContext = value; }
+        }
+
+        public object TipoPersona
+        {
+
+            get { return this._cbxTipoPersona.SelectedItem; }
+            set { this._cbxTipoPersona.SelectedItem = value; }
         }
 
         public object Paises

@@ -5,7 +5,9 @@ namespace Trascend.Bolet.Cliente.Contratos.Interesados
     {
         object Interesado { get; set; }
 
-        char TipoPersona { get; }
+        object TipoPersona { get; set; }
+
+        object TipoPersonas { get; set; }
 
         object Paises { get; set; }
 

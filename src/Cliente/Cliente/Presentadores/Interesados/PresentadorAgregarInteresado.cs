@@ -18,6 +18,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Interesados
         private IPaisServicios _paisServicios;
         private IEstadoServicios _estadoServicios;
         private IInteresadoServicios _interesadoServicios;
+        private IListaDatosDominioServicios _listaDatosDominioServicios;
         private static PaginaPrincipal _paginaPrincipal = PaginaPrincipal.ObtenerInstancia;
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
@@ -37,6 +38,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Interesados
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["PaisServicios"]);
                 this._estadoServicios = (IEstadoServicios)Activator.GetObject(typeof(IEstadoServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["EstadoServicios"]);
+                this._listaDatosDominioServicios = (IListaDatosDominioServicios)Activator.GetObject(typeof(IListaDatosDominioServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["ListaDatosDominioServicios"]);
             }
             catch (Exception ex)
             {
@@ -63,6 +66,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Interesados
                 IList<Pais> paises = this._paisServicios.ConsultarTodos();
                 IList<Estado> estados = this._estadoServicios.ConsultarTodos();
                 this._ventana.Paises = paises;
+                IList<ListaDatosDominio> tiposPersona = this._listaDatosDominioServicios.ConsultarListaDatosDominioPorParametro(new ListaDatosDominio("PERSONA"));
+                this._ventana.TipoPersonas = tiposPersona;
                 this._ventana.Nacionalidades = paises;
                 this._ventana.Corporaciones = estados;
             }
@@ -104,7 +109,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Interesados
                 interesado.Pais = (Pais)this._ventana.Pais;
                 interesado.Nacionalidad = (Pais)this._ventana.Nacionalidad;
                 interesado.Corporacion = (Estado)this._ventana.Corporacion;
-                interesado.TipoPersona = this._ventana.TipoPersona;
+                interesado.TipoPersona = ((ListaDatosDominio)this._ventana.TipoPersona).Id[0];
                 interesado.Operacion = "CREATE";
                 bool exitoso = this._interesadoServicios.InsertarOModificar(interesado,UsuarioLogeado.Hash);
 

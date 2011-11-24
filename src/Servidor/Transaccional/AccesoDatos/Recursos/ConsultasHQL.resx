@@ -163,6 +163,10 @@
     <value>Select distinct(l) from ListaDatosValores l where l.Id = '{0}'</value>
     <comment>Trae la lista de valores por el parametro del id</comment>
   </data>
+  <data name="ObtenerListaDatosDominioPorParametro" xml:space="preserve">
+    <value>Select l from ListaDatosDominio l where l.Filtro = '{0}'</value>
+    <comment>Obtiene la lista de valores respectiva a la tabla CFG_DOMINIOS con el parametro que se le pase</comment>
+  </data>
   <data name="ObtenerPoderesPorInteresado" xml:space="preserve">
     <value>Select p from Poder p where p.Interesado.Id = '{0}'</value>
     <comment>Selecciona todas los poderes que posee un interesado</comment>

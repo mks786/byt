@@ -27,6 +27,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Interesados
         private IPaisServicios _paisServicios;
         private IEstadoServicios _estadoServicios;
         private IInteresadoServicios _interesadoServicios;
+        private IListaDatosDominioServicios _listaDatosDominioServicios;
         private IList<Interesado> _interesados;
 
         /// <summary>
@@ -44,6 +45,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Interesados
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["PaisServicios"]);
                 this._estadoServicios = (IEstadoServicios)Activator.GetObject(typeof(IEstadoServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["EstadoServicios"]);
+                this._listaDatosDominioServicios = (IListaDatosDominioServicios)Activator.GetObject(typeof(IListaDatosDominioServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["ListaDatosDominioServicios"]);
             }
             catch (Exception ex)
             {
@@ -98,6 +101,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.Interesados
                 corporaciones.Insert(0, primeraCorporacion);
                 this._ventana.Corporaciones = corporaciones;
 
+                IList<ListaDatosDominio> tiposPersona = this._listaDatosDominioServicios.ConsultarListaDatosDominioPorParametro(new ListaDatosDominio("PERSONA"));
+                ListaDatosDominio primerTipoPersona = new ListaDatosDominio();
+                primerTipoPersona.Id = "NGN";
+                tiposPersona.Insert(0, primerTipoPersona);
+                this._ventana.TipoPersonas = tiposPersona;
+
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
                     logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
@@ -151,10 +160,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Interesados
                                        select i;
                 }
 
-                if (this._ventana.TipoPersona != ' ')
+                if (!((ListaDatosDominio)this._ventana.TipoPersona).Id.Equals("NGN"))
                 {
                     interesadosFiltrados = from i in interesadosFiltrados
-                                           where i.TipoPersona == this._ventana.TipoPersona
+                                           where i.TipoPersona == ((ListaDatosDominio)this._ventana.TipoPersona).Id[0]
                                            select i;
                 }
 

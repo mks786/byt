@@ -169,6 +169,15 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Select l from ListaDatosDominio l where l.Filtro = &apos;{0}&apos;.
+        /// </summary>
+        public static string ObtenerListaDatosDominioPorParametro {
+            get {
+                return ResourceManager.GetString("ObtenerListaDatosDominioPorParametro", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select p from Poder p where p.Interesado.Id = &apos;{0}&apos;.
         /// </summary>
         public static string ObtenerPoderesPorInteresado {

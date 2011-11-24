@@ -37,6 +37,8 @@ namespace Trascend.Bolet.Cliente.Contratos.Asociados
 
         object Tarifas { get; set; }
 
-        char TipoPersona { get; }
+        object TipoPersona { get; set; }
+
+        object TipoPersonas { get; set; }
     }
 }
