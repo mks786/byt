@@ -13,7 +13,6 @@ namespace Trascend.Bolet.Servidor
             RemotingConfiguration.Configure(_archivo, false);
             Console.WriteLine("Configuracion cargada...");
             Console.ReadLine();
-
         }
     }
 }

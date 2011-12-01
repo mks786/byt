@@ -169,10 +169,15 @@
     <Compile Include="Comandos\ComandosUsuario\ComandoConsultarUsuarioPorIniciales.cs" />
     <Compile Include="Comandos\ComandosListaDatosValores\ComandoConsultarListaDatosValoresPorParametro.cs" />
     <Compile Include="Comandos\ComandosListaDatosDominio\ComandoConsultarListaDatosDominioPorParametro.cs" />
+    <Compile Include="Comandos\ComandosMarca\ComandoConsultarTodasMarcas.cs" />
+    <Compile Include="Comandos\ComandosMarca\ComandoEliminarMarca.cs" />
+    <Compile Include="Comandos\ComandosMarca\ComandoInsertarOModificarMarca.cs" />
+    <Compile Include="Comandos\ComandosMarca\ComandoVerificarExistenciaMarca.cs" />
     <Compile Include="Comandos\Receptor.cs" />
     <Compile Include="Comandos\ComandosUsuario\ComandoConsultarTodosUsuarios.cs" />
     <Compile Include="Comandos\ComandosUsuario\ComandoConsultarUsuarioPorID.cs" />
     <Compile Include="Comandos\ComandosUsuario\ComandoInsertarOModificarUsuario.cs" />
+    <Compile Include="Fabrica\FabricaComandosMarca.cs" />
     <Compile Include="Fabrica\FabricaComandosListaDatosValores.cs" />
     <Compile Include="Fabrica\FabricaComandosListaDatosDominio.cs" />
     <Compile Include="Fabrica\FabricaComandosAsignacion.cs" />

@@ -4,6 +4,7 @@ using NHibernate;
 using NLog;
 using Trascend.Bolet.AccesoDatos.Contrato;
 using Trascend.Bolet.ObjetosComunes.Entidades;
+using System.Collections.Generic;
 
 namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
 {
@@ -58,7 +59,9 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
                 #endregion
 
                 IQuery query = Session.CreateQuery(string.Format(Recursos.ConsultasHQL.ObtenerUsuarioPorIniciales,iniciales));
-                retorno = query.UniqueResult<Usuario>();
+                IList<Usuario> resultado = query.List<Usuario>();
+                //retorno = query.UniqueResult<Usuario>();
+                retorno = resultado[0];
 
                 #region trace
                 if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))

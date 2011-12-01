@@ -50,6 +50,7 @@
     <Compile Include="Implementacion\CartaServicios.cs" />
     <Compile Include="Implementacion\CartaOutServicios.cs" />
     <Compile Include="Implementacion\AsignacionServicios.cs" />
+    <Compile Include="Implementacion\MarcaServicios.cs" />
     <Compile Include="Implementacion\ListaDatosDominioServicios.cs" />
     <Compile Include="Implementacion\ListaDatosValoresServicios.cs" />
     <Compile Include="Implementacion\EntradaAlternaServicios.cs" />

@@ -417,5 +417,14 @@ namespace Trascend.Bolet.AccesoDatos.Fabrica
         {
             return new DaoListaDatosDominioNHibernate();
         }
+
+        /// <summary>
+        /// Método que devuelve el DaoMarca
+        /// </summary>
+        /// <returns>IDaoMarca</returns>
+        public override IDaoMarca ObtenerDaoMarca()
+        {
+            return new DaoMarcaNHibernate();
+        }
     }
 }

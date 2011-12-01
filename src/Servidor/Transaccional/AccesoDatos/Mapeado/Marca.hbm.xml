@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+                   assembly="Trascend.Bolet.ObjetosComunes"
+                   namespace="Trascend.Bolet.ObjetosComunes.Entidades">
+
+  <class name="Marca" table="MYP_MARCAS">
+    <id name="Id" column="CMARCA" type="string"/>
+    <property name="Descripcion" column="XMARCA" type="string"/>
+    <property name="Tipo" column="ITIPO" type="string"/>
+    <property name="FechaPrioridad" column="FPRIORIDAD" type="DateTime"/>
+    <property name="PrimeraReferencia" column="XREFERENCIA1" type="string"/>
+    <property name="FechaInscripcion" column="FINSCRIPCION" type="DateTime"/>
+    <property name="CodigoInscripcion" column="CINSCRIPCION" type="string"/>
+    <property name="FechaPublicacion" column="FPUBLICACION" type="DateTime"/>
+    <property name="FechaConcesion" column="FCONCESION" type="DateTime"/>
+    <property name="CodigoRegistro" column="CREGISTRO" type="string"/>
+    <property name="FechaRegistro" column="FREGISTRO" type="DateTime"/>
+    <property name="IPoder" column="IPODER" type="string"/>
+    <property name="Fascimiles" column="IFASCIMILES" type="string"/>
+    <property name="TieneEtiqueta" column="IETIQUETA" type="string"/>
+    <property name="Traduccion" column="ITRADUCCION" type="char"/>
+    <property name="Fichas" column="IFICHAS" type="string"/>
+    <property name="Registro" column="IREGISTRO" type="char"/>
+    <property name="Acta" column="IACTA" type="char"/>
+    <property name="CodigoExpediente" column="CEXPEDIENTE" type="string"/>
+    <property name="Ubicacion" column="XUBICACION" type="string"/>
+    <property name="UbicacionRenovacion" column="XUBICACION_RENOVACION" type="string"/>
+    <property name="FechaRenovacion" column="FRENOVACION" type="DateTime"/>
+    <property name="Etiqueta" column="XETIQUETA" type="string"/>
+    <property name="PrimerOtro" column="XOTROS1" type="string"/>
+    <property name="Representante" column="XREPRESENTANTE" type="string"/>
+    <property name="Observacion" column="XOBSERVACION" type="string"/>
+    <property name="Distingue" column="XDISTINGUE" type="string"/>
+    <property name="NumeroCondiciones" column="NCONDI" type="int"/>
+    <property name="Sector" column="SECTOR" type="string"/>
+    <property name="TipoRps" column="TIPO_RPS" type="char"/>
+    <property name="TipoCnac" column="TCNAC" type="string"/>
+    <property name="TipoEstado" column="TESTADO" type="char"/>
+    <property name="Rev" column="IREV" type="char"/>
+    <property name="CodigoTipoEstado" column="CTESTADO" type="string"/>
+    <property name="CodigoBus" column="CBUS" type="string"/>
+    <property name="Ter" column="ITER" type="char"/>
+    <property name="CodigoCorrespondencia" column="CCORRESP" type="int"/>
+
+    <many-to-one name="Agente" class="Agente">
+      <column name="CAGENTE"/>
+    </many-to-one>
+
+    <many-to-one name="Asociado" class="Asociado">
+      <column name="CASOCIADO"/>
+    </many-to-one>
+
+    <many-to-one name="BoletinConcesion" class="Boletin">
+      <column name="CBOLETIN_CONCESION"/>
+    </many-to-one>
+
+    <many-to-one name="BoletinPublicacion" class="Boletin">
+      <column name="CBOLETIN_PUBLICACION"/>
+    </many-to-one>
+
+    <many-to-one name="Internacional" class="Internacional">
+      <column name="CINTER"/>
+    </many-to-one>
+
+    <many-to-one name="Nacional" class="Nacional">
+      <column name="CNACIONAL"/>
+    </many-to-one>
+
+    <many-to-one name="Interesado" class="Interesado">
+      <column name="CINTERESADO"/>
+    </many-to-one>
+
+    <many-to-one name="Pais" class="Pais">
+      <column name="CPAIS_PRIORIDAD"/>
+    </many-to-one>
+
+    <many-to-one name="Poder" class="Poder">
+      <column name="CPODER"/>
+    </many-to-one>
+
+    <many-to-one name="Servicio" class="Servicio">
+      <column name="CSERVICIO"/>
+    </many-to-one>
+
+  </class>
+</hibernate-mapping>
+
+

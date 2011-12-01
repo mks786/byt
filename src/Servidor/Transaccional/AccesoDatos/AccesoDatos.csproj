@@ -61,6 +61,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Contrato\IDaoMarca.cs" />
     <Compile Include="Contrato\IDaoListaDatosValores.cs" />
     <Compile Include="Contrato\IDaoListaDatosDominio.cs" />
     <Compile Include="Contrato\IDaoAsignacion.cs" />
@@ -106,6 +107,7 @@
     <Compile Include="Contrato\IDaoBase.cs" />
     <Compile Include="Contrato\IDaoUsuario.cs" />
     <Compile Include="Contrato\IFabricaDaoBase.cs" />
+    <Compile Include="Dao\NHibernate\DaoMarcaNHibernate.cs" />
     <Compile Include="Dao\NHibernate\DaoListaDatosDominioNHibernate.cs" />
     <Compile Include="Dao\NHibernate\DaoListaDatosValoresNHibernate.cs" />
     <Compile Include="Dao\NHibernate\DaoAsignacionNHibernate.cs" />
@@ -381,6 +383,16 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Mapeado\ListaDatosDominio.hbm.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Mapeado\Marca.hbm.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Mapeado\Servicio.hbm.xml">
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
