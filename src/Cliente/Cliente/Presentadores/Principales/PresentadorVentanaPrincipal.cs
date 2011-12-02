@@ -32,6 +32,7 @@ using Trascend.Bolet.Cliente.Ventanas.Asociados;
 using Trascend.Bolet.Cliente.Ventanas.Resumenes;
 using Trascend.Bolet.Cliente.Ventanas.Remitentes;
 using Trascend.Bolet.Cliente.Ventanas.EntradasAlternas;
+using Trascend.Bolet.Cliente.Ventanas.Marcas;
 
 namespace Trascend.Bolet.Cliente.Presentadores.Principales
 {
@@ -331,6 +332,22 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
         }
 
         /// <summary>
+        /// Método que coloca la página "ConsultarMarcas" en el Frame principal
+        /// </summary>
+        public void ConsultarMarcas()
+        {
+            this._ventana.Contenedor.Navigate(new ConsultarMarcas());
+        }
+
+        /// <summary>
+        /// Método que coloca la página "AgregarMarca" en el Frame principal
+        /// </summary>
+        public void AgregarMarca()
+        {
+            //this._ventana.Contenedor.Navigate(new AgregarMarca());
+        }
+
+        /// <summary>
         /// Método que coloca la página "ConsultarResumenes" en el Frame principal
         /// </summary>
         public void ConsultarResumenes()
@@ -546,6 +563,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
                                     break;
                                 case "_menuItemInternacional":
                                     if (objeto.Id.Equals(Recursos.Ids.Internacional))
+                                        itemNivel2.Visibility = System.Windows.Visibility.Visible;
+                                    break;
+                                case "_menuItemGestionDeMarcas":
+                                    if (objeto.Id.Equals(Recursos.Ids.Marca))
                                         itemNivel2.Visibility = System.Windows.Visibility.Visible;
                                     break;
                                 case "_menuItemMedio":

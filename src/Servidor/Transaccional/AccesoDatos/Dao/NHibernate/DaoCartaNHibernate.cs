@@ -18,7 +18,7 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
             bool variosFiltros = false;
             string filtro = "";
             string cabecera = string.Format(Recursos.ConsultasHQL.CabeceraObtenerCarta);
-            if ((null != carta) && (carta.Id != null))
+            if ((null != carta) && (carta.Id != 0))
             {
                 filtro = string.Format(Recursos.ConsultasHQL.FiltroObtenerCartaId, carta.Id);
                 variosFiltros = true;

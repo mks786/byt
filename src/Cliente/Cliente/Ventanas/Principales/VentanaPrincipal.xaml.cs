@@ -316,6 +316,20 @@ namespace Trascend.Bolet.Cliente.Ventanas.Principales
 
         #endregion
 
+        #region Marcas
+
+        private void _menuItemMarcasConsultar_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.ConsultarMarcas();
+        }
+
+        private void _menuItemMarcasAgregar_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        #endregion
+
         #endregion
 
         #region Eventos de la ventana
@@ -349,12 +363,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Principales
             this._presentador.AplicarPermisologia();
         }
 
-        #endregion
-
-        
-
-
-
+        #endregion   
 
     }
 }

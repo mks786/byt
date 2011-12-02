@@ -1150,4 +1150,16 @@
   <data name="cbiCategoriaTipoPersona" xml:space="preserve">
     <value>PERSONA</value>
   </data>
+  <data name="titleConsultarMarcas" xml:space="preserve">
+    <value>Consultar Marcas</value>
+  </data>
+  <data name="menuItemGestionDeMarcas" xml:space="preserve">
+    <value>Gestion de Marcas</value>
+  </data>
+  <data name="menuItemMarca" xml:space="preserve">
+    <value>Marcas</value>
+  </data>
+  <data name="lblFichas" xml:space="preserve">
+    <value>Fichas:</value>
+  </data>
 </root>

@@ -107,6 +107,7 @@
     <Compile Include="Contratos\EntradasAlternas\IAgregarEntradaAlterna.cs" />
     <Compile Include="Contratos\EntradasAlternas\IConsultarEntradaAlterna.cs" />
     <Compile Include="Contratos\EntradasAlternas\IConsultarEntradasAlternas.cs" />
+    <Compile Include="Contratos\Marcas\IConsultarMarcas.cs" />
     <Compile Include="Contratos\Remitentes\IAgregarRemitente.cs" />
     <Compile Include="Contratos\Remitentes\IConsultarRemitente.cs" />
     <Compile Include="Contratos\Remitentes\IConsultarRemitentes.cs" />
@@ -199,6 +200,7 @@
     <Compile Include="Presentadores\EntradasAlternas\PresentadorAgregarEntradaAlterna.cs" />
     <Compile Include="Presentadores\EntradasAlternas\PresentadorConsultarEntradaAlterna.cs" />
     <Compile Include="Presentadores\EntradasAlternas\PresentadorConsultarEntradasAlternas.cs" />
+    <Compile Include="Presentadores\Marcas\PresentadorConsultarMarcas.cs" />
     <Compile Include="Presentadores\Remitentes\PresentadorAgregarRemitente.cs" />
     <Compile Include="Presentadores\Remitentes\PresentadorConsultarRemitente.cs" />
     <Compile Include="Presentadores\Remitentes\PresentadorConsultarRemitentes.cs" />
@@ -353,6 +355,9 @@
     </Compile>
     <Compile Include="Ventanas\Cartas\ConsultarCartas.xaml.cs">
       <DependentUpon>ConsultarCartas.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Marcas\ConsultarMarcas.xaml.cs">
+      <DependentUpon>ConsultarMarcas.xaml</DependentUpon>
     </Compile>
     <Compile Include="Ventanas\Remitentes\AgregarRemitente.xaml.cs">
       <DependentUpon>AgregarRemitente.xaml</DependentUpon>
@@ -640,6 +645,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Ventanas\EntradasAlternas\ConsultarEntradasAlternas.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\Marcas\ConsultarMarcas.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

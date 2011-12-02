@@ -466,6 +466,24 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to SEGTUSU.
+        /// </summary>
+        public static string ConsultarMarca {
+            get {
+                return ResourceManager.GetString("ConsultarMarca", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SEGTUSU.
+        /// </summary>
+        public static string ConsultarMarcas {
+            get {
+                return ResourceManager.GetString("ConsultarMarcas", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to MYPTNAC.
         /// </summary>
         public static string ConsultarNacional {
@@ -772,6 +790,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to SEGTUSU.
+        /// </summary>
+        public static string EliminarMarca {
+            get {
+                return ResourceManager.GetString("EliminarMarca", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to MYPTNAC.
         /// </summary>
         public static string EliminarNacional {
@@ -934,6 +961,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to SEGTUSU.
+        /// </summary>
+        public static string Marca {
+            get {
+                return ResourceManager.GetString("Marca", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to MEDIO.
         /// </summary>
         public static string Medio {
@@ -1029,6 +1065,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string ModificarInternacional {
             get {
                 return ResourceManager.GetString("ModificarInternacional", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SEGTUSU.
+        /// </summary>
+        public static string ModificarMarca {
+            get {
+                return ResourceManager.GetString("ModificarMarca", resourceCulture);
             }
         }
         

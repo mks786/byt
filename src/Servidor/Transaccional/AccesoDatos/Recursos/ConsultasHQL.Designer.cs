@@ -70,6 +70,15 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Select m from Marca m left join fetch m.Asociado as asociado where .
+        /// </summary>
+        public static string CabeceraObtenerMarca {
+            get {
+                return ResourceManager.GetString("CabeceraObtenerMarca", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to c.Fecha between &apos;{0}&apos; and &apos;{1}&apos;.
         /// </summary>
         public static string FiltroObtenerCartaFecha {
@@ -102,6 +111,51 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         public static string FiltroObtenerCartaResumen {
             get {
                 return ResourceManager.GetString("FiltroObtenerCartaResumen", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to upper(m.Descripcion) like &apos;%{0}%&apos;.
+        /// </summary>
+        public static string FiltroObtenerMarcaDescripcion {
+            get {
+                return ResourceManager.GetString("FiltroObtenerMarcaDescripcion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to m.FechaPublicacion between &apos;{0}&apos; and &apos;{1}&apos;.
+        /// </summary>
+        public static string FiltroObtenerMarcaFecha {
+            get {
+                return ResourceManager.GetString("FiltroObtenerMarcaFecha", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to upper(m.Fichas) like &apos;%{0}%&apos;.
+        /// </summary>
+        public static string FiltroObtenerMarcaFichas {
+            get {
+                return ResourceManager.GetString("FiltroObtenerMarcaFichas", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to m.Id = {0}.
+        /// </summary>
+        public static string FiltroObtenerMarcaId {
+            get {
+                return ResourceManager.GetString("FiltroObtenerMarcaId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to asociado.Id = {0}.
+        /// </summary>
+        public static string FiltroObtenerMarcaIdAsociado {
+            get {
+                return ResourceManager.GetString("FiltroObtenerMarcaIdAsociado", resourceCulture);
             }
         }
         
@@ -160,20 +214,20 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Select distinct(l) from ListaDatosValores l where l.Id = &apos;{0}&apos;.
-        /// </summary>
-        public static string ObtenerListaDatosValoresPorParametro {
-            get {
-                return ResourceManager.GetString("ObtenerListaDatosValoresPorParametro", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Select l from ListaDatosDominio l where l.Filtro = &apos;{0}&apos;.
         /// </summary>
         public static string ObtenerListaDatosDominioPorParametro {
             get {
                 return ResourceManager.GetString("ObtenerListaDatosDominioPorParametro", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select distinct(l) from ListaDatosValores l where l.Id = &apos;{0}&apos;.
+        /// </summary>
+        public static string ObtenerListaDatosValoresPorParametro {
+            get {
+                return ResourceManager.GetString("ObtenerListaDatosValoresPorParametro", resourceCulture);
             }
         }
         

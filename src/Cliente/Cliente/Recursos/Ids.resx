@@ -252,6 +252,12 @@
   <data name="ConsultarJustificaciones" xml:space="preserve">
     <value>FAC_ASO_JUST</value>
   </data>
+  <data name="ConsultarMarca" xml:space="preserve">
+    <value>SEGTUSU</value>
+  </data>
+  <data name="ConsultarMarcas" xml:space="preserve">
+    <value>SEGTUSU</value>
+  </data>
   <data name="ConsultarNacional" xml:space="preserve">
     <value>MYPTNAC</value>
   </data>
@@ -354,6 +360,9 @@
   <data name="EliminarInternacional" xml:space="preserve">
     <value>MYPTINT</value>
   </data>
+  <data name="EliminarMarca" xml:space="preserve">
+    <value>SEGTUSU</value>
+  </data>
   <data name="EliminarNacional" xml:space="preserve">
     <value>MYPTNAC</value>
   </data>
@@ -408,6 +417,9 @@
   <data name="ListaPoderes" xml:space="preserve">
     <value>LST_PODERES</value>
   </data>
+  <data name="Marca" xml:space="preserve">
+    <value>SEGTUSU</value>
+  </data>
   <data name="Medio" xml:space="preserve">
     <value>MEDIO</value>
   </data>
@@ -440,6 +452,9 @@
   </data>
   <data name="ModificarInternacional" xml:space="preserve">
     <value>MYPTINT</value>
+  </data>
+  <data name="ModificarMarca" xml:space="preserve">
+    <value>SEGTUSU</value>
   </data>
   <data name="ModificarNacional" xml:space="preserve">
     <value>MYPTNAC</value>

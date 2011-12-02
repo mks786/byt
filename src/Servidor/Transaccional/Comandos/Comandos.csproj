@@ -59,6 +59,7 @@
     <Compile Include="Comandos\ComandosInteresado\ComandoConsultarTodosInteresados.cs" />
     <Compile Include="Comandos\ComandosInteresado\ComandoEliminarInteresado.cs" />
     <Compile Include="Comandos\ComandosInteresado\ComandoInsertarOModificarInteresado.cs" />
+    <Compile Include="Comandos\ComandosMarca\ComandoConsultarMarcasFiltro.cs" />
     <Compile Include="Comandos\ComandosResumen\ComandoVerificarExistenciaResumen.cs" />
     <Compile Include="Comandos\ComandosCarta\ComandoVerificarExistenciaCarta.cs" />
     <Compile Include="Comandos\ComandosConcepto\ComandoConsultarTodosConceptos.cs" />

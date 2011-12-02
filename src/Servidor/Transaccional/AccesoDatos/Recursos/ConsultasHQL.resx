@@ -187,4 +187,25 @@
     <value>Select r from Resolucion r where r.Id = {0} and r.FechaResolucion = '{1}' and r.Boletin.Id =  {2}</value>
     <comment>Verifica si existe una resolucion por sus ids</comment>
   </data>
+  <data name="CabeceraObtenerMarca" xml:space="preserve">
+    <value>Select m from Marca m left join fetch m.Asociado as asociado where </value>
+    <comment>Cabecera del query para el filtro de marcas</comment>
+  </data>
+  <data name="FiltroObtenerMarcaDescripcion" xml:space="preserve">
+    <value>upper(m.Descripcion) like '%{0}%'</value>
+  </data>
+  <data name="FiltroObtenerMarcaFecha" xml:space="preserve">
+    <value>m.FechaPublicacion between '{0}' and '{1}'</value>
+  </data>
+  <data name="FiltroObtenerMarcaFichas" xml:space="preserve">
+    <value>upper(m.Fichas) like '%{0}%'</value>
+  </data>
+  <data name="FiltroObtenerMarcaId" xml:space="preserve">
+    <value>m.Id = {0}</value>
+    <comment>Filtro por Id</comment>
+  </data>
+  <data name="FiltroObtenerMarcaIdAsociado" xml:space="preserve">
+    <value>asociado.Id = {0}</value>
+    <comment>Filtro por Asociado</comment>
+  </data>
 </root>

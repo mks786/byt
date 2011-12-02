@@ -8,7 +8,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
     {
         #region Atributos
 
-        private string _id;
+        private int _id;
         private string _descripcion;
         private string _tipo;
         private DateTime? _fechaPrioridad;
@@ -69,7 +69,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         /// Constructor que inicializa el id de la marca
         /// </summary>
         /// <param name="id">Id de la marca</param>
-        public Marca(string id)
+        public Marca(int id)
         {
             this._id = id;
         }
@@ -81,7 +81,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         /// <summary>
         /// Propiedad que asigna u obtiene el Id
         /// </summary>
-        public virtual string Id
+        public virtual int Id
         {
             get { return this._id; }
             set { this._id = value; }

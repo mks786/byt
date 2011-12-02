@@ -1096,6 +1096,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Fichas:.
+        /// </summary>
+        public static string lblFichas {
+            get {
+                return ResourceManager.GetString("lblFichas", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Forma de Pago:.
         /// </summary>
         public static string lblFormaPago {
@@ -2221,6 +2230,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Gestion de Marcas.
+        /// </summary>
+        public static string menuItemGestionDeMarcas {
+            get {
+                return ResourceManager.GetString("menuItemGestionDeMarcas", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Historia.
         /// </summary>
         public static string menuItemHistoria {
@@ -2244,6 +2262,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string menuItemInternacional {
             get {
                 return ResourceManager.GetString("menuItemInternacional", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Marcas.
+        /// </summary>
+        public static string menuItemMarca {
+            get {
+                return ResourceManager.GetString("menuItemMarca", resourceCulture);
             }
         }
         
@@ -2838,6 +2865,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string titleConsultarJustificacion {
             get {
                 return ResourceManager.GetString("titleConsultarJustificacion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Consultar Marcas.
+        /// </summary>
+        public static string titleConsultarMarcas {
+            get {
+                return ResourceManager.GetString("titleConsultarMarcas", resourceCulture);
             }
         }
         
