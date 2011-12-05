@@ -356,8 +356,14 @@
     <Compile Include="Ventanas\Cartas\ConsultarCartas.xaml.cs">
       <DependentUpon>ConsultarCartas.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Ventanas\Marcas\AgregarMarca.xaml.cs">
+      <DependentUpon>AgregarMarca.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Ventanas\Marcas\ConsultarMarcas.xaml.cs">
       <DependentUpon>ConsultarMarcas.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Marcas\ConsultarMarca.xaml.cs">
+      <DependentUpon>ConsultarMarca.xaml</DependentUpon>
     </Compile>
     <Compile Include="Ventanas\Remitentes\AgregarRemitente.xaml.cs">
       <DependentUpon>AgregarRemitente.xaml</DependentUpon>
@@ -648,7 +654,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Ventanas\Marcas\AgregarMarca.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Ventanas\Marcas\ConsultarMarcas.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\Marcas\ConsultarMarca.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

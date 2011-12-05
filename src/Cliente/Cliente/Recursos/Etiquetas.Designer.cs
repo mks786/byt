@@ -2410,6 +2410,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Solicitud.
+        /// </summary>
+        public static string tabSolicitud {
+            get {
+                return ResourceManager.GetString("tabSolicitud", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Agregar Agente.
         /// </summary>
         public static string titleAgregarAgente {

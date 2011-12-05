@@ -1162,4 +1162,7 @@
   <data name="lblFichas" xml:space="preserve">
     <value>Fichas:</value>
   </data>
+  <data name="tabSolicitud" xml:space="preserve">
+    <value>Solicitud</value>
+  </data>
 </root>
