@@ -79,6 +79,15 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Select c from CartaOut c where .
+        /// </summary>
+        public static string CabeceraObtenerCartaOut {
+            get {
+                return ResourceManager.GetString("CabeceraObtenerCartaOut", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to c.Fecha between &apos;{0}&apos; and &apos;{1}&apos;.
         /// </summary>
         public static string FiltroObtenerCartaFecha {
@@ -102,6 +111,33 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         public static string FiltroObtenerCartaIdAsociado {
             get {
                 return ResourceManager.GetString("FiltroObtenerCartaIdAsociado", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to c.FechaIngreso between &apos;{0}&apos; and &apos;{1}&apos;.
+        /// </summary>
+        public static string FiltroObtenerCartaOutFecha {
+            get {
+                return ResourceManager.GetString("FiltroObtenerCartaOutFecha", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to c.NRelacion = &apos;{0}&apos;.
+        /// </summary>
+        public static string FiltroObtenerCartaOutId {
+            get {
+                return ResourceManager.GetString("FiltroObtenerCartaOutId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to c.Status = &apos;{0}&apos;.
+        /// </summary>
+        public static string FiltroObtenerCartaOutStatus {
+            get {
+                return ResourceManager.GetString("FiltroObtenerCartaOutStatus", resourceCulture);
             }
         }
         

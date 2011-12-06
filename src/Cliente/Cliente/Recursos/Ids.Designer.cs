@@ -1240,6 +1240,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to COR_TRANSFE.
+        /// </summary>
+        public static string TransferenciaPlantilla {
+            get {
+                return ResourceManager.GetString("TransferenciaPlantilla", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to SEGTUSU.
         /// </summary>
         public static string Usuario {

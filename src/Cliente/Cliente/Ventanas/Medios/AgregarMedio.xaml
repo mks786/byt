@@ -78,20 +78,6 @@
                         </Binding>
                     </TextBox.Text>
                 </custom:ByTTextBox>
-                <Label Grid.Column="0" Grid.Row="4" VerticalAlignment="Center" HorizontalContentAlignment="Right">
-                    <TextBlock Text="{x:Static recurso:Etiquetas.lblFormato}"/>
-                </Label>
-                <custom:ByTTextBox Name="_filImagen" Grid.Column="2" Grid.Row="4" VerticalAlignment="Center" IsEnabled="true" 
-                                   HorizontalAlignment="Left" Width="180" SpellCheck.IsEnabled="True" MaxLength="200">
-                    <TextBox.Text>
-                        <Binding Path="Formato">
-                        </Binding>
-                    </TextBox.Text>
-                </custom:ByTTextBox>
-                <Button Name="_btnMas" Grid.Column="2" Grid.Row="4" VerticalAlignment="Center" HorizontalAlignment="Right" Click="_btnMas_Click">
-                    <TextBlock Name="_txbMas" Text="{x:Static recurso:Etiquetas.btnAgregarSimbolo}"/>
-                </Button> 
-
             </Grid>
         </GroupBox>
 

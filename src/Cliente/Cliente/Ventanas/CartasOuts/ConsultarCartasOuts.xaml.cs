@@ -2,7 +2,7 @@
 using System.Windows.Controls;
 using System.Windows.Input;
 using Trascend.Bolet.Cliente.Ayuda;
-using Trascend.Bolet.Cliente.Contratos.Cartas;
+using Trascend.Bolet.Cliente.Contratos.CartasOuts;
 using Trascend.Bolet.Cliente.Presentadores.CartasOuts;
 
 namespace Trascend.Bolet.Cliente.Ventanas.CartasOuts
@@ -10,7 +10,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.CartasOuts
     /// <summary>
     /// Interaction logic for ConsultarTodosPoder.xaml
     /// </summary>
-    public partial class ConsultarCartasOuts : Page, IConsultarCartas
+    public partial class ConsultarCartasOuts : Page, IConsultarCartasOuts
     {
         private GridViewColumnHeader _CurSortCol = null;
         private SortAdorner _CurAdorner = null;
@@ -42,21 +42,6 @@ namespace Trascend.Bolet.Cliente.Ventanas.CartasOuts
         {
             get { return this._splFiltro.DataContext; }
             set { this._splFiltro.DataContext = value; }
-        }
-
-        public string IdAsociadoFiltrar
-        {
-            get { return this._txtIdAsociado.Text; }
-        }
-
-        public string NombreAsociadoFiltrar
-        {
-            get { return this._txtNombreAsociado.Text; }
-        }
-
-        public string ResumenFiltrar
-        {
-            get { return this._txtResumen.Text; }
         }
 
         public string Fecha
@@ -98,25 +83,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.CartasOuts
             set { this._lstResultados = value; }
         }
 
-
-
-
-        public object Asociados
-        {
-            get { return this._lstAsociados.DataContext; }
-            set { this._lstAsociados.DataContext = value; }
-        }
-
-        public object Asociado
-        {
-            get { return this._lstAsociados.SelectedItem; }
-            set { this._lstAsociados.SelectedItem = value; }
-        }
-        
         public void Mensaje(string mensaje)
         {
-            throw new System.NotImplementedException();
+            MessageBox.Show(mensaje, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
         }
+
         #endregion
 
         /// <summary>
@@ -138,12 +109,13 @@ namespace Trascend.Bolet.Cliente.Ventanas.CartasOuts
         {
             this._btnConsultar.Focus();
             this._presentador.Consultar();
+            this._dpkFecha.Text = string.Empty;
             validarCamposVacios();
         }
 
         private void _lstResultados_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            //this._presentador.IrConsultarPoder();
+            this._presentador.IrConsultarCarta();
         }
 
         private void _Ordenar_Click(object sender, RoutedEventArgs e)
@@ -162,21 +134,9 @@ namespace Trascend.Bolet.Cliente.Ventanas.CartasOuts
                 this._presentador.ActualizarTitulo();
         }
 
-        private void _btnConsultarAsociado_Click(object sender, RoutedEventArgs e)
-        {
-            this._presentador.BuscarAsociado();
-        }
-
-        private void _btnConsultarInteresadoFocus(object sender, RoutedEventArgs e)
-        {
-            this._btnConsultar.IsDefault = false;
-            this._btnConsultarAsociado.IsDefault = true;
-        }
-
         private void _btnConsultarFocus(object sender, RoutedEventArgs e)
         {
             this._btnConsultar.IsDefault = true;
-            this._btnConsultarAsociado.IsDefault = false;
         }
 
         /// <summary>
@@ -189,12 +149,6 @@ namespace Trascend.Bolet.Cliente.Ventanas.CartasOuts
             {
                 todosCamposVacios = false;
                 this._txtId.Focus();
-            }
-
-            if (!this._txtResumen.Text.Equals(""))
-            {
-                todosCamposVacios = false;
-                this._txtResumen.Focus();
             }
 
             if (!this._dpkFecha.Text.Equals(""))
@@ -214,7 +168,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.CartasOuts
 
         private void _btnTransferir_Click(object sender, RoutedEventArgs e)
         {
-
+            this._presentador.TransferirPlantilla();
         }
+
     }
 }

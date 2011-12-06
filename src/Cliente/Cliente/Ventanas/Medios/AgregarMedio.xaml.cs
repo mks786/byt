@@ -8,7 +8,7 @@ using System.Windows.Forms;
 namespace Trascend.Bolet.Cliente.Ventanas.Medios
 {
     /// <summary>
-    /// Interaction logic for AgregarAnexo.xaml
+    /// Interaction logic for AgregarMedio.xaml
     /// </summary>
     public partial class AgregarMedio : Page, IAgregarMedio
     {
@@ -80,41 +80,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Medios
             }
         }
 
-        private void _btnMas_Click(object sender, RoutedEventArgs e)
-        {
-            FileInfo f = null;
-
-            OpenFileDialog dlg;
-
-
-            dlg = new OpenFileDialog();
-
-            //Open the Pop-Up Window to select the file
-
-
-            DialogResult result = dlg.ShowDialog();
-
-            if (result == DialogResult.OK)
-            {
-
-                _infoImagen = new FileInfo(dlg.FileName);
-
-                using (_imagenBytes = dlg.OpenFile())
-                {
-                    ////Proceso
-                    //TextReader reader = new StreamReader(_imagenBytes);
-
-                    //string st = reader.ReadToEnd();
-
-                    this._filImagen.Text = f.Name;
-                }
-
-            }
-            else
-            {
-                dlg.Dispose();
-            }
-        }
+        
 
     }
 }

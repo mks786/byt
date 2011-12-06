@@ -387,6 +387,11 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Mapeado\CartaOut.hbm.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
     <EmbeddedResource Include="Mapeado\Marca.hbm.xml">
       <SubType>Designer</SubType>
     </EmbeddedResource>

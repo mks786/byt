@@ -439,6 +439,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Plantillas transferidas con éxito.
+        /// </summary>
+        internal static string ConfirmacionTransferenciaPlantilla {
+            get {
+                return ResourceManager.GetString("ConfirmacionTransferenciaPlantilla", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Contacto insertado con éxito.
         /// </summary>
         internal static string ContactoInsertado {
@@ -687,6 +696,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         internal static string ErrorTipoInfoBolRepetido {
             get {
                 return ResourceManager.GetString("ErrorTipoInfoBolRepetido", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ha ocurrido un error al transferir las plantillas.
+        /// </summary>
+        internal static string ErrorTransferenciaPlantilla {
+            get {
+                return ResourceManager.GetString("ErrorTransferenciaPlantilla", resourceCulture);
             }
         }
         

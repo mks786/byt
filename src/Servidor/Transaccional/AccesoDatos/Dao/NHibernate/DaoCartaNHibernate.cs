@@ -48,5 +48,33 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
             cartas = query.List<Carta>();
             return cartas;
         }
+
+        /// <summary>
+        /// Método que inserta o modifica una entidad
+        /// </summary>
+        /// <param name="carta">Entidad a modificar</param>
+        /// <returns>True si fue éxitoso la inserción o modificación, en caso contrario False</returns>
+        public bool Insertar(Carta carta, ITransaction transaccion)
+        {
+            bool exitoso;
+
+            try
+            {
+                Session.Save(carta);
+                transaccion.Commit();
+                exitoso = transaccion.WasCommitted;
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                throw new ApplicationException(Recursos.Errores.ExInsertarOModificar);
+            }
+            finally
+            {
+                Session.Close();
+            }
+
+            return exitoso;
+        }
     }
 }

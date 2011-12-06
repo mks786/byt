@@ -480,4 +480,10 @@
   <data name="CartaModificada" xml:space="preserve">
     <value>Carta modificada con éxito</value>
   </data>
+  <data name="ConfirmacionTransferenciaPlantilla" xml:space="preserve">
+    <value>Plantillas transferidas con éxito</value>
+  </data>
+  <data name="ErrorTransferenciaPlantilla" xml:space="preserve">
+    <value>Ha ocurrido un error al transferir las plantillas</value>
+  </data>
 </root>

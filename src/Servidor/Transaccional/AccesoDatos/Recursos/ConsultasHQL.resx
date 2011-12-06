@@ -187,6 +187,20 @@
     <value>Select r from Resolucion r where r.Id = {0} and r.FechaResolucion = '{1}' and r.Boletin.Id =  {2}</value>
     <comment>Verifica si existe una resolucion por sus ids</comment>
   </data>
+  <data name="CabeceraObtenerCartaOut" xml:space="preserve">
+    <value>Select c from CartaOut c where </value>
+    <comment>Cabecera del query para el filtro de CartaOut</comment>
+  </data>
+  <data name="FiltroObtenerCartaOutStatus" xml:space="preserve">
+    <value>c.Status = '{0}'</value>
+    <comment>Filtro agregado a la cabecera para filtrar por status</comment>
+  </data>
+  <data name="FiltroObtenerCartaOutId" xml:space="preserve">
+    <value>c.NRelacion = '{0}'</value>
+  </data>
+  <data name="FiltroObtenerCartaOutFecha" xml:space="preserve">
+    <value>c.FechaIngreso between '{0}' and '{1}'</value>
+  </data>
   <data name="CabeceraObtenerMarca" xml:space="preserve">
     <value>Select m from Marca m left join fetch m.Asociado as asociado where </value>
     <comment>Cabecera del query para el filtro de marcas</comment>

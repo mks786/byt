@@ -10,7 +10,7 @@ using Trascend.Bolet.Cliente.Ventanas.Agentes;
 using Trascend.Bolet.Cliente.Ventanas.Anexos;
 using Trascend.Bolet.Cliente.Ventanas.Categorias;
 using Trascend.Bolet.Cliente.Ventanas.Cartas;
-//using Trascend.Bolet.Cliente.Ventanas.CartasOuts;
+using Trascend.Bolet.Cliente.Ventanas.CartasOuts;
 using Trascend.Bolet.Cliente.Ventanas.Boletines;
 using Trascend.Bolet.Cliente.Ventanas.Estados;
 using Trascend.Bolet.Cliente.Ventanas.Internacionales;
@@ -445,7 +445,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
 
         public void TransferirPlantilla()
         {
-            //this._ventana.Contenedor.Navigate(new ConsultarCartasOuts());
+            this._ventana.Contenedor.Navigate(new ConsultarCartasOuts());
         }
 
         public void ConsultarCartas()

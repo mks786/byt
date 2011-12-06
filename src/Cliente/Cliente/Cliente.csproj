@@ -104,6 +104,7 @@
     <Compile Include="Contratos\Anexos\IAgregarAnexo.cs" />
     <Compile Include="Contratos\Anexos\IConsultarAnexo.cs" />
     <Compile Include="Contratos\Anexos\IConsultarAnexos.cs" />
+    <Compile Include="Contratos\CartasOuts\IConsultarCartasOuts.cs" />
     <Compile Include="Contratos\EntradasAlternas\IAgregarEntradaAlterna.cs" />
     <Compile Include="Contratos\EntradasAlternas\IConsultarEntradaAlterna.cs" />
     <Compile Include="Contratos\EntradasAlternas\IConsultarEntradasAlternas.cs" />
@@ -197,6 +198,7 @@
     <Compile Include="Presentadores\Cartas\PresentadorConsultarCartas.cs" />
     <Compile Include="Presentadores\Contactos\PresentadorAgregarContacto.cs" />
     <Compile Include="Presentadores\Contactos\PresentadorConsultarContacto.cs" />
+    <Compile Include="Presentadores\CartasOuts\PresentadorConsultarCartasOuts.cs" />
     <Compile Include="Presentadores\EntradasAlternas\PresentadorAgregarEntradaAlterna.cs" />
     <Compile Include="Presentadores\EntradasAlternas\PresentadorConsultarEntradaAlterna.cs" />
     <Compile Include="Presentadores\EntradasAlternas\PresentadorConsultarEntradasAlternas.cs" />
@@ -325,6 +327,9 @@
     </Compile>
     <Compile Include="Ventanas\Auditorias\ListaAuditorias.xaml.cs">
       <DependentUpon>ListaAuditorias.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\CartasOuts\ConsultarCartasOuts.xaml.cs">
+      <DependentUpon>ConsultarCartasOuts.xaml</DependentUpon>
     </Compile>
     <Compile Include="Ventanas\Cartas\AgregarCarta.xaml.cs">
       <DependentUpon>AgregarCarta.xaml</DependentUpon>
@@ -601,6 +606,10 @@
     <Page Include="Ventanas\Auditorias\ListaAuditorias.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Ventanas\CartasOuts\ConsultarCartasOuts.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Ventanas\Cartas\AgregarCarta.xaml">
       <Generator>MSBuild:Compile</Generator>

@@ -1150,6 +1150,21 @@
   <data name="cbiCategoriaTipoPersona" xml:space="preserve">
     <value>PERSONA</value>
   </data>
+  <data name="lsvAsunto" xml:space="preserve">
+    <value>Asunto</value>
+  </data>
+  <data name="lsvDe" xml:space="preserve">
+    <value>De</value>
+  </data>
+  <data name="lsvFechaIngreso" xml:space="preserve">
+    <value>Fecha Ingreso</value>
+  </data>
+  <data name="lsvRelacion" xml:space="preserve">
+    <value>Relación</value>
+  </data>
+  <data name="titleTransferirPlantilla" xml:space="preserve">
+    <value>TransferirPlantilla</value>
+  </data>
   <data name="titleConsultarMarcas" xml:space="preserve">
     <value>Consultar Marcas</value>
   </data>

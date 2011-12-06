@@ -75,5 +75,45 @@ namespace Trascend.Bolet.Servicios.Implementacion
         {
             throw new NotImplementedException();
         }
+
+        /// <summary>
+        /// Servicio que consulta una serie de cartas por uno o mas parametros
+        /// </summary>
+        /// <param name="carta">Carta que contiene los parametros de la consulta</param>
+        /// <returns>Lista de cartas filtradas</returns>
+        public IList<CartaOut> ObtenerCartasOutsFiltro(CartaOut carta)
+        {
+            #region trace
+            if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+            IList<CartaOut> cartas;
+
+            cartas = ControladorCartaOut.ConsultarCartasOutsFiltro(carta);
+
+            return cartas;
+
+            #region trace
+            if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+        }
+
+
+        public bool TransferirPlantilla(IList<CartaOut> cartas)
+        {
+            try
+            {
+                bool retorno = ControladorCartaOut.TransferirPlantilla(cartas);
+                return true;
+
+            }
+            catch (Exception e) 
+            {
+                return false;
+            }
+            
+        }
     }
 }

@@ -52,7 +52,10 @@
     <Compile Include="Comandos\ComandosAsignacion\ComandoConsultarAsignacionesPorCarta.cs" />
     <Compile Include="Comandos\ComandosAsociado\ComandoConsultarAsociadoConTodo.cs" />
     <Compile Include="Comandos\ComandosAuditoria\ComandoAuditoriaPorFkyTabla.cs" />
+    <Compile Include="Comandos\ComandosCartaOut\ComandoConsultarCartasOutsFiltro.cs" />
     <Compile Include="Comandos\ComandosCartaOut\ComandoConsultarTodosCartaOuts.cs" />
+    <Compile Include="Comandos\ComandosCartaOut\ComandoInsertarOModificarCartaOut.cs" />
+    <Compile Include="Comandos\ComandosCartaOut\ComandoTransferirPlantilla.cs" />
     <Compile Include="Comandos\ComandosCarta\ComandoConsultarCartasFiltro.cs" />
     <Compile Include="Comandos\ComandosCarta\ComandoEliminarCarta.cs" />
     <Compile Include="Comandos\ComandosCarta\ComandoInsertarOModificarCarta.cs" />

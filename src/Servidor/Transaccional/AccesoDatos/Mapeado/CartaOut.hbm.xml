@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+                   assembly="Trascend.Bolet.ObjetosComunes"
+                   namespace="Trascend.Bolet.ObjetosComunes.Entidades">
+  <class name="CartaOut" table="COR_MAIL_OUT">
+    <id name="Id" column="IDX" type="string"/>
+    <property name="From" type="string" column="XFROM"/>
+    <property name="ConCopia" type="string" column="XCC"/>
+    <property name="ConCopiaOCulta" type="string" column="XCCO"/>
+    <property name="Asunto" type="string" column="SUBJECT"/>
+    <property name="FechaCorreo" type="string" column="FECHA_COR"/>
+    <property name="FechaIngreso" type="DateTime" column="FECHA_ING"/>
+    <property name="Fecha" type="string" column="FECHA"/>
+    <property name="Cuerpo" type="string" column="CUERPO"/>
+    <property name="Status" type="char" column="STATUS"/>
+    <property name="NRelacion" type="int" column="NRELACION"/>
+    <property name="TipoEmail" type="char" column="TIPO_EMAIL"/>
+    <property name="Asociado" type="int" column="CASOCIADO"/>
+    <property name="Clave" type="string" column="XCLAVE"/>
+    <property name="AttLis" type="string" column="XATTLIS"/>
+    <property name="NSec" type="int" column="NSEC"/>
+    <property name="FromOrganizacion" type="string" column="XFROM_ORG"/>
+    <property name="ToOrganizacion" type="string" column="XTO_ORG"/>
+    <property name="ConCopiaOrganizacion" type="string" column="XCC_ORG"/>
+    <property name="SubjectOrganizacion" type="string" column="SUBJECT_ORG"/>
+    <property name="Departamento" type="string" column="CODDPTO"/>
+    <property name="Iniciales" type="string" column="RESPONSABLE"/>
+    <property name="Persona" type="string" column="PERSONA"/>
+    <property name="FromDetalle" type="string" column="XFROM_DET"/>
+  </class>
+</hibernate-mapping>
+
+
+

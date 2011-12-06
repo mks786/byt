@@ -510,6 +510,9 @@
   <data name="TipoInfobol" xml:space="preserve">
     <value>MYP_TINFOBOL</value>
   </data>
+  <data name="TransferenciaPlantilla" xml:space="preserve">
+    <value>COR_TRANSFE</value>
+  </data>
   <data name="Usuario" xml:space="preserve">
     <value>SEGTUSU</value>
   </data>

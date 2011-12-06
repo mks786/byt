@@ -8,36 +8,30 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
     {
         #region Atributos
 
-        private int? _id;
-        private DateTime _fecha;
-        private string _medio;
-        private Asociado _asociado;
-        private string _descripcionDepartamento;
-        private string _persona;
-        private string _referencia;
-        private string _receptor;
-        private string _descripcionResumen;
-        private string _anexoMedio;
-        private string _anexo;
-        private string _tracking;
-        private DateTime? _anexoFecha;
-        private string _anexoTracking;
-        private char _acuse;
-        private char _acuseEnvio;
-        private string _medioAcuse;
-        private DateTime? _fechaEnvioAcuse;
-        private Resumen _resumen;
-        private DateTime? _fechaAlt;
-        private double? _salida;
-        private string _detalleResumen;
+        private string _id;
+        private string _from;
+        private string _conCopia;
+        private string _conCopiaOCulta;
+        private string _asunto;
+        private string _fechaCorreo;
+        private DateTime? _fechaIngreso;
+        private string _fecha;
+        private string _cuerpo;
+        private char _status;
+        private int _nRelacion;
+        private char _tipoEmail;
+        private int _asociado;
+        private string _clave;
+        private string _attLis;
+        private int _nSec;
+        private string _fromOrganizacion;
+        private string _toOrganizacion;
+        private string _conCopiaOrganizacion;
+        private string _subjectOrganizacion;
+        private string _departamento;
         private string _iniciales;
-        private Departamento _departamento;
-        private DateTime? _fechaL;
-        private char _iRev;
-        private DateTime? _fechaReal;
-        private DateTime? _fechaD;
-        private IList<Justificacion> _justificaciones;
-        private IList<Contacto> _contactos;
+        private string _persona;
+        private string _fromDetalle;
 
         #endregion
 
@@ -52,7 +46,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         /// Constructor que inicializa el Id de la carta
         /// </summary>
         /// <param name="id">Id de la carta</param>
-        public CartaOut(int id)
+        public CartaOut(string id)
         {
             this._id = id;
         }
@@ -61,189 +55,220 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
 
         #region Propiedades
 
-
-        public virtual int? Id
+        /// <summary>
+        /// Propiedad que asigna u obtiene el ID de la CartaOut
+        /// </summary>
+        public virtual string Id
         {
             get { return _id; }
             set { _id = value; }
         }
 
-        public virtual DateTime Fecha
+        /// <summary>
+        /// Propiedad que asigna u obtiene el From de la CartaOut
+        /// </summary>
+        public virtual string From
+        {
+            get { return _from; }
+            set { _from = value; }
+        }
+
+        /// <summary>
+        /// Propiedad que asigna u obtiene el ConCopia de la CartaOut
+        /// </summary>
+        public virtual string ConCopia
+        {
+            get { return _conCopia; }
+            set { _conCopia = value; }
+        }
+
+        /// <summary>
+        /// Propiedad que asigna u obtiene el ConCopiaOCulta de la CartaOut
+        /// </summary>
+        public virtual string ConCopiaOCulta
+        {
+            get { return _conCopiaOCulta; }
+            set { _conCopiaOCulta = value; }
+        }
+
+        /// <summary>
+        /// Propiedad que asigna u obtiene el Asunto de la CartaOut
+        /// </summary>
+        public virtual string Asunto
+        {
+            get { return _asunto; }
+            set { _asunto = value; }
+        }
+
+        /// <summary>
+        /// Propiedad que asigna u obtiene el FechaCorreo de la CartaOut
+        /// </summary>
+        public virtual string FechaCorreo
+        {
+            get { return _fechaCorreo; }
+            set { _fechaCorreo = value; }
+        }
+
+        /// <summary>
+        /// Propiedad que asigna u obtiene el FechaIngreso de la CartaOut
+        /// </summary>
+        public virtual DateTime? FechaIngreso
+        {
+            get { return _fechaIngreso; }
+            set { _fechaIngreso = value; }
+        }
+
+        /// <summary>
+        /// Propiedad que asigna u obtiene el Fecha de la CartaOut
+        /// </summary>
+        public virtual string Fecha
         {
             get { return _fecha; }
             set { _fecha = value; }
         }
 
-        public virtual string Medio
+        /// <summary>
+        /// Propiedad que asigna u obtiene el Cuerpo de la CartaOut
+        /// </summary>
+        public virtual string Cuerpo
         {
-            get { return _medio; }
-            set { _medio = value; }
+            get { return _cuerpo; }
+            set { _cuerpo = value; }
         }
 
-        public virtual Asociado Asociado
+        /// <summary>
+        /// Propiedad que asigna u obtiene el Status de la CartaOut
+        /// </summary>
+        public virtual char Status
+        {
+            get { return _status; }
+            set { _status = value; }
+        }
+
+        /// <summary>
+        /// Propiedad que asigna u obtiene el NRelacion de la CartaOut
+        /// </summary>
+        public virtual int NRelacion
+        {
+            get { return _nRelacion; }
+            set { _nRelacion = value; }
+        }
+
+        /// <summary>
+        /// Propiedad que asigna u obtiene el TipoEmail de la CartaOut
+        /// </summary>
+        public virtual char TipoEmail
+        {
+            get { return _tipoEmail; }
+            set { _tipoEmail = value; }
+        }
+
+        /// <summary>
+        /// Propiedad que asigna u obtiene el Asociado de la CartaOut
+        /// </summary>
+        public virtual int Asociado
         {
             get { return _asociado; }
             set { _asociado = value; }
         }
 
-        public virtual string DescripcionDepartamento
+        /// <summary>
+        /// Propiedad que asigna u obtiene el Clave de la CartaOut
+        /// </summary>
+        public virtual string Clave
         {
-            get { return _descripcionDepartamento; }
-            set { _descripcionDepartamento = value; }
+            get { return _clave; }
+            set { _clave = value; }
         }
 
-        public virtual string Persona
+        /// <summary>
+        /// Propiedad que asigna u obtiene el AttLis de la CartaOut
+        /// </summary>
+        public virtual string AttLis
         {
-            get { return _persona; }
-            set { _persona = value; }
+            get { return _attLis; }
+            set { _attLis = value; }
         }
 
-        public virtual string Referencia
+        /// <summary>
+        /// Propiedad que asigna u obtiene el NSec de la CartaOut
+        /// </summary>
+        public virtual int NSec
         {
-            get { return _referencia; }
-            set { _referencia = value; }
+            get { return _nSec; }
+            set { _nSec = value; }
         }
 
-        public virtual string Receptor
+        /// <summary>
+        /// Propiedad que asigna u obtiene el FromOrganizacion de la CartaOut
+        /// </summary>
+        public virtual string FromOrganizacion
         {
-            get { return _receptor; }
-            set { _receptor = value; }
+            get { return _fromOrganizacion; }
+            set { _fromOrganizacion = value; }
         }
 
-        public virtual string DescripcionResumen
+        /// <summary>
+        /// Propiedad que asigna u obtiene el ToOrganizacion de la CartaOut
+        /// </summary>
+        public virtual string ToOrganizacion
         {
-            get { return _descripcionResumen; }
-            set { _descripcionResumen = value; }
+            get { return _toOrganizacion; }
+            set { _toOrganizacion = value; }
         }
 
-        public virtual string Tracking
+        /// <summary>
+        /// Propiedad que asigna u obtiene el ConCopiaOrganizacion de la CartaOut
+        /// </summary>
+        public virtual string ConCopiaOrganizacion
         {
-            get { return _tracking; }
-            set { _tracking = value; }
+            get { return _conCopiaOrganizacion; }
+            set { _conCopiaOrganizacion = value; }
         }
 
-        public virtual string Anexo
+        /// <summary>
+        /// Propiedad que asigna u obtiene el SubjectOrganizacion de la CartaOut
+        /// </summary>
+        public virtual string SubjectOrganizacion
         {
-            get { return _anexo; }
-            set { _anexo = value; }
+            get { return _subjectOrganizacion; }
+            set { _subjectOrganizacion = value; }
         }
 
-        public virtual string AnexoMedio
+        /// <summary>
+        /// Propiedad que asigna u obtiene el Departamento de la CartaOut
+        /// </summary>
+        public virtual string Departamento
         {
-            get { return _anexoMedio; }
-            set { _anexoMedio = value; }
+            get { return _departamento; }
+            set { _departamento = value; }
         }
 
-        public virtual DateTime? AnexoFecha
-        {
-            get { return _anexoFecha; }
-            set { _anexoFecha = value; }
-        }
-
-        public virtual string AnexoTracking
-        {
-            get { return _anexoTracking; }
-            set { _anexoTracking = value; }
-        }
-
-        public virtual char Acuse
-        {
-            get { return _acuse; }
-            set { _acuse = value; }
-        }
-
-        public virtual char AcuseEnvio
-        {
-            get { return _acuseEnvio; }
-            set { _acuseEnvio = value; }
-        }
-
-        public virtual string MedioAcuse
-        {
-            get { return _medioAcuse; }
-            set { _medioAcuse = value; }
-        }
-
-        public virtual DateTime? FechaEnvioAcuse
-        {
-            get { return _fechaEnvioAcuse; }
-            set { _fechaEnvioAcuse = value; }
-        }
-
-        public virtual Resumen Resumen
-        {
-            get { return _resumen; }
-            set { _resumen = value; }
-        }
-
-        public virtual DateTime? FechaAlt
-        {
-            get { return _fechaAlt; }
-            set { _fechaAlt = value; }
-        }
-
-        public virtual double? Salida
-        {
-            get { return _salida; }
-            set { _salida = value; }
-        }
-
-        public virtual string DetalleResumen
-        {
-            get { return _detalleResumen; }
-            set { _detalleResumen = value; }
-        }
-
+        /// <summary>
+        /// Propiedad que asigna u obtiene el Iniciales de la CartaOut
+        /// </summary>
         public virtual string Iniciales
         {
             get { return _iniciales; }
             set { _iniciales = value; }
         }
 
-        public virtual Departamento Departamento
+        /// <summary>
+        /// Propiedad que asigna u obtiene el Persona de la CartaOut
+        /// </summary>
+        public virtual string Persona
         {
-            get { return _departamento; }
-            set { _departamento = value; }
-        }
-
-        public virtual DateTime? FechaL
-        {
-            get { return _fechaL; }
-            set { _fechaL = value; }
-        }
-
-        public virtual char IRev
-        {
-            get { return _iRev; }
-            set { _iRev = value; }
-        }
-
-        public virtual DateTime? FechaReal
-        {
-            get { return _fechaReal; }
-            set { _fechaReal = value; }
-        }
-
-        public virtual DateTime? FechaD
-        {
-            get { return _fechaD; }
-            set { _fechaD = value; }
+            get { return _persona; }
+            set { _persona = value; }
         }
 
         /// <summary>
-        /// Propiedad que asigna u obtiene la lista de justificaciones
-        /// de un asociado
+        /// Propiedad que asigna u obtiene el FromDetalle de la CartaOut
         /// </summary>
-        public virtual IList<Justificacion> Justificaciones
+        public virtual string FromDetalle
         {
-            get { return _justificaciones; }
-            set { _justificaciones = value; }
-        }
-
-        public virtual IList<Contacto> Contactos
-        {
-            get { return _contactos; }
-            set { _contactos = value; }
+            get { return _fromDetalle; }
+            set { _fromDetalle = value; }
         }
 
         #endregion

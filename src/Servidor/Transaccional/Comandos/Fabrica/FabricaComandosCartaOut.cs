@@ -13,10 +13,9 @@ namespace Trascend.Bolet.Comandos.Fabrica
         /// </summary>
         /// <param name="carta">Carta a intersar o modificar</param>
         /// <returns>True: si se realizo el comando con exito; False: en caso contrario</returns>
-        public static ComandoBase<bool> ObtenerComandoInsertarOModificar(Carta carta)
+        public static ComandoBase<bool> ObtenerComandoInsertarOModificar(CartaOut carta)
         {
-            throw new NotImplementedException();
-            //return new ComandoInsertarOModificarCarta(carta);
+            return new ComandoInsertarOModificarCartaOut(carta);
         }
 
         /// <summary>
@@ -48,5 +47,23 @@ namespace Trascend.Bolet.Comandos.Fabrica
         {
             throw new NotImplementedException();
         }
+
+        /// <summary>
+        /// Método que se encarga de consultar las cargas con el filtro determinado
+        /// </summary>
+        /// <param name="carta">Carta a consultar</param>
+        /// <returns>Lista de cartas que coincidan con el filtro</returns>
+        public static ComandoBase<IList<CartaOut>> ObtenerComandoConsultarCartasOutsFiltro(CartaOut carta)
+        {
+            return new ComandoConsultarCartasOutsFiltro(carta);
+        }
+
+
+        public static ComandoBase<bool> ObtenerComandoTransferirPlantilla(IList<Carta> cartas, IList<CartaOut> cartasOut)
+        {
+            return new ComandoTransferirPlantilla(cartas,cartasOut);
+        }
+
+
     }
 }
