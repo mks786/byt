@@ -835,6 +835,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Etiqueta.
+        /// </summary>
+        public static string chkEtiqueta {
+            get {
+                return ResourceManager.GetString("chkEtiqueta", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Seleccionar una fecha.
         /// </summary>
         public static string dpkText {
@@ -1110,6 +1119,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string lblCodRes {
             get {
                 return ResourceManager.GetString("lblCodRes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Comentario:.
+        /// </summary>
+        public static string lblComentario {
+            get {
+                return ResourceManager.GetString("lblComentario", resourceCulture);
             }
         }
         
@@ -2973,6 +2991,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string menuItemUsuario {
             get {
                 return ResourceManager.GetString("menuItemUsuario", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Datos.
+        /// </summary>
+        public static string tabDatos {
+            get {
+                return ResourceManager.GetString("tabDatos", resourceCulture);
             }
         }
         

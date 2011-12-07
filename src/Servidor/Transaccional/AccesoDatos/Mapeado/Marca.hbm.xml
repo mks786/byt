@@ -40,7 +40,7 @@
     <property name="CodigoTipoEstado" column="CTESTADO" type="string"/>
     <property name="CodigoBus" column="CBUS" type="string"/>
     <property name="Ter" column="ITER" type="char"/>
-    <property name="CodigoCorrespondencia" column="CCORRESP" type="int"/>
+    <property name="CodigoCorresponsal" column="CCORRESP" type="int"/>
 
     <many-to-one name="Agente" class="Agente">
       <column name="CAGENTE"/>

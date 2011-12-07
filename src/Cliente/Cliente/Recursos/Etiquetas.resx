@@ -1180,6 +1180,9 @@
   <data name="tabSolicitud" xml:space="preserve">
     <value>Solicitud</value>
   </data>
+  <data name="tabDatos" xml:space="preserve">
+    <value>Datos</value>
+  </data>
   <data name="btnAnaqua" xml:space="preserve">
     <value>Anaqua</value>
   </data>
@@ -1356,5 +1359,11 @@
   </data>
   <data name="lvlTipoClaseNac" xml:space="preserve">
     <value>Tipo Clase Nac:</value>
+  </data>
+  <data name="chkEtiqueta" xml:space="preserve">
+    <value>Etiqueta</value>
+  </data>
+  <data name="lblComentario" xml:space="preserve">
+    <value>Comentario:</value>
   </data>
 </root>

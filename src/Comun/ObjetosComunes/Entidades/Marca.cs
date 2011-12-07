@@ -44,7 +44,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         private string _codigoTipoEstado;
         private string _codigoBus;
         private char _ter;
-        private int _codigoCorrespondencia;
+        private int _codigoCorresponsal;
         private Agente _agente;
         private Asociado _asociado;
         private Boletin _boletinConcesion;
@@ -405,10 +405,10 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         /// <summary>
         /// Propiedad que asigna u obtiene el Codigo de Correspondencia
         /// </summary>
-        public virtual int CodigoCorrespondencia
+        public virtual int CodigoCorresponsal
         {
-            get { return _codigoCorrespondencia; }
-            set { _codigoCorrespondencia = value; }
+            get { return _codigoCorresponsal; }
+            set { _codigoCorresponsal = value; }
         }
 
         /// <summary>
