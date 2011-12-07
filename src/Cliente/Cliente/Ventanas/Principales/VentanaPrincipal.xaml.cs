@@ -325,7 +325,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Principales
 
         private void _menuItemMarcasAgregar_Click(object sender, RoutedEventArgs e)
         {
-
+            this._presentador.AgregarMarca();
         }
 
         #endregion

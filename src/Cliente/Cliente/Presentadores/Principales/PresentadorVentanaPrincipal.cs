@@ -344,7 +344,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
         /// </summary>
         public void AgregarMarca()
         {
-            //this._ventana.Contenedor.Navigate(new AgregarMarca());
+            this._ventana.Contenedor.Navigate(new AgregarMarca());
         }
 
         /// <summary>

@@ -37,7 +37,7 @@
             <TabItem Header="Solicitud" Name="_tabSolicitud">
                 <Grid>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>
@@ -53,7 +53,7 @@
                     <Grid.RowDefinitions>
                         <RowDefinition Height="30"/>
                         <RowDefinition Height="30"/>
-                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="Auto"/>
                         <RowDefinition Height="30"/>
                         <RowDefinition Height="30"/>
                         <RowDefinition Height="30"/>
@@ -74,7 +74,92 @@
                         <RowDefinition Height="30"/>
                         <RowDefinition Height="30"/>
                     </Grid.RowDefinitions>
-                    
+
+                    <Label Grid.Column="0" Grid.Row="1" VerticalAlignment="Center" HorizontalContentAlignment="Right">
+                        <TextBlock Text="{x:Static recurso:Etiquetas.lblId}"/>
+                    </Label>
+                    <custom:ByTTextBox  Grid.Column="1" Grid.Row="1" Name="_txtId" VerticalAlignment="Center"
+                         HorizontalAlignment="Left" Width="90" SpellCheck.IsEnabled="True" MaxLength="8"
+                         ToolTip="{Binding ElementName=_txtId, Path=(Validation.Errors)[0].ErrorContent}">
+                        <custom:ByTTextBox.Text>
+                            <Binding Path="Id" UpdateSourceTrigger="PropertyChanged">
+                                <Binding.ValidationRules>
+                                    <reglas:Obligatorio ValidatesOnTargetUpdated="True" />
+                                </Binding.ValidationRules>
+                            </Binding>
+                        </custom:ByTTextBox.Text>
+                    </custom:ByTTextBox>
+
+                    <Label Grid.Column="2" Grid.Row="1" VerticalAlignment="Center" HorizontalContentAlignment="Right">
+                        <TextBlock Text="{x:Static recurso:Etiquetas.lblNombre}"/>
+                    </Label>
+                    <custom:ByTTextBox  Grid.Column="3" Grid.Row="1" Name="_txtNombre" VerticalAlignment="Center"
+                         HorizontalAlignment="Left" Width="800" SpellCheck.IsEnabled="True" MaxLength="255" Grid.ColumnSpan="9"
+                         ToolTip="{Binding ElementName=_txtNombre, Path=(Validation.Errors)[0].ErrorContent}">
+                        <custom:ByTTextBox.Text>
+                            <Binding Path="Descripcion" UpdateSourceTrigger="PropertyChanged">
+                                <Binding.ValidationRules>
+                                    <reglas:Obligatorio ValidatesOnTargetUpdated="True" />
+                                </Binding.ValidationRules>
+                            </Binding>
+                        </custom:ByTTextBox.Text>
+                    </custom:ByTTextBox>
+
+                    <Label Grid.Column="0" Grid.Row="2" VerticalAlignment="Center" HorizontalContentAlignment="Right">
+                        <TextBlock Text="{x:Static recurso:Etiquetas.lblAsociado}"/>
+                    </Label>
+                    <Grid Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="4">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="23"/>
+                            <ColumnDefinition Width="50"/>
+                            <ColumnDefinition Width="60"/>
+                            <ColumnDefinition Width="200"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <TextBox    Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="4"  Name="_txtAsociado" VerticalAlignment="Center"
+                         HorizontalAlignment="Left" Width="300" Text="" MaxLength="255" GotFocus="_txtAsociado_GotFocus" GotKeyboardFocus="_txtAsociado_GotFocus"  ></TextBox>
+                        <TextBox    Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="4" Name="_txtIdAsociado" VerticalAlignment="Center" 
+                         HorizontalAlignment="Left" Width="45" MaxLength="255"  Visibility="Collapsed"  ></TextBox>
+                        <TextBox    Grid.Column="4" Grid.Row="0" Grid.ColumnSpan="4" Name="_txtNombreAsociado" VerticalAlignment="Center" 
+                         HorizontalAlignment="Left" Width="177" MaxLength="255" Visibility="Collapsed"></TextBox>
+
+                        <Label Name="_lblIdAsociado" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Center" Visibility="Collapsed">
+                            <TextBlock Text="{x:Static recurso:Etiquetas.lblId}"/>
+                        </Label>
+                        <Label Name="_lblNombreAsociado" Grid.Column="2" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Center" Visibility="Collapsed">
+                            <TextBlock Text="{x:Static recurso:Etiquetas.lblNombre}"/>
+                        </Label>
+                        <Button Name="_btnConsultarAsociado" Width="80" IsDefault="False" Grid.Row="1" Grid.Column="4" Height="25" HorizontalAlignment="Right" Click="_btnConsultarAsociado_Click" Visibility="Collapsed">
+                            <TextBlock Text="{x:Static recurso:Etiquetas.btnConsultar}"/>
+                        </Button>
+                        <ListView Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="4" Grid.RowSpan="2" Name="_lstAsociados" ItemsSource="{Binding}" 
+                      SelectionMode="Single" MouseDoubleClick="_lstAsociados_MouseDoubleClick"
+                      Style="{DynamicResource EstiloListView}" Visibility="Collapsed" Height="150"  VerticalAlignment="Top">
+                            <ListView.View>
+                                <GridView>
+                                    <GridViewColumn DisplayMemberBinding="{Binding Path=Id}" Width="45">
+                                        <GridViewColumnHeader  Tag="Id" Content="{x:Static recurso:Etiquetas.lsvId}"/>
+                                    </GridViewColumn>
+                                    <GridViewColumn DisplayMemberBinding="{Binding Path=Nombre}" Width="260">
+                                        <GridViewColumnHeader  Tag="Nombre" Content="{x:Static recurso:Etiquetas.lsvNombre}"/>
+                                    </GridViewColumn>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                    </Grid>
+
+                    <Label Grid.Column="4" Grid.Row="2" VerticalAlignment="Center" HorizontalContentAlignment="Right">
+                        <TextBlock Text="{x:Static recurso:Etiquetas.lblFax}"/>
+                    </Label>
+                    <custom:ByTTextBox MaxLength="30" Grid.Column="5" Grid.Row="2" Name="_txtFax1Datos" VerticalAlignment="Center" 
+                         HorizontalAlignment="Left" Width="230" Text="{Binding Path=Fax1}" Grid.ColumnSpan="3"></custom:ByTTextBox>
+
                 </Grid>
             </TabItem>
             <TabItem Header="Marcas" Name="_tabDatos">

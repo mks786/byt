@@ -152,6 +152,37 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             //this._presentador = new PresentadorAgregarAsociado(this);
         }
 
+        private void _txtAsociado_GotFocus(object sender, RoutedEventArgs e)
+        {
+            this._txtAsociado.Visibility = System.Windows.Visibility.Collapsed;
+            this._lstAsociados.Visibility = System.Windows.Visibility.Visible;
+            this._lstAsociados.IsEnabled = true;
+            this._btnConsultarAsociado.Visibility = System.Windows.Visibility.Visible;
+            this._txtIdAsociado.Visibility = System.Windows.Visibility.Visible;
+            this._txtNombreAsociado.Visibility = System.Windows.Visibility.Visible;
+            this._lblIdAsociado.Visibility = System.Windows.Visibility.Visible;
+            this._lblNombreAsociado.Visibility = System.Windows.Visibility.Visible;
+
+        }
+
+        private void _lstAsociados_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            //this._presentador.CambiarAsociado();
+            this._lstAsociados.Visibility = System.Windows.Visibility.Collapsed;
+            this._btnConsultarAsociado.Visibility = System.Windows.Visibility.Collapsed;
+            this._txtIdAsociado.Visibility = System.Windows.Visibility.Collapsed;
+            this._txtNombreAsociado.Visibility = System.Windows.Visibility.Collapsed;
+            this._txtAsociado.Visibility = System.Windows.Visibility.Visible;
+            this._lblIdAsociado.Visibility = System.Windows.Visibility.Collapsed;
+            this._lblNombreAsociado.Visibility = System.Windows.Visibility.Collapsed;
+
+        }
+
+        private void _btnConsultarAsociado_Click(object sender, RoutedEventArgs e)
+        {
+            //this._presentador.BuscarAsociado();
+        }
+
         private void _btnCancelar_Click(object sender, RoutedEventArgs e)
         {
             //this._presentador.Cancelar();

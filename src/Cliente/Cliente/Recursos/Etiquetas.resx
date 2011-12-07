@@ -1180,4 +1180,181 @@
   <data name="tabSolicitud" xml:space="preserve">
     <value>Solicitud</value>
   </data>
+  <data name="btnAnaqua" xml:space="preserve">
+    <value>Anaqua</value>
+  </data>
+  <data name="btnAnexoFM02" xml:space="preserve">
+    <value>Anexo FM02</value>
+  </data>
+  <data name="btnBusqueda" xml:space="preserve">
+    <value>Búsqueda</value>
+  </data>
+  <data name="btnCarpeta" xml:space="preserve">
+    <value>Carpeta</value>
+  </data>
+  <data name="btnCertificados" xml:space="preserve">
+    <value>Certificados</value>
+  </data>
+  <data name="btnDuplicar" xml:space="preserve">
+    <value>Duplicar</value>
+  </data>
+  <data name="btnEnviarARecordatorios" xml:space="preserve">
+    <value>Enviar a Recordatorios</value>
+  </data>
+  <data name="btnFacturacion" xml:space="preserve">
+    <value>Facturación</value>
+  </data>
+  <data name="btnFM02" xml:space="preserve">
+    <value>FM02</value>
+  </data>
+  <data name="btnFM02Venen" xml:space="preserve">
+    <value>FM02 (venen)</value>
+  </data>
+  <data name="btnGenCartel" xml:space="preserve">
+    <value>Gen. Cartel</value>
+  </data>
+  <data name="btnImprimirEdoCta" xml:space="preserve">
+    <value>Imprimir Edo. Cta</value>
+  </data>
+  <data name="btnInfoAdicional" xml:space="preserve">
+    <value>Info. Adicional</value>
+  </data>
+  <data name="btnInfoBol" xml:space="preserve">
+    <value>Infobol</value>
+  </data>
+  <data name="btnLAnexoFM021" xml:space="preserve">
+    <value>L Anexo FM02</value>
+  </data>
+  <data name="btnLFM02" xml:space="preserve">
+    <value>L FM02</value>
+  </data>
+  <data name="btnLFM02Venen" xml:space="preserve">
+    <value>L FM02 (venen)</value>
+  </data>
+  <data name="btnLista" xml:space="preserve">
+    <value>Lista</value>
+  </data>
+  <data name="btnOperaciones" xml:space="preserve">
+    <value>Operaciones</value>
+  </data>
+  <data name="btnSaldo" xml:space="preserve">
+    <value>Saldo</value>
+  </data>
+  <data name="btnVerDoc" xml:space="preserve">
+    <value>Ver Doc.</value>
+  </data>
+  <data name="lblAgente" xml:space="preserve">
+    <value>Agente:</value>
+  </data>
+  <data name="lblAsocDelInteresado" xml:space="preserve">
+    <value>Asoc. del Interesado:</value>
+  </data>
+  <data name="lblAsocInt" xml:space="preserve">
+    <value>Asoc. Int:</value>
+  </data>
+  <data name="lblBolConcesion" xml:space="preserve">
+    <value>Bol. Concesión</value>
+  </data>
+  <data name="lblBolPublicacion" xml:space="preserve">
+    <value>Bol. Publicación:</value>
+  </data>
+  <data name="lblBusqueda" xml:space="preserve">
+    <value>Busqueda:</value>
+  </data>
+  <data name="lblCartaOrden" xml:space="preserve">
+    <value>Carta Orden:</value>
+  </data>
+  <data name="lblClaseInt" xml:space="preserve">
+    <value>Clase Int:</value>
+  </data>
+  <data name="lblClaseNac" xml:space="preserve">
+    <value>Clase Nac:</value>
+  </data>
+  <data name="lblCodIntl" xml:space="preserve">
+    <value>Cod. Intl (cod-num):</value>
+  </data>
+  <data name="lblCondiciones" xml:space="preserve">
+    <value>Condiciones:</value>
+  </data>
+  <data name="lblConflicto" xml:space="preserve">
+    <value>Conflicto:</value>
+  </data>
+  <data name="lblCorresponsal" xml:space="preserve">
+    <value>Corresponsable:</value>
+  </data>
+  <data name="lblDetalle" xml:space="preserve">
+    <value>Detalle:</value>
+  </data>
+  <data name="lblDistingue" xml:space="preserve">
+    <value>Distingue:</value>
+  </data>
+  <data name="lblExpCamPend" xml:space="preserve">
+    <value>Exp. Cam. Pend</value>
+  </data>
+  <data name="lblFechaRequerida" xml:space="preserve">
+    <value>Fecha Requerida:</value>
+  </data>
+  <data name="lblInstruccionesDeRenovacion" xml:space="preserve">
+    <value>Instrucciones de Renovación:</value>
+  </data>
+  <data name="lblLocalidad" xml:space="preserve">
+    <value>Localidad:</value>
+  </data>
+  <data name="lblMarca" xml:space="preserve">
+    <value>Marca:</value>
+  </data>
+  <data name="lblMarcaOrigen" xml:space="preserve">
+    <value>Marca Origen:</value>
+  </data>
+  <data name="lblNumInscripcion" xml:space="preserve">
+    <value># Inscripcion:</value>
+  </data>
+  <data name="lblNumSapi" xml:space="preserve">
+    <value>Nº Sapi:</value>
+  </data>
+  <data name="lblOrdPublicacion" xml:space="preserve">
+    <value>Ord. Publicación:</value>
+  </data>
+  <data name="lblOtro" xml:space="preserve">
+    <value>Otro:</value>
+  </data>
+  <data name="lblOtrosImp" xml:space="preserve">
+    <value>Otros Imp:</value>
+  </data>
+  <data name="lblPoder" xml:space="preserve">
+    <value>Poder:</value>
+  </data>
+  <data name="lblPrioridad" xml:space="preserve">
+    <value>Prioridad:</value>
+  </data>
+  <data name="lblReclasif" xml:space="preserve">
+    <value>Reclasif:</value>
+  </data>
+  <data name="lblRenovadoPorOtroTramitante" xml:space="preserve">
+    <value>Renovado por otro tramitante:</value>
+  </data>
+  <data name="lblRenovarAntesDe" xml:space="preserve">
+    <value>Renovar antes de:</value>
+  </data>
+  <data name="lblRevWEB" xml:space="preserve">
+    <value>Rev. WEB:</value>
+  </data>
+  <data name="lblSector" xml:space="preserve">
+    <value>Sector:</value>
+  </data>
+  <data name="lblSituacion" xml:space="preserve">
+    <value>Situación:</value>
+  </data>
+  <data name="lblStatusWEB" xml:space="preserve">
+    <value>Status WEB:</value>
+  </data>
+  <data name="lblTipoMarca" xml:space="preserve">
+    <value>Tipo Marca:</value>
+  </data>
+  <data name="lblTipoReproduccion" xml:space="preserve">
+    <value>Tipo reproducción:</value>
+  </data>
+  <data name="lvlTipoClaseNac" xml:space="preserve">
+    <value>Tipo Clase Nac:</value>
+  </data>
 </root>
