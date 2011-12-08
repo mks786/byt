@@ -152,41 +152,77 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             //this._presentador = new PresentadorAgregarAsociado(this);
         }
 
-        private void _txtAsociado_GotFocus(object sender, RoutedEventArgs e)
-        {
-            this._txtAsociado.Visibility = System.Windows.Visibility.Collapsed;
-            this._lstAsociados.Visibility = System.Windows.Visibility.Visible;
-            this._lstAsociados.IsEnabled = true;
-            this._btnConsultarAsociado.Visibility = System.Windows.Visibility.Visible;
-            this._txtIdAsociado.Visibility = System.Windows.Visibility.Visible;
-            this._txtNombreAsociado.Visibility = System.Windows.Visibility.Visible;
-            this._lblIdAsociado.Visibility = System.Windows.Visibility.Visible;
-            this._lblNombreAsociado.Visibility = System.Windows.Visibility.Visible;
+        //private void _txtAsociado_GotFocus(object sender, RoutedEventArgs e)
+        //{
+        //    this._txtAsociado.Visibility = System.Windows.Visibility.Collapsed;
+        //    this._lstAsociados.Visibility = System.Windows.Visibility.Visible;
+        //    this._lstAsociados.IsEnabled = true;
+        //    this._btnConsultarAsociado.Visibility = System.Windows.Visibility.Visible;
+        //    this._txtIdAsociado.Visibility = System.Windows.Visibility.Visible;
+        //    this._txtNombreAsociado.Visibility = System.Windows.Visibility.Visible;
+        //    this._lblIdAsociado.Visibility = System.Windows.Visibility.Visible;
+        //    this._lblNombreAsociado.Visibility = System.Windows.Visibility.Visible;
 
-        }
+        //}
 
-        private void _lstAsociados_MouseDoubleClick(object sender, MouseButtonEventArgs e)
-        {
-            //this._presentador.CambiarAsociado();
-            this._lstAsociados.Visibility = System.Windows.Visibility.Collapsed;
-            this._btnConsultarAsociado.Visibility = System.Windows.Visibility.Collapsed;
-            this._txtIdAsociado.Visibility = System.Windows.Visibility.Collapsed;
-            this._txtNombreAsociado.Visibility = System.Windows.Visibility.Collapsed;
-            this._txtAsociado.Visibility = System.Windows.Visibility.Visible;
-            this._lblIdAsociado.Visibility = System.Windows.Visibility.Collapsed;
-            this._lblNombreAsociado.Visibility = System.Windows.Visibility.Collapsed;
+        //private void _lstAsociados_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        //{
+        //    //this._presentador.CambiarAsociado();
+        //    this._lstAsociados.Visibility = System.Windows.Visibility.Collapsed;
+        //    this._btnConsultarAsociado.Visibility = System.Windows.Visibility.Collapsed;
+        //    this._txtIdAsociado.Visibility = System.Windows.Visibility.Collapsed;
+        //    this._txtNombreAsociado.Visibility = System.Windows.Visibility.Collapsed;
+        //    this._txtAsociado.Visibility = System.Windows.Visibility.Visible;
+        //    this._lblIdAsociado.Visibility = System.Windows.Visibility.Collapsed;
+        //    this._lblNombreAsociado.Visibility = System.Windows.Visibility.Collapsed;
 
-        }
+        //}
 
-        private void _btnConsultarAsociado_Click(object sender, RoutedEventArgs e)
-        {
-            //this._presentador.BuscarAsociado();
-        }
+        //private void _btnConsultarAsociado_Click(object sender, RoutedEventArgs e)
+        //{
+        //    //this._presentador.BuscarAsociado();
+        //}
 
         private void _btnCancelar_Click(object sender, RoutedEventArgs e)
         {
             //this._presentador.Cancelar();
         }
+        
+        //private void _txtInteresado_GotFocus(object sender, RoutedEventArgs e)
+        //{
+        //    this._txtInteresado.Visibility = System.Windows.Visibility.Collapsed;
+        //    this._lstInteresados.Visibility = System.Windows.Visibility.Visible;
+        //    this._lstInteresados.IsEnabled = true;
+        //    this._btnConsultarInteresado.Visibility = System.Windows.Visibility.Visible;
+        //    this._txtIdInteresado.Visibility = System.Windows.Visibility.Visible;
+        //    this._txtNombreInteresado.Visibility = System.Windows.Visibility.Visible;
+        //    this._lblIdInteresado.Visibility = System.Windows.Visibility.Visible;
+        //    this._lblNombreInteresado.Visibility = System.Windows.Visibility.Visible;
+
+        //}
+
+        //private void _txtInteresado_GotKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e)
+        //{
+        //    //this._presentador.CambiarInteresado();
+        //    this._lstInteresados.Visibility = System.Windows.Visibility.Collapsed;
+        //    this._btnConsultarInteresado.Visibility = System.Windows.Visibility.Collapsed;
+        //    this._txtIdInteresado.Visibility = System.Windows.Visibility.Collapsed;
+        //    this._txtNombreInteresado.Visibility = System.Windows.Visibility.Collapsed;
+        //    this._txtInteresado.Visibility = System.Windows.Visibility.Visible;
+        //    this._lblIdInteresado.Visibility = System.Windows.Visibility.Collapsed;
+        //    this._lblNombreInteresado.Visibility = System.Windows.Visibility.Collapsed;
+
+        //}
+
+        //private void _btnConsultarInteresado_Click(object sender, RoutedEventArgs e)
+        //{
+        //    //this._presentador.BuscarInteresado();
+        //}
+
+        //private void _lstInteresados_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        //{
+        //    //this._presentador.Cancelar();
+        //}
 
         private void _btnAceptar_Click(object sender, RoutedEventArgs e)
         {
@@ -240,6 +276,31 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             //{
             //    this._txtAlarmaAdministracion.IsEnabled = true;
             //}
+        }
+
+        private void _btnClaseCompleta_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void _btnIngles_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void _btnImprimirEdoCuenta_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void _btnSaldo_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void _btnPoder_Click(object sender, RoutedEventArgs e)
+        {
+
         }
 
 

@@ -1996,6 +1996,24 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Saldo por vencer:.
+        /// </summary>
+        public static string lblSaldoPorVencer {
+            get {
+                return ResourceManager.GetString("lblSaldoPorVencer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Saldo Vencido:.
+        /// </summary>
+        public static string lblSaldoVencido {
+            get {
+                return ResourceManager.GetString("lblSaldoVencido", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Salir.
         /// </summary>
         public static string lblSalir {
@@ -2113,6 +2131,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to TipoClasnac:.
+        /// </summary>
+        public static string lblTipoClasNac {
+            get {
+                return ResourceManager.GetString("lblTipoClasNac", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Tipo Cliente:.
         /// </summary>
         public static string lblTipoCliente {
@@ -2208,6 +2235,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string lblTotal {
             get {
                 return ResourceManager.GetString("lblTotal", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Total Deuda:.
+        /// </summary>
+        public static string lblTotalDeuda {
+            get {
+                return ResourceManager.GetString("lblTotalDeuda", resourceCulture);
             }
         }
         

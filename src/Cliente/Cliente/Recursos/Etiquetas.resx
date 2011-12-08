@@ -1360,6 +1360,18 @@
   <data name="lvlTipoClaseNac" xml:space="preserve">
     <value>Tipo Clase Nac:</value>
   </data>
+  <data name="lblSaldoPorVencer" xml:space="preserve">
+    <value>Saldo por vencer:</value>
+  </data>
+  <data name="lblSaldoVencido" xml:space="preserve">
+    <value>Saldo Vencido:</value>
+  </data>
+  <data name="lblTipoClasNac" xml:space="preserve">
+    <value>TipoClasnac:</value>
+  </data>
+  <data name="lblTotalDeuda" xml:space="preserve">
+    <value>Total Deuda:</value>
+  </data>
   <data name="chkEtiqueta" xml:space="preserve">
     <value>Etiqueta</value>
   </data>
