@@ -216,5 +216,101 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
         //{
         //    this._presentador.IrListaJustificaciones();
         //}
+
+        //private void _txtInteresado_GotFocus(object sender, RoutedEventArgs e)
+        //{
+        //    this._txtInteresado.Visibility = System.Windows.Visibility.Collapsed;
+        //    this._lstInteresados.Visibility = System.Windows.Visibility.Visible;
+        //    this._lstInteresados.IsEnabled = true;
+        //    this._btnConsultarInteresado.Visibility = System.Windows.Visibility.Visible;
+        //    this._txtIdInteresado.Visibility = System.Windows.Visibility.Visible;
+        //    this._txtNombreInteresado.Visibility = System.Windows.Visibility.Visible;
+        //    this._lblIdInteresado.Visibility = System.Windows.Visibility.Visible;
+        //    this._lblNombreInteresado.Visibility = System.Windows.Visibility.Visible;
+
+        //}
+
+        //private void _txtInteresado_GotKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e)
+        //{
+        //    //this._presentador.CambiarInteresado();
+        //    this._lstInteresados.Visibility = System.Windows.Visibility.Collapsed;
+        //    this._btnConsultarInteresado.Visibility = System.Windows.Visibility.Collapsed;
+        //    this._txtIdInteresado.Visibility = System.Windows.Visibility.Collapsed;
+        //    this._txtNombreInteresado.Visibility = System.Windows.Visibility.Collapsed;
+        //    this._txtInteresado.Visibility = System.Windows.Visibility.Visible;
+        //    this._lblIdInteresado.Visibility = System.Windows.Visibility.Collapsed;
+        //    this._lblNombreInteresado.Visibility = System.Windows.Visibility.Collapsed;
+
+        //}
+
+        //private void _btnConsultarInteresado_Click(object sender, RoutedEventArgs e)
+        //{
+        //    //this._presentador.BuscarInteresado();
+        //}
+
+        //private void _lstInteresados_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        //{
+        //    //this._presentador.Cancelar();
+        //}
+
+
+        //private void _soloNumero_KeyUp(object sender, KeyEventArgs e)
+        //{
+        //    if (System.Text.RegularExpressions.Regex.IsMatch(this._txtDiasCreditoAdministracion.Text, "[^0-9]"))
+        //    {
+        //        this._txtDiasCreditoAdministracion.Text = "";
+        //    }
+        //}
+
+        //private void _soloNumero_KeyDown(object sender, KeyEventArgs e)
+        //{
+        //    if (!System.Text.RegularExpressions.Regex.IsMatch(e.Key.ToString(), "\\d+"))
+        //        e.Handled = true;
+
+        //}
+
+        //private void _txtDescuentoAdministracion_KeyDown(object sender, KeyEventArgs e)
+        //{
+        //    if ((!string.Equals(e.Key.ToString(),"OemComma"))||(this._txtDescuentoAdministracion.Text.Contains(",")))
+        //    {
+        //        if (!System.Text.RegularExpressions.Regex.IsMatch(e.Key.ToString(), "\\d+"))
+        //            e.Handled = true;
+        //    }
+
+        //if (!System.Text.RegularExpressions.Regex.IsMatch(e.Key.ToString(), "\\d+"))
+        //    e.Handled = true;
+
+
+
+        private void _btnClaseCompleta_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void _btnIngles_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void _btnImprimirEdoCuenta_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void _btnSaldo_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void _btnPoder_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+
+        //private void _btnJustificacionesDatos_Click(object sender, RoutedEventArgs e)
+        //{
+        //    this._presentador.IrListaJustificaciones();
+        //}
     }
 }
