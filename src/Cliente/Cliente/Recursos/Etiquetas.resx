@@ -1360,6 +1360,18 @@
   <data name="lvlTipoClaseNac" xml:space="preserve">
     <value>Tipo Clase Nac:</value>
   </data>
+  <data name="btnNoRegistro" xml:space="preserve">
+    <value>Nº Registro</value>
+  </data>
+  <data name="btnNoSolicitud" xml:space="preserve">
+    <value>Nº Solicitud</value>
+  </data>
+  <data name="btnRenovacion" xml:space="preserve">
+    <value>Renovación</value>
+  </data>
+  <data name="btnRevisarWeb" xml:space="preserve">
+    <value>Rev. Web</value>
+  </data>
   <data name="lblSaldoPorVencer" xml:space="preserve">
     <value>Saldo por vencer:</value>
   </data>

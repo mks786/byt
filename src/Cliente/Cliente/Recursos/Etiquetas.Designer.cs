@@ -394,6 +394,24 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Nº Registro.
+        /// </summary>
+        public static string btnNoRegistro {
+            get {
+                return ResourceManager.GetString("btnNoRegistro", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nº Solicitud.
+        /// </summary>
+        public static string btnNoSolicitud {
+            get {
+                return ResourceManager.GetString("btnNoSolicitud", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Nuevo Contacto.
         /// </summary>
         public static string btnNuevoContacto {
@@ -462,6 +480,24 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string btnRemitente {
             get {
                 return ResourceManager.GetString("btnRemitente", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Renovación.
+        /// </summary>
+        public static string btnRenovacion {
+            get {
+                return ResourceManager.GetString("btnRenovacion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rev. Web.
+        /// </summary>
+        public static string btnRevisarWeb {
+            get {
+                return ResourceManager.GetString("btnRevisarWeb", resourceCulture);
             }
         }
         

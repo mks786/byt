@@ -19,7 +19,7 @@
             </Style.Triggers>
         </Style>
     </Page.Resources>
-    
+
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="50"/>
@@ -74,7 +74,7 @@
                         <RowDefinition Height="30"/>
                         <RowDefinition Height="30"/>
                     </Grid.RowDefinitions>
-                    
+
                 </Grid>
             </TabItem>
             <TabItem Header="{x:Static recurso:Etiquetas.tabDatos}" Name="_tabDatos">
@@ -94,34 +94,63 @@
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
-<!--0-->                         <RowDefinition Height="30"/>
-<!--1-->                         <RowDefinition Height="30"/>
-<!--2-->                         <RowDefinition Height="Auto"/>
-<!--3-->                         <RowDefinition Height="Auto"/>
-<!--4-->                         <RowDefinition Height="Auto"/>
-<!--5-->                         <RowDefinition Height="30"/>
-<!--6-->                         <RowDefinition Height="30"/>
-<!--7-->                         <RowDefinition Height="5"/>
-<!--8-->                         <RowDefinition Height="30"/>
-<!--9-->                         <RowDefinition Height="30"/>
-<!--10-->                        <RowDefinition Height="5"/>
-<!--11-->                        <RowDefinition Height="30"/>
-<!--12-->                        <RowDefinition Height="30"/>
-<!--13-->                        <RowDefinition Height="30"/>
-<!--14-->                        <RowDefinition Height="30"/>
-<!--15-->                        <RowDefinition Height="30"/>
-<!--16-->                        <RowDefinition Height="5"/>
-<!--17-->                        <RowDefinition Height="30"/>
-<!--18-->                        <RowDefinition Height="30"/>
-<!--19-->                        <RowDefinition Height="30"/>
-<!--20-->                        <RowDefinition Height="30"/>
-<!--21-->                        <RowDefinition Height="30"/>
-<!--22-->                        <RowDefinition Height="30"/>
-<!--23-->                        <RowDefinition Height="30"/>
-<!--24-->                        <RowDefinition Height="30"/>
+                        <!--0-->
+                        <RowDefinition Height="30"/>
+                        <!--1-->
+                        <RowDefinition Height="30"/>
+                        <!--2-->
+                        <RowDefinition Height="Auto"/>
+                        <!--3-->
+                        <RowDefinition Height="Auto"/>
+                        <!--4-->
+                        <RowDefinition Height="Auto"/>
+                        <!--5-->
+                        <RowDefinition Height="30"/>
+                        <!--6-->
+                        <RowDefinition Height="30"/>
+                        <!--7-->
+                        <RowDefinition Height="5"/>
+                        <!--8-->
+                        <RowDefinition Height="30"/>
+                        <!--9-->
+                        <RowDefinition Height="30"/>
+                        <!--10-->
+                        <RowDefinition Height="5"/>
+                        <!--11-->
+                        <RowDefinition Height="30"/>
+                        <!--12-->
+                        <RowDefinition Height="30"/>
+                        <!--13-->
+                        <RowDefinition Height="30"/>
+                        <!--14-->
+                        <RowDefinition Height="30"/>
+                        <!--15-->
+                        <RowDefinition Height="30"/>
+                        <!--16-->
+                        <RowDefinition Height="5"/>
+                        <!--17-->
+                        <RowDefinition Height="30"/>
+                        <!--18-->
+                        <RowDefinition Height="30"/>
+                        <!--19-->
+                        <RowDefinition Height="30"/>
+                        <!--20-->
+                        <RowDefinition Height="30"/>
+                        <!--21-->
+                        <RowDefinition Height="30"/>
+                        <!--22-->
+                        <RowDefinition Height="30"/>
+                        <!--23-->
+                        <RowDefinition Height="30"/>
+                        <!--24-->
+                        <RowDefinition Height="30"/>
+                        <!--25-->
+                        <RowDefinition Height="30"/>
+                        <!--26-->
+                        <RowDefinition Height="30"/>
                     </Grid.RowDefinitions>
-                    
-                    <!--Primera Fila-->               
+
+                    <!--Primera Fila-->
                     <Label Grid.Column="0" Grid.Row="0" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblId}"/>
                     </Label>
@@ -171,14 +200,14 @@
                     </Label>
                     <TextBox Grid.Column="1" Grid.Row="5" Grid.ColumnSpan="7" Name="_txtInteresado" VerticalAlignment="Center"  
                          Margin="3" Text="{Binding Path=Interesado}"></TextBox>
-                    
+
                     <Label Grid.Column="8" Grid.Row="5" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblPoder}"/>
                     </Label>
                     <ComboBox Grid.Column="9" Grid.Row="5" Grid.ColumnSpan="3" Margin="3" Name="_cbxPoderDatos" Height="20" ItemsSource="{Binding}" >
                     </ComboBox>
                     <!--Fin Tercera Fila-->
-                    
+
                     <!--Cuarta Fila-->
                     <Label Grid.Column="0" Grid.Row="6" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblCorresponsal}"/>
@@ -194,9 +223,9 @@
                     <!--Fin Cuarta Fila-->
 
                     <Separator Margin="10 0" Grid.Column="0" Grid.Row="7" Grid.ColumnSpan="12" VerticalAlignment="Center"/>
-                    
-                <!--Nuevo-->
-                    
+
+                    <!--Nuevo-->
+
                     <!--Quinta Fila-->
                     <Label Grid.Column="0" Grid.Row="8" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblLocalidad}"/>
@@ -237,7 +266,7 @@
                     <!--Fin Nuevo-->
 
                     <Separator Margin="10 0" Grid.Column="0" Grid.Row="10" Grid.ColumnSpan="12" VerticalAlignment="Center"/>
-                    
+
                     <!--Séptima Fila-->
                     <Label Grid.Column="0" Grid.Row="11" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblEtiqueta}"/>
@@ -253,25 +282,25 @@
                     </Label>
                     <TextBox Grid.Column="1" Grid.Row="12" Grid.ColumnSpan="2" Margin="3" Name="_txtITipoDatos" VerticalAlignment="Center"  
                           Text="{Binding Path=Tipo}"></TextBox>
-                    
+
                     <Label Grid.Column="3" Grid.Row="12" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblClaseNac}"/>
                     </Label>
                     <TextBox Grid.Column="4" Grid.Row="12" Grid.ColumnSpan="1" Margin="3" Name="_txtClaseNacionalDatos" VerticalAlignment="Center"  
                           Text=""></TextBox>
-                    
+
                     <Label Grid.Column="5" Grid.Row="12" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblClaseInt}"/>
                     </Label>
                     <TextBox Grid.Column="6" Grid.Row="12" Grid.ColumnSpan="1" Margin="3" Name="_txtClaseInternacionalDatos" VerticalAlignment="Center"  
                           Text=""></TextBox>
-                    
+
                     <Label Grid.Column="7" Grid.Row="12" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblReclasif}"/>
                     </Label>
                     <TextBox Grid.Column="8" Grid.Row="12" Grid.ColumnSpan="1" Margin="3" Name="_txtReclasificacionDatos" VerticalAlignment="Center"  
                           Text=""></TextBox>
-                    
+
                     <Label Grid.Column="9" Grid.Row="12" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblMarcaOrigen}"/>
                     </Label>
@@ -312,7 +341,7 @@
                     </Label>
                     <TextBox Grid.Column="2" Grid.Row="15" Grid.ColumnSpan="2" Margin="3" Name="_txtCorrespondenciaDatos" VerticalAlignment="Center"  
                           Text=""></TextBox>
-                    
+
                     <Label Grid.Column="4" Grid.Row="15" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblFacturacion}"/>
                     </Label>
@@ -336,14 +365,182 @@
                     <Separator Margin="10 0" Grid.Column="0" Grid.Row="16" Grid.ColumnSpan="12" VerticalAlignment="Center"/>
 
                     <!--Undécima Fila-->
+                    <Grid Grid.Row="16" Grid.Column="1" Grid.RowSpan="6" Grid.ColumnSpan="3" >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="30"/>
+                            <RowDefinition Height="30"/>
+                            <RowDefinition Height="30"/>
+                            <RowDefinition Height="30"/>
+                            <RowDefinition Height="30"/>
+                            <RowDefinition Height="30"/>
+                        </Grid.RowDefinitions>
+                        <Border BorderBrush="DarkGray" BorderThickness="0 0 0 1">
+                        </Border>
+
+                        <Button Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="1" Name="_btnNoSolicitud" VerticalAlignment="Bottom" Height="25">
+                            <TextBlock Name="_txbNoSolicitud" Text="{x:Static recurso:Etiquetas.btnNoSolicitud}"/>
+                        </Button>
+                        <TextBox Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="1" Margin="3" Name="_txtCodigoInscripcion" VerticalAlignment="Center"  
+                          Text=""></TextBox>
+                        <TextBox Grid.Column="2" Grid.Row="0" Grid.ColumnSpan="1" Margin="3" Name="_txtFechaInscripcion" VerticalAlignment="Center"  
+                          Text=""></TextBox>
+
+                        <Label Grid.Column="0" Grid.Row="1" VerticalAlignment="Center" HorizontalContentAlignment="Right">
+                            <TextBlock Text="{x:Static recurso:Etiquetas.lblOrdPublicacion}"/>
+                        </Label>
+                        <ComboBox Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2" Margin="3" Name="_cbxOrdenPublicacion" Height="20" ItemsSource="{Binding}" >
+                        </ComboBox>
+                        <Label Grid.Column="0" Grid.Row="2" VerticalAlignment="Center" HorizontalContentAlignment="Right">
+                            <TextBlock Text="{x:Static recurso:Etiquetas.lblBolPublicacion}"/>
+                        </Label>
+                        <ComboBox Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="2" Margin="3" Name="_cbxBoletinPublicacion" Height="20" ItemsSource="{Binding}" >
+                        </ComboBox>
+                        <Label Grid.Column="0" Grid.Row="3" VerticalAlignment="Center" HorizontalContentAlignment="Right">
+                            <TextBlock Text="{x:Static recurso:Etiquetas.lblBolConcesion}"/>
+                        </Label>
+                        <ComboBox Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="2" Margin="3" Name="_cbxBoletinConcesion" Height="20" ItemsSource="{Binding}" >
+                        </ComboBox>
+
+
+                        <Button Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="1" Name="_btnNoRegistro" VerticalAlignment="Bottom" Height="25">
+                            <TextBlock Name="_txbNoRegistro" Text="{x:Static recurso:Etiquetas.btnNoRegistro}"/>
+                        </Button>
+                        <TextBox Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="1" Margin="3" Name="_txtCodigoRegistro" VerticalAlignment="Center"  
+                          Text=""></TextBox>
+                        <TextBox Grid.Column="2" Grid.Row="4" Grid.ColumnSpan="1" Margin="3" Name="_txtFechaRegistro" VerticalAlignment="Center"  
+                          Text=""></TextBox>
+                        <Label Grid.Column="1" Grid.Row="5" VerticalAlignment="Center" HorizontalContentAlignment="Right">
+                            <TextBlock Text="{x:Static recurso:Etiquetas.lblRenovarAntesDe}"/>
+                        </Label>
+
+                        <TextBox Grid.Column="1" Grid.Row="5" Grid.ColumnSpan="2" Margin="3" Name="_txtFechaRenovacion" VerticalAlignment="Center"  
+                          Text=""></TextBox>
+                    </Grid>
+                    <Label Grid.Column="6" Grid.Row="17" VerticalAlignment="Center" HorizontalContentAlignment="Right">
+                        <TextBlock Text="{x:Static recurso:Etiquetas.lblSituacion}"/>
+                    </Label>
+                    <ComboBox Grid.Column="7" Grid.Row="17" Grid.ColumnSpan="2" Margin="3" Name="_cbxSituacion" Height="20" ItemsSource="{Binding}" >
+                    </ComboBox>
+
                     <!--Fin Undécima Fila-->
 
+                    <!--Duodécima Fila-->
+                    <Label Grid.Column="6" Grid.Row="18" VerticalAlignment="Center" HorizontalContentAlignment="Right">
+                        <TextBlock Text="{x:Static recurso:Etiquetas.lblDetalle}"/>
+                    </Label>
+                    <ComboBox Grid.Column="7" Grid.Row="18" Grid.ColumnSpan="2" Margin="3" Name="_cbxDetalle" Height="20" ItemsSource="{Binding}" >
+                    </ComboBox>
+                    <!--Fin Duodécima Fila-->
+                    <Separator Margin="10 0" Grid.Column="6" Grid.Row="18" Grid.ColumnSpan="3" VerticalAlignment="bottom"/>
+                    <!--Fila Trece-->
+                    <Label Grid.Column="6" Grid.Row="19" Grid.ColumnSpan="2" VerticalAlignment="Center">
+                        <TextBlock Text="{x:Static recurso:Etiquetas.lblRenovadoPorOtroTramitante}"/>
+                    </Label>
+                    <CheckBox Margin="3" Grid.Column="8" Grid.ColumnSpan="1" Grid.Row="19" Height="16" VerticalAlignment="Center" Name="_checkBoxRenovacionTramitente"/>
+                    <Button Grid.Column="8" Grid.Row="19" Grid.ColumnSpan="2" Grid.RowSpan="2" Name="_btnIntRenovacion" Margin="25,6,3,6">
+                        <TextBlock Name="_txbIntRenovacion" Text="{x:Static recurso:Etiquetas.btnNoRegistro}"/>
+                    </Button>
+                    <Button Grid.Column="10" Grid.Row="19" Grid.ColumnSpan="1" Grid.RowSpan="2" Name="_btnRenovacion" Margin="3,6,3,6">
+                        <TextBlock Name="_txbRenovacion" Text="{x:Static recurso:Etiquetas.btnRenovacion}"/>
+                    </Button>
 
+                    <Label Grid.Column="6" Grid.Row="20" Grid.ColumnSpan="2" VerticalAlignment="Center">
+                        <TextBlock Text="{x:Static recurso:Etiquetas.lblInstruccionesDeRenovacion}"/>
+                    </Label>
+                    <CheckBox Margin="3" Grid.Column="8" Grid.ColumnSpan="1" Grid.Row="20" Height="16" VerticalAlignment="Center" Name="_checkBoxInstruccionesRenovacion"/>
+                    <!--Fin Fila Trece-->
+                    
+                    <!--Fila Catorce-->
+                    <Label Grid.Column="6" Grid.Row="21" Grid.ColumnSpan="2" VerticalAlignment="Center">
+                        <TextBlock Text="{x:Static recurso:Etiquetas.lblCondiciones}"/>
+                    </Label>
+                    <ComboBox Grid.Column="7" Grid.Row="21" Grid.ColumnSpan="2" Margin="3" Name="_cbxCondiciones" Height="20" ItemsSource="{Binding}" >
+                    </ComboBox>
+                    
+                    <!--Nuevo-->
+                    <Label Grid.Column="9" Grid.Row="21" Grid.ColumnSpan="1" VerticalAlignment="Center">
+                        <TextBlock Text="{x:Static recurso:Etiquetas.lblExpCamPend}"/>
+                    </Label>
+                    <TextBox Grid.Column="10" Grid.Row="21" Grid.ColumnSpan="1" Margin="3" Name="_txtExptyr" VerticalAlignment="Center"  
+                          Text=""></TextBox>
+                    <!--Fin Nuevo-->
+
+                    <Separator Margin="10 0" Grid.Column="6" Grid.Row="21" Grid.ColumnSpan="5" VerticalAlignment="bottom"/>
+                    <!--Fin Fila Catorce-->
+
+                    <!--Fila Quince-->
+                    <Button Grid.Column="6" Grid.Row="22" Grid.ColumnSpan="1" Name="_btnInfoAdicional" Margin="3"
+                            Height="25">
+                        <TextBlock Name="_txbInfoAdicional" Text="{x:Static recurso:Etiquetas.btnInfoAdicional}"/>
+                    </Button>
+                    <Button Grid.Column="7" Grid.Row="22" Grid.ColumnSpan="1" Name="_btnInfobol" Margin="3"
+                            Height="25">
+                        <TextBlock Name="_txbInfobol" Text="{x:Static recurso:Etiquetas.btnInfoBol}"/>
+                    </Button>
+                    <Button Grid.Column="8" Grid.Row="22" Grid.ColumnSpan="1" Name="_btnCertificados" Margin="3"
+                            Height="25">
+                        <TextBlock Name="_txbCertificados" Text="{x:Static recurso:Etiquetas.btnCertificados}"/>
+                    </Button>
+                    <Button Grid.Column="9" Grid.Row="22" Grid.ColumnSpan="1" Name="_btnBusquedas" Margin="3"
+                            Height="25">
+                        <TextBlock Name="_txbBusquedas" Text="{x:Static recurso:Etiquetas.btnBusqueda}"/>
+                    </Button>
+                    <!--Fin Fila Quince-->
+                    
+                    <!--Fila Dieciseis-->
+                    <Button Grid.Column="6" Grid.Row="23" Grid.ColumnSpan="1" Name="_btnGenCartel" Margin="3"
+                            Height="25">
+                        <TextBlock Name="_txbGenCartel" Text="{x:Static recurso:Etiquetas.btnGenCartel}"/>
+                    </Button>
+                    <Button Grid.Column="7" Grid.Row="23" Grid.ColumnSpan="1" Name="_btnAnaqua" Margin="3"
+                            Height="25">
+                        <TextBlock Name="_txbAnaqua" Text="{x:Static recurso:Etiquetas.btnAnaqua}"/>
+                    </Button>
+                    <!--Fin Fila Dieciseis-->
+                    <Separator Margin="10 0" Grid.Column="6" Grid.Row="23" Grid.ColumnSpan="5" VerticalAlignment="Bottom"/>
+                    <!--Fila Dieciocho-->
+
+                    <Button Grid.Column="1" Grid.Row="24" Grid.ColumnSpan="1" Name="_btnRevisarWeb" Margin="3"
+                            Height="25">
+                        <TextBlock Name="_txbRevisarWeb" Text="{x:Static recurso:Etiquetas.btnRevisarWeb}"/>
+                    </Button>
+                    <Label Grid.Column="3" Grid.Row="24" Grid.ColumnSpan="1" VerticalAlignment="Center">
+                        <TextBlock Text="{x:Static recurso:Etiquetas.lblStatusWEB}"/>
+                    </Label>
+                    <ComboBox Grid.Column="4" Grid.Row="24" Grid.ColumnSpan="2" Margin="3" Name="_cbxEstado" Height="20" ItemsSource="{Binding}" >
+                    </ComboBox>
+
+                    <Button Grid.Column="9" Grid.Row="24" Grid.ColumnSpan="1" Name="_btnAuditoria" Margin="3"
+                            Height="25">
+                        <TextBlock Name="_txbAuditoria" Text="{x:Static recurso:Etiquetas.btnAuditoria}"/>
+                    </Button>
+
+                    <Button Grid.Column="10" Grid.Row="24" Grid.ColumnSpan="1" Name="_btnOperaciones" Margin="3"
+                            Height="25">
+                        <TextBlock Name="_txbOperaciones" Text="{x:Static recurso:Etiquetas.btnOperaciones}"/>
+                    </Button>
+
+                    <Button Grid.Column="11" Grid.Row="24" Grid.ColumnSpan="1" Name="_btnFacturacion" Margin="3"
+                            Height="25">
+                        <TextBlock Name="_txbFacturacion" Text="{x:Static recurso:Etiquetas.btnFacturacion}"/>
+                    </Button>
+
+                    <Button Grid.Column="12" Grid.Row="24" Grid.ColumnSpan="1" Name="_btnVerDoc" Margin="3"
+                            Height="25">
+                        <TextBlock Name="_txbVerDoc" Text="{x:Static recurso:Etiquetas.btnVerDoc}"/>
+                    </Button>
+
+                    <!--Fin Fila Dieciocho-->
                 </Grid>
             </TabItem>
         </TabControl>
         <WrapPanel Grid.Row="2" Grid.ColumnSpan="3" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="5" Orientation="Horizontal">
-        <Button Name="_btnAceptar"  VerticalAlignment="Bottom" Height="25" Width="90" 
+            <Button Name="_btnAceptar"  VerticalAlignment="Bottom" Height="25" Width="90" 
                     Click="_btnAceptar_Click"  IsDefault="True">
                 <Button.Style>
                     <Style TargetType="Button">
