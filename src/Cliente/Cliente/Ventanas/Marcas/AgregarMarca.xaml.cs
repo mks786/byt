@@ -55,38 +55,6 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             set { this._txtAsociadoDatos.Text = value; }
         }
 
-        public string IdInteresadoSolicitudFiltrar
-        {
-            get { return this._txtIdInteresadoSolicitud.Text; }
-        }
-
-        public string IdInteresadoSDatosFiltrar
-        {
-            get { return this._txtIdInteresadoDatos.Text; }
-        }
-
-        public string NombreInteresadoSolicitudFiltrar
-        {
-            get { return this._txtNombreInteresadoSolicitud.Text; }
-        }
-
-        public string NombreInteresadoDatosFiltrar
-        {
-            get { return this._txtNombreInteresadoSolicitud.Text; }
-        }
-
-        public string NombreInteresadoSolicitud
-        {
-            get { return this._txtInteresadoSolicitud.Text; }
-            set { this._txtInteresadoSolicitud.Text = value; }
-        }
-
-        public string NombreInteresadoDatos
-        {
-            get { return this._txtInteresadoDatos.Text; }
-            set { this._txtInteresadoDatos.Text = value; }
-        }
-
         public object Asociados
         {
             get { return this._lstAsociadosSolicitud.DataContext; }
@@ -99,37 +67,6 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             set { this._lstAsociadosSolicitud.SelectedItem = value; }
         }
 
-        public string IdInteresadoSolicitudFiltrar
-        {
-            get { return this._txtIdInteresadoSolicitud.Text; }
-        }
-
-        public string IdInteresadoSDatosFiltrar
-        {
-            get { return this._txtIdInteresadoDatos.Text; }
-        }
-
-        public string NombreInteresadoSolicitudFiltrar
-        {
-            get { return this._txtNombreInteresadoSolicitud.Text; }
-        }
-
-        public string NombreInteresadoDatosFiltrar
-        {
-            get { return this._txtNombreInteresadoSolicitud.Text; }
-        }
-
-        public string NombreInteresadoSolicitud
-        {
-            get { return this._txtInteresadoSolicitud.Text; }
-            set { this._txtInteresadoSolicitud.Text = value; }
-        }
-
-        public string NombreInteresadoDatos
-        {
-            get { return this._txtInteresadoDatos.Text; }
-            set { this._txtInteresadoDatos.Text = value; }
-        }
 
         public string IdInteresadoSolicitudFiltrar
         {
@@ -177,223 +114,110 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
 
         public object PoderesSolicitud
         {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
-                throw new System.NotImplementedException();
-            }
+            get { return this._cbxPoderSolicitud.DataContext; }
+            set { this._cbxPoderSolicitud.DataContext = value; }
         }
 
         public object PoderSolicitud
         {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
-                throw new System.NotImplementedException();
-            }
+            get { return this._cbxPoderSolicitud.SelectedItem; }
+            set { this._cbxPoderSolicitud.SelectedItem = value; }
         }
 
         public object PoderesDatos
         {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
-                throw new System.NotImplementedException();
-            }
+            get { return this._cbxPoderDatos.DataContext; }
+            set { this._cbxPoderDatos.DataContext = value; }
         }
 
         public object PoderDatos
         {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
-                throw new System.NotImplementedException();
-            }
+            get { return this._cbxPoderDatos.SelectedItem; }
+            set { this._cbxPoderDatos.SelectedItem = value; }
         }
 
         public object Agentes
         {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
-                throw new System.NotImplementedException();
-            }
+            get { return this._cbxAgenteSolicitud.DataContext; }
+            set { this._cbxAgenteSolicitud.DataContext = value; }
         }
 
         public object Agente
         {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
-                throw new System.NotImplementedException();
-            }
+            get { return this._cbxAgenteSolicitud.SelectedItem; }
+            set { this._cbxAgenteSolicitud.SelectedItem = value; }
         }
 
         public object BoletinesOrdenPublicacion
         {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
-                throw new System.NotImplementedException();
-            }
+            get { return this._cbxOrdenPublicacion.DataContext; }
+            set { this._cbxOrdenPublicacion.DataContext = value; }
         }
 
         public object BoletinOrdenPublicacion
         {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
-                throw new System.NotImplementedException();
-            }
+            get { return this._cbxOrdenPublicacion.SelectedItem; }
+            set { this._cbxOrdenPublicacion.SelectedItem = value; }
         }
 
         public object BoletinesPublicacion
         {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
-                throw new System.NotImplementedException();
-            }
+            get { return this._cbxBoletinPublicacion.DataContext; }
+            set { this._cbxBoletinPublicacion.DataContext = value; }
         }
 
         public object BoletinPublicacion
         {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
-                throw new System.NotImplementedException();
-            }
+            get { return this._cbxBoletinPublicacion.SelectedItem; }
+            set { this._cbxBoletinPublicacion.SelectedItem = value; }
         }
 
         public object BoletinesConcesion
         {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
-                throw new System.NotImplementedException();
-            }
+            get { return this._cbxBoletinConcesion.DataContext; }
+            set { this._cbxBoletinConcesion.DataContext = value; }
         }
 
         public object BoletinConcesion
         {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
-                throw new System.NotImplementedException();
-            }
+            get { return this._cbxBoletinConcesion.SelectedItem; }
+            set { this._cbxBoletinConcesion.SelectedItem = value; }
         }
 
         public object Servicios
         {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
-                throw new System.NotImplementedException();
-            }
+            get { return this._cbxSituacion.DataContext; }
+            set { this._cbxSituacion.DataContext = value; }
         }
 
         public object Servicio
         {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
-                throw new System.NotImplementedException();
-            }
+            get { return this._cbxSituacion.SelectedItem; }
+            set { this._cbxSituacion.SelectedItem = value; }
         }
 
         public object Detalle
         {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
-                throw new System.NotImplementedException();
-            }
+            get { return this._cbxDetalle.DataContext; }
+            set { this._cbxDetalle.DataContext = value; }
         }
 
         public object Detalles
         {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
-                throw new System.NotImplementedException();
-            }
+            get { return this._cbxDetalle.SelectedItem; }
+            set { this._cbxDetalle.SelectedItem = value; }
         }
 
         public object Condiciones
         {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
-                throw new System.NotImplementedException();
-            }
+            get { return this._cbxCondiciones.DataContext; }
+            set { this._cbxCondiciones.DataContext = value; }
         }
 
         public object Condicion
         {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
-                throw new System.NotImplementedException();
-            }
-        }
-
-        public void Mensaje(string mensaje)
-        {
-            throw new System.NotImplementedException();
+            get { return this._cbxCondiciones.SelectedItem; }
+            set { this._cbxCondiciones.SelectedItem = value; }
         }
 
         public bool EstaCargada

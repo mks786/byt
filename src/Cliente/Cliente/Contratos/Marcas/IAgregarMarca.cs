@@ -72,7 +72,5 @@ namespace Trascend.Bolet.Cliente.Contratos.Marcas
         object Condiciones { get; set; }
 
         object Condicion { get; set; }
-
-        void Mensaje(string mensaje);
     }
 }
