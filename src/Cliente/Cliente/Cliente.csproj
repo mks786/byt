@@ -108,6 +108,7 @@
     <Compile Include="Contratos\EntradasAlternas\IAgregarEntradaAlterna.cs" />
     <Compile Include="Contratos\EntradasAlternas\IConsultarEntradaAlterna.cs" />
     <Compile Include="Contratos\EntradasAlternas\IConsultarEntradasAlternas.cs" />
+    <Compile Include="Contratos\Marcas\IAgregarMarca.cs" />
     <Compile Include="Contratos\Marcas\IConsultarMarca.cs" />
     <Compile Include="Contratos\Marcas\IConsultarMarcas.cs" />
     <Compile Include="Contratos\Remitentes\IAgregarRemitente.cs" />
