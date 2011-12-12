@@ -1,6 +1,6 @@
 ﻿using System.Windows.Controls;
-using Trascend.Bolet.Cliente.Contratos.Asociados;
-using Trascend.Bolet.Cliente.Presentadores.Asociados;
+using Trascend.Bolet.Cliente.Contratos.Marcas;
+using Trascend.Bolet.Cliente.Presentadores.Marcas;
 using System.Windows;
 using System.Windows.Input;
 
@@ -9,141 +9,294 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
     /// <summary>
     /// Interaction logic for AgregarAsociado.xaml
     /// </summary>
-    public partial class ConsultarMarca : Page
+    public partial class ConsultarMarca : Page, IConsultarMarca
     {
-        //private PresentadorAgregarAsociado _presentador;
+        //private Presentado _presentador;
         //private bool _cargada;
 
-        //#region IAgregarAsociado
+        #region IConsultarMarca
 
-        //public object Asociado
-        //{
-        //    get { return this._tbcPestañas.DataContext; }
-        //    set { this._tbcPestañas.DataContext = value; }
-        //}
+        public object Marca
+        {
+            get { return this._tbcPestañas.DataContext; }
+            set { this._tbcPestañas.DataContext = value; }
+        }
 
-        //public object Pais
-        //{
-        //    get { return this._cbxPaisDatos.SelectedItem; }
-        //    set { this._cbxPaisDatos.SelectedItem = value; }
-        //}
+        public string IdAsociadoFiltrar
+        {
+            get { return this._txtIdAsociadoSolicitud.Text; }
+        }
 
-        //public object Paises
-        //{
-        //    get { return this._cbxPaisDatos.DataContext; }
-        //    set { this._cbxPaisDatos.DataContext = value; }
-        //}
+        public string NombreAsociadoFiltrar
+        {
+            get { return this._txtNombreAsociadoSolicitud.Text; }
+        }
 
-        //public object Idioma
-        //{
-        //    get { return this._cbxIdiomaDatos.SelectedItem; }
-        //    set { this._cbxIdiomaDatos.SelectedItem = value; }
-        //}
+        public string NombreAsociado
+        {
+            get { return this._txtAsociadoSolicitud.Text; }
+            set { this._txtAsociadoSolicitud.Text = value; }
+        }
 
-        //public object Idiomas
-        //{
-        //    get { return this._cbxIdiomaDatos.DataContext; }
-        //    set { this._cbxIdiomaDatos.DataContext = value; }
-        //}
+        public object Asociados
+        {
+            get { return this._lstAsociadosSolicitud.DataContext; }
+            set { this._lstAsociadosSolicitud.DataContext = value; }
+        }
 
-        //public object Moneda
-        //{
-        //    get { return this._cbxMonedaDatos.SelectedItem; }
-        //    set { this._cbxMonedaDatos.SelectedItem = value; }
-        //}
+        public object Asociado
+        {
+            get
+            {
+                return this._lstAsociadosSolicitud.SelectedItem;
+            }
+            set
+            {
+                this._lstAsociadosSolicitud.SelectedItem = value;
+            }
+        }
 
-        //public object Monedas
-        //{
-        //    get { return this._cbxMonedaDatos.DataContext; }
-        //    set { this._cbxMonedaDatos.DataContext = value; }
-        //}
 
-        //public object Descuento
-        //{
-        //    get { throw new System.NotImplementedException(); }
-        //    set { throw new System.NotImplementedException(); }
-        //}
 
-        //public object Descuentos
-        //{
-        //    get { throw new System.NotImplementedException(); }
-        //    set { throw new System.NotImplementedException(); }
-        //}
+        public object PoderesSolicitud
+        {
+            get
+            {
+                throw new System.NotImplementedException();
+            }
+            set
+            {
+                throw new System.NotImplementedException();
+            }
+        }
 
-        //public object TipoCliente
-        //{
-        //    get { return this._cbxTipoClienteAdministracion.SelectedItem; }
-        //    set { this._cbxTipoClienteAdministracion.SelectedItem = value; }
-        //}
+        public object PoderesDatos
+        {
+            get
+            {
+                throw new System.NotImplementedException();
+            }
+            set
+            {
+                throw new System.NotImplementedException();
+            }
+        }
 
-        //public object TiposClientes
-        //{
-        //    get { return this._cbxTipoClienteAdministracion.DataContext; }
-        //    set { this._cbxTipoClienteAdministracion.DataContext = value; }
-        //}
+        public object Agentes
+        {
+            get
+            {
+                throw new System.NotImplementedException();
+            }
+            set
+            {
+                throw new System.NotImplementedException();
+            }
+        }
 
-        //public object Etiqueta
-        //{
-        //    get { return this._cbxEtiquetaAdministracion.SelectedItem; }
-        //    set { this._cbxEtiquetaAdministracion.SelectedItem = value; }
-        //}
+        public object BoletinesOrdenPublicacion
+        {
+            get
+            {
+                throw new System.NotImplementedException();
+            }
+            set
+            {
+                throw new System.NotImplementedException();
+            }
+        }
 
-        //public object Etiquetas
-        //{
-        //    get { return this._cbxEtiquetaAdministracion.DataContext; }
-        //    set { this._cbxEtiquetaAdministracion.DataContext = value; }
-        //}
+        public object BoletinesPublicacion
+        {
+            get
+            {
+                throw new System.NotImplementedException();
+            }
+            set
+            {
+                throw new System.NotImplementedException();
+            }
+        }
 
-        //public object DetallePago
-        //{
-        //    get { return this._cbxDetallePagoAdministracion.SelectedItem; }
-        //    set { this._cbxDetallePagoAdministracion.SelectedItem = value; }
-        //}
+        public object BoletinesConcesion
+        {
+            get
+            {
+                throw new System.NotImplementedException();
+            }
+            set
+            {
+                throw new System.NotImplementedException();
+            }
+        }
 
-        //public object DetallesPagos
-        //{
-        //    get { return this._cbxDetallePagoAdministracion.DataContext; }
-        //    set { this._cbxDetallePagoAdministracion.DataContext = value; }
-        //}
+        public object Servicios
+        {
+            get
+            {
+                throw new System.NotImplementedException();
+            }
+            set
+            {
+                throw new System.NotImplementedException();
+            }
+        }
 
-        //public object Tarifa
-        //{
-        //    get { return this._cbxTarifaAdministracion.SelectedItem; }
-        //    set { this._cbxTarifaAdministracion.SelectedItem = value; }
-        //}
+        public object Detalles
+        {
+            get
+            {
+                throw new System.NotImplementedException();
+            }
+            set
+            {
+                throw new System.NotImplementedException();
+            }
+        }
 
-        //public object Tarifas
-        //{
-        //    get { return this._cbxTarifaAdministracion.DataContext; }
-        //    set { this._cbxTarifaAdministracion.DataContext = value; }
-        //}
+        public object Condicion
+        {
+            get
+            {
+                throw new System.NotImplementedException();
+            }
+            set
+            {
+                throw new System.NotImplementedException();
+            }
+        }
 
-        //public object TipoPersonas
-        //{
+        public object PoderSolicitud
+        {
+            get
+            {
+                throw new System.NotImplementedException();
+            }
+            set
+            {
+                throw new System.NotImplementedException();
+            }
+        }
 
-        //    get { return this._cbxTipoPersonaDatos.DataContext; }
-        //    set { this._cbxTipoPersonaDatos.DataContext = value; }
-        //}
+        public object PoderDatos
+        {
+            get
+            {
+                throw new System.NotImplementedException();
+            }
+            set
+            {
+                throw new System.NotImplementedException();
+            }
+        }
 
-        //public object TipoPersona
-        //{
+        public object Agente
+        {
+            get
+            {
+                throw new System.NotImplementedException();
+            }
+            set
+            {
+                throw new System.NotImplementedException();
+            }
+        }
 
-        //    get { return this._cbxTipoPersonaDatos.SelectedItem; }
-        //    set { this._cbxTipoPersonaDatos.SelectedItem = value; }
-        //}
+        public object BoletinOrdenPublicacion
+        {
+            get
+            {
+                throw new System.NotImplementedException();
+            }
+            set
+            {
+                throw new System.NotImplementedException();
+            }
+        }
 
-        //public bool EstaCargada
-        //{
-        //    get { return this._cargada; }
-        //    set { this._cargada = value; }
-        //}
+        public object BoletinPublicacion
+        {
+            get
+            {
+                throw new System.NotImplementedException();
+            }
+            set
+            {
+                throw new System.NotImplementedException();
+            }
+        }
 
-        //public void FocoPredeterminado()
-        //{
-        //    this._txtNombreDatos.Focus();
-        //}
+        public object BoletinConcesion
+        {
+            get
+            {
+                throw new System.NotImplementedException();
+            }
+            set
+            {
+                throw new System.NotImplementedException();
+            }
+        }
 
-        //#endregion
+        public object Servicio
+        {
+            get
+            {
+                throw new System.NotImplementedException();
+            }
+            set
+            {
+                throw new System.NotImplementedException();
+            }
+        }
+
+        public object Detalle
+        {
+            get
+            {
+                throw new System.NotImplementedException();
+            }
+            set
+            {
+                throw new System.NotImplementedException();
+            }
+        }
+
+        public object Condiciones
+        {
+            get
+            {
+                throw new System.NotImplementedException();
+            }
+            set
+            {
+                throw new System.NotImplementedException();
+            }
+        }
+
+        public void Mensaje(string mensaje)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public bool EstaCargada
+        {
+            get
+            {
+                throw new System.NotImplementedException();
+            }
+            set
+            {
+                throw new System.NotImplementedException();
+            }
+        }
+
+        public void FocoPredeterminado()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        #endregion
 
         public ConsultarMarca()
         {
@@ -334,5 +487,6 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
         }
 
         #endregion
+
     }
 }
