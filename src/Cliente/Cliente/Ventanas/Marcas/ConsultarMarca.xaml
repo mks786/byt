@@ -111,17 +111,17 @@
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblInteresado}"/>
                     </Label>
                     <custom:ByTTextBox MaxLength="255" Grid.Column="1" Grid.Row="3" Name="_txtInteresadoSolicitud" VerticalAlignment="Center" 
-                         Grid.ColumnSpan="7" ></custom:ByTTextBox>
+                         Grid.ColumnSpan="7" Text="{Binding Path=Interesado}"></custom:ByTTextBox>
                     <custom:ByTTextBox MaxLength="40" Grid.Column="8" Grid.Row="3" Name="_txtPais" VerticalAlignment="Center" 
-                         Grid.ColumnSpan="2" Margin="3,0,0,0"></custom:ByTTextBox>
+                         Grid.ColumnSpan="2" Margin="3,0,0,0" Text="{Binding Path=Interesado.Pais}"></custom:ByTTextBox>
                     <custom:ByTTextBox MaxLength="40" Grid.Column="10" Grid.Row="3" Name="_txtCiudad" VerticalAlignment="Center" 
-                         Grid.ColumnSpan="2" Margin="3,0,0,0"></custom:ByTTextBox>
+                         Grid.ColumnSpan="2" Margin="3,0,0,0" Text="{Binding Path=Interesado.Ciudad}"></custom:ByTTextBox>
 
                     <Label Grid.Column="0" Grid.Row="4" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblCorresponsal}"/>
                     </Label>
                     <custom:ByTTextBox MaxLength="255" Grid.Column="1" Grid.Row="4" Name="_txtCorresponsal" VerticalAlignment="Center" 
-                         Grid.ColumnSpan="7" ></custom:ByTTextBox>
+                         Grid.ColumnSpan="7" Text="{Binding Path=CodigoCorresponsal}"></custom:ByTTextBox>
 
                     <Label Grid.Column="8" Grid.Row="4" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblCartaOrden}"/>
@@ -134,7 +134,7 @@
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblLocalidad}"/>
                     </Label>
                     <custom:ByTTextBox MaxLength="100" Grid.Column="1" Grid.Row="5" Name="_txtLocalidad" VerticalAlignment="Center" 
-                         Grid.ColumnSpan="2" ></custom:ByTTextBox>
+                         Grid.ColumnSpan="2" Text=""></custom:ByTTextBox>
 
                     <Label Grid.Column="3" Grid.Row="5" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblPais}"/>
@@ -147,9 +147,9 @@
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblCodIntl}"/>
                     </Label>
                     <custom:ByTTextBox MaxLength="100" Grid.Column="10" Grid.Row="5" Name="_txtCod" VerticalAlignment="Center" 
-                         Margin="3,0,0,0"></custom:ByTTextBox>
+                         Margin="3,0,0,0" Text=""></custom:ByTTextBox>
                     <custom:ByTTextBox MaxLength="100" Grid.Column="11" Grid.Row="5" Name="_txtNum" VerticalAlignment="Center" 
-                         Margin="3,0,0,0"></custom:ByTTextBox>
+                         Margin="3,0,0,0" Text=""></custom:ByTTextBox>
 
                     <Label Grid.Column="0" Grid.Row="6" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblAsocInt}"/>
@@ -170,37 +170,37 @@
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblSector}"/>
                     </Label>
                     <ComboBox Grid.Column="1" Grid.Row="8" Grid.ColumnSpan="3" Name="_cbxSector" Height="20" 
-                              ItemsSource="{Binding}" DisplayMemberPath="Nombre" SelectedIndex="0">
+                              ItemsSource="{Binding}" DisplayMemberPath="Descripcion" SelectedIndex="0">
                     </ComboBox>
 
                     <Label Grid.Column="4" Grid.Row="8" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblTipoReproduccion}"/>
                     </Label>
-                    <ComboBox Grid.Column="5" Grid.Row="8" Grid.ColumnSpan="3" Name="_cbxTipoReprodcuccion" Height="20" 
-                              ItemsSource="{Binding}" DisplayMemberPath="Nombre" SelectedIndex="0">
+                    <ComboBox Grid.Column="5" Grid.Row="8" Grid.ColumnSpan="3" Name="_cbxTipoReproduccion" Height="20" 
+                              ItemsSource="{Binding}" DisplayMemberPath="Descripcion" SelectedIndex="0">
                     </ComboBox>
 
                     <Label Grid.Column="8" Grid.Row="8" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblTipoMarca}"/>
                     </Label>
                     <ComboBox Grid.Column="9" Grid.Row="8" Grid.ColumnSpan="3" Name="_cbxTipoMarca" Height="20" 
-                              ItemsSource="{Binding}" DisplayMemberPath="Nombre" SelectedIndex="0">
+                              ItemsSource="{Binding}" DisplayMemberPath="Descripcion" SelectedIndex="0">
                     </ComboBox>
 
                     <Label Grid.Column="0" Grid.Row="9" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblEtiqueta}"/>
                     </Label>
                     <CheckBox  Name="_chkEtiqueta" Grid.Column="1" Grid.Row="9" VerticalAlignment="Center"
-                         HorizontalAlignment="Center" IsChecked="{Binding Path=BAutorizar}">
+                         HorizontalAlignment="Center" IsChecked="{Binding Path=EtiquetaAutorizar}">
                     </CheckBox>
                     <custom:ByTTextBox MaxLength="2000" Grid.Column="2" Grid.Row="9" Name="_txtEtiqueta" VerticalAlignment="Center" 
-                         Grid.ColumnSpan="6" ></custom:ByTTextBox>
+                         Grid.ColumnSpan="6" Text="{Binding Path=Etiqueta}"></custom:ByTTextBox>
 
                     <Label Grid.Column="0" Grid.Row="10" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblClaseInt}"/>
                     </Label>
                     <custom:ByTTextBox MaxLength="255" Grid.Column="1" Grid.Row="10" Name="_txtClaseInternacional" VerticalAlignment="Center" 
-                         Grid.ColumnSpan="1" ></custom:ByTTextBox>
+                         Grid.ColumnSpan="1" Text=""></custom:ByTTextBox>
 
                     <Button Name="_btnClaseCompleta" VerticalAlignment="Bottom" Grid.Column="2" Grid.Row="10" Grid.ColumnSpan="2" Height="25" Width="90" Click="_btnClaseCompleta_Click">Clase completa</Button>
 
@@ -214,7 +214,7 @@
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblTipoClasNac}"/>
                     </Label>
                     <custom:ByTTextBox MaxLength="255" Grid.Column="7" Grid.Row="10" Name="_txtTipoClaseNacional" VerticalAlignment="Center" 
-                         Grid.ColumnSpan="1" ></custom:ByTTextBox>
+                         Grid.ColumnSpan="1" Text="{Binding Path=TipoCnac}"></custom:ByTTextBox>
 
                     <Label Grid.Column="8" Grid.Row="10" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblReclasif}"/>
@@ -232,7 +232,7 @@
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblDistingue}"/>
                     </Label>
                     <custom:ByTTextBox MaxLength="255" Grid.Column="1" Grid.Row="11" Name="_txtDistingue" VerticalAlignment="Center" 
-                         Grid.ColumnSpan="9" ></custom:ByTTextBox>
+                         Grid.ColumnSpan="9" Text="{Binding Path=Distingue}"></custom:ByTTextBox>
 
                     <Button Name="_btnIngles" VerticalAlignment="Bottom" Grid.Column="10" Grid.Row="11" Grid.ColumnSpan="2" Height="25" Width="90" Click="_btnIngles_Click">Ingles</Button>
 
@@ -240,7 +240,7 @@
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblOtrosImp}"/>
                     </Label>
                     <custom:ByTTextBox MaxLength="255" Grid.Column="1" Grid.Row="12" Name="_txtOtrosImp" VerticalAlignment="Center" 
-                         Grid.ColumnSpan="8" ></custom:ByTTextBox>
+                         Grid.ColumnSpan="8" Text="{Binding Path=Observacion}"></custom:ByTTextBox>
 
                     <Label Grid.Column="9" Grid.Row="12" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblConflicto}"/>
@@ -253,14 +253,14 @@
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblNumInscripcion}"/>
                     </Label>
                     <custom:ByTTextBox MaxLength="255" Grid.Column="1" Grid.Row="13" Name="_txtCodigoInscripcionSolicitud" VerticalAlignment="Center" 
-                         ></custom:ByTTextBox>
+                         Text="{Binding Path=CodigoInscripcion}"></custom:ByTTextBox>
 
                     <Label Grid.Column="2" Grid.Row="13" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblFecha}"/>
                     </Label>
                     <DatePicker Grid.Column="3" Grid.Row="13" HorizontalAlignment="Left"  Name="_dpkFecha" Focusable="False" BorderBrush="{x:Null}" >
                         <DatePicker.SelectedDate>
-                            <Binding Path="Fecha" UpdateSourceTrigger="PropertyChanged"/>
+                            <Binding Path="FechaInscripcion" UpdateSourceTrigger="PropertyChanged"/>
                         </DatePicker.SelectedDate>
                     </DatePicker>
 
@@ -275,7 +275,7 @@
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblPoder}"/>
                     </Label>
                     <ComboBox Grid.Column="8" Grid.Row="13"  Name="_cbxPoder" Height="20" Grid.ColumnSpan="2"
-                              ItemsSource="{Binding}" DisplayMemberPath="Nombre" SelectedIndex="0">
+                              ItemsSource="{Binding}" DisplayMemberPath="NumPoder" SelectedIndex="0">
                     </ComboBox>
 
                     <Label Grid.Column="10" Grid.Row="13" VerticalAlignment="Center" HorizontalContentAlignment="Right">
@@ -287,7 +287,7 @@
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblBusqueda}"/>
                     </Label>
                     <custom:ByTTextBox MaxLength="255" Grid.Column="1" Grid.Row="14" Name="_txtBusqueda" VerticalAlignment="Center" 
-                         Grid.ColumnSpan="11"></custom:ByTTextBox>
+                         Grid.ColumnSpan="11" Text="{Binding Path=CodigoBus}"></custom:ByTTextBox>
 
                     <Separator Grid.Column="0" Grid.Row="15" Grid.ColumnSpan="11" Margin="10 0" VerticalAlignment="Center" />
 
@@ -296,14 +296,15 @@
                     </Label>
                     <DatePicker Grid.Column="1" Grid.Row="16" HorizontalAlignment="Left"  Name="_dpkFechaPrioridad" Focusable="False" BorderBrush="{x:Null}" >
                         <DatePicker.SelectedDate>
-                            <Binding Path="Fecha" UpdateSourceTrigger="PropertyChanged"/>
+                            <Binding Path="FechaPrioridad" UpdateSourceTrigger="PropertyChanged"/>
                         </DatePicker.SelectedDate>
                     </DatePicker>
 
                     <Label Grid.Column="2" Grid.Row="16" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblPrioridad}"/>
                     </Label>
-                    <custom:ByTTextBox MaxLength="255" Grid.Column="3" Grid.Row="16" Name="_txtCodigoPrioridad" VerticalAlignment="Center"></custom:ByTTextBox>
+                    <custom:ByTTextBox MaxLength="255" Grid.Column="3" Grid.Row="16" Name="_txtCodigoPrioridad" VerticalAlignment="Center"
+                                       Text="{Binding Path=CPrioridad}"></custom:ByTTextBox>
 
                     <Label Grid.Column="4" Grid.Row="16" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblPais}"/>
@@ -578,7 +579,7 @@
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblReferencia}"/>
                     </Label>
                     <TextBox Grid.Column="9" Grid.Row="1" Name="_txtPrimeraReferenciaDatos" VerticalAlignment="Center"  
-                          Text="{Binding Path=Asociado}" Grid.ColumnSpan="3" Margin="3"></TextBox>
+                          Text="{Binding Path=PrimeraReferencia}" Grid.ColumnSpan="3" Margin="3"></TextBox>
                     <!--Fin Segunda fila-->
 
                     <!--Tercera Fila-->
@@ -586,12 +587,13 @@
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblInteresado}"/>
                     </Label>
                     <TextBox Grid.Column="1" Grid.Row="5" Grid.ColumnSpan="7" Name="_txtInteresado" VerticalAlignment="Center"  
-                         Margin="3" Text="{Binding Path=Interesado}"></TextBox>
+                         Margin="3"></TextBox>
 
                     <Label Grid.Column="8" Grid.Row="5" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblPoder}"/>
                     </Label>
-                    <ComboBox Grid.Column="9" Grid.Row="5" Grid.ColumnSpan="3" Margin="3" Name="_cbxPoderDatos" Height="20" ItemsSource="{Binding}" >
+                    <ComboBox Grid.Column="9" Grid.Row="5" Grid.ColumnSpan="3" Margin="3" Name="_cbxPoderDatos" Height="20" 
+                              ItemsSource="{Binding}" DisplayMemberPath="NumPoder" SelectedIndex="0">
                     </ComboBox>
                     <!--Fin Tercera Fila-->
 
@@ -600,13 +602,13 @@
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblCorresponsal}"/>
                     </Label>
                     <TextBox Grid.Column="1" Grid.Row="6" Grid.ColumnSpan="7" Name="_txtCorresponsalDatos" VerticalAlignment="Center"  
-                          Text="{Binding Path=Corresponsal}" Margin="3"></TextBox>
+                           Margin="3"></TextBox>
 
                     <Label Grid.Column="8" Grid.Row="6" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblCartaOrden}"/>
                     </Label>
                     <TextBox Grid.Column="9" Grid.Row="6" Grid.ColumnSpan="3" Margin="3" Name="_txtCartaOrdenDatos" VerticalAlignment="Center"  
-                          Text="{Binding Path=Correspondencia}"></TextBox>
+                         ></TextBox>
                     <!--Fin Cuarta Fila-->
 
                     <Separator Margin="10 0" Grid.Column="0" Grid.Row="7" Grid.ColumnSpan="12" VerticalAlignment="Center"/>
@@ -623,7 +625,8 @@
                     <Label Grid.Column="4" Grid.Row="8" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblPais}"/>
                     </Label>
-                    <ComboBox Grid.Column="5" Grid.Row="8" Grid.ColumnSpan="3" Margin="3" Name="_cbxPaisDatos" Height="20" ItemsSource="{Binding}" >
+                    <ComboBox Grid.Column="5" Grid.Row="8" Grid.ColumnSpan="3" Margin="3" Name="_cbxPaisDatos" Height="20" 
+                              ItemsSource="{Binding}" DisplayMemberPath="NombreEspanol" SelectedIndex="0">
                     </ComboBox>
 
                     <Label Grid.Column="8" Grid.Row="8" VerticalAlignment="Center" HorizontalContentAlignment="Right">
@@ -658,7 +661,8 @@
                     <Label Grid.Column="0" Grid.Row="11" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblEtiqueta}"/>
                     </Label>
-                    <CheckBox Margin="3" Grid.Column="1" Grid.ColumnSpan="1" Grid.Row="11" Height="16" VerticalAlignment="Center" Name="checkBox1"/>
+                    <CheckBox Margin="3" Grid.Column="1" Grid.ColumnSpan="1" Grid.Row="11" Height="16" VerticalAlignment="Center" 
+                              Name="checkBox1" IsChecked="{Binding Path=EtiquetaAutorizar}"/>
                     <TextBox Grid.Column="1" Grid.Row="11" Grid.ColumnSpan="11" Margin="25,0,3,0" Name="_txtEtiquetaDatos" VerticalAlignment="Center"  
                           Text="{Binding Path=Etiqueta}"></TextBox>
                     <!--Fin Séptima Fila-->
@@ -674,13 +678,13 @@
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblClaseNac}"/>
                     </Label>
                     <TextBox Grid.Column="4" Grid.Row="12" Grid.ColumnSpan="1" Margin="3" Name="_txtClaseNacionalDatos" VerticalAlignment="Center"  
-                          Text=""></TextBox>
+                          Text="{Binding Path=Nacional.Id}"></TextBox>
 
                     <Label Grid.Column="5" Grid.Row="12" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblClaseInt}"/>
                     </Label>
                     <TextBox Grid.Column="6" Grid.Row="12" Grid.ColumnSpan="1" Margin="3" Name="_txtClaseInternacionalDatos" VerticalAlignment="Center"  
-                          Text=""></TextBox>
+                          Text="{Binding Path=Internacional.Id}"></TextBox>
 
                     <Label Grid.Column="7" Grid.Row="12" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblReclasif}"/>
@@ -700,7 +704,7 @@
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblDistingue}"/>
                     </Label>
                     <TextBox Grid.Column="1" Grid.Row="13" Grid.ColumnSpan="9" Margin="3" Name="_txtDistingueDatos" VerticalAlignment="Center"  
-                          Text=""></TextBox>
+                          Text="{Binding Path=Distingue}"></TextBox>
                     <TextBox Grid.Column="10" Grid.Row="13" Grid.ColumnSpan="2" Margin="3" Name="_txtDistingueInglesDatos" VerticalAlignment="Center"  
                           Text=""></TextBox>
                     <!--Fin Novena Fila-->
@@ -710,7 +714,7 @@
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblComentario}"/>
                     </Label>
                     <TextBox Grid.Column="1" Grid.Row="14" Grid.ColumnSpan="8" Margin="3" Name="_txtComentarioDatos" VerticalAlignment="Center"  
-                          Text=""></TextBox>
+                          Text="{Binding Path=Observacion}"></TextBox>
                     <Label Grid.Column="9" Grid.Row="14" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblConflicto}"/>
                     </Label>
@@ -773,24 +777,27 @@
                             <TextBlock Name="_txbNoSolicitud" Text="{x:Static recurso:Etiquetas.btnNoSolicitud}"/>
                         </Button>
                         <TextBox Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="1" Margin="3" Name="_txtCodigoInscripcion" VerticalAlignment="Center"  
-                          Text=""></TextBox>
+                          Text="{Binding Path=CodigoInscripcion}"></TextBox>
                         <TextBox Grid.Column="2" Grid.Row="0" Grid.ColumnSpan="1" Margin="3" Name="_txtFechaInscripcion" VerticalAlignment="Center"  
-                          Text=""></TextBox>
+                          Text="{Binding Path=FechaInscripcion}"></TextBox>
 
                         <Label Grid.Column="0" Grid.Row="1" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblOrdPublicacion}"/>
                         </Label>
-                        <ComboBox Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2" Margin="3" Name="_cbxOrdenPublicacion" Height="20" ItemsSource="{Binding}" >
+                        <ComboBox Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2" Margin="3" Name="_cbxOrdenPublicacion" Height="20" 
+                                  ItemsSource="{Binding}" DisplayMemberPath="NombreEspanol" SelectedIndex="0">
                         </ComboBox>
                         <Label Grid.Column="0" Grid.Row="2" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblBolPublicacion}"/>
                         </Label>
-                        <ComboBox Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="2" Margin="3" Name="_cbxBoletinPublicacion" Height="20" ItemsSource="{Binding}" >
+                        <ComboBox Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="2" Margin="3" Name="_cbxBoletinPublicacion" Height="20" 
+                                  ItemsSource="{Binding}" DisplayMemberPath="Id" SelectedIndex="0">
                         </ComboBox>
                         <Label Grid.Column="0" Grid.Row="3" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblBolConcesion}"/>
                         </Label>
-                        <ComboBox Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="2" Margin="3" Name="_cbxBoletinConcesion" Height="20" ItemsSource="{Binding}" >
+                        <ComboBox Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="2" Margin="3" Name="_cbxBoletinConcesion" Height="20" 
+                                  ItemsSource="{Binding}" DisplayMemberPath="Id" SelectedIndex="0" >
                         </ComboBox>
 
 
@@ -820,7 +827,7 @@
                     <Label Grid.Column="6" Grid.Row="18" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblDetalle}"/>
                     </Label>
-                    <ComboBox Grid.Column="7" Grid.Row="18" Grid.ColumnSpan="2" Margin="3" Name="_cbxDetalle" Height="20" ItemsSource="{Binding}" >
+                    <ComboBox Grid.Column="7" Grid.Row="18" Grid.ColumnSpan="2" Margin="3" Name="_cbxDetalleDatos" Height="20" ItemsSource="{Binding}" >
                     </ComboBox>
                     <!--Fin Duodécima Fila-->
                     <Separator Margin="10 0" Grid.Column="6" Grid.Row="18" Grid.ColumnSpan="3" VerticalAlignment="bottom"/>
@@ -841,14 +848,14 @@
                     </Label>
                     <CheckBox Margin="3" Grid.Column="8" Grid.ColumnSpan="1" Grid.Row="20" Height="16" VerticalAlignment="Center" Name="_checkBoxInstruccionesRenovacion"/>
                     <!--Fin Fila Trece-->
-                    
+
                     <!--Fila Catorce-->
                     <Label Grid.Column="6" Grid.Row="21" Grid.ColumnSpan="2" VerticalAlignment="Center">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblCondiciones}"/>
                     </Label>
                     <ComboBox Grid.Column="7" Grid.Row="21" Grid.ColumnSpan="2" Margin="3" Name="_cbxCondiciones" Height="20" ItemsSource="{Binding}" >
                     </ComboBox>
-                    
+
                     <!--Nuevo-->
                     <Label Grid.Column="9" Grid.Row="21" Grid.ColumnSpan="1" VerticalAlignment="Center">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblExpCamPend}"/>
@@ -878,7 +885,7 @@
                         <TextBlock Name="_txbBusquedas" Text="{x:Static recurso:Etiquetas.btnBusqueda}"/>
                     </Button>
                     <!--Fin Fila Quince-->
-                    
+
                     <!--Fila Dieciseis-->
                     <Button Grid.Column="6" Grid.Row="23" Grid.ColumnSpan="1" Name="_btnGenCartel" Margin="3"
                             Height="25">

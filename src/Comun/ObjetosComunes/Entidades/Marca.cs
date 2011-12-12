@@ -55,6 +55,9 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         private Pais _pais;
         private Servicio _servicio;
         private Poder _poder;
+        private bool _etiquetaAutorizar;
+        private string _cPrioridad;
+
 
         #endregion
 
@@ -501,6 +504,35 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
             set { _poder = value; }
         }
 
+        /// <summary>
+        /// Propiedad que asigna u obtiene el Check de etiqueta
+        /// </summary>
+        public virtual bool EtiquetaAutorizar
+        {
+            get
+            {
+                if (this.TieneEtiqueta.Equals("Si"))
+                    return true;
+                else
+                    return false;
+            }
+            set
+            {
+                if (value)
+                    this.TieneEtiqueta = "Si";
+                else
+                    this.TieneEtiqueta = "No";
+            }
+        }
+
+        /// <summary>
+        ///Propiedad que asigna u obtiene el CPrioridad
+        /// </summary>
+        public virtual string CPrioridad
+        {
+            get { return _cPrioridad; }
+            set { _cPrioridad = value; }
+        }
         #endregion
     }
 }
