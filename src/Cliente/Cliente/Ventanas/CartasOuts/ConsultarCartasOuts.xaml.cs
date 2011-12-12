@@ -19,8 +19,6 @@ namespace Trascend.Bolet.Cliente.Ventanas.CartasOuts
 
         #region IConsultarCartas
 
-
-
         public object Resultados
         {
             get { return this._lstResultados.DataContext; }

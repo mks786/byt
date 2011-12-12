@@ -128,6 +128,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
+                Mouse.OverrideCursor = Cursors.Wait;
                 bool consultaResumen = false;
                 int filtroValido = 0;//Variable utilizada para limitar a que el filtro se ejecute solo cuando 
                 //dos filtros sean utilizados
@@ -184,6 +185,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             {
                 logger.Error(ex.Message);
                 this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
+            }
+            finally
+            {
+                Mouse.OverrideCursor = null;
             }
         }
 

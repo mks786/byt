@@ -132,6 +132,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.CartasOuts
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
+                Mouse.OverrideCursor = Cursors.Wait;
 
                 CartaOut cartaAuxiliar = new CartaOut();
                 cartaAuxiliar.Status = 'T';
@@ -159,6 +160,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.CartasOuts
             {
                 logger.Error(ex.Message);
                 this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
+            }
+            finally
+            {
+                Mouse.OverrideCursor = null;
             }
         }
 

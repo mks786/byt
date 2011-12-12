@@ -1166,7 +1166,7 @@
                         </Style.Triggers>
                     </Style>
                 </Button.Style>
-                <TextBlock Name="_txbAceptar" Text="{x:Static recurso:Etiquetas.btnAceptar}"/>
+                <TextBlock Name="_txbAceptar" Text="{x:Static recurso:Etiquetas.btnModificar}"/>
             </Button>
             <Button Name="_btnCancelar" VerticalAlignment="Bottom" Height="25" Width="90" Click="_btnCancelar_Click">Cancelar</Button>
         </WrapPanel>

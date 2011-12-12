@@ -6,6 +6,7 @@ namespace Trascend.Bolet.Cliente.Contratos.CartasOuts
     interface IConsultarCartasOuts : IPaginaBase
     {
         string Id { get; }
+
         object CartaSeleccionado { get; }
 
         object Resultados { get; set; }
