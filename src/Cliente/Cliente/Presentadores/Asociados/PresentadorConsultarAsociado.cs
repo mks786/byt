@@ -17,7 +17,6 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
 {
     class PresentadorConsultarAsociado : PresentadorBase
     {
-
         private IConsultarAsociado _ventana;
         private IAsociadoServicios _asociadoServicios;
         private IDetallePagoServicios _detallePagoServicios;

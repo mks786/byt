@@ -1163,7 +1163,7 @@
     <value>Relación</value>
   </data>
   <data name="titleTransferirPlantilla" xml:space="preserve">
-    <value>TransferirPlantilla</value>
+    <value>Transferir Plantilla</value>
   </data>
   <data name="titleConsultarMarcas" xml:space="preserve">
     <value>Consultar Marcas</value>
@@ -1389,6 +1389,9 @@
   </data>
   <data name="lblComentario" xml:space="preserve">
     <value>Comentario:</value>
+  </data>
+  <data name="titleConsultarMarca" xml:space="preserve">
+    <value>Consultar Marca</value>
   </data>
   <data name="titleAgregarMarca" xml:space="preserve">
     <value>Agregar Marca</value>

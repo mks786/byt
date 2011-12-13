@@ -205,7 +205,9 @@ namespace Trascend.Bolet.Cliente.Presentadores
                 }
 
             return retorno;
-        }        /// <summary>
+        }
+        
+        /// <summary>
         /// Método que busca un Asociado dentro de una lista de Asociados
         /// </summary>
         /// <param name="asociados">Lista de boletines</param>
@@ -879,6 +881,52 @@ namespace Trascend.Bolet.Cliente.Presentadores
             }
 
             return trackingCorrecto;
+        }
+
+        /// <summary>
+        /// Método que busca un Agente dentro de una lista de Agentes
+        /// </summary>
+        /// <param name="agentes">Lista de Agentes</param>
+        /// <param name="agenteBuscado">Agente a buscar</param>
+        /// <returns>Agente dentro de la lista</returns>
+        public Agente BuscarAgente(IList<Agente> agentes, Agente agenteBuscado)
+        {
+            Agente retorno = null;
+
+            if (agenteBuscado != null)
+                foreach (Agente agente in agentes)
+                {
+                    if (agente.Id.Equals(agenteBuscado.Id))
+                    {
+                        retorno = agente;
+                        break;
+                    }
+                }
+
+            return retorno;
+        }
+
+        /// <summary>
+        /// Método que busca un Poder dentro de una lista de Poderes
+        /// </summary>
+        /// <param name="poderes">Lista de Poderes</param>
+        /// <param name="poderBuscado">Poder a buscar</param>
+        /// <returns>Poder dentro de la lista</returns>
+        public Poder BuscarPoder(IList<Poder> poderes, Poder poderBuscado)
+        {
+            Poder retorno = null;
+
+            if (poderBuscado != null)
+                foreach (Poder poder in poderes)
+                {
+                    if (poder.Id.Equals(poderBuscado.Id))
+                    {
+                        retorno = poder;
+                        break;
+                    }
+                }
+
+            return retorno;
         }
     }
 }

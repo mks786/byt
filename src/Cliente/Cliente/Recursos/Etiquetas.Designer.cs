@@ -3553,6 +3553,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Consultar Marca.
+        /// </summary>
+        public static string titleConsultarMarca {
+            get {
+                return ResourceManager.GetString("titleConsultarMarca", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Consultar Marcas.
         /// </summary>
         public static string titleConsultarMarcas {
@@ -3877,7 +3886,7 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TransferirPlantilla.
+        ///   Looks up a localized string similar to Transferir Plantilla.
         /// </summary>
         public static string titleTransferirPlantilla {
             get {

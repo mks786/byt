@@ -7,15 +7,39 @@ namespace Trascend.Bolet.Cliente.Contratos.Marcas
     {
         object Marca { get; set; }
 
-        string IdAsociadoFiltrar { get; }
+        string IdAsociadoSolicitudFiltrar { get; }
 
-        string NombreAsociadoFiltrar { get; }
+        string IdAsociadoSDatosFiltrar { get; }
 
-        string NombreAsociado { get; set; }
+        string NombreAsociadoSolicitudFiltrar { get; }
 
-        object Asociados { get; set; }
+        string NombreAsociadoDatosFiltrar { get; }
 
-        object Asociado { get; set; }
+        string NombreAsociadoSolicitud { get; set; }
+
+        string IdInteresadoSolicitudFiltrar { get; }
+
+        string IdInteresadoDatosFiltrar { get; }
+
+        string NombreInteresadoSolicitudFiltrar { get; }
+
+        string NombreInteresadoDatosFiltrar { get; }
+
+        string NombreInteresadoSolicitud { get; set; }
+
+        string NombreInteresadoDatos { get; set; }
+
+        object AsociadosSolicitud { get; set; }
+
+        object AsociadoSolicitud { get; set; }
+
+        object AsociadosDatos { get; set; }
+
+        object AsociadoDatos { get; set; }
+
+        object Interesados { get; set; }
+
+        object Interesado { get; set; }
 
         object PoderesSolicitud { get; set; }
 
@@ -53,10 +77,15 @@ namespace Trascend.Bolet.Cliente.Contratos.Marcas
 
         object Condicion { get; set; }
 
-        bool HabilitarCampos { set; }
+        object PaisSolicitud { get; set; }
 
-        string TextoBotonModificar { get; set; }     
+        object PaisesSolicitud { get; set; }
 
         void Mensaje(string mensaje);
+
+        string TextoBotonModificar { get; set; }
+
+        bool HabilitarCampos { set; }
+
     }
 }
