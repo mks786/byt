@@ -30,9 +30,48 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
+                ComandoBase<bool> comandoInteresadoContador = null;
+
+                // si es una insercion
+                if (marca.Operacion.Equals("CREATE"))
+                {
+                    ComandoBase<Contador> comandoContadorInteresadoProximoValor = FabricaComandosContador.ObtenerComandoConsultarPorId("MYP_MARCAS");
+                    comandoContadorInteresadoProximoValor.Ejecutar();
+                    Contador contador = comandoContadorInteresadoProximoValor.Receptor.ObjetoAlmacenado;
+                    marca.Id = contador.ProximoValor++;
+                    comandoInteresadoContador = FabricaComandosContador.ObtenerComandoInsertarOModificar(contador);
+                }
+
+
+                Auditoria auditoria = new Auditoria();
+                ComandoBase<ContadorAuditoria> comandoContadorAuditoriaPoximoValor = FabricaComandosContadorAuditoria.ObtenerComandoConsultarPorId("SEG_AUDITORIA");
+
+                comandoContadorAuditoriaPoximoValor.Ejecutar();
+                ContadorAuditoria contadorAuditoria = comandoContadorAuditoriaPoximoValor.Receptor.ObjetoAlmacenado;
+
+
+                auditoria.Id = contadorAuditoria.ProximoValor++;
+                auditoria.Usuario = ObtenerUsuarioPorHash(hash).Id;
+                auditoria.Fecha = System.DateTime.Now;
+                auditoria.Operacion = marca.Operacion;
+                auditoria.Tabla = "MYP_MARCAS";
+                auditoria.Fk = marca.Id;
+
                 ComandoBase<bool> comando = FabricaComandosMarca.ObtenerComandoInsertarOModificar(marca);
+                ComandoBase<bool> comandoAuditoria = FabricaComandosAuditoria.ObtenerComandoInsertarOModificar(auditoria);
+                ComandoBase<bool> comandoAuditoriaContador = FabricaComandosContadorAuditoria.ObtenerComandoInsertarOModificar(contadorAuditoria);
+
                 comando.Ejecutar();
-                exitoso = true;
+                exitoso = comando.Receptor.ObjetoAlmacenado;
+
+                if (exitoso)
+                {
+                    comandoAuditoria.Ejecutar();
+                    comandoAuditoriaContador.Ejecutar();
+
+                    if (comandoInteresadoContador != null)
+                        comandoInteresadoContador.Ejecutar();
+                }
 
                 #region trace
                 if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))

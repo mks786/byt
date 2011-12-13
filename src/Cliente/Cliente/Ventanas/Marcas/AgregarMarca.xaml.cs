@@ -244,6 +244,18 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             set { this._cbxCondiciones.SelectedItem = value; }
         }
 
+        public object PaisesSolicitud
+        {
+            get { return this._cbxPaisPrioridadSolicitud.DataContext; }
+            set { this._cbxPaisPrioridadSolicitud.DataContext = value; }
+        }
+
+        public object PaisSolicitud
+        {
+            get { return this._cbxPaisPrioridadSolicitud.SelectedItem; }
+            set { this._cbxPaisPrioridadSolicitud.SelectedItem = value; }
+        }
+
         public bool EstaCargada
         {
             get { return this._cargada; }

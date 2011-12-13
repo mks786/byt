@@ -57,7 +57,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         private Poder _poder;
         private bool _etiquetaAutorizar;
         private string _cPrioridad;
-
+        private string _operacion;
 
         #endregion
 
@@ -533,6 +533,17 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
             get { return _cPrioridad; }
             set { _cPrioridad = value; }
         }
+
+        /// <summary>
+        /// Propiedad que asigna u obtiene la opreacion que se va a realizar con este objeto
+        /// sea CREATE, MODIFY o DELETE
+        /// </summary>
+        public virtual string Operacion
+        {
+            get { return _operacion; }
+            set { _operacion = value; }
+        }
+
         #endregion
     }
 }

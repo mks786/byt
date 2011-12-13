@@ -486,4 +486,7 @@
   <data name="ErrorTransferenciaPlantilla" xml:space="preserve">
     <value>Ha ocurrido un error al transferir las plantillas</value>
   </data>
+  <data name="MarcaInsertada" xml:space="preserve">
+    <value>Marca insertada con éxito</value>
+  </data>
 </root>

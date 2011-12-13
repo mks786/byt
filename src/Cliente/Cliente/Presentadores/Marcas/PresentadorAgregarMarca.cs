@@ -100,42 +100,40 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
         {
             try
             {
-                //bool tracking = true;
 
-                //if (null != (((Medio)this._ventana.Medio).Formato) && (!String.IsNullOrEmpty(((Carta)this._ventana.Carta).Tracking)))
-                //    tracking = this.verificarFormato(((Medio)this._ventana.Medio).Formato, ((Carta)this._ventana.Carta).Tracking);
-                //if (null != (((Medio)this._ventana.MedioTrackingConfirmacion)) && (null != (((Medio)this._ventana.MedioTrackingConfirmacion).Formato)) && (!String.IsNullOrEmpty(((Carta)this._ventana.Carta).AnexoTracking)))
-                //    tracking = this.verificarFormato(((Medio)this._ventana.MedioTrackingConfirmacion).Formato, ((Carta)this._ventana.Carta).AnexoTracking);
 
-                //if (tracking)
-                //{
-                //    Carta carta = (Carta)this._ventana.Carta;
-                //    carta.Operacion = "CREATE";
-                //    if (null != this._ventana.Departamento)
-                //        carta.Departamento = !((Departamento)this._ventana.Departamento).Id.Equals("NGN") ? (Departamento)this._ventana.Departamento : null;
-                //    if (null != this._ventana.Asociado)
-                //        carta.Asociado = !((Asociado)this._ventana.Asociado).Id.Equals("NGN") ? (Asociado)this._ventana.Asociado : null;
-                //    if (null != this._ventana.Persona)
-                //        carta.Persona = !((Contacto)this._ventana.Persona).Id.Equals("NGN") ? ((Contacto)this._ventana.Persona).Nombre : null;
-                //    if (null != this._ventana.Resumen)
-                //        carta.Resumen = !((Resumen)this._ventana.Resumen).Id.Equals("NGN") ? ((Resumen)this._ventana.Resumen) : null;
+                Marca marca = (Marca)this._ventana.Marca;
 
-                //    carta.Medio = ((Medio)this._ventana.Medio).Id;
-                //    carta.AnexoMedio = ((Medio)this._ventana.MedioTrackingConfirmacion).Id;
-                //    carta.Receptor = ((Usuario)this._ventana.Receptor).Iniciales;
+                marca.Operacion = "CREATE";
 
-                //    if (!this._cartaServicios.VerificarExistencia(carta))
-                //    {
-                //        bool exitoso = this._cartaServicios.InsertarOModificar(carta, UsuarioLogeado.Hash);
+                if (null != this._ventana.Agente)
+                    marca.Agente = !((Agente)this._ventana.Agente).Id.Equals("NGN") ? (Agente)this._ventana.Agente : null;
 
-                //        if (exitoso)
-                //            this.Navegar(Recursos.MensajesConElUsuario.CartaInsertada, false);
-                //    }
-                //    else
-                //    {
-                //        this._ventana.Mensaje(Recursos.MensajesConElUsuario.ErrorAgenteRepetido);
-                //    }
-                //}
+                if (null != this._ventana.AsociadoSolicitud)
+                    marca.Asociado = !((Asociado)this._ventana.AsociadoSolicitud).Id.Equals("NGN") ? (Asociado)this._ventana.AsociadoSolicitud : null;
+
+                if (null != this._ventana.BoletinConcesion)
+                    marca.BoletinConcesion = !((Boletin)this._ventana.BoletinConcesion).Id.Equals("NGN") ? (Boletin)this._ventana.BoletinConcesion : null;
+
+                if (null != this._ventana.BoletinPublicacion)
+                    marca.BoletinPublicacion = !((Boletin)this._ventana.BoletinPublicacion).Id.Equals("NGN") ? (Boletin)this._ventana.BoletinPublicacion : null;
+
+                if (null != this._ventana.InteresadoSolicitud)
+                    marca.Interesado = !((Interesado)this._ventana.InteresadoSolicitud).Id.Equals("NGN") ? ((Interesado)this._ventana.InteresadoSolicitud) : null;
+
+                if (null != this._ventana.Servicio)
+                    marca.Servicio = !((Servicio)this._ventana.Servicio).Id.Equals("NGN") ? ((Servicio)this._ventana.Servicio) : null;
+
+                if (null != this._ventana.PoderSolicitud)
+                    marca.Poder = !((Poder)this._ventana.PoderSolicitud).Id.Equals("NGN") ? ((Poder)this._ventana.PoderSolicitud) : null;
+
+                if (null != this._ventana.PaisesSolicitud)
+                    marca.Pais = !((Pais)this._ventana.PaisesSolicitud).Id.Equals("NGN") ? ((Pais)this._ventana.PaisesSolicitud) : null;
+
+                bool exitoso = this._marcaServicios.InsertarOModificar(marca, UsuarioLogeado.Hash);
+
+                if (exitoso)
+                    this.Navegar(Recursos.MensajesConElUsuario.MarcaInsertada, false);
 
             }
             catch (ApplicationException ex)
@@ -166,7 +164,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
         {
             try
             {
-                if (null != (Asociado)this._ventana.AsociadoSolicitud)
+                if ((Asociado)this._ventana.AsociadoSolicitud != null)
                 {
                     Asociado asociado = this._asociadoServicios.ConsultarAsociadoConTodo((Asociado)this._ventana.AsociadoSolicitud);
                     this._ventana.NombreAsociadoSolicitud = ((Asociado)this._ventana.AsociadoSolicitud).Nombre;

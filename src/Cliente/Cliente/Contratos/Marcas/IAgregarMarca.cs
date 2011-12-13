@@ -82,5 +82,9 @@ namespace Trascend.Bolet.Cliente.Contratos.Marcas
         object Condiciones { get; set; }
 
         object Condicion { get; set; }
+
+        object PaisesSolicitud { get; set; }
+
+        object PaisSolicitud { get; set; }
     }
 }
