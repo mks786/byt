@@ -3211,6 +3211,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Agregar Marca.
+        /// </summary>
+        public static string titleAgregarMarca {
+            get {
+                return ResourceManager.GetString("titleAgregarMarca", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Agregar Medio.
         /// </summary>
         public static string titleAgregarMedio {

@@ -11,7 +11,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
     /// </summary>
     public partial class AgregarMarca : Page, IAgregarMarca
     {
-        //private PresentadorAgregarAsociado _presentador;
+        private PresentadorAgregarMarca _presentador;
         private bool _cargada;
 
         #region IAgregarMarca
@@ -28,7 +28,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             get { return this._txtIdAsociadoSolicitud.Text; }
         }
 
-        public string IdAsociadoSDatosFiltrar
+        public string IdAsociadoDatosFiltrar
         {
             get { return this._txtIdAsociadoDatos.Text; }
         }
@@ -55,16 +55,28 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             set { this._txtAsociadoDatos.Text = value; }
         }
 
-        public object Asociados
+        public object AsociadosSolicitud
         {
             get { return this._lstAsociadosSolicitud.DataContext; }
             set { this._lstAsociadosSolicitud.DataContext = value; }
         }
 
-        public object Asociado
+        public object AsociadoSolicitud
         {
             get { return this._lstAsociadosSolicitud.SelectedItem; }
             set { this._lstAsociadosSolicitud.SelectedItem = value; }
+        }
+
+        public object AsociadosDatos
+        {
+            get { return this._lstAsociadosDatos.DataContext; }
+            set { this._lstAsociadosDatos.DataContext = value; }
+        }
+
+        public object AsociadoDatos
+        {
+            get { return this._lstAsociadosDatos.SelectedItem; }
+            set { this._lstAsociadosDatos.SelectedItem = value; }
         }
 
 
@@ -73,7 +85,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             get { return this._txtIdInteresadoSolicitud.Text; }
         }
 
-        public string IdInteresadoSDatosFiltrar
+        public string IdInteresadoDatosFiltrar
         {
             get { return this._txtIdInteresadoDatos.Text; }
         }
@@ -100,16 +112,28 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             set { this._txtInteresadoDatos.Text = value; }
         }
 
-        public object Interesados
+        public object InteresadosSolicitud
         {
             get { return this._lstInteresadosSolicitud.DataContext; }
             set { this._lstInteresadosSolicitud.DataContext = value; }
         }
 
-        public object Interesado
+        public object InteresadoSolicitud
         {
             get { return this._lstInteresadosSolicitud.SelectedItem; }
             set { this._lstInteresadosSolicitud.SelectedItem = value; }
+        }
+
+        public object InteresadosDatos
+        {
+            get { return this._lstInteresadosDatos.DataContext; }
+            set { this._lstInteresadosDatos.DataContext = value; }
+        }
+
+        public object InteresadoDatos
+        {
+            get { return this._lstInteresadosDatos.SelectedItem; }
+            set { this._lstInteresadosDatos.SelectedItem = value; }
         }
 
         public object PoderesSolicitud
@@ -237,7 +261,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
         {
             InitializeComponent();
             //this._cargada = false;
-            //this._presentador = new PresentadorAgregarAsociado(this);
+            this._presentador = new PresentadorAgregarMarca(this);
         }
 
         #region Eventos generales
@@ -280,7 +304,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
 
         private void _lstAsociadosSolicitud_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            //this._presentador.CambiarAsociado();
+            this._presentador.CambiarAsociadoSolicitud();
             this._lstAsociadosSolicitud.Visibility = System.Windows.Visibility.Collapsed;
             this._btnConsultarAsociadoSolicitud.Visibility = System.Windows.Visibility.Collapsed;
             this._txtIdAsociadoSolicitud.Visibility = System.Windows.Visibility.Collapsed;
@@ -293,7 +317,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
 
         private void _btnConsultarAsociadoSolicitud_Click(object sender, RoutedEventArgs e)
         {
-            //this._presentador.BuscarAsociado();
+            this._presentador.BuscarAsociado(0);
         }
 
         private void _txtInteresadoSolicitud_GotFocus(object sender, RoutedEventArgs e)
@@ -311,12 +335,12 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
 
         private void _btnConsultarInteresadoSolicitud_Click(object sender, RoutedEventArgs e)
         {
-            //this._presentador.BuscarInteresado();
+            this._presentador.BuscarInteresado(0);
         }
 
         private void _lstInteresadosSolicitud_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            //this._presentador.CambiarInteresado();
+            this._presentador.CambiarInteresadoSolicitud();
             this._lstInteresadosSolicitud.Visibility = System.Windows.Visibility.Collapsed;
             this._btnConsultarInteresadoSolicitud.Visibility = System.Windows.Visibility.Collapsed;
             this._txtIdInteresadoSolicitud.Visibility = System.Windows.Visibility.Collapsed;
@@ -375,7 +399,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
 
         private void _lstAsociadosDatos_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            //this._presentador.CambiarAsociado();
+            this._presentador.CambiarAsociadoDatos();
             this._lstAsociadosDatos.Visibility = System.Windows.Visibility.Collapsed;
             this._btnConsultarAsociadoDatos.Visibility = System.Windows.Visibility.Collapsed;
             this._txtIdAsociadoDatos.Visibility = System.Windows.Visibility.Collapsed;
@@ -388,7 +412,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
 
         private void _btnConsultarAsociadoDatos_Click(object sender, RoutedEventArgs e)
         {
-            //this._presentador.BuscarAsociado();
+            this._presentador.BuscarAsociado(1);
         }
 
         private void _txtInteresadoDatos_GotFocus(object sender, RoutedEventArgs e)
@@ -406,12 +430,12 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
 
         private void _btnConsultarInteresadoDatos_Click(object sender, RoutedEventArgs e)
         {
-            //this._presentador.BuscarInteresado();
+            this._presentador.BuscarInteresado(1);
         }
 
         private void _lstInteresadosDatos_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            //this._presentador.CambiarInteresado();
+            this._presentador.CambiarInteresadoDatos();
             this._lstInteresadosDatos.Visibility = System.Windows.Visibility.Collapsed;
             this._btnConsultarInteresadoDatos.Visibility = System.Windows.Visibility.Collapsed;
             this._txtIdInteresadoDatos.Visibility = System.Windows.Visibility.Collapsed;
@@ -422,7 +446,5 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
         }
 
         #endregion
-
-
     }
 }

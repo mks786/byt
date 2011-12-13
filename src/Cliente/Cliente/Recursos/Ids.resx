@@ -150,6 +150,9 @@
   <data name="AgregarJustificacion" xml:space="preserve">
     <value>FAC_CONJUST</value>
   </data>
+  <data name="AgregarMarca" xml:space="preserve">
+    <value>SEGTUSU</value>
+  </data>
   <data name="AgregarNacional" xml:space="preserve">
     <value>MYPTNAC</value>
   </data>

@@ -204,6 +204,7 @@
     <Compile Include="Presentadores\EntradasAlternas\PresentadorAgregarEntradaAlterna.cs" />
     <Compile Include="Presentadores\EntradasAlternas\PresentadorConsultarEntradaAlterna.cs" />
     <Compile Include="Presentadores\EntradasAlternas\PresentadorConsultarEntradasAlternas.cs" />
+    <Compile Include="Presentadores\Marcas\PresentadorAgregarMarca.cs" />
     <Compile Include="Presentadores\Marcas\PresentadorConsultarMarca.cs" />
     <Compile Include="Presentadores\Marcas\PresentadorConsultarMarcas.cs" />
     <Compile Include="Presentadores\Remitentes\PresentadorAgregarRemitente.cs" />

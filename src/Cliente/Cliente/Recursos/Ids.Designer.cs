@@ -160,6 +160,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to SEGTUSU.
+        /// </summary>
+        public static string AgregarMarca {
+            get {
+                return ResourceManager.GetString("AgregarMarca", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to MYPTNAC.
         /// </summary>
         public static string AgregarNacional {

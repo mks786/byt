@@ -1390,4 +1390,7 @@
   <data name="lblComentario" xml:space="preserve">
     <value>Comentario:</value>
   </data>
+  <data name="titleAgregarMarca" xml:space="preserve">
+    <value>Agregar Marca</value>
+  </data>
 </root>

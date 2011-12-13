@@ -27,7 +27,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Agentes
         public PresentadorAgregarAgente(IAgregarAgente ventana)
         {
             try
-            {
+            { 
                 this._ventana = ventana;
                 this._ventana.Agente = new Agente();
                 this._agenteServicios = (IAgenteServicios)Activator.GetObject(typeof(IAgenteServicios),
