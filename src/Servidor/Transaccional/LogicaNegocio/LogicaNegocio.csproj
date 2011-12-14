@@ -84,6 +84,8 @@
     <Compile Include="Controladores\ControladorListaDatosValores.cs" />
     <Compile Include="Controladores\ControladorListaDatosDominio.cs" />
     <Compile Include="Controladores\ControladorMarca.cs" />
+    <Compile Include="Controladores\ControladorServicio.cs" />
+    <Compile Include="Controladores\ControladorTipoEstado.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -1034,7 +1034,8 @@
                     <Label Grid.Column="6" Grid.Row="17" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblSituacion}"/>
                     </Label>
-                    <ComboBox IsEnabled="False" Grid.Column="7" Grid.Row="17" Grid.ColumnSpan="2" Margin="3" Name="_cbxSituacion" Height="20" ItemsSource="{Binding}" >
+                    <ComboBox IsEnabled="False" Grid.Column="7" Grid.Row="17" Grid.ColumnSpan="2" Margin="3" Name="_cbxSituacion" Height="20" 
+                              ItemsSource="{Binding}" DisplayMemberPath="Descripcion" SelectedIndex="0">
                     </ComboBox>
 
                     <!--Fin Undécima Fila-->
@@ -1043,7 +1044,8 @@
                     <Label Grid.Column="6" Grid.Row="18" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblDetalle}"/>
                     </Label>
-                    <ComboBox IsEnabled="False" Grid.Column="7" Grid.Row="18" Grid.ColumnSpan="2" Margin="3" Name="_cbxDetalleDatos" Height="20" ItemsSource="{Binding}" >
+                    <ComboBox IsEnabled="False" Grid.Column="7" Grid.Row="18" Grid.ColumnSpan="2" Margin="3" Name="_cbxDetalleDatos" Height="20" 
+                              ItemsSource="{Binding}" DisplayMemberPath="Descripcion" SelectedIndex="0">
                     </ComboBox>
                     <!--Fin Duodécima Fila-->
                     <Separator Margin="10 0" Grid.Column="6" Grid.Row="18" Grid.ColumnSpan="3" VerticalAlignment="bottom"/>

@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+                   assembly="Trascend.Bolet.ObjetosComunes"
+                   namespace="Trascend.Bolet.ObjetosComunes.Entidades">
+
+  <class name="TipoEstado" table="MYP_TESTADOS">
+    
+    <id name="Id" column="CTESTADO" type="string"/>
+
+    <property name="Descripcion" column="XTESTADO" type="string"/>
+    <property name="DescripcionInternacional" column="XTESTADO_IN" type="string"/>
+    <property name="EstadoP" column="XESTADO_P" type="string"/>
+    <property name="EstadoPInternacional" column="XESTADO_P_IN" type="string"/>
+    
+  </class>
+</hibernate-mapping>
+
+
+

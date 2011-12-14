@@ -410,9 +410,9 @@ namespace Trascend.Bolet.AccesoDatos.Fabrica
         }
 
         /// <summary>
-        /// Método que devuelve el DaoEntradaAlterna
+        /// Método que devuelve el ListaDatosDominio
         /// </summary>
-        /// <returns>IDaoEntradaAlterna</returns>
+        /// <returns>IDaoListaDatosDominio</returns>
         public override IDaoListaDatosDominio ObtenerDaoListaDatosDominio()
         {
             return new DaoListaDatosDominioNHibernate();
@@ -425,6 +425,24 @@ namespace Trascend.Bolet.AccesoDatos.Fabrica
         public override IDaoMarca ObtenerDaoMarca()
         {
             return new DaoMarcaNHibernate();
+        }
+
+        /// <summary>
+        /// Método que devuelve el DaoServicio
+        /// </summary>
+        /// <returns>IDaoServicio</returns>
+        public override IDaoServicio ObtenerDaoServicio()
+        {
+            return new DaoServicioNHibernate();
+        }
+
+        /// <summary>
+        /// Método que devuelve el DaoTipoEstado
+        /// </summary>
+        /// <returns>IDaoTipoEstado</returns>
+        public override IDaoTipoEstado ObtenerDaoTipoEstado()
+        {
+            return new DaoTipoEstadoNHibernate();
         }
     }
 }

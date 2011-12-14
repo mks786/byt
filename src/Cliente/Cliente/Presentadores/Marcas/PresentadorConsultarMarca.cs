@@ -33,6 +33,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
         private IPaisServicios _paisServicios;
         private IListaDatosDominioServicios _listaDatosDominioServicios;
         private IInteresadoServicios _interesadoServicios;
+        private IServicioServicios _servicioServicios;
+        private ITipoEstadoServicios _tipoEstadoServicios;
 
         private IList<Asociado> _asociados;
         private IList<Interesado> _interesados;
@@ -65,6 +67,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["ListaDatosDominioServicios"]);
                 this._interesadoServicios = (IInteresadoServicios)Activator.GetObject(typeof(IInteresadoServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["InteresadoServicios"]);
+                this._servicioServicios = (IServicioServicios)Activator.GetObject(typeof(IServicioServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["ServicioServicios"]);
+                this._tipoEstadoServicios = (ITipoEstadoServicios)Activator.GetObject(typeof(ITipoEstadoServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["TipoEstadoServicios"]);
             }
             catch (Exception ex)
             {
@@ -120,6 +126,13 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 IList<Pais> paises = this._paisServicios.ConsultarTodos();
                 this._ventana.PaisesSolicitud = paises;
                 this._ventana.PaisSolicitud = this.BuscarPais(paises, marca.Pais);
+
+                IList<Servicio> servicios = this._servicioServicios.ConsultarTodos();
+                this._ventana.Servicios = servicios;
+                //this._ventana.PaisSolicitud = this.BuscarPais(paises, marca.Pais);
+
+                IList<TipoEstado> tipoEstados = this._tipoEstadoServicios.ConsultarTodos();
+                this._ventana.Detalles = tipoEstados;
 
                 IList<Boletin> boletines = this._boletinServicios.ConsultarTodos();
                 this._ventana.BoletinesOrdenPublicacion = boletines;
