@@ -272,36 +272,13 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
         public AgregarMarca()
         {
             InitializeComponent();
-            //this._cargada = false;
+            this._cargada = false;
             this._presentador = new PresentadorAgregarMarca(this);
         }
 
-        #region Eventos generales
+        #region funciones
 
-        private void Page_Loaded(object sender, RoutedEventArgs e)
-        {
-            //if (!EstaCargada)
-            //{
-            //    this._presentador.CargarPagina();
-            //    EstaCargada = true;
-            //}
-        }
-
-        private void _btnAceptar_Click(object sender, RoutedEventArgs e)
-        {
-            //this._presentador.Aceptar();
-        }
-
-        private void _btnCancelar_Click(object sender, RoutedEventArgs e)
-        {
-            //this._presentador.Cancelar();
-        }
-
-        #endregion
-
-        #region Eventos Solicitudes
-
-        private void _txtAsociadoSolicitud_GotFocus(object sender, RoutedEventArgs e)
+        private void mostrarLstAsociadoSolicitud()
         {
             this._txtAsociadoSolicitud.Visibility = System.Windows.Visibility.Collapsed;
             this._lstAsociadosSolicitud.Visibility = System.Windows.Visibility.Visible;
@@ -311,12 +288,10 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             this._txtNombreAsociadoSolicitud.Visibility = System.Windows.Visibility.Visible;
             this._lblIdAsociadoSolicitud.Visibility = System.Windows.Visibility.Visible;
             this._lblNombreAsociadoSolicitud.Visibility = System.Windows.Visibility.Visible;
-
         }
 
-        private void _lstAsociadosSolicitud_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        private void ocultarLstAsociadoSolicitud()
         {
-            this._presentador.CambiarAsociadoSolicitud();
             this._lstAsociadosSolicitud.Visibility = System.Windows.Visibility.Collapsed;
             this._btnConsultarAsociadoSolicitud.Visibility = System.Windows.Visibility.Collapsed;
             this._txtIdAsociadoSolicitud.Visibility = System.Windows.Visibility.Collapsed;
@@ -324,15 +299,9 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             this._txtAsociadoSolicitud.Visibility = System.Windows.Visibility.Visible;
             this._lblIdAsociadoSolicitud.Visibility = System.Windows.Visibility.Collapsed;
             this._lblNombreAsociadoSolicitud.Visibility = System.Windows.Visibility.Collapsed;
-
         }
 
-        private void _btnConsultarAsociadoSolicitud_Click(object sender, RoutedEventArgs e)
-        {
-            this._presentador.BuscarAsociado(0);
-        }
-
-        private void _txtInteresadoSolicitud_GotFocus(object sender, RoutedEventArgs e)
+        private void mostrarLstInteresadoSolicutud()
         {
             this._txtInteresadoSolicitud.Visibility = System.Windows.Visibility.Collapsed;
             this._lstInteresadosSolicitud.Visibility = System.Windows.Visibility.Visible;
@@ -342,7 +311,115 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             this._txtNombreInteresadoSolicitud.Visibility = System.Windows.Visibility.Visible;
             this._lblIdInteresadoSolicitud.Visibility = System.Windows.Visibility.Visible;
             this._lblNombreInteresadoSolicitud.Visibility = System.Windows.Visibility.Visible;
+        }
 
+        private void ocultarLstInteresadoSolicutud()
+        {
+            this._presentador.CambiarInteresadoSolicitud();
+            this._lstInteresadosSolicitud.Visibility = System.Windows.Visibility.Collapsed;
+            this._btnConsultarInteresadoSolicitud.Visibility = System.Windows.Visibility.Collapsed;
+            this._txtIdInteresadoSolicitud.Visibility = System.Windows.Visibility.Collapsed;
+            this._txtNombreInteresadoSolicitud.Visibility = System.Windows.Visibility.Collapsed;
+            this._txtInteresadoSolicitud.Visibility = System.Windows.Visibility.Visible;
+            this._lblIdInteresadoSolicitud.Visibility = System.Windows.Visibility.Collapsed;
+            this._lblNombreInteresadoSolicitud.Visibility = System.Windows.Visibility.Collapsed;
+        }
+
+        private void mostrarLstAsocaidoDatos()
+        {
+            this._txtAsociadoDatos.Visibility = System.Windows.Visibility.Collapsed;
+            this._lstAsociadosDatos.Visibility = System.Windows.Visibility.Visible;
+            this._lstAsociadosDatos.IsEnabled = true;
+            this._btnConsultarAsociadoDatos.Visibility = System.Windows.Visibility.Visible;
+            this._txtIdAsociadoDatos.Visibility = System.Windows.Visibility.Visible;
+            this._txtNombreAsociadoDatos.Visibility = System.Windows.Visibility.Visible;
+            this._lblIdAsociadoDatos.Visibility = System.Windows.Visibility.Visible;
+            this._lblNombreAsociadoDatos.Visibility = System.Windows.Visibility.Visible;
+        }
+
+        private void ocultarLstAsociadoDatos()
+        {
+            this._lstAsociadosDatos.Visibility = System.Windows.Visibility.Collapsed;
+            this._btnConsultarAsociadoDatos.Visibility = System.Windows.Visibility.Collapsed;
+            this._txtIdAsociadoDatos.Visibility = System.Windows.Visibility.Collapsed;
+            this._txtNombreAsociadoDatos.Visibility = System.Windows.Visibility.Collapsed;
+            this._txtAsociadoDatos.Visibility = System.Windows.Visibility.Visible;
+            this._lblIdAsociadoDatos.Visibility = System.Windows.Visibility.Collapsed;
+            this._lblNombreAsociadoDatos.Visibility = System.Windows.Visibility.Collapsed;
+        }
+
+        private void mostrarLstInteresadoDatos()
+        {
+            this._txtInteresadoDatos.Visibility = System.Windows.Visibility.Collapsed;
+            this._lstInteresadosDatos.Visibility = System.Windows.Visibility.Visible;
+            this._lstInteresadosDatos.IsEnabled = true;
+            this._btnConsultarInteresadoDatos.Visibility = System.Windows.Visibility.Visible;
+            this._txtIdInteresadoDatos.Visibility = System.Windows.Visibility.Visible;
+            this._txtNombreInteresadoDatos.Visibility = System.Windows.Visibility.Visible;
+            this._lblIdInteresadoDatos.Visibility = System.Windows.Visibility.Visible;
+            this._lblNombreInteresadoDatos.Visibility = System.Windows.Visibility.Visible;
+        }
+
+        private void ocultarLstInteresadoDatos()
+        {
+            this._lstInteresadosDatos.Visibility = System.Windows.Visibility.Collapsed;
+            this._btnConsultarInteresadoDatos.Visibility = System.Windows.Visibility.Collapsed;
+            this._txtIdInteresadoDatos.Visibility = System.Windows.Visibility.Collapsed;
+            this._txtNombreInteresadoDatos.Visibility = System.Windows.Visibility.Collapsed;
+            this._txtInteresadoDatos.Visibility = System.Windows.Visibility.Visible;
+            this._lblIdInteresadoDatos.Visibility = System.Windows.Visibility.Collapsed;
+            this._lblNombreInteresadoDatos.Visibility = System.Windows.Visibility.Collapsed;
+        }
+
+
+
+        #endregion
+
+        #region Eventos generales
+
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            if (!EstaCargada)
+            {
+                this._presentador.CargarPagina();
+                EstaCargada = true;
+            }
+        }
+
+        private void _btnAceptar_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.Aceptar();
+        }
+
+        private void _btnCancelar_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.Cancelar();
+        }
+
+        #endregion
+
+        #region Eventos Solicitudes
+
+        private void _txtAsociadoSolicitud_GotFocus(object sender, RoutedEventArgs e)
+        {
+            mostrarLstAsociadoSolicitud();
+        }
+
+        private void _lstAsociadosSolicitud_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            this._presentador.CambiarAsociadoSolicitud();
+            ocultarLstAsociadoSolicitud();
+            ocultarLstAsociadoDatos();
+        }
+
+        private void _btnConsultarAsociadoSolicitud_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.BuscarAsociado(0);
+        }
+
+        private void _txtInteresadoSolicitud_GotFocus(object sender, RoutedEventArgs e)
+        {
+            mostrarLstInteresadoSolicutud();
         }
 
         private void _btnConsultarInteresadoSolicitud_Click(object sender, RoutedEventArgs e)
@@ -353,13 +430,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
         private void _lstInteresadosSolicitud_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             this._presentador.CambiarInteresadoSolicitud();
-            this._lstInteresadosSolicitud.Visibility = System.Windows.Visibility.Collapsed;
-            this._btnConsultarInteresadoSolicitud.Visibility = System.Windows.Visibility.Collapsed;
-            this._txtIdInteresadoSolicitud.Visibility = System.Windows.Visibility.Collapsed;
-            this._txtNombreInteresadoSolicitud.Visibility = System.Windows.Visibility.Collapsed;
-            this._txtInteresadoSolicitud.Visibility = System.Windows.Visibility.Visible;
-            this._lblIdInteresadoSolicitud.Visibility = System.Windows.Visibility.Collapsed;
-            this._lblNombreInteresadoSolicitud.Visibility = System.Windows.Visibility.Collapsed;
+            ocultarLstInteresadoSolicutud();
+            ocultarLstInteresadoDatos();
         }
 
         private void _btnClaseCompletaSolicitud_Click(object sender, RoutedEventArgs e)
@@ -398,28 +470,14 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
 
         private void _txtAsociadoDatos_GotFocus(object sender, RoutedEventArgs e)
         {
-            this._txtAsociadoDatos.Visibility = System.Windows.Visibility.Collapsed;
-            this._lstAsociadosDatos.Visibility = System.Windows.Visibility.Visible;
-            this._lstAsociadosDatos.IsEnabled = true;
-            this._btnConsultarAsociadoDatos.Visibility = System.Windows.Visibility.Visible;
-            this._txtIdAsociadoDatos.Visibility = System.Windows.Visibility.Visible;
-            this._txtNombreAsociadoDatos.Visibility = System.Windows.Visibility.Visible;
-            this._lblIdAsociadoDatos.Visibility = System.Windows.Visibility.Visible;
-            this._lblNombreAsociadoDatos.Visibility = System.Windows.Visibility.Visible;
-
+            mostrarLstAsocaidoDatos();
         }
 
         private void _lstAsociadosDatos_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             this._presentador.CambiarAsociadoDatos();
-            this._lstAsociadosDatos.Visibility = System.Windows.Visibility.Collapsed;
-            this._btnConsultarAsociadoDatos.Visibility = System.Windows.Visibility.Collapsed;
-            this._txtIdAsociadoDatos.Visibility = System.Windows.Visibility.Collapsed;
-            this._txtNombreAsociadoDatos.Visibility = System.Windows.Visibility.Collapsed;
-            this._txtAsociadoDatos.Visibility = System.Windows.Visibility.Visible;
-            this._lblIdAsociadoDatos.Visibility = System.Windows.Visibility.Collapsed;
-            this._lblNombreAsociadoDatos.Visibility = System.Windows.Visibility.Collapsed;
-
+            ocultarLstAsociadoDatos();
+            ocultarLstAsociadoSolicitud();
         }
 
         private void _btnConsultarAsociadoDatos_Click(object sender, RoutedEventArgs e)
@@ -429,15 +487,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
 
         private void _txtInteresadoDatos_GotFocus(object sender, RoutedEventArgs e)
         {
-            this._txtInteresadoDatos.Visibility = System.Windows.Visibility.Collapsed;
-            this._lstInteresadosDatos.Visibility = System.Windows.Visibility.Visible;
-            this._lstInteresadosDatos.IsEnabled = true;
-            this._btnConsultarInteresadoDatos.Visibility = System.Windows.Visibility.Visible;
-            this._txtIdInteresadoDatos.Visibility = System.Windows.Visibility.Visible;
-            this._txtNombreInteresadoDatos.Visibility = System.Windows.Visibility.Visible;
-            this._lblIdInteresadoDatos.Visibility = System.Windows.Visibility.Visible;
-            this._lblNombreInteresadoDatos.Visibility = System.Windows.Visibility.Visible;
-
+            mostrarLstInteresadoDatos();
         }
 
         private void _btnConsultarInteresadoDatos_Click(object sender, RoutedEventArgs e)
@@ -447,14 +497,9 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
 
         private void _lstInteresadosDatos_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            this._presentador.CambiarInteresadoDatos();
-            this._lstInteresadosDatos.Visibility = System.Windows.Visibility.Collapsed;
-            this._btnConsultarInteresadoDatos.Visibility = System.Windows.Visibility.Collapsed;
-            this._txtIdInteresadoDatos.Visibility = System.Windows.Visibility.Collapsed;
-            this._txtNombreInteresadoDatos.Visibility = System.Windows.Visibility.Collapsed;
-            this._txtInteresadoDatos.Visibility = System.Windows.Visibility.Visible;
-            this._lblIdInteresadoDatos.Visibility = System.Windows.Visibility.Collapsed;
-            this._lblNombreInteresadoDatos.Visibility = System.Windows.Visibility.Collapsed;
+            this._presentador.CambiarInteresadoDatos(); 
+            ocultarLstInteresadoDatos();
+            ocultarLstInteresadoSolicutud();
         }
 
         #endregion

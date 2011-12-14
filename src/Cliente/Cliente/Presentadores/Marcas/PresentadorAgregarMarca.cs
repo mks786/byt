@@ -22,14 +22,16 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
     {
         private static PaginaPrincipal _paginaPrincipal = PaginaPrincipal.ObtenerInstancia;
         private static Logger logger = LogManager.GetCurrentClassLogger();
-
         private IAgregarMarca _ventana;
         private IMarcaServicios _marcaServicios;
         private IAsociadoServicios _asociadoServicios;
-        private IInteresadoServicios _interesadoServicios;
-        private IList<Marca> _marcas;
+        private IAgenteServicios _agenteServicios;
+        private IPoderServicios _poderServicios;
+        private IBoletinServicios _boletinServicios;
+        private IPaisServicios _paisServicios;
         private IList<Asociado> _asociados;
         private IList<Interesado> _interesados;
+        private IList<Auditoria> _auditorias;
 
         /// <summary>
         /// Constructor Predeterminado
@@ -40,12 +42,24 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             try
             {
                 this._ventana = ventana;
+
+                Marca marca = new Marca();
+                marca.Nacional = new Nacional();
+                marca.Internacional = new Internacional();
+                this._ventana.Marca = marca;
+
                 this._marcaServicios = (IMarcaServicios)Activator.GetObject(typeof(IMarcaServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["MarcaServicios"]);
                 this._asociadoServicios = (IAsociadoServicios)Activator.GetObject(typeof(IAsociadoServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["AsociadoServicios"]);
-                this._interesadoServicios = (IInteresadoServicios)Activator.GetObject(typeof(IInteresadoServicios),
-                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["InteresadoServicios"]);
+                this._agenteServicios = (IAgenteServicios)Activator.GetObject(typeof(IAgenteServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["AgenteServicios"]);
+                this._poderServicios = (IPoderServicios)Activator.GetObject(typeof(IPoderServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["PoderServicios"]);
+                this._boletinServicios = (IBoletinServicios)Activator.GetObject(typeof(IBoletinServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["BoletinServicios"]);
+                this._paisServicios = (IPaisServicios)Activator.GetObject(typeof(IPaisServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["PaisServicios"]);
             }
             catch (Exception ex)
             {
@@ -75,6 +89,30 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 #endregion
 
                 this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleConsultarAnexo, "");
+
+                IList<Asociado> asociados = this._asociadoServicios.ConsultarTodos();
+                Asociado primerAsociado = new Asociado();
+                primerAsociado.Id = int.MinValue;
+                asociados.Insert(0, primerAsociado);
+                this._ventana.AsociadosSolicitud = asociados;
+                this._ventana.AsociadosDatos = asociados;
+                this._asociados = asociados;
+
+                IList<Agente> agentes = this._agenteServicios.ConsultarTodos();
+                this._ventana.Agentes = agentes;
+
+                IList<Pais> paises = this._paisServicios.ConsultarTodos();
+                this._ventana.PaisesSolicitud = paises;
+
+                IList<Boletin> boletines = this._boletinServicios.ConsultarTodos();
+                this._ventana.BoletinesOrdenPublicacion = boletines;
+                this._ventana.BoletinesPublicacion = boletines;
+                this._ventana.BoletinConcesion = boletines;
+
+                IList<Poder> poderes = this._poderServicios.ConsultarTodos();
+                this._ventana.PoderesDatos = poderes;
+                this._ventana.PoderesSolicitud = poderes;
+
                 this._ventana.FocoPredeterminado();
 
                 #region trace

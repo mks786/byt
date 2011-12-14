@@ -240,7 +240,7 @@
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblPais}"/>
                     </Label>
                     <ComboBox Grid.Column="4" Grid.Row="5" Grid.ColumnSpan="4" Name="_cbxPaisSolicitud" Height="20" 
-                              ItemsSource="{Binding}" DisplayMemberPath="NombreEspañol" SelectedIndex="0">
+                              ItemsSource="{Binding}" DisplayMemberPath="NombreEspanol" SelectedIndex="0">
                     </ComboBox>
                     
                     <Label Grid.Column="8" Grid.Row="5" VerticalAlignment="Center" HorizontalAlignment="Right" Grid.ColumnSpan="2">
