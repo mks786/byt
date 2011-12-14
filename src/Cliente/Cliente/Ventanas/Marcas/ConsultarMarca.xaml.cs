@@ -142,6 +142,30 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             set { this._cbxPaisPrioridad.DataContext = value; }
         }
 
+        public object TipoMarcasSolicitud
+        {
+            get { return this._cbxTipoMarca.DataContext; }
+            set { this._cbxTipoMarca.DataContext = value; }
+        }
+
+        public object TipoMarcaSolicitud
+        {
+            get { return this._cbxTipoMarca.SelectedItem; }
+            set { this._cbxTipoMarca.SelectedItem = value; }
+        }
+
+        public object TipoMarcasDatos
+        {
+            get { return this._cbxTipoMarcaDatos.DataContext; }
+            set { this._cbxTipoMarcaDatos.DataContext = value; }
+        }
+
+        public object TipoMarcaDatos
+        {
+            get { return this._cbxTipoMarcaDatos.SelectedItem; }
+            set { this._cbxTipoMarcaDatos.SelectedItem = value; }
+        }
+
         public void Mensaje(string mensaje)
         {
             throw new System.NotImplementedException();
@@ -212,7 +236,6 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
                 this._txtIdSolicitud.IsEnabled = value;
                 this._txtInteresadoDatos.IsEnabled = value;
                 this._txtInteresadoSolicitud.IsEnabled = value;
-                this._txtITipoDatos.IsEnabled = value;
                 this._txtLocalidad.IsEnabled = value;
                 this._txtLocalidadDatos.IsEnabled = value;
                 this._txtNombreAsociadoDatos.IsEnabled = value;
@@ -260,6 +283,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
                 this._cbxSector.IsEnabled = value;
                 this._cbxSituacion.IsEnabled = value;
                 this._cbxTipoMarca.IsEnabled = value;
+                this._cbxTipoMarcaDatos.IsEnabled = value;
                 this._cbxTipoReproduccion.IsEnabled = value;
 
                 #endregion
@@ -443,16 +467,28 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             set { this._txtInteresadoDatos.Text = value; }
         }
 
-        public object Interesados
+        public object InteresadosSolicitud
         {
             get { return this._lstInteresadosSolicitud.DataContext; }
             set { this._lstInteresadosSolicitud.DataContext = value; }
         }
 
-        public object Interesado
+        public object InteresadoSolicitud
         {
             get { return this._lstInteresadosSolicitud.SelectedItem; }
             set { this._lstInteresadosSolicitud.SelectedItem = value; }
+        }
+
+        public object InteresadosDatos
+        {
+            get { return this._lstInteresadosDatos.DataContext; }
+            set { this._lstInteresadosDatos.DataContext = value; }
+        }
+
+        public object InteresadoDatos
+        {
+            get { return this._lstInteresadosDatos.SelectedItem; }
+            set { this._lstInteresadosDatos.SelectedItem = value; }
         }
         #endregion
 

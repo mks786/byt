@@ -682,6 +682,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to MARCA.
+        /// </summary>
+        public static string cbiCategoriaMarca {
+            get {
+                return ResourceManager.GetString("cbiCategoriaMarca", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to SEXO.
         /// </summary>
         public static string cbiCategoriaSexo {

@@ -37,9 +37,13 @@ namespace Trascend.Bolet.Cliente.Contratos.Marcas
 
         object AsociadoDatos { get; set; }
 
-        object Interesados { get; set; }
+        object InteresadosSolicitud { get; set; }
 
-        object Interesado { get; set; }
+        object InteresadoSolicitud { get; set; }
+
+        object InteresadosDatos { get; set; }
+
+        object InteresadoDatos { get; set; }
 
         object PoderesSolicitud { get; set; }
 
@@ -80,6 +84,14 @@ namespace Trascend.Bolet.Cliente.Contratos.Marcas
         object PaisSolicitud { get; set; }
 
         object PaisesSolicitud { get; set; }
+
+        object TipoMarcaSolicitud { get; set; }
+
+        object TipoMarcasSolicitud { get; set; }
+
+        object TipoMarcaDatos { get; set; }
+
+        object TipoMarcasDatos { get; set; }
 
         void Mensaje(string mensaje);
 

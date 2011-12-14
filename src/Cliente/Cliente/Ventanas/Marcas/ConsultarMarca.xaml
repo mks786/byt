@@ -886,8 +886,9 @@
                     <Label Grid.Column="0" Grid.Row="12" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblTipoMarca}"/>
                     </Label>
-                    <TextBox IsEnabled="False" Grid.Column="1" Grid.Row="12" Grid.ColumnSpan="2" Margin="3" Name="_txtITipoDatos" VerticalAlignment="Center"  
-                          Text="{Binding Path=Tipo}"></TextBox>
+                    <ComboBox IsEnabled="False" Grid.Column="1" Grid.Row="12" Grid.ColumnSpan="2" Name="_cbxTipoMarcaDatos" Height="20" 
+                              ItemsSource="{Binding}" DisplayMemberPath="Descripcion" SelectedIndex="0">
+                    </ComboBox>
 
                     <Label Grid.Column="3" Grid.Row="12" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblClaseNac}"/>

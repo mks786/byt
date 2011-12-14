@@ -31,8 +31,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
         private IPoderServicios _poderServicios;
         private IBoletinServicios _boletinServicios;
         private IPaisServicios _paisServicios;
+        private IListaDatosDominioServicios _listaDatosDominioServicios;
+        private IInteresadoServicios _interesadoServicios;
 
         private IList<Asociado> _asociados;
+        private IList<Interesado> _interesados;
         private IList<Auditoria> _auditorias;
 
         /// <summary>
@@ -58,6 +61,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["BoletinServicios"]);
                 this._paisServicios = (IPaisServicios)Activator.GetObject(typeof(IPaisServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["PaisServicios"]);
+                this._listaDatosDominioServicios = (IListaDatosDominioServicios)Activator.GetObject(typeof(IListaDatosDominioServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["ListaDatosDominioServicios"]);
+                this._interesadoServicios = (IInteresadoServicios)Activator.GetObject(typeof(IInteresadoServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["InteresadoServicios"]);
             }
             catch (Exception ex)
             {
@@ -100,6 +107,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 this._ventana.AsociadoDatos = this.BuscarAsociado(asociados, marca.Asociado);
                 this._asociados = asociados;
 
+                this._ventana.TipoMarcasDatos = this._listaDatosDominioServicios.
+                    ConsultarListaDatosDominioPorParametro(new ListaDatosDominio(Recursos.Etiquetas.cbiCategoriaMarca));
+
+                this._ventana.TipoMarcasSolicitud = this._listaDatosDominioServicios.
+                    ConsultarListaDatosDominioPorParametro(new ListaDatosDominio(Recursos.Etiquetas.cbiCategoriaMarca));
+
                 IList<Agente> agentes = this._agenteServicios.ConsultarTodos();
                 this._ventana.Agentes = agentes;
                 this._ventana.Agente = this.BuscarAgente(agentes, marca.Agente);
@@ -120,6 +133,14 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 this._ventana.PoderesSolicitud = poderes;
                 this._ventana.PoderDatos = this.BuscarPoder(poderes, marca.Poder);
                 this._ventana.PoderSolicitud = this.BuscarPoder(poderes, marca.Poder);
+
+                IList<Interesado> interesados = this._interesadoServicios.ConsultarTodos();
+                Interesado primerInteresado = new Interesado();
+                primerInteresado.Id = int.MinValue;
+                interesados.Insert(0, primerInteresado);
+                this._ventana.InteresadosDatos = interesados;
+                this._ventana.InteresadosSolicitud = interesados;
+                this._interesados = interesados;
                 
                 this._ventana.FocoPredeterminado();
 

@@ -1396,4 +1396,7 @@
   <data name="titleAgregarMarca" xml:space="preserve">
     <value>Agregar Marca</value>
   </data>
+  <data name="cbiCategoriaMarca" xml:space="preserve">
+    <value>MARCA</value>
+  </data>
 </root>
