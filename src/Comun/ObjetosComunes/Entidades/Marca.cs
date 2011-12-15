@@ -408,7 +408,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         /// <summary>
         /// Propiedad que asigna u obtiene el Correspondencia
         /// </summary>
-        public virtual Corresponsal CodigoCorresponsal
+        public virtual Corresponsal Corresponsal
         {
             get { return _corresponsal; }
             set { _corresponsal = value; }

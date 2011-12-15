@@ -136,6 +136,62 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             set { this._lstInteresadosDatos.SelectedItem = value; }
         }
 
+        public string IdCorresponsalSolicitudFiltrar
+        {
+            get { return this._txtIdCorresponsalSolicitud.Text; }
+        }
+
+        public string IdCorresponsalDatosFiltrar
+        {
+            get { return this._txtIdCorresponsalDatos.Text; }
+        }
+
+        public string DescipcionCorresponsalSolicitudFiltrar
+        {
+            get { return this._txtDescripcionCorresponsalSolicitud.Text; }
+        }
+
+        public string DescipcionCorresponsalDatosFiltrar
+        {
+            get { return this._txtDescripcionCorresponsalDatos.Text; }
+        }
+
+        public string DescipcionCorresponsalSolicitud
+        {
+            get { return this._txtCorresponsalSolicitud.Text; }
+            set { this._txtCorresponsalSolicitud.Text = value; }
+        }
+
+        public string DescipcionCorresponsalDatos
+        {
+            get { return this._txtCorresponsalDatos.Text; }
+            set { this._txtCorresponsalDatos.Text = value; }
+        }
+
+        public object CorresponsalesSolicitud
+        {
+            get { return this._lstCorresponsalesSolicitud.DataContext; }
+            set { this._lstCorresponsalesSolicitud.DataContext = value; }
+        }
+
+        public object CorresponsalSolicitud
+        {
+            get { return this._lstCorresponsalesSolicitud.SelectedItem; }
+            set { this._lstCorresponsalesSolicitud.SelectedItem = value; }
+        }
+
+        public object CorresponsalesDatos
+        {
+            get { return this._lstCorresponsalesDatos.DataContext; }
+            set { this._lstCorresponsalesDatos.DataContext = value; }
+        }
+
+        public object CorresponsalDatos
+        {
+            get { return this._lstCorresponsalesDatos.SelectedItem; }
+            set { this._lstCorresponsalesDatos.SelectedItem = value; }
+        }
+
         public object PoderesSolicitud
         {
             get { return this._cbxPoderSolicitud.DataContext; }
@@ -325,6 +381,30 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             this._lblNombreInteresadoSolicitud.Visibility = System.Windows.Visibility.Collapsed;
         }
 
+        private void mostrarLstCorresponsalSolicutud()
+        {
+            this._txtCorresponsalSolicitud.Visibility = System.Windows.Visibility.Collapsed;
+            this._lstCorresponsalesSolicitud.Visibility = System.Windows.Visibility.Visible;
+            this._lstCorresponsalesSolicitud.IsEnabled = true;
+            this._btnConsultarCorresponsalSolicitud.Visibility = System.Windows.Visibility.Visible;
+            this._txtIdCorresponsalSolicitud.Visibility = System.Windows.Visibility.Visible;
+            this._txtDescripcionCorresponsalSolicitud.Visibility = System.Windows.Visibility.Visible;
+            this._lblIdCorresponsalSolicitud.Visibility = System.Windows.Visibility.Visible;
+            this._lblDescripcionCorresponsalSolicitud.Visibility = System.Windows.Visibility.Visible;
+        }
+
+        private void ocultarLstCorresponsalSolicutud()
+        {
+            this._presentador.CambiarCorresponsalSolicitud();
+            this._lstCorresponsalesSolicitud.Visibility = System.Windows.Visibility.Collapsed;
+            this._btnConsultarCorresponsalSolicitud.Visibility = System.Windows.Visibility.Collapsed;
+            this._txtIdCorresponsalSolicitud.Visibility = System.Windows.Visibility.Collapsed;
+            this._txtDescripcionCorresponsalSolicitud.Visibility = System.Windows.Visibility.Collapsed;
+            this._txtCorresponsalSolicitud.Visibility = System.Windows.Visibility.Visible;
+            this._lblIdCorresponsalSolicitud.Visibility = System.Windows.Visibility.Collapsed;
+            this._lblDescripcionCorresponsalSolicitud.Visibility = System.Windows.Visibility.Collapsed;
+        }
+
         private void mostrarLstAsocaidoDatos()
         {
             this._txtAsociadoDatos.Visibility = System.Windows.Visibility.Collapsed;
@@ -369,6 +449,30 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             this._txtInteresadoDatos.Visibility = System.Windows.Visibility.Visible;
             this._lblIdInteresadoDatos.Visibility = System.Windows.Visibility.Collapsed;
             this._lblNombreInteresadoDatos.Visibility = System.Windows.Visibility.Collapsed;
+        }
+
+        private void mostrarLstCorresponsalDatos()
+        {
+            this._txtCorresponsalDatos.Visibility = System.Windows.Visibility.Collapsed;
+            this._lstCorresponsalesDatos.Visibility = System.Windows.Visibility.Visible;
+            this._lstCorresponsalesDatos.IsEnabled = true;
+            this._btnConsultarCorresponsalDatos.Visibility = System.Windows.Visibility.Visible;
+            this._txtIdCorresponsalDatos.Visibility = System.Windows.Visibility.Visible;
+            this._txtDescripcionCorresponsalDatos.Visibility = System.Windows.Visibility.Visible;
+            this._lblIdCorresponsalDatos.Visibility = System.Windows.Visibility.Visible;
+            this._lblDescripcionCorresponsalDatos.Visibility = System.Windows.Visibility.Visible;
+        }
+
+        private void ocultarLstCorresponsalDatos()
+        {
+            this._presentador.CambiarCorresponsalDatos();
+            this._lstCorresponsalesDatos.Visibility = System.Windows.Visibility.Collapsed;
+            this._btnConsultarCorresponsalDatos.Visibility = System.Windows.Visibility.Collapsed;
+            this._txtIdCorresponsalDatos.Visibility = System.Windows.Visibility.Collapsed;
+            this._txtDescripcionCorresponsalDatos.Visibility = System.Windows.Visibility.Collapsed;
+            this._txtCorresponsalDatos.Visibility = System.Windows.Visibility.Visible;
+            this._lblIdCorresponsalDatos.Visibility = System.Windows.Visibility.Collapsed;
+            this._lblDescripcionCorresponsalDatos.Visibility = System.Windows.Visibility.Collapsed;
         }
 
 
@@ -432,6 +536,23 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             this._presentador.CambiarInteresadoSolicitud();
             ocultarLstInteresadoSolicutud();
             ocultarLstInteresadoDatos();
+        }
+
+        private void _btnConsultarCorresponsalSolicitud_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.BuscarCorresponsal(0);
+        }
+
+        private void _txtCorresponsalSolicitud_GotFocus(object sender, RoutedEventArgs e)
+        {
+            mostrarLstCorresponsalSolicutud();
+        }
+
+        private void _lstCorresponsalesSolicitud_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            this._presentador.CambiarCorresponsalSolicitud();
+            ocultarLstCorresponsalSolicutud();
+            ocultarLstCorresponsalDatos();
         }
 
         private void _btnClaseCompletaSolicitud_Click(object sender, RoutedEventArgs e)
@@ -502,6 +623,25 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             ocultarLstInteresadoSolicutud();
         }
 
+        private void _btnConsultarCorresponsalDatos_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.BuscarCorresponsal(0);
+        }
+
+        private void _txtCorresponsalDatos_GotFocus(object sender, RoutedEventArgs e)
+        {
+            mostrarLstCorresponsalDatos();
+        }
+
+        private void _lstCorresponsalesDatos_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            this._presentador.CambiarCorresponsalDatos();
+            ocultarLstCorresponsalSolicutud();
+            ocultarLstCorresponsalDatos();
+        }
+
         #endregion
+
+
     }
 }

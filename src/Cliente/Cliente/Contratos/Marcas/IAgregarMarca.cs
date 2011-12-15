@@ -30,7 +30,19 @@ namespace Trascend.Bolet.Cliente.Contratos.Marcas
         string NombreInteresadoSolicitud { get; set; }
 
         string NombreInteresadoDatos { get; set; }
+        
+        string IdCorresponsalSolicitudFiltrar { get; }
 
+        string IdCorresponsalDatosFiltrar { get; }
+
+        string DescipcionCorresponsalSolicitudFiltrar { get; }
+
+        string DescipcionCorresponsalDatosFiltrar { get; }
+
+        string DescipcionCorresponsalSolicitud { get; set; }
+
+        string DescipcionCorresponsalDatos { get; set; }
+        
         object AsociadosSolicitud { get; set; }
 
         object AsociadoSolicitud { get; set; }
@@ -46,7 +58,15 @@ namespace Trascend.Bolet.Cliente.Contratos.Marcas
         object InteresadosDatos { get; set; }
 
         object InteresadoDatos { get; set; }
+        
+        object CorresponsalesSolicitud { get; set; }
 
+        object CorresponsalSolicitud { get; set; }
+
+        object CorresponsalesDatos { get; set; }
+
+        object CorresponsalDatos { get; set; }
+        
         object PoderesSolicitud { get; set; }
 
         object PoderSolicitud { get; set; }
