@@ -291,15 +291,21 @@ namespace Trascend.Bolet.AccesoDatos.Fabrica
         public abstract IDaoMarca ObtenerDaoMarca();
 
         /// <summary>
-        /// Método que devuelve el DaoListaDatosDominio del manejador que se esté utilizando
+        /// Método que devuelve el DaoCorresponsal del manejador que se esté utilizando
         /// </summary>
-        /// <returns>IDaoListaDatosDominio</returns>
+        /// <returns>IDaoCorresponsal</returns>
+        public abstract IDaoCorresponsal ObtenerDaoCorresponsal();
+
+        /// <summary>
+        /// Método que devuelve el DaoServicio del manejador que se esté utilizando
+        /// </summary>
+        /// <returns>IDaoServicio</returns>
         public abstract IDaoServicio ObtenerDaoServicio();
 
         /// <summary>
-        /// Método que devuelve el DaoMarca del manejador que se esté utilizando
+        /// Método que devuelve el DaoTipoEstado del manejador que se esté utilizando
         /// </summary>
-        /// <returns>IDaoMarca</returns>
+        /// <returns>IDaoTipoEstado</returns>
         public abstract IDaoTipoEstado ObtenerDaoTipoEstado();
 
     }

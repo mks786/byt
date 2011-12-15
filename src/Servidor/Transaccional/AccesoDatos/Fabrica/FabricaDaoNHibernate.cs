@@ -428,6 +428,15 @@ namespace Trascend.Bolet.AccesoDatos.Fabrica
         }
 
         /// <summary>
+        /// Método que devuelve el DaoCorresponsal
+        /// </summary>
+        /// <returns>IDaoCorresponsal</returns>
+        public override IDaoCorresponsal ObtenerDaoCorresponsal()
+        {
+            return new DaoCorresponsalNHibernate();
+        }
+
+        /// <summary>
         /// Método que devuelve el DaoServicio
         /// </summary>
         /// <returns>IDaoServicio</returns>

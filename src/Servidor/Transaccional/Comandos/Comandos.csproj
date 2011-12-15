@@ -59,6 +59,10 @@
     <Compile Include="Comandos\ComandosCarta\ComandoConsultarCartasFiltro.cs" />
     <Compile Include="Comandos\ComandosCarta\ComandoEliminarCarta.cs" />
     <Compile Include="Comandos\ComandosCarta\ComandoInsertarOModificarCarta.cs" />
+    <Compile Include="Comandos\ComandosCorresponsal\ComandoConsultarTodosCorresponsables.cs" />
+    <Compile Include="Comandos\ComandosCorresponsal\ComandoEliminarCorresponsal.cs" />
+    <Compile Include="Comandos\ComandosCorresponsal\ComandoInsertarOModificarCorresponsal.cs" />
+    <Compile Include="Comandos\ComandosCorresponsal\ComandoVerificarExistenciaCorresponsal.cs" />
     <Compile Include="Comandos\ComandosInteresado\ComandoConsultarTodosInteresados.cs" />
     <Compile Include="Comandos\ComandosInteresado\ComandoEliminarInteresado.cs" />
     <Compile Include="Comandos\ComandosInteresado\ComandoInsertarOModificarInteresado.cs" />
@@ -189,6 +193,7 @@
     <Compile Include="Comandos\ComandosUsuario\ComandoConsultarTodosUsuarios.cs" />
     <Compile Include="Comandos\ComandosUsuario\ComandoConsultarUsuarioPorID.cs" />
     <Compile Include="Comandos\ComandosUsuario\ComandoInsertarOModificarUsuario.cs" />
+    <Compile Include="Fabrica\FabricaComandosCorresponsal.cs" />
     <Compile Include="Fabrica\FabricaComandosTipoEstado.cs" />
     <Compile Include="Fabrica\FabricaComandosServicio.cs" />
     <Compile Include="Fabrica\FabricaComandosMarca.cs" />

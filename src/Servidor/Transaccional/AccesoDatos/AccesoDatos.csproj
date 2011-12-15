@@ -61,6 +61,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Contrato\IDaoCorresponsal.cs" />
     <Compile Include="Contrato\IDaoTipoEstado.cs" />
     <Compile Include="Contrato\IDaoServicio.cs" />
     <Compile Include="Contrato\IDaoMarca.cs" />
@@ -109,6 +110,7 @@
     <Compile Include="Contrato\IDaoBase.cs" />
     <Compile Include="Contrato\IDaoUsuario.cs" />
     <Compile Include="Contrato\IFabricaDaoBase.cs" />
+    <Compile Include="Dao\NHibernate\DaoCorresponsalNHibernate.cs" />
     <Compile Include="Dao\NHibernate\DaoTipoEstadoNHibernate.cs" />
     <Compile Include="Dao\NHibernate\DaoServicioNHibernate.cs" />
     <Compile Include="Dao\NHibernate\DaoMarcaNHibernate.cs" />
@@ -402,6 +404,11 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Mapeado\Servicio.hbm.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Mapeado\Corresponsal.hbm.xml">
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>

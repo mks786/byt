@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+                   assembly="Trascend.Bolet.ObjetosComunes"
+                   namespace="Trascend.Bolet.ObjetosComunes.Entidades">
+
+  <class name="Corresponsal" table="FAC_CORRESPONSAL">
+    <id name="Id" column="CCORRESP" type="int"/>
+    <property name="Descripcion" column="XCORRESP" type="string"/>
+    <property name="Domicilio" column="XDOMICILIO" type="string"/>
+    <property name="Contribuyente" column="ICONTRIBUYENTE" type="string"/>
+    <property name="Rif" column="XRIF" type="string"/>
+    <property name="Telefono1" column="XTELEFONO1" type="string"/>
+    <property name="Telefono2" column="XTELEFONO2" type="string"/>
+    <property name="Telefono3" column="XTELEFONO3" type="string"/>
+    <property name="Fax1" column="XFAX1" type="string"/>
+    <property name="Fax2" column="XFAX1" type="string"/>
+    <property name="Fax3" column="XFAX1" type="string"/>
+    <property name="Poder" column="IPODER" type="string"/>
+    <property name="PorcentajeDescuento" column="PDESCUENTO" type="int"/>
+    <property name="Observacion" column="XOBSERVACION" type="string"/>
+    <property name="Activo" column="IACTIVO" type="char"/>
+    <property name="Persona" column="IPERSONA" type="char"/>
+    <property name="Nit" column="XNIT" type="string"/>
+    <property name="Email" column="XEMAIL" type="string"/>
+    <property name="Statement" column="ISTATEMENT" type="char"/>
+    <property name="Web" column="XWEB" type="string"/>
+    <property name="Estado" column="IESTADO" type="char"/>
+    <property name="Tsf" column="ITSF" type="char"/>
+    <property name="Email1" column="EMAIL1" type="string"/>
+    <property name="TieneAlerta" column="IALERTA" type="char"/>
+    <property name="Alerta" column="XALERTA" type="string"/>
+    <property name="Penori" column="IPENORI" type="char"/>
+    <property name="Email3" column="EMAIL3" type="string"/>
+    <property name="Isp" column="ISP" type="char"/>
+    <property name="Email4" column="EMAIL4" type="string"/>
+
+    <many-to-one name="Pais" class="Pais">
+      <column name="CPAIS"/>
+    </many-to-one>
+
+    <many-to-one name="Idioma" class="Idioma">
+      <column name="CIDIOMA"/>
+    </many-to-one>
+
+    <many-to-one name="Moneda" class="Moneda">
+      <column name="CMONEDA"/>
+    </many-to-one>
+
+    <many-to-one name="Tarifa" class="Tarifa">
+      <column name="COD_TAR"/>
+    </many-to-one>
+
+  </class>
+</hibernate-mapping>
+
+
