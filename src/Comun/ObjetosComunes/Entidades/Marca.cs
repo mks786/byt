@@ -39,7 +39,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         private string _sector;
         private char _tipoRps;
         private string _tipoCnac;
-        private char _tipoEstado;
+        private TipoEstado _tipoEstado;
         private char _rev;
         private string _codigoTipoEstado;
         private string _codigoBus;
@@ -363,7 +363,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         /// <summary>
         /// Propiedad que asigna u obtiene el Tipo del Estado
         /// </summary>
-        public virtual char TipoEstado
+        public virtual TipoEstado TipoEstado
         {
             get { return _tipoEstado; }
             set { _tipoEstado = value; }
