@@ -102,6 +102,14 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 this._ventana.AsociadosDatos = asociados;
                 this._asociados = asociados;
 
+                IList<Corresponsal> corresponsales = this._corresponsalServicios.ConsultarTodos();
+                Corresponsal primerCorresponsal = new Corresponsal();
+                primerCorresponsal.Id = int.MinValue;
+                corresponsales.Insert(0, primerCorresponsal);
+                this._ventana.CorresponsalesSolicitud = corresponsales;
+                this._ventana.CorresponsalesDatos = corresponsales;
+                this._corresponsales = corresponsales;
+
                 IList<Agente> agentes = this._agenteServicios.ConsultarTodos();
                 this._ventana.Agentes = agentes;
 
@@ -367,7 +375,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                     //Corresponsal corresponsal = this._corresponsalServicios.ConsultarCorresponsalConTodo((Corresponsal)this._ventana.CorresponsalSolicitud);
                     this._ventana.DescipcionCorresponsalSolicitud = ((Corresponsal)this._ventana.CorresponsalSolicitud).Descripcion;
                     this._ventana.CorresponsalDatos = (Corresponsal)this._ventana.CorresponsalSolicitud;
-                    this._ventana.NombreAsociadoDatos = ((Corresponsal)this._ventana.CorresponsalSolicitud).Descripcion;
+                    this._ventana.DescipcionCorresponsalDatos = ((Corresponsal)this._ventana.CorresponsalSolicitud).Descripcion;
                 }
             }
             catch (ApplicationException e)
@@ -386,7 +394,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                     //Corresponsal corresponsal = this._corresponsalServicios.ConsultarCorresponsalConTodo((Corresponsal)this._ventana.CorresponsalDatos);
                     this._ventana.DescipcionCorresponsalDatos = ((Corresponsal)this._ventana.CorresponsalDatos).Descripcion;
                     this._ventana.CorresponsalSolicitud = (Corresponsal)this._ventana.CorresponsalDatos;
-                    this._ventana.NombreAsociadoSolicitud = ((Corresponsal)this._ventana.CorresponsalDatos).Descripcion;
+                    this._ventana.DescipcionCorresponsalSolicitud = ((Corresponsal)this._ventana.CorresponsalDatos).Descripcion;
                 }
             }
             catch (ApplicationException e)

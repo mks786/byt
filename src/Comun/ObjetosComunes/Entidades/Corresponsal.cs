@@ -19,7 +19,6 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         private string _fax1;
         private string _fax2;
         private string _fax3;
-        private string _poder;
         private int _porcentajeDescuento;
         private string _observacion;
         private char _activo;
@@ -161,15 +160,6 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         {
             get { return _fax3; }
             set { _fax3 = value; }
-        }
-
-        /// <summary>
-        /// Propiedad que asigna u obtiene el Poder
-        /// </summary>
-        public virtual string Poder
-        {
-            get { return _poder; }
-            set { _poder = value; }
         }
 
         /// <summary>

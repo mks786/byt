@@ -15,7 +15,6 @@
     <property name="Fax1" column="XFAX1" type="string"/>
     <property name="Fax2" column="XFAX1" type="string"/>
     <property name="Fax3" column="XFAX1" type="string"/>
-    <property name="Poder" column="IPODER" type="string"/>
     <property name="PorcentajeDescuento" column="PDESCUENTO" type="int"/>
     <property name="Observacion" column="XOBSERVACION" type="string"/>
     <property name="Activo" column="IACTIVO" type="char"/>
