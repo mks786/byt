@@ -213,6 +213,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
                 this._txtComentarioDatos.IsEnabled = value;
                 this._txtConflictoDatos.IsEnabled = value;
                 this._txtCorrespondenciaDatos.IsEnabled = value;
+                this._txtCorresponsalDatos.IsEnabled = value;
                 this._txtCorresponsalSolicitud.IsEnabled = value;
                 this._txtCorresponsalDatos.IsEnabled = value;
                 this._txtDescripcionDatos.IsEnabled = value;
@@ -257,7 +258,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
                 this._txtSaldoVencido.IsEnabled = value;
                 this._txtTipoClaseNacional.IsEnabled = value;
                 this._txtTotalDeuda.IsEnabled = value;
-                
+
                 #endregion
 
                 #region ComboBoxs
@@ -419,7 +420,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
         public object AsociadoSolicitud
         {
             get { return this._lstAsociadosSolicitud.SelectedItem; }
-            set { this._lstAsociadosSolicitud.SelectedItem = value; }
+            set
+            {
+                this._lstAsociadosSolicitud.SelectedItem = value;
+                //this._lstAsociadosSolicitud.ScrollIntoView(value);
+            }
         }
 
         public object AsociadosDatos
@@ -431,7 +436,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
         public object AsociadoDatos
         {
             get { return this._lstAsociadosDatos.SelectedItem; }
-            set { this._lstAsociadosDatos.SelectedItem = value; }
+            set
+            {
+                this._lstAsociadosDatos.SelectedItem = value;
+                //this._lstAsociadosDatos.ScrollIntoView(value);
+            }
         }
 
 
@@ -476,7 +485,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
         public object InteresadoSolicitud
         {
             get { return this._lstInteresadosSolicitud.SelectedItem; }
-            set { this._lstInteresadosSolicitud.SelectedItem = value; }
+            set
+            {
+                this._lstInteresadosSolicitud.SelectedItem = value;
+                //this._lstInteresadosSolicitud.ScrollIntoView(value);
+            }
         }
 
         public object InteresadosDatos
@@ -488,7 +501,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
         public object InteresadoDatos
         {
             get { return this._lstInteresadosDatos.SelectedItem; }
-            set { this._lstInteresadosDatos.SelectedItem = value; }
+            set
+            {
+                this._lstInteresadosDatos.SelectedItem = value;
+                //this._lstInteresadosDatos.ScrollIntoView(value);
+            }
         }
 
         public string IdCorresponsalSolicitudFiltrar
@@ -555,10 +572,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             this._presentador = new PresentadorConsultarMarca(this, marcaSeleccionada);
         }
 
-        #region funciones
+        #region Funciones
 
         private void mostrarLstAsociadoSolicitud()
         {
+            this._lstAsociadosSolicitud.ScrollIntoView(this.AsociadoSolicitud);
             this._txtAsociadoSolicitud.Visibility = System.Windows.Visibility.Collapsed;
             this._lstAsociadosSolicitud.Visibility = System.Windows.Visibility.Visible;
             this._lstAsociadosSolicitud.IsEnabled = true;
@@ -582,6 +600,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
 
         private void mostrarLstInteresadoSolicutud()
         {
+            this._lstInteresadosSolicitud.ScrollIntoView(this.InteresadoSolicitud);
             this._txtInteresadoSolicitud.Visibility = System.Windows.Visibility.Collapsed;
             this._lstInteresadosSolicitud.Visibility = System.Windows.Visibility.Visible;
             this._lstInteresadosSolicitud.IsEnabled = true;
@@ -606,6 +625,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
 
         private void mostrarLstCorresponsalSolicutud()
         {
+            this._lstCorresponsalesSolicitud.ScrollIntoView(this.CorresponsalSolicitud);
             this._txtCorresponsalSolicitud.Visibility = System.Windows.Visibility.Collapsed;
             this._lstCorresponsalesSolicitud.Visibility = System.Windows.Visibility.Visible;
             this._lstCorresponsalesSolicitud.IsEnabled = true;
@@ -630,6 +650,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
 
         private void mostrarLstAsocaidoDatos()
         {
+            this._lstAsociadosDatos.ScrollIntoView(this.AsociadoDatos);
             this._txtAsociadoDatos.Visibility = System.Windows.Visibility.Collapsed;
             this._lstAsociadosDatos.Visibility = System.Windows.Visibility.Visible;
             this._lstAsociadosDatos.IsEnabled = true;
@@ -653,6 +674,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
 
         private void mostrarLstInteresadoDatos()
         {
+            this._lstInteresadosDatos.ScrollIntoView(this.InteresadoDatos);
             this._txtInteresadoDatos.Visibility = System.Windows.Visibility.Collapsed;
             this._lstInteresadosDatos.Visibility = System.Windows.Visibility.Visible;
             this._lstInteresadosDatos.IsEnabled = true;
@@ -676,6 +698,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
 
         private void mostrarLstCorresponsalDatos()
         {
+            this._lstCorresponsalesDatos.ScrollIntoView(this.CorresponsalDatos);
             this._txtCorresponsalDatos.Visibility = System.Windows.Visibility.Collapsed;
             this._lstCorresponsalesDatos.Visibility = System.Windows.Visibility.Visible;
             this._lstCorresponsalesDatos.IsEnabled = true;
@@ -697,8 +720,6 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             this._lblIdCorresponsalDatos.Visibility = System.Windows.Visibility.Collapsed;
             this._lblDescripcionCorresponsalDatos.Visibility = System.Windows.Visibility.Collapsed;
         }
-
-
 
         #endregion
 

@@ -73,6 +73,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["ServicioServicios"]);
                 this._tipoEstadoServicios = (ITipoEstadoServicios)Activator.GetObject(typeof(ITipoEstadoServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["TipoEstadoServicios"]);
+                this._corresponsalServicios = (ICorresponsalServicios)Activator.GetObject(typeof(ICorresponsalServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["CorresponsalServicios"]);
             }
             catch (Exception ex)
             {
@@ -113,6 +115,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 this._ventana.AsociadosDatos = asociados;
                 this._ventana.AsociadoSolicitud = this.BuscarAsociado(asociados, marca.Asociado);
                 this._ventana.AsociadoDatos = this.BuscarAsociado(asociados, marca.Asociado);
+                this._ventana.NombreAsociadoDatos = ((Marca)this._ventana.Marca).Asociado.Nombre;
+                this._ventana.NombreAsociadoSolicitud = ((Marca)this._ventana.Marca).Asociado.Nombre;
                 this._asociados = asociados;
 
                 this._ventana.TipoMarcasDatos = this._listaDatosDominioServicios.
@@ -155,7 +159,24 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 interesados.Insert(0, primerInteresado);
                 this._ventana.InteresadosDatos = interesados;
                 this._ventana.InteresadosSolicitud = interesados;
+                ((Marca)this._ventana.Marca).Interesado = this.BuscarInteresado(interesados, marca.Interesado);
+                this._ventana.InteresadoSolicitud = this.BuscarInteresado(interesados, marca.Interesado);
+                this._ventana.InteresadoDatos = this.BuscarInteresado(interesados, marca.Interesado);
+                this._ventana.NombreInteresadoDatos = ((Marca)this._ventana.Marca).Interesado.Nombre;
+                this._ventana.NombreInteresadoSolicitud = ((Marca)this._ventana.Marca).Interesado.Nombre;
                 this._interesados = interesados;
+
+                IList<Corresponsal> corresponsales = this._corresponsalServicios.ConsultarTodos();
+                Corresponsal primerCorresponsal = new Corresponsal();
+                primerCorresponsal.Id = int.MinValue;
+                corresponsales.Insert(0, primerCorresponsal);
+                this._ventana.CorresponsalesSolicitud = corresponsales;
+                this._ventana.CorresponsalesDatos = corresponsales;
+                this._ventana.CorresponsalDatos = this.BuscarCorresponsal(corresponsales, ((Marca)this._ventana.Marca).Corresponsal);
+                this._ventana.CorresponsalSolicitud = this.BuscarCorresponsal(corresponsales, ((Marca)this._ventana.Marca).Corresponsal);
+                this._ventana.DescripcionCorresponsalDatos = ((Marca)this._ventana.CorresponsalSolicitud).Descripcion;
+                this._ventana.DescripcionCorresponsalSolicitud = ((Marca)this._ventana.CorresponsalSolicitud).Descripcion;
+                this._corresponsales = corresponsales;
                 
                 this._ventana.FocoPredeterminado();
 

@@ -206,6 +206,29 @@ namespace Trascend.Bolet.Cliente.Presentadores
 
             return retorno;
         }
+
+        /// <summary>
+        /// Método que busca un Corresponsal dentro de una lista de Corresponsales
+        /// </summary>
+        /// <param name="boletines">Lista de Corresponsales</param>
+        /// <param name="corresponsalBuscado">Corresponsal a buscar</param>
+        /// <returns>Corresponsal dentro de la lista</returns>
+        public Corresponsal BuscarCorresponsal(IList<Corresponsal> corresponsales, Corresponsal corresponsalBuscado)
+        {
+            Corresponsal retorno = null;
+
+            if (corresponsalBuscado != null)
+                foreach (Corresponsal corresponsal in corresponsales)
+                {
+                    if (corresponsal.Id == corresponsalBuscado.Id)
+                    {
+                        retorno = corresponsal;
+                        break;
+                    }
+                }
+
+            return retorno;
+        }
         
         /// <summary>
         /// Método que busca un Asociado dentro de una lista de Asociados
@@ -218,11 +241,11 @@ namespace Trascend.Bolet.Cliente.Presentadores
             Asociado retorno = null;
 
             if (asociadoBuscado != null)
-                foreach (Asociado boletin in asociados)
+                foreach (Asociado asociado in asociados)
                 {
-                    if (boletin.Id == asociadoBuscado.Id)
+                    if (asociado.Id == asociadoBuscado.Id)
                     {
-                        retorno = boletin;
+                        retorno = asociado;
                         break;
                     }
                 }

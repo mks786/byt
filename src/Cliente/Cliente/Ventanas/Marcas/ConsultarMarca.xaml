@@ -252,7 +252,7 @@
                             <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
 
-                        <custom:ByTTextBox MaxLength="255" Grid.Column="0" Grid.Row="1" Name="_txtCorresponsalSolicitud" VerticalAlignment="Center" 
+                        <custom:ByTTextBox IsEnabled="False" MaxLength="255" Grid.Column="0" Grid.Row="1" Name="_txtCorresponsalSolicitud" VerticalAlignment="Center" 
                          Grid.ColumnSpan="7" GotFocus="_txtCorresponsalSolicitud_GotFocus" GotKeyboardFocus="_txtCorresponsalSolicitud_GotFocus"></custom:ByTTextBox>
 
                         <Label Name="_lblIdCorresponsalSolicitud" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Center" Visibility="Collapsed">
@@ -882,7 +882,7 @@
                             <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
 
-                        <custom:ByTTextBox MaxLength="255" Grid.Column="0" Grid.Row="1" Name="_txtCorresponsalDatos" VerticalAlignment="Center" 
+                        <custom:ByTTextBox IsEnabled="False" MaxLength="255" Grid.Column="0" Grid.Row="1" Name="_txtCorresponsalDatos" VerticalAlignment="Center" 
                          Grid.ColumnSpan="7" GotFocus="_txtCorresponsalDatos_GotFocus" GotKeyboardFocus="_txtCorresponsalDatos_GotFocus"></custom:ByTTextBox>
 
                         <Label Name="_lblIdCorresponsalDatos" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Center" Visibility="Collapsed">
