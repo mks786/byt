@@ -35,9 +35,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
         private IInteresadoServicios _interesadoServicios;
         private IServicioServicios _servicioServicios;
         private ITipoEstadoServicios _tipoEstadoServicios;
+        private ICorresponsalServicios _corresponsalServicios;
 
         private IList<Asociado> _asociados;
         private IList<Interesado> _interesados;
+        private IList<Corresponsal> _corresponsales;
         private IList<Auditoria> _auditorias;
 
         /// <summary>
@@ -276,5 +278,240 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
             }
         }
+
+        #region Metodos de los filstros de asociados
+
+        public void CambiarAsociadoSolicitud()
+        {
+            try
+            {
+                if ((Asociado)this._ventana.AsociadoSolicitud != null)
+                {
+                    Asociado asociado = this._asociadoServicios.ConsultarAsociadoConTodo((Asociado)this._ventana.AsociadoSolicitud);
+                    this._ventana.NombreAsociadoSolicitud = ((Asociado)this._ventana.AsociadoSolicitud).Nombre;
+                    this._ventana.AsociadoDatos = (Asociado)this._ventana.AsociadoSolicitud;
+                    this._ventana.NombreAsociadoDatos = ((Asociado)this._ventana.AsociadoSolicitud).Nombre;
+                }
+            }
+            catch (ApplicationException e)
+            {
+                this._ventana.NombreAsociadoSolicitud = "";
+                this._ventana.NombreAsociadoDatos = "";
+            }
+        }
+
+        public void CambiarAsociadoDatos()
+        {
+            try
+            {
+                if ((Asociado)this._ventana.AsociadoDatos != null)
+                {
+                    Asociado asociado = this._asociadoServicios.ConsultarAsociadoConTodo((Asociado)this._ventana.AsociadoDatos);
+                    this._ventana.NombreAsociadoDatos = ((Asociado)this._ventana.AsociadoDatos).Nombre;
+                    this._ventana.AsociadoSolicitud = (Asociado)this._ventana.AsociadoDatos;
+                    this._ventana.NombreAsociadoSolicitud = ((Asociado)this._ventana.AsociadoDatos).Nombre;
+                }
+            }
+            catch (ApplicationException e)
+            {
+                this._ventana.NombreAsociadoSolicitud = "";
+                this._ventana.NombreAsociadoDatos = "";
+            }
+        }
+
+        public void BuscarAsociado(int filtrarEn)
+        {
+            IEnumerable<Asociado> asociadosFiltrados = this._asociados;
+
+            if (!string.IsNullOrEmpty(this._ventana.IdAsociadoSolicitudFiltrar))
+            {
+                asociadosFiltrados = from p in asociadosFiltrados
+                                     where p.Id == int.Parse(this._ventana.IdAsociadoSolicitudFiltrar)
+                                     select p;
+            }
+
+            if (!string.IsNullOrEmpty(this._ventana.NombreAsociadoSolicitud))
+            {
+                asociadosFiltrados = from p in asociadosFiltrados
+                                     where p.Nombre != null &&
+                                     p.Nombre.ToLower().Contains(this._ventana.NombreAsociadoSolicitud.ToLower())
+                                     select p;
+            }
+
+            // filtrarEn = 0 significa en el listview de la pestaña solicitud
+            // filtrarEn = 1 significa en el listview de la pestaña Datos 
+            if (filtrarEn == 0)
+            {
+                if (asociadosFiltrados.ToList<Asociado>().Count != 0)
+                    this._ventana.AsociadosSolicitud = asociadosFiltrados.ToList<Asociado>();
+                else
+                    this._ventana.AsociadosSolicitud = this._asociados;
+            }
+            else
+            {
+                if (asociadosFiltrados.ToList<Asociado>().Count != 0)
+                    this._ventana.AsociadosDatos = asociadosFiltrados.ToList<Asociado>();
+                else
+                    this._ventana.AsociadosDatos = this._asociados;
+            }
+        }
+
+        #endregion
+
+        #region Metodos de los filstros de interesados
+
+        public void CambiarInteresadoSolicitud()
+        {
+            try
+            {
+                if ((Interesado)this._ventana.InteresadoSolicitud != null)
+                {
+                    this._ventana.NombreInteresadoSolicitud = ((Interesado)this._ventana.InteresadoSolicitud).Nombre;
+                    this._ventana.InteresadoDatos = (Interesado)this._ventana.InteresadoSolicitud;
+                    this._ventana.NombreInteresadoDatos = ((Interesado)this._ventana.InteresadoSolicitud).Nombre;
+                }
+            }
+            catch (ApplicationException e)
+            {
+                this._ventana.NombreInteresadoSolicitud = "";
+                this._ventana.NombreInteresadoDatos = "";
+            }
+        }
+
+        public void CambiarInteresadoDatos()
+        {
+            try
+            {
+                if ((Interesado)this._ventana.InteresadoDatos != null)
+                {
+                    this._ventana.NombreInteresadoDatos = ((Interesado)this._ventana.InteresadoDatos).Nombre;
+                    this._ventana.InteresadoSolicitud = (Interesado)this._ventana.InteresadoDatos;
+                    this._ventana.NombreInteresadoSolicitud = ((Interesado)this._ventana.InteresadoDatos).Nombre;
+                }
+            }
+            catch (ApplicationException e)
+            {
+                this._ventana.NombreInteresadoSolicitud = "";
+                this._ventana.NombreInteresadoDatos = "";
+            }
+        }
+
+        public void BuscarInteresado(int filtrarEn)
+        {
+            IEnumerable<Interesado> interesadosFiltrados = this._interesados;
+
+            if (!string.IsNullOrEmpty(this._ventana.IdInteresadoSolicitudFiltrar))
+            {
+                interesadosFiltrados = from p in interesadosFiltrados
+                                       where p.Id == int.Parse(this._ventana.IdInteresadoSolicitudFiltrar)
+                                       select p;
+            }
+
+            if (!string.IsNullOrEmpty(this._ventana.NombreInteresadoSolicitud))
+            {
+                interesadosFiltrados = from p in interesadosFiltrados
+                                       where p.Nombre != null &&
+                                       p.Nombre.ToLower().Contains(this._ventana.NombreInteresadoSolicitud.ToLower())
+                                       select p;
+            }
+
+            // filtrarEn = 0 significa en el listview de la pestaña solicitud
+            // filtrarEn = 1 significa en el listview de la pestaña Datos 
+            if (filtrarEn == 0)
+            {
+                if (interesadosFiltrados.ToList<Interesado>().Count != 0)
+                    this._ventana.InteresadosSolicitud = interesadosFiltrados.ToList<Interesado>();
+                else
+                    this._ventana.InteresadosSolicitud = this._interesados;
+            }
+            else
+            {
+                if (interesadosFiltrados.ToList<Interesado>().Count != 0)
+                    this._ventana.InteresadosDatos = interesadosFiltrados.ToList<Interesado>();
+                else
+                    this._ventana.InteresadosDatos = this._interesados;
+            }
+        }
+
+        #endregion
+
+        #region Metodos de los filstros de corresponsales
+
+        public void CambiarCorresponsalSolicitud()
+        {
+            try
+            {
+                if ((Corresponsal)this._ventana.CorresponsalSolicitud != null)
+                {
+                    //Corresponsal corresponsal = this._corresponsalServicios.ConsultarCorresponsalConTodo((Corresponsal)this._ventana.CorresponsalSolicitud);
+                    this._ventana.DescripcionCorresponsalSolicitud = ((Corresponsal)this._ventana.CorresponsalSolicitud).Descripcion;
+                    this._ventana.CorresponsalDatos = (Corresponsal)this._ventana.CorresponsalSolicitud;
+                    this._ventana.DescripcionCorresponsalDatos = ((Corresponsal)this._ventana.CorresponsalSolicitud).Descripcion;
+                }
+            }
+            catch (ApplicationException e)
+            {
+                this._ventana.DescripcionCorresponsalDatos = "";
+                this._ventana.DescripcionCorresponsalSolicitud = "";
+            }
+        }
+
+        public void CambiarCorresponsalDatos()
+        {
+            try
+            {
+                if ((Corresponsal)this._ventana.CorresponsalDatos != null)
+                {
+                    //Corresponsal corresponsal = this._corresponsalServicios.ConsultarCorresponsalConTodo((Corresponsal)this._ventana.CorresponsalDatos);
+                    this._ventana.DescripcionCorresponsalDatos = ((Corresponsal)this._ventana.CorresponsalDatos).Descripcion;
+                    this._ventana.CorresponsalSolicitud = (Corresponsal)this._ventana.CorresponsalDatos;
+                    this._ventana.DescripcionCorresponsalSolicitud = ((Corresponsal)this._ventana.CorresponsalDatos).Descripcion;
+                }
+            }
+            catch (ApplicationException e)
+            {
+                this._ventana.DescripcionCorresponsalDatos = "";
+                this._ventana.DescripcionCorresponsalSolicitud = "";
+            }
+        }
+
+        public void BuscarCorresponsal(int filtrarEn)
+        {
+            IEnumerable<Corresponsal> corresponsalesFiltrados = this._corresponsales;
+
+            if (!string.IsNullOrEmpty(this._ventana.IdCorresponsalSolicitudFiltrar))
+            {
+                corresponsalesFiltrados = from p in corresponsalesFiltrados
+                                          where p.Id == int.Parse(this._ventana.IdAsociadoSolicitudFiltrar)
+                                          select p;
+            }
+
+            if (!string.IsNullOrEmpty(this._ventana.DescripcionCorresponsalSolicitud))
+            {
+                corresponsalesFiltrados = from p in corresponsalesFiltrados
+                                          where p.Descripcion != null &&
+                                          p.Descripcion.ToLower().Contains(this._ventana.DescripcionCorresponsalSolicitud.ToLower())
+                                          select p;
+            }
+
+            // filtrarEn = 0 significa en el listview de la pestaña solicitud
+            // filtrarEn = 1 significa en el listview de la pestaña Datos 
+            if (filtrarEn == 0)
+            {
+                if (corresponsalesFiltrados.ToList<Corresponsal>().Count != 0)
+                    this._ventana.CorresponsalesSolicitud = corresponsalesFiltrados.ToList<Corresponsal>();
+                else
+                    this._ventana.CorresponsalesSolicitud = this._asociados;
+            }
+            else
+            {
+                if (corresponsalesFiltrados.ToList<Corresponsal>().Count != 0)
+                    this._ventana.CorresponsalesDatos = corresponsalesFiltrados.ToList<Corresponsal>();
+                else
+                    this._ventana.CorresponsalesDatos = this._corresponsales;
+            }
+        }
+
+        #endregion
     }
 }

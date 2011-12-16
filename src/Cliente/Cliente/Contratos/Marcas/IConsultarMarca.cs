@@ -9,13 +9,15 @@ namespace Trascend.Bolet.Cliente.Contratos.Marcas
 
         string IdAsociadoSolicitudFiltrar { get; }
 
-        string IdAsociadoSDatosFiltrar { get; }
+        string IdAsociadoDatosFiltrar { get; }
 
         string NombreAsociadoSolicitudFiltrar { get; }
 
         string NombreAsociadoDatosFiltrar { get; }
 
         string NombreAsociadoSolicitud { get; set; }
+
+        string NombreAsociadoDatos { get; set; }
 
         string IdInteresadoSolicitudFiltrar { get; }
 
@@ -28,6 +30,18 @@ namespace Trascend.Bolet.Cliente.Contratos.Marcas
         string NombreInteresadoSolicitud { get; set; }
 
         string NombreInteresadoDatos { get; set; }
+
+        string IdCorresponsalSolicitudFiltrar { get; }
+
+        string IdCorresponsalDatosFiltrar { get; }
+
+        string DescripcionCorresponsalSolicitudFiltrar { get; }
+
+        string DescripcionCorresponsalDatosFiltrar { get; }
+
+        string DescripcionCorresponsalSolicitud { get; set; }
+
+        string DescripcionCorresponsalDatos { get; set; }
 
         object AsociadosSolicitud { get; set; }
 
@@ -44,6 +58,14 @@ namespace Trascend.Bolet.Cliente.Contratos.Marcas
         object InteresadosDatos { get; set; }
 
         object InteresadoDatos { get; set; }
+
+        object CorresponsalesSolicitud { get; set; }
+
+        object CorresponsalSolicitud { get; set; }
+
+        object CorresponsalesDatos { get; set; }
+
+        object CorresponsalDatos { get; set; }
 
         object PoderesSolicitud { get; set; }
 
@@ -81,9 +103,9 @@ namespace Trascend.Bolet.Cliente.Contratos.Marcas
 
         object Condicion { get; set; }
 
-        object PaisSolicitud { get; set; }
-
         object PaisesSolicitud { get; set; }
+
+        object PaisSolicitud { get; set; }
 
         object TipoMarcaSolicitud { get; set; }
 
