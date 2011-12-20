@@ -14,6 +14,9 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
         private PresentadorConsultarMarca _presentador;
         private bool _cargada;
 
+        private bool _asociadosEstanCargados;
+        private bool _corresponsalesEstanCargados;
+
         #region IConsultarMarca
 
         public object Marca
@@ -197,9 +200,6 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
                 this._txtAsociadoDatos.IsEnabled = value;
                 this._txtAsociadoSolicitud.IsEnabled = value;
                 this._txtBusqueda.IsEnabled = value;
-                this._txtCiudad.IsEnabled = value;
-                //this._txtCartaOrdenSolicitud.IsEnabled = value;
-                this._txtCiudad.IsEnabled = value;
                 this._txtClaseInternacional.IsEnabled = value;
                 this._txtClaseInternacionalDatos.IsEnabled = value;
                 this._txtClaseNacional.IsEnabled = value;
@@ -248,7 +248,6 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
                 this._txtNumSapi.IsEnabled = value;
                 this._txtOtroDatos.IsEnabled = value;
                 this._txtOtrosImp.IsEnabled = value;
-                this._txtPais.IsEnabled = value;
                 this._txtPrimeraReferenciaDatos.IsEnabled = value;
                 this._txtReclasificacionDatos.IsEnabled = value;
                 this._txtReferencia.IsEnabled = value;
@@ -268,6 +267,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
                 this._cbxAsocInt.IsEnabled = value;
                 this._cbxBoletinConcesion.IsEnabled = value;
                 this._cbxBoletinPublicacion.IsEnabled = value;
+                this._cbxCartaOrden.IsEnabled = value;
                 this._cbxCondiciones.IsEnabled = value;
                 this._cbxConflicto.IsEnabled = value;
                 this._cbxDetalleDatos.IsEnabled = value;
@@ -454,6 +454,18 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             get { return this._txtIdInteresadoDatos.Text; }
         }
 
+        public string InteresadoPaisSolicitud
+        {
+            get { return this._txtPaisSolicitud.Text; }
+            set { this._txtPaisSolicitud.Text = value; }
+        }
+
+        public string InteresadoCiudadSolicitud
+        {
+            get { return this._txtCiudadSolicitud.Text; }
+            set { this._txtCiudadSolicitud.Text = value; }
+        }
+
         public string NombreInteresadoSolicitudFiltrar
         {
             get { return this._txtNombreInteresadoSolicitud.Text; }
@@ -568,7 +580,10 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
         public ConsultarMarca(object marcaSeleccionada)
         {
             InitializeComponent();
+
             this._cargada = false;
+            this._asociadosEstanCargados = false;
+            this._corresponsalesEstanCargados = false;
             this._presentador = new PresentadorConsultarMarca(this, marcaSeleccionada);
         }
 
@@ -750,6 +765,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
 
         private void _txtAsociadoSolicitud_GotFocus(object sender, RoutedEventArgs e)
         {
+            if (!this._asociadosEstanCargados)
+            {
+                this._presentador.CargarAsociados();
+                this._asociadosEstanCargados = true;
+            }
             mostrarLstAsociadoSolicitud();
         }
 
@@ -789,6 +809,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
 
         private void _txtCorresponsalSolicitud_GotFocus(object sender, RoutedEventArgs e)
         {
+            if (!this._corresponsalesEstanCargados)
+            {
+                this._presentador.CargarCorresponsales();
+                this._corresponsalesEstanCargados = true;
+            }
             mostrarLstCorresponsalSolicutud();
         }
 
@@ -835,6 +860,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
 
         private void _txtAsociadoDatos_GotFocus(object sender, RoutedEventArgs e)
         {
+            if (!this._asociadosEstanCargados)
+            {
+                this._presentador.CargarAsociados();
+                this._asociadosEstanCargados = true;
+            }
             mostrarLstAsocaidoDatos();
         }
 
@@ -874,6 +904,12 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
 
         private void _txtCorresponsalDatos_GotFocus(object sender, RoutedEventArgs e)
         {
+
+            if (!this._corresponsalesEstanCargados)
+            {
+                this._presentador.CargarCorresponsales();
+                this._corresponsalesEstanCargados = true;
+            }
             mostrarLstCorresponsalDatos();
         }
 

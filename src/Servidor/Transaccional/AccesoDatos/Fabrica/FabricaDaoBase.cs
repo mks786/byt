@@ -308,5 +308,11 @@ namespace Trascend.Bolet.AccesoDatos.Fabrica
         /// <returns>IDaoTipoEstado</returns>
         public abstract IDaoTipoEstado ObtenerDaoTipoEstado();
 
+        /// <summary>
+        /// Método que devuelve el DaoCondicion del manejador que se esté utilizando
+        /// </summary>
+        /// <returns>IDaoCondicion</returns>
+        public abstract IDaoCondicion ObtenerDaoCondicion();
+
     }
 }

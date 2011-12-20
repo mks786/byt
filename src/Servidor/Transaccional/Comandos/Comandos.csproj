@@ -190,10 +190,12 @@
     <Compile Include="Comandos\ComandosTipoEstado\ComandoEliminarTipoEstado.cs" />
     <Compile Include="Comandos\ComandosTipoEstado\ComandoInsertarOModificarTipoEstado.cs" />
     <Compile Include="Comandos\ComandosTipoEstado\ComandoVerificarExistenciaTipoEstado.cs" />
+    <Compile Include="Comandos\ComandosCondicion\ComandoConsultarTodosCondiciones.cs" />
     <Compile Include="Comandos\Receptor.cs" />
     <Compile Include="Comandos\ComandosUsuario\ComandoConsultarTodosUsuarios.cs" />
     <Compile Include="Comandos\ComandosUsuario\ComandoConsultarUsuarioPorID.cs" />
     <Compile Include="Comandos\ComandosUsuario\ComandoInsertarOModificarUsuario.cs" />
+    <Compile Include="Fabrica\FabricaComandosCondicion.cs" />
     <Compile Include="Fabrica\FabricaComandosCorresponsal.cs" />
     <Compile Include="Fabrica\FabricaComandosTipoEstado.cs" />
     <Compile Include="Fabrica\FabricaComandosServicio.cs" />

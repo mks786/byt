@@ -227,10 +227,11 @@
                         </ListView>
                     </Grid>
 
-                    <custom:ByTTextBox IsEnabled="False" MaxLength="40" Grid.Column="8" Grid.Row="3" Name="_txtPais" VerticalAlignment="Center" 
-                         Grid.ColumnSpan="2" Margin="3,0,0,0" Text="{Binding Path=Interesado.Pais}"></custom:ByTTextBox>
-                    <custom:ByTTextBox IsEnabled="False" MaxLength="40" Grid.Column="10" Grid.Row="3" Name="_txtCiudad" VerticalAlignment="Center" 
-                         Grid.ColumnSpan="2" Margin="3,0,0,0" Text="{Binding Path=Interesado.Ciudad}"></custom:ByTTextBox>
+                    <custom:ByTTextBox IsEnabled="False" MaxLength="40" Grid.Column="8" Grid.Row="3" Name="_txtPaisSolicitud" VerticalAlignment="Center" 
+                         Grid.ColumnSpan="2" Margin="3,0,0,0"></custom:ByTTextBox>
+                    <custom:ByTTextBox IsEnabled="False" MaxLength="40" Grid.Column="10" Grid.Row="3" Name="_txtCiudadSolicitud" VerticalAlignment="Center" 
+                         Grid.ColumnSpan="2" Margin="3,0,0,0"></custom:ByTTextBox>
+
 
                     <Label Grid.Column="0" Grid.Row="4" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblCorresponsal}"/>
@@ -290,7 +291,7 @@
                     <Label Grid.Column="8" Grid.Row="4" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblCartaOrden}"/>
                     </Label>
-                    <ComboBox IsEnabled="False" Grid.Column="9" Grid.Row="4" Grid.ColumnSpan="3" Name="_cbxIdiomaSolicitud" Height="20" 
+                    <ComboBox IsEnabled="False" Grid.Column="9" Grid.Row="4" Grid.ColumnSpan="3" Name="_cbxCartaOrden" Height="20" 
                               ItemsSource="{Binding}" DisplayMemberPath="Descripcion" SelectedIndex="0">
                     </ComboBox>
 
@@ -1170,7 +1171,8 @@
                     <Label Grid.Column="6" Grid.Row="21" Grid.ColumnSpan="2" VerticalAlignment="Center">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblCondiciones}"/>
                     </Label>
-                    <ComboBox IsEnabled="False" Grid.Column="7" Grid.Row="21" Grid.ColumnSpan="2" Margin="3" Name="_cbxCondiciones" Height="20" ItemsSource="{Binding}" >
+                    <ComboBox IsEnabled="False" Grid.Column="7" Grid.Row="21" Grid.ColumnSpan="2" Margin="3" Name="_cbxCondiciones" Height="20" 
+                              ItemsSource="{Binding}" DisplayMemberPath="Descripcion" SelectedIndex="0">
                     </ComboBox>
 
                     <!--Nuevo-->

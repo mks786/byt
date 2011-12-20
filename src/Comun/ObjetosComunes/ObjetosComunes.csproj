@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ContratosServicios\ICondicionServicios.cs" />
     <Compile Include="ContratosServicios\ICorresponsalServicios.cs" />
     <Compile Include="ContratosServicios\ITipoEstadoServicios.cs" />
     <Compile Include="ContratosServicios\IServicioServicios.cs" />
@@ -97,6 +98,7 @@
     <Compile Include="Entidades\Anexo.cs" />
     <Compile Include="Entidades\ContadorAsignacion.cs" />
     <Compile Include="Entidades\Asignacion.cs" />
+    <Compile Include="Entidades\Condicion.cs" />
     <Compile Include="Entidades\Corresponsal.cs" />
     <Compile Include="Entidades\TipoEstado.cs" />
     <Compile Include="Entidades\Marca.cs" />

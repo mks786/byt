@@ -87,6 +87,7 @@
     <Compile Include="Controladores\ControladorMarca.cs" />
     <Compile Include="Controladores\ControladorServicio.cs" />
     <Compile Include="Controladores\ControladorTipoEstado.cs" />
+    <Compile Include="Controladores\ControladorCondicion.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

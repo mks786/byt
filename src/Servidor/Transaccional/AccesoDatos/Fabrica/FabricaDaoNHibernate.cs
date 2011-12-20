@@ -453,5 +453,14 @@ namespace Trascend.Bolet.AccesoDatos.Fabrica
         {
             return new DaoTipoEstadoNHibernate();
         }
+
+        /// <summary>
+        /// Método que devuelve el DaoCondicion
+        /// </summary>
+        /// <returns>IDaoCondicion</returns>
+        public override IDaoCondicion ObtenerDaoCondicion()
+        {
+            return new DaoCondicionNHibernate();
+        }
     }
 }

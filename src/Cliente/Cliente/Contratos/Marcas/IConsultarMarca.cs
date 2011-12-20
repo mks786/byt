@@ -59,6 +59,10 @@ namespace Trascend.Bolet.Cliente.Contratos.Marcas
 
         object InteresadoDatos { get; set; }
 
+        string InteresadoPaisSolicitud { get; set; }
+
+        string InteresadoCiudadSolicitud { get; set; }
+
         object CorresponsalesSolicitud { get; set; }
 
         object CorresponsalSolicitud { get; set; }
