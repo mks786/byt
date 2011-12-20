@@ -84,8 +84,8 @@
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblMarca}"/>
                     </Label>
                     <TextBox  Grid.Column="1" Grid.Row="1" Name="_txtDescripcionSolicitud" VerticalAlignment="Center"  
-                         Margin="3" Grid.ColumnSpan="11" MaxLength="255"
-                             ToolTip="{Binding ElementName=_txtDescripcionDatos, Path=(Validation.Errors)[0].ErrorContent}">
+                         Grid.ColumnSpan="11" MaxLength="255"
+                             ToolTip="{Binding ElementName=_txtDescripcion, Path=(Validation.Errors)[0].ErrorContent}">
                         <TextBox.Text>
                             <Binding Path="Descripcion" UpdateSourceTrigger="PropertyChanged">
                                 <Binding.ValidationRules>
@@ -214,9 +214,9 @@
                     </Grid>
 
                     <custom:ByTTextBox  MaxLength="40" Grid.Column="8" Grid.Row="3" Name="_txtPaisSolicitud" VerticalAlignment="Center" 
-                         Grid.ColumnSpan="2" Margin="3,0,0,0"></custom:ByTTextBox>
+                         Grid.ColumnSpan="2" Margin="3,0,0,0" IsEnabled="False"></custom:ByTTextBox>
                     <custom:ByTTextBox  MaxLength="40" Grid.Column="10" Grid.Row="3" Name="_txtCiudadSolicitud" VerticalAlignment="Center" 
-                         Grid.ColumnSpan="2" Margin="3,0,0,0"></custom:ByTTextBox>
+                         Grid.ColumnSpan="2" Margin="3,0,0,0" IsEnabled="False"></custom:ByTTextBox>
 
                     <Label Grid.Column="0" Grid.Row="4" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblCorresponsal}"/>
@@ -695,8 +695,8 @@
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblMarca}"/>
                     </Label>
                     <TextBox  Grid.Column="1" Grid.Row="0" Name="_txtDescripcionDatos" VerticalAlignment="Bottom"  
-                         Margin="3" Grid.ColumnSpan="11" MaxLength="255"
-                             ToolTip="{Binding ElementName=_txtDescripcionDatos, Path=(Validation.Errors)[0].ErrorContent}">
+                         Grid.ColumnSpan="11" MaxLength="255"
+                             ToolTip="{Binding ElementName=_txtDescripcion, Path=(Validation.Errors)[0].ErrorContent}">
                         <TextBox.Text>
                             <Binding Path="Descripcion" UpdateSourceTrigger="PropertyChanged">
                                 <Binding.ValidationRules>
@@ -812,7 +812,7 @@
                             <TextBlock Text="{x:Static recurso:Etiquetas.btnConsultar}"/>
                         </Button>
                         <ListView Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="7" Grid.RowSpan="2" Name="_lstInteresadosDatos" ItemsSource="{Binding}" 
-                      SelectionMode="Single" MouseDoubleClick="_lstInteresadosDatos_MouseDoubleClick"
+                      SelectionMode="Single" MouseDoubleClick="_lstInteresadosDatos_MouseDoubleClick" SelectedIndex="0"
                       Style="{DynamicResource EstiloListView}" Visibility="Collapsed" Height="150"  VerticalAlignment="Top">
                             <ListView.View>
                                 <GridView>
@@ -1231,13 +1231,10 @@
                 <Button.Style>
                     <Style TargetType="Button">
                         <Style.Triggers>
-                            <DataTrigger Binding="{Binding ElementName=_txtNombreDatos,Path=(Validation.HasError)}" Value="True">
+                            <DataTrigger Binding="{Binding ElementName=_txtDescripcionSolicitud,Path=(Validation.HasError)}" Value="True">
                                 <Setter Property="IsEnabled" Value="False" />
                             </DataTrigger>
-                            <DataTrigger Binding="{Binding ElementName=_txtNombreAdministracion,Path=(Validation.HasError)}" Value="True">
-                                <Setter Property="IsEnabled" Value="False" />
-                            </DataTrigger>
-                            <DataTrigger Binding="{Binding ElementName=_txtDomicilioDatos,Path=(Validation.HasError)}" Value="True">
+                            <DataTrigger Binding="{Binding ElementName=_txtDescripcionDatos,Path=(Validation.HasError)}" Value="True">
                                 <Setter Property="IsEnabled" Value="False" />
                             </DataTrigger>
                         </Style.Triggers>

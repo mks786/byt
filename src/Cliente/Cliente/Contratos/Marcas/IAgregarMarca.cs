@@ -118,5 +118,13 @@ namespace Trascend.Bolet.Cliente.Contratos.Marcas
         object TipoMarcaDatos { get; set; }
 
         object TipoMarcasDatos { get; set; }
+
+        object TipoReproduccion { get; set; }
+
+        object TipoReproducciones { get; set; }
+
+        object Sector { get; set; }
+
+        object Sectores { get; set; }
     }
 }

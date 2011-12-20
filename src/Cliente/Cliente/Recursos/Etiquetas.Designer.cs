@@ -826,6 +826,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to SECTOR.
+        /// </summary>
+        public static string cbiSector {
+            get {
+                return ResourceManager.GetString("cbiSector", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Sólo Administración.
         /// </summary>
         public static string cbiSoloAdministracion {
@@ -867,6 +876,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string cbiSoltero {
             get {
                 return ResourceManager.GetString("cbiSoltero", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TIPO_REPRODUCCION.
+        /// </summary>
+        public static string cbiTipoReproduccion {
+            get {
+                return ResourceManager.GetString("cbiTipoReproduccion", resourceCulture);
             }
         }
         

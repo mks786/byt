@@ -1399,4 +1399,10 @@
   <data name="cbiCategoriaMarca" xml:space="preserve">
     <value>MARCA</value>
   </data>
+  <data name="cbiSector" xml:space="preserve">
+    <value>SECTOR</value>
+  </data>
+  <data name="cbiTipoReproduccion" xml:space="preserve">
+    <value>TIPO_REPRODUCCION</value>
+  </data>
 </root>

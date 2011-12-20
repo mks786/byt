@@ -107,15 +107,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 #endregion
 
                 this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleConsultarAnexo, "");
-
-                IList<Corresponsal> corresponsales = this._corresponsalServicios.ConsultarTodos();
-                Corresponsal primerCorresponsal = new Corresponsal();
-                primerCorresponsal.Id = int.MinValue;
-                corresponsales.Insert(0, primerCorresponsal);
-                this._ventana.CorresponsalesSolicitud = corresponsales;
-                this._ventana.CorresponsalesDatos = corresponsales;
-                this._corresponsales = corresponsales;
-
+                
                 IList<Asociado> asociados = this._asociadoServicios.ConsultarTodos();
                 Asociado primerAsociado = new Asociado();
                 primerAsociado.Id = int.MinValue;
@@ -124,6 +116,18 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 this._ventana.AsociadosDatos = asociados;
                 this._asociados = asociados;
 
+                IList<Interesado> interesados = this._interesadoServicios.ConsultarTodos();
+                this._ventana.InteresadosDatos = interesados;
+                this._ventana.InteresadosSolicitud = interesados;
+                this._interesados = interesados;
+
+                IList<Corresponsal> corresponsales = this._corresponsalServicios.ConsultarTodos();
+                Corresponsal primerCorresponsal = new Corresponsal();
+                primerCorresponsal.Id = int.MinValue;
+                corresponsales.Insert(0, primerCorresponsal);
+                this._ventana.CorresponsalesSolicitud = corresponsales;
+                this._ventana.CorresponsalesDatos = corresponsales;
+                this._corresponsales = corresponsales;
                 this._ventana.TipoMarcasDatos = this._listaDatosDominioServicios.
                     ConsultarListaDatosDominioPorParametro(new ListaDatosDominio(Recursos.Etiquetas.cbiCategoriaMarca));
 
@@ -151,13 +155,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 this._ventana.PoderesDatos = poderes;
                 this._ventana.PoderesSolicitud = poderes;
 
-                IList<Interesado> interesados = this._interesadoServicios.ConsultarTodos();
-                Interesado primerInteresado = new Interesado();
-                primerInteresado.Id = int.MinValue;
-                interesados.Insert(0, primerInteresado);
-                this._ventana.InteresadosDatos = interesados;
-                this._ventana.InteresadosSolicitud = interesados;
-                this._interesados = interesados;
+                this._ventana.Sectores = this._listaDatosDominioServicios.
+                    ConsultarListaDatosDominioPorParametro(new ListaDatosDominio(Recursos.Etiquetas.cbiSector));
+
+                this._ventana.TipoReproducciones = this._listaDatosDominioServicios.
+                    ConsultarListaDatosDominioPorParametro(new ListaDatosDominio(Recursos.Etiquetas.cbiTipoReproduccion));
 
                 this._ventana.FocoPredeterminado();
 
@@ -217,6 +219,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 if (null != this._ventana.CorresponsalSolicitud)
                     marca.Corresponsal = ((Corresponsal)this._ventana.CorresponsalSolicitud).Id != int.MinValue ? ((Corresponsal)this._ventana.CorresponsalSolicitud) : null;
 
+                if (null != this._ventana.Sector)
+                    marca.Sector = !((ListaDatosDominio)this._ventana.Sector).Id.Equals("NGN") ? ((ListaDatosDominio)this._ventana.Sector).Id : null;
+
+                if (null != this._ventana.TipoReproduccion)
+                    marca.TipoRps = ((ListaDatosDominio)this._ventana.TipoReproduccion).Id[0];
+                
                 bool exitoso = this._marcaServicios.InsertarOModificar(marca, UsuarioLogeado.Hash);
 
                 if (exitoso)
