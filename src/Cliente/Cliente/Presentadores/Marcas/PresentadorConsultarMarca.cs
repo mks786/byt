@@ -106,6 +106,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleConsultarMarca, "");
 
                 Marca marca = (Marca)this._ventana.Marca;
+                Corresponsal corresponsal = new Corresponsal();
+                ((Marca)this._ventana.Marca).Corresponsal = corresponsal;
 
                 IList<Asociado> asociados = this._asociadoServicios.ConsultarTodos();
                 Asociado primerAsociado = new Asociado();
@@ -174,8 +176,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 this._ventana.CorresponsalesDatos = corresponsales;
                 this._ventana.CorresponsalDatos = this.BuscarCorresponsal(corresponsales, ((Marca)this._ventana.Marca).Corresponsal);
                 this._ventana.CorresponsalSolicitud = this.BuscarCorresponsal(corresponsales, ((Marca)this._ventana.Marca).Corresponsal);
-                this._ventana.DescripcionCorresponsalDatos = ((Marca)this._ventana.CorresponsalSolicitud).Descripcion;
-                this._ventana.DescripcionCorresponsalSolicitud = ((Marca)this._ventana.CorresponsalSolicitud).Descripcion;
+                this._ventana.DescripcionCorresponsalDatos = ((Marca)this._ventana.Marca).Corresponsal == null ?
+                                                             ((Corresponsal)this._ventana.CorresponsalSolicitud).Descripcion : null;
+                this._ventana.DescripcionCorresponsalSolicitud = ((Marca)this._ventana.Marca).Corresponsal == null ?
+                                                             ((Corresponsal)this._ventana.CorresponsalSolicitud).Descripcion : null;
                 this._corresponsales = corresponsales;
                 
                 this._ventana.FocoPredeterminado();
