@@ -17,7 +17,7 @@
     <property name="FechaRegistro" column="FREGISTRO" type="DateTime"/>
     <property name="IPoder" column="IPODER" type="string"/>
     <property name="Fascimiles" column="IFASCIMILES" type="string"/>
-    <property name="TieneEtiqueta" column="IETIQUETA" type="string"/>
+    <property name="Etiqueta" column="IETIQUETA" type="string"/>
     <property name="Traduccion" column="ITRADUCCION" type="char"/>
     <property name="Fichas" column="IFICHAS" type="string"/>
     <property name="Registro" column="IREGISTRO" type="char"/>
@@ -26,7 +26,7 @@
     <property name="Ubicacion" column="XUBICACION" type="string"/>
     <property name="UbicacionRenovacion" column="XUBICACION_RENOVACION" type="string"/>
     <property name="FechaRenovacion" column="FRENOVACION" type="DateTime"/>
-    <property name="Etiqueta" column="XETIQUETA" type="string"/>
+    <property name="EtiquetaDescripcion" column="XETIQUETA" type="string"/>
     <property name="PrimerOtro" column="XOTROS1" type="string"/>
     <property name="Representante" column="XREPRESENTANTE" type="string"/>
     <property name="Observacion" column="XOBSERVACION" type="string"/>

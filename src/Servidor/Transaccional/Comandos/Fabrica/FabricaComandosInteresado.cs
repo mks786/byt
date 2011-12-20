@@ -45,5 +45,14 @@ namespace Trascend.Bolet.Comandos.Fabrica
         {
             throw new NotImplementedException();
         }
+
+        /// <summary>
+        /// Método que devuelve el Comando para consultar un Interesado con todas sus referencias
+        /// </summary>
+        /// <returns>Asocaido con todo</returns>
+        public static ComandoBase<Interesado> ObtenerComandoConsultarInteresadoConTodo(Interesado interesado)
+        {
+            return new ComandoConsultarInteresadoConTodo(interesado);
+        }
     }
 }

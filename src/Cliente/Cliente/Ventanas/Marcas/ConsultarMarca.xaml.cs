@@ -198,7 +198,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
                 this._txtAsociadoSolicitud.IsEnabled = value;
                 this._txtBusqueda.IsEnabled = value;
                 this._txtCiudad.IsEnabled = value;
-                this._txtCartaOrdenDatos.IsEnabled = value;
+                //this._txtCartaOrdenSolicitud.IsEnabled = value;
                 this._txtCiudad.IsEnabled = value;
                 this._txtClaseInternacional.IsEnabled = value;
                 this._txtClaseInternacionalDatos.IsEnabled = value;

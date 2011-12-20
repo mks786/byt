@@ -222,4 +222,8 @@
     <value>asociado.Id = {0}</value>
     <comment>Filtro por Asociado</comment>
   </data>
+  <data name="ObtenerInteresadoConTodo" xml:space="preserve">
+    <value>Select distinct(i) from Interesado i left join fetch i.Pais where i.Id = '{0}' order by i.Id</value>
+    <comment>Selecciona el asociado con todas sus objetos</comment>
+  </data>
 </root>

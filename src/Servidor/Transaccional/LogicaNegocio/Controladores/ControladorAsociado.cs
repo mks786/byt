@@ -176,6 +176,7 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
 
             return retorno;
         }
+
         /// <summary>
         /// Método que consulta un asociado con todas sus dependencias
         /// </summary>

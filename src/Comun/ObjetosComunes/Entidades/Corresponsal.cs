@@ -40,6 +40,9 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         private Idioma _idioma;
         private Moneda _moneda;
         private Tarifa _tarifa;
+        private TipoCliente _tipoCliente;
+        private Etiqueta _etiqueta;
+        private DetallePago _detallePago;
 
         #endregion
 
@@ -353,6 +356,33 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         {
             get { return _tarifa; }
             set { _tarifa = value; }
+        }
+
+        /// <summary>
+        /// Propiedad que asigna u obtiene el tipo del asociado
+        /// </summary>
+        public virtual TipoCliente TipoCliente
+        {
+            get { return _tipoCliente; }
+            set { _tipoCliente = value; }
+        }
+
+        /// <summary>
+        /// Propiedad que asigna u obtiene la etiqueta del asociado
+        /// </summary>
+        public virtual Etiqueta Etiqueta
+        {
+            get { return _etiqueta; }
+            set { _etiqueta = value; }
+        }
+
+        /// <summary>
+        /// Propiedad que asigna u obtiene el detalle de pago asociado
+        /// </summary>
+        public virtual DetallePago DetallePago
+        {
+            get { return _detallePago; }
+            set { _detallePago = value; }
         }
 
         #endregion

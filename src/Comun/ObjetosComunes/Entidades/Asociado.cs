@@ -12,12 +12,9 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         private string _nombre;
         private char _tipoPersona;
         private string _domicilio;
-        private Pais _pais;
         private string _contribuyente;
         private string _rif;
         private string _nit;
-        private Idioma _idioma;
-        private Moneda _moneda;
         private float _descuento;
         private string _telefono1;
         private string _telefono2;
@@ -28,7 +25,6 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         private string _email;
         private string _web;
         private int _diaCredito;
-        private TipoCliente _tipoCliente;
         private string _activo;
         private char _edoCuenta;
         private string _edoCuentaDigital;
@@ -36,10 +32,14 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         private char _isf;
         private char _alerta;
         private string _alarmaDescripcion;
+        private string _operacion;
+        private Pais _pais;
+        private Idioma _idioma;
+        private Moneda _moneda;
         private Tarifa _tarifa;
+        private TipoCliente _tipoCliente;
         private Etiqueta _etiqueta;
         private DetallePago _detallePago;
-        private string _operacion;
         private IList<Justificacion> _justificaciones;
         private IList<Contacto> _contactos;
         private IList<Carta> _cartas;
@@ -66,7 +66,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         /// Constructor que inicializa el condigo del asociado
         /// </summary>
         /// <param name="codigo">Codigo del asociado</param>
-        public Asociado(int id)
+        public Asociado(int id) : this()
         {
             this._id = id;
         }

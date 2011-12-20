@@ -49,6 +49,19 @@
       <column name="COD_TAR"/>
     </many-to-one>
 
+    <many-to-one name="TipoCliente" class="TipoCliente">
+      <column name="CTIPO"/>
+    </many-to-one>
+
+    <many-to-one name="Etiqueta" class="Etiqueta">
+      <column name="CODETI"/>
+    </many-to-one>
+
+    <many-to-one name="DetallePago" class="DetallePago">
+      <column name="CODPG"/>
+    </many-to-one>
+
+
   </class>
 </hibernate-mapping>
 

@@ -21,7 +21,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         private DateTime? _fechaRegistro;
         private string _iPoder;
         private string _fascimiles;
-        private string _tieneEtiqueta;
+        private string _etiqueta;
         private char _traduccion;
         private string _fichas;
         private char _registro;
@@ -30,7 +30,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         private string _ubicacion;
         private string _ubicacionRenovacion;
         private DateTime? _fechaRenovacion;
-        private string _etiqueta;
+        private string _etiquetaDescripcion;
         private string _primerOtro;
         private string _representante;
         private string _observacion;
@@ -55,7 +55,6 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         private Pais _pais;
         private Servicio _servicio;
         private Poder _poder;
-        private bool _etiquetaAutorizar;
         private string _cPrioridad;
         private string _operacion;
 
@@ -66,13 +65,16 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         /// <summary>
         /// Constructor Predeterminado
         /// </summary>
-        public Marca() { }
+        public Marca() 
+        {
+            this._etiqueta = "No";
+        }
 
         /// <summary>
         /// Constructor que inicializa el id de la marca
         /// </summary>
         /// <param name="id">Id de la marca</param>
-        public Marca(int id)
+        public Marca(int id) : this()
         {
             this._id = id;
         }
@@ -201,10 +203,10 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         /// <summary>
         /// Propiedad que asigna u obtiene si Tiene Etiqueta
         /// </summary>
-        public virtual string TieneEtiqueta
+        public virtual string EtiquetaDescripcion
         {
-            get { return _tieneEtiqueta; }
-            set { _tieneEtiqueta = value; }
+            get { return _etiquetaDescripcion; }
+            set { _etiquetaDescripcion = value; }
         }
 
         /// <summary>
@@ -507,11 +509,11 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         /// <summary>
         /// Propiedad que asigna u obtiene el Check de etiqueta
         /// </summary>
-        public virtual bool EtiquetaAutorizar
+        public virtual bool BEtiqueta
         {
             get
             {
-                if (this.TieneEtiqueta.Equals("Si"))
+                if (this.Etiqueta.Equals("Si"))
                     return true;
                 else
                     return false;
@@ -519,9 +521,9 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
             set
             {
                 if (value)
-                    this.TieneEtiqueta = "Si";
+                    this.Etiqueta = "Si";
                 else
-                    this.TieneEtiqueta = "No";
+                    this.Etiqueta = "No";
             }
         }
 

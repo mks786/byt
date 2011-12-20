@@ -19,7 +19,7 @@
             </Style.Triggers>
         </Style>
     </Page.Resources>
-    
+
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="50"/>
@@ -38,7 +38,7 @@
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="55"/>
+                        <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>
@@ -83,22 +83,22 @@
                     <Label Grid.Column="0" Grid.Row="1" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblMarca}"/>
                     </Label>
-                    <custom:ByTTextBox  Grid.Column="1" Grid.Row="1" Name="_txtDescripcionSolicitud" VerticalAlignment="Center"
-                         Grid.ColumnSpan="11" SpellCheck.IsEnabled="True" MaxLength="255"
-                         ToolTip="{Binding ElementName=_txtDescripcionSolicitud, Path=(Validation.Errors)[0].ErrorContent}">
-                        <custom:ByTTextBox.Text>
+                    <TextBox  Grid.Column="1" Grid.Row="1" Name="_txtDescripcionSolicitud" VerticalAlignment="Center"  
+                         Margin="3" Grid.ColumnSpan="11" MaxLength="255"
+                             ToolTip="{Binding ElementName=_txtDescripcionDatos, Path=(Validation.Errors)[0].ErrorContent}">
+                        <TextBox.Text>
                             <Binding Path="Descripcion" UpdateSourceTrigger="PropertyChanged">
                                 <Binding.ValidationRules>
                                     <reglas:Obligatorio ValidatesOnTargetUpdated="True" />
                                 </Binding.ValidationRules>
                             </Binding>
-                        </custom:ByTTextBox.Text>
-                    </custom:ByTTextBox>
+                        </TextBox.Text>
+                    </TextBox>
 
                     <Label Grid.Column="0" Grid.Row="2" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblAsociado}"/>
                     </Label>
-                    
+
                     <Grid Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="7">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
@@ -115,23 +115,23 @@
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
-                        
-                        <custom:ByTTextBox MaxLength="255" Grid.Column="0" Grid.Row="1" Name="_txtAsociadoSolicitud" VerticalAlignment="Center" 
+
+                        <custom:ByTTextBox  MaxLength="255" Grid.Column="0" Grid.Row="1" Name="_txtAsociadoSolicitud" VerticalAlignment="Center" 
                          Grid.ColumnSpan="7" GotFocus="_txtAsociadoSolicitud_GotFocus" GotKeyboardFocus="_txtAsociadoSolicitud_GotFocus"></custom:ByTTextBox>
 
                         <Label Name="_lblIdAsociadoSolicitud" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Center" Visibility="Collapsed">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblId}"/>
                         </Label>
-                        <TextBox    Grid.Column="1" Grid.Row="0" Name="_txtIdAsociadoSolicitud" VerticalAlignment="Center" 
+                        <TextBox     Grid.Column="1" Grid.Row="0" Name="_txtIdAsociadoSolicitud" VerticalAlignment="Center" 
                          MaxLength="255" Grid.ColumnSpan="2" Visibility="Collapsed"  ></TextBox>
 
                         <Label Name="_lblNombreAsociadoSolicitud" Grid.Column="3" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Center" Visibility="Collapsed">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblNombre}"/>
                         </Label>
-                        <TextBox    Grid.Column="4" Grid.Row="0" Name="_txtNombreAsociadoSolicitud" VerticalAlignment="Center"  Grid.ColumnSpan="2"
+                        <TextBox     Grid.Column="4" Grid.Row="0" Name="_txtNombreAsociadoSolicitud" VerticalAlignment="Center"  Grid.ColumnSpan="2"
                          MaxLength="255" Visibility="Collapsed"></TextBox>
 
-                        <Button Name="_btnConsultarAsociadoSolicitud" Width="80" IsDefault="False" Grid.Row="0" Grid.Column="7" Height="25" HorizontalAlignment="Right" Click="_btnConsultarAsociadoSolicitud_Click" Visibility="Collapsed">
+                        <Button  Name="_btnConsultarAsociadoSolicitud" Width="80" IsDefault="False" Grid.Row="0" Grid.Column="7" Height="25" HorizontalAlignment="Right" Click="_btnConsultarAsociadoSolicitud_Click" Visibility="Collapsed">
                             <TextBlock Text="{x:Static recurso:Etiquetas.btnConsultar}"/>
                         </Button>
                         <ListView Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="7" Grid.RowSpan="2" Name="_lstAsociadosSolicitud" ItemsSource="{Binding}" 
@@ -153,7 +153,8 @@
                     <Label Grid.Column="8" Grid.Row="2" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblReferencia}"/>
                     </Label>
-                    <custom:ByTTextBox MaxLength="70" Grid.Column="9" Grid.Row="2" Name="_txtReferenciaSolicitud" VerticalAlignment="Center" 
+
+                    <custom:ByTTextBox  MaxLength="70" Grid.Column="9" Grid.Row="2" Name="_txtReferencia" VerticalAlignment="Center" 
                          Grid.ColumnSpan="3" Text="{Binding Path=PrimeraReferencia}"></custom:ByTTextBox>
 
                     <Label Grid.Column="0" Grid.Row="3" VerticalAlignment="Center" HorizontalContentAlignment="Right">
@@ -177,22 +178,22 @@
                             <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
 
-                        <custom:ByTTextBox MaxLength="255" Grid.Column="0" Grid.Row="1" Name="_txtInteresadoSolicitud" VerticalAlignment="Center" 
+                        <custom:ByTTextBox  MaxLength="255" Grid.Column="0" Grid.Row="1" Name="_txtInteresadoSolicitud" VerticalAlignment="Center" 
                          Grid.ColumnSpan="7" GotFocus="_txtInteresadoSolicitud_GotFocus" GotKeyboardFocus="_txtInteresadoSolicitud_GotFocus"></custom:ByTTextBox>
 
                         <Label Name="_lblIdInteresadoSolicitud" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Center" Visibility="Collapsed">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblId}"/>
                         </Label>
-                        <TextBox    Grid.Column="1" Grid.Row="0" Name="_txtIdInteresadoSolicitud" VerticalAlignment="Center" 
+                        <TextBox     Grid.Column="1" Grid.Row="0" Name="_txtIdInteresadoSolicitud" VerticalAlignment="Center" 
                          MaxLength="255" Grid.ColumnSpan="2" Visibility="Collapsed"  ></TextBox>
 
                         <Label Name="_lblNombreInteresadoSolicitud" Grid.Column="3" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Center" Visibility="Collapsed">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblNombre}"/>
                         </Label>
-                        <TextBox    Grid.Column="4" Grid.Row="0" Name="_txtNombreInteresadoSolicitud" VerticalAlignment="Center"  Grid.ColumnSpan="2"
+                        <TextBox     Grid.Column="4" Grid.Row="0" Name="_txtNombreInteresadoSolicitud" VerticalAlignment="Center"  Grid.ColumnSpan="2"
                          MaxLength="255" Visibility="Collapsed"></TextBox>
 
-                        <Button Name="_btnConsultarInteresadoSolicitud" Width="80" IsDefault="False" Grid.Row="0" Grid.Column="7" Height="25" HorizontalAlignment="Right" 
+                        <Button  Name="_btnConsultarInteresadoSolicitud" Width="80" IsDefault="False" Grid.Row="0" Grid.Column="7" Height="25" HorizontalAlignment="Right" 
                                 Click="_btnConsultarInteresadoSolicitud_Click" Visibility="Collapsed">
                             <TextBlock Text="{x:Static recurso:Etiquetas.btnConsultar}"/>
                         </Button>
@@ -212,9 +213,9 @@
                         </ListView>
                     </Grid>
 
-                    <custom:ByTTextBox MaxLength="40" Grid.Column="8" Grid.Row="3" Name="_txtPaisSolicitud" VerticalAlignment="Center" 
+                    <custom:ByTTextBox  MaxLength="40" Grid.Column="8" Grid.Row="3" Name="_txtPaisSolicitud" VerticalAlignment="Center" 
                          Grid.ColumnSpan="2" Margin="3,0,0,0"></custom:ByTTextBox>
-                    <custom:ByTTextBox MaxLength="40" Grid.Column="10" Grid.Row="3" Name="_txtCiudadSolicitud" VerticalAlignment="Center" 
+                    <custom:ByTTextBox  MaxLength="40" Grid.Column="10" Grid.Row="3" Name="_txtCiudadSolicitud" VerticalAlignment="Center" 
                          Grid.ColumnSpan="2" Margin="3,0,0,0"></custom:ByTTextBox>
 
                     <Label Grid.Column="0" Grid.Row="4" VerticalAlignment="Center" HorizontalContentAlignment="Right">
@@ -276,42 +277,42 @@
                     <Label Grid.Column="8" Grid.Row="4" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblCartaOrden}"/>
                     </Label>
-                    <ComboBox Grid.Column="9" Grid.Row="4" Grid.ColumnSpan="3" Name="_cbxIdiomaDatosSolicitud" Height="20" 
+                    <ComboBox  Grid.Column="9" Grid.Row="4" Grid.ColumnSpan="3" Name="_cbxIdiomaSolicitud" Height="20" 
                               ItemsSource="{Binding}" DisplayMemberPath="Descripcion" SelectedIndex="0">
                     </ComboBox>
 
                     <Label Grid.Column="0" Grid.Row="5" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblLocalidad}"/>
                     </Label>
-                    <custom:ByTTextBox MaxLength="100" Grid.Column="1" Grid.Row="5" Name="_txtLocalidadSolicitud" VerticalAlignment="Center" 
-                         Grid.ColumnSpan="2" ></custom:ByTTextBox>
+                    <custom:ByTTextBox  MaxLength="100" Grid.Column="1" Grid.Row="5" Name="_txtLocalidad" VerticalAlignment="Center" 
+                         Grid.ColumnSpan="2" Text=""></custom:ByTTextBox>
 
                     <Label Grid.Column="3" Grid.Row="5" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblPais}"/>
                     </Label>
-                    <ComboBox Grid.Column="4" Grid.Row="5" Grid.ColumnSpan="4" Name="_cbxPaisSolicitud" Height="20" 
-                              ItemsSource="{Binding}" DisplayMemberPath="NombreEspanol" SelectedIndex="0">
+                    <ComboBox  Grid.Column="4" Grid.Row="5" Grid.ColumnSpan="4" Name="_cbxPais" Height="20" 
+                              ItemsSource="{Binding}" DisplayMemberPath="NombreEspañol" SelectedIndex="0">
                     </ComboBox>
-                    
+
                     <Label Grid.Column="8" Grid.Row="5" VerticalAlignment="Center" HorizontalAlignment="Right" Grid.ColumnSpan="2">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblCodIntl}"/>
                     </Label>
-                    <custom:ByTTextBox MaxLength="100" Grid.Column="10" Grid.Row="5" Name="_txtCodSolicitud" VerticalAlignment="Center" 
-                         Margin="3,0,0,0"></custom:ByTTextBox>
-                    <custom:ByTTextBox MaxLength="100" Grid.Column="11" Grid.Row="5" Name="_txtNumSolicitud" VerticalAlignment="Center" 
-                         Margin="3,0,0,0"></custom:ByTTextBox>
+                    <custom:ByTTextBox  MaxLength="100" Grid.Column="10" Grid.Row="5" Name="_txtCod" VerticalAlignment="Center" 
+                         Margin="3,0,0,0" Text=""></custom:ByTTextBox>
+                    <custom:ByTTextBox  MaxLength="100" Grid.Column="11" Grid.Row="5" Name="_txtNum" VerticalAlignment="Center" 
+                         Margin="3,0,0,0" Text=""></custom:ByTTextBox>
 
                     <Label Grid.Column="0" Grid.Row="6" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblAsocInt}"/>
                     </Label>
-                    <ComboBox Grid.Column="1" Grid.Row="6" Grid.ColumnSpan="7" Name="_cbxAsocIntSolicitud" Height="20" 
+                    <ComboBox  Grid.Column="1" Grid.Row="6" Grid.ColumnSpan="7" Name="_cbxAsocInt" Height="20" 
                               ItemsSource="{Binding}" DisplayMemberPath="Nombre" SelectedIndex="0">
                     </ComboBox>
 
                     <Label Grid.Column="8" Grid.Row="6" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblReferencia}"/>
                     </Label>
-                    <custom:ByTTextBox MaxLength="70" Grid.Column="9" Grid.Row="6" Name="_txtReferenciaAsocIntSolicitud" VerticalAlignment="Center" 
+                    <custom:ByTTextBox  MaxLength="70" Grid.Column="9" Grid.Row="6" Name="_txtReferenciaAsocInt" VerticalAlignment="Center" 
                          Grid.ColumnSpan="3" ></custom:ByTTextBox>
 
                     <Separator Grid.Column="0" Grid.Row="7" Grid.ColumnSpan="12" Margin="10 0" VerticalAlignment="Center" />
@@ -319,153 +320,154 @@
                     <Label Grid.Column="0" Grid.Row="8" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblSector}"/>
                     </Label>
-                    <ComboBox Grid.Column="1" Grid.Row="8" Grid.ColumnSpan="3" Name="_cbxSectorSolicitud" Height="20" 
-                              ItemsSource="{Binding}" DisplayMemberPath="Nombre" SelectedIndex="0">
+                    <ComboBox  Grid.Column="1" Grid.Row="8" Grid.ColumnSpan="3" Name="_cbxSector" Height="20" 
+                              ItemsSource="{Binding}" DisplayMemberPath="Descripcion" SelectedIndex="0">
                     </ComboBox>
 
                     <Label Grid.Column="4" Grid.Row="8" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblTipoReproduccion}"/>
                     </Label>
-                    <ComboBox Grid.Column="5" Grid.Row="8" Grid.ColumnSpan="3" Name="_cbxTipoReprodcuccionSolicitud" Height="20" 
-                              ItemsSource="{Binding}" DisplayMemberPath="Nombre" SelectedIndex="0">
+                    <ComboBox  Grid.Column="5" Grid.Row="8" Grid.ColumnSpan="3" Name="_cbxTipoReproduccion" Height="20" 
+                              ItemsSource="{Binding}" DisplayMemberPath="Descripcion" SelectedIndex="0">
                     </ComboBox>
 
                     <Label Grid.Column="8" Grid.Row="8" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblTipoMarca}"/>
                     </Label>
-                    <ComboBox Grid.Column="9" Grid.Row="8" Grid.ColumnSpan="3" Name="_cbxTipoMarcaSolicitud" Height="20" 
-                              ItemsSource="{Binding}" DisplayMemberPath="Nombre" SelectedIndex="0">
+                    <ComboBox  Grid.Column="9" Grid.Row="8" Grid.ColumnSpan="3" Name="_cbxTipoMarcaSolicitud" Height="20" 
+                              ItemsSource="{Binding}" DisplayMemberPath="Descripcion" SelectedIndex="0">
                     </ComboBox>
 
                     <Label Grid.Column="0" Grid.Row="9" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblEtiqueta}"/>
                     </Label>
-                    <CheckBox  Name="_chkEtiquetaSolicitud" Grid.Column="1" Grid.Row="9" VerticalAlignment="Center"
-                         HorizontalAlignment="Center" IsChecked="{Binding Path=BAutorizar}">
+                    <CheckBox   Name="_chkEtiquetaSolicitud" Grid.Column="1" Grid.Row="9" VerticalAlignment="Center"
+                         HorizontalAlignment="Center" IsChecked="{Binding Path=BEtiqueta}">
                     </CheckBox>
-                    <custom:ByTTextBox MaxLength="2000" Grid.Column="2" Grid.Row="9" Name="_txtEtiquetaSolicitud" VerticalAlignment="Center" 
-                         Grid.ColumnSpan="6" ></custom:ByTTextBox>
+                    <custom:ByTTextBox  MaxLength="2000" Grid.Column="2" Grid.Row="9" Name="_txtEtiquetaSolicitud" VerticalAlignment="Center" 
+                         Grid.ColumnSpan="6" Text="{Binding Path=EtiquetaDescripcion}"></custom:ByTTextBox>
 
                     <Label Grid.Column="0" Grid.Row="10" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblClaseInt}"/>
                     </Label>
-                    <custom:ByTTextBox MaxLength="255" Grid.Column="1" Grid.Row="10" Name="_txtClaseInternacionalSolicitud" VerticalAlignment="Center" 
-                         Grid.ColumnSpan="1" ></custom:ByTTextBox>
+                    <custom:ByTTextBox  MaxLength="255" Grid.Column="1" Grid.Row="10" Name="_txtClaseInternacionalSolicitud" VerticalAlignment="Center" 
+                         Grid.ColumnSpan="1" Text=""></custom:ByTTextBox>
 
-                    <Button Name="_btnClaseCompletaSolicitud" VerticalAlignment="Bottom" Grid.Column="2" Grid.Row="10" Grid.ColumnSpan="2" Height="25" Width="90" Click="_btnClaseCompletaSolicitud_Click">Clase completa</Button>
+                    <Button  Name="_btnClaseCompletaSolicitud" VerticalAlignment="Bottom" Grid.Column="2" Grid.Row="10" Grid.ColumnSpan="2" Height="25" Width="90">Clase completa</Button>
 
                     <Label Grid.Column="4" Grid.Row="10" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblClaseNac}"/>
                     </Label>
-                    <custom:ByTTextBox MaxLength="255" Grid.Column="5" Grid.Row="10" Name="_txtClaseNacionalSolicitud" VerticalAlignment="Center" 
+                    <custom:ByTTextBox  MaxLength="255" Grid.Column="5" Grid.Row="10" Name="_txtClaseNacional" VerticalAlignment="Center" 
                          Grid.ColumnSpan="1" ></custom:ByTTextBox>
 
                     <Label Grid.Column="6" Grid.Row="10" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblTipoClasNac}"/>
                     </Label>
-                    <custom:ByTTextBox MaxLength="255" Grid.Column="7" Grid.Row="10" Name="_txtTipoClaseNacionalSolicitud" VerticalAlignment="Center" 
-                         Grid.ColumnSpan="1" ></custom:ByTTextBox>
+                    <custom:ByTTextBox  MaxLength="255" Grid.Column="7" Grid.Row="10" Name="_txtTipoClaseNacional" VerticalAlignment="Center" 
+                         Grid.ColumnSpan="1" Text="{Binding Path=TipoCnac}"></custom:ByTTextBox>
 
                     <Label Grid.Column="8" Grid.Row="10" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblReclasif}"/>
                     </Label>
-                    <Button Name="_btnIrReclasificarSolicitud" VerticalAlignment="Bottom" Grid.Column="9" Grid.Row="10"  Height="25" Width="40" Click="_btnIrReclasificarSolicitud_Click">Ir</Button>
+                    <Button  Name="_btnIrReclasificar" VerticalAlignment="Bottom" Grid.Column="9" Grid.Row="10"  Height="25" Width="40">Ir</Button>
 
                     <Label Grid.Column="10" Grid.Row="10" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblMarcaOrigen}"/>
                     </Label>
-                    <ComboBox Grid.Column="11" Grid.Row="10"  Name="_cbxMarcaOrigenSolicitud" Height="20" 
+                    <ComboBox  Grid.Column="11" Grid.Row="10"  Name="_cbxMarcaOrigenSolicitud" Height="20" 
                               ItemsSource="{Binding}" DisplayMemberPath="Nombre" SelectedIndex="0">
                     </ComboBox>
-                    
+
                     <Label Grid.Column="0" Grid.Row="11" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblDistingue}"/>
                     </Label>
-                    <custom:ByTTextBox MaxLength="255" Grid.Column="1" Grid.Row="11" Name="_txtDistingueSolicitud" VerticalAlignment="Center" 
-                         Grid.ColumnSpan="9" ></custom:ByTTextBox>
+                    <custom:ByTTextBox  MaxLength="255" Grid.Column="1" Grid.Row="11" Name="_txtDistingue" VerticalAlignment="Center" 
+                         Grid.ColumnSpan="9" Text="{Binding Path=Distingue}"></custom:ByTTextBox>
 
-                    <Button Name="_btnInglesSolicitud" VerticalAlignment="Bottom" Grid.Column="10" Grid.Row="11" Grid.ColumnSpan="2" Height="25" Width="90" Click="_btnInglesSolicitud_Click">Ingles</Button>
+                    <Button  Name="_btnIngles" VerticalAlignment="Bottom" Grid.Column="10" Grid.Row="11" Grid.ColumnSpan="2" Height="25" Width="90">Ingles</Button>
 
                     <Label Grid.Column="0" Grid.Row="12" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblOtrosImp}"/>
                     </Label>
-                    <custom:ByTTextBox MaxLength="255" Grid.Column="1" Grid.Row="12" Name="_txtOtrosImpSolicitud" VerticalAlignment="Center" 
-                         Grid.ColumnSpan="8" ></custom:ByTTextBox>
+                    <custom:ByTTextBox  MaxLength="255" Grid.Column="1" Grid.Row="12" Name="_txtOtrosImp" VerticalAlignment="Center" 
+                         Grid.ColumnSpan="8" Text="{Binding Path=Observacion}"></custom:ByTTextBox>
 
                     <Label Grid.Column="9" Grid.Row="12" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblConflicto}"/>
                     </Label>
-                    <ComboBox Grid.Column="10" Grid.Row="12"  Name="_cbxConflictoSolicitud" Height="20" Grid.ColumnSpan="2"
+                    <ComboBox  Grid.Column="10" Grid.Row="12"  Name="_cbxConflicto" Height="20" Grid.ColumnSpan="2"
                               ItemsSource="{Binding}" DisplayMemberPath="Nombre" SelectedIndex="0">
                     </ComboBox>
 
                     <Label Grid.Column="0" Grid.Row="13" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblNumInscripcion}"/>
                     </Label>
-                    <custom:ByTTextBox MaxLength="255" Grid.Column="1" Grid.Row="13" Name="_txtCodigoInscripcionSolicitud" VerticalAlignment="Center" 
-                         ></custom:ByTTextBox>
+                    <custom:ByTTextBox  MaxLength="255" Grid.Column="1" Grid.Row="13" Name="_txtCodigoInscripcionSolicitud" VerticalAlignment="Center" 
+                         Text="{Binding Path=CodigoInscripcion}"></custom:ByTTextBox>
 
                     <Label Grid.Column="2" Grid.Row="13" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblFecha}"/>
                     </Label>
-                    <DatePicker Grid.Column="3" Grid.Row="13" HorizontalAlignment="Left"  Name="_dpkFechaSolicitud" Focusable="False" BorderBrush="{x:Null}" >
+                    <DatePicker  Grid.Column="3" Grid.Row="13" HorizontalAlignment="Left"  Name="_dpkFecha" Focusable="False" BorderBrush="{x:Null}" >
                         <DatePicker.SelectedDate>
-                            <Binding Path="Fecha" UpdateSourceTrigger="PropertyChanged"/>
+                            <Binding Path="FechaInscripcion" UpdateSourceTrigger="PropertyChanged"/>
                         </DatePicker.SelectedDate>
                     </DatePicker>
 
                     <Label Grid.Column="4" Grid.Row="13" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblAgente}"/>
                     </Label>
-                    <ComboBox Grid.Column="5" Grid.Row="13"  Name="_cbxAgenteSolicitud" Height="20" Grid.ColumnSpan="2"
+                    <ComboBox  Grid.Column="5" Grid.Row="13"  Name="_cbxAgenteSolicitud" Height="20" Grid.ColumnSpan="2"
                               ItemsSource="{Binding}" DisplayMemberPath="Nombre" SelectedIndex="0">
                     </ComboBox>
 
                     <Label Grid.Column="7" Grid.Row="13" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblPoder}"/>
                     </Label>
-                    <ComboBox Grid.Column="8" Grid.Row="13"  Name="_cbxPoderSolicitud" Height="20" Grid.ColumnSpan="2"
-                              ItemsSource="{Binding}" DisplayMemberPath="Nombre" SelectedIndex="0">
+                    <ComboBox  Grid.Column="8" Grid.Row="13"  Name="_cbxPoderSolicitud" Height="20" Grid.ColumnSpan="2"
+                              ItemsSource="{Binding}" DisplayMemberPath="NumPoder" SelectedIndex="0">
                     </ComboBox>
 
                     <Label Grid.Column="10" Grid.Row="13" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblNumSapi}"/>
                     </Label>
-                    <custom:ByTTextBox MaxLength="255" Grid.Column="11" Grid.Row="13" Name="_txtNumSapiSolicitud" VerticalAlignment="Center"></custom:ByTTextBox>
+                    <custom:ByTTextBox  MaxLength="255" Grid.Column="11" Grid.Row="13" Name="_txtNumSapi" VerticalAlignment="Center"></custom:ByTTextBox>
 
                     <Label Grid.Column="0" Grid.Row="14" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblBusqueda}"/>
                     </Label>
-                    <custom:ByTTextBox MaxLength="255" Grid.Column="1" Grid.Row="14" Name="_txtBusquedaSolicitud" VerticalAlignment="Center" 
-                         Grid.ColumnSpan="11"></custom:ByTTextBox>
+                    <custom:ByTTextBox  MaxLength="255" Grid.Column="1" Grid.Row="14" Name="_txtBusqueda" VerticalAlignment="Center" 
+                         Grid.ColumnSpan="11" Text="{Binding Path=CodigoBus}"></custom:ByTTextBox>
 
                     <Separator Grid.Column="0" Grid.Row="15" Grid.ColumnSpan="11" Margin="10 0" VerticalAlignment="Center" />
 
                     <Label Grid.Column="0" Grid.Row="16" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblFecha}"/>
                     </Label>
-                    <DatePicker Grid.Column="1" Grid.Row="16" HorizontalAlignment="Left"  Name="_dpkFechaPrioridadSolicitud" Focusable="False" BorderBrush="{x:Null}" >
+                    <DatePicker  Grid.Column="1" Grid.Row="16" HorizontalAlignment="Left"  Name="_dpkFechaPrioridad" Focusable="False" BorderBrush="{x:Null}" >
                         <DatePicker.SelectedDate>
-                            <Binding Path="Fecha" UpdateSourceTrigger="PropertyChanged"/>
+                            <Binding Path="FechaPrioridad" UpdateSourceTrigger="PropertyChanged"/>
                         </DatePicker.SelectedDate>
                     </DatePicker>
 
                     <Label Grid.Column="2" Grid.Row="16" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblPrioridad}"/>
                     </Label>
-                    <custom:ByTTextBox MaxLength="255" Grid.Column="3" Grid.Row="16" Name="_txtCodigoPrioridadSolicitud" VerticalAlignment="Center"></custom:ByTTextBox>
+                    <custom:ByTTextBox  MaxLength="255" Grid.Column="3" Grid.Row="16" Name="_txtCodigoPrioridad" VerticalAlignment="Center"
+                                       Text="{Binding Path=CPrioridad}"></custom:ByTTextBox>
 
                     <Label Grid.Column="4" Grid.Row="16" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblPais}"/>
                     </Label>
-                    <ComboBox Grid.Column="5" Grid.Row="16" Grid.ColumnSpan="2" Name="_cbxPaisPrioridadSolicitud" Height="20" 
-                              ItemsSource="{Binding}" DisplayMemberPath="NombreEspañol" SelectedIndex="0">
+                    <ComboBox  Grid.Column="5" Grid.Row="16" Grid.ColumnSpan="2" Name="_cbxPaisPrioridadSolicitud" Height="20" 
+                              ItemsSource="{Binding}" DisplayMemberPath="NombreEspanol" SelectedIndex="0">
                     </ComboBox>
-                    
+
                     <Separator Grid.Column="0" Grid.Row="17" Grid.ColumnSpan="7" Margin="10 0" VerticalAlignment="Center" />
                     <!--Modulo de saldos-->
-                    <Button Name="_btnImprimirEdoCuentaSolicitud" VerticalAlignment="Bottom" Grid.Column="1" Grid.Row="18"
-                            Grid.ColumnSpan="2" Grid.RowSpan="2" Height="50" Width="90" Click="_btnImprimirEdoCuentaSolicitud_Click">
+                    <Button  Name="_btnImprimirEdoCuenta" VerticalAlignment="Bottom" Grid.Column="1" Grid.Row="18"
+                            Grid.ColumnSpan="2" Grid.RowSpan="2" Height="50" Width="90">
                         <TextBlock VerticalAlignment="Center">
                             Imprmir <LineBreak/>
                             Edo. Cuenta
@@ -474,21 +476,21 @@
                     <Label Grid.Column="3" Grid.Row="18" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblSaldoVencido}"/>
                     </Label>
-                    <custom:ByTTextBox MaxLength="255" Grid.Column="4" Grid.Row="18" Name="_txtSaldoVencidoSolicitud" VerticalAlignment="Center" 
+                    <custom:ByTTextBox  MaxLength="255" Grid.Column="4" Grid.Row="18" Name="_txtSaldoVencido" VerticalAlignment="Center" 
                          Grid.ColumnSpan="2"></custom:ByTTextBox>
 
                     <Label Grid.Column="3" Grid.Row="19" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblSaldoPorVencer}"/>
                     </Label>
-                    <custom:ByTTextBox MaxLength="255" Grid.Column="4" Grid.Row="19" Name="_txtSaldoPorVencerSolicitud" VerticalAlignment="Center" 
+                    <custom:ByTTextBox  MaxLength="255" Grid.Column="4" Grid.Row="19" Name="_txtSaldoPorVencer" VerticalAlignment="Center" 
                          Grid.ColumnSpan="2"></custom:ByTTextBox>
 
-                    <Button Name="_btnSaldoSolicitud" VerticalAlignment="Top" Grid.Column="1" Grid.Row="20" Grid.ColumnSpan="2" 
-                            Height="22" Width="90" Click="_btnSaldoSolicitud_Click">Saldo</Button>
+                    <Button  Name="_btnSaldo" VerticalAlignment="Top" Grid.Column="1" Grid.Row="20" Grid.ColumnSpan="2" 
+                            Height="22" Width="90">Saldo</Button>
                     <Label Grid.Column="3" Grid.Row="20" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblTotalDeuda}"/>
                     </Label>
-                    <custom:ByTTextBox MaxLength="255" Grid.Column="4" Grid.Row="20" Name="_txtTotalDeudaSolicitud" VerticalAlignment="Center" 
+                    <custom:ByTTextBox  MaxLength="255" Grid.Column="4" Grid.Row="20" Name="_txtTotalDeuda" VerticalAlignment="Center" 
                          Grid.ColumnSpan="2"></custom:ByTTextBox>
                     <!--Final Modulo de saldos-->
                     <Separator Grid.Column="0" Grid.Row="20" Grid.ColumnSpan="7" VerticalAlignment="Bottom" />
@@ -497,120 +499,120 @@
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblFechaRequerida}"/>
                     </Label>
 
-                    <CheckBox  Name="_chkPoderSolicitud" Grid.Column="7" Grid.Row="19" VerticalAlignment="Center"
+                    <CheckBox   Name="_chkPoder" Grid.Column="7" Grid.Row="19" VerticalAlignment="Center"
                          HorizontalAlignment="Right" IsChecked="{Binding Path=BAutorizar}">
                     </CheckBox>
-                    <Button Name="_btnPoderSolicitud" HorizontalAlignment="Center" Grid.Column="8" Grid.Row="19"
-                            Height="25" Width="80" Click="_btnPoderSolicitud_Click">Poder</Button>
-                    <DatePicker Grid.Column="9" Grid.Row="19" HorizontalAlignment="Center"  Name="_dpkFechaRequeridaPoderSolicitud" Focusable="False" BorderBrush="{x:Null}" >
-                        <DatePicker.SelectedDate>
-                            <Binding Path="Fecha" UpdateSourceTrigger="PropertyChanged"/>
-                        </DatePicker.SelectedDate>
-                    </DatePicker>
-                    <Button Name="_btnPoderINCSolicitud" HorizontalAlignment="Right" Grid.Column="10" Grid.Row="19"
-                            Height="25" Width="60">INC</Button>
-                    <Button Name="_btnPoderELISolicitud" HorizontalAlignment="Left" Grid.Column="11" Grid.Row="19"
-                            Height="25" Width="60">ELI</Button>
-
-                    <CheckBox  Name="_chkPrioridadSolicitud" Grid.Column="7" Grid.Row="20" VerticalAlignment="Center"
-                         HorizontalAlignment="Right" IsChecked="{Binding Path=BAutorizar}">
-                    </CheckBox>
-                    <Button Name="_btnPrioridadSolicitud" HorizontalAlignment="Center" Grid.Column="8" Grid.Row="20"
+                    <Button  Name="_btnPoder" HorizontalAlignment="Center" Grid.Column="8" Grid.Row="19"
                             Height="25" Width="80">Poder</Button>
-                    <DatePicker Grid.Column="9" Grid.Row="20" HorizontalAlignment="Center"  Name="_dpkFechaRequeridaPrioridadSolicitud" Focusable="False" BorderBrush="{x:Null}" >
+                    <DatePicker  Grid.Column="9" Grid.Row="19" HorizontalAlignment="Center"  Name="_dpkFechaRequeridaPoder" Focusable="False" BorderBrush="{x:Null}" >
                         <DatePicker.SelectedDate>
                             <Binding Path="Fecha" UpdateSourceTrigger="PropertyChanged"/>
                         </DatePicker.SelectedDate>
                     </DatePicker>
-                    <Button Name="_btnPrioridadINCSolicitud" HorizontalAlignment="Right" Grid.Column="10" Grid.Row="20"
+                    <Button  Name="_btnPoderINC" HorizontalAlignment="Right" Grid.Column="10" Grid.Row="19"
                             Height="25" Width="60">INC</Button>
-                    <Button Name="_btnPrioridadELISolicitud" HorizontalAlignment="Left" Grid.Column="11" Grid.Row="20"
+                    <Button  Name="_btnPoderELI" HorizontalAlignment="Left" Grid.Column="11" Grid.Row="19"
                             Height="25" Width="60">ELI</Button>
 
-                    <CheckBox  Name="_chkPoderYPrioridad" Grid.Column="7" Grid.Row="21" VerticalAlignment="Center"
+                    <CheckBox   Name="_chkPrioridad" Grid.Column="7" Grid.Row="20" VerticalAlignment="Center"
                          HorizontalAlignment="Right" IsChecked="{Binding Path=BAutorizar}">
                     </CheckBox>
-                    <Button Name="_btnPoderYPrioridadSolicitud" HorizontalAlignment="Center" Grid.Column="8" Grid.Row="21"
+                    <Button  Name="_btnPrioridad" HorizontalAlignment="Center" Grid.Column="8" Grid.Row="20"
+                            Height="25" Width="80">Poder</Button>
+                    <DatePicker  Grid.Column="9" Grid.Row="20" HorizontalAlignment="Center"  Name="_dpkFechaRequeridaPrioridad" Focusable="False" BorderBrush="{x:Null}" >
+                        <DatePicker.SelectedDate>
+                            <Binding Path="Fecha" UpdateSourceTrigger="PropertyChanged"/>
+                        </DatePicker.SelectedDate>
+                    </DatePicker>
+                    <Button  Name="_btnPrioridadINC" HorizontalAlignment="Right" Grid.Column="10" Grid.Row="20"
+                            Height="25" Width="60">INC</Button>
+                    <Button  Name="_btnPrioridadELI" HorizontalAlignment="Left" Grid.Column="11" Grid.Row="20"
+                            Height="25" Width="60">ELI</Button>
+
+                    <CheckBox   Name="_chkPoderYPrioridad" Grid.Column="7" Grid.Row="21" VerticalAlignment="Center"
+                         HorizontalAlignment="Right" IsChecked="{Binding Path=BAutorizar}">
+                    </CheckBox>
+                    <Button  Name="_btnPoderYPrioridad" HorizontalAlignment="Center" Grid.Column="8" Grid.Row="21"
                             Height="25" Width="80">Poder y Prioridad</Button>
-                    <DatePicker Grid.Column="9" Grid.Row="21" HorizontalAlignment="Center"  Name="_dpkFechaRequeridaPoderYPrioridadSolicitud" Focusable="False" BorderBrush="{x:Null}" >
+                    <DatePicker  Grid.Column="9" Grid.Row="21" HorizontalAlignment="Center"  Name="_dpkFechaRequeridaPoderYPrioridad" Focusable="False" BorderBrush="{x:Null}" >
                         <DatePicker.SelectedDate>
                             <Binding Path="Fecha" UpdateSourceTrigger="PropertyChanged"/>
                         </DatePicker.SelectedDate>
                     </DatePicker>
-                    <Button Name="_btnPoderYPrioridadINCSolicitud" HorizontalAlignment="Right" Grid.Column="10" Grid.Row="21"
+                    <Button  Name="_btnPoderYPrioridadINC" HorizontalAlignment="Right" Grid.Column="10" Grid.Row="21"
                             Height="25" Width="60">INC</Button>
-                    <Button Name="_btnPoderYPrioridadELISolicitud" HorizontalAlignment="Left" Grid.Column="11" Grid.Row="21"
+                    <Button  Name="_btnPoderYPrioridadELI" HorizontalAlignment="Left" Grid.Column="11" Grid.Row="21"
                             Height="25" Width="60">ELI</Button>
 
-                    <CheckBox  Name="_chkReclasificacionNacionalSolicitud" Grid.Column="7" Grid.Row="22" VerticalAlignment="Center"
+                    <CheckBox   Name="_chkReclasificacionNacional" Grid.Column="7" Grid.Row="22" VerticalAlignment="Center"
                          HorizontalAlignment="Right" IsChecked="{Binding Path=BAutorizar}">
                     </CheckBox>
-                    <Button Name="_btnReclasificacionNacionalSolicitud" HorizontalAlignment="Center" Grid.Column="8" Grid.Row="22"
+                    <Button  Name="_btnReclasificacionNacional" HorizontalAlignment="Center" Grid.Column="8" Grid.Row="22"
                             Height="25" Width="80">Reclas. Nacional</Button>
-                    <DatePicker Grid.Column="9" Grid.Row="22" HorizontalAlignment="Center"  Name="_dpkFechaRequeridaReclasificacionNacionalSolicitud" Focusable="False" BorderBrush="{x:Null}" >
+                    <DatePicker  Grid.Column="9" Grid.Row="22" HorizontalAlignment="Center"  Name="_dpkFechaRequeridaReclasificacionNacional" Focusable="False" BorderBrush="{x:Null}" >
                         <DatePicker.SelectedDate>
                             <Binding Path="Fecha" UpdateSourceTrigger="PropertyChanged"/>
                         </DatePicker.SelectedDate>
                     </DatePicker>
-                    <Button Name="_btnReclasificacionNacionalINCSolicitud" HorizontalAlignment="Right" Grid.Column="10" Grid.Row="22"
+                    <Button  Name="_btnReclasificacionNacionalINC" HorizontalAlignment="Right" Grid.Column="10" Grid.Row="22"
                             Height="25" Width="60">INC</Button>
-                    <Button Name="_btnReclasificacionNacionalELISolicitud" HorizontalAlignment="Left" Grid.Column="11" Grid.Row="22"
+                    <Button  Name="_btnReclasificacionNacionalELI" HorizontalAlignment="Left" Grid.Column="11" Grid.Row="22"
                             Height="25" Width="60">ELI</Button>
 
-                    <CheckBox  Name="_chkConflictoSolicitud" Grid.Column="7" Grid.Row="23" VerticalAlignment="Center"
+                    <CheckBox   Name="_chkConflicto" Grid.Column="7" Grid.Row="23" VerticalAlignment="Center"
                          HorizontalAlignment="Right" IsChecked="{Binding Path=BAutorizar}">
                     </CheckBox>
-                    <Button Name="_btnConflictoSolicitud" HorizontalAlignment="Center" Grid.Column="8" Grid.Row="23"
+                    <Button  Name="_btnConflicto" HorizontalAlignment="Center" Grid.Column="8" Grid.Row="23"
                             Height="25" Width="80">Conflicto</Button>
-                    <DatePicker Grid.Column="9" Grid.Row="23" HorizontalAlignment="Center"  Name="_dpkFechaRequeridaConflictoSolicitud" Focusable="False" BorderBrush="{x:Null}" >
+                    <DatePicker  Grid.Column="9" Grid.Row="23" HorizontalAlignment="Center"  Name="_dpkFechaRequeridaConflicto" Focusable="False" BorderBrush="{x:Null}" >
                         <DatePicker.SelectedDate>
                             <Binding Path="Fecha" UpdateSourceTrigger="PropertyChanged"/>
                         </DatePicker.SelectedDate>
                     </DatePicker>
-                    <Button Name="_btnConflictoINCSolicitud" HorizontalAlignment="Right" Grid.Column="10" Grid.Row="23"
+                    <Button  Name="_btnConflictoINC" HorizontalAlignment="Right" Grid.Column="10" Grid.Row="23"
                             Height="25" Width="60">INC</Button>
-                    <Button Name="_btnConflictoELISolicitud" HorizontalAlignment="Left" Grid.Column="11" Grid.Row="23"
+                    <Button  Name="_btnConflictoELI" HorizontalAlignment="Left" Grid.Column="11" Grid.Row="23"
                             Height="25" Width="60">ELI</Button>
 
-                    <CheckBox  Name="_chkOtraInf" Grid.Column="7" Grid.Row="24" VerticalAlignment="Center"
+                    <CheckBox   Name="_chkOtraInf" Grid.Column="7" Grid.Row="24" VerticalAlignment="Center"
                          HorizontalAlignment="Right" IsChecked="{Binding Path=BAutorizar}">
                     </CheckBox>
-                    <Button Name="_btnOtraInfSolicitud" HorizontalAlignment="Center" Grid.Column="8" Grid.Row="24"
+                    <Button  Name="_btnOtraInf" HorizontalAlignment="Center" Grid.Column="8" Grid.Row="24"
                             Height="25" Width="80">Otra Inf.</Button>
-                    <DatePicker Grid.Column="9" Grid.Row="24" HorizontalAlignment="Center"  Name="_dpkFechaRequeridaOtraInfSolicitud" Focusable="False" BorderBrush="{x:Null}" >
+                    <DatePicker  Grid.Column="9" Grid.Row="24" HorizontalAlignment="Center"  Name="_dpkFechaRequeridaOtraInf" Focusable="False" BorderBrush="{x:Null}" >
                         <DatePicker.SelectedDate>
                             <Binding Path="Fecha" UpdateSourceTrigger="PropertyChanged"/>
                         </DatePicker.SelectedDate>
                     </DatePicker>
-                    <Button Name="_btnOtraInfINCSolicitud" HorizontalAlignment="Right" Grid.Column="10" Grid.Row="24"
+                    <Button  Name="_btnOtraInfINC" HorizontalAlignment="Right" Grid.Column="10" Grid.Row="24"
                             Height="25" Width="60">INC</Button>
-                    <Button Name="_btnOtraInfELISolicitud" HorizontalAlignment="Left" Grid.Column="11" Grid.Row="24"
+                    <Button  Name="_btnOtraInfELI" HorizontalAlignment="Left" Grid.Column="11" Grid.Row="24"
                             Height="25" Width="60">ELI</Button>
 
                     <WrapPanel Grid.Column="8" Grid.Row="25" Grid.ColumnSpan="4" VerticalAlignment="Bottom" HorizontalAlignment="Center" Orientation="Horizontal">
-                        <Button Name="_btnListaSolicitud" Height="25" Width="80">Lista</Button>
-                        <Button Name="_btnEnviarRecordatoriosSolicitud" Height="25" Width="110" Margin="8,0,0,0">Enviar recordatorios</Button>
+                        <Button  Name="_btnLista" Height="25" Width="80">Lista</Button>
+                        <Button  Name="_btnEnviarRecordatorios" Height="25" Width="110" Margin="8,0,0,0">Enviar recordatorios</Button>
                     </WrapPanel>
 
                     <WrapPanel Grid.Column="1" Grid.Row="21" Grid.ColumnSpan="5" VerticalAlignment="Center" HorizontalAlignment="Left" Orientation="Horizontal">
-                        <Button Name="_btnDuplicarSolicitud" Height="25" Width="100">Duplicar</Button>
-                        <Button Name="_btnInfoAdicionalSolicitud" Height="25" Width="100" Margin="8,0,0,0">Info. Adicional</Button>
-                        <Button Name="_btnBusquedaSolicitud" Height="25" Width="100" Margin="8,0,0,0">Busqueda</Button>
+                        <Button  Name="_btnDuplicar" Height="25" Width="100">Duplicar</Button>
+                        <Button  Name="_btnInfoAdicionalSolicitud" Height="25" Width="100" Margin="8,0,0,0">Info. Adicional</Button>
+                        <Button  Name="_btnBusqueda" Height="25" Width="100" Margin="8,0,0,0">Busqueda</Button>
                     </WrapPanel>
 
                     <Separator Grid.Column="0" Grid.Row="21" Grid.ColumnSpan="7" Margin="0,3,0,0" VerticalAlignment="Bottom" />
 
                     <WrapPanel Grid.Column="1" Grid.Row="22" Grid.ColumnSpan="5" VerticalAlignment="Bottom" HorizontalAlignment="Left" Orientation="Horizontal">
-                        <Button Name="_btnFM02Solicitud" Height="25" Width="100">FM02</Button>
-                        <Button Name="_btnFM02VenenSolicitud" Height="25" Width="100" Margin="8,0,0,0">FM02(venen)</Button>
-                        <Button Name="_btnAnexoFM02Solicitud" Height="25" Width="100" Margin="8,0,0,0">Anexo FM02</Button>
+                        <Button  Name="_btnFM02" Height="25" Width="100">FM02</Button>
+                        <Button  Name="_btnFM02Venen" Height="25" Width="100" Margin="8,0,0,0">FM02(venen)</Button>
+                        <Button  Name="_btnAnexoFM02" Height="25" Width="100" Margin="8,0,0,0">Anexo FM02</Button>
                     </WrapPanel>
 
                     <WrapPanel Grid.Column="1" Grid.Row="23" Grid.ColumnSpan="5" VerticalAlignment="Bottom" HorizontalAlignment="Left" Orientation="Horizontal">
-                        <Button Name="_btnLFM02Solicitud" Height="25" Width="100">L FM02</Button>
-                        <Button Name="_btnLFM02VenenSolicitud" Height="25" Width="100" Margin="8,0,0,0">L FM02(venen)</Button>
-                        <Button Name="_btnLAnexoFM02Solicitud" Height="25" Width="100" Margin="8,0,0,0">L Anexo FM02</Button>
-                        <Button Name="_btnCarpetaSolicitud" Height="25" Width="100" Margin="8,0,0,0">Carpeta</Button>
+                        <Button  Name="_btnLFM02" Height="25" Width="100">L FM02</Button>
+                        <Button  Name="_btnLFM02Venen" Height="25" Width="100" Margin="8,0,0,0">L FM02(venen)</Button>
+                        <Button  Name="_btnLAnexoFM02" Height="25" Width="100" Margin="8,0,0,0">L Anexo FM02</Button>
+                        <Button  Name="_btnCarpeta" Height="25" Width="100" Margin="8,0,0,0">Carpeta</Button>
                     </WrapPanel>
                 </Grid>
             </TabItem>
@@ -692,7 +694,7 @@
                     <Label Grid.Column="0" Grid.Row="0" VerticalAlignment="Bottom" HorizontalContentAlignment="Right">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblMarca}"/>
                     </Label>
-                    <TextBox Grid.Column="1" Grid.Row="0" Name="_txtDescripcionDatos" VerticalAlignment="Bottom"  
+                    <TextBox  Grid.Column="1" Grid.Row="0" Name="_txtDescripcionDatos" VerticalAlignment="Bottom"  
                          Margin="3" Grid.ColumnSpan="11" MaxLength="255"
                              ToolTip="{Binding ElementName=_txtDescripcionDatos, Path=(Validation.Errors)[0].ErrorContent}">
                         <TextBox.Text>
@@ -727,7 +729,7 @@
                             <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
 
-                        <custom:ByTTextBox MaxLength="255" Grid.Column="0" Grid.Row="1" Name="_txtAsociadoDatos" VerticalAlignment="Center" 
+                        <custom:ByTTextBox  MaxLength="255" Grid.Column="0" Grid.Row="1" Name="_txtAsociadoDatos" VerticalAlignment="Center" 
                          Grid.ColumnSpan="7" GotFocus="_txtAsociadoDatos_GotFocus" GotKeyboardFocus="_txtAsociadoDatos_GotFocus"></custom:ByTTextBox>
 
                         <Label Name="_lblIdAsociadoDatos" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Center" Visibility="Collapsed">
@@ -742,7 +744,7 @@
                         <TextBox    Grid.Column="4" Grid.Row="0" Name="_txtNombreAsociadoDatos" VerticalAlignment="Center"  Grid.ColumnSpan="2"
                          MaxLength="255" Visibility="Collapsed"></TextBox>
 
-                        <Button Name="_btnConsultarAsociadoDatos" Width="80" IsDefault="False" Grid.Row="0" Grid.Column="7" Height="25" HorizontalAlignment="Right" Click="_btnConsultarAsociadoDatos_Click" Visibility="Collapsed">
+                        <Button  Name="_btnConsultarAsociadoDatos" Width="80" IsDefault="False" Grid.Row="0" Grid.Column="7" Height="25" HorizontalAlignment="Right" Click="_btnConsultarAsociadoDatos_Click" Visibility="Collapsed">
                             <TextBlock Text="{x:Static recurso:Etiquetas.btnConsultar}"/>
                         </Button>
                         <ListView Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="7" Grid.RowSpan="2" Name="_lstAsociadosDatos" ItemsSource="{Binding}" 
@@ -764,8 +766,8 @@
                     <Label Grid.Column="8" Grid.Row="1" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblReferencia}"/>
                     </Label>
-                    <TextBox Grid.Column="9" Grid.Row="1" Name="_txtPrimeraReferenciaDatos" VerticalAlignment="Center"  
-                          Text="{Binding Path=Asociado}" Grid.ColumnSpan="3" Margin="3"></TextBox>
+                    <TextBox  Grid.Column="9" Grid.Row="1" Name="_txtPrimeraReferenciaDatos" VerticalAlignment="Center"  
+                          Text="{Binding Path=PrimeraReferencia}" Grid.ColumnSpan="3" Margin="3"></TextBox>
                     <!--Fin Segunda fila-->
 
                     <!--Tercera Fila-->
@@ -790,22 +792,22 @@
                             <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
 
-                        <custom:ByTTextBox MaxLength="255" Grid.Column="0" Grid.Row="1" Name="_txtInteresadoDatos" VerticalAlignment="Center" 
+                        <custom:ByTTextBox  MaxLength="255" Grid.Column="0" Grid.Row="1" Name="_txtInteresadoDatos" VerticalAlignment="Center" 
                          Grid.ColumnSpan="7" GotFocus="_txtInteresadoDatos_GotFocus" GotKeyboardFocus="_txtInteresadoDatos_GotFocus"></custom:ByTTextBox>
 
                         <Label Name="_lblIdInteresadoDatos" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Center" Visibility="Collapsed">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblId}"/>
                         </Label>
-                        <TextBox    Grid.Column="1" Grid.Row="0" Name="_txtIdInteresadoDatos" VerticalAlignment="Center" 
+                        <TextBox     Grid.Column="1" Grid.Row="0" Name="_txtIdInteresadoDatos" VerticalAlignment="Center" 
                          MaxLength="255" Grid.ColumnSpan="2" Visibility="Collapsed"  ></TextBox>
 
                         <Label Name="_lblNombreInteresadoDatos" Grid.Column="3" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Center" Visibility="Collapsed">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblNombre}"/>
                         </Label>
-                        <TextBox    Grid.Column="4" Grid.Row="0" Name="_txtNombreInteresadoDatos" VerticalAlignment="Center"  Grid.ColumnSpan="2"
+                        <TextBox     Grid.Column="4" Grid.Row="0" Name="_txtNombreInteresadoDatos" VerticalAlignment="Center"  Grid.ColumnSpan="2"
                          MaxLength="255" Visibility="Collapsed"></TextBox>
 
-                        <Button Name="_btnConsultarInteresadoDatos" Width="80" IsDefault="False" Grid.Row="0" Grid.Column="7" Height="25" HorizontalAlignment="Right" 
+                        <Button  Name="_btnConsultarInteresadoDatos" Width="80" IsDefault="False" Grid.Row="0" Grid.Column="7" Height="25" HorizontalAlignment="Right" 
                                 Click="_btnConsultarInteresadoDatos_Click" Visibility="Collapsed">
                             <TextBlock Text="{x:Static recurso:Etiquetas.btnConsultar}"/>
                         </Button>
@@ -825,11 +827,11 @@
                         </ListView>
                     </Grid>
 
-
                     <Label Grid.Column="8" Grid.Row="5" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblPoder}"/>
                     </Label>
-                    <ComboBox Grid.Column="9" Grid.Row="5" Grid.ColumnSpan="3" Margin="3" Name="_cbxPoderDatos" Height="20" ItemsSource="{Binding}" >
+                    <ComboBox  Grid.Column="9" Grid.Row="5" Grid.ColumnSpan="3" Margin="3" Name="_cbxPoderDatos" Height="20" 
+                              ItemsSource="{Binding}" DisplayMemberPath="NumPoder" SelectedIndex="0">
                     </ComboBox>
                     <!--Fin Tercera Fila-->
 
@@ -906,21 +908,22 @@
                     <Label Grid.Column="0" Grid.Row="8" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblLocalidad}"/>
                     </Label>
-                    <TextBox Grid.Column="1" Grid.Row="8" Grid.ColumnSpan="3" Margin="3" Name="_txtLocalidadDatos" VerticalAlignment="Center"  
+                    <TextBox  Grid.Column="1" Grid.Row="8" Grid.ColumnSpan="3" Margin="3" Name="_txtLocalidadDatos" VerticalAlignment="Center"  
                           Text=""></TextBox>
 
                     <Label Grid.Column="4" Grid.Row="8" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblPais}"/>
                     </Label>
-                    <ComboBox Grid.Column="5" Grid.Row="8" Grid.ColumnSpan="3" Margin="3" Name="_cbxPaisDatos" Height="20" ItemsSource="{Binding}" >
+                    <ComboBox  Grid.Column="5" Grid.Row="8" Grid.ColumnSpan="3" Margin="3" Name="_cbxPaisDatos" Height="20" 
+                              ItemsSource="{Binding}" DisplayMemberPath="NombreEspanol" SelectedIndex="0">
                     </ComboBox>
 
                     <Label Grid.Column="8" Grid.Row="8" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblCodIntl}"/>
                     </Label>
-                    <TextBox Grid.Column="9" Grid.Row="8" Grid.ColumnSpan="1" Margin="3" Name="_txtCodIntlDatos" VerticalAlignment="Center"  
+                    <TextBox  Grid.Column="9" Grid.Row="8" Grid.ColumnSpan="1" Margin="3" Name="_txtCodIntlDatos" VerticalAlignment="Center"  
                           Text=""></TextBox>
-                    <TextBox Grid.Column="10" Grid.Row="8" Grid.ColumnSpan="2" Margin="3" Name="_txtNumIntlDatos" VerticalAlignment="Center"  
+                    <TextBox  Grid.Column="10" Grid.Row="8" Grid.ColumnSpan="2" Margin="3" Name="_txtNumIntlDatos" VerticalAlignment="Center"  
                           Text=""></TextBox>
                     <!--Fin Quinta Fila-->
 
@@ -929,13 +932,13 @@
                     <Label Grid.Column="0" Grid.Row="9" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblAsocDelInteresado}"/>
                     </Label>
-                    <ComboBox Grid.Column="1" Grid.Row="9" Grid.ColumnSpan="3" Margin="3" Name="_cbxAsociadoInteresadoDatos" Height="20" ItemsSource="{Binding}" >
+                    <ComboBox  Grid.Column="1" Grid.Row="9" Grid.ColumnSpan="3" Margin="3" Name="_cbxAsociadoInteresadoDatos" Height="20" ItemsSource="{Binding}" >
                     </ComboBox>
 
                     <Label Grid.Column="4" Grid.Row="9" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblReferencia}"/>
                     </Label>
-                    <TextBox Grid.Column="5" Grid.Row="9" Grid.ColumnSpan="7" Margin="3" Name="_txtReferenciaDatos" VerticalAlignment="Center"  
+                    <TextBox  Grid.Column="5" Grid.Row="9" Grid.ColumnSpan="7" Margin="3" Name="_txtReferenciaDatos" VerticalAlignment="Center"  
                           Text=""></TextBox>
                     <!--Fin Sexta Fila-->
 
@@ -947,40 +950,42 @@
                     <Label Grid.Column="0" Grid.Row="11" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblEtiqueta}"/>
                     </Label>
-                    <CheckBox Margin="3" Grid.Column="1" Grid.ColumnSpan="1" Grid.Row="11" Height="16" VerticalAlignment="Center" Name="checkBox1"/>
-                    <TextBox Grid.Column="1" Grid.Row="11" Grid.ColumnSpan="11" Margin="25,0,3,0" Name="_txtEtiquetaDatos" VerticalAlignment="Center"  
-                          Text="{Binding Path=Etiqueta}"></TextBox>
+                    <CheckBox  Margin="3" Grid.Column="1" Grid.ColumnSpan="1" Grid.Row="11" Height="16" VerticalAlignment="Center" 
+                              Name="chkEtiquetaDatos" IsChecked="{Binding Path=BEtiqueta}"/>
+                    <TextBox  Grid.Column="1" Grid.Row="11" Grid.ColumnSpan="11" Margin="25,0,3,0" Name="_txtEtiquetaDatos" VerticalAlignment="Center"  
+                          Text="{Binding Path=EtiquetaDescripcion}"></TextBox>
                     <!--Fin Séptima Fila-->
 
                     <!--Octava Fila-->
                     <Label Grid.Column="0" Grid.Row="12" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblTipoMarca}"/>
                     </Label>
-                    <TextBox Grid.Column="1" Grid.Row="12" Grid.ColumnSpan="2" Margin="3" Name="_txtITipoDatos" VerticalAlignment="Center"  
-                          Text="{Binding Path=Tipo}"></TextBox>
+                    <ComboBox  Grid.Column="1" Grid.Row="12" Grid.ColumnSpan="2" Name="_cbxTipoMarcaDatos" Height="20" 
+                              ItemsSource="{Binding}" DisplayMemberPath="Descripcion" SelectedIndex="0">
+                    </ComboBox>
 
                     <Label Grid.Column="3" Grid.Row="12" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblClaseNac}"/>
                     </Label>
-                    <TextBox Grid.Column="4" Grid.Row="12" Grid.ColumnSpan="1" Margin="3" Name="_txtClaseNacionalDatos" VerticalAlignment="Center"  
-                          Text=""></TextBox>
+                    <TextBox  Grid.Column="4" Grid.Row="12" Grid.ColumnSpan="1" Margin="3" Name="_txtClaseNacionalDatos" VerticalAlignment="Center"  
+                          Text="{Binding Path=Nacional.Id}"></TextBox>
 
                     <Label Grid.Column="5" Grid.Row="12" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblClaseInt}"/>
                     </Label>
-                    <TextBox Grid.Column="6" Grid.Row="12" Grid.ColumnSpan="1" Margin="3" Name="_txtClaseInternacionalDatos" VerticalAlignment="Center"  
-                          Text=""></TextBox>
+                    <TextBox  Grid.Column="6" Grid.Row="12" Grid.ColumnSpan="1" Margin="3" Name="_txtClaseInternacionalDatos" VerticalAlignment="Center"  
+                          Text="{Binding Path=Internacional.Id}"></TextBox>
 
                     <Label Grid.Column="7" Grid.Row="12" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblReclasif}"/>
                     </Label>
-                    <TextBox Grid.Column="8" Grid.Row="12" Grid.ColumnSpan="1" Margin="3" Name="_txtReclasificacionDatos" VerticalAlignment="Center"  
+                    <TextBox  Grid.Column="8" Grid.Row="12" Grid.ColumnSpan="1" Margin="3" Name="_txtReclasificacionDatos" VerticalAlignment="Center"  
                           Text=""></TextBox>
 
                     <Label Grid.Column="9" Grid.Row="12" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblMarcaOrigen}"/>
                     </Label>
-                    <ComboBox Grid.Column="10" Grid.Row="12" Grid.ColumnSpan="2" Margin="3" Name="_cbxMarcaOrigenDatos" Height="20" ItemsSource="{Binding}" >
+                    <ComboBox  Grid.Column="10" Grid.Row="12" Grid.ColumnSpan="2" Margin="3" Name="_cbxMarcaOrigen" Height="20" ItemsSource="{Binding}" >
                     </ComboBox>
                     <!--Fin Octava Fila-->
 
@@ -988,9 +993,9 @@
                     <Label Grid.Column="0" Grid.Row="13" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblDistingue}"/>
                     </Label>
-                    <TextBox Grid.Column="1" Grid.Row="13" Grid.ColumnSpan="9" Margin="3" Name="_txtDistingueDatos" VerticalAlignment="Center"  
-                          Text=""></TextBox>
-                    <TextBox Grid.Column="10" Grid.Row="13" Grid.ColumnSpan="2" Margin="3" Name="_txtDistingueInglesDatos" VerticalAlignment="Center"  
+                    <TextBox  Grid.Column="1" Grid.Row="13" Grid.ColumnSpan="9" Margin="3" Name="_txtDistingueDatos" VerticalAlignment="Center"  
+                          Text="{Binding Path=Distingue}"></TextBox>
+                    <TextBox  Grid.Column="10" Grid.Row="13" Grid.ColumnSpan="2" Margin="3" Name="_txtDistingueInglesDatos" VerticalAlignment="Center"  
                           Text=""></TextBox>
                     <!--Fin Novena Fila-->
 
@@ -998,12 +1003,12 @@
                     <Label Grid.Column="0" Grid.Row="14" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblComentario}"/>
                     </Label>
-                    <TextBox Grid.Column="1" Grid.Row="14" Grid.ColumnSpan="8" Margin="3" Name="_txtComentarioDatos" VerticalAlignment="Center"  
-                          Text=""></TextBox>
+                    <TextBox  Grid.Column="1" Grid.Row="14" Grid.ColumnSpan="8" Margin="3" Name="_txtComentarioDatos" VerticalAlignment="Center"  
+                          Text="{Binding Path=Observacion}"></TextBox>
                     <Label Grid.Column="9" Grid.Row="14" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblConflicto}"/>
                     </Label>
-                    <TextBox Grid.Column="10" Grid.Row="14" Grid.ColumnSpan="2" Margin="3" Name="_txtConflictoDatos" VerticalAlignment="Center"  
+                    <TextBox  Grid.Column="10" Grid.Row="14" Grid.ColumnSpan="2" Margin="3" Name="_txtConflictoDatos" VerticalAlignment="Center"  
                           Text=""></TextBox>
                     <!--Fin Décima Fila-->
 
@@ -1015,25 +1020,25 @@
                     <Label Grid.Column="1" Grid.Row="15" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblCorrespondencia}"/>
                     </Label>
-                    <TextBox Grid.Column="2" Grid.Row="15" Grid.ColumnSpan="2" Margin="3" Name="_txtCorrespondenciaDatos" VerticalAlignment="Center"  
+                    <TextBox  Grid.Column="2" Grid.Row="15" Grid.ColumnSpan="2" Margin="3" Name="_txtCorrespondenciaDatos" VerticalAlignment="Center"  
                           Text=""></TextBox>
 
                     <Label Grid.Column="4" Grid.Row="15" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblFacturacion}"/>
                     </Label>
-                    <TextBox Grid.Column="5" Grid.Row="15" Grid.ColumnSpan="2" Margin="3" Name="_txtFacturacionDatos" VerticalAlignment="Center"  
+                    <TextBox  Grid.Column="5" Grid.Row="15" Grid.ColumnSpan="2" Margin="3" Name="_txtFacturacionDatos" VerticalAlignment="Center"  
                           Text=""></TextBox>
 
                     <Label Grid.Column="7" Grid.Row="15" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblDescuento}"/>
                     </Label>
-                    <TextBox Grid.Column="8" Grid.Row="15" Grid.ColumnSpan="2" Margin="3" Name="_txtDescuentoDatos" VerticalAlignment="Center"  
+                    <TextBox  Grid.Column="8" Grid.Row="15" Grid.ColumnSpan="2" Margin="3" Name="_txtDescuentoDatos" VerticalAlignment="Center"  
                           Text=""></TextBox>
 
                     <Label Grid.Column="10" Grid.Row="15" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblOtro}"/>
                     </Label>
-                    <TextBox Grid.Column="11" Grid.Row="15" Grid.ColumnSpan="1" Margin="3" Name="_txtOtroDatos" VerticalAlignment="Center"  
+                    <TextBox  Grid.Column="11" Grid.Row="15" Grid.ColumnSpan="1" Margin="3" Name="_txtOtroDatos" VerticalAlignment="Center"  
                           Text=""></TextBox>
                     <!--Fin Undécima Fila-->
                     <!--Fin Nuevo-->
@@ -1058,49 +1063,53 @@
                         <Border BorderBrush="DarkGray" BorderThickness="0 0 0 1">
                         </Border>
 
-                        <Button Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="1" Name="_btnNoSolicitud" VerticalAlignment="Bottom" Height="25">
+                        <Button  Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="1" Name="_btnNoSolicitud" VerticalAlignment="Bottom" Height="25">
                             <TextBlock Name="_txbNoSolicitud" Text="{x:Static recurso:Etiquetas.btnNoSolicitud}"/>
                         </Button>
-                        <TextBox Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="1" Margin="3" Name="_txtCodigoInscripcionDatos" VerticalAlignment="Center"  
-                          Text=""></TextBox>
-                        <TextBox Grid.Column="2" Grid.Row="0" Grid.ColumnSpan="1" Margin="3" Name="_txtFechaInscripcion" VerticalAlignment="Center"  
-                          Text=""></TextBox>
+                        <TextBox  Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="1" Margin="3" Name="_txtCodigoInscripcion" VerticalAlignment="Center"  
+                          Text="{Binding Path=CodigoInscripcion}"></TextBox>
+                        <TextBox  Grid.Column="2" Grid.Row="0" Grid.ColumnSpan="1" Margin="3" Name="_txtFechaInscripcion" VerticalAlignment="Center"  
+                          Text="{Binding Path=FechaInscripcion}"></TextBox>
 
                         <Label Grid.Column="0" Grid.Row="1" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblOrdPublicacion}"/>
                         </Label>
-                        <ComboBox Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2" Margin="3" Name="_cbxOrdenPublicacion" Height="20" ItemsSource="{Binding}" >
+                        <ComboBox  Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2" Margin="3" Name="_cbxOrdenPublicacion" Height="20" 
+                                  ItemsSource="{Binding}" DisplayMemberPath="Id" SelectedIndex="0">
                         </ComboBox>
                         <Label Grid.Column="0" Grid.Row="2" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblBolPublicacion}"/>
                         </Label>
-                        <ComboBox Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="2" Margin="3" Name="_cbxBoletinPublicacion" Height="20" ItemsSource="{Binding}" >
+                        <ComboBox  Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="2" Margin="3" Name="_cbxBoletinPublicacion" Height="20" 
+                                  ItemsSource="{Binding}" DisplayMemberPath="Id" SelectedIndex="0">
                         </ComboBox>
                         <Label Grid.Column="0" Grid.Row="3" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblBolConcesion}"/>
                         </Label>
-                        <ComboBox Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="2" Margin="3" Name="_cbxBoletinConcesion" Height="20" ItemsSource="{Binding}" >
+                        <ComboBox  Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="2" Margin="3" Name="_cbxBoletinConcesion" Height="20" 
+                                  ItemsSource="{Binding}" DisplayMemberPath="Id" SelectedIndex="0" >
                         </ComboBox>
 
 
-                        <Button Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="1" Name="_btnNoRegistro" VerticalAlignment="Bottom" Height="25">
+                        <Button  Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="1" Name="_btnNoRegistro" VerticalAlignment="Bottom" Height="25">
                             <TextBlock Name="_txbNoRegistro" Text="{x:Static recurso:Etiquetas.btnNoRegistro}"/>
                         </Button>
-                        <TextBox Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="1" Margin="3" Name="_txtCodigoRegistro" VerticalAlignment="Center"  
+                        <TextBox  Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="1" Margin="3" Name="_txtCodigoRegistro" VerticalAlignment="Center"  
                           Text=""></TextBox>
-                        <TextBox Grid.Column="2" Grid.Row="4" Grid.ColumnSpan="1" Margin="3" Name="_txtFechaRegistro" VerticalAlignment="Center"  
+                        <TextBox  Grid.Column="2" Grid.Row="4" Grid.ColumnSpan="1" Margin="3" Name="_txtFechaRegistro" VerticalAlignment="Center"  
                           Text=""></TextBox>
                         <Label Grid.Column="1" Grid.Row="5" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblRenovarAntesDe}"/>
                         </Label>
 
-                        <TextBox Grid.Column="1" Grid.Row="5" Grid.ColumnSpan="2" Margin="3" Name="_txtFechaRenovacion" VerticalAlignment="Center"  
+                        <TextBox  Grid.Column="1" Grid.Row="5" Grid.ColumnSpan="2" Margin="3" Name="_txtFechaRenovacion" VerticalAlignment="Center"  
                           Text=""></TextBox>
                     </Grid>
                     <Label Grid.Column="6" Grid.Row="17" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblSituacion}"/>
                     </Label>
-                    <ComboBox Grid.Column="7" Grid.Row="17" Grid.ColumnSpan="2" Margin="3" Name="_cbxSituacion" Height="20" ItemsSource="{Binding}" >
+                    <ComboBox  Grid.Column="7" Grid.Row="17" Grid.ColumnSpan="2" Margin="3" Name="_cbxSituacion" Height="20" 
+                              ItemsSource="{Binding}" DisplayMemberPath="Descripcion" SelectedIndex="0">
                     </ComboBox>
 
                     <!--Fin Undécima Fila-->
@@ -1109,7 +1118,8 @@
                     <Label Grid.Column="6" Grid.Row="18" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblDetalle}"/>
                     </Label>
-                    <ComboBox Grid.Column="7" Grid.Row="18" Grid.ColumnSpan="2" Margin="3" Name="_cbxDetalle" Height="20" ItemsSource="{Binding}" >
+                    <ComboBox  Grid.Column="7" Grid.Row="18" Grid.ColumnSpan="2" Margin="3" Name="_cbxDetalleDatos" Height="20" 
+                              ItemsSource="{Binding}" DisplayMemberPath="Descripcion" SelectedIndex="0">
                     </ComboBox>
                     <!--Fin Duodécima Fila-->
                     <Separator Margin="10 0" Grid.Column="6" Grid.Row="18" Grid.ColumnSpan="3" VerticalAlignment="bottom"/>
@@ -1117,32 +1127,32 @@
                     <Label Grid.Column="6" Grid.Row="19" Grid.ColumnSpan="2" VerticalAlignment="Center">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblRenovadoPorOtroTramitante}"/>
                     </Label>
-                    <CheckBox Margin="3" Grid.Column="8" Grid.ColumnSpan="1" Grid.Row="19" Height="16" VerticalAlignment="Center" Name="_checkBoxRenovacionTramitente"/>
-                    <Button Grid.Column="8" Grid.Row="19" Grid.ColumnSpan="2" Grid.RowSpan="2" Name="_btnIntRenovacion" Margin="25,6,3,6">
+                    <CheckBox  Margin="3" Grid.Column="8" Grid.ColumnSpan="1" Grid.Row="19" Height="16" VerticalAlignment="Center" Name="_checkBoxRenovacionTramitente"/>
+                    <Button  Grid.Column="8" Grid.Row="19" Grid.ColumnSpan="2" Grid.RowSpan="2" Name="_btnIntRenovacion" Margin="25,6,3,6">
                         <TextBlock Name="_txbIntRenovacion" Text="{x:Static recurso:Etiquetas.btnNoRegistro}"/>
                     </Button>
-                    <Button Grid.Column="10" Grid.Row="19" Grid.ColumnSpan="1" Grid.RowSpan="2" Name="_btnRenovacion" Margin="3,6,3,6">
+                    <Button  Grid.Column="10" Grid.Row="19" Grid.ColumnSpan="1" Grid.RowSpan="2" Name="_btnRenovacion" Margin="3,6,3,6">
                         <TextBlock Name="_txbRenovacion" Text="{x:Static recurso:Etiquetas.btnRenovacion}"/>
                     </Button>
 
                     <Label Grid.Column="6" Grid.Row="20" Grid.ColumnSpan="2" VerticalAlignment="Center">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblInstruccionesDeRenovacion}"/>
                     </Label>
-                    <CheckBox Margin="3" Grid.Column="8" Grid.ColumnSpan="1" Grid.Row="20" Height="16" VerticalAlignment="Center" Name="_checkBoxInstruccionesRenovacion"/>
+                    <CheckBox  Margin="3" Grid.Column="8" Grid.ColumnSpan="1" Grid.Row="20" Height="16" VerticalAlignment="Center" Name="_checkBoxInstruccionesRenovacion"/>
                     <!--Fin Fila Trece-->
 
                     <!--Fila Catorce-->
                     <Label Grid.Column="6" Grid.Row="21" Grid.ColumnSpan="2" VerticalAlignment="Center">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblCondiciones}"/>
                     </Label>
-                    <ComboBox Grid.Column="7" Grid.Row="21" Grid.ColumnSpan="2" Margin="3" Name="_cbxCondiciones" Height="20" ItemsSource="{Binding}" >
+                    <ComboBox  Grid.Column="7" Grid.Row="21" Grid.ColumnSpan="2" Margin="3" Name="_cbxCondiciones" Height="20" ItemsSource="{Binding}" >
                     </ComboBox>
 
                     <!--Nuevo-->
                     <Label Grid.Column="9" Grid.Row="21" Grid.ColumnSpan="1" VerticalAlignment="Center">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblExpCamPend}"/>
                     </Label>
-                    <TextBox Grid.Column="10" Grid.Row="21" Grid.ColumnSpan="1" Margin="3" Name="_txtExptyr" VerticalAlignment="Center"  
+                    <TextBox  Grid.Column="10" Grid.Row="21" Grid.ColumnSpan="1" Margin="3" Name="_txtExptyr" VerticalAlignment="Center"  
                           Text=""></TextBox>
                     <!--Fin Nuevo-->
 
@@ -1150,30 +1160,30 @@
                     <!--Fin Fila Catorce-->
 
                     <!--Fila Quince-->
-                    <Button Grid.Column="6" Grid.Row="22" Grid.ColumnSpan="1" Name="_btnInfoAdicionalDatos" Margin="3"
+                    <Button  Grid.Column="6" Grid.Row="22" Grid.ColumnSpan="1" Name="_btnInfoAdicional" Margin="3"
                             Height="25">
                         <TextBlock Name="_txbInfoAdicional" Text="{x:Static recurso:Etiquetas.btnInfoAdicional}"/>
                     </Button>
-                    <Button Grid.Column="7" Grid.Row="22" Grid.ColumnSpan="1" Name="_btnInfobol" Margin="3"
+                    <Button  Grid.Column="7" Grid.Row="22" Grid.ColumnSpan="1" Name="_btnInfobol" Margin="3"
                             Height="25">
                         <TextBlock Name="_txbInfobol" Text="{x:Static recurso:Etiquetas.btnInfoBol}"/>
                     </Button>
-                    <Button Grid.Column="8" Grid.Row="22" Grid.ColumnSpan="1" Name="_btnCertificados" Margin="3"
+                    <Button  Grid.Column="8" Grid.Row="22" Grid.ColumnSpan="1" Name="_btnCertificados" Margin="3"
                             Height="25">
                         <TextBlock Name="_txbCertificados" Text="{x:Static recurso:Etiquetas.btnCertificados}"/>
                     </Button>
-                    <Button Grid.Column="9" Grid.Row="22" Grid.ColumnSpan="1" Name="_btnBusquedas" Margin="3"
+                    <Button  Grid.Column="9" Grid.Row="22" Grid.ColumnSpan="1" Name="_btnBusquedas" Margin="3"
                             Height="25">
                         <TextBlock Name="_txbBusquedas" Text="{x:Static recurso:Etiquetas.btnBusqueda}"/>
                     </Button>
                     <!--Fin Fila Quince-->
 
                     <!--Fila Dieciseis-->
-                    <Button Grid.Column="6" Grid.Row="23" Grid.ColumnSpan="1" Name="_btnGenCartel" Margin="3"
+                    <Button  Grid.Column="6" Grid.Row="23" Grid.ColumnSpan="1" Name="_btnGenCartel" Margin="3"
                             Height="25">
                         <TextBlock Name="_txbGenCartel" Text="{x:Static recurso:Etiquetas.btnGenCartel}"/>
                     </Button>
-                    <Button Grid.Column="7" Grid.Row="23" Grid.ColumnSpan="1" Name="_btnAnaqua" Margin="3"
+                    <Button  Grid.Column="7" Grid.Row="23" Grid.ColumnSpan="1" Name="_btnAnaqua" Margin="3"
                             Height="25">
                         <TextBlock Name="_txbAnaqua" Text="{x:Static recurso:Etiquetas.btnAnaqua}"/>
                     </Button>
@@ -1181,32 +1191,32 @@
                     <Separator Margin="10 0" Grid.Column="6" Grid.Row="23" Grid.ColumnSpan="5" VerticalAlignment="Bottom"/>
                     <!--Fila Dieciocho-->
 
-                    <Button Grid.Column="1" Grid.Row="24" Grid.ColumnSpan="1" Name="_btnRevisarWeb" Margin="3"
+                    <Button  Grid.Column="1" Grid.Row="24" Grid.ColumnSpan="1" Name="_btnRevisarWeb" Margin="3"
                             Height="25">
                         <TextBlock Name="_txbRevisarWeb" Text="{x:Static recurso:Etiquetas.btnRevisarWeb}"/>
                     </Button>
                     <Label Grid.Column="3" Grid.Row="24" Grid.ColumnSpan="1" VerticalAlignment="Center">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblStatusWEB}"/>
                     </Label>
-                    <ComboBox Grid.Column="4" Grid.Row="24" Grid.ColumnSpan="2" Margin="3" Name="_cbxEstado" Height="20" ItemsSource="{Binding}" >
+                    <ComboBox  Grid.Column="4" Grid.Row="24" Grid.ColumnSpan="2" Margin="3" Name="_cbxEstadoDatos" Height="20" ItemsSource="{Binding}" >
                     </ComboBox>
 
-                    <Button Grid.Column="9" Grid.Row="24" Grid.ColumnSpan="1" Name="_btnAuditoria" Margin="3"
+                    <Button  Grid.Column="9" Grid.Row="24" Grid.ColumnSpan="1" Name="_btnAuditoria" Margin="3"
                             Height="25">
                         <TextBlock Name="_txbAuditoria" Text="{x:Static recurso:Etiquetas.btnAuditoria}"/>
                     </Button>
 
-                    <Button Grid.Column="10" Grid.Row="24" Grid.ColumnSpan="1" Name="_btnOperaciones" Margin="3"
+                    <Button  Grid.Column="10" Grid.Row="24" Grid.ColumnSpan="1" Name="_btnOperacionesDatos" Margin="3"
                             Height="25">
                         <TextBlock Name="_txbOperaciones" Text="{x:Static recurso:Etiquetas.btnOperaciones}"/>
                     </Button>
 
-                    <Button Grid.Column="11" Grid.Row="24" Grid.ColumnSpan="1" Name="_btnFacturacion" Margin="3"
+                    <Button  Grid.Column="11" Grid.Row="24" Grid.ColumnSpan="1" Name="_btnFacturacionDatos" Margin="3"
                             Height="25">
                         <TextBlock Name="_txbFacturacion" Text="{x:Static recurso:Etiquetas.btnFacturacion}"/>
                     </Button>
 
-                    <Button Grid.Column="12" Grid.Row="24" Grid.ColumnSpan="1" Name="_btnVerDoc" Margin="3"
+                    <Button  Grid.Column="12" Grid.Row="24" Grid.ColumnSpan="1" Name="_btnVerDocDatos" Margin="3"
                             Height="25">
                         <TextBlock Name="_txbVerDoc" Text="{x:Static recurso:Etiquetas.btnVerDoc}"/>
                     </Button>
@@ -1216,7 +1226,7 @@
             </TabItem>
         </TabControl>
         <WrapPanel Grid.Row="2" Grid.ColumnSpan="3" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="5" Orientation="Horizontal">
-        <Button Name="_btnAceptar"  VerticalAlignment="Bottom" Height="25" Width="90" 
+            <Button Name="_btnAceptar"  VerticalAlignment="Bottom" Height="25" Width="90" 
                     Click="_btnAceptar_Click"  IsDefault="True">
                 <Button.Style>
                     <Style TargetType="Button">

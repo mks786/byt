@@ -55,6 +55,18 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             set { this._txtAsociadoDatos.Text = value; }
         }
 
+        public string InteresadoPaisSolicitud
+        {
+            get { return this._txtPaisSolicitud.Text; }
+            set { this._txtPaisSolicitud.Text = value; }
+        }
+
+        public string InteresadoCiudadSolicitud
+        {
+            get { return this._txtCiudadSolicitud.Text; }
+            set { this._txtCiudadSolicitud.Text = value; }
+        }
+
         public object AsociadosSolicitud
         {
             get { return this._lstAsociadosSolicitud.DataContext; }
@@ -278,14 +290,14 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
 
         public object Detalle
         {
-            get { return this._cbxDetalle.DataContext; }
-            set { this._cbxDetalle.DataContext = value; }
+            get { return this._cbxDetalleDatos.DataContext; }
+            set { this._cbxDetalleDatos.DataContext = value; }
         }
 
         public object Detalles
         {
-            get { return this._cbxDetalle.SelectedItem; }
-            set { this._cbxDetalle.SelectedItem = value; }
+            get { return this._cbxDetalleDatos.SelectedItem; }
+            set { this._cbxDetalleDatos.SelectedItem = value; }
         }
 
         public object Condiciones
@@ -310,6 +322,30 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
         {
             get { return this._cbxPaisPrioridadSolicitud.SelectedItem; }
             set { this._cbxPaisPrioridadSolicitud.SelectedItem = value; }
+        }
+
+        public object TipoMarcasSolicitud
+        {
+            get { return this._cbxTipoMarcaSolicitud.DataContext; }
+            set { this._cbxTipoMarcaSolicitud.DataContext = value; }
+        }
+
+        public object TipoMarcaSolicitud
+        {
+            get { return this._cbxTipoMarcaSolicitud.SelectedItem; }
+            set { this._cbxTipoMarcaSolicitud.SelectedItem = value; }
+        }
+
+        public object TipoMarcasDatos
+        {
+            get { return this._cbxTipoMarcaDatos.DataContext; }
+            set { this._cbxTipoMarcaDatos.DataContext = value; }
+        }
+
+        public object TipoMarcaDatos
+        {
+            get { return this._cbxTipoMarcaDatos.SelectedItem; }
+            set { this._cbxTipoMarcaDatos.SelectedItem = value; }
         }
 
         public bool EstaCargada

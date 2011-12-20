@@ -70,20 +70,20 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Select m from Marca m left join fetch m.Asociado as asociado where .
-        /// </summary>
-        public static string CabeceraObtenerMarca {
-            get {
-                return ResourceManager.GetString("CabeceraObtenerMarca", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Select c from CartaOut c where .
         /// </summary>
         public static string CabeceraObtenerCartaOut {
             get {
                 return ResourceManager.GetString("CabeceraObtenerCartaOut", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select m from Marca m left join fetch m.Asociado as asociado where .
+        /// </summary>
+        public static string CabeceraObtenerMarca {
+            get {
+                return ResourceManager.GetString("CabeceraObtenerMarca", resourceCulture);
             }
         }
         
@@ -246,6 +246,15 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         public static string ObtenerDatosTransferenciaPorAsociado {
             get {
                 return ResourceManager.GetString("ObtenerDatosTransferenciaPorAsociado", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select distinct(i) from Interesado i left join fetch i.Pais where i.Id = &apos;{0}&apos; order by i.Id.
+        /// </summary>
+        public static string ObtenerInteresadoConTodo {
+            get {
+                return ResourceManager.GetString("ObtenerInteresadoConTodo", resourceCulture);
             }
         }
         

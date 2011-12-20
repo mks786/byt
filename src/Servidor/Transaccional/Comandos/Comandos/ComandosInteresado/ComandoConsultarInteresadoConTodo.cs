@@ -1,29 +1,26 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using NLog;
-using Trascend.Bolet.ObjetosComunes.Entidades;
 using System.Configuration;
-using Trascend.Bolet.AccesoDatos.Fabrica;
+using NLog;
 using Trascend.Bolet.AccesoDatos.Contrato;
+using Trascend.Bolet.AccesoDatos.Fabrica;
+using Trascend.Bolet.ObjetosComunes.Entidades;
 
-namespace Trascend.Bolet.Comandos.Comandos.ComandosMarca
+namespace Trascend.Bolet.Comandos.Comandos.ComandosInteresado
 {
-    public class ComandoInsertarOModificarMarca : ComandoBase<bool>
+    class ComandoConsultarInteresadoConTodo : ComandoBase<Interesado>
     {
         private static Logger logger = LogManager.GetCurrentClassLogger();
-        private Marca _marca;
+        private Interesado _interesado;
 
         /// <summary>
         /// Constructor predeterminado
         /// </summary>
-        /// <param name="marca">Marca a insertar o modificar</param>
-        public ComandoInsertarOModificarMarca(Marca marca)
+        /// <param name="interesado">Interesado a consultar</param>
+        public ComandoConsultarInteresadoConTodo(Interesado interesado)
         {
-            this._marca = marca;
+            this._interesado = interesado;
         }
-
         /// <summary>
         /// Método que ejecuta el comando
         /// </summary>
@@ -36,8 +33,8 @@ namespace Trascend.Bolet.Comandos.Comandos.ComandosMarca
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-                IDaoMarca dao = FabricaDaoBase.ObtenerFabricaDao().ObtenerDaoMarca();
-                this.Receptor = new Receptor<bool>(dao.InsertarOModificar(this._marca));
+                IDaoInteresado dao = FabricaDaoBase.ObtenerFabricaDao().ObtenerDaoInteresado();
+                this.Receptor = new Receptor<Interesado>(dao.ObtenerInteresadoConTodo(this._interesado));
 
                 #region trace
                 if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))

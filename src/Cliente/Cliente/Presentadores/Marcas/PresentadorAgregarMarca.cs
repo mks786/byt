@@ -23,13 +23,19 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
         private static PaginaPrincipal _paginaPrincipal = PaginaPrincipal.ObtenerInstancia;
         private static Logger logger = LogManager.GetCurrentClassLogger();
         private IAgregarMarca _ventana;
+        
         private IMarcaServicios _marcaServicios;
         private IAsociadoServicios _asociadoServicios;
         private IAgenteServicios _agenteServicios;
         private IPoderServicios _poderServicios;
         private IBoletinServicios _boletinServicios;
         private IPaisServicios _paisServicios;
+        private IListaDatosDominioServicios _listaDatosDominioServicios;
+        private IInteresadoServicios _interesadoServicios;
+        private IServicioServicios _servicioServicios;
+        private ITipoEstadoServicios _tipoEstadoServicios;
         private ICorresponsalServicios _corresponsalServicios;
+
         private IList<Asociado> _asociados;
         private IList<Interesado> _interesados;
         private IList<Corresponsal> _corresponsales;
@@ -45,7 +51,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             {
                 this._ventana = ventana;
 
-                Marca marca = new Marca();
+                Marca marca = new Marca(1);
                 marca.Nacional = new Nacional();
                 marca.Internacional = new Internacional();
                 this._ventana.Marca = marca;
@@ -62,6 +68,14 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["BoletinServicios"]);
                 this._paisServicios = (IPaisServicios)Activator.GetObject(typeof(IPaisServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["PaisServicios"]);
+                this._listaDatosDominioServicios = (IListaDatosDominioServicios)Activator.GetObject(typeof(IListaDatosDominioServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["ListaDatosDominioServicios"]);
+                this._interesadoServicios = (IInteresadoServicios)Activator.GetObject(typeof(IInteresadoServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["InteresadoServicios"]);
+                this._servicioServicios = (IServicioServicios)Activator.GetObject(typeof(IServicioServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["ServicioServicios"]);
+                this._tipoEstadoServicios = (ITipoEstadoServicios)Activator.GetObject(typeof(ITipoEstadoServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["TipoEstadoServicios"]);
                 this._corresponsalServicios = (ICorresponsalServicios)Activator.GetObject(typeof(ICorresponsalServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["CorresponsalServicios"]);
             }
@@ -94,14 +108,6 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
 
                 this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleConsultarAnexo, "");
 
-                IList<Asociado> asociados = this._asociadoServicios.ConsultarTodos();
-                Asociado primerAsociado = new Asociado();
-                primerAsociado.Id = int.MinValue;
-                asociados.Insert(0, primerAsociado);
-                this._ventana.AsociadosSolicitud = asociados;
-                this._ventana.AsociadosDatos = asociados;
-                this._asociados = asociados;
-
                 IList<Corresponsal> corresponsales = this._corresponsalServicios.ConsultarTodos();
                 Corresponsal primerCorresponsal = new Corresponsal();
                 primerCorresponsal.Id = int.MinValue;
@@ -110,11 +116,31 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 this._ventana.CorresponsalesDatos = corresponsales;
                 this._corresponsales = corresponsales;
 
+                IList<Asociado> asociados = this._asociadoServicios.ConsultarTodos();
+                Asociado primerAsociado = new Asociado();
+                primerAsociado.Id = int.MinValue;
+                asociados.Insert(0, primerAsociado);
+                this._ventana.AsociadosSolicitud = asociados;
+                this._ventana.AsociadosDatos = asociados;
+                this._asociados = asociados;
+
+                this._ventana.TipoMarcasDatos = this._listaDatosDominioServicios.
+                    ConsultarListaDatosDominioPorParametro(new ListaDatosDominio(Recursos.Etiquetas.cbiCategoriaMarca));
+
+                this._ventana.TipoMarcasSolicitud = this._listaDatosDominioServicios.
+                    ConsultarListaDatosDominioPorParametro(new ListaDatosDominio(Recursos.Etiquetas.cbiCategoriaMarca));
+
                 IList<Agente> agentes = this._agenteServicios.ConsultarTodos();
                 this._ventana.Agentes = agentes;
 
                 IList<Pais> paises = this._paisServicios.ConsultarTodos();
                 this._ventana.PaisesSolicitud = paises;
+
+                IList<Servicio> servicios = this._servicioServicios.ConsultarTodos();
+                this._ventana.Servicios = servicios;
+
+                IList<TipoEstado> tipoEstados = this._tipoEstadoServicios.ConsultarTodos();
+                this._ventana.Detalles = tipoEstados;
 
                 IList<Boletin> boletines = this._boletinServicios.ConsultarTodos();
                 this._ventana.BoletinesOrdenPublicacion = boletines;
@@ -124,6 +150,14 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 IList<Poder> poderes = this._poderServicios.ConsultarTodos();
                 this._ventana.PoderesDatos = poderes;
                 this._ventana.PoderesSolicitud = poderes;
+
+                IList<Interesado> interesados = this._interesadoServicios.ConsultarTodos();
+                Interesado primerInteresado = new Interesado();
+                primerInteresado.Id = int.MinValue;
+                interesados.Insert(0, primerInteresado);
+                this._ventana.InteresadosDatos = interesados;
+                this._ventana.InteresadosSolicitud = interesados;
+                this._interesados = interesados;
 
                 this._ventana.FocoPredeterminado();
 
@@ -160,13 +194,13 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                     marca.Agente = !((Agente)this._ventana.Agente).Id.Equals("NGN") ? (Agente)this._ventana.Agente : null;
 
                 if (null != this._ventana.AsociadoSolicitud)
-                    marca.Asociado = !((Asociado)this._ventana.AsociadoSolicitud).Id.Equals("NGN") ? (Asociado)this._ventana.AsociadoSolicitud : null;
+                    marca.Asociado = ((Asociado)this._ventana.AsociadoSolicitud).Id != int.MinValue ? (Asociado)this._ventana.AsociadoSolicitud : null;
 
                 if (null != this._ventana.BoletinConcesion)
-                    marca.BoletinConcesion = !((Boletin)this._ventana.BoletinConcesion).Id.Equals("NGN") ? (Boletin)this._ventana.BoletinConcesion : null;
+                    marca.BoletinConcesion = ((Boletin)this._ventana.BoletinConcesion).Id != int.MinValue ? (Boletin)this._ventana.BoletinConcesion : null;
 
                 if (null != this._ventana.BoletinPublicacion)
-                    marca.BoletinPublicacion = !((Boletin)this._ventana.BoletinPublicacion).Id.Equals("NGN") ? (Boletin)this._ventana.BoletinPublicacion : null;
+                    marca.BoletinPublicacion = ((Boletin)this._ventana.BoletinPublicacion).Id != int.MinValue ? (Boletin)this._ventana.BoletinPublicacion : null;
 
                 if (null != this._ventana.InteresadoSolicitud)
                     marca.Interesado = !((Interesado)this._ventana.InteresadoSolicitud).Id.Equals("NGN") ? ((Interesado)this._ventana.InteresadoSolicitud) : null;
@@ -177,8 +211,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 if (null != this._ventana.PoderSolicitud)
                     marca.Poder = !((Poder)this._ventana.PoderSolicitud).Id.Equals("NGN") ? ((Poder)this._ventana.PoderSolicitud) : null;
 
-                if (null != this._ventana.PaisesSolicitud)
-                    marca.Pais = !((Pais)this._ventana.PaisesSolicitud).Id.Equals("NGN") ? ((Pais)this._ventana.PaisesSolicitud) : null;
+                if (null != this._ventana.PaisSolicitud)
+                    marca.Pais = ((Pais)this._ventana.PaisSolicitud).Id != int.MinValue ? ((Pais)this._ventana.PaisSolicitud) : null;
+
+                if (null != this._ventana.CorresponsalSolicitud)
+                    marca.Corresponsal = ((Corresponsal)this._ventana.CorresponsalSolicitud).Id != int.MinValue ? ((Corresponsal)this._ventana.CorresponsalSolicitud) : null;
 
                 bool exitoso = this._marcaServicios.InsertarOModificar(marca, UsuarioLogeado.Hash);
 
@@ -293,17 +330,22 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
         {
             try
             {
-                if ((Asociado)this._ventana.InteresadoSolicitud != null)
+                if ((Interesado)this._ventana.InteresadoSolicitud != null)
                 {
+                    Interesado interesadoAux = this._interesadoServicios.ConsultarInteresadoConTodo((Interesado)this._ventana.InteresadoSolicitud);
                     this._ventana.NombreInteresadoSolicitud = ((Interesado)this._ventana.InteresadoSolicitud).Nombre;
                     this._ventana.InteresadoDatos = (Interesado)this._ventana.InteresadoSolicitud;
                     this._ventana.NombreInteresadoDatos = ((Interesado)this._ventana.InteresadoSolicitud).Nombre;
+                    this._ventana.InteresadoPaisSolicitud = interesadoAux.Pais != null ? interesadoAux.Pais.NombreEspanol : "";
+                    this._ventana.InteresadoCiudadSolicitud = interesadoAux.Ciudad != null ? interesadoAux.Ciudad : "";
                 }
             }
             catch (ApplicationException e)
             {
                 this._ventana.NombreInteresadoSolicitud = "";
                 this._ventana.NombreInteresadoDatos = "";
+                this._ventana.InteresadoPaisSolicitud = "";
+                this._ventana.InteresadoCiudadSolicitud = "";
             }
         }
 
@@ -311,17 +353,23 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
         {
             try
             {
-                if ((Asociado)this._ventana.InteresadoDatos != null)
+                if ((Interesado)this._ventana.InteresadoDatos != null)
                 {
+                    Interesado interesadoAux = this._interesadoServicios.ConsultarInteresadoConTodo((Interesado)this._ventana.InteresadoSolicitud);
+                    this._ventana.InteresadoDatos = this._interesadoServicios.ConsultarInteresadoConTodo((Interesado)this._ventana.InteresadoDatos);
                     this._ventana.NombreInteresadoDatos = ((Interesado)this._ventana.InteresadoDatos).Nombre;
                     this._ventana.InteresadoSolicitud = (Interesado)this._ventana.InteresadoDatos;
                     this._ventana.NombreInteresadoSolicitud = ((Interesado)this._ventana.InteresadoDatos).Nombre;
+                    this._ventana.InteresadoPaisSolicitud = interesadoAux.Pais != null ? interesadoAux.Pais.NombreEspanol : "";
+                    this._ventana.InteresadoCiudadSolicitud = interesadoAux.Ciudad != null ? interesadoAux.Ciudad : "";
                 }
             }
             catch (ApplicationException e)
             {
                 this._ventana.NombreInteresadoSolicitud = "";
                 this._ventana.NombreInteresadoDatos = "";
+                this._ventana.InteresadoPaisSolicitud = "";
+                this._ventana.InteresadoCiudadSolicitud = "";
             }
         }
 
