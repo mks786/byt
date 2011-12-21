@@ -14,8 +14,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
         private PresentadorConsultarMarca _presentador;
         private bool _cargada;
 
-        private bool _asociadosEstanCargados;
-        private bool _corresponsalesEstanCargados;
+        private bool _asociadosCargados;
+        private bool _interesadosCargados;
+        private bool _corresponsalesCargados;
+        private bool _poderesCargados;
+
 
         #region IConsultarMarca
 
@@ -25,28 +28,40 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             set { this._tbcPestañas.DataContext = value; }
         }
 
+        public string NumPoderDatos
+        {
+            get { return this._txtPoderDatos.Text; }
+            set { this._txtPoderDatos.Text = value; }
+        }
+
+        public string NumPoderSolicitud
+        {
+            get { return this._txtPoderSolicitud.Text; }
+            set { this._txtPoderSolicitud.Text = value; }
+        }
+
         public object PoderesSolicitud
         {
-            get { return this._cbxPoder.DataContext; }
-            set { this._cbxPoder.DataContext = value; }
+            get { return this._lstPoderesSolicitud.DataContext; }
+            set { this._lstPoderesSolicitud.DataContext = value; }
         }
 
         public object PoderSolicitud
         {
-            get { return this._cbxPoder.SelectedItem; }
-            set { this._cbxPoder.SelectedItem = value; }
+            get { return this._lstPoderesSolicitud.SelectedItem; }
+            set { this._lstPoderesSolicitud.SelectedItem = value; }
         }
 
         public object PoderesDatos
         {
-            get { return this._cbxPoderDatos.DataContext; }
-            set { this._cbxPoderDatos.DataContext = value; }
+            get { return this._lstPoderesDatos.DataContext; }
+            set { this._lstPoderesDatos.DataContext = value; }
         }
 
         public object PoderDatos
         {
-            get { return this._cbxPoderDatos.SelectedItem; }
-            set { this._cbxPoderDatos.SelectedItem = value; }
+            get { return this._lstPoderesDatos.SelectedItem; }
+            set { this._lstPoderesDatos.SelectedItem = value; }
         }
 
         public object Agentes
@@ -248,6 +263,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
                 this._txtNumSapi.IsEnabled = value;
                 this._txtOtroDatos.IsEnabled = value;
                 this._txtOtrosImp.IsEnabled = value;
+                this._txtPoderSolicitud.IsEnabled = value;
+                this._txtPoderDatos.IsEnabled = value;
                 this._txtPrimeraReferenciaDatos.IsEnabled = value;
                 this._txtReclasificacionDatos.IsEnabled = value;
                 this._txtReferencia.IsEnabled = value;
@@ -279,8 +296,6 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
                 this._cbxPais.IsEnabled = value;
                 this._cbxPaisDatos.IsEnabled = value;
                 this._cbxPaisPrioridad.IsEnabled = value;
-                this._cbxPoder.IsEnabled = value;
-                this._cbxPoderDatos.IsEnabled = value;
                 this._cbxSector.IsEnabled = value;
                 this._cbxSituacion.IsEnabled = value;
                 this._cbxTipoMarca.IsEnabled = value;
@@ -443,7 +458,6 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             }
         }
 
-
         public string IdInteresadoSolicitudFiltrar
         {
             get { return this._txtIdInteresadoSolicitud.Text; }
@@ -575,6 +589,31 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             get { return this._lstCorresponsalesDatos.SelectedItem; }
             set { this._lstCorresponsalesDatos.SelectedItem = value; }
         }
+
+        public bool AsociadosEstanCargados
+        {
+            get { return this._asociadosCargados; }
+            set { this._asociadosCargados = value; }
+        }
+
+        public bool InteresadosEstanCargados
+        {
+            get { return this._interesadosCargados; }
+            set { this._interesadosCargados = value; }
+        }
+
+        public bool CorresponsalesEstanCargados
+        {
+            get { return this._corresponsalesCargados; }
+            set { this._corresponsalesCargados = value; }
+        }
+
+        public bool PoderesEstanCargados
+        {
+            get { return this._poderesCargados; }
+            set { this._poderesCargados = value; }
+        }
+
         #endregion
 
         public ConsultarMarca(object marcaSeleccionada)
@@ -582,8 +621,10 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             InitializeComponent();
 
             this._cargada = false;
-            this._asociadosEstanCargados = false;
-            this._corresponsalesEstanCargados = false;
+            this._asociadosCargados = false;
+            this._interesadosCargados = false;
+            this._corresponsalesCargados = false;
+            this._poderesCargados = false;
             this._presentador = new PresentadorConsultarMarca(this, marcaSeleccionada);
         }
 
@@ -765,10 +806,9 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
 
         private void _txtAsociadoSolicitud_GotFocus(object sender, RoutedEventArgs e)
         {
-            if (!this._asociadosEstanCargados)
+            if (!this._asociadosCargados)
             {
                 this._presentador.CargarAsociados();
-                this._asociadosEstanCargados = true;
             }
             mostrarLstAsociadoSolicitud();
         }
@@ -787,6 +827,10 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
 
         private void _txtInteresadoSolicitud_GotFocus(object sender, RoutedEventArgs e)
         {
+            if (!this._interesadosCargados)
+            {
+                this._presentador.CargarInteresados();
+            }
             mostrarLstInteresadoSolicutud();
         }
 
@@ -809,10 +853,9 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
 
         private void _txtCorresponsalSolicitud_GotFocus(object sender, RoutedEventArgs e)
         {
-            if (!this._corresponsalesEstanCargados)
+            if (!this._corresponsalesCargados)
             {
                 this._presentador.CargarCorresponsales();
-                this._corresponsalesEstanCargados = true;
             }
             mostrarLstCorresponsalSolicutud();
         }
@@ -854,16 +897,44 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
 
         }
 
+        private void mostrarLstPoderSolicitud()
+        {
+            this._txtPoderSolicitud.Visibility = System.Windows.Visibility.Collapsed;
+            this._lstPoderesSolicitud.Visibility = System.Windows.Visibility.Visible;
+            this._lstPoderesSolicitud.IsEnabled = true;
+        }
+
+        private void ocultarLstPoderSolicutud()
+        {
+            this._presentador.CambiarPoderSolicitud();
+            this._lstPoderesSolicitud.Visibility = System.Windows.Visibility.Collapsed;
+            this._txtPoderSolicitud.Visibility = System.Windows.Visibility.Visible;
+        }
+
+        private void _txtPoderSolicitud_GotFocus(object sender, RoutedEventArgs e)
+        {
+            if (!this._poderesCargados)
+                this._presentador.CargarPoderes();    
+            
+            mostrarLstPoderSolicitud();
+        }
+
+        private void _lstPoderesSolicitud_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            this._presentador.CambiarCorresponsalSolicitud();
+            ocultarLstPoderSolicutud();
+            ocultarLstPoderDatos();
+        }
+
         #endregion
 
         #region Eventos Datos
 
         private void _txtAsociadoDatos_GotFocus(object sender, RoutedEventArgs e)
         {
-            if (!this._asociadosEstanCargados)
+            if (!this._asociadosCargados)
             {
                 this._presentador.CargarAsociados();
-                this._asociadosEstanCargados = true;
             }
             mostrarLstAsocaidoDatos();
         }
@@ -882,6 +953,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
 
         private void _txtInteresadoDatos_GotFocus(object sender, RoutedEventArgs e)
         {
+            if (!this._interesadosCargados)
+            {
+                this._presentador.CargarInteresados();
+            }
+
             mostrarLstInteresadoDatos();
         }
 
@@ -905,11 +981,9 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
         private void _txtCorresponsalDatos_GotFocus(object sender, RoutedEventArgs e)
         {
 
-            if (!this._corresponsalesEstanCargados)
-            {
+            if (!this._corresponsalesCargados)
                 this._presentador.CargarCorresponsales();
-                this._corresponsalesEstanCargados = true;
-            }
+
             mostrarLstCorresponsalDatos();
         }
 
@@ -920,6 +994,34 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             ocultarLstCorresponsalDatos();
         }
 
+        private void mostrarLstPoderDatos()
+        {
+            this._txtPoderDatos.Visibility = System.Windows.Visibility.Collapsed;
+            this._lstPoderesDatos.Visibility = System.Windows.Visibility.Visible;
+            this._lstPoderesDatos.IsEnabled = true;
+        }
+
+        private void ocultarLstPoderDatos()
+        {
+            this._presentador.CambiarPoderDatos();
+            this._lstPoderesDatos.Visibility = System.Windows.Visibility.Collapsed;
+            this._txtPoderDatos.Visibility = System.Windows.Visibility.Visible;
+        }
+
+        private void _txtPoderDatos_GotFocus(object sender, RoutedEventArgs e)
+        {
+            if (!this._poderesCargados)
+                this._presentador.CargarPoderes();
+
+            mostrarLstPoderDatos();
+        }
+
+        private void _lstPoderesDatos_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            this._presentador.CambiarPoderDatos();
+            ocultarLstPoderSolicutud();
+            ocultarLstPoderDatos();
+        }
         #endregion
 
     }

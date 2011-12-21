@@ -64,7 +64,7 @@
                         <RowDefinition Height="30"/>
                         <RowDefinition Height="30"/>
                         <RowDefinition Height="30"/>
-                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="Auto"/>
                         <RowDefinition Height="30"/>
                         <RowDefinition Height="5"/>
                         <RowDefinition Height="30"/>
@@ -439,9 +439,35 @@
                     <Label Grid.Column="7" Grid.Row="13" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblPoder}"/>
                     </Label>
-                    <ComboBox IsEnabled="False" Grid.Column="8" Grid.Row="13"  Name="_cbxPoder" Height="20" Grid.ColumnSpan="2"
-                              ItemsSource="{Binding}" DisplayMemberPath="NumPoder" SelectedIndex="0">
-                    </ComboBox>
+                    <Grid Grid.Column="8" Grid.Row="13" Grid.ColumnSpan="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <custom:ByTTextBox IsEnabled="False" MaxLength="255" Grid.Column="0" Grid.Row="0" Name="_txtPoderSolicitud" VerticalAlignment="Center" 
+                         Grid.ColumnSpan="7" GotFocus="_txtPoderSolicitud_GotFocus" GotKeyboardFocus="_txtPoderSolicitud_GotFocus"></custom:ByTTextBox>
+
+                        <ListView Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" Grid.RowSpan="2" Name="_lstPoderesSolicitud" ItemsSource="{Binding}" 
+                      SelectionMode="Single" MouseDoubleClick="_lstPoderesSolicitud_MouseDoubleClick"
+                      Style="{DynamicResource EstiloListView}" Visibility="Collapsed" Height="150"  VerticalAlignment="Top">
+                            <ListView.View>
+                                <GridView>
+                                    <GridViewColumn DisplayMemberBinding="{Binding Path=Id}" Width="45">
+                                        <GridViewColumnHeader  Tag="Id" Content="{x:Static recurso:Etiquetas.lsvId}"/>
+                                    </GridViewColumn>
+                                    <GridViewColumn DisplayMemberBinding="{Binding Path=NumPoder}" Width="260">
+                                        <GridViewColumnHeader  Tag="NumPoder" Content="{x:Static recurso:Etiquetas.lsvDescripcion}"/>
+                                    </GridViewColumn>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                    </Grid>
 
                     <Label Grid.Column="10" Grid.Row="13" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblNumSapi}"/>
@@ -857,9 +883,36 @@
                     <Label Grid.Column="8" Grid.Row="5" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblPoder}"/>
                     </Label>
-                    <ComboBox IsEnabled="False" Grid.Column="9" Grid.Row="5" Grid.ColumnSpan="3" Margin="3" Name="_cbxPoderDatos" Height="20" 
-                              ItemsSource="{Binding}" DisplayMemberPath="NumPoder" SelectedIndex="0">
-                    </ComboBox>
+                    <Grid Grid.Column="9" Grid.Row="5" Grid.ColumnSpan="3" Margin="3">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <custom:ByTTextBox IsEnabled="False" MaxLength="255" Grid.Column="0" Grid.Row="0" Name="_txtPoderDatos" VerticalAlignment="Center" 
+                         Grid.ColumnSpan="7" GotFocus="_txtPoderDatos_GotFocus" GotKeyboardFocus="_txtPoderDatos_GotFocus"></custom:ByTTextBox>
+
+                        <ListView Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="3" Grid.RowSpan="2" Name="_lstPoderesDatos" ItemsSource="{Binding}" 
+                      SelectionMode="Single" MouseDoubleClick="_lstPoderesDatos_MouseDoubleClick"
+                      Style="{DynamicResource EstiloListView}" Visibility="Collapsed" Height="150"  VerticalAlignment="Top">
+                            <ListView.View>
+                                <GridView>
+                                    <GridViewColumn DisplayMemberBinding="{Binding Path=Id}" Width="45">
+                                        <GridViewColumnHeader  Tag="Id" Content="{x:Static recurso:Etiquetas.lsvId}"/>
+                                    </GridViewColumn>
+                                    <GridViewColumn DisplayMemberBinding="{Binding Path=NumPoder}" Width="260">
+                                        <GridViewColumnHeader  Tag="NumPoder" Content="{x:Static recurso:Etiquetas.lsvNumPoder}"/>
+                                    </GridViewColumn>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                    </Grid>
                     <!--Fin Tercera Fila-->
 
                     <!--Cuarta Fila-->

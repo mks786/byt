@@ -113,8 +113,6 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 Corresponsal corresponsal = new Corresponsal();
                 ((Marca)this._ventana.Marca).Corresponsal = corresponsal;
 
-                
-
                 this._ventana.TipoMarcasDatos = this._listaDatosDominioServicios.
                     ConsultarListaDatosDominioPorParametro(new ListaDatosDominio(Recursos.Etiquetas.cbiCategoriaMarca));
 
@@ -147,24 +145,15 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 this._ventana.BoletinConcesion = this.BuscarBoletin(boletines, marca.BoletinConcesion);
                 this._ventana.BoletinPublicacion = this.BuscarBoletin(boletines, marca.BoletinPublicacion);
 
-                IList<Interesado> interesados = this._interesadoServicios.ConsultarTodos();
-                Interesado primerInteresado = new Interesado();
-                primerInteresado.Id = int.MinValue;
-                interesados.Insert(0, primerInteresado);
-                this._ventana.InteresadosDatos = interesados;
-                this._ventana.InteresadosSolicitud = interesados;
-                ((Marca)this._ventana.Marca).Interesado = this.BuscarInteresado(interesados, marca.Interesado);
-                Interesado interesado = this.BuscarInteresado(interesados, marca.Interesado);
-                this._ventana.InteresadoSolicitud = interesado;
-                this._ventana.InteresadoDatos = interesado;
-                interesado = this._interesadoServicios.ConsultarInteresadoConTodo(interesado);
+                Interesado interesado = (this._interesadoServicios.ConsultarInteresadoConTodo(marca.Interesado));
+                this._ventana.NombreInteresadoDatos = interesado.Nombre;
+                this._ventana.NombreInteresadoSolicitud = interesado.Nombre;
                 this._ventana.InteresadoPaisSolicitud = interesado.Pais.NombreEspanol;
                 this._ventana.InteresadoCiudadSolicitud = interesado.Ciudad;
-                this._ventana.NombreInteresadoDatos = ((Marca)this._ventana.Marca).Interesado.Nombre;
-                this._ventana.NombreInteresadoSolicitud = ((Marca)this._ventana.Marca).Interesado.Nombre;
-                this._interesados = interesados;
 
-                
+                this._ventana.NombreAsociadoDatos = marca.Asociado.Nombre;
+                this._ventana.NombreAsociadoSolicitud = marca.Asociado.Nombre;
+
                 this._ventana.FocoPredeterminado();
 
                 #region trace
@@ -408,6 +397,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             this._ventana.NombreAsociadoDatos = ((Marca)this._ventana.Marca).Asociado.Nombre;
             this._ventana.NombreAsociadoSolicitud = ((Marca)this._ventana.Marca).Asociado.Nombre;
             this._asociados = asociados;
+            this._ventana.AsociadosEstanCargados = true;
 
             Mouse.OverrideCursor = null;
         }
@@ -498,6 +488,33 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 else
                     this._ventana.InteresadosDatos = this._interesados;
             }
+        }
+
+        public void CargarInteresados()
+        {
+            Mouse.OverrideCursor = Cursors.Wait;
+            Marca marca = (Marca)this._ventana.Marca;
+
+            IList<Interesado> interesados = this._interesadoServicios.ConsultarTodos();
+            Interesado primerInteresado = new Interesado();
+            primerInteresado.Id = int.MinValue;
+            interesados.Insert(0, primerInteresado);
+            this._ventana.InteresadosDatos = interesados;
+            this._ventana.InteresadosSolicitud = interesados;
+            ((Marca)this._ventana.Marca).Interesado = this.BuscarInteresado(interesados, marca.Interesado);
+            Interesado interesado = this.BuscarInteresado(interesados, marca.Interesado);
+            this._ventana.InteresadoSolicitud = interesado;
+            this._ventana.InteresadoDatos = interesado;
+            interesado = this._interesadoServicios.ConsultarInteresadoConTodo(interesado);
+            this._ventana.InteresadoPaisSolicitud = interesado.Pais.NombreEspanol;
+            this._ventana.InteresadoCiudadSolicitud = interesado.Ciudad;
+            this._ventana.NombreInteresadoDatos = ((Marca)this._ventana.Marca).Interesado.Nombre;
+            this._ventana.NombreInteresadoSolicitud = ((Marca)this._ventana.Marca).Interesado.Nombre;
+            this._interesados = interesados;
+
+            this._ventana.InteresadosEstanCargados = true;
+
+            Mouse.OverrideCursor = null;
         }
 
         #endregion
@@ -598,12 +615,54 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                                                          ((Corresponsal)this._ventana.CorresponsalSolicitud).Descripcion : null;
             this._corresponsales = corresponsales;
 
+            this._ventana.CorresponsalesEstanCargados = true;
+
             Mouse.OverrideCursor = null;
         }
 
         #endregion
 
         #region Poderes
+
+        #region Metodos de la lista de poderes
+
+        public void CambiarPoderSolicitud()
+        {
+            try
+            {
+                if ((Poder)this._ventana.PoderSolicitud != null)
+                {
+                    this._ventana.NumPoderSolicitud = ((Poder)this._ventana.PoderSolicitud).NumPoder;
+                    this._ventana.PoderDatos = (Poder)this._ventana.PoderSolicitud;
+                    this._ventana.NumPoderDatos = ((Poder)this._ventana.PoderSolicitud).NumPoder;
+                }
+            }
+            catch (ApplicationException e)
+            {
+                this._ventana.NumPoderSolicitud = "";
+                this._ventana.NumPoderDatos = "";
+            }
+        }
+
+        public void CambiarPoderDatos()
+        {
+            try
+            {
+                if ((Poder)this._ventana.PoderDatos != null)
+                {
+                    this._ventana.NumPoderDatos = ((Poder)this._ventana.PoderDatos).NumPoder;
+                    this._ventana.PoderSolicitud = (Poder)this._ventana.PoderDatos;
+                    this._ventana.NumPoderSolicitud = ((Poder)this._ventana.PoderDatos).NumPoder;
+                }
+            }
+            catch (ApplicationException e)
+            {
+                this._ventana.NumPoderSolicitud = "";
+                this._ventana.NumPoderDatos = "";
+            }
+        }
+
+        #endregion
 
         public void CargarPoderes()
         {
@@ -615,6 +674,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             this._ventana.PoderesSolicitud = poderes;
             this._ventana.PoderDatos = this.BuscarPoder(poderes, marca.Poder);
             this._ventana.PoderSolicitud = this.BuscarPoder(poderes, marca.Poder);
+
+            this._ventana.PoderesEstanCargados = true;
 
             Mouse.OverrideCursor = null;
         }

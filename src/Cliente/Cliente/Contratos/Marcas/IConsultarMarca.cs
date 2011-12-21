@@ -31,6 +31,10 @@ namespace Trascend.Bolet.Cliente.Contratos.Marcas
 
         string NombreInteresadoDatos { get; set; }
 
+        string NumPoderDatos { get; set; }
+
+        string NumPoderSolicitud { get; set; }
+
         string IdCorresponsalSolicitudFiltrar { get; }
 
         string IdCorresponsalDatosFiltrar { get; }
@@ -124,6 +128,14 @@ namespace Trascend.Bolet.Cliente.Contratos.Marcas
         string TextoBotonModificar { get; set; }
 
         bool HabilitarCampos { set; }
+
+        bool AsociadosEstanCargados { get; set; }
+
+        bool InteresadosEstanCargados { get; set; }
+
+        bool CorresponsalesEstanCargados { get; set; }
+
+        bool PoderesEstanCargados { get; set; }
 
     }
 }
