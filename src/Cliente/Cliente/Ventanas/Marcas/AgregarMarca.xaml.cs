@@ -23,6 +23,18 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             set { this._tbcPestañas.DataContext = value; }
         }
 
+        public string NumPoderDatos
+        {
+            get { return this._txtPoderDatos.Text; }
+            set { this._txtPoderDatos.Text = value; }
+        }
+
+        public string NumPoderSolicitud
+        {
+            get { return this._txtPoderSolicitud.Text; }
+            set { this._txtPoderSolicitud.Text = value; }
+        }
+
         public string IdAsociadoSolicitudFiltrar
         {
             get { return this._txtIdAsociadoSolicitud.Text; }
@@ -206,8 +218,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
 
         public object PoderesSolicitud
         {
-            get { return this._cbxPoderSolicitud.DataContext; }
-            set { this._cbxPoderSolicitud.DataContext = value; }
+            get { return this._lstPoderesSolicitud.DataContext; }
+            set { this._lstPoderesSolicitud.DataContext = value; }
         }
 
         public object Sector
@@ -236,20 +248,20 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
 
         public object PoderSolicitud
         {
-            get { return this._cbxPoderSolicitud.SelectedItem; }
-            set { this._cbxPoderSolicitud.SelectedItem = value; }
+            get { return this._lstPoderesSolicitud.SelectedItem; }
+            set { this._lstPoderesSolicitud.SelectedItem = value; }
         }
 
         public object PoderesDatos
         {
-            get { return this._cbxPoderDatos.DataContext; }
-            set { this._cbxPoderDatos.DataContext = value; }
+            get { return this._lstPoderesDatos.DataContext; }
+            set { this._lstPoderesDatos.DataContext = value; }
         }
 
         public object PoderDatos
         {
-            get { return this._cbxPoderDatos.SelectedItem; }
-            set { this._cbxPoderDatos.SelectedItem = value; }
+            get { return this._lstPoderesDatos.SelectedItem; }
+            set { this._lstPoderesDatos.SelectedItem = value; }
         }
 
         public object Agentes
@@ -417,7 +429,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             this._lblNombreAsociadoSolicitud.Visibility = System.Windows.Visibility.Collapsed;
         }
 
-        private void mostrarLstInteresadoSolicutud()
+        private void mostrarLstInteresadoSolicitud()
         {
             this._txtInteresadoSolicitud.Visibility = System.Windows.Visibility.Collapsed;
             this._lstInteresadosSolicitud.Visibility = System.Windows.Visibility.Visible;
@@ -429,7 +441,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             this._lblNombreInteresadoSolicitud.Visibility = System.Windows.Visibility.Visible;
         }
 
-        private void ocultarLstInteresadoSolicutud()
+        private void ocultarLstInteresadoSolicitud()
         {
             this._presentador.CambiarInteresadoSolicitud();
             this._lstInteresadosSolicitud.Visibility = System.Windows.Visibility.Collapsed;
@@ -441,7 +453,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             this._lblNombreInteresadoSolicitud.Visibility = System.Windows.Visibility.Collapsed;
         }
 
-        private void mostrarLstCorresponsalSolicutud()
+        private void mostrarLstCorresponsalSolicitud()
         {
             this._txtCorresponsalSolicitud.Visibility = System.Windows.Visibility.Collapsed;
             this._lstCorresponsalesSolicitud.Visibility = System.Windows.Visibility.Visible;
@@ -453,7 +465,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             this._lblDescripcionCorresponsalSolicitud.Visibility = System.Windows.Visibility.Visible;
         }
 
-        private void ocultarLstCorresponsalSolicutud()
+        private void ocultarLstCorresponsalSolicitud()
         {
             this._presentador.CambiarCorresponsalSolicitud();
             this._lstCorresponsalesSolicitud.Visibility = System.Windows.Visibility.Collapsed;
@@ -463,6 +475,20 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             this._txtCorresponsalSolicitud.Visibility = System.Windows.Visibility.Visible;
             this._lblIdCorresponsalSolicitud.Visibility = System.Windows.Visibility.Collapsed;
             this._lblDescripcionCorresponsalSolicitud.Visibility = System.Windows.Visibility.Collapsed;
+        }
+
+        private void mostrarLstPoderSolicitud()
+        {
+            this._txtPoderSolicitud.Visibility = System.Windows.Visibility.Collapsed;
+            this._lstPoderesSolicitud.Visibility = System.Windows.Visibility.Visible;
+            this._lstPoderesSolicitud.IsEnabled = true;
+        }
+
+        private void ocultarLstPoderSolicutud()
+        {
+            this._presentador.CambiarPoderSolicitud();
+            this._lstPoderesSolicitud.Visibility = System.Windows.Visibility.Collapsed;
+            this._txtPoderSolicitud.Visibility = System.Windows.Visibility.Visible;
         }
 
         private void mostrarLstAsocaidoDatos()
@@ -535,7 +561,19 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             this._lblDescripcionCorresponsalDatos.Visibility = System.Windows.Visibility.Collapsed;
         }
 
+        private void mostrarLstPoderDatos()
+        {
+            this._txtPoderDatos.Visibility = System.Windows.Visibility.Collapsed;
+            this._lstPoderesDatos.Visibility = System.Windows.Visibility.Visible;
+            this._lstPoderesDatos.IsEnabled = true;
+        }
 
+        private void ocultarLstPoderDatos()
+        {
+            this._presentador.CambiarPoderDatos();
+            this._lstPoderesDatos.Visibility = System.Windows.Visibility.Collapsed;
+            this._txtPoderDatos.Visibility = System.Windows.Visibility.Visible;
+        }
 
         #endregion
 
@@ -583,7 +621,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
 
         private void _txtInteresadoSolicitud_GotFocus(object sender, RoutedEventArgs e)
         {
-            mostrarLstInteresadoSolicutud();
+            mostrarLstInteresadoSolicitud();
         }
 
         private void _btnConsultarInteresadoSolicitud_Click(object sender, RoutedEventArgs e)
@@ -594,7 +632,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
         private void _lstInteresadosSolicitud_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             this._presentador.CambiarInteresadoSolicitud();
-            ocultarLstInteresadoSolicutud();
+            ocultarLstInteresadoSolicitud();
             ocultarLstInteresadoDatos();
         }
 
@@ -605,14 +643,26 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
 
         private void _txtCorresponsalSolicitud_GotFocus(object sender, RoutedEventArgs e)
         {
-            mostrarLstCorresponsalSolicutud();
+            mostrarLstCorresponsalSolicitud();
         }
 
         private void _lstCorresponsalesSolicitud_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            this._presentador.CambiarCorresponsalSolicitud();
-            ocultarLstCorresponsalSolicutud();
+            this._presentador.CambiarPoderSolicitud();
+            ocultarLstCorresponsalSolicitud();
             ocultarLstCorresponsalDatos();
+        }
+
+        private void _txtPoderSolicitud_GotFocus(object sender, RoutedEventArgs e)
+        {
+            mostrarLstPoderSolicitud();
+        }
+
+        private void _lstPoderesSolicitud_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            this._presentador.CambiarCorresponsalSolicitud();
+            ocultarLstPoderSolicutud();
+            ocultarLstPoderDatos();
         }
 
         private void _btnClaseCompletaSolicitud_Click(object sender, RoutedEventArgs e)
@@ -680,7 +730,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
         {
             this._presentador.CambiarInteresadoDatos(); 
             ocultarLstInteresadoDatos();
-            ocultarLstInteresadoSolicutud();
+            ocultarLstInteresadoSolicitud();
         }
 
         private void _btnConsultarCorresponsalDatos_Click(object sender, RoutedEventArgs e)
@@ -696,12 +746,22 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
         private void _lstCorresponsalesDatos_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             this._presentador.CambiarCorresponsalDatos();
-            ocultarLstCorresponsalSolicutud();
+            ocultarLstCorresponsalSolicitud();
             ocultarLstCorresponsalDatos();
         }
 
+        private void _txtPoderDatos_GotFocus(object sender, RoutedEventArgs e)
+        {
+            mostrarLstPoderDatos();
+        }
+
+        private void _lstPoderesDatos_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            this._presentador.CambiarPoderDatos();
+            ocultarLstPoderSolicutud();
+            ocultarLstPoderDatos();
+        }
+
         #endregion
-
-
     }
 }

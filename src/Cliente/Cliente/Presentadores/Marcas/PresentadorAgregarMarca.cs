@@ -498,5 +498,45 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
         }
 
         #endregion
+
+        #region Metodos de la lista de poderes
+
+        public void CambiarPoderSolicitud()
+        {
+            try
+            {
+                if ((Poder)this._ventana.PoderSolicitud != null)
+                {
+                    this._ventana.NumPoderSolicitud = ((Poder)this._ventana.PoderSolicitud).NumPoder;
+                    this._ventana.PoderDatos = (Poder)this._ventana.PoderSolicitud;
+                    this._ventana.NumPoderDatos = ((Poder)this._ventana.PoderSolicitud).NumPoder;
+                }
+            }
+            catch (ApplicationException e)
+            {
+                this._ventana.NumPoderSolicitud = "";
+                this._ventana.NumPoderDatos = "";
+            }
+        }
+
+        public void CambiarPoderDatos()
+        {
+            try
+            {
+                if ((Poder)this._ventana.PoderDatos != null)
+                {
+                    this._ventana.NumPoderDatos = ((Poder)this._ventana.PoderDatos).NumPoder;
+                    this._ventana.PoderSolicitud = (Poder)this._ventana.PoderDatos;
+                    this._ventana.NumPoderSolicitud = ((Poder)this._ventana.PoderDatos).NumPoder;
+                }
+            }
+            catch (ApplicationException e)
+            {
+                this._ventana.NumPoderSolicitud = "";
+                this._ventana.NumPoderDatos = "";
+            }
+        }
+
+        #endregion
     }
 }
