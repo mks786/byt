@@ -24,7 +24,6 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
 
         #region IAgregarMarca
 
-
         public object Marca
         {
             get { return this._tbcPestañas.DataContext; }

@@ -681,5 +681,38 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
         }
 
         #endregion
+        /// <summary>
+        /// Método que ordena una columna
+        /// </summary>
+        public void OrdenarColumna(GridViewColumnHeader column, ListView ListaResultados)
+        {
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+            String field = column.Tag as String;
+
+            if (this._ventana.CurSortCol != null)
+            {
+                AdornerLayer.GetAdornerLayer(this._ventana.CurSortCol).Remove(this._ventana.CurAdorner);
+                ListaResultados.Items.SortDescriptions.Clear();
+            }
+
+            ListSortDirection newDir = ListSortDirection.Ascending;
+            if (this._ventana.CurSortCol == column && this._ventana.CurAdorner.Direction == newDir)
+                newDir = ListSortDirection.Descending;
+
+            this._ventana.CurSortCol = column;
+            this._ventana.CurAdorner = new SortAdorner(this._ventana.CurSortCol, newDir);
+            AdornerLayer.GetAdornerLayer(this._ventana.CurSortCol).Add(this._ventana.CurAdorner);
+            ListaResultados.Items.SortDescriptions.Add(
+                new SortDescription(field, newDir));
+
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+        }
     }
 }

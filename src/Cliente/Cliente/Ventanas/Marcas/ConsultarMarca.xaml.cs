@@ -3,6 +3,7 @@ using Trascend.Bolet.Cliente.Contratos.Marcas;
 using Trascend.Bolet.Cliente.Presentadores.Marcas;
 using System.Windows;
 using System.Windows.Input;
+using Trascend.Bolet.Cliente.Ayuda;
 
 namespace Trascend.Bolet.Cliente.Ventanas.Marcas
 {
@@ -11,6 +12,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
     /// </summary>
     public partial class ConsultarMarca : Page, IConsultarMarca
     {
+        private GridViewColumnHeader _CurSortCol = null;
+        private SortAdorner _CurAdorner = null;
         private PresentadorConsultarMarca _presentador;
         private bool _cargada;
 
@@ -614,6 +617,18 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             set { this._poderesCargados = value; }
         }
 
+        public GridViewColumnHeader CurSortCol
+        {
+            get { return _CurSortCol; }
+            set { _CurSortCol = value; }
+        }
+
+        public SortAdorner CurAdorner
+        {
+            get { return _CurAdorner; }
+            set { _CurAdorner = value; }
+        }
+
         #endregion
 
         public ConsultarMarca(object marcaSeleccionada)
@@ -820,6 +835,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             ocultarLstAsociadoDatos();
         }
 
+        private void _OrdenarAsociadoSolicitud_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.OrdenarColumna(sender as GridViewColumnHeader, this._lstAsociadosSolicitud);
+        }
+
         private void _btnConsultarAsociadoSolicitud_Click(object sender, RoutedEventArgs e)
         {
             this._presentador.BuscarAsociado(0);
@@ -846,6 +866,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             ocultarLstInteresadoDatos();
         }
 
+        private void _OrdenarInteresadoSolicitud_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.OrdenarColumna(sender as GridViewColumnHeader, this._lstInteresadosSolicitud);
+        }
+
         private void _btnConsultarCorresponsalSolicitud_Click(object sender, RoutedEventArgs e)
         {
             this._presentador.BuscarCorresponsal(0);
@@ -865,6 +890,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             this._presentador.CambiarCorresponsalSolicitud();
             ocultarLstCorresponsalSolicutud();
             ocultarLstCorresponsalDatos();
+        }
+
+        private void _OrdenarCorresponsalSolicitud_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.OrdenarColumna(sender as GridViewColumnHeader, this._lstCorresponsalesSolicitud);
         }
 
         private void _btnClaseCompletaSolicitud_Click(object sender, RoutedEventArgs e)
@@ -926,6 +956,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             ocultarLstPoderDatos();
         }
 
+        private void _OrdenarPoderSolicitud_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.OrdenarColumna(sender as GridViewColumnHeader, this._lstPoderesSolicitud);
+        }
+
         #endregion
 
         #region Eventos Datos
@@ -944,6 +979,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             this._presentador.CambiarAsociadoDatos();
             ocultarLstAsociadoDatos();
             ocultarLstAsociadoSolicitud();
+        }
+
+        private void _OrdenarAsociadoDatos_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.OrdenarColumna(sender as GridViewColumnHeader, this._lstAsociadosDatos);
         }
 
         private void _btnConsultarAsociadoDatos_Click(object sender, RoutedEventArgs e)
@@ -973,6 +1013,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             ocultarLstInteresadoSolicutud();
         }
 
+        private void _OrdenarInteresadoDatos_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.OrdenarColumna(sender as GridViewColumnHeader, this._lstInteresadosDatos);
+        }
+
         private void _btnConsultarCorresponsalDatos_Click(object sender, RoutedEventArgs e)
         {
             this._presentador.BuscarCorresponsal(0);
@@ -992,6 +1037,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             this._presentador.CambiarCorresponsalDatos();
             ocultarLstCorresponsalSolicutud();
             ocultarLstCorresponsalDatos();
+        }
+
+        private void _OrdenarCorresponsalDatos_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.OrdenarColumna(sender as GridViewColumnHeader, this._lstCorresponsalesDatos);
         }
 
         private void mostrarLstPoderDatos()
@@ -1021,6 +1071,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             this._presentador.CambiarPoderDatos();
             ocultarLstPoderSolicutud();
             ocultarLstPoderDatos();
+        }
+
+        private void _OrdenarPoderDatos_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.OrdenarColumna(sender as GridViewColumnHeader, this._lstPoderesDatos);
         }
         #endregion
 
