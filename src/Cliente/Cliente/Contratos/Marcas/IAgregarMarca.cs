@@ -39,13 +39,13 @@ namespace Trascend.Bolet.Cliente.Contratos.Marcas
 
         string IdCorresponsalDatosFiltrar { get; }
 
-        string DescipcionCorresponsalSolicitudFiltrar { get; }
+        string DescripcionCorresponsalSolicitudFiltrar { get; }
 
-        string DescipcionCorresponsalDatosFiltrar { get; }
+        string DescripcionCorresponsalDatosFiltrar { get; }
 
-        string DescipcionCorresponsalSolicitud { get; set; }
+        string DescripcionCorresponsalSolicitud { get; set; }
 
-        string DescipcionCorresponsalDatos { get; set; }
+        string DescripcionCorresponsalDatos { get; set; }
 
         string InteresadoPaisSolicitud { get; set; }
 
@@ -130,5 +130,17 @@ namespace Trascend.Bolet.Cliente.Contratos.Marcas
         object Sector { get; set; }
 
         object Sectores { get; set; }
+
+        bool AsociadosEstanCargados { get; set; }
+
+        bool InteresadosEstanCargados { get; set; }
+
+        bool CorresponsalesEstanCargados { get; set; }
+
+        bool PoderesEstanCargados { get; set; }
+
+        GridViewColumnHeader CurSortCol { get; set; }
+
+        SortAdorner CurAdorner { get; set; }
     }
 }

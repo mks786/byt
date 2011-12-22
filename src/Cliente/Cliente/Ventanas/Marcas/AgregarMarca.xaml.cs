@@ -3,6 +3,7 @@ using Trascend.Bolet.Cliente.Contratos.Marcas;
 using Trascend.Bolet.Cliente.Presentadores.Marcas;
 using System.Windows;
 using System.Windows.Input;
+using Trascend.Bolet.Cliente.Ayuda;
 
 namespace Trascend.Bolet.Cliente.Ventanas.Marcas
 {
@@ -11,8 +12,15 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
     /// </summary>
     public partial class AgregarMarca : Page, IAgregarMarca
     {
+        private GridViewColumnHeader _CurSortCol = null;
+        private SortAdorner _CurAdorner = null;
         private PresentadorAgregarMarca _presentador;
         private bool _cargada;
+
+        private bool _asociadosCargados;
+        private bool _interesadosCargados;
+        private bool _corresponsalesCargados;
+        private bool _poderesCargados;
 
         #region IAgregarMarca
 
@@ -170,23 +178,23 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             get { return this._txtIdCorresponsalDatos.Text; }
         }
 
-        public string DescipcionCorresponsalSolicitudFiltrar
+        public string DescripcionCorresponsalSolicitudFiltrar
         {
             get { return this._txtDescripcionCorresponsalSolicitud.Text; }
         }
 
-        public string DescipcionCorresponsalDatosFiltrar
+        public string DescripcionCorresponsalDatosFiltrar
         {
             get { return this._txtDescripcionCorresponsalDatos.Text; }
         }
 
-        public string DescipcionCorresponsalSolicitud
+        public string DescripcionCorresponsalSolicitud
         {
             get { return this._txtCorresponsalSolicitud.Text; }
             set { this._txtCorresponsalSolicitud.Text = value; }
         }
 
-        public string DescipcionCorresponsalDatos
+        public string DescripcionCorresponsalDatos
         {
             get { return this._txtCorresponsalDatos.Text; }
             set { this._txtCorresponsalDatos.Text = value; }
@@ -395,12 +403,53 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             this._txtDescripcionSolicitud.Focus();
         }
 
+        public bool AsociadosEstanCargados
+        {
+            get { return this._asociadosCargados; }
+            set { this._asociadosCargados = value; }
+        }
+
+        public bool InteresadosEstanCargados
+        {
+            get { return this._interesadosCargados; }
+            set { this._interesadosCargados = value; }
+        }
+
+        public bool CorresponsalesEstanCargados
+        {
+            get { return this._corresponsalesCargados; }
+            set { this._corresponsalesCargados = value; }
+        }
+
+        public bool PoderesEstanCargados
+        {
+            get { return this._poderesCargados; }
+            set { this._poderesCargados = value; }
+        }
+
+        public GridViewColumnHeader CurSortCol
+        {
+            get { return _CurSortCol; }
+            set { _CurSortCol = value; }
+        }
+
+        public SortAdorner CurAdorner
+        {
+            get { return _CurAdorner; }
+            set { _CurAdorner = value; }
+        }
+
         #endregion
 
         public AgregarMarca()
         {
             InitializeComponent();
+
             this._cargada = false;
+            this._asociadosCargados = false;
+            this._interesadosCargados = false;
+            this._corresponsalesCargados = false;
+            this._poderesCargados = false;
             this._presentador = new PresentadorAgregarMarca(this);
         }
 
@@ -604,6 +653,10 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
 
         private void _txtAsociadoSolicitud_GotFocus(object sender, RoutedEventArgs e)
         {
+            if (!this._asociadosCargados)
+            {
+                this._presentador.CargarAsociados();
+            }
             mostrarLstAsociadoSolicitud();
         }
 
@@ -614,6 +667,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             ocultarLstAsociadoDatos();
         }
 
+        private void _OrdenarAsociadoSolicitud_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.OrdenarColumna(sender as GridViewColumnHeader, this._lstAsociadosSolicitud);
+        }
+
         private void _btnConsultarAsociadoSolicitud_Click(object sender, RoutedEventArgs e)
         {
             this._presentador.BuscarAsociado(0);
@@ -621,6 +679,10 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
 
         private void _txtInteresadoSolicitud_GotFocus(object sender, RoutedEventArgs e)
         {
+            if (!this._interesadosCargados)
+            {
+                this._presentador.CargarInteresados();
+            }
             mostrarLstInteresadoSolicitud();
         }
 
@@ -636,6 +698,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             ocultarLstInteresadoDatos();
         }
 
+        private void _OrdenarInteresadoSolicitud_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.OrdenarColumna(sender as GridViewColumnHeader, this._lstInteresadosSolicitud);
+        }
+
         private void _btnConsultarCorresponsalSolicitud_Click(object sender, RoutedEventArgs e)
         {
             this._presentador.BuscarCorresponsal(0);
@@ -643,6 +710,10 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
 
         private void _txtCorresponsalSolicitud_GotFocus(object sender, RoutedEventArgs e)
         {
+            if (!this._corresponsalesCargados)
+            {
+                this._presentador.CargarCorresponsales();
+            }
             mostrarLstCorresponsalSolicitud();
         }
 
@@ -653,8 +724,16 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             ocultarLstCorresponsalDatos();
         }
 
+        private void _OrdenarCorresponsalSolicitud_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.OrdenarColumna(sender as GridViewColumnHeader, this._lstCorresponsalesSolicitud);
+        }
+
         private void _txtPoderSolicitud_GotFocus(object sender, RoutedEventArgs e)
         {
+            if (!this._poderesCargados)
+                this._presentador.CargarPoderes();    
+
             mostrarLstPoderSolicitud();
         }
 
@@ -663,6 +742,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             this._presentador.CambiarCorresponsalSolicitud();
             ocultarLstPoderSolicutud();
             ocultarLstPoderDatos();
+        }
+
+        private void _OrdenarPoderSolicitud_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.OrdenarColumna(sender as GridViewColumnHeader, this._lstPoderesSolicitud);
         }
 
         private void _btnClaseCompletaSolicitud_Click(object sender, RoutedEventArgs e)
@@ -701,6 +785,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
 
         private void _txtAsociadoDatos_GotFocus(object sender, RoutedEventArgs e)
         {
+            if (!this._asociadosCargados)
+            {
+                this._presentador.CargarAsociados();
+            }
+
             mostrarLstAsocaidoDatos();
         }
 
@@ -711,6 +800,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             ocultarLstAsociadoSolicitud();
         }
 
+        private void _OrdenarAsociadoDatos_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.OrdenarColumna(sender as GridViewColumnHeader, this._lstAsociadosDatos);
+        }
+
         private void _btnConsultarAsociadoDatos_Click(object sender, RoutedEventArgs e)
         {
             this._presentador.BuscarAsociado(1);
@@ -718,6 +812,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
 
         private void _txtInteresadoDatos_GotFocus(object sender, RoutedEventArgs e)
         {
+            if (!this._interesadosCargados)
+            {
+                this._presentador.CargarInteresados();
+            }
+
             mostrarLstInteresadoDatos();
         }
 
@@ -733,6 +832,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             ocultarLstInteresadoSolicitud();
         }
 
+        private void _OrdenarInteresadoDatos_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.OrdenarColumna(sender as GridViewColumnHeader, this._lstInteresadosDatos);
+        }
+
         private void _btnConsultarCorresponsalDatos_Click(object sender, RoutedEventArgs e)
         {
             this._presentador.BuscarCorresponsal(0);
@@ -740,6 +844,9 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
 
         private void _txtCorresponsalDatos_GotFocus(object sender, RoutedEventArgs e)
         {
+            if (!this._corresponsalesCargados)
+                this._presentador.CargarCorresponsales();
+
             mostrarLstCorresponsalDatos();
         }
 
@@ -750,8 +857,16 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             ocultarLstCorresponsalDatos();
         }
 
+        private void _OrdenarCorresponsalDatos_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.OrdenarColumna(sender as GridViewColumnHeader, this._lstCorresponsalesDatos);
+        }
+
         private void _txtPoderDatos_GotFocus(object sender, RoutedEventArgs e)
         {
+            if (!this._poderesCargados)
+                this._presentador.CargarPoderes();
+
             mostrarLstPoderDatos();
         }
 
@@ -760,6 +875,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             this._presentador.CambiarPoderDatos();
             ocultarLstPoderSolicutud();
             ocultarLstPoderDatos();
+        }
+
+        private void _OrdenarPoderDatos_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.OrdenarColumna(sender as GridViewColumnHeader, this._lstPoderesDatos);
         }
 
         #endregion

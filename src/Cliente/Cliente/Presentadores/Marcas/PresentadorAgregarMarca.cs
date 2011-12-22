@@ -108,28 +108,28 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
 
                 this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleConsultarAnexo, "");
                 
-                IList<Asociado> asociados = this._asociadoServicios.ConsultarTodos();
-                Asociado primerAsociado = new Asociado();
-                primerAsociado.Id = int.MinValue;
-                asociados.Insert(0, primerAsociado);
-                this._ventana.AsociadosSolicitud = asociados;
-                this._ventana.AsociadosDatos = asociados;
-                this._asociados = asociados;
+                //IList<Asociado> asociados = this._asociadoServicios.ConsultarTodos();
+                //Asociado primerAsociado = new Asociado();
+                //primerAsociado.Id = int.MinValue;
+                //asociados.Insert(0, primerAsociado);
+                //this._ventana.AsociadosSolicitud = asociados;
+                //this._ventana.AsociadosDatos = asociados;
+                //this._asociados = asociados;
 
-                IList<Interesado> interesados = this._interesadoServicios.ConsultarTodos();
-                this._ventana.InteresadosDatos = interesados;
-                this._ventana.InteresadosSolicitud = interesados;
-                this._interesados = interesados;
+                //IList<Interesado> interesados = this._interesadoServicios.ConsultarTodos();
+                //this._ventana.InteresadosDatos = interesados;
+                //this._ventana.InteresadosSolicitud = interesados;
+                //this._interesados = interesados;
 
-                IList<Corresponsal> corresponsales = this._corresponsalServicios.ConsultarTodos();
-                Corresponsal primerCorresponsal = new Corresponsal();
-                primerCorresponsal.Id = int.MinValue;
-                corresponsales.Insert(0, primerCorresponsal);
-                this._ventana.CorresponsalesSolicitud = corresponsales;
-                this._ventana.CorresponsalesDatos = corresponsales;
-                this._corresponsales = corresponsales;
-                this._ventana.TipoMarcasDatos = this._listaDatosDominioServicios.
-                    ConsultarListaDatosDominioPorParametro(new ListaDatosDominio(Recursos.Etiquetas.cbiCategoriaMarca));
+                //IList<Corresponsal> corresponsales = this._corresponsalServicios.ConsultarTodos();
+                //Corresponsal primerCorresponsal = new Corresponsal();
+                //primerCorresponsal.Id = int.MinValue;
+                //corresponsales.Insert(0, primerCorresponsal);
+                //this._ventana.CorresponsalesSolicitud = corresponsales;
+                //this._ventana.CorresponsalesDatos = corresponsales;
+                //this._corresponsales = corresponsales;
+                //this._ventana.TipoMarcasDatos = this._listaDatosDominioServicios.
+                //    ConsultarListaDatosDominioPorParametro(new ListaDatosDominio(Recursos.Etiquetas.cbiCategoriaMarca));
 
                 this._ventana.TipoMarcasSolicitud = this._listaDatosDominioServicios.
                     ConsultarListaDatosDominioPorParametro(new ListaDatosDominio(Recursos.Etiquetas.cbiCategoriaMarca));
@@ -151,9 +151,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 this._ventana.BoletinesPublicacion = boletines;
                 this._ventana.BoletinConcesion = boletines;
 
-                IList<Poder> poderes = this._poderServicios.ConsultarTodos();
-                this._ventana.PoderesDatos = poderes;
-                this._ventana.PoderesSolicitud = poderes;
+                //IList<Poder> poderes = this._poderServicios.ConsultarTodos();
+                //this._ventana.PoderesDatos = poderes;
+                //this._ventana.PoderesSolicitud = poderes;
 
                 this._ventana.Sectores = this._listaDatosDominioServicios.
                     ConsultarListaDatosDominioPorParametro(new ListaDatosDominio(Recursos.Etiquetas.cbiSector));
@@ -253,6 +253,42 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             }
         }
 
+
+
+        /// <summary>
+        /// Método que ordena una columna
+        /// </summary>
+        public void OrdenarColumna(GridViewColumnHeader column, ListView ListaResultados)
+        {
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+            String field = column.Tag as String;
+
+            if (this._ventana.CurSortCol != null)
+            {
+                AdornerLayer.GetAdornerLayer(this._ventana.CurSortCol).Remove(this._ventana.CurAdorner);
+                ListaResultados.Items.SortDescriptions.Clear();
+            }
+
+            ListSortDirection newDir = ListSortDirection.Ascending;
+            if (this._ventana.CurSortCol == column && this._ventana.CurAdorner.Direction == newDir)
+                newDir = ListSortDirection.Descending;
+
+            this._ventana.CurSortCol = column;
+            this._ventana.CurAdorner = new SortAdorner(this._ventana.CurSortCol, newDir);
+            AdornerLayer.GetAdornerLayer(this._ventana.CurSortCol).Add(this._ventana.CurAdorner);
+            ListaResultados.Items.SortDescriptions.Add(
+                new SortDescription(field, newDir));
+
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+        }
+
         #region Metodos de los filstros de asociados
 
         public void CambiarAsociadoSolicitud()
@@ -330,6 +366,23 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             }
         }
 
+        public void CargarAsociados()
+        {
+            Mouse.OverrideCursor = Cursors.Wait;
+
+            Marca marca = (Marca)this._ventana.Marca;
+            IList<Asociado> asociados = this._asociadoServicios.ConsultarTodos();
+            Asociado primerAsociado = new Asociado();
+            primerAsociado.Id = int.MinValue;
+            asociados.Insert(0, primerAsociado);
+            this._ventana.AsociadosSolicitud = asociados;
+            this._ventana.AsociadosDatos = asociados;
+            this._asociados = asociados;
+            this._ventana.AsociadosEstanCargados = true;
+
+            Mouse.OverrideCursor = null;
+        }
+
         #endregion
 
         #region Metodos de los filstros de interesados
@@ -363,7 +416,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             {
                 if ((Interesado)this._ventana.InteresadoDatos != null)
                 {
-                    Interesado interesadoAux = this._interesadoServicios.ConsultarInteresadoConTodo((Interesado)this._ventana.InteresadoSolicitud);
+                    Interesado interesadoAux = this._interesadoServicios.ConsultarInteresadoConTodo((Interesado)this._ventana.InteresadoDatos);
                     this._ventana.InteresadoDatos = this._interesadoServicios.ConsultarInteresadoConTodo((Interesado)this._ventana.InteresadoDatos);
                     this._ventana.NombreInteresadoDatos = ((Interesado)this._ventana.InteresadoDatos).Nombre;
                     this._ventana.InteresadoSolicitud = (Interesado)this._ventana.InteresadoDatos;
@@ -418,6 +471,20 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             }
         }
 
+        public void CargarInteresados()
+        {
+            Mouse.OverrideCursor = Cursors.Wait;
+            Marca marca = (Marca)this._ventana.Marca;
+
+            IList<Interesado> interesados = this._interesadoServicios.ConsultarTodos();
+            this._ventana.InteresadosDatos = interesados;
+            this._ventana.InteresadosSolicitud = interesados;
+            this._interesados = interesados;
+            this._ventana.InteresadosEstanCargados = true;
+
+            Mouse.OverrideCursor = null;
+        }
+
         #endregion
 
         #region Metodos de los filstros de corresponsales
@@ -429,15 +496,15 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 if ((Corresponsal)this._ventana.CorresponsalSolicitud != null)
                 {
                     //Corresponsal corresponsal = this._corresponsalServicios.ConsultarCorresponsalConTodo((Corresponsal)this._ventana.CorresponsalSolicitud);
-                    this._ventana.DescipcionCorresponsalSolicitud = ((Corresponsal)this._ventana.CorresponsalSolicitud).Descripcion;
+                    this._ventana.DescripcionCorresponsalSolicitud = ((Corresponsal)this._ventana.CorresponsalSolicitud).Descripcion;
                     this._ventana.CorresponsalDatos = (Corresponsal)this._ventana.CorresponsalSolicitud;
-                    this._ventana.DescipcionCorresponsalDatos = ((Corresponsal)this._ventana.CorresponsalSolicitud).Descripcion;
+                    this._ventana.DescripcionCorresponsalDatos = ((Corresponsal)this._ventana.CorresponsalSolicitud).Descripcion;
                 }
             }
             catch (ApplicationException e)
             {
-                this._ventana.DescipcionCorresponsalDatos = "";
-                this._ventana.DescipcionCorresponsalSolicitud = "";
+                this._ventana.DescripcionCorresponsalDatos = "";
+                this._ventana.DescripcionCorresponsalSolicitud = "";
             }
         }
 
@@ -448,15 +515,15 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 if ((Corresponsal)this._ventana.CorresponsalDatos != null)
                 {
                     //Corresponsal corresponsal = this._corresponsalServicios.ConsultarCorresponsalConTodo((Corresponsal)this._ventana.CorresponsalDatos);
-                    this._ventana.DescipcionCorresponsalDatos = ((Corresponsal)this._ventana.CorresponsalDatos).Descripcion;
+                    this._ventana.DescripcionCorresponsalDatos = ((Corresponsal)this._ventana.CorresponsalDatos).Descripcion;
                     this._ventana.CorresponsalSolicitud = (Corresponsal)this._ventana.CorresponsalDatos;
-                    this._ventana.DescipcionCorresponsalSolicitud = ((Corresponsal)this._ventana.CorresponsalDatos).Descripcion;
+                    this._ventana.DescripcionCorresponsalSolicitud = ((Corresponsal)this._ventana.CorresponsalDatos).Descripcion;
                 }
             }
             catch (ApplicationException e)
             {
-                this._ventana.DescipcionCorresponsalDatos = "";
-                this._ventana.DescipcionCorresponsalSolicitud = "";
+                this._ventana.DescripcionCorresponsalDatos = "";
+                this._ventana.DescripcionCorresponsalSolicitud = "";
             }
         }
 
@@ -471,11 +538,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                                      select p;
             }
 
-            if (!string.IsNullOrEmpty(this._ventana.DescipcionCorresponsalSolicitud))
+            if (!string.IsNullOrEmpty(this._ventana.DescripcionCorresponsalSolicitud))
             {
                 corresponsalesFiltrados = from p in corresponsalesFiltrados
                                      where p.Descripcion != null &&
-                                     p.Descripcion.ToLower().Contains(this._ventana.DescipcionCorresponsalSolicitud.ToLower())
+                                     p.Descripcion.ToLower().Contains(this._ventana.DescripcionCorresponsalSolicitud.ToLower())
                                      select p;
             }
 
@@ -495,6 +562,24 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 else
                     this._ventana.CorresponsalesDatos = this._corresponsales;
             }
+        }
+
+        public void CargarCorresponsales()
+        {
+
+            Mouse.OverrideCursor = Cursors.Wait;
+
+            IList<Corresponsal> corresponsales = this._corresponsalServicios.ConsultarTodos();
+            Corresponsal primerCorresponsal = new Corresponsal();
+            primerCorresponsal.Id = int.MinValue;
+            corresponsales.Insert(0, primerCorresponsal);
+            this._ventana.CorresponsalesSolicitud = corresponsales;
+            this._ventana.CorresponsalesDatos = corresponsales;
+            this._corresponsales = corresponsales;
+
+            this._ventana.CorresponsalesEstanCargados = true;
+
+            Mouse.OverrideCursor = null;
         }
 
         #endregion
@@ -535,6 +620,20 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 this._ventana.NumPoderSolicitud = "";
                 this._ventana.NumPoderDatos = "";
             }
+        }
+
+        public void CargarPoderes()
+        {
+            Mouse.OverrideCursor = Cursors.Wait;
+
+            Marca marca = (Marca)this._ventana.Marca;
+            IList<Poder> poderes = this._poderServicios.ConsultarTodos();
+            this._ventana.PoderesDatos = poderes;
+            this._ventana.PoderesSolicitud = poderes;
+
+            this._ventana.PoderesEstanCargados = true;
+
+            Mouse.OverrideCursor = null;
         }
 
         #endregion
