@@ -12,6 +12,7 @@
 	Title="{x:Static recurso:Etiquetas.titleAgregarAgente}" Loaded="Page_Loaded">
     <Page.Resources>
         <conv:EnteroMinimoABlanco x:Key="convertir"></conv:EnteroMinimoABlanco>
+        <conv:DosValresAUno x:Key="convertirADosValores"></conv:DosValresAUno>
         <Style x:Key="ElementInError" TargetType="{x:Type FrameworkElement}">
             <Style.Triggers>
                 <Trigger Property="Validation.HasError" Value="True">
@@ -1231,20 +1232,56 @@
                         <Label Grid.Column="0" Grid.Row="1" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblOrdPublicacion}"/>
                         </Label>
-                        <ComboBox IsEnabled="False" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2" Margin="3" Name="_cbxOrdenPublicacion" Height="20" 
-                                  ItemsSource="{Binding}" DisplayMemberPath="Id" SelectedIndex="0">
+                        <ComboBox Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2" Margin="3" Name="_cbxOrdenPublicacion" Height="20" 
+                                  ItemsSource="{Binding}" SelectedIndex="0">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock>
+                                <TextBlock.Text>
+                                    <MultiBinding Converter="{StaticResource convertirADosValores}">
+                                        <Binding Path="Id" />
+                                        <Binding Path="FechaBoletin" />
+                                    </MultiBinding>
+                                </TextBlock.Text>
+                                    </TextBlock>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
                         </ComboBox>
                         <Label Grid.Column="0" Grid.Row="2" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblBolPublicacion}"/>
                         </Label>
-                        <ComboBox IsEnabled="False" Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="2" Margin="3" Name="_cbxBoletinPublicacion" Height="20" 
-                                  ItemsSource="{Binding}" DisplayMemberPath="Id" SelectedIndex="0">
+                        <ComboBox Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="2" Margin="3" Name="_cbxBoletinPublicacion" Height="20" 
+                                   SelectedIndex="0" ItemsSource="{Binding}">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock>
+                                <TextBlock.Text>
+                                    <MultiBinding Converter="{StaticResource convertirADosValores}">
+                                        <Binding Path="Id" />
+                                        <Binding Path="FechaBoletin" />
+                                    </MultiBinding>
+                                </TextBlock.Text>
+                                    </TextBlock>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
                         </ComboBox>
                         <Label Grid.Column="0" Grid.Row="3" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblBolConcesion}"/>
                         </Label>
-                        <ComboBox IsEnabled="False" Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="2" Margin="3" Name="_cbxBoletinConcesion" Height="20" 
-                                  ItemsSource="{Binding}" DisplayMemberPath="Id" SelectedIndex="0" >
+                        <ComboBox Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="2" Margin="3" Name="_cbxBoletinConcesion" Height="20" 
+                                  ItemsSource="{Binding}" SelectedIndex="0">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock>
+                                <TextBlock.Text>
+                                    <MultiBinding Converter="{StaticResource convertirADosValores}">
+                                        <Binding Path="Id" />
+                                        <Binding Path="FechaBoletin" />
+                                    </MultiBinding>
+                                </TextBlock.Text>
+                                    </TextBlock>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
                         </ComboBox>
 
 
