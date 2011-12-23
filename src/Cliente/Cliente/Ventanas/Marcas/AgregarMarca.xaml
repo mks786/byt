@@ -1167,8 +1167,6 @@
                     <Label Grid.Column="7" Grid.Row="15" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblDescuento}"/>
                     </Label>
-                    <TextBox  Grid.Column="8" Grid.Row="15" Grid.ColumnSpan="2" Margin="3" Name="_txtDescuentoDatos" VerticalAlignment="Center"  
-                          Text=""></TextBox>
                     <CheckBox   Name="_chkDescuentoDatos" Grid.Column="8" Grid.Row="15" VerticalAlignment="Center"
                          HorizontalAlignment="Center">
                     </CheckBox>
