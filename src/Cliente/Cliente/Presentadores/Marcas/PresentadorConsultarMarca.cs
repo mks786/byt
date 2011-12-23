@@ -168,11 +168,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 this._ventana.InteresadoPaisSolicitud = interesado.Pais.NombreEspanol;
                 this._ventana.InteresadoCiudadSolicitud = interesado.Ciudad;
 
-                this._ventana.NombreAsociadoDatos = marca.Asociado.Nombre;
-                this._ventana.NombreAsociadoSolicitud = marca.Asociado.Nombre;
+                this._ventana.NombreAsociadoDatos = marca.Asociado != null ? marca.Asociado.Nombre : "";
+                this._ventana.NombreAsociadoSolicitud = marca.Asociado != null ? marca.Asociado.Nombre : "";
 
-                this._ventana.DescripcionCorresponsalSolicitud = marca.Corresponsal.Descripcion;
-                this._ventana.DescripcionCorresponsalDatos = marca.Corresponsal.Descripcion;
+                this._ventana.DescripcionCorresponsalSolicitud = marca.Corresponsal != null ? marca.Corresponsal.Descripcion : "";
+                this._ventana.DescripcionCorresponsalDatos = marca.Corresponsal != null ? marca.Corresponsal.Descripcion : ""; 
 
 
                 IList<ListaDatosDominio> sectores = this._listaDatosDominioServicios.
