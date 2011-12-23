@@ -15,8 +15,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
         private GridViewColumnHeader _CurSortCol = null;
         private SortAdorner _CurAdorner = null;
         private PresentadorAgregarMarca _presentador;
-        private bool _cargada;
 
+        private bool _cargada;
         private bool _asociadosCargados;
         private bool _interesadosCargados;
         private bool _corresponsalesCargados;
@@ -109,7 +109,6 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             get { return this._lstAsociadosDatos.SelectedItem; }
             set { this._lstAsociadosDatos.SelectedItem = value; }
         }
-
 
         public string IdInteresadoSolicitudFiltrar
         {
@@ -331,13 +330,13 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             set { this._cbxSituacion.SelectedItem = value; }
         }
 
-        public object Detalle
+        public object Detalles
         {
             get { return this._cbxDetalleDatos.DataContext; }
             set { this._cbxDetalleDatos.DataContext = value; }
         }
 
-        public object Detalles
+        public object Detalle
         {
             get { return this._cbxDetalleDatos.SelectedItem; }
             set { this._cbxDetalleDatos.SelectedItem = value; }
@@ -778,6 +777,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
 
         }
 
+        private void _cbxTipoMarcaSolicitud_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            this._cbxTipoMarcaDatos.SelectedItem = ((ComboBox)sender).SelectedItem;
+        }
+
         #endregion
 
         #region Eventos Datos
@@ -879,6 +883,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
         private void _OrdenarPoderDatos_Click(object sender, RoutedEventArgs e)
         {
             this._presentador.OrdenarColumna(sender as GridViewColumnHeader, this._lstPoderesDatos);
+        }
+
+        private void _cbxTipoMarcaDatos_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            this._cbxTipoMarcaSolicitud.SelectedItem = ((ComboBox)sender).SelectedItem;
         }
 
         #endregion

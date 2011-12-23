@@ -367,7 +367,7 @@
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblTipoMarca}"/>
                     </Label>
                     <ComboBox  Grid.Column="9" Grid.Row="8" Grid.ColumnSpan="3" Name="_cbxTipoMarcaSolicitud" Height="20" 
-                              ItemsSource="{Binding}" DisplayMemberPath="Descripcion" SelectedIndex="0">
+                              ItemsSource="{Binding}" DisplayMemberPath="Descripcion" SelectedIndex="0" SelectionChanged="_cbxTipoMarcaSolicitud_SelectionChanged">
                     </ComboBox>
 
                     <Label Grid.Column="0" Grid.Row="9" VerticalAlignment="Center" HorizontalContentAlignment="Right">
@@ -383,15 +383,15 @@
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblClaseInt}"/>
                     </Label>
                     <custom:ByTTextBox  MaxLength="255" Grid.Column="1" Grid.Row="10" Name="_txtClaseInternacionalSolicitud" VerticalAlignment="Center" 
-                         Grid.ColumnSpan="1" Text=""></custom:ByTTextBox>
+                         Grid.ColumnSpan="1" Text="{Binding Path=Internacional.Id}"></custom:ByTTextBox>
 
-                    <Button  Name="_btnClaseCompletaSolicitud" VerticalAlignment="Bottom" Grid.Column="2" Grid.Row="10" Grid.ColumnSpan="2" Height="25" Width="90">Clase completa</Button>
+                    <Button Visibility="Hidden" Name="_btnClaseCompletaSolicitud" VerticalAlignment="Bottom" Grid.Column="2" Grid.Row="10" Grid.ColumnSpan="2" Height="25" Width="90">Clase completa</Button>
 
                     <Label Grid.Column="4" Grid.Row="10" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblClaseNac}"/>
                     </Label>
                     <custom:ByTTextBox  MaxLength="255" Grid.Column="5" Grid.Row="10" Name="_txtClaseNacional" VerticalAlignment="Center" 
-                         Grid.ColumnSpan="1" ></custom:ByTTextBox>
+                         Grid.ColumnSpan="1"  Text="{Binding Path=Nacional.Id}" ></custom:ByTTextBox>
 
                     <Label Grid.Column="6" Grid.Row="10" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblTipoClasNac}"/>
@@ -402,7 +402,7 @@
                     <Label Grid.Column="8" Grid.Row="10" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblReclasif}"/>
                     </Label>
-                    <Button  Name="_btnIrReclasificar" VerticalAlignment="Bottom" Grid.Column="9" Grid.Row="10"  Height="25" Width="40">Ir</Button>
+                    <Button Visibility="Hidden"  Name="_btnIrReclasificar" VerticalAlignment="Bottom" Grid.Column="9" Grid.Row="10"  Height="25" Width="40">Ir</Button>
 
                     <Label Grid.Column="10" Grid.Row="10" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblMarcaOrigen}"/>
@@ -417,7 +417,7 @@
                     <custom:ByTTextBox  MaxLength="255" Grid.Column="1" Grid.Row="11" Name="_txtDistingue" VerticalAlignment="Center" 
                          Grid.ColumnSpan="9" Text="{Binding Path=Distingue}"></custom:ByTTextBox>
 
-                    <Button  Name="_btnIngles" VerticalAlignment="Bottom" Grid.Column="10" Grid.Row="11" Grid.ColumnSpan="2" Height="25" Width="90">Ingles</Button>
+                    <Button Visibility="Hidden"  Name="_btnIngles" VerticalAlignment="Bottom" Grid.Column="10" Grid.Row="11" Grid.ColumnSpan="2" Height="25" Width="90">Ingles</Button>
 
                     <Label Grid.Column="0" Grid.Row="12" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblOtrosImp}"/>
@@ -534,7 +534,7 @@
 
                     <Separator Grid.Column="0" Grid.Row="17" Grid.ColumnSpan="7" Margin="10 0" VerticalAlignment="Center" />
                     <!--Modulo de saldos-->
-                    <Button  Name="_btnImprimirEdoCuenta" VerticalAlignment="Bottom" Grid.Column="1" Grid.Row="18"
+                    <Button Visibility="Hidden"  Name="_btnImprimirEdoCuenta" VerticalAlignment="Bottom" Grid.Column="1" Grid.Row="18"
                             Grid.ColumnSpan="2" Grid.RowSpan="2" Height="50" Width="90">
                         <TextBlock VerticalAlignment="Center">
                             Imprmir <LineBreak/>
@@ -553,7 +553,7 @@
                     <custom:ByTTextBox  MaxLength="255" Grid.Column="4" Grid.Row="19" Name="_txtSaldoPorVencer" VerticalAlignment="Center" 
                          Grid.ColumnSpan="2"></custom:ByTTextBox>
 
-                    <Button  Name="_btnSaldo" VerticalAlignment="Top" Grid.Column="1" Grid.Row="20" Grid.ColumnSpan="2" 
+                    <Button Visibility="Hidden"  Name="_btnSaldo" VerticalAlignment="Top" Grid.Column="1" Grid.Row="20" Grid.ColumnSpan="2" 
                             Height="22" Width="90">Saldo</Button>
                     <Label Grid.Column="3" Grid.Row="20" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblTotalDeuda}"/>
@@ -1094,7 +1094,7 @@
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblTipoMarca}"/>
                     </Label>
                     <ComboBox  Grid.Column="1" Grid.Row="12" Grid.ColumnSpan="2" Name="_cbxTipoMarcaDatos" Height="20" 
-                              ItemsSource="{Binding}" DisplayMemberPath="Descripcion" SelectedIndex="0">
+                              ItemsSource="{Binding}" DisplayMemberPath="Descripcion" SelectedIndex="0" SelectionChanged="_cbxTipoMarcaDatos_SelectionChanged">
                     </ComboBox>
 
                     <Label Grid.Column="3" Grid.Row="12" VerticalAlignment="Center" HorizontalContentAlignment="Right">
@@ -1251,7 +1251,7 @@
                     <Label Grid.Column="6" Grid.Row="18" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblDetalle}"/>
                     </Label>
-                    <ComboBox  Grid.Column="7" Grid.Row="18" Grid.ColumnSpan="2" Margin="3" Name="_cbxDetalleDatos" Height="20" 
+                    <ComboBox Grid.Column="7" Grid.Row="18" Grid.ColumnSpan="2" Margin="3" Name="_cbxDetalleDatos" Height="20" 
                               ItemsSource="{Binding}" DisplayMemberPath="Descripcion" SelectedIndex="0">
                     </ComboBox>
                     <!--Fin Duodécima Fila-->
@@ -1278,7 +1278,8 @@
                     <Label Grid.Column="6" Grid.Row="21" Grid.ColumnSpan="2" VerticalAlignment="Center">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblCondiciones}"/>
                     </Label>
-                    <ComboBox  Grid.Column="7" Grid.Row="21" Grid.ColumnSpan="2" Margin="3" Name="_cbxCondiciones" Height="20" ItemsSource="{Binding}" >
+                    <ComboBox  Grid.Column="7" Grid.Row="21" Grid.ColumnSpan="2" Margin="3" Name="_cbxCondiciones" Height="20"
+                               ItemsSource="{Binding}" DisplayMemberPath="Descripcion">
                     </ComboBox>
 
                     <!--Nuevo-->

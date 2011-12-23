@@ -165,14 +165,14 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
 
         public object TipoMarcasSolicitud
         {
-            get { return this._cbxTipoMarca.DataContext; }
-            set { this._cbxTipoMarca.DataContext = value; }
+            get { return this._cbxTipoMarcaSolicitud.DataContext; }
+            set { this._cbxTipoMarcaSolicitud.DataContext = value; }
         }
 
         public object TipoMarcaSolicitud
         {
-            get { return this._cbxTipoMarca.SelectedItem; }
-            set { this._cbxTipoMarca.SelectedItem = value; }
+            get { return this._cbxTipoMarcaSolicitud.SelectedItem; }
+            set { this._cbxTipoMarcaSolicitud.SelectedItem = value; }
         }
 
         public object TipoMarcasDatos
@@ -301,7 +301,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
                 this._cbxPaisPrioridad.IsEnabled = value;
                 this._cbxSector.IsEnabled = value;
                 this._cbxSituacion.IsEnabled = value;
-                this._cbxTipoMarca.IsEnabled = value;
+                this._cbxTipoMarcaSolicitud.IsEnabled = value;
                 this._cbxTipoMarcaDatos.IsEnabled = value;
                 this._cbxTipoReproduccion.IsEnabled = value;
 
@@ -985,6 +985,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             this._presentador.OrdenarColumna(sender as GridViewColumnHeader, this._lstPoderesSolicitud);
         }
 
+        private void _cbxTipoMarcaSolicitud_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            this._cbxTipoMarcaDatos.SelectedItem = ((ComboBox)sender).SelectedItem;
+        }
+
         #endregion
 
         #region Eventos Datos
@@ -1101,6 +1106,12 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
         {
             this._presentador.OrdenarColumna(sender as GridViewColumnHeader, this._lstPoderesDatos);
         }
+
+        private void _cbxTipoMarcaDatos_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            this._cbxTipoMarcaSolicitud.SelectedItem = ((ComboBox)sender).SelectedItem;
+        }
+
         #endregion
 
     }

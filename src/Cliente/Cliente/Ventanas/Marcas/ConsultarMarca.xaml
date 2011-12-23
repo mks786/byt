@@ -377,8 +377,8 @@
                     <Label Grid.Column="8" Grid.Row="8" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblTipoMarca}"/>
                     </Label>
-                    <ComboBox IsEnabled="False" Grid.Column="9" Grid.Row="8" Grid.ColumnSpan="3" Name="_cbxTipoMarca" Height="20" 
-                              ItemsSource="{Binding}" DisplayMemberPath="Descripcion" SelectedIndex="0">
+                    <ComboBox IsEnabled="False" Grid.Column="9" Grid.Row="8" Grid.ColumnSpan="3" Name="_cbxTipoMarcaSolicitud" Height="20" 
+                              ItemsSource="{Binding}" DisplayMemberPath="Descripcion" SelectedIndex="0" SelectionChanged="_cbxTipoMarcaSolicitud_SelectionChanged">
                     </ComboBox>
 
                     <Label Grid.Column="0" Grid.Row="9" VerticalAlignment="Center" HorizontalContentAlignment="Right">
@@ -394,7 +394,7 @@
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblClaseInt}"/>
                     </Label>
                     <custom:ByTTextBox IsEnabled="False" MaxLength="255" Grid.Column="1" Grid.Row="10" Name="_txtClaseInternacional" VerticalAlignment="Center" 
-                         Grid.ColumnSpan="1" Text=""></custom:ByTTextBox>
+                         Grid.ColumnSpan="1" Text="{Binding Path=Internacional.Id}"></custom:ByTTextBox>
 
                     <Button IsEnabled="False" Name="_btnClaseCompleta" VerticalAlignment="Bottom" Grid.Column="2" Grid.Row="10" Grid.ColumnSpan="2" Height="25" Width="90">Clase completa</Button>
 
@@ -402,7 +402,7 @@
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblClaseNac}"/>
                     </Label>
                     <custom:ByTTextBox IsEnabled="False" MaxLength="255" Grid.Column="5" Grid.Row="10" Name="_txtClaseNacional" VerticalAlignment="Center" 
-                         Grid.ColumnSpan="1" ></custom:ByTTextBox>
+                         Grid.ColumnSpan="1" Text="{Binding Path=Nacional.Id}"></custom:ByTTextBox>
 
                     <Label Grid.Column="6" Grid.Row="10" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblTipoClasNac}"/>
@@ -1114,7 +1114,7 @@
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblTipoMarca}"/>
                     </Label>
                     <ComboBox IsEnabled="False" Grid.Column="1" Grid.Row="12" Grid.ColumnSpan="2" Name="_cbxTipoMarcaDatos" Height="20" 
-                              ItemsSource="{Binding}" DisplayMemberPath="Descripcion" SelectedIndex="0">
+                              ItemsSource="{Binding}" DisplayMemberPath="Descripcion" SelectedIndex="0" SelectionChanged="_cbxTipoMarcaDatos_SelectionChanged">
                     </ComboBox>
 
                     <Label Grid.Column="3" Grid.Row="12" VerticalAlignment="Center" HorizontalContentAlignment="Right">

@@ -35,6 +35,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
         private IServicioServicios _servicioServicios;
         private ITipoEstadoServicios _tipoEstadoServicios;
         private ICorresponsalServicios _corresponsalServicios;
+        private ICondicionServicios _condicionServicios;
 
         private IList<Asociado> _asociados;
         private IList<Interesado> _interesados;
@@ -78,6 +79,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["TipoEstadoServicios"]);
                 this._corresponsalServicios = (ICorresponsalServicios)Activator.GetObject(typeof(ICorresponsalServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["CorresponsalServicios"]);
+                this._condicionServicios = (ICondicionServicios)Activator.GetObject(typeof(ICondicionServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["CondicionServicios"]);
             }
             catch (Exception ex)
             {
@@ -107,59 +110,64 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 #endregion
 
                 this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleConsultarAnexo, "");
-                
-                //IList<Asociado> asociados = this._asociadoServicios.ConsultarTodos();
-                //Asociado primerAsociado = new Asociado();
-                //primerAsociado.Id = int.MinValue;
-                //asociados.Insert(0, primerAsociado);
-                //this._ventana.AsociadosSolicitud = asociados;
-                //this._ventana.AsociadosDatos = asociados;
-                //this._asociados = asociados;
 
-                //IList<Interesado> interesados = this._interesadoServicios.ConsultarTodos();
-                //this._ventana.InteresadosDatos = interesados;
-                //this._ventana.InteresadosSolicitud = interesados;
-                //this._interesados = interesados;
 
-                //IList<Corresponsal> corresponsales = this._corresponsalServicios.ConsultarTodos();
-                //Corresponsal primerCorresponsal = new Corresponsal();
-                //primerCorresponsal.Id = int.MinValue;
-                //corresponsales.Insert(0, primerCorresponsal);
-                //this._ventana.CorresponsalesSolicitud = corresponsales;
-                //this._ventana.CorresponsalesDatos = corresponsales;
-                //this._corresponsales = corresponsales;
-                //this._ventana.TipoMarcasDatos = this._listaDatosDominioServicios.
-                //    ConsultarListaDatosDominioPorParametro(new ListaDatosDominio(Recursos.Etiquetas.cbiCategoriaMarca));
-
-                this._ventana.TipoMarcasSolicitud = this._listaDatosDominioServicios.
+                IList<ListaDatosDominio> tiposMarcas = this._listaDatosDominioServicios.
                     ConsultarListaDatosDominioPorParametro(new ListaDatosDominio(Recursos.Etiquetas.cbiCategoriaMarca));
+                ListaDatosDominio primerTipoMarca = new ListaDatosDominio();
+                primerTipoMarca.Id = "NGN";
+                tiposMarcas.Insert(0, primerTipoMarca);
+                this._ventana.TipoMarcasDatos = tiposMarcas;
+                this._ventana.TipoMarcasSolicitud = tiposMarcas;
 
                 IList<Agente> agentes = this._agenteServicios.ConsultarTodos();
+                Agente primerAgente = new Agente();
+                primerAgente.Id = "NGN";
+                agentes.Insert(0, primerAgente);
                 this._ventana.Agentes = agentes;
 
                 IList<Pais> paises = this._paisServicios.ConsultarTodos();
+                Pais primerPais = new Pais();
+                primerPais.Id = int.MinValue;
+                paises.Insert(0, primerPais);
                 this._ventana.PaisesSolicitud = paises;
 
-                IList<Servicio> servicios = this._servicioServicios.ConsultarTodos();
-                this._ventana.Servicios = servicios;
+                IList<Condicion> condiciones = this._condicionServicios.ConsultarTodos();
+                Condicion primeraCondicion = new Condicion();
+                primeraCondicion.Id = int.MinValue;
+                condiciones.Insert(0, primeraCondicion);
+                this._ventana.Condiciones = condiciones;
 
                 IList<TipoEstado> tipoEstados = this._tipoEstadoServicios.ConsultarTodos();
+                TipoEstado primerDetalle = new TipoEstado();
+                primerDetalle.Id = "NGN";
+                tipoEstados.Insert(0, primerDetalle);
                 this._ventana.Detalles = tipoEstados;
+
+                IList<Servicio> servicios = this._servicioServicios.ConsultarTodos();
+                Servicio primerServicio = new Servicio();
+                primerServicio.Id = "NGN";
+                servicios.Insert(0, primerServicio);
+                this._ventana.Servicios = servicios;
 
                 IList<Boletin> boletines = this._boletinServicios.ConsultarTodos();
                 this._ventana.BoletinesOrdenPublicacion = boletines;
                 this._ventana.BoletinesPublicacion = boletines;
                 this._ventana.BoletinConcesion = boletines;
+                
+                IList<ListaDatosDominio> sectores = this._listaDatosDominioServicios.
+                                    ConsultarListaDatosDominioPorParametro(new ListaDatosDominio(Recursos.Etiquetas.cbiSector));
+                ListaDatosDominio primerSector = new ListaDatosDominio();
+                primerSector.Id = "NGN";
+                sectores.Insert(0, primerSector);
+                this._ventana.Sectores = sectores;
 
-                //IList<Poder> poderes = this._poderServicios.ConsultarTodos();
-                //this._ventana.PoderesDatos = poderes;
-                //this._ventana.PoderesSolicitud = poderes;
-
-                this._ventana.Sectores = this._listaDatosDominioServicios.
-                    ConsultarListaDatosDominioPorParametro(new ListaDatosDominio(Recursos.Etiquetas.cbiSector));
-
-                this._ventana.TipoReproducciones = this._listaDatosDominioServicios.
+                IList<ListaDatosDominio> tipoReproducciones = this._listaDatosDominioServicios.
                     ConsultarListaDatosDominioPorParametro(new ListaDatosDominio(Recursos.Etiquetas.cbiTipoReproduccion));
+                ListaDatosDominio primerTipoReproduccion = new ListaDatosDominio();
+                primerTipoReproduccion.Id = "NGN";
+                tipoReproducciones.Insert(0, primerTipoReproduccion);
+                this._ventana.TipoReproducciones = tipoReproducciones;
 
                 this._ventana.FocoPredeterminado();
 
@@ -224,6 +232,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
 
                 if (null != this._ventana.TipoReproduccion)
                     marca.TipoRps = ((ListaDatosDominio)this._ventana.TipoReproduccion).Id[0];
+
+                if (null != this._ventana.TipoMarcaDatos)
+                    marca.Tipo = ((ListaDatosDominio)this._ventana.TipoMarcaDatos).Id;
                 
                 bool exitoso = this._marcaServicios.InsertarOModificar(marca, UsuarioLogeado.Hash);
 
@@ -252,8 +263,6 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
             }
         }
-
-
 
         /// <summary>
         /// Método que ordena una columna
@@ -628,6 +637,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
 
             Marca marca = (Marca)this._ventana.Marca;
             IList<Poder> poderes = this._poderServicios.ConsultarTodos();
+            Poder poder = new Poder();
+            poder.Id = int.MinValue;
+            poderes.Insert(0, poder);
             this._ventana.PoderesDatos = poderes;
             this._ventana.PoderesSolicitud = poderes;
 

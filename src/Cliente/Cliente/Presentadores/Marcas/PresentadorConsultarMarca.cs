@@ -47,7 +47,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
         /// Constructor Predeterminado
         /// </summary>
         /// <param name="ventana">página que satisface el contrato</param>
-        public PresentadorConsultarMarca(IConsultarMarca ventana,object marca)
+        public PresentadorConsultarMarca(IConsultarMarca ventana, object marca)
         {
             try
             {
@@ -111,32 +111,51 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
 
                 Marca marca = (Marca)this._ventana.Marca;
 
-                this._ventana.TipoMarcasDatos = this._listaDatosDominioServicios.
+                IList<ListaDatosDominio> tiposMarcas = this._listaDatosDominioServicios.
                     ConsultarListaDatosDominioPorParametro(new ListaDatosDominio(Recursos.Etiquetas.cbiCategoriaMarca));
-
-                this._ventana.TipoMarcasSolicitud = this._listaDatosDominioServicios.
-                    ConsultarListaDatosDominioPorParametro(new ListaDatosDominio(Recursos.Etiquetas.cbiCategoriaMarca));
+                ListaDatosDominio primerTipoMarca = new ListaDatosDominio();
+                primerTipoMarca.Id = "NGN";
+                tiposMarcas.Insert(0, primerTipoMarca);
+                this._ventana.TipoMarcasDatos = tiposMarcas;
+                this._ventana.TipoMarcasSolicitud = tiposMarcas;
 
                 IList<Agente> agentes = this._agenteServicios.ConsultarTodos();
+                Agente primerAgente = new Agente();
+                primerAgente.Id = "NGN";
+                agentes.Insert(0, primerAgente);
                 this._ventana.Agentes = agentes;
                 this._ventana.Agente = this.BuscarAgente(agentes, marca.Agente);
 
                 IList<Pais> paises = this._paisServicios.ConsultarTodos();
+                Pais primerPais = new Pais();
+                primerPais.Id = int.MinValue;
+                paises.Insert(0, primerPais);
                 this._ventana.PaisesSolicitud = paises;
                 this._ventana.PaisSolicitud = this.BuscarPais(paises, marca.Pais);
 
-                IList<Condicion> condiciones = this._condicionServicios.ConsultarTodos();
-                this._ventana.Condiciones = condiciones;
-                //this._ventana.Condicion = this.BuscarCondicion(paises, marca.Pais);
+                //IList<Condicion> condiciones = this._condicionServicios.ConsultarTodos();
+                //Condicion primeraCondicion = new Condicion();
+                //primeraCondicion.Id = int.MinValue;
+                //condiciones.Insert(0, primeraCondicion);
+                //this._ventana.Condiciones = condiciones;
 
-                IList<Servicio> servicios = this._servicioServicios.ConsultarTodos();
-                this._ventana.Servicios = servicios;
-                //this._ventana.PaisSolicitud = this.BuscarPais(paises, marca.Pais);
+                //IList<TipoEstado> tipoEstados = this._tipoEstadoServicios.ConsultarTodos();
+                //TipoEstado primerDetalle = new TipoEstado();
+                //primerDetalle.Id = "NGN";
+                //tipoEstados.Insert(0, primerDetalle);
+                //this._ventana.Detalles = tipoEstados;
 
-                IList<TipoEstado> tipoEstados = this._tipoEstadoServicios.ConsultarTodos();
-                this._ventana.Detalles = tipoEstados;
+                //IList<Servicio> servicios = this._servicioServicios.ConsultarTodos();
+                //Servicio primerServicio = new Servicio();
+                //primerServicio.Id = "NGN";
+                //servicios.Insert(0, primerServicio);
+                //this._ventana.Servicios = servicios;
+
 
                 IList<Boletin> boletines = this._boletinServicios.ConsultarTodos();
+                Boletin primerBoletin = new Boletin();
+                primerBoletin.Id = int.MinValue;
+                boletines.Insert(0, primerBoletin);
                 this._ventana.BoletinesOrdenPublicacion = boletines;
                 this._ventana.BoletinesPublicacion = boletines;
                 this._ventana.BoletinConcesion = boletines;
@@ -320,6 +339,40 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 logger.Error(ex.Message);
                 this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
             }
+        }
+
+        /// <summary>
+        /// Método que ordena una columna
+        /// </summary>
+        public void OrdenarColumna(GridViewColumnHeader column, ListView ListaResultados)
+        {
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+            String field = column.Tag as String;
+
+            if (this._ventana.CurSortCol != null)
+            {
+                AdornerLayer.GetAdornerLayer(this._ventana.CurSortCol).Remove(this._ventana.CurAdorner);
+                ListaResultados.Items.SortDescriptions.Clear();
+            }
+
+            ListSortDirection newDir = ListSortDirection.Ascending;
+            if (this._ventana.CurSortCol == column && this._ventana.CurAdorner.Direction == newDir)
+                newDir = ListSortDirection.Descending;
+
+            this._ventana.CurSortCol = column;
+            this._ventana.CurAdorner = new SortAdorner(this._ventana.CurSortCol, newDir);
+            AdornerLayer.GetAdornerLayer(this._ventana.CurSortCol).Add(this._ventana.CurAdorner);
+            ListaResultados.Items.SortDescriptions.Add(
+                new SortDescription(field, newDir));
+
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
         }
 
         #region Metodos de los filtros de asociados
@@ -640,8 +693,6 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
 
         #endregion
 
-        #region Poderes
-
         #region Metodos de la lista de poderes
 
         public void CambiarPoderSolicitud()
@@ -680,14 +731,15 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             }
         }
 
-        #endregion
-
         public void CargarPoderes()
         {
             Mouse.OverrideCursor = Cursors.Wait;
 
             Marca marca = (Marca)this._ventana.Marca;
             IList<Poder> poderes = this._poderServicios.ConsultarTodos();
+            Poder poder = new Poder();
+            poder.Id = int.MinValue;
+            poderes.Insert(0, poder);
             this._ventana.PoderesDatos = poderes;
             this._ventana.PoderesSolicitud = poderes;
             this._ventana.PoderDatos = this.BuscarPoder(poderes, marca.Poder);
@@ -699,38 +751,5 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
         }
 
         #endregion
-        /// <summary>
-        /// Método que ordena una columna
-        /// </summary>
-        public void OrdenarColumna(GridViewColumnHeader column, ListView ListaResultados)
-        {
-            #region trace
-            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
-                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
-            #endregion
-
-            String field = column.Tag as String;
-
-            if (this._ventana.CurSortCol != null)
-            {
-                AdornerLayer.GetAdornerLayer(this._ventana.CurSortCol).Remove(this._ventana.CurAdorner);
-                ListaResultados.Items.SortDescriptions.Clear();
-            }
-
-            ListSortDirection newDir = ListSortDirection.Ascending;
-            if (this._ventana.CurSortCol == column && this._ventana.CurAdorner.Direction == newDir)
-                newDir = ListSortDirection.Descending;
-
-            this._ventana.CurSortCol = column;
-            this._ventana.CurAdorner = new SortAdorner(this._ventana.CurSortCol, newDir);
-            AdornerLayer.GetAdornerLayer(this._ventana.CurSortCol).Add(this._ventana.CurAdorner);
-            ListaResultados.Items.SortDescriptions.Add(
-                new SortDescription(field, newDir));
-
-            #region trace
-            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
-                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
-            #endregion
-        }
     }
 }
