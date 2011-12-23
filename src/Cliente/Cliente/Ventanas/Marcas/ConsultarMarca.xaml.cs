@@ -617,6 +617,30 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             set { this._poderesCargados = value; }
         }
 
+        public object Sector
+        {
+            get { return this._cbxSector.SelectedItem; }
+            set { this._cbxSector.SelectedItem = value; }
+        }
+
+        public object Sectores
+        {
+            get { return this._cbxSector.DataContext; }
+            set { this._cbxSector.DataContext = value; }
+        }
+
+        public object TipoReproduccion
+        {
+            get { return this._cbxTipoReproduccion.SelectedItem; }
+            set { this._cbxTipoReproduccion.SelectedItem = value; }
+        }
+
+        public object TipoReproducciones
+        {
+            get { return this._cbxTipoReproduccion.DataContext; }
+            set { this._cbxTipoReproduccion.DataContext = value; }
+        }
+
         public GridViewColumnHeader CurSortCol
         {
             get { return _CurSortCol; }

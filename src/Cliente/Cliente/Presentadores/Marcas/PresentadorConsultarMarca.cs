@@ -154,6 +154,23 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 this._ventana.NombreAsociadoDatos = marca.Asociado.Nombre;
                 this._ventana.NombreAsociadoSolicitud = marca.Asociado.Nombre;
 
+
+                IList<ListaDatosDominio> sectores = this._listaDatosDominioServicios.
+                    ConsultarListaDatosDominioPorParametro(new ListaDatosDominio(Recursos.Etiquetas.cbiSector));
+                ListaDatosDominio primerSector = new ListaDatosDominio();
+                primerSector.Id = "NGN";
+                sectores.Insert(0, primerSector);
+                this._ventana.Sectores = sectores;
+                this._ventana.Sector = this.BuscarSector(sectores, marca.Sector);
+
+                IList<ListaDatosDominio> tipoReproducciones = this._listaDatosDominioServicios.
+                    ConsultarListaDatosDominioPorParametro(new ListaDatosDominio(Recursos.Etiquetas.cbiTipoReproduccion));
+                ListaDatosDominio primerTipoReproduccion = new ListaDatosDominio();
+                primerTipoReproduccion.Id = "NGN";
+                tipoReproducciones.Insert(0, primerTipoReproduccion);
+                this._ventana.TipoReproducciones = tipoReproducciones;
+                this._ventana.TipoReproduccion = this.BuscarTipoReproduccion(tipoReproducciones, marca.Tipo);
+
                 this._ventana.FocoPredeterminado();
 
                 #region trace

@@ -760,6 +760,52 @@ namespace Trascend.Bolet.Cliente.Presentadores
         /// <param name="estados">Lista de conceptos</param>
         /// <param name="estadoBuscado">concepto a buscar</param>
         /// <returns>Concepto dentro de la lista</returns>
+        public ListaDatosDominio BuscarSector(IList<ListaDatosDominio> sectores, string sectorBuscado)
+        {
+            ListaDatosDominio retorno = null;
+
+            if (sectorBuscado != null)
+                foreach (ListaDatosDominio sector in sectores)
+                {
+                    if (sector.Id.Equals(sectorBuscado))
+                    {
+                        retorno = sector;
+                        break;
+                    }
+                }
+
+            return retorno;
+        }
+
+        /// <summary>
+        /// Método que busca un concepto dentro de una lista de conceptos
+        /// </summary>
+        /// <param name="estados">Lista de conceptos</param>
+        /// <param name="estadoBuscado">concepto a buscar</param>
+        /// <returns>Concepto dentro de la lista</returns>
+        public ListaDatosDominio BuscarTipoReproduccion(IList<ListaDatosDominio> tipoReproducciones, string tipoReproduccionBuscado)
+        {
+            ListaDatosDominio retorno = null;
+
+            if (tipoReproduccionBuscado != null)
+                foreach (ListaDatosDominio tipoReproduccion in tipoReproducciones)
+                {
+                    if (tipoReproduccion.Id.Equals(tipoReproduccionBuscado))
+                    {
+                        retorno = tipoReproduccion;
+                        break;
+                    }
+                }
+
+            return retorno;
+        }
+
+        /// <summary>
+        /// Método que busca un concepto dentro de una lista de conceptos
+        /// </summary>
+        /// <param name="estados">Lista de conceptos</param>
+        /// <param name="estadoBuscado">concepto a buscar</param>
+        /// <returns>Concepto dentro de la lista</returns>
         public string BuscarDepartamentoContacto(string departamentoBuscado)
         {
             string retorno = "NGN";
