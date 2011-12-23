@@ -1153,26 +1153,32 @@
                     <Label Grid.Column="1" Grid.Row="15" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblCorrespondencia}"/>
                     </Label>
-                    <TextBox  Grid.Column="2" Grid.Row="15" Grid.ColumnSpan="2" Margin="3" Name="_txtCorrespondenciaDatos" VerticalAlignment="Center"  
-                          Text=""></TextBox>
+                    <CheckBox   Name="_chkCorrespondenciaDatos" Grid.Column="2" Grid.Row="15" VerticalAlignment="Center"
+                         HorizontalAlignment="Center">
+                    </CheckBox>
 
                     <Label Grid.Column="4" Grid.Row="15" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblFacturacion}"/>
                     </Label>
-                    <TextBox  Grid.Column="5" Grid.Row="15" Grid.ColumnSpan="2" Margin="3" Name="_txtFacturacionDatos" VerticalAlignment="Center"  
-                          Text=""></TextBox>
+                    <CheckBox   Name="_chkFacturacionDatos" Grid.Column="5" Grid.Row="15" VerticalAlignment="Center"
+                         HorizontalAlignment="Center">
+                    </CheckBox>
 
                     <Label Grid.Column="7" Grid.Row="15" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblDescuento}"/>
                     </Label>
                     <TextBox  Grid.Column="8" Grid.Row="15" Grid.ColumnSpan="2" Margin="3" Name="_txtDescuentoDatos" VerticalAlignment="Center"  
                           Text=""></TextBox>
+                    <CheckBox   Name="_chkDescuentoDatos" Grid.Column="8" Grid.Row="15" VerticalAlignment="Center"
+                         HorizontalAlignment="Center">
+                    </CheckBox>
 
                     <Label Grid.Column="10" Grid.Row="15" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblOtro}"/>
                     </Label>
-                    <TextBox  Grid.Column="11" Grid.Row="15" Grid.ColumnSpan="1" Margin="3" Name="_txtOtroDatos" VerticalAlignment="Center"  
-                          Text=""></TextBox>
+                    <CheckBox   Name="_chkOtroDatos" Grid.Column="11" Grid.Row="15" VerticalAlignment="Center"
+                         HorizontalAlignment="Center">
+                    </CheckBox>
                     <!--Fin Undécima Fila-->
                     <!--Fin Nuevo-->
 

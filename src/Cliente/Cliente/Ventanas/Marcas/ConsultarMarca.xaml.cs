@@ -230,20 +230,17 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
                 this._txtCodIntlDatos.IsEnabled = value;
                 this._txtComentarioDatos.IsEnabled = value;
                 this._txtConflictoDatos.IsEnabled = value;
-                this._txtCorrespondenciaDatos.IsEnabled = value;
                 this._txtCorresponsalDatos.IsEnabled = value;
                 this._txtCorresponsalSolicitud.IsEnabled = value;
                 this._txtCorresponsalDatos.IsEnabled = value;
                 this._txtDescripcionDatos.IsEnabled = value;
                 this._txtDescripcionSolicitud.IsEnabled = value;
-                this._txtDescuentoDatos.IsEnabled = value;
                 this._txtDistingue.IsEnabled = value;
                 this._txtDistingueDatos.IsEnabled = value;
                 this._txtDistingueInglesDatos.IsEnabled = value;
                 this._txtEtiqueta.IsEnabled = value;
                 this._txtEtiquetaDatos.IsEnabled = value;
                 this._txtExptyr.IsEnabled = value;
-                this._txtFacturacionDatos.IsEnabled = value;
                 this._txtFechaInscripcion.IsEnabled = value;
                 this._txtFechaRegistro.IsEnabled = value;
                 this._txtFechaRenovacion.IsEnabled = value;
@@ -264,7 +261,6 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
                 this._txtNum.IsEnabled = value;
                 this._txtNumIntlDatos.IsEnabled = value;
                 this._txtNumSapi.IsEnabled = value;
-                this._txtOtroDatos.IsEnabled = value;
                 this._txtOtrosImp.IsEnabled = value;
                 this._txtPoderSolicitud.IsEnabled = value;
                 this._txtPoderDatos.IsEnabled = value;
@@ -304,6 +300,9 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
                 this._cbxTipoMarcaSolicitud.IsEnabled = value;
                 this._cbxTipoMarcaDatos.IsEnabled = value;
                 this._cbxTipoReproduccion.IsEnabled = value;
+                this._chkFacturacionDatos.IsEnabled = value;
+                this._chkDescuentoDatos.IsEnabled = value;
+                this._chkCorrespondenciaDatos.IsEnabled = value;
 
                 #endregion
 
@@ -318,6 +317,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
                 this._chkPoderYPrioridad.IsEnabled = value;
                 this._chkPrioridad.IsEnabled = value;
                 this._chkReclasificacionNacional.IsEnabled = value;
+                this._chkOtroDatos.IsEnabled = value;
 
                 #endregion
 

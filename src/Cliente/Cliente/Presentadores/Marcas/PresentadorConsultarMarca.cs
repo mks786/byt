@@ -133,23 +133,23 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 this._ventana.PaisesSolicitud = paises;
                 this._ventana.PaisSolicitud = this.BuscarPais(paises, marca.Pais);
 
-                //IList<Condicion> condiciones = this._condicionServicios.ConsultarTodos();
-                //Condicion primeraCondicion = new Condicion();
-                //primeraCondicion.Id = int.MinValue;
-                //condiciones.Insert(0, primeraCondicion);
-                //this._ventana.Condiciones = condiciones;
+                IList<Condicion> condiciones = this._condicionServicios.ConsultarTodos();
+                Condicion primeraCondicion = new Condicion();
+                primeraCondicion.Id = int.MinValue;
+                condiciones.Insert(0, primeraCondicion);
+                this._ventana.Condiciones = condiciones;
 
-                //IList<TipoEstado> tipoEstados = this._tipoEstadoServicios.ConsultarTodos();
-                //TipoEstado primerDetalle = new TipoEstado();
-                //primerDetalle.Id = "NGN";
-                //tipoEstados.Insert(0, primerDetalle);
-                //this._ventana.Detalles = tipoEstados;
+                IList<TipoEstado> tipoEstados = this._tipoEstadoServicios.ConsultarTodos();
+                TipoEstado primerDetalle = new TipoEstado();
+                primerDetalle.Id = "NGN";
+                tipoEstados.Insert(0, primerDetalle);
+                this._ventana.Detalles = tipoEstados;
 
-                //IList<Servicio> servicios = this._servicioServicios.ConsultarTodos();
-                //Servicio primerServicio = new Servicio();
-                //primerServicio.Id = "NGN";
-                //servicios.Insert(0, primerServicio);
-                //this._ventana.Servicios = servicios;
+                IList<Servicio> servicios = this._servicioServicios.ConsultarTodos();
+                Servicio primerServicio = new Servicio();
+                primerServicio.Id = "NGN";
+                servicios.Insert(0, primerServicio);
+                this._ventana.Servicios = servicios;
 
 
                 IList<Boletin> boletines = this._boletinServicios.ConsultarTodos();
