@@ -202,7 +202,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
 
-            this.Navegar(new ConsultarMarca(this._ventana.MarcaSeleccionada));
+            if (this._ventana.MarcaSeleccionada != null)
+                this.Navegar(new ConsultarMarca(this._ventana.MarcaSeleccionada));
 
             #region trace
             if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))

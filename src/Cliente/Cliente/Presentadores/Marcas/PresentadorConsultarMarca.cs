@@ -110,8 +110,6 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleConsultarMarca, "");
 
                 Marca marca = (Marca)this._ventana.Marca;
-                Corresponsal corresponsal = new Corresponsal();
-                ((Marca)this._ventana.Marca).Corresponsal = corresponsal;
 
                 this._ventana.TipoMarcasDatos = this._listaDatosDominioServicios.
                     ConsultarListaDatosDominioPorParametro(new ListaDatosDominio(Recursos.Etiquetas.cbiCategoriaMarca));
@@ -153,6 +151,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
 
                 this._ventana.NombreAsociadoDatos = marca.Asociado.Nombre;
                 this._ventana.NombreAsociadoSolicitud = marca.Asociado.Nombre;
+
+                this._ventana.DescripcionCorresponsalSolicitud = marca.Corresponsal.Descripcion;
+                this._ventana.DescripcionCorresponsalDatos = marca.Corresponsal.Descripcion;
 
 
                 IList<ListaDatosDominio> sectores = this._listaDatosDominioServicios.
