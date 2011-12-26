@@ -314,5 +314,11 @@ namespace Trascend.Bolet.AccesoDatos.Fabrica
         /// <returns>IDaoCondicion</returns>
         public abstract IDaoCondicion ObtenerDaoCondicion();
 
+        /// <summary>
+        /// Método que devuelve el DaoAnaqua del manejador que se esté utilizando
+        /// </summary>
+        /// <returns>IDaoCoIDaoAnaquandicion</returns>
+        public abstract IDaoAnaqua ObtenerDaoAnaqua();
+
     }
 }

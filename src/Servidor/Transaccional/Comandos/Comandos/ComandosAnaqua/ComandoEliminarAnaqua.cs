@@ -1,24 +1,27 @@
 ﻿using System;
-using System.Configuration;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 using NLog;
+using Trascend.Bolet.ObjetosComunes.Entidades;
+using System.Configuration;
 using Trascend.Bolet.AccesoDatos.Contrato;
 using Trascend.Bolet.AccesoDatos.Fabrica;
-using Trascend.Bolet.ObjetosComunes.Entidades;
 
-namespace Trascend.Bolet.Comandos.Comandos.ComandosAnexo
+namespace Trascend.Bolet.Comandos.Comandos.ComandosAnaqua
 {
-    public class ComandoVerificarExistenciaAnexo : ComandoBase<bool>
+    public class ComandoEliminarAnaqua : ComandoBase<bool>
     {
         private static Logger logger = LogManager.GetCurrentClassLogger();
-        private Anexo _anexo;
+        private Anaqua _anaqua;
 
         /// <summary>
         /// Constructor predeterminado
         /// </summary>
-        /// <param name="anexo">Anaqua a verificar</param>
-        public ComandoVerificarExistenciaAnexo(Anexo anexo)
+        /// <param name="anaqua">Pais a eliminar</param>
+        public ComandoEliminarAnaqua(Anaqua anaqua)
         {
-            this._anexo = anexo;
+            this._anaqua = anaqua;
         }
 
         /// <summary>
@@ -33,8 +36,8 @@ namespace Trascend.Bolet.Comandos.Comandos.ComandosAnexo
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-                IDaoAnexo dao = FabricaDaoBase.ObtenerFabricaDao().ObtenerDaoAnexo();
-                this.Receptor = new Receptor<bool>(dao.VerificarExistencia(this._anexo.Id));
+                IDaoAnaqua dao = FabricaDaoBase.ObtenerFabricaDao().ObtenerDaoAnaqua();
+                this.Receptor = new Receptor<bool>(dao.Eliminar(this._anaqua));
 
                 #region trace
                 if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))

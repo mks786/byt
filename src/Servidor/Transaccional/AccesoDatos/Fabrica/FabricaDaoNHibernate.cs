@@ -462,5 +462,14 @@ namespace Trascend.Bolet.AccesoDatos.Fabrica
         {
             return new DaoCondicionNHibernate();
         }
+
+        /// <summary>
+        /// Método que devuelve el DaoAnaqua
+        /// </summary>
+        /// <returns>IDaoAnaqua</returns>
+        public override IDaoAnaqua ObtenerDaoAnaqua()
+        {
+            return new DaoAnaquaNHibernate();
+        }
     }
 }

@@ -246,10 +246,10 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
                 this._txtFechaRenovacion.IsEnabled = value;
                 this._txtIdAsociadoDatos.IsEnabled = value;
                 this._txtIdAsociadoSolicitud.IsEnabled = value;
-                this._txtIdDatos.IsEnabled = value;
+                //this._txtIdDatos.IsEnabled = value;
                 this._txtIdInteresadoDatos.IsEnabled = value;
                 this._txtIdInteresadoSolicitud.IsEnabled = value;
-                this._txtIdSolicitud.IsEnabled = value;
+                //this._txtIdSolicitud.IsEnabled = value;
                 this._txtInteresadoDatos.IsEnabled = value;
                 this._txtInteresadoSolicitud.IsEnabled = value;
                 this._txtLocalidad.IsEnabled = value;
