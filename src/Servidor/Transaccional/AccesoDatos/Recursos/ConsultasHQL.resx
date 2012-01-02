@@ -229,4 +229,8 @@
   <data name="ObtenerMarcaConTodo" xml:space="preserve">
     <value>From Marca m left outer join fetch m.Anaquas where m.Id = '{0}' order by m.Id</value>
   </data>
+  <data name="ObtenerInfoAdicinalPorId" xml:space="preserve">
+    <value>Select i from InfoAdicinal i where i.Id = '{0}'</value>
+    <comment>Obtiene una info adicional dado su id</comment>
+  </data>
 </root>

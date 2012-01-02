@@ -101,6 +101,7 @@
     <Compile Include="Entidades\Asignacion.cs" />
     <Compile Include="Entidades\Condicion.cs" />
     <Compile Include="Entidades\Anaqua.cs" />
+    <Compile Include="Entidades\InfoAdicional.cs" />
     <Compile Include="Entidades\Corresponsal.cs" />
     <Compile Include="Entidades\TipoEstado.cs" />
     <Compile Include="Entidades\Marca.cs" />

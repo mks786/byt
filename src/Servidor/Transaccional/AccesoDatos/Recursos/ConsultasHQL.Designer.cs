@@ -250,6 +250,15 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Select i from InfoAdicinal i where i.Id = &apos;{0}&apos;.
+        /// </summary>
+        public static string ObtenerInfoAdicinalPorId {
+            get {
+                return ResourceManager.GetString("ObtenerInfoAdicinalPorId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select distinct(i) from Interesado i left join fetch i.Pais where i.Id = &apos;{0}&apos; order by i.Id.
         /// </summary>
         public static string ObtenerInteresadoConTodo {

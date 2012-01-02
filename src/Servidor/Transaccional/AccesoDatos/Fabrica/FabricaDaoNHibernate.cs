@@ -471,5 +471,14 @@ namespace Trascend.Bolet.AccesoDatos.Fabrica
         {
             return new DaoAnaquaNHibernate();
         }
+
+        /// <summary>
+        /// Método que devuelve el DaoInfoAdicional
+        /// </summary>
+        /// <returns>IDaoInfoAdicional</returns>
+        public override IDaoInfoAdicional ObtenerDaoInfoAdicional()
+        {
+            return new DaoInfoAdicionalNHibernate();
+        }
     }
 }

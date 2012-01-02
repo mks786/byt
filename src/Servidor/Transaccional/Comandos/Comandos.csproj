@@ -196,10 +196,16 @@
     <Compile Include="Comandos\ComandosAnaqua\ComandoEliminarAnaqua.cs" />
     <Compile Include="Comandos\ComandosAnaqua\ComandoInsertarOModificarAnaqua.cs" />
     <Compile Include="Comandos\ComandosAnaqua\ComandoVerificarExistenciaAnaqua.cs" />
+    <Compile Include="Comandos\ComandosInfoAdicional\ComandoConsultarTodasInfoAdicionales.cs" />
+    <Compile Include="Comandos\ComandosInfoAdicional\ComandoConsultarInfoAdicionalPorID.cs" />
+    <Compile Include="Comandos\ComandosInfoAdicional\ComandoEliminarInfoAdicional.cs" />
+    <Compile Include="Comandos\ComandosInfoAdicional\ComandoInsertarOModificarInfoAdicional.cs" />
+    <Compile Include="Comandos\ComandosInfoAdicional\ComandoVerificarExistenciaInfoAdicional.cs" />
     <Compile Include="Comandos\Receptor.cs" />
     <Compile Include="Comandos\ComandosUsuario\ComandoConsultarTodosUsuarios.cs" />
     <Compile Include="Comandos\ComandosUsuario\ComandoConsultarUsuarioPorID.cs" />
     <Compile Include="Comandos\ComandosUsuario\ComandoInsertarOModificarUsuario.cs" />
+    <Compile Include="Fabrica\FabricaComandosInfoAdicional.cs" />
     <Compile Include="Fabrica\FabricaComandosAnaqua.cs" />
     <Compile Include="Fabrica\FabricaComandosCondicion.cs" />
     <Compile Include="Fabrica\FabricaComandosCorresponsal.cs" />

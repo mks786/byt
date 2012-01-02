@@ -51,6 +51,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
         {
             try
             {
+
                 this._ventana = ventana;
                 this._ventana.Marca = marca;
 
@@ -78,6 +79,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["CorresponsalServicios"]);
                 this._condicionServicios = (ICondicionServicios)Activator.GetObject(typeof(ICondicionServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["CondicionServicios"]);
+
             }
             catch (Exception ex)
             {
@@ -111,9 +113,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
 
                 Marca marca = (Marca)this._ventana.Marca;
 
-                Marca marca2 = this._marcaServicios.ConsultarMarcaConTodo(marca);
-
-                marca.Anaquas.Insert(0, marca2.Anaquas[0]); 
+                this._ventana.Marca = this._marcaServicios.ConsultarMarcaConTodo(marca);
+                
+                //marca.Anaquas.Insert(0, marca2.Anaquas[0]); 
 
                 IList<ListaDatosDominio> tiposMarcas = this._listaDatosDominioServicios.
                     ConsultarListaDatosDominioPorParametro(new ListaDatosDominio(Recursos.Etiquetas.cbiCategoriaMarca));
@@ -343,6 +345,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 logger.Error(ex.Message);
                 this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
             }
+        }
+
+        public void IrInfoAdicional()
+        {
+            this.Navegar(new GestionarInfoAdicional(this._ventana.Marca));
         }
 
         /// <summary>
@@ -755,5 +762,6 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
         }
 
         #endregion
+
     }
 }

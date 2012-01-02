@@ -10,17 +10,17 @@ using Trascend.Bolet.Comandos.Fabrica;
 
 namespace Trascend.Bolet.LogicaNegocio.Controladores
 {
-    public class ControladorMarca : ControladorBase
+    public class ControladorInfoAdicional : ControladorBase
     {
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
         /// <summary>
-        /// Método que inserta o modifica una Marca
+        /// Método que inserta o modifica una InfoAdicional
         /// </summary>
-        /// <param name="marca">Marca a insertar o modificar</param>
+        /// <param name="InfoAdicional">InfoAdicional a insertar o modificar</param>
         /// <param name="hash">Hash del usuario que realiza la operacion</param>
         /// <returns>True: si la modificación fue exitosa; false: en caso contrario</returns>
-        public static bool InsertarOModificar(Marca marca, int hash)
+        public static bool InsertarOModificar(InfoAdicional InfoAdicional, int hash)
         {
             bool exitoso = false;
             try
@@ -32,16 +32,7 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
 
                 ComandoBase<bool> comandoInteresadoContador = null;
 
-                // si es una insercion
-                if (marca.Operacion.Equals("CREATE"))
-                {
-                    ComandoBase<Contador> comandoContadorInteresadoProximoValor = FabricaComandosContador.ObtenerComandoConsultarPorId("MYP_MARCAS");
-                    comandoContadorInteresadoProximoValor.Ejecutar();
-                    Contador contador = comandoContadorInteresadoProximoValor.Receptor.ObjetoAlmacenado;
-                    marca.Id = contador.ProximoValor++;
-                    comandoInteresadoContador = FabricaComandosContador.ObtenerComandoInsertarOModificar(contador);
-                }
-
+                
                 Auditoria auditoria = new Auditoria();
                 ComandoBase<ContadorAuditoria> comandoContadorAuditoriaPoximoValor = FabricaComandosContadorAuditoria.ObtenerComandoConsultarPorId("SEG_AUDITORIA");
 
@@ -52,14 +43,15 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
                 auditoria.Id = contadorAuditoria.ProximoValor++;
                 auditoria.Usuario = ObtenerUsuarioPorHash(hash).Id;
                 auditoria.Fecha = System.DateTime.Now;
-                auditoria.Operacion = marca.Operacion;
-                auditoria.Tabla = "MYP_MARCAS";
-                auditoria.Fk = marca.Id;
+                auditoria.Operacion = InfoAdicional.Operacion;
+                auditoria.Tabla = "MYP_ADICIONAL";
+                string id = InfoAdicional.Id.Substring(2, InfoAdicional.Id.Length-2);
+                auditoria.Fk = int.Parse(id);
 
-                ComandoBase<bool> comando = FabricaComandosMarca.ObtenerComandoInsertarOModificar(marca);
+                ComandoBase<bool> comando = FabricaComandosInfoAdicional.ObtenerComandoInsertarOModificar(InfoAdicional);
                 ComandoBase<bool> comandoAuditoria = FabricaComandosAuditoria.ObtenerComandoInsertarOModificar(auditoria);
                 ComandoBase<bool> comandoAuditoriaContador = FabricaComandosContadorAuditoria.ObtenerComandoInsertarOModificar(contadorAuditoria);
-                
+
                 comando.Ejecutar();
                 exitoso = comando.Receptor.ObjetoAlmacenado;
 
@@ -67,9 +59,6 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
                 {
                     comandoAuditoria.Ejecutar();
                     comandoAuditoriaContador.Ejecutar();
-
-                    if (marca.InfoAdicional.InsertarOModificar)
-                        ControladorInfoAdicional.InsertarOModificar(marca.InfoAdicional, hash);
 
                     if (comandoInteresadoContador != null)
                         comandoInteresadoContador.Ejecutar();
@@ -89,12 +78,12 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
         }
 
         /// <summary>
-        /// Método que elimina una Marca
+        /// Método que elimina una InfoAdicional
         /// </summary>
-        /// <param name="marca">Marca a eliminar</param>
+        /// <param name="InfoAdicional">InfoAdicional a eliminar</param>
         /// <param name="hash">Hash del usuario que realiza la operacion</param>
         /// <returns>True si la eliminacion fue exitosa, en caso contrario False</returns>
-        public static bool Eliminar(Marca marca, int hash)
+        public static bool Eliminar(InfoAdicional InfoAdicional, int hash)
         {
             bool exitoso = false;
             try
@@ -104,7 +93,7 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-                ComandoBase<bool> comando = FabricaComandosMarca.ObtenerComandoEliminarObjeto(marca);
+                ComandoBase<bool> comando = FabricaComandosInfoAdicional.ObtenerComandoEliminarInfoAdicional(InfoAdicional);
                 comando.Ejecutar();
                 exitoso = true;
 
@@ -123,12 +112,12 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
         }
 
         /// <summary>
-        /// Método que consulta la lista de todos las Marcas
+        /// Método que consulta la lista de todos las InfoAdicionals
         /// </summary>
-        /// <returns>Lista con todos las Marcas</returns>
-        public static IList<Marca> ConsultarTodos()
+        /// <returns>Lista con todos las InfoAdicionals</returns>
+        public static IList<InfoAdicional> ConsultarTodos()
         {
-            IList<Marca> retorno;
+            IList<InfoAdicional> retorno;
 
             try
             {
@@ -137,7 +126,7 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-                ComandoBase<IList<Marca>> comando = FabricaComandosMarca.ObtenerComandoConsultarTodos();
+                ComandoBase<IList<InfoAdicional>> comando = FabricaComandosInfoAdicional.ObtenerComandoConsultarTodos();
                 comando.Ejecutar();
                 retorno = comando.Receptor.ObjetoAlmacenado;
 
@@ -156,11 +145,11 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
         }
 
         /// <summary>
-        /// Verifica si la Marca existe
+        /// Verifica si la InfoAdicional existe
         /// </summary>
-        /// <param name="marca">Marca a verificar</param>
+        /// <param name="InfoAdicional">InfoAdicional a verificar</param>
         /// <returns>True de existir, false en caso conrario</returns>
-        public static bool VerificarExistencia(Marca marca)
+        public static bool VerificarExistencia(InfoAdicional InfoAdicional)
         {
             bool existe = false;
             try
@@ -170,7 +159,7 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-                ComandoBase<bool> comando = FabricaComandosMarca.ObtenerComandoVerificarExistenciaMarca(marca);
+                ComandoBase<bool> comando = FabricaComandosInfoAdicional.ObtenerComandoVerificarExistenciaInfoAdicional(InfoAdicional);
                 comando.Ejecutar();
                 existe = comando.Receptor.ObjetoAlmacenado;
 
@@ -186,72 +175,6 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
             }
 
             return existe;
-        }
-
-        public static IList<Marca> ConsultarMarcasFiltro(Marca marca)
-        {
-            IList<Marca> retorno;
-
-            try
-            {
-                #region trace
-                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
-                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
-                #endregion
-
-                ComandoBase<IList<Marca>> comando = FabricaComandosMarca.ObtenerComandoConsultarMarcasFiltro(marca);
-                comando.Ejecutar();
-                retorno = comando.Receptor.ObjetoAlmacenado;
-                
-                #region trace
-                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
-                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
-                #endregion
-            }
-            catch (ApplicationException ex)
-            {
-                logger.Error(ex.Message);
-                throw ex;
-            }
-
-            return retorno;
-        }
-
-        /// <summary>
-        /// Método que consulta una marca con todas sus dependencias
-        /// </summary>
-        /// <returns>marca completo</returns>
-        public static Marca ConsultarMarcaConTodo(Marca marca)
-        {
-            Marca retorno;
-
-            try
-            {
-                #region trace
-                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
-                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
-                #endregion
-
-                ComandoBase<Marca> comando = FabricaComandosMarca.ObtenerComandoConsultarMarcaConTodo(marca);
-                comando.Ejecutar();
-                retorno = comando.Receptor.ObjetoAlmacenado;
-
-                ComandoBase<InfoAdicional> comandoInfoAdicional = FabricaComandosInfoAdicional.ObtenerComandoConsultarInfoAdicionalPorId(new InfoAdicional("M." + retorno.Id));
-                comandoInfoAdicional.Ejecutar();
-                retorno.InfoAdicional = comandoInfoAdicional.Receptor.ObjetoAlmacenado;
-
-                #region trace
-                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
-                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
-                #endregion
-            }
-            catch (ApplicationException ex)
-            {
-                logger.Error(ex.Message);
-                throw ex;
-            }
-
-            return retorno;
         }
     }
 }

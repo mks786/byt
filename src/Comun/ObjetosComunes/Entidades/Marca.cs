@@ -58,6 +58,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         private string _cPrioridad;
         private string _operacion;
         private IList<Anaqua> _anaquas;
+        private InfoAdicional _infoAdicional;
 
         #endregion
 
@@ -66,7 +67,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         /// <summary>
         /// Constructor Predeterminado
         /// </summary>
-        public Marca() 
+        public Marca()
         {
             this._etiqueta = "No";
         }
@@ -555,6 +556,16 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         {
             get { return _anaquas; }
             set { _anaquas = value; }
+        }
+
+        /// <summary>
+        /// Propiedad que asigna u obtiene la Informacion Adicional que se va a realizar con este objeto
+        /// sea CREATE, MODIFY o DELETE
+        /// </summary>
+        public virtual InfoAdicional InfoAdicional
+        {
+            get { return _infoAdicional; }
+            set { _infoAdicional = value; }
         }
 
         #endregion

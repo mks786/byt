@@ -1384,6 +1384,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Email del Responsable:.
+        /// </summary>
+        public static string lblEmailDelResponsable {
+            get {
+                return ResourceManager.GetString("lblEmailDelResponsable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Entrada:.
         /// </summary>
         public static string lblEntrada {
@@ -1672,6 +1681,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Marcas: Distingue en ingles:.
+        /// </summary>
+        public static string lblMarcasDistingueEnIngles {
+            get {
+                return ResourceManager.GetString("lblMarcasDistingueEnIngles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Medio:.
         /// </summary>
         public static string lblMedio {
@@ -1731,6 +1749,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string lblNombreCompleto {
             get {
                 return ResourceManager.GetString("lblNombreCompleto", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nombre del Responsable:.
+        /// </summary>
+        public static string lblNombreDelResponsable {
+            get {
+                return ResourceManager.GetString("lblNombreDelResponsable", resourceCulture);
             }
         }
         
@@ -1875,6 +1902,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string lblPassword {
             get {
                 return ResourceManager.GetString("lblPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Patentes: Titulo en ingles:.
+        /// </summary>
+        public static string lblPatentesTituloEnIngles {
+            get {
+                return ResourceManager.GetString("lblPatentesTituloEnIngles", resourceCulture);
             }
         }
         

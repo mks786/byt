@@ -1405,4 +1405,16 @@
   <data name="cbiTipoReproduccion" xml:space="preserve">
     <value>TIPO_REPRODUCCION</value>
   </data>
+  <data name="lblEmailDelResponsable" xml:space="preserve">
+    <value>Email del Responsable:</value>
+  </data>
+  <data name="lblMarcasDistingueEnIngles" xml:space="preserve">
+    <value>Marcas: Distingue en ingles:</value>
+  </data>
+  <data name="lblNombreDelResponsable" xml:space="preserve">
+    <value>Nombre del Responsable:</value>
+  </data>
+  <data name="lblPatentesTituloEnIngles" xml:space="preserve">
+    <value>Patentes: Titulo en ingles:</value>
+  </data>
 </root>
