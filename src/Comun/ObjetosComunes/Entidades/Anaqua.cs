@@ -8,7 +8,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
     {
         #region Atributos
 
-        private int _idMarca;
+        private Marca _marca;
         private int _idAnaqua;
         private int _bkId;
         private string _colores;
@@ -30,19 +30,36 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         /// Constructor que inicializa el id del Concepto
         /// </summary>
         /// <param name="idMarca">Id del Concepto</param>
-        public Anaqua(int idMarca)
+        public Anaqua(Marca marca)
         {
-            this._idMarca = idMarca;
+            this._marca = marca;
         }
 
         #endregion
 
         #region Propiedades
 
-        public virtual int IdMarca
+        public override bool Equals(object obj)
         {
-            get { return _idMarca; }
-            set { _idMarca = value; }
+            if ((this.IdAnaqua == ((Anaqua)obj).IdAnaqua) && (this.Marca.Id == ((Anaqua)obj).Marca.Id))
+                return true;
+            return false;
+        }
+
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
+        }
+
+        public override string ToString()
+        {
+            return base.ToString();
+        }
+
+        public virtual Marca Marca
+        {
+            get { return _marca; }
+            set { _marca = value; }
         }
 
         public virtual int IdAnaqua

@@ -57,6 +57,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         private Poder _poder;
         private string _cPrioridad;
         private string _operacion;
+        private IList<Anaqua> _anaquas;
 
         #endregion
 
@@ -544,6 +545,16 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         {
             get { return _operacion; }
             set { _operacion = value; }
+        }
+
+        /// <summary>
+        /// Propiedad que asigna u obtiene el Anaqua que se va a realizar con este objeto
+        /// sea CREATE, MODIFY o DELETE
+        /// </summary>
+        public virtual IList<Anaqua> Anaquas
+        {
+            get { return _anaquas; }
+            set { _anaquas = value; }
         }
 
         #endregion

@@ -111,6 +111,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
 
                 Marca marca = (Marca)this._ventana.Marca;
 
+                Marca marca2 = this._marcaServicios.ConsultarMarcaConTodo(marca);
+
+                marca.Anaquas.Insert(0, marca2.Anaquas[0]); 
+
                 IList<ListaDatosDominio> tiposMarcas = this._listaDatosDominioServicios.
                     ConsultarListaDatosDominioPorParametro(new ListaDatosDominio(Recursos.Etiquetas.cbiCategoriaMarca));
                 ListaDatosDominio primerTipoMarca = new ListaDatosDominio();

@@ -149,5 +149,32 @@ namespace Trascend.Bolet.Servicios.Implementacion
 
             return auditorias;
         }
+
+
+        public Marca ConsultarMarcaConTodo(Marca marca)
+        {
+            Marca retorno;
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                retorno = ControladorMarca.ConsultarMarcaConTodo(marca);
+
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+            }
+            catch (ApplicationException ex)
+            {
+                throw ex;
+            }
+
+            return retorno;
+        }
     }
 }

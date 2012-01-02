@@ -226,4 +226,7 @@
     <value>Select distinct(i) from Interesado i left join fetch i.Pais where i.Id = '{0}' order by i.Id</value>
     <comment>Selecciona el asociado con todas sus objetos</comment>
   </data>
+  <data name="ObtenerMarcaConTodo" xml:space="preserve">
+    <value>From Marca m left outer join fetch m.Anaquas where m.Id = '{0}' order by m.Id</value>
+  </data>
 </root>

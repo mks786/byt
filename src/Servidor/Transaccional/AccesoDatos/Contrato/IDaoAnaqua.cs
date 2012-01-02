@@ -2,7 +2,7 @@
 
 namespace Trascend.Bolet.AccesoDatos.Contrato
 {
-    public interface IDaoAnaqua : IDaoBase<Anaqua, int>
+    public interface IDaoAnaqua : IDaoBase<Anaqua, Marca>
     {
     }
 }

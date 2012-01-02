@@ -1,26 +1,26 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Configuration;
 using NLog;
 using Trascend.Bolet.AccesoDatos.Contrato;
 using Trascend.Bolet.AccesoDatos.Fabrica;
 using Trascend.Bolet.ObjetosComunes.Entidades;
 
-namespace Trascend.Bolet.Comandos.Comandos.ComandosAnaqua
+namespace Trascend.Bolet.Comandos.Comandos.ComandosMarca
 {
-    public class ComandoVerificarExistenciaAnaqua : ComandoBase<bool>
+    class ComandoConsultarMarcaConTodo : ComandoBase<Marca>
     {
         private static Logger logger = LogManager.GetCurrentClassLogger();
-        private Anaqua _anaqua;
+        private Marca _marca;
 
         /// <summary>
         /// Constructor predeterminado
         /// </summary>
-        /// <param name="anaqua">Anexo a verificar</param>
-        public ComandoVerificarExistenciaAnaqua(Anaqua anaqua)
+        /// <param name="marca">Asociado a consultar</param>
+        public ComandoConsultarMarcaConTodo(Marca marca)
         {
-            this._anaqua = anaqua;
+            this._marca = marca;
         }
-
         /// <summary>
         /// Método que ejecuta el comando
         /// </summary>
@@ -33,8 +33,8 @@ namespace Trascend.Bolet.Comandos.Comandos.ComandosAnaqua
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-                IDaoAnaqua dao = FabricaDaoBase.ObtenerFabricaDao().ObtenerDaoAnaqua();
-                this.Receptor = new Receptor<bool>(dao.VerificarExistencia(this._anaqua.Marca));
+                IDaoMarca dao = FabricaDaoBase.ObtenerFabricaDao().ObtenerDaoMarca();
+                this.Receptor = new Receptor<Marca>(dao.ObtenerMarcaConTodo(this._marca));
 
                 #region trace
                 if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))

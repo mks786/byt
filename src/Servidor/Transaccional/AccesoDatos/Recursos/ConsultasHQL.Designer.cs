@@ -277,6 +277,15 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to From Marca m left outer join fetch m.Anaquas where m.Id = &apos;{0}&apos; order by m.Id.
+        /// </summary>
+        public static string ObtenerMarcaConTodo {
+            get {
+                return ResourceManager.GetString("ObtenerMarcaConTodo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select p from Poder p where p.Interesado.Id = &apos;{0}&apos;.
         /// </summary>
         public static string ObtenerPoderesPorInteresado {
