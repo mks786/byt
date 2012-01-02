@@ -42,16 +42,17 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             get { return this._cargada; }
             set { this._cargada = value; }
         }
-        
+
         public object InfoAdicional
         {
             get { return this._gridDatos.DataContext; }
             set { this._gridDatos.DataContext = value; }
         }
 
-        public void Mensaje(string mensaje)
+        public bool Mensaje(string mensaje)
         {
-            MessageBox.Show(mensaje, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            this._txtMensaje.Text = mensaje;
+            return true;
         }
 
         #endregion

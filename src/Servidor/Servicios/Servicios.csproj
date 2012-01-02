@@ -52,6 +52,7 @@
     <Compile Include="Implementacion\AsignacionServicios.cs" />
     <Compile Include="Implementacion\CondicionServicios.cs" />
     <Compile Include="Implementacion\AnaquaServicios.cs" />
+    <Compile Include="Implementacion\InfoAdicionalServicios.cs" />
     <Compile Include="Implementacion\CorresponsalServicios.cs" />
     <Compile Include="Implementacion\TipoEstadoServicios.cs" />
     <Compile Include="Implementacion\ServicioServicios.cs" />

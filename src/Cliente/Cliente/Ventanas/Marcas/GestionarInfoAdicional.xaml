@@ -88,6 +88,11 @@
                         </TextBox.Text>
                     </TextBox>
                 </WrapPanel>
+                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
+                    <Label>
+                        <TextBlock Name="_txtMensaje" Text="" Foreground="Green" />
+                    </Label>
+                </WrapPanel>
             </StackPanel>
         </GroupBox>
 

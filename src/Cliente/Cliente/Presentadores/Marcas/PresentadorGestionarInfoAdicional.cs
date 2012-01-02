@@ -8,6 +8,7 @@ using Trascend.Bolet.Cliente.Contratos.Marcas;
 using Trascend.Bolet.Cliente.Ventanas.Principales;
 using Trascend.Bolet.ObjetosComunes.ContratosServicios;
 using Trascend.Bolet.ObjetosComunes.Entidades;
+using System.Threading;
 using Trascend.Bolet.Cliente.Ventanas.Marcas;
 
 namespace Trascend.Bolet.Cliente.Presentadores.Marcas
@@ -18,7 +19,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
         private Marca _marca;
         private static PaginaPrincipal _paginaPrincipal = PaginaPrincipal.ObtenerInstancia;
         private static Logger logger = LogManager.GetCurrentClassLogger();
-        private IMarcaServicios _marcaServicios;
+        private IInfoAdicionalServicios _infoAdicionalServicios;
         private bool _nuevaInfoAdicional = false;
 
         /// <summary>
@@ -34,10 +35,13 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 this._ventana.InfoAdicional = null != ((Marca)marca).InfoAdicional ? ((Marca)marca).InfoAdicional : new InfoAdicional("M." + this._marca.Id);
 
                 if (null == ((Marca)marca).InfoAdicional)
+                {
                     this._nuevaInfoAdicional = true;
-
-                this._marcaServicios = (IMarcaServicios)Activator.GetObject(typeof(IMarcaServicios),
-                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["MarcaServicios"]);
+                    this._ventana.TextoBotonModificar = Recursos.Etiquetas.btnAceptar;
+                }
+                 
+                this._infoAdicionalServicios = (IInfoAdicionalServicios)Activator.GetObject(typeof(IInfoAdicionalServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["InfoAdicionalServicios"]);
             }
             catch (Exception ex)
             {
@@ -108,15 +112,23 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 //Modifica los datos del boletin
                 else
                 {
-                    this._marca.InfoAdicional = (InfoAdicional)this._ventana.InfoAdicional;
+                    InfoAdicional infoAdicional = (InfoAdicional)this._ventana.InfoAdicional;
 
-                    this._marca.InfoAdicional.InsertarOModificar = true;
-                    this._marca.Operacion = "MODIFY";
+                    infoAdicional.Operacion = "MODIFY";
 
-                    bool exitoso = this._marcaServicios.InsertarOModificar((Marca)this._marca, UsuarioLogeado.Hash);
+                    if(this._ventana.Mensaje("InfoAdicional cargada con exito"))
+                        System.Threading.Thread.Sleep(2000);
 
-                    if (exitoso)
-                        this.Navegar(new ConsultarMarca(this._marca));
+                    this.Regresar();
+                    //bool exitoso = this._infoAdicionalServicios.InsertarOModificar(infoAdicional, UsuarioLogeado.Hash);
+
+                    //if (exitoso)
+                    //{
+                    //    this._ventana.Mensaje("InfoAdicional cargada con exito");
+
+
+                    //    //this.Regresar();
+                    //}
                 }
 
             }

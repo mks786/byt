@@ -67,10 +67,7 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
                 {
                     comandoAuditoria.Ejecutar();
                     comandoAuditoriaContador.Ejecutar();
-
-                    if (marca.InfoAdicional.InsertarOModificar)
-                        ControladorInfoAdicional.InsertarOModificar(marca.InfoAdicional, hash);
-
+                    
                     if (comandoInteresadoContador != null)
                         comandoInteresadoContador.Ejecutar();
                 }

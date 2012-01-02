@@ -10,6 +10,6 @@ namespace Trascend.Bolet.Cliente.Contratos.Marcas
         
         string TextoBotonModificar { get; set; }
 
-        void Mensaje(string mensaje);
+        bool Mensaje(string mensaje);
     }
 }

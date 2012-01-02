@@ -13,7 +13,6 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         private string _email;
         private string _info;
         private string _operacion;
-        private bool _insertarOModificar;
 
         #endregion
 
@@ -81,15 +80,6 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         {
             get { return _operacion; }
             set { _operacion = value; }
-        }
-
-        /// <summary>
-        /// Propiedad que asigna u obtiene si se esta insertando o modificando
-        /// </summary>
-        public virtual bool InsertarOModificar
-        {
-            get { return _insertarOModificar; }
-            set { _insertarOModificar = value; }
         }
 
         #endregion
