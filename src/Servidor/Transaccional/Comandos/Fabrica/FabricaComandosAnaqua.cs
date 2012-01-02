@@ -43,7 +43,7 @@ namespace Trascend.Bolet.Comandos.Fabrica
         /// <returns></returns>
         public static ComandoBase<Anaqua> ObtenerComandoConsultarPorID(Anaqua anaqua)
         {
-            throw new NotImplementedException();
+            return new ComandoConsultarAnaquaPorID(anaqua);
         }
 
         /// <summary>

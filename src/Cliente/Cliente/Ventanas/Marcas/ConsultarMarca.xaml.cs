@@ -852,6 +852,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
         }
 
 
+        private void _btnAnaqua_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.IrAnaqua();
+        }
+
         #endregion
 
         #region Eventos Solicitudes
@@ -1126,6 +1131,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
         }
 
         #endregion
+
         
     }
 }

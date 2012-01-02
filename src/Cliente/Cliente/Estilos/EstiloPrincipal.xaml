@@ -40,12 +40,9 @@
     </LinearGradientBrush>
     <SolidColorBrush x:Key="ListView_DefaultControlForegroundBrush" Color="#FF10257F"/>
 
-    <!-- General Style for all items in the ListView control -->
+    <!-- Estilo para los ListViews -->
     <Style TargetType="{x:Type ListViewItem}" >
-        <!-- 
-            This allows for using an item's HorizontalAlignment property to align items within 
-            the ListView by stretching the content to fill the available horizontal space. 
-        -->
+        <!--Alineación horizontal -->
         <Setter Property="HorizontalContentAlignment" Value="Stretch" />
         <Setter Property="Template">
             <Setter.Value>
@@ -88,7 +85,7 @@
         </Setter>
     </Style>
 
-    <!-- General appearance of ListView controls -->
+    <!-- Vista general de los ListViews -->
     <Style TargetType="{x:Type ListView}">
         <Setter Property="Background" Value="{StaticResource ListView_DefaultControlBackgroundBrush}"/>
         <Setter Property="Foreground" Value="{StaticResource ListView_DefaultControlForegroundBrush}"/>

@@ -26,6 +26,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
         private IConsultarMarca _ventana;
 
         private IMarcaServicios _marcaServicios;
+        private IAnaquaServicios _anaquaServicios;
         private IAsociadoServicios _asociadoServicios;
         private IAgenteServicios _agenteServicios;
         private IPoderServicios _poderServicios;
@@ -80,6 +81,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["CorresponsalServicios"]);
                 this._condicionServicios = (ICondicionServicios)Activator.GetObject(typeof(ICondicionServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["CondicionServicios"]);
+                this._anaquaServicios = (IAnaquaServicios)Activator.GetObject(typeof(IAnaquaServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["AnaquaServicios"]);
                 this._infoAdicionalServicios = (IInfoAdicionalServicios)Activator.GetObject(typeof(IInfoAdicionalServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["InfoAdicionalServicios"]);
 
@@ -116,8 +119,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
 
                 Marca marca = (Marca)this._ventana.Marca;
 
+                Anaqua anaqua = new Anaqua();
+                anaqua.IdMarca = marca.Id;
                 InfoAdicional infoAdicional = new InfoAdicional("M." + marca.Id);
                 marca.InfoAdicional = this._infoAdicionalServicios.ConsultarPorId(infoAdicional);
+                marca.Anaqua = this._anaquaServicios.ConsultarPorId(anaqua);
 
                 IList<ListaDatosDominio> tiposMarcas = this._listaDatosDominioServicios.
                     ConsultarListaDatosDominioPorParametro(new ListaDatosDominio(Recursos.Etiquetas.cbiCategoriaMarca));
@@ -355,6 +361,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
         public void IrInfoAdicional()
         {
             this.Navegar(new GestionarInfoAdicional(this._ventana.Marca));
+        }
+
+        public void IrAnaqua()
+        {
+            this.Navegar(new GestionarAnaqua(this._ventana.Marca));
         }
 
         /// <summary>
@@ -767,6 +778,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
         }
 
         #endregion
+
 
     }
 }

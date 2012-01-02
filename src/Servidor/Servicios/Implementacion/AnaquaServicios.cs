@@ -35,8 +35,20 @@ namespace Trascend.Bolet.Servicios.Implementacion
 
 
         public Anaqua ConsultarPorId(Anaqua entidad)
-        {
-            throw new NotImplementedException();
+        {            
+            #region trace
+            if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+            Anaqua anaqua = ControladorAnaqua.ConsultarPorId(entidad);
+
+            #region trace
+            if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+            return anaqua;
         }
 
         /// <summary>

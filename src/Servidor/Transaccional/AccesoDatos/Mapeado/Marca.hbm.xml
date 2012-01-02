@@ -88,13 +88,6 @@
       <column name="TESTADO"/>
     </many-to-one>
 
-    <bag name="Anaquas" table="MYP_MANAQUA" inverse="true" generic="true">
-      <key column="ANAQUAID"/>
-      <composite-element class="Anaqua">
-        <many-to-one name="Marca" class="Marca" column="CMARCA"/>
-      </composite-element>
-    </bag>
-
   </class>
 </hibernate-mapping>
 

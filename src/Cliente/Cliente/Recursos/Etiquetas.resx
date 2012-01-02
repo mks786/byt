@@ -1417,4 +1417,22 @@
   <data name="lblPatentesTituloEnIngles" xml:space="preserve">
     <value>Patentes: Titulo en ingles:</value>
   </data>
+  <data name="lblBKId" xml:space="preserve">
+    <value>B&amp;K Id:</value>
+  </data>
+  <data name="lblDistingueIngles" xml:space="preserve">
+    <value>Distingue en inglés:</value>
+  </data>
+  <data name="lblIdAnaqua" xml:space="preserve">
+    <value>Id Anaqua:</value>
+  </data>
+  <data name="lblIdMarca" xml:space="preserve">
+    <value>Id Marca:</value>
+  </data>
+  <data name="lblRegistro" xml:space="preserve">
+    <value>Registro:</value>
+  </data>
+  <data name="lblSolicitud" xml:space="preserve">
+    <value>Solicitud:</value>
+  </data>
 </root>

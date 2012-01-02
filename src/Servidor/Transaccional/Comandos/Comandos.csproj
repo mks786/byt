@@ -45,6 +45,7 @@
     <Compile Include="Comandos\ComandoBase.cs" />
     <Compile Include="Comandos\ComandosAgente\ComandoConsultarAgentesYPoderes.cs" />
     <Compile Include="Comandos\ComandosAgente\ComandoVerificarExistenciaAgente.cs" />
+    <Compile Include="Comandos\ComandosAnaqua\ComandoConsultarAnaquaPorID.cs" />
     <Compile Include="Comandos\ComandosAnexo\ComandoConsultarTodosAnexos.cs" />
     <Compile Include="Comandos\ComandosAnexo\ComandoEliminarAnexo.cs" />
     <Compile Include="Comandos\ComandosAnexo\ComandoInsertarOModificarAnexo.cs" />

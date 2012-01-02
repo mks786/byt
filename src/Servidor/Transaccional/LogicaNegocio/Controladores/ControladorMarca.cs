@@ -42,6 +42,9 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
                     comandoInteresadoContador = FabricaComandosContador.ObtenerComandoInsertarOModificar(contador);
                 }
 
+                ComandoBase<bool> comandoAnaqua = FabricaComandosAnaqua.ObtenerComandoInsertarOModificar(marca.Anaqua);
+                comandoAnaqua.Ejecutar();
+
                 Auditoria auditoria = new Auditoria();
                 ComandoBase<ContadorAuditoria> comandoContadorAuditoriaPoximoValor = FabricaComandosContadorAuditoria.ObtenerComandoConsultarPorId("SEG_AUDITORIA");
 
@@ -236,6 +239,10 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
                 ComandoBase<InfoAdicional> comandoInfoAdicional = FabricaComandosInfoAdicional.ObtenerComandoConsultarInfoAdicionalPorId(new InfoAdicional("M." + retorno.Id));
                 comandoInfoAdicional.Ejecutar();
                 retorno.InfoAdicional = comandoInfoAdicional.Receptor.ObjetoAlmacenado;
+
+                ComandoBase<Anaqua> comandoAnaqua = FabricaComandosAnaqua.ObtenerComandoConsultarPorID(new Anaqua(retorno.Id));
+                comandoAnaqua.Ejecutar();
+                retorno.Anaqua = comandoAnaqua.Receptor.ObjetoAlmacenado;
 
                 #region trace
                 if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))

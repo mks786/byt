@@ -108,6 +108,7 @@
     <Compile Include="Contratos\EntradasAlternas\IAgregarEntradaAlterna.cs" />
     <Compile Include="Contratos\EntradasAlternas\IConsultarEntradaAlterna.cs" />
     <Compile Include="Contratos\EntradasAlternas\IConsultarEntradasAlternas.cs" />
+    <Compile Include="Contratos\Marcas\IGestionarAnaqua.cs" />
     <Compile Include="Contratos\Marcas\IAgregarMarca.cs" />
     <Compile Include="Contratos\Marcas\IConsultarMarca.cs" />
     <Compile Include="Contratos\Marcas\IConsultarMarcas.cs" />
@@ -205,6 +206,7 @@
     <Compile Include="Presentadores\EntradasAlternas\PresentadorAgregarEntradaAlterna.cs" />
     <Compile Include="Presentadores\EntradasAlternas\PresentadorConsultarEntradaAlterna.cs" />
     <Compile Include="Presentadores\EntradasAlternas\PresentadorConsultarEntradasAlternas.cs" />
+    <Compile Include="Presentadores\Marcas\PresentadorGestionarAnaqua.cs" />
     <Compile Include="Presentadores\Marcas\PresentadorGestionarInfoAdicional.cs" />
     <Compile Include="Presentadores\Marcas\PresentadorAgregarMarca.cs" />
     <Compile Include="Presentadores\Marcas\PresentadorConsultarMarca.cs" />
@@ -369,6 +371,9 @@
     </Compile>
     <Compile Include="Ventanas\Marcas\AgregarMarca.xaml.cs">
       <DependentUpon>AgregarMarca.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Marcas\GestionarAnaqua.xaml.cs">
+      <DependentUpon>GestionarAnaqua.xaml</DependentUpon>
     </Compile>
     <Compile Include="Ventanas\Marcas\GestionarInfoAdicional.xaml.cs">
       <DependentUpon>GestionarInfoAdicional.xaml</DependentUpon>
@@ -673,6 +678,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Ventanas\Marcas\AgregarMarca.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\Marcas\GestionarAnaqua.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

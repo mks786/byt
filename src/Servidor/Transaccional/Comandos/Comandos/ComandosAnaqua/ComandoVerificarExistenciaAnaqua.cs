@@ -34,7 +34,7 @@ namespace Trascend.Bolet.Comandos.Comandos.ComandosAnaqua
                 #endregion
 
                 IDaoAnaqua dao = FabricaDaoBase.ObtenerFabricaDao().ObtenerDaoAnaqua();
-                this.Receptor = new Receptor<bool>(dao.VerificarExistencia(this._anaqua.Marca));
+                //this.Receptor = new Receptor<bool>(dao.VerificarExistencia(this._anaqua.Marca));
 
                 #region trace
                 if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))

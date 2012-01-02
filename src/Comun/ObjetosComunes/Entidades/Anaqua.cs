@@ -8,14 +8,16 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
     {
         #region Atributos
 
-        private Marca _marca;
-        private int _idAnaqua;
-        private int _bkId;
+        private int _idMarca;
+        private string _idAnaqua;
+        private string _bkId;
         private string _colores;
         private string _comentario;
         private string _distingue;
         private string _usuario;
         private DateTime? _timeStamp;
+        private string _operacion;
+        private bool _insertarOModificar;
 
         #endregion
 
@@ -30,45 +32,45 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         /// Constructor que inicializa el id del Concepto
         /// </summary>
         /// <param name="idMarca">Id del Concepto</param>
-        public Anaqua(Marca marca)
+        public Anaqua(int idMarca)
         {
-            this._marca = marca;
+            this._idMarca = idMarca;
         }
 
         #endregion
 
         #region Propiedades
 
-        public override bool Equals(object obj)
+        //public override bool Equals(object obj)
+        //{
+        //    if ((this.IdAnaqua == ((Anaqua)obj).IdAnaqua) && (this.Marca.Id == ((Anaqua)obj).Marca.Id))
+        //        return true;
+        //    return false;
+        //}
+
+        //public override int GetHashCode()
+        //{
+        //    return base.GetHashCode();
+        //}
+
+        //public override string ToString()
+        //{
+        //    return base.ToString();
+        //}
+
+        public virtual int IdMarca
         {
-            if ((this.IdAnaqua == ((Anaqua)obj).IdAnaqua) && (this.Marca.Id == ((Anaqua)obj).Marca.Id))
-                return true;
-            return false;
+            get { return _idMarca; }
+            set { _idMarca = value; }
         }
 
-        public override int GetHashCode()
-        {
-            return base.GetHashCode();
-        }
-
-        public override string ToString()
-        {
-            return base.ToString();
-        }
-
-        public virtual Marca Marca
-        {
-            get { return _marca; }
-            set { _marca = value; }
-        }
-
-        public virtual int IdAnaqua
+        public virtual string IdAnaqua
         {
             get { return _idAnaqua; }
             set { _idAnaqua = value; }
         }
 
-        public virtual int BkId
+        public virtual string BkId
         {
             get { return _bkId; }
             set { _bkId = value; }
@@ -102,6 +104,19 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
             get { return _timeStamp; }
             set { _timeStamp = value; }
         }
+
+        public virtual string Operacion
+        {
+            get { return _operacion; }
+            set { _operacion = value; }
+        }
+
+        public virtual bool InsertarOModificar
+        {
+            get { return _insertarOModificar; }
+            set { _insertarOModificar = value; }
+        }
+
         #endregion
     }
 }

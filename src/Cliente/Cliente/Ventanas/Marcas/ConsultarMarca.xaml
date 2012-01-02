@@ -1379,7 +1379,7 @@
                         <TextBlock Name="_txbGenCartel" Text="{x:Static recurso:Etiquetas.btnGenCartel}"/>
                     </Button>
                     <Button IsEnabled="False" Grid.Column="7" Grid.Row="23" Grid.ColumnSpan="1" Name="_btnAnaqua" Margin="3"
-                            Height="25">
+                            Height="25" Click="_btnAnaqua_Click">
                         <TextBlock Name="_txbAnaqua" Text="{x:Static recurso:Etiquetas.btnAnaqua}"/>
                     </Button>
                     <!--Fin Fila Dieciseis-->

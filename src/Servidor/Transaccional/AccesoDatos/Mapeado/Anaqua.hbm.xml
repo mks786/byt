@@ -4,11 +4,9 @@
                    namespace="Trascend.Bolet.ObjetosComunes.Entidades">
 
   <class name="Anaqua" table="MYP_MANAQUA">
-    <composite-id>
-      <key-property name="IdAnaqua" column="ANACUAID" />
-      <key-many-to-one name="Marca" column="CMARCA" class="Marca"/>
-    </composite-id>
+      <id name="IdMarca" column="CMARCA" type="int"/>
 
+    <property name="IdAnaqua" column="ANAQUAID" type="string" />
     <property name="BkId" column="BKID" type="string"/>
     <property name="Colores" column="COLORES" type="string"/>
     <property name="Comentario" column="COMENTARIOS" type="string"/>
