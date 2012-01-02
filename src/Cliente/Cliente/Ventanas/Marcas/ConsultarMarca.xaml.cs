@@ -4,6 +4,7 @@ using Trascend.Bolet.Cliente.Presentadores.Marcas;
 using System.Windows;
 using System.Windows.Input;
 using Trascend.Bolet.Cliente.Ayuda;
+using System.Windows.Media;
 
 namespace Trascend.Bolet.Cliente.Ventanas.Marcas
 {
@@ -639,6 +640,12 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
         {
             get { return this._cbxTipoReproduccion.DataContext; }
             set { this._cbxTipoReproduccion.DataContext = value; }
+        }
+
+        public void pintarInfoAdicional()
+        {
+            this._btnInfoAdicional.Background = Brushes.LightGreen;
+            this._btnInfoAdicionalSolicitud.Background = Brushes.LightGreen;
         }
 
         public GridViewColumnHeader CurSortCol

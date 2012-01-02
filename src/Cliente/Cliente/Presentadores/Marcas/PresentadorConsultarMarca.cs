@@ -37,6 +37,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
         private ITipoEstadoServicios _tipoEstadoServicios;
         private ICorresponsalServicios _corresponsalServicios;
         private ICondicionServicios _condicionServicios;
+        private IInfoAdicionalServicios _infoAdicionalServicios;
 
         private IList<Asociado> _asociados;
         private IList<Interesado> _interesados;
@@ -79,6 +80,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["CorresponsalServicios"]);
                 this._condicionServicios = (ICondicionServicios)Activator.GetObject(typeof(ICondicionServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["CondicionServicios"]);
+                this._infoAdicionalServicios = (IInfoAdicionalServicios)Activator.GetObject(typeof(IInfoAdicionalServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["InfoAdicionalServicios"]);
 
             }
             catch (Exception ex)
@@ -113,9 +116,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
 
                 Marca marca = (Marca)this._ventana.Marca;
 
-                this._ventana.Marca = this._marcaServicios.ConsultarMarcaConTodo(marca);
-                
-                //marca.Anaquas.Insert(0, marca2.Anaquas[0]); 
+                InfoAdicional infoAdicional = new InfoAdicional("M." + marca.Id);
+                marca.InfoAdicional = this._infoAdicionalServicios.ConsultarPorId(infoAdicional);
 
                 IList<ListaDatosDominio> tiposMarcas = this._listaDatosDominioServicios.
                     ConsultarListaDatosDominioPorParametro(new ListaDatosDominio(Recursos.Etiquetas.cbiCategoriaMarca));
@@ -196,6 +198,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 tipoReproducciones.Insert(0, primerTipoReproduccion);
                 this._ventana.TipoReproducciones = tipoReproducciones;
                 this._ventana.TipoReproduccion = this.BuscarTipoReproduccion(tipoReproducciones, marca.Tipo);
+
+                if (null != marca.InfoAdicional)
+                    this._ventana.pintarInfoAdicional();
 
                 this._ventana.FocoPredeterminado();
 

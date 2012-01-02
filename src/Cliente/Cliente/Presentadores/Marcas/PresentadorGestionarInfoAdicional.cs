@@ -116,19 +116,13 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
 
                     infoAdicional.Operacion = "MODIFY";
 
-                    if(this._ventana.Mensaje("InfoAdicional cargada con exito"))
-                        System.Threading.Thread.Sleep(2000);
+                    bool exitoso = this._infoAdicionalServicios.InsertarOModificar(infoAdicional, UsuarioLogeado.Hash);
 
-                    this.Regresar();
-                    //bool exitoso = this._infoAdicionalServicios.InsertarOModificar(infoAdicional, UsuarioLogeado.Hash);
-
-                    //if (exitoso)
-                    //{
-                    //    this._ventana.Mensaje("InfoAdicional cargada con exito");
-
-
-                    //    //this.Regresar();
-                    //}
+                    if (exitoso)
+                    {
+                        this._ventana.Mensaje("InfoAdicional cargada con exito");
+                        this.Regresar();
+                    }
                 }
 
             }

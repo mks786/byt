@@ -36,7 +36,7 @@ namespace Trascend.Bolet.Servicios.Implementacion
 
         public InfoAdicional ConsultarPorId(InfoAdicional entidad)
         {
-            throw new NotImplementedException();
+            return ControladorInfoAdicional.ConsultarPorId(entidad);
         }
 
         public bool InsertarOModificar(InfoAdicional InfoAdicional, int hash)
