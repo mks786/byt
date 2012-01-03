@@ -372,6 +372,9 @@
     <Compile Include="Ventanas\Marcas\AgregarMarca.xaml.cs">
       <DependentUpon>AgregarMarca.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Ventanas\Marcas\GestionarInfoBol.xaml.cs">
+      <DependentUpon>GestionarInfoBol.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Ventanas\Marcas\GestionarAnaqua.xaml.cs">
       <DependentUpon>GestionarAnaqua.xaml</DependentUpon>
     </Compile>
@@ -678,6 +681,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Ventanas\Marcas\AgregarMarca.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\Marcas\GestionarInfoBol.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

@@ -97,8 +97,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
         /// <summary>
         /// Método que realiza toda la lógica para agregar al Usuario dentro de la base de datos
         /// </summary>
-        public void Aceptar()
+        public bool Aceptar()
         {
+            bool exitoso = false;
             try
             {
 
@@ -116,15 +117,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
 
                     infoAdicional.Operacion = "MODIFY";
 
-                    bool exitoso = this._infoAdicionalServicios.InsertarOModificar(infoAdicional, UsuarioLogeado.Hash);
+                    exitoso = this._infoAdicionalServicios.InsertarOModificar(infoAdicional, UsuarioLogeado.Hash);
 
-                    if (exitoso)
-                    {
-                        this._ventana.Mensaje("InfoAdicional cargada con exito");
-                        this.Regresar();
-                    }
                 }
-
             }
             catch (ApplicationException ex)
             {
@@ -146,6 +141,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 logger.Error(ex.Message);
                 this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
             }
+
+            return exitoso;
         }
     }
 }

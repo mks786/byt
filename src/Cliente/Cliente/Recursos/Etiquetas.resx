@@ -1417,6 +1417,15 @@
   <data name="lblPatentesTituloEnIngles" xml:space="preserve">
     <value>Patentes: Titulo en ingles:</value>
   </data>
+  <data name="lblCambio" xml:space="preserve">
+    <value>Cambio:</value>
+  </data>
+  <data name="lblResolucion" xml:space="preserve">
+    <value>Resolución:</value>
+  </data>
+  <data name="lblTomo" xml:space="preserve">
+    <value>Tomo:</value>
+  </data>
   <data name="lblBKId" xml:space="preserve">
     <value>B&amp;K Id:</value>
   </data>

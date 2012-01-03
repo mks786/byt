@@ -1,4 +1,5 @@
 ﻿using System.Windows.Controls;
+using System.Windows;
 
 namespace Trascend.Bolet.Cliente.Contratos.Marcas
 {
@@ -7,9 +8,8 @@ namespace Trascend.Bolet.Cliente.Contratos.Marcas
         object InfoAdicional { get; set; }
 
         bool HabilitarCampos { set; }
-        
+
         string TextoBotonModificar { get; set; }
 
-        bool Mensaje(string mensaje);
     }
 }
