@@ -35,10 +35,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 this._ventana.InfoAdicional = null != ((Marca)marca).InfoAdicional ? ((Marca)marca).InfoAdicional : new InfoAdicional("M." + this._marca.Id);
 
                 if (null == ((Marca)marca).InfoAdicional)
-                {
                     this._nuevaInfoAdicional = true;
-                    this._ventana.TextoBotonModificar = Recursos.Etiquetas.btnAceptar;
-                }
+      
                  
                 this._infoAdicionalServicios = (IInfoAdicionalServicios)Activator.GetObject(typeof(IInfoAdicionalServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["InfoAdicionalServicios"]);
@@ -64,7 +62,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                     Recursos.Ids.AgregarAgente);
 
                 if (this._nuevaInfoAdicional)
+                {
                     this._ventana.HabilitarCampos = true;
+                    this._ventana.TextoBotonModificar = Recursos.Etiquetas.btnAceptar;
+                }
 
                 this._ventana.FocoPredeterminado();
             }
@@ -110,12 +111,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                     this._ventana.TextoBotonModificar = Recursos.Etiquetas.btnAceptar;
                 }
 
-                //Modifica los datos del boletin
+                //Agregar o modificar datos
                 else
                 {
                     InfoAdicional infoAdicional = (InfoAdicional)this._ventana.InfoAdicional;
-
-                    infoAdicional.Operacion = "MODIFY";
+                    
+                    infoAdicional.Operacion = this._nuevaInfoAdicional ? "CREATE" : "MODIFY";
 
                     exitoso = this._infoAdicionalServicios.InsertarOModificar(infoAdicional, UsuarioLogeado.Hash);
 

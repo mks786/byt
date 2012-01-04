@@ -648,6 +648,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             this._btnInfoAdicionalSolicitud.Background = Brushes.LightGreen;
         }
 
+        public void pintarInfoBoles()
+        {
+            this._btnInfobol.Background = Brushes.LightGreen;
+        }
+
         public GridViewColumnHeader CurSortCol
         {
             get { return _CurSortCol; }
@@ -1130,8 +1135,12 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             this._cbxTipoMarcaSolicitud.SelectedItem = ((ComboBox)sender).SelectedItem;
         }
 
-        #endregion
+        private void _btnInfobol_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.IrInfoBoles();
+        }
 
-        
+        #endregion
+                
     }
 }

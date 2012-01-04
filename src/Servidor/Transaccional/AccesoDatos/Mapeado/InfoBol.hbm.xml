@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+                   assembly="Trascend.Bolet.ObjetosComunes"
+                   namespace="Trascend.Bolet.ObjetosComunes.Entidades">
+
+  <class name="InfoBol" table="MYP_MINFOBOL">
+
+    <composite-id>
+      <key-many-to-one name="Marca" column="CMARCA" class="Marca"/>
+      <key-many-to-one name="TipoInfobol" column="TIPO" class="TipoInfobol"/>
+    </composite-id>
+
+    <property name="Tomo" type="String" column="TOMO"/>
+    <property name="Pagina" type="String" column="PAGINA"/>
+    <property name="Resolucion" type="String" column="RESOLUCION"/>
+    <property name="Fecha" type="DateTime" column="FECHA"/>
+    <property name="Comentario" type="String" column="COMENTARIO"/>
+    <property name="TimeStamp" type="DateTime" column="TIMESTAMP"/>
+    <property name="Cambio" type="int" column="CAMBIO"/>
+
+    <many-to-one name="Boletin" class="Boletin">
+      <column name="CBOLETIN"/>
+    </many-to-one>
+
+    <many-to-one name="Usuario" class="Usuario">
+      <column name="USUARIO"/>
+    </many-to-one>
+  </class>
+</hibernate-mapping>

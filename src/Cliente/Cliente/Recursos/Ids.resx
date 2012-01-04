@@ -141,6 +141,12 @@
   <data name="AgregarEstatus" xml:space="preserve">
     <value>MYP_TESTADOS</value>
   </data>
+  <data name="AgregarInfoAdicional" xml:space="preserve">
+    <value>MYPTAGENTE</value>
+  </data>
+  <data name="AgregarInfoBol" xml:space="preserve">
+    <value>MYPTAGENTE</value>
+  </data>
   <data name="AgregarInteresado" xml:space="preserve">
     <value>MYP_INTERESADOS</value>
   </data>
@@ -242,6 +248,18 @@
   </data>
   <data name="ConsultarEstatuses" xml:space="preserve">
     <value>MYP_TESTADOS</value>
+  </data>
+  <data name="ConsultarInfoAdicional" xml:space="preserve">
+    <value>MYPTAGENTE</value>
+  </data>
+  <data name="ConsultarInfoAdicionales" xml:space="preserve">
+    <value>MYPTAGENTE</value>
+  </data>
+  <data name="ConsultarInfoBol" xml:space="preserve">
+    <value>MYPTAGENTE</value>
+  </data>
+  <data name="ConsultarInfoBoles" xml:space="preserve">
+    <value>MYPTAGENTE</value>
   </data>
   <data name="ConsultarInteresado" xml:space="preserve">
     <value>MYP_INTERESADOS</value>
@@ -357,6 +375,12 @@
   <data name="EliminarFecha" xml:space="preserve">
     <value>MYP_TFECHAS</value>
   </data>
+  <data name="EliminarInfoAdicional" xml:space="preserve">
+    <value>FAC_ASOCIADOS</value>
+  </data>
+  <data name="EliminarInfoBol" xml:space="preserve">
+    <value>FAC_ASOCIADOS</value>
+  </data>
   <data name="EliminarInteresado" xml:space="preserve">
     <value>MYP_INTERESADOS</value>
   </data>
@@ -405,6 +429,12 @@
   <data name="Estatus" xml:space="preserve">
     <value>MYP_TESTADOS</value>
   </data>
+  <data name="InfoAdicional" xml:space="preserve">
+    <value>MYPTAGENTE</value>
+  </data>
+  <data name="InfoBol" xml:space="preserve">
+    <value>MYPTAGENTE</value>
+  </data>
   <data name="Interesado" xml:space="preserve">
     <value>MYP_INTERESADOS</value>
   </data>
@@ -449,6 +479,12 @@
   </data>
   <data name="ModificarFecha" xml:space="preserve">
     <value>MYP_TFECHAS</value>
+  </data>
+  <data name="ModificarInfoAdicional" xml:space="preserve">
+    <value>FAC_ASOCIADOS</value>
+  </data>
+  <data name="ModificarInfoBol" xml:space="preserve">
+    <value>FAC_ASOCIADOS</value>
   </data>
   <data name="ModificarInteresado" xml:space="preserve">
     <value>MYP_INTERESADOS</value>

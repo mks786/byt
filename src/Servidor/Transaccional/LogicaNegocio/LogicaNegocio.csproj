@@ -90,6 +90,7 @@
     <Compile Include="Controladores\ControladorCondicion.cs" />
     <Compile Include="Controladores\ControladorAnaqua.cs" />
     <Compile Include="Controladores\ControladorInfoAdicional.cs" />
+    <Compile Include="Controladores\ControladorInfoBol.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -64,6 +64,7 @@
     <Compile Include="Comandos\ComandosCorresponsal\ComandoEliminarCorresponsal.cs" />
     <Compile Include="Comandos\ComandosCorresponsal\ComandoInsertarOModificarCorresponsal.cs" />
     <Compile Include="Comandos\ComandosCorresponsal\ComandoVerificarExistenciaCorresponsal.cs" />
+    <Compile Include="Comandos\ComandosInfoBol\ComandoConsultarInfoBolesPorMarca.cs" />
     <Compile Include="Comandos\ComandosInteresado\ComandoConsultarInteresadoConTodo.cs" />
     <Compile Include="Comandos\ComandosInteresado\ComandoConsultarTodosInteresados.cs" />
     <Compile Include="Comandos\ComandosInteresado\ComandoEliminarInteresado.cs" />
@@ -202,10 +203,16 @@
     <Compile Include="Comandos\ComandosInfoAdicional\ComandoEliminarInfoAdicional.cs" />
     <Compile Include="Comandos\ComandosInfoAdicional\ComandoInsertarOModificarInfoAdicional.cs" />
     <Compile Include="Comandos\ComandosInfoAdicional\ComandoVerificarExistenciaInfoAdicional.cs" />
+    <Compile Include="Comandos\ComandosInfoBol\ComandoConsultarInfoBolPorID.cs" />
+    <Compile Include="Comandos\ComandosInfoBol\ComandoConsultarTodasInfoBoles.cs" />
+    <Compile Include="Comandos\ComandosInfoBol\ComandoEliminarInfoBol.cs" />
+    <Compile Include="Comandos\ComandosInfoBol\ComandoInsertarOModificarInfoBol.cs" />
+    <Compile Include="Comandos\ComandosInfoBol\ComandoVerificarExistenciaInfoBol.cs" />
     <Compile Include="Comandos\Receptor.cs" />
     <Compile Include="Comandos\ComandosUsuario\ComandoConsultarTodosUsuarios.cs" />
     <Compile Include="Comandos\ComandosUsuario\ComandoConsultarUsuarioPorID.cs" />
     <Compile Include="Comandos\ComandosUsuario\ComandoInsertarOModificarUsuario.cs" />
+    <Compile Include="Fabrica\FabricaComandosInfoBol.cs" />
     <Compile Include="Fabrica\FabricaComandosInfoAdicional.cs" />
     <Compile Include="Fabrica\FabricaComandosAnaqua.cs" />
     <Compile Include="Fabrica\FabricaComandosCondicion.cs" />

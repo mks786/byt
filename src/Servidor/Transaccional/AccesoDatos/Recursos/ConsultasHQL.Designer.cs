@@ -259,6 +259,15 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Select i from InfoBol i left outer join fetch i.TipoInfobol where i.Marca.Id = &apos;{0}&apos;.
+        /// </summary>
+        public static string ObtenerInfoBolesPorMarcas {
+            get {
+                return ResourceManager.GetString("ObtenerInfoBolesPorMarcas", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select distinct(i) from Interesado i left join fetch i.Pais where i.Id = &apos;{0}&apos; order by i.Id.
         /// </summary>
         public static string ObtenerInteresadoConTodo {

@@ -113,6 +113,7 @@
     <Compile Include="Contratos\Marcas\IConsultarMarca.cs" />
     <Compile Include="Contratos\Marcas\IConsultarMarcas.cs" />
     <Compile Include="Contratos\Marcas\IGestionarInfoAdicional.cs" />
+    <Compile Include="Contratos\Marcas\IListaInfoBoles.cs" />
     <Compile Include="Contratos\Remitentes\IAgregarRemitente.cs" />
     <Compile Include="Contratos\Remitentes\IConsultarRemitente.cs" />
     <Compile Include="Contratos\Remitentes\IConsultarRemitentes.cs" />
@@ -211,6 +212,7 @@
     <Compile Include="Presentadores\Marcas\PresentadorAgregarMarca.cs" />
     <Compile Include="Presentadores\Marcas\PresentadorConsultarMarca.cs" />
     <Compile Include="Presentadores\Marcas\PresentadorConsultarMarcas.cs" />
+    <Compile Include="Presentadores\Marcas\PresentadorListaInfoBoles.cs" />
     <Compile Include="Presentadores\Remitentes\PresentadorAgregarRemitente.cs" />
     <Compile Include="Presentadores\Remitentes\PresentadorConsultarRemitente.cs" />
     <Compile Include="Presentadores\Remitentes\PresentadorConsultarRemitentes.cs" />
@@ -386,6 +388,9 @@
     </Compile>
     <Compile Include="Ventanas\Marcas\ConsultarMarca.xaml.cs">
       <DependentUpon>ConsultarMarca.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Marcas\ListaInfoBoles.xaml.cs">
+      <DependentUpon>ListaInfoBoles.xaml</DependentUpon>
     </Compile>
     <Compile Include="Ventanas\Remitentes\AgregarRemitente.xaml.cs">
       <DependentUpon>AgregarRemitente.xaml</DependentUpon>
@@ -701,6 +706,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Ventanas\Marcas\ConsultarMarca.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\Marcas\ListaInfoBoles.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

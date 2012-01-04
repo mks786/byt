@@ -39,6 +39,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
         private ICorresponsalServicios _corresponsalServicios;
         private ICondicionServicios _condicionServicios;
         private IInfoAdicionalServicios _infoAdicionalServicios;
+        private IInfoBolServicios _infoBolServicios;
 
         private IList<Asociado> _asociados;
         private IList<Interesado> _interesados;
@@ -85,6 +86,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["AnaquaServicios"]);
                 this._infoAdicionalServicios = (IInfoAdicionalServicios)Activator.GetObject(typeof(IInfoAdicionalServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["InfoAdicionalServicios"]);
+                this._infoBolServicios = (IInfoBolServicios)Activator.GetObject(typeof(IInfoBolServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["InfoBolServicios"]);
 
             }
             catch (Exception ex)
@@ -122,6 +125,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 Anaqua anaqua = new Anaqua();
                 anaqua.IdMarca = marca.Id;
                 InfoAdicional infoAdicional = new InfoAdicional("M." + marca.Id);
+
+                marca.InfoBoles = this._infoBolServicios.ConsultarInfoBolesPorMarca(marca);
                 marca.InfoAdicional = this._infoAdicionalServicios.ConsultarPorId(infoAdicional);
                 marca.Anaqua = this._anaquaServicios.ConsultarPorId(anaqua);
 
@@ -207,6 +212,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
 
                 if (null != marca.InfoAdicional)
                     this._ventana.pintarInfoAdicional();
+
+                if (null != marca.InfoBoles)
+                    this._ventana.pintarInfoBoles();
 
                 this._ventana.FocoPredeterminado();
 
@@ -361,6 +369,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
         public void IrInfoAdicional()
         {
             this.Navegar(new GestionarInfoAdicional(this._ventana.Marca));
+        }
+
+        public void IrInfoBoles()
+        {
+            this.Navegar(new ListaInfoBoles(this._ventana.Marca));
         }
 
         public void IrAnaqua()

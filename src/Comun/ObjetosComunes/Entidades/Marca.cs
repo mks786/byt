@@ -59,6 +59,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         private string _operacion;
         private Anaqua _anaqua;
         private InfoAdicional _infoAdicional;
+        private IList<InfoBol> _infoBoles;
 
         #endregion
 
@@ -549,8 +550,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         }
 
         /// <summary>
-        /// Propiedad que asigna u obtiene el Anaqua que se va a realizar con este objeto
-        /// sea CREATE, MODIFY o DELETE
+        /// Propiedad que asigna u obtiene el Anaqua
         /// </summary>
         public virtual Anaqua Anaqua
         {
@@ -559,13 +559,21 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         }
 
         /// <summary>
-        /// Propiedad que asigna u obtiene la Informacion Adicional que se va a realizar con este objeto
-        /// sea CREATE, MODIFY o DELETE
+        /// Propiedad que asigna u obtiene la Informacion Adicional 
         /// </summary>
         public virtual InfoAdicional InfoAdicional
         {
             get { return _infoAdicional; }
             set { _infoAdicional = value; }
+        }
+
+        /// <summary>
+        /// Propiedad que asigna u obtiene la lista de infoboles
+        /// </summary>
+        public virtual IList<InfoBol> InfoBoles
+        {
+            get { return _infoBoles; }
+            set { _infoBoles = value; }
         }
 
         #endregion

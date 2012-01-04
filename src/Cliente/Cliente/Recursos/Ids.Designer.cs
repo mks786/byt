@@ -133,6 +133,24 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to MYPTAGENTE.
+        /// </summary>
+        public static string AgregarInfoAdicional {
+            get {
+                return ResourceManager.GetString("AgregarInfoAdicional", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to MYPTAGENTE.
+        /// </summary>
+        public static string AgregarInfoBol {
+            get {
+                return ResourceManager.GetString("AgregarInfoBol", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to MYP_INTERESADOS.
         /// </summary>
         public static string AgregarInteresado {
@@ -435,6 +453,42 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string ConsultarEstatuses {
             get {
                 return ResourceManager.GetString("ConsultarEstatuses", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to MYPTAGENTE.
+        /// </summary>
+        public static string ConsultarInfoAdicional {
+            get {
+                return ResourceManager.GetString("ConsultarInfoAdicional", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to MYPTAGENTE.
+        /// </summary>
+        public static string ConsultarInfoAdicionales {
+            get {
+                return ResourceManager.GetString("ConsultarInfoAdicionales", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to MYPTAGENTE.
+        /// </summary>
+        public static string ConsultarInfoBol {
+            get {
+                return ResourceManager.GetString("ConsultarInfoBol", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to MYPTAGENTE.
+        /// </summary>
+        public static string ConsultarInfoBoles {
+            get {
+                return ResourceManager.GetString("ConsultarInfoBoles", resourceCulture);
             }
         }
         
@@ -781,6 +835,24 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to FAC_ASOCIADOS.
+        /// </summary>
+        public static string EliminarInfoAdicional {
+            get {
+                return ResourceManager.GetString("EliminarInfoAdicional", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to FAC_ASOCIADOS.
+        /// </summary>
+        public static string EliminarInfoBol {
+            get {
+                return ResourceManager.GetString("EliminarInfoBol", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to MYP_INTERESADOS.
         /// </summary>
         public static string EliminarInteresado {
@@ -925,6 +997,24 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to MYPTAGENTE.
+        /// </summary>
+        public static string InfoAdicional {
+            get {
+                return ResourceManager.GetString("InfoAdicional", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to MYPTAGENTE.
+        /// </summary>
+        public static string InfoBol {
+            get {
+                return ResourceManager.GetString("InfoBol", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to MYP_INTERESADOS.
         /// </summary>
         public static string Interesado {
@@ -1056,6 +1146,24 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string ModificarFecha {
             get {
                 return ResourceManager.GetString("ModificarFecha", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to FAC_ASOCIADOS.
+        /// </summary>
+        public static string ModificarInfoAdicional {
+            get {
+                return ResourceManager.GetString("ModificarInfoAdicional", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to FAC_ASOCIADOS.
+        /// </summary>
+        public static string ModificarInfoBol {
+            get {
+                return ResourceManager.GetString("ModificarInfoBol", resourceCulture);
             }
         }
         

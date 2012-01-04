@@ -1360,7 +1360,7 @@
                         <TextBlock Name="_txbInfoAdicional" Text="{x:Static recurso:Etiquetas.btnInfoAdicional}"/>
                     </Button>
                     <Button IsEnabled="False" Grid.Column="7" Grid.Row="22" Grid.ColumnSpan="1" Name="_btnInfobol" Margin="3"
-                            Height="25">
+                            Height="25" Click="_btnInfobol_Click">
                         <TextBlock Name="_txbInfobol" Text="{x:Static recurso:Etiquetas.btnInfoBol}"/>
                     </Button>
                     <Button IsEnabled="False" Grid.Column="8" Grid.Row="22" Grid.ColumnSpan="1" Name="_btnCertificados" Margin="3"

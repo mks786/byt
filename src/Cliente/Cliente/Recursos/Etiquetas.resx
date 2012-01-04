@@ -1444,4 +1444,22 @@
   <data name="lblSolicitud" xml:space="preserve">
     <value>Solicitud:</value>
   </data>
+  <data name="titleGestionalInfoBol" xml:space="preserve">
+    <value>Gestionar InfoBol</value>
+  </data>
+  <data name="titleGestionarInfoAdicional" xml:space="preserve">
+    <value>Gestionar InfoAdicional</value>
+  </data>
+  <data name="titleListaInfoBol" xml:space="preserve">
+    <value>Lista de InfoBoles</value>
+  </data>
+  <data name="lsvComentario" xml:space="preserve">
+    <value>Comentario</value>
+  </data>
+  <data name="lsvMarca" xml:space="preserve">
+    <value>Marca</value>
+  </data>
+  <data name="lsvTipo" xml:space="preserve">
+    <value>Tipo</value>
+  </data>
 </root>

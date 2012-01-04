@@ -2545,6 +2545,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Comentario.
+        /// </summary>
+        public static string lsvComentario {
+            get {
+                return ResourceManager.GetString("lsvComentario", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Concepto.
         /// </summary>
         public static string lsvConcepto {
@@ -2725,6 +2734,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Marca.
+        /// </summary>
+        public static string lsvMarca {
+            get {
+                return ResourceManager.GetString("lsvMarca", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Medio.
         /// </summary>
         public static string lsvMedio {
@@ -2829,6 +2847,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string lsvTelefono {
             get {
                 return ResourceManager.GetString("lsvTelefono", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tipo.
+        /// </summary>
+        public static string lsvTipo {
+            get {
+                return ResourceManager.GetString("lsvTipo", resourceCulture);
             }
         }
         
@@ -3931,6 +3958,24 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Gestionar InfoBol.
+        /// </summary>
+        public static string titleGestionalInfoBol {
+            get {
+                return ResourceManager.GetString("titleGestionalInfoBol", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Gestionar InfoAdicional.
+        /// </summary>
+        public static string titleGestionarInfoAdicional {
+            get {
+                return ResourceManager.GetString("titleGestionarInfoAdicional", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Gestionar Relacion Objeto con Rol.
         /// </summary>
         public static string titleGestionarObjeto {
@@ -3981,6 +4026,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string titleListaDatosTransferencia {
             get {
                 return ResourceManager.GetString("titleListaDatosTransferencia", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Lista de InfoBoles.
+        /// </summary>
+        public static string titleListaInfoBol {
+            get {
+                return ResourceManager.GetString("titleListaInfoBol", resourceCulture);
             }
         }
         
