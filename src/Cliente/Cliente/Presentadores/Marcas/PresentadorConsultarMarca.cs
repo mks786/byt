@@ -169,6 +169,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 primerServicio.Id = "NGN";
                 servicios.Insert(0, primerServicio);
                 this._ventana.Servicios = servicios;
+                this._ventana.Servicio = this.BuscarServicio(servicios, marca.Servicio);
 
 
                 IList<Boletin> boletines = this._boletinServicios.ConsultarTodos();
@@ -212,6 +213,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
 
                 if (null != marca.InfoAdicional)
                     this._ventana.pintarInfoAdicional();
+
+                if (null != marca.Anaqua)
+                    this._ventana.pintarAnaqua();
 
                 if (null != marca.InfoBoles)
                     this._ventana.pintarInfoBoles();
@@ -288,10 +292,19 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                     if (null != this._ventana.CorresponsalSolicitud)
                         marca.Corresponsal = ((Corresponsal)this._ventana.CorresponsalSolicitud).Id != int.MinValue ? ((Corresponsal)this._ventana.CorresponsalSolicitud) : null;
 
+                    if (null != this._ventana.Sector)
+                        marca.Sector = !((ListaDatosDominio)this._ventana.Sector).Id.Equals("NGN") ? ((ListaDatosDominio)this._ventana.Sector).Id : null;
+
+                    if (null != this._ventana.TipoReproduccion)
+                        marca.TipoRps = ((ListaDatosDominio)this._ventana.TipoReproduccion).Id[0];
+
+                    if (null != this._ventana.TipoMarcaDatos)
+                        marca.Tipo = !((ListaDatosDominio)this._ventana.TipoMarcaDatos).Id.Equals("NGN") ? ((ListaDatosDominio)this._ventana.TipoMarcaDatos).Id : null;
+
                     bool exitoso = this._marcaServicios.InsertarOModificar(marca, UsuarioLogeado.Hash);
 
                     if (exitoso)
-                        this.Navegar(Recursos.MensajesConElUsuario.MarcaInsertada, false);
+                        this.Navegar(Recursos.MensajesConElUsuario.MarcaModificada, false);
                 }
 
                 #region trace

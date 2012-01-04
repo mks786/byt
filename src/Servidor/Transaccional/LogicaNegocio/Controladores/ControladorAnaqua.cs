@@ -60,9 +60,33 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
+                Auditoria auditoria = new Auditoria();
+                ComandoBase<ContadorAuditoria> comandoContadorAuditoriaPoximoValor = FabricaComandosContadorAuditoria.ObtenerComandoConsultarPorId("SEG_AUDITORIA");
+
+                comandoContadorAuditoriaPoximoValor.Ejecutar();
+                ContadorAuditoria contadorAuditoria = comandoContadorAuditoriaPoximoValor.Receptor.ObjetoAlmacenado;
+
+
+                auditoria.Id = contadorAuditoria.ProximoValor++;
+                auditoria.Usuario = ObtenerUsuarioPorHash(hash).Id;
+                auditoria.Fecha = System.DateTime.Now;
+                auditoria.Operacion = anaqua.Operacion;
+                auditoria.Tabla = "MYP_MANAQUA";
+                string id = anaqua.IdMarca.ToString();
+                auditoria.Fk = int.Parse(id);
+
                 ComandoBase<bool> comando = FabricaComandosAnaqua.ObtenerComandoInsertarOModificar(anaqua);
+                ComandoBase<bool> comandoAuditoria = FabricaComandosAuditoria.ObtenerComandoInsertarOModificar(auditoria);
+                ComandoBase<bool> comandoAuditoriaContador = FabricaComandosContadorAuditoria.ObtenerComandoInsertarOModificar(contadorAuditoria);
+
                 comando.Ejecutar();
                 exitoso = comando.Receptor.ObjetoAlmacenado;
+
+                if (exitoso)
+                {
+                    comandoAuditoria.Ejecutar();
+                    comandoAuditoriaContador.Ejecutar();
+                }
 
                 #region trace
                 if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))

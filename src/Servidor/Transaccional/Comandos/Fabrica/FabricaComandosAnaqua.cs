@@ -17,7 +17,7 @@ namespace Trascend.Bolet.Comandos.Fabrica
         {
             return new ComandoInsertarOModificarAnaqua(anaqua);
         }
-
+            
         /// <summary>
         /// Método que devuelve el Comando para consultar todos los anaqua
         /// </summary>

@@ -305,6 +305,10 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
                 this._chkDescuentoDatos.IsEnabled = value;
                 this._chkCorrespondenciaDatos.IsEnabled = value;
 
+                this._cbxBoletinConcesion.IsEnabled = value;
+                this._cbxBoletinPublicacion.IsEnabled = value;
+                this._cbxOrdenPublicacion.IsEnabled = value;
+
                 #endregion
 
                 #region CheckBox
@@ -648,6 +652,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             this._btnInfoAdicionalSolicitud.Background = Brushes.LightGreen;
         }
 
+        public void pintarAnaqua()
+        {
+            this._btnAnaqua.Background = Brushes.LightGreen;
+        }
+
         public void pintarInfoBoles()
         {
             this._btnInfobol.Background = Brushes.LightGreen;
@@ -872,6 +881,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             {
                 this._presentador.CargarAsociados();
             }
+
+            ocultarLstCorresponsalSolicutud();
+            ocultarLstInteresadoSolicutud();
+            ocultarLstPoderSolicutud();
+
             mostrarLstAsociadoSolicitud();
         }
 
@@ -898,6 +912,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             {
                 this._presentador.CargarInteresados();
             }
+
+            ocultarLstCorresponsalSolicutud();
+            ocultarLstAsociadoSolicitud();
+            ocultarLstPoderSolicutud();
+
             mostrarLstInteresadoSolicutud();
         }
 
@@ -929,6 +948,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             {
                 this._presentador.CargarCorresponsales();
             }
+
+            ocultarLstInteresadoSolicutud();
+            ocultarLstAsociadoSolicitud();
+            ocultarLstPoderSolicutud();
+
             mostrarLstCorresponsalSolicutud();
         }
 
@@ -991,8 +1015,12 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
         private void _txtPoderSolicitud_GotFocus(object sender, RoutedEventArgs e)
         {
             if (!this._poderesCargados)
-                this._presentador.CargarPoderes();    
-            
+                this._presentador.CargarPoderes();
+
+            ocultarLstCorresponsalSolicutud();
+            ocultarLstAsociadoSolicitud();
+            ocultarLstInteresadoSolicutud();
+
             mostrarLstPoderSolicitud();
         }
 
@@ -1023,6 +1051,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             {
                 this._presentador.CargarAsociados();
             }
+
+            ocultarLstPoderDatos();
+            ocultarLstCorresponsalDatos();
+            ocultarLstInteresadoDatos();
+
             mostrarLstAsocaidoDatos();
         }
 
@@ -1049,6 +1082,10 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             {
                 this._presentador.CargarInteresados();
             }
+
+            ocultarLstPoderDatos();
+            ocultarLstCorresponsalDatos();
+            ocultarLstAsociadoDatos();
 
             mostrarLstInteresadoDatos();
         }
@@ -1080,6 +1117,10 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
 
             if (!this._corresponsalesCargados)
                 this._presentador.CargarCorresponsales();
+
+            ocultarLstPoderDatos();
+            ocultarLstAsociadoDatos();
+            ocultarLstInteresadoDatos();
 
             mostrarLstCorresponsalDatos();
         }
@@ -1114,6 +1155,10 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
         {
             if (!this._poderesCargados)
                 this._presentador.CargarPoderes();
+
+            ocultarLstAsociadoDatos();
+            ocultarLstCorresponsalDatos();
+            ocultarLstInteresadoDatos();
 
             mostrarLstPoderDatos();
         }

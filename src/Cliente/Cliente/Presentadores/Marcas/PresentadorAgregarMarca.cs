@@ -145,9 +145,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 this._ventana.Detalles = tipoEstados;
 
                 IList<Servicio> servicios = this._servicioServicios.ConsultarTodos();
-                Servicio primerServicio = new Servicio();
-                primerServicio.Id = "NGN";
-                servicios.Insert(0, primerServicio);
+                //Servicio primerServicio = new Servicio();
+                //primerServicio.Id = "NGN";
+                //servicios.Insert(0, primerServicio);
                 this._ventana.Servicios = servicios;
 
                 IList<Boletin> boletines = this._boletinServicios.ConsultarTodos();
@@ -197,8 +197,6 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
         {
             try
             {
-
-
                 Marca marca = (Marca)this._ventana.Marca;
 
                 marca.Operacion = "CREATE";
@@ -237,7 +235,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                     marca.TipoRps = ((ListaDatosDominio)this._ventana.TipoReproduccion).Id[0];
 
                 if (null != this._ventana.TipoMarcaDatos)
-                    marca.Tipo = ((ListaDatosDominio)this._ventana.TipoMarcaDatos).Id;
+                    marca.Tipo = !((ListaDatosDominio)this._ventana.TipoMarcaDatos).Id.Equals("NGN") ? ((ListaDatosDominio)this._ventana.TipoMarcaDatos).Id : null;
                 
                 bool exitoso = this._marcaServicios.InsertarOModificar(marca, UsuarioLogeado.Hash);
 

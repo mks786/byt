@@ -2,6 +2,8 @@
 using System.Windows.Controls;
 using Trascend.Bolet.Cliente.Contratos.Marcas;
 using Trascend.Bolet.Cliente.Presentadores.Marcas;
+using System.Threading;
+using System.ComponentModel;
 
 namespace Trascend.Bolet.Cliente.Ventanas.Marcas
 {
@@ -12,10 +14,9 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
     {
         private PresentadorGestionarAnaqua _presentador;
         private bool _cargada;
+        BackgroundWorker bgw = new BackgroundWorker();
 
-        #region IAgregarAnaqua
-
-
+        #region IGestionarAnaqua
         public void FocoPredeterminado()
         {
             this._txtIdAnaqua.Focus();
@@ -64,11 +65,39 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             InitializeComponent();
             this._cargada = false;
             this._presentador = new PresentadorGestionarAnaqua(this, marca);
+
+            bgw.WorkerReportsProgress = true;
+            bgw.DoWork += new System.ComponentModel.DoWorkEventHandler(bgw_DoWork);
+            bgw.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(bgw_RunWorkerCompleted);
+            bgw.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(bgw_ProgressChanged);
+        }
+        void bgw_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
+        {
+            bgw.ReportProgress(1);
+            Thread.Sleep(2000);
+        }
+
+        void bgw_ProgressChanged(object sender, System.ComponentModel.ProgressChangedEventArgs e)
+        {
+            this._txtMensaje.Text = "Operación realizada exitósamente.";
+        }
+
+        void bgw_RunWorkerCompleted(object sender, System.ComponentModel.RunWorkerCompletedEventArgs e)
+        {
+            this._presentador.Regresar();
+        }
+
+        private void ejecutarTransaccion()
+        {
+            bgw.RunWorkerAsync();
         }
 
         private void _btnAceptar_Click(object sender, RoutedEventArgs e)
         {
-            this._presentador.Aceptar();
+            if (this._presentador.Aceptar())
+            {
+                ejecutarTransaccion();
+            }
         }
 
         private void _btnCancelar_Click(object sender, RoutedEventArgs e)

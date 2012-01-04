@@ -9,6 +9,9 @@ using Trascend.Bolet.Cliente.Ventanas.Principales;
 using Trascend.Bolet.ObjetosComunes.ContratosServicios;
 using Trascend.Bolet.ObjetosComunes.Entidades;
 using Trascend.Bolet.Cliente.Ventanas.Marcas;
+using System.ComponentModel;
+using System.Threading;
+using System.Windows.Media;
 
 namespace Trascend.Bolet.Cliente.Presentadores.Marcas
 {
@@ -18,8 +21,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
         private Marca _marca;
         private static PaginaPrincipal _paginaPrincipal = PaginaPrincipal.ObtenerInstancia;
         private static Logger logger = LogManager.GetCurrentClassLogger();
-        private IMarcaServicios _marcaServicios;
+        private IAnaquaServicios _anaquaServicios;
         private bool _nuevaAnaqua = false;
+
+        static BackgroundWorker _bw = new BackgroundWorker();
 
         /// <summary>
         /// Constructor predeterminado
@@ -36,8 +41,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 if (null == ((Marca)marca).Anaqua)
                     this._nuevaAnaqua = true;
 
-                this._marcaServicios = (IMarcaServicios)Activator.GetObject(typeof(IMarcaServicios),
-                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["MarcaServicios"]);
+                this._anaquaServicios = (IAnaquaServicios)Activator.GetObject(typeof(IAnaquaServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["AnaquaServicios"]);
             }
             catch (Exception ex)
             {
@@ -95,8 +100,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
         /// <summary>
         /// Método que realiza toda la lógica para agregar al Usuario dentro de la base de datos
         /// </summary>
-        public void Aceptar()
+        public bool Aceptar()
         {
+            bool retorno = false;
             try
             {
 
@@ -113,14 +119,15 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                     this._marca.Anaqua = (Anaqua)this._ventana.Anaqua;
 
                     this._marca.Anaqua.InsertarOModificar = true;
-                    this._marca.Operacion = "MODIFY";
+                    this._marca.Anaqua.Operacion = this._nuevaAnaqua ? "CREATE" : "MODIFY";
 
-                    bool exitoso = this._marcaServicios.InsertarOModificar((Marca)this._marca, UsuarioLogeado.Hash);
+                    bool exitoso = this._anaquaServicios.InsertarOModificar((Anaqua)this._marca.Anaqua, UsuarioLogeado.Hash);
 
                     if (exitoso)
-                        this.Navegar(new ConsultarMarca(this._marca));
+                    {
+                        retorno = true;
+                    }
                 }
-
             }
             catch (ApplicationException ex)
             {
@@ -142,6 +149,13 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 logger.Error(ex.Message);
                 this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
             }
+            return retorno;
+        }
+
+        private void imprimirMensajeExito(object sender, DoWorkEventArgs e)
+        {
+            this._ventana.TextoBotonModificar = (string)e.Argument;
+            Thread.Sleep(2000);
         }
     }
 }

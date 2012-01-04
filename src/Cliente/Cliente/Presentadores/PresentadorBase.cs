@@ -997,5 +997,28 @@ namespace Trascend.Bolet.Cliente.Presentadores
 
             return retorno;
         }
+
+        /// <summary>
+        /// Método que busca un Servicio dentro de una lista de Boletines
+        /// </summary>
+        /// <param name="servicios">Lista de Servicios</param>
+        /// <param name="boletinBuscado">Servicio a buscar</param>
+        /// <returns>Servicio dentro de la lista</returns>
+        public Servicio BuscarServicio(IList<Servicio> servicios, Servicio servicioBuscado)
+        {
+            Servicio retorno = null;
+
+            if (servicioBuscado != null)
+                foreach (Servicio servicio in servicios)
+                {
+                    if (servicio.Id == servicioBuscado.Id)
+                    {
+                        retorno = servicio;
+                        break;
+                    }
+                }
+
+            return retorno;
+        }
     }
 }

@@ -862,6 +862,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Marca modificada con éxito.
+        /// </summary>
+        internal static string MarcaModificada {
+            get {
+                return ResourceManager.GetString("MarcaModificada", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Medio insertado con éxito.
         /// </summary>
         internal static string MedioInsertado {

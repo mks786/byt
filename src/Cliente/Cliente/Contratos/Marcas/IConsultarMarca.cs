@@ -147,6 +147,8 @@ namespace Trascend.Bolet.Cliente.Contratos.Marcas
 
         void pintarInfoAdicional();
 
+        void pintarAnaqua();
+
         void pintarInfoBoles();
 
         GridViewColumnHeader CurSortCol { get; set; }

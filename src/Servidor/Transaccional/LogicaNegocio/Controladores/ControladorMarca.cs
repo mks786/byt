@@ -42,8 +42,8 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
                     comandoInteresadoContador = FabricaComandosContador.ObtenerComandoInsertarOModificar(contador);
                 }
 
-                ComandoBase<bool> comandoAnaqua = FabricaComandosAnaqua.ObtenerComandoInsertarOModificar(marca.Anaqua);
-                comandoAnaqua.Ejecutar();
+                //ComandoBase<bool> comandoAnaqua = FabricaComandosAnaqua.ObtenerComandoInsertarOModificar(marca.Anaqua);
+                //comandoAnaqua.Ejecutar();
 
                 Auditoria auditoria = new Auditoria();
                 ComandoBase<ContadorAuditoria> comandoContadorAuditoriaPoximoValor = FabricaComandosContadorAuditoria.ObtenerComandoConsultarPorId("SEG_AUDITORIA");

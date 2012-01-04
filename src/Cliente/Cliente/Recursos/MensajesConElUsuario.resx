@@ -489,4 +489,7 @@
   <data name="MarcaInsertada" xml:space="preserve">
     <value>Marca insertada con éxito</value>
   </data>
+  <data name="MarcaModificada" xml:space="preserve">
+    <value>Marca modificada con éxito</value>
+  </data>
 </root>

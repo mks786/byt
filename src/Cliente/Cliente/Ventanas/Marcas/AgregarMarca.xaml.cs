@@ -655,6 +655,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             {
                 this._presentador.CargarAsociados();
             }
+
+            ocultarLstCorresponsalSolicitud();
+            ocultarLstInteresadoSolicitud();
+            ocultarLstPoderSolicutud();
+
             mostrarLstAsociadoSolicitud();
         }
 
@@ -681,6 +686,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             {
                 this._presentador.CargarInteresados();
             }
+
+            ocultarLstCorresponsalSolicitud();
+            ocultarLstAsociadoSolicitud();
+            ocultarLstPoderSolicutud();
+
             mostrarLstInteresadoSolicitud();
         }
 
@@ -712,6 +722,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             {
                 this._presentador.CargarCorresponsales();
             }
+
+            ocultarLstInteresadoSolicitud();
+            ocultarLstAsociadoSolicitud();
+            ocultarLstPoderSolicutud();
+
             mostrarLstCorresponsalSolicitud();
         }
 
@@ -730,7 +745,12 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
         private void _txtPoderSolicitud_GotFocus(object sender, RoutedEventArgs e)
         {
             if (!this._poderesCargados)
-                this._presentador.CargarPoderes();    
+                this._presentador.CargarPoderes();
+
+
+            ocultarLstCorresponsalSolicitud();
+            ocultarLstAsociadoSolicitud();
+            ocultarLstInteresadoSolicitud();
 
             mostrarLstPoderSolicitud();
         }
@@ -793,6 +813,10 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
                 this._presentador.CargarAsociados();
             }
 
+            ocultarLstPoderDatos();
+            ocultarLstCorresponsalDatos();
+            ocultarLstInteresadoDatos();
+
             mostrarLstAsocaidoDatos();
         }
 
@@ -819,6 +843,10 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             {
                 this._presentador.CargarInteresados();
             }
+
+            ocultarLstPoderDatos();
+            ocultarLstCorresponsalDatos();
+            ocultarLstAsociadoDatos();
 
             mostrarLstInteresadoDatos();
         }
@@ -850,6 +878,10 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             if (!this._corresponsalesCargados)
                 this._presentador.CargarCorresponsales();
 
+            ocultarLstPoderDatos();
+            ocultarLstAsociadoDatos();
+            ocultarLstInteresadoDatos();
+
             mostrarLstCorresponsalDatos();
         }
 
@@ -869,6 +901,10 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
         {
             if (!this._poderesCargados)
                 this._presentador.CargarPoderes();
+
+            ocultarLstAsociadoDatos();
+            ocultarLstCorresponsalDatos();
+            ocultarLstInteresadoDatos();
 
             mostrarLstPoderDatos();
         }
