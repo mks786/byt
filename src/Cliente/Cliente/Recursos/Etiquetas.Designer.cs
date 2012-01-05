@@ -1213,6 +1213,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Colores:.
+        /// </summary>
+        public static string lblColores {
+            get {
+                return ResourceManager.GetString("lblColores", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Comentario:.
         /// </summary>
         public static string lblComentario {
@@ -2545,6 +2554,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cod. Búsq..
+        /// </summary>
+        public static string lsvCodigoBusqueda {
+            get {
+                return ResourceManager.GetString("lsvCodigoBusqueda", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to CodRes.
         /// </summary>
         public static string lsvCodRes {
@@ -2689,6 +2707,24 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to F/ Búsq. Diseño.
+        /// </summary>
+        public static string lsvFechaBusquedaDiseno {
+            get {
+                return ResourceManager.GetString("lsvFechaBusquedaDiseno", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to F /Búsq. Palabra.
+        /// </summary>
+        public static string lsvFechaBusquedaPalabra {
+            get {
+                return ResourceManager.GetString("lsvFechaBusquedaPalabra", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Fecha Entrada.
         /// </summary>
         public static string lsvFechaEntrada {
@@ -2712,6 +2748,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string lsvFechaIngreso {
             get {
                 return ResourceManager.GetString("lsvFechaIngreso", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to F /Resultado.
+        /// </summary>
+        public static string lsvFechaResultado {
+            get {
+                return ResourceManager.GetString("lsvFechaResultado", resourceCulture);
             }
         }
         
@@ -2865,6 +2910,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string lsvTipo {
             get {
                 return ResourceManager.GetString("lsvTipo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to T /Búsqueda.
+        /// </summary>
+        public static string lsvTipoBusqueda {
+            get {
+                return ResourceManager.GetString("lsvTipoBusqueda", resourceCulture);
             }
         }
         

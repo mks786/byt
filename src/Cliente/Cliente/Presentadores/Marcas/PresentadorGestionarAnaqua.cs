@@ -38,8 +38,13 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 this._marca = (Marca)marca;
                 this._ventana.Anaqua = null != ((Marca)marca).Anaqua ? ((Marca)marca).Anaqua : new Anaqua(this._marca.Id);
 
+                this._ventana.DatosMarca(((Marca)marca).CodigoRegistro, ((Marca)marca).CodigoInscripcion);
+                
+
                 if (null == ((Marca)marca).Anaqua)
+                {
                     this._nuevaAnaqua = true;
+                }
 
                 this._anaquaServicios = (IAnaquaServicios)Activator.GetObject(typeof(IAnaquaServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["AnaquaServicios"]);
@@ -120,6 +125,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
 
                     this._marca.Anaqua.InsertarOModificar = true;
                     this._marca.Anaqua.Operacion = this._nuevaAnaqua ? "CREATE" : "MODIFY";
+                    if (this._marca.Anaqua.Colores == null)
+                        this._marca.Anaqua.Colores = "F";
+                    this._marca.Anaqua.Usuario = UsuarioLogeado;
 
                     bool exitoso = this._anaquaServicios.InsertarOModificar((Anaqua)this._marca.Anaqua, UsuarioLogeado.Hash);
 

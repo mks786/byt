@@ -14,9 +14,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
     {
         private PresentadorGestionarAnaqua _presentador;
         private bool _cargada;
-        BackgroundWorker bgw = new BackgroundWorker();
+        private BackgroundWorker _bgw = new BackgroundWorker();
+        private object _marca;
 
         #region IGestionarAnaqua
+
         public void FocoPredeterminado()
         {
             this._txtIdAnaqua.Focus();
@@ -33,11 +35,10 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             set
             {
                 this._txtIdAnaqua.IsEnabled = value;
-                this._txtRegistro.IsEnabled = value;
-                this._txtSolicitud.IsEnabled = value;
                 this._txtComentario.IsEnabled = value;
                 this._txtBKId.IsEnabled = value;
                 this._txtDistingueIngles.IsEnabled = value;
+                this._chkColores.IsEnabled = value;
             }
         }
 
@@ -58,6 +59,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             MessageBox.Show(mensaje, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
         }
 
+        public void DatosMarca(string codigoRegistro, string codigoSolicitud)
+        {
+            this._txtSolicitud.Text = codigoSolicitud;
+            this._txtRegistro.Text = codigoRegistro;
+        }
         #endregion
 
         public GestionarAnaqua(object marca)
@@ -65,31 +71,32 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             InitializeComponent();
             this._cargada = false;
             this._presentador = new PresentadorGestionarAnaqua(this, marca);
+            this._marca = marca;
 
-            bgw.WorkerReportsProgress = true;
-            bgw.DoWork += new System.ComponentModel.DoWorkEventHandler(bgw_DoWork);
-            bgw.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(bgw_RunWorkerCompleted);
-            bgw.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(bgw_ProgressChanged);
+            _bgw.WorkerReportsProgress = true;
+            _bgw.DoWork += new System.ComponentModel.DoWorkEventHandler(bgw_DoWork);
+            _bgw.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(bgw_RunWorkerCompleted);
+            _bgw.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(bgw_ProgressChanged);
         }
         void bgw_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
         {
-            bgw.ReportProgress(1);
+            _bgw.ReportProgress(1);
             Thread.Sleep(2000);
         }
 
         void bgw_ProgressChanged(object sender, System.ComponentModel.ProgressChangedEventArgs e)
         {
-            this._txtMensaje.Text = "Operación realizada exitósamente.";
+            this._txtMensaje.Text = "Operación realizada exitósamente";
         }
 
         void bgw_RunWorkerCompleted(object sender, System.ComponentModel.RunWorkerCompletedEventArgs e)
         {
-            this._presentador.Regresar();
+            this._presentador.Navegar(new ConsultarMarca(this._marca));
         }
 
         private void ejecutarTransaccion()
         {
-            bgw.RunWorkerAsync();
+            _bgw.RunWorkerAsync();
         }
 
         private void _btnAceptar_Click(object sender, RoutedEventArgs e)

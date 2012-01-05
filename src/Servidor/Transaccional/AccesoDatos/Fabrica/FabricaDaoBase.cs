@@ -332,5 +332,11 @@ namespace Trascend.Bolet.AccesoDatos.Fabrica
         /// <returns>IDaoInfoBol</returns>
         public abstract IDaoInfoBol ObtenerDaoInfoBol();
 
+        /// <summary>
+        /// Método que devuelve el DaoBusqueda del manejador que se esté utilizando
+        /// </summary>
+        /// <returns>IDaoBusqueda</returns>
+        public abstract IDaoBusqueda ObtenerDaoBusqueda();
+
     }
 }

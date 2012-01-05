@@ -1465,4 +1465,22 @@
   <data name="cbiTomo" xml:space="preserve">
     <value>TOMO</value>
   </data>
+  <data name="lblColores" xml:space="preserve">
+    <value>Colores:</value>
+  </data>
+  <data name="lsvCodigoBusqueda" xml:space="preserve">
+    <value>Cod. Búsq.</value>
+  </data>
+  <data name="lsvFechaBusquedaDiseno" xml:space="preserve">
+    <value>F/ Búsq. Diseño</value>
+  </data>
+  <data name="lsvFechaBusquedaPalabra" xml:space="preserve">
+    <value>F /Búsq. Palabra</value>
+  </data>
+  <data name="lsvFechaResultado" xml:space="preserve">
+    <value>F /Resultado</value>
+  </data>
+  <data name="lsvTipoBusqueda" xml:space="preserve">
+    <value>T /Búsqueda</value>
+  </data>
 </root>

@@ -12,7 +12,10 @@
     <property name="Comentario" column="COMENTARIOS" type="string"/>
     <property name="Distingue" column="DISTINGUE" type="string"/>
     <property name="TimeStamp" column="TIMESTAMP" type="DateTime"/>
-    <property name="Usuario" column="USUARIO" type="string"/>
+
+    <many-to-one name="Usuario" class="Usuario">
+      <column name="USUARIO"/>
+    </many-to-one>
     
   </class>
 </hibernate-mapping>

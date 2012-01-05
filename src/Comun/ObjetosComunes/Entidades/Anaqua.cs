@@ -14,10 +14,11 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         private string _colores;
         private string _comentario;
         private string _distingue;
-        private string _usuario;
+        private Usuario _usuario;
         private DateTime? _timeStamp;
         private string _operacion;
         private bool _insertarOModificar;
+        private Marca _marca;
 
         #endregion
 
@@ -81,6 +82,28 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
             get { return _colores; }
             set { _colores = value; }
         }
+
+
+        /// <summary>
+        /// Propiedad que asigna u obtiene el booleano de colores
+        /// </summary>
+        public virtual bool BColores
+        {
+            get
+            {
+                if (this.Colores != null && this.Colores.Equals("T"))
+                    return true;
+                else
+                    return false;
+            }
+            set
+            {
+                if (value)
+                    this.Colores = "T";
+                else
+                    this.Colores = "F";
+            }
+        }
         public virtual string Comentario
         {
             get { return _comentario; }
@@ -93,7 +116,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
             set { _distingue = value; }
         }
 
-        public virtual string Usuario
+        public virtual Usuario Usuario
         {
             get { return _usuario; }
             set { _usuario = value; }
@@ -115,6 +138,12 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         {
             get { return _insertarOModificar; }
             set { _insertarOModificar = value; }
+        }
+
+        public virtual Marca Marca
+        {
+            get { return _marca; }
+            set { _marca = value; }
         }
 
         #endregion
