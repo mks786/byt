@@ -295,6 +295,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ¿Seguro que desea eliminar la info Bol?.
+        /// </summary>
+        internal static string ConfirmacionEliminarInfoBol {
+            get {
+                return ResourceManager.GetString("ConfirmacionEliminarInfoBol", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ¿Seguro que desea eliminar el interesado?.
         /// </summary>
         internal static string ConfirmacionEliminarInteresado {

@@ -1462,4 +1462,7 @@
   <data name="lsvTipo" xml:space="preserve">
     <value>Tipo</value>
   </data>
+  <data name="cbiTomo" xml:space="preserve">
+    <value>TOMO</value>
+  </data>
 </root>

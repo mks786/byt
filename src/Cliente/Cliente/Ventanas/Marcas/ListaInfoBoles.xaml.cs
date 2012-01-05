@@ -94,7 +94,10 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
 
         private void EventoIrGestionarInfoBol(object sender, EventArgs e)
         {
-            this._presentador.IrGestionarInfoBol();
+            if (sender.GetType().ToString().Equals("System.Windows.Controls.Button"))
+                this._presentador.IrGestionarInfoBol(true);
+            else
+                this._presentador.IrGestionarInfoBol(false);
         }
     }
 }

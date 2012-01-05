@@ -74,14 +74,14 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
         /// <summary>
         /// Método que invoca una nueva página "GestionarInfoBol" y la instancia con el objeto seleccionado
         /// </summary>
-        public void IrGestionarInfoBol()
+        public void IrGestionarInfoBol(bool nuevo)
         {
             #region trace
             if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
                 logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
 
-            if (this._ventana.InfoBolSeleccionado != null)
+            if (!nuevo)
             {
                 ((InfoBol)this._ventana.InfoBolSeleccionado).Marca = this._marca;
                 this.Navegar(new GestionarInfoBol(this._ventana.InfoBolSeleccionado));
@@ -90,6 +90,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             {
                 InfoBol infoBol = new InfoBol();
                 infoBol.Marca = this._marca;
+                infoBol.Id = int.MinValue;
                 this.Navegar(new GestionarInfoBol(infoBol));
             }
 

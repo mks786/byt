@@ -16,7 +16,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
     {
         private PresentadorGestionarInfoAdicional _presentador;
         private bool _cargada;
-        BackgroundWorker bgw = new BackgroundWorker();
+        BackgroundWorker _bgw = new BackgroundWorker();
 
         #region IAgregarInfoAdicional
 
@@ -62,23 +62,23 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             this._cargada = false;
             this._presentador = new PresentadorGestionarInfoAdicional(this, marca);
 
-            bgw.WorkerReportsProgress = true;
-            bgw.DoWork += new System.ComponentModel.DoWorkEventHandler(bgw_DoWork);
-            bgw.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(bgw_RunWorkerCompleted);
-            bgw.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(bgw_ProgressChanged);
+            _bgw.WorkerReportsProgress = true;
+            _bgw.DoWork += new System.ComponentModel.DoWorkEventHandler(bgw_DoWork);
+            _bgw.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(bgw_RunWorkerCompleted);
+            _bgw.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(bgw_ProgressChanged);
         }
 
         private void _btnAceptar_Click(object sender, RoutedEventArgs e)
         {
             if (this._presentador.Aceptar())
             {
-                ejecutarTransaccion();
+                _bgw.RunWorkerAsync();
             }
         }
 
         void bgw_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
         {
-            bgw.ReportProgress(1);
+            _bgw.ReportProgress(1);
             Thread.Sleep(2000);
         }
 
@@ -90,11 +90,6 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
         void bgw_RunWorkerCompleted(object sender, System.ComponentModel.RunWorkerCompletedEventArgs e)
         {
             this._presentador.Regresar();
-        }
-
-        private void ejecutarTransaccion()
-        {
-            bgw.RunWorkerAsync();
         }
 
         private void _btnCancelar_Click(object sender, RoutedEventArgs e)

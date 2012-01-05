@@ -7,8 +7,10 @@
       xmlns:reglas="clr-namespace:Trascend.Bolet.Cliente.Validaciones"
       d:DesignHeight="550" d:DesignWidth="800"
       xmlns:recurso="clr-namespace:Trascend.Bolet.Cliente.Recursos"
+      xmlns:conv="clr-namespace:Trascend.Bolet.Cliente.Transformadores"
 	Title="{x:Static recurso:Etiquetas.titleAgregarAgente}" Loaded="Page_Loaded">
     <Page.Resources>
+        <conv:DosValresAUno x:Key="convertirADosValores"></conv:DosValresAUno>
         <Style TargetType="{x:Type DatePickerTextBox}">
             <Setter Property="Text" Value="{x:Static recurso:Etiquetas.dpkText}" />
         </Style>
@@ -32,10 +34,16 @@
                         DataContext="{Binding}">
                 <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
                     <Label>
+                        <TextBlock Text="{x:Static recurso:Etiquetas.lblTipo}"/>
+                    </Label>
+                    <ComboBox Name="_cbxTipo" HorizontalAlignment="Left" Width="180" Height="20" IsEnabled="False"
+                              ItemsSource="{Binding}" DisplayMemberPath="Descripcion" SelectedIndex="0"/>
+                </WrapPanel>
+                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
+                    <Label>
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblBoletin}"/>
                     </Label>
-                    <ComboBox Width="180" Name="_cbxBoletin" Height="20" IsEnabled="False"
-                                  ItemsSource="{Binding}" SelectedIndex="0">
+                    <ComboBox Name="_cbxBoletin" Width="180" ItemsSource="{Binding}" IsEnabled="False">
                         <ComboBox.ItemTemplate>
                             <DataTemplate>
                                 <TextBlock>
@@ -52,14 +60,6 @@
                 </WrapPanel>
                 <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
                     <Label>
-                        <TextBlock Text="{x:Static recurso:Etiquetas.lblTipo}"/>
-                    </Label>
-                    <ComboBox IsEnabled="False" Width="180" 
-                              Name="_cbxTipoInfoBol" Height="20" ItemsSource="{Binding}" >
-                    </ComboBox>
-                </WrapPanel>
-                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
-                    <Label>
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblCambio}"/>
                     </Label>
                     <TextBox IsEnabled="False" Width="180" MaxLength="2000" Name="_txtCambio" VerticalAlignment="Center" 
@@ -69,9 +69,8 @@
                     <Label>
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblTomo}"/>
                     </Label>
-                    <ComboBox IsEnabled="False" Width="180" 
-                              Name="_cbxTomo" Height="20" ItemsSource="{Binding}" >
-                    </ComboBox>
+                    <ComboBox Name="_cbxTomo" HorizontalAlignment="Left" Width="180" Height="20" IsEnabled="False"
+                              ItemsSource="{Binding}" DisplayMemberPath="Descripcion" SelectedIndex="0"/>
                 </WrapPanel>
                 <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
                     <Label>
@@ -115,10 +114,14 @@
             </StackPanel>
         </GroupBox>
 
-        <WrapPanel Grid.Column="3" Grid.Row="2" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="5" Orientation="Horizontal">
+        <WrapPanel Grid.Row="2" Grid.ColumnSpan="3" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="5" Orientation="Horizontal">
             <Button Name="_btnAceptar"  VerticalAlignment="Bottom" Height="25" Width="90" 
                     Click="_btnAceptar_Click" IsDefault="True">
                 <TextBlock Name="_txbAceptar" Text="{x:Static recurso:Etiquetas.btnModificar}"/>
+            </Button>
+            <Button Name="_btnEliminar" VerticalAlignment="Bottom" Height="25" Width="90"
+                    Click="_btnEliminar_Click">
+                <TextBlock Name="_txbEliminar" Text="{x:Static recurso:Etiquetas.btnEliminar}"/>
             </Button>
             <Button Name="_btnCancelar" VerticalAlignment="Bottom" Height="25" Width="90" Click="_btnCancelar_Click">Cancelar</Button>
         </WrapPanel>

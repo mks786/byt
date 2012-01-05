@@ -87,7 +87,7 @@
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblId}"/>
                     </Label>
                     <TextBox IsEnabled="False" Grid.Column="1" Grid.Row="1" Name="_txtIdSolicitud" VerticalAlignment="Center"  
-                          Grid.ColumnSpan="3" MaxLength="255" Margin="3"
+                          Grid.ColumnSpan="3" MaxLength="255"
                              ToolTip="{Binding ElementName=_txtIdDatos, Path=(Validation.Errors)[0].ErrorContent}">
                         <TextBox.Text>
                             <Binding Path="Id" UpdateSourceTrigger="PropertyChanged">
@@ -773,7 +773,7 @@
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblId}"/>
                     </Label>
                     <TextBox Grid.Column="1" Grid.Row="0" Name="_txtIdDatos" VerticalAlignment="Bottom"  
-                          Grid.ColumnSpan="3" MaxLength="255" IsEnabled="False" Margin="3"
+                          Grid.ColumnSpan="3" MaxLength="255" IsEnabled="False"
                              ToolTip="{Binding ElementName=_txtIdDatos, Path=(Validation.Errors)[0].ErrorContent}">
                         <TextBox.Text>
                             <Binding Path="Id" UpdateSourceTrigger="PropertyChanged">

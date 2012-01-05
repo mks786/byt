@@ -489,6 +489,9 @@
   <data name="MarcaInsertada" xml:space="preserve">
     <value>Marca insertada con éxito</value>
   </data>
+  <data name="ConfirmacionEliminarInfoBol" xml:space="preserve">
+    <value>¿Seguro que desea eliminar la info Bol?</value>
+  </data>
   <data name="MarcaModificada" xml:space="preserve">
     <value>Marca modificada con éxito</value>
   </data>

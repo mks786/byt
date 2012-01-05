@@ -889,6 +889,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to TOMO.
+        /// </summary>
+        public static string cbiTomo {
+            get {
+                return ResourceManager.GetString("cbiTomo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Viudo(a).
         /// </summary>
         public static string cbiViudo {

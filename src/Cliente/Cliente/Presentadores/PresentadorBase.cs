@@ -293,6 +293,24 @@ namespace Trascend.Bolet.Cliente.Presentadores
             return retorno;
         }
 
+        /// <summary>
+        /// Busca el tomo de entre una lista de valores
+        /// </summary>
+        /// <param name="tomoBuscado">Tomo buscado</param>
+        /// <returns>El tomo correspondiente</returns>
+        public ListaDatosDominio BuscarTomos(IList<ListaDatosDominio> tomos, string tomoBuscado)
+        {
+            ListaDatosDominio retorno = new ListaDatosDominio();
+
+            foreach (ListaDatosDominio dato in tomos)
+            {
+                if (dato.Id.Equals(tomoBuscado))
+                    retorno = dato;
+            }
+
+            return retorno;
+        }
+
 
         /// <summary>
         /// Busca el tipo de destinatario correspondiente a la inicial que se le esté pasando
@@ -639,6 +657,29 @@ namespace Trascend.Bolet.Cliente.Presentadores
                     if (tipoCliente.Id.Equals(tipoClienteBuscado.Id))
                     {
                         retorno = tipoCliente;
+                        break;
+                    }
+                }
+
+            return retorno;
+        }
+
+        /// <summary>
+        /// Método que busca un estado dentro de una lista de TipoInfoboles
+        /// </summary>
+        /// <param name="tipoInfoboles">Lista de TipoInfoboles</param>
+        /// <param name="tipoInfobolBuscado">TipoInfobol a buscar</param>
+        /// <returns>TipoInfobol dentro de la lista</returns>
+        public TipoInfobol BuscarTipoInfobol(IList<TipoInfobol> tipoInfoboles, TipoInfobol tipoInfobolBuscado)
+        {
+            TipoInfobol retorno = null;
+
+            if (tipoInfobolBuscado != null)
+                foreach (TipoInfobol tipoInfobol in tipoInfoboles)
+                {
+                    if (tipoInfobol.Id.Equals(tipoInfobolBuscado.Id.Substring(0,tipoInfobol.Id.Length)))
+                    {
+                        retorno = tipoInfobol;
                         break;
                     }
                 }
