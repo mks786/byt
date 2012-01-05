@@ -1,15 +1,15 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Configuration;
 using System.Net.Sockets;
 using System.Runtime.Remoting;
 using System.Windows.Input;
 using NLog;
 using Trascend.Bolet.Cliente.Contratos.Marcas;
+using Trascend.Bolet.Cliente.Ventanas.Auditorias;
 using Trascend.Bolet.Cliente.Ventanas.Principales;
 using Trascend.Bolet.ObjetosComunes.ContratosServicios;
 using Trascend.Bolet.ObjetosComunes.Entidades;
-using System.Threading;
-using Trascend.Bolet.Cliente.Ventanas.Marcas;
 
 namespace Trascend.Bolet.Cliente.Presentadores.Marcas
 {
@@ -20,6 +20,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
         private static PaginaPrincipal _paginaPrincipal = PaginaPrincipal.ObtenerInstancia;
         private static Logger logger = LogManager.GetCurrentClassLogger();
         private IInfoAdicionalServicios _infoAdicionalServicios;
+        private IList<Auditoria> _auditorias;
         private bool _nuevaInfoAdicional = false;
 
         /// <summary>
@@ -65,7 +66,18 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 {
                     this._ventana.HabilitarCampos = true;
                     this._ventana.TextoBotonModificar = Recursos.Etiquetas.btnAceptar;
+                    this._ventana.OculatarControlesAlAgregar();
                 }
+
+                Auditoria auditoria = new Auditoria();
+                int id = int.Parse(((InfoAdicional)this._ventana.InfoAdicional).Id.Substring(2));
+                auditoria.Fk = id;
+                auditoria.Tabla = "MYP_ADICIONAL";
+
+                _auditorias = this._infoAdicionalServicios.AuditoriaPorFkyTabla(auditoria);
+
+                if (_auditorias.Count > 0)
+                    this._ventana.PintarAuditoria();
 
                 this._ventana.FocoPredeterminado();
             }
@@ -144,6 +156,46 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             }
 
             return exitoso;
+        }
+
+        public void Auditoria()
+        {
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+
+                this.Navegar(new ListaAuditorias(_auditorias));
+
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (ApplicationException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(ex.Message, true);
+            }
+            catch (RemotingException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorRemoting, true);
+            }
+            catch (SocketException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorConexionServidor, true);
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
+            }
         }
     }
 }

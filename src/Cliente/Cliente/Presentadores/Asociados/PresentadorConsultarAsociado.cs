@@ -339,7 +339,6 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
             #endregion
         }
 
-
         public void Auditoria()
         {
             try

@@ -6,6 +6,7 @@ using System;
 using System.Windows.Threading;
 using System.ComponentModel;
 using System.Threading;
+using System.Windows.Media;
 
 namespace Trascend.Bolet.Cliente.Ventanas.Marcas
 {
@@ -20,6 +21,10 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
 
         #region IAgregarInfoAdicional
 
+        public void OculatarControlesAlAgregar()
+        {
+            this._btnAuditoria.Visibility = System.Windows.Visibility.Collapsed;
+        }
 
         public void FocoPredeterminado()
         {
@@ -52,6 +57,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
         {
             get { return this._gridDatos.DataContext; }
             set { this._gridDatos.DataContext = value; }
+        }
+
+        public void PintarAuditoria()
+        {
+            this._btnAuditoria.Background = Brushes.LightGreen;
         }
 
         #endregion
@@ -104,6 +114,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
                 this._presentador.CargarPagina();
                 EstaCargada = true;
             }
+        }
+
+        private void _btnAuditoria_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.Auditoria();
         }
     }
 }

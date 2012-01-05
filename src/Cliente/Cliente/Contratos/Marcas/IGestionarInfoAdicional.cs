@@ -11,5 +11,8 @@ namespace Trascend.Bolet.Cliente.Contratos.Marcas
 
         string TextoBotonModificar { get; set; }
 
+        void PintarAuditoria();
+
+        void OculatarControlesAlAgregar();
     }
 }
