@@ -769,11 +769,11 @@
                     </Grid.RowDefinitions>
 
                     <!--Primera Fila-->
-                    <Label Grid.Column="0" Grid.Row="0" VerticalAlignment="Bottom" HorizontalContentAlignment="Right">
+                    <Label Grid.Column="0" Grid.Row="0" VerticalAlignment="Bottom" HorizontalContentAlignment="Right" IsEnabled="False" Margin="0,0,0,5">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblId}"/>
                     </Label>
                     <TextBox Grid.Column="1" Grid.Row="0" Name="_txtIdDatos" VerticalAlignment="Bottom"  
-                          Grid.ColumnSpan="3" MaxLength="255" IsEnabled="False"
+                          Grid.ColumnSpan="3" MaxLength="255" IsEnabled="False" Margin="0,0,0,5"
                              ToolTip="{Binding ElementName=_txtIdDatos, Path=(Validation.Errors)[0].ErrorContent}">
                         <TextBox.Text>
                             <Binding Path="Id" UpdateSourceTrigger="PropertyChanged">
@@ -783,11 +783,11 @@
                             </Binding>
                         </TextBox.Text>
                     </TextBox>
-                    <Label Grid.Column="4" Grid.Row="0" VerticalAlignment="Bottom" HorizontalContentAlignment="Right">
-                        <TextBlock Text="{x:Static recurso:Etiquetas.lblMarca}"/>
+                    <Label Grid.Column="4" Grid.Row="0" VerticalAlignment="Bottom" HorizontalContentAlignment="Right" IsEnabled="False" Margin="0,0,0,5">
+                        <TextBlock Text="{x:Static recurso:Etiquetas.lblMarca}" />
                     </Label>
                     <TextBox IsEnabled="False" Grid.Column="5" Grid.Row="0" Name="_txtDescripcionDatos" VerticalAlignment="Bottom"  
-                         Margin="3" Grid.ColumnSpan="7" MaxLength="255"
+                         Grid.ColumnSpan="7" MaxLength="255" Margin="3,0,0,5"
                              ToolTip="{Binding ElementName=_txtDescripcionDatos, Path=(Validation.Errors)[0].ErrorContent}">
                         <TextBox.Text>
                             <Binding Path="Descripcion" UpdateSourceTrigger="PropertyChanged">

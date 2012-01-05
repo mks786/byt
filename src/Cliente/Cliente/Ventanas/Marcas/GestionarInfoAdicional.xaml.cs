@@ -99,7 +99,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
 
         void bgw_RunWorkerCompleted(object sender, System.ComponentModel.RunWorkerCompletedEventArgs e)
         {
-            this._presentador.Regresar();
+            this._presentador.irConsultarMarca();
         }
 
         private void _btnCancelar_Click(object sender, RoutedEventArgs e)

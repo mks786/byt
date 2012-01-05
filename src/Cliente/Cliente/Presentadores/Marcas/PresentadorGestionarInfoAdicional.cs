@@ -10,6 +10,7 @@ using Trascend.Bolet.Cliente.Ventanas.Auditorias;
 using Trascend.Bolet.Cliente.Ventanas.Principales;
 using Trascend.Bolet.ObjetosComunes.ContratosServicios;
 using Trascend.Bolet.ObjetosComunes.Entidades;
+using Trascend.Bolet.Cliente.Ventanas.Marcas;
 
 namespace Trascend.Bolet.Cliente.Presentadores.Marcas
 {
@@ -130,6 +131,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                     
                     infoAdicional.Operacion = this._nuevaInfoAdicional ? "CREATE" : "MODIFY";
 
+                    this._marca.InfoAdicional = infoAdicional;
+
                     exitoso = this._infoAdicionalServicios.InsertarOModificar(infoAdicional, UsuarioLogeado.Hash);
 
                 }
@@ -196,6 +199,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 logger.Error(ex.Message);
                 this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
             }
+        }
+
+        public void irConsultarMarca()
+        {
+            this.Navegar(new ConsultarMarca(this._marca));
         }
     }
 }
