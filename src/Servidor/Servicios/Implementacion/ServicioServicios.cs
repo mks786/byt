@@ -20,14 +20,14 @@ namespace Trascend.Bolet.Servicios.Implementacion
         {
             #region trace
             if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
-                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
 
             IList<Servicio> servicios = ControladorServicio.ConsultarTodos();
 
             #region trace
             if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
-                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                logger.Debug("Saliendo del Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
 
             return servicios;
@@ -49,14 +49,14 @@ namespace Trascend.Bolet.Servicios.Implementacion
         {
             #region trace
             if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
-                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
 
             bool exitoso = ControladorServicio.InsertarOModificar(servicio, hash);
 
             #region trace
             if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
-                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                logger.Debug("Saliendo del Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
 
             return exitoso;
@@ -72,14 +72,14 @@ namespace Trascend.Bolet.Servicios.Implementacion
         {
             #region trace
             if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
-                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
 
             bool exitoso = ControladorServicio.Eliminar(servicio, hash);
 
             #region trace
             if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
-                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                logger.Debug("Saliendo del Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
 
             return exitoso;
@@ -90,14 +90,14 @@ namespace Trascend.Bolet.Servicios.Implementacion
         {
             #region trace
             if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
-                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
 
             bool exitoso = ControladorServicio.VerificarExistencia(servicio);
 
             #region trace
             if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
-                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                logger.Debug("Saliendo del Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
 
             return exitoso;

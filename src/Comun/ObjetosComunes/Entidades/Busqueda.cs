@@ -9,14 +9,14 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         #region Atributos
 
         private int _id;
-        private int _idMarca;
+        private Marca _marca;
         private int _paginaDiseno;
         private int _paginaPalabra;
         private int _reciboDiseno;
-        private int _pedidoDiseno;
         private int _reciboPalabra;
         private int _pedidoPalabra;
-        private char _tipoBus;
+        private int _pedidoDiseno;
+        private char? _tipoBusqueda;
         private string _codVienaDis;
         private DateTime? _fechaBusquedaPalabra;
         private DateTime? _fechaConsigDiseno;
@@ -25,6 +25,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         private DateTime? _fechaConsigPalabra;
         private DateTime? _fechaSolicitudPalabra;
 
+        private ListaDatosDominio _tipoBusquedaDatosDominio;
 
         #endregion
 
@@ -63,10 +64,10 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         /// <summary>
         /// Propiedad que asigna u obtiene el IdMarca de la busqueda
         /// </summary>
-        public virtual int IdMarca
+        public virtual Marca Marca
         {
-            get { return _idMarca; }
-            set { _idMarca = value; }
+            get { return _marca; }
+            set { _marca = value; }
         }
 
         /// <summary>
@@ -124,15 +125,6 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         }
 
         /// <summary>
-        /// Propiedad que asigna u obtiene el TipoBus de la busqueda
-        /// </summary>
-        public virtual char TipoBus
-        {
-            get { return _tipoBus; }
-            set { _tipoBus = value; }
-        }
-
-        /// <summary>
         /// Propiedad que asigna u obtiene el CodVienaDis de la busqueda
         /// </summary>
         public virtual string CodVienaDis
@@ -164,10 +156,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         /// </summary>
         public virtual DateTime? FechaBusquedaDiseno
         {
-          
-        /// <summary>
-        /// Propiedad que asigna u obtiene el IdMarca de la busqueda
-        /// </summary>  get { return _fechaBusquedaDiseno; }
+            get { return _fechaBusquedaDiseno; }
             set { _fechaBusquedaDiseno = value; }
         }
 
@@ -196,6 +185,21 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         {
             get { return _fechaSolicitudPalabra; }
             set { _fechaSolicitudPalabra = value; }
+        }
+
+        /// <summary>
+        /// Propiedad que asigna u obtiene el TipoBusqueda de la busqueda
+        /// </summary>
+        public virtual char? TipoBusqueda
+        {
+            get { return this._tipoBusqueda; }
+            set { this._tipoBusqueda = value; }
+        }
+
+        public virtual ListaDatosDominio TipoBusquedaDatosDominio
+        {
+            get { return _tipoBusquedaDatosDominio; }
+            set { _tipoBusquedaDatosDominio = value; }
         }
 
         #endregion

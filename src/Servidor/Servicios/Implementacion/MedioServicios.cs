@@ -20,14 +20,14 @@ namespace Trascend.Bolet.Servicios.Implementacion
         {
             #region trace
             if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
-                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
 
             IList<Medio> anexos = ControladorMedio.ConsultarTodos();
 
             #region trace
             if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
-                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                logger.Debug("Saliendo del Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
 
             return anexos;
@@ -49,14 +49,14 @@ namespace Trascend.Bolet.Servicios.Implementacion
         {
             #region trace
             if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
-                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
 
             bool exitoso = ControladorMedio.InsertarOModificar(medio, hash);
 
             #region trace
             if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
-                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                logger.Debug("Saliendo del Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
 
             return exitoso;
@@ -72,21 +72,21 @@ namespace Trascend.Bolet.Servicios.Implementacion
         {
             #region trace
             if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
-                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
 
             bool exitoso = ControladorMedio.Eliminar(medio, hash);
 
             #region trace
             if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
-                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                logger.Debug("Saliendo del Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
 
             return exitoso;
         }
 
         /// <summary>
-        /// Metodo que verifica si un Medio ya existe en el sistema
+        /// Método que verifica si un Medio ya existe en el sistema
         /// </summary>
         /// <param name="anexo">Medio a buscar</param>
         /// <returns>true si lo encontro, false en lo contrario</returns>
@@ -94,14 +94,14 @@ namespace Trascend.Bolet.Servicios.Implementacion
         {
             #region trace
             if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
-                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
 
             bool exitoso = ControladorMedio.VerificarExistencia(medio);
 
             #region trace
             if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
-                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                logger.Debug("Saliendo del Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
 
             return exitoso;

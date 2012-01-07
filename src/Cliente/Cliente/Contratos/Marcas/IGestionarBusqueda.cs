@@ -5,15 +5,17 @@ namespace Trascend.Bolet.Cliente.Contratos.Marcas
 {
     interface IGestionarBusqueda : IPaginaBase
     {
-        object InfoBol { get; set; }
+        object Busqueda { get; set; }
 
-        object Boletin { get; set; }
+        object TiposBusqueda { get; set; }
+
+        object TipoBusqueda { get; set; }
 
         bool HabilitarCampos { set; }
 
         string TextoBotonModificar { get; set; }
 
-        void OculatarControlesAlAgregar();
+        void OcultarControlesAlAgregar();
 
     }
 }

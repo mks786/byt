@@ -23,14 +23,14 @@ namespace Trascend.Bolet.Servicios.Implementacion
             {
                 #region trace
                 if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
-                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                    logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
                 marcas = ControladorMarca.ConsultarTodos();
 
                 #region trace
                 if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
-                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                    logger.Debug("Saliendo del Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
             }
             catch (ApplicationException ex)
@@ -55,14 +55,14 @@ namespace Trascend.Bolet.Servicios.Implementacion
         {
             #region trace
             if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
-                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
 
             bool exitoso = ControladorMarca.InsertarOModificar(marca, hash);
 
             #region trace
             if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
-                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                logger.Debug("Saliendo del Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
 
             return exitoso;
@@ -77,14 +77,14 @@ namespace Trascend.Bolet.Servicios.Implementacion
         {
             #region trace
             if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
-                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
 
             bool exitoso = ControladorMarca.Eliminar(marca, hash);
 
             #region trace
             if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
-                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                logger.Debug("Saliendo del Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
 
             return exitoso;
@@ -96,14 +96,14 @@ namespace Trascend.Bolet.Servicios.Implementacion
         {
             #region trace
             if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
-                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
 
             bool exitoso = ControladorMarca.VerificarExistencia(marca);
 
             #region trace
             if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
-                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                logger.Debug("Saliendo del Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
 
             return exitoso;
@@ -118,7 +118,7 @@ namespace Trascend.Bolet.Servicios.Implementacion
         {
             #region trace
             if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
-                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
 
             IList<Marca> marcas;
@@ -129,7 +129,7 @@ namespace Trascend.Bolet.Servicios.Implementacion
 
             #region trace
             if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
-                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                logger.Debug("Saliendo del Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
         }
 
@@ -137,14 +137,14 @@ namespace Trascend.Bolet.Servicios.Implementacion
         {
             #region trace
             if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
-                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
 
             IList<Auditoria> auditorias = ControladorMarca.AuditoriaPorFkyTabla(auditoria);
 
             #region trace
             if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
-                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                logger.Debug("Saliendo del Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
 
             return auditorias;
@@ -158,14 +158,14 @@ namespace Trascend.Bolet.Servicios.Implementacion
             {
                 #region trace
                 if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
-                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                    logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
                 retorno = ControladorMarca.ConsultarMarcaConTodo(marca);
 
                 #region trace
                 if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
-                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                    logger.Debug("Saliendo del Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
             }

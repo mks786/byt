@@ -4,6 +4,7 @@ using System.Windows.Input;
 using Trascend.Bolet.Cliente.Ayuda;
 using Trascend.Bolet.Cliente.Contratos.Marcas;
 using Trascend.Bolet.Cliente.Presentadores.Marcas;
+using System;
 
 namespace Trascend.Bolet.Cliente.Ventanas.Marcas
 {
@@ -17,9 +18,25 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
         private PresentadorListaBusquedas _presentador;
         private bool _cargada;
 
-        #region IConsultarPoderes
+        #region IListaBusquedas
+
+        public object BusquedaSeleccionada
+        {
+            get { return this._lstResultados.SelectedItem; }
+        }
 
 
+        public object TiposBusqueda
+        {
+            get { return this._cbxTipoBusqueda.DataContext; }
+            set { this._cbxTipoBusqueda.DataContext = value; }
+        }
+
+        public object TipoBusqueda
+        {
+            get { return this._cbxTipoBusqueda.SelectedItem; }
+            set { this._cbxTipoBusqueda.SelectedItem = value; }
+        }
 
         public object Resultados
         {
@@ -32,50 +49,6 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             get { return this._txtId.Text; }
         }
 
-        public string NumPoder
-        {
-            get { return this._txtNumPoder.Text; }
-        }
-
-        public object Boletines
-        {
-            get { return this._cbxBoletin.DataContext; }
-            set { this._cbxBoletin.DataContext = value; }
-        }
-
-        public object Boletin
-        {
-            get { return this._cbxBoletin.SelectedItem; }
-            set { this._cbxBoletin.SelectedItem = value; }
-        }
-
-        public object Interesados
-        {
-            get { return this._lstInteresados.DataContext; }
-            set { this._lstInteresados.DataContext = value; }
-        }
-
-        public object Interesado
-        {
-            get { return this._lstInteresados.SelectedItem; }
-            set { this._lstInteresados.SelectedItem = value; }
-        }
-
-        public string Facultad
-        {
-            get { return this._txtFacultad.Text; }
-        }
-
-        public string Anexo
-        {
-            get { return this._txtAnexo.Text; }
-        }
-
-        public string Observaciones
-        {
-            get { return this._txtObservaciones.Text; }
-        }
-
         public bool EstaCargada
         {
             get { return this._cargada; }
@@ -85,11 +58,6 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
         public void FocoPredeterminado()
         {
             this._txtId.Focus();
-        }
-
-        public object PoderSeleccionado
-        {
-            get { return this._lstResultados.SelectedItem; }
         }
 
         public GridViewColumnHeader CurSortCol
@@ -110,14 +78,6 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             set { this._lstResultados = value; }
         }
 
-        public string IdInteresadoFiltrar
-        {
-            get { return this._txtIdInteresado.Text; }
-        }
-        public string NombreInteresadoFiltrar
-        {
-            get { return this._txtNombreInteresado.Text; }
-        }
 
         #endregion
 
@@ -128,7 +88,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
         {
             InitializeComponent();
             this._cargada = false;
-            this._presentador = new PresentadorListaBusquedas(this,marca);
+            this._presentador = new PresentadorListaBusquedas(this, marca);
         }
 
         private void _btnCancelar_Click(object sender, RoutedEventArgs e)
@@ -138,15 +98,18 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
 
         private void _btnConsultar_Click(object sender, RoutedEventArgs e)
         {
-            this._btnConsultar.Focus();
             this._presentador.Consultar();
-            validarCamposVacios();
         }
 
-        private void _lstResultados_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        private void EventoIrGestionarBusqueda(object sender, EventArgs e)
         {
-            //this._presentador.IrConsultarPoder();
+            if (sender.GetType().ToString().Equals("System.Windows.Controls.Button"))
+                this._presentador.IrGestionarBusqueda(true);
+            else
+                this._presentador.IrGestionarBusqueda(false);
         }
+
+
 
         private void _Ordenar_Click(object sender, RoutedEventArgs e)
         {
@@ -162,17 +125,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             }
         }
 
-        private void _btnConsultarInteresadoFocus(object sender, RoutedEventArgs e)
-        {
-            this._btnConsultar.IsDefault = false;
-            this._btnConsultarInteresado.IsDefault = true;
-        }
 
-        private void _btnConsultarFocus(object sender, RoutedEventArgs e)
-        {
-            this._btnConsultar.IsDefault = true;
-            this._btnConsultarInteresado.IsDefault = false;
-        }
 
         /// <summary>
         /// Método que se encarga de posicionar el cursor en los campos del filto
@@ -180,45 +133,58 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
         private void validarCamposVacios()
         {
             bool todosCamposVacios = true;
-            if (!this._txtId.Text.Equals(""))
-            {
-                todosCamposVacios = false;
-                this._txtId.Focus();
-            }
+            //if (!this._txtId.Text.Equals(""))
+            //{
+            //    todosCamposVacios = false;
+            //    this._txtId.Focus();
+            //}
 
-            if (!this._txtNumPoder.Text.Equals(""))
-            {
-                todosCamposVacios = false;
-                this._txtNumPoder.Focus();
-            }
+            //if (!this._txtNumPoder.Text.Equals(""))
+            //{
+            //    todosCamposVacios = false;
+            //    this._txtNumPoder.Focus();
+            //}
 
-            if ((this._cbxBoletin.SelectedIndex != 0) && (this._cbxBoletin.SelectedIndex != -1))
-            {
-                todosCamposVacios = false;
-                this._cbxBoletin.Focus();
-            }
+            //if ((this._cbxBoletin.SelectedIndex != 0) && (this._cbxBoletin.SelectedIndex != -1))
+            //{
+            //    todosCamposVacios = false;
+            //    this._cbxBoletin.Focus();
+            //}
 
-            if (!this._txtFacultad.Text.Equals(""))
-            {
-                todosCamposVacios = false;
-                this._txtFacultad.Focus();
-            }
+            //if (!this._txtFacultad.Text.Equals(""))
+            //{
+            //    todosCamposVacios = false;
+            //    this._txtFacultad.Focus();
+            //}
 
-            if (!this._txtAnexo.Text.Equals(""))
-            {
-                todosCamposVacios = false;
-                this._txtAnexo.Focus();
-            }
+            //if (!this._txtAnexo.Text.Equals(""))
+            //{
+            //    todosCamposVacios = false;
+            //    this._txtAnexo.Focus();
+            //}
 
-            if (!this._txtObservaciones.Text.Equals(""))
-            {
-                todosCamposVacios = false;
-                this._txtObservaciones.Focus();
-            }
+            //if (!this._txtObservaciones.Text.Equals(""))
+            //{
+            //    todosCamposVacios = false;
+            //    this._txtObservaciones.Focus();
+            //}
 
             if (todosCamposVacios)
                 this._txtId.Focus();
         }
+
+
+
+        private void _dpkFechaBusquedaPalabra_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void _txtId_GotKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e)
+        {
+
+        }
+
 
     }
 }

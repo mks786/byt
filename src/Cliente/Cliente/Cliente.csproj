@@ -108,6 +108,7 @@
     <Compile Include="Contratos\EntradasAlternas\IAgregarEntradaAlterna.cs" />
     <Compile Include="Contratos\EntradasAlternas\IConsultarEntradaAlterna.cs" />
     <Compile Include="Contratos\EntradasAlternas\IConsultarEntradasAlternas.cs" />
+    <Compile Include="Contratos\Marcas\IListaBusquedas.cs" />
     <Compile Include="Contratos\Marcas\IGestionarBusqueda.cs" />
     <Compile Include="Contratos\Marcas\IGestionarInfoBol.cs" />
     <Compile Include="Contratos\Marcas\IGestionarAnaqua.cs" />
@@ -209,6 +210,7 @@
     <Compile Include="Presentadores\EntradasAlternas\PresentadorAgregarEntradaAlterna.cs" />
     <Compile Include="Presentadores\EntradasAlternas\PresentadorConsultarEntradaAlterna.cs" />
     <Compile Include="Presentadores\EntradasAlternas\PresentadorConsultarEntradasAlternas.cs" />
+    <Compile Include="Presentadores\Marcas\PresentadorListaBusquedas.cs" />
     <Compile Include="Presentadores\Marcas\PresentadorGestionarBusqueda.cs" />
     <Compile Include="Presentadores\Marcas\PresentadorGestionarInfoBol.cs" />
     <Compile Include="Presentadores\Marcas\PresentadorGestionarAnaqua.cs" />

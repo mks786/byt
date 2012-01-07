@@ -20,14 +20,14 @@ namespace Trascend.Bolet.Servicios.Implementacion
         {
             #region trace
             if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
-                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
 
             IList<Agente> agentes = ControladorAgente.ConsultarTodos();
 
             #region trace
             if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
-                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                logger.Debug("Saliendo del Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
 
             return agentes;
@@ -43,14 +43,14 @@ namespace Trascend.Bolet.Servicios.Implementacion
         {
             #region trace
             if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
-                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
 
             bool exitoso = ControladorAgente.InsertarOModificar(agente, hash);
 
             #region trace
             if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
-                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                logger.Debug("Saliendo del Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
 
             return exitoso;
@@ -60,14 +60,14 @@ namespace Trascend.Bolet.Servicios.Implementacion
         {
             #region trace
             if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
-                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
 
             bool exitoso = ControladorAgente.Eliminar(agente, hash);
 
             #region trace
             if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
-                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                logger.Debug("Saliendo del Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
 
             return exitoso;
@@ -77,14 +77,14 @@ namespace Trascend.Bolet.Servicios.Implementacion
         {
             #region trace
             if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
-                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
 
             IList<Agente> agentes = ControladorAgente.ConsultarAgentesYPoderes();
 
             #region trace
             if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
-                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                logger.Debug("Saliendo del Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
 
             return agentes;
@@ -94,14 +94,14 @@ namespace Trascend.Bolet.Servicios.Implementacion
         {
             #region trace
             if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
-                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
 
             bool exitoso = ControladorAgente.VerificarExistencia(agente);
 
             #region trace
             if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
-                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                logger.Debug("Saliendo del Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
 
             return exitoso;

@@ -20,14 +20,14 @@ namespace Trascend.Bolet.Servicios.Implementacion
         {
             #region trace
             if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
-                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
 
             IList<Anaqua> anaquas = ControladorAnaqua.ConsultarTodos();
 
             #region trace
             if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
-                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                logger.Debug("Saliendo del Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
 
             return anaquas;
@@ -38,14 +38,14 @@ namespace Trascend.Bolet.Servicios.Implementacion
         {            
             #region trace
             if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
-                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
 
             Anaqua anaqua = ControladorAnaqua.ConsultarPorId(entidad);
 
             #region trace
             if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
-                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                logger.Debug("Saliendo del Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
 
             return anaqua;
@@ -61,14 +61,14 @@ namespace Trascend.Bolet.Servicios.Implementacion
         {
             #region trace
             if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
-                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
 
             bool exitoso = ControladorAnaqua.InsertarOModificar(anaqua, hash);
 
             #region trace
             if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
-                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                logger.Debug("Saliendo del Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
 
             return exitoso;
@@ -84,21 +84,21 @@ namespace Trascend.Bolet.Servicios.Implementacion
         {
             #region trace
             if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
-                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
 
             bool exitoso = ControladorAnaqua.Eliminar(anaqua, hash);
 
             #region trace
             if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
-                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                logger.Debug("Saliendo del Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
 
             return exitoso;
         }
 
         /// <summary>
-        /// Metodo que verifica si un Anaqua ya existe en el sistema
+        /// Método que verifica si un Anaqua ya existe en el sistema
         /// </summary>
         /// <param name="anaqua">Anaqua a buscar</param>
         /// <returns>true si lo encontro, false en lo contrario</returns>
@@ -106,14 +106,14 @@ namespace Trascend.Bolet.Servicios.Implementacion
         {
             #region trace
             if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
-                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
 
             bool exitoso = ControladorAnaqua.VerificarExistencia(anaqua);
 
             #region trace
             if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
-                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                logger.Debug("Saliendo del Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
 
             return exitoso;

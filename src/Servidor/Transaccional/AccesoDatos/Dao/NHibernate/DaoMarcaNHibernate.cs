@@ -63,7 +63,7 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
             {
                 #region trace
                 if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
-                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                    logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
                 IQuery query = Session.CreateQuery(string.Format(Recursos.ConsultasHQL.ObtenerMarcaConTodo, marca.Id));
@@ -71,7 +71,7 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
 
                 #region trace
                 if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
-                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                    logger.Debug("Saliendo del Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
             }
             catch (Exception ex)

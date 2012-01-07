@@ -232,6 +232,15 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Select b from Busqueda b where b.Marca.Id = &apos;{0}&apos;.
+        /// </summary>
+        public static string ObtenerBusquedasPorMarca {
+            get {
+                return ResourceManager.GetString("ObtenerBusquedasPorMarca", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select c from Contacto c where c.Asociado.id = &apos;{0}&apos;.
         /// </summary>
         public static string ObtenerContactosPorAsociado {

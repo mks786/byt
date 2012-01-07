@@ -22,7 +22,7 @@ namespace Trascend.Bolet.Comandos.Fabrica
         }
 
         /// <summary>
-        /// Metodo que devuelve el comando para eliminar a un contacto
+        /// Método que devuelve el comando para eliminar a un contacto
         /// </summary>
         /// <param name="contacto">contacto a eliminar</param>
         /// <returns></returns>
@@ -41,7 +41,7 @@ namespace Trascend.Bolet.Comandos.Fabrica
         }
 
         /// <summary>
-        /// Metodo que devuelve el comando para consultar todos los contactos de un asociado
+        /// Método que devuelve el comando para consultar todos los contactos de un asociado
         /// </summary>
         /// <param name="asociado"></param>
         /// <returns></returns>

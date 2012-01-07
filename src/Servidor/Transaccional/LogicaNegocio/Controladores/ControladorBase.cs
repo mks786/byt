@@ -72,7 +72,7 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
         }
         
         /// <summary>
-        /// Metodo que devuleve la lista de auditorias que presenta una entidad
+        /// Método que devuleve la lista de auditorias que presenta una entidad
         /// </summary>
         /// <param name="auditoria">Auditoria que tiene los parametros para filtrar</param>
         /// <returns>Lista de todas las auditorias que presenta una entidad</returns>
@@ -83,7 +83,7 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
             {
                 #region trace
                 if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
-                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                    logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
                 ComandoBase<IList<Auditoria>> comando = FabricaComandosAuditoria.ObtenerComandoAuditoriaPorFkyTabla(auditoria);
@@ -92,7 +92,7 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
 
                 #region trace
                 if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
-                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                    logger.Debug("Saliendo del Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
             }
             catch (ApplicationException ex)

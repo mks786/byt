@@ -5,9 +5,13 @@ namespace Trascend.Bolet.Cliente.Contratos.Marcas
 {
     interface IListaBusquedas : IPaginaBase
     {
-        object InfoBolSeleccionado { get; }
+        object BusquedaSeleccionada { get; }
 
-        object InfoBoles { get; set; }
+        object Resultados { get; set; }
+
+        object TiposBusqueda { get; set; }
+
+        object TipoBusqueda { get; set; }
 
         GridViewColumnHeader CurSortCol { get; set; }
 

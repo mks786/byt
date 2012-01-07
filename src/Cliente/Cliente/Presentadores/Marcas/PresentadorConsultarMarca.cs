@@ -40,6 +40,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
         private ICondicionServicios _condicionServicios;
         private IInfoAdicionalServicios _infoAdicionalServicios;
         private IInfoBolServicios _infoBolServicios;
+        private IBusquedaServicios _busquedaServicios;
 
         private IList<Asociado> _asociados;
         private IList<Interesado> _interesados;
@@ -88,6 +89,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["InfoAdicionalServicios"]);
                 this._infoBolServicios = (IInfoBolServicios)Activator.GetObject(typeof(IInfoBolServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["InfoBolServicios"]);
+                this._busquedaServicios = (IBusquedaServicios)Activator.GetObject(typeof(IBusquedaServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["BusquedaServicios"]);
 
             }
             catch (Exception ex)
@@ -127,6 +130,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 InfoAdicional infoAdicional = new InfoAdicional("M." + marca.Id);
 
                 marca.InfoBoles = this._infoBolServicios.ConsultarInfoBolesPorMarca(marca);
+                marca.Busquedas = this._busquedaServicios.ConsultarBusquedasPorMarca(marca);
+
                 marca.InfoAdicional = this._infoAdicionalServicios.ConsultarPorId(infoAdicional);
                 marca.Anaqua = this._anaquaServicios.ConsultarPorId(anaqua);
 
@@ -392,6 +397,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
         public void IrAnaqua()
         {
             this.Navegar(new GestionarAnaqua(this._ventana.Marca));
+        }
+        
+        public void IrBusquedas()
+        {
+            this.Navegar(new ListaBusquedas(this._ventana.Marca));
         }
 
         /// <summary>

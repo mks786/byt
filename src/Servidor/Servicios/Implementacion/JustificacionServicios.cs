@@ -23,7 +23,7 @@ namespace Trascend.Bolet.Servicios.Implementacion
         }
  
         /// <summary>
-        /// Metodo que inserta o modifica una justificacion
+        /// Método que inserta o modifica una justificacion
         /// </summary>
         /// <param name="justificacion">Justificacion a Insertar/Modificar</param>
         /// <param name="hash"></param>
@@ -32,14 +32,14 @@ namespace Trascend.Bolet.Servicios.Implementacion
         {
             #region trace
             if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
-                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
 
             bool exitoso = ControladorJustificacion.InsertarOModificar(justificacion, hash);
 
             #region trace
             if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
-                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                logger.Debug("Saliendo del Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
 
             return exitoso;

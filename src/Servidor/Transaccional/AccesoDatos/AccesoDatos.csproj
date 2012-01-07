@@ -61,6 +61,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Contrato\IDaoBusqueda.cs" />
     <Compile Include="Contrato\IDaoInfoBol.cs" />
     <Compile Include="Contrato\IDaoInfoAdicional.cs" />
     <Compile Include="Contrato\IDaoAnaqua.cs" />
@@ -114,6 +115,7 @@
     <Compile Include="Contrato\IDaoBase.cs" />
     <Compile Include="Contrato\IDaoUsuario.cs" />
     <Compile Include="Contrato\IFabricaDaoBase.cs" />
+    <Compile Include="Dao\NHibernate\DaoBusquedaNHibernate.cs" />
     <Compile Include="Dao\NHibernate\DaoInfoBolNHibernate.cs" />
     <Compile Include="Dao\NHibernate\DaoInfoAdicionalNHibernate.cs" />
     <Compile Include="Dao\NHibernate\DaoAnaquaNHibernate.cs" />
@@ -442,6 +444,11 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Mapeado\InfoBol.hbm.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Mapeado\Busqueda.hbm.xml">
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>

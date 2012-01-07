@@ -19,7 +19,7 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
             {
                 #region trace
                 if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
-                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                    logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
                 ComandoBase<IList<ListaDatosDominio>> comando = 
@@ -29,7 +29,7 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
 
                 #region trace
                 if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
-                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                    logger.Debug("Saliendo del Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
             }
             catch (ApplicationException ex)
@@ -54,7 +54,7 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
         //    {
         //        #region trace
         //        if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
-        //            logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+        //            logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
         //        #endregion
 
         //        ComandoBase<IList<Pais>> comando = FabricaComandosPais.ObtenerComandoConsultarTodos();
@@ -63,7 +63,7 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
 
         //        #region trace
         //        if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
-        //            logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+        //            logger.Debug("Saliendo del Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
         //        #endregion
         //    }
         //    catch (ApplicationException ex)
@@ -89,7 +89,7 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
             //{
             //    #region trace
             //    if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
-            //        logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            //        logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             //    #endregion
 
             //    ComandoBase<bool> comando = FabricaComandosPais.ObtenerComandoInsertarOModificar(pais);
@@ -98,7 +98,7 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
 
             //    #region trace
             //    if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
-            //        logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            //        logger.Debug("Saliendo del Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             //    #endregion
             //}
             //catch (ApplicationException ex)
@@ -123,7 +123,7 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
             //{
             //    #region trace
             //    if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
-            //        logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            //        logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             //    #endregion
 
             //    ComandoBase<Pais> comando = FabricaComandosPais.ObtenerComandoConsultarPorID(pais);
@@ -132,7 +132,7 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
 
             //    #region trace
             //    if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
-            //        logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            //        logger.Debug("Saliendo del Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             //    #endregion
             //}
             //catch (ApplicationException ex)
@@ -157,7 +157,7 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
             //{
             //    #region trace
             //    if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
-            //        logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            //        logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             //    #endregion
 
             //    ComandoBase<bool> comando = FabricaComandosPais.ObtenerComandoEliminarPais(pais);
@@ -166,7 +166,7 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
 
             //    #region trace
             //    if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
-            //        logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            //        logger.Debug("Saliendo del Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             //    #endregion
             //}
             //catch (ApplicationException ex)

@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+                   assembly="Trascend.Bolet.ObjetosComunes"
+                   namespace="Trascend.Bolet.ObjetosComunes.Entidades">
+
+  <class name="Busqueda" table="MYP_MARCAS_BSQ">
+    
+    <id name="Id" column="CBUSQUEDA" />
+
+    <property name="PaginaDiseno" column="PAGINA_DIS" type="int"/>
+    <property name="PaginaPalabra" column="PAGINA_PAL" type="int"/>
+    <property name="ReciboDiseno" column="RECIBO_DIS" type="int"/>
+    <property name="PedidoDiseno" column="PEDIDO_DIS" type="int"/>
+    <property name="ReciboPalabra" column="RECIBO_PAL" type="int"/>
+    <property name="PedidoPalabra" column="PEDIDO_PAL" type="int"/>
+    <property name="TipoBusqueda" column="TIPO_BUS" type="char"/>
+    <property name="CodVienaDis" column="CODVIENA_DIS" type="string"/>
+    <property name="FechaBusquedaPalabra" column="FBUSQUEDA_PAL" type="DateTime"/>
+    <property name="FechaConsigDiseno" column="FCONSIG_DIS" type="DateTime"/>
+    <property name="FechaBusquedaDiseno" column="FBUSQUEDA_DIS" type="DateTime"/>
+    <property name="HoraBusquedaPalabra" column="HORABUSQUEDA_PAL" type="DateTime"/>
+    <property name="FechaConsigPalabra" column="FCONSIG_PAL" type="DateTime"/>
+    <property name="FechaSolicitudPalabra" column="FSOLICITUD_PAL" type="DateTime"/>
+    
+    <many-to-one name="Marca" class="Marca">
+      <column name="CMARCA"/>
+    </many-to-one>
+    
+  </class>
+
+</hibernate-mapping>
+
+

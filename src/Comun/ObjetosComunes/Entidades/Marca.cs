@@ -60,6 +60,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         private Anaqua _anaqua;
         private InfoAdicional _infoAdicional;
         private IList<InfoBol> _infoBoles;
+        private IList<Busqueda> _busquedas;
 
         #endregion
 
@@ -576,6 +577,14 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
             set { _infoBoles = value; }
         }
 
+        /// <summary>
+        /// Propiedad que asigna u obtiene la lista de Busquedas
+        /// </summary>
+        public virtual IList<Busqueda> Busquedas
+        {
+            get { return _busquedas; }
+            set { _busquedas = value; }
+        }
         #endregion
     }
 }

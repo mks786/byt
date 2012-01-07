@@ -18,7 +18,7 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
 
             try
             {
-                IQuery query = Session.CreateQuery(string.Format(Recursos.ConsultasHQL.ObtenerInfoBolesPorMarcas, marca.Id));
+                IQuery query = Session.CreateQuery(string.Format(Recursos.ConsultasHQL.ObtenerBusquedasPorMarca, marca.Id));
                 busquedas = query.List<Busqueda>();
             }
             catch (Exception ex)

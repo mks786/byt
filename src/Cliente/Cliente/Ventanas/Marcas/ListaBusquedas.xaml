@@ -31,123 +31,77 @@
         <GroupBox Grid.Column="0" Grid.Row="0" Margin="5">
             <StackPanel Name="_splFiltro" DataContext="{Binding}" VerticalAlignment="Center">
                 <Separator Margin="0,0,0,5"/>
-                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,180,0">
+                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,180,0" >
                     <Label>
-                        <TextBlock Text="{x:Static recurso:Etiquetas.lblId}"/>
+                        <TextBlock Text="{x:Static recurso:Etiquetas.lblExpedienteMarca}"/>
                     </Label>
-                    <TextBox Name="_txtId" Text="{Binding Path=Id}" Width="150" MaxLength="8"
-                             GotFocus="_btnConsultarFocus" GotKeyboardFocus="_btnConsultarFocus"/>
+                    <TextBox Name="_txtId" Text="{Binding Path=IdMarca}" Width="130" MaxLength="8"/>
                 </WrapPanel>
                 <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,180,0">
                     <Label>
-                        <TextBlock Text="{x:Static recurso:Etiquetas.lblNumPoder}"/>
+                        <TextBlock Text="{x:Static recurso:Etiquetas.lblCodigoBusqueda}"/>
                     </Label>
-                    <TextBox Name="_txtNumPoder" Text="{Binding Path=NumPoder}" Width="150" MaxLength="15"
-                             GotFocus="_btnConsultarFocus" GotKeyboardFocus="_btnConsultarFocus"/>
+                    <TextBox Name="_txtNumPoder" Text="{Binding Path=Id}" Width="130" MaxLength="15"/>
                 </WrapPanel>
                 <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,180,0">
                     <Label>
-                        <TextBlock Text="{x:Static recurso:Etiquetas.lblBoletin}"/>
+                        <TextBlock Text="{x:Static recurso:Etiquetas.lblTipoBusqueda}"/>
                     </Label>
                     <!--Path=Id, Converter={StaticResource convertir}-->
-                    <ComboBox Name="_cbxBoletin" Width="150" ItemsSource="{Binding}"
-                             GotFocus="_btnConsultarFocus" GotKeyboardFocus="_btnConsultarFocus">
-                        <ComboBox.ItemTemplate>
-                            <DataTemplate>
-                                <TextBlock>
-                                <TextBlock.Text>
-                                    <MultiBinding Converter="{StaticResource convertirADosValores}">
-                                        <Binding Path="Id" />
-                                        <Binding Path="FechaBoletin" />
-                                    </MultiBinding>
-                                </TextBlock.Text>
-                                </TextBlock>
-                            </DataTemplate>
-                        </ComboBox.ItemTemplate>
-                    </ComboBox>
+                    <ComboBox Name="_cbxTipoBusqueda" VerticalAlignment="Center"
+                          ItemsSource="{Binding}" DisplayMemberPath="Descripcion" HorizontalAlignment="Left"
+                          Width="130" SelectedIndex="0"/>
                 </WrapPanel>
-
-                <Separator Margin="0,5,0,5"/>
-                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,14,0">
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="84"/>
-                            <ColumnDefinition Width="316"/>
-                        </Grid.ColumnDefinitions>
-
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="25"/>
-                            <RowDefinition Height="30"/>
-                            <RowDefinition Height="30"/>
-                            <RowDefinition Height="*"/>
-                        </Grid.RowDefinitions>
-                        <Label VerticalAlignment="Center" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Left">
-                            <TextBlock Text="{x:Static recurso:Etiquetas.lblInteresado}"/>
-                        </Label>
-                        <Label VerticalAlignment="Center" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Right">
-                            <TextBlock Text="{x:Static recurso:Etiquetas.lblId}"/>
-                        </Label>
-                        <TextBox Name="_txtIdInteresado" Text="" Width="150" MaxLength="15" Grid.Row="1" Grid.Column="1" Height="25" HorizontalAlignment="Left"
-                                 GotFocus="_btnConsultarInteresadoFocus" GotKeyboardFocus="_btnConsultarInteresadoFocus"/>
-                        <Label VerticalAlignment="Center" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Right">
-                            <TextBlock Text="{x:Static recurso:Etiquetas.lblNombre}"/>
-                        </Label>
-                        <TextBox Name="_txtNombreInteresado" Text="" Width="150" MaxLength="15" Grid.Row="2" Grid.Column="1" Height="25" HorizontalAlignment="Left"
-                                 GotFocus="_btnConsultarInteresadoFocus" GotKeyboardFocus="_btnConsultarInteresadoFocus"/>
-
-                        <Button Name="_btnConsultarInteresado" Width="100" IsDefault="False" Grid.Row="2" Grid.Column="1" Height="25" HorizontalAlignment="Right" Click="_btnConsultarInteresado_Click">
-                            <TextBlock Text="{x:Static recurso:Etiquetas.btnConsultar}"/>
-                        </Button>
-                        <!--Path=Id, Converter={StaticResource convertir}-->
-                        <ListView Height="198" Name="_lstInteresados" ItemsSource="{Binding}" 
-                      SelectionMode="Single"
-                      Style="{DynamicResource EstiloListView}" Grid.Row="3" Grid.ColumnSpan="2">
-                            <ListView.View>
-                                <GridView>
-                                    <GridViewColumn Width="45">
-                                        <GridViewColumnHeader Click="_Ordenar_Click" Tag="Id" Content="{x:Static recurso:Etiquetas.lsvId}"/>
-                                        <GridViewColumn.CellTemplate>
-                                            <DataTemplate>
-                                                <TextBlock>
-                                                <TextBlock.Text>
-                                                    <Binding Path="Id" Converter="{StaticResource convertir}"/>
-                                                </TextBlock.Text>
-                                                </TextBlock>
-                                            </DataTemplate>
-                                        </GridViewColumn.CellTemplate>
-                                    </GridViewColumn>
-                                    <GridViewColumn DisplayMemberBinding="{Binding Path=Nombre}" Width="250">
-                                        <GridViewColumnHeader Click="_Ordenar_Click" Tag="Nombre" Content="{x:Static recurso:Etiquetas.lsvNombre}"/>
-                                    </GridViewColumn>
-                                </GridView>
-                            </ListView.View>
-                        </ListView>
-                    </Grid>
-                </WrapPanel>
-
-                <Separator Margin="0,5,0,5"/>
+                
                 <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,180,0">
                     <Label>
-                        <TextBlock Text="{x:Static recurso:Etiquetas.lblFacultad}"/>
+                        <TextBlock Text="{x:Static recurso:Etiquetas.lblFechaBusquedaPalabra}"/>
                     </Label>
-                    <TextBox Name="_txtFacultad" Text="{Binding Path=Facultad}" Width="150" MaxLength="255"
-                             GotFocus="_btnConsultarFocus" GotKeyboardFocus="_btnConsultarFocus"/>
+                    <DatePicker HorizontalAlignment="Left"  Name="_dpkFechaBusquedaPalabra" Width="100" Focusable="False" BorderBrush="{x:Null}" SelectedDateChanged="_dpkFechaBusquedaPalabra_SelectedDateChanged">
+                        <DatePicker.SelectedDate>
+                            <Binding Path="FechaBusquedaPalabra" UpdateSourceTrigger="PropertyChanged"/>
+                        </DatePicker.SelectedDate>
+                    </DatePicker>
                 </WrapPanel>
                 <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,180,0">
                     <Label>
-                        <TextBlock Text="{x:Static recurso:Etiquetas.lblAnexo}"/>
+                        <TextBlock Text="{x:Static recurso:Etiquetas.lblFechaConsigPalabra}"/>
                     </Label>
-                    <TextBox Name="_txtAnexo" Text="{Binding Path=Anexo}" Width="150" MaxLength="255"
-                             GotFocus="_btnConsultarFocus" GotKeyboardFocus="_btnConsultarFocus"/>
+                    <DatePicker HorizontalAlignment="Left"  Name="_dpkFechaConsigPalabra" Width="100" Focusable="False" BorderBrush="{x:Null}" SelectedDateChanged="_dpkFechaBusquedaPalabra_SelectedDateChanged">
+                        <DatePicker.SelectedDate>
+                            <Binding Path="FechaConsigPalabra" UpdateSourceTrigger="PropertyChanged"/>
+                        </DatePicker.SelectedDate>
+                    </DatePicker>
                 </WrapPanel>
                 <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,180,0">
                     <Label>
-                        <TextBlock Text="{x:Static recurso:Etiquetas.lblObservaciones}"/>
+                        <TextBlock Text="{x:Static recurso:Etiquetas.lblFechaBusquedaDiseno}"/>
                     </Label>
-                    <TextBox Name="_txtObservaciones" VerticalAlignment="Center"  
-                         HorizontalAlignment="Left" Width="150" Height="75" Text="{Binding Path=Observaciones}" MaxLength="2000" 
-                         TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" AcceptsReturn="True" SpellCheck.IsEnabled="True"
-                             GotFocus="_btnConsultarFocus" GotKeyboardFocus="_btnConsultarFocus"></TextBox>
+                    <DatePicker HorizontalAlignment="Left"  Name="_dpkFechaBusquedaDiseno" Width="100" Focusable="False" BorderBrush="{x:Null}" SelectedDateChanged="_dpkFechaBusquedaPalabra_SelectedDateChanged">
+                        <DatePicker.SelectedDate>
+                            <Binding Path="FechaBusquedaDiseno" UpdateSourceTrigger="PropertyChanged"/>
+                        </DatePicker.SelectedDate>
+                    </DatePicker>
+                </WrapPanel>
+                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,180,0">
+                    <Label>
+                        <TextBlock Text="{x:Static recurso:Etiquetas.lblFechaConsigDiseno}"/>
+                    </Label>
+                    <DatePicker HorizontalAlignment="Left"  Name="_dpkFechaConsigDiseno" Width="100" Focusable="False" BorderBrush="{x:Null}" SelectedDateChanged="_dpkFechaBusquedaPalabra_SelectedDateChanged">
+                        <DatePicker.SelectedDate>
+                            <Binding Path="FechaConsigDiseno" UpdateSourceTrigger="PropertyChanged"/>
+                        </DatePicker.SelectedDate>
+                    </DatePicker>
+                </WrapPanel>
+                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,180,0">
+                    <Label>
+                        <TextBlock Text="{x:Static recurso:Etiquetas.lblFechaResultadoBusqueda}"/>
+                    </Label>
+                    <DatePicker HorizontalAlignment="Left"  Name="_dpkFechaResultadoBusqueda" Width="100" Focusable="False" BorderBrush="{x:Null}" SelectedDateChanged="_dpkFechaBusquedaPalabra_SelectedDateChanged">
+                        <DatePicker.SelectedDate>
+                            <Binding Path="FechaSolicitudPalabra" UpdateSourceTrigger="PropertyChanged"/>
+                        </DatePicker.SelectedDate>
+                    </DatePicker>
                 </WrapPanel>
                 <Separator Margin="0,5,0,5"/>
                 <WrapPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,5,0,5">
@@ -162,24 +116,24 @@
         <!--Resultados-->
         <GroupBox Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="2" Margin="5">
             <ListView Name="_lstResultados" ItemsSource="{Binding}" 
-                      MouseDoubleClick="_lstResultados_MouseDoubleClick" SelectionMode="Single"
+                      MouseDoubleClick="EventoIrGestionarBusqueda" SelectionMode="Single"
                       Style="{DynamicResource EstiloListView}">
                 <ListView.View>
                     <GridView>
                         <GridViewColumn DisplayMemberBinding="{Binding Path=Id}" Width="120">
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="Id" Content="{x:Static recurso:Etiquetas.lsvCodigoBusqueda}"/>
                         </GridViewColumn>
-                        <GridViewColumn DisplayMemberBinding="{Binding Path=NumPoder}" Width="150">
-                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="NumPoder" Content="{x:Static recurso:Etiquetas.lsvTipoBusqueda}"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=TipoBusquedaDatosDominio.Descripcion}" Width="150">
+                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="TipoBusquedaDatosDominio.Descripcion" Content="{x:Static recurso:Etiquetas.lsvTipoBusqueda}"/>
                         </GridViewColumn>
-                        <GridViewColumn DisplayMemberBinding="{Binding Path=Facultad}" Width="150">
-                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="Facultad" Content="{x:Static recurso:Etiquetas.lsvFechaResultado}"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=FechaSolicitudPalabra}" Width="150">
+                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="FechaSolicitudPalabra" Content="{x:Static recurso:Etiquetas.lsvFechaResultado}"/>
                         </GridViewColumn>
-                        <GridViewColumn DisplayMemberBinding="{Binding Path=Facultad}" Width="150">
-                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="Facultad" Content="{x:Static recurso:Etiquetas.lsvFechaBusquedaPalabra}"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=FechaBusquedaPalabra}" Width="150">
+                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="FechaBusquedaPalabra" Content="{x:Static recurso:Etiquetas.lsvFechaBusquedaPalabra}"/>
                         </GridViewColumn>
-                        <GridViewColumn DisplayMemberBinding="{Binding Path=Facultad}" Width="150">
-                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="Facultad" Content="{x:Static recurso:Etiquetas.lsvFechaBusquedaDiseno}"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=FechaBusquedaDiseno}" Width="150">
+                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="FechaBusquedaDiseno" Content="{x:Static recurso:Etiquetas.lsvFechaBusquedaDiseno}"/>
                         </GridViewColumn>
                     </GridView>
                 </ListView.View>
@@ -198,7 +152,10 @@
 
         <!--Botones Aceptar|Cancelar-->
         <GroupBox Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="1" BorderBrush="{x:Null}">
-            <StackPanel HorizontalAlignment="Right" VerticalAlignment="Bottom">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom">
+                <Button Name="_btnAgregar" VerticalAlignment="Bottom" Height="25" Width="110" Click="EventoIrGestionarBusqueda">
+                    <TextBlock Text="{x:Static recurso:Etiquetas.btnNuevaBusqueda}"/>
+                </Button>
                 <Button Name="_btnCancelar" Width="100" Click="_btnCancelar_Click">
                     <TextBlock Text="{x:Static recurso:Etiquetas.btnCancelar}"/>
                 </Button>

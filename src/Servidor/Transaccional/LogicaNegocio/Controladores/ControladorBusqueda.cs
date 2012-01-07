@@ -15,9 +15,9 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
         /// <summary>
-        /// Método que inserta o modifica una InfoBol
+        /// Método que inserta o modifica una Búsqueda
         /// </summary>
-        /// <param name="InfoBol">InfoBol a insertar o modificar</param>
+        /// <param name="InfoBol">Búsqueda a insertar o modificar</param>
         /// <param name="hash">Hash del usuario que realiza la operacion</param>
         /// <returns>True: si la modificación fue exitosa; false: en caso contrario</returns>
         public static bool InsertarOModificar(Busqueda busqueda, int hash)
@@ -27,7 +27,7 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
             {
                 #region trace
                 if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
-                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                    logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
                 ComandoBase<bool> comando = FabricaComandosBusqueda.ObtenerComandoInsertarOModificar(busqueda);
@@ -36,7 +36,7 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
 
                 #region trace
                 if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
-                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                    logger.Debug("Saliendo del Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
             }
             catch (ApplicationException ex)
@@ -48,9 +48,9 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
         }
 
         /// <summary>
-        /// Método que elimina una InfoBol
+        /// Método que elimina una Búsqueda
         /// </summary>
-        /// <param name="InfoBol">InfoBol a eliminar</param>
+        /// <param name="InfoBol">Búsqueda a eliminar</param>
         /// <param name="hash">Hash del usuario que realiza la operacion</param>
         /// <returns>True si la eliminacion fue exitosa, en caso contrario False</returns>
         public static bool Eliminar(Busqueda busqueda, int hash)
@@ -60,7 +60,7 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
             {
                 #region trace
                 if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
-                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                    logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
                 ComandoBase<bool> comando = FabricaComandosBusqueda.ObtenerComandoEliminarBusqueda(busqueda);
@@ -69,7 +69,7 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
 
                 #region trace
                 if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
-                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                    logger.Debug("Saliendo del Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
             }
             catch (ApplicationException ex)
@@ -82,9 +82,9 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
         }
 
         /// <summary>
-        /// Método que consulta la lista de todos las InfoBols
+        /// Método que consulta la lista de todos las Búsquedas
         /// </summary>
-        /// <returns>Lista con todos las InfoBols</returns>
+        /// <returns>Lista con todas las Búsquedas</returns>
         public static IList<Busqueda> ConsultarTodos()
         {
             IList<Busqueda> retorno;
@@ -93,7 +93,7 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
             {
                 #region trace
                 if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
-                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                    logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
                 ComandoBase<IList<Busqueda>> comando = FabricaComandosBusqueda.ObtenerComandoConsultarTodos();
@@ -102,7 +102,7 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
 
                 #region trace
                 if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
-                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                    logger.Debug("Saliendo del Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
             }
             catch (ApplicationException ex)
@@ -115,10 +115,10 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
         }
 
         /// <summary>
-        /// Consulta infoBol por id
+        /// Consulta Búsqueda por id
         /// </summary>
-        /// <param name="InfoBol">InfoBol que contiene el id</param>
-        /// <returns>InfoAdicinonal que devuelve la consulta</returns>
+        /// <param name="InfoBol">Búsqueda que contiene el id</param>
+        /// <returns>Búsqueda que devuelve la consulta</returns>
         public static Busqueda ConsultarPorId(Busqueda busqueda)
         {
             Busqueda retorno = null;
@@ -126,7 +126,7 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
             {
                 #region trace
                 if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
-                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                    logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
                 ComandoBase<Busqueda> comando = FabricaComandosBusqueda.ObtenerComandoConsultarPorID(busqueda);
@@ -135,7 +135,7 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
 
                 #region trace
                 if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
-                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                    logger.Debug("Saliendo del Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
             }
             catch (ApplicationException ex)
@@ -148,9 +148,9 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
         }
 
         /// <summary>
-        /// Verifica si la InfoBol existe
+        /// Verifica si la Búsqueda existe
         /// </summary>
-        /// <param name="InfoBol">InfoBol a verificar</param>
+        /// <param name="InfoBol">Búsqueda a verificar</param>
         /// <returns>True de existir, false en caso conrario</returns>
         public static bool VerificarExistencia(Busqueda busqueda)
         {
@@ -159,7 +159,7 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
             {
                 #region trace
                 if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
-                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                    logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
                 ComandoBase<bool> comando = FabricaComandosBusqueda.ObtenerComandoVerificarExistenciaBusqueda(busqueda);
@@ -168,7 +168,7 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
 
                 #region trace
                 if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
-                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                    logger.Debug("Saliendo del Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
             }
             catch (ApplicationException ex)
@@ -180,6 +180,11 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
             return existe;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="marca"></param>
+        /// <returns></returns>
         public static IList<Busqueda> ConsultarBusquedasPorMarca(Marca marca)
         {
             IList<Busqueda> retorno;
@@ -187,7 +192,7 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
             {
                 #region trace
                 if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
-                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                    logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
                 ComandoBase<IList<Busqueda>> comando = FabricaComandosBusqueda.ObtenerComandoConsultarBusquedasPorMarca(marca);
@@ -196,7 +201,7 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
 
                 #region trace
                 if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
-                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                    logger.Debug("Saliendo del Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
             }
             catch (ApplicationException ex)

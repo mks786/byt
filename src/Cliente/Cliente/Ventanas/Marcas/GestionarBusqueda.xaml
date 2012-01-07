@@ -32,79 +32,77 @@
         <GroupBox Grid.Column="1" Grid.Row="1">
             <StackPanel Name="_gridDatos"  VerticalAlignment="Center"  HorizontalAlignment="Center"
                         DataContext="{Binding}">
-                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
+                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0" >
                     <Label>
-                        <TextBlock Text="{x:Static recurso:Etiquetas.lblTipo}"/>
+                        <TextBlock Text="{x:Static recurso:Etiquetas.lblExpedienteMarca}"/>
                     </Label>
-                    <ComboBox Name="_cbxTipo" HorizontalAlignment="Left" Width="180" Height="20" IsEnabled="False"
-                              ItemsSource="{Binding}" DisplayMemberPath="Descripcion" SelectedIndex="0"/>
+                    <TextBox IsEnabled="False" Name="_txtId" Text="{Binding Path=IdMarca}" Width="130" MaxLength="8"/>
                 </WrapPanel>
                 <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
                     <Label>
-                        <TextBlock Text="{x:Static recurso:Etiquetas.lblBoletin}"/>
+                        <TextBlock Text="{x:Static recurso:Etiquetas.lblCodigoBusqueda}"/>
                     </Label>
-                    <ComboBox Name="_cbxBoletin" Width="180" ItemsSource="{Binding}" IsEnabled="False">
-                        <ComboBox.ItemTemplate>
-                            <DataTemplate>
-                                <TextBlock>
-                                <TextBlock.Text>
-                                    <MultiBinding Converter="{StaticResource convertirADosValores}">
-                                        <Binding Path="Id" />
-                                        <Binding Path="FechaBoletin" />
-                                    </MultiBinding>
-                                </TextBlock.Text>
-                                </TextBlock>
-                            </DataTemplate>
-                        </ComboBox.ItemTemplate>
-                    </ComboBox>
+                    <TextBox IsEnabled="False" Name="_txtCodigoBusqueda" Text="{Binding Path=Id}" Width="130" MaxLength="15"/>
                 </WrapPanel>
                 <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
                     <Label>
-                        <TextBlock Text="{x:Static recurso:Etiquetas.lblCambio}"/>
+                        <TextBlock Text="{x:Static recurso:Etiquetas.lblTipoBusqueda}"/>
                     </Label>
-                    <TextBox IsEnabled="False" Width="180" MaxLength="2000" Name="_txtCambio" VerticalAlignment="Center" 
-                         Grid.ColumnSpan="3" Text="{Binding Path=Cambio}"/>
+                    <!--Path=Id, Converter={StaticResource convertir}-->
+                    <ComboBox IsEnabled="False" Name="_cbxTipoBusqueda" VerticalAlignment="Center"
+                          ItemsSource="{Binding}" DisplayMemberPath="Descripcion" HorizontalAlignment="Left"
+                          Width="130" SelectedIndex="0"/>
                 </WrapPanel>
+
                 <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
                     <Label>
-                        <TextBlock Text="{x:Static recurso:Etiquetas.lblTomo}"/>
+                        <TextBlock Text="{x:Static recurso:Etiquetas.lblFechaBusquedaPalabra}"/>
                     </Label>
-                    <ComboBox Name="_cbxTomo" HorizontalAlignment="Left" Width="180" Height="20" IsEnabled="False"
-                              ItemsSource="{Binding}" DisplayMemberPath="Descripcion" SelectedIndex="0"/>
-                </WrapPanel>
-                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
-                    <Label>
-                        <TextBlock Text="{x:Static recurso:Etiquetas.lblResolucion}"/>
-                    </Label>
-                    <TextBox IsEnabled="False" Width="180" MaxLength="2000" Name="_txtResolucion" VerticalAlignment="Center" 
-                         Grid.ColumnSpan="3" Text="{Binding Path=Resolucion}"/>
-                </WrapPanel>
-                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
-                    <Label>
-                        <TextBlock Text="{x:Static recurso:Etiquetas.lblPagina}"/>
-                    </Label>
-                    <TextBox IsEnabled="False" Width="180" MaxLength="2000" Name="_txtPagina" VerticalAlignment="Center" Text="{Binding Path=Pagina}"/>
-                </WrapPanel>
-                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
-                    <Label>
-                        <TextBlock Text="{x:Static recurso:Etiquetas.lblFecha}"/>
-                    </Label>
-                    <DatePicker IsEnabled="False"  Name="_dpkFecha" Width="180" Focusable="False" BorderBrush="{x:Null}">
+                    <DatePicker IsEnabled="False" HorizontalAlignment="Left"  Name="_dpkFechaBusquedaPalabra" Width="100" Focusable="False" BorderBrush="{x:Null}" SelectedDateChanged="_dpkFechaBusquedaPalabra_SelectedDateChanged">
                         <DatePicker.SelectedDate>
-                            <Binding Path="Fecha" UpdateSourceTrigger="PropertyChanged"/>
+                            <Binding Path="FechaBusquedaPalabra" UpdateSourceTrigger="PropertyChanged"/>
                         </DatePicker.SelectedDate>
                     </DatePicker>
                 </WrapPanel>
                 <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
                     <Label>
-                        <TextBlock Text="{x:Static recurso:Etiquetas.lblComentario}"/>
+                        <TextBlock Text="{x:Static recurso:Etiquetas.lblFechaConsigPalabra}"/>
                     </Label>
-                    <TextBox IsEnabled="False" Width="180" MaxLength="2000" Name="_txtComentario" VerticalAlignment="Center" Text="{Binding Path=Comentario}"/>
+                    <DatePicker IsEnabled="False" HorizontalAlignment="Left"  Name="_dpkFechaConsigPalabra" Width="100" Focusable="False" BorderBrush="{x:Null}" SelectedDateChanged="_dpkFechaBusquedaPalabra_SelectedDateChanged">
+                        <DatePicker.SelectedDate>
+                            <Binding Path="FechaConsigPalabra" UpdateSourceTrigger="PropertyChanged"/>
+                        </DatePicker.SelectedDate>
+                    </DatePicker>
                 </WrapPanel>
                 <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
-                    <Button IsEnabled="False" Name="_btnIrAPDF" Width="80" Height="25" HorizontalAlignment="Right" Visibility="Collapsed">
-                        <TextBlock Text=">>"/>
-                    </Button>
+                    <Label>
+                        <TextBlock Text="{x:Static recurso:Etiquetas.lblFechaBusquedaDiseno}"/>
+                    </Label>
+                    <DatePicker IsEnabled="False" HorizontalAlignment="Left"  Name="_dpkFechaBusquedaDiseno" Width="100" Focusable="False" BorderBrush="{x:Null}" SelectedDateChanged="_dpkFechaBusquedaPalabra_SelectedDateChanged">
+                        <DatePicker.SelectedDate>
+                            <Binding Path="FechaBusquedaDiseno" UpdateSourceTrigger="PropertyChanged"/>
+                        </DatePicker.SelectedDate>
+                    </DatePicker>
+                </WrapPanel>
+                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
+                    <Label>
+                        <TextBlock Text="{x:Static recurso:Etiquetas.lblFechaConsigDiseno}"/>
+                    </Label>
+                    <DatePicker IsEnabled="False" HorizontalAlignment="Left"  Name="_dpkFechaConsigDiseno" Width="100" Focusable="False" BorderBrush="{x:Null}" SelectedDateChanged="_dpkFechaBusquedaPalabra_SelectedDateChanged">
+                        <DatePicker.SelectedDate>
+                            <Binding Path="FechaConsigDiseno" UpdateSourceTrigger="PropertyChanged"/>
+                        </DatePicker.SelectedDate>
+                    </DatePicker>
+                </WrapPanel>
+                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
+                    <Label>
+                        <TextBlock Text="{x:Static recurso:Etiquetas.lblFechaResultadoBusqueda}"/>
+                    </Label>
+                    <DatePicker IsEnabled="False" HorizontalAlignment="Left"  Name="_dpkFechaResultadoBusqueda" Width="100" Focusable="False" BorderBrush="{x:Null}" SelectedDateChanged="_dpkFechaBusquedaPalabra_SelectedDateChanged">
+                        <DatePicker.SelectedDate>
+                            <Binding Path="FechaSolicitudPalabra" UpdateSourceTrigger="PropertyChanged"/>
+                        </DatePicker.SelectedDate>
+                    </DatePicker>
                 </WrapPanel>
                 <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
                     <Label>

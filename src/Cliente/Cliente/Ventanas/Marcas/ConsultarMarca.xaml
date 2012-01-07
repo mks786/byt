@@ -676,7 +676,7 @@
                     <WrapPanel Grid.Column="1" Grid.Row="21" Grid.ColumnSpan="5" VerticalAlignment="Center" HorizontalAlignment="Left" Orientation="Horizontal">
                         <Button IsEnabled="False" Name="_btnDuplicar" Height="25" Width="100">Duplicar</Button>
                         <Button IsEnabled="False" Name="_btnInfoAdicionalSolicitud" Height="25" Width="100" Margin="8,0,0,0" Click="_btnInfoAdicional_Click">Info. Adicional</Button>
-                        <Button IsEnabled="False" Name="_btnBusqueda" Height="25" Width="100" Margin="8,0,0,0">Busqueda</Button>
+                        <Button IsEnabled="False" Name="_btnBusqueda" Height="25" Width="100" Margin="8,0,0,0" Click="_btnBusqueda_Click">Busqueda</Button>
                     </WrapPanel>
 
                     <Separator Grid.Column="0" Grid.Row="21" Grid.ColumnSpan="7" Margin="0,3,0,0" VerticalAlignment="Bottom" />

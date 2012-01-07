@@ -1041,6 +1041,10 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             this._cbxTipoMarcaDatos.SelectedItem = ((ComboBox)sender).SelectedItem;
         }
 
+        private void _btnBusqueda_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.IrBusquedas();
+        }
         #endregion
 
         #region Eventos Datos
@@ -1186,6 +1190,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
         }
 
         #endregion
+
                 
     }
 }

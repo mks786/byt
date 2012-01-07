@@ -66,7 +66,7 @@ namespace Trascend.Bolet.Comandos.Fabrica
         }
 
         /// <summary>
-        /// Metodo que devuelve el comando para consultar todos los infoboles de una marca
+        /// Método que devuelve el comando para consultar todos los infoboles de una marca
         /// </summary>
         /// <param name="marca"></param>
         /// <returns></returns>

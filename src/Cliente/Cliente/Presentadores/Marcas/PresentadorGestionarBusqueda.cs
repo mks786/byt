@@ -16,42 +16,36 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
 {
     class PresentadorGestionarBusqueda : PresentadorBase
     {
-        private IGestionarInfoBol _ventana;
+        private IGestionarBusqueda _ventana;
         private static PaginaPrincipal _paginaPrincipal = PaginaPrincipal.ObtenerInstancia;
         private static Logger logger = LogManager.GetCurrentClassLogger();
-        private IInfoBolServicios _infoBolServicios;
-        private IBoletinServicios _boletinServicios;
+        private IBusquedaServicios _busquedaServicios;
         private IListaDatosDominioServicios _listaDatosDominioServicios;
-        private ITipoInfobolServicios _tipoInfobolServicios;
-        private bool _nuevaInfoBol = false;
+        private bool _nuevaBusqueda = false;
 
         /// <summary>
         /// Constructor predeterminado
         /// </summary>
         /// <param name="ventana">Página que satisface el contrato</param>
-        public PresentadorGestionarBusqueda(IGestionarInfoBol ventana, object infoBol)
+        public PresentadorGestionarBusqueda(IGestionarBusqueda ventana, object busqueda)
         {
             try
             {
                 this._ventana = ventana;
-                this._ventana.InfoBol = null != (InfoBol)infoBol ? (InfoBol)infoBol : new InfoBol();
+                this._ventana.Busqueda = null != (Busqueda)busqueda ? (Busqueda)busqueda : new Busqueda();
 
-                if (((InfoBol)infoBol).Id == int.MinValue)
-                    this._nuevaInfoBol = true;
+                if (((Busqueda)busqueda).Id == int.MinValue)
+                    this._nuevaBusqueda = true;
 
-                this._infoBolServicios = (IInfoBolServicios)Activator.GetObject(typeof(IInfoBolServicios),
-                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["InfoBolServicios"]);
-                this._boletinServicios = (IBoletinServicios)Activator.GetObject(typeof(IBoletinServicios),
-                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["BoletinServicios"]);
+                this._busquedaServicios = (IBusquedaServicios)Activator.GetObject(typeof(IBusquedaServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["BusquedaServicios"]);
                 this._listaDatosDominioServicios = (IListaDatosDominioServicios)Activator.GetObject(typeof(IListaDatosDominioServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["ListaDatosDominioServicios"]);
-                this._tipoInfobolServicios = (ITipoInfobolServicios)Activator.GetObject(typeof(ITipoInfobolServicios),
-                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["TipoInfobolServicios"]);
 
-                IList<TipoInfobol> infoboles = this._tipoInfobolServicios.ConsultarTodos();
-                this._ventana.Tipos = null;
-                this._ventana.Tipos = infoboles;
-                this._ventana.Tipo = this.BuscarTipoInfobol(infoboles, ((InfoBol)this._ventana.InfoBol).TipoInfobol);
+                //IList<TipoInfobol> infoboles = this._tipoInfobolServicios.ConsultarTodos();
+                //this._ventana.Tipos = null;
+                //this._ventana.Tipos = infoboles;
+                //this._ventana.Tipo = this.BuscarTipoInfobol(infoboles, ((InfoBol)this._ventana.InfoBol).TipoInfobol);
 
             }
             catch (Exception ex)
@@ -73,33 +67,32 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleGestionalInfoBol,
                     Recursos.Ids.AgregarInfoBol);
 
-                if (this._nuevaInfoBol)
+                if (this._nuevaBusqueda)
                 {
                     this._ventana.HabilitarCampos = true;
                     this._ventana.TextoBotonModificar = Recursos.Etiquetas.btnAceptar;
-                    this._ventana.OculatarControlesAlAgregar();
+                    this._ventana.OcultarControlesAlAgregar();
                 }
 
-                IList<ListaDatosDominio> tomos = this._listaDatosDominioServicios.
-                ConsultarListaDatosDominioPorParametro(new ListaDatosDominio(Recursos.Etiquetas.cbiTomo));
-                ListaDatosDominio primerTomo = new ListaDatosDominio();
-                primerTomo.Id = "NGN";
-                tomos.Insert(0, primerTomo);
-                this._ventana.Tomos = null;
-                this._ventana.Tomos = tomos;
+                IList<ListaDatosDominio> tiposBusqueda = this._listaDatosDominioServicios.
+                ConsultarListaDatosDominioPorParametro(new ListaDatosDominio(Recursos.Etiquetas.cbiTipoBusqueda));
+                ListaDatosDominio primerTipoBusqueda = new ListaDatosDominio();
+                primerTipoBusqueda.Id = "NGN";
+                tiposBusqueda.Insert(0, primerTipoBusqueda);
+                this._ventana.TiposBusqueda = tiposBusqueda;
 
-                if (!this._nuevaInfoBol)
-                    this._ventana.Tomo = this.BuscarTomos(tomos, ((InfoBol)this._ventana.InfoBol).Tomo);
+                if (!this._nuevaBusqueda)
+                    this._ventana.TipoBusqueda = this.BuscarTipoBusqueda(((Busqueda)this._ventana.Busqueda).TipoBusqueda, tiposBusqueda);
 
-                IList<Boletin> boletines = this._boletinServicios.ConsultarTodos();
-                Boletin primerBoletin = new Boletin();
-                primerBoletin.Id = int.MinValue;
-                boletines.Insert(0, primerBoletin);
-                this._ventana.Boletines = null;
-                this._ventana.Boletines = boletines;
+                //IList<Boletin> boletines = this._boletinServicios.ConsultarTodos();
+                //Boletin primerBoletin = new Boletin();
+                //primerBoletin.Id = int.MinValue;
+                //boletines.Insert(0, primerBoletin);
+                //this._ventana.Boletines = null;
+                //this._ventana.Boletines = boletines;
 
-                if(!this._nuevaInfoBol)
-                    this._ventana.Boletin = this.BuscarBoletin(boletines, ((InfoBol)this._ventana.InfoBol).Boletin);
+                //if(!this._nuevaInfoBol)
+                //    this._ventana.Boletin = this.BuscarBoletin(boletines, ((InfoBol)this._ventana.InfoBol).Boletin);
 
 
                 this._ventana.FocoPredeterminado();
@@ -149,20 +142,13 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 //Agregar o modificar datos
                 else
                 {
-                    InfoBol infoBol = (InfoBol)this._ventana.InfoBol;
+                    Busqueda busqueda = (Busqueda)this._ventana.Busqueda;
 
-                    infoBol.Tomo = ((ListaDatosDominio)this._ventana.Tomo).Id;
-                    infoBol.Boletin = (Boletin)this._ventana.Boletin;
-                    infoBol.TimeStamp = System.DateTime.Now;
-                    infoBol.Usuario = UsuarioLogeado;
+                    busqueda.TipoBusqueda = ((ListaDatosDominio)this._ventana.TipoBusqueda).Id != "NGN" ? ((ListaDatosDominio)this._ventana.TipoBusqueda).Id[0] : (char?)null;
 
-                    if (this._nuevaInfoBol)
-                    {
-                        infoBol.TipoInfobol = (TipoInfobol)this._ventana.Tipo;
-                        ((InfoBol)this._ventana.InfoBol).Marca.InfoBoles.Add(infoBol);
-                    }
-
-                    exitoso = this._infoBolServicios.InsertarOModificar(infoBol, UsuarioLogeado.Hash);
+                    exitoso = this._busquedaServicios.InsertarOModificar(busqueda, UsuarioLogeado.Hash);
+                    if (this._nuevaBusqueda)
+                        ((Busqueda)this._ventana.Busqueda).Marca.Busquedas.Add(busqueda);
 
                 }
             }
@@ -200,9 +186,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-                ((InfoBol)this._ventana.InfoBol).Marca.InfoBoles.Remove((InfoBol)this._ventana.InfoBol);
+                ((Busqueda)this._ventana.Busqueda).Marca.Busquedas.Remove((Busqueda)this._ventana.Busqueda);
 
-                if (this._infoBolServicios.Eliminar((InfoBol)this._ventana.InfoBol, UsuarioLogeado.Hash))
+                if (this._busquedaServicios.Eliminar((Busqueda)this._ventana.Busqueda, UsuarioLogeado.Hash))
                 {
                     exitoso = true;
                 }
@@ -236,9 +222,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             return exitoso;
         }
 
-        public void irListaInfoBol()
+        public void irListaBusqueda()
         {
-            this.Navegar(new ListaInfoBoles(((InfoBol)this._ventana.InfoBol).Marca));
+            this.Navegar(new ListaBusquedas(((Busqueda)this._ventana.Busqueda).Marca));
         }
     }
 }

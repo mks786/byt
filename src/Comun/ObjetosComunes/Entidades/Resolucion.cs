@@ -18,7 +18,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         #region Propiedades
 
         /// <summary>
-        /// Sobreescritura del metodo Equals debido a que la clase tiene id compuesto
+        /// Sobreescritura del Método Equals debido a que la clase tiene id compuesto
         /// </summary>
         /// <param name="obj"></param>
         /// <returns></returns>
@@ -36,7 +36,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         }
 
         /// <summary>
-        /// Sobreescritura del metodo GetHashCode debido a que la clase tiene id compuesto
+        /// Sobreescritura del Método GetHashCode debido a que la clase tiene id compuesto
         /// </summary>
         /// <returns></returns>
         public override int GetHashCode()
@@ -45,7 +45,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         }
 
         /// <summary>
-        /// Sobreescritura del metodo ToString debido a que la clase tiene id compuesto
+        /// Sobreescritura del Método ToString debido a que la clase tiene id compuesto
         /// </summary>
         /// <returns></returns>
         public override string ToString()

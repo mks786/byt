@@ -10,7 +10,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
     /// <summary>
     /// Interaction logic for AgregarObjeto.xaml
     /// </summary>
-    public partial class GestionarBusqueda : Page, IGestionarInfoBol
+    public partial class GestionarBusqueda : Page, IGestionarBusqueda
     {
         private PresentadorGestionarBusqueda _presentador;
         private bool _cargada;
@@ -18,15 +18,33 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
 
         #region IAgregarInfoBol
 
-        public void OculatarControlesAlAgregar()
+        public void OcultarControlesAlAgregar()
         {
             this._btnEliminar.Visibility = System.Windows.Visibility.Collapsed;
-            this._cbxTipo.IsEnabled = true;
+            this._cbxTipoBusqueda.IsEnabled = true;
         }
 
         public void FocoPredeterminado()
         {
-            this._cbxTipo.Focus();
+            this._cbxTipoBusqueda.Focus();
+        }
+
+        public object Busqueda
+        {
+            get { return this._gridDatos.DataContext; }
+            set { this._gridDatos.DataContext = value; }
+        }
+
+        public object TiposBusqueda
+        {
+            get { return this._cbxTipoBusqueda.DataContext; }
+            set { this._cbxTipoBusqueda.DataContext = value; }
+        }
+
+        public object TipoBusqueda
+        {
+            get { return this._cbxTipoBusqueda.SelectedItem; }
+            set { this._cbxTipoBusqueda.SelectedItem = value; }
         }
 
         public string TextoBotonModificar
@@ -39,13 +57,16 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
         {
             set
             {
-                this._cbxBoletin.IsEnabled = value;
-                this._txtCambio.IsEnabled = value;
-                this._txtComentario.IsEnabled = value;
-                this._txtPagina.IsEnabled = value;
-                this._txtResolucion.IsEnabled = value;
-                this._cbxTomo.IsEnabled = value;
-                this._dpkFecha.IsEnabled = value;
+                this._txtId.IsEnabled = value;
+                this._txtCodigoBusqueda.IsEnabled = value;
+
+                this._cbxTipoBusqueda.IsEnabled = value;
+
+                this._dpkFechaBusquedaDiseno.IsEnabled = value;
+                this._dpkFechaBusquedaPalabra.IsEnabled = value;
+                this._dpkFechaConsigDiseno.IsEnabled = value;
+                this._dpkFechaConsigPalabra.IsEnabled = value;
+                this._dpkFechaResultadoBusqueda.IsEnabled = value;
             }
         }
 
@@ -55,47 +76,6 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             set { this._cargada = value; }
         }
 
-        public object InfoBol
-        {
-            get { return this._gridDatos.DataContext; }
-            set { this._gridDatos.DataContext = value; }
-        }
-
-        public object Boletines
-        {
-            get { return this._cbxBoletin.DataContext; }
-            set { this._cbxBoletin.DataContext = value; }
-        }
-
-        public object Boletin
-        {
-            get { return this._cbxBoletin.SelectedItem; }
-            set { this._cbxBoletin.SelectedItem = value; }
-        }
-
-        public object Tomos
-        {
-            get { return this._cbxTomo.DataContext; }
-            set { this._cbxTomo.DataContext = value; }
-        }
-
-        public object Tomo
-        {
-            get { return this._cbxTomo.SelectedItem; }
-            set { this._cbxTomo.SelectedItem = value; }
-        }
-
-        public object Tipos
-        {
-            get { return this._cbxTipo.DataContext; }
-            set { this._cbxTipo.DataContext = value; }
-        }
-
-        public object Tipo
-        {
-            get { return this._cbxTipo.SelectedItem; }
-            set { this._cbxTipo.SelectedItem = value; }
-        }
 
         public bool Mensaje(string mensaje)
         {
@@ -105,11 +85,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
 
         #endregion
 
-        public GestionarBusqueda(object infoBol)
+        public GestionarBusqueda(object busqueda)
         {
             InitializeComponent();
             this._cargada = false;
-            this._presentador = new PresentadorGestionarBusqueda(this, infoBol);
+            this._presentador = new PresentadorGestionarBusqueda(this, busqueda);
 
             _bgw.WorkerReportsProgress = true;
             _bgw.DoWork += new System.ComponentModel.DoWorkEventHandler(bgw_DoWork);
@@ -138,7 +118,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
 
         void bgw_RunWorkerCompleted(object sender, System.ComponentModel.RunWorkerCompletedEventArgs e)
         {
-            this._presentador.irListaInfoBol();
+            this._presentador.irListaBusqueda();
         }
 
         private void _btnCancelar_Click(object sender, RoutedEventArgs e)
@@ -158,13 +138,18 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
         private void _btnEliminar_Click(object sender, RoutedEventArgs e)
         {
             if (MessageBoxResult.Yes == MessageBox.Show(Recursos.MensajesConElUsuario.ConfirmacionEliminarInfoBol,
-                "Eliminar InfoBol", MessageBoxButton.YesNo, MessageBoxImage.Question))
+                "Eliminar Búsqueda", MessageBoxButton.YesNo, MessageBoxImage.Question))
             {
                 if (this._presentador.Eliminar())
                 {
                     _bgw.RunWorkerAsync();
                 }
             }
+        }
+
+        private void _dpkFechaBusquedaPalabra_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+
         }
     }
 }

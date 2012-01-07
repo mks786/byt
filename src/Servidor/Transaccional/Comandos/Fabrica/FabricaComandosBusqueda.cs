@@ -8,37 +8,37 @@ namespace Trascend.Bolet.Comandos.Fabrica
     public static class FabricaComandosBusqueda
     {
         /// <summary>
-        /// Método que devuelve el Comando para consultar todos los InfoBols
+        /// Método que devuelve el Comando para consultar todos las Búsqueda
         /// </summary>
-        /// <returns>El Comando para consultar todos los InfoBols</returns>
+        /// <returns>El Comando para consultar todos las Búsqueda</returns>
         public static ComandoBase<IList<Busqueda>> ObtenerComandoConsultarTodos()
         {
             return new ComandoConsultarTodasBusquedas();
         }
 
         /// <summary>
-        /// Método que devuelve el Comando para consultar un InfoBol por su ID
+        /// Método que devuelve el Comando para consultar una Búsqueda por su ID
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Búsqueda buscada</returns>
         public static ComandoBase<Busqueda> ObtenerComandoConsultarPorID(Busqueda busqueda)
         {
             return new ComandoConsultarBusquedaPorID(busqueda);
         }
 
         /// <summary>
-        /// Método que devuelve el Comando para modificar un InfoBol
+        /// Método que devuelve el Comando para modificar una Búsqueda
         /// </summary>
-        /// <param name="infoBol">InfoBol a insertar o modificar</param>
-        /// <returns>El comando para realizar la insercion o modificacion</returns>
+        /// <param name="infoBol">Búsqueda a insertar o modificar</param>
+        /// <returns>El comando para realizar la insercion o modificacion de una Búsqueda</returns>
         public static ComandoBase<bool> ObtenerComandoInsertarOModificar(Busqueda busqueda)
         {
             return new ComandoInsertarOModificarBusqueda(busqueda);
         }
 
         /// <summary>
-        /// Método que devuelve el Comando para elimnar un InfoBol
+        /// Método que devuelve el Comando para eliminar un Búsqueda
         /// </summary>
-        /// <param name="infoBol">InfoBol que se va a eliminar</param>
+        /// <param name="infoBol">Búsqueda que se va a eliminar</param>
         /// <returns>Comando para eliminar</returns>
         public static ComandoBase<bool> ObtenerComandoEliminarBusqueda(Busqueda busqueda)
         {
@@ -46,29 +46,19 @@ namespace Trascend.Bolet.Comandos.Fabrica
         }
 
         /// <summary>
-        /// Método que devuelve el Comando verificar existencia
+        /// Método que devuelve el Comando verificar existencia de una Búsqueda
         /// </summary>
-        /// <param name="busqueda">InfoBol a verificar</param>
+        /// <param name="busqueda">Búsqueda a verificar</param>
         /// <returns>True: si se realizo el comando con exito; False: en caso contrario</returns>
         public static ComandoBase<bool> ObtenerComandoVerificarExistenciaBusqueda(Busqueda busqueda)
         {
             return new ComandoVerificarExistenciaBusqueda(busqueda);
         }
 
-        ///// <summary>
-        ///// Método que devuelve el Comando para consultar la info adicinal por id
-        ///// </summary>
-        ///// <param name="infoBol">InfoBol a consultar</param>
-        ///// <returns>InfoBol que devuelve la consulta</returns>
-        //public static ComandoBase<Busqueda> ObtenerComandoConsultarInfoBolPorId(Busqueda busqueda)
-        //{
-        //    return new ComandoConsultarBusquedaPorID(busqueda);
-        //}
-
         /// <summary>
-        /// Metodo que devuelve el comando para consultar todos los infoboles de una marca
+        /// Método que devuelve el comando para consultar todos las Búsqueda de una marca
         /// </summary>
-        /// <param name="marca"></param>
+        /// <param name="marca">Marca a la cual se le consultarán las Búsquedas</param>
         /// <returns></returns>
         public static ComandoBase<IList<Busqueda>> ObtenerComandoConsultarBusquedasPorMarca(Marca marca)
         {

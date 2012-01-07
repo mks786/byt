@@ -25,6 +25,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
         private static PaginaPrincipal _paginaPrincipal = PaginaPrincipal.ObtenerInstancia;
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
+
+        private IListaDatosDominioServicios _listaDatosDominioServicios;
+
         /// <summary>
         /// Constructor Predeterminado
         /// </summary>
@@ -32,6 +35,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
         public PresentadorListaBusquedas(IListaBusquedas ventana, object marca)
         {
             this._ventana = ventana;
+
+            this._listaDatosDominioServicios = (IListaDatosDominioServicios)Activator.GetObject(typeof(IListaDatosDominioServicios),
+                ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["ListaDatosDominioServicios"]);
+
             this._marca = (Marca)marca;
         }
 
@@ -49,10 +56,25 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-                this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleListaInfoBol,
+                this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleListaBusqueda,
                     Recursos.Ids.InfoBol);
-                
-                this._ventana.InfoBoles = ((Marca)this._marca).InfoBoles;
+
+                ListaDatosDominio tipoBusqueda = new ListaDatosDominio(Recursos.Etiquetas.cbiTipoBusqueda);
+
+                IList<ListaDatosDominio> lista = this._listaDatosDominioServicios.ConsultarListaDatosDominioPorParametro(tipoBusqueda);
+                ListaDatosDominio primerTipo = new ListaDatosDominio();
+                primerTipo.Id = "NGN";
+                lista.Insert(0, primerTipo);
+                this._ventana.TiposBusqueda = lista;
+
+                foreach (Busqueda busqueda in this._marca.Busquedas)
+                {
+                    busqueda.TipoBusquedaDatosDominio = this.BuscarTipoBusqueda(busqueda.TipoBusqueda, lista);
+                }
+
+
+
+                this._ventana.Resultados = ((Marca)this._marca).Busquedas;
                 this._ventana.FocoPredeterminado();
 
                 #region trace
@@ -74,7 +96,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
         /// <summary>
         /// Método que invoca una nueva página "GestionarInfoBol" y la instancia con el objeto seleccionado
         /// </summary>
-        public void IrGestionarInfoBol(bool nuevo)
+        public void IrGestionarBusqueda(bool nuevo)
         {
             #region trace
             if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -83,15 +105,15 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
 
             if (!nuevo)
             {
-                ((InfoBol)this._ventana.InfoBolSeleccionado).Marca = this._marca;
-                this.Navegar(new GestionarInfoBol(this._ventana.InfoBolSeleccionado));
+                ((Busqueda)this._ventana.BusquedaSeleccionada).Marca = this._marca;
+                this.Navegar(new GestionarBusqueda(this._ventana.BusquedaSeleccionada));
             }
             else
             {
-                InfoBol infoBol = new InfoBol();
-                infoBol.Marca = this._marca;
-                infoBol.Id = int.MinValue;
-                this.Navegar(new GestionarInfoBol(infoBol));
+                Busqueda busqueda = new Busqueda();
+                busqueda.Marca = this._marca;
+                busqueda.Id = int.MinValue;
+                this.Navegar(new GestionarBusqueda(busqueda));
             }
 
             #region trace
@@ -134,90 +156,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             #endregion
         }
 
-        /// <summary>
-        /// Método que realiza una consulta al servicio, con el fin de filtrar los datos que se muestran 
-        /// por pantalla
-        /// </summary>
+
         public void Consultar()
         {
-            try
-            {
-                #region trace
-                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
-                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
-                #endregion
-
-                //IEnumerable<Poder> poderesFiltrados = this._poderes;
-
-                //if (!string.IsNullOrEmpty(this._ventana.Id))
-                //{
-                //    poderesFiltrados = from p in poderesFiltrados
-                //                       where p.Id == Int32.Parse(this._ventana.Id)
-                //                       select p;
-                //}
-
-                //if (!string.IsNullOrEmpty(this._ventana.NumPoder))
-                //{
-                //    poderesFiltrados = from p in poderesFiltrados
-                //                       where p.NumPoder != null &&
-                //                       p.NumPoder.ToLower().Contains(this._ventana.NumPoder.ToLower())
-                //                       select p;
-                //}
-
-                //if (this._ventana.Boletin != null && !((Boletin)this._ventana.Boletin).Id.Equals(int.MinValue))
-                //{
-                //    Boletin boletin = (Boletin)this._ventana.Boletin;
-                //    poderesFiltrados = from p in poderesFiltrados
-                //                       where p.Boletin != null &&
-                //                       p.Boletin.Id.ToString().ToLower().Contains(boletin.Id.ToString().ToLower())
-                //                       select p;
-                //}
-
-                //if (this._ventana.Interesado != null && !((Interesado)this._ventana.Interesado).Id.Equals(int.MinValue))
-                //{
-                //    Interesado interesado = (Interesado)this._ventana.Interesado;
-                //    poderesFiltrados = from p in poderesFiltrados
-                //                       where p.Interesado != null &&
-                //                       p.Interesado.Id.ToString().ToLower().Contains(interesado.Id.ToString().ToLower())
-                //                       select p;
-                //}
-
-                //if (!string.IsNullOrEmpty(this._ventana.Facultad))
-                //{
-                //    poderesFiltrados = from p in poderesFiltrados
-                //                       where p.Facultad != null &&
-                //                       p.Facultad.ToLower().Contains(this._ventana.Facultad.ToLower())
-                //                       select p;
-                //}
-
-                //if (!string.IsNullOrEmpty(this._ventana.Anexo))
-                //{
-                //    poderesFiltrados = from p in poderesFiltrados
-                //                       where p.Anexo != null &&
-                //                       p.Anexo.ToLower().Contains(this._ventana.Anexo.ToLower())
-                //                       select p;
-                //}
-
-                //if (!string.IsNullOrEmpty(this._ventana.Observaciones))
-                //{
-                //    poderesFiltrados = from p in poderesFiltrados
-                //                       where p.Observaciones != null &&
-                //                       p.Observaciones.ToLower().Contains(this._ventana.Observaciones.ToLower())
-                //                       select p;
-                //}
-
-                //this._ventana.Resultados = poderesFiltrados.ToList<Poder>();
-
-                #region trace
-                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
-                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
-                #endregion
-            }
-            catch (Exception ex)
-            {
-                logger.Error(ex.Message);
-                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
-            }
+            throw new NotImplementedException();
         }
     }
 }

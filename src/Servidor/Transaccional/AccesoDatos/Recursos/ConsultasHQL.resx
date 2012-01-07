@@ -237,4 +237,8 @@
     <value>Select i from InfoBol i left outer join fetch i.TipoInfobol where i.Marca.Id = '{0}'</value>
     <comment>Obtener todos los infoboles de una marca</comment>
   </data>
+  <data name="ObtenerBusquedasPorMarca" xml:space="preserve">
+    <value>Select b from Busqueda b where b.Marca.Id = '{0}'</value>
+    <comment>Obtiene las busquedas que pertenecen a una marca determinada</comment>
+  </data>
 </root>

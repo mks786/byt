@@ -26,7 +26,7 @@ namespace Trascend.Bolet.AccesoDatos
 
 
         /// <summary>
-        /// Metodo estático para solicitar la sesion de NHibernate
+        /// Método estático para solicitar la sesion de NHibernate
         /// </summary>
         /// <returns>retorna la sesion abierta</returns>
         public static ISession OpenSession()
@@ -35,7 +35,7 @@ namespace Trascend.Bolet.AccesoDatos
         }
 
         /// <summary>
-        /// Metodo que retorna la sesion abierta
+        /// Método que retorna la sesion abierta
         /// </summary>
         /// <returns>la sesion</returns>
         public static ISession GetCurrentSession()

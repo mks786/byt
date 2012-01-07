@@ -294,6 +294,24 @@ namespace Trascend.Bolet.Cliente.Presentadores
         }
 
         /// <summary>
+        /// Busca el tipode persona correspondiente a la inicial que se le esté pasando
+        /// </summary>
+        /// <param name="tipoPersona">Inicial del tipo de persona</param>
+        /// <returns>El tipo de persona correspondiente</returns>
+        public ListaDatosDominio BuscarTipoBusqueda(char? tipoBuscado, IList<ListaDatosDominio> tipoBusqueda)
+        {
+            ListaDatosDominio retorno = new ListaDatosDominio();
+
+            foreach (ListaDatosDominio dato in tipoBusqueda)
+            {
+                if (dato.Id[0] == tipoBuscado)
+                    retorno = dato;
+            }
+
+            return retorno;
+        }
+
+        /// <summary>
         /// Busca el tomo de entre una lista de valores
         /// </summary>
         /// <param name="tomoBuscado">Tomo buscado</param>

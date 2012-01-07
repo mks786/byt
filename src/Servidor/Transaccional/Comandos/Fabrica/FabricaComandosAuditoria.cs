@@ -41,7 +41,7 @@ namespace Trascend.Bolet.Comandos.Fabrica
 
 
         /// <summary>
-        /// Metodo que devuleve la auditoria de una tabla y una clave foranea
+        /// Método que devuleve la auditoria de una tabla y una clave foranea
         /// </summary>
         /// <param name="auditoria">Auditoria que contiene la Fk y la Tabla</param>
         /// <returns>Lista de auditorias que cumplen esos parametros</returns>

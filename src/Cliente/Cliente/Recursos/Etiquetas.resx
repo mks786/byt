@@ -1483,4 +1483,37 @@
   <data name="lsvTipoBusqueda" xml:space="preserve">
     <value>T /Búsqueda</value>
   </data>
+  <data name="lblCodigoBusqueda" xml:space="preserve">
+    <value>Código Búsqueda:</value>
+  </data>
+  <data name="lblExpedienteMarca" xml:space="preserve">
+    <value>Expediente Marca:</value>
+  </data>
+  <data name="lblFechaBusquedaDiseno" xml:space="preserve">
+    <value>Fecha Búsqueda Diseño:</value>
+  </data>
+  <data name="lblFechaBusquedaPalabra" xml:space="preserve">
+    <value>Fecha Búsqueda Palabra:</value>
+  </data>
+  <data name="lblFechaConsigDiseno" xml:space="preserve">
+    <value>Fecha Consig Diseño:</value>
+  </data>
+  <data name="lblFechaConsigPalabra" xml:space="preserve">
+    <value>Fecha Consig Palabra:</value>
+  </data>
+  <data name="lblFechaResultadoBusqueda" xml:space="preserve">
+    <value>F/ Resultado Búsqueda</value>
+  </data>
+  <data name="lblTipoBusqueda" xml:space="preserve">
+    <value>Tipo Búsqueda:</value>
+  </data>
+  <data name="titleListaBusqueda" xml:space="preserve">
+    <value>Lista de Búsquedas</value>
+  </data>
+  <data name="btnNuevaBusqueda" xml:space="preserve">
+    <value>Nueva Búsqueda</value>
+  </data>
+  <data name="cbiTipoBusqueda" xml:space="preserve">
+    <value>TIPO_BUSQUEDA</value>
+  </data>
 </root>

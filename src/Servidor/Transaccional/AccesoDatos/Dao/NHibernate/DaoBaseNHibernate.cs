@@ -80,7 +80,7 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
         }
 
         /// <summary>
-        /// Metodo que verifica si existe una entidad
+        /// Método que verifica si existe una entidad
         /// </summary>
         /// <param name="entidad">Entidad a verificar</param>
         /// <returns>True si existe, false en caso contrario</returns>
