@@ -1483,6 +1483,15 @@
   <data name="lsvTipoBusqueda" xml:space="preserve">
     <value>T /Búsqueda</value>
   </data>
+  <data name="titleAgregarOperacion" xml:space="preserve">
+    <value>Agregar Operacion</value>
+  </data>
+  <data name="titleConsultarOperacion" xml:space="preserve">
+    <value>Consultar Operacion</value>
+  </data>
+  <data name="titleListaOperaciones" xml:space="preserve">
+    <value>Operaciones</value>
+  </data>
   <data name="lblCodigoBusqueda" xml:space="preserve">
     <value>Código Búsqueda:</value>
   </data>

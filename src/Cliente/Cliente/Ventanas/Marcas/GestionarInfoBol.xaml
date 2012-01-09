@@ -43,7 +43,7 @@
                     <Label>
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblBoletin}"/>
                     </Label>
-                    <ComboBox Name="_cbxBoletin" Width="180" ItemsSource="{Binding}" IsEnabled="False">
+                    <ComboBox Name="_cbxBoletin" Width="180" ItemsSource="{Binding}" IsEnabled="False" SelectedIndex="0">
                         <ComboBox.ItemTemplate>
                             <DataTemplate>
                                 <TextBlock>

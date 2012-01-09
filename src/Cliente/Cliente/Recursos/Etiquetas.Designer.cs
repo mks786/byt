@@ -3571,6 +3571,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Agregar Operacion.
+        /// </summary>
+        public static string titleAgregarOperacion {
+            get {
+                return ResourceManager.GetString("titleAgregarOperacion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Agregar Pais.
         /// </summary>
         public static string titleAgregarPais {
@@ -3949,6 +3958,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Consultar Operacion.
+        /// </summary>
+        public static string titleConsultarOperacion {
+            get {
+                return ResourceManager.GetString("titleConsultarOperacion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Consultar Pais.
         /// </summary>
         public static string titleConsultarPais {
@@ -4206,6 +4224,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string titleListaJustificaciones {
             get {
                 return ResourceManager.GetString("titleListaJustificaciones", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Operaciones.
+        /// </summary>
+        public static string titleListaOperaciones {
+            get {
+                return ResourceManager.GetString("titleListaOperaciones", resourceCulture);
             }
         }
         

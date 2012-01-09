@@ -498,5 +498,14 @@ namespace Trascend.Bolet.AccesoDatos.Fabrica
         {
             return new DaoBusquedaNHibernate();
         }
+
+        /// <summary>
+        /// Método que devuelve el DaoOperacion
+        /// </summary>
+        /// <returns>IDaoOperacion</returns>
+        public override IDaoOperacion ObtenerDaoOperacion()
+        {
+            return new DaoOperacionNHibernate();
+        }
     }
 }

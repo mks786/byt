@@ -45,6 +45,7 @@
     <Compile Include="Implementacion\AgenteServicios.cs" />
     <Compile Include="Implementacion\AnexoServicios.cs" />
     <Compile Include="Implementacion\AsociadoServicios.cs" />
+    <Compile Include="Implementacion\BusquedaServicios.cs" />
     <Compile Include="Implementacion\ConceptoServicios.cs" />
     <Compile Include="Implementacion\ContactoServicios.cs" />
     <Compile Include="Implementacion\CartaServicios.cs" />
@@ -52,7 +53,7 @@
     <Compile Include="Implementacion\AsignacionServicios.cs" />
     <Compile Include="Implementacion\CondicionServicios.cs" />
     <Compile Include="Implementacion\AnaquaServicios.cs" />
-    <Compile Include="Implementacion\BusquedaServicios.cs" />
+    <Compile Include="Implementacion\OperacionServicios.cs" />
     <Compile Include="Implementacion\InfoBolServicios.cs" />
     <Compile Include="Implementacion\InfoAdicionalServicios.cs" />
     <Compile Include="Implementacion\CorresponsalServicios.cs" />

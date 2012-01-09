@@ -92,9 +92,6 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                     this._ventana.Tomo = this.BuscarTomos(tomos, ((InfoBol)this._ventana.InfoBol).Tomo);
 
                 IList<Boletin> boletines = this._boletinServicios.ConsultarTodos();
-                Boletin primerBoletin = new Boletin();
-                primerBoletin.Id = int.MinValue;
-                boletines.Insert(0, primerBoletin);
                 this._ventana.Boletines = null;
                 this._ventana.Boletines = boletines;
 

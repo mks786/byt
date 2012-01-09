@@ -662,6 +662,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             this._btnInfobol.Background = Brushes.LightGreen;
         }
 
+        public void pintarOperaciones()
+        {
+            this._btnOperacionesDatos.Background = Brushes.LightGreen;
+        }
+
         public GridViewColumnHeader CurSortCol
         {
             get { return _CurSortCol; }
@@ -1189,8 +1194,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             this._presentador.IrInfoBoles();
         }
 
-        #endregion
+        private void _btnOperacionesDatos_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.IrOperaciones();
+        }
 
-                
+        #endregion
     }
 }

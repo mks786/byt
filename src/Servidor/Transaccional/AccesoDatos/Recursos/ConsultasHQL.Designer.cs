@@ -313,6 +313,15 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Select o from Operacion o where o.CodigoAplicada = {0} and o.Aplicada = &apos;M&apos;.
+        /// </summary>
+        public static string ObtenerOperacionesPorMarcas {
+            get {
+                return ResourceManager.GetString("ObtenerOperacionesPorMarcas", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select p from Poder p where p.Interesado.Id = &apos;{0}&apos;.
         /// </summary>
         public static string ObtenerPoderesPorInteresado {

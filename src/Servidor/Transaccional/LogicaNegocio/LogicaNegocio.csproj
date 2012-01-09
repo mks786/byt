@@ -44,6 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controladores\ControladorAnexo.cs" />
+    <Compile Include="Controladores\ControladorBusqueda.cs" />
     <Compile Include="Controladores\ControladorCorresponsal.cs" />
     <Compile Include="Controladores\ControladorEstado.cs" />
     <Compile Include="Controladores\ControladorObjeto.cs" />
@@ -91,7 +92,7 @@
     <Compile Include="Controladores\ControladorAnaqua.cs" />
     <Compile Include="Controladores\ControladorInfoAdicional.cs" />
     <Compile Include="Controladores\ControladorInfoBol.cs" />
-    <Compile Include="Controladores\ControladorBusqueda.cs" />
+    <Compile Include="Controladores\ControladorOperacion.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

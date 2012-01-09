@@ -495,4 +495,16 @@
   <data name="MarcaModificada" xml:space="preserve">
     <value>Marca modificada con éxito</value>
   </data>
+  <data name="ConfirmacionEliminarOperacion" xml:space="preserve">
+    <value>¿Seguro que desea eliminar la operacion?</value>
+  </data>
+  <data name="OperacionEliminado" xml:space="preserve">
+    <value>Operacion eliminada con éxito</value>
+  </data>
+  <data name="OperacionInsertado" xml:space="preserve">
+    <value>Operacion insertada con éxito</value>
+  </data>
+  <data name="OperacionModificado" xml:space="preserve">
+    <value>Operacion modificada con éxito</value>
+  </data>
 </root>

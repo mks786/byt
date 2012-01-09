@@ -358,6 +358,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ¿Seguro que desea eliminar la operacion?.
+        /// </summary>
+        internal static string ConfirmacionEliminarOperacion {
+            get {
+                return ResourceManager.GetString("ConfirmacionEliminarOperacion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ¿Seguro que desea eliminar el país?.
         /// </summary>
         internal static string ConfirmacionEliminarPais {
@@ -948,6 +957,33 @@ namespace Trascend.Bolet.Cliente.Recursos {
         internal static string ObjetoModificado {
             get {
                 return ResourceManager.GetString("ObjetoModificado", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Operacion eliminada con éxito.
+        /// </summary>
+        internal static string OperacionEliminado {
+            get {
+                return ResourceManager.GetString("OperacionEliminado", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Operacion insertada con éxito.
+        /// </summary>
+        internal static string OperacionInsertado {
+            get {
+                return ResourceManager.GetString("OperacionInsertado", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Operacion modificada con éxito.
+        /// </summary>
+        internal static string OperacionModificado {
+            get {
+                return ResourceManager.GetString("OperacionModificado", resourceCulture);
             }
         }
         

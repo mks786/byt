@@ -1402,7 +1402,7 @@
                     </Button>
 
                     <Button IsEnabled="False" Grid.Column="10" Grid.Row="24" Grid.ColumnSpan="1" Name="_btnOperacionesDatos" Margin="3"
-                            Height="25">
+                            Height="25" Click="_btnOperacionesDatos_Click">
                         <TextBlock Name="_txbOperaciones" Text="{x:Static recurso:Etiquetas.btnOperaciones}"/>
                     </Button>
 

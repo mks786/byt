@@ -108,13 +108,14 @@
     <Compile Include="Contratos\EntradasAlternas\IAgregarEntradaAlterna.cs" />
     <Compile Include="Contratos\EntradasAlternas\IConsultarEntradaAlterna.cs" />
     <Compile Include="Contratos\EntradasAlternas\IConsultarEntradasAlternas.cs" />
+    <Compile Include="Contratos\Marcas\IConsultarMarca.cs" />
+    <Compile Include="Contratos\Marcas\IConsultarMarcas.cs" />
     <Compile Include="Contratos\Marcas\IListaBusquedas.cs" />
+    <Compile Include="Contratos\Marcas\IListaOperaciones.cs" />
     <Compile Include="Contratos\Marcas\IGestionarBusqueda.cs" />
     <Compile Include="Contratos\Marcas\IGestionarInfoBol.cs" />
     <Compile Include="Contratos\Marcas\IGestionarAnaqua.cs" />
     <Compile Include="Contratos\Marcas\IAgregarMarca.cs" />
-    <Compile Include="Contratos\Marcas\IConsultarMarca.cs" />
-    <Compile Include="Contratos\Marcas\IConsultarMarcas.cs" />
     <Compile Include="Contratos\Marcas\IGestionarInfoAdicional.cs" />
     <Compile Include="Contratos\Marcas\IListaInfoBoles.cs" />
     <Compile Include="Contratos\Remitentes\IAgregarRemitente.cs" />
@@ -211,6 +212,7 @@
     <Compile Include="Presentadores\EntradasAlternas\PresentadorConsultarEntradaAlterna.cs" />
     <Compile Include="Presentadores\EntradasAlternas\PresentadorConsultarEntradasAlternas.cs" />
     <Compile Include="Presentadores\Marcas\PresentadorListaBusquedas.cs" />
+    <Compile Include="Presentadores\Marcas\PresentadorListaOperaciones.cs" />
     <Compile Include="Presentadores\Marcas\PresentadorGestionarBusqueda.cs" />
     <Compile Include="Presentadores\Marcas\PresentadorGestionarInfoBol.cs" />
     <Compile Include="Presentadores\Marcas\PresentadorGestionarAnaqua.cs" />
@@ -379,6 +381,9 @@
     </Compile>
     <Compile Include="Ventanas\Marcas\AgregarMarca.xaml.cs">
       <DependentUpon>AgregarMarca.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Marcas\ListaOperaciones.xaml.cs">
+      <DependentUpon>ListaOperaciones.xaml</DependentUpon>
     </Compile>
     <Compile Include="Ventanas\Marcas\ListaBusquedas.xaml.cs">
       <DependentUpon>ListaBusquedas.xaml</DependentUpon>
@@ -698,6 +703,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Ventanas\Marcas\AgregarMarca.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\Marcas\ListaOperaciones.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

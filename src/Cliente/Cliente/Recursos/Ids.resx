@@ -165,6 +165,9 @@
   <data name="AgregarObjeto" xml:space="preserve">
     <value>SEGTOBJ</value>
   </data>
+  <data name="AgregarOperacion" xml:space="preserve">
+    <value>MYPTAGENTE</value>
+  </data>
   <data name="AgregarPais" xml:space="preserve">
     <value>MYP_PAISES</value>
   </data>
@@ -291,6 +294,12 @@
   <data name="ConsultarObjetos" xml:space="preserve">
     <value>SEGTOBJ</value>
   </data>
+  <data name="ConsultarOperacion" xml:space="preserve">
+    <value>MYPTAGENTE</value>
+  </data>
+  <data name="ConsultarOperaciones" xml:space="preserve">
+    <value>MYPTAGENTE</value>
+  </data>
   <data name="ConsultarPais" xml:space="preserve">
     <value>MYP_PAISES</value>
   </data>
@@ -395,6 +404,9 @@
   </data>
   <data name="EliminarObjeto" xml:space="preserve">
     <value>SEGTOBJ</value>
+  </data>
+  <data name="EliminarOperacion" xml:space="preserve">
+    <value>FAC_ASOCIADOS</value>
   </data>
   <data name="EliminarPais" xml:space="preserve">
     <value>MYP_PAISES</value>
@@ -501,6 +513,9 @@
   <data name="ModificarObjeto" xml:space="preserve">
     <value>SEGTOBJ</value>
   </data>
+  <data name="ModificarOperacion" xml:space="preserve">
+    <value>FAC_ASO_TRANF</value>
+  </data>
   <data name="ModificarPais" xml:space="preserve">
     <value>MYP_PAISES</value>
   </data>
@@ -524,6 +539,9 @@
   </data>
   <data name="Objeto" xml:space="preserve">
     <value>SEGTOBJ</value>
+  </data>
+  <data name="Operacion" xml:space="preserve">
+    <value>MYPTAGENTE</value>
   </data>
   <data name="Pais" xml:space="preserve">
     <value>MYP_PAISES</value>

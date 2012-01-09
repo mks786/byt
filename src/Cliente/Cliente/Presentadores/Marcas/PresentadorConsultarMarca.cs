@@ -40,6 +40,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
         private ICondicionServicios _condicionServicios;
         private IInfoAdicionalServicios _infoAdicionalServicios;
         private IInfoBolServicios _infoBolServicios;
+        private IOperacionServicios _operacionServicios;
         private IBusquedaServicios _busquedaServicios;
 
         private IList<Asociado> _asociados;
@@ -89,6 +90,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["InfoAdicionalServicios"]);
                 this._infoBolServicios = (IInfoBolServicios)Activator.GetObject(typeof(IInfoBolServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["InfoBolServicios"]);
+                this._operacionServicios = (IOperacionServicios)Activator.GetObject(typeof(IOperacionServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["OperacionServicios"]);
                 this._busquedaServicios = (IBusquedaServicios)Activator.GetObject(typeof(IBusquedaServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["BusquedaServicios"]);
 
@@ -130,6 +133,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 InfoAdicional infoAdicional = new InfoAdicional("M." + marca.Id);
 
                 marca.InfoBoles = this._infoBolServicios.ConsultarInfoBolesPorMarca(marca);
+                marca.Operaciones = this._operacionServicios.ConsultarOperacionesPorMarca(marca);
                 marca.Busquedas = this._busquedaServicios.ConsultarBusquedasPorMarca(marca);
 
                 marca.InfoAdicional = this._infoAdicionalServicios.ConsultarPorId(infoAdicional);
@@ -216,14 +220,17 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 this._ventana.TipoReproducciones = tipoReproducciones;
                 this._ventana.TipoReproduccion = this.BuscarTipoReproduccion(tipoReproducciones, marca.Tipo);
 
-                if (null != marca.InfoAdicional)
+                if (null != marca.InfoAdicional && !string.IsNullOrEmpty(marca.InfoAdicional.Id))
                     this._ventana.pintarInfoAdicional();
 
                 if (null != marca.Anaqua)
                     this._ventana.pintarAnaqua();
 
-                if (null != marca.InfoBoles)
+                if (null != marca.InfoBoles && marca.InfoBoles.Count > 0)
                     this._ventana.pintarInfoBoles();
+
+                if (null != marca.Operaciones && marca.Operaciones.Count > 0)
+                    this._ventana.pintarOperaciones();
 
                 this._ventana.FocoPredeterminado();
 
@@ -392,6 +399,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
         public void IrInfoBoles()
         {
             this.Navegar(new ListaInfoBoles(this._ventana.Marca));
+        }
+
+        public void IrOperaciones()
+        {
+            this.Navegar(new ListaOperaciones(this._ventana.Marca));
         }
 
         public void IrAnaqua()

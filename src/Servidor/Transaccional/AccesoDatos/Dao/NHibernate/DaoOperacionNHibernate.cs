@@ -8,18 +8,18 @@ using System.Collections.Generic;
 
 namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
 {
-    public class DaoInfoBolNHibernate : DaoBaseNHibernate<InfoBol, int>, IDaoInfoBol
+    public class DaoOperacionNHibernate : DaoBaseNHibernate<Operacion, int>, IDaoOperacion
     {
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
-        public IList<InfoBol> ObtenerInfoBolesPorMarca(Marca marca)
+        public IList<Operacion> ObtenerOperacionesPorMarca(Marca marca)
         {
-            IList<InfoBol> InfoBoles;
+            IList<Operacion> Operaciones;
 
             try
             {
-                IQuery query = Session.CreateQuery(string.Format(Recursos.ConsultasHQL.ObtenerInfoBolesPorMarcas, marca.Id));
-                InfoBoles = query.List<InfoBol>();
+                IQuery query = Session.CreateQuery(string.Format(Recursos.ConsultasHQL.ObtenerOperacionesPorMarcas, marca.Id));
+                Operaciones = query.List<Operacion>();
             }
             catch (Exception ex)
             {
@@ -31,7 +31,7 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
                 Session.Close();
             }
 
-            return InfoBoles;
+            return Operaciones;
         }
     }
 }
