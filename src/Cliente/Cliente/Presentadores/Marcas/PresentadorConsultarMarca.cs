@@ -232,6 +232,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 if (null != marca.Operaciones && marca.Operaciones.Count > 0)
                     this._ventana.pintarOperaciones();
 
+                if (null != marca.Busquedas && marca.Busquedas.Count > 0)
+                    this._ventana.pintarBusquedas();
+
                 this._ventana.FocoPredeterminado();
 
                 #region trace
@@ -420,9 +423,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             this.Navegar(new GestionarAnaqua(this._ventana.Marca));
         }
         
-        public void IrBusquedas()
+        public void IrBusquedas(string tab)
         {
-            this.Navegar(new ListaBusquedas(this._ventana.Marca));
+            this.Navegar(new ListaBusquedas(this._ventana.Marca,tab));
         }
 
         /// <summary>

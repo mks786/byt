@@ -13,6 +13,14 @@ namespace Trascend.Bolet.Cliente.Contratos.Marcas
 
         object TipoBusqueda { get; set; }
 
+        object BusquedaFiltrar { get; set; }
+
+        string IdBusqueda { get; }
+
+        string IdMarca { get; set; }
+
+        string Tab { get; }
+
         GridViewColumnHeader CurSortCol { get; set; }
 
         SortAdorner CurAdorner { get; set; }

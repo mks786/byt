@@ -495,6 +495,9 @@
   <data name="MarcaModificada" xml:space="preserve">
     <value>Marca modificada con éxito</value>
   </data>
+  <data name="ConfirmacionEliminarBusqueda" xml:space="preserve">
+    <value>¿Seguro que desea eliminar la Búsqueda?</value>
+  </data>
   <data name="ConfirmacionEliminarOperacion" xml:space="preserve">
     <value>¿Seguro que desea eliminar la operacion?</value>
   </data>

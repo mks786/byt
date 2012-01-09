@@ -17,5 +17,7 @@ namespace Trascend.Bolet.Cliente.Contratos.Marcas
 
         void OcultarControlesAlAgregar();
 
+        void BorrarValorMinimo();
+
     }
 }

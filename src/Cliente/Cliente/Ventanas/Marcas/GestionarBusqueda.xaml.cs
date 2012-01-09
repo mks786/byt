@@ -57,7 +57,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
         {
             set
             {
-                this._txtId.IsEnabled = value;
+                //this._txtIdMarca.IsEnabled = value;
                 this._txtCodigoBusqueda.IsEnabled = value;
 
                 this._cbxTipoBusqueda.IsEnabled = value;
@@ -81,6 +81,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
         {
             this._txtMensaje.Text = mensaje;
             return true;
+        }
+
+        public void BorrarValorMinimo()
+        {
+            this._txtCodigoBusqueda.Text = "";
         }
 
         #endregion
@@ -123,7 +128,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
 
         private void _btnCancelar_Click(object sender, RoutedEventArgs e)
         {
-            this._presentador.Regresar();
+            this._presentador.irListaBusqueda();
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
@@ -137,7 +142,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
 
         private void _btnEliminar_Click(object sender, RoutedEventArgs e)
         {
-            if (MessageBoxResult.Yes == MessageBox.Show(Recursos.MensajesConElUsuario.ConfirmacionEliminarInfoBol,
+            if (MessageBoxResult.Yes == MessageBox.Show(Recursos.MensajesConElUsuario.ConfirmacionEliminarBusqueda,
                 "Eliminar Búsqueda", MessageBoxButton.YesNo, MessageBoxImage.Question))
             {
                 if (this._presentador.Eliminar())

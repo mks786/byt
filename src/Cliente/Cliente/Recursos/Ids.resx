@@ -204,6 +204,9 @@
   <data name="Boletin" xml:space="preserve">
     <value>MYPTBOLETIN</value>
   </data>
+  <data name="Busqueda" xml:space="preserve">
+    <value>MYP_MARCAS_BSQ</value>
+  </data>
   <data name="Carta" xml:space="preserve">
     <value>MYPTAGENTE</value>
   </data>

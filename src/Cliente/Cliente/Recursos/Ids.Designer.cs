@@ -322,6 +322,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to MYP_MARCAS_BSQ.
+        /// </summary>
+        public static string Busqueda {
+            get {
+                return ResourceManager.GetString("Busqueda", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to MYPTAGENTE.
         /// </summary>
         public static string Carta {

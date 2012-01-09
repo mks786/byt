@@ -10,7 +10,7 @@
 	Title="{x:Static recurso:Etiquetas.titleConsultarPoderes}" Loaded="Page_Loaded">
     <Page.Resources>
         <conv:DosValresAUno x:Key="convertirADosValores"></conv:DosValresAUno>
-        <conv:EnteroMinimoABlanco x:Key="convertir"></conv:EnteroMinimoABlanco>
+        <conv:FechaABlanco x:Key="convertir"></conv:FechaABlanco>
         <Style TargetType="{x:Type DatePickerTextBox}">
             <Setter Property="Text" Value="{x:Static recurso:Etiquetas.dpkText}" />
         </Style>
@@ -35,13 +35,13 @@
                     <Label>
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblExpedienteMarca}"/>
                     </Label>
-                    <TextBox Name="_txtId" Text="{Binding Path=IdMarca}" Width="130" MaxLength="8"/>
+                    <TextBox IsEnabled="False" Name="_txtIdMarca" Width="130" MaxLength="8"/>
                 </WrapPanel>
                 <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,180,0">
                     <Label>
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblCodigoBusqueda}"/>
                     </Label>
-                    <TextBox Name="_txtNumPoder" Text="{Binding Path=Id}" Width="130" MaxLength="15"/>
+                    <TextBox Name="_txtIdBusqueda" Width="130" MaxLength="15"/>
                 </WrapPanel>
                 <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,180,0">
                     <Label>
@@ -126,14 +126,41 @@
                         <GridViewColumn DisplayMemberBinding="{Binding Path=TipoBusquedaDatosDominio.Descripcion}" Width="150">
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="TipoBusquedaDatosDominio.Descripcion" Content="{x:Static recurso:Etiquetas.lsvTipoBusqueda}"/>
                         </GridViewColumn>
-                        <GridViewColumn DisplayMemberBinding="{Binding Path=FechaSolicitudPalabra}" Width="150">
+                        <GridViewColumn Width="150">
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="FechaSolicitudPalabra" Content="{x:Static recurso:Etiquetas.lsvFechaResultado}"/>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock>
+                                        <TextBlock.Text>
+                                            <Binding Path="FechaSolicitudPalabra" StringFormat="{}{0:dd/MM/yyyy}"/>
+                                        </TextBlock.Text>
+                                    </TextBlock>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
                         </GridViewColumn>
-                        <GridViewColumn DisplayMemberBinding="{Binding Path=FechaBusquedaPalabra}" Width="150">
+                        <GridViewColumn Width="150">
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="FechaBusquedaPalabra" Content="{x:Static recurso:Etiquetas.lsvFechaBusquedaPalabra}"/>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock>
+                                        <TextBlock.Text>
+                                            <Binding Path="FechaBusquedaPalabra" StringFormat="{}{0:dd/MM/yyyy}"/>
+                                        </TextBlock.Text>
+                                    </TextBlock>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
                         </GridViewColumn>
-                        <GridViewColumn DisplayMemberBinding="{Binding Path=FechaBusquedaDiseno}" Width="150">
+                        <GridViewColumn Width="150">
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="FechaBusquedaDiseno" Content="{x:Static recurso:Etiquetas.lsvFechaBusquedaDiseno}"/>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock>
+                                        <TextBlock.Text>
+                                            <Binding Path="FechaBusquedaDiseno" StringFormat="{}{0:dd/MM/yyyy}"/>
+                                        </TextBlock.Text>
+                                    </TextBlock>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
                         </GridViewColumn>
                     </GridView>
                 </ListView.View>
@@ -157,7 +184,7 @@
                     <TextBlock Text="{x:Static recurso:Etiquetas.btnNuevaBusqueda}"/>
                 </Button>
                 <Button Name="_btnCancelar" Width="100" Click="_btnCancelar_Click">
-                    <TextBlock Text="{x:Static recurso:Etiquetas.btnCancelar}"/>
+                    <TextBlock Text="{x:Static recurso:Etiquetas.btnRegresar}"/>
                 </Button>
             </StackPanel>
         </GroupBox>

@@ -333,8 +333,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
                 this._btnAnaqua.IsEnabled = value;
                 this._btnAnexoFM02.IsEnabled = value;
                 this._btnAuditoria.IsEnabled = value;
-                this._btnBusqueda.IsEnabled = value;
-                this._btnBusquedas.IsEnabled = value;
+                this._btnBusquedaDatos.IsEnabled = value;
+                this._btnBusquedaSolicitud.IsEnabled = value;
                 this._btnCancelar.IsEnabled = value;
                 this._btnCarpeta.IsEnabled = value;
                 this._btnCertificados.IsEnabled = value;
@@ -666,6 +666,12 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
         public void pintarOperaciones()
         {
             this._btnOperacionesDatos.Background = Brushes.LightGreen;
+        }
+
+        public void pintarBusquedas()
+        {
+            this._btnBusquedaDatos.Background = Brushes.LightGreen;
+            this._btnBusquedaSolicitud.Background = Brushes.LightGreen;
         }
 
         public GridViewColumnHeader CurSortCol
@@ -1060,7 +1066,13 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
 
         private void _btnBusqueda_Click(object sender, RoutedEventArgs e)
         {
-            this._presentador.IrBusquedas();
+            string parametro = "";
+            if (((Button)sender).Name.Equals("_btnBusquedaSolicitud"))
+                parametro = Recursos.Etiquetas.tabSolicitud;
+            else if (((Button)sender).Name.Equals("_btnBusquedaDatos"))
+                parametro = Recursos.Etiquetas.tabDatos;
+
+            this._presentador.IrBusquedas(parametro);
         }
         #endregion
 

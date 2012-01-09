@@ -9,7 +9,7 @@ using Trascend.Bolet.Cliente.Ventanas.Principales;
 using Trascend.Bolet.ObjetosComunes.ContratosServicios;
 using Trascend.Bolet.ObjetosComunes.Entidades;
 using Trascend.Bolet.Cliente.Ventanas.Marcas;
-//using Trascend.Bolet.Cliente.Ventanas.InfoBoles;
+using System.Linq;
 using System.Collections.Generic;
 using System.Windows.Controls;
 using System.Windows.Documents;
@@ -56,9 +56,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
+                this._ventana.BusquedaFiltrar = new Busqueda();
                 this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleListaBusqueda,
-                    Recursos.Ids.InfoBol);
+                    Recursos.Ids.Busqueda);
 
+                this._ventana.IdMarca = this._marca.Id.ToString();
                 ListaDatosDominio tipoBusqueda = new ListaDatosDominio(Recursos.Etiquetas.cbiTipoBusqueda);
 
                 IList<ListaDatosDominio> lista = this._listaDatosDominioServicios.ConsultarListaDatosDominioPorParametro(tipoBusqueda);
@@ -159,7 +161,103 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
 
         public void Consultar()
         {
-            throw new NotImplementedException();
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                Busqueda busqueda = (Busqueda)this._ventana.BusquedaFiltrar;
+                busqueda.TipoBusqueda = ((ListaDatosDominio)this._ventana.TipoBusqueda).Id != "NGN" ? ((ListaDatosDominio)this._ventana.TipoBusqueda).Id[0] : (char?) null ;
+
+                IEnumerable<Busqueda> busquedasFiltradas = this._marca.Busquedas;
+
+                if (!string.IsNullOrEmpty(this._ventana.IdBusqueda))
+                {
+                    busquedasFiltradas = from b in busquedasFiltradas
+                                         where b.Id == int.Parse(this._ventana.IdBusqueda)
+                                         select b;
+                }
+
+                if (!string.IsNullOrEmpty(busqueda.FechaBusquedaDiseno.ToString()))
+                {
+                    busquedasFiltradas = from b in busquedasFiltradas
+                                         where b.FechaBusquedaDiseno != null &&
+                                         b.FechaBusquedaDiseno == busqueda.FechaBusquedaDiseno
+                                         select b;
+                }
+
+                if (!string.IsNullOrEmpty(busqueda.FechaBusquedaPalabra.ToString()))
+                {
+                    busquedasFiltradas = from b in busquedasFiltradas
+                                         where b.FechaBusquedaPalabra != null &&
+                                         b.FechaBusquedaPalabra == busqueda.FechaBusquedaPalabra
+                                         select b;
+                }
+
+                if (!string.IsNullOrEmpty(busqueda.FechaConsigDiseno.ToString()))
+                {
+                    busquedasFiltradas = from b in busquedasFiltradas
+                                         where b.FechaConsigDiseno != null &&
+                                         b.FechaConsigDiseno == busqueda.FechaConsigDiseno
+                                         select b;
+                }
+
+                if (!string.IsNullOrEmpty(busqueda.FechaConsigPalabra.ToString()))
+                {
+                    busquedasFiltradas = from b in busquedasFiltradas
+                                         where b.FechaConsigPalabra != null &&
+                                         b.FechaConsigPalabra == busqueda.FechaConsigPalabra
+                                         select b;
+                }
+
+                if (!string.IsNullOrEmpty(busqueda.FechaSolicitudPalabra.ToString()))
+                {
+                    busquedasFiltradas = from b in busquedasFiltradas
+                                         where b.FechaSolicitudPalabra != null &&
+                                         b.FechaSolicitudPalabra == busqueda.FechaSolicitudPalabra
+                                         select b;
+                }
+
+                if (null != busqueda.TipoBusqueda)
+                {
+                    busquedasFiltradas = from b in busquedasFiltradas
+                                         where b.TipoBusqueda != null &&
+                                         b.TipoBusqueda == busqueda.TipoBusqueda
+                                         select b;
+                }
+
+                this._ventana.Resultados = busquedasFiltradas.ToList<Busqueda>();
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
+            }
+        }
+
+        /// <summary>
+        /// Método que invoca una nueva página "ConsultarMarca" y la instancia con el objeto seleccionado
+        /// </summary>
+        public void IrConsultarMarca()
+        {
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+            this.Navegar(new ConsultarMarca(this._marca,this._ventana.Tab));
+
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
         }
     }
 }

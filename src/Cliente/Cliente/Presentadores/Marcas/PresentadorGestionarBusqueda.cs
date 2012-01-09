@@ -72,6 +72,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                     this._ventana.HabilitarCampos = true;
                     this._ventana.TextoBotonModificar = Recursos.Etiquetas.btnAceptar;
                     this._ventana.OcultarControlesAlAgregar();
+                    this._ventana.BorrarValorMinimo();
                 }
 
                 IList<ListaDatosDominio> tiposBusqueda = this._listaDatosDominioServicios.

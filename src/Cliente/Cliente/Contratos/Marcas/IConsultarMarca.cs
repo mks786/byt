@@ -154,6 +154,8 @@ namespace Trascend.Bolet.Cliente.Contratos.Marcas
 
         void pintarOperaciones();
 
+        void pintarBusquedas();
+
         GridViewColumnHeader CurSortCol { get; set; }
 
         SortAdorner CurAdorner { get; set; }

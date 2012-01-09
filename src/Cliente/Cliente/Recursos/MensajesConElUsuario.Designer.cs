@@ -241,6 +241,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ¿Seguro que desea eliminar la Búsqueda?.
+        /// </summary>
+        internal static string ConfirmacionEliminarBusqueda {
+            get {
+                return ResourceManager.GetString("ConfirmacionEliminarBusqueda", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ¿Seguro que desea eliminar la categoría?.
         /// </summary>
         internal static string ConfirmacionEliminarCategoria {

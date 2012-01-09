@@ -17,6 +17,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
         private SortAdorner _CurAdorner = null;
         private PresentadorListaBusquedas _presentador;
         private bool _cargada;
+        private object _marca;
+        private string _tab;
 
         #region IListaBusquedas
 
@@ -25,6 +27,16 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             get { return this._lstResultados.SelectedItem; }
         }
 
+        public string Tab
+        {
+            get { return this._tab; }
+        }
+
+        public object BusquedaFiltrar
+        {
+            get { return this._splFiltro.DataContext; }
+            set { this._splFiltro.DataContext = value; }
+        }
 
         public object TiposBusqueda
         {
@@ -44,10 +56,17 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             set { this._lstResultados.DataContext = value; }
         }
 
-        public string Id
+        public string IdMarca
         {
-            get { return this._txtId.Text; }
+            get { return this._txtIdMarca.Text; }
+            set { this._txtIdMarca.Text = value; }
         }
+
+        public string IdBusqueda
+        {
+            get { return this._txtIdBusqueda.Text; }
+        }
+
 
         public bool EstaCargada
         {
@@ -57,7 +76,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
 
         public void FocoPredeterminado()
         {
-            this._txtId.Focus();
+            this._txtIdMarca.Focus();
         }
 
         public GridViewColumnHeader CurSortCol
@@ -89,16 +108,28 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             InitializeComponent();
             this._cargada = false;
             this._presentador = new PresentadorListaBusquedas(this, marca);
+            this._marca = marca;
+        }
+
+        public ListaBusquedas(object marca, string tab) : this(marca)
+        {
+            this._tab = tab;
         }
 
         private void _btnCancelar_Click(object sender, RoutedEventArgs e)
         {
-            this._presentador.Cancelar();
+            this._presentador.IrConsultarMarca();
         }
 
         private void _btnConsultar_Click(object sender, RoutedEventArgs e)
         {
             this._presentador.Consultar();
+            this._dpkFechaBusquedaDiseno.Text = string.Empty;
+            this._dpkFechaBusquedaPalabra.Text = string.Empty;
+            this._dpkFechaConsigDiseno.Text = string.Empty;
+            this._dpkFechaConsigPalabra.Text = string.Empty;
+            this._dpkFechaResultadoBusqueda.Text = string.Empty;
+            validarCamposVacios();
         }
 
         private void EventoIrGestionarBusqueda(object sender, EventArgs e)
@@ -133,44 +164,21 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
         private void validarCamposVacios()
         {
             bool todosCamposVacios = true;
-            //if (!this._txtId.Text.Equals(""))
-            //{
-            //    todosCamposVacios = false;
-            //    this._txtId.Focus();
-            //}
 
-            //if (!this._txtNumPoder.Text.Equals(""))
-            //{
-            //    todosCamposVacios = false;
-            //    this._txtNumPoder.Focus();
-            //}
+            if (!this._txtIdBusqueda.Text.Equals(""))
+            {
+                todosCamposVacios = false;
+                this._txtIdBusqueda.Focus();
+            }
 
-            //if ((this._cbxBoletin.SelectedIndex != 0) && (this._cbxBoletin.SelectedIndex != -1))
-            //{
-            //    todosCamposVacios = false;
-            //    this._cbxBoletin.Focus();
-            //}
-
-            //if (!this._txtFacultad.Text.Equals(""))
-            //{
-            //    todosCamposVacios = false;
-            //    this._txtFacultad.Focus();
-            //}
-
-            //if (!this._txtAnexo.Text.Equals(""))
-            //{
-            //    todosCamposVacios = false;
-            //    this._txtAnexo.Focus();
-            //}
-
-            //if (!this._txtObservaciones.Text.Equals(""))
-            //{
-            //    todosCamposVacios = false;
-            //    this._txtObservaciones.Focus();
-            //}
+            if ((this._cbxTipoBusqueda.SelectedIndex != 0) && (this._cbxTipoBusqueda.SelectedIndex != -1))
+            {
+                todosCamposVacios = false;
+                this._cbxTipoBusqueda.Focus();
+            }
 
             if (todosCamposVacios)
-                this._txtId.Focus();
+                this._txtIdBusqueda.Focus();
         }
 
 
@@ -184,7 +192,5 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
         {
 
         }
-
-
     }
 }
