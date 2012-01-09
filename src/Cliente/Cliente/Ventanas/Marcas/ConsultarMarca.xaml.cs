@@ -5,6 +5,7 @@ using System.Windows;
 using System.Windows.Input;
 using Trascend.Bolet.Cliente.Ayuda;
 using System.Windows.Media;
+using System;
 
 namespace Trascend.Bolet.Cliente.Ventanas.Marcas
 {
@@ -31,7 +32,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             get { return this._tbcPestañas.DataContext; }
             set { this._tbcPestañas.DataContext = value; }
         }
-
+        
         public string NumPoderDatos
         {
             get { return this._txtPoderDatos.Text; }
@@ -680,7 +681,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
         }
 
         #endregion
-
+        
         public ConsultarMarca(object marcaSeleccionada)
         {
             InitializeComponent();
@@ -691,6 +692,17 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             this._corresponsalesCargados = false;
             this._poderesCargados = false;
             this._presentador = new PresentadorConsultarMarca(this, marcaSeleccionada);
+        }
+
+        public ConsultarMarca(object marcaSeleccionada, string tab) : this(marcaSeleccionada)
+        {
+            this.HabilitarCampos = true;
+
+            foreach (TabItem item in this._tbcPestañas.Items)
+            {
+                if (item.Header.Equals(tab))
+                    item.IsSelected = true;
+            }
         }
 
         #region Funciones

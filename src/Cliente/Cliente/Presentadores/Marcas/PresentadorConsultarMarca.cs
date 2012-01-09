@@ -250,6 +250,52 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             }
         }
 
+        public Marca CargarMarcaDeLaPantalla()
+        {
+
+            Marca marca = (Marca)this._ventana.Marca;
+
+            marca.Operacion = "MODIFY";
+
+            if (null != this._ventana.Agente)
+                marca.Agente = !((Agente)this._ventana.Agente).Id.Equals("NGN") ? (Agente)this._ventana.Agente : null;
+
+            if (null != this._ventana.AsociadoSolicitud)
+                marca.Asociado = ((Asociado)this._ventana.AsociadoSolicitud).Id != int.MinValue ? (Asociado)this._ventana.AsociadoSolicitud : null;
+
+            if (null != this._ventana.BoletinConcesion)
+                marca.BoletinConcesion = ((Boletin)this._ventana.BoletinConcesion).Id != int.MinValue ? (Boletin)this._ventana.BoletinConcesion : null;
+
+            if (null != this._ventana.BoletinPublicacion)
+                marca.BoletinPublicacion = ((Boletin)this._ventana.BoletinPublicacion).Id != int.MinValue ? (Boletin)this._ventana.BoletinPublicacion : null;
+
+            if (null != this._ventana.InteresadoSolicitud)
+                marca.Interesado = !((Interesado)this._ventana.InteresadoSolicitud).Id.Equals("NGN") ? ((Interesado)this._ventana.InteresadoSolicitud) : null;
+
+            if (null != this._ventana.Servicio)
+                marca.Servicio = !((Servicio)this._ventana.Servicio).Id.Equals("NGN") ? ((Servicio)this._ventana.Servicio) : null;
+
+            if (null != this._ventana.PoderSolicitud)
+                marca.Poder = !((Poder)this._ventana.PoderSolicitud).Id.Equals("NGN") ? ((Poder)this._ventana.PoderSolicitud) : null;
+
+            if (null != this._ventana.PaisSolicitud)
+                marca.Pais = ((Pais)this._ventana.PaisSolicitud).Id != int.MinValue ? ((Pais)this._ventana.PaisSolicitud) : null;
+
+            if (null != this._ventana.CorresponsalSolicitud)
+                marca.Corresponsal = ((Corresponsal)this._ventana.CorresponsalSolicitud).Id != int.MinValue ? ((Corresponsal)this._ventana.CorresponsalSolicitud) : null;
+
+            if (null != this._ventana.Sector)
+                marca.Sector = !((ListaDatosDominio)this._ventana.Sector).Id.Equals("NGN") ? ((ListaDatosDominio)this._ventana.Sector).Id : null;
+
+            if (null != this._ventana.TipoReproduccion)
+                marca.TipoRps = ((ListaDatosDominio)this._ventana.TipoReproduccion).Id[0];
+
+            if (null != this._ventana.TipoMarcaDatos)
+                marca.Tipo = !((ListaDatosDominio)this._ventana.TipoMarcaDatos).Id.Equals("NGN") ? ((ListaDatosDominio)this._ventana.TipoMarcaDatos).Id : null;
+
+            return marca;
+        }
+
         /// <summary>
         /// Método que dependiendo del estado de la página, habilita los campos o 
         /// modifica los datos del usuario
@@ -273,45 +319,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 //Modifica los datos del Pais
                 else
                 {
-                    Marca marca = (Marca)this._ventana.Marca;
-
-                    marca.Operacion = "MODIFY";
-
-                    if (null != this._ventana.Agente)
-                        marca.Agente = !((Agente)this._ventana.Agente).Id.Equals("NGN") ? (Agente)this._ventana.Agente : null;
-
-                    if (null != this._ventana.AsociadoSolicitud)
-                        marca.Asociado = ((Asociado)this._ventana.AsociadoSolicitud).Id != int.MinValue ? (Asociado)this._ventana.AsociadoSolicitud : null;
-
-                    if (null != this._ventana.BoletinConcesion)
-                        marca.BoletinConcesion = ((Boletin)this._ventana.BoletinConcesion).Id != int.MinValue ? (Boletin)this._ventana.BoletinConcesion : null;
-
-                    if (null != this._ventana.BoletinPublicacion)
-                        marca.BoletinPublicacion = ((Boletin)this._ventana.BoletinPublicacion).Id != int.MinValue ? (Boletin)this._ventana.BoletinPublicacion : null;
-
-                    if (null != this._ventana.InteresadoSolicitud)
-                        marca.Interesado = !((Interesado)this._ventana.InteresadoSolicitud).Id.Equals("NGN") ? ((Interesado)this._ventana.InteresadoSolicitud) : null;
-
-                    if (null != this._ventana.Servicio)
-                        marca.Servicio = !((Servicio)this._ventana.Servicio).Id.Equals("NGN") ? ((Servicio)this._ventana.Servicio) : null;
-
-                    if (null != this._ventana.PoderSolicitud)
-                        marca.Poder = !((Poder)this._ventana.PoderSolicitud).Id.Equals("NGN") ? ((Poder)this._ventana.PoderSolicitud) : null;
-
-                    if (null != this._ventana.PaisSolicitud)
-                        marca.Pais = ((Pais)this._ventana.PaisSolicitud).Id != int.MinValue ? ((Pais)this._ventana.PaisSolicitud) : null;
-
-                    if (null != this._ventana.CorresponsalSolicitud)
-                        marca.Corresponsal = ((Corresponsal)this._ventana.CorresponsalSolicitud).Id != int.MinValue ? ((Corresponsal)this._ventana.CorresponsalSolicitud) : null;
-
-                    if (null != this._ventana.Sector)
-                        marca.Sector = !((ListaDatosDominio)this._ventana.Sector).Id.Equals("NGN") ? ((ListaDatosDominio)this._ventana.Sector).Id : null;
-
-                    if (null != this._ventana.TipoReproduccion)
-                        marca.TipoRps = ((ListaDatosDominio)this._ventana.TipoReproduccion).Id[0];
-
-                    if (null != this._ventana.TipoMarcaDatos)
-                        marca.Tipo = !((ListaDatosDominio)this._ventana.TipoMarcaDatos).Id.Equals("NGN") ? ((ListaDatosDominio)this._ventana.TipoMarcaDatos).Id : null;
+                    Marca marca = CargarMarcaDeLaPantalla();
 
                     bool exitoso = this._marcaServicios.InsertarOModificar(marca, UsuarioLogeado.Hash);
 
@@ -398,7 +406,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
 
         public void IrInfoBoles()
         {
-            this.Navegar(new ListaInfoBoles(this._ventana.Marca));
+
+            this.Navegar(new ListaInfoBoles(CargarMarcaDeLaPantalla()));
         }
 
         public void IrOperaciones()

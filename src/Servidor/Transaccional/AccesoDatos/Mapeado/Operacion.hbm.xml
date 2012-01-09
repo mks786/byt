@@ -12,7 +12,7 @@
     <property name="CodigoAplicada" column="CAPLICADA" type="int"/>
     <property name="Interno" column="CINTERNO" type="int"/>
 
-    <many-to-one name="Servicio" class="Servicio">
+    <many-to-one name="Servicio" class="Servicio" lazy="false">
       <column name="CSERVICIO"/>
     </many-to-one>
     

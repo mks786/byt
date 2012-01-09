@@ -14,7 +14,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
     /// </summary>
     public partial class ListaOperaciones : Page, IListaOperaciones
     {
-        
+
         private GridViewColumnHeader _CurSortCol = null;
         private SortAdorner _CurAdorner = null;
         private PresentadorListaOperaciones _presentador;
@@ -68,7 +68,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
         public ListaOperaciones(object marca)
         {
             InitializeComponent();
-            this._cargada= false;
+            this._cargada = false;
             this._presentador = new PresentadorListaOperaciones(this, marca);
 
         }
@@ -94,10 +94,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
 
         private void EventoIrGestionarOperacion(object sender, EventArgs e)
         {
-            if (sender.GetType().ToString().Equals("System.Windows.Controls.Button"))
-                this._presentador.IrGestionarOperacion(true);
-            else
-                this._presentador.IrGestionarOperacion(false);
+            this._presentador.IrGestionarOperacion();
         }
     }
 }

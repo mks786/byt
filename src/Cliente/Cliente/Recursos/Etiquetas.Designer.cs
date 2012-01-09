@@ -439,6 +439,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Nuevo InfoBol.
+        /// </summary>
+        public static string btnNuevoInfoBol {
+            get {
+                return ResourceManager.GetString("btnNuevoInfoBol", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Nueva Justificación.
         /// </summary>
         public static string btnNuevoJustificacion {

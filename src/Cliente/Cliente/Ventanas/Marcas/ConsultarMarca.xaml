@@ -9,7 +9,8 @@
       xmlns:reglas="clr-namespace:Trascend.Bolet.Cliente.Validaciones"
       d:DesignHeight="550" d:DesignWidth="800"
       xmlns:recurso="clr-namespace:Trascend.Bolet.Cliente.Recursos"
-	Title="{x:Static recurso:Etiquetas.titleAgregarAgente}" Loaded="Page_Loaded">
+	Title="{x:Static recurso:Etiquetas.titleAgregarAgente}" Loaded="Page_Loaded"
+      KeepAlive="True">
     <Page.Resources>
         <conv:EnteroMinimoABlanco x:Key="convertir"></conv:EnteroMinimoABlanco>
         <conv:DosValresAUno x:Key="convertirADosValores"></conv:DosValresAUno>
@@ -37,7 +38,7 @@
         </Grid.RowDefinitions>
 
         <TabControl Grid.Column="1" Grid.Row="1" Name="_tbcPestañas" DataContext="{Binding}">
-            <TabItem Header="Solicitud" Name="_tabSolicitud">
+            <TabItem Header="{x:Static recurso:Etiquetas.tabSolicitud}" Name="_tabSolicitud">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto"/>

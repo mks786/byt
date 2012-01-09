@@ -51,7 +51,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
 
                 this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleListaInfoBol,
                     Recursos.Ids.InfoBol);
-                
+
                 this._ventana.InfoBoles = ((Marca)this._marca).InfoBoles;
                 this._ventana.FocoPredeterminado();
 
@@ -93,6 +93,24 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 infoBol.Id = int.MinValue;
                 this.Navegar(new GestionarInfoBol(infoBol));
             }
+
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+        }
+
+        /// <summary>
+        /// Método que invoca una nueva página "ConsultarMarca" y la instancia con el objeto seleccionado
+        /// </summary>
+        public void IrConsultarMarca()
+        {
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+            this.Navegar(new ConsultarMarca(this._marca,Recursos.Etiquetas.tabDatos));
 
             #region trace
             if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))

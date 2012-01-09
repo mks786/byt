@@ -1,5 +1,6 @@
 ﻿using System.Windows.Controls;
 using Trascend.Bolet.Cliente.Ayuda;
+using System;
 
 namespace Trascend.Bolet.Cliente.Contratos.Marcas
 {

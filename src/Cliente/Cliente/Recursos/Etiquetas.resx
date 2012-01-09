@@ -1525,4 +1525,7 @@
   <data name="cbiTipoBusqueda" xml:space="preserve">
     <value>TIPO_BUSQUEDA</value>
   </data>
+  <data name="btnNuevoInfoBol" xml:space="preserve">
+    <value>Nuevo InfoBol</value>
+  </data>
 </root>

@@ -74,25 +74,15 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
         /// <summary>
         /// Método que invoca una nueva página "GestionarOperacion" y la instancia con el objeto seleccionado
         /// </summary>
-        public void IrGestionarOperacion(bool nuevo)
+        public void IrGestionarOperacion()
         {
             #region trace
             if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
                 logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
 
-            if (!nuevo)
-            {
-                ((Operacion)this._ventana.OperacionSeleccionado).Marca = this._marca;
-                //this.Navegar(new GestionarOperacion(this._ventana.OperacionSeleccionado));
-            }
-            else
-            {
-                Operacion Operacion = new Operacion();
-                //Operacion.Marca = this._marca;
-                Operacion.Id = int.MinValue;
-                //this.Navegar(new GestionarOperacion(Operacion));
-            }
+            ((Operacion)this._ventana.OperacionSeleccionado).Marca = this._marca;
+            //this.Navegar(new GestionarOperacion(this._ventana.OperacionSeleccionado));
 
             #region trace
             if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))

@@ -41,8 +41,8 @@
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
-                        <GridViewColumn DisplayMemberBinding="{Binding Path=Operacion}" Width="120">
-                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="Operacion" Content="{x:Static recurso:Etiquetas.lsvOperacion}"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Servicio.Descripcion}" Width="120">
+                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="Servicio.Descripcion" Content="{x:Static recurso:Etiquetas.lsvOperacion}"/>
                         </GridViewColumn>
                         <GridViewColumn DisplayMemberBinding="{Binding Path=Descripcion}" Width="120">
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="Descripcion" Content="{x:Static recurso:Etiquetas.lsvDescripcion}"/>
@@ -58,9 +58,6 @@
         <!--Botones Regresar-->
         <GroupBox Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="1" BorderBrush="{x:Null}">
             <WrapPanel Grid.Row="2" Grid.ColumnSpan="3" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="5" Orientation="Horizontal">
-                <Button Name="_btnAgregar" VerticalAlignment="Bottom" Height="25" Width="110" Click="EventoIrGestionarOperacion">
-                    <TextBlock Text="{x:Static recurso:Etiquetas.btnNuevoContacto}"/>
-                </Button>
                 <Button Name="_btnRegresar" VerticalAlignment="Bottom" Height="25" Width="110" Click="_btnRegresar_Click">
                     <TextBlock Text="{x:Static recurso:Etiquetas.btnRegresar}"/>
                 </Button>
