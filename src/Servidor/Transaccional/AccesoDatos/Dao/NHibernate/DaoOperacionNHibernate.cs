@@ -33,5 +33,27 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
 
             return Operaciones;
         }
+
+        public IList<Operacion> ObtenerOperacionesPorMarcaYServicio(Operacion operacion)
+        {
+            IList<Operacion> Operaciones;
+
+            try
+            {
+                IQuery query = Session.CreateQuery(string.Format(Recursos.ConsultasHQL.ObtenerOperacionesPorMarcasYServicio, operacion.Marca.Id, operacion.Servicio.Id));
+                Operaciones = query.List<Operacion>();
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                throw new ApplicationException(Recursos.Errores.ExConsultarTodos);
+            }
+            finally
+            {
+                Session.Close();
+            }
+
+            return Operaciones;
+        }
     }
 }

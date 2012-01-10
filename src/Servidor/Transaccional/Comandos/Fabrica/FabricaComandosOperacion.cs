@@ -74,6 +74,16 @@ namespace Trascend.Bolet.Comandos.Fabrica
         {
             return new ComandoConsultarOperacionesPorMarca(marca);
         }
+
+        /// <summary>
+        /// Metodo que devuelve el comando para consultar todos los Operaciones de una marca y un servicio
+        /// </summary>
+        /// <param name="operacion"></param>
+        /// <returns></returns>
+        public static ComandoBase<IList<Operacion>> ObtenerComandoConsultarOperacionesPorMarcaYServicio(Operacion operacion)
+        {
+            return new ComandoConsultarOperacionesPorMarcaYServicio(operacion);
+        }
     }
     
 }

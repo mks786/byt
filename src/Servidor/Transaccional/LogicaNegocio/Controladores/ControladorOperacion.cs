@@ -206,6 +206,33 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
             }
             return retorno;
         }
+
+        public static IList<Operacion> ConsultarOperacionesPorMarcaYTipo(Operacion operacion)
+        {
+            IList<Operacion> retorno;
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                ComandoBase<IList<Operacion>> comando = FabricaComandosOperacion.ObtenerComandoConsultarOperacionesPorMarcaYServicio(operacion);
+                comando.Ejecutar();
+                retorno = comando.Receptor.ObjetoAlmacenado;
+
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (ApplicationException ex)
+            {
+                logger.Error(ex.Message);
+                throw ex;
+            }
+            return retorno;
+        }
     }
 }
 

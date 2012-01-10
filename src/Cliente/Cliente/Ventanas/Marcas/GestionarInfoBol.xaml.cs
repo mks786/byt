@@ -4,6 +4,7 @@ using Trascend.Bolet.Cliente.Contratos.Marcas;
 using Trascend.Bolet.Cliente.Presentadores.Marcas;
 using System.ComponentModel;
 using System.Threading;
+using Trascend.Bolet.Cliente.Ayuda;
 
 namespace Trascend.Bolet.Cliente.Ventanas.Marcas
 {
@@ -12,6 +13,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
     /// </summary>
     public partial class GestionarInfoBol : Page, IGestionarInfoBol
     {
+        private GridViewColumnHeader _CurSortCol = null;
+        private SortAdorner _CurAdorner = null;
         private PresentadorGestionarInfoBol _presentador;
         private bool _cargada;
         BackgroundWorker _bgw = new BackgroundWorker();
@@ -73,6 +76,18 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             set { this._cbxBoletin.SelectedItem = value; }
         }
 
+        public object Cambios
+        {
+            get { return this._lstCambios.DataContext; }
+            set { this._lstCambios.DataContext = value; }
+        }
+
+        public object Cambio
+        {
+            get { return this._lstCambios.SelectedItem; }
+            set { this._lstCambios.SelectedItem = value; }
+        }
+
         public object Tomos
         {
             get { return this._cbxTomo.DataContext; }
@@ -97,10 +112,33 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             set { this._cbxTipo.SelectedItem = value; }
         }
 
+        public string TextoCambio
+        {
+            get { return this._txtCambio.Text; }
+            set { this._txtCambio.Text = value; }
+        }
+
+        public void BorrarTextoCambio()
+        {
+            this._txtCambio.Text = "";
+        }
+
         public bool Mensaje(string mensaje)
         {
             this._txtMensaje.Text = mensaje;
             return true;
+        }
+
+        public GridViewColumnHeader CurSortCol
+        {
+            get { return _CurSortCol; }
+            set { _CurSortCol = value; }
+        }
+
+        public SortAdorner CurAdorner
+        {
+            get { return _CurAdorner; }
+            set { _CurAdorner = value; }
         }
 
         #endregion
@@ -166,5 +204,50 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
                 }
             }
         }
+
+
+        private void mostrarLstCambio()
+        {
+            this._txtCambio.Visibility = System.Windows.Visibility.Collapsed;
+            this._lstCambios.Visibility = System.Windows.Visibility.Visible;
+            this._lstCambios.IsEnabled = true;
+        }
+
+        private void ocultarLstCambio()
+        {
+            this._lstCambios.Visibility = System.Windows.Visibility.Collapsed;
+            this._txtCambio.Visibility = System.Windows.Visibility.Visible;
+        }
+
+        private void _lstCambios_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            this._presentador.CambiarCambio();
+            ocultarLstCambio();
+        }
+
+        private void _txtCambio_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            if (this._presentador.TieneElementosListaCambio())
+            {
+                mostrarLstCambio();
+            }
+            else
+            {
+                MessageBox.Show("No existen cambios para el tipo seleccionado", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private void _OrdenarCambio_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.OrdenarColumna(sender as GridViewColumnHeader, this._lstCambios);
+        }
+
+        private void _cbxTipo_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            BorrarTextoCambio();
+            ocultarLstCambio();
+            this._presentador.CargarCambio();
+        }
+
     }
 }

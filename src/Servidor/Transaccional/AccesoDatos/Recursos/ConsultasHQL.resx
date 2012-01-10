@@ -245,4 +245,8 @@
     <value>Select b from Busqueda b where b.Marca.Id = '{0}'</value>
     <comment>Obtiene las busquedas que pertenecen a una marca determinada</comment>
   </data>
+  <data name="ObtenerOperacionesPorMarcasYServicio" xml:space="preserve">
+    <value>Select o from Operacion o where o.CodigoAplicada = {0} and o.Aplicada = 'M' and o.Servicio.Id = '{1}'</value>
+    <comment>Obtener todos las operaciones de una marca y con un servicio</comment>
+  </data>
 </root>

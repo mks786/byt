@@ -11,6 +11,10 @@ using Trascend.Bolet.ObjetosComunes.Entidades;
 using System.Threading;
 using Trascend.Bolet.Cliente.Ventanas.Marcas;
 using System.Collections.Generic;
+using System.Windows.Controls;
+using System.ComponentModel;
+using System.Windows.Documents;
+using Trascend.Bolet.Cliente.Ayuda;
 
 namespace Trascend.Bolet.Cliente.Presentadores.Marcas
 {
@@ -23,7 +27,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
         private IBoletinServicios _boletinServicios;
         private IListaDatosDominioServicios _listaDatosDominioServicios;
         private ITipoInfobolServicios _tipoInfobolServicios;
+        private IOperacionServicios _operacionServicios;
         private bool _nuevaInfoBol = false;
+        private bool _tieneListaCambios = false;
 
         /// <summary>
         /// Constructor predeterminado
@@ -47,6 +53,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["ListaDatosDominioServicios"]);
                 this._tipoInfobolServicios = (ITipoInfobolServicios)Activator.GetObject(typeof(ITipoInfobolServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["TipoInfobolServicios"]);
+                this._operacionServicios = (IOperacionServicios)Activator.GetObject(typeof(IOperacionServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["OperacionServicios"]);
 
                 IList<TipoInfobol> infoboles = this._tipoInfobolServicios.ConsultarTodos();
                 this._ventana.Tipos = null;
@@ -98,6 +106,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 if(!this._nuevaInfoBol)
                     this._ventana.Boletin = this.BuscarBoletin(boletines, ((InfoBol)this._ventana.InfoBol).Boletin);
 
+                this._ventana.BorrarTextoCambio();
 
                 this._ventana.FocoPredeterminado();
             }
@@ -152,6 +161,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                     infoBol.Boletin = (Boletin)this._ventana.Boletin;
                     infoBol.TimeStamp = System.DateTime.Now;
                     infoBol.Usuario = UsuarioLogeado;
+                    infoBol.Cambio = int.Parse(this._ventana.TextoCambio);
 
                     if (this._nuevaInfoBol)
                     {
@@ -233,9 +243,97 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             return exitoso;
         }
 
+        /// <summary>
+        /// Método que ordena una columna
+        /// </summary>
+        public void OrdenarColumna(GridViewColumnHeader column, ListView ListaResultados)
+        {
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+            String field = column.Tag as String;
+
+            if (this._ventana.CurSortCol != null)
+            {
+                AdornerLayer.GetAdornerLayer(this._ventana.CurSortCol).Remove(this._ventana.CurAdorner);
+                ListaResultados.Items.SortDescriptions.Clear();
+            }
+
+            ListSortDirection newDir = ListSortDirection.Ascending;
+            if (this._ventana.CurSortCol == column && this._ventana.CurAdorner.Direction == newDir)
+                newDir = ListSortDirection.Descending;
+
+            this._ventana.CurSortCol = column;
+            this._ventana.CurAdorner = new SortAdorner(this._ventana.CurSortCol, newDir);
+            AdornerLayer.GetAdornerLayer(this._ventana.CurSortCol).Add(this._ventana.CurAdorner);
+            ListaResultados.Items.SortDescriptions.Add(
+                new SortDescription(field, newDir));
+
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+        }
+
         public void irListaInfoBol()
         {
             this.Navegar(new ListaInfoBoles(((InfoBol)this._ventana.InfoBol).Marca));
+        }
+
+        public void CambiarCambio()
+        {
+            try
+            {
+                if ((Operacion)this._ventana.Cambio != null)
+                {
+                    this._ventana.TextoCambio = ((Operacion)this._ventana.Cambio).Interno.ToString();
+                }
+            }
+            catch (ApplicationException e)
+            {
+                this._ventana.BorrarTextoCambio();
+            }
+        }
+
+        public bool TieneElementosListaCambio()
+        {
+            return this._tieneListaCambios;
+        }
+
+        public void CargarCambio()
+        {
+            Operacion operacion = new Operacion();
+            operacion.Marca = new Marca(((InfoBol)this._ventana.InfoBol).Marca.Id);
+
+            if (((TipoInfobol)this._ventana.Tipo).Id.Equals("RT.CD") || ((TipoInfobol)this._ventana.Tipo).Id.Equals("RT.CN") ||
+                 ((TipoInfobol)this._ventana.Tipo).Id.Equals("RT.FU") || ((TipoInfobol)this._ventana.Tipo).Id.Equals("RT.TP") ||
+                 ((TipoInfobol)this._ventana.Tipo).Id.Equals("RT.REN") || ((TipoInfobol)this._ventana.Tipo).Id.Equals("RT.LU"))
+            {
+                if(((TipoInfobol)this._ventana.Tipo).Id.Equals("RT.TP")){
+                    operacion.Servicio = new Servicio("CS");
+                }
+                else if (((TipoInfobol)this._ventana.Tipo).Id.Equals("RT.REN"))
+                {
+                    operacion.Servicio = new Servicio("RN");
+                }
+                else
+                {
+                    operacion.Servicio = new Servicio(((TipoInfobol)this._ventana.Tipo).Id.Substring(((TipoInfobol)this._ventana.Tipo).Id.Length-2));
+                }
+
+                this._ventana.Cambios = null;
+                this._ventana.Cambios = this._operacionServicios.ObtenerOperacionPorMarcaYServicio(operacion);
+
+                if (((IList<Operacion>)this._ventana.Cambios).Count > 0)
+                    this._tieneListaCambios = true;
+                else
+                    this._tieneListaCambios = false;
+
+            }
+            else
+                this._tieneListaCambios = false;
         }
     }
 }

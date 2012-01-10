@@ -106,5 +106,29 @@ namespace Trascend.Bolet.Servicios.Implementacion
 
             return operaciones;
         }
+
+        /// <summary>
+        /// Servicio que consulta una serie de operaciones por el id de la marca y el tipo de la infobol
+        /// </summary>
+        /// <param name="operacion">Operacion que contiene los parametros de la consulta</param>
+        /// <returns>Lista de operaciones filtradas</returns>
+        public IList<Operacion> ObtenerOperacionPorMarcaYServicio(Operacion operacion)
+        {
+            #region trace
+            if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+            IList<Operacion> operaciones;
+
+            operaciones = ControladorOperacion.ConsultarOperacionesPorMarcaYTipo(operacion);
+
+            return operaciones;
+
+            #region trace
+            if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                logger.Debug("Saliendo del Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+        }
     }
 }
