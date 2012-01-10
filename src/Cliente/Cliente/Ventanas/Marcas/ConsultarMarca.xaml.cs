@@ -702,7 +702,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
 
         public ConsultarMarca(object marcaSeleccionada, string tab) : this(marcaSeleccionada)
         {
-            this.HabilitarCampos = true;
+            this._presentador.CambiarAModificar();
 
             foreach (TabItem item in this._tbcPestañas.Items)
             {
@@ -885,13 +885,29 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
 
         private void _btnInfoAdicional_Click(object sender, RoutedEventArgs e)
         {
-            this._presentador.IrInfoAdicional();
-        }
+            string parametro = "";
+            if (((Button)sender).Name.Equals("_btnInfoAdicionalSolicitud"))
+                parametro = Recursos.Etiquetas.tabSolicitud;
+            else if (((Button)sender).Name.Equals("_btnInfoAdicional"))
+                parametro = Recursos.Etiquetas.tabDatos;
 
+            this._presentador.IrInfoAdicional(parametro);
+        }
 
         private void _btnAnaqua_Click(object sender, RoutedEventArgs e)
         {
             this._presentador.IrAnaqua();
+        }
+
+        private void _btnBusqueda_Click(object sender, RoutedEventArgs e)
+        {
+            string parametro = "";
+            if (((Button)sender).Name.Equals("_btnBusquedaSolicitud"))
+                parametro = Recursos.Etiquetas.tabSolicitud;
+            else if (((Button)sender).Name.Equals("_btnBusquedaDatos"))
+                parametro = Recursos.Etiquetas.tabDatos;
+
+            this._presentador.IrBusquedas(parametro);
         }
 
         #endregion
@@ -1064,16 +1080,6 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             this._cbxTipoMarcaDatos.SelectedItem = ((ComboBox)sender).SelectedItem;
         }
 
-        private void _btnBusqueda_Click(object sender, RoutedEventArgs e)
-        {
-            string parametro = "";
-            if (((Button)sender).Name.Equals("_btnBusquedaSolicitud"))
-                parametro = Recursos.Etiquetas.tabSolicitud;
-            else if (((Button)sender).Name.Equals("_btnBusquedaDatos"))
-                parametro = Recursos.Etiquetas.tabDatos;
-
-            this._presentador.IrBusquedas(parametro);
-        }
         #endregion
 
         #region Eventos Datos

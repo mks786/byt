@@ -165,5 +165,23 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             this._ventana.TextoBotonModificar = (string)e.Argument;
             Thread.Sleep(2000);
         }
+
+        /// <summary>
+        /// Método que invoca una nueva página "ConsultarMarca" y la instancia con el objeto seleccionado
+        /// </summary>
+        public void IrConsultarMarca()
+        {
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+            this.Navegar(new ConsultarMarca(this._marca, Recursos.Etiquetas.tabDatos));
+
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+        }
     }
 }

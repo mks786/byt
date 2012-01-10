@@ -14,5 +14,7 @@ namespace Trascend.Bolet.Cliente.Contratos.Marcas
         void PintarAuditoria();
 
         void OculatarControlesAlAgregar();
+
+        string Tab { get; }
     }
 }

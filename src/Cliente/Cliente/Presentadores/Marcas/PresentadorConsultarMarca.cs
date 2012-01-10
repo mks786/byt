@@ -146,6 +146,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 tiposMarcas.Insert(0, primerTipoMarca);
                 this._ventana.TipoMarcasDatos = tiposMarcas;
                 this._ventana.TipoMarcasSolicitud = tiposMarcas;
+                this._ventana.TipoMarcaDatos = this.BuscarTipoMarca(tiposMarcas, marca.Tipo);
 
                 IList<Agente> agentes = this._agenteServicios.ConsultarTodos();
                 Agente primerAgente = new Agente();
@@ -299,6 +300,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             return marca;
         }
 
+        public void CambiarAModificar()
+        {
+            this._ventana.HabilitarCampos = true;
+            this._ventana.TextoBotonModificar = Recursos.Etiquetas.btnAceptar;
+        }
+
         /// <summary>
         /// Método que dependiendo del estado de la página, habilita los campos o 
         /// modifica los datos del usuario
@@ -402,9 +409,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             }
         }
 
-        public void IrInfoAdicional()
+        public void IrInfoAdicional(string tab)
         {
-            this.Navegar(new GestionarInfoAdicional(this._ventana.Marca));
+            this.Navegar(new GestionarInfoAdicional(CargarMarcaDeLaPantalla(), tab));
         }
 
         public void IrInfoBoles()
@@ -415,17 +422,17 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
 
         public void IrOperaciones()
         {
-            this.Navegar(new ListaOperaciones(this._ventana.Marca));
+            this.Navegar(new ListaOperaciones(CargarMarcaDeLaPantalla()));
         }
 
         public void IrAnaqua()
         {
-            this.Navegar(new GestionarAnaqua(this._ventana.Marca));
+            this.Navegar(new GestionarAnaqua(CargarMarcaDeLaPantalla()));
         }
         
         public void IrBusquedas(string tab)
         {
-            this.Navegar(new ListaBusquedas(this._ventana.Marca,tab));
+            this.Navegar(new ListaBusquedas(CargarMarcaDeLaPantalla(), tab));
         }
 
         /// <summary>

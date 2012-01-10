@@ -91,7 +91,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
 
         void bgw_RunWorkerCompleted(object sender, System.ComponentModel.RunWorkerCompletedEventArgs e)
         {
-            this._presentador.Navegar(new ConsultarMarca(this._marca));
+            this._presentador.IrConsultarMarca();
         }
 
         private void ejecutarTransaccion()

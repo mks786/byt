@@ -837,6 +837,29 @@ namespace Trascend.Bolet.Cliente.Presentadores
         }
 
         /// <summary>
+        /// Método que busca un tipo de marca dentro de una lista de tipos de marca
+        /// </summary>
+        /// <param name="tipoMarcas">Lista de tipos de marcas</param>
+        /// <param name="tipoMarcaBuscado">Tipo de marca a buscar</param>
+        /// <returns>Tipo de marca dentro de la lista</returns>
+        public ListaDatosDominio BuscarTipoMarca(IList<ListaDatosDominio> tipoMarcas, string tipoMarcaBuscado)
+        {
+            ListaDatosDominio retorno = null;
+
+            if (tipoMarcaBuscado != null)
+                foreach (ListaDatosDominio tipoMarca in tipoMarcas)
+                {
+                    if (tipoMarca.Id.Equals(tipoMarcaBuscado))
+                    {
+                        retorno = tipoMarca;
+                        break;
+                    }
+                }
+
+            return retorno;
+        }
+
+        /// <summary>
         /// Método que busca un concepto dentro de una lista de conceptos
         /// </summary>
         /// <param name="estados">Lista de conceptos</param>

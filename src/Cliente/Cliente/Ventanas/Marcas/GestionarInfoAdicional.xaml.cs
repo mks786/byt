@@ -18,6 +18,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
         private PresentadorGestionarInfoAdicional _presentador;
         private bool _cargada;
         BackgroundWorker _bgw = new BackgroundWorker();
+        private string _tab;
 
         #region IAgregarInfoAdicional
 
@@ -64,6 +65,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             this._btnAuditoria.Background = Brushes.LightGreen;
         }
 
+        public string Tab
+        {
+            get { return this._tab; }
+        }
+
         #endregion
 
         public GestionarInfoAdicional(object marca)
@@ -76,6 +82,12 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             _bgw.DoWork += new System.ComponentModel.DoWorkEventHandler(bgw_DoWork);
             _bgw.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(bgw_RunWorkerCompleted);
             _bgw.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(bgw_ProgressChanged);
+        }
+
+        public GestionarInfoAdicional(object marca, string tab)
+            : this(marca)
+        {
+            this._tab = tab;
         }
 
         private void _btnAceptar_Click(object sender, RoutedEventArgs e)
@@ -99,7 +111,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
 
         void bgw_RunWorkerCompleted(object sender, System.ComponentModel.RunWorkerCompletedEventArgs e)
         {
-            this._presentador.irConsultarMarca();
+            this._presentador.IrConsultarMarca();
         }
 
         private void _btnCancelar_Click(object sender, RoutedEventArgs e)

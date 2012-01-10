@@ -201,9 +201,22 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             }
         }
 
-        public void irConsultarMarca()
+        /// <summary>
+        /// Método que invoca una nueva página "ConsultarMarca" y la instancia con el objeto seleccionado
+        /// </summary>
+        public void IrConsultarMarca()
         {
-            this.Navegar(new ConsultarMarca(this._marca));
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+            this.Navegar(new ConsultarMarca(this._marca, this._ventana.Tab));
+
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
         }
     }
 }
