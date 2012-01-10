@@ -439,7 +439,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
 
         #endregion
 
-        public AgregarMarca()
+        public AgregarMarca(object marca)
         {
             InitializeComponent();
 
@@ -448,7 +448,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             this._interesadosCargados = false;
             this._corresponsalesCargados = false;
             this._poderesCargados = false;
-            this._presentador = new PresentadorAgregarMarca(this);
+            this._presentador = new PresentadorAgregarMarca(this,marca);
         }
 
         #region funciones

@@ -647,31 +647,36 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             set { this._cbxTipoReproduccion.DataContext = value; }
         }
 
-        public void pintarInfoAdicional()
+        public void PintarInfoAdicional()
         {
             this._btnInfoAdicional.Background = Brushes.LightGreen;
             this._btnInfoAdicionalSolicitud.Background = Brushes.LightGreen;
         }
 
-        public void pintarAnaqua()
+        public void PintarAnaqua()
         {
             this._btnAnaqua.Background = Brushes.LightGreen;
         }
 
-        public void pintarInfoBoles()
+        public void PintarInfoBoles()
         {
             this._btnInfobol.Background = Brushes.LightGreen;
         }
 
-        public void pintarOperaciones()
+        public void PintarOperaciones()
         {
             this._btnOperacionesDatos.Background = Brushes.LightGreen;
         }
 
-        public void pintarBusquedas()
+        public void PintarBusquedas()
         {
             this._btnBusquedaDatos.Background = Brushes.LightGreen;
             this._btnBusquedaSolicitud.Background = Brushes.LightGreen;
+        }
+
+        public void PintarAuditoria()
+        {
+            this._btnAuditoria.Background = Brushes.LightGreen;
         }
 
         public GridViewColumnHeader CurSortCol
@@ -910,6 +915,10 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             this._presentador.IrBusquedas(parametro);
         }
 
+        private void _btnAuditoria_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.Auditoria();
+        }
         #endregion
 
         #region Eventos Solicitudes
@@ -1080,6 +1089,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             this._cbxTipoMarcaDatos.SelectedItem = ((ComboBox)sender).SelectedItem;
         }
 
+        private void _btnDuplicar_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.Duplicar();
+        }
+
         #endregion
 
         #region Eventos Datos
@@ -1230,5 +1244,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
         }
 
         #endregion
+
+
     }
 }

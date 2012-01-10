@@ -675,7 +675,9 @@
                     </WrapPanel>
 
                     <WrapPanel Grid.Column="1" Grid.Row="21" Grid.ColumnSpan="5" VerticalAlignment="Center" HorizontalAlignment="Left" Orientation="Horizontal">
-                        <Button IsEnabled="False" Name="_btnDuplicar" Height="25" Width="100">Duplicar</Button>
+                        <Button IsEnabled="False" Name="_btnDuplicar" Height="25" Width="100" Click="_btnDuplicar_Click">
+                            <TextBlock Name="_txbDuplicar" Text="{x:Static recurso:Etiquetas.btnDuplicar}"/>
+                        </Button>
                         <Button IsEnabled="False" Name="_btnInfoAdicionalSolicitud" Height="25" Width="100" Margin="8,0,0,0" Click="_btnInfoAdicional_Click">Info. Adicional</Button>
                         <Button IsEnabled="False" Name="_btnBusquedaSolicitud" Height="25" Width="100" Margin="8,0,0,0" Click="_btnBusqueda_Click">Busqueda</Button>
                     </WrapPanel>
@@ -1398,7 +1400,7 @@
                     </ComboBox>
 
                     <Button IsEnabled="False" Grid.Column="9" Grid.Row="24" Grid.ColumnSpan="1" Name="_btnAuditoria" Margin="3"
-                            Height="25">
+                            Height="25" Click="_btnAuditoria_Click">
                         <TextBlock Name="_txbAuditoria" Text="{x:Static recurso:Etiquetas.btnAuditoria}"/>
                     </Button>
 

@@ -59,6 +59,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
 
             try
             {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
                 //cambiar titulo
                 this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleAgregarAgente,
                     Recursos.Ids.AgregarAgente);
@@ -77,10 +82,16 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
 
                 _auditorias = this._infoAdicionalServicios.AuditoriaPorFkyTabla(auditoria);
 
-                if (_auditorias.Count > 0)
-                    this._ventana.PintarAuditoria();
+                //pinta el boton de Auditoria referenciado a InfoAdicional
+                //if (_auditorias.Count > 0)
+                //    this._ventana.PintarAuditoria();
 
                 this._ventana.FocoPredeterminado();
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
             }
             catch (ApplicationException ex)
             {
@@ -113,9 +124,15 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
         /// </summary>
         public bool Aceptar()
         {
+
             bool exitoso = false;
+
             try
             {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
 
                 //Habilitar campos
                 if (this._ventana.TextoBotonModificar == Recursos.Etiquetas.btnModificar)
@@ -136,6 +153,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                     exitoso = this._infoAdicionalServicios.InsertarOModificar(infoAdicional, UsuarioLogeado.Hash);
 
                 }
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
             }
             catch (ApplicationException ex)
             {

@@ -15,6 +15,7 @@ using Trascend.Bolet.Cliente.Ventanas.Principales;
 using Trascend.Bolet.Cliente.Ventanas.Marcas;
 using Trascend.Bolet.ObjetosComunes.ContratosServicios;
 using Trascend.Bolet.ObjetosComunes.Entidades;
+using Trascend.Bolet.Cliente.Ventanas.Auditorias;
 
 namespace Trascend.Bolet.Cliente.Presentadores.Marcas
 {
@@ -221,20 +222,28 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 this._ventana.TipoReproducciones = tipoReproducciones;
                 this._ventana.TipoReproduccion = this.BuscarTipoReproduccion(tipoReproducciones, marca.Tipo);
 
+                Auditoria auditoria = new Auditoria();
+                auditoria.Fk = ((Marca)this._ventana.Marca).Id;
+                auditoria.Tabla = "MYP_MARCAS";
+                this._auditorias = this._marcaServicios.AuditoriaPorFkyTabla(auditoria);
+
                 if (null != marca.InfoAdicional && !string.IsNullOrEmpty(marca.InfoAdicional.Id))
-                    this._ventana.pintarInfoAdicional();
+                    this._ventana.PintarInfoAdicional();
 
                 if (null != marca.Anaqua)
-                    this._ventana.pintarAnaqua();
+                    this._ventana.PintarAnaqua();
 
                 if (null != marca.InfoBoles && marca.InfoBoles.Count > 0)
-                    this._ventana.pintarInfoBoles();
+                    this._ventana.PintarInfoBoles();
 
                 if (null != marca.Operaciones && marca.Operaciones.Count > 0)
-                    this._ventana.pintarOperaciones();
+                    this._ventana.PintarOperaciones();
 
                 if (null != marca.Busquedas && marca.Busquedas.Count > 0)
-                    this._ventana.pintarBusquedas();
+                    this._ventana.PintarBusquedas();
+
+                if (null != this._auditorias && this._auditorias.Count > 0)
+                    this._ventana.PintarAuditoria();
 
                 this._ventana.FocoPredeterminado();
 
@@ -365,7 +374,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
         }
 
         /// <summary>
-        /// Metodo que se encarga de eliminar un Anexo
+        /// Metodo que se encarga de eliminar una Marca
         /// </summary>
         public void Eliminar()
         {
@@ -435,6 +444,46 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             this.Navegar(new ListaBusquedas(CargarMarcaDeLaPantalla(), tab));
         }
 
+        public void Auditoria()
+        {
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+
+                this.Navegar(new ListaAuditorias(_auditorias));
+
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (ApplicationException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(ex.Message, true);
+            }
+            catch (RemotingException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorRemoting, true);
+            }
+            catch (SocketException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorConexionServidor, true);
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
+            }
+        }
+
         /// <summary>
         /// Método que ordena una columna
         /// </summary>
@@ -467,6 +516,22 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
                 logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
+        }
+
+        public void Duplicar()
+        {
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+            this.Navegar(new AgregarMarca(CargarMarcaDeLaPantalla()));
+
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+        
         }
 
         #region Metodos de los filtros de asociados
@@ -845,6 +910,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
         }
 
         #endregion
+
+
 
 
     }

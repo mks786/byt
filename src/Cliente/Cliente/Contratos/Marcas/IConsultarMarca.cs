@@ -146,15 +146,17 @@ namespace Trascend.Bolet.Cliente.Contratos.Marcas
 
         bool PoderesEstanCargados { get; set; }
 
-        void pintarInfoAdicional();
+        void PintarInfoAdicional();
 
-        void pintarAnaqua();
+        void PintarAnaqua();
 
-        void pintarInfoBoles();
+        void PintarInfoBoles();
 
-        void pintarOperaciones();
+        void PintarOperaciones();
 
-        void pintarBusquedas();
+        void PintarBusquedas();
+
+        void PintarAuditoria();
 
         GridViewColumnHeader CurSortCol { get; set; }
 

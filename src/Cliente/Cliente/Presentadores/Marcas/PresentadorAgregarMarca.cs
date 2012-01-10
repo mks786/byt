@@ -23,7 +23,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
         private static PaginaPrincipal _paginaPrincipal = PaginaPrincipal.ObtenerInstancia;
         private static Logger logger = LogManager.GetCurrentClassLogger();
         private IAgregarMarca _ventana;
-        
+        private bool _esMarcaDuplicada = false;
+
         private IMarcaServicios _marcaServicios;
         private IAsociadoServicios _asociadoServicios;
         private IAgenteServicios _agenteServicios;
@@ -46,13 +47,23 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
         /// Constructor Predeterminado
         /// </summary>
         /// <param name="ventana">página que satisface el contrato</param>
-        public PresentadorAgregarMarca(IAgregarMarca ventana)
+        public PresentadorAgregarMarca(IAgregarMarca ventana, object marcaDuplicada)
         {
             try
             {
                 this._ventana = ventana;
+                Marca marca;
 
-                Marca marca = new Marca(1);
+                if (marcaDuplicada != null)
+                {
+                    marca = (Marca)marcaDuplicada;
+                    _esMarcaDuplicada = true;
+                }
+                else
+                {
+                    marca = new Marca(1);
+                }
+
                 marca.Nacional = new Nacional();
                 marca.Internacional = new Internacional();
                 this._ventana.Marca = marca;
@@ -89,6 +100,67 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             }
         }
 
+        public void CargarDatosDeMarcaDuplicada()
+        {
+            try
+            {
+                Marca marca = (Marca)this._ventana.Marca;
+
+                marca.Id = 1;
+
+                marca.CodigoInscripcion = "";
+                marca.CodigoRegistro = "";
+
+                this._ventana.TipoMarcaDatos = this.BuscarTipoMarca((IList<ListaDatosDominio>)this._ventana.TipoMarcasDatos, marca.Tipo);
+
+                this._ventana.Agente = this.BuscarAgente((IList<Agente>)this._ventana.Agentes, marca.Agente);
+
+                this._ventana.PaisSolicitud = this.BuscarPais((IList<Pais>)this._ventana.PaisesSolicitud, marca.Pais);
+
+                //Falta buscar Condiciones
+                //IList<Condicion> condiciones = this._condicionServicios.ConsultarTodos();
+                //Condicion primeraCondicion = new Condicion();
+                //primeraCondicion.Id = int.MinValue;
+                //condiciones.Insert(0, primeraCondicion);
+                //this._ventana.Condiciones = condiciones;
+
+                ///Falta buscar TipoEstados
+                //IList<TipoEstado> tipoEstados = this._tipoEstadoServicios.ConsultarTodos();
+                //TipoEstado primerDetalle = new TipoEstado();
+                //primerDetalle.Id = "NGN";
+                //tipoEstados.Insert(0, primerDetalle);
+                //this._ventana.Detalles = tipoEstados;
+
+                this._ventana.Servicio = this.BuscarServicio((IList<Servicio>)this._ventana.Servicios, marca.Servicio);
+
+                //this._ventana.BoletinConcesion = this.BuscarBoletin((IList<Boletin>)this._ventana.BoletinesConcesion, marca.BoletinConcesion);
+                this._ventana.BoletinPublicacion = this.BuscarBoletin((IList<Boletin>)this._ventana.BoletinesPublicacion, marca.BoletinPublicacion);
+
+                Interesado interesado = (this._interesadoServicios.ConsultarInteresadoConTodo(marca.Interesado));
+                this._ventana.NombreInteresadoDatos = interesado.Nombre;
+                this._ventana.NombreInteresadoSolicitud = interesado.Nombre;
+                this._ventana.InteresadoPaisSolicitud = interesado.Pais.NombreEspanol;
+                this._ventana.InteresadoCiudadSolicitud = interesado.Ciudad;
+
+                this._ventana.NombreAsociadoDatos = marca.Asociado != null ? marca.Asociado.Nombre : "";
+                this._ventana.NombreAsociadoSolicitud = marca.Asociado != null ? marca.Asociado.Nombre : "";
+
+                this._ventana.DescripcionCorresponsalSolicitud = marca.Corresponsal != null ? marca.Corresponsal.Descripcion : "";
+                this._ventana.DescripcionCorresponsalDatos = marca.Corresponsal != null ? marca.Corresponsal.Descripcion : "";
+
+
+
+                this._ventana.Sector = this.BuscarSector((IList<ListaDatosDominio>)this._ventana.Sectores, marca.Sector);
+
+                this._ventana.TipoReproduccion = this.BuscarTipoReproduccion((IList<ListaDatosDominio>)this._ventana.TipoReproducciones, marca.Tipo);
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
+            }
+        }
+
         public void ActualizarTitulo()
         {
             this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleAgregarMarca,
@@ -109,8 +181,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-                this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleConsultarAnexo, "");
-
+                this.ActualizarTitulo();
 
                 IList<ListaDatosDominio> tiposMarcas = this._listaDatosDominioServicios.
                     ConsultarListaDatosDominioPorParametro(new ListaDatosDominio(Recursos.Etiquetas.cbiCategoriaMarca));
@@ -157,7 +228,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 this._ventana.BoletinesOrdenPublicacion = boletines;
                 this._ventana.BoletinesPublicacion = boletines;
                 this._ventana.BoletinConcesion = boletines;
-                
+
                 IList<ListaDatosDominio> sectores = this._listaDatosDominioServicios.
                                     ConsultarListaDatosDominioPorParametro(new ListaDatosDominio(Recursos.Etiquetas.cbiSector));
                 ListaDatosDominio primerSector = new ListaDatosDominio();
@@ -171,6 +242,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 primerTipoReproduccion.Id = "NGN";
                 tipoReproducciones.Insert(0, primerTipoReproduccion);
                 this._ventana.TipoReproducciones = tipoReproducciones;
+
+                if (_esMarcaDuplicada)
+                    CargarDatosDeMarcaDuplicada();
 
                 this._ventana.FocoPredeterminado();
 
@@ -236,7 +310,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
 
                 if (null != this._ventana.TipoMarcaDatos)
                     marca.Tipo = !((ListaDatosDominio)this._ventana.TipoMarcaDatos).Id.Equals("NGN") ? ((ListaDatosDominio)this._ventana.TipoMarcaDatos).Id : null;
-                
+
                 bool exitoso = this._marcaServicios.InsertarOModificar(marca, UsuarioLogeado.Hash);
 
                 if (exitoso)
@@ -451,16 +525,16 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             if (!string.IsNullOrEmpty(this._ventana.IdInteresadoSolicitudFiltrar))
             {
                 interesadosFiltrados = from p in interesadosFiltrados
-                                     where p.Id == int.Parse(this._ventana.IdInteresadoSolicitudFiltrar)
-                                     select p;
+                                       where p.Id == int.Parse(this._ventana.IdInteresadoSolicitudFiltrar)
+                                       select p;
             }
 
             if (!string.IsNullOrEmpty(this._ventana.NombreInteresadoSolicitud))
             {
                 interesadosFiltrados = from p in interesadosFiltrados
-                                     where p.Nombre != null &&
-                                     p.Nombre.ToLower().Contains(this._ventana.NombreInteresadoSolicitud.ToLower())
-                                     select p;
+                                       where p.Nombre != null &&
+                                       p.Nombre.ToLower().Contains(this._ventana.NombreInteresadoSolicitud.ToLower())
+                                       select p;
             }
 
             // filtrarEn = 0 significa en el listview de la pestaña solicitud
@@ -544,16 +618,16 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             if (!string.IsNullOrEmpty(this._ventana.IdCorresponsalSolicitudFiltrar))
             {
                 corresponsalesFiltrados = from p in corresponsalesFiltrados
-                                     where p.Id == int.Parse(this._ventana.IdAsociadoSolicitudFiltrar)
-                                     select p;
+                                          where p.Id == int.Parse(this._ventana.IdAsociadoSolicitudFiltrar)
+                                          select p;
             }
 
             if (!string.IsNullOrEmpty(this._ventana.DescripcionCorresponsalSolicitud))
             {
                 corresponsalesFiltrados = from p in corresponsalesFiltrados
-                                     where p.Descripcion != null &&
-                                     p.Descripcion.ToLower().Contains(this._ventana.DescripcionCorresponsalSolicitud.ToLower())
-                                     select p;
+                                          where p.Descripcion != null &&
+                                          p.Descripcion.ToLower().Contains(this._ventana.DescripcionCorresponsalSolicitud.ToLower())
+                                          select p;
             }
 
             // filtrarEn = 0 significa en el listview de la pestaña solicitud
