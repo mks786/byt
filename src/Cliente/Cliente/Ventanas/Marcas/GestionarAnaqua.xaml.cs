@@ -120,5 +120,10 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
                 EstaCargada = true;
             }
         }
+
+        private void _btnAuditoria_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.Auditoria();
+        }
     }
 }

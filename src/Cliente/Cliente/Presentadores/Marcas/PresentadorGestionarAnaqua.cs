@@ -12,6 +12,8 @@ using Trascend.Bolet.Cliente.Ventanas.Marcas;
 using System.ComponentModel;
 using System.Threading;
 using System.Windows.Media;
+using Trascend.Bolet.Cliente.Ventanas.Auditorias;
+using System.Collections.Generic;
 
 namespace Trascend.Bolet.Cliente.Presentadores.Marcas
 {
@@ -23,6 +25,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
         private static Logger logger = LogManager.GetCurrentClassLogger();
         private IAnaquaServicios _anaquaServicios;
         private bool _nuevaAnaqua = false;
+        private IList<Auditoria> _auditorias;
 
         static BackgroundWorker _bw = new BackgroundWorker();
 
@@ -68,6 +71,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 //cambiar titulo
                 this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleAgregarAgente,
                     Recursos.Ids.AgregarAgente);
+
+
+                Auditoria auditoria = new Auditoria();
+                auditoria.Fk = this._marca.Id;
+                auditoria.Tabla = "MYP_MANAQUA";
+                _auditorias = this._anaquaServicios.AuditoriaPorFkyTabla(auditoria);
 
                 if (this._nuevaAnaqua)
                 {
@@ -164,6 +173,46 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
         {
             this._ventana.TextoBotonModificar = (string)e.Argument;
             Thread.Sleep(2000);
+        }
+
+        public void Auditoria()
+        {
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+
+                this.Navegar(new ListaAuditorias(_auditorias));
+
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (ApplicationException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(ex.Message, true);
+            }
+            catch (RemotingException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorRemoting, true);
+            }
+            catch (SocketException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorConexionServidor, true);
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
+            }
         }
 
         /// <summary>

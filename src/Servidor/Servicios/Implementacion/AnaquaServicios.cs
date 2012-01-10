@@ -118,5 +118,27 @@ namespace Trascend.Bolet.Servicios.Implementacion
 
             return exitoso;
         }
+
+        /// <summary>
+        /// Metodo que consulta la lista de auiditorias de una tabla
+        /// </summary>
+        /// <param name="auditoria">Auditoria a filtrar</param>
+        /// <returns>Lista de auditorias</returns>
+        public IList<Auditoria> AuditoriaPorFkyTabla(Auditoria auditoria)
+        {
+            #region trace
+            if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+            IList<Auditoria> auditorias = ControladorAnaqua.AuditoriaPorFkyTabla(auditoria);
+
+            #region trace
+            if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+            return auditorias;
+        }
     }
 }

@@ -6,6 +6,6 @@ namespace Trascend.Bolet.ObjetosComunes.ContratosServicios
 {
     public interface IAnaquaServicios : IServicioBase<Anaqua>
     {
-        
+        IList<Auditoria> AuditoriaPorFkyTabla(Auditoria auditoria);
     }
 }
