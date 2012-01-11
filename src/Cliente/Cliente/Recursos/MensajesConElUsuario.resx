@@ -510,4 +510,7 @@
   <data name="OperacionModificado" xml:space="preserve">
     <value>Operacion modificada con éxito</value>
   </data>
+  <data name="ConfirmacionDuplicarMarca" xml:space="preserve">
+    <value>¿Seguro que desea duplicar la Marca?</value>
+  </data>
 </root>

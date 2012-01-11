@@ -455,6 +455,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
 
         private void mostrarLstAsociadoSolicitud()
         {
+            this._lstAsociadosSolicitud.ScrollIntoView(this.AsociadoSolicitud);
             this._txtAsociadoSolicitud.Visibility = System.Windows.Visibility.Collapsed;
             this._lstAsociadosSolicitud.Visibility = System.Windows.Visibility.Visible;
             this._lstAsociadosSolicitud.IsEnabled = true;
@@ -478,6 +479,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
 
         private void mostrarLstInteresadoSolicitud()
         {
+            this._lstInteresadosSolicitud.ScrollIntoView(this.InteresadoSolicitud);
             this._txtInteresadoSolicitud.Visibility = System.Windows.Visibility.Collapsed;
             this._lstInteresadosSolicitud.Visibility = System.Windows.Visibility.Visible;
             this._lstInteresadosSolicitud.IsEnabled = true;
@@ -502,6 +504,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
 
         private void mostrarLstCorresponsalSolicitud()
         {
+            this._lstCorresponsalesSolicitud.ScrollIntoView(this.CorresponsalSolicitud);
             this._txtCorresponsalSolicitud.Visibility = System.Windows.Visibility.Collapsed;
             this._lstCorresponsalesSolicitud.Visibility = System.Windows.Visibility.Visible;
             this._lstCorresponsalesSolicitud.IsEnabled = true;
@@ -526,6 +529,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
 
         private void mostrarLstPoderSolicitud()
         {
+            this._lstPoderesSolicitud.ScrollIntoView(this.PoderSolicitud);
             this._txtPoderSolicitud.Visibility = System.Windows.Visibility.Collapsed;
             this._lstPoderesSolicitud.Visibility = System.Windows.Visibility.Visible;
             this._lstPoderesSolicitud.IsEnabled = true;
@@ -540,6 +544,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
 
         private void mostrarLstAsocaidoDatos()
         {
+            this._lstAsociadosDatos.ScrollIntoView(this.CorresponsalDatos);
             this._txtAsociadoDatos.Visibility = System.Windows.Visibility.Collapsed;
             this._lstAsociadosDatos.Visibility = System.Windows.Visibility.Visible;
             this._lstAsociadosDatos.IsEnabled = true;
@@ -563,6 +568,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
 
         private void mostrarLstInteresadoDatos()
         {
+            this._lstInteresadosDatos.ScrollIntoView(this.InteresadoDatos);
             this._txtInteresadoDatos.Visibility = System.Windows.Visibility.Collapsed;
             this._lstInteresadosDatos.Visibility = System.Windows.Visibility.Visible;
             this._lstInteresadosDatos.IsEnabled = true;
@@ -586,6 +592,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
 
         private void mostrarLstCorresponsalDatos()
         {
+            this._lstCorresponsalesDatos.ScrollIntoView(this.CorresponsalDatos);
             this._txtCorresponsalDatos.Visibility = System.Windows.Visibility.Collapsed;
             this._lstCorresponsalesDatos.Visibility = System.Windows.Visibility.Visible;
             this._lstCorresponsalesDatos.IsEnabled = true;
@@ -610,6 +617,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
 
         private void mostrarLstPoderDatos()
         {
+            this._lstPoderesDatos.ScrollIntoView(this.PoderDatos);
             this._txtPoderDatos.Visibility = System.Windows.Visibility.Collapsed;
             this._lstPoderesDatos.Visibility = System.Windows.Visibility.Visible;
             this._lstPoderesDatos.IsEnabled = true;
@@ -926,6 +934,12 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             this._cbxTipoMarcaSolicitud.SelectedItem = ((ComboBox)sender).SelectedItem;
         }
 
+        private void _btnIrExplorador_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.IrSAPI();
+        }
+
         #endregion
+
     }
 }

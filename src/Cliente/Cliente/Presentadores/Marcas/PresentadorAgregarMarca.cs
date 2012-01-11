@@ -118,18 +118,18 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 this._ventana.PaisSolicitud = this.BuscarPais((IList<Pais>)this._ventana.PaisesSolicitud, marca.Pais);
 
                 //Falta buscar Condiciones
-                //IList<Condicion> condiciones = this._condicionServicios.ConsultarTodos();
-                //Condicion primeraCondicion = new Condicion();
-                //primeraCondicion.Id = int.MinValue;
-                //condiciones.Insert(0, primeraCondicion);
-                //this._ventana.Condiciones = condiciones;
+                IList<Condicion> condiciones = this._condicionServicios.ConsultarTodos();
+                Condicion primeraCondicion = new Condicion();
+                primeraCondicion.Id = int.MinValue;
+                condiciones.Insert(0, primeraCondicion);
+                this._ventana.Condiciones = condiciones;
 
                 ///Falta buscar TipoEstados
-                //IList<TipoEstado> tipoEstados = this._tipoEstadoServicios.ConsultarTodos();
-                //TipoEstado primerDetalle = new TipoEstado();
-                //primerDetalle.Id = "NGN";
-                //tipoEstados.Insert(0, primerDetalle);
-                //this._ventana.Detalles = tipoEstados;
+                IList<TipoEstado> tipoEstados = this._tipoEstadoServicios.ConsultarTodos();
+                TipoEstado primerDetalle = new TipoEstado();
+                primerDetalle.Id = "NGN";
+                tipoEstados.Insert(0, primerDetalle);
+                this._ventana.Detalles = tipoEstados;
 
                 this._ventana.Servicio = this.BuscarServicio((IList<Servicio>)this._ventana.Servicios, marca.Servicio);
 
@@ -148,10 +148,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 this._ventana.DescripcionCorresponsalSolicitud = marca.Corresponsal != null ? marca.Corresponsal.Descripcion : "";
                 this._ventana.DescripcionCorresponsalDatos = marca.Corresponsal != null ? marca.Corresponsal.Descripcion : "";
 
-
+                this._ventana.NumPoderDatos = marca.Poder != null ? marca.Poder.NumPoder : "";
+                this._ventana.NumPoderSolicitud = marca.Poder != null ? marca.Poder.NumPoder : "";
 
                 this._ventana.Sector = this.BuscarSector((IList<ListaDatosDominio>)this._ventana.Sectores, marca.Sector);
-
                 this._ventana.TipoReproduccion = this.BuscarTipoReproduccion((IList<ListaDatosDominio>)this._ventana.TipoReproducciones, marca.Tipo);
             }
             catch (Exception ex)
@@ -373,6 +373,34 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             #endregion
         }
 
+        /// <summary>
+        /// Metodo que abre el explorador de internet predeterminado del sistema a una página determinada
+        /// </summary>
+        public void IrSAPI()
+        {
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                this.IrURL(ConfigurationManager.AppSettings["UrlSAPI"].ToString());
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
+            }
+        }
+
+        
+
         #region Metodos de los filstros de asociados
 
         public void CambiarAsociadoSolicitud()
@@ -463,6 +491,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             this._ventana.AsociadosDatos = asociados;
             this._asociados = asociados;
             this._ventana.AsociadosEstanCargados = true;
+
+            if (_esMarcaDuplicada)
+            {
+                this._ventana.AsociadoSolicitud = this.BuscarAsociado(asociados, marca.Asociado);
+                this._ventana.AsociadoDatos = this.BuscarAsociado(asociados, marca.Asociado);
+            }
 
             Mouse.OverrideCursor = null;
         }
@@ -566,6 +600,13 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             this._interesados = interesados;
             this._ventana.InteresadosEstanCargados = true;
 
+            if (_esMarcaDuplicada)
+            {
+                Interesado interesado = this.BuscarInteresado(interesados, marca.Interesado);
+                this._ventana.InteresadoSolicitud = interesado;
+                this._ventana.InteresadoDatos = interesado;
+            }
+
             Mouse.OverrideCursor = null;
         }
 
@@ -653,6 +694,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
 
             Mouse.OverrideCursor = Cursors.Wait;
 
+            Marca marca = (Marca)this._ventana.Marca;
+
             IList<Corresponsal> corresponsales = this._corresponsalServicios.ConsultarTodos();
             Corresponsal primerCorresponsal = new Corresponsal();
             primerCorresponsal.Id = int.MinValue;
@@ -662,6 +705,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             this._corresponsales = corresponsales;
 
             this._ventana.CorresponsalesEstanCargados = true;
+
+            if (_esMarcaDuplicada)
+            {
+                this._ventana.CorresponsalDatos = this.BuscarCorresponsal(corresponsales, ((Marca)this._ventana.Marca).Corresponsal);
+                this._ventana.CorresponsalSolicitud = this.BuscarCorresponsal(corresponsales, ((Marca)this._ventana.Marca).Corresponsal);
+            }
 
             Mouse.OverrideCursor = null;
         }
@@ -720,9 +769,16 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
 
             this._ventana.PoderesEstanCargados = true;
 
+            if (_esMarcaDuplicada)
+            {
+                this._ventana.PoderDatos = this.BuscarPoder(poderes, marca.Poder);
+                this._ventana.PoderSolicitud = this.BuscarPoder(poderes, marca.Poder);
+            }
+
             Mouse.OverrideCursor = null;
         }
 
         #endregion
+
     }
 }

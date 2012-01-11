@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Windows.Controls;
+using System.Diagnostics;
 using Trascend.Bolet.Cliente.Contratos.Principales;
 using Trascend.Bolet.Cliente.Ventanas.Principales;
 using Trascend.Bolet.ObjetosComunes.Entidades;
@@ -1101,6 +1102,15 @@ namespace Trascend.Bolet.Cliente.Presentadores
                 }
 
             return retorno;
+        }
+
+        /// <summary>
+        /// Metodo que abre una ventana del explorador predeterminado a una URL determinada
+        /// </summary>
+        /// <param name="URL">URL dirigida</param>
+        public void IrURL(string URL)
+        {
+            Process.Start(URL);
         }
     }
 }

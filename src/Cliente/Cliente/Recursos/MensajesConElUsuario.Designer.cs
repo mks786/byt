@@ -205,6 +205,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ¿Seguro que desea duplicar la Marca?.
+        /// </summary>
+        internal static string ConfirmacionDuplicarMarca {
+            get {
+                return ResourceManager.GetString("ConfirmacionDuplicarMarca", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ¿Seguro que desea eliminar el agente?.
         /// </summary>
         internal static string ConfirmacionEliminarAgente {

@@ -1091,7 +1091,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
 
         private void _btnDuplicar_Click(object sender, RoutedEventArgs e)
         {
-            this._presentador.Duplicar();
+            if (MessageBoxResult.Yes == MessageBox.Show(Recursos.MensajesConElUsuario.ConfirmacionDuplicarMarca,
+                "Duplicar Marca", MessageBoxButton.YesNo, MessageBoxImage.Question))
+            {
+                this._presentador.Duplicar();
+            }
         }
 
         #endregion
@@ -1241,6 +1245,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
         private void _btnOperacionesDatos_Click(object sender, RoutedEventArgs e)
         {
             this._presentador.IrOperaciones();
+        }
+
+        private void _btnIrExplorador_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.IrSAPI();
         }
 
         #endregion

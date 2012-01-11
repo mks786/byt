@@ -76,7 +76,7 @@
       <column name="CPAIS_PRIORIDAD"/>
     </many-to-one>
 
-    <many-to-one name="Poder" class="Poder">
+    <many-to-one name="Poder" class="Poder" lazy="false">
       <column name="CPODER"/>
     </many-to-one>
 

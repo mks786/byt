@@ -203,8 +203,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 this._ventana.NombreAsociadoSolicitud = marca.Asociado != null ? marca.Asociado.Nombre : "";
 
                 this._ventana.DescripcionCorresponsalSolicitud = marca.Corresponsal != null ? marca.Corresponsal.Descripcion : "";
-                this._ventana.DescripcionCorresponsalDatos = marca.Corresponsal != null ? marca.Corresponsal.Descripcion : ""; 
+                this._ventana.DescripcionCorresponsalDatos = marca.Corresponsal != null ? marca.Corresponsal.Descripcion : "";
 
+                this._ventana.NumPoderDatos = marca.Poder != null ? marca.Poder.NumPoder : "";
+                this._ventana.NumPoderSolicitud = marca.Poder != null ? marca.Poder.NumPoder : "";
 
                 IList<ListaDatosDominio> sectores = this._listaDatosDominioServicios.
                     ConsultarListaDatosDominioPorParametro(new ListaDatosDominio(Recursos.Etiquetas.cbiSector));
@@ -534,6 +536,32 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
         
         }
 
+        /// <summary>
+        /// Metodo que abre el explorador de internet predeterminado del sistema a una página determinada
+        /// </summary>
+        public void IrSAPI()
+        {
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                this.IrURL(ConfigurationManager.AppSettings["UrlSAPI"].ToString());
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
+            }
+        }
+
         #region Metodos de los filtros de asociados
 
         public void CambiarAsociadoSolicitud()
@@ -839,10 +867,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             this._ventana.CorresponsalesDatos = corresponsales;
             this._ventana.CorresponsalDatos = this.BuscarCorresponsal(corresponsales, ((Marca)this._ventana.Marca).Corresponsal);
             this._ventana.CorresponsalSolicitud = this.BuscarCorresponsal(corresponsales, ((Marca)this._ventana.Marca).Corresponsal);
-            this._ventana.DescripcionCorresponsalDatos = ((Marca)this._ventana.Marca).Corresponsal == null ?
-                                                         ((Corresponsal)this._ventana.CorresponsalSolicitud).Descripcion : null;
-            this._ventana.DescripcionCorresponsalSolicitud = ((Marca)this._ventana.Marca).Corresponsal == null ?
-                                                         ((Corresponsal)this._ventana.CorresponsalSolicitud).Descripcion : null;
+
+            this._ventana.DescripcionCorresponsalDatos = null == ((Marca)this._ventana.Marca).Corresponsal ?
+                                                         null : ((Corresponsal)this._ventana.CorresponsalSolicitud).Descripcion;
+            this._ventana.DescripcionCorresponsalSolicitud = null == ((Marca)this._ventana.Marca).Corresponsal ?
+                                                             null : ((Corresponsal)this._ventana.CorresponsalSolicitud).Descripcion;
             this._corresponsales = corresponsales;
 
             this._ventana.CorresponsalesEstanCargados = true;
@@ -910,9 +939,6 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
         }
 
         #endregion
-
-
-
 
     }
 }

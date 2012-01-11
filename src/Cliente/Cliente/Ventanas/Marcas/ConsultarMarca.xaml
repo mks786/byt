@@ -1224,7 +1224,8 @@
                         <Border BorderBrush="DarkGray" BorderThickness="0 0 0 1">
                         </Border>
 
-                        <Button IsEnabled="False" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="1" Name="_btnNoSolicitud" VerticalAlignment="Bottom" Height="25">
+                        <Button IsEnabled="False" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="1" Name="_btnNoSolicitud" VerticalAlignment="Bottom" Height="25"
+                                Click="_btnIrExplorador_Click">
                             <TextBlock Name="_txbNoSolicitud" Text="{x:Static recurso:Etiquetas.btnNoSolicitud}"/>
                         </Button>
                         <TextBox IsEnabled="False" Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="1" Margin="3" Name="_txtCodigoInscripcion" VerticalAlignment="Center"  
@@ -1288,7 +1289,8 @@
                         </ComboBox>
 
 
-                        <Button IsEnabled="False" Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="1" Name="_btnNoRegistro" VerticalAlignment="Bottom" Height="25">
+                        <Button IsEnabled="False" Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="1" Name="_btnNoRegistro" VerticalAlignment="Bottom" Height="25"
+                                Click="_btnIrExplorador_Click">
                             <TextBlock Name="_txbNoRegistro" Text="{x:Static recurso:Etiquetas.btnNoRegistro}"/>
                         </Button>
                         <TextBox IsEnabled="False" Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="1" Margin="3" Name="_txtCodigoRegistro" VerticalAlignment="Center"  
