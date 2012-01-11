@@ -26,8 +26,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
         private IConsultarMarcas _ventana;
         private IMarcaServicios _marcaServicios;
         private IAsociadoServicios _asociadoServicios;
+        private IInteresadoServicios _interesadoServicios;
         private IList<Marca> _marcas;
         private IList<Asociado> _asociados;
+        private IList<Interesado> _interesados;
 
         /// <summary>
         /// Constructor Predeterminado
@@ -42,6 +44,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["MarcaServicios"]);
                 this._asociadoServicios = (IAsociadoServicios)Activator.GetObject(typeof(IAsociadoServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["AsociadoServicios"]);
+                this._interesadoServicios = (IInteresadoServicios)Activator.GetObject(typeof(IInteresadoServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["InteresadoServicios"]);
             }
             catch (Exception ex)
             {
@@ -81,6 +85,13 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 asociados.Insert(0, primerAsociado);
                 this._ventana.Asociados = asociados;
                 this._asociados = asociados;
+
+                IList<Interesado> interesados = this._interesadoServicios.ConsultarTodos();
+                Interesado primerInteresado = new Interesado();
+                primerInteresado.Id = int.MinValue;
+                interesados.Insert(0, primerInteresado);
+                this._ventana.Interesados = interesados;
+                this._interesados = interesados;
 
                 this._ventana.FocoPredeterminado();
 
@@ -147,18 +158,24 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                     filtroValido++;
                 }
 
+                if ((null != this._ventana.Interesado) && (((Interesado)this._ventana.Interesado).Id != int.MinValue))
+                {
+                    MarcaAuxiliar.Interesado = (Interesado)this._ventana.Interesado;
+                    filtroValido++;
+                }
+
 
                 if (!this._ventana.FichasFiltrar.Equals(""))
                 {
-                    MarcaAuxiliar.Fichas = this._ventana.FichasFiltrar;
+                    MarcaAuxiliar.Fichas = this._ventana.FichasFiltrar.ToUpper();
                     filtroValido++;
                 }
 
 
                 if (!this._ventana.DescripcionFiltrar.Equals(""))
                 {
-                    MarcaAuxiliar.Descripcion = this._ventana.DescripcionFiltrar;
-                    filtroValido++;
+                    filtroValido = 2;
+                    MarcaAuxiliar.Descripcion = this._ventana.DescripcionFiltrar.ToUpper();
                 }
 
                 if (!this._ventana.Fecha.Equals(""))
@@ -171,7 +188,36 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 if (filtroValido >= 2)
                 {
                     this._marcas = this._marcaServicios.ObtenerMarcasFiltro(MarcaAuxiliar);
-                    this._ventana.Resultados = this._marcas;
+
+                    IList<Marca> marcasDesinfladas = new List<Marca>();
+
+                    foreach (var marca in this._marcas)
+                    {
+                        MarcaAuxiliar = new Marca(marca.Id);
+                        Asociado asociadoAuxiliar = new Asociado();
+                        Interesado interesadoAuxiliar = new Interesado();
+
+                        MarcaAuxiliar.Descripcion = marca.Descripcion != null ? marca.Descripcion : "";
+
+                        if ((marca.Asociado != null) && (!string.IsNullOrEmpty(marca.Asociado.Nombre)))
+                        {
+                            asociadoAuxiliar.Nombre = marca.Asociado.Nombre;
+                            MarcaAuxiliar.Asociado = asociadoAuxiliar;
+                        }
+
+                        if ((marca.Interesado != null) && (!string.IsNullOrEmpty(marca.Interesado.Nombre)))
+                        {
+                            interesadoAuxiliar.Nombre = marca.Interesado.Nombre;
+                            MarcaAuxiliar.Interesado = interesadoAuxiliar;
+                        }
+
+                        MarcaAuxiliar.FechaPublicacion = marca.FechaPublicacion != null ? marca.FechaPublicacion : null;
+
+                        marcasDesinfladas.Add(MarcaAuxiliar);
+
+                    }
+
+                    this._ventana.Resultados = marcasDesinfladas;
                 }
                 else
                     this._ventana.Mensaje(Recursos.MensajesConElUsuario.ErrorFiltroIncompleto);
@@ -203,7 +249,24 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             #endregion
 
             if (this._ventana.MarcaSeleccionada != null)
-                this.Navegar(new ConsultarMarca(this._ventana.MarcaSeleccionada));
+            {
+                Marca marcaParaNavegar = null;
+                bool encontrada = false;
+                int cont = 0;
+                while(!encontrada)
+                {
+                    Marca marca = this._marcas[cont];
+                    if(marca.Id == ((Marca)this._ventana.MarcaSeleccionada).Id)
+                    {
+                        marcaParaNavegar = marca;
+                        encontrada = true;
+                    }
+                    cont++;
+                }
+                    
+                    
+                this.Navegar(new ConsultarMarca(marcaParaNavegar));
+            }
 
             #region trace
             if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -268,6 +331,31 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 this._ventana.Asociados = asociadosFiltrados.ToList<Asociado>();
             else
                 this._ventana.Asociados = this._asociados;
+        }
+
+        public void BuscarInteresado()
+        {
+            IEnumerable<Interesado> interesadosFiltrados = (IList<Interesado>)this._interesados;
+
+            if (!string.IsNullOrEmpty(this._ventana.IdInteresadoFiltrar))
+            {
+                interesadosFiltrados = from p in interesadosFiltrados
+                                     where p.Id == int.Parse(this._ventana.IdInteresadoFiltrar)
+                                     select p;
+            }
+
+            if (!string.IsNullOrEmpty(this._ventana.NombreInteresadoFiltrar))
+            {
+                interesadosFiltrados = from p in interesadosFiltrados
+                                     where p.Nombre != null &&
+                                     p.Nombre.ToLower().Contains(this._ventana.NombreInteresadoFiltrar.ToLower())
+                                     select p;
+            }
+
+            if (interesadosFiltrados.ToList<Interesado>().Count != 0)
+                this._ventana.Interesados = interesadosFiltrados.ToList<Interesado>();
+            else
+                this._ventana.Interesados = this._interesados;
         }
     }
 }

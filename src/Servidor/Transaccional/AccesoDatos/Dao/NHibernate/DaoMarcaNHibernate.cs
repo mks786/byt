@@ -30,6 +30,13 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
                 filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerMarcaIdAsociado, marca.Asociado.Id);
                 variosFiltros = true;
             }
+            if ((null != marca.Interesado) && (!marca.Interesado.Id.Equals("")))
+            {
+                if (variosFiltros)
+                    filtro += " and ";
+                filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerMarcaIdInteresado, marca.Interesado.Id);
+                variosFiltros = true;
+            }
             if (!string.IsNullOrEmpty(marca.Fichas))
             {
                 if (variosFiltros)

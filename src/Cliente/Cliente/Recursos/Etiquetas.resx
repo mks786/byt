@@ -1528,4 +1528,7 @@
   <data name="btnNuevoInfoBol" xml:space="preserve">
     <value>Nuevo InfoBol</value>
   </data>
+  <data name="lsvInteresado" xml:space="preserve">
+    <value>Interesado</value>
+  </data>
 </root>

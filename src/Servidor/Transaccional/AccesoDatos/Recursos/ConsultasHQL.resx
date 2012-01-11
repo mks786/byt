@@ -202,7 +202,7 @@
     <value>c.FechaIngreso between '{0}' and '{1}'</value>
   </data>
   <data name="CabeceraObtenerMarca" xml:space="preserve">
-    <value>Select m from Marca m left join fetch m.Asociado as asociado left join fetch m.Corresponsal as corresponsal where </value>
+    <value>Select m from Marca m left join fetch m.Asociado as asociado left join fetch m.Corresponsal as corresponsal left join fetch m.Interesado as interesado where </value>
     <comment>Cabecera del query para el filtro de marcas</comment>
   </data>
   <data name="FiltroObtenerMarcaDescripcion" xml:space="preserve">
@@ -248,5 +248,9 @@
   <data name="ObtenerOperacionesPorMarcasYServicio" xml:space="preserve">
     <value>Select o from Operacion o where o.CodigoAplicada = {0} and o.Aplicada = 'M' and o.Servicio.Id = '{1}'</value>
     <comment>Obtener todos las operaciones de una marca y con un servicio</comment>
+  </data>
+  <data name="FiltroObtenerMarcaIdInteresado" xml:space="preserve">
+    <value>interesado.Id = {0}</value>
+    <comment>Filtro por Interesado</comment>
   </data>
 </root>

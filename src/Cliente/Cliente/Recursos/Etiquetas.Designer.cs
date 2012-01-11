@@ -2887,6 +2887,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Interesado.
+        /// </summary>
+        public static string lsvInteresado {
+            get {
+                return ResourceManager.GetString("lsvInteresado", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Marca.
         /// </summary>
         public static string lsvMarca {

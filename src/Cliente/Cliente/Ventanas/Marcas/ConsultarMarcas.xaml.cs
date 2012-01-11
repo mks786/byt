@@ -17,9 +17,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
         private PresentadorConsultarMarcas _presentador;
         private bool _cargada;
 
-        #region IConsultarCartas
-
-
+        #region IConsultarMarcas
 
         public object Resultados
         {
@@ -31,7 +29,6 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
         {
             get { return this._txtId.Text; }
         }
-
 
         public object MarcaSeleccionada
         {
@@ -74,11 +71,6 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             this._txtId.Focus();
         }
 
-        public object PoderSeleccionado
-        {
-            get { return this._lstResultados.SelectedItem; }
-        }
-
         public GridViewColumnHeader CurSortCol
         {
             get { return _CurSortCol; }
@@ -109,6 +101,27 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             set { this._lstAsociados.SelectedItem = value; }
         }
 
+        public string IdInteresadoFiltrar
+        {
+            get { return this._txtIdInteresado.Text; }
+        }
+
+        public string NombreInteresadoFiltrar
+        {
+            get { return this._txtNombreInteresado.Text; }
+        }
+
+        public object Interesados
+        {
+            get { return this._lstInteresados.DataContext; }
+            set { this._lstInteresados.DataContext = value; }
+        }
+
+        public object Interesado
+        {
+            get { return this._lstInteresados.SelectedItem; }
+            set { this._lstInteresados.SelectedItem = value; }
+        }
         public void Mensaje(string mensaje)
         {
             MessageBox.Show(mensaje, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -165,16 +178,30 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             this._presentador.BuscarAsociado();
         }
 
-        private void _btnConsultarInteresadoFocus(object sender, RoutedEventArgs e)
+        private void _btnConsultarInteresado_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.BuscarInteresado();
+        }
+
+        private void _btnConsultarAsociadoFocus(object sender, RoutedEventArgs e)
         {
             this._btnConsultar.IsDefault = false;
             this._btnConsultarAsociado.IsDefault = true;
+            this._btnConsultarInteresado.IsDefault = false;
+        }
+
+        private void _btnConsultarInteresadoFocus(object sender, RoutedEventArgs e)
+        {
+            this._btnConsultar.IsDefault = false;
+            this._btnConsultarAsociado.IsDefault = false;
+            this._btnConsultarInteresado.IsDefault = true;
         }
 
         private void _btnConsultarFocus(object sender, RoutedEventArgs e)
         {
             this._btnConsultar.IsDefault = true;
             this._btnConsultarAsociado.IsDefault = false;
+            this._btnConsultarInteresado.IsDefault = false;
         }
 
         /// <summary>
@@ -220,7 +247,5 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
         {
 
         }
-
-
     }
 }
