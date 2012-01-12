@@ -42,6 +42,18 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             set { this._txtPoderSolicitud.Text = value; }
         }
 
+        public string IdInternacional
+        {
+            get { return this._txtClaseInternacionalSolicitud.Text; }
+            set { this._txtClaseInternacionalSolicitud.Text = value; }
+        }
+
+        public string IdNacional
+        {
+            get { return this._txtClaseNacionalDatos.Text; }
+            set { this._txtClaseNacionalDatos.Text = value; }
+        }
+
         public string IdAsociadoSolicitudFiltrar
         {
             get { return this._txtIdAsociadoSolicitud.Text; }
@@ -423,6 +435,14 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
         {
             get { return this._poderesCargados; }
             set { this._poderesCargados = value; }
+        }
+
+        public void BorrarCeros()
+        {
+            this._txtClaseInternacionalSolicitud.Text = this._txtClaseInternacionalSolicitud.Text.Equals("0") ? "" : this._txtClaseInternacionalSolicitud.Text;
+            this._txtClaseInternacionalDatos.Text = this._txtClaseInternacionalDatos.Text.Equals("0") ? "" : this._txtClaseInternacionalDatos.Text;
+            this._txtClaseNacional.Text = this._txtClaseNacional.Text.Equals("0") ? "" : this._txtClaseNacional.Text;
+            this._txtClaseNacionalDatos.Text = this._txtClaseNacionalDatos.Text.Equals("0") ? "" : this._txtClaseNacionalDatos.Text;
         }
 
         public GridViewColumnHeader CurSortCol

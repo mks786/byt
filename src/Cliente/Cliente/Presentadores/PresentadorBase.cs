@@ -696,7 +696,7 @@ namespace Trascend.Bolet.Cliente.Presentadores
             if (tipoInfobolBuscado != null)
                 foreach (TipoInfobol tipoInfobol in tipoInfoboles)
                 {
-                    if (tipoInfobol.Id.Equals(tipoInfobolBuscado.Id.Substring(0,tipoInfobol.Id.Length)))
+                    if (tipoInfobol.Id.Equals(tipoInfobolBuscado.Id.Trim()))
                     {
                         retorno = tipoInfobol;
                         break;

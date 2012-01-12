@@ -59,6 +59,17 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             {
 
                 this._ventana = ventana;
+
+                if (((Marca)marca).Internacional == null)
+                    ((Marca)marca).Internacional = new Internacional();
+                else
+                    ((Marca)marca).Internacional = new Internacional(((Marca)marca).Internacional.Id);
+
+                if (((Marca)marca).Nacional == null)
+                    ((Marca)marca).Nacional = new Nacional();
+                else
+                    ((Marca)marca).Nacional = new Nacional(((Marca)marca).Nacional.Id);
+
                 this._ventana.Marca = marca;
 
                 this._marcaServicios = (IMarcaServicios)Activator.GetObject(typeof(IMarcaServicios),
@@ -124,11 +135,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-
                 this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleConsultarMarca, "");
 
                 Marca marca = (Marca)this._ventana.Marca;
-
+                    
                 Anaqua anaqua = new Anaqua();
                 anaqua.IdMarca = marca.Id;
                 InfoAdicional infoAdicional = new InfoAdicional("M." + marca.Id);
@@ -247,6 +257,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 if (null != this._auditorias && this._auditorias.Count > 0)
                     this._ventana.PintarAuditoria();
 
+                this._ventana.BorrarCeros();
+
                 this._ventana.FocoPredeterminado();
 
                 #region trace
@@ -307,6 +319,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
 
             if (null != this._ventana.TipoMarcaDatos)
                 marca.Tipo = !((ListaDatosDominio)this._ventana.TipoMarcaDatos).Id.Equals("NGN") ? ((ListaDatosDominio)this._ventana.TipoMarcaDatos).Id : null;
+            
+            if(string.IsNullOrEmpty(this._ventana.IdInternacional))
+                marca.Internacional = null;
+
+            if(string.IsNullOrEmpty(this._ventana.IdNacional))
+                marca.Nacional = null;
 
             return marca;
         }

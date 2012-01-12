@@ -136,6 +136,10 @@ namespace Trascend.Bolet.Cliente.Contratos.Marcas
 
         string TextoBotonModificar { get; set; }
 
+        string IdInternacional { get; set; }
+
+        string IdNacional { get; set; }
+
         bool HabilitarCampos { set; }
 
         bool AsociadosEstanCargados { get; set; }
@@ -157,6 +161,8 @@ namespace Trascend.Bolet.Cliente.Contratos.Marcas
         void PintarBusquedas();
 
         void PintarAuditoria();
+
+        void BorrarCeros();
 
         GridViewColumnHeader CurSortCol { get; set; }
 

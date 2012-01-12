@@ -139,6 +139,12 @@ namespace Trascend.Bolet.Cliente.Contratos.Marcas
 
         bool PoderesEstanCargados { get; set; }
 
+        string IdInternacional { get; set; }
+
+        string IdNacional { get; set; }
+
+        void BorrarCeros();
+
         GridViewColumnHeader CurSortCol { get; set; }
 
         SortAdorner CurAdorner { get; set; }

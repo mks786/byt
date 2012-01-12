@@ -36,14 +36,14 @@
                     <Label>
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblTipo}"/>
                     </Label>
-                    <ComboBox Name="_cbxTipo" HorizontalAlignment="Left" Width="180" Height="20" IsEnabled="False"
+                    <ComboBox Name="_cbxTipo" HorizontalAlignment="Left" Width="350" Height="20" IsEnabled="False"
                               ItemsSource="{Binding}" DisplayMemberPath="Descripcion" SelectedIndex="0" SelectionChanged="_cbxTipo_SelectionChanged"/>
                 </WrapPanel>
                 <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
                     <Label>
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblBoletin}"/>
                     </Label>
-                    <ComboBox Name="_cbxBoletin" Width="180" ItemsSource="{Binding}" IsEnabled="False" SelectedIndex="0">
+                    <ComboBox Name="_cbxBoletin" Width="350" ItemsSource="{Binding}" IsEnabled="False" SelectedIndex="0">
                         <ComboBox.ItemTemplate>
                             <DataTemplate>
                                 <TextBlock>
@@ -64,9 +64,9 @@
                     </Label>
                     <Grid Grid.Column="9" Grid.Row="5" Grid.ColumnSpan="3" Margin="3" VerticalAlignment="Center">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="60"/>
-                            <ColumnDefinition Width="60"/>
-                            <ColumnDefinition Width="60"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto"/>
@@ -74,15 +74,15 @@
                             <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
 
-                        <TextBox IsEnabled="False" MaxLength="2000" Grid.Column="0" Grid.Row="0" Name="_txtCambio" VerticalAlignment="Center"
+                        <TextBox IsEnabled="False" MaxLength="2000" Grid.Column="0" Grid.Row="0" Width="350" Name="_txtCambio" VerticalAlignment="Center"
                          Grid.ColumnSpan="7" MouseDoubleClick="_txtCambio_MouseDoubleClick" IsReadOnly="True"></TextBox>
 
                         <ListView Name="_lstCambios" ItemsSource="{Binding}" Grid.ColumnSpan="3"
-                      MouseDoubleClick="_lstCambios_MouseDoubleClick" SelectionMode="Single"
+                      MouseDoubleClick="_lstCambios_MouseDoubleClick" SelectionMode="Single" Width="350"
                       Style="{DynamicResource EstiloListView}" Visibility="Collapsed">
                             <ListView.View>
                                 <GridView>
-                                    <GridViewColumn Width="100">
+                                    <GridViewColumn Width="70">
                                         <GridViewColumnHeader Click="_OrdenarCambio_Click" Tag="Fecha" Content="{x:Static recurso:Etiquetas.lsvFecha}"/>
                                         <GridViewColumn.CellTemplate>
                                             <DataTemplate>
@@ -94,13 +94,13 @@
                                             </DataTemplate>
                                         </GridViewColumn.CellTemplate>
                                     </GridViewColumn>
-                                    <GridViewColumn DisplayMemberBinding="{Binding Path=Servicio.Descripcion}" Width="120">
+                                    <GridViewColumn DisplayMemberBinding="{Binding Path=Servicio.Descripcion}" Width="140">
                                         <GridViewColumnHeader Click="_OrdenarCambio_Click" Tag="Servicio.Descripcion" Content="{x:Static recurso:Etiquetas.lsvOperacion}"/>
                                     </GridViewColumn>
-                                    <GridViewColumn DisplayMemberBinding="{Binding Path=Descripcion}" Width="120">
+                                    <GridViewColumn DisplayMemberBinding="{Binding Path=Descripcion}" Width="80">
                                         <GridViewColumnHeader Click="_OrdenarCambio_Click" Tag="Descripcion" Content="{x:Static recurso:Etiquetas.lsvDescripcion}"/>
                                     </GridViewColumn>
-                                    <GridViewColumn DisplayMemberBinding="{Binding Path=Id}" Width="150">
+                                    <GridViewColumn DisplayMemberBinding="{Binding Path=Id}" Width="50">
                                         <GridViewColumnHeader Click="_OrdenarCambio_Click" Tag="Id" Content="{x:Static recurso:Etiquetas.lsvId}"/>
                                     </GridViewColumn>
                                 </GridView>
@@ -112,27 +112,27 @@
                     <Label>
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblTomo}"/>
                     </Label>
-                    <ComboBox Name="_cbxTomo" HorizontalAlignment="Left" Width="180" Height="20" IsEnabled="False"
+                    <ComboBox Name="_cbxTomo" HorizontalAlignment="Left" Width="350" Height="20" IsEnabled="False"
                               ItemsSource="{Binding}" DisplayMemberPath="Descripcion" SelectedIndex="0"/>
                 </WrapPanel>
                 <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
                     <Label>
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblResolucion}"/>
                     </Label>
-                    <TextBox IsEnabled="False" Width="180" MaxLength="2000" Name="_txtResolucion" VerticalAlignment="Center" 
+                    <TextBox IsEnabled="False" Width="350" MaxLength="2000" Name="_txtResolucion" VerticalAlignment="Center" 
                          Grid.ColumnSpan="3" Text="{Binding Path=Resolucion}"/>
                 </WrapPanel>
                 <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
                     <Label>
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblPagina}"/>
                     </Label>
-                    <TextBox IsEnabled="False" Width="180" MaxLength="2000" Name="_txtPagina" VerticalAlignment="Center" Text="{Binding Path=Pagina}"/>
+                    <TextBox IsEnabled="False" Width="350" MaxLength="2000" Name="_txtPagina" VerticalAlignment="Center" Text="{Binding Path=Pagina}"/>
                 </WrapPanel>
                 <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
                     <Label>
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblFecha}"/>
                     </Label>
-                    <DatePicker IsEnabled="False"  Name="_dpkFecha" Width="180" Focusable="False" BorderBrush="{x:Null}">
+                    <DatePicker IsEnabled="False"  Name="_dpkFecha" Width="350" Focusable="False" BorderBrush="{x:Null}">
                         <DatePicker.SelectedDate>
                             <Binding Path="Fecha" UpdateSourceTrigger="PropertyChanged"/>
                         </DatePicker.SelectedDate>
@@ -142,7 +142,7 @@
                     <Label>
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblComentario}"/>
                     </Label>
-                    <TextBox IsEnabled="False" Width="180" MaxLength="2000" Name="_txtComentario" VerticalAlignment="Center" Text="{Binding Path=Comentario}"/>
+                    <TextBox IsEnabled="False" Width="350" MaxLength="2000" Name="_txtComentario" VerticalAlignment="Center" Text="{Binding Path=Comentario}"/>
                 </WrapPanel>
                 <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
                     <Label>

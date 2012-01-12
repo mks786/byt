@@ -28,6 +28,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
         private IListaDatosDominioServicios _listaDatosDominioServicios;
         private ITipoInfobolServicios _tipoInfobolServicios;
         private IOperacionServicios _operacionServicios;
+        private IList<TipoInfobol> _infoboles;
         private bool _nuevaInfoBol = false;
         private bool _tieneListaCambios = false;
 
@@ -56,10 +57,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 this._operacionServicios = (IOperacionServicios)Activator.GetObject(typeof(IOperacionServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["OperacionServicios"]);
 
-                IList<TipoInfobol> infoboles = this._tipoInfobolServicios.ConsultarTodos();
+                this._infoboles = this._tipoInfobolServicios.ConsultarTodos();
                 this._ventana.Tipos = null;
-                this._ventana.Tipos = infoboles;
-                this._ventana.Tipo = this.BuscarTipoInfobol(infoboles, ((InfoBol)this._ventana.InfoBol).TipoInfobol);
+                this._ventana.Tipos = this._infoboles;
 
             }
             catch (Exception ex)
@@ -103,8 +103,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 this._ventana.Boletines = null;
                 this._ventana.Boletines = boletines;
 
-                if(!this._nuevaInfoBol)
+                if (!this._nuevaInfoBol)
+                {
                     this._ventana.Boletin = this.BuscarBoletin(boletines, ((InfoBol)this._ventana.InfoBol).Boletin);
+                    this._ventana.Tipo = this.BuscarTipoInfobol(this._infoboles, ((InfoBol)this._ventana.InfoBol).TipoInfobol);
+                }
 
                 this._ventana.BorrarTextoCambio();
 
@@ -161,8 +164,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                     infoBol.Boletin = (Boletin)this._ventana.Boletin;
                     infoBol.TimeStamp = System.DateTime.Now;
                     infoBol.Usuario = UsuarioLogeado;
-                    infoBol.Cambio = int.Parse(this._ventana.TextoCambio);
-
+                    infoBol.Cambio = !string.IsNullOrEmpty(this._ventana.TextoCambio) ? int.Parse(this._ventana.TextoCambio) : 0;
+                    
                     if (this._nuevaInfoBol)
                     {
                         infoBol.TipoInfobol = (TipoInfobol)this._ventana.Tipo;

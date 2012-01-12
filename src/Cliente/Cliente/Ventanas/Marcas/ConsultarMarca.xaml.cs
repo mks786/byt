@@ -211,6 +211,18 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             set { this._txbAceptar.Text = value; }
         }
 
+        public string IdInternacional
+        {
+            get { return this._txtClaseInternacional.Text; }
+            set { this._txtClaseInternacional.Text = value; }
+        }
+
+        public string IdNacional
+        {
+            get { return this._txtClaseNacionalDatos.Text; }
+            set { this._txtClaseNacionalDatos.Text = value; }
+        }
+
         public bool HabilitarCampos
         {
             set
@@ -677,6 +689,14 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
         public void PintarAuditoria()
         {
             this._btnAuditoria.Background = Brushes.LightGreen;
+        }
+
+        public void BorrarCeros()
+        {
+            this._txtClaseInternacional.Text = this._txtClaseInternacional.Text.Equals("0") ? "" : this._txtClaseInternacional.Text;
+            this._txtClaseInternacional.Text = this._txtClaseInternacional.Text.Equals("0") ? "" : this._txtClaseInternacional.Text;
+            this._txtClaseNacional.Text = this._txtClaseNacional.Text.Equals("0") ? "" : this._txtClaseNacional.Text;
+            this._txtClaseNacionalDatos.Text = this._txtClaseNacionalDatos.Text.Equals("0") ? "" : this._txtClaseNacionalDatos.Text;
         }
 
         public GridViewColumnHeader CurSortCol

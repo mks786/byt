@@ -66,6 +66,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
 
                 marca.Nacional = new Nacional();
                 marca.Internacional = new Internacional();
+                marca.Interesado = new Interesado();
                 this._ventana.Marca = marca;
 
                 this._marcaServicios = (IMarcaServicios)Activator.GetObject(typeof(IMarcaServicios),
@@ -153,6 +154,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
 
                 this._ventana.Sector = this.BuscarSector((IList<ListaDatosDominio>)this._ventana.Sectores, marca.Sector);
                 this._ventana.TipoReproduccion = this.BuscarTipoReproduccion((IList<ListaDatosDominio>)this._ventana.TipoReproducciones, marca.Tipo);
+
             }
             catch (Exception ex)
             {
@@ -246,6 +248,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 if (_esMarcaDuplicada)
                     CargarDatosDeMarcaDuplicada();
 
+                this._ventana.BorrarCeros();
+
                 this._ventana.FocoPredeterminado();
 
                 #region trace
@@ -310,6 +314,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
 
                 if (null != this._ventana.TipoMarcaDatos)
                     marca.Tipo = !((ListaDatosDominio)this._ventana.TipoMarcaDatos).Id.Equals("NGN") ? ((ListaDatosDominio)this._ventana.TipoMarcaDatos).Id : null;
+
+                if (string.IsNullOrEmpty(this._ventana.IdInternacional))
+                    marca.Internacional = null;
+
+                if (string.IsNullOrEmpty(this._ventana.IdNacional))
+                    marca.Nacional = null;
 
                 bool exitoso = this._marcaServicios.InsertarOModificar(marca, UsuarioLogeado.Hash);
 
