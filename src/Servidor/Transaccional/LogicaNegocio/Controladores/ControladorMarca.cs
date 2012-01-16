@@ -257,6 +257,13 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
 
             return retorno;
         }
+
+        public static string EjecutarProcedimientoP1(Marca marca)
+        {
+            ComandoBase<string> comando = FabricaComandosMarca.ObtenerComandoEjecutarProcedimientoP1(marca);
+            comando.Ejecutar();
+            return "";
+        }
     }
 }
 

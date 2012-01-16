@@ -66,7 +66,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
 
                 marca.Nacional = new Nacional();
                 marca.Internacional = new Internacional();
-                marca.Interesado = new Interesado();
+                if (!_esMarcaDuplicada)
+                    marca.Interesado = new Interesado();
                 this._ventana.Marca = marca;
 
                 this._marcaServicios = (IMarcaServicios)Activator.GetObject(typeof(IMarcaServicios),

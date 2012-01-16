@@ -1283,7 +1283,7 @@
     <value>Conflicto:</value>
   </data>
   <data name="lblCorresponsal" xml:space="preserve">
-    <value>Corresponsable:</value>
+    <value>Corresponsal:</value>
   </data>
   <data name="lblDetalle" xml:space="preserve">
     <value>Detalle:</value>
@@ -1530,5 +1530,8 @@
   </data>
   <data name="lsvInteresado" xml:space="preserve">
     <value>Interesado</value>
+  </data>
+  <data name="titleGestionarAnaqua" xml:space="preserve">
+    <value>Gestionar Anaqua</value>
   </data>
 </root>

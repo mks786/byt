@@ -1,7 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
                    assembly="Trascend.Bolet.ObjetosComunes"
-                   namespace="Trascend.Bolet.ObjetosComunes.Entidades">
+                   namespace="Trascend.Bolet.ObjetosComunes.Entidades"
+                   auto-import="true">
 
   <class name="Marca" table="MYP_MARCAS">
     <id name="Id" column="CMARCA" type="int"/>
@@ -47,7 +48,7 @@
     <many-to-one name="Asociado" class="Asociado">
       <column name="CASOCIADO"/>
     </many-to-one>
-    
+
     <many-to-one name="Corresponsal" class="Corresponsal">
       <column name="CCORRESP"/>
     </many-to-one>
@@ -89,6 +90,17 @@
     </many-to-one>
 
   </class>
+
+  <sql-query name="ProcedimientoP1">
+
+    <query-param name="usr" type="string" />
+    <query-param name="way" type="bool" />
+    <query-param name="cod" type="int" />
+
+    exec PCK_MYP_MARCAS.P1 :usr, :way, :cod
+
+  </sql-query>
+
 </hibernate-mapping>
 
 

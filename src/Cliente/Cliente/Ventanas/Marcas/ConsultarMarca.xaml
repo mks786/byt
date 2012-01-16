@@ -389,8 +389,8 @@
                     <Label Grid.Column="0" Grid.Row="9" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblEtiqueta}"/>
                     </Label>
-                    <CheckBox IsEnabled="False"  Name="_chkEtiqueta" Grid.Column="1" Grid.Row="9" VerticalAlignment="Center"
-                         HorizontalAlignment="Center" IsChecked="{Binding Path=EtiquetaAutorizar}">
+                    <CheckBox IsEnabled="False"  Name="_chkEtiquetaSolicitud" Grid.Column="1" Grid.Row="9" VerticalAlignment="Center"
+                         HorizontalAlignment="Center" IsChecked="{Binding Path=BEtiqueta}">
                     </CheckBox>
                     <custom:ByTTextBox IsEnabled="False" MaxLength="2000" Grid.Column="2" Grid.Row="9" Name="_txtEtiqueta" VerticalAlignment="Center" 
                          Grid.ColumnSpan="6" Text="{Binding Path=Etiqueta}"></custom:ByTTextBox>
@@ -688,7 +688,9 @@
                     <Separator Grid.Column="0" Grid.Row="21" Grid.ColumnSpan="7" Margin="0,3,0,0" VerticalAlignment="Bottom" />
 
                     <WrapPanel Grid.Column="1" Grid.Row="22" Grid.ColumnSpan="5" VerticalAlignment="Bottom" HorizontalAlignment="Left" Orientation="Horizontal">
-                        <Button IsEnabled="False" Name="_btnFM02" Height="25" Width="100">FM02</Button>
+                        <Button IsEnabled="False" Name="_btnFM02" Height="25" Width="100" Click="_btnFM02_Click">
+                            <TextBlock Name="_txbFM02" Text="{x:Static recurso:Etiquetas.btnFM02}"/>
+                        </Button>
                         <Button IsEnabled="False" Name="_btnFM02Venen" Height="25" Width="100" Margin="8,0,0,0">FM02(venen)</Button>
                         <Button IsEnabled="False" Name="_btnAnexoFM02" Height="25" Width="100" Margin="8,0,0,0">Anexo FM02</Button>
                     </WrapPanel>
@@ -1111,7 +1113,7 @@
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblEtiqueta}"/>
                     </Label>
                     <CheckBox IsEnabled="False" Margin="3" Grid.Column="1" Grid.ColumnSpan="1" Grid.Row="11" Height="16" VerticalAlignment="Center" 
-                              Name="checkBox1" IsChecked="{Binding Path=EtiquetaAutorizar}"/>
+                              Name="_chkEtiquetaDatos" IsChecked="{Binding Path=BEtiqueta}"/>
                     <custom:ByTTextBox IsEnabled="False" Grid.Column="1" Grid.Row="11" Grid.ColumnSpan="11" Margin="25,0,3,0" Name="_txtEtiquetaDatos" VerticalAlignment="Center"  
                           Text="{Binding Path=Etiqueta}"></custom:ByTTextBox>
                     <!--Fin Séptima Fila-->

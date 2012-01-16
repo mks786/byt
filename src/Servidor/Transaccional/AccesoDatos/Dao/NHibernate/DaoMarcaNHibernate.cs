@@ -93,5 +93,42 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
 
             return retorno;
         }
+
+
+        public string EjecutarProcedimientoP1(Marca marca)
+        {
+            string retorno;
+
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                IQuery query = Session.GetNamedQuery("ProcedimientoP1");
+                query.SetParameter<string>("usr", "HP");
+                query.SetParameter<bool>("way", true);
+                query.SetParameter<int>("cod", 60747);
+
+                query.List();
+
+
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Saliendo del Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                throw new ApplicationException(Recursos.Errores.ExConsultarTodosUsuariosPorUsuario);
+            }
+            finally
+            {
+                Session.Close();
+            }
+            return "";
+        }
     }
 }

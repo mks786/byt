@@ -178,7 +178,7 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to SEGTUSU.
+        ///   Looks up a localized string similar to MYP_MARCAS.
         /// </summary>
         public static string AgregarMarca {
             get {
@@ -547,7 +547,7 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to SEGTUSU.
+        ///   Looks up a localized string similar to MYP_MARCAS.
         /// </summary>
         public static string ConsultarMarca {
             get {
@@ -556,7 +556,7 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to SEGTUSU.
+        ///   Looks up a localized string similar to MYP_MARCAS.
         /// </summary>
         public static string ConsultarMarcas {
             get {
@@ -1105,7 +1105,7 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to SEGTUSU.
+        ///   Looks up a localized string similar to MYP_MARCAS.
         /// </summary>
         public static string Marca {
             get {
@@ -1231,7 +1231,7 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to SEGTUSU.
+        ///   Looks up a localized string similar to MYP_MARCAS.
         /// </summary>
         public static string ModificarMarca {
             get {

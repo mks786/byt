@@ -8,5 +8,7 @@ namespace Trascend.Bolet.AccesoDatos.Contrato
         IList<Marca> ObtenerMarcasFiltro(Marca marca);
 
         Marca ObtenerMarcaConTodo(Marca marca);
+
+        string EjecutarProcedimientoP1(Marca marca);
     }
 }

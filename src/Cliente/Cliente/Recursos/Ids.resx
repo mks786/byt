@@ -157,7 +157,7 @@
     <value>FAC_CONJUST</value>
   </data>
   <data name="AgregarMarca" xml:space="preserve">
-    <value>SEGTUSU</value>
+    <value>MYP_MARCAS</value>
   </data>
   <data name="AgregarNacional" xml:space="preserve">
     <value>MYPTNAC</value>
@@ -280,10 +280,10 @@
     <value>FAC_ASO_JUST</value>
   </data>
   <data name="ConsultarMarca" xml:space="preserve">
-    <value>SEGTUSU</value>
+    <value>MYP_MARCAS</value>
   </data>
   <data name="ConsultarMarcas" xml:space="preserve">
-    <value>SEGTUSU</value>
+    <value>MYP_MARCAS</value>
   </data>
   <data name="ConsultarNacional" xml:space="preserve">
     <value>MYPTNAC</value>
@@ -466,7 +466,7 @@
     <value>LST_PODERES</value>
   </data>
   <data name="Marca" xml:space="preserve">
-    <value>SEGTUSU</value>
+    <value>MYP_MARCAS</value>
   </data>
   <data name="Medio" xml:space="preserve">
     <value>MEDIO</value>
@@ -508,7 +508,7 @@
     <value>MYPTINT</value>
   </data>
   <data name="ModificarMarca" xml:space="preserve">
-    <value>SEGTUSU</value>
+    <value>MYP_MARCAS</value>
   </data>
   <data name="ModificarNacional" xml:space="preserve">
     <value>MYPTNAC</value>

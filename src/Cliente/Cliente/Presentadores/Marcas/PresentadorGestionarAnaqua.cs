@@ -69,8 +69,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             try
             {
                 //cambiar titulo
-                this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleAgregarAgente,
-                    Recursos.Ids.AgregarAgente);
+                this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleGestionarAnaqua,
+                    "");
 
 
                 Auditoria auditoria = new Auditoria();

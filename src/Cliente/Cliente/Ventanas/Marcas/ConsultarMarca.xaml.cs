@@ -329,7 +329,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
                 this._checkBoxInstruccionesRenovacion.IsEnabled = value;
                 this._checkBoxRenovacionTramitente.IsEnabled = value;
                 this._chkConflicto.IsEnabled = value;
-                this._chkEtiqueta.IsEnabled = value;
+                this._chkEtiquetaSolicitud.IsEnabled = value;
+                this._chkEtiquetaDatos.IsEnabled = value;
                 this._chkOtraInf.IsEnabled = value;
                 this._chkPoder.IsEnabled = value;
                 this._chkPoderYPrioridad.IsEnabled = value;
@@ -1273,6 +1274,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
         }
 
         #endregion
+
+        private void _btnFM02_Click(object sender, RoutedEventArgs e)
+        {
+           // this._presentador.IrImprimir(((Button)sender).Name);
+        }
 
 
     }

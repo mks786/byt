@@ -208,6 +208,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 this._ventana.NombreInteresadoSolicitud = interesado.Nombre;
                 this._ventana.InteresadoPaisSolicitud = interesado.Pais.NombreEspanol;
                 this._ventana.InteresadoCiudadSolicitud = interesado.Ciudad;
+                //this._ventana.InteresadoSolicitud = marca.Interesado;
 
                 this._ventana.NombreAsociadoDatos = marca.Asociado != null ? marca.Asociado.Nombre : "";
                 this._ventana.NombreAsociadoSolicitud = marca.Asociado != null ? marca.Asociado.Nombre : "";
@@ -958,5 +959,30 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
 
         #endregion
 
+
+        public void IrImprimir(string nombreBoton)
+        {
+            try
+            {
+                if (nombreBoton.Equals("_btn" + Recursos.Etiquetas.btnFM02))
+                {
+                    if (validarMarcaAntesDeImprimirFM02())
+                    {
+                        string retorno = this._marcaServicios.ImprimirFM02((Marca)this._ventana.Marca);
+                    }
+                }
+            }
+            catch (ApplicationException ex)
+            {
+                throw ex;
+            }
+        }
+
+        private bool validarMarcaAntesDeImprimirFM02()
+        {
+            bool retorno = false;
+
+            return true;
+        }
     }
 }

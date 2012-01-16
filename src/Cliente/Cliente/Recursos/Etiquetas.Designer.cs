@@ -1321,7 +1321,7 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Corresponsable:.
+        ///   Looks up a localized string similar to Corresponsal:.
         /// </summary>
         public static string lblCorresponsal {
             get {
@@ -4152,6 +4152,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string titleGestionalInfoBol {
             get {
                 return ResourceManager.GetString("titleGestionalInfoBol", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Gestionar Anaqua.
+        /// </summary>
+        public static string titleGestionarAnaqua {
+            get {
+                return ResourceManager.GetString("titleGestionarAnaqua", resourceCulture);
             }
         }
         
