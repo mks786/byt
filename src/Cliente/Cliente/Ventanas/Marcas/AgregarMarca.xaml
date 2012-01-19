@@ -57,33 +57,33 @@
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="30"/>
-                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="0"/>
+                        <RowDefinition Height="25"/>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="30"/>
-                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="25"/>
+                        <RowDefinition Height="25"/>
                         <RowDefinition Height="5"/>
-                        <RowDefinition Height="30"/>
-                        <RowDefinition Height="30"/>
-                        <RowDefinition Height="30"/>
-                        <RowDefinition Height="30"/>
-                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="25"/>
+                        <RowDefinition Height="25"/>
+                        <RowDefinition Height="25"/>
+                        <RowDefinition Height="25"/>
+                        <RowDefinition Height="25"/>
                         <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="25"/>
                         <RowDefinition Height="5"/>
-                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="25"/>
                         <RowDefinition Height="5"/>
-                        <RowDefinition Height="30"/>
-                        <RowDefinition Height="30"/>
-                        <RowDefinition Height="30"/>
-                        <RowDefinition Height="30"/>
-                        <RowDefinition Height="30"/>
-                        <RowDefinition Height="30"/>
-                        <RowDefinition Height="30"/>
-                        <RowDefinition Height="30"/>
-                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="25"/>
+                        <RowDefinition Height="25"/>
+                        <RowDefinition Height="25"/>
+                        <RowDefinition Height="25"/>
+                        <RowDefinition Height="25"/>
+                        <RowDefinition Height="25"/>
+                        <RowDefinition Height="25"/>
+                        <RowDefinition Height="25"/>
+                        <RowDefinition Height="25"/>
                     </Grid.RowDefinitions>
 
                     <Label Grid.Column="0" Grid.Row="1" VerticalAlignment="Center" HorizontalContentAlignment="Right">
@@ -577,11 +577,11 @@
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblFechaRequerida}"/>
                     </Label>
 
-                    <CheckBox   Name="_chkPoder" Grid.Column="7" Grid.Row="19" VerticalAlignment="Center"
+                    <CheckBox   Name="_chkPoder" Grid.Column="7" Grid.Row="19" Grid.ColumnSpan="2" VerticalAlignment="Center" Margin="0,0,95,0"
                          HorizontalAlignment="Right" IsChecked="{Binding Path=BAutorizar}">
                     </CheckBox>
-                    <Button Name="_btnPoder" HorizontalAlignment="Center" Grid.Column="8" Grid.Row="19"
-                            Height="25" Width="80">Poder</Button>
+                    <Button Name="_btnPoder" HorizontalAlignment="Right" Grid.Column="7" Grid.Row="19" Grid.ColumnSpan="2"
+                            Height="25" Width="90">Poder</Button>
                     <DatePicker  Grid.Column="9" Grid.Row="19" HorizontalAlignment="Center"  Name="_dpkFechaRequeridaPoder" Focusable="False" BorderBrush="{x:Null}" >
                         <DatePicker.SelectedDate>
                             <Binding Path="Fecha" UpdateSourceTrigger="PropertyChanged"/>
@@ -592,11 +592,11 @@
                     <Button Name="_btnPoderELI" HorizontalAlignment="Left" Grid.Column="11" Grid.Row="19"
                             Height="25" Width="60">ELI</Button>
 
-                    <CheckBox Name="_chkPrioridad" Grid.Column="7" Grid.Row="20" VerticalAlignment="Center"
-                         HorizontalAlignment="Right" IsChecked="{Binding Path=BAutorizar}">
+                    <CheckBox Name="_chkPrioridad" Grid.Column="7" Grid.Row="20" Grid.ColumnSpan="2" VerticalAlignment="Center"
+                         HorizontalAlignment="Right" IsChecked="{Binding Path=BAutorizar}" Margin="0,0,95,0">
                     </CheckBox>
-                    <Button Name="_btnPrioridad" HorizontalAlignment="Center" Grid.Column="8" Grid.Row="20"
-                            Height="25" Width="80">Poder</Button>
+                    <Button Name="_btnPrioridad" HorizontalAlignment="Right" Grid.Column="7" Grid.Row="20" Grid.ColumnSpan="2" 
+                            Height="25" Width="90">Poder</Button>
                     <DatePicker Grid.Column="9" Grid.Row="20" HorizontalAlignment="Center"  Name="_dpkFechaRequeridaPrioridad" Focusable="False" BorderBrush="{x:Null}" >
                         <DatePicker.SelectedDate>
                             <Binding Path="Fecha" UpdateSourceTrigger="PropertyChanged"/>
@@ -608,10 +608,10 @@
                             Height="25" Width="60">ELI</Button>
 
                     <CheckBox Name="_chkPoderYPrioridad" Grid.Column="7" Grid.Row="21" VerticalAlignment="Center"
-                         HorizontalAlignment="Right" IsChecked="{Binding Path=BAutorizar}">
+                         HorizontalAlignment="Right" IsChecked="{Binding Path=BAutorizar}" Margin="0,0,95,0" Grid.ColumnSpan="2">
                     </CheckBox>
-                    <Button Name="_btnPoderYPrioridad" HorizontalAlignment="Center" Grid.Column="8" Grid.Row="21"
-                            Height="25" Width="80">Poder y Prioridad</Button>
+                    <Button Name="_btnPoderYPrioridad" HorizontalAlignment="Right" Grid.Column="7" Grid.Row="21"  Grid.ColumnSpan="2"
+                            Height="25" Width="90">Poder y Prioridad</Button>
                     <DatePicker Grid.Column="9" Grid.Row="21" HorizontalAlignment="Center"  Name="_dpkFechaRequeridaPoderYPrioridad" Focusable="False" BorderBrush="{x:Null}" >
                         <DatePicker.SelectedDate>
                             <Binding Path="Fecha" UpdateSourceTrigger="PropertyChanged"/>
@@ -623,10 +623,10 @@
                             Height="25" Width="60">ELI</Button>
 
                     <CheckBox Name="_chkReclasificacionNacional" Grid.Column="7" Grid.Row="22" VerticalAlignment="Center"
-                         HorizontalAlignment="Right" IsChecked="{Binding Path=BAutorizar}">
+                         HorizontalAlignment="Right" IsChecked="{Binding Path=BAutorizar}"  Margin="0,0,95,0" Grid.ColumnSpan="2">
                     </CheckBox>
-                    <Button Name="_btnReclasificacionNacional" HorizontalAlignment="Center" Grid.Column="8" Grid.Row="22"
-                            Height="25" Width="80">Reclas. Nacional</Button>
+                    <Button Name="_btnReclasificacionNacional" HorizontalAlignment="Right" Grid.Column="7" Grid.Row="22"
+                            Height="25" Width="90" Grid.ColumnSpan="2">Reclas. Nacional</Button>
                     <DatePicker  Grid.Column="9" Grid.Row="22" HorizontalAlignment="Center"  Name="_dpkFechaRequeridaReclasificacionNacional" Focusable="False" BorderBrush="{x:Null}" >
                         <DatePicker.SelectedDate>
                             <Binding Path="Fecha" UpdateSourceTrigger="PropertyChanged"/>
@@ -638,10 +638,10 @@
                             Height="25" Width="60">ELI</Button>
 
                     <CheckBox   Name="_chkConflicto" Grid.Column="7" Grid.Row="23" VerticalAlignment="Center"
-                         HorizontalAlignment="Right" IsChecked="{Binding Path=BAutorizar}">
+                         HorizontalAlignment="Right" IsChecked="{Binding Path=BAutorizar}" Margin="0,0,95,0" Grid.ColumnSpan="2">
                     </CheckBox>
-                    <Button Name="_btnConflicto" HorizontalAlignment="Center" Grid.Column="8" Grid.Row="23"
-                            Height="25" Width="80">Conflicto</Button>
+                    <Button Name="_btnConflicto" HorizontalAlignment="Right" Grid.Column="7" Grid.Row="23"
+                            Height="25" Width="90" Grid.ColumnSpan="2">Conflicto</Button>
                     <DatePicker  Grid.Column="9" Grid.Row="23" HorizontalAlignment="Center"  Name="_dpkFechaRequeridaConflicto" Focusable="False" BorderBrush="{x:Null}" >
                         <DatePicker.SelectedDate>
                             <Binding Path="Fecha" UpdateSourceTrigger="PropertyChanged"/>
@@ -653,10 +653,10 @@
                             Height="25" Width="60">ELI</Button>
 
                     <CheckBox Name="_chkOtraInf" Grid.Column="7" Grid.Row="24" VerticalAlignment="Center"
-                         HorizontalAlignment="Right" IsChecked="{Binding Path=BAutorizar}">
+                         HorizontalAlignment="Right" IsChecked="{Binding Path=BAutorizar}"  Margin="0,0,95,0" Grid.ColumnSpan="2">
                     </CheckBox>
-                    <Button Name="_btnOtraInf" HorizontalAlignment="Center" Grid.Column="8" Grid.Row="24"
-                            Height="25" Width="80">Otra Inf.</Button>
+                    <Button Name="_btnOtraInf" HorizontalAlignment="Right" Grid.Column="7" Grid.Row="24"
+                            Height="25" Width="90" Grid.ColumnSpan="2">Otra Inf.</Button>
                     <DatePicker  Grid.Column="9" Grid.Row="24" HorizontalAlignment="Center"  Name="_dpkFechaRequeridaOtraInf" Focusable="False" BorderBrush="{x:Null}" >
                         <DatePicker.SelectedDate>
                             <Binding Path="Fecha" UpdateSourceTrigger="PropertyChanged"/>
@@ -712,7 +712,7 @@
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
                         <!--0-->
-                        <RowDefinition Height="60"/>
+                        <RowDefinition Height="25"/>
                         <!--1-->
                         <RowDefinition Height="Auto"/>
                         <!--2-->
@@ -728,48 +728,48 @@
                         <!--7-->
                         <RowDefinition Height="5"/>
                         <!--8-->
-                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="25"/>
                         <!--9-->
-                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="25"/>
                         <!--10-->
                         <RowDefinition Height="5"/>
                         <!--11-->
-                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="25"/>
                         <!--12-->
-                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="25"/>
                         <!--13-->
-                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="25"/>
                         <!--14-->
-                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="25"/>
                         <!--15-->
-                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="25"/>
                         <!--16-->
                         <RowDefinition Height="5"/>
                         <!--17-->
-                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="25"/>
                         <!--18-->
-                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="25"/>
                         <!--19-->
-                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="25"/>
                         <!--20-->
-                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="25"/>
                         <!--21-->
-                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="25"/>
                         <!--22-->
-                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="25"/>
                         <!--23-->
-                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="25"/>
                         <!--24-->
-                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="25"/>
                         <!--25-->
-                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="25"/>
                         <!--26-->
-                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="25"/>
                     </Grid.RowDefinitions>
 
                     <!--Primera Fila-->
 
-                    <Label Grid.Column="0" Grid.Row="0" VerticalAlignment="Bottom" HorizontalContentAlignment="Right" Margin="0,0,0,5" >
+                    <Label Grid.Column="0" Grid.Row="0" VerticalAlignment="Bottom" HorizontalContentAlignment="Right" Margin="0,0,0,0" >
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblMarca}"/>
                     </Label>
                     <custom:ByTTextBox  Grid.Column="1" Grid.Row="0" Name="_txtDescripcionDatos" VerticalAlignment="Bottom" Margin="0,0,0,5"  
@@ -1066,7 +1066,7 @@
                     <Label Grid.Column="4" Grid.Row="8" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblPais}"/>
                     </Label>
-                    <ComboBox  Grid.Column="5" Grid.Row="8" Grid.ColumnSpan="3" Margin="3" Name="_cbxPaisDatos" Height="20" 
+                    <ComboBox  Grid.Column="5" Grid.Row="8" Grid.ColumnSpan="3" Name="_cbxPaisDatos" Height="20" 
                               ItemsSource="{Binding}" DisplayMemberPath="NombreEspanol" SelectedIndex="0">
                     </ComboBox>
 
@@ -1084,7 +1084,7 @@
                     <Label Grid.Column="0" Grid.Row="9" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblAsocDelInteresado}"/>
                     </Label>
-                    <ComboBox  Grid.Column="1" Grid.Row="9" Grid.ColumnSpan="3" Margin="3" Name="_cbxAsociadoInteresadoDatos" Height="20" ItemsSource="{Binding}" >
+                    <ComboBox  Grid.Column="1" Grid.Row="9" Grid.ColumnSpan="3" Name="_cbxAsociadoInteresadoDatos" Height="20" ItemsSource="{Binding}" >
                     </ComboBox>
 
                     <Label Grid.Column="4" Grid.Row="9" VerticalAlignment="Center" HorizontalContentAlignment="Right">
@@ -1102,7 +1102,7 @@
                     <Label Grid.Column="0" Grid.Row="11" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblEtiqueta}"/>
                     </Label>
-                    <CheckBox  Margin="3" Grid.Column="1" Grid.ColumnSpan="1" Grid.Row="11" Height="16" VerticalAlignment="Center" 
+                    <CheckBox Grid.Column="1" Grid.ColumnSpan="1" Grid.Row="11" Height="16" VerticalAlignment="Center" 
                               Name="chkEtiquetaDatos" IsChecked="{Binding Path=BEtiqueta}"/>
                     <custom:ByTTextBox  Grid.Column="1" Grid.Row="11" Grid.ColumnSpan="11" Margin="25,0,3,0" Name="_txtEtiquetaDatos" VerticalAlignment="Center"  
                           Text="{Binding Path=EtiquetaDescripcion}"></custom:ByTTextBox>
@@ -1137,7 +1137,7 @@
                     <Label Grid.Column="9" Grid.Row="12" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblMarcaOrigen}"/>
                     </Label>
-                    <ComboBox  Grid.Column="10" Grid.Row="12" Grid.ColumnSpan="2" Margin="3" Name="_cbxMarcaOrigen" Height="20" ItemsSource="{Binding}" >
+                    <ComboBox  Grid.Column="10" Grid.Row="12" Grid.ColumnSpan="2" Name="_cbxMarcaOrigen" Height="20" ItemsSource="{Binding}" >
                     </ComboBox>
                     <!--Fin Octava Fila-->
 
@@ -1210,27 +1210,27 @@
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="30"/>
-                            <RowDefinition Height="30"/>
-                            <RowDefinition Height="30"/>
-                            <RowDefinition Height="30"/>
-                            <RowDefinition Height="30"/>
-                            <RowDefinition Height="30"/>
+                            <RowDefinition Height="25"/>
+                            <RowDefinition Height="25"/>
+                            <RowDefinition Height="25"/>
+                            <RowDefinition Height="25"/>
+                            <RowDefinition Height="25"/>
                         </Grid.RowDefinitions>
                         <!--<Border BorderBrush="DarkGray" BorderThickness="0 0 0 1">-->
                         <!--</Border>-->
 
-                        <Button Visibility="Hidden" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="1" Name="_btnNoSolicitud" VerticalAlignment="Bottom" Height="25" Click="_btnIrExplorador_Click">
+                        <Button Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="1" Name="_btnNoSolicitud" VerticalAlignment="Bottom" Height="25" Click="_btnIrExplorador_Click">
                             <TextBlock Name="_txbNoSolicitud" Text="{x:Static recurso:Etiquetas.btnNoSolicitud}"/>
                         </Button>
-                        <custom:ByTTextBox  Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="1" Margin="3" Name="_txtCodigoInscripcion" VerticalAlignment="Center"  
+                        <custom:ByTTextBox  Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="1"  Name="_txtCodigoInscripcion" VerticalAlignment="Center"  
                           Text="{Binding Path=CodigoInscripcion}"></custom:ByTTextBox>
-                        <custom:ByTTextBox  Grid.Column="2" Grid.Row="0" Grid.ColumnSpan="1" Margin="3" Name="_txtFechaInscripcion" VerticalAlignment="Center"  
+                        <custom:ByTTextBox  Grid.Column="2" Grid.Row="0" Grid.ColumnSpan="1"  Name="_txtFechaInscripcion" VerticalAlignment="Center"  
                           Text="{Binding Path=FechaInscripcion}"></custom:ByTTextBox>
 
                         <Label Grid.Column="0" Grid.Row="1" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblOrdPublicacion}"/>
                         </Label>
-                        <ComboBox Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2" Margin="3" Name="_cbxOrdenPublicacion" Height="20" 
+                        <ComboBox Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2" Name="_cbxOrdenPublicacion" Height="20" 
                                   ItemsSource="{Binding}" SelectedIndex="0">
                             <ComboBox.ItemTemplate>
                                 <DataTemplate>
@@ -1248,7 +1248,7 @@
                         <Label Grid.Column="0" Grid.Row="2" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblBolPublicacion}"/>
                         </Label>
-                        <ComboBox Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="2" Margin="3" Name="_cbxBoletinPublicacion" Height="20" 
+                        <ComboBox Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="2" Name="_cbxBoletinPublicacion" Height="20" 
                                    SelectedIndex="0" ItemsSource="{Binding}">
                             <ComboBox.ItemTemplate>
                                 <DataTemplate>
@@ -1266,7 +1266,7 @@
                         <Label Grid.Column="0" Grid.Row="3" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblBolConcesion}"/>
                         </Label>
-                        <ComboBox Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="2" Margin="3" Name="_cbxBoletinConcesion" Height="20" 
+                        <ComboBox Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="2" Name="_cbxBoletinConcesion" Height="20" 
                                   ItemsSource="{Binding}" SelectedIndex="0">
                             <ComboBox.ItemTemplate>
                                 <DataTemplate>
@@ -1281,24 +1281,24 @@
                                 </DataTemplate>
                             </ComboBox.ItemTemplate>
                         </ComboBox>
-                        <Button Visibility="Hidden" Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="1" Name="_btnNoRegistro" VerticalAlignment="Bottom" Height="25" Click="_btnIrExplorador_Click">
+                        <Button Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="1" Name="_btnNoRegistro" VerticalAlignment="Bottom" Height="25" Click="_btnIrExplorador_Click">
                             <TextBlock Name="_txbNoRegistro" Text="{x:Static recurso:Etiquetas.btnNoRegistro}"/>
                         </Button>
-                        <custom:ByTTextBox  Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="1" Margin="3" Name="_txtCodigoRegistro" VerticalAlignment="Center"  
+                        <custom:ByTTextBox  Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="1" Name="_txtCodigoRegistro" VerticalAlignment="Center"  
                           Text=""></custom:ByTTextBox>
-                        <custom:ByTTextBox  Grid.Column="2" Grid.Row="4" Grid.ColumnSpan="1" Margin="3" Name="_txtFechaRegistro" VerticalAlignment="Center"  
+                        <custom:ByTTextBox  Grid.Column="2" Grid.Row="4" Grid.ColumnSpan="1" Name="_txtFechaRegistro" VerticalAlignment="Center"  
                           Text=""></custom:ByTTextBox>
                         <Label Grid.Column="1" Grid.Row="5" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblRenovarAntesDe}"/>
                         </Label>
 
-                        <custom:ByTTextBox  Grid.Column="1" Grid.Row="5" Grid.ColumnSpan="2" Margin="3" Name="_txtFechaRenovacion" VerticalAlignment="Center"  
+                        <custom:ByTTextBox  Grid.Column="1" Grid.Row="5" Grid.ColumnSpan="2" Name="_txtFechaRenovacion" VerticalAlignment="Center"  
                           Text=""></custom:ByTTextBox>
                     </Grid>
                     <Label Grid.Column="6" Grid.Row="17" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblSituacion}"/>
                     </Label>
-                    <ComboBox  Grid.Column="7" Grid.Row="17" Grid.ColumnSpan="2" Margin="3" Name="_cbxSituacion" Height="20" 
+                    <ComboBox  Grid.Column="7" Grid.Row="17" Grid.ColumnSpan="2" Name="_cbxSituacion" Height="20" 
                               ItemsSource="{Binding}" DisplayMemberPath="Descripcion" SelectedIndex="0">
                     </ComboBox>
 
@@ -1308,7 +1308,7 @@
                     <Label Grid.Column="6" Grid.Row="18" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblDetalle}"/>
                     </Label>
-                    <ComboBox Grid.Column="7" Grid.Row="18" Grid.ColumnSpan="2" Margin="3" Name="_cbxDetalleDatos" Height="20" 
+                    <ComboBox Grid.Column="7" Grid.Row="18" Grid.ColumnSpan="2" Name="_cbxDetalleDatos" Height="20" 
                               ItemsSource="{Binding}" DisplayMemberPath="Descripcion" SelectedIndex="0">
                     </ComboBox>
                     <!--Fin Duodécima Fila-->
@@ -1328,14 +1328,14 @@
                     <Label Grid.Column="6" Grid.Row="20" Grid.ColumnSpan="2" VerticalAlignment="Center">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblInstruccionesDeRenovacion}"/>
                     </Label>
-                    <CheckBox  Margin="3" Grid.Column="8" Grid.ColumnSpan="1" Grid.Row="20" Height="16" VerticalAlignment="Center" Name="_checkBoxInstruccionesRenovacion"/>
+                    <CheckBox Grid.Column="8" Grid.ColumnSpan="1" Grid.Row="20" Height="16" VerticalAlignment="Center" Name="_checkBoxInstruccionesRenovacion"/>
                     <!--Fin Fila Trece-->
 
                     <!--Fila Catorce-->
                     <Label Grid.Column="6" Grid.Row="21" Grid.ColumnSpan="2" VerticalAlignment="Center">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblCondiciones}"/>
                     </Label>
-                    <ComboBox  Grid.Column="7" Grid.Row="21" Grid.ColumnSpan="2" Margin="3" Name="_cbxCondiciones" Height="20"
+                    <ComboBox  Grid.Column="7" Grid.Row="21" Grid.ColumnSpan="2" Name="_cbxCondiciones" Height="20"
                                ItemsSource="{Binding}" DisplayMemberPath="Descripcion">
                     </ComboBox>
 
@@ -1389,7 +1389,8 @@
                     <Label Grid.Column="3" Grid.Row="24" Grid.ColumnSpan="1" VerticalAlignment="Center">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblStatusWEB}"/>
                     </Label>
-                    <ComboBox  Grid.Column="4" Grid.Row="24" Grid.ColumnSpan="2" Margin="3" Name="_cbxEstadoDatos" Height="20" ItemsSource="{Binding}" >
+                    <ComboBox Visibility="Hidden" IsEnabled="False" Grid.Column="4" Grid.Row="24" Grid.ColumnSpan="2" Margin="3" Name="_cbxEstadoDatos" 
+                              Height="20" ItemsSource="{Binding}" DisplayMemberPath="Descripcion" SelectedIndex="0" >
                     </ComboBox>
 
                     <Button Visibility="Hidden" Grid.Column="9" Grid.Row="24" Grid.ColumnSpan="1" Name="_btnAuditoria" Margin="3"

@@ -344,5 +344,11 @@ namespace Trascend.Bolet.AccesoDatos.Fabrica
         /// <returns>IDaoOperacion</returns>
         public abstract IDaoOperacion ObtenerDaoOperacion();
 
+        /// <summary>
+        /// Método que devuelve el DaoStatusWeb del manejador que se esté utilizando
+        /// </summary>
+        /// <returns>IDaoStatusWeb</returns>
+        public abstract IDaoStatusWeb ObtenerDaoStatusWeb();
+
     }
 }

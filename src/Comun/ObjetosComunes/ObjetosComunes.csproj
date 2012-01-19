@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ContratosServicios\IStatusWebServicios.cs" />
     <Compile Include="ContratosServicios\IBusquedaServicios.cs" />
     <Compile Include="ContratosServicios\IOperacionServicios.cs" />
     <Compile Include="ContratosServicios\IInfoBolServicios.cs" />
@@ -106,6 +107,7 @@
     <Compile Include="Entidades\Asignacion.cs" />
     <Compile Include="Entidades\Condicion.cs" />
     <Compile Include="Entidades\Anaqua.cs" />
+    <Compile Include="Entidades\StatusWeb.cs" />
     <Compile Include="Entidades\Operacion.cs" />
     <Compile Include="Entidades\InfoBol.cs" />
     <Compile Include="Entidades\InfoAdicional.cs" />

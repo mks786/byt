@@ -222,10 +222,15 @@
     <Compile Include="Comandos\ComandosOperacion\ComandoEliminarOperacion.cs" />
     <Compile Include="Comandos\ComandosOperacion\ComandoInsertarOModificarOperacion.cs" />
     <Compile Include="Comandos\ComandosOperacion\ComandoVerificarExistenciaOperacion.cs" />
+    <Compile Include="Comandos\ComandosStatusWeb\ComandoConsultarTodosPaises.cs" />
+    <Compile Include="Comandos\ComandosStatusWeb\ComandoEliminarPais.cs" />
+    <Compile Include="Comandos\ComandosStatusWeb\ComandoInsertarOModificarPais.cs" />
+    <Compile Include="Comandos\ComandosStatusWeb\ComandoVerificarExistenciaPais.cs" />
     <Compile Include="Comandos\Receptor.cs" />
     <Compile Include="Comandos\ComandosUsuario\ComandoConsultarTodosUsuarios.cs" />
     <Compile Include="Comandos\ComandosUsuario\ComandoConsultarUsuarioPorID.cs" />
     <Compile Include="Comandos\ComandosUsuario\ComandoInsertarOModificarUsuario.cs" />
+    <Compile Include="Fabrica\FabricaComandosStatusWeb.cs" />
     <Compile Include="Fabrica\FabricaComandosBusqueda.cs" />
     <Compile Include="Fabrica\FabricaComandosOperacion.cs" />
     <Compile Include="Fabrica\FabricaComandosInfoBol.cs" />

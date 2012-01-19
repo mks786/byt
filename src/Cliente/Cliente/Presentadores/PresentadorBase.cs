@@ -1112,5 +1112,30 @@ namespace Trascend.Bolet.Cliente.Presentadores
         {
             Process.Start(URL);
         }
+
+
+
+        /// <summary>
+        /// Método que busca un StatusWeb dentro de una lista de StatusWebs
+        /// </summary>
+        /// <param name="statuses">Lista de StatusWebs</param>
+        /// <param name="statusBuscado">StatusWeb a buscar</param>
+        /// <returns>StatusWeb dentro de la lista</returns>
+        public StatusWeb BuscarStatusWeb(IList<StatusWeb> statuses, StatusWeb statusBuscado)
+        {
+            StatusWeb retorno = null;
+
+            if (statusBuscado != null)
+                foreach (StatusWeb status in statuses)
+                {
+                    if (status.Id.Equals(statusBuscado.Id))
+                    {
+                        retorno = status;
+                        break;
+                    }
+                }
+
+            return retorno;
+        }
     }
 }

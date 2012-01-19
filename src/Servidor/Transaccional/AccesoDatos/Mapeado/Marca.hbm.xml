@@ -77,6 +77,10 @@
       <column name="CPAIS_PRIORIDAD"/>
     </many-to-one>
 
+    <many-to-one name="StatusWeb" class="StatusWeb">
+      <column name="TESTADO"/>
+    </many-to-one>
+
     <many-to-one name="Poder" class="Poder" lazy="false">
       <column name="CPODER"/>
     </many-to-one>

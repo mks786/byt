@@ -252,6 +252,18 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             set { this._cbxSector.DataContext = value; }
         }
 
+        public object StatusWeb
+        {
+            get { return this._cbxEstadoDatos.SelectedItem; }
+            set { this._cbxEstadoDatos.SelectedItem = value; }
+        }
+
+        public object StatusWebs
+        {
+            get { return this._cbxEstadoDatos.DataContext; }
+            set { this._cbxEstadoDatos.DataContext = value; }
+        }
+
         public object TipoReproduccion
         {
             get { return this._cbxTipoReproduccion.SelectedItem; }
@@ -688,6 +700,9 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             ocultarLstInteresadoSolicitud();
             ocultarLstPoderSolicutud();
 
+            this._btnAceptar.IsDefault = false;
+            this._btnConsultarAsociadoSolicitud.IsDefault = true;
+
             mostrarLstAsociadoSolicitud();
         }
 
@@ -696,6 +711,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             this._presentador.CambiarAsociadoSolicitud();
             ocultarLstAsociadoSolicitud();
             ocultarLstAsociadoDatos();
+            this._btnConsultarAsociadoSolicitud.IsDefault = false;
+            this._btnAceptar.IsDefault = true;
         }
 
         private void _OrdenarAsociadoSolicitud_Click(object sender, RoutedEventArgs e)
@@ -719,6 +736,9 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             ocultarLstAsociadoSolicitud();
             ocultarLstPoderSolicutud();
 
+            this._btnAceptar.IsDefault = false;
+            this._btnConsultarInteresadoSolicitud.IsDefault = true;
+
             mostrarLstInteresadoSolicitud();
         }
 
@@ -732,6 +752,9 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             this._presentador.CambiarInteresadoSolicitud();
             ocultarLstInteresadoSolicitud();
             ocultarLstInteresadoDatos();
+
+            this._btnConsultarInteresadoSolicitud.IsDefault = false;
+            this._btnAceptar.IsDefault = true;
         }
 
         private void _OrdenarInteresadoSolicitud_Click(object sender, RoutedEventArgs e)
@@ -755,6 +778,10 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             ocultarLstAsociadoSolicitud();
             ocultarLstPoderSolicutud();
 
+
+            this._btnAceptar.IsDefault = false;
+            this._btnConsultarCorresponsalSolicitud.IsDefault = true;
+
             mostrarLstCorresponsalSolicitud();
         }
 
@@ -763,6 +790,9 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             this._presentador.CambiarPoderSolicitud();
             ocultarLstCorresponsalSolicitud();
             ocultarLstCorresponsalDatos();
+
+            this._btnConsultarCorresponsalSolicitud.IsDefault = false;
+            this._btnAceptar.IsDefault = true;
         }
 
         private void _OrdenarCorresponsalSolicitud_Click(object sender, RoutedEventArgs e)
@@ -845,6 +875,10 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             ocultarLstCorresponsalDatos();
             ocultarLstInteresadoDatos();
 
+            this._btnAceptar.IsDefault = false;
+            this._btnConsultarAsociadoDatos.IsDefault = true;
+
+
             mostrarLstAsocaidoDatos();
         }
 
@@ -853,6 +887,9 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             this._presentador.CambiarAsociadoDatos();
             ocultarLstAsociadoDatos();
             ocultarLstAsociadoSolicitud();
+
+            this._btnConsultarAsociadoDatos.IsDefault = false;
+            this._btnAceptar.IsDefault = true;
         }
 
         private void _OrdenarAsociadoDatos_Click(object sender, RoutedEventArgs e)
@@ -876,6 +913,9 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             ocultarLstCorresponsalDatos();
             ocultarLstAsociadoDatos();
 
+            this._btnAceptar.IsDefault = false;
+            this._btnConsultarInteresadoDatos.IsDefault = true;
+
             mostrarLstInteresadoDatos();
         }
 
@@ -889,6 +929,9 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             this._presentador.CambiarInteresadoDatos(); 
             ocultarLstInteresadoDatos();
             ocultarLstInteresadoSolicitud();
+
+            this._btnConsultarInteresadoDatos.IsDefault = false;
+            this._btnAceptar.IsDefault = true;
         }
 
         private void _OrdenarInteresadoDatos_Click(object sender, RoutedEventArgs e)
@@ -910,6 +953,9 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             ocultarLstAsociadoDatos();
             ocultarLstInteresadoDatos();
 
+            this._btnAceptar.IsDefault = false;
+            this._btnConsultarCorresponsalDatos.IsDefault = true;
+
             mostrarLstCorresponsalDatos();
         }
 
@@ -918,6 +964,9 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             this._presentador.CambiarCorresponsalDatos();
             ocultarLstCorresponsalSolicitud();
             ocultarLstCorresponsalDatos();
+
+            this._btnConsultarCorresponsalDatos.IsDefault = false;
+            this._btnAceptar.IsDefault = true;
         }
 
         private void _OrdenarCorresponsalDatos_Click(object sender, RoutedEventArgs e)

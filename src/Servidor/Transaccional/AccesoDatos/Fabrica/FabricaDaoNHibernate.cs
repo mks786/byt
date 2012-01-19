@@ -507,5 +507,14 @@ namespace Trascend.Bolet.AccesoDatos.Fabrica
         {
             return new DaoOperacionNHibernate();
         }
+
+        /// <summary>
+        /// Método que devuelve el DaoStatusWeb
+        /// </summary>
+        /// <returns>IDaoStatusWeb</returns>
+        public override IDaoStatusWeb ObtenerDaoStatusWeb()
+        {
+            return new DaoStatusWebNHibernate();
+        }
     }
 }

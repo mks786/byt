@@ -132,6 +132,10 @@ namespace Trascend.Bolet.Cliente.Contratos.Marcas
 
         object Sectores { get; set; }
 
+        object StatusWeb { get; set; }
+
+        object StatusWebs { get; set; }
+
         void Mensaje(string mensaje);
 
         string TextoBotonModificar { get; set; }

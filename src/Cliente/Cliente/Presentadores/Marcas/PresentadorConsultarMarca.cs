@@ -43,6 +43,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
         private IInfoBolServicios _infoBolServicios;
         private IOperacionServicios _operacionServicios;
         private IBusquedaServicios _busquedaServicios;
+        private IStatusWebServicios _statusWebServicios;
 
         private IList<Asociado> _asociados;
         private IList<Interesado> _interesados;
@@ -106,6 +107,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["OperacionServicios"]);
                 this._busquedaServicios = (IBusquedaServicios)Activator.GetObject(typeof(IBusquedaServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["BusquedaServicios"]);
+                this._statusWebServicios = (IStatusWebServicios)Activator.GetObject(typeof(IStatusWebServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["StatusWebServicios"]);
 
             }
             catch (Exception ex)
@@ -172,6 +175,13 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 paises.Insert(0, primerPais);
                 this._ventana.PaisesSolicitud = paises;
                 this._ventana.PaisSolicitud = this.BuscarPais(paises, marca.Pais);
+
+                IList<StatusWeb> statusWebs = this._statusWebServicios.ConsultarTodos();
+                StatusWeb primerStatus = new StatusWeb();
+                primerStatus.Id = "NGN";
+                statusWebs.Insert(0, primerStatus);
+                this._ventana.StatusWebs = statusWebs;
+                this._ventana.StatusWeb = this.BuscarStatusWeb(statusWebs, marca.StatusWeb);
 
                 IList<Condicion> condiciones = this._condicionServicios.ConsultarTodos();
                 Condicion primeraCondicion = new Condicion();
@@ -308,6 +318,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
 
             if (null != this._ventana.PaisSolicitud)
                 marca.Pais = ((Pais)this._ventana.PaisSolicitud).Id != int.MinValue ? ((Pais)this._ventana.PaisSolicitud) : null;
+
+            if (null != this._ventana.StatusWeb)
+                marca.StatusWeb = ((StatusWeb)this._ventana.StatusWeb).Id.Equals("NGN") ? ((StatusWeb)this._ventana.StatusWeb) : null;
 
             if (null != this._ventana.CorresponsalSolicitud)
                 marca.Corresponsal = ((Corresponsal)this._ventana.CorresponsalSolicitud).Id != int.MinValue ? ((Corresponsal)this._ventana.CorresponsalSolicitud) : null;
@@ -625,19 +638,41 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
         {
             IEnumerable<Asociado> asociadosFiltrados = this._asociados;
 
-            if (!string.IsNullOrEmpty(this._ventana.IdAsociadoSolicitudFiltrar))
+            if (filtrarEn == 0)
             {
-                asociadosFiltrados = from p in asociadosFiltrados
-                                     where p.Id == int.Parse(this._ventana.IdAsociadoSolicitudFiltrar)
-                                     select p;
-            }
 
-            if (!string.IsNullOrEmpty(this._ventana.NombreAsociadoSolicitud))
+                if (!string.IsNullOrEmpty(this._ventana.IdAsociadoSolicitudFiltrar))
+                {
+                    asociadosFiltrados = from p in asociadosFiltrados
+                                         where p.Id == int.Parse(this._ventana.IdAsociadoSolicitudFiltrar)
+                                         select p;
+                }
+
+                if (!string.IsNullOrEmpty(this._ventana.NombreAsociadoSolicitudFiltrar))
+                {
+                    asociadosFiltrados = from p in asociadosFiltrados
+                                         where p.Nombre != null &&
+                                         p.Nombre.ToLower().Contains(this._ventana.NombreAsociadoSolicitudFiltrar.ToLower())
+                                         select p;
+                }
+            }
+            else
             {
-                asociadosFiltrados = from p in asociadosFiltrados
-                                     where p.Nombre != null &&
-                                     p.Nombre.ToLower().Contains(this._ventana.NombreAsociadoSolicitud.ToLower())
-                                     select p;
+
+                if (!string.IsNullOrEmpty(this._ventana.IdAsociadoDatosFiltrar))
+                {
+                    asociadosFiltrados = from p in asociadosFiltrados
+                                         where p.Id == int.Parse(this._ventana.IdAsociadoDatosFiltrar)
+                                         select p;
+                }
+
+                if (!string.IsNullOrEmpty(this._ventana.NombreAsociadoDatosFiltrar))
+                {
+                    asociadosFiltrados = from p in asociadosFiltrados
+                                         where p.Nombre != null &&
+                                         p.Nombre.ToLower().Contains(this._ventana.NombreAsociadoDatosFiltrar.ToLower())
+                                         select p;
+                }
             }
 
             // filtrarEn = 0 significa en el listview de la pestaña solicitud
@@ -734,19 +769,39 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
         {
             IEnumerable<Interesado> interesadosFiltrados = this._interesados;
 
-            if (!string.IsNullOrEmpty(this._ventana.IdInteresadoSolicitudFiltrar))
+            if (filtrarEn == 0)
             {
-                interesadosFiltrados = from p in interesadosFiltrados
-                                       where p.Id == int.Parse(this._ventana.IdInteresadoSolicitudFiltrar)
-                                       select p;
-            }
+                if (!string.IsNullOrEmpty(this._ventana.IdInteresadoSolicitudFiltrar))
+                {
+                    interesadosFiltrados = from p in interesadosFiltrados
+                                           where p.Id == int.Parse(this._ventana.IdInteresadoSolicitudFiltrar)
+                                           select p;
+                }
 
-            if (!string.IsNullOrEmpty(this._ventana.NombreInteresadoSolicitud))
+                if (!string.IsNullOrEmpty(this._ventana.NombreInteresadoSolicitudFiltrar))
+                {
+                    interesadosFiltrados = from p in interesadosFiltrados
+                                           where p.Nombre != null &&
+                                           p.Nombre.ToLower().Contains(this._ventana.NombreInteresadoSolicitudFiltrar.ToLower())
+                                           select p;
+                }
+            }
+            else
             {
-                interesadosFiltrados = from p in interesadosFiltrados
-                                       where p.Nombre != null &&
-                                       p.Nombre.ToLower().Contains(this._ventana.NombreInteresadoSolicitud.ToLower())
-                                       select p;
+                if (!string.IsNullOrEmpty(this._ventana.IdInteresadoDatosFiltrar))
+                {
+                    interesadosFiltrados = from p in interesadosFiltrados
+                                           where p.Id == int.Parse(this._ventana.IdInteresadoDatosFiltrar)
+                                           select p;
+                }
+
+                if (!string.IsNullOrEmpty(this._ventana.NombreInteresadoDatosFiltrar))
+                {
+                    interesadosFiltrados = from p in interesadosFiltrados
+                                           where p.Nombre != null &&
+                                           p.Nombre.ToLower().Contains(this._ventana.NombreInteresadoDatosFiltrar.ToLower())
+                                           select p;
+                }
             }
 
             // filtrarEn = 0 significa en el listview de la pestaña solicitud
@@ -840,19 +895,39 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
         {
             IEnumerable<Corresponsal> corresponsalesFiltrados = this._corresponsales;
 
-            if (!string.IsNullOrEmpty(this._ventana.IdCorresponsalSolicitudFiltrar))
+            if (filtrarEn == 0)
             {
-                corresponsalesFiltrados = from p in corresponsalesFiltrados
-                                          where p.Id == int.Parse(this._ventana.IdAsociadoSolicitudFiltrar)
-                                          select p;
-            }
+                if (!string.IsNullOrEmpty(this._ventana.IdCorresponsalSolicitudFiltrar))
+                {
+                    corresponsalesFiltrados = from p in corresponsalesFiltrados
+                                              where p.Id == int.Parse(this._ventana.IdCorresponsalSolicitudFiltrar)
+                                              select p;
+                }
 
-            if (!string.IsNullOrEmpty(this._ventana.DescripcionCorresponsalSolicitud))
+                if (!string.IsNullOrEmpty(this._ventana.DescripcionCorresponsalSolicitudFiltrar))
+                {
+                    corresponsalesFiltrados = from p in corresponsalesFiltrados
+                                              where p.Descripcion != null &&
+                                              p.Descripcion.ToLower().Contains(this._ventana.DescripcionCorresponsalSolicitudFiltrar.ToLower())
+                                              select p;
+                }
+            }
+            else
             {
-                corresponsalesFiltrados = from p in corresponsalesFiltrados
-                                          where p.Descripcion != null &&
-                                          p.Descripcion.ToLower().Contains(this._ventana.DescripcionCorresponsalSolicitud.ToLower())
-                                          select p;
+                if (!string.IsNullOrEmpty(this._ventana.IdCorresponsalDatosFiltrar))
+                {
+                    corresponsalesFiltrados = from p in corresponsalesFiltrados
+                                              where p.Id == int.Parse(this._ventana.IdCorresponsalDatosFiltrar)
+                                              select p;
+                }
+
+                if (!string.IsNullOrEmpty(this._ventana.DescripcionCorresponsalDatosFiltrar))
+                {
+                    corresponsalesFiltrados = from p in corresponsalesFiltrados
+                                              where p.Descripcion != null &&
+                                              p.Descripcion.ToLower().Contains(this._ventana.DescripcionCorresponsalDatosFiltrar.ToLower())
+                                              select p;
+                }
             }
 
             // filtrarEn = 0 significa en el listview de la pestaña solicitud
