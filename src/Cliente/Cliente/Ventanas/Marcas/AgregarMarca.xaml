@@ -123,7 +123,7 @@
                         </Grid.RowDefinitions>
 
                         <custom:ByTTextBox  MaxLength="255" Grid.Column="0" Grid.Row="1" Name="_txtAsociadoSolicitud" VerticalAlignment="Center" 
-                         Grid.ColumnSpan="7" MouseDoubleClick="_txtAsociadoSolicitud_GotFocus" IsReadOnly="True"></custom:ByTTextBox>
+                         Grid.ColumnSpan="7" MouseDoubleClick="_txtAsociadoSolicitud_GotFocus" IsReadOnly="True" BorderBrush="LightGreen"></custom:ByTTextBox>
 
                         <Label Name="_lblIdAsociadoSolicitud" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Center" Visibility="Collapsed">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblId}"/>
@@ -137,12 +137,13 @@
                         <custom:ByTTextBox     Grid.Column="4" Grid.Row="0" Name="_txtNombreAsociadoSolicitud" VerticalAlignment="Center"  Grid.ColumnSpan="2"
                          MaxLength="255" Visibility="Collapsed"></custom:ByTTextBox>
 
-                        <Button Name="_btnConsultarAsociadoSolicitud" Width="80" IsDefault="False" Grid.Row="0" Grid.Column="7" Height="25" HorizontalAlignment="Right" Click="_btnConsultarAsociadoSolicitud_Click" Visibility="Collapsed">
+                        <Button Name="_btnConsultarAsociadoSolicitud" Width="65" IsDefault="False" Grid.Row="0" Grid.Column="7" Height="25" HorizontalAlignment="Right" Click="_btnConsultarAsociadoSolicitud_Click" Visibility="Collapsed">
                             <TextBlock Text="{x:Static recurso:Etiquetas.btnConsultar}"/>
                         </Button>
                         <ListView Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="7" Grid.RowSpan="2" Name="_lstAsociadosSolicitud" ItemsSource="{Binding}" 
-                      SelectionMode="Single" MouseDoubleClick="_lstAsociadosSolicitud_MouseDoubleClick"
-                      Style="{DynamicResource EstiloListView}" Visibility="Collapsed" Height="150"  VerticalAlignment="Top">
+                                  SelectionMode="Single" MouseDoubleClick="_lstAsociadosSolicitud_MouseDoubleClick"
+                                  Style="{DynamicResource EstiloListView}" Visibility="Collapsed" Height="150"  
+                                  VerticalAlignment="Top">
                             <ListView.View>
                                 <GridView>
                                     <GridViewColumn Width="45">
@@ -195,7 +196,8 @@
 
                         <custom:ByTTextBox  MaxLength="255" Grid.Column="0" Grid.Row="1" Name="_txtInteresadoSolicitud" VerticalAlignment="Center" 
                          Grid.ColumnSpan="7" MouseDoubleClick="_txtInteresadoSolicitud_GotFocus" IsReadOnly="True"                            
-                         ToolTip="{Binding ElementName=_txtInteresadoSolicitud, Path=(Validation.Errors)[0].ErrorContent}">
+                         ToolTip="{Binding ElementName=_txtInteresadoSolicitud, Path=(Validation.Errors)[0].ErrorContent}"
+                                            BorderBrush="LightGreen">
                             <custom:ByTTextBox.Text>
                                 <Binding Path="Interesado.Nombre" UpdateSourceTrigger="PropertyChanged">
                                     <Binding.ValidationRules>
@@ -217,7 +219,7 @@
                         <custom:ByTTextBox     Grid.Column="4" Grid.Row="0" Name="_txtNombreInteresadoSolicitud" VerticalAlignment="Center"  Grid.ColumnSpan="2"
                          MaxLength="255" Visibility="Collapsed"></custom:ByTTextBox>
 
-                        <Button  Name="_btnConsultarInteresadoSolicitud" Width="80" IsDefault="False" Grid.Row="0" Grid.Column="7" Height="25" HorizontalAlignment="Right" 
+                        <Button  Name="_btnConsultarInteresadoSolicitud" Width="65" IsDefault="False" Grid.Row="0" Grid.Column="7" Height="25" HorizontalAlignment="Right" 
                                 Click="_btnConsultarInteresadoSolicitud_Click" Visibility="Collapsed">
                             <TextBlock Text="{x:Static recurso:Etiquetas.btnConsultar}"/>
                         </Button>
@@ -273,7 +275,8 @@
                         </Grid.RowDefinitions>
 
                         <custom:ByTTextBox MaxLength="255" Grid.Column="0" Grid.Row="1" Name="_txtCorresponsalSolicitud" VerticalAlignment="Center" 
-                         Grid.ColumnSpan="7" MouseDoubleClick="_txtCorresponsalSolicitud_GotFocus" IsReadOnly="True"></custom:ByTTextBox>
+                         Grid.ColumnSpan="7" MouseDoubleClick="_txtCorresponsalSolicitud_GotFocus" IsReadOnly="True"
+                                           BorderBrush="LightGreen"></custom:ByTTextBox>
 
                         <Label Name="_lblIdCorresponsalSolicitud" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Center" Visibility="Collapsed">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblId}"/>
@@ -287,7 +290,7 @@
                         <custom:ByTTextBox    Grid.Column="4" Grid.Row="0" Name="_txtDescripcionCorresponsalSolicitud" VerticalAlignment="Center"  Grid.ColumnSpan="2"
                          MaxLength="255" Visibility="Collapsed"></custom:ByTTextBox>
 
-                        <Button Name="_btnConsultarCorresponsalSolicitud" Width="80" IsDefault="False" Grid.Row="0" Grid.Column="7" Height="25" HorizontalAlignment="Right" 
+                        <Button Name="_btnConsultarCorresponsalSolicitud" Width="65" IsDefault="False" Grid.Row="0" Grid.Column="7" Height="25" HorizontalAlignment="Right" 
                                 Click="_btnConsultarCorresponsalSolicitud_Click" Visibility="Collapsed">
                             <TextBlock Text="{x:Static recurso:Etiquetas.btnConsultar}"/>
                         </Button>
@@ -480,7 +483,7 @@
                         </Grid.RowDefinitions>
 
                         <custom:ByTTextBox MaxLength="255" Grid.Column="0" Grid.Row="0" Name="_txtPoderSolicitud" VerticalAlignment="Center" 
-                         Grid.ColumnSpan="7" MouseDoubleClick="_txtPoderSolicitud_GotFocus" IsReadOnly="True"></custom:ByTTextBox>
+                         Grid.ColumnSpan="7" MouseDoubleClick="_txtPoderSolicitud_GotFocus" IsReadOnly="True" BorderBrush="LightGreen"></custom:ByTTextBox>
 
                         <ListView Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" Grid.RowSpan="2" Name="_lstPoderesSolicitud" ItemsSource="{Binding}" 
                       SelectionMode="Single" MouseDoubleClick="_lstPoderesSolicitud_MouseDoubleClick"
@@ -808,7 +811,7 @@
                         </Grid.RowDefinitions>
 
                         <custom:ByTTextBox  MaxLength="255" Grid.Column="0" Grid.Row="1" Name="_txtAsociadoDatos" VerticalAlignment="Center" 
-                         Grid.ColumnSpan="7" MouseDoubleClick="_txtAsociadoDatos_GotFocus" IsReadOnly="True"></custom:ByTTextBox>
+                         Grid.ColumnSpan="7" MouseDoubleClick="_txtAsociadoDatos_GotFocus" IsReadOnly="True" BorderBrush="LightGreen"></custom:ByTTextBox>
 
                         <Label Name="_lblIdAsociadoDatos" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Center" Visibility="Collapsed">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblId}"/>
@@ -822,7 +825,7 @@
                         <custom:ByTTextBox    Grid.Column="4" Grid.Row="0" Name="_txtNombreAsociadoDatos" VerticalAlignment="Center"  Grid.ColumnSpan="2"
                          MaxLength="255" Visibility="Collapsed"></custom:ByTTextBox>
 
-                        <Button  Name="_btnConsultarAsociadoDatos" Width="80" IsDefault="False" Grid.Row="0" Grid.Column="7" Height="25" HorizontalAlignment="Right" Click="_btnConsultarAsociadoDatos_Click" Visibility="Collapsed">
+                        <Button  Name="_btnConsultarAsociadoDatos" Width="65" IsDefault="False" Grid.Row="0" Grid.Column="7" Height="25" HorizontalAlignment="Right" Click="_btnConsultarAsociadoDatos_Click" Visibility="Collapsed">
                             <TextBlock Text="{x:Static recurso:Etiquetas.btnConsultar}"/>
                         </Button>
                         <ListView Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="7" Grid.RowSpan="2" Name="_lstAsociadosDatos" ItemsSource="{Binding}" 
@@ -881,7 +884,7 @@
 
                         <custom:ByTTextBox  MaxLength="255" Grid.Column="0" Grid.Row="1" Name="_txtInteresadoDatos" VerticalAlignment="Center" 
                          Grid.ColumnSpan="7" MouseDoubleClick="_txtInteresadoDatos_GotFocus" IsReadOnly="True"
-                         ToolTip="{Binding ElementName=_txtInteresadoDatos, Path=(Validation.Errors)[0].ErrorContent}">
+                         ToolTip="{Binding ElementName=_txtInteresadoDatos, Path=(Validation.Errors)[0].ErrorContent}" BorderBrush="LightGreen">
                             <custom:ByTTextBox.Text>
                                 <Binding Path="Interesado.Nombre" UpdateSourceTrigger="PropertyChanged">
                                     <Binding.ValidationRules>
@@ -903,7 +906,7 @@
                         <custom:ByTTextBox     Grid.Column="4" Grid.Row="0" Grid.RowSpan="2" Name="_txtNombreInteresadoDatos" VerticalAlignment="Center"  Grid.ColumnSpan="2"
                          MaxLength="255" Visibility="Collapsed"></custom:ByTTextBox>
 
-                        <Button  Name="_btnConsultarInteresadoDatos" Width="80" IsDefault="False" Grid.Row="0" Grid.Column="7" Height="25" HorizontalAlignment="Right" 
+                        <Button  Name="_btnConsultarInteresadoDatos" Width="65" IsDefault="False" Grid.Row="0" Grid.Column="7" Height="25" HorizontalAlignment="Right" 
                                 Click="_btnConsultarInteresadoDatos_Click" Visibility="Collapsed">
                             <TextBlock Text="{x:Static recurso:Etiquetas.btnConsultar}"/>
                         </Button>
@@ -949,7 +952,7 @@
                         </Grid.RowDefinitions>
 
                         <custom:ByTTextBox MaxLength="255" Grid.Column="0" Grid.Row="0" Name="_txtPoderDatos" VerticalAlignment="Center" 
-                         Grid.ColumnSpan="7" MouseDoubleClick="_txtPoderDatos_GotFocus" IsReadOnly="True"></custom:ByTTextBox>
+                         Grid.ColumnSpan="7" MouseDoubleClick="_txtPoderDatos_GotFocus" IsReadOnly="True" BorderBrush="LightGreen"></custom:ByTTextBox>
 
                         <ListView Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="3" Grid.RowSpan="2" Name="_lstPoderesDatos" ItemsSource="{Binding}" 
                       SelectionMode="Single" MouseDoubleClick="_lstPoderesDatos_MouseDoubleClick"
@@ -1002,7 +1005,7 @@
                         </Grid.RowDefinitions>
 
                         <custom:ByTTextBox MaxLength="255" Grid.Column="0" Grid.Row="1" Name="_txtCorresponsalDatos" VerticalAlignment="Center" 
-                         Grid.ColumnSpan="7" MouseDoubleClick="_txtCorresponsalDatos_GotFocus" IsReadOnly="True"></custom:ByTTextBox>
+                         Grid.ColumnSpan="7" MouseDoubleClick="_txtCorresponsalDatos_GotFocus" IsReadOnly="True" BorderBrush="LightGreen"></custom:ByTTextBox>
 
                         <Label Name="_lblIdCorresponsalDatos" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Center" Visibility="Collapsed">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblId}"/>
@@ -1016,7 +1019,7 @@
                         <custom:ByTTextBox    Grid.Column="4" Grid.Row="0" Name="_txtDescripcionCorresponsalDatos" VerticalAlignment="Center"  Grid.ColumnSpan="2"
                          MaxLength="255" Visibility="Collapsed"></custom:ByTTextBox>
 
-                        <Button Name="_btnConsultarCorresponsalDatos" Width="80" IsDefault="False" Grid.Row="0" Grid.Column="7" Height="25" HorizontalAlignment="Right" 
+                        <Button Name="_btnConsultarCorresponsalDatos" Width="65" IsDefault="False" Grid.Row="0" Grid.Column="7" Height="25" HorizontalAlignment="Right" 
                                 Click="_btnConsultarCorresponsalDatos_Click" Visibility="Collapsed">
                             <TextBlock Text="{x:Static recurso:Etiquetas.btnConsultar}"/>
                         </Button>
