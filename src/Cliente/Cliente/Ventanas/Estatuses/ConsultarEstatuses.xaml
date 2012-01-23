@@ -80,6 +80,12 @@
                         <GridViewColumn DisplayMemberBinding="{Binding Path=StatusProximoPaso}" Width="120">
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="StatusProximoPaso" Content="{x:Static recurso:Etiquetas.lsvProximoPaso}"/>
                         </GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=DescripcionIngles}" Width="120">
+                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="DescripcionIngles" Content="{x:Static recurso:Etiquetas.lsvDescripcionIngles}"/>
+                        </GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=StatusProximoPasoIngles}" Width="120">
+                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="StatusProximoPasoIngles" Content="{x:Static recurso:Etiquetas.lsvProximoPasoIngles}"/>
+                        </GridViewColumn>
                     </GridView>
                 </ListView.View>
             </ListView>

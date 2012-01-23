@@ -121,7 +121,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Internacionales
                 if (!string.IsNullOrEmpty(this._ventana.Id))
                 {
                     nacionalesFiltrados = from nacional in nacionalesFiltrados
-                                       where nacional.Id == Int32.Parse(this._ventana.Id)
+                                       where nacional.Id.ToString().StartsWith(this._ventana.Id)
                                        select nacional;
                 }
 

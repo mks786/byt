@@ -112,6 +112,9 @@
                         <GridViewColumn DisplayMemberBinding="{Binding Path=Region}" Width="120">
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="Region" Content="{x:Static recurso:Etiquetas.lsvRegion}"/>
                         </GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=NombreIngles}" Width="120">
+                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="NombreIngles" Content="{x:Static recurso:Etiquetas.lsvNombreIngles}"/>
+                        </GridViewColumn>
                     </GridView>
                 </ListView.View>
             </ListView>

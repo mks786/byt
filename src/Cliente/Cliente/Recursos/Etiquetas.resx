@@ -1534,4 +1534,10 @@
   <data name="titleGestionarAnaqua" xml:space="preserve">
     <value>Gestionar Anaqua</value>
   </data>
+  <data name="lsvIniciales" xml:space="preserve">
+    <value>Iniciales</value>
+  </data>
+  <data name="lsvNombreIngles" xml:space="preserve">
+    <value>Nombre Inglés</value>
+  </data>
 </root>

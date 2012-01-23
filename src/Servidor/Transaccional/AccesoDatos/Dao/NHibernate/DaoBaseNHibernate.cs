@@ -54,6 +54,37 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
         }
 
         /// <summary>
+        /// Método que obtiene todos los registros de la entidad ordenada en el orden especificado
+        /// </summary>
+        /// <param name="parametro">Columna por la que se desea ordenar</param>
+        /// <param name="orden">"Asc" para ascendiente, "Desc" para descendiente</param>
+        /// <returns>La Lista ordenada en lo especificado</returns>
+        public IList<T> ObtenerTodos(string parametro, string orden)
+        {
+            IList<T> listaEntidad;
+
+            try
+            {
+                if (orden.Equals("Asc"))
+                    listaEntidad = Session.CreateCriteria(typeof(T)).AddOrder(Order.Asc(parametro)).List<T>();
+                else
+                    listaEntidad = Session.CreateCriteria(typeof(T)).AddOrder(Order.Desc(parametro)).List<T>();
+
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                throw new ApplicationException(Recursos.Errores.ExConsultarTodos);
+            }
+            finally
+            {
+                Session.Close();
+            }
+
+            return listaEntidad;
+        }
+
+        /// <summary>
         /// Método que obtiene el elemento de la entidad por su id
         /// </summary>
         /// <param name="id">Id de la entidad a requerida</param>

@@ -7,6 +7,8 @@ namespace Trascend.Bolet.AccesoDatos.Contrato
     {
         IList<T> ObtenerTodos();
 
+        IList<T> ObtenerTodos(string parametro, string orden);
+
         T ObtenerPorId(Id id);
 
         T ObtenerPorIdYBloquear(Id id);

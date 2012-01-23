@@ -2887,6 +2887,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Iniciales.
+        /// </summary>
+        public static string lsvIniciales {
+            get {
+                return ResourceManager.GetString("lsvIniciales", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Interesado.
         /// </summary>
         public static string lsvInteresado {
@@ -2928,6 +2937,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string lsvNombre {
             get {
                 return ResourceManager.GetString("lsvNombre", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nombre Inglés.
+        /// </summary>
+        public static string lsvNombreIngles {
+            get {
+                return ResourceManager.GetString("lsvNombreIngles", resourceCulture);
             }
         }
         

@@ -120,7 +120,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Boletines
                 if (!string.IsNullOrEmpty(this._ventana.Id))
                 {
                     boletinesFiltrados = from boletin in boletinesFiltrados
-                                         where boletin.Id == int.Parse(this._ventana.Id)
+                                         where boletin.Id.ToString().StartsWith(this._ventana.Id)
                                          select boletin;
                 }
 

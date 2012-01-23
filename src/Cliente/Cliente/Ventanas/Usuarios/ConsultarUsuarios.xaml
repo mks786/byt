@@ -86,6 +86,9 @@
                         <GridViewColumn DisplayMemberBinding="{Binding Path=Email}" Width="150">
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="Email" Content="{x:Static recurso:Etiquetas.lsvEmail}"/>
                         </GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Iniciales}" Width="150">
+                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="Iniciales" Content="{x:Static recurso:Etiquetas.lsvIniciales}"/>
+                        </GridViewColumn>
                     </GridView>
                 </ListView.View>
             </ListView>

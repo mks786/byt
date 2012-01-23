@@ -51,7 +51,7 @@
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblDomicilio}"/>
                     </Label>
                     <TextBox Name="_txtDomicilio" MaxLength="255"  Text="{Binding Path=Domicilio}" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" AcceptsReturn="True"
-                             HorizontalAlignment="Left" Width="150" Height="75" SpellCheck.IsEnabled="True" IsEnabled="False"/>
+                             HorizontalAlignment="Left" Width="150" Height="150" SpellCheck.IsEnabled="True" IsEnabled="False"/>
                 </WrapPanel>
                 <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
                     <Label>
