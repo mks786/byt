@@ -101,6 +101,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Resoluciones
             get { return this._txtPagina.Text; }
         }
 
+        public string TotalHits
+        {
+            set { this._lblHits.Text = value; }
+        }
+
         #endregion
 
         public ConsultarResoluciones()

@@ -85,6 +85,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.CartasOuts
                 cartaOut.Status = 'T';
                 this._cartasOuts = this._cartaOutServicios.ObtenerCartasOutsFiltro(cartaOut);
                 this._ventana.Resultados = this._cartasOuts;
+                this._ventana.TotalHits = this._cartasOuts.Count.ToString();
 
                 this._ventana.FocoPredeterminado();
 
@@ -149,6 +150,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.CartasOuts
                 }
                     this._cartasOuts = this._cartaOutServicios.ObtenerCartasOutsFiltro(cartaAuxiliar);
                     this._ventana.Resultados = this._cartasOuts;
+                    this._ventana.TotalHits = this._cartasOuts.Count.ToString();
                 
         
                 #region trace
@@ -228,6 +230,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.CartasOuts
         {
             try
             {
+                Mouse.OverrideCursor = Cursors.Wait;
                 if (this._cartaOutServicios.TransferirPlantilla(this._cartasOuts))
                 {
                     this.Navegar(Recursos.MensajesConElUsuario.ConfirmacionTransferenciaPlantilla, false);
@@ -236,6 +239,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.CartasOuts
                 {
                     this.Navegar(Recursos.MensajesConElUsuario.ErrorTransferenciaPlantilla, true);
                 }
+                Mouse.OverrideCursor = null;
             }
             catch (ApplicationException ex)
             {

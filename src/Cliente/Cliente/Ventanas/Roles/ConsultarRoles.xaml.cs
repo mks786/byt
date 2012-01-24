@@ -69,6 +69,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Roles
             set { this._lstResultados = value; }
         }
 
+        public string TotalHits
+        {
+            set { this._lblHits.Text = value; }
+        }
+
         #endregion
 
         public ConsultarRoles()

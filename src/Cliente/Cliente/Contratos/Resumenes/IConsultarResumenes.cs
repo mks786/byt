@@ -20,5 +20,7 @@ namespace Trascend.Bolet.Cliente.Contratos.Resumenes
 
         ListView ListaResultados { get; set; }
 
+        string TotalHits { set; }
+
     }
 }

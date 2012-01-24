@@ -128,6 +128,12 @@ namespace Trascend.Bolet.Cliente.Ventanas.EntradasAlternas
             set { this._cbxCategoria.DataContext = value; }
         }
 
+        public string TotalHits
+        {
+            set { this._lblHits.Text = value; }
+        }
+
+
         #endregion
 
         public ConsultarEntradasAlternas()

@@ -3,6 +3,7 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:custom="clr-namespace:Trascend.Bolet.ControlesByT;assembly=ControlesByT"
       mc:Ignorable="d" 
       d:DesignHeight="550" d:DesignWidth="800"
       xmlns:recurso="clr-namespace:Trascend.Bolet.Cliente.Recursos" Loaded="Page_Loaded">
@@ -20,6 +21,17 @@
         </Grid.RowDefinitions>
 
         <!--Área de Filtrado-->
+        <GroupBox Grid.Column="0" Grid.Row="0" Margin="5" Height="35" VerticalAlignment="Top">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <Label>
+                    <TextBlock FontSize="15" Text="{x:Static recurso:Etiquetas.lblTotalHits}"/>
+                </Label>
+                <Label>
+                    <TextBlock FontSize="15" Name="_lblHits"/>
+                </Label>
+
+            </StackPanel>
+        </GroupBox>
         <GroupBox Grid.Column="0" Grid.Row="0" Margin="5">
             <StackPanel Name="_splFiltro"  VerticalAlignment="Center" DataContext="{Binding}" >
                 <Separator Margin="0,0,0,5"/>
@@ -27,7 +39,7 @@
                     <Label>
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblId}"/>
                     </Label>
-                    <TextBox Name="_txtId" MaxLength="8" Text="{Binding Path=Id}" HorizontalAlignment="Left" Width="180" SpellCheck.IsEnabled="True"/>
+                    <custom:ByTTextBox Name="_txtId" MaxLength="8" Text="{Binding Path=Id}" HorizontalAlignment="Left" Width="180" SoloNumero="True" Filtro="True"/>
                 </WrapPanel>
                 <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
                     <Label VerticalAlignment="Center" HorizontalContentAlignment="Right">

@@ -183,6 +183,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Asociados
             set { this._cbxTipoPersona.SelectedItem = value; }
         }
 
+        public string TotalHits
+        {
+            set { this._lblHits.Text = value; }
+        }
+
         #endregion
 
         public ConsultarAsociados()

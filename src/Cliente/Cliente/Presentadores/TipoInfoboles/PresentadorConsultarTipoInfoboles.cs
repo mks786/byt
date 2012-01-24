@@ -69,6 +69,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.TipoInfoboles
 
                 this._tipoInfoboles = this._tipoInfobolServicios.ConsultarTodos();
                 this._ventana.Resultados = this._tipoInfoboles;
+                this._ventana.TotalHits = this._tipoInfoboles.Count.ToString();
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -131,6 +132,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.TipoInfoboles
                 }
 
                 this._ventana.Resultados = tipoInfobolesFiltrados;
+                this._ventana.TotalHits = tipoInfobolesFiltrados.ToList<TipoInfobol>().Count.ToString();
+
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))

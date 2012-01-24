@@ -77,6 +77,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
 
 
                 this._ventana.Resultados = ((Marca)this._marca).Busquedas;
+                this._ventana.TotalHits = ((Marca)this._marca).Busquedas.Count.ToString();
                 this._ventana.FocoPredeterminado();
 
                 #region trace
@@ -229,6 +230,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 }
 
                 this._ventana.Resultados = busquedasFiltradas.ToList<Busqueda>();
+                this._ventana.TotalHits = busquedasFiltradas.ToList<Busqueda>().Count.ToString();
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))

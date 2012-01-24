@@ -77,6 +77,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Agentes
                 this._agentes = this._agenteServicios.ConsultarTodos();
                 this._ventana.Resultados = this._agentes;
                 this._ventana.AgenteFiltrar = new Agente();
+                this._ventana.TotalHits = this._agentes.Count.ToString();
 
                 IList<ListaDatosDominio> estadosCiviles = this._listaDatosDominioServicios.
                     ConsultarListaDatosDominioPorParametro(new ListaDatosDominio(Recursos.Etiquetas.cbiCategoriaEstadoCivil));
@@ -218,6 +219,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Agentes
                 }
 
                 this._ventana.Resultados = agentesFiltrados.ToList<Agente>();
+                this._ventana.TotalHits = agentesFiltrados.ToList<Agente>().Count.ToString();
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))

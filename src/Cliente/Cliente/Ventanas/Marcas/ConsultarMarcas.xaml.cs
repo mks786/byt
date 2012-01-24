@@ -44,7 +44,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
         {
             get { return this._txtNombreAsociado.Text; }
         }
-        
+
         public string FichasFiltrar
         {
             get { return this._txtFichas.Text; }
@@ -122,9 +122,17 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             get { return this._lstInteresados.SelectedItem; }
             set { this._lstInteresados.SelectedItem = value; }
         }
-        public void Mensaje(string mensaje)
+        public void Mensaje(string mensaje, int opcion)
         {
-            MessageBox.Show(mensaje, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            if (opcion == 0)
+                MessageBox.Show(mensaje, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            else
+                MessageBox.Show(mensaje, "Advertencia", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+        }
+
+        public string TotalHits
+        {
+            set { this._lblHits.Text = value; }
         }
 
         #endregion

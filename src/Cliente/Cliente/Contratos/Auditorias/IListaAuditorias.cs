@@ -12,5 +12,7 @@ namespace Trascend.Bolet.Cliente.Contratos.Agentes
         SortAdorner CurAdorner { get; set; }
 
         ListView ListaResultados { get; set; }
+
+        string TotalHits { set; }
     }
 }

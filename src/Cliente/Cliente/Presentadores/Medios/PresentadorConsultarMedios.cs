@@ -72,6 +72,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Medios
 
                 this._medios = this._medioServicios.ConsultarTodos();
                 this._ventana.Resultados = this._medios;
+                this._ventana.TotalHits = this._medios.Count.ToString();
                 this._ventana.MedioFiltrar = new Medio();
                 this._ventana.FocoPredeterminado();
 
@@ -147,6 +148,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Medios
                 }
 
                 this._ventana.Resultados = mediosFiltrados.ToList<Medio>();
+                this._ventana.TotalHits = mediosFiltrados.ToList<Medio>().Count.ToString();
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))

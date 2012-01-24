@@ -69,6 +69,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Roles
 
                 this._ventana.Resultados = this._rolServicios.ConsultarTodos();
                 this._roles = this._rolServicios.ConsultarTodos();
+                this._ventana.TotalHits = this._roles.Count.ToString();
                 this._ventana.Resultados = this._roles;
                 this._ventana.FocoPredeterminado();
 
@@ -134,6 +135,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Roles
                 }
 
                 this._ventana.Resultados = rolesFiltrados;
+                this._ventana.TotalHits = rolesFiltrados.ToList<Rol>().Count.ToString();
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))

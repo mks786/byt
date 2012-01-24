@@ -46,8 +46,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
 
                 this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleListaDatosTransferencia,
                     Recursos.Ids.ConsultarDatosTransferencia);
-                
+
                 this._ventana.DatosTransferencias = this._asociado.DatosTransferencias;
+                this._ventana.TotalHits = this._asociado.DatosTransferencias.Count.ToString();
                 this._ventana.FocoPredeterminado();
 
                 #region trace

@@ -92,7 +92,7 @@
     <Compile Include="Contratos\Asociados\IListaDatosTransferencia.cs" />
     <Compile Include="Contratos\Asociados\IListaContactos.cs" />
     <Compile Include="Contratos\Asociados\IListaJustificaciones.cs" />
-    <Compile Include="Contratos\Auditorias\IConsultarAuditorias.cs" />
+    <Compile Include="Contratos\Auditorias\IListaAuditorias.cs" />
     <Compile Include="Contratos\Asociados\IAgregarAsociado.cs" />
     <Compile Include="Contratos\Asociados\IConsultarAsociado.cs" />
     <Compile Include="Contratos\Asociados\IConsultarAsociados.cs" />
@@ -121,9 +121,9 @@
     <Compile Include="Contratos\Remitentes\IAgregarRemitente.cs" />
     <Compile Include="Contratos\Remitentes\IConsultarRemitente.cs" />
     <Compile Include="Contratos\Remitentes\IConsultarRemitentes.cs" />
-    <Compile Include="Contratos\Categorias\IAgregarAnexo.cs" />
-    <Compile Include="Contratos\Categorias\IConsultarAnexo.cs" />
-    <Compile Include="Contratos\Categorias\IConsultarAnexos.cs" />
+    <Compile Include="Contratos\Categorias\IAgregarCategoria.cs" />
+    <Compile Include="Contratos\Categorias\IConsultarCategoria.cs" />
+    <Compile Include="Contratos\Categorias\IConsultarCategorias.cs" />
     <Compile Include="Contratos\Medios\IAgregarMedio.cs" />
     <Compile Include="Contratos\Medios\IConsultarMedio.cs" />
     <Compile Include="Contratos\Medios\IConsultarMedios.cs" />
@@ -1019,6 +1019,7 @@
     <EmbeddedResource Include="Recursos\Etiquetas.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Etiquetas.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Recursos\Ids.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

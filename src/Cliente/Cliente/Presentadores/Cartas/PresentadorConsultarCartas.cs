@@ -81,6 +81,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
                 asociados.Insert(0, primerAsociado);
                 this._ventana.Asociados = asociados;
                 this._asociados = asociados;
+                this._ventana.TotalHits = "0";
 
                 this._ventana.FocoPredeterminado();
 
@@ -167,9 +168,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
                 {
                     this._cartas = this._cartaServicios.ObtenerCartasFiltro(cartaAuxiliar);
                     this._ventana.Resultados = this._cartas;
+                    this._ventana.TotalHits = this._cartas.Count.ToString();
+                    if (this._cartas.Count == 0)
+                        this._ventana.Mensaje(Recursos.MensajesConElUsuario.NoHayResultados, 1);
                 }
                 else
-                    this._ventana.Mensaje(Recursos.MensajesConElUsuario.ErrorFiltroIncompleto);
+                    this._ventana.Mensaje(Recursos.MensajesConElUsuario.ErrorFiltroIncompleto, 0);
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -193,7 +197,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
                 logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
 
-            this.Navegar(new ConsultarCarta(this._ventana.CartaSeleccionado));
+            if (this._ventana.CartaSeleccionado != null)
+                this.Navegar(new ConsultarCarta(this._ventana.CartaSeleccionado));
+
 
             #region trace
             if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))

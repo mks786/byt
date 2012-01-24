@@ -53,6 +53,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                     Recursos.Ids.InfoBol);
 
                 this._ventana.InfoBoles = ((Marca)this._marca).InfoBoles;
+                this._ventana.TotalHits = ((Marca)this._marca).InfoBoles.Count.ToString();
                 this._ventana.FocoPredeterminado();
 
                 #region trace

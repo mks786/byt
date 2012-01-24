@@ -1708,7 +1708,7 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Id:.
+        ///   Looks up a localized string similar to Código:.
         /// </summary>
         public static string lblId {
             get {
@@ -2541,6 +2541,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string lblTotalDeuda {
             get {
                 return ResourceManager.GetString("lblTotalDeuda", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Total Hits:.
+        /// </summary>
+        public static string lblTotalHits {
+            get {
+                return ResourceManager.GetString("lblTotalHits", resourceCulture);
             }
         }
         

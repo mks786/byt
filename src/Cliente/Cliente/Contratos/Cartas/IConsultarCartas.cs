@@ -30,6 +30,8 @@ namespace Trascend.Bolet.Cliente.Contratos.Cartas
 
         ListView ListaResultados { get; set; }
 
-        void Mensaje(string mensaje);
+        void Mensaje(string mensaje,int opcion);
+
+        string TotalHits { set; }
     }
 }

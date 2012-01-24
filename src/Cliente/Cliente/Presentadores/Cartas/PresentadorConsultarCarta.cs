@@ -339,13 +339,13 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
                 {
                     bool tracking = true;
 
-                    if (null != (((Medio)this._ventana.Medio).Formato) && 
+                    if (null != (((Medio)this._ventana.Medio).Formato) &&
                        (!String.IsNullOrEmpty(((Carta)this._ventana.Carta).Tracking)))
 
                         tracking = this.verificarFormato(((Medio)this._ventana.Medio).Formato, ((Carta)this._ventana.Carta).Tracking);
 
-                    if (null != (((Medio)this._ventana.MedioTrackingConfirmacion)) && 
-                       (null != (((Medio)this._ventana.MedioTrackingConfirmacion).Formato)) && 
+                    if (null != (((Medio)this._ventana.MedioTrackingConfirmacion)) &&
+                       (null != (((Medio)this._ventana.MedioTrackingConfirmacion).Formato)) &&
                        (!String.IsNullOrEmpty(((Carta)this._ventana.Carta).AnexoTracking)))
 
                         tracking = this.verificarFormato(((Medio)this._ventana.MedioTrackingConfirmacion).Formato, ((Carta)this._ventana.Carta).AnexoTracking);
@@ -700,9 +700,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
                 IList<Usuario> usuariosLista = ListAsignacionesToUsuarios(asignacionLista);
                 this._responsables.Add((Usuario)this._ventana.ResponsableList);
 
-
                 ((Carta)this._ventana.Carta).Asignaciones = RemoverResponsable(asignacionLista);
                 usuariosLista.Remove((Usuario)this._ventana.ResponsableList);
+
                 this._ventana.ResponsablesList = usuariosLista.ToList<Usuario>();
                 this._ventana.Responsables = this._responsables.ToList<Usuario>();
             }

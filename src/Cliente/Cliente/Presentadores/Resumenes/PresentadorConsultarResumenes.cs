@@ -71,6 +71,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Resumenes
 
                 this._resumenes = this._resumenServicios.ConsultarTodos();
                 this._ventana.Resultados = this._resumenes;
+                this._ventana.TotalHits = this._resumenes.Count.ToString();
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -140,6 +141,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Resumenes
                 }
 
                 this._ventana.Resultados = resumenesFiltrados;
+                this._ventana.TotalHits = resumenesFiltrados.ToList<Resumen>().Count.ToString();
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))

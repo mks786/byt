@@ -51,8 +51,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
 
                 this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleListaJustificaciones,
                     Recursos.Ids.ConsultarJustificaciones);
-                
+
                 this._ventana.Justificaciones = this._asociado.Justificaciones;
+                this._ventana.TotalHits = this._asociado.Justificaciones.Count.ToString();
                 this._ventana.FocoPredeterminado();
 
                 #region trace

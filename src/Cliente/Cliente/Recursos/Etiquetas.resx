@@ -206,7 +206,7 @@
     <value>Fecha de impresión:</value>
   </data>
   <data name="lblId" xml:space="preserve">
-    <value>Id:</value>
+    <value>Código:</value>
   </data>
   <data name="lblIniciales" xml:space="preserve">
     <value>Iniciales:</value>
@@ -1539,5 +1539,8 @@
   </data>
   <data name="lsvNombreIngles" xml:space="preserve">
     <value>Nombre Inglés</value>
+  </data>
+  <data name="lblTotalHits" xml:space="preserve">
+    <value>Total Hits:</value>
   </data>
 </root>

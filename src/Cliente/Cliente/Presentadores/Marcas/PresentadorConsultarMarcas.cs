@@ -93,6 +93,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 this._ventana.Interesados = interesados;
                 this._interesados = interesados;
 
+                this._ventana.TotalHits = "0";
                 this._ventana.FocoPredeterminado();
 
                 #region trace
@@ -218,9 +219,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                     }
 
                     this._ventana.Resultados = marcasDesinfladas;
+                    this._ventana.TotalHits = marcasDesinfladas.Count.ToString();
+                    if (marcasDesinfladas.Count == 0)
+                        this._ventana.Mensaje(Recursos.MensajesConElUsuario.NoHayResultados,1);
                 }
                 else
-                    this._ventana.Mensaje(Recursos.MensajesConElUsuario.ErrorFiltroIncompleto);
+                    this._ventana.Mensaje(Recursos.MensajesConElUsuario.ErrorFiltroIncompleto,0);
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))

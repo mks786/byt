@@ -122,6 +122,12 @@ namespace Trascend.Bolet.Cliente.Ventanas.Interesados
             this._txtId.Focus();
         }
 
+        public string TotalHits
+        {
+            set { this._lblHits.Text = value; }
+        }
+
+
         #endregion
 
         /// <summary>

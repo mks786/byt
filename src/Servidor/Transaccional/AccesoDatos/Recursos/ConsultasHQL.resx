@@ -196,7 +196,7 @@
     <comment>Filtro agregado a la cabecera para filtrar por status</comment>
   </data>
   <data name="FiltroObtenerCartaOutId" xml:space="preserve">
-    <value>c.NRelacion = '{0}'</value>
+    <value>c.NRelacion like '{0}%'</value>
   </data>
   <data name="FiltroObtenerCartaOutFecha" xml:space="preserve">
     <value>c.FechaIngreso between '{0}' and '{1}'</value>

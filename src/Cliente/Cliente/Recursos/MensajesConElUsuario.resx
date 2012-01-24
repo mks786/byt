@@ -513,4 +513,7 @@
   <data name="ConfirmacionDuplicarMarca" xml:space="preserve">
     <value>¿Seguro que desea duplicar la Marca?</value>
   </data>
+  <data name="NoHayResultados" xml:space="preserve">
+    <value>Disculpe, no hay resultados para la búsqueda</value>
+  </data>
 </root>

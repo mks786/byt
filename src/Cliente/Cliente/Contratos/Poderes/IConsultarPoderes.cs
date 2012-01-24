@@ -36,5 +36,7 @@ namespace Trascend.Bolet.Cliente.Contratos.Poderes
         SortAdorner CurAdorner { get; set; }
 
         ListView ListaResultados { get; set; }
+
+        string TotalHits { set; }
     }
 }

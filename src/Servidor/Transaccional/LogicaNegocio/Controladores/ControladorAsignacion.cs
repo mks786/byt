@@ -238,17 +238,15 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
                 #endregion
 
                 ComandoBase<IList<Asignacion>> comando = FabricaComandosAsignacion.ObtenerComandoConsultarAsignacionesPorCarta(carta);
-                comando.Ejecutar(); 
+                comando.Ejecutar();
                 retorno = comando.Receptor.ObjetoAlmacenado;
-                if (retorno.Count != 0)
+                if (retorno != null)
                 {
-                    string inicialesResponsable = InicialesDelResponsable(retorno);
-                    ComandoBase<Usuario> comandoUsuario = FabricaComandosUsuario.ObtenerComandoConsultarUsuarioPorIniciales(inicialesResponsable);
-                    comandoUsuario.Ejecutar();
-                    Usuario usuarioAux = comandoUsuario.Receptor.ObjetoAlmacenado;
                     foreach (Asignacion asignacion in retorno)
                     {
-                        asignacion.Responsable = usuarioAux;
+                        ComandoBase<Usuario> comandoUsuario = FabricaComandosUsuario.ObtenerComandoConsultarUsuarioPorIniciales(asignacion.Iniciales);
+                        comandoUsuario.Ejecutar();
+                        asignacion.Responsable = comandoUsuario.Receptor.ObjetoAlmacenado;
                     }
                 }
 
@@ -266,11 +264,6 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
             return retorno;
         }
 
-        public static string InicialesDelResponsable(IList<Asignacion> asignaciones)
-        {
-            string retorno = asignaciones[0].Iniciales;
-            return retorno;
-        }
     }
 }
 

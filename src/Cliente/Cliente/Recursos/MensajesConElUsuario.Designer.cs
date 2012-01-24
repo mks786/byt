@@ -952,6 +952,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Disculpe, no hay resultados para la búsqueda.
+        /// </summary>
+        internal static string NoHayResultados {
+            get {
+                return ResourceManager.GetString("NoHayResultados", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Objeto eliminado con éxito.
         /// </summary>
         internal static string ObjetoEliminado {

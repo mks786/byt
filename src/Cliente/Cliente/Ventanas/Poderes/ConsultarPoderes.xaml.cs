@@ -119,6 +119,12 @@ namespace Trascend.Bolet.Cliente.Ventanas.Poderes
             get { return this._txtNombreInteresado.Text; }
         }
 
+        public string TotalHits
+        {
+            set { this._lblHits.Text = value; }
+        }
+
+
         #endregion
 
         /// <summary>

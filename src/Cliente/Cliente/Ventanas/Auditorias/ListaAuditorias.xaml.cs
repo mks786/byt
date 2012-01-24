@@ -57,6 +57,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Auditorias
             this._btnRegresar.Focus();
         }
 
+        public string TotalHits
+        {
+            set { this._lblHits.Text = value; }
+        }
+
         #endregion
 
 

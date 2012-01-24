@@ -94,6 +94,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
 
                 this._asociados = this._asociadoServicios.ConsultarTodos();
                 this._ventana.Resultados = this._asociados;
+                this._ventana.TotalHits = this._asociados.Count.ToString();
                 this._ventana.AsociadoFiltrar = new Asociado();
 
                 IList<DetallePago> detallesPagos = this._detallePagoServicios.ConsultarTodos();
@@ -289,6 +290,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
 
 
                 this._ventana.Resultados = asociadosFiltrados.ToList<Asociado>();
+                this._ventana.TotalHits = asociadosFiltrados.ToList<Asociado>().Count.ToString();
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))

@@ -71,6 +71,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Estatuses
 
                 this._estatuses = this._estatusServicios.ConsultarTodos();
                 this._ventana.Resultados = this._estatuses;
+                this._ventana.TotalHits = this._estatuses.Count.ToString();
                 this._ventana.EstatusFiltrar = new Estatus();
                 this._ventana.FocoPredeterminado();
 
@@ -163,6 +164,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Estatuses
                 }
 
                 this._ventana.Resultados = estatusesFiltrados.ToList<Estatus>();
+                this._ventana.TotalHits = estatusesFiltrados.ToList<Estatus>().Count.ToString();
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))

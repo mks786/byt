@@ -71,6 +71,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.TipoFechas
 
                 this._tipoFechas = this._tipoFechaServicios.ConsultarTodos();
                 this._ventana.Resultados = this._tipoFechas;
+                this._ventana.TotalHits = this._tipoFechas.Count.ToString();
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -133,6 +134,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.TipoFechas
                 }
 
                 this._ventana.Resultados = tipoFechasFiltrados;
+                this._ventana.TotalHits = tipoFechasFiltrados.ToList<TipoFecha>().Count.ToString();
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))

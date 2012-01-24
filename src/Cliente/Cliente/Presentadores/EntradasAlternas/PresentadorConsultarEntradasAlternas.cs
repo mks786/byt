@@ -83,6 +83,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.EntradasAlternas
 
                 this._entradasAlternas = this._entradaAlternaServicios.ConsultarTodos();
                 this._ventana.Resultados = this._entradasAlternas;
+                this._ventana.TotalHits = this._entradasAlternas.Count.ToString();
 
                 IList<Medio> medios = this._medioServicios.ConsultarTodos();
                 Medio primerMedio = new Medio();
@@ -216,6 +217,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.EntradasAlternas
                 }
 
                 this._ventana.Resultados = entradasAlternasFiltrados.ToList<EntradaAlterna>();
+                this._ventana.TotalHits = entradasAlternasFiltrados.ToList<EntradaAlterna>().Count.ToString();
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))

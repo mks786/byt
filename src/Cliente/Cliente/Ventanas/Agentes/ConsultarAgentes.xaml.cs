@@ -92,6 +92,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Agentes
             set { this._cbxSexo.DataContext = value; }
         }
 
+        public string TotalHits
+        {
+            set { this._lblHits.Text = value; }
+        }
+
         #endregion
 
         public ConsultarAgentes()
@@ -111,6 +116,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Agentes
             }
             else
                 this._presentador.ActualizarTitulo();
+
         }
 
         private void _btnCancelar_Click(object sender, RoutedEventArgs e)
@@ -122,6 +128,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Agentes
         {
                 this._btnConsultar.Focus();
                 this._presentador.Consultar();
+                this._lblHits.Text = this.ListaResultados.Items.Count.ToString();
                 validarCamposVacios();
         }
 

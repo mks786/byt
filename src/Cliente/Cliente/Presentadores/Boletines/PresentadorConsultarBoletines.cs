@@ -70,6 +70,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Boletines
 
                 this._boletines = this._boletinServicios.ConsultarTodos();
                 this._ventana.Resultados = this._boletines;
+                this._ventana.TotalHits = this._boletines.Count.ToString();
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -141,6 +142,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Boletines
                 }
 
                 this._ventana.Resultados = boletinesFiltrados;
+                this._ventana.TotalHits = boletinesFiltrados.ToList<Boletin>().Count.ToString();
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))

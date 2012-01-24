@@ -72,6 +72,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Categorias
                 this._categorias = this._categoriaServicios.ConsultarTodos();
                 this._ventana.Resultados = this._categorias;
                 this._ventana.CategoriaFiltrar = new Categoria();
+                this._ventana.TotalHits = this._categorias.Count.ToString();
                 this._ventana.FocoPredeterminado();
 
                 #region trace
@@ -138,6 +139,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Categorias
                 }
 
                 this._ventana.Resultados = categoriasFiltrados.ToList<Categoria>();
+                this._ventana.TotalHits = categoriasFiltrados.ToList<Categoria>().Count.ToString();
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))

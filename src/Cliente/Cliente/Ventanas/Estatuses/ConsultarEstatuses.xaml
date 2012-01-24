@@ -18,7 +18,17 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="40"/>
         </Grid.RowDefinitions>
+        <GroupBox Grid.Column="0" Grid.Row="0" Margin="5" Height="35" VerticalAlignment="Top">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <Label>
+                    <TextBlock FontSize="15" Text="{x:Static recurso:Etiquetas.lblTotalHits}"/>
+                </Label>
+                <Label>
+                    <TextBlock FontSize="15" Name="_lblHits"/>
+                </Label>
 
+            </StackPanel>
+        </GroupBox>
         <!--Área de Filtrado-->
         <GroupBox Grid.Column="0" Grid.Row="0" Margin="5">
             <StackPanel Name="_splFiltro"  VerticalAlignment="Center"  HorizontalAlignment="Center"
@@ -62,7 +72,7 @@
                 </WrapPanel>
                 <Separator Margin="0,5,0,5"/>
             </StackPanel>
-       
+
         </GroupBox>
 
         <!--Resultados-->

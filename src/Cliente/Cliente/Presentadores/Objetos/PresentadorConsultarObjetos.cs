@@ -69,6 +69,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Objetos
                 
                 this._objetos = this._objetoServicios.ConsultarTodos();
                 this._ventana.Resultados = this._objetos;
+                this._ventana.TotalHits = this._objetos.Count.ToString();
 
                 this._ventana.FocoPredeterminado();
 
@@ -135,6 +136,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Objetos
                 }
 
                 this._ventana.Resultados = objetosFiltrados;
+                this._ventana.TotalHits = objetosFiltrados.ToList<Objeto>().Count.ToString();
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))

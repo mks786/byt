@@ -70,6 +70,12 @@ namespace Trascend.Bolet.Cliente.Ventanas.TipoInfoboles
             set { this._lstResultados = value; }
         }
 
+        public string TotalHits
+        {
+            set { this._lblHits.Text = value; }
+        }
+
+
         #endregion
 
         public ConsultarTipoInfoboles()

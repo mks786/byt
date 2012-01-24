@@ -22,5 +22,7 @@ namespace Trascend.Bolet.Cliente.Contratos.CartasOuts
         ListView ListaResultados { get; set; }
 
         void Mensaje(string mensaje);
+
+        string TotalHits { set; }
     }
 }

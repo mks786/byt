@@ -110,9 +110,17 @@ namespace Trascend.Bolet.Cliente.Ventanas.Cartas
             set { this._lstAsociados.SelectedItem = value; }
         }
 
-        public void Mensaje(string mensaje)
+        public void Mensaje(string mensaje, int opcion)
         {
-            MessageBox.Show(mensaje, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            if (opcion == 0)
+                MessageBox.Show(mensaje, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            else
+                MessageBox.Show(mensaje, "Advertencia", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+        }
+
+        public string TotalHits
+        {
+            set { this._lblHits.Text = value; }
         }
 
         #endregion

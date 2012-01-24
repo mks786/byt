@@ -71,6 +71,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Anexos
 
                 this._anexos = this._anexoServicios.ConsultarTodos();
                 this._ventana.Resultados = this._anexos;
+                this._ventana.TotalHits = this._anexos.Count.ToString();
                 this._ventana.AnexoFiltrar = new Anexo();
                 this._ventana.FocoPredeterminado();
 
@@ -138,6 +139,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Anexos
                 }
 
                 this._ventana.Resultados = anexosFiltrados.ToList<Anexo>();
+                this._ventana.TotalHits = anexosFiltrados.ToList<Anexo>().Count.ToString();
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))

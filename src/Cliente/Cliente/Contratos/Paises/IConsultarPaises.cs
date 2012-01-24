@@ -20,5 +20,7 @@ namespace Trascend.Bolet.Cliente.Contratos.Paises
         SortAdorner CurAdorner { get; set; }
 
         ListView ListaResultados { get; set; }
+
+        string TotalHits { set; }
     }
 }

@@ -124,7 +124,7 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to c.NRelacion = &apos;{0}&apos;.
+        ///   Looks up a localized string similar to c.NRelacion like &apos;{0}%&apos;.
         /// </summary>
         public static string FiltroObtenerCartaOutId {
             get {

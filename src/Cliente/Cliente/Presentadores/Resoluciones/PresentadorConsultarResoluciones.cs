@@ -73,6 +73,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Resoluciones
 
                 this._resoluciones = this._resolucionServicios.ConsultarTodos();
                 this._ventana.Resultados = this._resoluciones;
+                this._ventana.TotalHits = this._resoluciones.Count.ToString();
 
                 IList<Boletin> boletines = this._boletinServicios.ConsultarTodos();
                 Boletin primerBoletin = new Boletin();
@@ -166,6 +167,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Resoluciones
                 }
 
                 this._ventana.Resultados = resolucionesFiltrados;
+                this._ventana.TotalHits = resolucionesFiltrados.ToList<Resolucion>().Count.ToString();
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))

@@ -17,7 +17,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Internacionales
         private PresentadorConsultarInternacionales _presentador;
         private bool _cargada;
 
-        #region IConsultarEstados
+        #region IConsultarInternacionales
 
         public GridViewColumnHeader CurSortCol
         {
@@ -69,6 +69,12 @@ namespace Trascend.Bolet.Cliente.Ventanas.Internacionales
             get { return this._lstResultados; }
             set { this._lstResultados = value; }
         }
+
+        public string TotalHits
+        {
+            set { this._lblHits.Text = value; }
+        }
+
 
         #endregion
 

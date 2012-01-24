@@ -79,6 +79,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Usuarios
                 this._ventana.Departamentos = this._departamentoServicios.ConsultarTodos();
                 this._usuarios = this._usuarioServicios.ConsultarTodos();
                 this._ventana.Resultados = this._usuarios;
+                this._ventana.TotalHits = this._usuarios.Count.ToString();
 
 
                 IList<Rol> roles = this._rolServicios.ConsultarTodos();
@@ -189,6 +190,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Usuarios
                 }
 
                 this._ventana.Resultados = usuariosFiltrados;
+                this._ventana.TotalHits = usuariosFiltrados.ToList<Usuario>().Count.ToString();
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))

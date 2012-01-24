@@ -60,8 +60,10 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
 
                 IQuery query = Session.CreateQuery(string.Format(Recursos.ConsultasHQL.ObtenerUsuarioPorIniciales,iniciales));
                 IList<Usuario> resultado = query.List<Usuario>();
-                //retorno = query.UniqueResult<Usuario>();
-                retorno = resultado[0];
+                
+                //Error de BD ya que no hay constraints por lo tanto el sistema trata de traerse el 
+                //responsable de la carta por FK y este no existe
+                retorno = resultado.Count != 0 ? resultado[0] : null;
 
                 #region trace
                 if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))

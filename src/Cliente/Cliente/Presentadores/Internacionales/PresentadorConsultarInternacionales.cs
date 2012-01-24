@@ -71,6 +71,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Internacionales
 
                 this._internacionales = this._internacionalServicios.ConsultarTodos();
                 this._ventana.Resultados = this._internacionales;
+                this._ventana.TotalHits = this._internacionales.Count.ToString();
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -133,6 +134,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Internacionales
                 }
 
                 this._ventana.Resultados = nacionalesFiltrados;
+                this._ventana.TotalHits = nacionalesFiltrados.ToList<Internacional>().Count.ToString();
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))

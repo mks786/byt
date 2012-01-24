@@ -70,6 +70,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Paises
                 
                 this._paises = this._paisServicios.ConsultarTodos();
                 this._ventana.Resultados = this._paises;
+                this._ventana.TotalHits = this._paises.Count.ToString();
                 this._ventana.PaisFiltrar = new Pais();
                 this._ventana.FocoPredeterminado();
 
@@ -170,6 +171,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Paises
                 }
 
                 this._ventana.Resultados = paisesFiltrados.ToList<Pais>();
+                this._ventana.TotalHits = paisesFiltrados.ToList<Pais>().Count.ToString();
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))

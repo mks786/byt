@@ -51,8 +51,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Agentes
 
                 this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleListaAuditorias,
                     Recursos.Ids.ListaAuditorias);
-                
+
                 this._ventana.Auditorias = this._auditorias;
+                this._ventana.TotalHits = this._auditorias.Count.ToString();
                 this._ventana.FocoPredeterminado();
 
                 #region trace
