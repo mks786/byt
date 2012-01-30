@@ -8,6 +8,7 @@ using NLog;
 using Trascend.Bolet.Cliente.Contratos.Principales;
 using Trascend.Bolet.Cliente.Ventanas.Agentes;
 using Trascend.Bolet.Cliente.Ventanas.Anexos;
+using Trascend.Bolet.Cliente.Ventanas.Traspasos;
 using Trascend.Bolet.Cliente.Ventanas.Categorias;
 using Trascend.Bolet.Cliente.Ventanas.Cartas;
 using Trascend.Bolet.Cliente.Ventanas.CartasOuts;
@@ -360,7 +361,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
         /// </summary>
         public void Fusiones()
         {
-            throw new NotImplementedException();
+            this._ventana.Contenedor.Navigate(new Fusiones());
         }
 
         /// <summary>
