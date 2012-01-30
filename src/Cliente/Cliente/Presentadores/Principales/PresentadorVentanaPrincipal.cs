@@ -348,6 +348,53 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
         }
 
         /// <summary>
+        /// Método que coloca la página "Cesiones" en el Frame principal
+        /// </summary>
+        public void Cesiones()
+        {
+            //llamado a la ventana de cesiones
+        }
+
+        /// <summary>
+        /// Método que coloca la página "Fusiones" en el Frame principal
+        /// </summary>
+        public void Fusiones()
+        {
+            throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// Método que coloca la página "Cambio de Domicilio" en el Frame principal
+        /// </summary>
+        public void CambioDeDomicilio()
+        {
+            throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// Método que coloca la página "Cambio de Nombre" en el Frame principal
+        /// </summary>
+        public void CambioDeNombre()
+        {
+            throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// Método que coloca la página "Cambio Peticionario" en el Frame principal
+        /// </summary>
+        public void CambioPeticionario()
+        {
+            throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// Método que coloca la página "Licencias" en el Frame principal
+        /// </summary>
+        public void Licencias()
+        {
+            throw new NotImplementedException();
+        }
+        /// <summary>
         /// Método que coloca la página "ConsultarResumenes" en el Frame principal
         /// </summary>
         public void ConsultarResumenes()
@@ -523,6 +570,34 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
                             {
                                 case "_menuItemAgente":
                                     if (objeto.Id.Equals(Recursos.Ids.Agente))
+                                        itemNivel2.Visibility = System.Windows.Visibility.Visible;
+                                    break;
+                                case "_menuItemCesiones":
+                                    if (objeto.Id.Equals(Recursos.Ids.Marca))
+                                        itemNivel2.Visibility = System.Windows.Visibility.Visible;
+                                    break;
+                                case "_menuItemFusiones":
+                                    if (objeto.Id.Equals(Recursos.Ids.Marca))
+                                        itemNivel2.Visibility = System.Windows.Visibility.Visible;
+                                    break;
+                                case "_menuItemCambioDeDomicilio":
+                                    if (objeto.Id.Equals(Recursos.Ids.Marca))
+                                        itemNivel2.Visibility = System.Windows.Visibility.Visible;
+                                    break;
+                                case "_menuItemCambioDeNombre":
+                                    if (objeto.Id.Equals(Recursos.Ids.Marca))
+                                        itemNivel2.Visibility = System.Windows.Visibility.Visible;
+                                    break;
+                                case "_menuItemCambioPeticionario":
+                                    if (objeto.Id.Equals(Recursos.Ids.Marca))
+                                        itemNivel2.Visibility = System.Windows.Visibility.Visible;
+                                    break;
+                                case "_menuItemLicencias":
+                                    if (objeto.Id.Equals(Recursos.Ids.Marca))
+                                        itemNivel2.Visibility = System.Windows.Visibility.Visible;
+                                    break;
+                                case "_menuItemTraspasos":
+                                    if (objeto.Id.Equals(Recursos.Ids.Marca))
                                         itemNivel2.Visibility = System.Windows.Visibility.Visible;
                                     break;
                                 case "_menuItemAnexo":

@@ -135,7 +135,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Interesados
                     interesado.Nacionalidad = (Pais)this._ventana.Nacionalidad;
                     interesado.Corporacion = (Estado)this._ventana.Corporacion;
                     interesado.Operacion = "MODIFY";
-                    //interesado.TipoPersona = this._ventana.GetTipoPersona;
+                    interesado.TipoPersona = ((ListaDatosDominio)this._ventana.TipoPersona).Id[0];
 
                     bool exitoso = this._interesadoServicios.InsertarOModificar(interesado, UsuarioLogeado.Hash);
                     if (exitoso)

@@ -918,7 +918,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
 
         private void _btnCancelar_Click(object sender, RoutedEventArgs e)
         {
-            this._presentador.Cancelar();
+            this._presentador.IrConsultarMarcas();
         }
 
         private void _btnInfoAdicional_Click(object sender, RoutedEventArgs e)

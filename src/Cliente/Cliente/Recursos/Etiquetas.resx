@@ -1543,4 +1543,31 @@
   <data name="lblTotalHits" xml:space="preserve">
     <value>Total Hits:</value>
   </data>
+  <data name="lblCodigoPais" xml:space="preserve">
+    <value>Codigo País:</value>
+  </data>
+  <data name="lsvCodigoPais" xml:space="preserve">
+    <value>Codigo País</value>
+  </data>
+  <data name="menuItemTraspasos" xml:space="preserve">
+    <value>Traspasos</value>
+  </data>
+  <data name="menuItemCambioDeDomicilio" xml:space="preserve">
+    <value>Cambio de Domicilio</value>
+  </data>
+  <data name="menuItemCambioDeNombre" xml:space="preserve">
+    <value>Cambio de Nombre</value>
+  </data>
+  <data name="menuItemCambioPeticionario" xml:space="preserve">
+    <value>Cambio Peticionario</value>
+  </data>
+  <data name="menuItemCesiones" xml:space="preserve">
+    <value>Cesiones</value>
+  </data>
+  <data name="menuItemFusiones" xml:space="preserve">
+    <value>Fusiones</value>
+  </data>
+  <data name="menuItemLicencias" xml:space="preserve">
+    <value>Licencias</value>
+  </data>
 </root>

@@ -319,10 +319,10 @@
     <value>Agente eliminado con éxito</value>
   </data>
   <data name="AsociadoInsertado" xml:space="preserve">
-    <value>Agente insertado con éxito</value>
+    <value>Asociado insertado con éxito</value>
   </data>
   <data name="AsociadoModificado" xml:space="preserve">
-    <value>Agente modificado con éxito</value>
+    <value>Asociado modificado con éxito</value>
   </data>
   <data name="ConfirmacionEliminarAsociado" xml:space="preserve">
     <value>¿Seguro que desea eliminar el agente?</value>

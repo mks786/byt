@@ -118,29 +118,5 @@ namespace Trascend.Bolet.Cliente.Ventanas.Internacionales
                 this._presentador.ActualizarTitulo();
         }
 
-        private void _txtId_PreviewKeyDown(object sender, KeyEventArgs e)
-        {
-            if ((int)e.Key == 2)
-                e.Handled = false;
-            else if ((int)e.Key >= 43 || (int)e.Key <= 34)
-                e.Handled = true;
-            else
-                e.Handled = false;
-        }
-
-        private void _txtId_KeyUp(object sender, KeyEventArgs e)
-        {
-            if (System.Text.RegularExpressions.Regex.IsMatch(this._txtId.Text, "[^0-9]"))
-            {
-                this._txtId.Text = "";
-            }
-        }
-
-        private void _txtId_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (!System.Text.RegularExpressions.Regex.IsMatch(e.Key.ToString(), "\\d+"))
-                e.Handled = true;
-        }
-
     }
 }

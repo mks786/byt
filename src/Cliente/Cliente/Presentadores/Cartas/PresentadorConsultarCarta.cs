@@ -12,6 +12,7 @@ using Trascend.Bolet.ObjetosComunes.Entidades;
 using System.Collections.Generic;
 using System.Windows.Controls;
 using Trascend.Bolet.Cliente.Ventanas.Auditorias;
+using Trascend.Bolet.Cliente.Ventanas.Cartas;
 
 namespace Trascend.Bolet.Cliente.Presentadores.Cartas
 {
@@ -220,7 +221,6 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
             this._ventana.Anexos = this._anexos;
         }
 
-
         public bool CargarAnexosCartaConfirmacion()
         {
             bool retorno = false;
@@ -354,17 +354,24 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
                     {
                         Carta carta = (Carta)this._ventana.Carta;
                         carta.Operacion = "MODIFY";
+                        
                         if (null != this._ventana.Departamento)
-                            carta.Departamento = !((Departamento)this._ventana.Departamento).Id.Equals("NGN") ? (Departamento)this._ventana.Departamento : null;
+                            carta.Departamento = !((Departamento)this._ventana.Departamento).Id.Equals("NGN") ? 
+                                                 (Departamento)this._ventana.Departamento : null;
+                        
                         if (null != this._ventana.Asociado)
                             carta.Asociado = !((Asociado)this._ventana.Asociado).Id.Equals("NGN") ? (Asociado)this._ventana.Asociado : null;
+                        
                         if (null != this._ventana.Persona)
                             carta.Persona = !((Contacto)this._ventana.Persona).Id.Equals("NGN") ? ((Contacto)this._ventana.Persona).Nombre : null;
+                        
                         if (null != this._ventana.Resumen)
                             carta.Resumen = !((Resumen)this._ventana.Resumen).Id.Equals("NGN") ? ((Resumen)this._ventana.Resumen) : null;
+                        
+                        if (null != this._ventana.MedioTrackingConfirmacion)
+                            carta.AnexoMedio = ((Medio)this._ventana.MedioTrackingConfirmacion).Id;
 
                         carta.Medio = ((Medio)this._ventana.Medio).Id;
-                        carta.AnexoMedio = ((Medio)this._ventana.MedioTrackingConfirmacion).Id;
                         carta.Receptor = ((Usuario)this._ventana.Receptor).Iniciales;
                         bool exitoso = this._cartaServicios.InsertarOModificar(carta, UsuarioLogeado.Hash);
 
@@ -642,7 +649,6 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
             }
         }
 
-
         public bool AgregarResponsable()
         {
             bool retorno = false;
@@ -751,7 +757,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
             {
                 foreach (Usuario usuarioCarta in responsables)
                 {
-                    if (usuario.Id == usuarioCarta.Id)
+                    if ((usuarioCarta != null) && (usuario.Id == usuarioCarta.Id))
                         indice.Add(index);
                     index++;
                 }
@@ -761,6 +767,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
             {
                 this._responsables.RemoveAt(posicion);
             }
+        }
+
+        public void IrConsultarCartas()
+        {
+            this.Navegar(new ConsultarCartas());
         }
         //public bool AgregarResponsable()
         //{

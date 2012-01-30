@@ -44,7 +44,7 @@
                 </WrapPanel>
                 <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
                     <Label>
-                        <TextBlock Text="{x:Static recurso:Etiquetas.lblCodigo}"/>
+                        <TextBlock Text="{x:Static recurso:Etiquetas.lblCodigoPais}"/>
                     </Label>
                     <TextBox Name="_txtCodigo" Width="150" MaxLength="2"  Text="{Binding Path=Codigo}"/>
                 </WrapPanel>
@@ -125,6 +125,9 @@
                         </GridViewColumn>
                         <GridViewColumn DisplayMemberBinding="{Binding Path=NombreIngles}" Width="120">
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="NombreIngles" Content="{x:Static recurso:Etiquetas.lsvNombreIngles}"/>
+                        </GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Codigo}" Width="120">
+                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="Codigo" Content="{x:Static recurso:Etiquetas.lsvCodigoPais}"/>
                         </GridViewColumn>
                     </GridView>
                 </ListView.View>

@@ -323,7 +323,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Cartas
 
         private void _btnCancelar_Click(object sender, RoutedEventArgs e)
         {
-            this._presentador.Cancelar();
+            this._presentador.IrConsultarCartas();
         }
 
         private void _btnAceptar_Click(object sender, RoutedEventArgs e)

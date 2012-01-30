@@ -288,6 +288,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             }
         }
 
+        public void IrConsultarMarcas() 
+        { 
+            this.Navegar(new ConsultarMarcas());
+        }
+
         public Marca CargarMarcaDeLaPantalla()
         {
 

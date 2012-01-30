@@ -75,24 +75,15 @@ namespace Trascend.Bolet.ControlesByT
             }
             if (SoloNumero)
             {
-                if (!System.Text.RegularExpressions.Regex.IsMatch(e.Key.ToString(), "\\d+"))
-
-                    if (Filtro)
-                    {
-                        if (e.Key != System.Windows.Input.Key.Enter)
-                        {
-                            e.Handled = true;
-                        }
-                    }
-                    else
+                if (!System.Text.RegularExpressions.Regex.IsMatch(e.Key.ToString(), "\\d+") && (e.Key != System.Windows.Input.Key.Tab) && (e.Key != System.Windows.Input.Key.Return))
                         e.Handled = true;
             }
             if (SoloPorcentaje)
             {
-                if ((!this.Text.Contains(".")) || ((!e.Key.ToString().Equals("Decimal")) && (!e.Key.ToString().Equals("OemPeriod"))))
+                if ((!this.Text.Contains(".")) || (e.Key == System.Windows.Input.Key.Tab) || ((!e.Key.ToString().Equals("Decimal")) && (!e.Key.ToString().Equals("OemPeriod"))))
                 {
                     if (!System.Text.RegularExpressions.Regex.IsMatch(e.Key.ToString(), "[-+]?[0-9]*\\.?[0-9]+"))
-                        if ((!e.Key.ToString().Equals("Decimal")) && (!e.Key.ToString().Equals("OemPeriod")))
+                        if ((!e.Key.ToString().Equals("Decimal")) && (!e.Key.ToString().Equals("OemPeriod")) && (e.Key != System.Windows.Input.Key.Tab))
                             e.Handled = true;
                 }
                 else

@@ -328,6 +328,36 @@ namespace Trascend.Bolet.Cliente.Ventanas.Principales
             this._presentador.AgregarMarca();
         }
 
+        private void _menuItemCesiones_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.Cesiones();
+        }
+
+        private void _menuItemFusiones_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.Fusiones();
+        }
+
+        private void _menuItemCambioDeDomicilio_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.CambioDeDomicilio();
+        }
+
+        private void _menuItemCambioDeNombre_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.CambioDeNombre();
+        }
+
+        private void _menuItemCambioPeticionario_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.CambioPeticionario();
+        }
+
+        private void _menuItemLicencias_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.Licencias();
+        }
+
         #endregion
 
         #endregion

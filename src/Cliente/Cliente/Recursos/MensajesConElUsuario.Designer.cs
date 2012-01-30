@@ -115,7 +115,7 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Agente insertado con éxito.
+        ///   Looks up a localized string similar to Asociado insertado con éxito.
         /// </summary>
         internal static string AsociadoInsertado {
             get {
@@ -124,7 +124,7 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Agente modificado con éxito.
+        ///   Looks up a localized string similar to Asociado modificado con éxito.
         /// </summary>
         internal static string AsociadoModificado {
             get {

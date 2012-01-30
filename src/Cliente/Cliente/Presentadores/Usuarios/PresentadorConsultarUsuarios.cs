@@ -154,7 +154,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Usuarios
                 {
                     usuariosFiltrados = from usuario in usuariosFiltrados
                                         where usuario.NombreCompleto != null && 
-                                        usuario.NombreCompleto.Contains(this._ventana.NombreCompleto)
+                                        usuario.NombreCompleto.ToLower().Contains(this._ventana.NombreCompleto.ToLower())
                                         select usuario;
                 }
 

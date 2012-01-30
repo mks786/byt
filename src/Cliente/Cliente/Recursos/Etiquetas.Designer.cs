@@ -1231,6 +1231,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Codigo País:.
+        /// </summary>
+        public static string lblCodigoPais {
+            get {
+                return ResourceManager.GetString("lblCodigoPais", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cod. Intl (cod-num):.
         /// </summary>
         public static string lblCodIntl {
@@ -2671,6 +2680,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Codigo País.
+        /// </summary>
+        public static string lsvCodigoPais {
+            get {
+                return ResourceManager.GetString("lsvCodigoPais", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to CodRes.
         /// </summary>
         public static string lsvCodRes {
@@ -3148,6 +3166,33 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cambio de Domicilio.
+        /// </summary>
+        public static string menuItemCambioDeDomicilio {
+            get {
+                return ResourceManager.GetString("menuItemCambioDeDomicilio", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cambio de Nombre.
+        /// </summary>
+        public static string menuItemCambioDeNombre {
+            get {
+                return ResourceManager.GetString("menuItemCambioDeNombre", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cambio Peticionario.
+        /// </summary>
+        public static string menuItemCambioPeticionario {
+            get {
+                return ResourceManager.GetString("menuItemCambioPeticionario", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Carta.
         /// </summary>
         public static string menuItemCarta {
@@ -3162,6 +3207,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string menuItemCategoria {
             get {
                 return ResourceManager.GetString("menuItemCategoria", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cesiones.
+        /// </summary>
+        public static string menuItemCesiones {
+            get {
+                return ResourceManager.GetString("menuItemCesiones", resourceCulture);
             }
         }
         
@@ -3238,6 +3292,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Fusiones.
+        /// </summary>
+        public static string menuItemFusiones {
+            get {
+                return ResourceManager.GetString("menuItemFusiones", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Gestionar Objetos por Roles.
         /// </summary>
         public static string menuItemGestionarObjetosXRoles {
@@ -3288,6 +3351,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string menuItemInternacional {
             get {
                 return ResourceManager.GetString("menuItemInternacional", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Licencias.
+        /// </summary>
+        public static string menuItemLicencias {
+            get {
+                return ResourceManager.GetString("menuItemLicencias", resourceCulture);
             }
         }
         
@@ -3423,6 +3495,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string menuItemTransferirPlantilla {
             get {
                 return ResourceManager.GetString("menuItemTransferirPlantilla", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Traspasos.
+        /// </summary>
+        public static string menuItemTraspasos {
+            get {
+                return ResourceManager.GetString("menuItemTraspasos", resourceCulture);
             }
         }
         
