@@ -589,6 +589,9 @@
     <Compile Include="Ventanas\Roles\ConsultarRoles.xaml.cs">
       <DependentUpon>ConsultarRoles.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Ventanas\Traspasos\Fusion.xaml.cs">
+      <DependentUpon>Fusion.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Ventanas\Usuarios\ConsultarUsuarios.xaml.cs">
       <DependentUpon>ConsultarUsuarios.xaml</DependentUpon>
     </Compile>
@@ -984,6 +987,10 @@
     <Page Include="Ventanas\Roles\ConsultarRoles.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Ventanas\Traspasos\Fusion.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Ventanas\Usuarios\ConsultarUsuarios.xaml">
       <SubType>Designer</SubType>
