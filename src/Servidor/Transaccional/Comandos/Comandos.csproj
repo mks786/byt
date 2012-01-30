@@ -226,10 +226,15 @@
     <Compile Include="Comandos\ComandosStatusWeb\ComandoEliminarPais.cs" />
     <Compile Include="Comandos\ComandosStatusWeb\ComandoInsertarOModificarPais.cs" />
     <Compile Include="Comandos\ComandosStatusWeb\ComandoVerificarExistenciaPais.cs" />
+    <Compile Include="Comandos\ComandosFusion\ComandoConsultarTodosFusiones.cs" />
+    <Compile Include="Comandos\ComandosFusion\ComandoEliminarFusion.cs" />
+    <Compile Include="Comandos\ComandosFusion\ComandoInsertarOModificarFusion.cs" />
+    <Compile Include="Comandos\ComandosFusion\ComandoVerificarExistenciaFusion.cs" />
     <Compile Include="Comandos\Receptor.cs" />
     <Compile Include="Comandos\ComandosUsuario\ComandoConsultarTodosUsuarios.cs" />
     <Compile Include="Comandos\ComandosUsuario\ComandoConsultarUsuarioPorID.cs" />
     <Compile Include="Comandos\ComandosUsuario\ComandoInsertarOModificarUsuario.cs" />
+    <Compile Include="Fabrica\FabricaComandosFusion.cs" />
     <Compile Include="Fabrica\FabricaComandosStatusWeb.cs" />
     <Compile Include="Fabrica\FabricaComandosBusqueda.cs" />
     <Compile Include="Fabrica\FabricaComandosOperacion.cs" />

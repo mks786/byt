@@ -516,5 +516,14 @@ namespace Trascend.Bolet.AccesoDatos.Fabrica
         {
             return new DaoStatusWebNHibernate();
         }
+
+        /// <summary>
+        /// Método que devuelve el DaoFusion
+        /// </summary>
+        /// <returns>IDaoFusion</returns>
+        public override IDaoFusion ObtenerDaoFusion()
+        {
+            return new DaoFusionNHibernate();
+        }
     }
 }
