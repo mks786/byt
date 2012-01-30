@@ -61,6 +61,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Contrato\IDaoCesion.cs" />
     <Compile Include="Contrato\IDaoFusion.cs" />
     <Compile Include="Contrato\IDaoStatusWeb.cs" />
     <Compile Include="Contrato\IDaoBusqueda.cs" />
@@ -118,6 +119,7 @@
     <Compile Include="Contrato\IDaoBase.cs" />
     <Compile Include="Contrato\IDaoUsuario.cs" />
     <Compile Include="Contrato\IFabricaDaoBase.cs" />
+    <Compile Include="Dao\NHibernate\DaoCesionNHibernate.cs" />
     <Compile Include="Dao\NHibernate\DaoFusionNHibernate.cs" />
     <Compile Include="Dao\NHibernate\DaoStatusWebNHibernate.cs" />
     <Compile Include="Dao\NHibernate\DaoBusquedaNHibernate.cs" />

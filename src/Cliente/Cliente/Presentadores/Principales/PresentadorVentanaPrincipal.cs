@@ -352,7 +352,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
         /// </summary>
         public void Cesiones()
         {
-            //llamado a la ventana de cesiones
+            //llamado a la ventana de cesiones        
         }
 
         /// <summary>

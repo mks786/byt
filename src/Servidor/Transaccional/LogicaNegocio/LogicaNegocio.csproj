@@ -94,6 +94,7 @@
     <Compile Include="Controladores\ControladorInfoBol.cs" />
     <Compile Include="Controladores\ControladorOperacion.cs" />
     <Compile Include="Controladores\ControladorStatusWeb.cs" />
+    <Compile Include="Controladores\ControladorCesion.cs" />
     <Compile Include="Controladores\ControladorFusion.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -518,6 +518,15 @@ namespace Trascend.Bolet.AccesoDatos.Fabrica
         }
 
         /// <summary>
+        /// Método que devuelve el DaoCesion
+        /// </summary>
+        /// <returns>IDaoStatusWeb</returns>
+        public override IDaoCesion ObtenerDaoCesion()
+        {
+            return new DaoCesionNHibernate();
+        }
+
+        /// <summary>
         /// Método que devuelve el DaoFusion
         /// </summary>
         /// <returns>IDaoFusion</returns>

@@ -355,5 +355,11 @@ namespace Trascend.Bolet.AccesoDatos.Fabrica
         /// <returns>IDaoFusion</returns>
         public abstract IDaoFusion ObtenerDaoFusion();
 
+        /// <summary>
+        /// Método que devuelve el DaoCesion del manejador que se esté utilizando
+        /// </summary>
+        /// <returns>IDaoStatusWeb</returns>
+        public abstract IDaoCesion ObtenerDaoCesion();
+
     }
 }

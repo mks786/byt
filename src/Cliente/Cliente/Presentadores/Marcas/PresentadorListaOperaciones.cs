@@ -82,7 +82,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
 
-            ((Operacion)this._ventana.OperacionSeleccionado).Marca = this._marca;
+            if (this._ventana.OperacionSeleccionado != null)
+                ((Operacion)this._ventana.OperacionSeleccionado).Marca = this._marca;
             //this.Navegar(new GestionarOperacion(this._ventana.OperacionSeleccionado));
 
             #region trace

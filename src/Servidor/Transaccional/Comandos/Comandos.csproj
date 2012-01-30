@@ -66,6 +66,10 @@
     <Compile Include="Comandos\ComandosCarta\ComandoConsultarCartasFiltro.cs" />
     <Compile Include="Comandos\ComandosCarta\ComandoEliminarCarta.cs" />
     <Compile Include="Comandos\ComandosCarta\ComandoInsertarOModificarCarta.cs" />
+    <Compile Include="Comandos\ComandosCesion\ComandoConsultarTodosCesion.cs" />
+    <Compile Include="Comandos\ComandosCesion\ComandoEliminarCesion.cs" />
+    <Compile Include="Comandos\ComandosCesion\ComandoInsertarOModificarCesion.cs" />
+    <Compile Include="Comandos\ComandosCesion\ComandoVerificarExistenciaCesion.cs" />
     <Compile Include="Comandos\ComandosCorresponsal\ComandoConsultarTodosCorresponsables.cs" />
     <Compile Include="Comandos\ComandosCorresponsal\ComandoEliminarCorresponsal.cs" />
     <Compile Include="Comandos\ComandosCorresponsal\ComandoInsertarOModificarCorresponsal.cs" />
@@ -234,6 +238,7 @@
     <Compile Include="Comandos\ComandosUsuario\ComandoConsultarTodosUsuarios.cs" />
     <Compile Include="Comandos\ComandosUsuario\ComandoConsultarUsuarioPorID.cs" />
     <Compile Include="Comandos\ComandosUsuario\ComandoInsertarOModificarUsuario.cs" />
+    <Compile Include="Fabrica\FabricaComandoCesion.cs" />
     <Compile Include="Fabrica\FabricaComandosFusion.cs" />
     <Compile Include="Fabrica\FabricaComandosStatusWeb.cs" />
     <Compile Include="Fabrica\FabricaComandosBusqueda.cs" />
