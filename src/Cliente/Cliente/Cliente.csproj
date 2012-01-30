@@ -589,9 +589,6 @@
     <Compile Include="Ventanas\Roles\ConsultarRoles.xaml.cs">
       <DependentUpon>ConsultarRoles.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Ventanas\Traspasos\Fusiones.xaml.cs">
-      <DependentUpon>Fusiones.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Ventanas\Usuarios\ConsultarUsuarios.xaml.cs">
       <DependentUpon>ConsultarUsuarios.xaml</DependentUpon>
     </Compile>
@@ -988,10 +985,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Ventanas\Traspasos\Fusiones.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="Ventanas\Usuarios\ConsultarUsuarios.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -1094,7 +1087,10 @@
       <Name>ControlesByT</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Ventanas\Traspasos\Cesiones\" />
+    <Folder Include="Ventanas\Traspasos\Fusiones\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
