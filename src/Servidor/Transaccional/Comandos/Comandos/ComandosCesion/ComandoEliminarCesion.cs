@@ -18,7 +18,7 @@ namespace Trascend.Bolet.Comandos.Comandos.ComandosCesion
         /// <summary>
         /// Constructor predeterminado
         /// </summary>
-        /// <param name="agente">Agente a eliminar</param>
+        /// <param name="cesion">Cesion a eliminar</param>
         public ComandoEliminarCesion(Cesion cesion)
         {
             this._cesion = cesion;

@@ -4,20 +4,20 @@ using System.Linq;
 using System.Text;
 using Trascend.Bolet.Comandos.Comandos;
 using Trascend.Bolet.ObjetosComunes.Entidades;
-using Trascend.Bolet.Comandos.Comandos.ComandosCesion;
+using Trascend.Bolet.Comandos.Comandos.ComandosCambioDeDomicilio;
 
 namespace Trascend.Bolet.Comandos.Fabrica
 {
-    public static class FabricaComandosCesion
+    public static class FabricaComandosCambioDeDomicilio
     {
         /// <summary>
-        /// Método que devuelve el Comando para modificar una Auditoria
+        /// Método que devuelve el Comando para modificar un CambioDeDomicilio
         /// </summary>
-        /// <param name="auditoria">Auditoria a intersar o modificar</param>
+        /// <param name="cambioDeDomicilio">CambioDeDomicilio a insertar o modificar</param>
         /// <returns>True: si se realizo el comando con exito; False: en caso contrario</returns>
-        public static ComandoBase<bool> ObtenerComandoInsertarOModificar(Cesion cesion)
+        public static ComandoBase<bool> ObtenerComandoInsertarOModificar(CambioDeDomicilio cambioDeDomicilio)
         {
-            return new ComandoInsertarOModificarCesion(cesion);
+            return new ComandoInsertarOModificarCambioDeDomicilio(cambioDeDomicilio);
         }
 
         /// <summary>
@@ -34,22 +34,22 @@ namespace Trascend.Bolet.Comandos.Fabrica
         /// 
         /// </summary>
         /// <returns></returns>
-        public static ComandoBase<IList<Cesion>> ObtenerComandoConsultarTodos()
+        public static ComandoBase<IList<CambioDeDomicilio>> ObtenerComandoConsultarTodos()
         {
             throw new NotImplementedException();
         }
 
-        public static ComandoBase<Cesion> ObtenerComandoConsultarPorID(Cesion cesion)
+        public static ComandoBase<CambioDeDomicilio> ObtenerComandoConsultarPorID(CambioDeDomicilio cambioDeDomicilio)
         {
             throw new NotImplementedException();
         }
 
-        public static ComandoBase<bool> ObtenerComandoEliminarCesion(Cesion cesion)
+        public static ComandoBase<bool> ObtenerComandoEliminarCambioDeDomicilio(CambioDeDomicilio cambioDeDomicilio)
         {
             throw new NotImplementedException();
         }
 
-        public static ComandoBase<bool> ObtenerComandoVerificarExistenciaCesion(Cesion cesion)
+        public static ComandoBase<bool> ObtenerComandoVerificarExistenciaCambioDeDomicilio(CambioDeDomicilio cambioDeDomicilio)
         {
             throw new NotImplementedException();
         }

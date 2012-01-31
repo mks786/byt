@@ -30,15 +30,15 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         private string _ubicacion;
         private string _comentario;
         private string _observacion;
+        private DateTime? _fechaPublicacion;
+        private DateTime? _fechaCesion;
         private Asociado _asociado;
         private Poder _poderCesionario;
         private Poder _poderCedente;
         private Marca _marca;
-        private Interesado _cedente;
-        private Interesado _cesionario;
-        private Boletin _boletinPublicacion;
-        private DateTime? _fechaPublicacion;
-        private DateTime? _fechaCesion;
+        private Interesado _interesadoCedente;
+        private Interesado _interesadoCesionario;
+        private Boletin _boletinPublicacion;       
         private Agente _agenteCedente;
         private Agente _agenteCesionario;
 
@@ -304,8 +304,8 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         /// </summary>
         public virtual Interesado Cedente
         {
-            get { return _cedente; }
-            set { _cedente = value; }
+            get { return _interesadoCedente; }
+            set { _interesadoCedente = value; }
         }
 
         /// <summary>
@@ -313,8 +313,8 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         /// </summary>
         public virtual Interesado Cesionario
         {
-            get { return _cesionario; }
-            set { _cesionario = value; }
+            get { return _interesadoCesionario; }
+            set { _interesadoCesionario = value; }
         }
 
         /// <summary>

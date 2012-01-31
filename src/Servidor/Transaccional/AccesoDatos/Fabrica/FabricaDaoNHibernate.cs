@@ -520,7 +520,7 @@ namespace Trascend.Bolet.AccesoDatos.Fabrica
         /// <summary>
         /// Método que devuelve el DaoCesion
         /// </summary>
-        /// <returns>IDaoStatusWeb</returns>
+        /// <returns>IDaoCesion</returns>
         public override IDaoCesion ObtenerDaoCesion()
         {
             return new DaoCesionNHibernate();
@@ -534,6 +534,25 @@ namespace Trascend.Bolet.AccesoDatos.Fabrica
         {
             return new DaoFusionNHibernate();
         }
+
+        /// <summary>
+        /// Método que devuelve el DaoCambioDeDomicilio
+        /// </summary>
+        /// <returns>IDaoCambioDeDomicilio</returns>
+        public override IDaoCambioDeDomicilio ObtenerDaoCambioDeDomicilio()
+        {
+            return new DaoCambioDeDomicilioNHibernate();
+        }
+
+        /// <summary>
+        /// Método que devuelve el DaoCambioPeticionario
+        /// </summary>
+        /// <returns>IDaoCambioPeticionario</returns>
+        public override IDaoCambioPeticionario ObtenerDaoCambioPeticionario()
+        {
+            return new DaoCambioPeticionarioNHibernate();
+        }
+       
 
         /// <summary>
         /// Método que devuelve el DaoCambioNombre

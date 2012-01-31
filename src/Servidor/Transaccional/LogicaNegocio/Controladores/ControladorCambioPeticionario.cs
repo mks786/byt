@@ -8,17 +8,17 @@ using Trascend.Bolet.ObjetosComunes.Entidades;
 
 namespace Trascend.Bolet.LogicaNegocio.Controladores
 {
-    public class ControladorCesion : ControladorBase
+    public class ControladorCambioPeticionario : ControladorBase
     {
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
         /// <summary>
-        /// Método que devuelve todos las Cesiones del sistema
+        /// Método que devuelve todos los CambioPeticionario del sistema
         /// </summary>
         /// <returns></returns>
-        public static IList<Cesion> ConsultarTodos()
+        public static IList<CambioPeticionario> ConsultarTodos()
         {
-            IList<Cesion> retorno;
+            IList<CambioPeticionario> retorno;
             try
             {
                 #region trace
@@ -26,7 +26,7 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
                     logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-                ComandoBase<IList<Cesion>> comando = FabricaComandosCesion.ObtenerComandoConsultarTodos();
+                ComandoBase<IList<CambioPeticionario>> comando = FabricaComandosCambioPeticionario.ObtenerComandoConsultarTodos();
                 comando.Ejecutar();
                 retorno = comando.Receptor.ObjetoAlmacenado;
 
@@ -44,12 +44,12 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
         }
 
         /// <summary>
-        /// Método que modifica un los datos de una Cesion
+        /// Método que modifica un los datos de un CambioPeticionario
         /// </summary>
-        /// <param name="cesion">Cesion a modificar</param>
-        /// <param name="hash">Hash de la Cesion que va a realizar la operacion</param>
+        /// <param name="cambioPeticionario">CambioPeticionario a modificar</param>
+        /// <param name="hash">Hash del CambioPeticionario que va a realizar la operacion</param>
         /// <returns>True si la modificación fue exitosa, en caso contrario False</returns>
-        public static bool InsertarOModificar(Cesion cesion, int hash)
+        public static bool InsertarOModificar(CambioPeticionario cambioPeticionario, int hash)
         {
             bool exitoso = false;
 
@@ -60,7 +60,7 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
                     logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-                ComandoBase<bool> comando = FabricaComandosCesion.ObtenerComandoInsertarOModificar(cesion);
+                ComandoBase<bool> comando = FabricaComandosCambioPeticionario.ObtenerComandoInsertarOModificar(cambioPeticionario);
                 comando.Ejecutar();
                 exitoso = comando.Receptor.ObjetoAlmacenado;
 
@@ -78,13 +78,13 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
         }
 
         /// <summary>
-        /// Método que consulta una Cesion por su Id
+        /// Método que consulta un CambioPeticionario por su Id
         /// </summary>
-        /// <param name="cesion">Cesion con el Id de la Cesion buscada</param>
-        /// <returns>La Cesion solicitada</returns>
-        public static Cesion ConsultarPorId(Cesion cesion)
+        /// <param name="cambioPeticionario">CambioPeticionario con el Id del CambioPeticionario buscado</param>
+        /// <returns>El CambioPeticionario solicitado</returns>
+        public static CambioPeticionario ConsultarPorId(CambioPeticionario cambioPeticionario)
         {
-            Cesion retorno;
+            CambioPeticionario retorno;
 
             try
             {
@@ -93,7 +93,7 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
                     logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-                ComandoBase<Cesion> comando = FabricaComandosCesion.ObtenerComandoConsultarPorID(cesion);
+                ComandoBase<CambioPeticionario> comando = FabricaComandosCambioPeticionario.ObtenerComandoConsultarPorID(cambioPeticionario);
                 comando.Ejecutar();
                 retorno = comando.Receptor.ObjetoAlmacenado;
 
@@ -111,12 +111,12 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
         }
 
         /// <summary>
-        /// Método que elimina una Cesion
+        /// Método que elimina un CambioPeticionario
         /// </summary>
-        /// <param name="cesion">Cesion a eliminar</param>
-        /// <param name="hash">Hash de la cesion que va a realizar la operacion</param>
+        /// <param name="cambioPeticionario">CambioPeticionario a eliminar</param>
+        /// <param name="hash">Hash del CambioPeticionario que va a realizar la operacion</param>
         /// <returns>True si la eliminacion fue exitosa, en caso contrario False</returns>
-        public static bool Eliminar(Cesion cesion, int hash)
+        public static bool Eliminar(CambioPeticionario cambioPeticionario, int hash)
         {
             bool exitoso = false;
             try
@@ -126,7 +126,7 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
                     logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-                ComandoBase<bool> comando = FabricaComandosCesion.ObtenerComandoEliminarCesion(cesion);
+                ComandoBase<bool> comando = FabricaComandosCambioPeticionario.ObtenerComandoEliminarCambioPeticionario(cambioPeticionario);
                 comando.Ejecutar();
                 exitoso = true;
 
@@ -146,11 +146,11 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
 
 
         /// <summary>
-        /// Verifica si la Cesion existe
+        /// Verifica si el CambioPeticionario existe
         /// </summary>
-        /// <param name="cesion">Cesion a verificar</param>
+        /// <param name="cambioPeticionario">CambioPeticionario a verificar</param>
         /// <returns>True de existir, false en caso contrario</returns>
-        public static bool VerificarExistencia(Cesion cesion)
+        public static bool VerificarExistencia(CambioPeticionario cambioPeticionario)
         {
             bool existe = false;
             try
@@ -160,7 +160,7 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
                     logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-                ComandoBase<bool> comando = FabricaComandosCesion.ObtenerComandoVerificarExistenciaCesion(cesion);
+                ComandoBase<bool> comando = FabricaComandosCambioPeticionario.ObtenerComandoVerificarExistenciaCambioPeticionario(cambioPeticionario);
                 comando.Ejecutar();
                 existe = comando.Receptor.ObjetoAlmacenado;
 

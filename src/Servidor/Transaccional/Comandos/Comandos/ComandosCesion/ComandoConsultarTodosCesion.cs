@@ -8,7 +8,7 @@ using System;
 
 namespace Trascend.Bolet.Comandos.Comandos.ComandosCesion
 {
-    public class ComandoConsultarTodosCesion : ComandoBase<IList<Agente>>
+    public class ComandoConsultarTodosCesion : ComandoBase<IList<Cesion>>
     {
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
@@ -24,8 +24,8 @@ namespace Trascend.Bolet.Comandos.Comandos.ComandosCesion
                     logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-                IDaoAgente dao = FabricaDaoBase.ObtenerFabricaDao().ObtenerDaoAgente();
-                this.Receptor = new Receptor<IList<Agente>>(dao.ObtenerTodos());
+                IDaoCesion dao = FabricaDaoBase.ObtenerFabricaDao().ObtenerDaoCesion();
+                this.Receptor = new Receptor<IList<Cesion>>(dao.ObtenerTodos());
 
                 #region trace
                 if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))

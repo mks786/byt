@@ -15,7 +15,7 @@ namespace Trascend.Bolet.Comandos.Comandos.ComandosCesion
         /// <summary>
         /// Constructor predeterminado
         /// </summary>
-        /// <param name="usuario">Usuario a insertar o modificar</param>
+        /// <param name="cesion">Cesion a insertar o modificar</param>
         public ComandoInsertarOModificarCesion(Cesion cesion)
         {
             this._cesion = cesion;

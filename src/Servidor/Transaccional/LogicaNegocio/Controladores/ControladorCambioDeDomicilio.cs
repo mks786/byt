@@ -8,17 +8,17 @@ using Trascend.Bolet.ObjetosComunes.Entidades;
 
 namespace Trascend.Bolet.LogicaNegocio.Controladores
 {
-    public class ControladorCesion : ControladorBase
+    public class ControladorCambioDeDomicilio : ControladorBase
     {
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
         /// <summary>
-        /// Método que devuelve todos las Cesiones del sistema
+        /// Método que devuelve todos los CambioDeDomicilio del sistema
         /// </summary>
         /// <returns></returns>
-        public static IList<Cesion> ConsultarTodos()
+        public static IList<CambioDeDomicilio> ConsultarTodos()
         {
-            IList<Cesion> retorno;
+            IList<CambioDeDomicilio> retorno;
             try
             {
                 #region trace
@@ -26,7 +26,7 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
                     logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-                ComandoBase<IList<Cesion>> comando = FabricaComandosCesion.ObtenerComandoConsultarTodos();
+                ComandoBase<IList<CambioDeDomicilio>> comando = FabricaComandosCambioDeDomicilio.ObtenerComandoConsultarTodos();
                 comando.Ejecutar();
                 retorno = comando.Receptor.ObjetoAlmacenado;
 
@@ -44,12 +44,12 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
         }
 
         /// <summary>
-        /// Método que modifica un los datos de una Cesion
+        /// Método que modifica un los datos de un CambioDeDomicilio
         /// </summary>
-        /// <param name="cesion">Cesion a modificar</param>
-        /// <param name="hash">Hash de la Cesion que va a realizar la operacion</param>
+        /// <param name="cambioDeDomicilio">CambioDeDomicilio a modificar</param>
+        /// <param name="hash">Hash del CambioDeDomicilio que va a realizar la operacion</param>
         /// <returns>True si la modificación fue exitosa, en caso contrario False</returns>
-        public static bool InsertarOModificar(Cesion cesion, int hash)
+        public static bool InsertarOModificar(CambioDeDomicilio cambioDeDomicilio, int hash)
         {
             bool exitoso = false;
 
@@ -60,7 +60,7 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
                     logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-                ComandoBase<bool> comando = FabricaComandosCesion.ObtenerComandoInsertarOModificar(cesion);
+                ComandoBase<bool> comando = FabricaComandosCambioDeDomicilio.ObtenerComandoInsertarOModificar(cambioDeDomicilio);
                 comando.Ejecutar();
                 exitoso = comando.Receptor.ObjetoAlmacenado;
 
@@ -78,13 +78,13 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
         }
 
         /// <summary>
-        /// Método que consulta una Cesion por su Id
+        /// Método que consulta un CambioDeDomicilio por su Id
         /// </summary>
-        /// <param name="cesion">Cesion con el Id de la Cesion buscada</param>
-        /// <returns>La Cesion solicitada</returns>
-        public static Cesion ConsultarPorId(Cesion cesion)
+        /// <param name="cambioDeDomicilio">CambioDeDomicilio con el Id del CambioDeDomicilio buscado</param>
+        /// <returns>El CambioDeDomicilio solicitado</returns>
+        public static CambioDeDomicilio ConsultarPorId(CambioDeDomicilio cambioDeDomicilio)
         {
-            Cesion retorno;
+            CambioDeDomicilio retorno;
 
             try
             {
@@ -93,7 +93,7 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
                     logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-                ComandoBase<Cesion> comando = FabricaComandosCesion.ObtenerComandoConsultarPorID(cesion);
+                ComandoBase<CambioDeDomicilio> comando = FabricaComandosCambioDeDomicilio.ObtenerComandoConsultarPorID(cambioDeDomicilio);
                 comando.Ejecutar();
                 retorno = comando.Receptor.ObjetoAlmacenado;
 
@@ -111,12 +111,12 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
         }
 
         /// <summary>
-        /// Método que elimina una Cesion
+        /// Método que elimina un CambioDeDomicilio
         /// </summary>
-        /// <param name="cesion">Cesion a eliminar</param>
-        /// <param name="hash">Hash de la cesion que va a realizar la operacion</param>
+        /// <param name="cambioDeDomicilio">CambioDeDomicilio a eliminar</param>
+        /// <param name="hash">Hash del CambioDeDomicilio que va a realizar la operacion</param>
         /// <returns>True si la eliminacion fue exitosa, en caso contrario False</returns>
-        public static bool Eliminar(Cesion cesion, int hash)
+        public static bool Eliminar(CambioDeDomicilio cambioDeDomicilio, int hash)
         {
             bool exitoso = false;
             try
@@ -126,7 +126,7 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
                     logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-                ComandoBase<bool> comando = FabricaComandosCesion.ObtenerComandoEliminarCesion(cesion);
+                ComandoBase<bool> comando = FabricaComandosCambioDeDomicilio.ObtenerComandoEliminarCambioDeDomicilio(cambioDeDomicilio);
                 comando.Ejecutar();
                 exitoso = true;
 
@@ -146,11 +146,11 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
 
 
         /// <summary>
-        /// Verifica si la Cesion existe
+        /// Verifica si el CambioDeDomicilio existe
         /// </summary>
-        /// <param name="cesion">Cesion a verificar</param>
-        /// <returns>True de existir, false en caso contrario</returns>
-        public static bool VerificarExistencia(Cesion cesion)
+        /// <param name="cambioDeDomicilio">CambioDeDomicilio a verificar</param>
+        /// <returns>True de existir, false en caso conrario</returns>
+        public static bool VerificarExistencia(CambioDeDomicilio cambioDeDomicilio)
         {
             bool existe = false;
             try
@@ -160,7 +160,7 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
                     logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-                ComandoBase<bool> comando = FabricaComandosCesion.ObtenerComandoVerificarExistenciaCesion(cesion);
+                ComandoBase<bool> comando = FabricaComandosCambioDeDomicilio.ObtenerComandoVerificarExistenciaCambioDeDomicilio(cambioDeDomicilio);
                 comando.Ejecutar();
                 existe = comando.Receptor.ObjetoAlmacenado;
 

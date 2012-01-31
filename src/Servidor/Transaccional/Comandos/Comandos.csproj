@@ -59,6 +59,14 @@
     <Compile Include="Comandos\ComandosBusqueda\ComandoEliminarBusqueda.cs" />
     <Compile Include="Comandos\ComandosBusqueda\ComandoInsertarOModificarBusqueda.cs" />
     <Compile Include="Comandos\ComandosBusqueda\ComandoVerificarExistenciaBusqueda.cs" />
+    <Compile Include="Comandos\ComandosCambioDeDomicilio\ComandoConsultarTodosCambioDeDomicilio.cs" />
+    <Compile Include="Comandos\ComandosCambioDeDomicilio\ComandoEliminarCambioDeDomicilio.cs" />
+    <Compile Include="Comandos\ComandosCambioDeDomicilio\ComandoInsertarOModificarCambioDeDomicilio.cs" />
+    <Compile Include="Comandos\ComandosCambioDeDomicilio\ComandoVerificarExistenciaCambioDeDomicilio.cs" />
+    <Compile Include="Comandos\ComandosCambioPeticionario\ComandoConsultarTodosCambioPeticionario.cs" />
+    <Compile Include="Comandos\ComandosCambioPeticionario\ComandoEliminarCambioPeticionario.cs" />
+    <Compile Include="Comandos\ComandosCambioPeticionario\ComandoInsertarOModificarCambioPeticionario.cs" />
+    <Compile Include="Comandos\ComandosCambioPeticionario\ComandoVerificarExistenciaCambioPeticionario.cs" />
     <Compile Include="Comandos\ComandosCartaOut\ComandoConsultarCartasOutsFiltro.cs" />
     <Compile Include="Comandos\ComandosCartaOut\ComandoConsultarTodosCartaOuts.cs" />
     <Compile Include="Comandos\ComandosCartaOut\ComandoInsertarOModificarCartaOut.cs" />
@@ -246,9 +254,11 @@
     <Compile Include="Comandos\ComandosUsuario\ComandoConsultarTodosUsuarios.cs" />
     <Compile Include="Comandos\ComandosUsuario\ComandoConsultarUsuarioPorID.cs" />
     <Compile Include="Comandos\ComandosUsuario\ComandoInsertarOModificarUsuario.cs" />
+    <Compile Include="Fabrica\FabricaComandosCambioPeticionario.cs" />
+    <Compile Include="Fabrica\FabricaComandosCambioDeDomicilio.cs" />
+    <Compile Include="Fabrica\FabricaComandosCesion.cs" />
     <Compile Include="Fabrica\FabricaComandosLicencia.cs" />
     <Compile Include="Fabrica\FabricaComandosCambioNombre.cs" />
-    <Compile Include="Fabrica\FabricaComandoCesion.cs" />
     <Compile Include="Fabrica\FabricaComandosFusion.cs" />
     <Compile Include="Fabrica\FabricaComandosStatusWeb.cs" />
     <Compile Include="Fabrica\FabricaComandosBusqueda.cs" />

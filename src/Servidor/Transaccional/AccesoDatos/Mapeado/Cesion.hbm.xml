@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+                   assembly="Trascend.Bolet.ObjetosComunes"
+                   namespace="Trascend.Bolet.ObjetosComunes.Entidades">
+
+  <class name="Cesion" table="MYP_MCESIONES">
+    <id name="Id" column="CCESION" type="int"/>
+    <property name="Registro" column="IREGISTRO" type="char"/>
+    <property name="OtrosC1" column="IOTROS1" type="char"/>
+    <property name="OtrosC2" column="IOTROS2" type="char"/>
+    <property name="OtrosC3" column="IOTROS3" type="char"/>
+    <property name="Semejanteno" column="ISEMEJANTENO" type="char"/>
+    <property name="Semejantesi" column="ISEMEJANTESI" type="char"/>
+    <property name="Cesion1" column="ICESION" type="char"/>
+    <property name="Poder" column="IPODER" type="char"/>
+    <property name="Rif" column="IRIF" type="char"/>
+    <property name="Acta" column="IACTA" type="char"/>
+    <property name="Timbre" column="ITIMBRE" type="char"/>
+    <property name="Certificada" column="ICERTIFICADA" type="string"/>
+    <property name="CodigoExpediente" column="CEXPEDIENTE" type="string"/>
+    <property name="Referencia" column="XREFERENCIA" type="string"/>
+    <property name="Anexo" column="XANEXO" type="string"/>
+    <property name="OtrosS1" column="XOTROS1" type="string"/>
+    <property name="OtrosS2" column="XOTROS2" type="string"/>
+    <property name="OtrosS3" column="XOTROS3" type="string"/>
+    <property name="Ubicacion" column="XUBICACION" type="string"/>
+    <property name="Comentario" column="XCOMENTARIO" type="string"/>
+    <property name="Observacion" column="XOBSERVACION" type="string"/>
+    <property name="FechaPublicacion" column="FCESION" type="Date"/>
+    <property name="FechaCesion" column="FPUBLICACION" type="Date"/>
+   
+    
+
+    <!--<bag name="Poderes" table="MYP_APODERADOS">
+      <key column="CAGENTE"/>
+      <many-to-many column="CPODER" class="Poder" not-found="ignore"/>
+    </bag>-->
+  </class>
+</hibernate-mapping>
+
+

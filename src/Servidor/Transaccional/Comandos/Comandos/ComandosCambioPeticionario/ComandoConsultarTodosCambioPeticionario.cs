@@ -1,25 +1,16 @@
-﻿using System;
+﻿using System.Collections.Generic;
 using System.Configuration;
 using NLog;
 using Trascend.Bolet.AccesoDatos.Contrato;
 using Trascend.Bolet.AccesoDatos.Fabrica;
 using Trascend.Bolet.ObjetosComunes.Entidades;
+using System;
 
-namespace Trascend.Bolet.Comandos.Comandos.ComandosCesion
+namespace Trascend.Bolet.Comandos.Comandos.ComandosCambioPeticionario
 {
-    public class ComandoVerificarExistenciaCesion : ComandoBase<bool>
+    public class ComandoConsultarTodosCambioPeticionario : ComandoBase<IList<CambioPeticionario>>
     {
         private static Logger logger = LogManager.GetCurrentClassLogger();
-        private Cesion _cesion;
-
-        /// <summary>
-        /// Constructor predeterminado
-        /// </summary>
-        /// <param name="cesion">Cesion a verificar</param>
-        public ComandoVerificarExistenciaCesion(Cesion cesion)
-        {
-            this._cesion = cesion;
-        }
 
         /// <summary>
         /// Método que ejecuta el comando
@@ -33,8 +24,8 @@ namespace Trascend.Bolet.Comandos.Comandos.ComandosCesion
                     logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-                IDaoCesion dao = FabricaDaoBase.ObtenerFabricaDao().ObtenerDaoCesion();
-                this.Receptor = new Receptor<bool>(dao.VerificarExistencia(this._cesion.Id));
+                IDaoCambioPeticionario dao = FabricaDaoBase.ObtenerFabricaDao().ObtenerDaoCambioPeticionario();
+                this.Receptor = new Receptor<IList<CambioPeticionario>>(dao.ObtenerTodos());
 
                 #region trace
                 if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
