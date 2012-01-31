@@ -1,25 +1,16 @@
-﻿using System;
+﻿using System.Collections.Generic;
 using System.Configuration;
 using NLog;
 using Trascend.Bolet.AccesoDatos.Contrato;
 using Trascend.Bolet.AccesoDatos.Fabrica;
 using Trascend.Bolet.ObjetosComunes.Entidades;
+using System;
 
-namespace Trascend.Bolet.Comandos.Comandos.ComandosFusion
+namespace Trascend.Bolet.Comandos.Comandos.ComandosLicencia
 {
-    public class ComandoInsertarOModificarFusion : ComandoBase<bool>
+    public class ComandoConsultarTodosLicencia : ComandoBase<IList<Licencia>>
     {
         private static Logger logger = LogManager.GetCurrentClassLogger();
-        Fusion _fusion;
-
-        /// <summary>
-        /// Constructor predeterminado
-        /// </summary>
-        /// <param name="usuario">Usuario a insertar o modificar</param>
-        public ComandoInsertarOModificarFusion(Fusion fusion)
-        {
-            this._fusion = fusion;
-        }
 
         /// <summary>
         /// Método que ejecuta el comando
@@ -33,8 +24,8 @@ namespace Trascend.Bolet.Comandos.Comandos.ComandosFusion
                     logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-                IDaoFusion dao = FabricaDaoBase.ObtenerFabricaDao().ObtenerDaoFusion();
-                this.Receptor = new Receptor<bool>(dao.InsertarOModificar(this._fusion));
+                IDaoLicencia dao = FabricaDaoBase.ObtenerFabricaDao().ObtenerDaoLicencia();
+                this.Receptor = new Receptor<IList<Licencia>>(dao.ObtenerTodos());
 
                 #region trace
                 if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))

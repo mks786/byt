@@ -361,5 +361,17 @@ namespace Trascend.Bolet.AccesoDatos.Fabrica
         /// <returns>IDaoStatusWeb</returns>
         public abstract IDaoCesion ObtenerDaoCesion();
 
+        /// <summary>
+        /// Método que devuelve el DaoCambioNombre del manejador que se esté utilizando
+        /// </summary>
+        /// <returns>IDaoCambioNombre</returns>
+        public abstract IDaoCambioNombre ObtenerDaoCambioNombre();
+
+        /// <summary>
+        /// Método que devuelve el DaoLicencia del manejador que se esté utilizando
+        /// </summary>
+        /// <returns>IDaoLicencia</returns>
+        public abstract IDaoLicencia ObtenerDaoLicencia();
+
     }
 }

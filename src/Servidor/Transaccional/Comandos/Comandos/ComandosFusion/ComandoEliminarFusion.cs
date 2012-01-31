@@ -13,15 +13,15 @@ namespace Trascend.Bolet.Comandos.Comandos.ComandosFusion
     public class ComandoEliminarFusion : ComandoBase<bool>
     {
         private static Logger logger = LogManager.GetCurrentClassLogger();
-        private Fusion _agente;
+        private Fusion _fusion;
 
         /// <summary>
         /// Constructor predeterminado
         /// </summary>
-        /// <param name="agente">Fusion a eliminar</param>
-        public ComandoEliminarFusion(Fusion agente)
+        /// <param name="fusion">Fusion a eliminar</param>
+        public ComandoEliminarFusion(Fusion fusion)
         {
-            this._agente = agente;
+            this._fusion = fusion;
         }
 
         /// <summary>
@@ -37,7 +37,7 @@ namespace Trascend.Bolet.Comandos.Comandos.ComandosFusion
                 #endregion
 
                 IDaoFusion dao = FabricaDaoBase.ObtenerFabricaDao().ObtenerDaoFusion();
-                 this.Receptor = new Receptor<bool>(dao.Eliminar(this._agente));
+                 this.Receptor = new Receptor<bool>(dao.Eliminar(this._fusion));
 
                 #region trace
                 if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))

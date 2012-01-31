@@ -534,5 +534,23 @@ namespace Trascend.Bolet.AccesoDatos.Fabrica
         {
             return new DaoFusionNHibernate();
         }
+
+        /// <summary>
+        /// Método que devuelve el DaoCambioNombre
+        /// </summary>
+        /// <returns>IDaoCambioNombre</returns>
+        public override IDaoCambioNombre ObtenerDaoCambioNombre()
+        {
+            return new DaoCambioNombreNHibernate();
+        }
+
+        /// <summary>
+        /// Método que devuelve el DaoLicencia
+        /// </summary>
+        /// <returns>IDaoLicencia</returns>
+        public override IDaoLicencia ObtenerDaoLicencia()
+        {
+            return new DaoLicenciaNHibernate();
+        }
     }
 }

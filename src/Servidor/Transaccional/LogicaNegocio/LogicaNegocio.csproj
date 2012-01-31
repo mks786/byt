@@ -96,6 +96,8 @@
     <Compile Include="Controladores\ControladorStatusWeb.cs" />
     <Compile Include="Controladores\ControladorCesion.cs" />
     <Compile Include="Controladores\ControladorFusion.cs" />
+    <Compile Include="Controladores\ControladorCambioNombre.cs" />
+    <Compile Include="Controladores\ControladorLicencia.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

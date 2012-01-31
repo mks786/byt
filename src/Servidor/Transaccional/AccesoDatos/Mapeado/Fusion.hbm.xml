@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+                   assembly="Trascend.Bolet.ObjetosComunes"
+                   namespace="Trascend.Bolet.ObjetosComunes.Entidades">
+
+  <class name="Fusion" table="MYP_MFUSION">
+    
+    <id name="Id" column="CFUSION" type="int"/>
+    
+    <property name="CodigoExpediente" column="CEXPEDIENTE" type="string"/>
+    <property name="Ubicacion" column="XUBICACION" type="string"/>
+    <property name="Anexo" column="XANEXO" type="string"/>
+    <property name="Comentario" column="XCOMENTARIO" type="string"/>
+    <property name="Referencia" column="XREFERENCIA" type="string"/>
+    <property name="Observacion" column="XOBSERVACION" type="string"/>
+    <property name="Acta" column="IACTA" type="char"/>
+    <property name="Certificada" column="ICERTIFICADA" type="char"/>
+
+    <!--<bag name="Poderes" table="MYP_APODERADOS">
+      <key column="CAGENTE"/>
+      <many-to-many column="CPODER" class="Poder" not-found="ignore"/>
+    </bag>-->
+  </class>
+</hibernate-mapping>
+
+

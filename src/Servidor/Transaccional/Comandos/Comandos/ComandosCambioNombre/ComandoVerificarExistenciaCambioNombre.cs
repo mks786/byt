@@ -5,20 +5,20 @@ using Trascend.Bolet.AccesoDatos.Contrato;
 using Trascend.Bolet.AccesoDatos.Fabrica;
 using Trascend.Bolet.ObjetosComunes.Entidades;
 
-namespace Trascend.Bolet.Comandos.Comandos.ComandosFusion
+namespace Trascend.Bolet.Comandos.Comandos.ComandosCambioNombre
 {
-    public class ComandoInsertarOModificarFusion : ComandoBase<bool>
+    public class ComandoVerificarExistenciaCambioNombre : ComandoBase<bool>
     {
         private static Logger logger = LogManager.GetCurrentClassLogger();
-        Fusion _fusion;
+        private CambioNombre _cambioNombre;
 
         /// <summary>
         /// Constructor predeterminado
         /// </summary>
-        /// <param name="usuario">Usuario a insertar o modificar</param>
-        public ComandoInsertarOModificarFusion(Fusion fusion)
+        /// <param name="cambioNombre">CambioNombre a verificar</param>
+        public ComandoVerificarExistenciaCambioNombre(CambioNombre cambioNombre)
         {
-            this._fusion = fusion;
+            this._cambioNombre = cambioNombre;
         }
 
         /// <summary>
@@ -33,8 +33,8 @@ namespace Trascend.Bolet.Comandos.Comandos.ComandosFusion
                     logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-                IDaoFusion dao = FabricaDaoBase.ObtenerFabricaDao().ObtenerDaoFusion();
-                this.Receptor = new Receptor<bool>(dao.InsertarOModificar(this._fusion));
+                IDaoCambioNombre dao = FabricaDaoBase.ObtenerFabricaDao().ObtenerDaoCambioNombre();
+                this.Receptor = new Receptor<bool>(dao.VerificarExistencia(this._cambioNombre.Id));
 
                 #region trace
                 if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))

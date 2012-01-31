@@ -9,19 +9,19 @@ namespace Trascend.Bolet.Comandos.Fabrica
     public static class FabricaComandosFusion
     {
         /// <summary>
-        /// Método que devuelve el Comando para agregar un Agente
+        /// Método que devuelve el Comando para agregar un Fusion
         /// </summary>
-        /// <param name="Agente">Agente a agregar en la base de datos</param>
-        /// <returns>El Comando que permite agregar el Agente en la base de datos</returns>
+        /// <param name="Fusion">Fusion a agregar en la base de datos</param>
+        /// <returns>El Comando que permite agregar el Fusion en la base de datos</returns>
         public static ComandoBase<bool> ObtenerComandoInsertarOModificar(Fusion fusion)
         {
             return new ComandoInsertarOModificarFusion(fusion);
         }
 
         /// <summary>
-        /// Método que devuelve el Comando para consultar todos los Agentes
+        /// Método que devuelve el Comando para consultar todos los Fusions
         /// </summary>
-        /// <returns>El Comando para consultar todos los Agentes</returns>
+        /// <returns>El Comando para consultar todos los Fusions</returns>
         public static ComandoBase<IList<Fusion>> ObtenerComandoConsultarTodos()
         {
             return new ComandoConsultarTodosFusiones();
@@ -30,7 +30,7 @@ namespace Trascend.Bolet.Comandos.Fabrica
         /// <summary>
         /// Método que devuelve el Comando para elimnar un agente
         /// </summary>
-        /// <param name="agente">Agente que se va a eliminar</param>
+        /// <param name="agente">Fusion que se va a eliminar</param>
         /// <returns>Comando para eliminar</returns>
         public static ComandoBase<bool> ObtenerComandoEliminarFusion(Fusion fusion)
         {
@@ -38,7 +38,7 @@ namespace Trascend.Bolet.Comandos.Fabrica
         }
 
         /// <summary>
-        /// Método que devuelve el Comando para consultar un Agente por su ID
+        /// Método que devuelve el Comando para consultar un Fusion por su ID
         /// </summary>
         /// <returns></returns>
         public static ComandoBase<Fusion> ObtenerComandoConsultarPorID(Fusion fusion)
@@ -49,7 +49,7 @@ namespace Trascend.Bolet.Comandos.Fabrica
         /// <summary>
         /// Método que devuelve el Comando verificar existencia
         /// </summary>
-        /// <param name="fusion">Agente a verificar</param>
+        /// <param name="fusion">Fusion a verificar</param>
         /// <returns>True: si se realizo el comando con exito; False: en caso contrario</returns>
         public static ComandoBase<bool> ObtenerComandoVerificarExistenciaFusion(Fusion fusion)
         {
