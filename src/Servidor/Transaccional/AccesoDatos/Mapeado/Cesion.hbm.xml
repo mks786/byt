@@ -26,8 +26,8 @@
     <property name="Ubicacion" column="XUBICACION" type="string"/>
     <property name="Comentario" column="XCOMENTARIO" type="string"/>
     <property name="Observacion" column="XOBSERVACION" type="string"/>
-    <property name="FechaPublicacion" column="FCESION" type="Date"/>
-    <property name="FechaCesion" column="FPUBLICACION" type="Date"/>
+    <property name="FechaPublicacion" column="FPUBLICACION" type="DateTime"/>
+    <property name="FechaCesion" column="FCESION" type="DateTime"/>
 
     <many-to-one name="Marca" class="Marca">
       <column name="CMARCA"/>
