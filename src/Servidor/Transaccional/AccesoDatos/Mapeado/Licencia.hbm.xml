@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+                   assembly="Trascend.Bolet.ObjetosComunes"
+                   namespace="Trascend.Bolet.ObjetosComunes.Entidades">
+
+  <class name="Licencia" table="MYP_LICENCIAS">
+    <id name="Id" column="CLICENCIA" type="int"/>
+    <property name="Registro" column="IREGISTRO" type="char"/>
+    <property name="OtrosC1" column="IOTROS1" type="char"/>
+    <property name="OtrosC2" column="IOTROS2" type="char"/>
+    <property name="OtrosC3" column="IOTROS3" type="char"/>
+    <property name="Solvencia" column="ISOLVENCIA" type="char"/>
+    <property name="PoderC" column="IPODER" type="char"/>
+    <property name="Acta" column="IACTA" type="char"/>
+    <property name="Timbre" column="ITIMBRE" type="char"/>
+    <property name="Contrato" column="ICONTRATO" type="char"/>
+    <property name="Certificada" column="ICERTIFICADA" type="string"/>
+    <property name="CodigoExpediente" column="CEXPEDIENTE" type="string"/>
+    <property name="Comentario" column="XCOMENTARIO" type="string"/>
+    <property name="Representante" column="XREPRESENTANTE" type="string"/>
+    <property name="Observacion" column="XOBSERVACION" type="string"/>
+    <property name="Anexo" column="XANEXO" type="string"/>
+    <property name="OtrosS1" column="XOTROS1" type="string"/>
+    <property name="OtrosS2" column="XOTROS2" type="string"/>
+    <property name="OtrosS3" column="XOTROS3" type="string"/>
+    <property name="Ubicacion" column="XUBICACION" type="string"/>
+    <property name="FechaPublicacion" column="FCESION" type="Date"/>
+    <property name="Fecha" column="FPUBLICACION" type="Date"/>
+
+    <many-to-one name="Marca" class="Marca">
+      <column name="CMARCA"/>
+    </many-to-one>
+
+    <many-to-one name="AgenteLicenciatario" class="Agente">
+      <column name="CAGENTE"/>
+    </many-to-one>
+
+    <many-to-one name="AgenteLicenciante" class="Agente">
+      <column name="CAGENTE"/>
+    </many-to-one>
+
+    <many-to-one name="Asociado" class="Asociado">
+      <column name="CASOCIADO"/>
+    </many-to-one>
+
+    <many-to-one name="Boletin" class="Boletin">
+      <column name="CBOLETIN"/>
+    </many-to-one>
+
+    <many-to-one name="InteresadoLicenciatario" class="Interesado">
+      <column name="CINTERESADO"/>
+    </many-to-one>
+
+    <many-to-one name="InteresadoLicenciante" class="Interesado">
+      <column name="CINTERESADO"/>
+    </many-to-one>
+
+    <many-to-one name="PoderLicenciatario" class="Poder">
+      <column name="CPODER"/>
+    </many-to-one>
+
+    <many-to-one name="PoderLicenciante" class="Poder">
+      <column name="CPODER"/>
+    </many-to-one>
+    
+  </class>
+</hibernate-mapping>
+
+

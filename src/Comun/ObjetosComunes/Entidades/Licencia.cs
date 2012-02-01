@@ -17,7 +17,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         private char _solvencia;
         private char _timbre;
         private char _poderC;
-        private char _certificada;
+        private string _certificada;
         private char _acta;
         private char _contrato;
         private string _codigoExpediente;
@@ -158,7 +158,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         /// <summary>
         /// Propiedad que asigna u obtiene el campo Certificada del cambio de nombre
         /// </summary>
-        public virtual char Certificada
+        public virtual string Certificada
         {
             get { return _certificada; }
             set { _certificada = value; }

@@ -3,7 +3,7 @@
                    assembly="Trascend.Bolet.ObjetosComunes"
                    namespace="Trascend.Bolet.ObjetosComunes.Entidades">
 
-  <class name="Fusion" table="MYP_MFUSION">
+  <class name="Fusion" table="MYP_MFUSIONES">
     
     <id name="Id" column="CFUSION" type="int"/>
     
@@ -14,12 +14,38 @@
     <property name="Referencia" column="XREFERENCIA" type="string"/>
     <property name="Observacion" column="XOBSERVACION" type="string"/>
     <property name="Acta" column="IACTA" type="char"/>
-    <property name="Certificada" column="ICERTIFICADA" type="char"/>
+    <property name="Certificada" column="ICERTIFICADA" type="string"/>
+    <property name="FechaPublicacion" column="FPUBLICACION" type="DateTime"/>
+    <property name="Fecha" column="FFUSION" type="DateTime"/>
 
-    <!--<bag name="Poderes" table="MYP_APODERADOS">
-      <key column="CAGENTE"/>
-      <many-to-many column="CPODER" class="Poder" not-found="ignore"/>
-    </bag>-->
+    <many-to-one name="Marca" class="Marca">
+      <column name="CMARCA"/>
+    </many-to-one>
+
+    <many-to-one name="Agente" class="Agente">
+      <column name="CAGENTE"/>
+    </many-to-one>
+
+    <many-to-one name="Asociado" class="Asociado">
+      <column name="CASOCIADO"/>
+    </many-to-one>
+
+    <many-to-one name="Boletin" class="Boletin">
+      <column name="CBOLETIN"/>
+    </many-to-one>
+
+    <many-to-one name="InteresadoEntre" class="Interesado">
+      <column name="CINTERESADO"/>
+    </many-to-one>
+
+    <many-to-one name="InteresadoSobreviviente" class="Interesado">
+      <column name="CINTERESADO"/>
+    </many-to-one>
+
+    <many-to-one name="Poder" class="Poder">
+      <column name="CPODER"/>
+    </many-to-one>
+
   </class>
 </hibernate-mapping>
 

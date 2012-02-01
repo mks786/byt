@@ -15,14 +15,14 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         private string _comentario;
         private string _referencia;
         private string _observacion;
-        private char _certificada;
+        private string _certificada;
         private char _acta;
         private DateTime? _fechaPublicacion;
+        private DateTime? _fecha;
         private Boletin _boletin;
         private Poder _poder;
         private Agente _agente;
         private Asociado _asociado;
-        private DateTime? _fecha;
         private Marca _marca;
         private Interesado _interesadoEntre;
         private Interesado _interesadoSobreviviente;
@@ -115,7 +115,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         /// <summary>
         /// Propiedad que asigna u obtiene el Certificada de la Fusion
         /// </summary>
-        public virtual char Certificada
+        public virtual string Certificada
         {
             get { return _certificada; }
             set { _certificada = value; }
