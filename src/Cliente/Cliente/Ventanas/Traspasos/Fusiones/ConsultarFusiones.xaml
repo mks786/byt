@@ -89,20 +89,20 @@
                                 <TextBlock Text="{x:Static recurso:Etiquetas.lblMarca}"/>
                             </Label>
                             <custom:ByTTextBox Name="_txtMarcaNombre" Text="" Width="150" MaxLength="15" Grid.Row="0" Grid.Column="1" Height="25" HorizontalAlignment="Left"
-                                 GotFocus="_btnConsultarAsociadoFocus" GotKeyboardFocus="_btnConsultarAsociadoFocus" SoloNumero="True" Filtro="True"/>
-                            <Label Visibility="Collapsed" VerticalAlignment="Center" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Right">
+                                 GotFocus="_txtMarcaNombre_GotFocus" GotKeyboardFocus="_txtMarcaNombre_GotFocus" SoloNumero="True" Filtro="True" Margin="-40,0,0,0" />
+                            <Label Name="_lblCodigo" Visibility="Collapsed" VerticalAlignment="Center" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Right">
                                 <TextBlock Text="{x:Static recurso:Etiquetas.lblId}"/>
                             </Label>
-                            <custom:ByTTextBox Visibility="Collapsed" Name="_txtIdMarca" Text="" Width="150" MaxLength="15" Grid.Row="1" Grid.Column="1" Height="25" HorizontalAlignment="Left"
-                                 GotFocus="_btnConsultarAsociadoFocus" GotKeyboardFocus="_btnConsultarAsociadoFocus" SoloNumero="True" Filtro="True"/>
+                            <custom:ByTTextBox Visibility="Collapsed" Name="_txtIdMarcaFiltrar" Text="" Width="150" MaxLength="15" Grid.Row="1" Grid.Column="1" Height="25" HorizontalAlignment="Left"
+                                 GotFocus="_btnConsultarMarcaFocus" GotKeyboardFocus="_btnConsultarMarcaFocus" SoloNumero="True" Filtro="True"/>
 
-                            <Label Visibility="Collapsed" VerticalAlignment="Center" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Right">
+                            <Label Name="_lblNombre" Visibility="Collapsed" VerticalAlignment="Center" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Right">
                                 <TextBlock Text="{x:Static recurso:Etiquetas.lblNombre}"/>
                             </Label>
-                            <TextBox Visibility="Collapsed" Name="_txtNombreMarca" Text="" Width="150" MaxLength="255" Grid.Row="2" Grid.Column="1" Height="25" HorizontalAlignment="Left"
-                                 GotFocus="_btnConsultarAsociadoFocus" GotKeyboardFocus="_btnConsultarAsociadoFocus"/>
+                            <TextBox Visibility="Collapsed" Name="_txtNombreMarcaFiltrar" Text="" Width="150" MaxLength="255" Grid.Row="2" Grid.Column="1" Height="25" HorizontalAlignment="Left"
+                                 GotFocus="_btnConsultarMarcaFocus" GotKeyboardFocus="_btnConsultarMarcaFocus"/>
 
-                            <Button Visibility="Collapsed" Name="_btnConsultarAsociado" Width="100" IsDefault="False" Grid.Row="2" Grid.Column="1" Height="25" HorizontalAlignment="Right" Click="_btnConsultarAsociado_Click">
+                            <Button Visibility="Collapsed" Name="_btnConsultarMarca" Width="100" IsDefault="False" Grid.Row="2" Grid.Column="1" Height="25" HorizontalAlignment="Right" Click="_btnConsultarMarca_Click">
                                 <TextBlock Text="{x:Static recurso:Etiquetas.btnConsultar}"/>
                             </Button>
                             <!--Path=Id, Converter={StaticResource convertir}-->
@@ -123,8 +123,8 @@
                                                 </DataTemplate>
                                             </GridViewColumn.CellTemplate>
                                         </GridViewColumn>
-                                        <GridViewColumn DisplayMemberBinding="{Binding Path=Nombre}" Width="250">
-                                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="Nombre" Content="{x:Static recurso:Etiquetas.lsvNombre}"/>
+                                        <GridViewColumn DisplayMemberBinding="{Binding Path=Descripcion}" Width="250">
+                                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="Descripcion" Content="{x:Static recurso:Etiquetas.lsvNombre}"/>
                                         </GridViewColumn>
                                     </GridView>
                                 </ListView.View>

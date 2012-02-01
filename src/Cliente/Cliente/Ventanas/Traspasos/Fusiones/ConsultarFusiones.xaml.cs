@@ -17,7 +17,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Fusiones
         private PresentadorConsultarFusiones _presentador;
         private bool _cargada;
 
-        #region IConsultarMarcas
+        #region IConsultarFusiones
 
         public object Resultados
         {
@@ -30,6 +30,10 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Fusiones
             get { return this._txtId.Text; }
         }
 
+        public string NombreMarca
+        {
+            set { this._txtMarcaNombre.Text = value; }
+        }
         public object FusionSeleccionada
         {
             get { return this._lstResultados.SelectedItem; }
@@ -37,12 +41,12 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Fusiones
 
         public string IdMarcaFiltrar
         {
-            get { return this._txtIdMarca.Text; }
+            get { return this._txtIdMarcaFiltrar.Text; }
         }
 
         public string NombreMarcaFiltrar
         {
-            get { return this._txtNombreMarca.Text; }
+            get { return this._txtNombreMarcaFiltrar.Text; }
         }
 
         public string Fecha
@@ -52,26 +56,14 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Fusiones
 
         public object Marcas
         {
-            get
-            {
-                return this._lstMarcas.DataContext;
-            }
-            set
-            {
-                this._lstMarcas.DataContext = value;
-            }
+            get { return this._lstMarcas.DataContext; }
+            set { this._lstMarcas.DataContext = value; }
         }
 
         public object Marca
         {
-            get
-            {
-                return this._lstMarcas.SelectedItem;
-            }
-            set
-            {
-                this._lstMarcas.SelectedItem = value;
-            }
+            get { return this._lstMarcas.SelectedItem; }
+            set { this._lstMarcas.SelectedItem = value; }
         }
         public bool EstaCargada
         {
@@ -142,7 +134,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Fusiones
 
         private void _lstResultados_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            this._presentador.IrConsultarMarca();
+            this._presentador.IrConsultarFusion();
         }
 
         private void _Ordenar_Click(object sender, RoutedEventArgs e)
@@ -161,34 +153,22 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Fusiones
                 this._presentador.ActualizarTitulo();
         }
 
-        private void _btnConsultarAsociado_Click(object sender, RoutedEventArgs e)
+        private void _btnConsultarMarca_Click(object sender, RoutedEventArgs e)
         {
-            this._presentador.BuscarAsociado();
+            this._presentador.BuscarMarca();
         }
 
-        private void _btnConsultarInteresado_Click(object sender, RoutedEventArgs e)
-        {
-            this._presentador.BuscarInteresado();
-        }
-
-        private void _btnConsultarAsociadoFocus(object sender, RoutedEventArgs e)
+        private void _btnConsultarMarcaFocus(object sender, RoutedEventArgs e)
         {
             this._btnConsultar.IsDefault = false;
-            this._btnConsultarAsociado.IsDefault = true;
+            this._btnConsultarMarca.IsDefault = true;
             //this._btnConsultarInteresado.IsDefault = false;
-        }
-
-        private void _btnConsultarInteresadoFocus(object sender, RoutedEventArgs e)
-        {
-            this._btnConsultar.IsDefault = false;
-            this._btnConsultarAsociado.IsDefault = false;
-            //this._btnConsultarInteresado.IsDefault = true;
         }
 
         private void _btnConsultarFocus(object sender, RoutedEventArgs e)
         {
             this._btnConsultar.IsDefault = true;
-            this._btnConsultarAsociado.IsDefault = false;
+            this._btnConsultarMarca.IsDefault = false;
             //this._btnConsultarInteresado.IsDefault = false;
         }
 
@@ -236,6 +216,16 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Fusiones
 
         }
 
+        private void _txtMarcaNombre_GotFocus(object sender, RoutedEventArgs e)
+        {
+            this._txtMarcaNombre.Visibility = Visibility.Collapsed;
 
+            this._txtIdMarcaFiltrar.Visibility = Visibility.Visible;
+            this._txtNombreMarcaFiltrar.Visibility = Visibility.Visible;
+            this._btnConsultarMarca.Visibility = Visibility.Visible;
+            this._lstMarcas.Visibility = Visibility.Visible;
+            this._lblCodigo.Visibility = Visibility.Visible;
+            this._lblNombre.Visibility = Visibility.Visible;
+        }
     }
 }
