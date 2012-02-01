@@ -33,6 +33,7 @@ using Trascend.Bolet.Cliente.Ventanas.Resumenes;
 using Trascend.Bolet.Cliente.Ventanas.Remitentes;
 using Trascend.Bolet.Cliente.Ventanas.EntradasAlternas;
 using Trascend.Bolet.Cliente.Ventanas.Marcas;
+using Trascend.Bolet.Cliente.Ventanas.Traspasos.Fusiones;
 
 namespace Trascend.Bolet.Cliente.Presentadores.Principales
 {
@@ -360,6 +361,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
         /// </summary>
         public void Fusiones()
         {
+            this._ventana.Contenedor.Navigate(new ConsultarFusiones());
         }
 
         /// <summary>

@@ -180,6 +180,7 @@
     <Compile Include="Contratos\Objetos\IConsultarObjetos.cs" />
     <Compile Include="Contratos\Objetos\IGestionarObjetosXRoles.cs" />
     <Compile Include="Contratos\Principales\IVentanaPrincipal.cs" />
+    <Compile Include="Contratos\Traspasos\Fusiones\IConsultarFusiones.cs" />
     <Compile Include="Contratos\Usuarios\IAgregarUsuario.cs" />
     <Compile Include="Contratos\Usuarios\IConsultarUsuario.cs" />
     <Compile Include="Contratos\Usuarios\IConsultarUsuarios.cs" />
@@ -283,6 +284,7 @@
     <Compile Include="Presentadores\Objetos\PresentadorGestionarObjetosXRoles.cs" />
     <Compile Include="Presentadores\PresentadorBase.cs" />
     <Compile Include="Presentadores\Principales\PresentadorVentanaPrincipal.cs" />
+    <Compile Include="Presentadores\Traspasos\Fusiones\PresentadorConsultarFusiones.cs" />
     <Compile Include="Presentadores\Usuarios\PresentadorAgregarUsuario.cs" />
     <Compile Include="Presentadores\Usuarios\PresentadorConsultarUsuarios.cs" />
     <Compile Include="Presentadores\Usuarios\PresentadorConsultarUsuario.cs" />
@@ -1102,6 +1104,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Contratos\Traspasos\Cesiones\" />
+    <Folder Include="Presentadores\Traspasos\Cesiones\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -2,19 +2,19 @@
 using System.Windows.Controls;
 using System.Windows.Input;
 using Trascend.Bolet.Cliente.Ayuda;
-using Trascend.Bolet.Cliente.Contratos.Marcas;
-using Trascend.Bolet.Cliente.Presentadores.Marcas;
+using Trascend.Bolet.Cliente.Contratos.Traspasos.Fusiones;
+using Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones;
 
 namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Fusiones
 {
     /// <summary>
     /// Interaction logic for ConsultarTodosPoder.xaml
     /// </summary>
-    public partial class ConsultarFusiones : Page, IConsultarMarcas
+    public partial class ConsultarFusiones : Page, IConsultarFusiones
     {
         private GridViewColumnHeader _CurSortCol = null;
         private SortAdorner _CurAdorner = null;
-        private PresentadorConsultarMarcas _presentador;
+        private PresentadorConsultarFusiones _presentador;
         private bool _cargada;
 
         #region IConsultarMarcas
@@ -30,29 +30,19 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Fusiones
             get { return this._txtId.Text; }
         }
 
-        public object MarcaSeleccionada
+        public object FusionSeleccionada
         {
             get { return this._lstResultados.SelectedItem; }
         }
 
-        public string IdAsociadoFiltrar
+        public string IdMarcaFiltrar
         {
-            get { return this._txtIdAsociado.Text; }
+            get { return this._txtIdMarca.Text; }
         }
 
-        public string NombreAsociadoFiltrar
+        public string NombreMarcaFiltrar
         {
-            get { return this._txtNombreAsociado.Text; }
-        }
-
-        public string FichasFiltrar
-        {
-            get { return this._txtFichas.Text; }
-        }
-
-        public string DescripcionFiltrar
-        {
-            get { return this._txtDescripcion.Text; }
+            get { return this._txtNombreMarca.Text; }
         }
 
         public string Fecha
@@ -60,6 +50,29 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Fusiones
             get { return this._dpkFecha.SelectedDate.ToString(); }
         }
 
+        public object Marcas
+        {
+            get
+            {
+                return this._lstMarcas.DataContext;
+            }
+            set
+            {
+                this._lstMarcas.DataContext = value;
+            }
+        }
+
+        public object Marca
+        {
+            get
+            {
+                return this._lstMarcas.SelectedItem;
+            }
+            set
+            {
+                this._lstMarcas.SelectedItem = value;
+            }
+        }
         public bool EstaCargada
         {
             get { return this._cargada; }
@@ -89,39 +102,6 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Fusiones
             set { this._lstResultados = value; }
         }
 
-        public object Asociados
-        {
-            get { return this._lstAsociados.DataContext; }
-            set { this._lstAsociados.DataContext = value; }
-        }
-
-        public object Asociado
-        {
-            get { return this._lstAsociados.SelectedItem; }
-            set { this._lstAsociados.SelectedItem = value; }
-        }
-
-        public string IdInteresadoFiltrar
-        {
-            get { return this._txtIdInteresado.Text; }
-        }
-
-        public string NombreInteresadoFiltrar
-        {
-            get { return this._txtNombreInteresado.Text; }
-        }
-
-        public object Interesados
-        {
-            get { return this._lstInteresados.DataContext; }
-            set { this._lstInteresados.DataContext = value; }
-        }
-
-        public object Interesado
-        {
-            get { return this._lstInteresados.SelectedItem; }
-            set { this._lstInteresados.SelectedItem = value; }
-        }
         public void Mensaje(string mensaje, int opcion)
         {
             if (opcion == 0)
@@ -144,7 +124,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Fusiones
         {
             InitializeComponent();
             this._cargada = false;
-            this._presentador = new PresentadorConsultarMarcas(this);
+            this._presentador = new PresentadorConsultarFusiones(this);
         }
 
         private void _btnCancelar_Click(object sender, RoutedEventArgs e)
@@ -195,21 +175,21 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Fusiones
         {
             this._btnConsultar.IsDefault = false;
             this._btnConsultarAsociado.IsDefault = true;
-            this._btnConsultarInteresado.IsDefault = false;
+            //this._btnConsultarInteresado.IsDefault = false;
         }
 
         private void _btnConsultarInteresadoFocus(object sender, RoutedEventArgs e)
         {
             this._btnConsultar.IsDefault = false;
             this._btnConsultarAsociado.IsDefault = false;
-            this._btnConsultarInteresado.IsDefault = true;
+            //this._btnConsultarInteresado.IsDefault = true;
         }
 
         private void _btnConsultarFocus(object sender, RoutedEventArgs e)
         {
             this._btnConsultar.IsDefault = true;
             this._btnConsultarAsociado.IsDefault = false;
-            this._btnConsultarInteresado.IsDefault = false;
+            //this._btnConsultarInteresado.IsDefault = false;
         }
 
         /// <summary>
@@ -224,17 +204,17 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Fusiones
                 this._txtId.Focus();
             }
 
-            if (!this._txtDescripcion.Text.Equals(""))
-            {
-                todosCamposVacios = false;
-                this._txtDescripcion.Focus();
-            }
+            //if (!this._txtDescripcion.Text.Equals(""))
+            //{
+            //    todosCamposVacios = false;
+            //    this._txtDescripcion.Focus();
+            //}
 
-            if (!this._txtFichas.Text.Equals(""))
-            {
-                todosCamposVacios = false;
-                this._txtFichas.Focus();
-            }
+            //if (!this._txtFichas.Text.Equals(""))
+            //{
+            //    todosCamposVacios = false;
+            //    this._txtFichas.Focus();
+            //}
 
             if (!this._dpkFecha.Text.Equals(""))
             {
@@ -255,5 +235,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Fusiones
         {
 
         }
+
+
     }
 }
