@@ -28,13 +28,11 @@
     <property name="Observacion" column="XOBSERVACION" type="string"/>
     <property name="FechaPublicacion" column="FCESION" type="Date"/>
     <property name="FechaCesion" column="FPUBLICACION" type="Date"/>
-   
-    
 
-    <!--<bag name="Poderes" table="MYP_APODERADOS">
-      <key column="CAGENTE"/>
-      <many-to-many column="CPODER" class="Poder" not-found="ignore"/>
-    </bag>-->
+    <many-to-one name="Marca" class="Marca">
+      <column name="CMARCA"/>
+    </many-to-one>
+    
   </class>
 </hibernate-mapping>
 

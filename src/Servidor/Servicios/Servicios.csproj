@@ -55,6 +55,8 @@
     <Compile Include="Implementacion\AnaquaServicios.cs" />
     <Compile Include="Implementacion\CesionServicios.cs" />
     <Compile Include="Implementacion\CambioNombreServicios.cs" />
+    <Compile Include="Implementacion\CambioDeDomicilioServicios.cs" />
+    <Compile Include="Implementacion\CambioPeticionarioServicios.cs" />
     <Compile Include="Implementacion\LicenciaServicios.cs" />
     <Compile Include="Implementacion\FusionServicios.cs" />
     <Compile Include="Implementacion\StatusWebServicios.cs" />
