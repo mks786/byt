@@ -73,6 +73,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
 
                 this._ventana.Fusion = fusion;
 
+
                 this._marcaServicios = (IMarcaServicios)Activator.GetObject(typeof(IMarcaServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["MarcaServicios"]);
                 this._asociadoServicios = (IAsociadoServicios)Activator.GetObject(typeof(IAsociadoServicios),
@@ -141,6 +142,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
                 this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleConsultarMarca, "");
 
                 Fusion fusion = (Fusion)this._ventana.Fusion;
+                this._ventana.Marca = this._marcaServicios.ConsultarMarcaConTodo(((Fusion)fusion).Marca);
+                this._ventana.NombreMarca = ((Marca)this._ventana.Marca).Descripcion;
                     
                 Anaqua anaqua = new Anaqua();
                 anaqua.IdMarca = fusion.Id;

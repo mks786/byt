@@ -2005,6 +2005,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to # Registro:.
+        /// </summary>
+        public static string lblNumRegistro {
+            get {
+                return ResourceManager.GetString("lblNumRegistro", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Nº Sapi:.
         /// </summary>
         public static string lblNumSapi {

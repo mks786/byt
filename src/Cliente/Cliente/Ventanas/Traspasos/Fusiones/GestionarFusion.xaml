@@ -53,15 +53,17 @@
                         </DatePicker.SelectedDate>
                     </DatePicker>
                 </WrapPanel>
-                    <WrapPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="8"  Orientation="Horizontal" Margin="0,5,0,0">
-                        
+                <Separator Margin="5,5,0,0"/>
+                <WrapPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="8"  Orientation="Horizontal" 
+                           Margin="0,5,0,0">
+
                     <Label Grid.Column="0">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblMarca}"/>
                     </Label>
                     <TextBox Name="_txtNombreMarca" MaxLength="40"  Text="" IsEnabled="False" 
                              VerticalContentAlignment="Center" Margin="0,0,0,0"
                              Grid.ColumnSpan="1" MinWidth="595" />
-                    <Grid Width="640">
+                    <Grid Width="640" DataContext="{Binding}" Name="_gridDatosMarca">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="*"/>
@@ -78,20 +80,22 @@
                             <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
 
-
-                        <Label Name="_lblIdAsociadoSolicitud" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Center" Visibility="Collapsed">
+                        <!--Datos de carga de Marca-->
+                        <Label Name="_lblIdMarca" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Center" Visibility="Collapsed">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblId}"/>
                         </Label>
+
                         <custom:ByTTextBox IsEnabled="False"  Grid.Column="1" Grid.Row="0" Name="_txtIdMarcaFiltrar" VerticalAlignment="Center" 
                          MaxLength="255" Grid.ColumnSpan="2" Visibility="Collapsed"  ></custom:ByTTextBox>
 
-                        <Label Name="_lblNombreAsociadoSolicitud" Grid.Column="3" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Center" Visibility="Collapsed">
+                        <Label Name="_lblNombreMarca" Grid.Column="3" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Center" Visibility="Collapsed">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblNombre}"/>
                         </Label>
                         <custom:ByTTextBox   IsEnabled="False"  Grid.Column="4" Grid.Row="0" Name="_txtNombreMarcaFiltrar" VerticalAlignment="Center"  Grid.ColumnSpan="2"
                          MaxLength="255" Visibility="Collapsed"></custom:ByTTextBox>
 
-                        <Button IsEnabled="False" Name="_btnConsultarMarca" Width="65" IsDefault="False" Grid.Row="0" Grid.Column="7" Height="25" HorizontalAlignment="Right" Click="_btnConsultarMarca_Click" Visibility="Collapsed">
+                        <Button IsEnabled="False" Name="_btnConsultarMarca" Width="65" IsDefault="False" Grid.Row="0" Grid.Column="7" Height="25" 
+                                HorizontalAlignment="Right" Click="_btnConsultarMarca_Click" Visibility="Collapsed">
                             <TextBlock Text="{x:Static recurso:Etiquetas.btnConsultar}"/>
                         </Button>
                         <ListView Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="7" Grid.RowSpan="2" Name="_lstMarcas" ItemsSource="{Binding}" 
@@ -117,65 +121,67 @@
                                 </GridView>
                             </ListView.View>
                         </ListView>
+                        <!--Fin de Datos de carga de Marca-->
+
+                        <!--Datos de la Marca-->
+
+                        <CheckBox Grid.Column="0" Grid.Row="0" Content="{x:Static recurso:Etiquetas.lblEtiqueta}" 
+                                  Height="16" HorizontalAlignment="Left" Margin="5,0,0,0" Name="checkBox1" VerticalAlignment="Center"
+                                  />
+
+                        <!--Campo-->
+                        <Label Name="_lblNoInscripcion" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Center" >
+                            <TextBlock Text="{x:Static recurso:Etiquetas.lblNumInscripcion}"/>
+                        </Label>
+                        <custom:ByTTextBox  IsEnabled="False"  Grid.Column="2" Grid.Row="0" Name="_txtNumInscripcion" VerticalAlignment="Center"  Grid.ColumnSpan="1"
+                         MaxLength="255" Text="{Binding Path=CodigoInscripcion}"  ></custom:ByTTextBox>
+                        <!--Fin Campo-->
+
+                        <!--Campo-->
+                        <Label Name="_lblTipo" Grid.Column="3" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Center" >
+                            <TextBlock Text="{x:Static recurso:Etiquetas.lblTipo}"/>
+                        </Label>
+                        <custom:ByTTextBox  IsEnabled="False"  Grid.Column="4" Grid.Row="0" Name="_txtTipo" VerticalAlignment="Center"  Grid.ColumnSpan="1"
+                         MaxLength="255" Text="{Binding Path=Tipo}" ></custom:ByTTextBox>
+                        <!--Fin Campo-->
+
+                        <!--Campo-->
+                        <Label Name="_lblNoRegistro" Grid.Column="5" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Center" >
+                            <TextBlock Text="{x:Static recurso:Etiquetas.lblNumRegistro}"/>
+                        </Label>
+                        <custom:ByTTextBox  IsEnabled="False"  Grid.Column="6" Grid.Row="0" Name="_txtNumRegistro" VerticalAlignment="Center"  Grid.ColumnSpan="1"
+                         MaxLength="255"  Text="{Binding Path=CodigoRegistro}"></custom:ByTTextBox>
+                        <!--Fin Campo-->
+
+                        <!--Campo-->
+                        <Label Name="_lblClaseInternacional" Grid.Column="0" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Center" >
+                            <TextBlock Text="{x:Static recurso:Etiquetas.lblClaseInt}"/>
+                        </Label>
+                        <custom:ByTTextBox  IsEnabled="False"  Grid.Column="1" Grid.Row="1" Name="_txtClaseInternacional" VerticalAlignment="Center"  Grid.ColumnSpan="1"
+                         MaxLength="255" Text="{Binding Path=Internacional.Id}" ></custom:ByTTextBox>
+                        <!--Fin Campo-->
+
+                        <!--Campo-->
+                        <Label Name="_lblClaseNacional" Grid.Column="2" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Center" >
+                            <TextBlock Text="{x:Static recurso:Etiquetas.lblClaseNac}"/>
+                        </Label>
+                        <custom:ByTTextBox  IsEnabled="False"  Grid.Column="3" Grid.Row="1" Name="_txtClaseNacional" VerticalAlignment="Center"  Grid.ColumnSpan="1"
+                         MaxLength="255" Text="{Binding Path=Nacional.Id}" ></custom:ByTTextBox>
+                        <!--Fin Campo-->
+
+                        <!--Campo-->
+                        <Label Name="_lblAsociado" Grid.Column="4" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Center" >
+                            <TextBlock Text="{x:Static recurso:Etiquetas.lblAsociado}"/>
+                        </Label>
+                        <custom:ByTTextBox  IsEnabled="False"  Grid.Column="5" Grid.Row="1" Name="_txtAsociado" VerticalAlignment="Center"  Grid.ColumnSpan="2"
+                         MaxLength="255" Text="{Binding Path=Asociado.Nombre}" ></custom:ByTTextBox>
+                        <!--Fin Campo-->
+
+
+                        <!--Fin datos de la Marca-->
                     </Grid>
-                    </WrapPanel>
-                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
-                    <Label>
-                        <TextBlock Text="{x:Static recurso:Etiquetas.lblNombreIngles}"/>
-                    </Label>
-                    <TextBox Name="_txtNombreIngles" Width="150" MaxLength="40" IsEnabled="False"
-                             ToolTip="{Binding ElementName=_txtId, Path=(Validation.Errors)[0].ErrorContent}">
-                        <TextBox.Text>
-                            <Binding Path="NombreIngles" UpdateSourceTrigger="PropertyChanged">
-                                <Binding.ValidationRules>
-                                    <reglas:Obligatorio ValidatesOnTargetUpdated="True" />
-                                </Binding.ValidationRules>
-                            </Binding>
-                        </TextBox.Text>
-                    </TextBox>
                 </WrapPanel>
-                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
-                    <Label>
-                        <TextBlock Text="{x:Static recurso:Etiquetas.lblNombreEspanol}" IsEnabled="False"/>
-                    </Label>
-                    <TextBox Name="_txtNombreEspanol" Width="150" MaxLength="40"  
-                             IsEnabled="False" Text="{Binding Path=NombreEspanol}"/>
-                </WrapPanel>
-                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
-                    <Label>
-                        <TextBlock Text="{x:Static recurso:Etiquetas.lblNacionalidad}" />
-                    </Label>
-                    <TextBox Name="_txtNacionalidad" Width="150" MaxLength="30" 
-                             IsEnabled="False" Text="{Binding Path=Nacionalidad}"/>
-                </WrapPanel>
-                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
-                    <Label>
-                        <TextBlock Text="{x:Static recurso:Etiquetas.lblRegion}"/>
-                    </Label>
-                    <ComboBox Name="_cbxRegion" Width="150" SelectedIndex="0" IsEnabled="False">
-                        <ComboBoxItem>
-                            <TextBlock Text=""/>
-                        </ComboBoxItem>
-                        <ComboBoxItem>
-                            <TextBlock Text="{x:Static recurso:Etiquetas.cbiAfrica}"/>
-                        </ComboBoxItem>
-                        <ComboBoxItem>
-                            <TextBlock Text="{x:Static recurso:Etiquetas.cbiAmericaCentral}"/>
-                        </ComboBoxItem>
-                        <ComboBoxItem>
-                            <TextBlock Text="{x:Static recurso:Etiquetas.cbiAmericaNorte}"/>
-                        </ComboBoxItem>
-                        <ComboBoxItem>
-                            <TextBlock Text="{x:Static recurso:Etiquetas.cbiAmericaSur}"/>
-                        </ComboBoxItem>
-                        <ComboBoxItem>
-                            <TextBlock Text="{x:Static recurso:Etiquetas.cbiAsia}"/>
-                        </ComboBoxItem>
-                        <ComboBoxItem>
-                            <TextBlock Text="{x:Static recurso:Etiquetas.cbiEuropa}"/>
-                        </ComboBoxItem>
-                    </ComboBox>
-                    </WrapPanel>
+                
             </StackPanel>
         </GroupBox>
 

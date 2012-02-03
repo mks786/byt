@@ -385,6 +385,7 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Select m from Marca m left join fetch m.Asociado as asociado left join fetch m.Corresponsal as corresponsal where m.Id = &apos;{0}&apos; order by m.Id.
         ///   Busca una cadena traducida similar a Select m from Marca m left join fetch m.Asociado as asociado left join fetch m.Corresponsal as corresponsal wherem.Id = &apos;{0}&apos; order by m.Id.
         /// </summary>
         public static string ObtenerMarcaConTodo {

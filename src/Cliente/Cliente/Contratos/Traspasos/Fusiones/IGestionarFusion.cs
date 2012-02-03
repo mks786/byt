@@ -33,6 +33,10 @@ namespace Trascend.Bolet.Cliente.Contratos.Traspasos.Fusiones
 
         string TextoBotonModificar { get; set; }
 
+        string NombreMarca { set; }
+
+        object Marca { get; set; }
+
         GridViewColumnHeader CurSortCol { get; set; }
 
         SortAdorner CurAdorner { get; set; }

@@ -79,12 +79,18 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Fusiones
 
         public string IdMarcaFiltrar
         {
-            get { throw new System.NotImplementedException(); }
+            get { return this._txtIdMarcaFiltrar.Text; }
         }
 
         public string NombreMarcaFiltrar
         {
-            get { throw new System.NotImplementedException(); }
+            get { return this._txtNombreMarcaFiltrar.Text; }
+        }
+
+        public object Marca
+        {
+            get { return this._gridDatosMarca.DataContext; }
+            set { this._gridDatosMarca.DataContext = value; }
         }
 
         public string Region
@@ -108,12 +114,23 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Fusiones
         {
             set
             {
-                //this._txtCodigo.IsEnabled = value;
-                //this._txtNombreIngles.IsEnabled = value;
-                //this._txtNombreEspanol.IsEnabled = value;
-                //this._txtNacionalidad.IsEnabled = value;
-                //this._cbxRegion.IsEnabled = value;
+                this._txtAsociado.IsEnabled = value;
+                this._txtClaseInternacional.IsEnabled = value;
+                this._txtClaseNacional.IsEnabled = value;
+                this._txtExpediente.IsEnabled = value;
+                this._txtId.IsEnabled = value;
+                this._txtIdMarcaFiltrar.IsEnabled = value;
+                this._txtNombreMarca.IsEnabled = value;
+                this._txtNombreMarcaFiltrar.IsEnabled = value;
+                this._txtNumInscripcion.IsEnabled = value;
+                this._txtNumRegistro.IsEnabled = value;
+                this._txtTipo.IsEnabled = value;
             }
+        }
+
+        public string NombreMarca
+        {
+            set { this._txtNombreMarca.Text = value; }
         }
 
         public string TextoBotonModificar
@@ -184,5 +201,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Fusiones
         {
             this._presentador.OrdenarColumna(sender as GridViewColumnHeader, this._lstMarcas);
         }
+
+
     }
 }

@@ -1573,4 +1573,7 @@
   <data name="lblExpediente" xml:space="preserve">
     <value>Expediente:</value>
   </data>
+  <data name="lblNumRegistro" xml:space="preserve">
+    <value># Registro:</value>
+  </data>
 </root>
