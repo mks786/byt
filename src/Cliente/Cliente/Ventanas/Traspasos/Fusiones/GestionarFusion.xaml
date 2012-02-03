@@ -62,7 +62,7 @@
                     </Label>
                     <TextBox Name="_txtNombreMarca" MaxLength="40"  Text="" IsEnabled="False" 
                              VerticalContentAlignment="Center" Margin="0,0,0,0"
-                             Grid.ColumnSpan="1" MinWidth="595" />
+                             Grid.ColumnSpan="1" MinWidth="595" MouseDoubleClick="_txtNombreMarca_MouseDoubleClick" BorderBrush="LightGreen"/>
                     <Grid Width="640" DataContext="{Binding}" Name="_gridDatosMarca">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
@@ -86,15 +86,15 @@
                         </Label>
 
                         <custom:ByTTextBox IsEnabled="False"  Grid.Column="1" Grid.Row="0" Name="_txtIdMarcaFiltrar" VerticalAlignment="Center" 
-                         MaxLength="255" Grid.ColumnSpan="2" Visibility="Collapsed"  ></custom:ByTTextBox>
+                         MaxLength="255" Grid.ColumnSpan="2" Visibility="Collapsed" GotFocus="_txtMarcaFiltrar_GotFocus" GotKeyboardFocus="_txtMarcaFiltrar_GotFocus" ></custom:ByTTextBox>
 
                         <Label Name="_lblNombreMarca" Grid.Column="3" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Center" Visibility="Collapsed">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblNombre}"/>
                         </Label>
                         <custom:ByTTextBox   IsEnabled="False"  Grid.Column="4" Grid.Row="0" Name="_txtNombreMarcaFiltrar" VerticalAlignment="Center"  Grid.ColumnSpan="2"
-                         MaxLength="255" Visibility="Collapsed"></custom:ByTTextBox>
+                         MaxLength="255" Visibility="Collapsed" GotFocus="_txtMarcaFiltrar_GotFocus" GotKeyboardFocus="_txtMarcaFiltrar_GotFocus" ></custom:ByTTextBox>
 
-                        <Button IsEnabled="False" Name="_btnConsultarMarca" Width="65" IsDefault="False" Grid.Row="0" Grid.Column="7" Height="25" 
+                        <Button IsEnabled="False" Name="_btnConsultarMarca" Width="65" IsDefault="False" Grid.Row="0" Grid.Column="6" Height="25" 
                                 HorizontalAlignment="Right" Click="_btnConsultarMarca_Click" Visibility="Collapsed">
                             <TextBlock Text="{x:Static recurso:Etiquetas.btnConsultar}"/>
                         </Button>
@@ -109,13 +109,13 @@
                                             <DataTemplate>
                                                 <TextBlock>
                                                     <TextBlock.Text>
-                                                        <Binding Path="Id" Converter="{StaticResource convertir}"/>
+                                                        <Binding Path="Id"/>
                                                     </TextBlock.Text>
                                                 </TextBlock>
                                             </DataTemplate>
                                         </GridViewColumn.CellTemplate>
                                     </GridViewColumn>
-                                    <GridViewColumn DisplayMemberBinding="{Binding Path=Nombre}" Width="300">
+                                    <GridViewColumn DisplayMemberBinding="{Binding Path=Descripcion}" Width="300">
                                         <GridViewColumnHeader Click="_OrdenarMarcas_Click" Tag="Nombre" Content="{x:Static recurso:Etiquetas.lsvNombre}"/>
                                     </GridViewColumn>
                                 </GridView>
@@ -126,7 +126,7 @@
                         <!--Datos de la Marca-->
 
                         <CheckBox Grid.Column="0" Grid.Row="0" Content="{x:Static recurso:Etiquetas.lblEtiqueta}" 
-                                  Height="16" HorizontalAlignment="Left" Margin="5,0,0,0" Name="checkBox1" VerticalAlignment="Center"
+                                  Height="16" HorizontalAlignment="Left" Margin="5,0,0,0" Name="_chkEtiqueta" VerticalAlignment="Center"
                                   />
 
                         <!--Campo-->
@@ -176,7 +176,6 @@
                         <custom:ByTTextBox  IsEnabled="False"  Grid.Column="5" Grid.Row="1" Name="_txtAsociado" VerticalAlignment="Center"  Grid.ColumnSpan="2"
                          MaxLength="255" Text="{Binding Path=Asociado.Nombre}" ></custom:ByTTextBox>
                         <!--Fin Campo-->
-
 
                         <!--Fin datos de la Marca-->
                     </Grid>

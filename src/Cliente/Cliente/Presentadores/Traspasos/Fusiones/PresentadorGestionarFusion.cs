@@ -49,6 +49,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
         private IList<Interesado> _interesados;
         private IList<Corresponsal> _corresponsales;
         private IList<Auditoria> _auditorias;
+        private IList<Marca> _marcas;
 
         /// <summary>
         /// Constructor Predeterminado
@@ -144,10 +145,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
                 Fusion fusion = (Fusion)this._ventana.Fusion;
                 this._ventana.Marca = this._marcaServicios.ConsultarMarcaConTodo(((Fusion)fusion).Marca);
                 this._ventana.NombreMarca = ((Marca)this._ventana.Marca).Descripcion;
-                    
-                Anaqua anaqua = new Anaqua();
-                anaqua.IdMarca = fusion.Id;
-                InfoAdicional infoAdicional = new InfoAdicional("M." + fusion.Id);
+
+                this._marcas = new List<Marca>();
+                this._marcas.Add((Marca)this._ventana.Marca);
+                this._ventana.MarcasFiltradas = this._marcas;
 
                 //fusion.InfoBoles = this._infoBolServicios.ConsultarInfoBolesPorMarca(fusion);
                 //fusion.Operaciones = this._operacionServicios.ConsultarOperacionesPorMarca(fusion);
@@ -1025,5 +1026,108 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
 
         //    return true;
         //}
+
+        public void ConsultarMarcas()
+        {
+
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                Mouse.OverrideCursor = Cursors.Wait;
+                Marca marca = new Marca();
+                IEnumerable<Marca> marcasFiltradas;
+                marca.Descripcion = this._ventana.NombreMarcaFiltrar.ToUpper();
+                marca.Id = this._ventana.IdMarcaFiltrar.Equals("") ? 0 : int.Parse(this._ventana.IdMarcaFiltrar);
+                if ((!marca.Descripcion.Equals("")) || (marca.Id != 0))
+                    marcasFiltradas = this._marcaServicios.ObtenerMarcasFiltro(marca);
+                else
+                    marcasFiltradas = new List<Marca>();
+
+                if (marcasFiltradas.ToList<Marca>().Count != 0)
+                    this._ventana.MarcasFiltradas = marcasFiltradas.ToList<Marca>();
+                else
+                    this._ventana.MarcasFiltradas = this._marcas;
+
+                Mouse.OverrideCursor = null;
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (ApplicationException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(ex.Message, true);
+            }
+            catch (RemotingException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorRemoting, true);
+            }
+            catch (SocketException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorConexionServidor, true);
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
+            }
+        }
+
+        public bool CambiarMarca()
+        {
+            bool retorno = false;
+
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+
+                if (this._ventana.MarcaFiltrada != null)
+                {
+                    this._ventana.Marca = this._ventana.MarcaFiltrada;
+                    this._ventana.NombreMarca = ((Marca)this._ventana.MarcaFiltrada).Descripcion;
+                    retorno = true;
+                }
+                
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+            }
+            catch (ApplicationException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(ex.Message, true);
+            }
+            catch (RemotingException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorRemoting, true);
+            }
+            catch (SocketException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorConexionServidor, true);
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
+            }
+
+            return retorno;
+        }
     }
 }

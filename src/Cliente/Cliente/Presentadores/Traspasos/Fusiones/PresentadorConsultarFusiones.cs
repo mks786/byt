@@ -147,7 +147,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
 
                 Mouse.OverrideCursor = Cursors.Wait;
                 int filtroValido = 0;//Variable utilizada para limitar a que el filtro se ejecute solo cuando 
-                                     //dos filtros sean utilizados
+                //dos filtros sean utilizados
 
                 Fusion FusionAuxiliar = new Fusion();
 
@@ -275,22 +275,55 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
 
         public void BuscarMarca()
         {
-            Mouse.OverrideCursor = Cursors.Wait;
-            Marca marca = new Marca();
-            IEnumerable<Marca> marcasFiltradas;
-            marca.Descripcion = this._ventana.NombreMarcaFiltrar.ToUpper();
-            marca.Id = this._ventana.IdMarcaFiltrar.Equals("") ? 0 : int.Parse(this._ventana.IdMarcaFiltrar);
-            if ((!marca.Descripcion.Equals("")) || (marca.Id != 0))
-                marcasFiltradas = this._marcaServicios.ObtenerMarcasFiltro(marca);
-            else
-                marcasFiltradas = new List<Marca>();
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
 
-            if (marcasFiltradas.ToList<Marca>().Count != 0)
-                this._ventana.Marcas = marcasFiltradas.ToList<Marca>();
-            else
-                this._ventana.Marcas = this._marcas;
-                
-            Mouse.OverrideCursor = null;
+                Mouse.OverrideCursor = Cursors.Wait;
+                Marca marca = new Marca();
+                IEnumerable<Marca> marcasFiltradas;
+                marca.Descripcion = this._ventana.NombreMarcaFiltrar.ToUpper();
+                marca.Id = this._ventana.IdMarcaFiltrar.Equals("") ? 0 : int.Parse(this._ventana.IdMarcaFiltrar);
+                if ((!marca.Descripcion.Equals("")) || (marca.Id != 0))
+                    marcasFiltradas = this._marcaServicios.ObtenerMarcasFiltro(marca);
+                else
+                    marcasFiltradas = new List<Marca>();
+
+                if (marcasFiltradas.ToList<Marca>().Count != 0)
+                    this._ventana.Marcas = marcasFiltradas.ToList<Marca>();
+                else
+                    this._ventana.Marcas = this._marcas;
+
+                Mouse.OverrideCursor = null;
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (ApplicationException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(ex.Message, true);
+            }
+            catch (RemotingException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorRemoting, true);
+            }
+            catch (SocketException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorConexionServidor, true);
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
+            }
         }
 
         public bool ElegirMarca()

@@ -23,9 +23,17 @@ namespace Trascend.Bolet.Cliente.Contratos.Traspasos.Fusiones
 
         string NombreAgenteFiltrar { get; }
 
+        //ListView Marcas
+
         string IdMarcaFiltrar { get; }
 
         string NombreMarcaFiltrar { get; }
+
+        object MarcasFiltradas { get; set; }
+
+        object MarcaFiltrada { get; set; }
+
+        //-----------
 
         bool HabilitarCampos { set; }
 

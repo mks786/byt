@@ -125,12 +125,26 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Fusiones
                 this._txtNumInscripcion.IsEnabled = value;
                 this._txtNumRegistro.IsEnabled = value;
                 this._txtTipo.IsEnabled = value;
+                this._btnConsultarMarca.IsEnabled = value;
             }
         }
 
         public string NombreMarca
         {
             set { this._txtNombreMarca.Text = value; }
+        }
+
+
+        public object MarcasFiltradas
+        {
+            get { return this._lstMarcas.DataContext;}
+            set { this._lstMarcas.DataContext = value; }
+        }
+
+        public object MarcaFiltrada
+        {
+            get { return this._lstMarcas.SelectedItem;}
+            set { this._lstMarcas.SelectedItem = value; }
         }
 
         public string TextoBotonModificar
@@ -190,18 +204,61 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Fusiones
 
         private void _btnConsultarMarca_Click(object sender, RoutedEventArgs e)
         {
-
+            this._presentador.ConsultarMarcas();
         }
 
         private void _lstMarcas_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-
+            if (this._presentador.CambiarMarca())
+            {
+                GestionarVisibilidadDatosDeMarca(Visibility.Visible);
+                GestionarVisibilidadFiltroMarca(Visibility.Collapsed);
+            }
         }
         private void _OrdenarMarcas_Click(object sender, RoutedEventArgs e)
         {
             this._presentador.OrdenarColumna(sender as GridViewColumnHeader, this._lstMarcas);
         }
 
+        private void _txtNombreMarca_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            GestionarVisibilidadDatosDeMarca(Visibility.Collapsed);
 
+            GestionarVisibilidadFiltroMarca(Visibility.Visible);
+        }
+
+        private void GestionarVisibilidadFiltroMarca(object value)
+        {
+            this._lblNombreMarca.Visibility = (System.Windows.Visibility)value;
+            this._txtNombreMarcaFiltrar.Visibility = (System.Windows.Visibility)value;
+            this._lblIdMarca.Visibility = (System.Windows.Visibility)value;
+            this._txtIdMarcaFiltrar.Visibility = (System.Windows.Visibility)value;
+            this._lstMarcas.Visibility = (System.Windows.Visibility)value;
+            this._btnConsultarMarca.Visibility = (System.Windows.Visibility)value;
+        }
+
+        private void GestionarVisibilidadDatosDeMarca(object value)
+        {
+            this._txtNombreMarca.Visibility = (System.Windows.Visibility)value;
+            this._chkEtiqueta.Visibility = (System.Windows.Visibility)value;
+            this._lblNoInscripcion.Visibility = (System.Windows.Visibility)value;
+            this._txtNumInscripcion.Visibility = (System.Windows.Visibility)value;
+            this._lblNoRegistro.Visibility = (System.Windows.Visibility)value;
+            this._txtNumRegistro.Visibility = (System.Windows.Visibility)value;
+            this._lblTipo.Visibility = (System.Windows.Visibility)value;
+            this._txtTipo.Visibility = (System.Windows.Visibility)value;
+            this._lblClaseNacional.Visibility = (System.Windows.Visibility)value;
+            this._txtClaseNacional.Visibility = (System.Windows.Visibility)value;
+            this._lblClaseInternacional.Visibility = (System.Windows.Visibility)value;
+            this._txtClaseInternacional.Visibility = (System.Windows.Visibility)value;
+            this._lblAsociado.Visibility = (System.Windows.Visibility)value;
+            this._txtAsociado.Visibility = (System.Windows.Visibility)value;
+        }
+
+        private void _txtMarcaFiltrar_GotFocus(object sender, RoutedEventArgs e)
+        {
+            this._btnConsultarMarca.IsDefault = true;
+            this._btnModificar.IsDefault = false;
+        }
     }
 }
