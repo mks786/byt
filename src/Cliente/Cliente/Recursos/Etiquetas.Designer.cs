@@ -1528,6 +1528,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Expediente:.
+        /// </summary>
+        public static string lblExpediente {
+            get {
+                return ResourceManager.GetString("lblExpediente", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Expediente Marca:.
         /// </summary>
         public static string lblExpedienteMarca {

@@ -31,15 +31,15 @@
     </many-to-one>
 
     <many-to-one name="Boletin" class="Boletin">
-      <column name="CBOLETIN"/>
+      <column name="CBOLETIN_PUBLICACION"/>
     </many-to-one>
 
     <many-to-one name="InteresadoEntre" class="Interesado">
-      <column name="CINTERESADO"/>
+      <column name="CENTRE"/>
     </many-to-one>
 
     <many-to-one name="InteresadoSobreviviente" class="Interesado">
-      <column name="CINTERESADO"/>
+      <column name="CSOBREVIVIENTE"/>
     </many-to-one>
 
     <many-to-one name="Poder" class="Poder">

@@ -181,6 +181,7 @@
     <Compile Include="Contratos\Objetos\IGestionarObjetosXRoles.cs" />
     <Compile Include="Contratos\Principales\IVentanaPrincipal.cs" />
     <Compile Include="Contratos\Traspasos\Fusiones\IConsultarFusiones.cs" />
+    <Compile Include="Contratos\Traspasos\Fusiones\IGestionarFusion.cs" />
     <Compile Include="Contratos\Usuarios\IAgregarUsuario.cs" />
     <Compile Include="Contratos\Usuarios\IConsultarUsuario.cs" />
     <Compile Include="Contratos\Usuarios\IConsultarUsuarios.cs" />
@@ -285,6 +286,7 @@
     <Compile Include="Presentadores\PresentadorBase.cs" />
     <Compile Include="Presentadores\Principales\PresentadorVentanaPrincipal.cs" />
     <Compile Include="Presentadores\Traspasos\Fusiones\PresentadorConsultarFusiones.cs" />
+    <Compile Include="Presentadores\Traspasos\Fusiones\PresentadorGestionarFusion.cs" />
     <Compile Include="Presentadores\Usuarios\PresentadorAgregarUsuario.cs" />
     <Compile Include="Presentadores\Usuarios\PresentadorConsultarUsuarios.cs" />
     <Compile Include="Presentadores\Usuarios\PresentadorConsultarUsuario.cs" />
@@ -596,6 +598,9 @@
     </Compile>
     <Compile Include="Ventanas\Traspasos\Fusiones\ConsultarFusiones.xaml.cs">
       <DependentUpon>ConsultarFusiones.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Traspasos\Fusiones\GestionarFusion.xaml.cs">
+      <DependentUpon>GestionarFusion.xaml</DependentUpon>
     </Compile>
     <Compile Include="Ventanas\Usuarios\ConsultarUsuarios.xaml.cs">
       <DependentUpon>ConsultarUsuarios.xaml</DependentUpon>
@@ -998,6 +1003,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Ventanas\Traspasos\Fusiones\ConsultarFusiones.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\Traspasos\Fusiones\GestionarFusion.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

@@ -15,6 +15,7 @@ using Trascend.Bolet.Cliente.Ventanas.Principales;
 using Trascend.Bolet.Cliente.Ventanas.Marcas;
 using Trascend.Bolet.ObjetosComunes.ContratosServicios;
 using Trascend.Bolet.ObjetosComunes.Entidades;
+using Trascend.Bolet.Cliente.Ventanas.Traspasos.Fusiones;
 
 namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
 {
@@ -27,6 +28,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
         private IMarcaServicios _marcaServicios;
         private IAsociadoServicios _asociadoServicios;
         private IInteresadoServicios _interesadoServicios;
+        private IFusionServicios _fusionServicios;
+
         private IList<Fusion> _fusiones;
         private IList<Marca> _marcas;
         private IList<Interesado> _interesados;
@@ -46,6 +49,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["AsociadoServicios"]);
                 this._interesadoServicios = (IInteresadoServicios)Activator.GetObject(typeof(IInteresadoServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["InteresadoServicios"]);
+                this._fusionServicios = (IFusionServicios)Activator.GetObject(typeof(IFusionServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["FusionServicios"]);
             }
             catch (Exception ex)
             {
@@ -76,8 +81,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
 
                 ActualizarTitulo();
 
-                //this._marcas = this._marcaServicios.ConsultarTodos();
-                //this._ventana.Resultados = this._marcas;
+                //this._fusiones = this._fusionServicios.ConsultarTodos();
+                //this._ventana.Resultados = this._fusiones;
 
                 //IList<Marca> marcas = this._marcaServicios.ConsultarTodos();
                 //Marca primerMarca = new Marca();
@@ -141,34 +146,33 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
                 #endregion
 
                 Mouse.OverrideCursor = Cursors.Wait;
-                bool consultaResumen = false;
                 int filtroValido = 0;//Variable utilizada para limitar a que el filtro se ejecute solo cuando 
-                //dos filtros sean utilizados
+                                     //dos filtros sean utilizados
 
-                Marca MarcaAuxiliar = new Marca();
+                Fusion FusionAuxiliar = new Fusion();
 
                 if (!this._ventana.Id.Equals(""))
                 {
                     filtroValido = 2;
-                    MarcaAuxiliar.Id = int.Parse(this._ventana.Id);
+                    FusionAuxiliar.Id = int.Parse(this._ventana.Id);
                 }
 
-                //if ((null != this._ventana.Asociado) && (((Asociado)this._ventana.Asociado).Id != int.MinValue))
-                //{
-                //    MarcaAuxiliar.Asociado = (Asociado)this._ventana.Asociado;
-                //    filtroValido++;
-                //}
+                if ((null != this._ventana.Marca) && (((Marca)this._ventana.Marca).Id != int.MinValue))
+                {
+                    FusionAuxiliar.Marca = (Marca)this._ventana.Marca;
+                    filtroValido = 2;
+                }
 
                 //if ((null != this._ventana.Interesado) && (((Interesado)this._ventana.Interesado).Id != int.MinValue))
                 //{
-                //    MarcaAuxiliar.Interesado = (Interesado)this._ventana.Interesado;
+                //    FusionAuxiliar.Interesado = (Interesado)this._ventana.Interesado;
                 //    filtroValido++;
                 //}
 
 
                 //if (!this._ventana.FichasFiltrar.Equals(""))
                 //{
-                //    MarcaAuxiliar.Fichas = this._ventana.FichasFiltrar.ToUpper();
+                //    FusionAuxiliar.Fichas = this._ventana.FichasFiltrar.ToUpper();
                 //    filtroValido++;
                 //}
 
@@ -176,55 +180,27 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
                 //if (!this._ventana.DescripcionFiltrar.Equals(""))
                 //{
                 //    filtroValido = 2;
-                //    MarcaAuxiliar.Descripcion = this._ventana.DescripcionFiltrar.ToUpper();
+                //    FusionAuxiliar.Descripcion = this._ventana.DescripcionFiltrar.ToUpper();
                 //}
 
                 if (!this._ventana.Fecha.Equals(""))
                 {
                     DateTime fechaPublicacion = DateTime.Parse(this._ventana.Fecha);
                     filtroValido = 2;
-                    MarcaAuxiliar.FechaPublicacion = fechaPublicacion;
+                    FusionAuxiliar.FechaPublicacion = fechaPublicacion;
                 }
 
                 if (filtroValido >= 2)
                 {
-                    //this._fusiones = this._marcaServicios.ObtenerMarcasFiltro(MarcaAuxiliar);
+                    this._fusiones = this._fusionServicios.ObtenerFusionFiltro(FusionAuxiliar);
 
-                    //IList<Marca> marcasDesinfladas = new List<Marca>();
-
-                    //foreach (var marca in this._fusiones)
-                    //{
-                    //    MarcaAuxiliar = new Marca(marca.Id);
-                    //    Asociado asociadoAuxiliar = new Asociado();
-                    //    Interesado interesadoAuxiliar = new Interesado();
-
-                    //    MarcaAuxiliar.Descripcion = marca.Descripcion != null ? marca.Descripcion : "";
-
-                    //    if ((marca.Asociado != null) && (!string.IsNullOrEmpty(marca.Asociado.Nombre)))
-                    //    {
-                    //        asociadoAuxiliar.Nombre = marca.Asociado.Nombre;
-                    //        MarcaAuxiliar.Asociado = asociadoAuxiliar;
-                    //    }
-
-                    //    if ((marca.Interesado != null) && (!string.IsNullOrEmpty(marca.Interesado.Nombre)))
-                    //    {
-                    //        interesadoAuxiliar.Nombre = marca.Interesado.Nombre;
-                    //        MarcaAuxiliar.Interesado = interesadoAuxiliar;
-                    //    }
-
-                    //    MarcaAuxiliar.FechaPublicacion = marca.FechaPublicacion != null ? marca.FechaPublicacion : null;
-
-                    //    marcasDesinfladas.Add(MarcaAuxiliar);
-
-                    //}
-
-                    //this._ventana.Resultados = marcasDesinfladas;
-                    //this._ventana.TotalHits = marcasDesinfladas.Count.ToString();
-                    //if (marcasDesinfladas.Count == 0)
-                    //    this._ventana.Mensaje(Recursos.MensajesConElUsuario.NoHayResultados,1);
+                    this._ventana.Resultados = this._fusiones;
+                    this._ventana.TotalHits = _fusiones.Count.ToString();
+                    if (this._fusiones.Count == 0)
+                        this._ventana.Mensaje(Recursos.MensajesConElUsuario.NoHayResultados, 1);
                 }
                 else
-                    this._ventana.Mensaje(Recursos.MensajesConElUsuario.ErrorFiltroIncompleto,0);
+                    this._ventana.Mensaje(Recursos.MensajesConElUsuario.ErrorFiltroIncompleto, 0);
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -254,22 +230,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
 
             if (this._ventana.FusionSeleccionada != null)
             {
-                Fusion fusionParaNavegar = null;
-                bool encontrada = false;
-                int cont = 0;
-                while (!encontrada)
-                {
-                    Fusion fusion = this._fusiones[cont];
-                    if (fusion.Id == ((Marca)this._ventana.FusionSeleccionada).Id)
-                    {
-                        fusionParaNavegar = fusion;
-                        encontrada = true;
-                    }
-                    cont++;
-                }
-
-
-                this.Navegar(new ConsultarMarca(fusionParaNavegar));
+                this.Navegar(new GestionarFusion(this._ventana.FusionSeleccionada));
             }
 
             #region trace
@@ -314,17 +275,34 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
 
         public void BuscarMarca()
         {
+            Mouse.OverrideCursor = Cursors.Wait;
             Marca marca = new Marca();
+            IEnumerable<Marca> marcasFiltradas;
             marca.Descripcion = this._ventana.NombreMarcaFiltrar.ToUpper();
             marca.Id = this._ventana.IdMarcaFiltrar.Equals("") ? 0 : int.Parse(this._ventana.IdMarcaFiltrar);
-
-            IEnumerable<Marca> marcasFiltradas = this._marcaServicios.ObtenerMarcasFiltro(marca);
+            if ((!marca.Descripcion.Equals("")) || (marca.Id != 0))
+                marcasFiltradas = this._marcaServicios.ObtenerMarcasFiltro(marca);
+            else
+                marcasFiltradas = new List<Marca>();
 
             if (marcasFiltradas.ToList<Marca>().Count != 0)
                 this._ventana.Marcas = marcasFiltradas.ToList<Marca>();
             else
                 this._ventana.Marcas = this._marcas;
+                
+            Mouse.OverrideCursor = null;
         }
 
+        public bool ElegirMarca()
+        {
+            bool retorno = false;
+            if (this._ventana.Marca != null)
+            {
+                retorno = true;
+                this._ventana.NombreMarca = ((Marca)this._ventana.Marca).Descripcion;
+            }
+
+            return retorno;
+        }
     }
 }

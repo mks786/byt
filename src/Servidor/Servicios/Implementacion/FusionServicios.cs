@@ -89,5 +89,30 @@ namespace Trascend.Bolet.Servicios.Implementacion
 
             return exitoso;
         }
+
+
+        /// <summary>
+        /// Servicio que consulta una serie de Marcas por uno o mas parametros
+        /// </summary>
+        /// <param name="marca">Marca que contiene los parametros de la consulta</param>
+        /// <returns>Lista de cartas filtradas</returns>
+        public IList<Fusion> ObtenerFusionFiltro(Fusion Fusion)
+        {
+            #region trace
+            if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+            IList<Fusion> fusiones;
+            
+            fusiones = ControladorFusion.ConsultarFusionesFiltro(Fusion);
+
+            return fusiones;
+
+            #region trace
+            if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                logger.Debug("Saliendo del Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+        }
     }
 }

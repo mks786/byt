@@ -359,7 +359,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
         /// <summary>
         /// Método que coloca la página "Fusiones" en el Frame principal
         /// </summary>
-        public void Fusiones()
+        public void ConsultarFusiones()
         {
             this._ventana.Contenedor.Navigate(new ConsultarFusiones());
         }

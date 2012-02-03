@@ -253,4 +253,19 @@
     <value>interesado.Id = {0}</value>
     <comment>Filtro por Interesado</comment>
   </data>
+  <data name="CabeceraObtenerFusion" xml:space="preserve">
+    <value>Select f from Fusion f left join fetch f.Marca as marca where </value>
+    <comment>Cabecera del query para el filtro de fusion</comment>
+  </data>
+  <data name="FiltroObtenerFusionFecha" xml:space="preserve">
+    <value>m.Fecha between '{0}' and '{1}'</value>
+  </data>
+  <data name="FiltroObtenerFusionId" xml:space="preserve">
+    <value>f.Id = {0}</value>
+    <comment>Filtro por Id</comment>
+  </data>
+  <data name="FiltroObtenerFusionIdMarca" xml:space="preserve">
+    <value>marca.Id = {0}</value>
+    <comment>Filtro por Asociado</comment>
+  </data>
 </root>

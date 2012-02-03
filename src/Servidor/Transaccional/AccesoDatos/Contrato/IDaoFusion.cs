@@ -5,5 +5,6 @@ namespace Trascend.Bolet.AccesoDatos.Contrato
 {
     public interface IDaoFusion : IDaoBase<Fusion, int>
     {
+        IList<Fusion> ObtenerFusionesFiltro(Fusion Fusion);
     }
 }

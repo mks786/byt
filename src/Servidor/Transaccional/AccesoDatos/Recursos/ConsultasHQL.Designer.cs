@@ -79,6 +79,15 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Select f from Fusion f left join fetch f.Marca as marca where .
+        /// </summary>
+        public static string CabeceraObtenerFusion {
+            get {
+                return ResourceManager.GetString("CabeceraObtenerFusion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select m from Marca m left join fetch m.Asociado as asociado left join fetch m.Corresponsal as corresponsal left join fetch m.Interesado as interesado where .
         /// </summary>
         public static string CabeceraObtenerMarca {
@@ -147,6 +156,33 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         public static string FiltroObtenerCartaResumen {
             get {
                 return ResourceManager.GetString("FiltroObtenerCartaResumen", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to m.Fecha between &apos;{0}&apos; and &apos;{1}&apos;.
+        /// </summary>
+        public static string FiltroObtenerFusionFecha {
+            get {
+                return ResourceManager.GetString("FiltroObtenerFusionFecha", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to f.Id = {0}.
+        /// </summary>
+        public static string FiltroObtenerFusionId {
+            get {
+                return ResourceManager.GetString("FiltroObtenerFusionId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to marca.Id = {0}.
+        /// </summary>
+        public static string FiltroObtenerFusionIdMarca {
+            get {
+                return ResourceManager.GetString("FiltroObtenerFusionIdMarca", resourceCulture);
             }
         }
         

@@ -6,5 +6,6 @@ namespace Trascend.Bolet.ObjetosComunes.ContratosServicios
 {
     public interface IFusionServicios : IServicioBase<Fusion>
     {
+        IList<Fusion> ObtenerFusionFiltro(Fusion Fusion);
     }
 }

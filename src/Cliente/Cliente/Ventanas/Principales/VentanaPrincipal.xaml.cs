@@ -333,9 +333,9 @@ namespace Trascend.Bolet.Cliente.Ventanas.Principales
             this._presentador.Cesiones();
         }
 
-        private void _menuItemFusiones_Click(object sender, RoutedEventArgs e)
+        private void _menuItemFusionesConsultar_Click(object sender, RoutedEventArgs e)
         {
-            this._presentador.Fusiones();
+            this._presentador.ConsultarFusiones();
         }
 
         private void _menuItemCambioDeDomicilio_Click(object sender, RoutedEventArgs e)

@@ -1570,4 +1570,7 @@
   <data name="menuItemLicencias" xml:space="preserve">
     <value>Licencias</value>
   </data>
+  <data name="lblExpediente" xml:space="preserve">
+    <value>Expediente:</value>
+  </data>
 </root>

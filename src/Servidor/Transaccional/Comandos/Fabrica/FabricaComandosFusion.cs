@@ -55,5 +55,12 @@ namespace Trascend.Bolet.Comandos.Fabrica
         {
             return new ComandoVerificarExistenciaFusion(fusion);
         }
+
+
+
+        public static ComandoBase<IList<Fusion>> ObtenerComandoConsultarFusionesFiltro(Fusion fusion)
+        {
+            return new ComandoConsultarFusionesFiltro(fusion);
+        }
     }
 }
