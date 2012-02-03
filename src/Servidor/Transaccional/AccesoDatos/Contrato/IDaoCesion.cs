@@ -5,6 +5,6 @@ namespace Trascend.Bolet.AccesoDatos.Contrato
 {
     public interface IDaoCesion : IDaoBase<Cesion, int>
     {
-
+        IList<Cesion> ObtenerCesionesFiltro(Cesion cesion);
     }
 }

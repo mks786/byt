@@ -6,6 +6,6 @@ namespace Trascend.Bolet.ObjetosComunes.ContratosServicios
 {
     public interface ICesionServicios: IServicioBase<Cesion>
     {
-        
+        IList<Cesion> ObtenerCesionFiltro(Cesion CesionAuxiliar);
     }
 }

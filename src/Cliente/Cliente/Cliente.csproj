@@ -180,6 +180,7 @@
     <Compile Include="Contratos\Objetos\IConsultarObjetos.cs" />
     <Compile Include="Contratos\Objetos\IGestionarObjetosXRoles.cs" />
     <Compile Include="Contratos\Principales\IVentanaPrincipal.cs" />
+    <Compile Include="Contratos\Traspasos\Cesiones\IConsultarCesiones.cs" />
     <Compile Include="Contratos\Traspasos\Fusiones\IConsultarFusiones.cs" />
     <Compile Include="Contratos\Traspasos\Fusiones\IGestionarFusion.cs" />
     <Compile Include="Contratos\Usuarios\IAgregarUsuario.cs" />
@@ -285,6 +286,7 @@
     <Compile Include="Presentadores\Objetos\PresentadorGestionarObjetosXRoles.cs" />
     <Compile Include="Presentadores\PresentadorBase.cs" />
     <Compile Include="Presentadores\Principales\PresentadorVentanaPrincipal.cs" />
+    <Compile Include="Presentadores\Traspasos\Cesiones\PresentadorConsultarCesiones.cs" />
     <Compile Include="Presentadores\Traspasos\Fusiones\PresentadorConsultarFusiones.cs" />
     <Compile Include="Presentadores\Traspasos\Fusiones\PresentadorGestionarFusion.cs" />
     <Compile Include="Presentadores\Usuarios\PresentadorAgregarUsuario.cs" />
@@ -1112,10 +1114,7 @@
       <Name>ControlesByT</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Contratos\Traspasos\Cesiones\" />
-    <Folder Include="Presentadores\Traspasos\Cesiones\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

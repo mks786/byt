@@ -96,7 +96,7 @@ namespace Trascend.Bolet.Servicios.Implementacion
         /// </summary>
         /// <param name="marca">Marca que contiene los parametros de la consulta</param>
         /// <returns>Lista de cartas filtradas</returns>
-        public IList<Fusion> ObtenerFusionFiltro(Fusion Fusion)
+        public IList<Fusion> ObtenerFusionFiltro(Fusion fusion)
         {
             #region trace
             if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
@@ -105,7 +105,7 @@ namespace Trascend.Bolet.Servicios.Implementacion
 
             IList<Fusion> fusiones;
             
-            fusiones = ControladorFusion.ConsultarFusionesFiltro(Fusion);
+            fusiones = ControladorFusion.ConsultarFusionesFiltro(fusion);
 
             return fusiones;
 

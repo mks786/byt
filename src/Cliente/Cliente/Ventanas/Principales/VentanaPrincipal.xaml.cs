@@ -328,9 +328,9 @@ namespace Trascend.Bolet.Cliente.Ventanas.Principales
             this._presentador.AgregarMarca();
         }
 
-        private void _menuItemCesiones_Click(object sender, RoutedEventArgs e)
+        private void _menuItemCesionesConsultar_Click(object sender, RoutedEventArgs e)
         {
-            this._presentador.Cesiones();
+            this._presentador.ConsultarCesiones();            
         }
 
         private void _menuItemFusionesConsultar_Click(object sender, RoutedEventArgs e)

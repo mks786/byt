@@ -34,6 +34,7 @@ using Trascend.Bolet.Cliente.Ventanas.Remitentes;
 using Trascend.Bolet.Cliente.Ventanas.EntradasAlternas;
 using Trascend.Bolet.Cliente.Ventanas.Marcas;
 using Trascend.Bolet.Cliente.Ventanas.Traspasos.Fusiones;
+using Trascend.Bolet.Cliente.Ventanas.Traspasos.Cesiones;
 
 namespace Trascend.Bolet.Cliente.Presentadores.Principales
 {
@@ -351,9 +352,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
         /// <summary>
         /// Método que coloca la página "Cesiones" en el Frame principal
         /// </summary>
-        public void Cesiones()
+        public void ConsultarCesiones()
         {
-            //llamado a la ventana de cesiones        
+            this._ventana.Contenedor.Navigate(new ConsultarCesiones());       
         }
 
         /// <summary>

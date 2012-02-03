@@ -74,6 +74,7 @@
     <Compile Include="Comandos\ComandosCarta\ComandoConsultarCartasFiltro.cs" />
     <Compile Include="Comandos\ComandosCarta\ComandoEliminarCarta.cs" />
     <Compile Include="Comandos\ComandosCarta\ComandoInsertarOModificarCarta.cs" />
+    <Compile Include="Comandos\ComandosCesion\ComandoConsultarCesionesFiltro.cs" />
     <Compile Include="Comandos\ComandosCesion\ComandoConsultarTodosCesion.cs" />
     <Compile Include="Comandos\ComandosCesion\ComandoEliminarCesion.cs" />
     <Compile Include="Comandos\ComandosCesion\ComandoInsertarOModificarCesion.cs" />

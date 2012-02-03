@@ -90,5 +90,29 @@ namespace Trascend.Bolet.Servicios.Implementacion
 
             return exitoso;
         }
+
+        /// <summary>
+        /// Servicio que consulta una serie de Cesion por uno o mas parametros
+        /// </summary>
+        /// <param name="cesion">Cesion que contiene los parametros de la consulta</param>
+        /// <returns>cesion filtradas</returns>
+        public IList<Cesion> ObtenerCesionFiltro(Cesion cesion)
+        {
+            #region trace
+            if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+            IList<Cesion> cesiones;
+
+            cesiones = ControladorCesion.ConsultarCesionesFiltro(cesion);
+
+            return cesiones;
+
+            #region trace
+            if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                logger.Debug("Saliendo del Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+        }
     }
 }

@@ -53,5 +53,10 @@ namespace Trascend.Bolet.Comandos.Fabrica
         {
             throw new NotImplementedException();
         }
+
+        public static ComandoBase<IList<Cesion>> ObtenerComandoConsultarCesionesFiltro(Cesion cesion)
+        {
+            return new ComandoConsultarCesionesFiltro(cesion);
+        }
     }
 }
