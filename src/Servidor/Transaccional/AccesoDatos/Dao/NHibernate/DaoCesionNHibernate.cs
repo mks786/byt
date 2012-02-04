@@ -54,7 +54,7 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
                     filtro += " and ";
                 string fecha = String.Format("{0:dd/MM/yy}", cesion.FechaCesion);
                 string fecha2 = String.Format("{0:dd/MM/yy}", cesion.FechaCesion.Value.AddDays(1));
-                filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerFusionFecha, fecha, fecha2);
+                filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerCesionFecha, fecha, fecha2);
             }
             IQuery query = Session.CreateQuery(cabecera + filtro);
             Cesiones = query.List<Cesion>();

@@ -137,7 +137,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Cesiones
 
                 if (!this._ventana.Id.Equals(""))
                 {                    
-                    CesionAuxiliar.Marca = (Marca)this._ventana.Marca;
+                    CesionAuxiliar.Id = int.Parse(this._ventana.Id);
                     filtroValido = 2;
                 }
 
@@ -175,9 +175,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Cesiones
 
                 if (!this._ventana.Fecha.Equals(""))
                 {
-                    DateTime fechaPublicacion = DateTime.Parse(this._ventana.Fecha);
+                    DateTime fechaCesion = DateTime.Parse(this._ventana.Fecha);
                     filtroValido = 2;
-                    CesionAuxiliar.FechaPublicacion = fechaPublicacion;
+                    CesionAuxiliar.FechaCesion = fechaCesion;
                 }
 
                 if (filtroValido >= 2)
@@ -220,22 +220,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Cesiones
 
             if (this._ventana.CesionSeleccionada != null)
             {
-                Cesion cesionParaNavegar = null;
-                bool encontrada = false;
-                int cont = 0;
-                while(!encontrada)
-                {
-                    Cesion cesion = this._cesiones[cont];
-                    if(cesion.Id == ((Cesion)this._ventana.CesionSeleccionada).Id)
-                    {
-                        cesionParaNavegar = cesion;
-                        encontrada = true;
-                    }
-                    cont++;
-                }
-                    
-                    
-                this.Navegar(new ConsultarMarca(cesionParaNavegar));
+                this.Navegar(new GestionarCesion(this._ventana.CesionSeleccionada));
             }
 
             #region trace

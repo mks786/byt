@@ -181,6 +181,7 @@
     <Compile Include="Contratos\Objetos\IGestionarObjetosXRoles.cs" />
     <Compile Include="Contratos\Principales\IVentanaPrincipal.cs" />
     <Compile Include="Contratos\Traspasos\Cesiones\IConsultarCesiones.cs" />
+    <Compile Include="Contratos\Traspasos\Cesiones\IGestionarCesion.cs" />
     <Compile Include="Contratos\Traspasos\Fusiones\IConsultarFusiones.cs" />
     <Compile Include="Contratos\Traspasos\Fusiones\IGestionarFusion.cs" />
     <Compile Include="Contratos\Usuarios\IAgregarUsuario.cs" />
@@ -287,6 +288,7 @@
     <Compile Include="Presentadores\PresentadorBase.cs" />
     <Compile Include="Presentadores\Principales\PresentadorVentanaPrincipal.cs" />
     <Compile Include="Presentadores\Traspasos\Cesiones\PresentadorConsultarCesiones.cs" />
+    <Compile Include="Presentadores\Traspasos\Cesiones\PresentadorGestionarCesion.cs" />
     <Compile Include="Presentadores\Traspasos\Fusiones\PresentadorConsultarFusiones.cs" />
     <Compile Include="Presentadores\Traspasos\Fusiones\PresentadorGestionarFusion.cs" />
     <Compile Include="Presentadores\Usuarios\PresentadorAgregarUsuario.cs" />
@@ -597,6 +599,9 @@
     </Compile>
     <Compile Include="Ventanas\Traspasos\Cesiones\ConsultarCesiones.xaml.cs">
       <DependentUpon>ConsultarCesiones.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Traspasos\Cesiones\GestionarCesion.xaml.cs">
+      <DependentUpon>GestionarCesion.xaml</DependentUpon>
     </Compile>
     <Compile Include="Ventanas\Traspasos\Fusiones\ConsultarFusiones.xaml.cs">
       <DependentUpon>ConsultarFusiones.xaml</DependentUpon>
@@ -1001,6 +1006,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Ventanas\Traspasos\Cesiones\ConsultarCesiones.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\Traspasos\Cesiones\GestionarCesion.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

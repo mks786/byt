@@ -1,18 +1,18 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
-using Trascend.Bolet.Cliente.Contratos.Traspasos.Fusiones;
-using Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones;
+using Trascend.Bolet.Cliente.Contratos.Traspasos.Cesiones;
+using Trascend.Bolet.Cliente.Presentadores.Traspasos.Cesiones;
 using Trascend.Bolet.Cliente.Ayuda;
 
-namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Fusiones
+namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Cesiones
 {
     /// <summary>
     /// Interaction logic for GestionarFusion.xaml
     /// </summary>
-    public partial class GestionarFusion : Page, IGestionarFusion
+    public partial class GestionarCesion : Page, IGestionarCesion
     {
 
-        private PresentadorGestionarFusion _presentador;
+        private PresentadorGestionarCesion _presentador;
         private bool _cargada;
         private GridViewColumnHeader _CurSortCol = null;
         private SortAdorner _CurAdorner = null;
@@ -25,7 +25,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Fusiones
             set { this._cargada = value; }
         }
 
-        public object Fusion
+        public object Cesion
         {
             get
             {
@@ -93,6 +93,18 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Fusiones
             set { this._gridDatosMarca.DataContext = value; }
         }
 
+        public object MarcasFiltradas
+        {
+            get { return this._lstMarcas.DataContext; }
+            set { this._lstMarcas.DataContext = value; }
+        }
+
+        public object MarcaFiltrada
+        {
+            get { return this._lstMarcas.SelectedItem; }
+            set { this._lstMarcas.SelectedItem = value; }
+        }
+
         public string Region
         {
             get
@@ -125,6 +137,9 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Fusiones
                 this._txtNumInscripcion.IsEnabled = value;
                 this._txtNumRegistro.IsEnabled = value;
                 this._txtTipo.IsEnabled = value;
+                this._txtNombreCedente.IsEnabled = value;
+                this._txtPaisCedente.IsEnabled = value;
+                this._txtNacionalidadCedente.IsEnabled = value;
                 this._btnConsultarMarca.IsEnabled = value;
             }
         }
@@ -132,19 +147,6 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Fusiones
         public string NombreMarca
         {
             set { this._txtNombreMarca.Text = value; }
-        }
-
-
-        public object MarcasFiltradas
-        {
-            get { return this._lstMarcas.DataContext;}
-            set { this._lstMarcas.DataContext = value; }
-        }
-
-        public object MarcaFiltrada
-        {
-            get { return this._lstMarcas.SelectedItem;}
-            set { this._lstMarcas.SelectedItem = value; }
         }
 
         public string TextoBotonModificar
@@ -167,11 +169,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Fusiones
 
         #endregion
 
-        public GestionarFusion(object fusion)
+        public GestionarCesion(object cesion)
         {
             InitializeComponent();
             this._cargada = false;
-            this._presentador = new PresentadorGestionarFusion(this, fusion);
+            this._presentador = new PresentadorGestionarCesion(this, cesion);
         }
 
         private void _btnModificar_Click(object sender, RoutedEventArgs e)
@@ -215,9 +217,15 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Fusiones
                 GestionarVisibilidadFiltroMarca(Visibility.Collapsed);
             }
         }
+        
         private void _OrdenarMarcas_Click(object sender, RoutedEventArgs e)
         {
             this._presentador.OrdenarColumna(sender as GridViewColumnHeader, this._lstMarcas);
+        }
+
+        private void _OrdenarCedentes_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.OrdenarColumna(sender as GridViewColumnHeader, this._lstCedentes);
         }
 
         private void _txtNombreMarca_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
@@ -225,9 +233,6 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Fusiones
             GestionarVisibilidadDatosDeMarca(Visibility.Collapsed);
 
             GestionarVisibilidadFiltroMarca(Visibility.Visible);
-            
-            this._btnConsultarMarca.IsEnabled = false;
-            this._btnModificar.IsEnabled = true;
         }
 
         private void GestionarVisibilidadFiltroMarca(object value)
@@ -263,5 +268,12 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Fusiones
             this._btnConsultarMarca.IsDefault = true;
             this._btnModificar.IsDefault = false;
         }
+
+        private void _lstCedentes_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+
+        }
+
+
     }
 }
