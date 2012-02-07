@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Controls;
 using Trascend.Bolet.ControlesByT.Ventanas;
+using System.Windows.Media;
 
 namespace Trascend.Bolet.ControlesByT
 {
@@ -19,6 +20,7 @@ namespace Trascend.Bolet.ControlesByT
         private bool _soloNumero = false;
         private bool _soloPorcentaje = false;
         private bool _filtro = false;
+        private bool _dobleClickDespliegaLista = false;
         private int _tamanoMaximo;
 
         #region Propiedades
@@ -51,15 +53,27 @@ namespace Trascend.Bolet.ControlesByT
             set { _soloPorcentaje = value; }
         }
 
-
-
         public bool Filtro
         {
             get { return _filtro; }
             set { _filtro = value; }
         }
 
+        public bool DobleClickDespliegaLista
+        {
+            get { return _dobleClickDespliegaLista; }
+            set { _dobleClickDespliegaLista = value; }
+        }
         #endregion
+
+
+        public ByTTextBox() 
+        {
+            if (_dobleClickDespliegaLista) 
+            {
+                this.BorderBrush = Brushes.LightGreen;
+            }
+        }
 
         /// <summary>
         /// Sobreescritura del metodo OnKeyDown. En este metodo se implementa la funcionalidad del

@@ -49,12 +49,12 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Fusiones
 
         public string IdInteresadoEntreFiltrar
         {
-            get { throw new System.NotImplementedException(); }
+            get { return this._txtIdInteresadoEntreFiltrar.Text; }
         }
 
         public string NombreInteresadoEntreFiltrar
         {
-            get { throw new System.NotImplementedException(); }
+            get { return this._txtNombreInteresadoEntreFiltrar.Text; }
         }
 
         public string IdInteresadoSobrevivienteFiltrar
@@ -93,6 +93,17 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Fusiones
             set { this._gridDatosMarca.DataContext = value; }
         }
 
+        public object InteresadoEntre
+        {
+            get { return this._gridDatosInteresadoEntre.DataContext; }
+            set { this._gridDatosInteresadoEntre.DataContext = value; }
+        }
+
+        public string NombreInteresadoEntre
+        {
+            set { this._txtNombreInteresadoEntre.Text = value; }
+        }
+
         public string Region
         {
             get
@@ -126,6 +137,13 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Fusiones
                 this._txtNumRegistro.IsEnabled = value;
                 this._txtTipo.IsEnabled = value;
                 this._btnConsultarMarca.IsEnabled = value;
+
+                _btnConsultarInteresadoEntre.IsEnabled = value;
+                _txtNombreInteresadoEntre.IsEnabled = value;
+                _txtNombreInteresadoEntreFiltrar.IsEnabled = value;
+                _txtIdInteresadoEntreFiltrar.IsEnabled = value;
+                _txtPaisInteresadoEntre.IsEnabled = value;
+                _txtCiudadInteresadoEntre.IsEnabled = value;
             }
         }
 
@@ -134,17 +152,28 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Fusiones
             set { this._txtNombreMarca.Text = value; }
         }
 
-
         public object MarcasFiltradas
         {
-            get { return this._lstMarcas.DataContext;}
+            get { return this._lstMarcas.DataContext; }
             set { this._lstMarcas.DataContext = value; }
         }
 
         public object MarcaFiltrada
         {
-            get { return this._lstMarcas.SelectedItem;}
+            get { return this._lstMarcas.SelectedItem; }
             set { this._lstMarcas.SelectedItem = value; }
+        }
+
+        public object InteresadosEntreFiltrados
+        {
+            get { return this._lstInteresadosEntre.DataContext; }
+            set { this._lstInteresadosEntre.DataContext = value; }
+        }
+
+        public object InteresadoEntreFiltrado
+        {
+            get { return this._lstInteresadosEntre.SelectedItem; }
+            set { this._lstInteresadosEntre.SelectedItem = value; }
         }
 
         public string TextoBotonModificar
@@ -202,6 +231,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Fusiones
             }
         }
 
+        #region Eventos Marcas
+
         private void _btnConsultarMarca_Click(object sender, RoutedEventArgs e)
         {
             this._presentador.ConsultarMarcas();
@@ -213,8 +244,12 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Fusiones
             {
                 GestionarVisibilidadDatosDeMarca(Visibility.Visible);
                 GestionarVisibilidadFiltroMarca(Visibility.Collapsed);
+
+                this._btnConsultarMarca.IsDefault = false;
+                this._btnModificar.IsDefault = true;
             }
         }
+
         private void _OrdenarMarcas_Click(object sender, RoutedEventArgs e)
         {
             this._presentador.OrdenarColumna(sender as GridViewColumnHeader, this._lstMarcas);
@@ -263,5 +298,61 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Fusiones
             this._btnConsultarMarca.IsDefault = true;
             this._btnModificar.IsDefault = false;
         }
+
+        #endregion
+
+        #region Eventos Interesado Entre
+
+        private void _btnConsultarInteresadoEntre_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.ConsultarInteresados();
+        }
+
+        private void _lstInteresadosEntre_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            if (this._presentador.CambiarInteresado())
+            {
+                GestionarVisibilidadDatosDeInteresado(Visibility.Visible);
+                GestionarVisibilidadFiltroInteresado(Visibility.Collapsed);
+
+                this._btnConsultarInteresadoEntre.IsDefault = false;
+                this._btnModificar.IsDefault = true;
+            }
+        }
+
+        private void _OrdenarInteresadosEntre_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.OrdenarColumna(sender as GridViewColumnHeader, this._lstInteresadosEntre);
+        }
+
+        private void _txtInteresadoEntre_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            GestionarVisibilidadDatosDeInteresado(Visibility.Collapsed);
+
+            GestionarVisibilidadFiltroInteresado(Visibility.Visible);
+
+            this._btnConsultarInteresadoEntre.IsDefault = true;
+            this._btnModificar.IsDefault = false;
+        }
+
+        private void GestionarVisibilidadFiltroInteresado(object value)
+        {
+            this._lblIdInteresadoEntre.Visibility = (System.Windows.Visibility)value;
+            this._lblNombreInteresadoEntre.Visibility = (System.Windows.Visibility)value;
+            this._txtNombreInteresadoEntreFiltrar.Visibility = (System.Windows.Visibility)value;
+            this._txtIdInteresadoEntreFiltrar.Visibility = (System.Windows.Visibility)value;
+            this._lstInteresadosEntre.Visibility = (System.Windows.Visibility)value;
+            this._btnConsultarInteresadoEntre.Visibility = (System.Windows.Visibility)value;
+        }
+
+        private void GestionarVisibilidadDatosDeInteresado(object value)
+        {
+            this._txtNombreInteresadoEntre.Visibility = (System.Windows.Visibility)value;
+            this._txtPaisInteresadoEntre.Visibility = (System.Windows.Visibility)value;
+            this._txtCiudadInteresadoEntre.Visibility = (System.Windows.Visibility)value;
+        }
+
+        #endregion
+
     }
 }

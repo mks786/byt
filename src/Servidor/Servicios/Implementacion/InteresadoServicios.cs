@@ -129,5 +129,29 @@ namespace Trascend.Bolet.Servicios.Implementacion
             }
             return interesadoConTodo;
         }
+
+        /// <summary>
+        /// Servicio que consulta una serie de Interesados por uno o mas parametros
+        /// </summary>
+        /// <param name="interesado">Interesado que contiene los parametros de la consulta</param>
+        /// <returns>Lista de cartas filtradas</returns>
+        public IList<Interesado> ObtenerInteresadosFiltro(Interesado interesado)
+        {
+            #region trace
+            if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+            IList<Interesado> interesados;
+
+            interesados = ControladorInteresado.ConsultarInteresadosFiltro(interesado);
+
+            return interesados;
+
+            #region trace
+            if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                logger.Debug("Saliendo del Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+        }
     }
 }

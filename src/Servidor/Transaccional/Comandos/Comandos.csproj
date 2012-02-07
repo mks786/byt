@@ -86,6 +86,7 @@
     <Compile Include="Comandos\ComandosFusion\ComandoConsultarFusionesFiltro.cs" />
     <Compile Include="Comandos\ComandosInfoBol\ComandoConsultarInfoBolesPorMarca.cs" />
     <Compile Include="Comandos\ComandosInteresado\ComandoConsultarInteresadoConTodo.cs" />
+    <Compile Include="Comandos\ComandosInteresado\ComandoConsultarInteresadosFiltro.cs" />
     <Compile Include="Comandos\ComandosInteresado\ComandoConsultarTodosInteresados.cs" />
     <Compile Include="Comandos\ComandosInteresado\ComandoEliminarInteresado.cs" />
     <Compile Include="Comandos\ComandosInteresado\ComandoInsertarOModificarInteresado.cs" />

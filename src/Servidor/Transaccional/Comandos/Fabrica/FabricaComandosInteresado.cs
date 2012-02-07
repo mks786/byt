@@ -54,5 +54,10 @@ namespace Trascend.Bolet.Comandos.Fabrica
         {
             return new ComandoConsultarInteresadoConTodo(interesado);
         }
+
+        public static ComandoBase<IList<Interesado>> ObtenerComandoConsultarInteresadosFiltro(Interesado interesado)
+        {
+            return new ComandoConsultarInteresadosFiltro(interesado);
+        }
     }
 }

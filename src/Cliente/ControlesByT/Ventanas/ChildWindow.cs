@@ -20,6 +20,7 @@ namespace Trascend.Bolet.ControlesByT.Ventanas
             this._detalle.AcceptsReturn = true;
             this._detalle.MaxLength = descripcion.TamanoMaximo;
             this._detalle.ScrollBars = ScrollBars.Vertical;
+            this._detalle.ReadOnly = this._textBox.IsReadOnly;
         }
 
         private void _btnAceptar_Click(object sender, EventArgs e)

@@ -6,6 +6,9 @@ namespace Trascend.Bolet.ObjetosComunes.ContratosServicios
     public interface IInteresadoServicios: IServicioBase<Interesado>
     {
         IList<Auditoria> AuditoriaPorFkyTabla(Auditoria auditoria);
+
         Interesado ConsultarInteresadoConTodo(Interesado interesado);
+
+        IList<Interesado> ObtenerInteresadosFiltro(Interesado interesado);
     }
 }

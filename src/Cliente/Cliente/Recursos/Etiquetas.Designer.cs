@@ -1511,6 +1511,16 @@ namespace Trascend.Bolet.Cliente.Recursos {
         
         /// <summary>
         ///   Busca una cadena traducida similar a Estado:.
+        ///   Looks up a localized string similar to Entre:.
+        /// </summary>
+        public static string lblEntre {
+            get {
+                return ResourceManager.GetString("lblEntre", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Estado:.
         /// </summary>
         public static string lblEstado {
             get {

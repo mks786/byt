@@ -254,7 +254,7 @@
     <comment>Filtro por Interesado</comment>
   </data>
   <data name="CabeceraObtenerFusion" xml:space="preserve">
-    <value>Select f from Fusion f left join fetch f.Marca as marca where </value>
+    <value>Select f from Fusion f left join fetch f.Marca as marca left join fetch f.InteresadoEntre as interesadoEntre where </value>
     <comment>Cabecera del query para el filtro de fusion</comment>
   </data>
   <data name="FiltroObtenerFusionFecha" xml:space="preserve">
@@ -283,5 +283,17 @@
   <data name="FiltroObtenerCesionIdMarca" xml:space="preserve">
     <value>marca.Id = {0}</value>
     <comment>Filtro por Marca</comment>
+  </data>
+  <data name="CabeceraObtenerInteresado" xml:space="preserve">
+    <value>Select i from Interesado i left outer join i.Pais as pais where </value>
+    <comment>Cabecera del query para el filtro de interesados</comment>
+  </data>
+  <data name="FiltroObtenerInteresadoId" xml:space="preserve">
+    <value>i.Id = {0}</value>
+    <comment>Filtro por Id</comment>
+  </data>
+  <data name="FiltroObtenerInteresadoNombre" xml:space="preserve">
+    <value>upper(i.Nombre) like '%{0}%'</value>
+    <comment>Filtro por Nombre</comment>
   </data>
 </root>

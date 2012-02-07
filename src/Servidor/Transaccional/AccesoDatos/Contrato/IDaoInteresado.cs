@@ -6,5 +6,7 @@ namespace Trascend.Bolet.AccesoDatos.Contrato
     public interface IDaoInteresado : IDaoBase<Interesado, int>
     {
         Interesado ObtenerInteresadoConTodo(Interesado interesado);
+
+        IList<Interesado> ObtenerInteresadosFiltro(Interesado interesado);
     }
 }

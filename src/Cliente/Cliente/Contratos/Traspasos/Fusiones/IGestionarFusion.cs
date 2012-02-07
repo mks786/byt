@@ -11,10 +11,6 @@ namespace Trascend.Bolet.Cliente.Contratos.Traspasos.Fusiones
 
         string NombreAsociadoFiltrar { get; }
 
-        string IdInteresadoEntreFiltrar { get; }
-
-        string NombreInteresadoEntreFiltrar { get; }
-
         string IdInteresadoSobrevivienteFiltrar { get; }
 
         string NombreInteresadoSobrevivienteFiltrar { get; }
@@ -35,6 +31,18 @@ namespace Trascend.Bolet.Cliente.Contratos.Traspasos.Fusiones
 
         //-----------
 
+        //ListView InteresadoEntre
+
+        string IdInteresadoEntreFiltrar { get; }
+
+        string NombreInteresadoEntreFiltrar { get; }
+
+        object InteresadosEntreFiltrados { get; set; }
+
+        object InteresadoEntreFiltrado { get; set; }
+
+        //-----------
+
         bool HabilitarCampos { set; }
 
         string Region { get; set; }
@@ -44,6 +52,10 @@ namespace Trascend.Bolet.Cliente.Contratos.Traspasos.Fusiones
         string NombreMarca { set; }
 
         object Marca { get; set; }
+
+        string NombreInteresadoEntre { set; }
+
+        object InteresadoEntre { get; set; }
 
         GridViewColumnHeader CurSortCol { get; set; }
 

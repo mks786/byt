@@ -211,36 +211,34 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Fusiones
 
         }
 
-        private void _btnTransferir_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
         private void _txtMarcaNombre_GotFocus(object sender, RoutedEventArgs e)
         {
-            this._txtMarcaNombre.Visibility = Visibility.Collapsed;
-
-            this._txtIdMarcaFiltrar.Visibility = Visibility.Visible;
-            this._txtNombreMarcaFiltrar.Visibility = Visibility.Visible;
-            this._btnConsultarMarca.Visibility = Visibility.Visible;
-            this._lstMarcas.Visibility = Visibility.Visible;
-            this._lblCodigo.Visibility = Visibility.Visible;
-            this._lblNombre.Visibility = Visibility.Visible;
+            GestionarVisibilidadDatosDeMarca(Visibility.Collapsed);
+            GestionarVisibilidadFiltroMarca(Visibility.Visible);
         }
 
         private void _lstMarcas_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             if (this._presentador.ElegirMarca())
             {
-                this._txtMarcaNombre.Visibility = Visibility.Visible;
-
-                this._txtIdMarcaFiltrar.Visibility = Visibility.Collapsed;
-                this._txtNombreMarcaFiltrar.Visibility = Visibility.Collapsed;
-                this._btnConsultarMarca.Visibility = Visibility.Collapsed;
-                this._lstMarcas.Visibility = Visibility.Collapsed;
-                this._lblCodigo.Visibility = Visibility.Collapsed;
-                this._lblNombre.Visibility = Visibility.Collapsed;
+                GestionarVisibilidadDatosDeMarca(Visibility.Visible);
+                GestionarVisibilidadFiltroMarca(Visibility.Collapsed);
             }
+        }
+
+        private void GestionarVisibilidadFiltroMarca(object value)
+        {
+            this._txtIdMarcaFiltrar.Visibility = (System.Windows.Visibility)value;
+            this._txtNombreMarcaFiltrar.Visibility = (System.Windows.Visibility)value;
+            this._btnConsultarMarca.Visibility = (System.Windows.Visibility)value;
+            this._lstMarcas.Visibility = (System.Windows.Visibility)value;
+            this._lblCodigo.Visibility = (System.Windows.Visibility)value;
+            this._lblNombre.Visibility = (System.Windows.Visibility)value;
+        }
+
+        private void GestionarVisibilidadDatosDeMarca(object value)
+        {
+            this._txtMarcaNombre.Visibility = (System.Windows.Visibility)value;
         }
     }
 }

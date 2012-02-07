@@ -4,6 +4,7 @@ using NHibernate;
 using NLog;
 using Trascend.Bolet.AccesoDatos.Contrato;
 using Trascend.Bolet.ObjetosComunes.Entidades;
+using System.Collections.Generic;
 
 namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
 {
@@ -45,6 +46,28 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
             }
 
             return retorno;
+        }
+
+        public IList<Interesado> ObtenerInteresadosFiltro(Interesado interesado)
+        {
+            IList<Interesado> Interesados = null;
+            bool variosFiltros = false;
+            string filtro = "";
+            string cabecera = string.Format(Recursos.ConsultasHQL.CabeceraObtenerInteresado);
+            if ((null != interesado) && (interesado.Id != 0))
+            {
+                filtro = string.Format(Recursos.ConsultasHQL.FiltroObtenerInteresadoId, interesado.Id);
+                variosFiltros = true;
+            }
+            if (!string.IsNullOrEmpty(interesado.Nombre))
+            {
+                if (variosFiltros)
+                    filtro += " and ";
+                filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerInteresadoNombre, interesado.Nombre);
+            }
+            IQuery query = Session.CreateQuery(cabecera + filtro);
+            Interesados = query.List<Interesado>();
+            return Interesados;
         }
     }
 }
