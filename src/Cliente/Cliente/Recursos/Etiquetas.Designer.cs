@@ -1142,7 +1142,7 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Boletin:.
+        ///   Busca una cadena traducida similar a Boletín:.
         /// </summary>
         public static string lblBoletin {
             get {
