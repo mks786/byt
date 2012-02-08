@@ -487,7 +487,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Cesiones
             this._lblClaseInternacional.Visibility = (System.Windows.Visibility)value;
             this._txtClaseInternacional.Visibility = (System.Windows.Visibility)value;
             this._lblAsociado.Visibility = (System.Windows.Visibility)value;
-            this._txtAsociado.Visibility = (System.Windows.Visibility)value;
+            this._txtAsociado.Visibility = (System.Windows.Visibility)value;            
         }
 
         private void _txtMarcaFiltrar_GotFocus(object sender, RoutedEventArgs e)
