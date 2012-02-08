@@ -824,12 +824,47 @@
                         <Label Name="_lblBoletinCesion" Grid.Row="2" Grid.Column="4" HorizontalAlignment="Right" VerticalAlignment="Center">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblBoletin}"/>
                         </Label>
-                        <custom:ByTTextBox  IsEnabled="False"  Grid.Column="5" Grid.ColumnSpan="3" Grid.Row="2" Name="_txtBoletinCesion" VerticalAlignment="Center" MaxLength="255"  
+                        <custom:ByTTextBox  IsEnabled="False"  Grid.Column="5" Grid.ColumnSpan="1" Grid.Row="2" Name="_txtBoletinCesion" VerticalAlignment="Center" MaxLength="255"  
                                             Text="{Binding Path=BoletinPublicacion}"></custom:ByTTextBox>
 
-                    </Grid>
-                </WrapPanel>
 
+                        <CheckBox Grid.Column="7" Grid.Row="2" Content="{x:Static recurso:Etiquetas.chkAsientoEnLibro}" 
+                                  Height="32" HorizontalAlignment="Right" Margin="5,0,0,0" Name="_chkAsientoEnLibro" VerticalAlignment="Center"
+                                  />
+                        
+                        
+
+                    </Grid>
+                </WrapPanel>              
+
+                <WrapPanel Grid.Row="0" Grid.ColumnSpan="8" VerticalAlignment="Bottom" HorizontalAlignment="left" Margin="5" Orientation="Horizontal">
+           
+                    <Button Name="_btnPlanilla"  VerticalAlignment="Bottom" Height="25" Width="90"
+                    Click="_btnPlanilla_Click">                
+                        <TextBlock Name="_txbPlanilla" Text="{x:Static recurso:Etiquetas.btnPlanilla}"/>
+                    </Button>
+            
+                    <Button Name="_btnAnexo" VerticalAlignment="Bottom" Height="25" Width="90"
+                    Click="_btnAnexo_Click">
+                        <TextBlock Name="_txbAnexo" Text="{x:Static recurso:Etiquetas.btnAnexo}"/>
+                    </Button>
+            
+                    <Button Name="_btnCarpeta" VerticalAlignment="Bottom" Height="25" Width="90"
+                    Click="_btnCarpeta_Click">
+                        <TextBlock Name="_txbCarpeta" Text="{x:Static recurso:Etiquetas.btnCarpeta}"/>
+                    </Button>
+            
+                    <Button Name="_btnPlanillaVan" VerticalAlignment="Bottom" Height="25" Width="90"
+                    Click="_btnPlanillaVan_Click">
+                        <TextBlock Name="_txbPlanillaVan" Text="{x:Static recurso:Etiquetas.btnPlanillaVan}"/>
+                    </Button>
+            
+                    <Button Name="_btnPlanillaVienen" VerticalAlignment="Bottom" Height="25" Width="90"
+                    Click="_btnPlanillaVienen_Click">
+                        <TextBlock Name="_txbPlanillaVienen" Text="{x:Static recurso:Etiquetas.btnPlanillaVienen}"/>
+                    </Button>
+            
+                </WrapPanel>
 
             </StackPanel>
         </GroupBox>

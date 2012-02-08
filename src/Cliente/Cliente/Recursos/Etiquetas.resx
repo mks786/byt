@@ -1600,4 +1600,20 @@
   <data name="lblObservacion" xml:space="preserve">
     <value>Observación:</value>
   </data>
+  <data name="chkAsientoEnLibro" xml:space="preserve">
+    <value>Asiento en 
+libro</value>
+  </data>
+  <data name="btnAnexo" xml:space="preserve">
+    <value>Anexo</value>
+  </data>
+  <data name="btnPlanilla" xml:space="preserve">
+    <value>Planilla</value>
+  </data>
+  <data name="btnPlanillaVan" xml:space="preserve">
+    <value>Planilla (VAN)</value>
+  </data>
+  <data name="btnPlanillaVienen" xml:space="preserve">
+    <value>Planilla (VIENEN)</value>
+  </data>
 </root>

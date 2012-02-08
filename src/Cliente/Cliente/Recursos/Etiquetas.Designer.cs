@@ -97,6 +97,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Anexo.
+        /// </summary>
+        public static string btnAnexo {
+            get {
+                return ResourceManager.GetString("btnAnexo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Anexo FM02.
         /// </summary>
         public static string btnAnexoFM02 {
@@ -471,6 +480,33 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string btnOperaciones {
             get {
                 return ResourceManager.GetString("btnOperaciones", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Planilla.
+        /// </summary>
+        public static string btnPlanilla {
+            get {
+                return ResourceManager.GetString("btnPlanilla", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Planilla (VAN).
+        /// </summary>
+        public static string btnPlanillaVan {
+            get {
+                return ResourceManager.GetString("btnPlanillaVan", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Planilla (VIENEN).
+        /// </summary>
+        public static string btnPlanillaVienen {
+            get {
+                return ResourceManager.GetString("btnPlanillaVienen", resourceCulture);
             }
         }
         
@@ -930,6 +966,16 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string cbiViudo {
             get {
                 return ResourceManager.GetString("cbiViudo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Asiento en 
+        ///libro.
+        /// </summary>
+        public static string chkAsientoEnLibro {
+            get {
+                return ResourceManager.GetString("chkAsientoEnLibro", resourceCulture);
             }
         }
         
@@ -1519,8 +1565,7 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Estado:.
-        ///   Looks up a localized string similar to Entre:.
+        ///   Busca una cadena traducida similar a Entre:.
         /// </summary>
         public static string lblEntre {
             get {
@@ -1529,7 +1574,7 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Estado:.
+        ///   Busca una cadena traducida similar a Estado:.
         /// </summary>
         public static string lblEstado {
             get {
