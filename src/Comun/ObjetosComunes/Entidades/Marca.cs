@@ -528,7 +528,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         {
             get
             {
-                if (this.Etiqueta.Equals("Si"))
+                if (this.Etiqueta.ToUpper().Equals("SI"))
                     return true;
                 else
                     return false;
@@ -536,9 +536,9 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
             set
             {
                 if (value)
-                    this.Etiqueta = "Si";
+                    this.Etiqueta = "SI";
                 else
-                    this.Etiqueta = "No";
+                    this.Etiqueta = "NO";
             }
         }
 

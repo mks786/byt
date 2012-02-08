@@ -258,11 +258,14 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Fusiones
         private void _txtNombreMarca_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             GestionarVisibilidadDatosDeMarca(Visibility.Collapsed);
-
             GestionarVisibilidadFiltroMarca(Visibility.Visible);
+
+            //escondo el filtro de interesado Entre
+            GestionarVisibilidadDatosDeInteresado(Visibility.Visible);
+            GestionarVisibilidadFiltroInteresado(Visibility.Collapsed);
             
-            this._btnConsultarMarca.IsEnabled = false;
-            this._btnModificar.IsEnabled = true;
+            this._btnConsultarMarca.IsDefault = false;
+            this._btnModificar.IsDefault = true;
         }
 
         private void GestionarVisibilidadFiltroMarca(object value)
@@ -330,6 +333,10 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Fusiones
             GestionarVisibilidadDatosDeInteresado(Visibility.Collapsed);
 
             GestionarVisibilidadFiltroInteresado(Visibility.Visible);
+
+            //escondo el filtro de interesado Entre
+            GestionarVisibilidadDatosDeMarca(Visibility.Visible);
+            GestionarVisibilidadFiltroMarca(Visibility.Collapsed);
 
             this._btnConsultarInteresadoEntre.IsDefault = true;
             this._btnModificar.IsDefault = false;

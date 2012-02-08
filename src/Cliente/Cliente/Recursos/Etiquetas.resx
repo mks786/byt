@@ -1616,4 +1616,7 @@ libro</value>
   <data name="btnPlanillaVienen" xml:space="preserve">
     <value>Planilla (VIENEN)</value>
   </data>
+  <data name="chkEtiqueta2" xml:space="preserve">
+    <value>¿Etiqueta?</value>
+  </data>
 </root>
