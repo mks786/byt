@@ -1036,6 +1036,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Cesiones
                 IEnumerable<Marca> marcasFiltradas;
                 marca.Descripcion = this._ventana.NombreMarcaFiltrar.ToUpper();
                 marca.Id = this._ventana.IdMarcaFiltrar.Equals("") ? 0 : int.Parse(this._ventana.IdMarcaFiltrar);
+
                 if ((!marca.Descripcion.Equals("")) || (marca.Id != 0))
                     marcasFiltradas = this._marcaServicios.ObtenerMarcasFiltro(marca);
                 else

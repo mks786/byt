@@ -1583,12 +1583,21 @@
     <value>Ubicación</value>
   </data>
   <data name="lblApoderado" xml:space="preserve">
-    <value>Apoderado</value>
+    <value>Apoderado:</value>
   </data>
   <data name="lblCedente" xml:space="preserve">
-    <value>Cedente</value>
+    <value>Cedente:</value>
   </data>
   <data name="lblFomento" xml:space="preserve">
-    <value>Fomento</value>
+    <value>#Fomento:</value>
+  </data>
+  <data name="lblCesionario" xml:space="preserve">
+    <value>Cesionario:</value>
+  </data>
+  <data name="lblOtros" xml:space="preserve">
+    <value>Otros:</value>
+  </data>
+  <data name="lblObservacion" xml:space="preserve">
+    <value>Observación:</value>
   </data>
 </root>

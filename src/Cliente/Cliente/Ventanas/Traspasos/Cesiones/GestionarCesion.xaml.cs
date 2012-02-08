@@ -24,18 +24,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Cesiones
             get { return this._cargada; }
             set { this._cargada = value; }
         }
-
-        public object Cesion
-        {
-            get
-            {
-                return this._gridDatos.DataContext;
-            }
-            set
-            {
-                this._gridDatos.DataContext = value;
-            }
-        }
+      
 
         public string IdAsociadoFiltrar
         {
@@ -45,34 +34,64 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Cesiones
         public string NombreAsociadoFiltrar
         {
             get { throw new System.NotImplementedException(); }
-        }
+        }       
 
-        public string IdInteresadoEntreFiltrar
+        public string IdCedenteFiltrar
         {
             get { throw new System.NotImplementedException(); }
         }
 
-        public string NombreInteresadoEntreFiltrar
+        public string NombreCedenteFiltrar
         {
             get { throw new System.NotImplementedException(); }
         }
 
-        public string IdInteresadoSobrevivienteFiltrar
+        public string IdCesionarioFiltrar
         {
             get { throw new System.NotImplementedException(); }
         }
 
-        public string NombreInteresadoSobrevivienteFiltrar
+        public string NombreCesionarioFiltrar
         {
             get { throw new System.NotImplementedException(); }
         }
 
-        public string IdAgenteFiltrar
+        public string IdPoderCesionarioFiltrar
         {
             get { throw new System.NotImplementedException(); }
         }
 
-        public string NombreAgenteFiltrar
+        public string NombrePoderCesionarioFiltrar
+        {
+            get { throw new System.NotImplementedException(); }
+        }
+
+        public string IdPoderCedenteFiltrar
+        {
+            get { throw new System.NotImplementedException(); }
+        }
+
+        public string NombrePoderCedenteFiltrar
+        {
+            get { throw new System.NotImplementedException(); }
+        }
+
+        public string IdApoderadoCesionarioFiltrar
+        {
+            get { throw new System.NotImplementedException(); }
+        }
+
+        public string NombreApoderadoCesionarioFiltrar
+        {
+            get { throw new System.NotImplementedException(); }
+        }
+
+        public string IdApoderadoCedenteFiltrar
+        {
+            get { throw new System.NotImplementedException(); }
+        }
+
+        public string NombreApoderadoCedenteFiltrar
         {
             get { throw new System.NotImplementedException(); }
         }
@@ -93,28 +112,136 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Cesiones
             set { this._gridDatosMarca.DataContext = value; }
         }
 
+        public object InteresadoCedente
+        {
+            get { return this._gridDatosCedente.DataContext; }
+            set { this._gridDatosCedente.DataContext = value; }            
+        }
+        
+        public object InteresadoCesionario
+        {
+            get { return this._gridDatosCesionario.DataContext; }
+            set { this._gridDatosCesionario.DataContext = value; }            
+        }
+
+        public object ApoderadoCedente
+        {
+            get { return this._gridDatosApoderadoCedente.DataContext; }
+            set { this._gridDatosApoderadoCedente.DataContext = value; }
+        }
+
+        public object ApoderadoCesionario
+        {
+            get { return this._gridDatosApoderadoCesionario.DataContext; }
+            set { this._gridDatosApoderadoCesionario.DataContext = value; }            
+        }
+    
+        public object PoderCedente
+        {
+            get { return this._gridDatosPoderCedente.DataContext; }
+            set { this._gridDatosPoderCedente.DataContext = value; }            
+        }
+
+        public object PoderCesionario
+        {
+            get { return this._gridDatosPoderCesionario.DataContext; }
+            set { this._gridDatosPoderCesionario.DataContext = value; }
+        }  
+
         public object MarcasFiltradas
         {
             get { return this._lstMarcas.DataContext; }
             set { this._lstMarcas.DataContext = value; }
         }
 
+        public object CedentesFiltrados
+        {
+            get { return this._lstCedentes.DataContext; }
+            set { this._lstCedentes.DataContext = value; }
+        }
+
+        public object CesionariosFiltrados
+        {
+            get { return this._lstCesionarios.DataContext; }
+            set { this._lstCesionarios.DataContext = value; }
+        }
+
+        public object ApoderadosCedenteFiltrados
+        {
+            get { return this._lstApoderadosCedente.DataContext; }
+            set { this._lstApoderadosCedente.DataContext = value; }
+        }
+
+        public object ApoderadosCesionarioFiltrados
+        {
+            get { return this._lstApoderadosCesionario.DataContext; }
+            set { this._lstApoderadosCesionario.DataContext = value; }
+        }
+
+        public object PoderesCedenteFiltrados
+        {
+            get { return this._lstPoderesCedente.DataContext; }
+            set { this._lstPoderesCedente.DataContext = value; }
+        }
+
+        public object PoderesCesionarioFiltrados
+        {
+            get { return this._lstPoderesCesionario.DataContext; }
+            set { this._lstPoderesCesionario.DataContext = value; }
+        }
+         
+        public object Cesion
+        {
+            get { return this._gridDatos.DataContext; }
+            set { this._gridDatos.DataContext = value; }
+        }
+        
         public object MarcaFiltrada
         {
             get { return this._lstMarcas.SelectedItem; }
             set { this._lstMarcas.SelectedItem = value; }
         }
 
+        public object CedenteFiltrado
+        {
+            get { return this._lstCedentes.SelectedItem; }
+            set { this._lstCedentes.SelectedItem = value; }
+        }
+
+        public object CesionarioFiltrado
+        {
+            get { return this._lstCesionarios.SelectedItem; }
+            set { this._lstCesionarios.SelectedItem = value; }
+        }
+
+        public object ApoderadoCedenteFiltrado
+        {
+            get { return this._lstApoderadosCedente.SelectedItem; }
+            set { this._lstApoderadosCedente.SelectedItem = value; }
+        }
+
+        public object ApoderadoCesionarioFiltrado
+        {
+            get { return this._lstApoderadosCesionario.SelectedItem; }
+            set { this._lstApoderadosCesionario.SelectedItem = value; }
+        }
+
+        public object PoderCedenteFiltrado
+        {
+            get { return this._lstPoderesCedente.SelectedItem; }
+            set { this._lstPoderesCedente.SelectedItem = value; }
+        }
+
+        public object PoderCesionarioFiltrado
+        {
+            get { return this._lstPoderesCesionario.SelectedItem; }
+            set { this._lstPoderesCesionario.SelectedItem = value; }
+        }
+
         public string Region
         {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
-                throw new System.NotImplementedException();
-            }
+            get { throw new System.NotImplementedException(); }
+            set { throw new System.NotImplementedException(); }
         }
 
         public void FocoPredeterminado()
@@ -209,6 +336,26 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Cesiones
             this._presentador.ConsultarMarcas();
         }
 
+        private void _btnConsultarCedente_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void _btnConsultarCesionario_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+              
+        private void _btnConsultarApoderadoCedente_Click(object sender, RoutedEventArgs e)
+        {
+            
+        }
+
+        private void _btnConsultarApoderadoCesionario_Click(object sender, RoutedEventArgs e)
+        {
+            
+        }        
+
         private void _lstMarcas_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             if (this._presentador.CambiarMarca())
@@ -217,7 +364,36 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Cesiones
                 GestionarVisibilidadFiltroMarca(Visibility.Collapsed);
             }
         }
+
+        private void _lstCedentes_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            
+        }
+
+        private void _lstCesionarios_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            
+        }        
         
+        private void _lstPoderesCedente_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            
+        }
+        private void _lstPoderesCesionario_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            
+        }        
+
+        private void _lstApoderadosCedente_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            
+        }
+
+        private void _lstApoderadosCesionario_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+
+        }
+                
         private void _OrdenarMarcas_Click(object sender, RoutedEventArgs e)
         {
             this._presentador.OrdenarColumna(sender as GridViewColumnHeader, this._lstMarcas);
@@ -228,6 +404,32 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Cesiones
             this._presentador.OrdenarColumna(sender as GridViewColumnHeader, this._lstCedentes);
         }
 
+        private void _OrdenarCesionarios_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.OrdenarColumna(sender as GridViewColumnHeader, this._lstCedentes);
+        }
+        
+        private void _OrdenarApoderadosCedente_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.OrdenarColumna(sender as GridViewColumnHeader, this._lstCedentes);
+        }
+
+        private void _OrdenarApoderadosCesionario_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.OrdenarColumna(sender as GridViewColumnHeader, this._lstCedentes);
+        }
+        
+
+        private void _OrdenarPoderesCedente_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.OrdenarColumna(sender as GridViewColumnHeader, this._lstCedentes);
+        }
+
+        private void _OrdenarPoderesCesionario_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.OrdenarColumna(sender as GridViewColumnHeader, this._lstCedentes);
+        }
+        
         private void _txtNombreMarca_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             GestionarVisibilidadDatosDeMarca(Visibility.Collapsed);
@@ -268,11 +470,9 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Cesiones
             this._btnConsultarMarca.IsDefault = true;
             this._btnModificar.IsDefault = false;
         }
+    
 
-        private void _lstCedentes_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
-        {
-
-        }
+    
 
 
     }

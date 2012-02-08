@@ -9,19 +9,7 @@ namespace Trascend.Bolet.Cliente.Contratos.Traspasos.Cesiones
 
         string IdAsociadoFiltrar { get; }
 
-        string NombreAsociadoFiltrar { get; }
-
-        string IdInteresadoEntreFiltrar { get; }
-
-        string NombreInteresadoEntreFiltrar { get; }
-
-        string IdInteresadoSobrevivienteFiltrar { get; }
-
-        string NombreInteresadoSobrevivienteFiltrar { get; }
-
-        string IdAgenteFiltrar { get; }
-
-        string NombreAgenteFiltrar { get; }       
+        string NombreAsociadoFiltrar { get; }       
         
         //ListView Marcas
 
@@ -34,6 +22,78 @@ namespace Trascend.Bolet.Cliente.Contratos.Traspasos.Cesiones
         object MarcaFiltrada { get; set; }
 
         //-----------
+        
+        //ListView Cedente
+        string IdCedenteFiltrar { get; }
+
+        string NombreCedenteFiltrar { get; }
+
+        object CedentesFiltrados { get; set; }
+
+        object CedenteFiltrado { get; set; }
+       
+        //----------------
+
+        //ListView Cesionario
+
+        string IdCesionarioFiltrar { get; }
+
+        string NombreCesionarioFiltrar { get; }
+
+        object CesionariosFiltrados { get; set; }
+
+        object CesionarioFiltrado { get; set; }
+
+        //----------------
+
+        //Apoderado Cedente
+
+        string IdApoderadoCedenteFiltrar { get; }
+
+        string NombreApoderadoCedenteFiltrar { get; }
+        
+        object ApoderadosCedenteFiltrados { get; set; }
+
+        object ApoderadoCedenteFiltrado { get; set; }
+
+        //----------------
+
+        //Apoderado Cesionario
+
+        string IdApoderadoCesionarioFiltrar { get; }
+
+        string NombreApoderadoCesionarioFiltrar { get; }
+
+        object ApoderadosCesionarioFiltrados { get; set; }
+
+        object ApoderadoCesionarioFiltrado { get; set; }
+
+        //----------------
+
+        //Poder Cedente
+
+        string IdPoderCedenteFiltrar { get; }
+
+        string NombrePoderCedenteFiltrar { get; }
+
+        object PoderesCedenteFiltrados { get; set; }
+
+        object PoderCedenteFiltrado { get; set; }
+
+        //----------------
+
+        //Poder Cesionario
+
+        string IdPoderCesionarioFiltrar { get; }
+
+        string NombrePoderCesionarioFiltrar { get; }
+
+        object PoderesCesionarioFiltrados { get; set; }
+
+        object PoderCesionarioFiltrado { get; set; }
+
+        //----------------
+  
 
         bool HabilitarCampos { set; }
 

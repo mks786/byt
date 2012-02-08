@@ -1006,7 +1006,7 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Apoderado.
+        ///   Busca una cadena traducida similar a Apoderado:.
         /// </summary>
         public static string lblApoderado {
             get {
@@ -1177,11 +1177,20 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Cedente.
+        ///   Busca una cadena traducida similar a Cedente:.
         /// </summary>
         public static string lblCedente {
             get {
                 return ResourceManager.GetString("lblCedente", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Cesionario:.
+        /// </summary>
+        public static string lblCesionario {
+            get {
+                return ResourceManager.GetString("lblCesionario", resourceCulture);
             }
         }
         
@@ -1718,7 +1727,7 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Fomento.
+        ///   Busca una cadena traducida similar a #Fomento:.
         /// </summary>
         public static string lblFomento {
             get {
@@ -2060,6 +2069,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Observación:.
+        /// </summary>
+        public static string lblObservacion {
+            get {
+                return ResourceManager.GetString("lblObservacion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Observaciones:.
         /// </summary>
         public static string lblObservaciones {
@@ -2083,6 +2101,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string lblOtro {
             get {
                 return ResourceManager.GetString("lblOtro", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Otros:.
+        /// </summary>
+        public static string lblOtros {
+            get {
+                return ResourceManager.GetString("lblOtros", resourceCulture);
             }
         }
         
