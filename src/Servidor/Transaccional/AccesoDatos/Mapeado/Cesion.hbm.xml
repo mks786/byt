@@ -32,6 +32,38 @@
     <many-to-one name="Marca" class="Marca">
       <column name="CMARCA"/>
     </many-to-one>
+
+    <many-to-one name="AgenteCedente" class="Agente">
+      <column name="CAGENTE_CEDENTE"/>
+    </many-to-one>
+
+    <many-to-one name="AgenteCesionario" class="Agente">
+      <column name="CAGENTE_CESIONARIO"/>
+    </many-to-one>
+
+    <many-to-one name="PoderCedente" class="Poder">
+      <column name="CPODER_CEDENTE"/>
+    </many-to-one>
+
+    <many-to-one name="PoderCesionario" class="Poder">
+      <column name="CPODER_CESIONARIO"/>
+    </many-to-one>
+
+    <many-to-one name="BoletinPublicacion" class="Boletin">
+      <column name="CBOLETIN_PUBLICACION"/>
+    </many-to-one>
+
+    <many-to-one name="Asociado" class="Asociado">
+      <column name="CASOCIADO"/>
+    </many-to-one>
+
+    <many-to-one name="Cedente" class="Interesado">
+      <column name="CCEDENTE"/>
+    </many-to-one>
+
+    <many-to-one name="Cesionario" class="Interesado">
+      <column name="CCESIONARIO"/>
+    </many-to-one>
     
   </class>
 </hibernate-mapping>

@@ -103,7 +103,13 @@ namespace Trascend.Bolet.Cliente.Contratos.Traspasos.Cesiones
 
         string NombreMarca { set; }
 
+        string NombreCedente { set; }
+
         object Marca { get; set; }
+
+        object InteresadoCedente { get; set; }
+
+        object InteresadoCesionario { get; set; }
 
         GridViewColumnHeader CurSortCol { get; set; }
 

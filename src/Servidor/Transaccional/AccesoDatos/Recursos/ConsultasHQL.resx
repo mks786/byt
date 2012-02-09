@@ -269,7 +269,7 @@
     <comment>Filtro por Asociado</comment>
   </data>
   <data name="CabeceraObtenerCesion" xml:space="preserve">
-    <value>Select c from Cesion c left join fetch c.Marca as marca where </value>
+    <value>Select c from Cesion c left join fetch c.Marca as marca left join fetch c.Cedente as cedente where </value>
     <comment>Cabecera del query para el filtro de cesion</comment>
   </data>
   <data name="FiltroObtenerCesionFecha" xml:space="preserve">

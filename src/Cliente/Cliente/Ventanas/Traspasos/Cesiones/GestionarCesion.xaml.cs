@@ -276,7 +276,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Cesiones
                 this._txtNombreApoderadoCedenteFiltrar.IsEnabled = value;
                 this._txtIdApoderadoCedenteFiltrar.IsEnabled = value;                                
                 this._txtNombrePoderCedente.IsEnabled = value;
-                this._txtNombrePoderCedenteFiltrar.IsEnabled = value;
+                //fechafiltrar poder cedente
                 this._txtIdPoderCedenteFiltrar.IsEnabled = value;
                 this._txtAnexoCedente.IsEnabled = value;
                 this._txtBoletinCedente.IsEnabled = value;
@@ -292,7 +292,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Cesiones
                 this._txtNombreApoderadoCesionarioFiltrar.IsEnabled = value;                               
                 this._txtNombrePoderCesionario.IsEnabled = value;
                 this._txtIdPoderCesionarioFiltrar.IsEnabled = value;
-                this._txtNombrePoderCesionarioFiltrar.IsEnabled = value;          
+                //fechafiltrar poder cesionario
                 this._txtAnexoCesionario.IsEnabled = value;               
                 this._txtBoletinCesionario.IsEnabled = value;               
                 this._txtFacultadCesionario.IsEnabled = value;                
@@ -313,6 +313,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Cesiones
         public string NombreMarca
         {
             set { this._txtNombreMarca.Text = value; }
+        }
+
+        public string NombreCedente
+        {
+            set { this._txtNombreCedente.Text = value; }
         }
 
         public string TextoBotonModificar
@@ -753,7 +758,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Cesiones
 
         private void GestionarVisibilidadDatosDePoderCedente(object value)
         {
-            this._lblNombrePoderCedente.Visibility = (System.Windows.Visibility)value;
+            this._lblIdPoderCedente.Visibility = (System.Windows.Visibility)value;
             this._txtNombrePoderCedente.Visibility = (System.Windows.Visibility)value;
             this._lblFomentoCedente.Visibility = (System.Windows.Visibility)value;
             this._lblFechaPoderCedente.Visibility = (System.Windows.Visibility)value;
@@ -769,7 +774,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Cesiones
 
         private void GestionarVisibilidadDatosDePoderCesionario(object value)
         {
-            this._lblNombrePoderCesionario.Visibility = (System.Windows.Visibility)value;
+            this._lblIdPoderCesionario.Visibility = (System.Windows.Visibility)value;
             this._txtNombrePoderCesionario.Visibility = (System.Windows.Visibility)value;
             this._lblFomentoCesionario.Visibility = (System.Windows.Visibility)value;
             this._lblFechaPoderCesionario.Visibility = (System.Windows.Visibility)value;
@@ -843,8 +848,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Cesiones
         private void GestionarVisibilidadFiltroPoderCedente(object value)
         {
             this._lblPoderCedenteFiltrar.Visibility = (System.Windows.Visibility)value;
-            this._lblNombrePoderCedenteFiltrar.Visibility = (System.Windows.Visibility)value;
-            this._txtNombrePoderCedenteFiltrar.Visibility = (System.Windows.Visibility)value;
+            // FECHA this._lblNombrePoderCedenteFiltrar.Visibility = (System.Windows.Visibility)value;
+            // FECHA this._txtNombrePoderCedenteFiltrar.Visibility = (System.Windows.Visibility)value;
             this._lblIdPoderCedenteFiltrar.Visibility = (System.Windows.Visibility)value;
             this._txtIdPoderCedenteFiltrar.Visibility = (System.Windows.Visibility)value;
             this._lstPoderesCedente.Visibility = (System.Windows.Visibility)value;
@@ -855,8 +860,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Cesiones
         private void GestionarVisibilidadFiltroPoderCesionario(object value)
         {
             this._lblPoderCesionarioFiltrar.Visibility = (System.Windows.Visibility)value;
-            this._lblNombrePoderCesionarioFiltrar.Visibility = (System.Windows.Visibility)value;
-            this._txtNombrePoderCesionarioFiltrar.Visibility = (System.Windows.Visibility)value;
+            // FECHA this._lblNombrePoderCesionarioFiltrar.Visibility = (System.Windows.Visibility)value;
+            // FECHA this._txtNombrePoderCesionarioFiltrar.Visibility = (System.Windows.Visibility)value;
             this._lblIdPoderCesionarioFiltrar.Visibility = (System.Windows.Visibility)value;
             this._txtIdPoderCesionarioFiltrar.Visibility = (System.Windows.Visibility)value;
             this._lstPoderesCesionario.Visibility = (System.Windows.Visibility)value;

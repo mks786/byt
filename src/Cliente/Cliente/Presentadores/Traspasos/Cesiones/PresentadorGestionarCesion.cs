@@ -26,7 +26,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Cesiones
 
         private IGestionarCesion _ventana;
 
-        private IMarcaServicios _marcaServicios;
+        private IMarcaServicios _marcaServicios;       
         private IAnaquaServicios _anaquaServicios;
         private IAsociadoServicios _asociadoServicios;
         private IAgenteServicios _agenteServicios;
@@ -46,10 +46,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Cesiones
         private IStatusWebServicios _statusWebServicios;
 
         private IList<Asociado> _asociados;
-        private IList<Interesado> _interesados;
+        private IList<Interesado> _interesadosCedente;
+        private IList<Interesado> _interesadosCesionario;
         private IList<Corresponsal> _corresponsales;
         private IList<Auditoria> _auditorias;
-        private IList<Marca> _marcas;
+        private IList<Marca> _marcas;        
        
         /// <summary>
         /// Constructor Predeterminado
@@ -141,7 +142,23 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Cesiones
 
                 this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleConsultarMarca, "");
 
-                Cesion cesion = (Cesion)this._ventana.Cesion;                                   
+                Cesion cesion = (Cesion)this._ventana.Cesion;
+               
+
+                this._ventana.Marca = this._marcaServicios.ConsultarMarcaConTodo(cesion.Marca);
+                this._ventana.InteresadoCedente = this._interesadoServicios.ConsultarInteresadoConTodo(cesion.Cedente);                
+
+                this._ventana.NombreMarca = ((Marca)this._ventana.Marca).Descripcion;
+                this._ventana.NombreCedente = ((Interesado)this._ventana.InteresadoCedente).Nombre;
+                
+                this._marcas = new List<Marca>();
+                this._interesadosCedente = new List<Interesado>();
+
+                this._marcas.Add((Marca)this._ventana.Marca);
+                this._interesadosCedente.Add((Interesado)this._ventana.InteresadoCedente);
+                
+                this._ventana.MarcasFiltradas = this._marcas;
+                this._ventana.CedentesFiltrados = this._interesadosCedente;
 
                 //fusion.InfoBoles = this._infoBolServicios.ConsultarInfoBolesPorMarca(fusion);
                 //fusion.Operaciones = this._operacionServicios.ConsultarOperacionesPorMarca(fusion);
@@ -1077,12 +1094,110 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Cesiones
 
         public void ConsultarCedentes()
         {
-           
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                Mouse.OverrideCursor = Cursors.Wait;
+                Interesado cedente = new Interesado();
+                IEnumerable<Interesado> cedentesFiltrados;
+                cedente.Nombre = this._ventana.NombreCedenteFiltrar.ToUpper();
+                cedente.Id = this._ventana.IdCedenteFiltrar.Equals("") ? 0 : int.Parse(this._ventana.IdCedenteFiltrar);
+
+                if ((!cedente.Nombre.Equals("")) || (cedente.Id != 0))
+                    cedentesFiltrados = this._interesadoServicios.ObtenerInteresadosFiltro(cedente);
+                else
+                    cedentesFiltrados = new List<Interesado>();
+
+                if (cedentesFiltrados.ToList<Interesado>().Count != 0)
+                    this._ventana.CedentesFiltrados = cedentesFiltrados.ToList<Interesado>();
+                else
+                    this._ventana.CedentesFiltrados = this._interesadosCedente;
+
+                Mouse.OverrideCursor = null;
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (ApplicationException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(ex.Message, true);
+            }
+            catch (RemotingException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorRemoting, true);
+            }
+            catch (SocketException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorConexionServidor, true);
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
+            }
         }
 
         public void ConsultarApoderadosCedente()
         {
-          
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                Mouse.OverrideCursor = Cursors.Wait;
+                Interesado cedente = new Interesado();
+                IEnumerable<Interesado> cedentesFiltrados;
+                cedente.Nombre = this._ventana.NombreCedenteFiltrar.ToUpper();
+                cedente.Id = this._ventana.IdCedenteFiltrar.Equals("") ? 0 : int.Parse(this._ventana.IdCedenteFiltrar);
+
+                if ((!cedente.Nombre.Equals("")) || (cedente.Id != 0))
+                    cedentesFiltrados = this._interesadoServicios.ObtenerInteresadosFiltro(cedente);
+                else
+                    cedentesFiltrados = new List<Interesado>();
+
+                if (cedentesFiltrados.ToList<Interesado>().Count != 0)
+                    this._ventana.CedentesFiltrados = cedentesFiltrados.ToList<Interesado>();
+                else
+                    this._ventana.CedentesFiltrados = this._interesadosCedente;
+
+                Mouse.OverrideCursor = null;
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (ApplicationException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(ex.Message, true);
+            }
+            catch (RemotingException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorRemoting, true);
+            }
+            catch (SocketException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorConexionServidor, true);
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
+            }          
         }
 
         public void ConsultarPoderesCedente()
