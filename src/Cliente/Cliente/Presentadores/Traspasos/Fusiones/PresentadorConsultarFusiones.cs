@@ -61,8 +61,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
 
         public void ActualizarTitulo()
         {
-            this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleConsultarMarcas,
-                Recursos.Ids.ConsultarMarcas);
+            this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleConsultarFusiones,
+                Recursos.Ids.ConsultarFusiones);
         }
 
         /// <summary>

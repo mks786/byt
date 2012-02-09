@@ -114,8 +114,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
 
         public void ActualizarTitulo()
         {
-            this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleConsultarMarcas,
-                Recursos.Ids.ConsultarMarcas);
+            this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleGestionarFusion,
+                Recursos.Ids.GestionarFusion);
         }
 
         /// <summary>
@@ -605,6 +605,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
                 {
                     this._ventana.Marca = this._ventana.MarcaFiltrada;
                     this._ventana.NombreMarca = ((Marca)this._ventana.MarcaFiltrada).Descripcion;
+                    this._marcas.RemoveAt(0);
+                    this._marcas.Add((Marca)this._ventana.MarcaFiltrada);
                     retorno = true;
                 }
 
@@ -710,7 +712,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
                 {
                     this._ventana.InteresadoEntre = this._ventana.InteresadoEntreFiltrado;
                     this._ventana.NombreInteresadoEntre = ((Interesado)this._ventana.InteresadoEntreFiltrado).Nombre;
+                    this._interesadosEntre.RemoveAt(0);
+                    this._interesadosEntre.Add((Interesado)this._ventana.InteresadoEntreFiltrado);
                     retorno = true;
+
                 }
 
                 #region trace

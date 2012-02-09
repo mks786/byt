@@ -121,8 +121,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Cesiones
 
         public void ActualizarTitulo()
         {
-            this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleConsultarMarcas,
-                Recursos.Ids.ConsultarMarcas);
+            this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleGestionarCesion,
+                Recursos.Ids.GestionarCesion);
         }
 
         /// <summary>

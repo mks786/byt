@@ -234,6 +234,9 @@
   <data name="ConsultarCartas" xml:space="preserve">
     <value>MYPTAGENTE</value>
   </data>
+  <data name="ConsultarCesiones" xml:space="preserve">
+    <value>MYPCESM</value>
+  </data>
   <data name="ConsultarContacto" xml:space="preserve">
     <value>FAC_CONTACTOS</value>
   </data>
@@ -254,6 +257,9 @@
   </data>
   <data name="ConsultarEstatuses" xml:space="preserve">
     <value>MYP_TESTADOS</value>
+  </data>
+  <data name="ConsultarFusiones" xml:space="preserve">
+    <value>MYPMFUSM</value>
   </data>
   <data name="ConsultarInfoAdicional" xml:space="preserve">
     <value>MYPTAGENTE</value>
@@ -443,6 +449,12 @@
   </data>
   <data name="Estatus" xml:space="preserve">
     <value>MYP_TESTADOS</value>
+  </data>
+  <data name="GestionarCesion" xml:space="preserve">
+    <value>MYPMCESM</value>
+  </data>
+  <data name="GestionarFusion" xml:space="preserve">
+    <value>MYPMFUSM</value>
   </data>
   <data name="InfoAdicional" xml:space="preserve">
     <value>MYPTAGENTE</value>

@@ -1619,4 +1619,16 @@ libro</value>
   <data name="chkEtiqueta2" xml:space="preserve">
     <value>¿Etiqueta?</value>
   </data>
+  <data name="titleConsultarCesiones" xml:space="preserve">
+    <value>Consultar Cesiones</value>
+  </data>
+  <data name="titleConsultarFusiones" xml:space="preserve">
+    <value>Consultar Fusiones</value>
+  </data>
+  <data name="titleGestionarCesion" xml:space="preserve">
+    <value>Gestionar Cesión</value>
+  </data>
+  <data name="titleGestionarFusion" xml:space="preserve">
+    <value>Gestionar Fusión</value>
+  </data>
 </root>

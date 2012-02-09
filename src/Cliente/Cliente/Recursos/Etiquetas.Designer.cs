@@ -97,8 +97,7 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Anexo FM02.
-        ///   Busca una cadena traducida similar a Anexo.
+        ///   Looks up a localized string similar to Anexo.
         /// </summary>
         public static string btnAnexo {
             get {
@@ -107,7 +106,7 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Anexo FM02.
+        ///   Looks up a localized string similar to Anexo FM02.
         /// </summary>
         public static string btnAnexoFM02 {
             get {
@@ -485,8 +484,7 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &lt;&lt;.
-        ///   Busca una cadena traducida similar a Planilla.
+        ///   Looks up a localized string similar to Planilla.
         /// </summary>
         public static string btnPlanilla {
             get {
@@ -495,7 +493,7 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Planilla (VAN).
+        ///   Looks up a localized string similar to Planilla (VAN).
         /// </summary>
         public static string btnPlanillaVan {
             get {
@@ -504,7 +502,7 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Planilla (VIENEN).
+        ///   Looks up a localized string similar to Planilla (VIENEN).
         /// </summary>
         public static string btnPlanillaVienen {
             get {
@@ -513,7 +511,7 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a &lt;&lt;.
+        ///   Looks up a localized string similar to &lt;&lt;.
         /// </summary>
         public static string btnQuitar {
             get {
@@ -972,8 +970,7 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Etiqueta.
-        ///   Busca una cadena traducida similar a Asiento en 
+        ///   Looks up a localized string similar to Asiento en 
         ///libro.
         /// </summary>
         public static string chkAsientoEnLibro {
@@ -983,7 +980,7 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Etiqueta.
+        ///   Looks up a localized string similar to Etiqueta.
         /// </summary>
         public static string chkEtiqueta {
             get {
@@ -1064,8 +1061,7 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Apoderado.
-        ///   Busca una cadena traducida similar a Apoderado:.
+        ///   Looks up a localized string similar to Apoderado:.
         /// </summary>
         public static string lblApoderado {
             get {
@@ -1155,8 +1151,7 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Boletin:.
-        ///   Busca una cadena traducida similar a Boletín:.
+        ///   Looks up a localized string similar to Boletín:.
         /// </summary>
         public static string lblBoletin {
             get {
@@ -1237,8 +1232,7 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Cedente.
-        ///   Busca una cadena traducida similar a Cedente:.
+        ///   Looks up a localized string similar to Cedente:.
         /// </summary>
         public static string lblCedente {
             get {
@@ -1247,8 +1241,7 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Ci:.
-        ///   Busca una cadena traducida similar a Cesionario:.
+        ///   Looks up a localized string similar to Cesionario:.
         /// </summary>
         public static string lblCesionario {
             get {
@@ -1257,7 +1250,7 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Ci:.
+        ///   Looks up a localized string similar to Ci:.
         /// </summary>
         public static string lblCi {
             get {
@@ -1582,7 +1575,6 @@ namespace Trascend.Bolet.Cliente.Recursos {
         
         /// <summary>
         ///   Looks up a localized string similar to Entre:.
-        ///   Busca una cadena traducida similar a Entre:.
         /// </summary>
         public static string lblEntre {
             get {
@@ -1591,7 +1583,7 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Estado:.
+        ///   Looks up a localized string similar to Estado:.
         /// </summary>
         public static string lblEstado {
             get {
@@ -1789,8 +1781,7 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Fomento.
-        ///   Busca una cadena traducida similar a #Fomento:.
+        ///   Looks up a localized string similar to #Fomento:.
         /// </summary>
         public static string lblFomento {
             get {
@@ -2132,8 +2123,7 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Observaciones:.
-        ///   Busca una cadena traducida similar a Observación:.
+        ///   Looks up a localized string similar to Observación:.
         /// </summary>
         public static string lblObservacion {
             get {
@@ -2142,7 +2132,7 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Observaciones:.
+        ///   Looks up a localized string similar to Observaciones:.
         /// </summary>
         public static string lblObservaciones {
             get {
@@ -2169,8 +2159,7 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Otros Imp:.
-        ///   Busca una cadena traducida similar a Otros:.
+        ///   Looks up a localized string similar to Otros:.
         /// </summary>
         public static string lblOtros {
             get {
@@ -2179,7 +2168,7 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Otros Imp:.
+        ///   Looks up a localized string similar to Otros Imp:.
         /// </summary>
         public static string lblOtrosImp {
             get {
@@ -4051,6 +4040,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Consultar Cesiones.
+        /// </summary>
+        public static string titleConsultarCesiones {
+            get {
+                return ResourceManager.GetString("titleConsultarCesiones", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Consultar Contacto.
         /// </summary>
         public static string titleConsultarContacto {
@@ -4119,6 +4117,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string titleConsultarEstatuses {
             get {
                 return ResourceManager.GetString("titleConsultarEstatuses", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Consultar Fusiones.
+        /// </summary>
+        public static string titleConsultarFusiones {
+            get {
+                return ResourceManager.GetString("titleConsultarFusiones", resourceCulture);
             }
         }
         
@@ -4425,6 +4432,24 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string titleGestionarAnaqua {
             get {
                 return ResourceManager.GetString("titleGestionarAnaqua", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Gestionar Cesión.
+        /// </summary>
+        public static string titleGestionarCesion {
+            get {
+                return ResourceManager.GetString("titleGestionarCesion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Gestionar Fusión.
+        /// </summary>
+        public static string titleGestionarFusion {
+            get {
+                return ResourceManager.GetString("titleGestionarFusion", resourceCulture);
             }
         }
         

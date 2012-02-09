@@ -412,6 +412,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to MYPCESM.
+        /// </summary>
+        public static string ConsultarCesiones {
+            get {
+                return ResourceManager.GetString("ConsultarCesiones", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to FAC_CONTACTOS.
         /// </summary>
         public static string ConsultarContacto {
@@ -471,6 +480,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string ConsultarEstatuses {
             get {
                 return ResourceManager.GetString("ConsultarEstatuses", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to MYPMFUSM.
+        /// </summary>
+        public static string ConsultarFusiones {
+            get {
+                return ResourceManager.GetString("ConsultarFusiones", resourceCulture);
             }
         }
         
@@ -1038,6 +1056,24 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string Estatus {
             get {
                 return ResourceManager.GetString("Estatus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to MYPMCESM.
+        /// </summary>
+        public static string GestionarCesion {
+            get {
+                return ResourceManager.GetString("GestionarCesion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to MYPMFUSM.
+        /// </summary>
+        public static string GestionarFusion {
+            get {
+                return ResourceManager.GetString("GestionarFusion", resourceCulture);
             }
         }
         
