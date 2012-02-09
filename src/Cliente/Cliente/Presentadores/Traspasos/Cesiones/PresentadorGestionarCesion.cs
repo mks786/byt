@@ -1018,8 +1018,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Cesiones
         //    bool retorno = false;
 
         //    return true;
-        //}
-
+        //}        
 
         public void ConsultarMarcas()
         {
@@ -1074,6 +1073,36 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Cesiones
                 logger.Error(ex.Message);
                 this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
             }
+        }
+
+        public void ConsultarCedentes()
+        {
+           
+        }
+
+        public void ConsultarApoderadosCedente()
+        {
+          
+        }
+
+        public void ConsultarPoderesCedente()
+        {
+
+        }
+
+        public void ConsultarCesionarios()
+        {
+         
+        }
+
+        public void ConsultarApoderadosCesionario()
+        {
+           
+        }
+
+        public void ConsultarPoderesCesionario()
+        {
+          
         }
 
         public bool CambiarMarca()

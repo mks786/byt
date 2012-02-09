@@ -264,16 +264,49 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Cesiones
                 this._txtNumInscripcion.IsEnabled = value;
                 this._txtNumRegistro.IsEnabled = value;
                 this._txtTipo.IsEnabled = value;
+                this._txtUbicacion.IsEnabled = value;                                
+                this._btnConsultarMarca.IsEnabled = value;
+                
                 this._txtNombreCedente.IsEnabled = value;
                 this._txtPaisCedente.IsEnabled = value;
                 this._txtNacionalidadCedente.IsEnabled = value;
-                this._btnConsultarMarca.IsEnabled = value;
-                this._txtNombreCesionario.IsEnabled = value;
-                this._txtNombreCedente.IsEnabled = value;
+                this._txtIdCedenteFiltrar.IsEnabled = value;
+                this._txtNombreCedenteFiltrar.IsEnabled = value;
                 this._txtNombreApoderadoCedente.IsEnabled = value;
-                this._txtNombreApoderadoCesionario.IsEnabled = value;
+                this._txtNombreApoderadoCedenteFiltrar.IsEnabled = value;
+                this._txtIdApoderadoCedenteFiltrar.IsEnabled = value;                                
                 this._txtNombrePoderCedente.IsEnabled = value;
+                this._txtNombrePoderCedenteFiltrar.IsEnabled = value;
+                this._txtIdPoderCedenteFiltrar.IsEnabled = value;
+                this._txtAnexoCedente.IsEnabled = value;
+                this._txtBoletinCedente.IsEnabled = value;
+                this._txtFacultadCedente.IsEnabled = value;
+                this._txtNumPoderCedente.IsEnabled = value;
+                this._txtFechaPoderCedente.IsEnabled = value;
+
+                this._txtNombreCesionario.IsEnabled = value;
+                this._txtIdCesionarioFiltrar.IsEnabled = value;
+                this._txtNombreCesionarioFiltrar.IsEnabled = value;
+                this._txtNombreApoderadoCesionario.IsEnabled = value;
+                this._txtIdApoderadoCesionarioFiltrar.IsEnabled = value;
+                this._txtNombreApoderadoCesionarioFiltrar.IsEnabled = value;                               
                 this._txtNombrePoderCesionario.IsEnabled = value;
+                this._txtIdPoderCesionarioFiltrar.IsEnabled = value;
+                this._txtNombrePoderCesionarioFiltrar.IsEnabled = value;          
+                this._txtAnexoCesionario.IsEnabled = value;               
+                this._txtBoletinCesionario.IsEnabled = value;               
+                this._txtFacultadCesionario.IsEnabled = value;                
+                this._txtNumPoderCesionario.IsEnabled = value;
+                this._txtFechaPoderCesionario.IsEnabled = value;  
+                this._txtPaisCesionario.IsEnabled = value;
+                this._txtNacionalidadCesionario.IsEnabled = value;
+
+                this._txtObservacionCesion.IsEnabled = value;
+                this._txtOtrosCesion.IsEnabled = value;
+                this._txtReferenciaCesion.IsEnabled = value;                                
+                this._txtBoletinCesion.IsEnabled = value;
+                this._txtAnexoCesion.IsEnabled = value;                              
+                this._txtComentarioCesion.IsEnabled = value;                                                                               
             }
         }
 
@@ -337,40 +370,23 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Cesiones
             }
         }
 
-        private void _btnConsultarMarca_Click(object sender, RoutedEventArgs e)
-        {
-            this._presentador.ConsultarMarcas();
-        }
-
-        private void _btnConsultarCedente_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void _btnConsultarCesionario_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-              
-        private void _btnConsultarApoderadoCedente_Click(object sender, RoutedEventArgs e)
-        {
-            
-        }
-
-        private void _btnConsultarApoderadoCesionario_Click(object sender, RoutedEventArgs e)
-        {
-            
-        }
-
-        private void _btnConsultarPoderCedente_Click(object sender, RoutedEventArgs e)
-        {
-            
-        }
-
-        private void _btnConsultarPoderCesionario_Click(object sender, RoutedEventArgs e)
-        {
-            
-        }        
+        private void _btnConsultar(object sender, RoutedEventArgs e)
+        {           
+            if (((Button)sender).Name.Equals("_btnConsultarMarca"))
+                this._presentador.ConsultarMarcas();
+            else if (((Button)sender).Name.Equals("_btnConsultarCedente"))
+                this._presentador.ConsultarCedentes();  
+            else if (((Button)sender).Name.Equals("_btnConsultarApoderadoCedente"))
+                this._presentador.ConsultarApoderadosCedente();  
+            else if (((Button)sender).Name.Equals("_btnConsultarPoderCedente"))
+                this._presentador.ConsultarPoderesCedente();
+            else if (((Button)sender).Name.Equals("_btnConsultarCesionario"))
+                this._presentador.ConsultarCesionarios();
+            else if (((Button)sender).Name.Equals("_btnConsultarApoderadoCesionario"))
+                this._presentador.ConsultarApoderadosCesionario();
+            else if (((Button)sender).Name.Equals("_btnConsultarPoderCesionario"))
+                this._presentador.ConsultarPoderesCedente();            
+        }       
         
         private void _btnPlanillaVienen_Click(object sender, RoutedEventArgs e)
         {
@@ -420,6 +436,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Cesiones
         {
             
         }
+
         private void _lstPoderesCesionario_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             
@@ -460,7 +477,6 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Cesiones
             this._presentador.OrdenarColumna(sender as GridViewColumnHeader, this._lstApoderadosCesionario);
         }
         
-
         private void _OrdenarPoderesCedente_Click(object sender, RoutedEventArgs e)
         {
             this._presentador.OrdenarColumna(sender as GridViewColumnHeader, this._lstPoderesCedente);
@@ -489,13 +505,23 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Cesiones
 
             GestionarVisibilidadFiltroMarca(Visibility.Visible);
 
-            GestionarVisibilidadDatosDePoderCesionario(Visibility.Visible);
+            GestionarVisibilidadDatosDeCedente(Visibility.Visible);
 
-            GestionarVisibilidadDatosDePoderCedente(Visibility.Visible);
+            GestionarVisibilidadDatosDeCesionario(Visibility.Visible);
+
+            GestionarVisibilidadDatosDeApoderadoCedente(Visibility.Visible);
+
+            GestionarVisibilidadDatosDeApoderadoCesionario(Visibility.Visible);
+
+            GestionarVisibilidadDatosDePoderCesionario(Visibility.Visible);
+            
+            GestionarVisibilidadDatosDePoderCedente(Visibility.Visible);                        
         }
 
         private void _txtNombreCedente_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
-        {                                   
+        {
+            GestionarVisibilidadDatosDeCedente(Visibility.Collapsed);
+                    
             GestionarVisibilidadFiltroCesionario(Visibility.Collapsed);
 
             GestionarVisibilidadFiltroApoderadoCedente(Visibility.Collapsed);
@@ -512,13 +538,21 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Cesiones
 
             GestionarVisibilidadDatosDeMarca(Visibility.Visible);
 
-            GestionarVisibilidadDatosDePoderCesionario(Visibility.Visible);
+            GestionarVisibilidadDatosDeCesionario(Visibility.Visible);
 
+            GestionarVisibilidadDatosDeApoderadoCedente(Visibility.Visible);
+
+            GestionarVisibilidadDatosDeApoderadoCesionario(Visibility.Visible);
+            
             GestionarVisibilidadDatosDePoderCedente(Visibility.Visible);
+
+            GestionarVisibilidadDatosDePoderCesionario(Visibility.Visible);
         }
 
         private void _txtNombreCesionario_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
-        {                       
+        {
+            GestionarVisibilidadDatosDeCesionario(Visibility.Collapsed);
+
             GestionarVisibilidadFiltroApoderadoCesionario(Visibility.Collapsed);
 
             GestionarVisibilidadFiltroPoderCesionario(Visibility.Collapsed);
@@ -535,13 +569,21 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Cesiones
 
             GestionarVisibilidadDatosDeMarca(Visibility.Visible);
 
-            GestionarVisibilidadDatosDePoderCesionario(Visibility.Visible);
+            GestionarVisibilidadDatosDeCedente(Visibility.Visible);
+
+            GestionarVisibilidadDatosDeApoderadoCedente(Visibility.Visible);
+
+            GestionarVisibilidadDatosDeApoderadoCesionario(Visibility.Visible);
 
             GestionarVisibilidadDatosDePoderCedente(Visibility.Visible);
+
+            GestionarVisibilidadDatosDePoderCesionario(Visibility.Visible);
         }
 
         private void _txtNombreApoderadoCedente_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
-        {                       
+        {
+            GestionarVisibilidadDatosDeApoderadoCedente(Visibility.Collapsed);                 
+
             GestionarVisibilidadFiltroCesionario(Visibility.Collapsed);            
 
             GestionarVisibilidadFiltroApoderadoCesionario(Visibility.Collapsed);
@@ -558,28 +600,42 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Cesiones
 
             GestionarVisibilidadDatosDeMarca(Visibility.Visible);
 
+            GestionarVisibilidadDatosDeCedente(Visibility.Visible);
+
+            GestionarVisibilidadDatosDeCesionario(Visibility.Visible);            
+
+            GestionarVisibilidadDatosDeApoderadoCesionario(Visibility.Visible);
+
             GestionarVisibilidadDatosDePoderCesionario(Visibility.Visible);
 
             GestionarVisibilidadDatosDePoderCedente(Visibility.Visible);
         }              
 
         private void _txtNombreApoderadoCesionario_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
-        {            
-            GestionarVisibilidadFiltroCesionario(Visibility.Collapsed);            
-
-            GestionarVisibilidadFiltroPoderCedente(Visibility.Collapsed);
-
-            GestionarVisibilidadFiltroPoderCesionario(Visibility.Collapsed);
+        {           
+            GestionarVisibilidadDatosDeApoderadoCesionario(Visibility.Collapsed);
 
             GestionarVisibilidadFiltroMarca(Visibility.Collapsed);
 
+            GestionarVisibilidadFiltroCesionario(Visibility.Collapsed);            
+            
             GestionarVisibilidadFiltroCedente(Visibility.Collapsed);
+
+            GestionarVisibilidadFiltroPoderCedente(Visibility.Collapsed);
+
+            GestionarVisibilidadFiltroPoderCesionario(Visibility.Collapsed);                        
 
             GestionarVisibilidadFiltroApoderadoCedente(Visibility.Collapsed);
 
             GestionarVisibilidadFiltroApoderadoCesionario(Visibility.Visible);
 
             GestionarVisibilidadDatosDeMarca(Visibility.Visible);
+
+            GestionarVisibilidadDatosDeCedente(Visibility.Visible);
+
+            GestionarVisibilidadDatosDeCesionario(Visibility.Visible);
+            
+            GestionarVisibilidadDatosDeApoderadoCedente(Visibility.Visible);
 
             GestionarVisibilidadDatosDePoderCesionario(Visibility.Visible);
 
@@ -606,6 +662,14 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Cesiones
 
             GestionarVisibilidadDatosDeMarca(Visibility.Visible);
 
+            GestionarVisibilidadDatosDeCedente(Visibility.Visible);
+
+            GestionarVisibilidadDatosDeCesionario(Visibility.Visible);
+
+            GestionarVisibilidadDatosDeApoderadoCedente(Visibility.Visible);
+
+            GestionarVisibilidadDatosDeApoderadoCesionario(Visibility.Visible);            
+
             GestionarVisibilidadDatosDePoderCesionario(Visibility.Visible);            
         }
 
@@ -630,19 +694,17 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Cesiones
 
             GestionarVisibilidadDatosDeMarca(Visibility.Visible);
 
+            GestionarVisibilidadDatosDeCedente(Visibility.Visible);
+
+            GestionarVisibilidadDatosDeCesionario(Visibility.Visible);
+
+            GestionarVisibilidadDatosDeApoderadoCedente(Visibility.Visible);
+
+            GestionarVisibilidadDatosDeApoderadoCesionario(Visibility.Visible);
+
             GestionarVisibilidadDatosDePoderCedente(Visibility.Visible);
         }
-
-        private void GestionarVisibilidadFiltroMarca(object value)
-        {
-            this._lblNombreMarca.Visibility = (System.Windows.Visibility)value;
-            this._txtNombreMarcaFiltrar.Visibility = (System.Windows.Visibility)value;
-            this._lblIdMarca.Visibility = (System.Windows.Visibility)value;
-            this._txtIdMarcaFiltrar.Visibility = (System.Windows.Visibility)value;
-            this._lstMarcas.Visibility = (System.Windows.Visibility)value;
-            this._btnConsultarMarca.Visibility = (System.Windows.Visibility)value;
-        }
-
+     
         private void GestionarVisibilidadDatosDeMarca(object value)
         {
             this._txtNombreMarca.Visibility = (System.Windows.Visibility)value;
@@ -659,10 +721,40 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Cesiones
             this._txtClaseInternacional.Visibility = (System.Windows.Visibility)value;
             this._lblAsociado.Visibility = (System.Windows.Visibility)value;
             this._txtAsociado.Visibility = (System.Windows.Visibility)value;            
-        }      
+        }
+
+        private void GestionarVisibilidadDatosDeCedente(object value)
+        {
+            this._lblNombreCedente.Visibility = (System.Windows.Visibility)value;
+            this._txtNombreCedente.Visibility = (System.Windows.Visibility)value;
+            this._txtPaisCedente.Visibility = (System.Windows.Visibility)value;
+            this._txtNacionalidadCedente.Visibility = (System.Windows.Visibility)value;
+        }
+
+        private void GestionarVisibilidadDatosDeCesionario(object value)
+        {
+            this._lblNombreCesionario.Visibility = (System.Windows.Visibility)value;
+            this._txtNombreCesionario.Visibility = (System.Windows.Visibility)value;
+            this._txtPaisCesionario.Visibility = (System.Windows.Visibility)value;
+            this._txtNacionalidadCesionario.Visibility = (System.Windows.Visibility)value;
+        }
+
+        private void GestionarVisibilidadDatosDeApoderadoCedente(object value)
+        {
+            this._lblNombreApoderadoCedente.Visibility = (System.Windows.Visibility)value;
+            this._txtNombreApoderadoCedente.Visibility = (System.Windows.Visibility)value;
+        }
+
+        private void GestionarVisibilidadDatosDeApoderadoCesionario(object value)
+        {
+            this._lblNombreApoderadoCesionario.Visibility = (System.Windows.Visibility)value;
+            this._txtNombreApoderadoCesionario.Visibility = (System.Windows.Visibility)value;
+        }  
 
         private void GestionarVisibilidadDatosDePoderCedente(object value)
         {
+            this._lblNombrePoderCedente.Visibility = (System.Windows.Visibility)value;
+            this._txtNombrePoderCedente.Visibility = (System.Windows.Visibility)value;
             this._lblFomentoCedente.Visibility = (System.Windows.Visibility)value;
             this._lblFechaPoderCedente.Visibility = (System.Windows.Visibility)value;
             this._lblBoletinCedente.Visibility = (System.Windows.Visibility)value;
@@ -677,6 +769,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Cesiones
 
         private void GestionarVisibilidadDatosDePoderCesionario(object value)
         {
+            this._lblNombrePoderCesionario.Visibility = (System.Windows.Visibility)value;
+            this._txtNombrePoderCesionario.Visibility = (System.Windows.Visibility)value;
             this._lblFomentoCesionario.Visibility = (System.Windows.Visibility)value;
             this._lblFechaPoderCesionario.Visibility = (System.Windows.Visibility)value;
             this._lblBoletinCesionario.Visibility = (System.Windows.Visibility)value;
@@ -689,8 +783,19 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Cesiones
             this._txtFacultadCesionario.Visibility = (System.Windows.Visibility)value;
         }
 
+        private void GestionarVisibilidadFiltroMarca(object value)
+        {
+            this._lblNombreMarca.Visibility = (System.Windows.Visibility)value;
+            this._txtNombreMarcaFiltrar.Visibility = (System.Windows.Visibility)value;
+            this._lblIdMarca.Visibility = (System.Windows.Visibility)value;
+            this._txtIdMarcaFiltrar.Visibility = (System.Windows.Visibility)value;
+            this._lstMarcas.Visibility = (System.Windows.Visibility)value;
+            this._btnConsultarMarca.Visibility = (System.Windows.Visibility)value;
+        }
+
         private void GestionarVisibilidadFiltroCedente(object value)
         {
+            this._lblCedenteFiltrar.Visibility = (System.Windows.Visibility)value;
             this._lblNombreCedenteFiltrar.Visibility = (System.Windows.Visibility)value;
             this._txtNombreCedenteFiltrar.Visibility = (System.Windows.Visibility)value;
             this._lblIdCedenteFiltrar.Visibility = (System.Windows.Visibility)value;
@@ -702,6 +807,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Cesiones
 
         private void GestionarVisibilidadFiltroCesionario(object value)
         {
+            this._lblCesionarioFiltrar.Visibility = (System.Windows.Visibility)value;
             this._lblNombreCesionarioFiltrar.Visibility = (System.Windows.Visibility)value;
             this._txtNombreCesionarioFiltrar.Visibility = (System.Windows.Visibility)value;
             this._lblIdCesionario.Visibility = (System.Windows.Visibility)value;
@@ -712,6 +818,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Cesiones
 
         private void GestionarVisibilidadFiltroApoderadoCedente(object value)
         {
+            this._lblApoderadoCedenteFiltrar.Visibility = (System.Windows.Visibility)value;
             this._lblNombreApoderadoCedenteFiltrar.Visibility = (System.Windows.Visibility)value;
             this._txtNombreApoderadoCedenteFiltrar.Visibility = (System.Windows.Visibility)value;
             this._lblIdApoderadoCedenteFiltrar.Visibility = (System.Windows.Visibility)value;
@@ -723,34 +830,37 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Cesiones
 
         private void GestionarVisibilidadFiltroApoderadoCesionario(object value)
         {
+            this._lblApoderadoCesionarioFiltrar.Visibility = (System.Windows.Visibility)value;
             this._lblNombreApoderadoCesionarioFiltrar.Visibility = (System.Windows.Visibility)value;
             this._txtNombreApoderadoCesionarioFiltrar.Visibility = (System.Windows.Visibility)value;
             this._lblIdApoderadoCesionarioFiltrar.Visibility = (System.Windows.Visibility)value;
             this._txtIdApoderadoCesionarioFiltrar.Visibility = (System.Windows.Visibility)value;
-            this._lstCesionarios.Visibility = (System.Windows.Visibility)value;
-            this._btnConsultarCesionario.Visibility = (System.Windows.Visibility)value;
+            this._lstApoderadosCesionario.Visibility = (System.Windows.Visibility)value;
+            this._btnConsultarApoderadoCesionario.Visibility = (System.Windows.Visibility)value;
 
         }
 
         private void GestionarVisibilidadFiltroPoderCedente(object value)
         {
+            this._lblPoderCedenteFiltrar.Visibility = (System.Windows.Visibility)value;
             this._lblNombrePoderCedenteFiltrar.Visibility = (System.Windows.Visibility)value;
             this._txtNombrePoderCedenteFiltrar.Visibility = (System.Windows.Visibility)value;
             this._lblIdPoderCedenteFiltrar.Visibility = (System.Windows.Visibility)value;
             this._txtIdPoderCedenteFiltrar.Visibility = (System.Windows.Visibility)value;
-            this._lstCedentes.Visibility = (System.Windows.Visibility)value;
-            this._btnConsultarCedente.Visibility = (System.Windows.Visibility)value;
+            this._lstPoderesCedente.Visibility = (System.Windows.Visibility)value;
+            this._btnConsultarPoderCedente.Visibility = (System.Windows.Visibility)value;
 
         }
 
         private void GestionarVisibilidadFiltroPoderCesionario(object value)
         {
+            this._lblPoderCesionarioFiltrar.Visibility = (System.Windows.Visibility)value;
             this._lblNombrePoderCesionarioFiltrar.Visibility = (System.Windows.Visibility)value;
             this._txtNombrePoderCesionarioFiltrar.Visibility = (System.Windows.Visibility)value;
             this._lblIdPoderCesionarioFiltrar.Visibility = (System.Windows.Visibility)value;
             this._txtIdPoderCesionarioFiltrar.Visibility = (System.Windows.Visibility)value;
-            this._lstCesionarios.Visibility = (System.Windows.Visibility)value;
-            this._btnConsultarCesionario.Visibility = (System.Windows.Visibility)value;
+            this._lstPoderesCesionario.Visibility = (System.Windows.Visibility)value;
+            this._btnConsultarPoderCesionario.Visibility = (System.Windows.Visibility)value;
 
         }
 
@@ -759,10 +869,41 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Cesiones
             this._btnConsultarMarca.IsDefault = true;
             this._btnModificar.IsDefault = false;
         }
-    
 
-    
+        private void _txtCedenteFiltrar_GotFocus(object sender, RoutedEventArgs e)
+        {
+            this._btnConsultarCedente.IsDefault = true;
+            this._btnModificar.IsDefault = false;
+        }
 
+        private void _txtApoderadoCedenteFiltrar_GotFocus(object sender, RoutedEventArgs e)
+        {
+            this._btnConsultarApoderadoCedente.IsDefault = true;
+            this._btnModificar.IsDefault = false;
+        }
 
+        private void _txtPoderCedenteFiltrar_GotFocus(object sender, RoutedEventArgs e)
+        {
+            this._btnConsultarPoderCedente.IsDefault = true;
+            this._btnModificar.IsDefault = false;
+        }
+
+        private void _txtCesionarioFiltrar_GotFocus(object sender, RoutedEventArgs e)
+        {
+            this._btnConsultarCesionario.IsDefault = true;
+            this._btnModificar.IsDefault = false;
+        }
+
+        private void _txtApoderadoCesionarioFiltrar_GotFocus(object sender, RoutedEventArgs e)
+        {
+            this._btnConsultarApoderadoCesionario.IsDefault = true;
+            this._btnModificar.IsDefault = false;
+        }
+
+        private void _txtPoderCesionarioFiltrar_GotFocus(object sender, RoutedEventArgs e)
+        {
+            this._btnConsultarPoderCesionario.IsDefault = true;
+            this._btnModificar.IsDefault = false;
+        } 
     }
 }
