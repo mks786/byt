@@ -223,7 +223,7 @@
     <comment>Filtro por Asociado</comment>
   </data>
   <data name="ObtenerInteresadoConTodo" xml:space="preserve">
-    <value>Select distinct(i) from Interesado i left join fetch i.Pais where i.Id = '{0}' order by i.Id</value>
+    <value>Select distinct(i) from Interesado i left join fetch i.Pais left join fetch i.Nacionalidad where i.Id = '{0}' order by i.Id</value>
     <comment>Selecciona el asociado con todas sus objetos</comment>
   </data>
   <data name="ObtenerMarcaConTodo" xml:space="preserve">
@@ -269,7 +269,7 @@
     <comment>Filtro por Asociado</comment>
   </data>
   <data name="CabeceraObtenerCesion" xml:space="preserve">
-    <value>Select c from Cesion c left join fetch c.Marca as marca left join fetch c.Cedente as cedente where </value>
+    <value>Select c from Cesion c left join fetch c.Marca as marca left join fetch c.Cedente as cedente left join fetch c.AgenteCedente as agenteCed left join fetch c.AgenteCesionario as agenteCes where </value>
     <comment>Cabecera del query para el filtro de cesion</comment>
   </data>
   <data name="FiltroObtenerCesionFecha" xml:space="preserve">
@@ -294,6 +294,18 @@
   </data>
   <data name="FiltroObtenerInteresadoNombre" xml:space="preserve">
     <value>upper(i.Nombre) like '%{0}%'</value>
+    <comment>Filtro por Nombre</comment>
+  </data>
+  <data name="CabeceraObtenerAgente" xml:space="preserve">
+    <value>Select a from Agente a left join fetch a.Poderes as poder where </value>
+    <comment>Cabecera del query para el filtro de agentes</comment>
+  </data>
+  <data name="FiltroObtenerAgenteId" xml:space="preserve">
+    <value>a.Id = '{0}'</value>
+    <comment>Filtro por Id</comment>
+  </data>
+  <data name="FiltroObtenerAgenteNombre" xml:space="preserve">
+    <value>upper(a.Nombre) like '%{0}%'</value>
     <comment>Filtro por Nombre</comment>
   </data>
 </root>

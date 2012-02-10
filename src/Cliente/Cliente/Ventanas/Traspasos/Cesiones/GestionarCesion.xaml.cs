@@ -23,77 +23,66 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Cesiones
         {
             get { return this._cargada; }
             set { this._cargada = value; }
-        }
-      
-
-        public string IdAsociadoFiltrar
-        {
-            get { throw new System.NotImplementedException(); }
-        }
-
-        public string NombreAsociadoFiltrar
-        {
-            get { throw new System.NotImplementedException(); }
-        }       
-
+        }           
+     
         public string IdCedenteFiltrar
         {
-            get { throw new System.NotImplementedException(); }
+            get { return this._txtIdCedenteFiltrar.Text; }
         }
 
         public string NombreCedenteFiltrar
         {
-            get { throw new System.NotImplementedException(); }
+            get { return this._txtNombreCedenteFiltrar.Text; }
         }
 
         public string IdCesionarioFiltrar
         {
-            get { throw new System.NotImplementedException(); }
+            get { return this._txtIdCesionarioFiltrar.Text; }
         }
 
         public string NombreCesionarioFiltrar
         {
-            get { throw new System.NotImplementedException(); }
+            get { return this._txtNombreCesionarioFiltrar.Text; }
         }
 
         public string IdPoderCesionarioFiltrar
         {
-            get { throw new System.NotImplementedException(); }
+            get { return this._txtIdPoderCesionarioFiltrar.Text; }
         }
 
-        public string NombrePoderCesionarioFiltrar
+        public string FechaPoderCesionarioFiltrar
         {
-            get { throw new System.NotImplementedException(); }
+            get { return this._dpkFechaPoderCesionarioFiltrar.Text; }
         }
 
         public string IdPoderCedenteFiltrar
         {
-            get { throw new System.NotImplementedException(); }
+            get { return this._txtIdPoderCedenteFiltrar.Text; }
         }
 
-        public string NombrePoderCedenteFiltrar
+        public string FechaPoderCedenteFiltrar
         {
-            get { throw new System.NotImplementedException(); }
+            get { return this._dpkFechaPoderCedenteFiltrar.Text; }
         }
 
         public string IdApoderadoCesionarioFiltrar
         {
-            get { throw new System.NotImplementedException(); }
+            get { return this._txtIdApoderadoCesionarioFiltrar.Text; }
         }
 
         public string NombreApoderadoCesionarioFiltrar
         {
-            get { throw new System.NotImplementedException(); }
+            get { return this._txtNombreApoderadoCesionarioFiltrar.Text; }
         }
 
         public string IdApoderadoCedenteFiltrar
         {
-            get { throw new System.NotImplementedException(); }
+            get { return this._txtIdApoderadoCedenteFiltrar.Text; }
         }
 
         public string NombreApoderadoCedenteFiltrar
         {
-            get { throw new System.NotImplementedException(); }
+            get { return this._txtNombreApoderadoCedenteFiltrar.Text; }
         }
 
         public string IdMarcaFiltrar
@@ -275,8 +264,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Cesiones
                 this._txtNombreApoderadoCedente.IsEnabled = value;
                 this._txtNombreApoderadoCedenteFiltrar.IsEnabled = value;
                 this._txtIdApoderadoCedenteFiltrar.IsEnabled = value;                                
-                this._txtNombrePoderCedente.IsEnabled = value;
-                //fechafiltrar poder cedente
+                this._txtIdPoderCedente.IsEnabled = value;                
                 this._txtIdPoderCedenteFiltrar.IsEnabled = value;
                 this._txtAnexoCedente.IsEnabled = value;
                 this._txtBoletinCedente.IsEnabled = value;
@@ -290,9 +278,9 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Cesiones
                 this._txtNombreApoderadoCesionario.IsEnabled = value;
                 this._txtIdApoderadoCesionarioFiltrar.IsEnabled = value;
                 this._txtNombreApoderadoCesionarioFiltrar.IsEnabled = value;                               
-                this._txtNombrePoderCesionario.IsEnabled = value;
+                this._txtIdPoderCesionario.IsEnabled = value;
                 this._txtIdPoderCesionarioFiltrar.IsEnabled = value;
-                //fechafiltrar poder cesionario
+                
                 this._txtAnexoCesionario.IsEnabled = value;               
                 this._txtBoletinCesionario.IsEnabled = value;               
                 this._txtFacultadCesionario.IsEnabled = value;                
@@ -318,6 +306,36 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Cesiones
         public string NombreCedente
         {
             set { this._txtNombreCedente.Text = value; }
+        }
+
+        public string NombreApoderadoCedente
+        {
+            set { this._txtNombreApoderadoCedente.Text = value; }
+        }
+
+        public string NombreCesionario
+        {
+            set { this._txtNombreCesionario.Text = value; }
+        }
+
+        public string PaisCedente
+        {
+            set { this._txtPaisCedente.Text = value; }
+        }
+
+        public string PaisCesionario
+        {
+            set { this._txtPaisCesionario.Text = value; }
+        }
+
+        public string NacionalidadCedente
+        {
+            set { this._txtNacionalidadCedente.Text = value; }
+        }
+
+        public string NacionalidadCesionario
+        {
+            set { this._txtNacionalidadCesionario.Text = value; }
         }
 
         public string TextoBotonModificar
@@ -429,27 +447,48 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Cesiones
 
         private void _lstCedentes_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
+            if (this._presentador.CambiarCedente())
+            {
+                GestionarVisibilidadDatosDeCedente(Visibility.Visible);
+                GestionarVisibilidadFiltroCedente(Visibility.Collapsed);
+            }
             
         }
 
         private void _lstCesionarios_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            
+            if (this._presentador.CambiarCesionario())
+            {
+                GestionarVisibilidadDatosDeCesionario(Visibility.Visible);
+                GestionarVisibilidadFiltroCesionario(Visibility.Collapsed);
+            }   
         }        
         
         private void _lstPoderesCedente_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            
+            if (this._presentador.CambiarPoderCedente())
+            {
+                GestionarVisibilidadDatosDePoderCedente(Visibility.Visible);
+                GestionarVisibilidadFiltroPoderCedente(Visibility.Collapsed);
+            }
         }
 
         private void _lstPoderesCesionario_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            
+            if (this._presentador.CambiarPoderCesionario())
+            {
+                GestionarVisibilidadDatosDePoderCesionario(Visibility.Visible);
+                GestionarVisibilidadFiltroPoderCesionario(Visibility.Collapsed);
+            }            
         }        
 
         private void _lstApoderadosCedente_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            
+            if (this._presentador.CambiarApoderadoCedente())
+            {
+                GestionarVisibilidadDatosDeApoderadoCedente(Visibility.Visible);
+                GestionarVisibilidadFiltroApoderadoCedente(Visibility.Collapsed);
+            }            
         }
 
         private void _lstApoderadosCesionario_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
@@ -647,7 +686,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Cesiones
             GestionarVisibilidadDatosDePoderCedente(Visibility.Visible);
         }
 
-        private void _txtNombrePoderCedente_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        private void _txtIdPoderCedente_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {            
             GestionarVisibilidadDatosDePoderCedente(Visibility.Collapsed);
 
@@ -679,7 +718,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Cesiones
         }
 
 
-        private void _txtNombrePoderCesionario_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        private void _txtIdPoderCesionario_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             GestionarVisibilidadDatosDePoderCesionario(Visibility.Collapsed);            
                        
@@ -759,7 +798,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Cesiones
         private void GestionarVisibilidadDatosDePoderCedente(object value)
         {
             this._lblIdPoderCedente.Visibility = (System.Windows.Visibility)value;
-            this._txtNombrePoderCedente.Visibility = (System.Windows.Visibility)value;
+            this._txtIdPoderCedente.Visibility = (System.Windows.Visibility)value;
             this._lblFomentoCedente.Visibility = (System.Windows.Visibility)value;
             this._lblFechaPoderCedente.Visibility = (System.Windows.Visibility)value;
             this._lblBoletinCedente.Visibility = (System.Windows.Visibility)value;
@@ -775,7 +814,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Cesiones
         private void GestionarVisibilidadDatosDePoderCesionario(object value)
         {
             this._lblIdPoderCesionario.Visibility = (System.Windows.Visibility)value;
-            this._txtNombrePoderCesionario.Visibility = (System.Windows.Visibility)value;
+            this._txtIdPoderCesionario.Visibility = (System.Windows.Visibility)value;
             this._lblFomentoCesionario.Visibility = (System.Windows.Visibility)value;
             this._lblFechaPoderCesionario.Visibility = (System.Windows.Visibility)value;
             this._lblBoletinCesionario.Visibility = (System.Windows.Visibility)value;
@@ -848,8 +887,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Cesiones
         private void GestionarVisibilidadFiltroPoderCedente(object value)
         {
             this._lblPoderCedenteFiltrar.Visibility = (System.Windows.Visibility)value;
-            // FECHA this._lblNombrePoderCedenteFiltrar.Visibility = (System.Windows.Visibility)value;
-            // FECHA this._txtNombrePoderCedenteFiltrar.Visibility = (System.Windows.Visibility)value;
+            this._dpkFechaPoderCedenteFiltrar.Visibility = (System.Windows.Visibility)value;
             this._lblIdPoderCedenteFiltrar.Visibility = (System.Windows.Visibility)value;
             this._txtIdPoderCedenteFiltrar.Visibility = (System.Windows.Visibility)value;
             this._lstPoderesCedente.Visibility = (System.Windows.Visibility)value;
@@ -859,9 +897,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Cesiones
 
         private void GestionarVisibilidadFiltroPoderCesionario(object value)
         {
-            this._lblPoderCesionarioFiltrar.Visibility = (System.Windows.Visibility)value;
-            // FECHA this._lblNombrePoderCesionarioFiltrar.Visibility = (System.Windows.Visibility)value;
-            // FECHA this._txtNombrePoderCesionarioFiltrar.Visibility = (System.Windows.Visibility)value;
+            this._lblPoderCesionarioFiltrar.Visibility = (System.Windows.Visibility)value;            
+            this._dpkFechaPoderCesionarioFiltrar.Visibility = (System.Windows.Visibility)value;
             this._lblIdPoderCesionarioFiltrar.Visibility = (System.Windows.Visibility)value;
             this._txtIdPoderCesionarioFiltrar.Visibility = (System.Windows.Visibility)value;
             this._lstPoderesCesionario.Visibility = (System.Windows.Visibility)value;

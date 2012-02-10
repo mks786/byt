@@ -32,6 +32,27 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
 
             return agentes;
         }
-        
+
+        public IList<Agente> ObtenerAgentesFiltro(Agente agente)
+        {
+            IList<Agente> agentes = null;
+            bool variosFiltros = false;
+            string filtro = "";
+            string cabecera = string.Format(Recursos.ConsultasHQL.CabeceraObtenerAgente);
+            if ((null != agente) && (!string.IsNullOrEmpty(agente.Id)))
+            {
+                filtro = string.Format(Recursos.ConsultasHQL.FiltroObtenerAgenteId, agente.Id);
+                variosFiltros = true;
+            }
+            if (!string.IsNullOrEmpty(agente.Nombre))
+            {
+                if (variosFiltros)
+                    filtro += " and ";
+                filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerAgenteNombre, agente.Nombre);
+            }
+            IQuery query = Session.CreateQuery(cabecera + filtro);
+            agentes = query.List<Agente>();
+            return agentes;
+        }
     }
 }

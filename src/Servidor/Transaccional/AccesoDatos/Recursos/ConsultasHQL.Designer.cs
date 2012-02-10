@@ -61,6 +61,15 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Select a from Agente a left join fetch a.Poderes as poder where .
+        /// </summary>
+        public static string CabeceraObtenerAgente {
+            get {
+                return ResourceManager.GetString("CabeceraObtenerAgente", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Select c from Carta c left join fetch c.Resumen as resumen left join fetch c.Asociado as asociado where .
         /// </summary>
         public static string CabeceraObtenerCarta {
@@ -79,7 +88,7 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Select c from Cesion c left join fetch c.Marca as marca left join fetch c.Cedente as cedente where .
+        ///   Busca una cadena traducida similar a Select c from Cesion c left join fetch c.Marca as marca left join fetch c.Cedente as cedente left join fetch c.AgenteCedente as agenteCed left join fetch c.AgenteCesionario as agenteCes where .
         /// </summary>
         public static string CabeceraObtenerCesion {
             get {
@@ -111,6 +120,24 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         public static string CabeceraObtenerMarca {
             get {
                 return ResourceManager.GetString("CabeceraObtenerMarca", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a a.Id = &apos;{0}&apos;.
+        /// </summary>
+        public static string FiltroObtenerAgenteId {
+            get {
+                return ResourceManager.GetString("FiltroObtenerAgenteId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a upper(a.Nombre) like &apos;%{0}%&apos;.
+        /// </summary>
+        public static string FiltroObtenerAgenteNombre {
+            get {
+                return ResourceManager.GetString("FiltroObtenerAgenteNombre", resourceCulture);
             }
         }
         
@@ -385,7 +412,7 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Select distinct(i) from Interesado i left join fetch i.Pais where i.Id = &apos;{0}&apos; order by i.Id.
+        ///   Busca una cadena traducida similar a Select distinct(i) from Interesado i left join fetch i.Pais left join fetch i.Nacionalidad where i.Id = &apos;{0}&apos; order by i.Id.
         /// </summary>
         public static string ObtenerInteresadoConTodo {
             get {

@@ -5,11 +5,7 @@ namespace Trascend.Bolet.Cliente.Contratos.Traspasos.Cesiones
 {
     interface IGestionarCesion : IPaginaBase
     {
-        object Cesion { get; set; }
-
-        string IdAsociadoFiltrar { get; }
-
-        string NombreAsociadoFiltrar { get; }       
+        object Cesion { get; set; }               
         
         //ListView Marcas
 
@@ -74,7 +70,7 @@ namespace Trascend.Bolet.Cliente.Contratos.Traspasos.Cesiones
 
         string IdPoderCedenteFiltrar { get; }
 
-        string NombrePoderCedenteFiltrar { get; }
+        string FechaPoderCedenteFiltrar { get; }
 
         object PoderesCedenteFiltrados { get; set; }
 
@@ -86,7 +82,7 @@ namespace Trascend.Bolet.Cliente.Contratos.Traspasos.Cesiones
 
         string IdPoderCesionarioFiltrar { get; }
 
-        string NombrePoderCesionarioFiltrar { get; }
+        string FechaPoderCesionarioFiltrar { get; }
 
         object PoderesCesionarioFiltrados { get; set; }
 
@@ -105,11 +101,31 @@ namespace Trascend.Bolet.Cliente.Contratos.Traspasos.Cesiones
 
         string NombreCedente { set; }
 
+        string NombreCesionario { set; }
+
+        string NombreApoderadoCedente { set; }
+
+        string PaisCedente { set; }
+
+        string PaisCesionario { set; }
+
+        string NacionalidadCedente { set; }
+
+        string NacionalidadCesionario { set; }        
+
         object Marca { get; set; }
 
         object InteresadoCedente { get; set; }
 
         object InteresadoCesionario { get; set; }
+
+        object ApoderadoCedente { get; set; }
+
+        object ApoderadoCesionario { get; set; }
+
+        object PoderCedente { get; set; }
+
+        object PoderCesionario { get; set; }
 
         GridViewColumnHeader CurSortCol { get; set; }
 
