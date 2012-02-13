@@ -241,6 +241,10 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
             return retorno;
         }
 
+        /// <summary>
+        /// Método que consulta un Interesado con uno o mas filtros
+        /// </summary>
+        /// <returns>Interesado Filtrado</returns>
         public static IList<Interesado> ConsultarInteresadosFiltro(Interesado interesado)
         {
             IList<Interesado> retorno;

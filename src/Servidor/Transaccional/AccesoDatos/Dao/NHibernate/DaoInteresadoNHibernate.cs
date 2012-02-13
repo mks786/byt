@@ -48,9 +48,14 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
             return retorno;
         }
 
+        /// <summary>
+        /// Método que obtiene un interesado con uno o mas filtros
+        /// </summary>
+        /// <param name="interesado">filtros de interesado</param>
+        /// <returns>interesado filtrado</returns>
         public IList<Interesado> ObtenerInteresadosFiltro(Interesado interesado)
         {
-            IList<Interesado> Interesados = null;
+            IList<Interesado> interesados = null;
             bool variosFiltros = false;
             string filtro = "";
             string cabecera = string.Format(Recursos.ConsultasHQL.CabeceraObtenerInteresado);
@@ -66,8 +71,8 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
                 filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerInteresadoNombre, interesado.Nombre);
             }
             IQuery query = Session.CreateQuery(cabecera + filtro);
-            Interesados = query.List<Interesado>();
-            return Interesados;
+            interesados = query.List<Interesado>();
+            return interesados;
         }
     }
 }

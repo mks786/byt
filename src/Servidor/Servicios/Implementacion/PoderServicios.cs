@@ -123,5 +123,29 @@ namespace Trascend.Bolet.Servicios.Implementacion
         {
             throw new NotImplementedException();
         }
+
+        /// <summary>
+        /// Servicio que consulta una serie de Poderes por uno o mas parametros
+        /// </summary>
+        /// <param name="poder">Poder que contiene los parametros de la consulta</param>
+        /// <returns>Lista de poderes filtrados</returns>
+        public IList<Poder> ObtenerPoderesFiltro(Poder poder)
+        {
+            #region trace
+            if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+            IList<Poder> poderes;
+
+            poderes = ControladorPoder.ConsultarPoderesFiltro(poder);
+
+            return poderes;
+
+            #region trace
+            if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                logger.Debug("Saliendo del Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+        }
     }
 }

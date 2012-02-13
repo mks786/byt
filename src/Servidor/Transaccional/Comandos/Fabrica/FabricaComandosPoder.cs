@@ -55,5 +55,14 @@ namespace Trascend.Bolet.Comandos.Fabrica
         {
             return new ComandoConsultarPoderesPorInteresado(interesado);
         }
+
+        /// <summary>
+        /// Método que devuelve el Comando para consultar un poder con uno o mas filtros
+        /// </summary>
+        /// <returns>Poder fitlrado</returns>
+        public static ComandoBase<IList<Poder>> ObtenerComandoConsultarPoderesFiltro(Poder poder)
+        {
+            return new ComandoConsultarPoderesFiltro(poder);
+        }
     }
 }

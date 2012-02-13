@@ -132,21 +132,10 @@
                                 </ListView.View>
                             </ListView>
                         </Grid>
-                    </WrapPanel>
-
+                    </WrapPanel>                  
+                    
                     <Separator Margin="0,5,0,5"/>
-
-                    <!--Asociado-->
-
-                    <Separator Margin="0,5,0,5"/>
-
-                    <!--Cedente-->
-
-                    <Separator Margin="0,5,0,5"/>
-
-                    <!--Interesado-->
-
-                    <Separator Margin="0,5,0,5"/>
+                    
                     <Button Name="_btnConsultar" Width="100" IsDefault="True" Click="_btnConsultar_Click">
                         <TextBlock Text="{x:Static recurso:Etiquetas.btnConsultar}"/>
                     </Button>
@@ -178,13 +167,7 @@
                         </GridViewColumn>
                         <GridViewColumn DisplayMemberBinding="{Binding Path=FechaCesion}" Width="150">
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="FechaCesion" Content="{x:Static recurso:Etiquetas.lsvFecha}"/>
-                        </GridViewColumn>
-                        <GridViewColumn DisplayMemberBinding="{Binding Path=Interesado.Nombre}" Width="150">
-                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="Interesado.Nombre" Content="{x:Static recurso:Etiquetas.lsvInteresado}"/>
-                        </GridViewColumn>
-                        <GridViewColumn DisplayMemberBinding="{Binding Path=FechaPublicacion}" Width="150">
-                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="FechaPublicacion" Content="{x:Static recurso:Etiquetas.lsvFecha}"/>
-                        </GridViewColumn>
+                        </GridViewColumn>                        
                     </GridView>
                 </ListView.View>
             </ListView>

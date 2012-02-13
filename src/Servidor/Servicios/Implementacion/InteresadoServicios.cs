@@ -134,7 +134,7 @@ namespace Trascend.Bolet.Servicios.Implementacion
         /// Servicio que consulta una serie de Interesados por uno o mas parametros
         /// </summary>
         /// <param name="interesado">Interesado que contiene los parametros de la consulta</param>
-        /// <returns>Lista de cartas filtradas</returns>
+        /// <returns>Lista de interesados filtrados</returns>
         public IList<Interesado> ObtenerInteresadosFiltro(Interesado interesado)
         {
             #region trace

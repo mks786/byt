@@ -105,6 +105,12 @@ namespace Trascend.Bolet.Cliente.Contratos.Traspasos.Cesiones
 
         string NombreApoderadoCedente { set; }
 
+        string NombreApoderadoCesionario { set; }        
+
+        string IdPoderCedente { set; }
+
+        string IdPoderCesionario { set; }
+
         string PaisCedente { set; }
 
         string PaisCesionario { set; }

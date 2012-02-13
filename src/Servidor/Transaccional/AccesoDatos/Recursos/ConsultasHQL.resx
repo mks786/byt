@@ -269,7 +269,7 @@
     <comment>Filtro por Asociado</comment>
   </data>
   <data name="CabeceraObtenerCesion" xml:space="preserve">
-    <value>Select c from Cesion c left join fetch c.Marca as marca left join fetch c.Cedente as cedente left join fetch c.AgenteCedente as agenteCed left join fetch c.AgenteCesionario as agenteCes where </value>
+    <value>Select c from Cesion c left join fetch c.Marca as marca left join fetch c.Cedente as cedente left join fetch c.AgenteCedente as agenteCed left join fetch c.AgenteCesionario as agenteCes left join fetch c.PoderCedente as PoderCed  left join fetch c.PoderCesionario as PoderCes left join fetch c.Cedente as interesadoCed left join fetch c.Cesionario as interesadoCes left join fetch c.BoletinPublicacion as boletin where </value>
     <comment>Cabecera del query para el filtro de cesion</comment>
   </data>
   <data name="FiltroObtenerCesionFecha" xml:space="preserve">
@@ -307,5 +307,17 @@
   <data name="FiltroObtenerAgenteNombre" xml:space="preserve">
     <value>upper(a.Nombre) like '%{0}%'</value>
     <comment>Filtro por Nombre</comment>
+  </data>
+  <data name="CabeceraObtenerPoder" xml:space="preserve">
+    <value>Select p from Poder p left join fetch p.Boletin as boletin left join fetch p.Interesado as interesado where </value>
+    <comment>Cabecera del query para el filtro de Poderes</comment>
+  </data>
+  <data name="FiltroObtenerPoderFecha" xml:space="preserve">
+    <value>p.Fecha between '{0}' and '{1}'</value>
+    <comment>Filtro por fecha</comment>
+  </data>
+  <data name="FiltroObtenerPoderId" xml:space="preserve">
+    <value>p.Id = {0}</value>
+    <comment>Filtro por Id</comment>
   </data>
 </root>

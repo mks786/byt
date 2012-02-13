@@ -49,12 +49,16 @@ namespace Trascend.Bolet.Comandos.Fabrica
         /// <summary>
         /// Método que devuelve el Comando para consultar un Interesado con todas sus referencias
         /// </summary>
-        /// <returns>Asocaido con todo</returns>
+        /// <returns>Interesado con todo</returns>
         public static ComandoBase<Interesado> ObtenerComandoConsultarInteresadoConTodo(Interesado interesado)
         {
             return new ComandoConsultarInteresadoConTodo(interesado);
         }
 
+        /// <summary>
+        /// Método que devuelve el Comando para consultar un Interesado con uno o mas filtros
+        /// </summary>
+        /// <returns>Poder fitlrado</returns>
         public static ComandoBase<IList<Interesado>> ObtenerComandoConsultarInteresadosFiltro(Interesado interesado)
         {
             return new ComandoConsultarInteresadosFiltro(interesado);

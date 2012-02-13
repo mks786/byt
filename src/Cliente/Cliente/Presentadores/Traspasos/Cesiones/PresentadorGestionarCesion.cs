@@ -43,13 +43,15 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Cesiones
         private IInfoBolServicios _infoBolServicios;
         private IOperacionServicios _operacionServicios;
         private IBusquedaServicios _busquedaServicios;
-        private IStatusWebServicios _statusWebServicios;
+        private IStatusWebServicios _statusWebServicios;        
        
         private IList<Interesado> _interesadosCedente;
         private IList<Interesado> _interesadosCesionario;
-        private IList<Agente> _agenteCesionario;
-        private IList<Agente> _agenteCedente;        
-        private IList<Marca> _marcas;        
+        private IList<Agente> _agentesCesionario;
+        private IList<Agente> _agentesCedente;        
+        private IList<Marca> _marcas;
+        private IList<Poder> _poderesCedente;
+        private IList<Poder> _poderesCesionario;
        
         /// <summary>
         /// Constructor Predeterminado
@@ -156,7 +158,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Cesiones
 
                 this._marcas = new List<Marca>();
                 this._interesadosCedente = new List<Interesado>();
-                this._agenteCedente = new List<Agente>();
+                this._agentesCedente = new List<Agente>();
 
                 this._marcas.Add((Marca)this._ventana.Marca);
                 this._interesadosCedente.Add((Interesado)this._ventana.InteresadoCedente);               
@@ -1173,7 +1175,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Cesiones
                 if (agentesCedenteFiltrados.ToList<Agente>().Count != 0)
                     this._ventana.ApoderadosCedenteFiltrados = agentesCedenteFiltrados.ToList<Agente>();
                 else
-                    this._ventana.ApoderadosCedenteFiltrados = this._agenteCedente;
+                    this._ventana.ApoderadosCedenteFiltrados = this._agentesCedente;
 
                 Mouse.OverrideCursor = null;
 
@@ -1206,22 +1208,224 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Cesiones
 
         public void ConsultarPoderesCedente()
         {
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
 
+                Mouse.OverrideCursor = Cursors.Wait;
+                Poder poderCedente = new Poder();
+                IEnumerable<Poder> poderesCedenteFiltrados;
+                
+                poderCedente.Id = int.Parse(this._ventana.IdPoderCedenteFiltrar);
+
+                if (!this._ventana.FechaPoderCedenteFiltrar.Equals(""))
+                    poderCedente.Fecha = DateTime.Parse(this._ventana.FechaPoderCedenteFiltrar);
+
+                if ((!poderCedente.Fecha.Equals("")) || (poderCedente.Id != 0))
+                    poderesCedenteFiltrados = this._poderServicios.ObtenerPoderesFiltro(poderCedente);
+                else
+                    poderesCedenteFiltrados = new List<Poder>();
+
+                if (poderesCedenteFiltrados.ToList<Poder>().Count != 0)
+                    this._ventana.PoderesCedenteFiltrados = poderesCedenteFiltrados.ToList<Poder>();
+                else
+                    this._ventana.PoderesCedenteFiltrados = this._poderesCedente;
+
+                Mouse.OverrideCursor = null;
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (ApplicationException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(ex.Message, true);
+            }
+            catch (RemotingException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorRemoting, true);
+            }
+            catch (SocketException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorConexionServidor, true);
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
+            }   
         }
 
         public void ConsultarCesionarios()
         {
-         
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                Mouse.OverrideCursor = Cursors.Wait;
+                Interesado cesionario = new Interesado();
+                IEnumerable<Interesado> cesionariosFiltrados;
+                cesionario.Nombre = this._ventana.NombreCesionarioFiltrar.ToUpper();
+                cesionario.Id = this._ventana.IdCesionarioFiltrar.Equals("") ? 0 : int.Parse(this._ventana.IdCesionarioFiltrar);
+
+                if ((!cesionario.Nombre.Equals("")) || (cesionario.Id != 0))
+                    cesionariosFiltrados = this._interesadoServicios.ObtenerInteresadosFiltro(cesionario);
+                else
+                    cesionariosFiltrados = new List<Interesado>();
+
+                if (cesionariosFiltrados.ToList<Interesado>().Count != 0)
+                    this._ventana.CesionariosFiltrados = cesionariosFiltrados.ToList<Interesado>();
+                else
+                    this._ventana.CesionariosFiltrados = this._interesadosCesionario;
+
+                Mouse.OverrideCursor = null;
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (ApplicationException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(ex.Message, true);
+            }
+            catch (RemotingException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorRemoting, true);
+            }
+            catch (SocketException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorConexionServidor, true);
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
+            }
         }
 
         public void ConsultarApoderadosCesionario()
         {
-           
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                Mouse.OverrideCursor = Cursors.Wait;
+                Agente apoderadoCesionario = new Agente();
+                IEnumerable<Agente> agentesCesionarioFiltrados;
+                apoderadoCesionario.Nombre = this._ventana.NombreApoderadoCesionarioFiltrar.ToUpper();
+                apoderadoCesionario.Id = this._ventana.IdApoderadoCesionarioFiltrar.ToUpper();
+
+                if ((!apoderadoCesionario.Nombre.Equals("")) || (!apoderadoCesionario.Id.Equals("")))
+                    agentesCesionarioFiltrados = this._agenteServicios.ObtenerAgentesFiltro(apoderadoCesionario);
+                else
+                    agentesCesionarioFiltrados = new List<Agente>();
+
+                if (agentesCesionarioFiltrados.ToList<Agente>().Count != 0)
+                    this._ventana.ApoderadosCesionarioFiltrados = agentesCesionarioFiltrados.ToList<Agente>();
+                else
+                    this._ventana.ApoderadosCesionarioFiltrados = this._agentesCesionario;
+
+                Mouse.OverrideCursor = null;
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (ApplicationException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(ex.Message, true);
+            }
+            catch (RemotingException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorRemoting, true);
+            }
+            catch (SocketException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorConexionServidor, true);
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
+            }
         }
 
         public void ConsultarPoderesCesionario()
         {
-          
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                Mouse.OverrideCursor = Cursors.Wait;
+                Poder poderCesionario = new Poder();
+                IEnumerable<Poder> poderesCesionarioFiltrados;
+
+                poderCesionario.Id = int.Parse(this._ventana.IdPoderCesionarioFiltrar);
+
+                if (!this._ventana.FechaPoderCesionarioFiltrar.Equals(""))
+                    poderCesionario.Fecha = DateTime.Parse(this._ventana.FechaPoderCesionarioFiltrar);
+
+                if ((!poderCesionario.Fecha.Equals("")) || (poderCesionario.Id != 0))
+                    poderesCesionarioFiltrados = this._poderServicios.ObtenerPoderesFiltro(poderCesionario);
+                else
+                    poderesCesionarioFiltrados = new List<Poder>();
+
+                if (poderesCesionarioFiltrados.ToList<Poder>().Count != 0)
+                    this._ventana.PoderesCesionarioFiltrados = poderesCesionarioFiltrados.ToList<Poder>();
+                else
+                    this._ventana.PoderesCesionarioFiltrados = this._poderesCesionario;
+
+                Mouse.OverrideCursor = null;
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (ApplicationException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(ex.Message, true);
+            }
+            catch (RemotingException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorRemoting, true);
+            }
+            catch (SocketException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorConexionServidor, true);
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
+            }
         }
 
         public bool CambiarMarca()
@@ -1373,17 +1577,196 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Cesiones
 
         public bool CambiarPoderCedente()
         {
-            throw new NotImplementedException();
-        }
+            bool retorno = false;
 
-        public bool CambiarPoderCesionario()
-        {
-            throw new NotImplementedException();
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+
+                if (this._ventana.PoderCedenteFiltrado != null)
+                {
+                    this._ventana.PoderCedente = this._ventana.PoderCedenteFiltrado;
+                    this._ventana.IdPoderCedente = ((Poder)this._ventana.PoderCedenteFiltrado).Id.ToString();
+                    retorno = true;
+                }
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (ApplicationException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(ex.Message, true);
+            }
+            catch (RemotingException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorRemoting, true);
+            }
+            catch (SocketException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorConexionServidor, true);
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
+            }
+
+            return retorno;
         }
 
         public bool CambiarCesionario()
         {
-            throw new NotImplementedException();
+            bool retorno = false;
+
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+
+                if (this._ventana.CesionarioFiltrado != null)
+                {
+                    this._ventana.InteresadoCesionario = this._ventana.CesionarioFiltrado;
+                    this._ventana.NombreCesionario = ((Interesado)this._ventana.CesionarioFiltrado).Nombre;
+                    retorno = true;
+                }
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+            }
+            catch (ApplicationException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(ex.Message, true);
+            }
+            catch (RemotingException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorRemoting, true);
+            }
+            catch (SocketException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorConexionServidor, true);
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
+            }
+
+            return retorno;
+        }
+
+        public bool CambiarPoderCesionario()
+        {
+            bool retorno = false;
+
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+
+                if (this._ventana.PoderCesionarioFiltrado != null)
+                {
+                    this._ventana.PoderCesionario = this._ventana.PoderCesionarioFiltrado;
+                    this._ventana.IdPoderCesionario = ((Poder)this._ventana.PoderCesionarioFiltrado).Id.ToString();
+                    retorno = true;
+                }
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (ApplicationException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(ex.Message, true);
+            }
+            catch (RemotingException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorRemoting, true);
+            }
+            catch (SocketException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorConexionServidor, true);
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
+            }
+
+            return retorno;
+        }                
+
+        public bool CambiarApoderadoCesionario()
+        {
+            bool retorno = false;
+
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+
+                if (this._ventana.ApoderadoCesionarioFiltrado != null)
+                {
+                    this._ventana.ApoderadoCesionario = this._ventana.ApoderadoCesionarioFiltrado;
+                    this._ventana.NombreApoderadoCesionario = ((Agente)this._ventana.ApoderadoCesionarioFiltrado).Nombre;
+                    retorno = true;
+                }
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+            }
+            catch (ApplicationException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(ex.Message, true);
+            }
+            catch (RemotingException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorRemoting, true);
+            }
+            catch (SocketException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorConexionServidor, true);
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
+            }
+
+            return retorno;
         }
     }
 }

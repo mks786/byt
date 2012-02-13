@@ -88,7 +88,7 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Select c from Cesion c left join fetch c.Marca as marca left join fetch c.Cedente as cedente left join fetch c.AgenteCedente as agenteCed left join fetch c.AgenteCesionario as agenteCes where .
+        ///   Busca una cadena traducida similar a Select c from Cesion c left join fetch c.Marca as marca left join fetch c.Cedente as cedente left join fetch c.AgenteCedente as agenteCed left join fetch c.AgenteCesionario as agenteCes left join fetch c.PoderCedente as PoderCed  left join fetch c.PoderCesionario as PoderCes left join fetch c.Cedente as interesadoCed left join fetch c.Cesionario as interesadoCes left join fetch c.BoletinPublicacion as boletin where .
         /// </summary>
         public static string CabeceraObtenerCesion {
             get {
@@ -120,6 +120,15 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         public static string CabeceraObtenerMarca {
             get {
                 return ResourceManager.GetString("CabeceraObtenerMarca", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Select p from Poder p left join fetch p.Boletin as boletin left join fetch p.Interesado as interesado where .
+        /// </summary>
+        public static string CabeceraObtenerPoder {
+            get {
+                return ResourceManager.GetString("CabeceraObtenerPoder", resourceCulture);
             }
         }
         
@@ -327,6 +336,24 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         public static string FiltroObtenerMarcaIdInteresado {
             get {
                 return ResourceManager.GetString("FiltroObtenerMarcaIdInteresado", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a p.Fecha between &apos;{0}&apos; and &apos;{1}&apos;.
+        /// </summary>
+        public static string FiltroObtenerPoderFecha {
+            get {
+                return ResourceManager.GetString("FiltroObtenerPoderFecha", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a p.Id = {0}.
+        /// </summary>
+        public static string FiltroObtenerPoderId {
+            get {
+                return ResourceManager.GetString("FiltroObtenerPoderId", resourceCulture);
             }
         }
         

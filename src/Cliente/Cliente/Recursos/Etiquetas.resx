@@ -1631,4 +1631,7 @@ libro</value>
   <data name="titleGestionarFusion" xml:space="preserve">
     <value>Gestionar Fusión</value>
   </data>
+  <data name="lsvFomento" xml:space="preserve">
+    <value>#Fomento</value>
+  </data>
 </root>
