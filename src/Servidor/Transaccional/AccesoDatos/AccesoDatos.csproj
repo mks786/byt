@@ -61,6 +61,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Contrato\IDaoMarcaTercero.cs" />
     <Compile Include="Contrato\IDaoCambioPeticionario.cs" />
     <Compile Include="Contrato\IDaoCambioDeDomicilio.cs" />
     <Compile Include="Contrato\IDaoLicencia.cs" />
@@ -123,6 +124,7 @@
     <Compile Include="Contrato\IDaoBase.cs" />
     <Compile Include="Contrato\IDaoUsuario.cs" />
     <Compile Include="Contrato\IFabricaDaoBase.cs" />
+    <Compile Include="Dao\NHibernate\DaoMarcaTerceroNHibernate.cs" />
     <Compile Include="Dao\NHibernate\DaoCambioPeticionarioNHibernate.cs" />
     <Compile Include="Dao\NHibernate\DaoCambioDeDomicilioNHibernate.cs" />
     <Compile Include="Dao\NHibernate\DaoLicenciaNHibernate.cs" />
@@ -505,6 +507,11 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Mapeado\CambioPeticionario.hbm.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Mapeado\MarcaTercero.hbm.xml">
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>

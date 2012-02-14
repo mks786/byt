@@ -59,22 +59,22 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Fusiones
 
         public string IdInteresadoSobrevivienteFiltrar
         {
-            get { throw new System.NotImplementedException(); }
+            get { return this._txtIdInteresadoSobrevivienteFiltrar.Text; }
         }
 
         public string NombreInteresadoSobrevivienteFiltrar
         {
-            get { throw new System.NotImplementedException(); }
+            get { return this._txtNombreInteresadoSobrevivienteFiltrar.Text; }
         }
 
         public string IdAgenteFiltrar
         {
-            get { throw new System.NotImplementedException(); }
+            get { return this._txtIdApoderadoFiltrar.Text; }
         }
 
         public string NombreAgenteFiltrar
         {
-            get { throw new System.NotImplementedException(); }
+            get { return this._txtNombreApoderadoFiltrar.Text; }
         }
 
         public string IdMarcaFiltrar
@@ -102,6 +102,17 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Fusiones
         public string NombreInteresadoEntre
         {
             set { this._txtNombreInteresadoEntre.Text = value; }
+        }
+
+        public object InteresadoSobreviviente
+        {
+            get { return this._gridDatosInteresadoSobreviviente.DataContext; }
+            set { this._gridDatosInteresadoSobreviviente.DataContext = value; }
+        }
+
+        public string NombreInteresadoSobreviviente
+        {
+            set { this._txtNombreInteresadoSobreviviente.Text = value; }
         }
 
         public string Region
@@ -137,6 +148,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Fusiones
                 this._txtNumRegistro.IsEnabled = value;
                 this._txtTipo.IsEnabled = value;
                 this._btnConsultarMarca.IsEnabled = value;
+                this._dpkFechaBoletin.IsEnabled = value;
+                this._chkEtiqueta.IsEnabled = value;
 
                 _btnConsultarInteresadoEntre.IsEnabled = value;
                 _txtNombreInteresadoEntre.IsEnabled = value;
@@ -144,6 +157,18 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Fusiones
                 _txtIdInteresadoEntreFiltrar.IsEnabled = value;
                 _txtPaisInteresadoEntre.IsEnabled = value;
                 _txtCiudadInteresadoEntre.IsEnabled = value;
+
+                _btnConsultarInteresadoSobreviviente.IsEnabled = value;
+                _txtNombreInteresadoSobreviviente.IsEnabled = value;
+                _txtNombreInteresadoSobrevivienteFiltrar.IsEnabled = value;
+                _txtIdInteresadoSobrevivienteFiltrar.IsEnabled = value;
+                _txtPaisInteresadoSobreviviente.IsEnabled = value;
+                _txtCiudadInteresadoSobreviviente.IsEnabled = value;
+
+                _btnConsultarApoderado.IsEnabled = value;
+                _txtNombreApoderado.IsEnabled = value;
+                _txtNombreApoderadoFiltrar.IsEnabled = value;
+                _txtIdApoderadoFiltrar.IsEnabled = value;
             }
         }
 
@@ -174,6 +199,51 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Fusiones
         {
             get { return this._lstInteresadosEntre.SelectedItem; }
             set { this._lstInteresadosEntre.SelectedItem = value; }
+        }
+
+        public object InteresadosSobrevivienteFiltrados
+        {
+            get { return this._lstInteresadosSobreviviente.DataContext; }
+            set { this._lstInteresadosSobreviviente.DataContext = value; }
+        }
+
+        public object InteresadoSobrevivienteFiltrado
+        {
+            get { return this._lstInteresadosSobreviviente.SelectedItem; }
+            set { this._lstInteresadosSobreviviente.SelectedItem = value; }
+        }
+
+        public object AgenteApoderado
+        {
+            get { return this._gridDatosApoderado.DataContext; }
+            set { this._gridDatosApoderado.DataContext = value; }
+        }
+
+        public string NombreAgenteApoderado
+        {
+            set { this._txtNombreApoderado.Text = value; }
+        }
+
+        public string IdAgenteApoderadoFiltrar
+        {
+            get { return this._txtIdApoderadoFiltrar.Text; }
+        }
+
+        public string NombreAgenteApoderadoFiltrar
+        {
+            get { return this._txtNombreApoderadoFiltrar.Text; }
+        }
+
+        public object AgenteApoderadoFiltrados
+        {
+            get { return this._lstApoderados.DataContext; }
+            set { this._lstApoderados.DataContext = value; }
+        }
+
+        public object AgenteApoderadoFiltrado
+        {
+            get { return this._lstApoderados.SelectedItem; }
+            set { this._lstApoderados.SelectedItem = value; }
         }
 
         public string TextoBotonModificar
@@ -261,9 +331,17 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Fusiones
             GestionarVisibilidadFiltroMarca(Visibility.Visible);
 
             //escondo el filtro de interesado Entre
-            GestionarVisibilidadDatosDeInteresado(Visibility.Visible);
-            GestionarVisibilidadFiltroInteresado(Visibility.Collapsed);
-            
+            GestionarVisibilidadDatosDeInteresadoEntre(Visibility.Visible);
+            GestionarVisibilidadFiltroInteresadoEntre(Visibility.Collapsed);
+
+            //escondo el filtro de interesado Sobreviviente
+            GestionarVisibilidadDatosDeInteresadoSobreviviente(Visibility.Visible);
+            GestionarVisibilidadFiltroInteresadoSobreviviente(Visibility.Collapsed);
+
+            //escondo el filtro de Agente
+            GestionarVisibilidadDatosDeAgenteApoderado(Visibility.Visible);
+            GestionarVisibilidadFiltroAgenteApoderado(Visibility.Collapsed);
+
             this._btnConsultarMarca.IsDefault = false;
             this._btnModificar.IsDefault = true;
         }
@@ -308,15 +386,15 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Fusiones
 
         private void _btnConsultarInteresadoEntre_Click(object sender, RoutedEventArgs e)
         {
-            this._presentador.ConsultarInteresados();
+            this._presentador.ConsultarInteresadosEntre();
         }
 
         private void _lstInteresadosEntre_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            if (this._presentador.CambiarInteresado())
+            if (this._presentador.CambiarInteresadoEntre())
             {
-                GestionarVisibilidadDatosDeInteresado(Visibility.Visible);
-                GestionarVisibilidadFiltroInteresado(Visibility.Collapsed);
+                GestionarVisibilidadDatosDeInteresadoEntre(Visibility.Visible);
+                GestionarVisibilidadFiltroInteresadoEntre(Visibility.Collapsed);
 
                 this._btnConsultarInteresadoEntre.IsDefault = false;
                 this._btnModificar.IsDefault = true;
@@ -330,19 +408,27 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Fusiones
 
         private void _txtInteresadoEntre_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            GestionarVisibilidadDatosDeInteresado(Visibility.Collapsed);
+            GestionarVisibilidadDatosDeInteresadoEntre(Visibility.Collapsed);
 
-            GestionarVisibilidadFiltroInteresado(Visibility.Visible);
+            GestionarVisibilidadFiltroInteresadoEntre(Visibility.Visible);
 
-            //escondo el filtro de interesado Entre
+            //escondo el filtro de Marca
             GestionarVisibilidadDatosDeMarca(Visibility.Visible);
             GestionarVisibilidadFiltroMarca(Visibility.Collapsed);
+
+            //escondo el filtro de AgenteApoderado
+            GestionarVisibilidadDatosDeAgenteApoderado(Visibility.Visible);
+            GestionarVisibilidadFiltroAgenteApoderado(Visibility.Collapsed);
+
+            //escondo el filtro de InteresadoSobreviviente
+            GestionarVisibilidadDatosDeInteresadoSobreviviente(Visibility.Visible);
+            GestionarVisibilidadFiltroInteresadoSobreviviente(Visibility.Collapsed);
 
             this._btnConsultarInteresadoEntre.IsDefault = true;
             this._btnModificar.IsDefault = false;
         }
 
-        private void GestionarVisibilidadFiltroInteresado(object value)
+        private void GestionarVisibilidadFiltroInteresadoEntre(object value)
         {
             this._lblIdInteresadoEntre.Visibility = (System.Windows.Visibility)value;
             this._lblNombreInteresadoEntre.Visibility = (System.Windows.Visibility)value;
@@ -352,7 +438,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Fusiones
             this._btnConsultarInteresadoEntre.Visibility = (System.Windows.Visibility)value;
         }
 
-        private void GestionarVisibilidadDatosDeInteresado(object value)
+        private void GestionarVisibilidadDatosDeInteresadoEntre(object value)
         {
             this._txtNombreInteresadoEntre.Visibility = (System.Windows.Visibility)value;
             this._txtPaisInteresadoEntre.Visibility = (System.Windows.Visibility)value;
@@ -361,5 +447,141 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Fusiones
 
         #endregion
 
+        #region Eventos Interesado Sobreviviente
+
+        private void _btnConsultarInteresadoSobreviviente_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.ConsultarInteresadosSobreviviente();
+        }
+
+        private void _lstInteresadosSobreviviente_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            if (this._presentador.CambiarInteresadoSobreviviente())
+            {
+                GestionarVisibilidadDatosDeInteresadoSobreviviente(Visibility.Visible);
+                GestionarVisibilidadFiltroInteresadoSobreviviente(Visibility.Collapsed);
+
+                this._btnConsultarInteresadoSobreviviente.IsDefault = false;
+                this._btnModificar.IsDefault = true;
+            }
+        }
+
+        private void _OrdenarInteresadosSobreviviente_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.OrdenarColumna(sender as GridViewColumnHeader, this._lstInteresadosSobreviviente);
+        }
+
+        private void _txtInteresadoSobreviviente_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            GestionarVisibilidadDatosDeInteresadoSobreviviente(Visibility.Collapsed);
+
+            GestionarVisibilidadFiltroInteresadoSobreviviente(Visibility.Visible);
+
+            //escondo el filtro de interesado Marca
+            GestionarVisibilidadDatosDeMarca(Visibility.Visible);
+            GestionarVisibilidadFiltroMarca(Visibility.Collapsed);
+
+            //escondo el filtro de interesado Entre
+            GestionarVisibilidadDatosDeInteresadoEntre(Visibility.Visible);
+            GestionarVisibilidadFiltroInteresadoEntre(Visibility.Collapsed);
+
+            //escondo el filtro de Agente
+            GestionarVisibilidadDatosDeAgenteApoderado(Visibility.Visible);
+            GestionarVisibilidadFiltroAgenteApoderado(Visibility.Collapsed);
+
+            this._btnConsultarInteresadoSobreviviente.IsDefault = true;
+            this._btnModificar.IsDefault = false;
+        }
+
+        private void GestionarVisibilidadFiltroInteresadoSobreviviente(object value)
+        {
+            this._lblIdInteresadoSobreviviente.Visibility = (System.Windows.Visibility)value;
+            this._lblNombreInteresadoSobreviviente.Visibility = (System.Windows.Visibility)value;
+            this._txtNombreInteresadoSobrevivienteFiltrar.Visibility = (System.Windows.Visibility)value;
+            this._txtIdInteresadoSobrevivienteFiltrar.Visibility = (System.Windows.Visibility)value;
+            this._lstInteresadosSobreviviente.Visibility = (System.Windows.Visibility)value;
+            this._btnConsultarInteresadoSobreviviente.Visibility = (System.Windows.Visibility)value;
+        }
+
+        private void GestionarVisibilidadDatosDeInteresadoSobreviviente(object value)
+        {
+            this._txtNombreInteresadoSobreviviente.Visibility = (System.Windows.Visibility)value;
+            this._txtPaisInteresadoSobreviviente.Visibility = (System.Windows.Visibility)value;
+            this._txtCiudadInteresadoSobreviviente.Visibility = (System.Windows.Visibility)value;
+        }
+
+        #endregion
+
+        #region Eventos Agente Apoderado
+
+        private void _btnConsultarApoderado_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.ConsultarApoderados();
+        }
+
+        private void _lstApoderadosCedente_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+
+        }
+
+        private void _lstApoderados_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            if (this._presentador.CambiarApoderado())
+            {
+                GestionarVisibilidadDatosDeAgenteApoderado(Visibility.Visible);
+                GestionarVisibilidadFiltroAgenteApoderado(Visibility.Collapsed);
+
+                this._btnConsultarApoderado.IsDefault = false;
+                this._btnModificar.IsDefault = true;
+            }
+        }
+
+        private void _OrdenarApoderados_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.OrdenarColumna(sender as GridViewColumnHeader, this._lstApoderados);
+        }
+
+        private void _txtApoderadoFiltrar_GotFocus(object sender, RoutedEventArgs e)
+        {
+            this._btnConsultarApoderado.IsDefault = true;
+            this._btnModificar.IsDefault = false;
+        }
+
+        private void _txtNombreApoderado_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            GestionarVisibilidadDatosDeAgenteApoderado(Visibility.Collapsed);
+            GestionarVisibilidadFiltroAgenteApoderado(Visibility.Visible);
+
+            //escondo el filtro de interesado Marca
+            GestionarVisibilidadDatosDeMarca(Visibility.Visible);
+            GestionarVisibilidadFiltroMarca(Visibility.Collapsed);
+
+            //escondo el filtro de interesado Entre
+            GestionarVisibilidadDatosDeInteresadoEntre(Visibility.Visible);
+            GestionarVisibilidadFiltroInteresadoEntre(Visibility.Collapsed);
+
+            //escondo el filtro de interesado Sobreviviente
+            GestionarVisibilidadDatosDeInteresadoSobreviviente(Visibility.Visible);
+            GestionarVisibilidadFiltroInteresadoSobreviviente(Visibility.Collapsed);
+
+            this._btnConsultarApoderado.IsDefault = true;
+            this._btnModificar.IsDefault = false;
+        }
+
+        private void GestionarVisibilidadFiltroAgenteApoderado(object value)
+        {
+            this._lblIdApoderadoFiltrar.Visibility = (System.Windows.Visibility)value;
+            this._txtNombreApoderadoFiltrar.Visibility = (System.Windows.Visibility)value;
+            this._txtIdApoderadoFiltrar.Visibility = (System.Windows.Visibility)value;
+            this._lstApoderados.Visibility = (System.Windows.Visibility)value;
+            this._btnConsultarApoderado.Visibility = (System.Windows.Visibility)value;
+        }
+
+        private void GestionarVisibilidadDatosDeAgenteApoderado(object value)
+        {
+            this._txtNombreApoderado.Visibility = (System.Windows.Visibility)value;
+        }
+
+        #endregion
     }
 }

@@ -111,7 +111,7 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
                 query.SetParameter<bool>("way", true);
                 query.SetParameter<int>("cod", 60747);
 
-                query.List();
+                query.UniqueResult();
 
 
                 #region trace

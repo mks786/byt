@@ -1325,7 +1325,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
 
         private void _btnFM02_Click(object sender, RoutedEventArgs e)
         {
-           // this._presentador.IrImprimir(((Button)sender).Name);
+           this._presentador.IrImprimir(((Button)sender).Name);
         }
 
 

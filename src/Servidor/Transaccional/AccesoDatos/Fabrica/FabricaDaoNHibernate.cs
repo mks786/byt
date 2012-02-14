@@ -571,5 +571,14 @@ namespace Trascend.Bolet.AccesoDatos.Fabrica
         {
             return new DaoLicenciaNHibernate();
         }
+
+        /// <summary>
+        /// Método que devuelve el DaoLicencia
+        /// </summary>
+        /// <returns>IDaoLicencia</returns>
+        public override IDaoMarcaTercero ObtenerDaoMarcaTercero()
+        {
+            return new DaoMarcaTerceroNHibernate();
+        }
     }
 }

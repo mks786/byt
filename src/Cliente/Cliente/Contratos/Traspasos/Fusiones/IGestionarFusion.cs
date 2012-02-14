@@ -11,15 +11,15 @@ namespace Trascend.Bolet.Cliente.Contratos.Traspasos.Fusiones
 
         string NombreAsociadoFiltrar { get; }
 
-        string IdInteresadoSobrevivienteFiltrar { get; }
-
-        string NombreInteresadoSobrevivienteFiltrar { get; }
-
         string IdAgenteFiltrar { get; }
 
         string NombreAgenteFiltrar { get; }
 
-        //ListView Marcas
+        #region Marcas
+
+        string NombreMarca { set; }
+
+        object Marca { get; set; }
 
         string IdMarcaFiltrar { get; }
 
@@ -29,9 +29,13 @@ namespace Trascend.Bolet.Cliente.Contratos.Traspasos.Fusiones
 
         object MarcaFiltrada { get; set; }
 
-        //-----------
+        #endregion
 
-        //ListView InteresadoEntre
+        #region InteresadoEntre
+
+        object InteresadoEntre { get; set; }
+
+        string NombreInteresadoEntre { set; }
 
         string IdInteresadoEntreFiltrar { get; }
 
@@ -41,7 +45,39 @@ namespace Trascend.Bolet.Cliente.Contratos.Traspasos.Fusiones
 
         object InteresadoEntreFiltrado { get; set; }
 
-        //-----------
+        #endregion
+
+        #region InteresadoSobreviviente
+
+        object InteresadoSobreviviente { get; set; }
+
+        string NombreInteresadoSobreviviente { set; }
+
+        string IdInteresadoSobrevivienteFiltrar { get; }
+
+        string NombreInteresadoSobrevivienteFiltrar { get; }
+
+        object InteresadosSobrevivienteFiltrados { get; set; }
+
+        object InteresadoSobrevivienteFiltrado { get; set; }
+
+        #endregion
+
+        #region AgenteApoderado
+
+        object AgenteApoderado { get; set; }
+
+        string NombreAgenteApoderado { set; }
+
+        string IdAgenteApoderadoFiltrar { get; }
+
+        string NombreAgenteApoderadoFiltrar { get; }
+
+        object AgenteApoderadoFiltrados { get; set; }
+
+        object AgenteApoderadoFiltrado { get; set; }
+
+        #endregion
 
         bool HabilitarCampos { set; }
 
@@ -49,13 +85,6 @@ namespace Trascend.Bolet.Cliente.Contratos.Traspasos.Fusiones
 
         string TextoBotonModificar { get; set; }
 
-        string NombreMarca { set; }
-
-        object Marca { get; set; }
-
-        string NombreInteresadoEntre { set; }
-
-        object InteresadoEntre { get; set; }
 
         GridViewColumnHeader CurSortCol { get; set; }
 

@@ -256,10 +256,15 @@
     <Compile Include="Comandos\ComandosLicencia\ComandoEliminarLicencia.cs" />
     <Compile Include="Comandos\ComandosLicencia\ComandoInsertarOModificarLicencia.cs" />
     <Compile Include="Comandos\ComandosLicencia\ComandoVerificarExistenciaLicencia.cs" />
+    <Compile Include="Comandos\ComandosMarcaTercero\ComandoConsultarTodosMarcaTerceros.cs" />
+    <Compile Include="Comandos\ComandosMarcaTercero\ComandoEliminarMarcaTercero.cs" />
+    <Compile Include="Comandos\ComandosMarcaTercero\ComandoInsertarOModificarMarcaTercero.cs" />
+    <Compile Include="Comandos\ComandosMarcaTercero\ComandoVerificarExistenciaMarcaTercero.cs" />
     <Compile Include="Comandos\Receptor.cs" />
     <Compile Include="Comandos\ComandosUsuario\ComandoConsultarTodosUsuarios.cs" />
     <Compile Include="Comandos\ComandosUsuario\ComandoConsultarUsuarioPorID.cs" />
     <Compile Include="Comandos\ComandosUsuario\ComandoInsertarOModificarUsuario.cs" />
+    <Compile Include="Fabrica\FabricaComandosMarcaTercero.cs" />
     <Compile Include="Fabrica\FabricaComandosCambioPeticionario.cs" />
     <Compile Include="Fabrica\FabricaComandosCambioDeDomicilio.cs" />
     <Compile Include="Fabrica\FabricaComandosCesion.cs" />

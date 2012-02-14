@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ContratosServicios\IMarcaTerceroServicios.cs" />
     <Compile Include="ContratosServicios\ICambioPeticionarioServicios.cs" />
     <Compile Include="ContratosServicios\ICambioDeDomicilioServicios.cs" />
     <Compile Include="ContratosServicios\ILicenciaServicios.cs" />
@@ -117,6 +118,7 @@
     <Compile Include="Entidades\CambioDeDomicilio.cs" />
     <Compile Include="Entidades\CambioPeticionario.cs" />
     <Compile Include="Entidades\CambioNombre.cs" />
+    <Compile Include="Entidades\MarcaTercero.cs" />
     <Compile Include="Entidades\Licencia.cs" />
     <Compile Include="Entidades\Fusion.cs" />
     <Compile Include="Entidades\StatusWeb.cs" />

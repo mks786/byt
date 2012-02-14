@@ -1631,7 +1631,14 @@ libro</value>
   <data name="titleGestionarFusion" xml:space="preserve">
     <value>Gestionar Fusión</value>
   </data>
+  <data name="lblSobreviviente" xml:space="preserve">
+    <value>Sobreviviente:</value>
+  </data>
   <data name="lsvFomento" xml:space="preserve">
     <value>#Fomento</value>
   </data>
+  <data name="lblY" xml:space="preserve">
+    <value>Y</value>
+  </data>
+</root>
 </root>

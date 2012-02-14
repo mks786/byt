@@ -51,6 +51,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
         private IList<Auditoria> _auditorias;
         private IList<Marca> _marcas;
         private IList<Interesado> _interesadosEntre;
+        private IList<Interesado> _interesadosSobreviviente;
+        private IList<Agente> _agentesApoderados;
 
         /// <summary>
         /// Constructor Predeterminado
@@ -132,145 +134,36 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-                this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleConsultarMarca, "");
+                this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleGestionarFusion, 
+                                                      Recursos.Ids.GestionarFusion);
 
                 Fusion fusion = (Fusion)this._ventana.Fusion;
 
                 this._ventana.Marca = this._marcaServicios.ConsultarMarcaConTodo(((Fusion)fusion).Marca);
-                this._ventana.InteresadoEntre = ((Fusion)fusion).InteresadoEntre;
+                this._ventana.InteresadoEntre = this._interesadoServicios.ConsultarInteresadoConTodo(((Fusion)fusion).InteresadoEntre);
+                this._ventana.InteresadoSobreviviente = this._interesadoServicios.ConsultarInteresadoConTodo(((Fusion)fusion).InteresadoSobreviviente);
                 this._ventana.NombreMarca = ((Marca)this._ventana.Marca).Descripcion;
+                this._ventana.AgenteApoderado = ((Fusion)fusion).Agente;
 
                 this._marcas = new List<Marca>();
                 this._marcas.Add((Marca)this._ventana.Marca);
                 this._ventana.MarcasFiltradas = this._marcas;
+                this._ventana.MarcaFiltrada = (Marca)this._ventana.Marca;
 
                 this._interesadosEntre = new List<Interesado>();
                 this._interesadosEntre.Add(((Fusion)fusion).InteresadoEntre);
                 this._ventana.InteresadosEntreFiltrados = this._interesadosEntre;
+                this._ventana.InteresadoEntreFiltrado = (Interesado)this._ventana.InteresadoEntre;
 
-                //fusion.InfoBoles = this._infoBolServicios.ConsultarInfoBolesPorMarca(fusion);
-                //fusion.Operaciones = this._operacionServicios.ConsultarOperacionesPorMarca(fusion);
-                //fusion.Busquedas = this._busquedaServicios.ConsultarBusquedasPorMarca(fusion);
+                this._interesadosSobreviviente = new List<Interesado>();
+                this._interesadosSobreviviente.Add(((Fusion)fusion).InteresadoSobreviviente);
+                this._ventana.InteresadosSobrevivienteFiltrados = this._interesadosSobreviviente;
+                this._ventana.InteresadoSobrevivienteFiltrado = (Interesado)this._ventana.InteresadoSobreviviente;
 
-                //fusion.InfoAdicional = this._infoAdicionalServicios.ConsultarPorId(infoAdicional);
-                //fusion.Anaqua = this._anaquaServicios.ConsultarPorId(anaqua);
-
-                //IList<ListaDatosDominio> tiposMarcas = this._listaDatosDominioServicios.
-                //    ConsultarListaDatosDominioPorParametro(new ListaDatosDominio(Recursos.Etiquetas.cbiCategoriaMarca));
-                //ListaDatosDominio primerTipoMarca = new ListaDatosDominio();
-                //primerTipoMarca.Id = "NGN";
-                //tiposMarcas.Insert(0, primerTipoMarca);
-                //this._ventana.TipoMarcasDatos = tiposMarcas;
-                //this._ventana.TipoMarcasSolicitud = tiposMarcas;
-                //this._ventana.TipoMarcaDatos = this.BuscarTipoMarca(tiposMarcas, marca.Tipo);
-
-                //IList<Agente> agentes = this._agenteServicios.ConsultarTodos();
-                //Agente primerAgente = new Agente();
-                //primerAgente.Id = "NGN";
-                //agentes.Insert(0, primerAgente);
-                //this._ventana.Agentes = agentes;
-                //this._ventana.Agente = this.BuscarAgente(agentes, marca.Agente);
-
-                //IList<Pais> paises = this._paisServicios.ConsultarTodos();
-                //Pais primerPais = new Pais();
-                //primerPais.Id = int.MinValue;
-                //paises.Insert(0, primerPais);
-                //this._ventana.PaisesSolicitud = paises;
-                //this._ventana.PaisSolicitud = this.BuscarPais(paises, marca.Pais);
-
-                //IList<StatusWeb> statusWebs = this._statusWebServicios.ConsultarTodos();
-                //StatusWeb primerStatus = new StatusWeb();
-                //primerStatus.Id = "NGN";
-                //statusWebs.Insert(0, primerStatus);
-                //this._ventana.StatusWebs = statusWebs;
-                //this._ventana.StatusWeb = this.BuscarStatusWeb(statusWebs, marca.StatusWeb);
-
-                //IList<Condicion> condiciones = this._condicionServicios.ConsultarTodos();
-                //Condicion primeraCondicion = new Condicion();
-                //primeraCondicion.Id = int.MinValue;
-                //condiciones.Insert(0, primeraCondicion);
-                //this._ventana.Condiciones = condiciones;
-
-                //IList<TipoEstado> tipoEstados = this._tipoEstadoServicios.ConsultarTodos();
-                //TipoEstado primerDetalle = new TipoEstado();
-                //primerDetalle.Id = "NGN";
-                //tipoEstados.Insert(0, primerDetalle);
-                //this._ventana.Detalles = tipoEstados;
-
-                //IList<Servicio> servicios = this._servicioServicios.ConsultarTodos();
-                //Servicio primerServicio = new Servicio();
-                //primerServicio.Id = "NGN";
-                //servicios.Insert(0, primerServicio);
-                //this._ventana.Servicios = servicios;
-                //this._ventana.Servicio = this.BuscarServicio(servicios, marca.Servicio);
-
-
-                //IList<Boletin> boletines = this._boletinServicios.ConsultarTodos();
-                //Boletin primerBoletin = new Boletin();
-                //primerBoletin.Id = int.MinValue;
-                //boletines.Insert(0, primerBoletin);
-                //this._ventana.BoletinesOrdenPublicacion = boletines;
-                //this._ventana.BoletinesPublicacion = boletines;
-                //this._ventana.BoletinConcesion = boletines;
-                //this._ventana.BoletinConcesion = this.BuscarBoletin(boletines, marca.BoletinConcesion);
-                //this._ventana.BoletinPublicacion = this.BuscarBoletin(boletines, marca.BoletinPublicacion);
-
-                //Interesado interesado = (this._interesadoServicios.ConsultarInteresadoConTodo(marca.Interesado));
-                //this._ventana.NombreInteresadoDatos = interesado.Nombre;
-                //this._ventana.NombreInteresadoSolicitud = interesado.Nombre;
-                //this._ventana.InteresadoPaisSolicitud = interesado.Pais.NombreEspanol;
-                //this._ventana.InteresadoCiudadSolicitud = interesado.Ciudad;
-                ////this._ventana.InteresadoSolicitud = marca.Interesado;
-
-                //this._ventana.NombreAsociadoDatos = marca.Asociado != null ? marca.Asociado.Nombre : "";
-                //this._ventana.NombreAsociadoSolicitud = marca.Asociado != null ? marca.Asociado.Nombre : "";
-
-                //this._ventana.DescripcionCorresponsalSolicitud = marca.Corresponsal != null ? marca.Corresponsal.Descripcion : "";
-                //this._ventana.DescripcionCorresponsalDatos = marca.Corresponsal != null ? marca.Corresponsal.Descripcion : "";
-
-                //this._ventana.NumPoderDatos = marca.Poder != null ? marca.Poder.NumPoder : "";
-                //this._ventana.NumPoderSolicitud = marca.Poder != null ? marca.Poder.NumPoder : "";
-
-                //IList<ListaDatosDominio> sectores = this._listaDatosDominioServicios.
-                //    ConsultarListaDatosDominioPorParametro(new ListaDatosDominio(Recursos.Etiquetas.cbiSector));
-                //ListaDatosDominio primerSector = new ListaDatosDominio();
-                //primerSector.Id = "NGN";
-                //sectores.Insert(0, primerSector);
-                //this._ventana.Sectores = sectores;
-                //this._ventana.Sector = this.BuscarSector(sectores, marca.Sector);
-
-                //IList<ListaDatosDominio> tipoReproducciones = this._listaDatosDominioServicios.
-                //    ConsultarListaDatosDominioPorParametro(new ListaDatosDominio(Recursos.Etiquetas.cbiTipoReproduccion));
-                //ListaDatosDominio primerTipoReproduccion = new ListaDatosDominio();
-                //primerTipoReproduccion.Id = "NGN";
-                //tipoReproducciones.Insert(0, primerTipoReproduccion);
-                //this._ventana.TipoReproducciones = tipoReproducciones;
-                //this._ventana.TipoReproduccion = this.BuscarTipoReproduccion(tipoReproducciones, marca.Tipo);
-
-                //Auditoria auditoria = new Auditoria();
-                //auditoria.Fk = ((Marca)this._ventana.Marca).Id;
-                //auditoria.Tabla = "MYP_MARCAS";
-                //this._auditorias = this._marcaServicios.AuditoriaPorFkyTabla(auditoria);
-
-                //if (null != marca.InfoAdicional && !string.IsNullOrEmpty(marca.InfoAdicional.Id))
-                //    this._ventana.PintarInfoAdicional();
-
-                //if (null != marca.Anaqua)
-                //    this._ventana.PintarAnaqua();
-
-                //if (null != marca.InfoBoles && marca.InfoBoles.Count > 0)
-                //    this._ventana.PintarInfoBoles();
-
-                //if (null != marca.Operaciones && marca.Operaciones.Count > 0)
-                //    this._ventana.PintarOperaciones();
-
-                //if (null != marca.Busquedas && marca.Busquedas.Count > 0)
-                //    this._ventana.PintarBusquedas();
-
-                //if (null != this._auditorias && this._auditorias.Count > 0)
-                //    this._ventana.PintarAuditoria();
-
-                //this._ventana.BorrarCeros();
+                this._agentesApoderados = new List<Agente>();
+                this._agentesApoderados.Add(((Fusion)fusion).Agente);
+                this._ventana.AgenteApoderadoFiltrados = this._agentesApoderados;
+                this._ventana.AgenteApoderadoFiltrado = (Agente)this._ventana.AgenteApoderado;
 
                 this._ventana.FocoPredeterminado();
 
@@ -644,7 +537,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
 
         #region InteresadoEntre
 
-        public void ConsultarInteresados()
+        public void ConsultarInteresadosEntre()
         {
             try
             {
@@ -697,7 +590,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
             }
         }
 
-        public bool CambiarInteresado()
+        public bool CambiarInteresadoEntre()
         {
             bool retorno = false;
 
@@ -710,10 +603,227 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
 
                 if (this._ventana.InteresadoEntreFiltrado != null)
                 {
-                    this._ventana.InteresadoEntre = this._ventana.InteresadoEntreFiltrado;
+                    this._ventana.InteresadoEntre = 
+                        this._interesadoServicios.ConsultarInteresadoConTodo((Interesado)this._ventana.InteresadoEntreFiltrado);
                     this._ventana.NombreInteresadoEntre = ((Interesado)this._ventana.InteresadoEntreFiltrado).Nombre;
                     this._interesadosEntre.RemoveAt(0);
                     this._interesadosEntre.Add((Interesado)this._ventana.InteresadoEntreFiltrado);
+                    retorno = true;
+                }
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+            }
+            catch (ApplicationException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(ex.Message, true);
+            }
+            catch (RemotingException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorRemoting, true);
+            }
+            catch (SocketException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorConexionServidor, true);
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
+            }
+
+            return retorno;
+        }
+
+        #endregion
+
+        #region InteresadoSobreviviente
+
+        public void ConsultarInteresadosSobreviviente()
+        {
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                Mouse.OverrideCursor = Cursors.Wait;
+                Interesado interesado = new Interesado();
+                IEnumerable<Interesado> interesadosFiltradas;
+                interesado.Nombre = this._ventana.NombreInteresadoSobrevivienteFiltrar.ToUpper();
+                interesado.Id = this._ventana.IdInteresadoSobrevivienteFiltrar.Equals("") ? 0 : int.Parse(this._ventana.IdInteresadoSobrevivienteFiltrar);
+                if ((!interesado.Nombre.Equals("")) || (interesado.Id != 0))
+                    interesadosFiltradas = this._interesadoServicios.ObtenerInteresadosFiltro(interesado);
+                else
+                    interesadosFiltradas = new List<Interesado>();
+
+                if (interesadosFiltradas.ToList<Interesado>().Count != 0)
+                    this._ventana.InteresadosSobrevivienteFiltrados = interesadosFiltradas.ToList<Interesado>();
+                else
+                    this._ventana.InteresadosSobrevivienteFiltrados = this._interesadosSobreviviente;
+
+                Mouse.OverrideCursor = null;
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (ApplicationException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(ex.Message, true);
+            }
+            catch (RemotingException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorRemoting, true);
+            }
+            catch (SocketException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorConexionServidor, true);
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
+            }
+        }
+
+        public bool CambiarInteresadoSobreviviente()
+        {
+            bool retorno = false;
+
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                if (this._ventana.InteresadoSobrevivienteFiltrado != null)
+                {
+                    this._ventana.InteresadoSobreviviente = 
+                        this._interesadoServicios.ConsultarInteresadoConTodo((Interesado)this._ventana.InteresadoSobrevivienteFiltrado);
+                    this._ventana.NombreInteresadoSobreviviente = ((Interesado)this._ventana.InteresadoSobrevivienteFiltrado).Nombre;
+                    this._interesadosSobreviviente.RemoveAt(0);
+                    this._interesadosSobreviviente.Add((Interesado)this._ventana.InteresadoSobrevivienteFiltrado);
+                    retorno = true;
+                }
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+            }
+            catch (ApplicationException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(ex.Message, true);
+            }
+            catch (RemotingException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorRemoting, true);
+            }
+            catch (SocketException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorConexionServidor, true);
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
+            }
+
+            return retorno;
+        }
+
+        #endregion
+
+        #region Agente Apoderado
+        
+        public void ConsultarApoderados()
+        {
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                Mouse.OverrideCursor = Cursors.Wait;
+                Agente apoderadoCedente = new Agente();
+                IEnumerable<Agente> agentesCedenteFiltrados;
+                apoderadoCedente.Nombre = this._ventana.NombreAgenteFiltrar.ToUpper();
+                apoderadoCedente.Id = this._ventana.IdAgenteFiltrar.ToUpper();
+
+                if ((!apoderadoCedente.Nombre.Equals("")) || (!apoderadoCedente.Id.Equals("")))
+                    agentesCedenteFiltrados = this._agenteServicios.ObtenerAgentesFiltro(apoderadoCedente);
+                else
+                    agentesCedenteFiltrados = new List<Agente>();
+
+                if (agentesCedenteFiltrados.ToList<Agente>().Count != 0)
+                    this._ventana.AgenteApoderadoFiltrados = agentesCedenteFiltrados.ToList<Agente>();
+                else
+                    this._ventana.AgenteApoderadoFiltrados = this._agentesApoderados;
+
+                Mouse.OverrideCursor = null;
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (ApplicationException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(ex.Message, true);
+            }
+            catch (RemotingException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorRemoting, true);
+            }
+            catch (SocketException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorConexionServidor, true);
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
+            }
+        }
+
+        public bool CambiarApoderado()
+        {
+            bool retorno = false;
+
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                if (this._ventana.AgenteApoderadoFiltrado != null)
+                {
+                    this._ventana.AgenteApoderado = this._ventana.AgenteApoderadoFiltrado;
+                    this._ventana.NombreAgenteApoderado = ((Agente)this._ventana.AgenteApoderadoFiltrado).Nombre;
+                    this._agentesApoderados.RemoveAt(0);
+                    this._agentesApoderados.Add((Agente)this._ventana.AgenteApoderadoFiltrado);
                     retorno = true;
 
                 }

@@ -95,6 +95,13 @@
 
   </class>
 
+  <sql-query name="GetCustomerOrderHistory">
+    //code name of your SP
+    <return-scalar column="ProductName" type="String" /> //all the return parameters
+    <return-scalar column="Total" type="Int32" />
+    exec CustOrderHist :?
+  </sql-query>
+
   <sql-query name="ProcedimientoP1">
 
     <query-param name="usr" type="string" />

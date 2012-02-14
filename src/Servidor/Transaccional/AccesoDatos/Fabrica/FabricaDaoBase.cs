@@ -385,5 +385,11 @@ namespace Trascend.Bolet.AccesoDatos.Fabrica
         /// <returns>IDaoLicencia</returns>
         public abstract IDaoLicencia ObtenerDaoLicencia();
 
+        /// <summary>
+        /// Método que devuelve el DaoMarcaTercero del manejador que se esté utilizando
+        /// </summary>
+        /// <returns>IDaoMarcaTercero</returns>
+        public abstract IDaoMarcaTercero ObtenerDaoMarcaTercero();
+
     }
 }
