@@ -164,6 +164,24 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
             set { _acta = value; }
         }
 
+        public virtual bool BActa
+        {
+            get
+            {
+                if (this.Acta.ToString().ToUpper().Equals("T"))
+                    return true;
+                else
+                    return false;
+            }
+            set
+            {
+                if (value)
+                    this.Acta = 'T';
+                else
+                    this.Acta = 'F';
+            }
+        }
+
         /// <summary>
         /// Propiedad que asigna u obtiene el campo Timbre de la cesion
         /// </summary>

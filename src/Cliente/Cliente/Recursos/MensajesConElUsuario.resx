@@ -516,4 +516,10 @@
   <data name="NoHayResultados" xml:space="preserve">
     <value>Disculpe, no hay resultados para la búsqueda</value>
   </data>
+  <data name="ErrorAgenteNoPoseePoderConInteresado" xml:space="preserve">
+    <value>El apoderado no posee poderes asociados con el {0}</value>
+  </data>
+  <data name="ErrorInteresadoNoPoseePoderConAgente" xml:space="preserve">
+    <value>El {0} no posee poderes asociados con el apoderado</value>
+  </data>
 </root>

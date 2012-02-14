@@ -118,6 +118,23 @@ namespace Trascend.Bolet.Servicios.Implementacion
             return poderes;
         }
 
+        public IList<Poder> ConsultarPoderesPorAgente(Agente agente)
+        {
+            #region trace
+            if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+            IList<Poder> poderes = ControladorPoder.ConsultarPoderesPorAgente(agente);
+
+            #region trace
+            if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                logger.Debug("Saliendo del Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+            return poderes;
+        }
+
 
         public bool VerificarExistencia(Poder entidad)
         {

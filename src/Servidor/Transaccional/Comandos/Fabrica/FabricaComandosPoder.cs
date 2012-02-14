@@ -57,6 +57,16 @@ namespace Trascend.Bolet.Comandos.Fabrica
         }
 
         /// <summary>
+        /// Método que devuelve el Comando para consultar todos los Poderes que posee un agente
+        /// </summary>
+        /// <param name="agente">Agente para realizar el filtrado</param>
+        /// <returns>El Comando para consultar todos los Poderes</returns>
+        public static ComandoBase<IList<Poder>> ObtenerComandoConsultarPoderesPorAgente(Agente agente)
+        {
+            return new ComandoConsultarPoderesPorAgente(agente);
+        }
+
+        /// <summary>
         /// Método que devuelve el Comando para consultar un poder con uno o mas filtros
         /// </summary>
         /// <returns>Poder fitlrado</returns>

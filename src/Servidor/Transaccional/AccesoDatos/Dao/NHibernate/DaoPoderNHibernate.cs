@@ -34,6 +34,30 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
             return poderes;
         }
 
+        public IList<Poder> ObtenerPoderesPorAgente(Agente agente)
+        {
+            IList<Poder> poderes;
+
+            try
+            {
+                IQuery query = Session.CreateQuery(string.Format(Recursos.ConsultasHQL.ObtenerPoderesPorAgente, agente.Id));
+               
+                agente = query.UniqueResult<Agente>();
+                poderes = agente.Poderes;
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                throw new ApplicationException(Recursos.Errores.ExConsultarTodos);
+            }
+            finally
+            {
+                Session.Close();
+            }
+
+            return poderes;
+        }
+
         /// <summary>
         /// Método que obtiene un poder con uno o mas filtros
         /// </summary>

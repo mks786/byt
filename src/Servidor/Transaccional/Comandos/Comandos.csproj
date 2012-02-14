@@ -96,6 +96,7 @@
     <Compile Include="Comandos\ComandosMarca\ComandoEjecutarProcedimientoP1.cs" />
     <Compile Include="Comandos\ComandosOperacion\ComandoConsultarOperacionesPorMarcaYServicio.cs" />
     <Compile Include="Comandos\ComandosPoder\ComandoConsultarPoderesFiltro.cs" />
+    <Compile Include="Comandos\ComandosPoder\ComandoConsultarPoderesPorAgente.cs" />
     <Compile Include="Comandos\ComandosResumen\ComandoVerificarExistenciaResumen.cs" />
     <Compile Include="Comandos\ComandosCarta\ComandoVerificarExistenciaCarta.cs" />
     <Compile Include="Comandos\ComandosConcepto\ComandoConsultarTodosConceptos.cs" />

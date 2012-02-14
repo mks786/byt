@@ -297,7 +297,7 @@
     <comment>Filtro por Nombre</comment>
   </data>
   <data name="CabeceraObtenerAgente" xml:space="preserve">
-    <value>Select a from Agente a left join fetch a.Poderes as poder where </value>
+    <value>Select distinct(a) from Agente a left join fetch a.Poderes as poder where </value>
     <comment>Cabecera del query para el filtro de agentes</comment>
   </data>
   <data name="FiltroObtenerAgenteId" xml:space="preserve">
@@ -319,5 +319,9 @@
   <data name="FiltroObtenerPoderId" xml:space="preserve">
     <value>p.Id = {0}</value>
     <comment>Filtro por Id</comment>
+  </data>
+  <data name="ObtenerPoderesPorAgente" xml:space="preserve">
+    <value>Select a from Agente a left join fetch a.Poderes as poder where a.Id = '{0}'</value>
+    <comment>Selecciona todas los poderes que posee un Agente</comment>
   </data>
 </root>

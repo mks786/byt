@@ -61,7 +61,7 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Select a from Agente a left join fetch a.Poderes as poder where .
+        ///   Busca una cadena traducida similar a Select distinct(a) from Agente a left join fetch a.Poderes as poder where .
         /// </summary>
         public static string CabeceraObtenerAgente {
             get {
@@ -489,6 +489,15 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         public static string ObtenerOperacionesPorMarcasYServicio {
             get {
                 return ResourceManager.GetString("ObtenerOperacionesPorMarcasYServicio", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Select a from Agente a left join fetch a.Poderes as poder where a.Id = &apos;{0}&apos;.
+        /// </summary>
+        public static string ObtenerPoderesPorAgente {
+            get {
+                return ResourceManager.GetString("ObtenerPoderesPorAgente", resourceCulture);
             }
         }
         

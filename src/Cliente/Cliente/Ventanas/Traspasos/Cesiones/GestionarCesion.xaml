@@ -155,7 +155,7 @@
 
                         <!--Datos de la Marca-->
 
-                        <CheckBox Grid.Column="0" Grid.Row="0" Content="{x:Static recurso:Etiquetas.lblEtiqueta}" 
+                        <CheckBox Grid.Column="0" Grid.Row="0" Content="{x:Static recurso:Etiquetas.lblEtiqueta}" IsEnabled="False" IsChecked="{Binding Path=BEtiqueta}" 
                                   Height="16" HorizontalAlignment="Right" Margin="5,0,0,0" Name="_chkEtiqueta" VerticalAlignment="Center"
                                   />
 
@@ -425,7 +425,7 @@
                         </Label>
                         <custom:ByTTextBox  IsEnabled="False"  Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="2" Name="_txtIdPoderCedente" 
                                             IsReadOnly="True" VerticalAlignment="Center" MouseDoubleClick="_txtIdPoderCedente_MouseDoubleClick"
-                                            MaxLength="255" Text="{Binding Path=PoderCedente.Id}" BorderBrush="LightGreen"></custom:ByTTextBox>
+                                            MaxLength="255" Text="{Binding Path=Id}" BorderBrush="LightGreen"></custom:ByTTextBox>
 
                         <Label Name="_lblFomentoCedente" Grid.Row="0" Grid.Column="3" HorizontalAlignment="Right" VerticalAlignment="Center">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblFomento}"/>
@@ -495,7 +495,7 @@
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblFecha}"/>
                         </Label>
                         <custom:ByTTextBox  IsEnabled="False"  Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="1" Name="_txtFechaPoderCedente" VerticalAlignment="Center" MaxLength="255"  
-                                            Text="{Binding Path=PoderCedente.Fecha}" IsReadOnly="True"></custom:ByTTextBox>
+                                            Text="{Binding Path=Fecha}" IsReadOnly="True"></custom:ByTTextBox>
                         <!--Fin Campo-->
 
                         <!--Campo-->
@@ -511,7 +511,7 @@
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblAnexo}"/>
                         </Label>
                         <custom:ByTTextBox  IsEnabled="False"  Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="2" Name="_txtAnexoPoderCedente" VerticalAlignment="Center" MaxLength="255"  
-                                            Text="{Binding Path=PoderCedente.Anexo}" IsReadOnly="True"></custom:ByTTextBox>
+                                            Text="{Binding Path=Anexo}" IsReadOnly="True"></custom:ByTTextBox>
                         <!--Fin Campo-->
 
                         <!--Campo-->
@@ -519,7 +519,7 @@
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblFacultad}"/>
                         </Label>
                         <custom:ByTTextBox  IsEnabled="False"  Grid.Column="4" Grid.Row="2" Grid.ColumnSpan="2" Name="_txtFacultadPoderCedente" VerticalAlignment="Center" MaxLength="255"  
-                                            Text="{Binding Path=PoderCedente.Facultad}" IsReadOnly="True"></custom:ByTTextBox>
+                                            Text="{Binding Path=Facultad}" IsReadOnly="True"></custom:ByTTextBox>
                         <!--Fin Campo-->
 
                         <!--Fin datos de Poder de Cedente-->
@@ -737,7 +737,7 @@
                         </Label>
                         <custom:ByTTextBox  IsEnabled="False"  Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="2" Name="_txtIdPoderCesionario" 
                                             VerticalAlignment="Center" MouseDoubleClick="_txtIdPoderCesionario_MouseDoubleClick" IsReadOnly="True"
-                                            MaxLength="255" Text="{Binding Path=PoderCesionario.Id}" BorderBrush="LightGreen"></custom:ByTTextBox>
+                                            MaxLength="255" Text="{Binding Path=Id}" BorderBrush="LightGreen"></custom:ByTTextBox>
 
                         <Label Name="_lblFomentoCesionario" Grid.Row="0" Grid.Column="3" HorizontalAlignment="Right" VerticalAlignment="Center">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblFomento}"/>
@@ -789,7 +789,7 @@
                         <DatePicker Grid.ColumnSpan="2" Grid.Row="1" Grid.Column="4"  HorizontalAlignment="Right"  Name="_dpkFechaPoderCesionarioFiltrar" Width="180"
                                     Focusable="False" BorderBrush="{x:Null}">
                             <DatePicker.SelectedDate>
-                                <Binding Path="PoderCesionario.Fecha" UpdateSourceTrigger="PropertyChanged"/>
+                                <Binding Path="Fecha" UpdateSourceTrigger="PropertyChanged"/>
                             </DatePicker.SelectedDate>
                         </DatePicker>
                         <!--Fin Campo-->
@@ -804,7 +804,7 @@
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblFecha}"/>
                         </Label>
                         <custom:ByTTextBox  IsEnabled="False"  Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="1" Name="_txtFechaPoderCesionario" VerticalAlignment="Center" 
-                                            MaxLength="255" Text="{Binding Path=PoderCesionario.Fecha}" IsReadOnly="True"></custom:ByTTextBox>
+                                            MaxLength="255" Text="{Binding Path=Fecha}" IsReadOnly="True"></custom:ByTTextBox>
                         <!--Fin Campo-->
 
                         <!--Campo-->
@@ -820,7 +820,7 @@
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblAnexo}"/>
                         </Label>
                         <custom:ByTTextBox  IsEnabled="False"  Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="2" Name="_txtAnexoPoderCesionario" VerticalAlignment="Center"
-                                            MaxLength="255" Text="{Binding Path=PoderCesionario.Anexo}" IsReadOnly="True"></custom:ByTTextBox>
+                                            MaxLength="255" Text="{Binding Path=Anexo}" IsReadOnly="True"></custom:ByTTextBox>
                         <!--Fin Campo-->
 
                         <!--Campo-->
@@ -828,7 +828,7 @@
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblFacultad}"/>
                         </Label>
                         <custom:ByTTextBox  IsEnabled="False"  Grid.Column="4" Grid.Row="2" Grid.ColumnSpan="2" Name="_txtFacultadPoderCesionario" VerticalAlignment="Center" 
-                                            MaxLength="255" Text="{Binding Path=PoderCesionario.Facultad}" IsReadOnly="True"></custom:ByTTextBox>
+                                            MaxLength="255" Text="{Binding Path=Facultad}" IsReadOnly="True"></custom:ByTTextBox>
                         <!--Fin Campo-->
 
                         <!--Fin datos de Poder de Cesionario-->
@@ -899,8 +899,8 @@
                                             MaxLength="255" Text="{Binding Path=BoletinPublicacion.Id}"></custom:ByTTextBox>
 
 
-                        <CheckBox Grid.Column="7" Grid.Row="2" Content="{x:Static recurso:Etiquetas.chkAsientoEnLibro}" 
-                                  Height="32" HorizontalAlignment="Right" Margin="5,0,0,0" Name="_chkAsientoEnLibro" VerticalAlignment="Center"
+                        <CheckBox Grid.Column="7" Grid.Row="2" Content="{x:Static recurso:Etiquetas.chkAsientoEnLibro}" IsEnabled="False"
+                                  Height="32" HorizontalAlignment="Right" IsChecked="{Binding Path=BActa}" Margin="5,0,0,0" Name="_chkAsientoEnLibro" VerticalAlignment="Center"
                                   />
                         
                         
@@ -908,33 +908,52 @@
                     </Grid>
                 </WrapPanel>              
 
-                <WrapPanel Grid.Row="0" Grid.ColumnSpan="8" VerticalAlignment="Bottom" HorizontalAlignment="left" Margin="5" Orientation="Horizontal">
-           
-                    <Button Name="_btnPlanilla"  VerticalAlignment="Bottom" Height="25" Width="90"
-                    Click="_btnPlanilla_Click">                
-                        <TextBlock Name="_txbPlanilla" Text="{x:Static recurso:Etiquetas.btnPlanilla}"/>
-                    </Button>
-            
-                    <Button Name="_btnAnexo" VerticalAlignment="Bottom" Height="25" Width="90"
+                <WrapPanel>
+                    <Grid Width="640">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+
+                        <Button Name="_btnPlanilla" Grid.Row="0" Grid.Column="0"  VerticalAlignment="Bottom" Height="25" Width="90"
+                    Click="_btnPlanilla_Click">
+                            <TextBlock Name="_txbPlanilla" Text="{x:Static recurso:Etiquetas.btnPlanilla}"/>
+                        </Button>
+
+                        <Button Name="_btnAnexo" Grid.Row="0" Grid.Column="1" VerticalAlignment="Bottom" Height="25" Width="90"
                     Click="_btnAnexo_Click">
-                        <TextBlock Name="_txbAnexo" Text="{x:Static recurso:Etiquetas.btnAnexo}"/>
-                    </Button>
-            
-                    <Button Name="_btnCarpeta" VerticalAlignment="Bottom" Height="25" Width="90"
+                            <TextBlock Name="_txbAnexo" Text="{x:Static recurso:Etiquetas.btnAnexo}"/>
+                        </Button>
+
+                        <Button Name="_btnCarpeta" Grid.Row="0" Grid.Column="2" VerticalAlignment="Bottom" Height="25" Width="90"
                     Click="_btnCarpeta_Click">
-                        <TextBlock Name="_txbCarpeta" Text="{x:Static recurso:Etiquetas.btnCarpeta}"/>
-                    </Button>
-            
-                    <Button Name="_btnPlanillaVan" VerticalAlignment="Bottom" Height="25" Width="90"
+                            <TextBlock Name="_txbCarpeta" Text="{x:Static recurso:Etiquetas.btnCarpeta}"/>
+                        </Button>
+
+                        <Button Name="_btnPlanillaVan" Grid.Row="0" Grid.Column="4" VerticalAlignment="Bottom" Height="25" Width="90"
                     Click="_btnPlanillaVan_Click">
-                        <TextBlock Name="_txbPlanillaVan" Text="{x:Static recurso:Etiquetas.btnPlanillaVan}"/>
-                    </Button>
-            
-                    <Button Name="_btnPlanillaVienen" VerticalAlignment="Bottom" Height="25" Width="90"
+                            <TextBlock Name="_txbPlanillaVan" Text="{x:Static recurso:Etiquetas.btnPlanillaVan}"/>
+                        </Button>
+
+                        <Button Name="_btnPlanillaVienen" Grid.Row="0" Grid.Column="5" VerticalAlignment="Bottom" Height="25" Width="90"
                     Click="_btnPlanillaVienen_Click">
-                        <TextBlock Name="_txbPlanillaVienen" Text="{x:Static recurso:Etiquetas.btnPlanillaVienen}"/>
-                    </Button>
-            
+                            <TextBlock Name="_txbPlanillaVienen" Text="{x:Static recurso:Etiquetas.btnPlanillaVienen}"/>
+                        </Button>
+
+                    </Grid>
                 </WrapPanel>
 
             </StackPanel>

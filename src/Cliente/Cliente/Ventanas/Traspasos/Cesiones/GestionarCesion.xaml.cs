@@ -252,6 +252,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Cesiones
                 this._txtNombreMarcaFiltrar.IsEnabled = value;
                 this._txtNumInscripcion.IsEnabled = value;
                 this._txtNumRegistro.IsEnabled = value;
+                this._chkEtiqueta.IsEnabled = value;
                 this._txtTipo.IsEnabled = value;
                 this._txtUbicacion.IsEnabled = value;                                
                 this._btnConsultarMarca.IsEnabled = value;
@@ -294,7 +295,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Cesiones
                 this._txtReferenciaCesion.IsEnabled = value;                                
                 this._txtBoletinCesion.IsEnabled = value;
                 this._txtAnexoCesion.IsEnabled = value;                              
-                this._txtComentarioCesion.IsEnabled = value;                                                                               
+                this._txtComentarioCesion.IsEnabled = value;
+                this._chkAsientoEnLibro.IsEnabled = value;
             }
         }
 
@@ -369,6 +371,14 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Cesiones
         {
             get { return _CurAdorner; }
             set { _CurAdorner = value; }
+        }
+
+        public void Mensaje(string mensaje, int opcion)
+        {
+            if (opcion == 0)
+                MessageBox.Show(mensaje, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            else
+                MessageBox.Show(mensaje, "Advertencia", MessageBoxButton.OK, MessageBoxImage.Exclamation);
         }
 
         #endregion

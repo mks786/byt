@@ -136,5 +136,7 @@ namespace Trascend.Bolet.Cliente.Contratos.Traspasos.Cesiones
         GridViewColumnHeader CurSortCol { get; set; }
 
         SortAdorner CurAdorner { get; set; }
+
+        void Mensaje(string mensaje, int opcion);
     }
 }

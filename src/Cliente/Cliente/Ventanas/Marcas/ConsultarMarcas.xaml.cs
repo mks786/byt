@@ -122,6 +122,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             get { return this._lstInteresados.SelectedItem; }
             set { this._lstInteresados.SelectedItem = value; }
         }
+
         public void Mensaje(string mensaje, int opcion)
         {
             if (opcion == 0)

@@ -7,6 +7,8 @@ namespace Trascend.Bolet.AccesoDatos.Contrato
     {
         IList<Poder> ObtenerPoderesPorInteresado(Interesado interesado);
 
+        IList<Poder> ObtenerPoderesPorAgente(Agente agente);
+
         IList<Poder> ObtenerPoderesFiltro(Poder poder);
     }
 }

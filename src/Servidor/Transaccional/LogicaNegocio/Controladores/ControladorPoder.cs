@@ -241,6 +241,38 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
         }
 
         /// <summary>
+        /// Método que devuelve todos los Poderes del sistema que poseen el agente que entra por parametro
+        /// </summary>
+        /// <param name="agente">Agente para filtrar la consulta</param>
+        /// <returns>Lista de poderes que posee ese interesado</returns>
+        public static IList<Poder> ConsultarPoderesPorAgente(Agente agente)
+        {
+            IList<Poder> retorno;
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                ComandoBase<IList<Poder>> comando = FabricaComandosPoder.ObtenerComandoConsultarPoderesPorAgente(agente);
+                comando.Ejecutar();
+                retorno = comando.Receptor.ObjetoAlmacenado;
+
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Saliendo del Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (ApplicationException ex)
+            {
+                logger.Error(ex.Message);
+                throw ex;
+            }
+            return retorno;
+        }
+
+        /// <summary>
         /// Método que consulta un Poder con uno o mas filtros
         /// </summary>
         /// <returns>Poder Filtrado</returns>
