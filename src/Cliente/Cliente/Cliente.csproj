@@ -139,13 +139,13 @@
     <Compile Include="Contratos\Interesados\IConsultarInteresados.cs" />
     <Compile Include="Contratos\Justificaciones\IAgregarJustificacion.cs" />
     <Compile Include="Contratos\Justificaciones\IConsultarJustificacion.cs" />
-    <Compile Include="Contratos\Poderes\IAgregarPoder.cs" />
-    <Compile Include="Contratos\Poderes\IConsultarPoder.cs" />
-    <Compile Include="Contratos\Poderes\IConsultarPoderes.cs" />
+    <Compile Include="Contratos\Paises\Poderes\IAgregarPoder.cs" />
+    <Compile Include="Contratos\Paises\Poderes\IConsultarPoder.cs" />
+    <Compile Include="Contratos\Paises\Poderes\IConsultarPoderes.cs" />
     <Compile Include="Contratos\Estatuses\IAgregarEstatus.cs" />
     <Compile Include="Contratos\Estatuses\IConsultarEstatus.cs" />
     <Compile Include="Contratos\Estatuses\IConsultarEstatuses.cs" />
-    <Compile Include="Contratos\Poderes\IGestionarPoderesXAgentes.cs" />
+    <Compile Include="Contratos\Paises\Poderes\IGestionarPoderesXAgentes.cs" />
     <Compile Include="Contratos\TipoFechas\IAgregarTipoFecha.cs" />
     <Compile Include="Contratos\TipoFechas\IConsultarTipoFecha.cs" />
     <Compile Include="Contratos\TipoFechas\IConsultarTipoFechas.cs" />

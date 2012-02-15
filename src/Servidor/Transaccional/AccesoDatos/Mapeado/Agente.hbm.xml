@@ -19,6 +19,7 @@
       <key column="CAGENTE"/>
       <many-to-many column="CPODER" class="Poder" not-found="ignore"/>
     </bag>
+    
   </class>
 </hibernate-mapping>
 

@@ -185,8 +185,8 @@
                 </WrapPanel>
                 <Separator Margin="5,5,0,0"/>
                 <WrapPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="8"  Orientation="Horizontal" 
-                           Margin="0,5,0,0">
-                    <Grid Width="640" Name="_gridDatosInteresadoEntre" DataContext="{Binding}">
+                           Margin="0,5,0,0" Name="_gridDatosInteresadoEntre" DataContext="{Binding}">
+                    <Grid Width="640" >
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="*"/>
@@ -227,9 +227,9 @@
                             <TextBlock Text="{x:Static recurso:Etiquetas.btnConsultar}"/>
                         </Button>
 
-                        <custom:ByTTextBox Text="{Binding Path=Pais.NombreEspanol}" IsReadOnly="True" IsEnabled="False" MaxLength="40" Grid.Column="3" Grid.Row="1" Name="_txtPaisInteresadoEntre" VerticalAlignment="Top" 
+                        <custom:ByTTextBox Text="{Binding Path=Ciudad}" IsReadOnly="True" IsEnabled="False" MaxLength="40" Grid.Column="3" Grid.Row="1" Name="_txtPaisInteresadoEntre" VerticalAlignment="Top" 
                          Grid.ColumnSpan="2"  Margin="3,3,0,0"></custom:ByTTextBox>
-                        <custom:ByTTextBox Text="{Binding Path=Nacionalidad.Nacionalidad}" IsReadOnly="True" IsEnabled="False" MaxLength="40" Grid.Column="5" Grid.Row="1" Name="_txtCiudadInteresadoEntre" VerticalAlignment="Top" 
+                        <custom:ByTTextBox Text="{Binding Path=Estado}" IsReadOnly="True" IsEnabled="False" MaxLength="40" Grid.Column="5" Grid.Row="1" Name="_txtCiudadInteresadoEntre" VerticalAlignment="Top" 
                          Grid.ColumnSpan="2" Margin="3,3,0,0"></custom:ByTTextBox>
                         <ListView Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="7" Grid.RowSpan="2" Name="_lstInteresadosEntre" ItemsSource="{Binding}" 
                       SelectionMode="Single" MouseDoubleClick="_lstInteresadosEntre_MouseDoubleClick"
@@ -256,12 +256,7 @@
                         </ListView>
                     </Grid>
 
-
-                </WrapPanel>
-                <Separator Margin="5,5,0,0"/>
-                <WrapPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="8"  Orientation="Horizontal" 
-                           Margin="0,5,0,0">
-                    <Grid Width="640" Name="_gridDatosMarcaTercero" DataContext="{Binding}">
+                    <Grid Width="640">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="*"/>
@@ -279,7 +274,7 @@
                         </Grid.RowDefinitions>
 
 
-                        <!--Datos Marca Terceros-->
+                        <!--Datos Interesado-->
 
                         <!--Primera Fila-->
                         <Label Grid.Column="0" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Center" >
@@ -288,7 +283,7 @@
                         <Label Name="_lblNombreMarcaTercero" Grid.Column="0" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Center" >
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblNombre}"/>
                         </Label>
-                        <custom:ByTTextBox Text="{Binding Path=Nombre}" IsEnabled="False" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="6"  Name="_txtIdMarcaTercero" VerticalAlignment="Center" 
+                        <custom:ByTTextBox Text="" IsEnabled="False" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="6"  Name="_txtIdMarcaTercero" VerticalAlignment="Center" 
                          MaxLength="255" ></custom:ByTTextBox>
                         <!--Fin Primera Fila-->
 
@@ -327,29 +322,6 @@
                         
                         <!--Fin Primera Fila-->
                         
-                        <ListView Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="7" Grid.RowSpan="2" Name="_lstMarcaTercero" ItemsSource="{Binding}" 
-                      SelectionMode="Single" MouseDoubleClick="_lstInteresadosEntre_MouseDoubleClick"
-                      Style="{DynamicResource EstiloListView}" Visibility="Collapsed" Height="150"  VerticalAlignment="Top" Width="640">
-                            <ListView.View>
-                                <GridView>
-                                    <GridViewColumn Width="80">
-                                        <GridViewColumnHeader Click="_OrdenarInteresadosEntre_Click" Tag="Id" Content="{x:Static recurso:Etiquetas.lsvId}"/>
-                                        <GridViewColumn.CellTemplate>
-                                            <DataTemplate>
-                                                <TextBlock>
-                                                    <TextBlock.Text>
-                                                        <Binding Path="Id" Converter="{StaticResource convertir}"/>
-                                                    </TextBlock.Text>
-                                                </TextBlock>
-                                            </DataTemplate>
-                                        </GridViewColumn.CellTemplate>
-                                    </GridViewColumn>
-                                    <GridViewColumn DisplayMemberBinding="{Binding Path=Nombre}" Width="300">
-                                        <GridViewColumnHeader Click="_OrdenarInteresadosEntre_Click" Tag="Nombre" Content="{x:Static recurso:Etiquetas.lsvNombre}"/>
-                                    </GridViewColumn>
-                                </GridView>
-                            </ListView.View>
-                        </ListView>
                         <!--Filtro MarcaTercero-->
 
                     <!--Fin Datos Marca Tercero-->
@@ -401,9 +373,9 @@
                 <TextBlock Text="{x:Static recurso:Etiquetas.btnConsultar}"/>
             </Button>
 
-            <custom:ByTTextBox Text="{Binding Path=Pais.NombreEspanol}" IsReadOnly="True" IsEnabled="False" MaxLength="40" Grid.Column="3" Grid.Row="1" Name="_txtPaisInteresadoSobreviviente" VerticalAlignment="Top" 
+            <custom:ByTTextBox Text="{Binding Path=Ciudad}" IsReadOnly="True" IsEnabled="False" MaxLength="40" Grid.Column="3" Grid.Row="1" Name="_txtPaisInteresadoSobreviviente" VerticalAlignment="Top" 
                          Grid.ColumnSpan="2"  Margin="3,3,0,0"></custom:ByTTextBox>
-            <custom:ByTTextBox Text="{Binding Path=Nacionalidad.Nacionalidad}" IsReadOnly="True" IsEnabled="False" MaxLength="40" Grid.Column="5" Grid.Row="1" Name="_txtCiudadInteresadoSobreviviente" VerticalAlignment="Top" 
+            <custom:ByTTextBox Text="{Binding Path=Estado}" IsReadOnly="True" IsEnabled="False" MaxLength="40" Grid.Column="5" Grid.Row="1" Name="_txtCiudadInteresadoSobreviviente" VerticalAlignment="Top" 
                          Grid.ColumnSpan="2" Margin="3,3,0,0"></custom:ByTTextBox>
             <ListView Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="7" Grid.RowSpan="2" Name="_lstInteresadosSobreviviente" ItemsSource="{Binding}" 
                       SelectionMode="Single" MouseDoubleClick="_lstInteresadosSobreviviente_MouseDoubleClick"
@@ -518,6 +490,10 @@
 
         </Grid>
     </WrapPanel>
+                
+                
+
+                
     </StackPanel>
     </GroupBox>
 

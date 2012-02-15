@@ -12,9 +12,9 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
 
         private int _id;
         private char _tipoPersona;
-        private string nombre;
-        private string ciudad;
-        private string estado;  
+        private string _nombre;
+        private string _ciudad;
+        private string _estado;  
         private Pais _pais;
         private Pais _nacionalidad;
         private Estado _corporacion;
@@ -71,8 +71,8 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         /// </summary>
         public virtual string Nombre
         {
-            get { return nombre; }
-            set { nombre = value; }
+            get { return _nombre; }
+            set { _nombre = value; }
         }
 
         /// <summary>
@@ -80,8 +80,8 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         /// </summary>
         public virtual string Ciudad
         {
-            get { return ciudad; }
-            set { ciudad = value; }
+            get { return _ciudad; }
+            set { _ciudad = value; }
         }
 
         /// <summary>
@@ -89,8 +89,8 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         /// </summary>
         public virtual string Estado
         {
-            get { return estado; }
-            set { estado = value; }
+            get { return _estado; }
+            set { _estado = value; }
         }
 
         /// <summary>
