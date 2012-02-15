@@ -698,7 +698,8 @@
     <value>Envío Estado de Cuenta:</value>
   </data>
   <data name="lblEdoCuentaDigital" xml:space="preserve">
-    <value>Envío Estado de Cuenta solo digital:</value>
+    <value>Envío Estado de 
+Cuenta solo digital:</value>
   </data>
   <data name="lblEtiqueta" xml:space="preserve">
     <value>Etiqueta:</value>

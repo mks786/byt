@@ -345,6 +345,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Asociados
                 }
             }
         }
+
+        private void _txtCodigoDatos_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
     }
 }
 

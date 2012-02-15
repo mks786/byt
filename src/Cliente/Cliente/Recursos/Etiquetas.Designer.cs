@@ -1538,6 +1538,8 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Envío Estado de 
+        ///Cuenta solo digital:.
         ///   Looks up a localized string similar to Envío Estado de Cuenta solo digital:.
         /// </summary>
         public static string lblEdoCuentaDigital {
