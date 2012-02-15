@@ -2476,7 +2476,7 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Sobreviviente:.
+        ///   Busca una cadena traducida similar a Sobreviviente:.
         /// </summary>
         public static string lblSobreviviente {
             get {
@@ -2485,7 +2485,6 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Solicitud:.
         /// </summary>
         public static string lblSolicitud {
             get {
@@ -2773,6 +2772,7 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Y.
         ///   Looks up a localized string similar to Y.
         /// </summary>
         public static string lblY {
@@ -2782,7 +2782,7 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Asociado.
+        ///   Busca una cadena traducida similar a Asociado.
         /// </summary>
         public static string lsvAsociado {
             get {

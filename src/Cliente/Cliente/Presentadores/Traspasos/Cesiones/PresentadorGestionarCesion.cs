@@ -24,6 +24,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Cesiones
         private static PaginaPrincipal _paginaPrincipal = PaginaPrincipal.ObtenerInstancia;
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
+        private bool _validar = true;
         private IGestionarCesion _ventana;
 
         private IMarcaServicios _marcaServicios;
@@ -50,7 +51,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Cesiones
         private IList<Agente> _agentesCesionario;
         private IList<Agente> _agentesCedente;
         private IList<Marca> _marcas;
-       
+
         private IList<Poder> _poderesCedente;
         private IList<Poder> _poderesCesionario;
 
@@ -72,7 +73,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Cesiones
                 this._ventana = ventana;
 
                 this._ventana.Cesion = cesion;
-                             
+
                 this._marcaServicios = (IMarcaServicios)Activator.GetObject(typeof(IMarcaServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["MarcaServicios"]);
                 this._asociadoServicios = (IAsociadoServicios)Activator.GetObject(typeof(IAsociadoServicios),
@@ -116,7 +117,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Cesiones
                 logger.Error(ex.Message);
                 this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
             }
-        }        
+        }
 
         public void ActualizarTitulo()
         {
@@ -145,49 +146,89 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Cesiones
 
                 this._ventana.Marca = this._marcaServicios.ConsultarMarcaConTodo(cesion.Marca);
                 this._ventana.InteresadoCedente = this._interesadoServicios.ConsultarInteresadoConTodo(cesion.Cedente);
+                this._ventana.InteresadoCesionario = this._interesadoServicios.ConsultarInteresadoConTodo(cesion.Cesionario);
                 this._ventana.NombreMarca = ((Marca)this._ventana.Marca).Descripcion;
 
                 this._ventana.NombreCedente = ((Interesado)this._ventana.InteresadoCedente).Nombre;
+                this._ventana.NombreCesionario = ((Interesado)this._ventana.InteresadoCesionario).Nombre;
                 this._ventana.ApoderadoCedente = cesion.AgenteCedente;
-                this._ventana.ApoderadoCesionario = cesion.AgenteCesionario;                                
+                this._ventana.ApoderadoCesionario = cesion.AgenteCesionario;
                 this._ventana.PoderCedente = cesion.PoderCedente;
                 this._ventana.PoderCesionario = cesion.PoderCesionario;
 
                 this._marcas = new List<Marca>();
-                this._marcas.Add((Marca)this._ventana.Marca);
+                Marca primeraMarca = new Marca(int.MinValue);
+                this._marcas.Add(primeraMarca);
+
+                if ((Marca)this._ventana.Marca != null)
+                    this._marcas.Add((Marca)this._ventana.Marca);
+
                 this._ventana.MarcasFiltradas = this._marcas;
-                this._ventana.MarcaFiltrada = (Marca) this._ventana.Marca;                
-                                               
+                this._ventana.MarcaFiltrada = (Marca)this._ventana.Marca;
+
                 this._interesadosCedente = new List<Interesado>();
-                this._interesadosCedente.Add((Interesado)this._ventana.InteresadoCedente);
+                Interesado primerInteresado = new Interesado(int.MinValue);
+                this._interesadosCedente.Add(primerInteresado);
+
+                if ((Interesado)this._ventana.InteresadoCesionario != null)
+                    this._interesadosCedente.Add((Interesado)this._ventana.InteresadoCedente);
+
                 this._ventana.CedentesFiltrados = this._interesadosCedente;
                 this._ventana.CedenteFiltrado = (Interesado)this._ventana.InteresadoCedente;
 
+
+                this._interesadosCesionario = new List<Interesado>();
+                this._interesadosCesionario.Add(primerInteresado);
+
+                if ((Interesado)this._ventana.InteresadoCesionario != null)
+                    this._interesadosCesionario.Add((Interesado)this._ventana.InteresadoCesionario);
+
+                this._ventana.CesionariosFiltrados = this._interesadosCesionario;
+                this._ventana.CesionarioFiltrado = (Interesado)this._ventana.InteresadoCesionario;
+
                 this._agentesCedente = new List<Agente>();
-                this._agentesCedente.Add((Agente)this._ventana.ApoderadoCedente);
+                Agente primerAgente = new Agente("");
+                this._agentesCedente.Add(primerAgente);
+
+                if ((Agente)this._ventana.ApoderadoCedente != null)
+                    this._agentesCedente.Add((Agente)this._ventana.ApoderadoCedente);
+
                 this._ventana.ApoderadosCedenteFiltrados = this._agentesCedente;
                 this._ventana.ApoderadoCedenteFiltrado = (Agente)this._ventana.ApoderadoCedente;
 
                 this._agentesCesionario = new List<Agente>();
-                this._agentesCesionario.Add((Agente)this._ventana.ApoderadoCesionario);
+                this._agentesCesionario.Add(primerAgente);
+
+                if ((Agente)this._ventana.ApoderadoCesionario != null)
+                    this._agentesCesionario.Add((Agente)this._ventana.ApoderadoCesionario);
+
                 this._ventana.ApoderadosCesionarioFiltrados = this._agentesCesionario;
                 this._ventana.ApoderadoCesionarioFiltrado = (Agente)this._ventana.ApoderadoCesionario;
 
                 this._poderesCedente = new List<Poder>();
-                this._poderesCedente.Add((Poder)this._ventana.PoderCedente);
+                Poder primerPoder = new Poder(int.MinValue);
+                this._poderesCedente.Add(primerPoder);
+
+                if ((Poder)this._ventana.PoderCedente != null)
+                    this._poderesCedente.Add((Poder)this._ventana.PoderCedente);
+
                 this._ventana.PoderesCedenteFiltrados = this._poderesCedente;
                 this._ventana.PoderCedenteFiltrado = (Poder)this._ventana.PoderCedente;
 
                 this._poderesCesionario = new List<Poder>();
-                this._poderesCesionario.Add((Poder)this._ventana.PoderCesionario);
+                this._poderesCesionario.Add(primerPoder);
+
+                if ((Poder)this._ventana.PoderCesionario != null)
+                    this._poderesCesionario.Add((Poder)this._ventana.PoderCesionario);
+
                 this._ventana.PoderesCesionarioFiltrados = this._poderesCesionario;
                 this._ventana.PoderCesionarioFiltrado = (Poder)this._ventana.PoderCesionario;
-                
-                LlenarListasPoderes( (Cesion)this._ventana.Cesion );  
+
+                LlenarListasPoderes((Cesion)this._ventana.Cesion);
 
                 this._ventana.FocoPredeterminado();
 
-                 
+
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -439,8 +480,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Cesiones
                 else
                     cedentesFiltrados = new List<Interesado>();
 
-                if (cedentesFiltrados.ToList<Interesado>().Count != 0)                
-                    this._ventana.CedentesFiltrados = cedentesFiltrados.ToList<Interesado>();                                    
+                if (cedentesFiltrados.ToList<Interesado>().Count != 0)
+                    this._ventana.CedentesFiltrados = cedentesFiltrados.ToList<Interesado>();
 
                 else
                 {
@@ -558,8 +599,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Cesiones
                 else
                     poderesCedenteFiltrados = new List<Poder>();
 
-                if (poderesCedenteFiltrados.ToList<Poder>().Count != 0)                
-                    this._ventana.PoderesCedenteFiltrados = poderesCedenteFiltrados.ToList<Poder>();                                 
+                if (poderesCedenteFiltrados.ToList<Poder>().Count != 0)
+                    this._ventana.PoderesCedenteFiltrados = poderesCedenteFiltrados.ToList<Poder>();
 
                 else
                 {
@@ -734,8 +775,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Cesiones
                 else
                     poderesCesionarioFiltrados = new List<Poder>();
 
-                if (poderesCesionarioFiltrados.ToList<Poder>().Count != 0)                
-                    this._ventana.PoderesCesionarioFiltrados = poderesCesionarioFiltrados.ToList<Poder>();                                    
+                if (poderesCesionarioFiltrados.ToList<Poder>().Count != 0)
+                    this._ventana.PoderesCesionarioFiltrados = poderesCesionarioFiltrados.ToList<Poder>();
 
                 else
                 {
@@ -833,20 +874,27 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Cesiones
                 #endregion
 
 
-                if (this._ventana.ApoderadoCedenteFiltrado != null)
-                {                    
-                     _poderesApoderadosCedente = this._poderServicios.ConsultarPoderesPorAgente(((Agente)_ventana.ApoderadoCedenteFiltrado));
+                if ((this._ventana.ApoderadoCedenteFiltrado != null) && (((Interesado)this._ventana.CedenteFiltrado).Nombre != null) &&
+                    (((Agente)this._ventana.ApoderadoCedenteFiltrado).Nombre != null))
+                {
+                    _poderesCedente = this._poderServicios.ConsultarPoderesPorInteresado(((Interesado)_ventana.CedenteFiltrado));
 
                     if ((this._ventana.CedenteFiltrado != null) && (this.ValidarListaDePoderes(_poderesCedente, _poderesApoderadosCedente, "Cedente")))
-                     {
-                         this._ventana.InteresadoCedente = this._ventana.CedenteFiltrado;
-                         this._ventana.NombreCedente = ((Interesado)this._ventana.CedenteFiltrado).Nombre;
-                         retorno = true;
-                     }
-                     else if (!this.ValidarListaDePoderes(_poderesCedente, _poderesApoderadosCedente, "Cedente"))
-                     {
-                         this._ventana.Mensaje(string.Format(Recursos.MensajesConElUsuario.ErrorInteresadoNoPoseePoderConAgente, "Cedente"), 0);
-                     }
+                    {
+                        this._ventana.InteresadoCedente = this._ventana.CedenteFiltrado;
+                        this._ventana.NombreCedente = ((Interesado)this._ventana.CedenteFiltrado).Nombre;
+                        retorno = true;
+                    }
+                    else if (!this.ValidarListaDePoderes(_poderesCedente, _poderesApoderadosCedente, "Cedente"))
+                    {
+                        this._ventana.Mensaje(string.Format(Recursos.MensajesConElUsuario.ErrorInteresadoNoPoseePoderConAgente, "Cedente"), 0);
+                    }
+                }
+                else if (this._ventana.CedenteFiltrado != null)
+                {
+                    this._ventana.InteresadoCedente = this._ventana.CedenteFiltrado;
+                    this._ventana.NombreCedente = ((Interesado)this._ventana.CedenteFiltrado).Nombre;
+                    retorno = true;
                 }
 
                 #region trace
@@ -888,15 +936,16 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Cesiones
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
-                #endregion                
-                               
+                #endregion
 
-                if (this._ventana.CedenteFiltrado != null)
+
+                if ((this._ventana.CedenteFiltrado != null) && (((Agente)this._ventana.ApoderadoCedenteFiltrado).Nombre != null) &&
+                    (((Interesado)this._ventana.CedenteFiltrado).Nombre != null))
                 {
                     _poderesApoderadosCedente = this._poderServicios.ConsultarPoderesPorAgente(((Agente)_ventana.ApoderadoCedenteFiltrado));
 
                     if ((this._ventana.ApoderadoCedenteFiltrado != null) && (this.ValidarListaDePoderes(_poderesCedente, _poderesApoderadosCedente, "Cedente")))
-                    {
+                    {                        
                         this._ventana.ApoderadoCedente = this._ventana.ApoderadoCedenteFiltrado;
                         this._ventana.NombreApoderadoCedente = ((Agente)this._ventana.ApoderadoCedenteFiltrado).Nombre;
                         retorno = true;
@@ -905,14 +954,19 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Cesiones
                     {
                         this._ventana.Mensaje(string.Format(Recursos.MensajesConElUsuario.ErrorAgenteNoPoseePoderConInteresado, "Cedente"), 0);
                     }
-
                 }
-                   
+                else if (this._ventana.ApoderadoCedenteFiltrado != null)
+                {
+                    this._ventana.ApoderadoCedente = this._ventana.ApoderadoCedenteFiltrado;
+                    this._ventana.NombreApoderadoCedente = ((Agente)this._ventana.ApoderadoCedenteFiltrado).Nombre;
+                    retorno = true;
+                }
+
                 #region trace
-                    if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
-                        logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
-                    #endregion
-                
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
             }
             catch (ApplicationException ex)
             {
@@ -949,9 +1003,22 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Cesiones
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
+                if (this._validar)
+                {
+                    if ((this._ventana.PoderCedenteFiltrado != null) && (((Poder)this._ventana.PoderCedenteFiltrado).Id != int.MinValue))
+                        if ((this._ventana.CedenteFiltrado != null) && (((Interesado)this._ventana.CedenteFiltrado).Id != int.MinValue))
+                            if ((this._ventana.ApoderadoCedenteFiltrado != null) && (!((Agente)this._ventana.ApoderadoCedenteFiltrado).Id.Equals("NGN")))
+                            {
 
+                                this._ventana.PoderCedente = this._ventana.PoderCedenteFiltrado;
+                                this._ventana.IdPoderCedente = ((Poder)this._ventana.PoderCedenteFiltrado).Id.ToString();
+                                retorno = true;
+                            }
+                }
+               
                 if (this._ventana.PoderCedenteFiltrado != null)
                 {
+
                     this._ventana.PoderCedente = this._ventana.PoderCedenteFiltrado;
                     this._ventana.IdPoderCedente = ((Poder)this._ventana.PoderCedenteFiltrado).Id.ToString();
                     retorno = true;
@@ -997,9 +1064,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Cesiones
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-                if (this._ventana.ApoderadoCesionarioFiltrado != null)
+                if ((this._ventana.ApoderadoCesionarioFiltrado != null) && (((Interesado)this._ventana.CesionarioFiltrado).Nombre != null) &&
+                    ((Agente)this._ventana.ApoderadoCesionarioFiltrado).Nombre != null)
                 {
-                    _poderesApoderadosCesionario = this._poderServicios.ConsultarPoderesPorAgente(((Agente)_ventana.ApoderadoCesionarioFiltrado));
+                    _poderesCesionario = this._poderServicios.ConsultarPoderesPorInteresado(((Interesado)_ventana.CesionarioFiltrado));
 
                     if ((this._ventana.CesionarioFiltrado != null) && (this.ValidarListaDePoderes(_poderesCesionario, _poderesApoderadosCedente, "Cesionario")))
                     {
@@ -1012,6 +1080,13 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Cesiones
                     {
                         this._ventana.Mensaje(string.Format(Recursos.MensajesConElUsuario.ErrorInteresadoNoPoseePoderConAgente, "Cesionario"), 0);
                     }
+                }
+                if (this._ventana.CesionarioFiltrado != null)
+                {
+
+                    this._ventana.InteresadoCesionario = this._ventana.CesionarioFiltrado;
+                    this._ventana.NombreCesionario = ((Interesado)this._ventana.CesionarioFiltrado).Nombre;
+                    retorno = true;
                 }
 
                 #region trace
@@ -1055,7 +1130,18 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Cesiones
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-
+                if (this._validar)
+                {
+                    if ((this._ventana.PoderCesionarioFiltrado != null) && (((Poder)this._ventana.PoderCesionarioFiltrado).Id != int.MinValue))
+                        if ((this._ventana.CesionarioFiltrado != null) && (((Interesado)this._ventana.CesionarioFiltrado).Id != int.MinValue))
+                            if ((this._ventana.ApoderadoCesionarioFiltrado != null) && (!((Agente)this._ventana.ApoderadoCesionarioFiltrado).Id.Equals("NGN")))
+                            {
+                                this._ventana.PoderCesionario = this._ventana.PoderCesionarioFiltrado;
+                                this._ventana.IdPoderCesionario = ((Poder)this._ventana.PoderCesionarioFiltrado).Id.ToString();
+                                retorno = true;
+                            }
+                }
+               
                 if (this._ventana.PoderCesionarioFiltrado != null)
                 {
                     this._ventana.PoderCesionario = this._ventana.PoderCesionarioFiltrado;
@@ -1103,8 +1189,23 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Cesiones
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
+                if ((this._ventana.CesionarioFiltrado != null) && (((Agente)this._ventana.ApoderadoCesionarioFiltrado).Nombre != null) &&
+                    ((Interesado)this._ventana.CesionarioFiltrado).Nombre != null)
+                {
+                    _poderesApoderadosCesionario = this._poderServicios.ConsultarPoderesPorAgente(((Agente)_ventana.ApoderadoCesionarioFiltrado));
 
-                if (this._ventana.ApoderadoCesionarioFiltrado != null)
+                    if ((this._ventana.ApoderadoCesionarioFiltrado != null) && (this.ValidarListaDePoderes(_poderesCesionario, _poderesApoderadosCesionario, "Cesionario")))
+                    {
+                        this._ventana.ApoderadoCesionario = this._ventana.ApoderadoCesionarioFiltrado;
+                        this._ventana.NombreApoderadoCesionario = ((Agente)this._ventana.ApoderadoCesionarioFiltrado).Nombre;
+                        retorno = true;
+                    }
+                    else if (!this.ValidarListaDePoderes(_poderesCesionario, _poderesApoderadosCesionario, "Cesionario"))
+                    {
+                        this._ventana.Mensaje(string.Format(Recursos.MensajesConElUsuario.ErrorAgenteNoPoseePoderConInteresado, "Cesionario"), 0);
+                    }
+                }
+                else if ((this._ventana.ApoderadoCesionarioFiltrado != null))
                 {
                     this._ventana.ApoderadoCesionario = this._ventana.ApoderadoCesionarioFiltrado;
                     this._ventana.NombreApoderadoCesionario = ((Agente)this._ventana.ApoderadoCesionarioFiltrado).Nombre;
@@ -1141,12 +1242,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Cesiones
             return retorno;
         }
 
-        public bool ValidarListaDePoderes(IList<Poder> listaPoderesA, IList<Poder> listaPoderesB,string tipo)
+        public bool ValidarListaDePoderes(IList<Poder> listaPoderesA, IList<Poder> listaPoderesB, string tipo)
         {
             bool retorno = false;
             IList<Poder> listaIntereseccionCedente = new List<Poder>();
             IList<Poder> listaIntereseccionCesionario = new List<Poder>();
-            
+
             if ((listaPoderesA.Count != 0) && (listaPoderesB.Count != 0))
             {
                 foreach (Poder poderA in listaPoderesA)
@@ -1169,33 +1270,44 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Cesiones
                 }
 
                 if ((listaIntereseccionCedente.Count != 0) && (tipo.Equals("Cedente")))
+                {
                     _poderesInterseccionCedente = listaIntereseccionCedente;
+                    _ventana.PoderesCedenteFiltrados = listaIntereseccionCedente;                    
+                }
 
 
                 else if ((listaIntereseccionCesionario.Count != 0) && (tipo.Equals("Cesionario")))
+                {
                     _poderesInterseccionCesionario = listaIntereseccionCesionario;
+                    _ventana.PoderesCedenteFiltrados = listaIntereseccionCedente;                    
+                }
 
                 else
                     retorno = false;
-            }                                     
-            
+            }
+            this._validar = !retorno;
             return retorno;
-        }        
+        }
 
         public void LlenarListasPoderes(Cesion cesion)
-        {                               
-            
-            if ( cesion.Cedente != null )           
+        {
+
+            if (cesion.Cedente != null)
                 _poderesCedente = this._poderServicios.ConsultarPoderesPorInteresado(cesion.Cedente);
 
-            if ( cesion.Cesionario != null )
-                _poderesCesionario = this._poderServicios.ConsultarPoderesPorInteresado(cesion.Cesionario);    
+            if (cesion.Cesionario != null)
+                _poderesCesionario = this._poderServicios.ConsultarPoderesPorInteresado(cesion.Cesionario);
 
-            if ( cesion.AgenteCedente != null )
+            if (cesion.AgenteCedente != null)
                 _poderesApoderadosCedente = this._poderServicios.ConsultarPoderesPorAgente(cesion.AgenteCedente);
 
-            if ( cesion.AgenteCesionario != null )
+            if (cesion.AgenteCesionario != null)
                 _poderesApoderadosCedente = this._poderServicios.ConsultarPoderesPorAgente(cesion.AgenteCesionario);
+        }
+
+        public void LlenarListaAgenteEInteresado(Poder poder)
+        {
+            
         }
     }
 }

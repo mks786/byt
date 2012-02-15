@@ -17,7 +17,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Cesiones
         private GridViewColumnHeader _CurSortCol = null;
         private SortAdorner _CurAdorner = null;
 
-        #region IConsultarFusion
+        #region IGestionarCesion
 
         public bool EstaCargada
         {
@@ -562,6 +562,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Cesiones
             {
                 GestionarVisibilidadDatosDePoderCedente(Visibility.Visible);
                 GestionarVisibilidadFiltroPoderCedente(Visibility.Collapsed);
+                this._btnConsultarApoderadoCedente.IsEnabled = false;
+                this._btnConsultarCedente.IsEnabled = false;
             }
         }
 
@@ -793,6 +795,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Cesiones
             {
                 GestionarVisibilidadDatosDePoderCesionario(Visibility.Visible);
                 GestionarVisibilidadFiltroPoderCesionario(Visibility.Collapsed);
+                this._btnConsultarApoderadoCesionario.IsEnabled = false;
+                this._btnConsultarCesionario.IsEnabled = false;
             }
         }
 
