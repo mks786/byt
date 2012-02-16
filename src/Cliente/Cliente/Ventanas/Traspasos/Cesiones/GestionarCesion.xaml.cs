@@ -562,8 +562,17 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Cesiones
             {
                 GestionarVisibilidadDatosDePoderCedente(Visibility.Visible);
                 GestionarVisibilidadFiltroPoderCedente(Visibility.Collapsed);
-                this._btnConsultarApoderadoCedente.IsEnabled = false;
-                this._btnConsultarCedente.IsEnabled = false;
+
+                if (this._presentador.VerificarCambioPoder())
+                {
+                    this._btnConsultarApoderadoCedente.IsEnabled = false;
+                    this._btnConsultarCedente.IsEnabled = false;
+                }
+                else
+                {
+                    this._btnConsultarApoderadoCedente.IsEnabled = true;
+                    this._btnConsultarCedente.IsEnabled = true;
+                }
             }
         }
 
