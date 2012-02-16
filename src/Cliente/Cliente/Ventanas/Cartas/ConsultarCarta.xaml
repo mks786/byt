@@ -27,7 +27,7 @@
             <ColumnDefinition Width="30"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="10"/>
+            <RowDefinition Height="1"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="40"/>
             <RowDefinition Height="10"/>
@@ -36,7 +36,7 @@
         <Grid Grid.Column="1" Grid.Row="1" Name="_dataCarta" DataContext="{Binding}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="90"/>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
@@ -47,39 +47,38 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="30"/>
+                <RowDefinition Height="25"/>
                 <RowDefinition Height="Auto"/>
-                <RowDefinition Height="30"/>
-                <RowDefinition Height="5"/>
-                <RowDefinition Height="30"/>
-                <RowDefinition Height="30"/>
-                <RowDefinition Height="30"/>
-                <RowDefinition Height="30"/>
-                <RowDefinition Height="30" />
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="10"/>
-                <RowDefinition Height="30"/>
-                <RowDefinition Height="30"/>
-                <RowDefinition Height="90"/>
-                <RowDefinition Height="10"/>
-                <RowDefinition Height="30"/>
-                <RowDefinition Height="30"/>
-                <RowDefinition Height="30"/>
-                <RowDefinition Height="30"/>
-                <RowDefinition Height="30"/>
+                <RowDefinition Height="25"/>
+                <RowDefinition Height="0"/>
+                <RowDefinition Height="25"/>
+                <RowDefinition Height="25"/>
+                <RowDefinition Height="25"/>
+                <RowDefinition Height="25"/>
+                <RowDefinition Height="25" />
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
-                <RowDefinition Height="40"/>
-                <RowDefinition Height="40"/>
-                <RowDefinition Height="40"/>
-                <RowDefinition Height="40"/>
+                <RowDefinition Height="0"/>
+                <RowDefinition Height="25"/>
+                <RowDefinition Height="25"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="0"/>
+                <RowDefinition Height="25"/>
+                <RowDefinition Height="25"/>
+                <RowDefinition Height="25"/>
+                <RowDefinition Height="25"/>
+                <RowDefinition Height="25"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
-
             <!--<Label Grid.Column="1" Grid.Row="0" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblCodigo}"/>
                     </Label>
@@ -93,15 +92,15 @@
                 <TextBlock Text="{x:Static recurso:Etiquetas.lblFecha}"/>
             </Label>
 
-            <DatePicker IsEnabled="False"  Grid.Column="4" Grid.Row="0" HorizontalAlignment="Left"  
-                        Name="_dpkFecha" Grid.ColumnSpan="4" Width="100" Focusable="False" 
+            <DatePicker  IsEnabled="False" Grid.Column="4" Grid.Row="0" 
+                        Name="_dpkFecha" Grid.ColumnSpan="1" Focusable="False" 
                         BorderBrush="{x:Null}" VerticalAlignment="Center" >
                 <DatePicker.SelectedDate>
                     <Binding Path="Fecha" UpdateSourceTrigger="PropertyChanged"/>
                 </DatePicker.SelectedDate>
             </DatePicker>
-            <DatePicker IsEnabled="False"  Grid.Column="5" Grid.Row="0" HorizontalAlignment="Left"  
-                        Name="_dpkFechaAlternativa" Grid.ColumnSpan="4" Width="100" 
+            <DatePicker IsEnabled="False"  Grid.Column="5" Grid.Row="0"  
+                        Name="_dpkFechaAlternativa" Grid.ColumnSpan="1" 
                         Focusable="False" BorderBrush="{x:Null}" VerticalAlignment="Center" >
                 <DatePicker.SelectedDate>
                     <Binding Path="FechaAlt" UpdateSourceTrigger="PropertyChanged"/>
@@ -111,7 +110,7 @@
                 <TextBlock Text="{x:Static recurso:Etiquetas.lblFechaReal}"/>
             </Label>
 
-            <DatePicker IsEnabled="False"  Grid.Column="7" Grid.Row="0" Grid.ColumnSpan="4" HorizontalAlignment="Left"  Name="_dpkFechaReal" Width="100" Focusable="False" BorderBrush="{x:Null}" VerticalAlignment="Center" >
+            <DatePicker  IsEnabled="False" Grid.Column="7" Grid.Row="0" Grid.ColumnSpan="1" Name="_dpkFechaReal" Focusable="False" BorderBrush="{x:Null}" VerticalAlignment="Center" >
                 <DatePicker.SelectedDate>
                     <Binding Path="FechaReal" UpdateSourceTrigger="PropertyChanged"/>
                 </DatePicker.SelectedDate>
@@ -119,7 +118,7 @@
             <Label Grid.Column="8" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Center">
                 <TextBlock Text="{x:Static recurso:Etiquetas.lblMedio}"/>
             </Label>
-            <ComboBox IsEnabled="False"  Grid.Column="9" Grid.Row="0" Name="_cbxMedio" HorizontalAlignment="Left" Width="80" Height="20"  ItemsSource="{Binding}" SelectedIndex="0" SelectionChanged="_cbxMedio_SelectionChanged">
+            <ComboBox IsEnabled="False"  Grid.Column="9" Grid.Row="0" Name="_cbxMedio" Grid.ColumnSpan="1" Height="20"  ItemsSource="{Binding}" SelectedIndex="0" SelectionChanged="_cbxMedio_SelectionChanged">
                 <ComboBox.ItemTemplate>
                     <DataTemplate>
                         <TextBlock>
@@ -135,7 +134,7 @@
             </Label>
             <Grid Grid.Column="2" Grid.Row="1" Grid.ColumnSpan="4">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="23"/>
+                    <ColumnDefinition Width="60"/>
                     <ColumnDefinition Width="50"/>
                     <ColumnDefinition Width="60"/>
                     <ColumnDefinition Width="200"/>
@@ -149,13 +148,12 @@
 
 
 
-                <TextBox IsEnabled="False" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="4"  Name="_txtAsociado" VerticalAlignment="Center"
-                         HorizontalAlignment="Left" Width="300" Text="" MaxLength="255" GotFocus="_txtAsociado_GotFocus" GotKeyboardFocus="_txtAsociado_GotFocus"  ></TextBox>
-                <TextBox IsEnabled="False" Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="4" Name="_txtIdAsociado" VerticalAlignment="Center" 
-                         HorizontalAlignment="Left" Width="45" MaxLength="255"  Visibility="Collapsed"  ></TextBox>
-                <TextBox IsEnabled="False"   Grid.Column="4" Grid.Row="0" Grid.ColumnSpan="4" Name="_txtNombreAsociado" VerticalAlignment="Center" 
-                         HorizontalAlignment="Left" Width="177" MaxLength="255" Visibility="Collapsed"></TextBox>
-
+                <TextBox  IsEnabled="False"  Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="4"  Name="_txtAsociado" VerticalAlignment="Center"
+                          Margin="0,0,90,0" Text="" MaxLength="255" GotFocus="_txtAsociado_GotFocus" GotKeyboardFocus="_txtAsociado_GotFocus"  ></TextBox>
+                <TextBox  IsEnabled="False"  Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="1" Name="_txtIdAsociado" VerticalAlignment="Center" 
+                          HorizontalAlignment="Left" Width="45" MaxLength="255"  Visibility="Collapsed"  ></TextBox>
+                <TextBox  IsEnabled="False"  Grid.Column="4" Grid.Row="0" Grid.ColumnSpan="1" Name="_txtNombreAsociado" VerticalAlignment="Center" 
+                          MaxLength="255" Visibility="Collapsed"></TextBox>
                 <Label Name="_lblIdAsociado" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Center" Visibility="Collapsed">
                     <TextBlock Text="{x:Static recurso:Etiquetas.lblId}"/>
                 </Label>
@@ -185,7 +183,7 @@
             <Label Grid.Column="6" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Center">
                 <TextBlock Text="{x:Static recurso:Etiquetas.lblReceptor}"/>
             </Label>
-            <ComboBox IsEnabled="False"  Grid.Column="7" Grid.Row="1" Grid.ColumnSpan="4" Name="_cbxReceptor" HorizontalAlignment="Left" Width="200" Height="20"  ItemsSource="{Binding}"
+            <ComboBox  IsEnabled="False" Grid.Column="7" Grid.Row="1" Grid.ColumnSpan="2" Name="_cbxReceptor"  Height="20"  ItemsSource="{Binding}"
                            SelectedIndex="0">
                 <ComboBox.ItemTemplate>
                     <DataTemplate>
@@ -206,11 +204,11 @@
             <Label Grid.Column="1" Grid.Row="4" HorizontalAlignment="Right" VerticalAlignment="Center">
                 <TextBlock Text="{x:Static recurso:Etiquetas.lblDepartamento}"/>
             </Label>
-            <TextBox IsEnabled="False"   Grid.ColumnSpan="8" Name="_txtNombreDepartamento" Text="{Binding Path=DescripcionDepartamento}" Grid.Column="2" Grid.Row="4" Height="20"></TextBox>
+            <TextBox  IsEnabled="False"  Grid.ColumnSpan="8" Name="_txtNombreDepartamento" Text="{Binding Path=DescripcionDepartamento}" Grid.Column="2" Grid.Row="4" Height="20"></TextBox>
             <Label Grid.Column="1" Grid.Row="5" HorizontalAlignment="Right" VerticalAlignment="Center">
                 <TextBlock Text="{x:Static recurso:Etiquetas.lblPersona}"/>
             </Label>
-            <ComboBox IsEnabled="False"  Grid.Column="2" Grid.Row="5" Grid.ColumnSpan="4" Name="_cbxContacto" HorizontalAlignment="Left" Width="300" Height="20"  ItemsSource="{Binding}"
+            <ComboBox  IsEnabled="False" Grid.Column="2" Grid.Row="5" Grid.ColumnSpan="4" Name="_cbxContacto"  Height="20"  ItemsSource="{Binding}"
                           >
                 <ComboBox.ItemTemplate>
                     <DataTemplate>
@@ -230,8 +228,8 @@
             <Label Grid.Column="1" Grid.Row="6" HorizontalAlignment="Right" VerticalAlignment="Center">
                 <TextBlock Text="{x:Static recurso:Etiquetas.lblResumen}"/>
             </Label>
-            <TextBox IsEnabled="False"   Name="_txtResumen" Text="{Binding Path=DescripcionResumen}" Grid.Column="2" Grid.Row="6" Grid.ColumnSpan="8" Height="20" Width="520" HorizontalAlignment="Left"></TextBox>
-            <ComboBox IsEnabled="False"  Grid.Column="9" Grid.Row="6" Grid.ColumnSpan="4" Name="_cbxResumen" HorizontalAlignment="Left" Width="100" Height="20"  ItemsSource="{Binding}"
+            <TextBox IsEnabled="False"   Name="_txtResumen" Text="{Binding Path=DescripcionResumen}" Grid.Column="2" Grid.Row="6" Grid.ColumnSpan="6" Height="20" Margin="0,0,5,0" ></TextBox>
+            <ComboBox IsEnabled="False"  Grid.Column="8" Grid.Row="6" Grid.ColumnSpan="2" Name="_cbxResumen" Height="20"  ItemsSource="{Binding}"
                           >
                 <ComboBox.ItemTemplate>
                     <DataTemplate>
@@ -247,15 +245,16 @@
             <Label Grid.Column="1" Grid.Row="7" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,3" Grid.RowSpan="2">
                 <TextBlock Text="{x:Static recurso:Etiquetas.lblTracking}"/>
             </Label>
-            <TextBox IsEnabled="False"   Grid.ColumnSpan="2" Name="_txtTracking" Text="{Binding Path=Tracking}" Grid.Column="2" Grid.Row="7" Height="20" Margin="0,5" Grid.RowSpan="2"></TextBox>
-            <Label Grid.Column="3" Grid.Row="7" HorizontalAlignment="Right" VerticalAlignment="Bottom" Grid.RowSpan="2" Foreground="Gray">
+            <TextBox  IsEnabled="False"  Grid.ColumnSpan="2" Name="_txtTracking" Text="{Binding Path=Tracking}" Grid.Column="2" Grid.Row="7" Height="20" Margin="0,5" Grid.RowSpan="2"></TextBox>
+            <Label Grid.Column="2" Grid.Row="7" Grid.ColumnSpan="2" HorizontalAlignment="Right" VerticalAlignment="Bottom" Grid.RowSpan="2" Foreground="Gray">
                 <TextBlock Name="_lsbFormato" Text="Formato: " FontSize="10" />
             </Label>
+
 
             <Label Grid.Column="6" Grid.Row="7" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,3" Grid.RowSpan="2">
                 <TextBlock Text="{x:Static recurso:Etiquetas.lblDepartamento}"/>
             </Label>
-            <ComboBox IsEnabled="False"  Grid.Column="7" Grid.Row="7" Grid.ColumnSpan="3"  Name="_cbxDepartamento" HorizontalAlignment="Left" Width="200" Height="20"  ItemsSource="{Binding}" Margin="0,5" Grid.RowSpan="2">
+            <ComboBox  IsEnabled="False" Grid.Column="7" Grid.Row="7" Grid.ColumnSpan="3"  Name="_cbxDepartamento" HorizontalAlignment="Left" Width="200" Height="20"  ItemsSource="{Binding}" Margin="0,5" Grid.RowSpan="2">
                 <ComboBox.ItemTemplate>
                     <DataTemplate>
                         <TextBlock>
@@ -270,7 +269,7 @@
             <Label Grid.Column="1" Grid.Row="9" HorizontalAlignment="Right" VerticalAlignment="Top">
                 <TextBlock Text="{x:Static recurso:Etiquetas.lblAnexos}"/>
             </Label>
-            <ComboBox IsEnabled="False"  Grid.Column="2" Grid.Row="9" Grid.ColumnSpan="4"  Name="_cbxAnexo" HorizontalAlignment="Left" Width="250" Height="20"  ItemsSource="{Binding}" VerticalAlignment="Top" >
+            <ComboBox  IsEnabled="False" Grid.Column="2" Grid.Row="9" Grid.ColumnSpan="3"  Name="_cbxAnexo" Height="20"  ItemsSource="{Binding}" VerticalAlignment="Top" >
                 <ComboBox.ItemTemplate>
                     <DataTemplate>
                         <TextBlock>
@@ -281,16 +280,16 @@
                     </DataTemplate>
                 </ComboBox.ItemTemplate>
             </ComboBox>
-            <Button IsEnabled="False" Grid.Column="4" Grid.Row="9" Name="_btnMas" VerticalAlignment="Top" Width="25" HorizontalAlignment="Left" Click="_btnMas_Click">
+            <Button IsEnabled="False" Grid.Column="5" Grid.Row="9" Name="_btnMas" VerticalAlignment="Top" Width="25" HorizontalAlignment="Left" Margin="5,0,0,0" Click="_btnMas_Click">
                 <TextBlock Text="{x:Static recurso:Etiquetas.btnAgregarSimbolo}"></TextBlock>
             </Button>
-            <Button IsEnabled="False" Grid.Column="4" Grid.Row="9" Name="_btnMenos" VerticalAlignment="Top" Width="25" HorizontalAlignment="Left" Margin="30 0 0 0" Click="_btnMenos_Click">
+            <Button IsEnabled="False" Grid.Column="5" Grid.Row="9" Name="_btnMenos" VerticalAlignment="Top" Width="25" HorizontalAlignment="Left" Margin="35 0 0 0" Click="_btnMenos_Click">
                 <TextBlock Text="{x:Static recurso:Etiquetas.btnEliminarSimbolo}"></TextBlock>
             </Button>
 
-            <ListView IsEnabled="False" Grid.Column="5" Grid.Row="9" Grid.ColumnSpan="3" Width="245" Grid.RowSpan="4" Name="_lstAnexosCarta" ItemsSource="{Binding}" 
-                      SelectionMode="Single" VerticalAlignment="Top" HorizontalAlignment="Left"
-                      Style="{DynamicResource EstiloListView}" Visibility="Collapsed" Height="110" MouseDoubleClick="_lstAsociados_MouseDoubleClick">
+            <ListView IsEnabled="False" Grid.Column="2" Grid.Row="9" Grid.ColumnSpan="3" Margin="0,25,0,0" Grid.RowSpan="4" Name="_lstAnexosCarta" ItemsSource="{Binding}" 
+                      SelectionMode="Single" VerticalAlignment="Top" 
+                      Style="{DynamicResource EstiloListView}" Visibility="Collapsed" Height="110" >
                 <ListView.View>
                     <GridView>
                         <GridViewColumn DisplayMemberBinding="{Binding Path=Id}" Width="45">
@@ -302,6 +301,7 @@
                     </GridView>
                 </ListView.View>
             </ListView>
+            
             <Separator Grid.Column="1" Grid.Row="13" Grid.ColumnSpan="9" Margin="0,5,0,5" VerticalAlignment="Center"/>
             <Label Grid.Column="1" Grid.Row="14" HorizontalAlignment="Right" VerticalAlignment="Center">
                 <TextBlock Text="{x:Static recurso:Etiquetas.lblTitleResponsables}"/>
@@ -311,8 +311,8 @@
             <Label Grid.Column="1" Grid.Row="16" HorizontalAlignment="Right" VerticalAlignment="Top">
                 <TextBlock Text="{x:Static recurso:Etiquetas.lblTitleResponsable}"/>
             </Label>
-            <ComboBox IsEnabled="False" Grid.Column="2" Grid.Row="16" Grid.ColumnSpan="4" 
-                      Name="_cbxResponsable" HorizontalAlignment="Left" Width="250" Height="20" 
+            <ComboBox IsEnabled="False" Grid.Column="2" Grid.Row="16" Grid.ColumnSpan="3" 
+                      Name="_cbxResponsable" Height="20" 
                       ItemsSource="{Binding}" VerticalAlignment="Top" >
                 <ComboBox.ItemTemplate>
                     <DataTemplate>
@@ -324,22 +324,22 @@
                     </DataTemplate>
                 </ComboBox.ItemTemplate>
             </ComboBox>
-            <Button IsEnabled="False"  Grid.Column="4" Grid.Row="16" Name="_btnMasResponsable" VerticalAlignment="Top" Width="25" HorizontalAlignment="Left" Click="_btnMasResponsable_Click">
+            <Button IsEnabled="False" Grid.Column="5" Grid.Row="16" Name="_btnMasResponsable" VerticalAlignment="Top" HorizontalAlignment="Left" Width="25" Margin="5,0,0,0" Click="_btnMasResponsable_Click">
                 <TextBlock Text="{x:Static recurso:Etiquetas.btnAgregarSimbolo}"></TextBlock>
             </Button>
-            <Button IsEnabled="False" Grid.Column="4" Grid.Row="16" Name="_btnMenosResponsable" VerticalAlignment="Top" Width="25" HorizontalAlignment="Left" Margin="30 0 0 0" Click="_btnMenosResponsable_Click">
+            <Button IsEnabled="False" Grid.Column="5" Grid.Row="16" Name="_btnMenosResponsable" VerticalAlignment="Top" HorizontalAlignment="Left" Width="25" Margin="35 0 0 0" Click="_btnMenosResponsable_Click">
                 <TextBlock Text="{x:Static recurso:Etiquetas.btnEliminarSimbolo}"></TextBlock>
             </Button>
 
-            <ListView IsEnabled="False" Grid.Column="5" Grid.Row="16" Grid.ColumnSpan="7" Width="400" Grid.RowSpan="2" Name="_lstResponsables" ItemsSource="{Binding}" 
-                      SelectionMode="Single" VerticalAlignment="Top" HorizontalAlignment="Left"
+            <ListView IsEnabled="False" Grid.Column="2" Grid.Row="16" Grid.ColumnSpan="3" Grid.RowSpan="2" Name="_lstResponsables" ItemsSource="{Binding}" 
+                      SelectionMode="Single" VerticalAlignment="Top" Margin="2,25,0,0"
                       Style="{DynamicResource EstiloListView}" Visibility="Collapsed" Height="90" >
                 <ListView.View>
                     <GridView>
                         <GridViewColumn DisplayMemberBinding="{Binding Path=Id}" Width="80">
                             <GridViewColumnHeader  Tag="Id" Content="{x:Static recurso:Etiquetas.lsvId}"/>
                         </GridViewColumn>
-                        <GridViewColumn DisplayMemberBinding="{Binding Path=NombreCompleto}" Width="300">
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=NombreCompleto}" Width="190">
                             <GridViewColumnHeader  Tag="NombreCompleto" Content="{x:Static recurso:Etiquetas.lsvNombre}"/>
                         </GridViewColumn>
                     </GridView>
@@ -356,24 +356,24 @@
                 <TextBlock Text="{x:Static recurso:Etiquetas.lblModificado}"/>
             </Label>
 
-            <DatePicker IsEnabled="False"  Grid.Column="2" Grid.Row="20" HorizontalAlignment="Left" Grid.ColumnSpan="2"  Name="_dpkFechaConfirmacion" Width="100" Focusable="False" BorderBrush="{x:Null}" VerticalAlignment="Center" >
+            <DatePicker IsEnabled="False" Grid.Column="2" Grid.Row="20" Grid.ColumnSpan="1"  Name="_dpkFechaConfirmacion" Focusable="False" BorderBrush="{x:Null}" >
                 <DatePicker.SelectedDate>
                     <Binding Path="FechaConfirmacion" UpdateSourceTrigger="PropertyChanged"/>
                 </DatePicker.SelectedDate>
             </DatePicker>
-
+            
             <Label Grid.Column="4" Grid.Row="20" HorizontalAlignment="Right" VerticalAlignment="Center">
                 <TextBlock Text="{x:Static recurso:Etiquetas.lblTracking}"/>
             </Label>
-            <TextBox IsEnabled="False"   Grid.ColumnSpan="2" Name="_txtTrackingConfirmacion" Text="{Binding Path=AnexoTracking}" Grid.Column="5" Grid.Row="20" Height="20"></TextBox>
-            <Label Grid.Column="6" Grid.Row="21" HorizontalAlignment="Right" VerticalAlignment="top" Grid.RowSpan="2" Foreground="Gray">
+            <TextBox IsEnabled="False" Grid.ColumnSpan="2" Name="_txtTrackingConfirmacion" Text="{Binding Path=AnexoTracking}" Grid.Column="5" Grid.Row="20" Height="20"></TextBox>
+            <Label Grid.Column="5" Grid.ColumnSpan="2"  Grid.Row="21" HorizontalAlignment="Right" VerticalAlignment="top" Grid.RowSpan="2" Foreground="Gray">
                 <TextBlock Name="_lsbFormatoConfirmacion" Text="Formato: " FontSize="10" />
             </Label>
 
             <Label Grid.Column="7" Grid.Row="20" HorizontalAlignment="Right" VerticalAlignment="Center">
                 <TextBlock Text="{x:Static recurso:Etiquetas.lblTrackingGuia}"/>
             </Label>
-            <ComboBox IsEnabled="False"  Grid.Column="8" Grid.Row="20" Name="_cbxMedioTrackingConfirmacion" HorizontalAlignment="Left" Width="80" Height="20"  ItemsSource="{Binding}"
+            <ComboBox IsEnabled="False" Grid.Column="8" Grid.Row="20" Grid.ColumnSpan="2" Name="_cbxMedioTrackingConfirmacion" Height="20"  ItemsSource="{Binding}"
                          SelectionChanged="_cbxMedioTrackingConfirmacion_SelectionChanged">
                 <ComboBox.ItemTemplate>
                     <DataTemplate>
@@ -396,7 +396,7 @@
             <Label Grid.Column="3" Grid.Row="22" HorizontalAlignment="Right" VerticalAlignment="Center">
                 <TextBlock Text="{x:Static recurso:Etiquetas.lblFecha}"/>
             </Label>
-            <DatePicker IsEnabled="False"  Grid.Column="4" Grid.Row="22" HorizontalAlignment="Left"  Name="_dpkFechaAnexo" Grid.ColumnSpan="2" Width="100" Focusable="False" BorderBrush="{x:Null}" VerticalAlignment="Center" >
+            <DatePicker IsEnabled="False"  Grid.Column="3" Grid.Row="22" Name="_dpkFechaAnexo" Grid.ColumnSpan="1" Focusable="False" BorderBrush="{x:Null}" VerticalAlignment="Center" >
                 <DatePicker.SelectedDate>
                     <Binding Path="AnexoFecha" UpdateSourceTrigger="PropertyChanged"/>
                 </DatePicker.SelectedDate>
@@ -411,12 +411,12 @@
             <Label Grid.Column="1" Grid.Row="23" HorizontalAlignment="Right" VerticalAlignment="Center">
                 <TextBlock Text="{x:Static recurso:Etiquetas.lblTipoAnexo}"/>
             </Label>
-            <TextBox IsEnabled="False"   Grid.ColumnSpan="2" Name="_txtTipoAnexo" Text="{Binding Path=DetalleResumen}" Grid.Column="2" Grid.Row="23" Height="20"></TextBox>
+            <TextBox IsEnabled="False"  Grid.ColumnSpan="2" Name="_txtTipoAnexo" Text="{Binding Path=DetalleResumen}" Grid.Column="2" Grid.Row="23" Height="20"></TextBox>
 
             <Label Grid.Column="1" Grid.Row="24" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.RowSpan="2">
                 <TextBlock Text="{x:Static recurso:Etiquetas.lblAnexos}"/>
             </Label>
-            <ComboBox IsEnabled="False"  Grid.Column="2" Grid.Row="24" Grid.ColumnSpan="4"  Name="_cbxAnexoConfirmacion" HorizontalAlignment="Left" Width="250" Height="20"  ItemsSource="{Binding}" Grid.RowSpan="2">
+            <ComboBox IsEnabled="False" Grid.Column="2" Grid.Row="24" Grid.ColumnSpan="3"  Name="_cbxAnexoConfirmacion" Height="20"  ItemsSource="{Binding}" Grid.RowSpan="2">
                 <ComboBox.ItemTemplate>
                     <DataTemplate>
                         <TextBlock>
@@ -427,18 +427,18 @@
                     </DataTemplate>
                 </ComboBox.ItemTemplate>
             </ComboBox>
-            <Button IsEnabled="False" Grid.Column="4" Grid.Row="24" Name="_btnMasConfirmacion" VerticalAlignment="Center" Width="25" HorizontalAlignment="Left" 
-                    Click="_btnMasConfirmacion_Click" Grid.RowSpan="2">
+            <Button IsEnabled="False" Grid.Column="5" Grid.Row="24" Name="_btnMasConfirmacion" VerticalAlignment="Center" Width="25" HorizontalAlignment="Left" 
+                    Margin="5,0,0,0" Click="_btnMasConfirmacion_Click" Grid.RowSpan="2">
                 <TextBlock Text="{x:Static recurso:Etiquetas.btnAgregarSimbolo}"></TextBlock>
             </Button>
-            <Button IsEnabled="False" Grid.Column="4" Grid.Row="24" Name="_btnMenosConfirmacion" VerticalAlignment="Center" Width="25" HorizontalAlignment="Left" 
-                    Margin="30 0 0 0" Click="_btnMenosConfirmacion_Click" Grid.RowSpan="2">
+            <Button IsEnabled="False" Grid.Column="5" Grid.Row="24" Name="_btnMenosConfirmacion" VerticalAlignment="Center" Width="25" HorizontalAlignment="Left" 
+                    Margin="35 0 0 0" Click="_btnMenosConfirmacion_Click" Grid.RowSpan="2">
                 <TextBlock Text="{x:Static recurso:Etiquetas.btnEliminarSimbolo}"></TextBlock>
             </Button>
 
-            <ListView IsEnabled="False" Grid.Column="5" Grid.Row="23" Grid.ColumnSpan="3" Grid.RowSpan="5" Width="245" Name="_lstAnexosCartaConfirmacion" ItemsSource="{Binding}" 
-                      SelectionMode="Single" VerticalAlignment="Top" HorizontalAlignment="Left"
-                      Style="{DynamicResource EstiloListView}" Visibility="Collapsed" Height="110" MouseDoubleClick="_lstAsociados_MouseDoubleClick">
+            <ListView IsEnabled="False" Grid.Column="2" Grid.Row="23" Grid.ColumnSpan="3" Grid.RowSpan="5" Name="_lstAnexosCartaConfirmacion" ItemsSource="{Binding}" 
+                      SelectionMode="Single" VerticalAlignment="Top" Margin="5,50,0,0"
+                      Style="{DynamicResource EstiloListView}" Visibility="Collapsed" Height="110" >
                 <ListView.View>
                     <GridView>
                         <GridViewColumn DisplayMemberBinding="{Binding Path=Id}" Width="45">
