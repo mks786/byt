@@ -74,5 +74,38 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
             interesados = query.List<Interesado>();
             return interesados;
         }
+
+
+        public Interesado ObtenerInteresadosDeUnPoder(Poder poder)
+        {
+            Interesado retorno;
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                IQuery query = Session.CreateQuery(string.Format(Recursos.ConsultasHQL.ObtenerInteresadosDeUnPoder, poder.Id));
+                Poder poderAux = query.UniqueResult<Poder>();
+                retorno = poderAux.Interesado;
+
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Saliendo del Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                throw new ApplicationException(Recursos.Errores.ExConsultarTodosUsuariosPorUsuario);
+            }
+            finally
+            {
+                Session.Close();
+            }
+
+            return retorno;
+        }
     }
 }

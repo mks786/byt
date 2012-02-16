@@ -138,6 +138,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
                                                       Recursos.Ids.GestionarFusion);
 
                 Fusion fusion = (Fusion)this._ventana.Fusion;
+                Poder poder = new Poder(1);
+                IList<Agente> prueba = this._agenteServicios.ObtenerAgentesDeUnPoder(poder);
+                int x = prueba.Count;
+
+                Interesado prueba1 = this._interesadoServicios.ObtenerInteresadosDeUnPoder(poder);
+                string a = prueba1.Nombre; 
 
                 this._ventana.Marca = this._marcaServicios.ConsultarMarcaConTodo(((Fusion)fusion).Marca);
                 this._ventana.InteresadoEntre = this._interesadoServicios.ConsultarInteresadoConTodo(((Fusion)fusion).InteresadoEntre);

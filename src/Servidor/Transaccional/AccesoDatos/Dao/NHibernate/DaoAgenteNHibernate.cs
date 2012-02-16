@@ -54,5 +54,31 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
             agentes = query.List<Agente>();
             return agentes;
         }
+
+
+        public IList<Agente> ObtenerAgentesDeUnPoder(Poder poder)
+        {
+            IList<Agente> agentes;
+
+            try
+            {
+                
+                IQuery query = Session.CreateQuery(string.Format(Recursos.ConsultasHQL.ObtenerAgentesDeUnPoder,poder.Id));
+                Poder poderAux = query.UniqueResult<Poder>();
+
+                agentes = poderAux.Agentes;
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                throw new ApplicationException(Recursos.Errores.ExConsultarTodos);
+            }
+            finally
+            {
+                Session.Close();
+            }
+
+            return agentes;
+        }
     }
 }

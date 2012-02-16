@@ -153,5 +153,25 @@ namespace Trascend.Bolet.Servicios.Implementacion
                 logger.Debug("Saliendo del Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
         }
+
+
+        public Interesado ObtenerInteresadosDeUnPoder(Poder poder)
+        {
+            #region trace
+            if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+            Interesado interesado;
+
+            interesado = ControladorInteresado.ConsultarInteresadosDeUnPoder(poder);
+
+            return interesado;
+
+            #region trace
+            if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                logger.Debug("Saliendo del Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+        }
     }
 }

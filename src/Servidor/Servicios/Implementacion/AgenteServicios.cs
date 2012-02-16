@@ -130,5 +130,27 @@ namespace Trascend.Bolet.Servicios.Implementacion
                 logger.Debug("Saliendo del Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
         }
+
+        /// <summary>
+        /// Servicio que consulta los Agentes que pertenecen a un poder
+        /// </summary>
+        /// <param name="agente"></param>
+        /// <returns></returns>
+        public IList<Agente> ObtenerAgentesDeUnPoder(Poder poder)
+        {
+            #region trace
+            if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+            IList<Agente> agentes = ControladorAgente.ConsultarAgentesDeUnPoder(poder);
+
+            #region trace
+            if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                logger.Debug("Saliendo del Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+            return agentes;
+        }
     }
 }

@@ -69,5 +69,10 @@ namespace Trascend.Bolet.Comandos.Fabrica
         {
             return new ComandoConsultarAgentesFiltro(agente);
         }
+
+        public static ComandoBase<IList<Agente>> ObtenerComandoConsultarAgentesDeUnPoder(Poder poder)
+        {
+            return new ComandoConsultarAgentesDeUnPoder(poder);
+        }
     }
 }

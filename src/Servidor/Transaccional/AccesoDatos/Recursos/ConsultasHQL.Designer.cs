@@ -61,8 +61,7 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Select a from Agente a left join fetch a.Poderes as poder where .
-        ///   Busca una cadena traducida similar a Select distinct(a) from Agente a left join fetch a.Poderes as poder where .
+        ///   Looks up a localized string similar to Select distinct(a) from Agente a left join fetch a.Poderes as poder where .
         /// </summary>
         public static string CabeceraObtenerAgente {
             get {
@@ -89,8 +88,7 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Select c from Cesion c left join fetch c.Marca as marca left join fetch c.Cedente as cedente left join fetch c.AgenteCedente as agenteCed left join fetch c.AgenteCesionario as agenteCes where .
-        ///   Busca una cadena traducida similar a Select c from Cesion c left join fetch c.Marca as marca left join fetch c.Cedente as cedente left join fetch c.AgenteCedente as agenteCed left join fetch c.AgenteCesionario as agenteCes left join fetch c.PoderCedente as PoderCed  left join fetch c.PoderCesionario as PoderCes left join fetch c.Cedente as interesadoCed left join fetch c.Cesionario as interesadoCes left join fetch c.BoletinPublicacion as boletin where .
+        ///   Looks up a localized string similar to Select c from Cesion c left join fetch c.Marca as marca left join fetch c.Cedente as cedente left join fetch c.AgenteCedente as agenteCed left join fetch c.AgenteCesionario as agenteCes left join fetch c.PoderCedente as PoderCed  left join fetch c.PoderCesionario as PoderCes left join fetch c.Cedente as interesadoCed left join fetch c.Cesionario as interesadoCes left join fetch c.BoletinPublicacion as boletin where .
         /// </summary>
         public static string CabeceraObtenerCesion {
             get {
@@ -126,8 +124,7 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to a.Id = &apos;{0}&apos;.
-        ///   Busca una cadena traducida similar a Select p from Poder p left join fetch p.Boletin as boletin left join fetch p.Interesado as interesado where .
+        ///   Looks up a localized string similar to Select p from Poder p left join fetch p.Boletin as boletin left join fetch p.Interesado as interesado where .
         /// </summary>
         public static string CabeceraObtenerPoder {
             get {
@@ -136,7 +133,7 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a a.Id = &apos;{0}&apos;.
+        ///   Looks up a localized string similar to a.Id = &apos;{0}&apos;.
         /// </summary>
         public static string FiltroObtenerAgenteId {
             get {
@@ -343,8 +340,7 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Select distinct(a) from Agente a left join fetch a.Poderes order by a.Id.
-        ///   Busca una cadena traducida similar a p.Fecha between &apos;{0}&apos; and &apos;{1}&apos;.
+        ///   Looks up a localized string similar to p.Fecha between &apos;{0}&apos; and &apos;{1}&apos;.
         /// </summary>
         public static string FiltroObtenerPoderFecha {
             get {
@@ -353,7 +349,7 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a p.Id = {0}.
+        ///   Looks up a localized string similar to p.Id = {0}.
         /// </summary>
         public static string FiltroObtenerPoderId {
             get {
@@ -362,7 +358,16 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Select distinct(a) from Agente a left join fetch a.Poderes order by a.Id.
+        ///   Looks up a localized string similar to Select p from Poder p left join fetch p.Agentes where p.Id = &apos;{0}&apos;.
+        /// </summary>
+        public static string ObtenerAgentesDeUnPoder {
+            get {
+                return ResourceManager.GetString("ObtenerAgentesDeUnPoder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select distinct(a) from Agente a left join fetch a.Poderes order by a.Id.
         /// </summary>
         public static string ObtenerAgentesYPoderes {
             get {
@@ -452,6 +457,15 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Select p from Poder p left join fetch p.Interesado where p.Id =&apos;{0}&apos;.
+        /// </summary>
+        public static string ObtenerInteresadosDeUnPoder {
+            get {
+                return ResourceManager.GetString("ObtenerInteresadosDeUnPoder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select l from ListaDatosDominio l where l.Filtro = &apos;{0}&apos;.
         /// </summary>
         public static string ObtenerListaDatosDominioPorParametro {
@@ -497,8 +511,7 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Select p from Poder p where p.Interesado.Id = &apos;{0}&apos;.
-        ///   Busca una cadena traducida similar a Select a from Agente a left join fetch a.Poderes as poder where a.Id = &apos;{0}&apos;.
+        ///   Looks up a localized string similar to Select a from Agente a left join fetch a.Poderes as poder where a.Id = &apos;{0}&apos;.
         /// </summary>
         public static string ObtenerPoderesPorAgente {
             get {
@@ -507,7 +520,7 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Select p from Poder p where p.Interesado.Id = &apos;{0}&apos;.
+        ///   Looks up a localized string similar to Select p from Poder p where p.Interesado.Id = &apos;{0}&apos;.
         /// </summary>
         public static string ObtenerPoderesPorInteresado {
             get {

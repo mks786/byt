@@ -8,5 +8,7 @@ namespace Trascend.Bolet.AccesoDatos.Contrato
         Interesado ObtenerInteresadoConTodo(Interesado interesado);
 
         IList<Interesado> ObtenerInteresadosFiltro(Interesado interesado);
+
+        Interesado ObtenerInteresadosDeUnPoder(Poder poder);
     }
 }

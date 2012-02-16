@@ -10,5 +10,7 @@ namespace Trascend.Bolet.ObjetosComunes.ContratosServicios
         Interesado ConsultarInteresadoConTodo(Interesado interesado);
 
         IList<Interesado> ObtenerInteresadosFiltro(Interesado interesado);
+
+        Interesado ObtenerInteresadosDeUnPoder(Poder poder);
     }
 }

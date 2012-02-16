@@ -46,6 +46,7 @@
     <Compile Include="Comandos\ComandosAgente\ComandoConsultarAgentesYPoderes.cs" />
     <Compile Include="Comandos\ComandosAgente\ComandoConsultarAgentesFiltro.cs" />
     <Compile Include="Comandos\ComandosAgente\ComandoVerificarExistenciaAgente.cs" />
+    <Compile Include="Comandos\ComandosAgente\ComandoConsultarAgentesDeUnPoder.cs" />
     <Compile Include="Comandos\ComandosAnaqua\ComandoConsultarAnaquaPorID.cs" />
     <Compile Include="Comandos\ComandosAnexo\ComandoConsultarTodosAnexos.cs" />
     <Compile Include="Comandos\ComandosAnexo\ComandoEliminarAnexo.cs" />
@@ -86,6 +87,7 @@
     <Compile Include="Comandos\ComandosCorresponsal\ComandoVerificarExistenciaCorresponsal.cs" />
     <Compile Include="Comandos\ComandosFusion\ComandoConsultarFusionesFiltro.cs" />
     <Compile Include="Comandos\ComandosInfoBol\ComandoConsultarInfoBolesPorMarca.cs" />
+    <Compile Include="Comandos\ComandosInfoBol\ComandoConsultarInteresadosDeUnPoder.cs" />
     <Compile Include="Comandos\ComandosInteresado\ComandoConsultarInteresadoConTodo.cs" />
     <Compile Include="Comandos\ComandosInteresado\ComandoConsultarInteresadosFiltro.cs" />
     <Compile Include="Comandos\ComandosInteresado\ComandoConsultarTodosInteresados.cs" />

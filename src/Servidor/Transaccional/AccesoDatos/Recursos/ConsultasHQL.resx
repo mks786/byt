@@ -324,4 +324,11 @@
     <value>Select a from Agente a left join fetch a.Poderes as poder where a.Id = '{0}'</value>
     <comment>Selecciona todas los poderes que posee un Agente</comment>
   </data>
+  <data name="ObtenerAgentesDeUnPoder" xml:space="preserve">
+    <value>Select p from Poder p left join fetch p.Agentes where p.Id = '{0}'</value>
+    <comment>Selecciona todos los agentes que tienen un poder</comment>
+  </data>
+  <data name="ObtenerInteresadosDeUnPoder" xml:space="preserve">
+    <value>Select p from Poder p left join fetch p.Interesado where p.Id ='{0}'</value>
+  </data>
 </root>
