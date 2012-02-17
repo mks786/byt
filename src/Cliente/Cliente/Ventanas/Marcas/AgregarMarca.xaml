@@ -39,7 +39,9 @@
             <RowDefinition Height="10"/>
         </Grid.RowDefinitions>
 
-        <TabControl Grid.Column="1" Grid.Row="1" Name="_tbcPestañas" DataContext="{Binding}">
+        <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Column="1" Grid.Row="1">
+
+            <TabControl Grid.Column="1" Grid.Row="1" Name="_tbcPestañas" DataContext="{Binding}">
             <TabItem Header="Solicitud" Name="_tabSolicitud">
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -1420,6 +1422,7 @@
                 </Grid>
             </TabItem>
         </TabControl>
+        </ScrollViewer>
         <WrapPanel Grid.Row="2" Grid.ColumnSpan="3" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="5" Orientation="Horizontal">
             <Button Name="_btnAceptar"  VerticalAlignment="Bottom" Height="25" Width="90" 
                     Click="_btnAceptar_Click"  IsDefault="True">
