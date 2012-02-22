@@ -231,7 +231,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         /// <summary>
         /// Propiedad que asigna u obtiene Agente del CambioDeDomicilio
         /// </summary>
-        public virtual Agente Agente1
+        public virtual Agente Agente
         {
             get { return _agente; }
             set { _agente = value; }
@@ -240,7 +240,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         /// <summary>
         /// Propiedad que asigna u obtiene Asociado del CambioDeDomicilio
         /// </summary>
-        public virtual Asociado Asociado1
+        public virtual Asociado Asociado
         {
             get { return _asociado; }
             set { _asociado = value; }
@@ -276,7 +276,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         /// <summary>
         /// Propiedad que asigna u obtiene Poder del CambioDeDomicilio
         /// </summary>
-        public virtual Poder Poder1
+        public virtual Poder Poder
         {
             get { return _poder; }
             set { _poder = value; }
@@ -285,7 +285,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         /// <summary>
         /// Propiedad que asigna u obtiene Marca del CambioDeDomicilio
         /// </summary>
-        public virtual Marca Marca1
+        public virtual Marca Marca
         {
             get { return _marca; }
             set { _marca = value; }

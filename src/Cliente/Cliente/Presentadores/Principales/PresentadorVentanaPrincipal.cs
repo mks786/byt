@@ -35,6 +35,7 @@ using Trascend.Bolet.Cliente.Ventanas.EntradasAlternas;
 using Trascend.Bolet.Cliente.Ventanas.Marcas;
 using Trascend.Bolet.Cliente.Ventanas.Traspasos.Fusiones;
 using Trascend.Bolet.Cliente.Ventanas.Traspasos.Cesiones;
+using Trascend.Bolet.Cliente.Ventanas.Traspasos.CambiosDeDomicilio;
 
 namespace Trascend.Bolet.Cliente.Presentadores.Principales
 {
@@ -366,11 +367,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
         }
 
         /// <summary>
-        /// Método que coloca la página "Cambio de Domicilio" en el Frame principal
+        /// Método que coloca la página "CambiosDeDomicilio" en el Frame principal
         /// </summary>
-        public void CambioDeDomicilio()
+        public void ConsultarCambiosDeDomicilio()
         {
-            throw new NotImplementedException();
+            this._ventana.Contenedor.Navigate(new ConsultarCambiosDeDomicilio());
         }
 
         /// <summary>
@@ -572,6 +573,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
                             {
                                 case "_menuItemAgente":
                                     if (objeto.Id.Equals(Recursos.Ids.Agente))
+                                        itemNivel2.Visibility = System.Windows.Visibility.Visible;
+                                    break;
+                                case "_menuItemCambiosDeDomicilio":
+                                    if (objeto.Id.Equals(Recursos.Ids.Marca))
                                         itemNivel2.Visibility = System.Windows.Visibility.Visible;
                                     break;
                                 case "_menuItemCesiones":

@@ -331,4 +331,16 @@
   <data name="ObtenerInteresadosDeUnPoder" xml:space="preserve">
     <value>Select p from Poder p left join fetch p.Interesado where p.Id ='{0}'</value>
   </data>
+  <data name="CabeceraObtenerCambioDeDomicilio" xml:space="preserve">
+    <value>Select c from CambioDeDomicilio c left join fetch c.Marca as marca left join fetch c.InteresadoActual as interesadoActual left join fetch c.InteresadoAnterior as interesadoAnterior left join fetch c.Agente as agente where </value>
+    <comment>Cabecera del query para el filtro de fusion</comment>
+  </data>
+  <data name="FiltroObtenerCambioDeDomicilioId" xml:space="preserve">
+    <value>c.Id = {0}</value>
+    <comment>Filtro por Id</comment>
+  </data>
+  <data name="FiltroObtenerCambioDeDomicilioIdMarca" xml:space="preserve">
+    <value>marca.Id = {0}</value>
+    <comment>Filtro por Asociado</comment>
+  </data>
 </root>

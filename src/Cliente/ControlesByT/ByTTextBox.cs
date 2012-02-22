@@ -67,7 +67,7 @@ namespace Trascend.Bolet.ControlesByT
         #endregion
 
 
-        public ByTTextBox() 
+        public ByTTextBox()
         {
             if (_dobleClickDespliegaLista) 
             {
@@ -89,7 +89,9 @@ namespace Trascend.Bolet.ControlesByT
             }
             if (SoloNumero)
             {
-                if (!System.Text.RegularExpressions.Regex.IsMatch(e.Key.ToString(), "\\d+") && (e.Key != System.Windows.Input.Key.Tab) && (e.Key != System.Windows.Input.Key.Return))
+                if (!System.Text.RegularExpressions.Regex.IsMatch(e.Key.ToString(), "\\d+") 
+                    && (e.Key != System.Windows.Input.Key.Tab) 
+                    && (e.Key != System.Windows.Input.Key.Return))
                         e.Handled = true;
             }
             if (SoloPorcentaje)

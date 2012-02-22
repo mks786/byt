@@ -70,6 +70,15 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Select c from CambioDeDomicilio c left join fetch c.Marca as marca left join fetch c.InteresadoActual as interesadoActual left join fetch c.InteresadoAnterior as interesadoAnterior left join fetch c.Agente as agente where .
+        /// </summary>
+        public static string CabeceraObtenerCambioDeDomicilio {
+            get {
+                return ResourceManager.GetString("CabeceraObtenerCambioDeDomicilio", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select c from Carta c left join fetch c.Resumen as resumen left join fetch c.Asociado as asociado where .
         /// </summary>
         public static string CabeceraObtenerCarta {
@@ -147,6 +156,24 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         public static string FiltroObtenerAgenteNombre {
             get {
                 return ResourceManager.GetString("FiltroObtenerAgenteNombre", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to c.Id = {0}.
+        /// </summary>
+        public static string FiltroObtenerCambioDeDomicilioId {
+            get {
+                return ResourceManager.GetString("FiltroObtenerCambioDeDomicilioId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to marca.Id = {0}.
+        /// </summary>
+        public static string FiltroObtenerCambioDeDomicilioIdMarca {
+            get {
+                return ResourceManager.GetString("FiltroObtenerCambioDeDomicilioIdMarca", resourceCulture);
             }
         }
         

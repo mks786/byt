@@ -1641,4 +1641,16 @@ libro</value>
   <data name="lblY" xml:space="preserve">
     <value>Y</value>
   </data>
+  <data name="titleConsultarCambiosDeDomicilio" xml:space="preserve">
+    <value>Consulta Cambios de Domicilio de Marcas</value>
+  </data>
+  <data name="titleGestionarCambioDeDomicilio" xml:space="preserve">
+    <value>Gestionar Cambio de Domicilio</value>
+  </data>
+  <data name="lblActual" xml:space="preserve">
+    <value>Actual:</value>
+  </data>
+  <data name="lblAnterior" xml:space="preserve">
+    <value>Anterior:</value>
+  </data>
 </root>

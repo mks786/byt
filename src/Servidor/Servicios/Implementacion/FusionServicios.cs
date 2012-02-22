@@ -90,7 +90,6 @@ namespace Trascend.Bolet.Servicios.Implementacion
             return exitoso;
         }
 
-
         /// <summary>
         /// Servicio que consulta una serie de Marcas por uno o mas parametros
         /// </summary>

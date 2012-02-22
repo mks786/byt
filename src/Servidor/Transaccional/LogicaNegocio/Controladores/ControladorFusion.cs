@@ -177,6 +177,11 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
             return existe;
         }
 
+        /// <summary>
+        /// Consulta los Fusion que cumplan con los filtros establecidos en el objeto enviado
+        /// </summary>
+        /// <param name="CambioDeDomicilio">Fusion a consultar</param>
+        /// <returns>Lista de Fusion que cumplen con el filtro</returns>
         public static IList<Fusion> ConsultarFusionesFiltro(Fusion fusion)
         {
             IList<Fusion> retorno;

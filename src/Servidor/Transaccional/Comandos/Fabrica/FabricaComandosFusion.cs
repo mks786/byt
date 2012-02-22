@@ -56,8 +56,11 @@ namespace Trascend.Bolet.Comandos.Fabrica
             return new ComandoVerificarExistenciaFusion(fusion);
         }
 
-
-
+        /// <summary>
+        /// Metodo que obtiene el comando ConsultarFusionesFiltro
+        /// </summary>
+        /// <param name="fusion">Fusion a consultar</param>
+        /// <returns>Lista de fusiones que cumplan con el filtro</returns>
         public static ComandoBase<IList<Fusion>> ObtenerComandoConsultarFusionesFiltro(Fusion fusion)
         {
             return new ComandoConsultarFusionesFiltro(fusion);

@@ -10,21 +10,21 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using NLog;
 using Trascend.Bolet.Cliente.Ayuda;
-using Trascend.Bolet.Cliente.Contratos.Traspasos.Fusiones;
+using Trascend.Bolet.Cliente.Contratos.Traspasos.CambiosDeDomicilio;
 using Trascend.Bolet.Cliente.Ventanas.Principales;
 using Trascend.Bolet.Cliente.Ventanas.Marcas;
 using Trascend.Bolet.ObjetosComunes.ContratosServicios;
 using Trascend.Bolet.ObjetosComunes.Entidades;
 using Trascend.Bolet.Cliente.Ventanas.Auditorias;
 
-namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
+namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeDomicilio
 {
-    class PresentadorGestionarFusion : PresentadorBase
+    class PresentadorGestionarCambioDeDomicilio : PresentadorBase
     {
         private static PaginaPrincipal _paginaPrincipal = PaginaPrincipal.ObtenerInstancia;
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
-        private IGestionarFusion _ventana;
+        private IGestionarCambioDeDomicilio _ventana;
 
         private IMarcaServicios _marcaServicios;
         private IAnaquaServicios _anaquaServicios;
@@ -58,13 +58,13 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
         /// Constructor Predeterminado
         /// </summary>
         /// <param name="ventana">página que satisface el contrato</param>
-        public PresentadorGestionarFusion(IGestionarFusion ventana, object fusion)
+        public PresentadorGestionarCambioDeDomicilio(IGestionarCambioDeDomicilio ventana, object cambioDeDomicilio)
         {
             try
             {
 
                 this._ventana = ventana;
-                this._ventana.Fusion = fusion;
+                this._ventana.CambioDeDomicilio = cambioDeDomicilio;
 
                 #region Servicios
 
@@ -116,8 +116,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
 
         public void ActualizarTitulo()
         {
-            this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleGestionarFusion,
-                Recursos.Ids.GestionarFusion);
+            this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleGestionarCambioDeDomicilio,
+                Recursos.Ids.GestionarCambioDeDomicilio);
         }
 
         /// <summary>
@@ -134,10 +134,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-                this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleGestionarFusion,
-                                                      Recursos.Ids.GestionarFusion);
+                this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleGestionarCambioDeDomicilio,
+                                                      Recursos.Ids.GestionarCambioDeDomicilio);
 
-                Fusion fusion = (Fusion)this._ventana.Fusion;
+                CambioDeDomicilio cambioDeDomicilio = (CambioDeDomicilio)this._ventana.CambioDeDomicilio;
                 Poder poder = new Poder(1);
                 IList<Agente> prueba = this._agenteServicios.ObtenerAgentesDeUnPoder(poder);
                 int x = prueba.Count;
@@ -145,11 +145,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
                 Interesado prueba1 = this._interesadoServicios.ObtenerInteresadosDeUnPoder(poder);
                 string a = prueba1.Nombre;
 
-                this._ventana.Marca = this._marcaServicios.ConsultarMarcaConTodo(((Fusion)fusion).Marca);
-                this._ventana.InteresadoEntre = this._interesadoServicios.ConsultarInteresadoConTodo(((Fusion)fusion).InteresadoEntre);
-                this._ventana.InteresadoSobreviviente = this._interesadoServicios.ConsultarInteresadoConTodo(((Fusion)fusion).InteresadoSobreviviente);
+                this._ventana.Marca = this._marcaServicios.ConsultarMarcaConTodo(((CambioDeDomicilio)cambioDeDomicilio).Marca);
+                this._ventana.InteresadoAnterior = this._interesadoServicios.ConsultarInteresadoConTodo(((CambioDeDomicilio)cambioDeDomicilio).InteresadoAnterior);
+                this._ventana.InteresadoActual = this._interesadoServicios.ConsultarInteresadoConTodo(((CambioDeDomicilio)cambioDeDomicilio).InteresadoActual);
                 this._ventana.NombreMarca = ((Marca)this._ventana.Marca).Descripcion;
-                this._ventana.AgenteApoderado = ((Fusion)fusion).Agente;
+                this._ventana.AgenteApoderado = ((CambioDeDomicilio)cambioDeDomicilio).Agente;
 
                 this._marcas = new List<Marca>();
                 this._marcas.Add((Marca)this._ventana.Marca);
@@ -157,17 +157,17 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
                 this._ventana.MarcaFiltrada = (Marca)this._ventana.Marca;
 
                 this._interesadosEntre = new List<Interesado>();
-                this._interesadosEntre.Add(((Fusion)fusion).InteresadoEntre);
-                this._ventana.InteresadosEntreFiltrados = this._interesadosEntre;
-                this._ventana.InteresadoEntreFiltrado = (Interesado)this._ventana.InteresadoEntre;
+                this._interesadosEntre.Add(((CambioDeDomicilio)cambioDeDomicilio).InteresadoAnterior);
+                this._ventana.InteresadosAnteriorFiltrados = this._interesadosEntre;
+                this._ventana.InteresadoAnteriorFiltrado = (Interesado)this._ventana.InteresadoAnterior;
 
                 this._interesadosSobreviviente = new List<Interesado>();
-                this._interesadosSobreviviente.Add(((Fusion)fusion).InteresadoSobreviviente);
-                this._ventana.InteresadosSobrevivienteFiltrados = this._interesadosSobreviviente;
-                this._ventana.InteresadoSobrevivienteFiltrado = (Interesado)this._ventana.InteresadoSobreviviente;
+                this._interesadosSobreviviente.Add(((CambioDeDomicilio)cambioDeDomicilio).InteresadoActual);
+                this._ventana.InteresadosActualFiltrados = this._interesadosSobreviviente;
+                this._ventana.InteresadoActualFiltrado = (Interesado)this._ventana.InteresadoActual;
 
                 this._agentesApoderados = new List<Agente>();
-                this._agentesApoderados.Add(((Fusion)fusion).Agente);
+                this._agentesApoderados.Add(((CambioDeDomicilio)cambioDeDomicilio).Agente);
                 this._ventana.AgenteApoderadoFiltrados = this._agentesApoderados;
                 this._ventana.AgenteApoderadoFiltrado = (Agente)this._ventana.AgenteApoderado;
 
@@ -194,10 +194,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
             this.Navegar(new ConsultarMarcas());
         }
 
-        public Fusion CargarFusionDeLaPantalla()
+        public CambioDeDomicilio CargarCambioDeDomicilioDeLaPantalla()
         {
 
-            Fusion fusion = (Fusion)this._ventana.Fusion;
+            CambioDeDomicilio cambioDeDomicilio = (CambioDeDomicilio)this._ventana.CambioDeDomicilio;
 
             //marca.Operacion = "MODIFY";
 
@@ -246,7 +246,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
             //if(string.IsNullOrEmpty(this._ventana.IdNacional))
             //    marca.Nacional = null;
 
-            return fusion;
+            return cambioDeDomicilio;
         }
 
         public void CambiarAModificar()
@@ -278,9 +278,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
                 //Modifica los datos del Pais
                 else
                 {
-                    Fusion fusion = CargarFusionDeLaPantalla();
+                    CambioDeDomicilio cambioDeDomicilio = CargarCambioDeDomicilioDeLaPantalla();
 
-                    //bool exitoso = this._marcaServicios.InsertarOModificar(fusion, UsuarioLogeado.Hash);
+                    //bool exitoso = this._marcaServicios.InsertarOModificar(cambioDeDomicilio, UsuarioLogeado.Hash);
 
                     //if (exitoso)
                     //    this.Navegar(Recursos.MensajesConElUsuario.MarcaModificada, false);
@@ -541,9 +541,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
 
         #endregion
 
-        #region InteresadoEntre
+        #region InteresadoAnterior
 
-        public void ConsultarInteresadosEntre()
+        public void ConsultarInteresadosAnterior()
         {
             try
             {
@@ -555,17 +555,17 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
                 Mouse.OverrideCursor = Cursors.Wait;
                 Interesado interesado = new Interesado();
                 IEnumerable<Interesado> interesadosFiltradas;
-                interesado.Nombre = this._ventana.NombreInteresadoEntreFiltrar.ToUpper();
-                interesado.Id = this._ventana.IdInteresadoEntreFiltrar.Equals("") ? 0 : int.Parse(this._ventana.IdInteresadoEntreFiltrar);
+                interesado.Nombre = this._ventana.NombreInteresadoAnteriorFiltrar.ToUpper();
+                interesado.Id = this._ventana.IdInteresadoAnteriorFiltrar.Equals("") ? 0 : int.Parse(this._ventana.IdInteresadoAnteriorFiltrar);
                 if ((!interesado.Nombre.Equals("")) || (interesado.Id != 0))
                     interesadosFiltradas = this._interesadoServicios.ObtenerInteresadosFiltro(interesado);
                 else
                     interesadosFiltradas = new List<Interesado>();
 
                 if (interesadosFiltradas.ToList<Interesado>().Count != 0)
-                    this._ventana.InteresadosEntreFiltrados = interesadosFiltradas.ToList<Interesado>();
+                    this._ventana.InteresadosAnteriorFiltrados = interesadosFiltradas.ToList<Interesado>();
                 else
-                    this._ventana.InteresadosEntreFiltrados = this._interesadosEntre;
+                    this._ventana.InteresadosAnteriorFiltrados = this._interesadosEntre;
 
                 Mouse.OverrideCursor = null;
 
@@ -596,7 +596,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
             }
         }
 
-        public bool CambiarInteresadoEntre()
+        public bool CambiarInteresadoAnterior()
         {
             bool retorno = false;
 
@@ -607,13 +607,13 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-                if (this._ventana.InteresadoEntreFiltrado != null)
+                if (this._ventana.InteresadoAnteriorFiltrado != null)
                 {
-                    this._ventana.InteresadoEntre =
-                        this._interesadoServicios.ConsultarInteresadoConTodo((Interesado)this._ventana.InteresadoEntreFiltrado);
-                    this._ventana.NombreInteresadoEntre = ((Interesado)this._ventana.InteresadoEntreFiltrado).Nombre;
+                    this._ventana.InteresadoAnterior =
+                        this._interesadoServicios.ConsultarInteresadoConTodo((Interesado)this._ventana.InteresadoAnteriorFiltrado);
+                    this._ventana.NombreInteresadoAnterior = ((Interesado)this._ventana.InteresadoAnteriorFiltrado).Nombre;
                     this._interesadosEntre.RemoveAt(0);
-                    this._interesadosEntre.Add((Interesado)this._ventana.InteresadoEntreFiltrado);
+                    this._interesadosEntre.Add((Interesado)this._ventana.InteresadoAnteriorFiltrado);
                     retorno = true;
                 }
 
@@ -649,9 +649,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
 
         #endregion
 
-        #region InteresadoSobreviviente
+        #region InteresadoActual
 
-        public void ConsultarInteresadosSobreviviente()
+        public void ConsultarInteresadosActual()
         {
             try
             {
@@ -663,17 +663,17 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
                 Mouse.OverrideCursor = Cursors.Wait;
                 Interesado interesado = new Interesado();
                 IEnumerable<Interesado> interesadosFiltradas;
-                interesado.Nombre = this._ventana.NombreInteresadoSobrevivienteFiltrar.ToUpper();
-                interesado.Id = this._ventana.IdInteresadoSobrevivienteFiltrar.Equals("") ? 0 : int.Parse(this._ventana.IdInteresadoSobrevivienteFiltrar);
+                interesado.Nombre = this._ventana.NombreInteresadoActualFiltrar.ToUpper();
+                interesado.Id = this._ventana.IdInteresadoActualFiltrar.Equals("") ? 0 : int.Parse(this._ventana.IdInteresadoActualFiltrar);
                 if ((!interesado.Nombre.Equals("")) || (interesado.Id != 0))
                     interesadosFiltradas = this._interesadoServicios.ObtenerInteresadosFiltro(interesado);
                 else
                     interesadosFiltradas = new List<Interesado>();
 
                 if (interesadosFiltradas.ToList<Interesado>().Count != 0)
-                    this._ventana.InteresadosSobrevivienteFiltrados = interesadosFiltradas.ToList<Interesado>();
+                    this._ventana.InteresadosActualFiltrados = interesadosFiltradas.ToList<Interesado>();
                 else
-                    this._ventana.InteresadosSobrevivienteFiltrados = this._interesadosSobreviviente;
+                    this._ventana.InteresadosActualFiltrados = this._interesadosSobreviviente;
 
                 Mouse.OverrideCursor = null;
 
@@ -704,7 +704,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
             }
         }
 
-        public bool CambiarInteresadoSobreviviente()
+        public bool CambiarInteresadoActual()
         {
             bool retorno = false;
 
@@ -715,13 +715,13 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-                if (this._ventana.InteresadoSobrevivienteFiltrado != null)
+                if (this._ventana.InteresadoActualFiltrado != null)
                 {
-                    this._ventana.InteresadoSobreviviente =
-                        this._interesadoServicios.ConsultarInteresadoConTodo((Interesado)this._ventana.InteresadoSobrevivienteFiltrado);
-                    this._ventana.NombreInteresadoSobreviviente = ((Interesado)this._ventana.InteresadoSobrevivienteFiltrado).Nombre;
+                    this._ventana.InteresadoActual =
+                        this._interesadoServicios.ConsultarInteresadoConTodo((Interesado)this._ventana.InteresadoActualFiltrado);
+                    this._ventana.NombreInteresadoActual = ((Interesado)this._ventana.InteresadoActualFiltrado).Nombre;
                     this._interesadosSobreviviente.RemoveAt(0);
-                    this._interesadosSobreviviente.Add((Interesado)this._ventana.InteresadoSobrevivienteFiltrado);
+                    this._interesadosSobreviviente.Add((Interesado)this._ventana.InteresadoActualFiltrado);
                     retorno = true;
                 }
 

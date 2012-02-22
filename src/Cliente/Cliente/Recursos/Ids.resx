@@ -228,6 +228,9 @@
   <data name="ConsultarBoletin" xml:space="preserve">
     <value>MYPTBOLETIN</value>
   </data>
+  <data name="ConsultarCambiosDeDomicilio" xml:space="preserve">
+    <value>MYPMDOMM</value>
+  </data>
   <data name="ConsultarCarta" xml:space="preserve">
     <value>MYPTAGENTE</value>
   </data>
@@ -449,6 +452,9 @@
   </data>
   <data name="Estatus" xml:space="preserve">
     <value>MYP_TESTADOS</value>
+  </data>
+  <data name="GestionarCambioDeDomicilio" xml:space="preserve">
+    <value>MYPMDOMM</value>
   </data>
   <data name="GestionarCesion" xml:space="preserve">
     <value>MYPMCESM</value>

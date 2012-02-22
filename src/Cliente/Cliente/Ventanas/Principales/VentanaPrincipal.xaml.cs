@@ -338,11 +338,6 @@ namespace Trascend.Bolet.Cliente.Ventanas.Principales
             this._presentador.ConsultarFusiones();
         }
 
-        private void _menuItemCambioDeDomicilio_Click(object sender, RoutedEventArgs e)
-        {
-            this._presentador.CambioDeDomicilio();
-        }
-
         private void _menuItemCambioDeNombre_Click(object sender, RoutedEventArgs e)
         {
             this._presentador.CambioDeNombre();
@@ -358,6 +353,15 @@ namespace Trascend.Bolet.Cliente.Ventanas.Principales
             this._presentador.Licencias();
         }
 
+        private void _menuItemCambiosDeDomicilioConsultar_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.ConsultarCambiosDeDomicilio();
+        }
+
+        private void _menuItemCambiosDeDomicilioAgregar_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
         #endregion
 
         #endregion
@@ -394,6 +398,5 @@ namespace Trascend.Bolet.Cliente.Ventanas.Principales
         }
 
         #endregion   
-
     }
 }

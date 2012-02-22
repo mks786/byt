@@ -36,7 +36,7 @@ namespace Trascend.Bolet.Comandos.Fabrica
         /// <returns></returns>
         public static ComandoBase<IList<CambioDeDomicilio>> ObtenerComandoConsultarTodos()
         {
-            throw new NotImplementedException();
+            return new ComandoConsultarTodosCambioDeDomicilio();
         }
 
         public static ComandoBase<CambioDeDomicilio> ObtenerComandoConsultarPorID(CambioDeDomicilio cambioDeDomicilio)
@@ -46,12 +46,22 @@ namespace Trascend.Bolet.Comandos.Fabrica
 
         public static ComandoBase<bool> ObtenerComandoEliminarCambioDeDomicilio(CambioDeDomicilio cambioDeDomicilio)
         {
-            throw new NotImplementedException();
+            return new ComandoEliminarCambioDeDomicilio(cambioDeDomicilio);
         }
 
         public static ComandoBase<bool> ObtenerComandoVerificarExistenciaCambioDeDomicilio(CambioDeDomicilio cambioDeDomicilio)
         {
-            throw new NotImplementedException();
+            return new ComandoVerificarExistenciaCambioDeDomicilio(cambioDeDomicilio);
+        }
+
+        /// <summary>
+        /// Metodo que obtiene el comando ConsultarFusionesFiltro
+        /// </summary>
+        /// <param name="fusion">Fusion a consultar</param>
+        /// <returns>Lista de fusiones que cumplan con el filtro</returns>
+        public static ComandoBase<IList<CambioDeDomicilio>> ObtenerComandoConsultarCambiosDeDomicilioFiltro(CambioDeDomicilio cambioDeDomicilio)
+        {
+            return new ComandoConsultarCambiosDeDomicilioFiltro(cambioDeDomicilio);
         }
     }
 }

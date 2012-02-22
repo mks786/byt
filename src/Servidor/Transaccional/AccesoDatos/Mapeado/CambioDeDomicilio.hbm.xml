@@ -22,13 +22,37 @@
     <property name="Ubicacion" column="XUBICACION" type="string"/>
     <property name="Anexo" column="XANEXO" type="string"/>
     <property name="Referencia" column="XREFERENCIA" type="string"/>
-    <property name="Comentario" column="XCOMENTARIO" type="string"/>           
+    <property name="Comentario" column="XCOMENTARIO" type="string"/>
 
-
-    <!--<many-to-one name="Marca" class="Marca">
+    <many-to-one name="Marca" class="Marca">
       <column name="CMARCA"/>
-    </many-to-one>-->
-    
+    </many-to-one>
+
+    <many-to-one name="Agente" class="Agente">
+      <column name="CAGENTE"/>
+    </many-to-one>
+
+    <many-to-one name="Asociado" class="Asociado">
+      <column name="CASOCIADO"/>
+    </many-to-one>
+
+    <many-to-one name="BoletinPublicacion" class="Boletin">
+      <column name="CBOLETIN_PUBLICACION"/>
+    </many-to-one>
+
+    <many-to-one name="InteresadoAnterior" class="Interesado">
+      <column name="CANTERIOR"/>
+    </many-to-one>
+
+    <many-to-one name="InteresadoActual" class="Interesado">
+      <column name="CACTUAL"/>
+    </many-to-one>
+
+    <many-to-one name="Poder" class="Poder">
+      <column name="CPODER"/>
+    </many-to-one>
+
+
   </class>
 </hibernate-mapping>
 

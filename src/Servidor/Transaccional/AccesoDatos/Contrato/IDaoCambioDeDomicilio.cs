@@ -5,6 +5,6 @@ namespace Trascend.Bolet.AccesoDatos.Contrato
 {
     public interface IDaoCambioDeDomicilio : IDaoBase<CambioDeDomicilio, int>
     {
-
+        IList<CambioDeDomicilio> ObtenerCambiosDeDomicilioFiltro(CambioDeDomicilio CambioDeDomicilio);
     }
 }

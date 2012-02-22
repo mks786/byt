@@ -61,6 +61,7 @@
     <Compile Include="Comandos\ComandosBusqueda\ComandoEliminarBusqueda.cs" />
     <Compile Include="Comandos\ComandosBusqueda\ComandoInsertarOModificarBusqueda.cs" />
     <Compile Include="Comandos\ComandosBusqueda\ComandoVerificarExistenciaBusqueda.cs" />
+    <Compile Include="Comandos\ComandosCambioDeDomicilio\ComandoConsultarCambiosDeDomicilioFiltro.cs" />
     <Compile Include="Comandos\ComandosCambioDeDomicilio\ComandoConsultarTodosCambioDeDomicilio.cs" />
     <Compile Include="Comandos\ComandosCambioDeDomicilio\ComandoEliminarCambioDeDomicilio.cs" />
     <Compile Include="Comandos\ComandosCambioDeDomicilio\ComandoInsertarOModificarCambioDeDomicilio.cs" />

@@ -394,6 +394,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to MYPMDOMM.
+        /// </summary>
+        public static string ConsultarCambiosDeDomicilio {
+            get {
+                return ResourceManager.GetString("ConsultarCambiosDeDomicilio", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to MYPTAGENTE.
         /// </summary>
         public static string ConsultarCarta {
@@ -1056,6 +1065,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string Estatus {
             get {
                 return ResourceManager.GetString("Estatus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to MYPMDOMM.
+        /// </summary>
+        public static string GestionarCambioDeDomicilio {
+            get {
+                return ResourceManager.GetString("GestionarCambioDeDomicilio", resourceCulture);
             }
         }
         

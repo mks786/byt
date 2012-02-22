@@ -6,6 +6,6 @@ namespace Trascend.Bolet.ObjetosComunes.ContratosServicios
 {
     public interface ICambioDeDomicilioServicios : IServicioBase<CambioDeDomicilio>
     {
-        
+        IList<CambioDeDomicilio> ObtenerCambioDeDomicilioFiltro(CambioDeDomicilio CambioDeDomicilio);
     }
 }
