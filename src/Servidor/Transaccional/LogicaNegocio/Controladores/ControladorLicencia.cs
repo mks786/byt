@@ -176,5 +176,34 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
 
             return existe;
         }
+
+        public static IList<Licencia> ConsultarLicenciasFiltro(Licencia licencia)
+        {
+            IList<Licencia> retorno;
+
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                ComandoBase<IList<Licencia>> comando = FabricaComandosLicencia.ObtenerComandoConsultarLicenciasFiltro(licencia);
+                comando.Ejecutar();
+                retorno = comando.Receptor.ObjetoAlmacenado;
+
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Saliendo del Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (ApplicationException ex)
+            {
+                logger.Error(ex.Message);
+                throw ex;
+            }
+
+            return retorno;
+        }
     }
 }

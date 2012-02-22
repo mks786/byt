@@ -331,6 +331,22 @@
   <data name="ObtenerInteresadosDeUnPoder" xml:space="preserve">
     <value>Select p from Poder p left join fetch p.Interesado where p.Id ='{0}'</value>
   </data>
+  <data name="CabeceraObtenerLicencia" xml:space="preserve">
+    <value>Select l from Licencia l left join fetch l.Marca as marca left join fetch l.AgenteLicenciatario as Alicentario left join fetch l.AgenteLicenciante as Alice left join fetch l.Asociado as asosia left join fetch l.Boletin as boletin left join fetch l.InteresadoLicenciatario as InterLicen left join fetch l.InteresadoLicenciante left join fetch l.PoderLicenciatario as Plicentario left join fetch l.PoderLicenciante as Plicenciant Where </value>
+    <comment>Cabecera del query para filtro con Licencia</comment>
+  </data>
+  <data name="FiltroObtenerLicenciaFecha" xml:space="preserve">
+    <value>l.Fecha between '{0}' and '{1}'</value>
+    <comment>Filtro por fecha</comment>
+  </data>
+  <data name="FiltroObtenerLicenciaId" xml:space="preserve">
+    <value>l.Id = {0}</value>
+    <comment>Filtro por id</comment>
+  </data>
+  <data name="FiltroObtenerLicenciaIdMarca" xml:space="preserve">
+    <value>marca.Id = {0}</value>
+    <comment>Filtro por marca</comment>
+  </data>
   <data name="CabeceraObtenerCambioDeDomicilio" xml:space="preserve">
     <value>Select c from CambioDeDomicilio c left join fetch c.Marca as marca left join fetch c.InteresadoActual as interesadoActual left join fetch c.InteresadoAnterior as interesadoAnterior left join fetch c.Agente as agente where </value>
     <comment>Cabecera del query para el filtro de fusion</comment>

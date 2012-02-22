@@ -89,5 +89,24 @@ namespace Trascend.Bolet.Servicios.Implementacion
 
             return exitoso;
         }
+
+        public IList<Licencia> ObtenerLicenciaFiltro(Licencia licencia)
+        {
+            #region trace
+            if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+            IList<Licencia> licencias;
+
+            licencias = ControladorLicencia.ConsultarLicenciasFiltro(licencia);
+
+            return licencias;
+
+            #region trace
+            if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                logger.Debug("Saliendo del Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+        }
     }
 }

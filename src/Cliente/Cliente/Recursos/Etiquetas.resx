@@ -1641,6 +1641,18 @@ libro</value>
   <data name="lblY" xml:space="preserve">
     <value>Y</value>
   </data>
+  <data name="titleConsultarLicencia" xml:space="preserve">
+    <value>Consultar Licencia</value>
+  </data>
+  <data name="titleGestionarLicencia" xml:space="preserve">
+    <value>Gestionar Licencia</value>
+  </data>
+  <data name="lblLicenciante" xml:space="preserve">
+    <value>Licenciante:</value>
+  </data>
+  <data name="lblLicenciatario" xml:space="preserve">
+    <value>Licenciatario:</value>
+  </data>
   <data name="titleConsultarCambiosDeDomicilio" xml:space="preserve">
     <value>Consulta Cambios de Domicilio de Marcas</value>
   </data>

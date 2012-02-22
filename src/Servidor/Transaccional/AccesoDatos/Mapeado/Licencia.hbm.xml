@@ -3,7 +3,7 @@
                    assembly="Trascend.Bolet.ObjetosComunes"
                    namespace="Trascend.Bolet.ObjetosComunes.Entidades">
 
-  <class name="Licencia" table="MYP_LICENCIAS">
+  <class name="Licencia" table="MYP_MLICENCIAS">
     <id name="Id" column="CLICENCIA" type="int"/>
     <property name="Registro" column="IREGISTRO" type="char"/>
     <property name="OtrosC1" column="IOTROS1" type="char"/>
@@ -24,7 +24,7 @@
     <property name="OtrosS2" column="XOTROS2" type="string"/>
     <property name="OtrosS3" column="XOTROS3" type="string"/>
     <property name="Ubicacion" column="XUBICACION" type="string"/>
-    <property name="FechaPublicacion" column="FCESION" type="Date"/>
+    <property name="FechaPublicacion" column="FLICENCIA" type="Date"/>
     <property name="Fecha" column="FPUBLICACION" type="Date"/>
 
     <many-to-one name="Marca" class="Marca">
@@ -32,11 +32,11 @@
     </many-to-one>
 
     <many-to-one name="AgenteLicenciatario" class="Agente">
-      <column name="CAGENTE"/>
+      <column name="CAGENTE_LICENCIATARIO"/>
     </many-to-one>
 
     <many-to-one name="AgenteLicenciante" class="Agente">
-      <column name="CAGENTE"/>
+      <column name="CAGENTE_LICENCIANTE"/>
     </many-to-one>
 
     <many-to-one name="Asociado" class="Asociado">
@@ -44,23 +44,23 @@
     </many-to-one>
 
     <many-to-one name="Boletin" class="Boletin">
-      <column name="CBOLETIN"/>
+      <column name="CBOLETIN_PUBLICACION"/>
     </many-to-one>
 
     <many-to-one name="InteresadoLicenciatario" class="Interesado">
-      <column name="CINTERESADO"/>
+      <column name="CLICENCIATARIO"/>
     </many-to-one>
 
     <many-to-one name="InteresadoLicenciante" class="Interesado">
-      <column name="CINTERESADO"/>
+      <column name="CLICENCIANTE"/>
     </many-to-one>
 
     <many-to-one name="PoderLicenciatario" class="Poder">
-      <column name="CPODER"/>
+      <column name="CPODER_LICENCIATARIO"/>
     </many-to-one>
 
     <many-to-one name="PoderLicenciante" class="Poder">
-      <column name="CPODER"/>
+      <column name="CPODER_LICENCIANTE"/>
     </many-to-one>
     
   </class>

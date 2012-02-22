@@ -35,6 +35,8 @@ using Trascend.Bolet.Cliente.Ventanas.EntradasAlternas;
 using Trascend.Bolet.Cliente.Ventanas.Marcas;
 using Trascend.Bolet.Cliente.Ventanas.Traspasos.Fusiones;
 using Trascend.Bolet.Cliente.Ventanas.Traspasos.Cesiones;
+using Trascend.Bolet.Cliente.Ventanas.Traspasos.Licencias;
+using Trascend.Bolet.Cliente.Ventanas;
 using Trascend.Bolet.Cliente.Ventanas.Traspasos.CambiosDeDomicilio;
 
 namespace Trascend.Bolet.Cliente.Presentadores.Principales
@@ -393,10 +395,17 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
         /// <summary>
         /// Método que coloca la página "Licencias" en el Frame principal
         /// </summary>
-        public void Licencias()
+        public void IrConsultarLicencias()
         {
-            throw new NotImplementedException();
+            this._ventana.Contenedor.Navigate(new ConsultarLicencias());
         }
+
+        /// Método que coloca la página "Licencias" en el Frame principal Gestionar   
+      //  public void IrGestionarLicencia()
+      //  {
+      //      this._ventana.Contenedor.Navigate(new GestionarLicencia());
+      //  }
+
         /// <summary>
         /// Método que coloca la página "ConsultarResumenes" en el Frame principal
         /// </summary>

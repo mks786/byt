@@ -55,5 +55,9 @@ namespace Trascend.Bolet.Comandos.Fabrica
         {
             return new ComandoVerificarExistenciaLicencia(licencia);
         }
+        public static ComandoBase<IList<Licencia>> ObtenerComandoConsultarLicenciasFiltro(Licencia licencia)
+        {
+            return new ComandoConsultarLicenciasFiltro(licencia);
+        }
     }
 }

@@ -288,6 +288,9 @@
   <data name="ConsultarJustificaciones" xml:space="preserve">
     <value>FAC_ASO_JUST</value>
   </data>
+  <data name="ConsultarLicencia" xml:space="preserve">
+    <value>MYP_MLICM</value>
+  </data>
   <data name="ConsultarMarca" xml:space="preserve">
     <value>MYP_MARCAS</value>
   </data>
@@ -461,6 +464,9 @@
   </data>
   <data name="GestionarFusion" xml:space="preserve">
     <value>MYPMFUSM</value>
+  </data>
+  <data name="GestionarLicencias" xml:space="preserve">
+    <value>MYP_MLICM</value>
   </data>
   <data name="InfoAdicional" xml:space="preserve">
     <value>MYPTAGENTE</value>

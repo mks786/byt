@@ -5,5 +5,6 @@ namespace Trascend.Bolet.AccesoDatos.Contrato
 {
     public interface IDaoLicencia : IDaoBase<Licencia, int>
     {
+        IList<Licencia> ObtenerLicenciasFiltro(Licencia licencia);
     }
 }

@@ -45,7 +45,10 @@
                     </MenuItem>
                     <MenuItem Name="_menuItemCambioDeNombre" Header="{x:Static resx:Etiquetas.menuItemCambioDeNombre}" Click="_menuItemCambioDeNombre_Click"/>
                     <MenuItem Name="_menuItemCambioPeticionario" Header="{x:Static resx:Etiquetas.menuItemCambioPeticionario}" Click="_menuItemCambioPeticionario_Click"/>
-                    <MenuItem Name="_menuItemLicencias" Header="{x:Static resx:Etiquetas.menuItemLicencias}" Click="_menuItemLicencias_Click"/>
+                    <MenuItem Name="_menuItemLicencias" Header="{x:Static resx:Etiquetas.menuItemLicencias}">
+                        <MenuItem Name="_menuItemLicenciasConsultar" Header="{x:Static resx:Etiquetas.menuItemConsultar}" Click="_menuItemLicenciasConsultar_Click"/>
+                        <MenuItem Name="_menuItemLicenciasGestionar" Header="{x:Static resx:Etiquetas.menuItemAgregar}" Click="_menuItemLicenciasGestionar_Click"/>
+                    </MenuItem>
                 </MenuItem>
             </MenuItem>
             <MenuItem Name="_menuItemCorrespondencia" Header="{x:Static resx:Etiquetas.menuItemCorrespondencia}">

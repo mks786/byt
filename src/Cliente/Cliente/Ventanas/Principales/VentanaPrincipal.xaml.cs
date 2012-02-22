@@ -348,9 +348,14 @@ namespace Trascend.Bolet.Cliente.Ventanas.Principales
             this._presentador.CambioPeticionario();
         }
 
-        private void _menuItemLicencias_Click(object sender, RoutedEventArgs e)
+        private void _menuItemLicenciasGestionar_Click(object sender, RoutedEventArgs e)
         {
-            this._presentador.Licencias();
+            // this._presentador.IrGestionarLicencia();
+        }
+
+        private void _menuItemLicenciasConsultar_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.IrConsultarLicencias();
         }
 
         private void _menuItemCambiosDeDomicilioConsultar_Click(object sender, RoutedEventArgs e)
@@ -398,5 +403,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Principales
         }
 
         #endregion   
+         
+
     }
 }

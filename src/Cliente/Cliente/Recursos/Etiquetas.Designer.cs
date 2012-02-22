@@ -1935,6 +1935,24 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Licenciante:.
+        /// </summary>
+        public static string lblLicenciante {
+            get {
+                return ResourceManager.GetString("lblLicenciante", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Licenciatario:.
+        /// </summary>
+        public static string lblLicenciatario {
+            get {
+                return ResourceManager.GetString("lblLicenciatario", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Localidad:.
         /// </summary>
         public static string lblLocalidad {
@@ -4230,6 +4248,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Consultar Licencia.
+        /// </summary>
+        public static string titleConsultarLicencia {
+            get {
+                return ResourceManager.GetString("titleConsultarLicencia", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Consultar Marca.
         /// </summary>
         public static string titleConsultarMarca {
@@ -4523,6 +4550,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string titleGestionarInfoAdicional {
             get {
                 return ResourceManager.GetString("titleGestionarInfoAdicional", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Gestionar Licencia.
+        /// </summary>
+        public static string titleGestionarLicencia {
+            get {
+                return ResourceManager.GetString("titleGestionarLicencia", resourceCulture);
             }
         }
         

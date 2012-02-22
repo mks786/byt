@@ -1,0 +1,986 @@
+﻿<Page x:Class="Trascend.Bolet.Cliente.Ventanas.Traspasos.Licencias.GestionarLicencia"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:custom="clr-namespace:Trascend.Bolet.ControlesByT;assembly=ControlesByT"
+      mc:Ignorable="d" 
+      d:DesignHeight="550" d:DesignWidth="800"
+      xmlns:reglas="clr-namespace:Trascend.Bolet.Cliente.Validaciones"
+      xmlns:recurso="clr-namespace:Trascend.Bolet.Cliente.Recursos" Loaded="Page_Loaded"
+      xmlns:conv="clr-namespace:Trascend.Bolet.Cliente.Transformadores">
+    <Page.Resources>
+        <conv:EnteroMinimoABlanco x:Key="convertir"></conv:EnteroMinimoABlanco>
+        <conv:DosValresAUno x:Key="convertirADosValores"></conv:DosValresAUno>
+        <Style x:Key="ElementInError" TargetType="{x:Type FrameworkElement}">
+            <Style.Triggers>
+                <Trigger Property="Validation.HasError" Value="True">
+                    <Setter Property="ToolTip"
+                    Value="{Binding (Validation.Errors)[0].ErrorContent, RelativeSource={x:Static RelativeSource.Self}}"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Page.Resources>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="20"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="20"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="10"/>
+        </Grid.RowDefinitions>
+
+        <GroupBox Grid.Column="1" Grid.Row="1">
+            <StackPanel Name="_gridDatos"  VerticalAlignment="Center"  HorizontalAlignment="Center"
+                        DataContext="{Binding}" Orientation="Vertical">
+                <WrapPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="8" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0"
+                           Width="650">
+                    <Grid Width="640">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                    <Label Grid.Row="0" Grid.Column="0" HorizontalAlignment="Right">
+                        <TextBlock Text="{x:Static recurso:Etiquetas.lblId}"/>
+                    </Label>
+                    <custom:ByTTextBox Name="_txtId" MaxLength="40" Grid.Row="0" Grid.Column="1" 
+                                       Text="{Binding Path=Id}" IsEnabled="False" Margin="0,0,5,0" IsReadOnly="True"/>
+                    <Label Grid.Row="0" Grid.Column="2" HorizontalAlignment="Right">
+                        <TextBlock Text="{x:Static recurso:Etiquetas.lblExpediente}"/>
+                    </Label>
+                    <custom:ByTTextBox Name="_txtExpediente" MaxLength="40" Grid.Row="0" Grid.Column="3"  
+                                       Text="{Binding Path=Expediente}" IsEnabled="False" Margin="0,0,5,0" IsReadOnly="True"/>
+                    <Label Grid.Row="0" Grid.Column="4" HorizontalAlignment="Right">
+                        <TextBlock Text="{x:Static recurso:Etiquetas.lblFecha}"/>
+                    </Label>
+                    <DatePicker Grid.ColumnSpan="2" Grid.Row="0" Grid.Column="5"  HorizontalAlignment="Right"  Name="_dpkFechaBoletin" Width="180" Focusable="False" BorderBrush="{x:Null}">
+                        <DatePicker.SelectedDate>
+                            <Binding Path="FechaLicencia" UpdateSourceTrigger="PropertyChanged"/>
+                        </DatePicker.SelectedDate>
+                    </DatePicker>
+                    <Label Grid.Row="1" Grid.Column="0" HorizontalAlignment="Right">
+                        <TextBlock Text="{x:Static recurso:Etiquetas.lblUbicacion}"/>
+                    </Label>
+                    <custom:ByTTextBox Name="_txtUbicacion" MaxLength="40" Grid.ColumnSpan="3" Grid.Row="1" Grid.Column="1"  
+                                       Text="{Binding Path=Ubicacion}" IsEnabled="False" IsReadOnly="True"/>
+                    </Grid>
+                </WrapPanel>
+                <Separator Margin="5,5,0,0"/>
+                <WrapPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="8"  Orientation="Horizontal" 
+                           Margin="0,5,0,0">
+
+                    <Label Grid.Column="0">
+                        <TextBlock Text="{x:Static recurso:Etiquetas.lblMarca}"/>
+                    </Label>
+                    <custom:ByTTextBox Name="_txtNombreMarca" MaxLength="40"  Text="" IsEnabled="False" 
+                             VerticalContentAlignment="Center" Margin="0,0,0,0" IsReadOnly="True" BorderBrush="LightGreen"
+                             Grid.ColumnSpan="1" MinWidth="595" MouseDoubleClick="_txtNombreMarca_MouseDoubleClick"/>
+                    <Grid Width="640" DataContext="{Binding}" Name="_gridDatosMarca">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <!--Datos de carga de Marca-->
+                        <Label Name="_lblIdMarca" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Center" Visibility="Collapsed">
+                            <TextBlock Text="{x:Static recurso:Etiquetas.lblId}"/>
+                        </Label>
+
+                        <custom:ByTTextBox IsEnabled="False"  Grid.Column="1" Grid.Row="0" Name="_txtIdMarcaFiltrar" VerticalAlignment="Center" 
+                         MaxLength="255" Grid.ColumnSpan="2" Visibility="Collapsed" GotFocus="_txtMarcaFiltrar_GotFocus" 
+                                           GotKeyboardFocus="_txtMarcaFiltrar_GotFocus"></custom:ByTTextBox>
+
+                        <Label Name="_lblNombreMarca" Grid.Column="3" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Center" Visibility="Collapsed">
+                            <TextBlock Text="{x:Static recurso:Etiquetas.lblNombre}"/>
+                        </Label>
+                        <custom:ByTTextBox   IsEnabled="False"  Grid.Column="4" Grid.Row="0" Name="_txtNombreMarcaFiltrar" VerticalAlignment="Center"  
+                                             Grid.ColumnSpan="2" MaxLength="255" Visibility="Collapsed" GotFocus="_txtMarcaFiltrar_GotFocus" 
+                                             GotKeyboardFocus="_txtMarcaFiltrar_GotFocus"></custom:ByTTextBox>
+
+                        <Button IsEnabled="False" Name="_btnConsultarMarca" Width="65" IsDefault="False" Grid.Row="0" Grid.Column="7" Height="25" 
+                                HorizontalAlignment="Right" Click="_btnConsultar" Visibility="Collapsed">
+                            <TextBlock Text="{x:Static recurso:Etiquetas.btnConsultar}"/>
+                        </Button>
+                        <ListView Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="7" Grid.RowSpan="2" Name="_lstMarcas" ItemsSource="{Binding}" 
+                      SelectionMode="Single" MouseDoubleClick="_lstMarcas_MouseDoubleClick"
+                      Style="{DynamicResource EstiloListView}" Visibility="Collapsed" Height="150"  VerticalAlignment="Top">
+                            <ListView.View>
+                                <GridView>
+                                    <GridViewColumn Width="45">
+                                        <GridViewColumnHeader Click="_OrdenarMarcas_Click" Tag="Id" Content="{x:Static recurso:Etiquetas.lsvId}"/>
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBlock>
+                                                    <TextBlock.Text>
+                                                        <Binding Path="Id" Converter="{StaticResource convertir}"/>
+                                                    </TextBlock.Text>
+                                                </TextBlock>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                    <GridViewColumn DisplayMemberBinding="{Binding Path=Descripcion}" Width="300">
+                                        <GridViewColumnHeader Click="_OrdenarMarcas_Click" Tag="Nombre" Content="{x:Static recurso:Etiquetas.lsvNombre}"/>
+                                    </GridViewColumn>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                        <!--Fin de Datos de carga de Marca-->
+
+                        <!--Datos de la Marca-->
+
+                        <CheckBox Grid.Column="0" Grid.Row="0" Content="{x:Static recurso:Etiquetas.lblEtiqueta}" IsEnabled="False" IsChecked="{Binding Path=BEtiqueta}" 
+                                  Height="16" HorizontalAlignment="Right" Margin="5,0,0,0" Name="_chkEtiqueta" VerticalAlignment="Center"
+                                  />
+
+                        <!--Campo-->
+                        <Label Name="_lblNoInscripcion" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Center" >
+                            <TextBlock Text="{x:Static recurso:Etiquetas.lblNumInscripcion}"/>
+                        </Label>
+                        <custom:ByTTextBox  IsEnabled="False"  Grid.Column="2" Grid.Row="0" Name="_txtNumInscripcion" VerticalAlignment="Center"  Grid.ColumnSpan="1"
+                         MaxLength="255" Text="{Binding Path=CodigoInscripcion}" IsReadOnly="True"></custom:ByTTextBox>
+                        <!--Fin Campo-->
+
+                        <!--Campo-->
+                        <Label Name="_lblTipo" Grid.Column="3" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Center" >
+                            <TextBlock Text="{x:Static recurso:Etiquetas.lblTipo}"/>
+                        </Label>
+                        <custom:ByTTextBox  IsEnabled="False"  Grid.Column="4" Grid.Row="0" Name="_txtTipo" VerticalAlignment="Center"  Grid.ColumnSpan="1"
+                         MaxLength="255" Text="{Binding Path=Tipo}" IsReadOnly="True"></custom:ByTTextBox>
+                        <!--Fin Campo-->
+
+                        <!--Campo-->
+                        <Label Name="_lblNoRegistro" Grid.Column="5" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Center" >
+                            <TextBlock Text="{x:Static recurso:Etiquetas.lblNumRegistro}"/>
+                        </Label>
+                        <custom:ByTTextBox  IsEnabled="False"  Grid.Column="6" Grid.Row="0" Name="_txtNumRegistro" VerticalAlignment="Center"  Grid.ColumnSpan="1"
+                         MaxLength="255"  Text="{Binding Path=CodigoRegistro}" IsReadOnly="True"></custom:ByTTextBox>
+                        <!--Fin Campo-->
+
+                        <!--Campo-->
+                        <Label Name="_lblClaseInternacional" Grid.Column="0" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Center" >
+                            <TextBlock Text="{x:Static recurso:Etiquetas.lblClaseInt}"/>
+                        </Label>
+                        <custom:ByTTextBox  IsEnabled="False"  Grid.Column="1" Grid.Row="1" Name="_txtClaseInternacional" VerticalAlignment="Center"  Grid.ColumnSpan="1"
+                         MaxLength="255" Text="{Binding Path=Internacional.Id}" IsReadOnly="True"></custom:ByTTextBox>
+                        <!--Fin Campo-->
+
+                        <!--Campo-->
+                        <Label Name="_lblClaseNacional" Grid.Column="2" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Center" >
+                            <TextBlock Text="{x:Static recurso:Etiquetas.lblClaseNac}"/>
+                        </Label>
+                        <custom:ByTTextBox  IsEnabled="False"  Grid.Column="3" Grid.Row="1" Name="_txtClaseNacional" VerticalAlignment="Center"  Grid.ColumnSpan="1"
+                         MaxLength="255" Text="{Binding Path=Nacional.Id}" IsReadOnly="True"></custom:ByTTextBox>
+                        <!--Fin Campo-->
+
+                        <!--Campo-->
+                        <Label Name="_lblAsociado" Grid.Column="4" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Center" >
+                            <TextBlock Text="{x:Static recurso:Etiquetas.lblAsociado}"/>
+                        </Label>
+                        <custom:ByTTextBox  IsEnabled="False"  Grid.Column="5" Grid.Row="1" Name="_txtAsociado" VerticalAlignment="Center"  Grid.ColumnSpan="2"
+                         MaxLength="255" Text="{Binding Path=Asociado.Nombre}" IsReadOnly="True"></custom:ByTTextBox>
+                        <!--Fin Campo-->
+
+
+                        <!--Fin datos de la Marca-->
+                    </Grid>
+                </WrapPanel>
+
+                <Separator Margin="5,5,0,0"/>
+                <!--Licenciante-->
+
+                <WrapPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="8"  Orientation="Horizontal" 
+                           Margin="0,5,0,0">
+                    <Grid Width="640" DataContext="{Binding}" Name="_gridDatosLicenciante">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <!--Datos de carga del Licenciante-->
+                        <Label Name="_lblNombreLicenciante" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Center">
+                            <TextBlock Text="{x:Static recurso:Etiquetas.lblLicenciante}"/>
+                        </Label>
+                        <custom:ByTTextBox Name="_txtNombreLicenciante" MaxLength="40"  Text="{Binding Path=Nombre}" IsEnabled="False" 
+                             VerticalContentAlignment="Center" Grid.Row="0" Grid.Column="1" IsReadOnly="True" BorderBrush="LightGreen"
+                             Grid.ColumnSpan="4" MouseDoubleClick="_txtNombreLicenciante_MouseDoubleClick" />
+                        <custom:ByTTextBox Name="_txtPaisLicenciante" MaxLength="40"  Text="{Binding Path=Pais.NombreEspanol}" IsEnabled="False" 
+                             VerticalContentAlignment="Center" Grid.Row="0" Grid.Column="5" IsReadOnly="True"
+                             Grid.ColumnSpan="1" Margin="5,0,0,0" />
+                        <custom:ByTTextBox Name="_txtNacionalidadLicenciante" MaxLength="40"  Text="{Binding Path=Nacionalidad.Nacionalidad}" IsEnabled="False" 
+                             VerticalContentAlignment="Center" Grid.Row="0" Grid.Column="6" IsReadOnly="True"
+                             Grid.ColumnSpan="1" Margin="5,0,0,0" />
+                        <ListView Grid.Row="2" Grid.ColumnSpan="7" Grid.RowSpan="3" Name="_lstLicenciantes" ItemsSource="{Binding}" 
+                        SelectionMode="Single" MouseDoubleClick="_lstLicenciantes_MouseDoubleClick"
+                        Style="{DynamicResource EstiloListView}" Visibility="Collapsed" Height="150"  VerticalAlignment="Top">
+                            <ListView.View>
+                                <GridView>
+                                    <GridViewColumn Width="45">
+                                        <GridViewColumnHeader Click="_OrdenarLicenciantes_Click" Tag="Id" Content="{x:Static recurso:Etiquetas.lsvId}"/>
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBlock>
+                                                    <TextBlock.Text>
+                                                        <Binding Path="Id" Converter="{StaticResource convertir}"/>
+                                                    </TextBlock.Text>
+                                                </TextBlock>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                    <GridViewColumn DisplayMemberBinding="{Binding Path=Nombre}" Width="300">
+                                        <GridViewColumnHeader Click="_OrdenarLicenciantes_Click" Tag="Nombre" Content="{x:Static recurso:Etiquetas.lsvNombre}"/>
+                                    </GridViewColumn>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                        <!--Fin de Datos de carga del Licenciante-->
+
+                        <!--Datos de Licenciante-->
+                        
+                        <!--Campo-->
+                        <Label Name="_lblLicencianteFiltrar"  Grid.Column="0" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Center" 
+                               Visibility="Collapsed">
+                            <TextBlock Text="{x:Static recurso:Etiquetas.lblLicenciante}"/>
+                        </Label>
+                        <!--Fin Campo-->
+                        
+                        <!--Campo-->
+                        <Label Name="_lblIdLicencianteFiltrar"  Grid.Column="1" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Center" 
+                               Visibility="Collapsed">
+                            <TextBlock Text="{x:Static recurso:Etiquetas.lblId}"/>
+                        </Label>
+                        <custom:ByTTextBox Visibility="Collapsed" IsEnabled="False"  Grid.Column="2" Grid.Row="1" Name="_txtIdLicencianteFiltrar"
+                                           VerticalAlignment="Center" MaxLength="255" Grid.ColumnSpan="1" GotFocus="_txtLicencianteFiltrar_GotFocus"></custom:ByTTextBox>
+                        <!--Fin Campo-->
+
+                        <!--Campo-->
+                        <Label Visibility="Collapsed" Name="_lblNombreLicencianteFiltrar" Grid.Column="3" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Center">
+                            <TextBlock Text="{x:Static recurso:Etiquetas.lblNombre}"/>
+                        </Label>                       
+                        <custom:ByTTextBox Visibility="Collapsed" Name="_txtNombreLicencianteFiltrar" MaxLength="40" IsEnabled="False" 
+                             VerticalContentAlignment="Center" Grid.Row="1" Grid.Column="4"
+                             Grid.ColumnSpan="2" Margin="5,0,0,0" GotFocus="_txtLicencianteFiltrar_GotFocus"/>
+                        <!--Fin Campo-->
+
+                        <!--Campo-->
+                        <Button IsEnabled="True" Name="_btnConsultarLicenciante" Width="65" IsDefault="False" Grid.Row="1" Grid.Column="6" Height="25" 
+                                HorizontalAlignment="Right" Click="_btnConsultar" Visibility="Collapsed">
+                            <TextBlock Text="{x:Static recurso:Etiquetas.btnConsultar}"/>
+                        </Button>
+                        <!--Fin Campo-->   
+                        <!--Fin de datos de Licenciante-->
+                    </Grid>                                                                        
+                </WrapPanel>
+                
+                
+                 
+                <!--Apoderado de Licenciante-->
+                <WrapPanel>
+                    <Grid Width="640" DataContext="{Binding}" Name="_gridDatosApoderadoLicenciante">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <!--Datos de Carga de Apoderado Licenciante-->
+
+                        <Label Name="_lblNombreApoderadoLicenciante" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Center" >
+                            <TextBlock Text="{x:Static recurso:Etiquetas.lblApoderado}"/>
+                        </Label>
+                        <custom:ByTTextBox  IsEnabled="False"  Grid.Column="1" Grid.Row="0" Name="_txtNombreApoderadoLicenciante" VerticalAlignment="Center" 
+                                            MaxLength="255" Grid.ColumnSpan="7" Text="{Binding Path=Nombre}" IsReadOnly="True" BorderBrush="LightGreen"
+                                            MouseDoubleClick="_txtNombreApoderadoLicenciante_MouseDoubleClick"></custom:ByTTextBox>                       
+                        
+                        <ListView Grid.Row="2" Grid.ColumnSpan="7" Grid.RowSpan="3" Name="_lstApoderadosLicenciante" ItemsSource="{Binding}" 
+                        SelectionMode="Single" MouseDoubleClick="_lstApoderadosLicenciante_MouseDoubleClick"
+                        Style="{DynamicResource EstiloListView}" Visibility="Collapsed" Height="150"  VerticalAlignment="Top">
+                            <ListView.View>
+                                <GridView>
+                                    <GridViewColumn Width="45">
+                                        <GridViewColumnHeader Click="_OrdenarApoderadosLicenciante_Click" Tag="Id" Content="{x:Static recurso:Etiquetas.lsvId}"/>
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBlock>
+                                                    <TextBlock.Text>
+                                                        <Binding Path="Id"/>
+                                                    </TextBlock.Text>
+                                                </TextBlock>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                    <GridViewColumn DisplayMemberBinding="{Binding Path=Nombre}" Width="300">
+                                        <GridViewColumnHeader Click="_OrdenarApoderadosLicenciante_Click" Tag="Nombre" Content="{x:Static recurso:Etiquetas.lsvNombre}"/>
+                                    </GridViewColumn>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                        <!--Fin de Datos de Carga de Apoderado Licenciante-->
+
+                        <!--Campo-->
+                        <Label Name="_lblApoderadoLicencianteFiltrar"  Grid.Column="0" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Center" Visibility="Collapsed">
+                            <TextBlock Text="{x:Static recurso:Etiquetas.lblApoderado}"/>
+                        </Label>
+                        <!--Fin Campo-->
+
+                        <!--Campo-->
+                        <Label Name="_lblIdApoderadoLicencianteFiltrar" Grid.Column="1" Visibility="Collapsed" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Center" >
+                            <TextBlock Text="{x:Static recurso:Etiquetas.lblId}"/>
+                        </Label>
+                        <custom:ByTTextBox  IsEnabled="False"  Grid.Column="2" Grid.Row="1" Name="_txtIdApoderadoLicencianteFiltrar" VerticalAlignment="Center" MaxLength="255" 
+                                            Grid.ColumnSpan="1" Visibility="Collapsed"  
+                                            GotFocus="_txtApoderadoLicencianteFiltrar_GotFocus"></custom:ByTTextBox>
+                        <!--Fin Campo-->
+
+                        <!--Campo-->
+                        <Label Name="_lblNombreApoderadoLicencianteFiltrar" Grid.Column="3" Visibility="Collapsed" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Center" >
+                            <TextBlock Text="{x:Static recurso:Etiquetas.lblNombre}"/>
+                        </Label>
+                        <custom:ByTTextBox  IsEnabled="False"  Grid.Column="4" Grid.Row="1" Name="_txtNombreApoderadoLicencianteFiltrar" VerticalAlignment="Center" 
+                                            MaxLength="255" Visibility="Collapsed" Grid.ColumnSpan="2" 
+                                            GotFocus="_txtApoderadoLicencianteFiltrar_GotFocus"></custom:ByTTextBox>
+                        <!--Fin Campo-->
+
+                        <!--Campo-->
+                        <Button IsEnabled="True" Name="_btnConsultarApoderadoLicenciante" Width="65" IsDefault="False" Grid.Row="1" Grid.Column="7" Height="25" 
+                                HorizontalAlignment="Right" Click="_btnConsultar" Visibility="Collapsed">
+                            <TextBlock Text="{x:Static recurso:Etiquetas.btnConsultar}"/>
+                        </Button>
+                        <!--Fin Campo-->
+                        
+                    </Grid>
+                </WrapPanel>
+                <!--Fin Apoderado de Licenciante-->
+
+                <!--Poder de Licenciante-->
+                <WrapPanel>
+                    <Grid Width="640" DataContext="{Binding}" Name="_gridDatosPoderLicenciante">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <!--Datos de Carga de Poder de Licenciante-->
+                        <Label Name="_lblIdPoderLicenciante" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center">
+                            <TextBlock Text="{x:Static recurso:Etiquetas.lblPoder}"/>
+                        </Label>
+                        <custom:ByTTextBox  IsEnabled="False"  Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="2" Name="_txtIdPoderLicenciante" 
+                                            IsReadOnly="True" VerticalAlignment="Center" MouseDoubleClick="_txtIdPoderLicenciante_MouseDoubleClick"
+                                            MaxLength="255" Text="{Binding Path=Id}" BorderBrush="LightGreen"></custom:ByTTextBox>
+
+                        <Label Name="_lblFomentoLicenciante" Grid.Row="0" Grid.Column="3" HorizontalAlignment="Right" VerticalAlignment="Center">
+                            <TextBlock Text="{x:Static recurso:Etiquetas.lblFomento}"/>
+                        </Label>
+                        <custom:ByTTextBox  IsEnabled="False"  Grid.Column="4" Grid.ColumnSpan="2" Grid.Row="0" Name="_txtNumPoderLicenciante" 
+                                            VerticalAlignment="Center" MaxLength="255" Text="{Binding Path=NumPoder}" 
+                                            IsReadOnly="True"></custom:ByTTextBox>
+                        
+                        <ListView Grid.Row="2" Grid.ColumnSpan="7" Grid.RowSpan="3" Name="_lstPoderesLicenciante" ItemsSource="{Binding}" 
+                        SelectionMode="Single" MouseDoubleClick="_lstPoderesLicenciante_MouseDoubleClick"
+                        Style="{DynamicResource EstiloListView}" Visibility="Collapsed" Height="150"  VerticalAlignment="Top">
+                            <ListView.View>
+                                <GridView>
+                                    <GridViewColumn Width="45">
+                                        <GridViewColumnHeader Click="_OrdenarPoderesLicenciante_Click" Tag="Id" Content="{x:Static recurso:Etiquetas.lsvId}"/>
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBlock>
+                                                    <TextBlock.Text>
+                                                        <Binding Path="Id" Converter="{StaticResource convertir}"/>
+                                                    </TextBlock.Text>
+                                                </TextBlock>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                    <GridViewColumn DisplayMemberBinding="{Binding Path=NumPoder}" Width="300">
+                                        <GridViewColumnHeader Click="_OrdenarPoderesLicenciante_Click" Tag="Fomento" Content="{x:Static recurso:Etiquetas.lsvFomento}"/>
+                                    </GridViewColumn>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>                       
+                        <!--Fin de Datos de Carga de Poder de Licenciante-->
+                        
+                        <!--Datos de Poder de Licenciante-->
+                        <!--Campo-->
+                        <Label Name="_lblPoderLicencianteFiltrar"  Grid.Column="0" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Center" Visibility="Collapsed">
+                            <TextBlock Text="{x:Static recurso:Etiquetas.lblPoder}"/>
+                        </Label>
+                        <!--Fin Campo-->
+
+                        <!--Campo-->
+                        <Label Name="_lblIdPoderLicencianteFiltrar" Grid.Row="1" Visibility="Collapsed" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Center">
+                            <TextBlock Text="{x:Static recurso:Etiquetas.lblId}"/>
+                        </Label>
+                        <custom:ByTTextBox  IsEnabled="False"  Grid.Column="2" Grid.ColumnSpan="1" Grid.Row="1" Name="_txtIdPoderLicencianteFiltrar" VerticalAlignment="Center" 
+                                            Visibility="Collapsed" MaxLength="255" GotFocus="_txtPoderLicencianteFiltrar_GotFocus"></custom:ByTTextBox>
+                        <!--Fin Campo-->
+
+                        <!--Campo-->
+                        <DatePicker Grid.ColumnSpan="2" Grid.Row="1" Grid.Column="4"  HorizontalAlignment="Right"  Name="_dpkFechaPoderLicencianteFiltrar" Width="180"
+                                    Focusable="False" BorderBrush="{x:Null}" >
+                            <DatePicker.SelectedDate>
+                                <Binding Path="Fecha" UpdateSourceTrigger="PropertyChanged"/>
+                            </DatePicker.SelectedDate>
+                        </DatePicker>
+                        <!--Fin Campo-->
+
+                        <!--Campo-->
+                        <Button IsEnabled="True" Name="_btnConsultarPoderLicenciante" Width="65" IsDefault="False" Grid.Row="1" Grid.Column="7" Height="25" 
+                                HorizontalAlignment="Right" Click="_btnConsultar" Visibility="Collapsed">
+                            <TextBlock Text="{x:Static recurso:Etiquetas.btnConsultar}"/>
+                        </Button>
+                        <!--Fin Campo-->
+                        
+                        <!--Campo-->
+                        <Label Name="_lblFechaPoderLicenciante" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center">
+                            <TextBlock Text="{x:Static recurso:Etiquetas.lblFecha}"/>
+                        </Label>
+                        <custom:ByTTextBox  IsEnabled="False"  Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="1" Name="_txtFechaPoderLicenciante" VerticalAlignment="Center" MaxLength="255"  
+                                            Text="{Binding Path=Fecha}" IsReadOnly="True"></custom:ByTTextBox>
+                        <!--Fin Campo-->
+
+                        <!--Campo-->
+                        <Label Name="_lblBoletinPoderLicenciante" Grid.Row="1" Grid.Column="3" HorizontalAlignment="Right" VerticalAlignment="Center">
+                            <TextBlock Text="{x:Static recurso:Etiquetas.lblBoletin}"/>
+                        </Label>
+                        <custom:ByTTextBox  IsEnabled="False"  Grid.Column="4" Grid.ColumnSpan="2" Grid.Row="1" Name="_txtBoletinPoderLicenciante" VerticalAlignment="Center" MaxLength="255"  
+                                            Text="{Binding Path=Boletin.Id}" IsReadOnly="True"></custom:ByTTextBox>
+                        <!--Fin Campo-->
+
+                        <!--Campo-->
+                        <Label Name="_lblAnexoPoderLicenciante" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center">
+                            <TextBlock Text="{x:Static recurso:Etiquetas.lblAnexo}"/>
+                        </Label>
+                        <custom:ByTTextBox  IsEnabled="False"  Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="2" Name="_txtAnexoPoderLicenciante" VerticalAlignment="Center" MaxLength="255"  
+                                            Text="{Binding Path=Anexo}" IsReadOnly="True"></custom:ByTTextBox>
+                        <!--Fin Campo-->
+
+                        <!--Campo-->
+                        <Label Name="_lblFacultadPoderLicenciante" Grid.Row="2" Grid.Column="3" HorizontalAlignment="Right" VerticalAlignment="Center">
+                            <TextBlock Text="{x:Static recurso:Etiquetas.lblFacultad}"/>
+                        </Label>
+                        <custom:ByTTextBox  IsEnabled="False"  Grid.Column="4" Grid.Row="2" Grid.ColumnSpan="2" Name="_txtFacultadPoderLicenciante" VerticalAlignment="Center" MaxLength="255"  
+                                            Text="{Binding Path=Facultad}" IsReadOnly="True"></custom:ByTTextBox>
+                        <!--Fin Campo-->
+
+                        <!--Fin datos de Poder de Licenciante-->
+                    </Grid>
+                </WrapPanel>
+                <!--Fin de Poder de Licenciante-->                
+                <!--Fin Licenciante-->
+                
+                <Separator Margin="5,5,0,0"/>
+                <!--Licenciatario-->
+
+                <WrapPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="8"  Orientation="Horizontal" 
+                           Margin="0,5,0,0">
+                    <Grid Width="640" DataContext="{Binding}" Name="_gridDatosLicenciatario">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <!--Datos de carga del Licenciatario-->
+                        <Label Grid.Column="0" HorizontalAlignment="Right" Name="_lblNombreLicenciatario">
+                            <TextBlock Text="{x:Static recurso:Etiquetas.lblLicenciatario}"/>
+                        </Label>
+                        <custom:ByTTextBox Name="_txtNombreLicenciatario" MaxLength="40"  Text="{Binding Path=Nombre}" IsEnabled="False" 
+                             VerticalContentAlignment="Center" Grid.Row="0" Grid.Column="1" IsReadOnly="True" BorderBrush="LightGreen"
+                             Grid.ColumnSpan="4" MouseDoubleClick="_txtNombreLicenciatario_MouseDoubleClick" />
+                        <custom:ByTTextBox Name="_txtPaisLicenciatario" MaxLength="40"  Text="{Binding Path=Pais.NombreEspanol}" IsEnabled="False" 
+                             VerticalContentAlignment="Center" Grid.Row="0" Grid.Column="5" IsReadOnly="True"
+                             Grid.ColumnSpan="1" Margin="5,0,0,0" />
+                        <custom:ByTTextBox Name="_txtNacionalidadLicenciatario" MaxLength="40" Text="{Binding Path=Nacionalidad.Nacionalidad}" IsEnabled="False" 
+                             VerticalContentAlignment="Center" Grid.Row="0" Grid.Column="6" IsReadOnly="True"
+                             Grid.ColumnSpan="1" Margin="5,0,0,0" />
+                        <ListView Grid.Row="2" Grid.ColumnSpan="7" Grid.RowSpan="3" Name="_lstLicenciatarios" ItemsSource="{Binding}" 
+                        SelectionMode="Single" MouseDoubleClick="_lstLicenciatarios_MouseDoubleClick"
+                        Style="{DynamicResource EstiloListView}" Visibility="Collapsed" Height="150"  VerticalAlignment="Top">
+                            <ListView.View>
+                                <GridView>
+                                    <GridViewColumn Width="45">
+                                        <GridViewColumnHeader Click="_OrdenarLicenciatarios_Click" Tag="Id" Content="{x:Static recurso:Etiquetas.lsvId}"/>
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBlock>
+                                                    <TextBlock.Text>
+                                                        <Binding Path="Id" Converter="{StaticResource convertir}"/>
+                                                    </TextBlock.Text>
+                                                </TextBlock>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                    <GridViewColumn DisplayMemberBinding="{Binding Path=Nombre}" Width="300">
+                                        <GridViewColumnHeader Click="_OrdenarLicenciatarios_Click" Tag="Nombre" Content="{x:Static recurso:Etiquetas.lsvNombre}"/>
+                                    </GridViewColumn>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                        <!--Fin de Datos de carga del Licenciatario-->
+
+                        <!--Datos de Licenciatario-->
+                        <!--Campo-->
+                        <Label Name="_lblLicenciatarioFiltrar"  Grid.Column="0" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Center" Visibility="Collapsed">
+                            <TextBlock Text="{x:Static recurso:Etiquetas.lblLicenciatario}"/>
+                        </Label>
+                        <!--Fin Campo-->
+
+                        <!--Campo-->
+                        <Label Name="_lblIdLicenciatario"  Grid.Column="1" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Center" Visibility="Collapsed">
+                            <TextBlock Text="{x:Static recurso:Etiquetas.lblId}"/>
+                        </Label>
+                        <custom:ByTTextBox Visibility="Collapsed" IsEnabled="False"  Grid.Column="2" Grid.Row="1" Name="_txtIdLicenciatarioFiltrar"
+                                           VerticalAlignment="Center" GotFocus="_txtLicenciatarioFiltrar_GotFocus" MaxLength="255" Grid.ColumnSpan="1" ></custom:ByTTextBox>
+                        <!--Fin Campo-->
+
+                        <!--Campo-->
+                        <Label Visibility="Collapsed" Name="_lblNombreLicenciatarioFiltrar" Grid.Column="3" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Center">
+                            <TextBlock Text="{x:Static recurso:Etiquetas.lblNombre}"/>
+                        </Label>
+                        <custom:ByTTextBox Visibility="Collapsed" Name="_txtNombreLicenciatarioFiltrar" MaxLength="40"  Text="" IsEnabled="False" 
+                             VerticalContentAlignment="Center" Grid.Row="1" Grid.Column="4" GotFocus="_txtLicenciatarioFiltrar_GotFocus"
+                             Grid.ColumnSpan="2" Margin="5,0,0,0" />
+                        <!--Fin Campo-->
+
+                        <!--Campo-->
+                        <Button IsEnabled="True" Name="_btnConsultarLicenciatario" Width="65" IsDefault="False" Grid.Row="1" Grid.Column="6" Height="25" 
+                                HorizontalAlignment="Right" Click="_btnConsultar" Visibility="Collapsed">
+                            <TextBlock Text="{x:Static recurso:Etiquetas.btnConsultar}"/>
+                        </Button>
+                        <!--Fin Campo-->
+                        <!--Fin de datos de Licenciatario-->
+                    </Grid>
+                </WrapPanel>
+
+
+
+                <!--Apoderado de Licenciatario-->
+                <WrapPanel>
+                    <Grid Width="640" DataContext="{Binding}" Name="_gridDatosApoderadoLicenciatario">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <!--Datos de Carga de Apoderado Licenciatario-->
+
+                        <Label Name="_lblNombreApoderadoLicenciatario" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Center" >
+                            <TextBlock Text="{x:Static recurso:Etiquetas.lblApoderado}"/>
+                        </Label>
+                        <custom:ByTTextBox  IsEnabled="False"  Grid.Column="1" Grid.Row="0" Name="_txtNombreApoderadoLicenciatario" IsReadOnly="True"
+                                            VerticalAlignment="Center" MaxLength="255" Grid.ColumnSpan="7" Text="{Binding Path=Nombre}"
+                                            MouseDoubleClick="_txtNombreApoderadoLicenciatario_MouseDoubleClick" BorderBrush="LightGreen"></custom:ByTTextBox>
+
+                        <ListView Grid.Row="2" Grid.ColumnSpan="7" Grid.RowSpan="3" Name="_lstApoderadosLicenciatario" ItemsSource="{Binding}" 
+                        SelectionMode="Single" MouseDoubleClick="_lstApoderadosLicenciatario_MouseDoubleClick"
+                        Style="{DynamicResource EstiloListView}" Visibility="Collapsed" Height="150"  VerticalAlignment="Top">
+                            <ListView.View>
+                                <GridView>
+                                    <GridViewColumn Width="45">
+                                        <GridViewColumnHeader Click="_OrdenarApoderadosLicenciatario_Click" Tag="Id" Content="{x:Static recurso:Etiquetas.lsvId}"/>
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBlock>
+                                                    <TextBlock.Text>
+                                                        <Binding Path="Id"/>
+                                                    </TextBlock.Text>
+                                                </TextBlock>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                    <GridViewColumn DisplayMemberBinding="{Binding Path=Nombre}" Width="300">
+                                        <GridViewColumnHeader Click="_OrdenarApoderadosLicenciatario_Click" Tag="Nombre" Content="{x:Static recurso:Etiquetas.lsvNombre}"/>
+                                    </GridViewColumn>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                        <!--Fin de Datos de Carga de Apoderado Licenciatario-->
+
+                        <!--Campo-->
+                        <Label Name="_lblApoderadoLicenciatarioFiltrar"  Grid.Column="0" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Center" Visibility="Collapsed">
+                            <TextBlock Text="{x:Static recurso:Etiquetas.lblApoderado}"/>
+                        </Label>
+                        <!--Fin Campo-->
+
+                        <!--Campo-->
+                        <Label Name="_lblIdApoderadoLicenciatarioFiltrar" Grid.Column="1" Visibility="Collapsed" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Center" >
+                            <TextBlock Text="{x:Static recurso:Etiquetas.lblId}"/>
+                        </Label>
+                        <custom:ByTTextBox  IsEnabled="False"  Grid.Column="2" Grid.Row="1" Name="_txtIdApoderadoLicenciatarioFiltrar" VerticalAlignment="Center" 
+                                            MaxLength="255" Grid.ColumnSpan="1" Visibility="Collapsed" 
+                                            GotFocus="_txtApoderadoLicenciatarioFiltrar_GotFocus"></custom:ByTTextBox>
+                        <!--Fin Campo-->
+
+                        <!--Campo-->
+                        <Label Name="_lblNombreApoderadoLicenciatarioFiltrar" Grid.Column="3" Visibility="Collapsed" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Center" >
+                            <TextBlock Text="{x:Static recurso:Etiquetas.lblNombre}"/>
+                        </Label>
+                        <custom:ByTTextBox  IsEnabled="False"  Grid.Column="4" Grid.Row="1" Name="_txtNombreApoderadoLicenciatarioFiltrar" VerticalAlignment="Center" 
+                                            MaxLength="255" Visibility="Collapsed" Grid.ColumnSpan="2" 
+                                            GotFocus="_txtApoderadoLicenciatarioFiltrar_GotFocus"></custom:ByTTextBox>
+                        <!--Fin Campo-->
+
+                        <!--Campo-->
+                        <Button IsEnabled="True" Name="_btnConsultarApoderadoLicenciatario" Width="65" IsDefault="False" Grid.Row="1" Grid.Column="7" Height="25" 
+                                HorizontalAlignment="Right" Click="_btnConsultar" Visibility="Collapsed">
+                            <TextBlock Text="{x:Static recurso:Etiquetas.btnConsultar}"/>
+                        </Button>
+                        <!--Fin Campo-->
+                    </Grid>
+                </WrapPanel>
+                <!--Fin Apoderado de Licenciatario-->
+
+                <!--Poder de Licenciatario-->
+                <WrapPanel>
+                    <Grid Width="640" DataContext="{Binding}" Name="_gridDatosPoderLicenciatario">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <!--Datos de Carga de Poder de Licenciatario-->
+                        <Label Name="_lblIdPoderLicenciatario" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center">
+                            <TextBlock Text="{x:Static recurso:Etiquetas.lblPoder}"/>
+                        </Label>
+                        <custom:ByTTextBox  IsEnabled="False"  Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="2" Name="_txtIdPoderLicenciatario" 
+                                            VerticalAlignment="Center" MouseDoubleClick="_txtIdPoderLicenciatario_MouseDoubleClick" IsReadOnly="True"
+                                            MaxLength="255" Text="{Binding Path=Id}" BorderBrush="LightGreen"></custom:ByTTextBox>
+
+                        <Label Name="_lblFomentoLicenciatario" Grid.Row="0" Grid.Column="3" HorizontalAlignment="Right" VerticalAlignment="Center">
+                            <TextBlock Text="{x:Static recurso:Etiquetas.lblFomento}"/>
+                        </Label>
+                        <custom:ByTTextBox  IsEnabled="False"  Grid.Column="4" Grid.ColumnSpan="2" Grid.Row="0" Name="_txtNumPoderLicenciatario" 
+                                            VerticalAlignment="Center" MaxLength="255" IsReadOnly="True"
+                                            Text="{Binding Path=NumPoder}"></custom:ByTTextBox>
+                        
+                        <ListView Grid.Row="2" Grid.ColumnSpan="7" Grid.RowSpan="3" Name="_lstPoderesLicenciatario" ItemsSource="{Binding}" 
+                        SelectionMode="Single" MouseDoubleClick="_lstPoderesLicenciatario_MouseDoubleClick"
+                        Style="{DynamicResource EstiloListView}" Visibility="Collapsed" Height="150"  VerticalAlignment="Top">
+                            <ListView.View>
+                                <GridView>
+                                    <GridViewColumn Width="45">
+                                        <GridViewColumnHeader Click="_OrdenarPoderesLicenciatario_Click" Tag="Id" Content="{x:Static recurso:Etiquetas.lsvId}"/>
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBlock>
+                                                    <TextBlock.Text>
+                                                        <Binding Path="Id" Converter="{StaticResource convertir}"/>
+                                                    </TextBlock.Text>
+                                                </TextBlock>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                    <GridViewColumn DisplayMemberBinding="{Binding Path=NumPoder}" Width="300">
+                                        <GridViewColumnHeader Click="_OrdenarPoderesLicenciatario_Click" Tag="Fomento" Content="{x:Static recurso:Etiquetas.lsvFomento}"/>
+                                    </GridViewColumn>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                        <!--Fin de Datos de Carga de Poder de Licenciatario-->
+
+                        <!--Datos de Poder de Licenciatario-->
+                        <!--Campo-->
+                        <Label Name="_lblPoderLicenciatarioFiltrar"  Grid.Column="0" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Center" Visibility="Collapsed">
+                            <TextBlock Text="{x:Static recurso:Etiquetas.lblPoder}"/>
+                        </Label>
+                        <!--Fin Campo-->
+                        
+                        <Label Name="_lblIdPoderLicenciatarioFiltrar" Grid.Row="1" Visibility="Collapsed" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Center">
+                            <TextBlock Text="{x:Static recurso:Etiquetas.lblId}"/>
+                        </Label>
+                        <custom:ByTTextBox  IsEnabled="False"  Grid.Column="2" Grid.ColumnSpan="1" Grid.Row="1" Name="_txtIdPoderLicenciatarioFiltrar" 
+                                            VerticalAlignment="Center" Visibility="Collapsed" MaxLength="255"
+                                            GotFocus="_txtPoderLicenciatarioFiltrar_GotFocus"></custom:ByTTextBox>
+
+                        <!--Campo-->
+                        <DatePicker Grid.ColumnSpan="2" Grid.Row="1" Grid.Column="4"  HorizontalAlignment="Right"  Name="_dpkFechaPoderLicenciatarioFiltrar" Width="180"
+                                    Focusable="False" BorderBrush="{x:Null}">
+                            <DatePicker.SelectedDate>
+                                <Binding Path="Fecha" UpdateSourceTrigger="PropertyChanged"/>
+                            </DatePicker.SelectedDate>
+                        </DatePicker>
+                        <!--Fin Campo-->
+
+                        <Button IsEnabled="True" Name="_btnConsultarPoderLicenciatario" Width="65" IsDefault="False" Grid.Row="1" Grid.Column="7" Height="25" 
+                                HorizontalAlignment="Right" Click="_btnConsultar" Visibility="Collapsed">
+                            <TextBlock Text="{x:Static recurso:Etiquetas.btnConsultar}"/>
+                        </Button>
+                        
+                        <!--Campo-->
+                        <Label Name="_lblFechaPoderLicenciatario" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center">
+                            <TextBlock Text="{x:Static recurso:Etiquetas.lblFecha}"/>
+                        </Label>
+                        <custom:ByTTextBox  IsEnabled="False"  Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="1" Name="_txtFechaPoderLicenciatario" VerticalAlignment="Center" 
+                                            MaxLength="255" Text="{Binding Path=Fecha}" IsReadOnly="True"></custom:ByTTextBox>
+                        <!--Fin Campo-->
+
+                        <!--Campo-->
+                        <Label Name="_lblBoletinPoderLicenciatario" Grid.Row="1" Grid.Column="3" HorizontalAlignment="Right" VerticalAlignment="Center">
+                            <TextBlock Text="{x:Static recurso:Etiquetas.lblBoletin}"/>
+                        </Label>
+                        <custom:ByTTextBox  IsEnabled="False"  Grid.Column="4" Grid.Row="1" Grid.ColumnSpan="2" Name="_txtBoletinPoderLicenciatario" VerticalAlignment="Center" 
+                                            MaxLength="255" Text="{Binding Path=Boletin.Id}" IsReadOnly="True"></custom:ByTTextBox>
+                        <!--Fin Campo-->
+
+                        <!--Campo-->
+                        <Label Name="_lblAnexoPoderLicenciatario" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center">
+                            <TextBlock Text="{x:Static recurso:Etiquetas.lblAnexo}"/>
+                        </Label>
+                        <custom:ByTTextBox  IsEnabled="False"  Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="2" Name="_txtAnexoPoderLicenciatario" VerticalAlignment="Center"
+                                            MaxLength="255" Text="{Binding Path=Anexo}" IsReadOnly="True"></custom:ByTTextBox>
+                        <!--Fin Campo-->
+
+                        <!--Campo-->
+                        <Label Name="_lblFacultadPoderLicenciatario" Grid.Row="2" Grid.Column="3" HorizontalAlignment="Right" VerticalAlignment="Center">
+                            <TextBlock Text="{x:Static recurso:Etiquetas.lblFacultad}"/>
+                        </Label>
+                        <custom:ByTTextBox  IsEnabled="False"  Grid.Column="4" Grid.Row="2" Grid.ColumnSpan="2" Name="_txtFacultadPoderLicenciatario" VerticalAlignment="Center" 
+                                            MaxLength="255" Text="{Binding Path=Facultad}" IsReadOnly="True"></custom:ByTTextBox>
+                        <!--Fin Campo-->
+
+                        <!--Fin datos de Poder de Licenciatario-->
+                    </Grid>
+                </WrapPanel>
+                <!--Fin de Poder de Licenciatario-->
+                <!--Fin Licenciatario-->
+
+                <Separator Margin="5,5,0,0"/>
+                <WrapPanel>
+                    <Grid Width="640">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        
+                        <Label Name="_lblOtrosLicencia" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center">
+                            <TextBlock Text="{x:Static recurso:Etiquetas.lblOtros}"/>
+                        </Label>
+                        <custom:ByTTextBox  IsEnabled="False"  Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="0" Name="_txtOtrosLicencia" 
+                                            VerticalAlignment="Center" MaxLength="255" Text="{Binding Path=OtrosS1}"></custom:ByTTextBox>
+
+
+                        <Label Name="_lblReferenciaLicencia" Grid.Row="0" Grid.Column="4" HorizontalAlignment="Right" VerticalAlignment="Center">
+                            <TextBlock Text="{x:Static recurso:Etiquetas.lblReferencia}"/>
+                        </Label>
+                        <custom:ByTTextBox  IsEnabled="False"  Grid.Column="5" Grid.ColumnSpan="3" Grid.Row="0" Name="_txtReferenciaLicencia" VerticalAlignment="Center"
+                                            MaxLength="255" Text="{Binding Path=Referencia}"></custom:ByTTextBox>
+
+
+                        <Label Name="_lblAnexoLicencia" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center">
+                            <TextBlock Text="{x:Static recurso:Etiquetas.lblAnexo}"/>
+                        </Label>
+                        <custom:ByTTextBox  IsEnabled="False"  Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="1" Name="_txtAnexoLicencia" VerticalAlignment="Center" 
+                                            MaxLength="255" Text="{Binding Path=Anexo}"></custom:ByTTextBox>
+
+
+                        <Label Name="_lblObservacionLicencia" Grid.Row="1" Grid.Column="4" HorizontalAlignment="Right" VerticalAlignment="Center">
+                            <TextBlock Text="{x:Static recurso:Etiquetas.lblObservacion}"/>
+                        </Label>
+                        <custom:ByTTextBox  IsEnabled="False"  Grid.Column="5" Grid.ColumnSpan="3" Grid.Row="1" Name="_txtObservacionLicencia" 
+                                            VerticalAlignment="Center" MaxLength="255" Text="{Binding Path=Observacion}"></custom:ByTTextBox>
+
+
+                        <Label Name="_lblComentarioLicencia" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center">
+                            <TextBlock Text="{x:Static recurso:Etiquetas.lblComentario}"/>
+                        </Label>
+                        <custom:ByTTextBox  IsEnabled="False"  Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="2" Name="_txtComentarioLicencia" VerticalAlignment="Center" 
+                                            MaxLength="255" Text="{Binding Path=Comentario}"></custom:ByTTextBox>
+
+                        <Label Name="_lblBoletinLicencia" Grid.Row="2" Grid.Column="4" HorizontalAlignment="Right" VerticalAlignment="Center">
+                            <TextBlock Text="{x:Static recurso:Etiquetas.lblBoletin}"/>
+                        </Label>
+                        <custom:ByTTextBox  IsEnabled="False"  Grid.Column="5" Grid.ColumnSpan="1" Grid.Row="2" Name="_txtBoletinLicencia" VerticalAlignment="Center" 
+                                            MaxLength="255" Text="{Binding Path=BoletinPublicacion.Id}"></custom:ByTTextBox>
+
+
+                        <CheckBox Grid.Column="7" Grid.Row="2" Content="{x:Static recurso:Etiquetas.chkAsientoEnLibro}" IsEnabled="False"
+                                  Height="32" HorizontalAlignment="Right" IsChecked="{Binding Path=BActa}" Margin="5,0,0,0" Name="_chkAsientoEnLibro" VerticalAlignment="Center"
+                                  />
+                        
+                        
+
+                    </Grid>
+                </WrapPanel>              
+
+                <WrapPanel>
+                    <Grid Width="640">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+
+                        <Button Name="_btnPlanilla" Grid.Row="0" Grid.Column="0"  VerticalAlignment="Bottom" Height="25" Width="90"
+                    Click="_btnPlanilla_Click">
+                            <TextBlock Name="_txbPlanilla" Text="{x:Static recurso:Etiquetas.btnPlanilla}"/>
+                        </Button>
+
+                        <Button Name="_btnAnexo" Grid.Row="0" Grid.Column="1" VerticalAlignment="Bottom" Height="25" Width="90"
+                    Click="_btnAnexo_Click">
+                            <TextBlock Name="_txbAnexo" Text="{x:Static recurso:Etiquetas.btnAnexo}"/>
+                        </Button>
+
+                        <Button Name="_btnCarpeta" Grid.Row="0" Grid.Column="2" VerticalAlignment="Bottom" Height="25" Width="90"
+                    Click="_btnCarpeta_Click">
+                            <TextBlock Name="_txbCarpeta" Text="{x:Static recurso:Etiquetas.btnCarpeta}"/>
+                        </Button>
+
+                        <Button Name="_btnPlanillaVan" Grid.Row="0" Grid.Column="4" VerticalAlignment="Bottom" Height="25" Width="90"
+                    Click="_btnPlanillaVan_Click">
+                            <TextBlock Name="_txbPlanillaVan" Text="{x:Static recurso:Etiquetas.btnPlanillaVan}"/>
+                        </Button>
+
+                        <Button Name="_btnPlanillaVienen" Grid.Row="0" Grid.Column="5" VerticalAlignment="Bottom" Height="25" Width="90"
+                    Click="_btnPlanillaVienen_Click">
+                            <TextBlock Name="_txbPlanillaVienen" Text="{x:Static recurso:Etiquetas.btnPlanillaVienen}"/>
+                        </Button>
+
+                    </Grid>
+                </WrapPanel>
+
+            </StackPanel>
+        </GroupBox>
+
+        <WrapPanel Grid.Row="2" Grid.ColumnSpan="3" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="5" Orientation="Horizontal">
+            <Button Name="_btnModificar"  VerticalAlignment="Bottom" Height="25" Width="90"
+                    Click="_btnModificar_Click">
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding ElementName=_txtDescripcion,Path=(Validation.HasError)}" Value="True">
+                                <Setter Property="IsEnabled" Value="False" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+                <TextBlock Name="_txbModificar" Text="{x:Static recurso:Etiquetas.btnModificar}"/>
+            </Button>
+            <Button Name="_btnEliminar" VerticalAlignment="Bottom" Height="25" Width="90"
+                    Click="_btnEliminar_Click">
+                <TextBlock Name="_txbEliminar" Text="{x:Static recurso:Etiquetas.btnEliminar}"/>
+            </Button>
+            <Button Name="_btnRegresar" VerticalAlignment="Bottom" Height="25" Width="90"
+                    Click="_btnRegresar_Click">
+                <TextBlock Name="_txbCancelar" Text="{x:Static recurso:Etiquetas.btnRegresar}"/>
+            </Button>
+        </WrapPanel>
+    </Grid>
+</Page>

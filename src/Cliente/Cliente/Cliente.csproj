@@ -182,7 +182,9 @@
     <Compile Include="Contratos\Principales\IVentanaPrincipal.cs" />
     <Compile Include="Contratos\Traspasos\Cesiones\IConsultarCesiones.cs" />
     <Compile Include="Contratos\Traspasos\Cesiones\IGestionarCesion.cs" />
+    <Compile Include="Contratos\Traspasos\Licencias\IConsultarLicencias.cs" />
     <Compile Include="Contratos\Traspasos\CambiosDeDomicilio\IConsultarCambiosDeDomicilio.cs" />
+    <Compile Include="Contratos\Traspasos\Licencias\IGestionarLicencia.cs" />
     <Compile Include="Contratos\Traspasos\CambiosDeDomicilio\IGestionarCambioDeDomicilio.cs" />
     <Compile Include="Contratos\Traspasos\Fusiones\IConsultarFusiones.cs" />
     <Compile Include="Contratos\Traspasos\Fusiones\IGestionarFusion.cs" />
@@ -291,6 +293,8 @@
     <Compile Include="Presentadores\Principales\PresentadorVentanaPrincipal.cs" />
     <Compile Include="Presentadores\Traspasos\Cesiones\PresentadorConsultarCesiones.cs" />
     <Compile Include="Presentadores\Traspasos\Cesiones\PresentadorGestionarCesion.cs" />
+    <Compile Include="Presentadores\Traspasos\Licencias\PresentadorConsultarLicencias.cs" />
+    <Compile Include="Presentadores\Traspasos\Licencias\PresentadorGestionarLicencia.cs" />
     <Compile Include="Presentadores\Traspasos\CambiosDeDomicilio\PresentadorConsultarCambiosDeDomicilio.cs" />
     <Compile Include="Presentadores\Traspasos\CambiosDeDomicilio\PresentadorGestionarCambioDeDomicilio.cs" />
     <Compile Include="Presentadores\Traspasos\Fusiones\PresentadorConsultarFusiones.cs" />
@@ -606,6 +610,12 @@
     </Compile>
     <Compile Include="Ventanas\Traspasos\Cesiones\GestionarCesion.xaml.cs">
       <DependentUpon>GestionarCesion.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Traspasos\Licencias\ConsultarLicencias.xaml.cs">
+      <DependentUpon>ConsultarLicencias.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Traspasos\Licencias\GestionarLicencia.xaml.cs">
+      <DependentUpon>GestionarLicencia.xaml</DependentUpon>
     </Compile>
     <Compile Include="Ventanas\Traspasos\CambiosDeDomicilio\ConsultarCambiosDeDomicilio.xaml.cs">
       <DependentUpon>ConsultarCambiosDeDomicilio.xaml</DependentUpon>
@@ -1020,6 +1030,14 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Ventanas\Traspasos\Cesiones\GestionarCesion.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\Traspasos\Licencias\ConsultarLicencias.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\Traspasos\Licencias\GestionarLicencia.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
