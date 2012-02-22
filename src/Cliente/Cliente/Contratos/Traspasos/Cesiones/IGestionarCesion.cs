@@ -105,11 +105,11 @@ namespace Trascend.Bolet.Cliente.Contratos.Traspasos.Cesiones
 
         string NombreApoderadoCedente { set; }
 
-        string NombreApoderadoCesionario { set; }        
+        string NombreApoderadoCesionario { set; }
 
-        string IdPoderCedente { set; }
+        string IdPoderCedente { set; get; }
 
-        string IdPoderCesionario { set; }
+        string IdPoderCesionario { set; get; }
 
         string PaisCedente { set; }
 
@@ -138,5 +138,13 @@ namespace Trascend.Bolet.Cliente.Contratos.Traspasos.Cesiones
         SortAdorner CurAdorner { get; set; }
 
         void Mensaje(string mensaje, int opcion);
+
+        void ConvertirEnteroMinimoABlanco(string tipo);
+
+        void GestionarBotonConsultarInteresados(string tipo, bool value);
+        
+        void GestionarBotonConsultarApoderados(string tipo, bool value);
+        
+        void GestionarBotonConsultarPoderes(string tipo, bool value);
     }
 }

@@ -322,11 +322,13 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Cesiones
 
         public string IdPoderCedente
         {
+            get { return this._txtIdPoderCedente.Text; }
             set { this._txtIdPoderCedente.Text = value; }
         }
 
         public string IdPoderCesionario
         {
+            get { return this._txtIdPoderCesionario.Text; }
             set { this._txtIdPoderCesionario.Text = value; }
         }
 
@@ -461,6 +463,56 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Cesiones
             
         }
 
+        public void ConvertirEnteroMinimoABlanco(string tipo)
+        {
+            if (tipo.Equals("Cedente"))
+            {
+                if (int.Parse(this.IdPoderCedente) == int.MinValue)
+                    this.IdPoderCedente = "";
+            }
+            if (tipo.Equals("Cesionario"))
+            {
+                if (int.Parse(this.IdPoderCesionario) == int.MinValue)
+                    this.IdPoderCesionario = "";
+            }
+        }
+
+        public void GestionarBotonConsultarInteresados(string tipo, bool value)
+        {
+            if (tipo.Equals("Cedente"))
+            {
+                this._btnConsultarCedente.IsEnabled = value;
+            }
+            else if (tipo.Equals("Cesionario"))
+            {
+                this._btnConsultarCesionario.IsEnabled = value;
+            }
+        }
+
+        public void GestionarBotonConsultarApoderados(string tipo, bool value)
+        {
+            if (tipo.Equals("Cedente"))
+            {
+                this._btnConsultarApoderadoCedente.IsEnabled = value;
+            }
+            else if (tipo.Equals("Cesionario"))
+            {
+                this._btnConsultarApoderadoCesionario.IsEnabled = value;
+            }
+        }
+
+        public void GestionarBotonConsultarPoderes(string tipo, bool value)
+        {
+            if (tipo.Equals("Cedente"))
+            {
+                this._btnConsultarPoderCedente.IsEnabled = value;
+            }
+            else if (tipo.Equals("Cesionario"))
+            {
+                this._btnConsultarPoderCesionario.IsEnabled = value;
+            }
+        }
+
         #region Marca
 
         private void _lstMarcas_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
@@ -552,6 +604,16 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Cesiones
             {
                 GestionarVisibilidadDatosDeCedente(Visibility.Visible);
                 GestionarVisibilidadFiltroCedente(Visibility.Collapsed);
+
+                if (this._presentador.VerificarCambioInteresado("Cedente"))
+                {
+                    this._btnConsultarPoderCedente.IsEnabled = false;                    
+                }
+                else
+                {
+                    this._btnConsultarPoderCedente.IsEnabled = true;                    
+                }
+                
             }
 
         }
@@ -563,7 +625,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Cesiones
                 GestionarVisibilidadDatosDePoderCedente(Visibility.Visible);
                 GestionarVisibilidadFiltroPoderCedente(Visibility.Collapsed);
 
-                if (this._presentador.VerificarCambioPoder())
+                if (this._presentador.VerificarCambioPoder("Cedente"))
                 {
                     this._btnConsultarApoderadoCedente.IsEnabled = false;
                     this._btnConsultarCedente.IsEnabled = false;
@@ -582,6 +644,15 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Cesiones
             {
                 GestionarVisibilidadDatosDeApoderadoCedente(Visibility.Visible);
                 GestionarVisibilidadFiltroApoderadoCedente(Visibility.Collapsed);
+
+                if (this._presentador.VerificarCambioAgente("Cedente"))
+                {
+                    this._btnConsultarPoderCedente.IsEnabled = false;                    
+                }
+                else
+                {
+                    this._btnConsultarPoderCedente.IsEnabled = true;                    
+                }
             }
         }
 
@@ -774,7 +845,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Cesiones
         {
             this._btnConsultarPoderCedente.IsDefault = true;
             this._btnModificar.IsDefault = false;
-        }
+        }        
 
         #endregion
 
@@ -786,6 +857,15 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Cesiones
             {
                 GestionarVisibilidadDatosDeCesionario(Visibility.Visible);
                 GestionarVisibilidadFiltroCesionario(Visibility.Collapsed);
+
+                if (this._presentador.VerificarCambioInteresado("Cesionario"))
+                {
+                    this._btnConsultarPoderCesionario.IsEnabled = false;
+                }
+                else
+                {
+                    this._btnConsultarPoderCesionario.IsEnabled = true;
+                }
             }
         }
 
@@ -795,6 +875,15 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Cesiones
             {
                 GestionarVisibilidadDatosDeApoderadoCesionario(Visibility.Visible);
                 GestionarVisibilidadFiltroApoderadoCesionario(Visibility.Collapsed);
+
+                if (this._presentador.VerificarCambioAgente("Cesionario"))
+                {
+                    this._btnConsultarPoderCesionario.IsEnabled = false;
+                }
+                else
+                {
+                    this._btnConsultarPoderCesionario.IsEnabled = true;
+                }
             }
         }
 
@@ -804,8 +893,17 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Cesiones
             {
                 GestionarVisibilidadDatosDePoderCesionario(Visibility.Visible);
                 GestionarVisibilidadFiltroPoderCesionario(Visibility.Collapsed);
-                this._btnConsultarApoderadoCesionario.IsEnabled = false;
-                this._btnConsultarCesionario.IsEnabled = false;
+
+                if (this._presentador.VerificarCambioPoder("Cesionario"))
+                {
+                    this._btnConsultarApoderadoCesionario.IsEnabled = false;
+                    this._btnConsultarCesionario.IsEnabled = false;
+                }
+                else
+                {
+                    this._btnConsultarApoderadoCesionario.IsEnabled = true;
+                    this._btnConsultarCesionario.IsEnabled = true;
+                }                
             }
         }
 
@@ -1000,6 +1098,6 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Cesiones
         } 
 
         #endregion
-    
+        
     }
 }
