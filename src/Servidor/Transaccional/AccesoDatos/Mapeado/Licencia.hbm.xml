@@ -24,8 +24,8 @@
     <property name="OtrosS2" column="XOTROS2" type="string"/>
     <property name="OtrosS3" column="XOTROS3" type="string"/>
     <property name="Ubicacion" column="XUBICACION" type="string"/>
-    <property name="FechaPublicacion" column="FLICENCIA" type="Date"/>
-    <property name="Fecha" column="FPUBLICACION" type="Date"/>
+    <property name="FechaPublicacion" column="FPUBLICACION" type="Date"/>
+    <property name="Fecha" column="FLICENCIA" type="Date"/>
 
     <many-to-one name="Marca" class="Marca">
       <column name="CMARCA"/>
