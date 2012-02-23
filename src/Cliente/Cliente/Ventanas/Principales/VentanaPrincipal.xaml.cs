@@ -353,7 +353,6 @@ namespace Trascend.Bolet.Cliente.Ventanas.Principales
 
         }
 
-        private void _menuItemLicencias_Click(object sender, RoutedEventArgs e)
         private void _menuItemLicenciasGestionar_Click(object sender, RoutedEventArgs e)
         {
             // this._presentador.IrGestionarLicencia();
@@ -373,6 +372,17 @@ namespace Trascend.Bolet.Cliente.Ventanas.Principales
         {
 
         }
+
+        private void _menuItemCambiosDeNombreConsultar_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.ConsultarCambiosDeNombre();
+        }
+
+        private void _menuItemCambiosNombreAgregar_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.GestionarCambioDeNombre();
+        }
+         
         #endregion
 
         #endregion
@@ -409,7 +419,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.Principales
         }
 
         #endregion   
-         
+
+
 
     }
 }

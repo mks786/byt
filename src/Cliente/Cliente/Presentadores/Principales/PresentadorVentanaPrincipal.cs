@@ -38,6 +38,7 @@ using Trascend.Bolet.Cliente.Ventanas.Traspasos.Cesiones;
 using Trascend.Bolet.Cliente.Ventanas.Traspasos.Licencias;
 using Trascend.Bolet.Cliente.Ventanas;
 using Trascend.Bolet.Cliente.Ventanas.Traspasos.CambiosDeDomicilio;
+using Trascend.Bolet.Cliente.Ventanas.Traspasos.CambiosDeNombre;
 using Trascend.Bolet.Cliente.Ventanas.Traspasos.CambiosPeticionario;
 
 namespace Trascend.Bolet.Cliente.Presentadores.Principales
@@ -375,6 +376,22 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
         public void ConsultarCambiosDeDomicilio()
         {
             this._ventana.Contenedor.Navigate(new ConsultarCambiosDeDomicilio());
+        }
+
+        /// <summary>
+        /// Método que coloca la página "CambiosDeNombre" en el Frame principal
+        /// </summary>
+        public void ConsultarCambiosDeNombre()
+        {
+            this._ventana.Contenedor.Navigate(new ConsultarCambiosDeNombre());
+        }
+
+        /// <summary>
+        /// Método que coloca la página "CambiosDeNombre" en el Frame principal
+        /// </summary>
+        public void GestionarCambioDeNombre()
+        {
+         //   this._ventana.Contenedor.Navigate(new GestionarCambioDeNombre());
         }
 
         /// <summary>

@@ -180,6 +180,8 @@
     <Compile Include="Contratos\Objetos\IConsultarObjetos.cs" />
     <Compile Include="Contratos\Objetos\IGestionarObjetosXRoles.cs" />
     <Compile Include="Contratos\Principales\IVentanaPrincipal.cs" />
+    <Compile Include="Contratos\Traspasos\CambiosDeNombre\IConsultarCambiosDeNombre.cs" />
+    <Compile Include="Contratos\Traspasos\CambiosDeNombre\IGestionarCambioDeNombre.cs" />
     <Compile Include="Contratos\Traspasos\Cesiones\IConsultarCesiones.cs" />
     <Compile Include="Contratos\Traspasos\Cesiones\IGestionarCesion.cs" />
     <Compile Include="Contratos\Traspasos\Licencias\IConsultarLicencias.cs" />
@@ -293,6 +295,8 @@
     <Compile Include="Presentadores\Objetos\PresentadorGestionarObjetosXRoles.cs" />
     <Compile Include="Presentadores\PresentadorBase.cs" />
     <Compile Include="Presentadores\Principales\PresentadorVentanaPrincipal.cs" />
+    <Compile Include="Presentadores\Traspasos\CambiosDeNombre\PresentadorConsultarCambiosDeNombre.cs" />
+    <Compile Include="Presentadores\Traspasos\CambiosDeNombre\PresentadorGestionarCambioDeNombre.cs" />
     <Compile Include="Presentadores\Traspasos\Cesiones\PresentadorConsultarCesiones.cs" />
     <Compile Include="Presentadores\Traspasos\Cesiones\PresentadorGestionarCesion.cs" />
     <Compile Include="Presentadores\Traspasos\Licencias\PresentadorConsultarLicencias.cs" />
@@ -608,6 +612,12 @@
     </Compile>
     <Compile Include="Ventanas\Roles\ConsultarRoles.xaml.cs">
       <DependentUpon>ConsultarRoles.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Traspasos\CambiosDeNombre\ConsultarCambiosDeNombre.xaml.cs">
+      <DependentUpon>ConsultarCambiosDeNombre.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Traspasos\CambiosDeNombre\GestionarCambioDeNombre.xaml.cs">
+      <DependentUpon>GestionarCambioDeNombre.xaml</DependentUpon>
     </Compile>
     <Compile Include="Ventanas\Traspasos\Cesiones\ConsultarCesiones.xaml.cs">
       <DependentUpon>ConsultarCesiones.xaml</DependentUpon>
@@ -1034,6 +1044,14 @@
     <Page Include="Ventanas\Roles\ConsultarRoles.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Ventanas\Traspasos\CambiosDeNombre\ConsultarCambiosDeNombre.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\Traspasos\CambiosDeNombre\GestionarCambioDeNombre.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Ventanas\Traspasos\Cesiones\ConsultarCesiones.xaml">
       <Generator>MSBuild:Compile</Generator>

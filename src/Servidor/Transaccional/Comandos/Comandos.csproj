@@ -66,6 +66,7 @@
     <Compile Include="Comandos\ComandosCambioDeDomicilio\ComandoEliminarCambioDeDomicilio.cs" />
     <Compile Include="Comandos\ComandosCambioDeDomicilio\ComandoInsertarOModificarCambioDeDomicilio.cs" />
     <Compile Include="Comandos\ComandosCambioDeDomicilio\ComandoVerificarExistenciaCambioDeDomicilio.cs" />
+    <Compile Include="Comandos\ComandosCambioNombre\ComandoConsultarCambiosNombreFiltro.cs" />
     <Compile Include="Comandos\ComandosCambioPeticionario\ComandoConsultarCambiosPeticionarioFiltro.cs" />
     <Compile Include="Comandos\ComandosCambioPeticionario\ComandoConsultarTodosCambioPeticionario.cs" />
     <Compile Include="Comandos\ComandosCambioPeticionario\ComandoEliminarCambioPeticionario.cs" />

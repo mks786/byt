@@ -1665,6 +1665,12 @@ libro</value>
   <data name="lblAnterior" xml:space="preserve">
     <value>Anterior:</value>
   </data>
+  <data name="titleConsultarCambiosDeNombre" xml:space="preserve">
+    <value>Consulta Cambios de Nombre de Marcas</value>
+  </data>
+  <data name="titleGestionarCambiosDeNombre" xml:space="preserve">
+    <value>Gestionar Cambio de Nombre</value>
+  </data>
   <data name="titleConsultarCambioPeticionarios" xml:space="preserve">
     <value>Consultar Cambios de Peticionarios de Marca</value>
   </data>

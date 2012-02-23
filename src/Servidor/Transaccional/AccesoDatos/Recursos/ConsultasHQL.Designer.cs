@@ -79,6 +79,15 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Select c from CambioNombre c left join fetch c.Marca as marca left join fetch c.InteresadoActual as interesadoActual left join fetch c.InteresadoAnterior as interesadoAnterior left join fetch c.Agente as agente where .
+        /// </summary>
+        public static string CabeceraObtenerCambioDeNombre {
+            get {
+                return ResourceManager.GetString("CabeceraObtenerCambioDeNombre", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select c from CambioPeticionario c left join fetch c.Marca as marca left join fetch c.InteresadoAnterior as anterior left join fetch c.AgenteAnterior as agenteAnt left join fetch c.AgenteActual as agenteAct left join fetch c.PoderAnterior as PoderAnt  left join fetch c.PoderActual as PoderAct left join fetch c.InteresadoAnterior as interesadoAnt left join fetch c.InteresadoActual as interesadoAct left join fetch c.BoletinPublicacion as boletin where .
         /// </summary>
         public static string CabeceraObtenerCambioPeticionario {
@@ -192,6 +201,24 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         public static string FiltroObtenerCambioDeDomicilioIdMarca {
             get {
                 return ResourceManager.GetString("FiltroObtenerCambioDeDomicilioIdMarca", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to c.Id = {0}.
+        /// </summary>
+        public static string FiltroObtenerCambioDeNombreId {
+            get {
+                return ResourceManager.GetString("FiltroObtenerCambioDeNombreId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to marca.Id = {0}.
+        /// </summary>
+        public static string FiltroObtenerCambioDeNombreIdMarca {
+            get {
+                return ResourceManager.GetString("FiltroObtenerCambioDeNombreIdMarca", resourceCulture);
             }
         }
         

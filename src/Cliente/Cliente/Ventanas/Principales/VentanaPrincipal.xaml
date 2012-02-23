@@ -47,7 +47,10 @@
                         <MenuItem Name="_menuItemFusionesConsultar" Header="{x:Static resx:Etiquetas.menuItemConsultar}" Click="_menuItemFusionesConsultar_Click"/>
                         <MenuItem Name="_menuItemFusionesAgregar" Header="{x:Static resx:Etiquetas.menuItemAgregar}" Click="_menuItemMarcasAgregar_Click"/>
                     </MenuItem>
-                    <MenuItem Name="_menuItemCambioDeNombre" Header="{x:Static resx:Etiquetas.menuItemCambioDeNombre}" Click="_menuItemCambioDeNombre_Click"/>
+                    <MenuItem Name="_menuItemCambioDeNombre" Header="{x:Static resx:Etiquetas.menuItemCambioDeNombre}">
+                         <MenuItem Name="_menuItemCambiosDeNombreConsultar" Header="{x:Static resx:Etiquetas.menuItemConsultar}" Click="_menuItemCambiosDeNombreConsultar_Click"/>
+                         <MenuItem Name="_menuItemCambiosNombreAgregar" Header="{x:Static resx:Etiquetas.menuItemAgregar}" Click="_menuItemCambiosNombreAgregar_Click"/>
+                    </MenuItem>
                     <MenuItem Name="_menuItemLicencias" Header="{x:Static resx:Etiquetas.menuItemLicencias}">
                         <MenuItem Name="_menuItemLicenciasConsultar" Header="{x:Static resx:Etiquetas.menuItemConsultar}" Click="_menuItemLicenciasConsultar_Click"/>
                         <MenuItem Name="_menuItemLicenciasGestionar" Header="{x:Static resx:Etiquetas.menuItemAgregar}" Click="_menuItemLicenciasGestionar_Click"/>

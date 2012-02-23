@@ -359,6 +359,18 @@
     <value>marca.Id = {0}</value>
     <comment>Filtro por Asociado</comment>
   </data>
+  <data name="CabeceraObtenerCambioDeNombre" xml:space="preserve">
+    <value>Select c from CambioNombre c left join fetch c.Marca as marca left join fetch c.InteresadoActual as interesadoActual left join fetch c.InteresadoAnterior as interesadoAnterior left join fetch c.Agente as agente where </value>
+    <comment>Cabecera del filtro para Cambio De Nombre</comment>
+  </data>
+  <data name="FiltroObtenerCambioDeNombreId" xml:space="preserve">
+    <value>c.Id = {0}</value>
+    <comment>Filtra por id</comment>
+  </data>
+  <data name="FiltroObtenerCambioDeNombreIdMarca" xml:space="preserve">
+    <value>marca.Id = {0}</value>
+    <comment>Filtra por id de la marca</comment>
+  </data>
   <data name="CabeceraObtenerCambioPeticionario" xml:space="preserve">
     <value>Select c from CambioPeticionario c left join fetch c.Marca as marca left join fetch c.InteresadoAnterior as anterior left join fetch c.AgenteAnterior as agenteAnt left join fetch c.AgenteActual as agenteAct left join fetch c.PoderAnterior as PoderAnt  left join fetch c.PoderActual as PoderAct left join fetch c.InteresadoAnterior as interesadoAnt left join fetch c.InteresadoActual as interesadoAct left join fetch c.BoletinPublicacion as boletin where </value>
     <comment>Cabecera del query para el filtro de fusion</comment>

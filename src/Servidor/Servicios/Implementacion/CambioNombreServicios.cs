@@ -89,5 +89,24 @@ namespace Trascend.Bolet.Servicios.Implementacion
 
             return exitoso;
         }
+
+        public IList<CambioNombre> ObtenerCambioNombreFiltro(CambioNombre CambioNombre)
+        {
+            #region trace
+            if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+            IList<CambioNombre> cambiosNombre;
+
+            cambiosNombre = ControladorCambioNombre.ConsultarCambioNombreFiltro(CambioNombre);
+
+            return cambiosNombre;
+
+            #region trace
+            if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                logger.Debug("Saliendo del Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+        }
     }
 }
