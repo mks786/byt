@@ -81,6 +81,10 @@ namespace Trascend.Bolet.Cliente.Contratos.Traspasos.Fusiones
 
         #region Poder
 
+        object Poder { get; set; }
+
+        string IdPoder { set; get; }       
+
         string IdPoderFiltrar { get; }
 
         string FechaPoderFiltrar { get; }
@@ -101,5 +105,15 @@ namespace Trascend.Bolet.Cliente.Contratos.Traspasos.Fusiones
         GridViewColumnHeader CurSortCol { get; set; }
 
         SortAdorner CurAdorner { get; set; }
+
+        void Mensaje(string mensaje, int opcion);
+
+        void ConvertirEnteroMinimoABlanco();
+
+        void GestionarBotonConsultarInteresado(bool value);
+
+        void GestionarBotonConsultarApoderado(bool value);
+
+        void GestionarBotonConsultarPoder(bool value);
     }
 }

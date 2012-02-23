@@ -154,7 +154,6 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Cesiones
                 this._ventana.ApoderadoCesionario = cesion.AgenteCesionario;
                 this._ventana.PoderCedente = cesion.PoderCedente;
                 this._ventana.PoderCesionario = cesion.PoderCesionario;
-
                 
                 CargarMarca();
                                                              
@@ -1971,63 +1970,6 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Cesiones
                 this._ventana.PoderCesionarioFiltrado = BuscarPoder(listaPoderes, primerPoder);
                 this._ventana.PoderCesionario = this._ventana.PoderCesionarioFiltrado;
             }
-        }
-
-        public void VerificarCasos(string tipo)
-        {
-            
-            if (LlenarPoderes(tipo) == 1)
-            {
-                //llenamos Poderes y quitamos consultar de poder
-                ValidarListaDePoderes(this._poderesCedente, this._poderesApoderadosCedente, "Cedente");
-
-
-            }
-            else if (LlenarPoderes(tipo) == 0)
-            {
-                //llenamos agentes e interesado, quitamos consultar de los mismos
-                LlenarListaAgenteEInteresado((Poder)this._ventana.PoderCedenteFiltrado, tipo, false);           
-            }            
-        }
-
-        private int LlenarPoderes(string tipo)
-        {
-            int retorno = -1;
-
-            if (tipo.Equals("Cedente"))
-            {
-                if (((Interesado)this._ventana.InteresadoCedente).Id != int.MinValue)
-                    if (!((Agente)this._ventana.ApoderadoCedente).Id.Equals(""))
-                        if (((Poder)this._ventana.PoderCedente).Id == int.MinValue)
-                        {
-                            retorno = 1;
-                        }
-                if (((Interesado)this._ventana.InteresadoCedente).Id == int.MinValue)
-                    if (((Agente)this._ventana.ApoderadoCedente).Id.Equals(""))
-                        if (((Poder)this._ventana.PoderCedente).Id != int.MinValue)
-                        {
-                            retorno = 0;
-                        }
-                
-            }
-            else if (tipo.Equals("Cedente"))
-            {
-                if (((Interesado)this._ventana.InteresadoCesionario).Id != int.MinValue)
-                    if (!((Agente)this._ventana.ApoderadoCesionario).Id.Equals(""))
-                        if (((Poder)this._ventana.PoderCesionario).Id == int.MinValue)
-                        {
-                            retorno = 1;
-                        }
-                if (((Interesado)this._ventana.InteresadoCesionario).Id == int.MinValue)
-                    if (((Agente)this._ventana.ApoderadoCesionario).Id.Equals(""))
-                        if (((Poder)this._ventana.PoderCesionario).Id != int.MinValue)
-                        {
-                            retorno = 0;
-                        }
-            }
-
-            return retorno;
-        }
-               
+        }                           
     }
 }

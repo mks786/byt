@@ -254,7 +254,7 @@
     <comment>Filtro por Interesado</comment>
   </data>
   <data name="CabeceraObtenerFusion" xml:space="preserve">
-    <value>Select f from Fusion f left join fetch f.Marca as marca left join fetch f.InteresadoEntre as interesadoEntre left join fetch f.InteresadoSobreviviente as interesadoSobreviviente left join fetch f.Agente as agente where </value>
+    <value>Select f from Fusion f left join fetch f.Marca as marca left join fetch f.InteresadoEntre as interesadoEntre left join fetch f.InteresadoSobreviviente as interesadoSobreviviente left join fetch f.Agente as agente left join fetch f.Poder as poder where </value>
     <comment>Cabecera del query para el filtro de fusion</comment>
   </data>
   <data name="FiltroObtenerFusionFecha" xml:space="preserve">
