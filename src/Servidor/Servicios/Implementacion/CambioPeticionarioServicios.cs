@@ -90,5 +90,30 @@ namespace Trascend.Bolet.Servicios.Implementacion
 
             return exitoso;
         }
+
+        /// <summary>
+        /// Servicio que consulta una serie de CambioPeticionario por uno o mas parametros
+        /// </summary>
+        /// <param name="marca">CambioPeticionario que contiene los parametros de la consulta</param>
+        /// <returns>Lista de CambioPeticionario filtradas</returns>
+        public IList<CambioPeticionario> ObtenerCambioPeticionarioFiltro(CambioPeticionario CambioPeticionario)
+        {
+            #region trace
+            if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+            IList<CambioPeticionario> cambiosDePeticionario;
+
+            cambiosDePeticionario = ControladorCambioPeticionario.ConsultarCambioPeticionarioFiltro(CambioPeticionario);
+
+            return cambiosDePeticionario;
+
+            #region trace
+            if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                logger.Debug("Saliendo del Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+        }
+
     }
 }

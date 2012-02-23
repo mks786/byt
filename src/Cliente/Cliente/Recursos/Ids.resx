@@ -228,6 +228,9 @@
   <data name="ConsultarBoletin" xml:space="preserve">
     <value>MYPTBOLETIN</value>
   </data>
+  <data name="ConsultarCambioPeticionarios" xml:space="preserve">
+    <value>MYPMPETM</value>
+  </data>
   <data name="ConsultarCambiosDeDomicilio" xml:space="preserve">
     <value>MYPMDOMM</value>
   </data>
@@ -458,6 +461,9 @@
   </data>
   <data name="GestionarCambioDeDomicilio" xml:space="preserve">
     <value>MYPMDOMM</value>
+  </data>
+  <data name="GestionarCambioPeticionario" xml:space="preserve">
+    <value>MYPMPETM</value>
   </data>
   <data name="GestionarCesion" xml:space="preserve">
     <value>MYPMCESM</value>

@@ -53,5 +53,15 @@ namespace Trascend.Bolet.Comandos.Fabrica
         {
             throw new NotImplementedException();
         }
+
+        /// <summary>
+        /// Metodo que obtiene el comando ComandoConsultarCambiosPeticionarioFiltro
+        /// </summary>
+        /// <param name="cambioPeticionario">CambioPeticionario a consultar</param>
+        /// <returns>Lista de CambioPeticionarios que cumplan con el filtro</returns>
+        public static ComandoBase<IList<CambioPeticionario>> ObtenerComandoConsultarCambioPeticionarioFiltro(CambioPeticionario cambioPeticionario)
+        {
+            return new ComandoConsultarCambiosPeticionarioFiltro(cambioPeticionario);
+        }
     }
 }

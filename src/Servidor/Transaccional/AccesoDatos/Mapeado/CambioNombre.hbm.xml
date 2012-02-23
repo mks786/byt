@@ -24,8 +24,8 @@
     <property name="Ubicacion" column="XUBICACION" type="string"/>
     <property name="Comentario" column="XCOMENTARIO" type="string"/>
     <property name="Observacion" column="XOBSERVACION" type="string"/>
-    <property name="FechaPublicacion" column="FCESION" type="Date"/>
-    <property name="Fecha" column="FPUBLICACION" type="Date"/>
+    <property name="FechaPublicacion" column="FPUBLICACION" type="Date"/>
+    <property name="Fecha" column="FNOMBRE" type="Date"/>
 
     <many-to-one name="Marca" class="Marca">
       <column name="CMARCA"/>
@@ -40,15 +40,15 @@
     </many-to-one>
 
     <many-to-one name="Boletin" class="Boletin">
-      <column name="CBOLETIN"/>
+      <column name="CBOLETIN_PUBLICACION"/>
     </many-to-one>
 
     <many-to-one name="InteresadoActual" class="Interesado">
-      <column name="CINTERESADO"/>
+      <column name="CACTUAL"/>
     </many-to-one>
 
     <many-to-one name="InteresadoAnterior" class="Interesado">
-      <column name="CINTERESADO"/>
+      <column name="CANTERIOR"/>
     </many-to-one>
 
     <many-to-one name="Poder" class="Poder">

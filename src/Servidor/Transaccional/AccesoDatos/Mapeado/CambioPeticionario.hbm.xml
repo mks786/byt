@@ -14,12 +14,42 @@
     <property name="Comentario" column="XCOMENTARIO" type="string"/>    
     <property name="Observacion" column="XOBSERVACION" type="string"/>
     <property name="Ubicacion" column="XUBICACION" type="string"/>
-    <property name="Anexo" column="XANEXO" type="string"/>       
-        
+    <property name="Anexo" column="XANEXO" type="string"/>
     <many-to-one name="Marca" class="Marca">
       <column name="CMARCA"/>
     </many-to-one>
-    
+
+    <many-to-one name="AgenteActual" class="Agente">
+      <column name="CAGENTE_ACTUAL"/>
+    </many-to-one>
+
+    <many-to-one name="AgenteAnterior" class="Agente">
+      <column name="CAGENTE_ANTERIOR"/>
+    </many-to-one>
+
+    <many-to-one name="Asociado" class="Asociado">
+      <column name="CASOCIADO"/>
+    </many-to-one>
+
+    <many-to-one name="BoletinPublicacion" class="Boletin">
+      <column name="CBOLETIN_PUBLICACION"/>
+    </many-to-one>
+
+    <many-to-one name="InteresadoActual" class="Interesado">
+      <column name="CACTUAL"/>
+    </many-to-one>
+
+    <many-to-one name="InteresadoAnterior" class="Interesado">
+      <column name="CANTERIOR"/>
+    </many-to-one>
+
+    <many-to-one name="PoderActual" class="Poder">
+      <column name="CPODER_ACTUAL"/>
+    </many-to-one>
+
+    <many-to-one name="PoderAnterior" class="Poder">
+      <column name="CPODER_ANTERIOR"/>
+    </many-to-one>
   </class>
 </hibernate-mapping>
 

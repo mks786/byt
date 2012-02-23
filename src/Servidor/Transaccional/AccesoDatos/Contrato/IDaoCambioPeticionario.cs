@@ -5,6 +5,6 @@ namespace Trascend.Bolet.AccesoDatos.Contrato
 {
     public interface IDaoCambioPeticionario : IDaoBase<CambioPeticionario, int>
     {
-
+        IList<CambioPeticionario> ObtenerCambiosPeticionarioFiltro(CambioPeticionario CambioPeticionario);
     }
 }

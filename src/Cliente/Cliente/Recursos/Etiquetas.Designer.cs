@@ -4068,6 +4068,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Consultar Cambios de Peticionarios de Marca.
+        /// </summary>
+        public static string titleConsultarCambioPeticionarios {
+            get {
+                return ResourceManager.GetString("titleConsultarCambioPeticionarios", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Consulta Cambios de Domicilio de Marcas.
         /// </summary>
         public static string titleConsultarCambiosDeDomicilio {
@@ -4523,6 +4532,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string titleGestionarCambioDeDomicilio {
             get {
                 return ResourceManager.GetString("titleGestionarCambioDeDomicilio", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Gestionar Cambio de Peticionario de Marca.
+        /// </summary>
+        public static string titleGestionarCambioPeticionario {
+            get {
+                return ResourceManager.GetString("titleGestionarCambioPeticionario", resourceCulture);
             }
         }
         

@@ -79,6 +79,15 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Select c from CambioPeticionario c left join fetch c.Marca as marca left join fetch c.InteresadoAnterior as anterior left join fetch c.AgenteAnterior as agenteAnt left join fetch c.AgenteActual as agenteAct left join fetch c.PoderAnterior as PoderAnt  left join fetch c.PoderActual as PoderAct left join fetch c.InteresadoAnterior as interesadoAnt left join fetch c.InteresadoActual as interesadoAct left join fetch c.BoletinPublicacion as boletin where .
+        /// </summary>
+        public static string CabeceraObtenerCambioPeticionario {
+            get {
+                return ResourceManager.GetString("CabeceraObtenerCambioPeticionario", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select c from Carta c left join fetch c.Resumen as resumen left join fetch c.Asociado as asociado where .
         /// </summary>
         public static string CabeceraObtenerCarta {
@@ -183,6 +192,33 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         public static string FiltroObtenerCambioDeDomicilioIdMarca {
             get {
                 return ResourceManager.GetString("FiltroObtenerCambioDeDomicilioIdMarca", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to c.FechaCesion between &apos;{0}&apos; and &apos;{1}&apos;.
+        /// </summary>
+        public static string FiltroObtenerCambioPeticionarioFecha {
+            get {
+                return ResourceManager.GetString("FiltroObtenerCambioPeticionarioFecha", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to c.Id = {0}.
+        /// </summary>
+        public static string FiltroObtenerCambioPeticionarioId {
+            get {
+                return ResourceManager.GetString("FiltroObtenerCambioPeticionarioId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to marca.Id = {0}.
+        /// </summary>
+        public static string FiltroObtenerCambioPeticionarioIdMarca {
+            get {
+                return ResourceManager.GetString("FiltroObtenerCambioPeticionarioIdMarca", resourceCulture);
             }
         }
         

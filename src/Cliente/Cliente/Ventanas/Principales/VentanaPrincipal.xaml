@@ -35,6 +35,10 @@
                         <MenuItem Name="_menuItemCambiosDeDomicilioConsultar" Header="{x:Static resx:Etiquetas.menuItemConsultar}" Click="_menuItemCambiosDeDomicilioConsultar_Click"/>
                         <MenuItem Name="_menuItemCambiosDeDomicilioAgregar" Header="{x:Static resx:Etiquetas.menuItemAgregar}" Click="_menuItemCambiosDeDomicilioAgregar_Click"/>
                     </MenuItem>
+                    <MenuItem Name="_menuItemCambiosPeticionario" Header="{x:Static resx:Etiquetas.menuItemCambioPeticionario}">
+                        <MenuItem Name="_menuItemCambiosPeticionarioConsultar" Header="{x:Static resx:Etiquetas.menuItemConsultar}" Click="_menuItemCambiosPeticionarioConsultar_Click"/>
+                        <MenuItem Name="_menuItemCambiosPeticionarioAgregar" Header="{x:Static resx:Etiquetas.menuItemAgregar}" Click="_menuItemCambiosPeticionarioAgregar_Click"/>
+                    </MenuItem>
                     <MenuItem Name="_menuItemCesiones" Header="{x:Static resx:Etiquetas.menuItemCesiones}">
                         <MenuItem Name="_menuItemCesionesConsultar" Header="{x:Static resx:Etiquetas.menuItemConsultar}" Click="_menuItemCesionesConsultar_Click"/>
                         <MenuItem Name="_menuItemCesionesAgregar" Header="{x:Static resx:Etiquetas.menuItemAgregar}" Click="_menuItemMarcasAgregar_Click"/>
@@ -44,7 +48,6 @@
                         <MenuItem Name="_menuItemFusionesAgregar" Header="{x:Static resx:Etiquetas.menuItemAgregar}" Click="_menuItemMarcasAgregar_Click"/>
                     </MenuItem>
                     <MenuItem Name="_menuItemCambioDeNombre" Header="{x:Static resx:Etiquetas.menuItemCambioDeNombre}" Click="_menuItemCambioDeNombre_Click"/>
-                    <MenuItem Name="_menuItemCambioPeticionario" Header="{x:Static resx:Etiquetas.menuItemCambioPeticionario}" Click="_menuItemCambioPeticionario_Click"/>
                     <MenuItem Name="_menuItemLicencias" Header="{x:Static resx:Etiquetas.menuItemLicencias}">
                         <MenuItem Name="_menuItemLicenciasConsultar" Header="{x:Static resx:Etiquetas.menuItemConsultar}" Click="_menuItemLicenciasConsultar_Click"/>
                         <MenuItem Name="_menuItemLicenciasGestionar" Header="{x:Static resx:Etiquetas.menuItemAgregar}" Click="_menuItemLicenciasGestionar_Click"/>

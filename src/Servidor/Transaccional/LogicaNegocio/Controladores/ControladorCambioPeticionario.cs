@@ -177,5 +177,39 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
 
             return existe;
         }
+
+        /// <summary>
+        /// Consulta los Fusion que cumplan con los filtros establecidos en el objeto enviado
+        /// </summary>
+        /// <param name="CambioDeDomicilio">Fusion a consultar</param>
+        /// <returns>Lista de Fusion que cumplen con el filtro</returns>
+        public static IList<CambioPeticionario> ConsultarCambioPeticionarioFiltro(CambioPeticionario cambioPeticionario)
+        {
+            IList<CambioPeticionario> retorno;
+
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                ComandoBase<IList<CambioPeticionario>> comando = FabricaComandosCambioPeticionario.ObtenerComandoConsultarCambioPeticionarioFiltro(cambioPeticionario);
+                comando.Ejecutar();
+                retorno = comando.Receptor.ObjetoAlmacenado;
+
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Saliendo del Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (ApplicationException ex)
+            {
+                logger.Error(ex.Message);
+                throw ex;
+            }
+
+            return retorno;
+        }
     }
 }

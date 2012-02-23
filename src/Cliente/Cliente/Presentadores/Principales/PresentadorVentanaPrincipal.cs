@@ -38,6 +38,7 @@ using Trascend.Bolet.Cliente.Ventanas.Traspasos.Cesiones;
 using Trascend.Bolet.Cliente.Ventanas.Traspasos.Licencias;
 using Trascend.Bolet.Cliente.Ventanas;
 using Trascend.Bolet.Cliente.Ventanas.Traspasos.CambiosDeDomicilio;
+using Trascend.Bolet.Cliente.Ventanas.Traspasos.CambiosPeticionario;
 
 namespace Trascend.Bolet.Cliente.Presentadores.Principales
 {
@@ -385,13 +386,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
         }
 
         /// <summary>
-        /// Método que coloca la página "Cambio Peticionario" en el Frame principal
+        /// Método que coloca la página "CambiosDeDomicilio" en el Frame principal
         /// </summary>
-        public void CambioPeticionario()
+        public void ConsultarCambiosDePeticionario()
         {
-            throw new NotImplementedException();
+            this._ventana.Contenedor.Navigate(new ConsultarCambiosPeticionario());
         }
-
         /// <summary>
         /// Método que coloca la página "Licencias" en el Frame principal
         /// </summary>
@@ -609,6 +609,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
                                         itemNivel2.Visibility = System.Windows.Visibility.Visible;
                                     break;
                                 case "_menuItemLicencias":
+                                    if (objeto.Id.Equals(Recursos.Ids.Marca))
+                                        itemNivel2.Visibility = System.Windows.Visibility.Visible;
+                                    break;
+                                case "_menuItemCambiosPeticionario":
                                     if (objeto.Id.Equals(Recursos.Ids.Marca))
                                         itemNivel2.Visibility = System.Windows.Visibility.Visible;
                                     break;

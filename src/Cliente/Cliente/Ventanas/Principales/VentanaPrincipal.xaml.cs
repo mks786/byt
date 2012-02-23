@@ -343,11 +343,17 @@ namespace Trascend.Bolet.Cliente.Ventanas.Principales
             this._presentador.CambioDeNombre();
         }
 
-        private void _menuItemCambioPeticionario_Click(object sender, RoutedEventArgs e)
+        private void _menuItemCambiosPeticionarioConsultar_Click(object sender, RoutedEventArgs e)
         {
-            this._presentador.CambioPeticionario();
+            this._presentador.ConsultarCambiosDePeticionario();
         }
 
+        private void _menuItemCambiosPeticionarioAgregar_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void _menuItemLicencias_Click(object sender, RoutedEventArgs e)
         private void _menuItemLicenciasGestionar_Click(object sender, RoutedEventArgs e)
         {
             // this._presentador.IrGestionarLicencia();

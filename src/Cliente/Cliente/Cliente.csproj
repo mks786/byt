@@ -186,6 +186,8 @@
     <Compile Include="Contratos\Traspasos\CambiosDeDomicilio\IConsultarCambiosDeDomicilio.cs" />
     <Compile Include="Contratos\Traspasos\Licencias\IGestionarLicencia.cs" />
     <Compile Include="Contratos\Traspasos\CambiosDeDomicilio\IGestionarCambioDeDomicilio.cs" />
+    <Compile Include="Contratos\Traspasos\CambiosDePeticionario\IConsultarCambiosDePeticionario.cs" />
+    <Compile Include="Contratos\Traspasos\CambiosDePeticionario\IGestionarCambioDePeticionario.cs" />
     <Compile Include="Contratos\Traspasos\Fusiones\IConsultarFusiones.cs" />
     <Compile Include="Contratos\Traspasos\Fusiones\IGestionarFusion.cs" />
     <Compile Include="Contratos\Usuarios\IAgregarUsuario.cs" />
@@ -297,6 +299,8 @@
     <Compile Include="Presentadores\Traspasos\Licencias\PresentadorGestionarLicencia.cs" />
     <Compile Include="Presentadores\Traspasos\CambiosDeDomicilio\PresentadorConsultarCambiosDeDomicilio.cs" />
     <Compile Include="Presentadores\Traspasos\CambiosDeDomicilio\PresentadorGestionarCambioDeDomicilio.cs" />
+    <Compile Include="Presentadores\Traspasos\CambiosDePeticionario\PresentadorConsultarCambiosDePeticionario.cs" />
+    <Compile Include="Presentadores\Traspasos\CambiosDePeticionario\PresentadorGestionarCambioDePeticionario.cs" />
     <Compile Include="Presentadores\Traspasos\Fusiones\PresentadorConsultarFusiones.cs" />
     <Compile Include="Presentadores\Traspasos\Fusiones\PresentadorGestionarFusion.cs" />
     <Compile Include="Presentadores\Usuarios\PresentadorAgregarUsuario.cs" />
@@ -622,6 +626,12 @@
     </Compile>
     <Compile Include="Ventanas\Traspasos\CambiosDeDomicilio\GestionarCambioDeDomicilio.xaml.cs">
       <DependentUpon>GestionarCambioDeDomicilio.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Traspasos\CambiosPeticionario\ConsultarCambiosPeticionario.xaml.cs">
+      <DependentUpon>ConsultarCambiosPeticionario.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Traspasos\CambiosPeticionario\GestionarCambioPeticionario.xaml.cs">
+      <DependentUpon>GestionarCambioPeticionario.xaml</DependentUpon>
     </Compile>
     <Compile Include="Ventanas\Traspasos\Fusiones\ConsultarFusiones.xaml.cs">
       <DependentUpon>ConsultarFusiones.xaml</DependentUpon>
@@ -1046,6 +1056,14 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Ventanas\Traspasos\CambiosDeDomicilio\GestionarCambioDeDomicilio.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\Traspasos\CambiosPeticionario\ConsultarCambiosPeticionario.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\Traspasos\CambiosPeticionario\GestionarCambioPeticionario.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
