@@ -79,6 +79,18 @@ namespace Trascend.Bolet.Cliente.Contratos.Traspasos.Fusiones
 
         #endregion
 
+        #region Poder
+
+        string IdPoderFiltrar { get; }
+
+        string FechaPoderFiltrar { get; }
+
+        object PoderesFiltrados { get; set; }
+
+        object PoderFiltrado { get; set; }
+        
+        #endregion
+
         bool HabilitarCampos { set; }
 
         string Region { get; set; }

@@ -5,9 +5,14 @@ namespace Trascend.Bolet.Cliente.Contratos.Traspasos.Cesiones
 {
     interface IGestionarCesion : IPaginaBase
     {
-        object Cesion { get; set; }               
         
-        //ListView Marcas
+        object Cesion { get; set; }
+
+        #region Marca
+
+        object Marca { get; set; }
+
+        string NombreMarca { set; }
 
         string IdMarcaFiltrar { get; }
 
@@ -15,11 +20,20 @@ namespace Trascend.Bolet.Cliente.Contratos.Traspasos.Cesiones
 
         object MarcasFiltradas { get; set; }
 
-        object MarcaFiltrada { get; set; }
+        object MarcaFiltrada { get; set; }      
 
-        //-----------
-        
-        //ListView Cedente
+        #endregion
+
+        #region Cedente
+
+        string NombreCedente { set; }
+
+        object InteresadoCedente { get; set; }
+
+        string PaisCedente { set; }
+
+        string NacionalidadCedente { set; }
+
         string IdCedenteFiltrar { get; }
 
         string NombreCedenteFiltrar { get; }
@@ -27,46 +41,22 @@ namespace Trascend.Bolet.Cliente.Contratos.Traspasos.Cesiones
         object CedentesFiltrados { get; set; }
 
         object CedenteFiltrado { get; set; }
-       
-        //----------------
 
-        //ListView Cesionario
+        string NombreApoderadoCedente { set; }
 
-        string IdCesionarioFiltrar { get; }
-
-        string NombreCesionarioFiltrar { get; }
-
-        object CesionariosFiltrados { get; set; }
-
-        object CesionarioFiltrado { get; set; }
-
-        //----------------
-
-        //Apoderado Cedente
+        object ApoderadoCedente { get; set; }
 
         string IdApoderadoCedenteFiltrar { get; }
 
         string NombreApoderadoCedenteFiltrar { get; }
-        
+
         object ApoderadosCedenteFiltrados { get; set; }
 
         object ApoderadoCedenteFiltrado { get; set; }
 
-        //----------------
+        string IdPoderCedente { set; get; }
 
-        //Apoderado Cesionario
-
-        string IdApoderadoCesionarioFiltrar { get; }
-
-        string NombreApoderadoCesionarioFiltrar { get; }
-
-        object ApoderadosCesionarioFiltrados { get; set; }
-
-        object ApoderadoCesionarioFiltrado { get; set; }
-
-        //----------------
-
-        //Poder Cedente
+        object PoderCedente { get; set; }
 
         string IdPoderCedenteFiltrar { get; }
 
@@ -76,9 +66,41 @@ namespace Trascend.Bolet.Cliente.Contratos.Traspasos.Cesiones
 
         object PoderCedenteFiltrado { get; set; }
 
-        //----------------
+        #endregion
 
-        //Poder Cesionario
+        #region Cesionario
+
+        string NombreCesionario { set; }
+
+        object InteresadoCesionario { get; set; }
+
+        string PaisCesionario { set; }
+
+        string NacionalidadCesionario { set; }
+
+        string IdCesionarioFiltrar { get; }
+
+        string NombreCesionarioFiltrar { get; }
+
+        object CesionariosFiltrados { get; set; }
+
+        object CesionarioFiltrado { get; set; }
+
+        string NombreApoderadoCesionario { set; }
+
+        object ApoderadoCesionario { get; set; }
+
+        string IdApoderadoCesionarioFiltrar { get; }
+
+        string NombreApoderadoCesionarioFiltrar { get; }
+
+        object ApoderadosCesionarioFiltrados { get; set; }
+
+        object ApoderadoCesionarioFiltrado { get; set; }
+
+        string IdPoderCesionario { set; get; }
+
+        object PoderCesionario { get; set; }
 
         string IdPoderCesionarioFiltrar { get; }
 
@@ -88,50 +110,13 @@ namespace Trascend.Bolet.Cliente.Contratos.Traspasos.Cesiones
 
         object PoderCesionarioFiltrado { get; set; }
 
-        //----------------
-  
+        #endregion
 
         bool HabilitarCampos { set; }
 
         string Region { get; set; }
 
         string TextoBotonModificar { get; set; }
-
-        string NombreMarca { set; }
-
-        string NombreCedente { set; }
-
-        string NombreCesionario { set; }
-
-        string NombreApoderadoCedente { set; }
-
-        string NombreApoderadoCesionario { set; }
-
-        string IdPoderCedente { set; get; }
-
-        string IdPoderCesionario { set; get; }
-
-        string PaisCedente { set; }
-
-        string PaisCesionario { set; }
-
-        string NacionalidadCedente { set; }
-
-        string NacionalidadCesionario { set; }        
-
-        object Marca { get; set; }
-
-        object InteresadoCedente { get; set; }
-
-        object InteresadoCesionario { get; set; }
-
-        object ApoderadoCedente { get; set; }
-
-        object ApoderadoCesionario { get; set; }
-
-        object PoderCedente { get; set; }
-
-        object PoderCesionario { get; set; }
 
         GridViewColumnHeader CurSortCol { get; set; }
 

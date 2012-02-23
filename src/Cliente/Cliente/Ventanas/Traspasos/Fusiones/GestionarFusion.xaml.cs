@@ -264,6 +264,28 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Fusiones
             set { _CurAdorner = value; }
         }
 
+        public string IdPoderFiltrar
+        {
+            get { return this._txtIdPoderFiltrar.Text; }
+        }
+
+        public string FechaPoderFiltrar
+        {
+            get { return this._dpkFechaPoderFiltrar.Text; }
+        }
+
+        public object PoderesFiltrados
+        {
+            get { return this._lstPoderes.DataContext; }
+            set { this._lstPoderes.DataContext = value; }
+        }
+
+        public object PoderFiltrado
+        {
+            get { return this._lstPoderes.SelectedItem; }
+            set { this._lstPoderes.SelectedItem = value; }
+        }
+
         #endregion
 
         public GestionarFusion(object fusion)
@@ -582,6 +604,89 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Fusiones
             this._txtNombreApoderado.Visibility = (System.Windows.Visibility)value;
         }
 
+        #endregion
+
+        #region Poderes
+
+        private void _btnConsultar(object sender, RoutedEventArgs e)
+        {
+            if (((Button)sender).Name.Equals("_btnConsultarMarca"))
+                this._presentador.ConsultarMarcas();
+            //else if (((Button)sender).Name.Equals("_btnConsultarCedente"))
+            //    this._presentador.ConsultarCedentes();
+            //else if (((Button)sender).Name.Equals("_btnConsultarApoderadoCedente"))
+            //    this._presentador.ConsultarApoderadosCedente();
+            //else if (((Button)sender).Name.Equals("_btnConsultarPoderCedente"))
+            //    this._presentador.ConsultarPoderesCedente();
+            //else if (((Button)sender).Name.Equals("_btnConsultarCesionario"))
+            //    this._presentador.ConsultarCesionarios();
+            //else if (((Button)sender).Name.Equals("_btnConsultarApoderadoCesionario"))
+            //    this._presentador.ConsultarApoderadosCesionario();
+            //else if (((Button)sender).Name.Equals("_btnConsultarPoderCesionario"))
+            //    this._presentador.ConsultarPoderesCesionario();
+        }
+
+        private void _txtPoderFiltrar_GotFocus(object sender, RoutedEventArgs e)
+        {
+            this._btnConsultarPoder.IsDefault = true;
+            this._btnModificar.IsDefault = false;
+        }
+
+        private void _txtIdPoder_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            //GestionarVisibilidadDatosDePoderCedente(Visibility.Collapsed);
+
+            //GestionarVisibilidadFiltroCesionario(Visibility.Collapsed);
+
+            //GestionarVisibilidadFiltroApoderadoCesionario(Visibility.Collapsed);
+
+            //GestionarVisibilidadFiltroPoderCesionario(Visibility.Collapsed);
+
+            //GestionarVisibilidadFiltroMarca(Visibility.Collapsed);
+
+            //GestionarVisibilidadFiltroCedente(Visibility.Collapsed);
+
+            //GestionarVisibilidadFiltroApoderadoCedente(Visibility.Collapsed);
+
+            //GestionarVisibilidadFiltroPoderCedente(Visibility.Visible);
+
+            GestionarVisibilidadDatosDeMarca(Visibility.Visible);
+
+            //GestionarVisibilidadDatosDeCedente(Visibility.Visible);
+
+            //GestionarVisibilidadDatosDeCesionario(Visibility.Visible);
+
+            //GestionarVisibilidadDatosDeApoderadoCedente(Visibility.Visible);
+
+            //GestionarVisibilidadDatosDeApoderadoCesionario(Visibility.Visible);
+
+            //GestionarVisibilidadDatosDePoderCesionario(Visibility.Visible);
+        }
+
+        private void _OrdenarPoderes_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.OrdenarColumna(sender as GridViewColumnHeader, this._lstPoderes);
+        }
+
+        private void _lstPoderes_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            //if (this._presentador.CambiarPoderCedente())
+            //{
+            //    GestionarVisibilidadDatosDePoderCedente(Visibility.Visible);
+            //    GestionarVisibilidadFiltroPoderCedente(Visibility.Collapsed);
+
+            //    if (this._presentador.VerificarCambioPoder("Cedente"))
+            //    {
+            //        this._btnConsultarApoderadoCedente.IsEnabled = false;
+            //        this._btnConsultarCedente.IsEnabled = false;
+            //    }
+            //    else
+            //    {
+            //        this._btnConsultarApoderadoCedente.IsEnabled = true;
+            //        this._btnConsultarCedente.IsEnabled = true;
+            //    }
+            //}
+        }
         #endregion
     }
 }

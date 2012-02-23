@@ -305,7 +305,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Cesiones
                 {
                     this._poderesCedente.Add((Poder)this._ventana.PoderCedente);
                     this._ventana.PoderesCedenteFiltrados = this._poderesCedente;
-                    this._ventana.PoderCedenteFiltrado = this.BuscarPoder((IList<Poder>)this._ventana.PoderesCedenteFiltrados, (Poder)this._ventana.PoderCedente);
+                    this._ventana.PoderCedenteFiltrado = this.BuscarPoder((IList<Poder>)this._ventana.PoderesCedenteFiltrados, (Poder)this._ventana.PoderCedente);                   
                 }
                 else
                 {
@@ -936,7 +936,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Cesiones
                     retorno = true;
                 }
 
-                this._ventana.ConvertirEnteroMinimoABlanco("Cesionario");
+                this._ventana.ConvertirEnteroMinimoABlanco("Cedente");
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))

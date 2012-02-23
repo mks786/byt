@@ -467,13 +467,19 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Cesiones
         {
             if (tipo.Equals("Cedente"))
             {
-                if (int.Parse(this.IdPoderCedente) == int.MinValue)
-                    this.IdPoderCedente = "";
+                if (!this.IdPoderCedente.Equals(""))
+                {
+                    if (int.Parse(this.IdPoderCedente) == int.MinValue)
+                        this.IdPoderCedente = "";
+                }
             }
             if (tipo.Equals("Cesionario"))
             {
-                if (int.Parse(this.IdPoderCesionario) == int.MinValue)
-                    this.IdPoderCesionario = "";
+                if (!this.IdPoderCesionario.Equals(""))
+                {
+                    if (int.Parse(this.IdPoderCesionario) == int.MinValue)
+                        this.IdPoderCesionario = "";
+                }
             }
         }
 
@@ -764,6 +770,24 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Cesiones
             GestionarVisibilidadDatosDePoderCesionario(Visibility.Visible);
         }
 
+        private void _txtCedenteFiltrar_GotFocus(object sender, RoutedEventArgs e)
+        {
+            this._btnConsultarCedente.IsDefault = true;
+            this._btnModificar.IsDefault = false;
+        }
+
+        private void _txtApoderadoCedenteFiltrar_GotFocus(object sender, RoutedEventArgs e)
+        {
+            this._btnConsultarApoderadoCedente.IsDefault = true;
+            this._btnModificar.IsDefault = false;
+        }
+
+        private void _txtPoderCedenteFiltrar_GotFocus(object sender, RoutedEventArgs e)
+        {
+            this._btnConsultarPoderCedente.IsDefault = true;
+            this._btnModificar.IsDefault = false;
+        }        
+
         private void GestionarVisibilidadDatosDeCedente(object value)
         {
             this._lblNombreCedente.Visibility = (System.Windows.Visibility)value;
@@ -829,23 +853,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Cesiones
 
         }
 
-        private void _txtCedenteFiltrar_GotFocus(object sender, RoutedEventArgs e)
-        {
-            this._btnConsultarCedente.IsDefault = true;
-            this._btnModificar.IsDefault = false;
-        }
-
-        private void _txtApoderadoCedenteFiltrar_GotFocus(object sender, RoutedEventArgs e)
-        {
-            this._btnConsultarApoderadoCedente.IsDefault = true;
-            this._btnModificar.IsDefault = false;
-        }
-
-        private void _txtPoderCedenteFiltrar_GotFocus(object sender, RoutedEventArgs e)
-        {
-            this._btnConsultarPoderCedente.IsDefault = true;
-            this._btnModificar.IsDefault = false;
-        }        
+        
 
         #endregion
 
