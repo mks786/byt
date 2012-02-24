@@ -79,6 +79,22 @@ namespace Trascend.Bolet.Cliente.Contratos.Traspasos.CambiosDeNombre
 
         #endregion
 
+        #region Poder
+
+        object Poder { get; set; }
+
+        string IdPoder { set; get; }
+
+        string IdPoderFiltrar { get; }
+
+        string FechaPoderFiltrar { get; }
+
+        object PoderesFiltrados { get; set; }
+
+        object PoderFiltrado { get; set; }
+
+        #endregion
+
         bool HabilitarCampos { set; }
 
         string Region { get; set; }
@@ -89,5 +105,15 @@ namespace Trascend.Bolet.Cliente.Contratos.Traspasos.CambiosDeNombre
         GridViewColumnHeader CurSortCol { get; set; }
 
         SortAdorner CurAdorner { get; set; }
+
+        void Mensaje(string mensaje, int opcion);
+
+        void ConvertirEnteroMinimoABlanco();
+
+        void GestionarBotonConsultarInteresado(bool value);
+
+        void GestionarBotonConsultarApoderado(bool value);
+
+        void GestionarBotonConsultarPoder(bool value);
     }
 }

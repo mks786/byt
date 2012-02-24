@@ -70,7 +70,7 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Select c from CambioDeDomicilio c left join fetch c.Marca as marca left join fetch c.InteresadoActual as interesadoActual left join fetch c.InteresadoAnterior as interesadoAnterior left join fetch c.Agente as agente where .
+        ///   Busca una cadena traducida similar a Select c from CambioDeDomicilio c left join fetch c.Marca as marca left join fetch c.InteresadoActual as interesadoActual left join fetch c.InteresadoAnterior as interesadoAnterior left join fetch c.Agente as agente  left join fetch c.Poder as poder where .
         /// </summary>
         public static string CabeceraObtenerCambioDeDomicilio {
             get {
@@ -79,8 +79,7 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Select c from Carta c left join fetch c.Resumen as resumen left join fetch c.Asociado as asociado where .
-        ///   Looks up a localized string similar to Select c from CambioNombre c left join fetch c.Marca as marca left join fetch c.InteresadoActual as interesadoActual left join fetch c.InteresadoAnterior as interesadoAnterior left join fetch c.Agente as agente where .
+        ///   Busca una cadena traducida similar a Select c from CambioNombre c left join fetch c.Marca as marca left join fetch c.InteresadoActual as interesadoActual left join fetch c.InteresadoAnterior as interesadoAnterior left join fetch c.Agente as agente left join fetch c.Poder as poder where .
         /// </summary>
         public static string CabeceraObtenerCambioDeNombre {
             get {
@@ -89,7 +88,7 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Select c from CambioPeticionario c left join fetch c.Marca as marca left join fetch c.InteresadoAnterior as anterior left join fetch c.AgenteAnterior as agenteAnt left join fetch c.AgenteActual as agenteAct left join fetch c.PoderAnterior as PoderAnt  left join fetch c.PoderActual as PoderAct left join fetch c.InteresadoAnterior as interesadoAnt left join fetch c.InteresadoActual as interesadoAct left join fetch c.BoletinPublicacion as boletin where .
+        ///   Busca una cadena traducida similar a Select c from CambioPeticionario c left join fetch c.Marca as marca left join fetch c.InteresadoAnterior as anterior left join fetch c.AgenteAnterior as agenteAnt left join fetch c.AgenteActual as agenteAct left join fetch c.PoderAnterior as PoderAnt  left join fetch c.PoderActual as PoderAct left join fetch c.InteresadoAnterior as interesadoAnt left join fetch c.InteresadoActual as interesadoAct left join fetch c.BoletinPublicacion as boletin where .
         /// </summary>
         public static string CabeceraObtenerCambioPeticionario {
             get {
@@ -98,7 +97,7 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Select c from Carta c left join fetch c.Resumen as resumen left join fetch c.Asociado as asociado where .
+        ///   Busca una cadena traducida similar a Select c from Carta c left join fetch c.Resumen as resumen left join fetch c.Asociado as asociado where .
         /// </summary>
         public static string CabeceraObtenerCarta {
             get {
@@ -206,8 +205,7 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a c.Fecha between &apos;{0}&apos; and &apos;{1}&apos;.
-        ///   Looks up a localized string similar to c.Id = {0}.
+        ///   Busca una cadena traducida similar a c.Id = {0}.
         /// </summary>
         public static string FiltroObtenerCambioDeNombreId {
             get {
@@ -216,7 +214,7 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to marca.Id = {0}.
+        ///   Busca una cadena traducida similar a marca.Id = {0}.
         /// </summary>
         public static string FiltroObtenerCambioDeNombreIdMarca {
             get {
@@ -225,7 +223,7 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to c.FechaCesion between &apos;{0}&apos; and &apos;{1}&apos;.
+        ///   Busca una cadena traducida similar a c.FechaCesion between &apos;{0}&apos; and &apos;{1}&apos;.
         /// </summary>
         public static string FiltroObtenerCambioPeticionarioFecha {
             get {
@@ -234,7 +232,7 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to c.Id = {0}.
+        ///   Busca una cadena traducida similar a c.Id = {0}.
         /// </summary>
         public static string FiltroObtenerCambioPeticionarioId {
             get {
@@ -243,7 +241,7 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to marca.Id = {0}.
+        ///   Busca una cadena traducida similar a marca.Id = {0}.
         /// </summary>
         public static string FiltroObtenerCambioPeticionarioIdMarca {
             get {
@@ -252,7 +250,7 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to c.Fecha between &apos;{0}&apos; and &apos;{1}&apos;.
+        ///   Busca una cadena traducida similar a c.Fecha between &apos;{0}&apos; and &apos;{1}&apos;.
         /// </summary>
         public static string FiltroObtenerCartaFecha {
             get {

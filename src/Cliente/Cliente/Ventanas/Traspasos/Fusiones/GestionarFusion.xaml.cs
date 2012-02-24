@@ -157,15 +157,13 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Fusiones
                 _txtIdInteresadoEntreFiltrar.IsEnabled = value;
                 _txtPaisInteresadoEntre.IsEnabled = value;
                 _txtCiudadInteresadoEntre.IsEnabled = value;
-
-                _btnConsultarInteresadoSobreviviente.IsEnabled = value;
+                
                 _txtNombreInteresadoSobreviviente.IsEnabled = value;
                 _txtNombreInteresadoSobrevivienteFiltrar.IsEnabled = value;
                 _txtIdInteresadoSobrevivienteFiltrar.IsEnabled = value;
                 _txtPaisInteresadoSobreviviente.IsEnabled = value;
                 _txtCiudadInteresadoSobreviviente.IsEnabled = value;
-
-                _btnConsultarApoderado.IsEnabled = value;
+                
                 _txtNombreApoderado.IsEnabled = value;
                 _txtNombreApoderadoFiltrar.IsEnabled = value;
                 _txtIdApoderadoFiltrar.IsEnabled = value;
@@ -181,9 +179,9 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Fusiones
                 _txtAnexoPoder.IsEnabled = value;
                 _txtBoletinPoder.IsEnabled = value;
                 _txtFacultadPoder.IsEnabled = value;
-                _txtFechaPoder.IsEnabled = value;                
-
-                _btnConsultarPoder.IsEnabled = value;                
+                _txtFechaPoder.IsEnabled = value;
+                _txtNumPoder.IsEnabled = value;
+                              
                 _lblPoderFiltrar.IsEnabled = value;
                 _lblIdPoderFiltrar.IsEnabled = value;
                 _lblIdPoderFiltrar.IsEnabled = value;
@@ -480,8 +478,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Fusiones
 
         private void _txtInteresadoEntre_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
+            //Muestro el filtro de InteresadoSobreviviente
             GestionarVisibilidadDatosDeInteresadoEntre(Visibility.Collapsed);
-
             GestionarVisibilidadFiltroInteresadoEntre(Visibility.Visible);
 
             //escondo el filtro de Marca
@@ -496,6 +494,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Fusiones
             GestionarVisibilidadDatosDeInteresadoSobreviviente(Visibility.Visible);
             GestionarVisibilidadFiltroInteresadoSobreviviente(Visibility.Collapsed);
 
+            
+        }
+
+        private void _txtInteresadoEntreFiltrar_GotFocus(object sender, RoutedEventArgs e)
+        {
             this._btnConsultarInteresadoEntre.IsDefault = true;
             this._btnModificar.IsDefault = false;
         }
@@ -516,6 +519,19 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Fusiones
             this._txtPaisInteresadoEntre.Visibility = (System.Windows.Visibility)value;
             this._txtCiudadInteresadoEntre.Visibility = (System.Windows.Visibility)value;
             this._txtDomicilioMarcaTercero.Visibility = (System.Windows.Visibility)value;
+            
+            this._txtPaisMarcaTercero.Visibility = (System.Windows.Visibility)value;
+            this._txtNacionalidadMarcaTercero.Visibility = (System.Windows.Visibility)value;
+            this._txtIdMarcaTercero.Visibility = (System.Windows.Visibility)value;            
+            this._txtEstadoMarcaTercero.Visibility = (System.Windows.Visibility)value;
+            this._lblY.Visibility = (System.Windows.Visibility)value;
+            this._lblEstadoMarcaTercero.Visibility = (System.Windows.Visibility)value;
+            this._lblDomicilioMarcaTercero.Visibility = (System.Windows.Visibility)value;
+            this._lblPaisMarcaTercero.Visibility = (System.Windows.Visibility)value;
+            this._lblNacionalidadMarcaTercero.Visibility = (System.Windows.Visibility)value;
+            this._lblNombreMarcaTercero.Visibility = (System.Windows.Visibility)value;
+            
+
         }
 
         #endregion
@@ -573,6 +589,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Fusiones
             GestionarVisibilidadDatosDePoder(Visibility.Visible);
             GestionarVisibilidadFiltroPoder(Visibility.Collapsed);
 
+            
+        }
+
+        private void _txtInteresadoSobrevivienteFiltrar_GotFocus(object sender, RoutedEventArgs e)
+        {
             this._btnConsultarInteresadoSobreviviente.IsDefault = true;
             this._btnModificar.IsDefault = false;
         }
@@ -632,7 +653,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Fusiones
         {
             this._presentador.OrdenarColumna(sender as GridViewColumnHeader, this._lstApoderados);
         }
-
+        
         private void _txtApoderadoFiltrar_GotFocus(object sender, RoutedEventArgs e)
         {
             this._btnConsultarApoderado.IsDefault = true;

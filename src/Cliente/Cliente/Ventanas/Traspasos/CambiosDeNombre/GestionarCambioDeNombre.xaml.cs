@@ -151,26 +151,43 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.CambiosDeNombre
                 this._dpkFechaBoletin.IsEnabled = value;
                 this._chkEtiqueta.IsEnabled = value;
 
-                _btnConsultarInteresadoAnterior.IsEnabled = value;
-                _txtNombreInteresadoAnterior.IsEnabled = value;
-                _txtNombreInteresadoAnteriorFiltrar.IsEnabled = value;
-                _txtIdInteresadoAnteriorFiltrar.IsEnabled = value;
-                _txtPaisInteresadoAnterior.IsEnabled = value;
-                _txtCiudadInteresadoAnterior.IsEnabled = value;
-                _txtDomicilioInteresadoAnterior.IsEnabled = value;
+                this._btnConsultarInteresadoAnterior.IsEnabled = value;
+                this._txtNombreInteresadoAnterior.IsEnabled = value;
+                this._txtNombreInteresadoAnteriorFiltrar.IsEnabled = value;
+                this._txtIdInteresadoAnteriorFiltrar.IsEnabled = value;
+                this._txtPaisInteresadoAnterior.IsEnabled = value;
+                this._txtCiudadInteresadoAnterior.IsEnabled = value;
+                this._txtDomicilioInteresadoAnterior.IsEnabled = value;
 
-                _btnConsultarInteresadoActual.IsEnabled = value;
-                _txtNombreInteresadoActual.IsEnabled = value;
-                _txtNombreInteresadoActualFiltrar.IsEnabled = value;
-                _txtIdInteresadoActualFiltrar.IsEnabled = value;
-                _txtPaisInteresadoActual.IsEnabled = value;
-                _txtCiudadInteresadoActual.IsEnabled = value;
-                _txtDomicilioInteresadoActual.IsEnabled = value;
+                this._txtNombreInteresadoActual.IsEnabled = value;
+                this._txtNombreInteresadoActualFiltrar.IsEnabled = value;
+                this._txtIdInteresadoActualFiltrar.IsEnabled = value;
+                this._txtPaisInteresadoActual.IsEnabled = value;
+                this._txtCiudadInteresadoActual.IsEnabled = value;
+                this._txtDomicilioInteresadoActual.IsEnabled = value;
 
-                _btnConsultarApoderado.IsEnabled = value;
-                _txtNombreApoderado.IsEnabled = value;
-                _txtNombreApoderadoFiltrar.IsEnabled = value;
-                _txtIdApoderadoFiltrar.IsEnabled = value;
+                this._txtNombreApoderado.IsEnabled = value;
+                this._txtNombreApoderadoFiltrar.IsEnabled = value;
+                this._txtIdApoderadoFiltrar.IsEnabled = value;
+
+                this._lblIdPoder.IsEnabled = value;
+                this._lblFomento.IsEnabled = value;
+                this._lblAnexoPoder.IsEnabled = value;
+                this._lblBoletinPoder.IsEnabled = value;
+                this._lblFechaPoder.IsEnabled = value;
+                this._lblFacultadPoder.IsEnabled = value;
+                this._txtIdPoder.IsEnabled = value;
+                this._txtFacultadPoder.IsEnabled = value;
+                this._txtAnexoPoder.IsEnabled = value;
+                this._txtBoletinPoder.IsEnabled = value;
+                this._txtFacultadPoder.IsEnabled = value;
+                this._txtFechaPoder.IsEnabled = value;
+
+                this._lblPoderFiltrar.IsEnabled = value;
+                this._lblIdPoderFiltrar.IsEnabled = value;
+                this._lblIdPoderFiltrar.IsEnabled = value;
+                this._txtIdPoderFiltrar.IsEnabled = value;
+                this._dpkFechaPoderFiltrar.IsEnabled = value;
             }
         }
 
@@ -266,6 +283,48 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.CambiosDeNombre
             set { _CurAdorner = value; }
         }
 
+        public object Poder
+        {
+            get { return this._gridDatosPoder.DataContext; }
+            set { this._gridDatosPoder.DataContext = value; }
+        }
+
+        public string IdPoder
+        {
+            get { return this._txtIdPoder.Text; }
+            set { this._txtIdPoder.Text = value; }
+        }
+
+        public string IdPoderFiltrar
+        {
+            get { return this._txtIdPoderFiltrar.Text; }
+        }
+
+        public string FechaPoderFiltrar
+        {
+            get { return this._dpkFechaPoderFiltrar.Text; }
+        }
+
+        public object PoderesFiltrados
+        {
+            get { return this._lstPoderes.DataContext; }
+            set { this._lstPoderes.DataContext = value; }
+        }
+
+        public object PoderFiltrado
+        {
+            get { return this._lstPoderes.SelectedItem; }
+            set { this._lstPoderes.SelectedItem = value; }
+        }
+
+        public void Mensaje(string mensaje, int opcion)
+        {
+            if (opcion == 0)
+                MessageBox.Show(mensaje, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            else
+                MessageBox.Show(mensaje, "Advertencia", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+        }
+
         #endregion
 
         public GestionarCambioDeNombre(object fusion)
@@ -300,6 +359,15 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.CambiosDeNombre
             {
                 this._presentador.CargarPagina();
                 EstaCargada = true;
+            }
+        }
+
+        public void ConvertirEnteroMinimoABlanco()
+        {
+            if (!this.IdPoder.Equals(""))
+            {
+                if (int.Parse(this.IdPoder) == int.MinValue)
+                    this.IdPoder = "";
             }
         }
 
@@ -343,6 +411,10 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.CambiosDeNombre
             //escondo el filtro de Agente
             GestionarVisibilidadDatosDeAgenteApoderado(Visibility.Visible);
             GestionarVisibilidadFiltroAgenteApoderado(Visibility.Collapsed);
+
+            //escondo el filtro de Poder
+            GestionarVisibilidadDatosDePoder(Visibility.Visible);
+            GestionarVisibilidadFiltroPoder(Visibility.Collapsed);
 
             this._btnConsultarMarca.IsDefault = false;
             this._btnModificar.IsDefault = true;
@@ -426,6 +498,10 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.CambiosDeNombre
             GestionarVisibilidadDatosDeInteresadoActual(Visibility.Visible);
             GestionarVisibilidadFiltroInteresadoActual(Visibility.Collapsed);
 
+            //escondo el filtro de Poder
+            GestionarVisibilidadDatosDePoder(Visibility.Visible);
+            GestionarVisibilidadFiltroPoder(Visibility.Collapsed);
+
             this._btnConsultarInteresadoAnterior.IsDefault = true;
             this._btnModificar.IsDefault = false;
         }
@@ -464,8 +540,15 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.CambiosDeNombre
                 GestionarVisibilidadDatosDeInteresadoActual(Visibility.Visible);
                 GestionarVisibilidadFiltroInteresadoActual(Visibility.Collapsed);
 
-                this._btnConsultarInteresadoActual.IsDefault = false;
-                this._btnModificar.IsDefault = true;
+                if (this._presentador.VerificarCambioInteresado())
+                {
+                    this._btnConsultarPoder.IsEnabled = false;
+                    this._btnModificar.IsDefault = true;
+                }
+                else
+                {
+                    this._btnConsultarPoder.IsEnabled = true;
+                }
             }
         }
 
@@ -492,6 +575,10 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.CambiosDeNombre
             GestionarVisibilidadDatosDeAgenteApoderado(Visibility.Visible);
             GestionarVisibilidadFiltroAgenteApoderado(Visibility.Collapsed);
 
+            //escondo el filtro de Poder
+            GestionarVisibilidadDatosDePoder(Visibility.Visible);
+            GestionarVisibilidadFiltroPoder(Visibility.Collapsed);
+
             this._btnConsultarInteresadoActual.IsDefault = true;
             this._btnModificar.IsDefault = false;
         }
@@ -514,6 +601,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.CambiosDeNombre
             this._txtDomicilioInteresadoActual.Visibility = (System.Windows.Visibility)value;
         }
 
+        public void GestionarBotonConsultarInteresado(bool value)
+        {
+            this._btnConsultarInteresadoActual.IsEnabled = value;
+        }
+
         #endregion
 
         #region Eventos Agente Apoderado
@@ -522,12 +614,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.CambiosDeNombre
         {
             this._presentador.ConsultarApoderados();
         }
-
-        private void _lstApoderadosCedente_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
-        {
-
-        }
-
+      
         private void _lstApoderados_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             if (this._presentador.CambiarApoderado())
@@ -535,8 +622,15 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.CambiosDeNombre
                 GestionarVisibilidadDatosDeAgenteApoderado(Visibility.Visible);
                 GestionarVisibilidadFiltroAgenteApoderado(Visibility.Collapsed);
 
-                this._btnConsultarApoderado.IsDefault = false;
-                this._btnModificar.IsDefault = true;
+                if (this._presentador.VerificarCambioAgente())
+                {
+                    this._btnConsultarPoder.IsEnabled = false;
+                    this._btnModificar.IsDefault = true;
+                }
+                else
+                {
+                    this._btnConsultarPoder.IsEnabled = true;
+                }
             }
         }
 
@@ -568,6 +662,10 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.CambiosDeNombre
             GestionarVisibilidadDatosDeInteresadoActual(Visibility.Visible);
             GestionarVisibilidadFiltroInteresadoActual(Visibility.Collapsed);
 
+            //escondo el filtro de Poder
+            GestionarVisibilidadDatosDePoder(Visibility.Visible);
+            GestionarVisibilidadFiltroPoder(Visibility.Collapsed);
+
             this._btnConsultarApoderado.IsDefault = true;
             this._btnModificar.IsDefault = false;
         }
@@ -584,6 +682,118 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.CambiosDeNombre
         private void GestionarVisibilidadDatosDeAgenteApoderado(object value)
         {
             this._txtNombreApoderado.Visibility = (System.Windows.Visibility)value;
+        }
+
+        public void GestionarBotonConsultarApoderado(bool value)
+        {
+            this._btnConsultarApoderado.IsEnabled = value;
+        }
+
+        #endregion
+
+        #region Poderes
+
+        private void _btnConsultar(object sender, RoutedEventArgs e)
+        {
+            if (((Button)sender).Name.Equals("_btnConsultarMarca"))
+                this._presentador.ConsultarMarcas();
+            else if (((Button)sender).Name.Equals("_btnConsultarInteresadoAnterior"))
+                this._presentador.ConsultarInteresadosAnterior();
+            else if (((Button)sender).Name.Equals("_btnConsultarInteresadoActual"))
+                this._presentador.ConsultarInteresadosActual();
+            else if (((Button)sender).Name.Equals("_btnConsultarApoderado"))
+                this._presentador.ConsultarApoderados();
+            else if (((Button)sender).Name.Equals("_btnConsultarPoder"))
+                this._presentador.ConsultarPoderes();
+        }
+
+        private void _txtPoderFiltrar_GotFocus(object sender, RoutedEventArgs e)
+        {
+            this._btnConsultarPoder.IsDefault = true;
+            this._btnModificar.IsDefault = false;
+        }
+
+        private void _txtIdPoder_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+
+            //escondo el filtro de Marca
+            GestionarVisibilidadDatosDeMarca(Visibility.Visible);
+            GestionarVisibilidadFiltroMarca(Visibility.Collapsed);
+
+            //escondo el filtro de Interesado Anterior
+            GestionarVisibilidadDatosDeInteresadoAnterior(Visibility.Visible);
+            GestionarVisibilidadFiltroInteresadoAnterior(Visibility.Collapsed);
+
+            //escondo el filtro de Interesado Actual
+            GestionarVisibilidadDatosDeInteresadoActual(Visibility.Visible);
+            GestionarVisibilidadFiltroInteresadoActual(Visibility.Collapsed);
+
+            //escondo el filtro de Agente Apoderado
+            GestionarVisibilidadDatosDeAgenteApoderado(Visibility.Visible);
+            GestionarVisibilidadFiltroAgenteApoderado(Visibility.Collapsed);
+
+            //Muestro el filtro de Poder
+            GestionarVisibilidadDatosDePoder(Visibility.Collapsed);
+            GestionarVisibilidadFiltroPoder(Visibility.Visible);
+
+        }
+
+        private void _OrdenarPoderes_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.OrdenarColumna(sender as GridViewColumnHeader, this._lstPoderes);
+        }
+
+        private void _lstPoderes_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            if (this._presentador.CambiarPoder())
+            {
+                GestionarVisibilidadDatosDePoder(Visibility.Visible);
+                GestionarVisibilidadFiltroPoder(Visibility.Collapsed);
+
+                if (this._presentador.VerificarCambioPoder())
+                {
+                    this._btnConsultarApoderado.IsEnabled = false;
+                    this._btnConsultarInteresadoActual.IsEnabled = false;
+                    this._btnModificar.IsDefault = true;
+                }
+                else
+                {
+                    this._btnConsultarApoderado.IsEnabled = true;
+                    this._btnConsultarInteresadoActual.IsEnabled = true;
+                }
+            }
+        }
+
+        public void GestionarBotonConsultarPoder(bool value)
+        {
+            this._btnConsultarPoder.IsEnabled = value;
+        }
+
+        private void GestionarVisibilidadFiltroPoder(object value)
+        {
+            this._lblPoderFiltrar.Visibility = (System.Windows.Visibility)value;
+            this._dpkFechaPoderFiltrar.Visibility = (System.Windows.Visibility)value;
+            this._lblIdPoderFiltrar.Visibility = (System.Windows.Visibility)value;
+            this._txtIdPoderFiltrar.Visibility = (System.Windows.Visibility)value;
+            this._lstPoderes.Visibility = (System.Windows.Visibility)value;
+            this._btnConsultarPoder.Visibility = (System.Windows.Visibility)value;
+
+        }
+
+        private void GestionarVisibilidadDatosDePoder(object value)
+        {
+            this._lblIdPoder.Visibility = (System.Windows.Visibility)value;
+            this._txtIdPoder.Visibility = (System.Windows.Visibility)value;
+            this._lblFomento.Visibility = (System.Windows.Visibility)value;
+            this._lblFechaPoder.Visibility = (System.Windows.Visibility)value;
+            this._lblBoletinPoder.Visibility = (System.Windows.Visibility)value;
+            this._lblAnexoPoder.Visibility = (System.Windows.Visibility)value;
+            this._lblFacultadPoder.Visibility = (System.Windows.Visibility)value;
+            this._txtNumPoder.Visibility = (System.Windows.Visibility)value;
+            this._txtFechaPoder.Visibility = (System.Windows.Visibility)value;
+            this._txtBoletinPoder.Visibility = (System.Windows.Visibility)value;
+            this._txtAnexoPoder.Visibility = (System.Windows.Visibility)value;
+            this._txtFacultadPoder.Visibility = (System.Windows.Visibility)value;
         }
 
         #endregion

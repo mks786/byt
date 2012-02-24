@@ -216,13 +216,13 @@
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblId}"/>
                         </Label>
                         <custom:ByTTextBox IsEnabled="False"    Grid.Column="1" Grid.Row="1" Name="_txtIdInteresadoEntreFiltrar" VerticalAlignment="Center" 
-                         MaxLength="255" Grid.ColumnSpan="2" Visibility="Collapsed"  ></custom:ByTTextBox>
+                         MaxLength="255" Grid.ColumnSpan="2" Visibility="Collapsed" GotFocus="_txtInteresadoEntreFiltrar_GotFocus"></custom:ByTTextBox>
 
                         <Label Name="_lblNombreInteresadoEntre" Grid.Column="3" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Center" Visibility="Collapsed">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblNombre}"/>
                         </Label>
                         <custom:ByTTextBox IsEnabled="False"    Grid.Column="4" Grid.Row="1" Name="_txtNombreInteresadoEntreFiltrar" VerticalAlignment="Center"  Grid.ColumnSpan="2"
-                         MaxLength="255" Visibility="Collapsed"></custom:ByTTextBox>
+                         MaxLength="255" Visibility="Collapsed" GotFocus="_txtInteresadoEntreFiltrar_GotFocus"></custom:ByTTextBox>
 
                         <Button IsEnabled="False" Name="_btnConsultarInteresadoEntre" Width="65" IsDefault="False" Grid.Row="1" Grid.Column="7" Height="25" HorizontalAlignment="Right" 
                                 Click="_btnConsultar" Visibility="Collapsed">
@@ -260,7 +260,7 @@
                         <!--Datos Interesado-->
 
                         <!--Primera Fila-->
-                        <Label Grid.Column="0" Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Center" >
+                        <Label Name="_lblY" Grid.Column="0" Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Center">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblY}"/>
                         </Label>
                         <Label Name="_lblNombreMarcaTercero" Grid.Column="0" Grid.Row="2" HorizontalAlignment="Right" VerticalAlignment="Center" >
@@ -343,13 +343,13 @@
                 <TextBlock Text="{x:Static recurso:Etiquetas.lblId}"/>
             </Label>
             <custom:ByTTextBox IsEnabled="False"    Grid.Column="2" Grid.Row="1" Name="_txtIdInteresadoSobrevivienteFiltrar" VerticalAlignment="Center" 
-                         MaxLength="255" Grid.ColumnSpan="1" Visibility="Collapsed"  ></custom:ByTTextBox>
+                         MaxLength="255" Grid.ColumnSpan="1" Visibility="Collapsed"  GotFocus="_txtInteresadoSobrevivienteFiltrar_GotFocus"></custom:ByTTextBox>
 
             <Label Name="_lblNombreInteresadoSobreviviente" Grid.Column="3" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Center" Visibility="Collapsed">
                 <TextBlock Text="{x:Static recurso:Etiquetas.lblNombre}"/>
             </Label>
             <custom:ByTTextBox IsEnabled="False"    Grid.Column="4" Grid.Row="1" Name="_txtNombreInteresadoSobrevivienteFiltrar" VerticalAlignment="Center"  Grid.ColumnSpan="2"
-                         MaxLength="255" Visibility="Collapsed"></custom:ByTTextBox>
+                         MaxLength="255" Visibility="Collapsed" GotFocus="_txtInteresadoSobrevivienteFiltrar_GotFocus"></custom:ByTTextBox>
 
             <Button IsEnabled="true" Name="_btnConsultarInteresadoSobreviviente" Width="65" IsDefault="False" Grid.Row="1" Grid.Column="7" Height="25" HorizontalAlignment="Right" 
                                 Click="_btnConsultar"   Visibility="Collapsed">

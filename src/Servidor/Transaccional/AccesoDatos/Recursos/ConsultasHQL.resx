@@ -348,7 +348,7 @@
     <comment>Filtro por marca</comment>
   </data>
   <data name="CabeceraObtenerCambioDeDomicilio" xml:space="preserve">
-    <value>Select c from CambioDeDomicilio c left join fetch c.Marca as marca left join fetch c.InteresadoActual as interesadoActual left join fetch c.InteresadoAnterior as interesadoAnterior left join fetch c.Agente as agente where </value>
+    <value>Select c from CambioDeDomicilio c left join fetch c.Marca as marca left join fetch c.InteresadoActual as interesadoActual left join fetch c.InteresadoAnterior as interesadoAnterior left join fetch c.Agente as agente  left join fetch c.Poder as poder where </value>
     <comment>Cabecera del query para el filtro de fusion</comment>
   </data>
   <data name="FiltroObtenerCambioDeDomicilioId" xml:space="preserve">
@@ -360,7 +360,7 @@
     <comment>Filtro por Asociado</comment>
   </data>
   <data name="CabeceraObtenerCambioDeNombre" xml:space="preserve">
-    <value>Select c from CambioNombre c left join fetch c.Marca as marca left join fetch c.InteresadoActual as interesadoActual left join fetch c.InteresadoAnterior as interesadoAnterior left join fetch c.Agente as agente where </value>
+    <value>Select c from CambioNombre c left join fetch c.Marca as marca left join fetch c.InteresadoActual as interesadoActual left join fetch c.InteresadoAnterior as interesadoAnterior left join fetch c.Agente as agente left join fetch c.Poder as poder where </value>
     <comment>Cabecera del filtro para Cambio De Nombre</comment>
   </data>
   <data name="FiltroObtenerCambioDeNombreId" xml:space="preserve">

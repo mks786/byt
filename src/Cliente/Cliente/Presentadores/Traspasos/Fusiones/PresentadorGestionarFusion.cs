@@ -57,7 +57,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
         private IList<Poder> _poderes;
         private IList<Poder> _poderesApoderado;
         private IList<Poder> _poderesSobreviviente;
-        private IList<Poder> _podereIntereseccion;
+        private IList<Poder> _poderesInterseccion;
         
 
         /// <summary>
@@ -143,14 +143,15 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
                 this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleGestionarFusion,
                                                       Recursos.Ids.GestionarFusion);
 
-                Fusion fusion = (Fusion)this._ventana.Fusion;               
-                
-                this._ventana.Marca = this._marcaServicios.ConsultarMarcaConTodo(((Fusion)fusion).Marca);
-                this._ventana.InteresadoEntre = this._interesadoServicios.ConsultarInteresadoConTodo(((Fusion)fusion).InteresadoEntre);
-                this._ventana.InteresadoSobreviviente = this._interesadoServicios.ConsultarInteresadoConTodo(((Fusion)fusion).InteresadoSobreviviente);                
+                Fusion fusion = (Fusion)this._ventana.Fusion;
+
+                if (((Fusion)fusion).Marca != null)
+                    this._ventana.Marca = this._marcaServicios.ConsultarMarcaConTodo(((Fusion)fusion).Marca);                
+
                 this._ventana.NombreMarca = ((Marca)this._ventana.Marca).Descripcion;
                 this._ventana.AgenteApoderado = ((Fusion)fusion).Agente;
                 this._ventana.Poder = fusion.Poder;
+
 
                 CargarMarca();
 
@@ -1127,6 +1128,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
                     retorno = true;
                 }
 
+                this._ventana.ConvertirEnteroMinimoABlanco();
+
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
                     logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
@@ -1430,7 +1433,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
                 if (listaIntereseccionInteresado.Count != 0)
                 {
                     poderActual = (Poder)this._ventana.PoderFiltrado;
-                    this._podereIntereseccion = listaIntereseccionInteresado;
+                    this._poderesInterseccion = listaIntereseccionInteresado;
                     this._ventana.PoderesFiltrados = listaIntereseccionInteresado;
                     this._ventana.PoderFiltrado = BuscarPoder((IList<Poder>)this._ventana.PoderesFiltrados, poderActual);
                 }
