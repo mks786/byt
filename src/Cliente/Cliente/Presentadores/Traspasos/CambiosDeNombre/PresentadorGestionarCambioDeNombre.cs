@@ -164,27 +164,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeNombre
 
                 LlenarListasPoderes((CambioNombre)this._ventana.CambioDeNombre);
 
-                ValidarInteresado();       
-
-                //this._marcas = new List<Marca>();
-                //this._marcas.Add((Marca)this._ventana.Marca);
-                //this._ventana.MarcasFiltradas = this._marcas;
-                //this._ventana.MarcaFiltrada = (Marca)this._ventana.Marca;
-
-                //this._interesadosEntre = new List<Interesado>();
-                //this._interesadosEntre.Add(((CambioNombre)CambioDeNombre).InteresadoAnterior);
-                //this._ventana.InteresadosAnteriorFiltrados = this._interesadosEntre;
-                //this._ventana.InteresadoAnteriorFiltrado = (Interesado)this._ventana.InteresadoAnterior;
-
-                //this._interesadosSobreviviente = new List<Interesado>();
-                //this._interesadosSobreviviente.Add(((CambioNombre)CambioDeNombre).InteresadoActual);
-                //this._ventana.InteresadosActualFiltrados = this._interesadosSobreviviente;
-                //this._ventana.InteresadoActualFiltrado = (Interesado)this._ventana.InteresadoActual;
-
-                //this._agentesApoderados = new List<Agente>();
-                //this._agentesApoderados.Add(((CambioNombre)CambioDeNombre).Agente);
-                //this._ventana.AgenteApoderadoFiltrados = this._agentesApoderados;
-                //this._ventana.AgenteApoderadoFiltrado = (Agente)this._ventana.AgenteApoderado;
+                ValidarInteresado();                      
 
                 this._ventana.FocoPredeterminado();
 
@@ -996,6 +976,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeNombre
                     }
                     else
                     {
+                        this._poderesInteresadoActual = this._poderServicios.ConsultarPoderesPorInteresado(((Interesado)_ventana.InteresadoActualFiltrado));
                         this._ventana.InteresadoActual = this._interesadoServicios.ConsultarInteresadoConTodo((Interesado)this._ventana.InteresadoActualFiltrado);
                         this._ventana.NombreInteresadoActual = ((Interesado)this._ventana.InteresadoActual).Nombre;
                         retorno = true;
@@ -1210,6 +1191,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeNombre
                     }
                     else
                     {
+                        this._poderesApoderado = this._poderServicios.ConsultarPoderesPorAgente(((Agente)_ventana.AgenteApoderadoFiltrado));
                         this._ventana.AgenteApoderado = this._ventana.AgenteApoderadoFiltrado;
                         this._ventana.NombreAgenteApoderado = ((Agente)this._ventana.AgenteApoderadoFiltrado).Nombre;
                         retorno = true;

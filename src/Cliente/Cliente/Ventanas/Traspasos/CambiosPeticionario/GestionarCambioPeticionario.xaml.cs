@@ -467,13 +467,19 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.CambiosPeticionario
         {
             if (tipo.Equals("Anterior"))
             {
-                if (int.Parse(this.IdPoderAnterior) == int.MinValue)
-                    this.IdPoderAnterior = "";
+                if (!this.IdPoderAnterior.Equals(""))
+                {
+                    if (int.Parse(this.IdPoderAnterior) == int.MinValue)
+                        this.IdPoderAnterior = "";
+                }
             }
             if (tipo.Equals("Actual"))
             {
-                if (int.Parse(this.IdPoderActual) == int.MinValue)
-                    this.IdPoderActual = "";
+                if (!this.IdPoderActual.Equals(""))
+                {
+                    if (int.Parse(this.IdPoderActual) == int.MinValue)
+                        this.IdPoderActual = "";
+                }
             }
         }
 
@@ -598,7 +604,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.CambiosPeticionario
 
         #region Anterior
 
-        private void _lstAnteriors_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        private void _lstAnterior_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             if (this._presentador.CambiarAnterior())
             {
@@ -618,57 +624,9 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.CambiosPeticionario
 
         }
 
-        private void _lstPoderesAnterior_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
-        {
-            if (this._presentador.CambiarPoderAnterior())
-            {
-                GestionarVisibilidadDatosDePoderAnterior(Visibility.Visible);
-                GestionarVisibilidadFiltroPoderAnterior(Visibility.Collapsed);
-
-                if (this._presentador.VerificarCambioPoder("Anterior"))
-                {
-                    this._btnConsultarApoderadoAnterior.IsEnabled = false;
-                    this._btnConsultarAnterior.IsEnabled = false;
-                }
-                else
-                {
-                    this._btnConsultarApoderadoAnterior.IsEnabled = true;
-                    this._btnConsultarAnterior.IsEnabled = true;
-                }
-            }
-        }
-
-        private void _lstApoderadosAnterior_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
-        {
-            if (this._presentador.CambiarApoderadoAnterior())
-            {
-                GestionarVisibilidadDatosDeApoderadoAnterior(Visibility.Visible);
-                GestionarVisibilidadFiltroApoderadoAnterior(Visibility.Collapsed);
-
-                if (this._presentador.VerificarCambioAgente("Anterior"))
-                {
-                    this._btnConsultarPoderAnterior.IsEnabled = false;                    
-                }
-                else
-                {
-                    this._btnConsultarPoderAnterior.IsEnabled = true;                    
-                }
-            }
-        }
-
-        private void _OrdenarAnteriors_Click(object sender, RoutedEventArgs e)
+        private void _OrdenarAnterior_Click(object sender, RoutedEventArgs e)
         {
             this._presentador.OrdenarColumna(sender as GridViewColumnHeader, this._lstAnteriors);
-        }
-
-        private void _OrdenarApoderadosAnterior_Click(object sender, RoutedEventArgs e)
-        {
-            this._presentador.OrdenarColumna(sender as GridViewColumnHeader, this._lstApoderadosAnterior);
-        }
-
-        private void _OrdenarPoderesAnterior_Click(object sender, RoutedEventArgs e)
-        {
-            this._presentador.OrdenarColumna(sender as GridViewColumnHeader, this._lstPoderesAnterior);
         }
 
         private void _txtNombreAnterior_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
@@ -700,6 +658,59 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.CambiosPeticionario
             GestionarVisibilidadDatosDePoderAnterior(Visibility.Visible);
 
             GestionarVisibilidadDatosDePoderActual(Visibility.Visible);
+        }
+ 
+        private void GestionarVisibilidadDatosDeAnterior(object value)
+        {
+            this._lblNombreAnterior.Visibility = (System.Windows.Visibility)value;
+            this._txtNombreAnterior.Visibility = (System.Windows.Visibility)value;
+            this._txtPaisAnterior.Visibility = (System.Windows.Visibility)value;
+            this._txtNacionalidadAnterior.Visibility = (System.Windows.Visibility)value;
+        }     
+
+        private void GestionarVisibilidadFiltroAnterior(object value)
+        {
+            this._lblAnteriorFiltrar.Visibility = (System.Windows.Visibility)value;
+            this._lblNombreAnteriorFiltrar.Visibility = (System.Windows.Visibility)value;
+            this._txtNombreAnteriorFiltrar.Visibility = (System.Windows.Visibility)value;
+            this._lblIdAnteriorFiltrar.Visibility = (System.Windows.Visibility)value;
+            this._txtIdAnteriorFiltrar.Visibility = (System.Windows.Visibility)value;
+            this._lstAnteriors.Visibility = (System.Windows.Visibility)value;
+            this._btnConsultarAnterior.Visibility = (System.Windows.Visibility)value;
+
+        }    
+
+        private void _txtAnteriorFiltrar_GotFocus(object sender, RoutedEventArgs e)
+        {
+            this._btnConsultarAnterior.IsDefault = true;
+            this._btnModificar.IsDefault = false;
+        }
+       
+        #endregion
+
+        #region Apoderado Anterior       
+
+        private void _lstApoderadosAnterior_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            if (this._presentador.CambiarApoderadoAnterior())
+            {
+                GestionarVisibilidadDatosDeApoderadoAnterior(Visibility.Visible);
+                GestionarVisibilidadFiltroApoderadoAnterior(Visibility.Collapsed);
+
+                if (this._presentador.VerificarCambioAgente("Anterior"))
+                {
+                    this._btnConsultarPoderAnterior.IsEnabled = false;
+                }
+                else
+                {
+                    this._btnConsultarPoderAnterior.IsEnabled = true;
+                }
+            }
+        }
+
+        private void _OrdenarApoderadosAnterior_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.OrdenarColumna(sender as GridViewColumnHeader, this._lstApoderadosAnterior);
         }
 
         private void _txtNombreApoderadoAnterior_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
@@ -733,6 +744,59 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.CambiosPeticionario
             GestionarVisibilidadDatosDePoderAnterior(Visibility.Visible);
         }
 
+        private void GestionarVisibilidadDatosDeApoderadoAnterior(object value)
+        {
+            this._lblNombreApoderadoAnterior.Visibility = (System.Windows.Visibility)value;
+            this._txtNombreApoderadoAnterior.Visibility = (System.Windows.Visibility)value;
+        }
+
+        private void GestionarVisibilidadFiltroApoderadoAnterior(object value)
+        {
+            this._lblApoderadoAnteriorFiltrar.Visibility = (System.Windows.Visibility)value;
+            this._lblNombreApoderadoAnteriorFiltrar.Visibility = (System.Windows.Visibility)value;
+            this._txtNombreApoderadoAnteriorFiltrar.Visibility = (System.Windows.Visibility)value;
+            this._lblIdApoderadoAnteriorFiltrar.Visibility = (System.Windows.Visibility)value;
+            this._txtIdApoderadoAnteriorFiltrar.Visibility = (System.Windows.Visibility)value;
+            this._lstApoderadosAnterior.Visibility = (System.Windows.Visibility)value;
+            this._btnConsultarApoderadoAnterior.Visibility = (System.Windows.Visibility)value;
+
+        }
+      
+        private void _txtApoderadoAnteriorFiltrar_GotFocus(object sender, RoutedEventArgs e)
+        {
+            this._btnConsultarApoderadoAnterior.IsDefault = true;
+            this._btnModificar.IsDefault = false;
+        }              
+       
+        #endregion
+
+        #region Poder Anterior
+
+        private void _lstPoderesAnterior_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            if (this._presentador.CambiarPoderAnterior())
+            {
+                GestionarVisibilidadDatosDePoderAnterior(Visibility.Visible);
+                GestionarVisibilidadFiltroPoderAnterior(Visibility.Collapsed);
+
+                if (this._presentador.VerificarCambioPoder("Anterior"))
+                {
+                    this._btnConsultarApoderadoAnterior.IsEnabled = false;
+                    this._btnConsultarAnterior.IsEnabled = false;
+                }
+                else
+                {
+                    this._btnConsultarApoderadoAnterior.IsEnabled = true;
+                    this._btnConsultarAnterior.IsEnabled = true;
+                }
+            }
+        }
+
+        private void _OrdenarPoderesAnterior_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.OrdenarColumna(sender as GridViewColumnHeader, this._lstPoderesAnterior);
+        }
+
         private void _txtIdPoderAnterior_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             GestionarVisibilidadDatosDePoderAnterior(Visibility.Collapsed);
@@ -764,20 +828,6 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.CambiosPeticionario
             GestionarVisibilidadDatosDePoderActual(Visibility.Visible);
         }
 
-        private void GestionarVisibilidadDatosDeAnterior(object value)
-        {
-            this._lblNombreAnterior.Visibility = (System.Windows.Visibility)value;
-            this._txtNombreAnterior.Visibility = (System.Windows.Visibility)value;
-            this._txtPaisAnterior.Visibility = (System.Windows.Visibility)value;
-            this._txtNacionalidadAnterior.Visibility = (System.Windows.Visibility)value;
-        }
-
-        private void GestionarVisibilidadDatosDeApoderadoAnterior(object value)
-        {
-            this._lblNombreApoderadoAnterior.Visibility = (System.Windows.Visibility)value;
-            this._txtNombreApoderadoAnterior.Visibility = (System.Windows.Visibility)value;
-        }
-
         private void GestionarVisibilidadDatosDePoderAnterior(object value)
         {
             this._lblIdPoderAnterior.Visibility = (System.Windows.Visibility)value;
@@ -794,30 +844,6 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.CambiosPeticionario
             this._txtFacultadPoderAnterior.Visibility = (System.Windows.Visibility)value;
         }
 
-        private void GestionarVisibilidadFiltroAnterior(object value)
-        {
-            this._lblAnteriorFiltrar.Visibility = (System.Windows.Visibility)value;
-            this._lblNombreAnteriorFiltrar.Visibility = (System.Windows.Visibility)value;
-            this._txtNombreAnteriorFiltrar.Visibility = (System.Windows.Visibility)value;
-            this._lblIdAnteriorFiltrar.Visibility = (System.Windows.Visibility)value;
-            this._txtIdAnteriorFiltrar.Visibility = (System.Windows.Visibility)value;
-            this._lstAnteriors.Visibility = (System.Windows.Visibility)value;
-            this._btnConsultarAnterior.Visibility = (System.Windows.Visibility)value;
-
-        }
-
-        private void GestionarVisibilidadFiltroApoderadoAnterior(object value)
-        {
-            this._lblApoderadoAnteriorFiltrar.Visibility = (System.Windows.Visibility)value;
-            this._lblNombreApoderadoAnteriorFiltrar.Visibility = (System.Windows.Visibility)value;
-            this._txtNombreApoderadoAnteriorFiltrar.Visibility = (System.Windows.Visibility)value;
-            this._lblIdApoderadoAnteriorFiltrar.Visibility = (System.Windows.Visibility)value;
-            this._txtIdApoderadoAnteriorFiltrar.Visibility = (System.Windows.Visibility)value;
-            this._lstApoderadosAnterior.Visibility = (System.Windows.Visibility)value;
-            this._btnConsultarApoderadoAnterior.Visibility = (System.Windows.Visibility)value;
-
-        }
-
         private void GestionarVisibilidadFiltroPoderAnterior(object value)
         {
             this._lblPoderAnteriorFiltrar.Visibility = (System.Windows.Visibility)value;
@@ -829,29 +855,17 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.CambiosPeticionario
 
         }
 
-        private void _txtAnteriorFiltrar_GotFocus(object sender, RoutedEventArgs e)
-        {
-            this._btnConsultarAnterior.IsDefault = true;
-            this._btnModificar.IsDefault = false;
-        }
-
-        private void _txtApoderadoAnteriorFiltrar_GotFocus(object sender, RoutedEventArgs e)
-        {
-            this._btnConsultarApoderadoAnterior.IsDefault = true;
-            this._btnModificar.IsDefault = false;
-        }
-
         private void _txtPoderAnteriorFiltrar_GotFocus(object sender, RoutedEventArgs e)
         {
             this._btnConsultarPoderAnterior.IsDefault = true;
             this._btnModificar.IsDefault = false;
-        }        
+        }  
 
-        #endregion
+        #endregion        
 
         #region Actual
 
-        private void _lstActuals_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        private void _lstActual_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             if (this._presentador.CambiarActual())
             {
@@ -868,60 +882,12 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.CambiosPeticionario
                 }
             }
         }
-
-        private void _lstApoderadosActual_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
-        {
-            if (this._presentador.CambiarApoderadoActual())
-            {
-                GestionarVisibilidadDatosDeApoderadoActual(Visibility.Visible);
-                GestionarVisibilidadFiltroApoderadoActual(Visibility.Collapsed);
-
-                if (this._presentador.VerificarCambioAgente("Actual"))
-                {
-                    this._btnConsultarPoderActual.IsEnabled = false;
-                }
-                else
-                {
-                    this._btnConsultarPoderActual.IsEnabled = true;
-                }
-            }
-        }
-
-        private void _lstPoderesActual_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
-        {
-            if (this._presentador.CambiarPoderActual())
-            {
-                GestionarVisibilidadDatosDePoderActual(Visibility.Visible);
-                GestionarVisibilidadFiltroPoderActual(Visibility.Collapsed);
-
-                if (this._presentador.VerificarCambioPoder("Actual"))
-                {
-                    this._btnConsultarApoderadoActual.IsEnabled = false;
-                    this._btnConsultarActual.IsEnabled = false;
-                }
-                else
-                {
-                    this._btnConsultarApoderadoActual.IsEnabled = true;
-                    this._btnConsultarActual.IsEnabled = true;
-                }                
-            }
-        }
-
-        private void _OrdenarActuals_Click(object sender, RoutedEventArgs e)
+       
+        private void _OrdenarActual_Click(object sender, RoutedEventArgs e)
         {
             this._presentador.OrdenarColumna(sender as GridViewColumnHeader, this._lstActuals);
         }
-
-        private void _OrdenarApoderadosActual_Click(object sender, RoutedEventArgs e)
-        {
-            this._presentador.OrdenarColumna(sender as GridViewColumnHeader, this._lstApoderadosActual);
-        }
-
-        private void _OrdenarPoderesActual_Click(object sender, RoutedEventArgs e)
-        {
-            this._presentador.OrdenarColumna(sender as GridViewColumnHeader, this._lstPoderesActual);
-        }
-
+      
         private void _txtNombreActual_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             GestionarVisibilidadDatosDeActual(Visibility.Collapsed);
@@ -951,6 +917,58 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.CambiosPeticionario
             GestionarVisibilidadDatosDePoderAnterior(Visibility.Visible);
 
             GestionarVisibilidadDatosDePoderActual(Visibility.Visible);
+        }
+        
+        private void GestionarVisibilidadDatosDeActual(object value)
+        {
+            this._lblNombreActual.Visibility = (System.Windows.Visibility)value;
+            this._txtNombreActual.Visibility = (System.Windows.Visibility)value;
+            this._txtPaisActual.Visibility = (System.Windows.Visibility)value;
+            this._txtNacionalidadActual.Visibility = (System.Windows.Visibility)value;
+        }
+     
+        private void GestionarVisibilidadFiltroActual(object value)
+        {
+            this._lblActualFiltrar.Visibility = (System.Windows.Visibility)value;
+            this._lblNombreActualFiltrar.Visibility = (System.Windows.Visibility)value;
+            this._txtNombreActualFiltrar.Visibility = (System.Windows.Visibility)value;
+            this._lblIdActual.Visibility = (System.Windows.Visibility)value;
+            this._txtIdActualFiltrar.Visibility = (System.Windows.Visibility)value;
+            this._lstActuals.Visibility = (System.Windows.Visibility)value;
+            this._btnConsultarActual.Visibility = (System.Windows.Visibility)value;
+        }
+       
+        private void _txtActualFiltrar_GotFocus(object sender, RoutedEventArgs e)
+        {
+            this._btnConsultarActual.IsDefault = true;
+            this._btnModificar.IsDefault = false;
+        }
+       
+        #endregion
+
+        #region Apoderado Actual
+
+        private void _lstApoderadosActual_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            if (this._presentador.CambiarApoderadoActual())
+            {
+                GestionarVisibilidadDatosDeApoderadoActual(Visibility.Visible);
+                GestionarVisibilidadFiltroApoderadoActual(Visibility.Collapsed);
+
+                if (this._presentador.VerificarCambioAgente("Actual"))
+                {
+                    this._btnConsultarPoderActual.IsEnabled = false;
+                }
+                else
+                {
+                    this._btnConsultarPoderActual.IsEnabled = true;
+                }
+            }
+        }
+
+        private void _OrdenarApoderadosActual_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.OrdenarColumna(sender as GridViewColumnHeader, this._lstApoderadosActual);
         }
 
         private void _txtNombreApoderadoActual_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
@@ -984,6 +1002,59 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.CambiosPeticionario
             GestionarVisibilidadDatosDePoderAnterior(Visibility.Visible);
         }
 
+        private void GestionarVisibilidadDatosDeApoderadoActual(object value)
+        {
+            this._lblNombreApoderadoActual.Visibility = (System.Windows.Visibility)value;
+            this._txtNombreApoderadoActual.Visibility = (System.Windows.Visibility)value;
+        }
+
+        private void GestionarVisibilidadFiltroApoderadoActual(object value)
+        {
+            this._lblApoderadoActualFiltrar.Visibility = (System.Windows.Visibility)value;
+            this._lblNombreApoderadoActualFiltrar.Visibility = (System.Windows.Visibility)value;
+            this._txtNombreApoderadoActualFiltrar.Visibility = (System.Windows.Visibility)value;
+            this._lblIdApoderadoActualFiltrar.Visibility = (System.Windows.Visibility)value;
+            this._txtIdApoderadoActualFiltrar.Visibility = (System.Windows.Visibility)value;
+            this._lstApoderadosActual.Visibility = (System.Windows.Visibility)value;
+            this._btnConsultarApoderadoActual.Visibility = (System.Windows.Visibility)value;
+
+        }
+
+        private void _txtApoderadoActualFiltrar_GotFocus(object sender, RoutedEventArgs e)
+        {
+            this._btnConsultarApoderadoActual.IsDefault = true;
+            this._btnModificar.IsDefault = false;
+        }
+
+        #endregion
+
+        #region Poder Actual
+
+        private void _lstPoderesActual_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            if (this._presentador.CambiarPoderActual())
+            {
+                GestionarVisibilidadDatosDePoderActual(Visibility.Visible);
+                GestionarVisibilidadFiltroPoderActual(Visibility.Collapsed);
+
+                if (this._presentador.VerificarCambioPoder("Actual"))
+                {
+                    this._btnConsultarApoderadoActual.IsEnabled = false;
+                    this._btnConsultarActual.IsEnabled = false;
+                }
+                else
+                {
+                    this._btnConsultarApoderadoActual.IsEnabled = true;
+                    this._btnConsultarActual.IsEnabled = true;
+                }
+            }
+        }
+
+        private void _OrdenarPoderesActual_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.OrdenarColumna(sender as GridViewColumnHeader, this._lstPoderesActual);
+        }
+
         private void _txtIdPoderActual_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             GestionarVisibilidadDatosDePoderActual(Visibility.Collapsed);
@@ -1015,20 +1086,6 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.CambiosPeticionario
             GestionarVisibilidadDatosDePoderAnterior(Visibility.Visible);
         }
 
-        private void GestionarVisibilidadDatosDeActual(object value)
-        {
-            this._lblNombreActual.Visibility = (System.Windows.Visibility)value;
-            this._txtNombreActual.Visibility = (System.Windows.Visibility)value;
-            this._txtPaisActual.Visibility = (System.Windows.Visibility)value;
-            this._txtNacionalidadActual.Visibility = (System.Windows.Visibility)value;
-        }
-
-        private void GestionarVisibilidadDatosDeApoderadoActual(object value)
-        {
-            this._lblNombreApoderadoActual.Visibility = (System.Windows.Visibility)value;
-            this._txtNombreApoderadoActual.Visibility = (System.Windows.Visibility)value;
-        }
-
         private void GestionarVisibilidadDatosDePoderActual(object value)
         {
             this._lblIdPoderActual.Visibility = (System.Windows.Visibility)value;
@@ -1045,29 +1102,6 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.CambiosPeticionario
             this._txtFacultadPoderActual.Visibility = (System.Windows.Visibility)value;
         }
 
-        private void GestionarVisibilidadFiltroActual(object value)
-        {
-            this._lblActualFiltrar.Visibility = (System.Windows.Visibility)value;
-            this._lblNombreActualFiltrar.Visibility = (System.Windows.Visibility)value;
-            this._txtNombreActualFiltrar.Visibility = (System.Windows.Visibility)value;
-            this._lblIdActual.Visibility = (System.Windows.Visibility)value;
-            this._txtIdActualFiltrar.Visibility = (System.Windows.Visibility)value;
-            this._lstActuals.Visibility = (System.Windows.Visibility)value;
-            this._btnConsultarActual.Visibility = (System.Windows.Visibility)value;
-        }
-
-        private void GestionarVisibilidadFiltroApoderadoActual(object value)
-        {
-            this._lblApoderadoActualFiltrar.Visibility = (System.Windows.Visibility)value;
-            this._lblNombreApoderadoActualFiltrar.Visibility = (System.Windows.Visibility)value;
-            this._txtNombreApoderadoActualFiltrar.Visibility = (System.Windows.Visibility)value;
-            this._lblIdApoderadoActualFiltrar.Visibility = (System.Windows.Visibility)value;
-            this._txtIdApoderadoActualFiltrar.Visibility = (System.Windows.Visibility)value;
-            this._lstApoderadosActual.Visibility = (System.Windows.Visibility)value;
-            this._btnConsultarApoderadoActual.Visibility = (System.Windows.Visibility)value;
-
-        }
-
         private void GestionarVisibilidadFiltroPoderActual(object value)
         {
             this._lblPoderActualFiltrar.Visibility = (System.Windows.Visibility)value;
@@ -1079,18 +1113,6 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.CambiosPeticionario
 
         }
 
-        private void _txtActualFiltrar_GotFocus(object sender, RoutedEventArgs e)
-        {
-            this._btnConsultarActual.IsDefault = true;
-            this._btnModificar.IsDefault = false;
-        }
-
-        private void _txtApoderadoActualFiltrar_GotFocus(object sender, RoutedEventArgs e)
-        {
-            this._btnConsultarApoderadoActual.IsDefault = true;
-            this._btnModificar.IsDefault = false;
-        }
-
         private void _txtPoderActualFiltrar_GotFocus(object sender, RoutedEventArgs e)
         {
             this._btnConsultarPoderActual.IsDefault = true;
@@ -1098,6 +1120,6 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.CambiosPeticionario
         } 
 
         #endregion
-        
+
     }
 }

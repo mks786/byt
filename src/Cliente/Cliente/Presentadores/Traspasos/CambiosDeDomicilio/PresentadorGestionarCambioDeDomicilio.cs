@@ -145,7 +145,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeDomicilio
                 CambioDeDomicilio cambioDeDomicilio = (CambioDeDomicilio)this._ventana.CambioDeDomicilio;
 
                 if (((CambioDeDomicilio)cambioDeDomicilio).Marca != null)
-                this._ventana.Marca = this._marcaServicios.ConsultarMarcaConTodo(((CambioDeDomicilio)cambioDeDomicilio).Marca);               
+                    this._ventana.Marca = this._marcaServicios.ConsultarMarcaConTodo(((CambioDeDomicilio)cambioDeDomicilio).Marca);
 
                 this._ventana.NombreMarca = ((Marca)this._ventana.Marca).Descripcion;
                 this._ventana.AgenteApoderado = ((CambioDeDomicilio)cambioDeDomicilio).Agente;
@@ -164,7 +164,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeDomicilio
 
                 LlenarListasPoderes((CambioDeDomicilio)this._ventana.CambioDeDomicilio);
 
-                ValidarInteresado();             
+                ValidarInteresado();
 
                 this._ventana.FocoPredeterminado();
 
@@ -240,7 +240,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeDomicilio
 
                 }
             }
-        }                       
+        }
 
         public void IrConsultarMarcas()
         {
@@ -976,6 +976,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeDomicilio
                     }
                     else
                     {
+                        this._poderesInteresadoActual = this._poderServicios.ConsultarPoderesPorInteresado(((Interesado)_ventana.InteresadoActualFiltrado));
                         this._ventana.InteresadoActual = this._interesadoServicios.ConsultarInteresadoConTodo((Interesado)this._ventana.InteresadoActualFiltrado);
                         this._ventana.NombreInteresadoActual = ((Interesado)this._ventana.InteresadoActual).Nombre;
                         retorno = true;
@@ -1176,13 +1177,13 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeDomicilio
 
                             LimpiarListaPoder();
 
-                            if ((this.ValidarListaDePoderes(this._poderes, this._poderesApoderado)))
+                            if ((this.ValidarListaDePoderes(this._poderesInteresadoActual, this._poderesApoderado)))
                             {
                                 this._ventana.AgenteApoderado = this._ventana.AgenteApoderadoFiltrado;
                                 this._ventana.NombreAgenteApoderado = ((Agente)this._ventana.AgenteApoderadoFiltrado).Nombre;
                                 retorno = true;
                             }
-                            else if (!this.ValidarListaDePoderes(this._poderes, this._poderesApoderado))
+                            else if (!this.ValidarListaDePoderes(this._poderesInteresadoActual, this._poderesApoderado))
                             {
                                 this._ventana.Mensaje(string.Format(Recursos.MensajesConElUsuario.ErrorAgenteNoPoseePoderConInteresado, "Actual"), 0);
                             }
@@ -1190,6 +1191,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeDomicilio
                     }
                     else
                     {
+                        this._poderesApoderado = this._poderServicios.ConsultarPoderesPorAgente(((Agente)_ventana.AgenteApoderadoFiltrado));
                         this._ventana.AgenteApoderado = this._ventana.AgenteApoderadoFiltrado;
                         this._ventana.NombreAgenteApoderado = ((Agente)this._ventana.AgenteApoderadoFiltrado).Nombre;
                         retorno = true;
@@ -1519,9 +1521,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeDomicilio
             this._ventana.PoderFiltrado = BuscarPoder(listaPoderes, primerPoder);
             this._ventana.Poder = this._ventana.PoderFiltrado;
 
-        }                           
+        }
 
         #endregion
-             
+
     }
 }

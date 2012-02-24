@@ -920,9 +920,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDePeticionario
                     }
                     else
                     {
-                        if (((Poder)this._ventana.PoderAnteriorFiltrado).Id == int.MinValue)
-                            this._validar = true;
-
+                        this._poderesAnterior = this._poderServicios.ConsultarPoderesPorInteresado(((Interesado)_ventana.AnteriorFiltrado));
                         this._ventana.InteresadoAnterior = this._interesadoServicios.ConsultarInteresadoConTodo((Interesado)this._ventana.AnteriorFiltrado);
                         this._ventana.NombreAnterior = ((Interesado)this._ventana.InteresadoAnterior).Nombre;
                         retorno = true;                                                
@@ -936,7 +934,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDePeticionario
                     retorno = true;
                 }
 
-                this._ventana.ConvertirEnteroMinimoABlanco("Actual");
+                this._ventana.ConvertirEnteroMinimoABlanco("Anterior");
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -1009,9 +1007,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDePeticionario
                     }
                     else
                     {
-                        if (((Poder)this._ventana.PoderAnteriorFiltrado).Id == int.MinValue)
-                            this._validar = true;
-
+                        this._poderesApoderadosAnterior = this._poderServicios.ConsultarPoderesPorAgente(((Agente)_ventana.ApoderadoAnteriorFiltrado));
                         this._ventana.ApoderadoAnterior = this._ventana.ApoderadoAnteriorFiltrado;
                         this._ventana.NombreApoderadoAnterior = ((Agente)this._ventana.ApoderadoAnteriorFiltrado).Nombre;
                         retorno = true;
@@ -1023,6 +1019,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDePeticionario
                     this._ventana.NombreApoderadoAnterior = ((Agente)this._ventana.ApoderadoAnteriorFiltrado).Nombre;
                     retorno = true;
                 }
+
+                this._ventana.ConvertirEnteroMinimoABlanco("Anterior");
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -1124,7 +1122,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDePeticionario
             return retorno;
         }
        
-        #endregion
+        #endregion       
 
         #region Actual
 
@@ -1425,9 +1423,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDePeticionario
                     }
                     else
                     {
-                        if (((Poder)this._ventana.PoderActualFiltrado).Id == int.MinValue)
-                            this._validar = true;
-
+                        this._poderesActual = this._poderServicios.ConsultarPoderesPorInteresado(((Interesado)_ventana.ActualFiltrado));
                         this._ventana.InteresadoActual = this._interesadoServicios.ConsultarInteresadoConTodo((Interesado)this._ventana.ActualFiltrado);
                         this._ventana.NombreActual = ((Interesado)this._ventana.InteresadoActual).Nombre;
                         retorno = true;
@@ -1496,7 +1492,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDePeticionario
                         }
                         else
                         {
-                            this._poderesApoderadosActual = this._poderServicios.ConsultarPoderesPorAgente(((Agente)_ventana.ApoderadoActualFiltrado));
+                            this._poderesApoderadosActual = this._poderServicios.ConsultarPoderesPorAgente(((Agente)_ventana.ApoderadoActualFiltrado));                            
 
                             LimpiarListaPoder("Actual");
 
@@ -1517,9 +1513,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDePeticionario
                     }
                     else
                     {
-                        if (((Poder)this._ventana.PoderActualFiltrado).Id == int.MinValue)
-                            this._validar = true;
-
+                        this._poderesApoderadosActual = this._poderServicios.ConsultarPoderesPorAgente(((Agente)_ventana.ApoderadoActualFiltrado));                            
                         this._ventana.ApoderadoActual = this._ventana.ApoderadoActualFiltrado;
                         this._ventana.NombreApoderadoActual = ((Agente)this._ventana.ApoderadoActualFiltrado).Nombre;
                         retorno = true;
@@ -1531,6 +1525,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDePeticionario
                     this._ventana.NombreApoderadoActual = ((Agente)this._ventana.ApoderadoActualFiltrado).Nombre;
                     retorno = true;
                 }
+
+                this._ventana.ConvertirEnteroMinimoABlanco("Actual");
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))

@@ -249,12 +249,12 @@
                              VerticalContentAlignment="Center" Grid.Row="0" Grid.Column="6" IsReadOnly="True"
                              Grid.ColumnSpan="1" Margin="5,0,0,0" />
                         <ListView Grid.Row="2" Grid.ColumnSpan="7" Grid.RowSpan="3" Name="_lstAnteriors" ItemsSource="{Binding}" 
-                        SelectionMode="Single" MouseDoubleClick="_lstAnteriors_MouseDoubleClick"
+                        SelectionMode="Single" MouseDoubleClick="_lstAnterior_MouseDoubleClick"
                         Style="{DynamicResource EstiloListView}" Visibility="Collapsed" Height="150"  VerticalAlignment="Top">
                             <ListView.View>
                                 <GridView>
                                     <GridViewColumn Width="45">
-                                        <GridViewColumnHeader Click="_OrdenarAnteriors_Click" Tag="Id" Content="{x:Static recurso:Etiquetas.lsvId}"/>
+                                        <GridViewColumnHeader Click="_OrdenarAnterior_Click" Tag="Id" Content="{x:Static recurso:Etiquetas.lsvId}"/>
                                         <GridViewColumn.CellTemplate>
                                             <DataTemplate>
                                                 <TextBlock>
@@ -266,7 +266,7 @@
                                         </GridViewColumn.CellTemplate>
                                     </GridViewColumn>
                                     <GridViewColumn DisplayMemberBinding="{Binding Path=Nombre}" Width="300">
-                                        <GridViewColumnHeader Click="_OrdenarAnteriors_Click" Tag="Nombre" Content="{x:Static recurso:Etiquetas.lsvNombre}"/>
+                                        <GridViewColumnHeader Click="_OrdenarAnterior_Click" Tag="Nombre" Content="{x:Static recurso:Etiquetas.lsvNombre}"/>
                                     </GridViewColumn>
                                 </GridView>
                             </ListView.View>
@@ -566,12 +566,12 @@
                              VerticalContentAlignment="Center" Grid.Row="0" Grid.Column="6" IsReadOnly="True"
                              Grid.ColumnSpan="1" Margin="5,0,0,0" />
                         <ListView Grid.Row="2" Grid.ColumnSpan="7" Grid.RowSpan="3" Name="_lstActuals" ItemsSource="{Binding}" 
-                        SelectionMode="Single" MouseDoubleClick="_lstActuals_MouseDoubleClick"
+                        SelectionMode="Single" MouseDoubleClick="_lstActual_MouseDoubleClick"
                         Style="{DynamicResource EstiloListView}" Visibility="Collapsed" Height="150"  VerticalAlignment="Top">
                             <ListView.View>
                                 <GridView>
                                     <GridViewColumn Width="45">
-                                        <GridViewColumnHeader Click="_OrdenarActuals_Click" Tag="Id" Content="{x:Static recurso:Etiquetas.lsvId}"/>
+                                        <GridViewColumnHeader Click="_OrdenarActual_Click" Tag="Id" Content="{x:Static recurso:Etiquetas.lsvId}"/>
                                         <GridViewColumn.CellTemplate>
                                             <DataTemplate>
                                                 <TextBlock>
@@ -583,7 +583,7 @@
                                         </GridViewColumn.CellTemplate>
                                     </GridViewColumn>
                                     <GridViewColumn DisplayMemberBinding="{Binding Path=Nombre}" Width="300">
-                                        <GridViewColumnHeader Click="_OrdenarActuals_Click" Tag="Nombre" Content="{x:Static recurso:Etiquetas.lsvNombre}"/>
+                                        <GridViewColumnHeader Click="_OrdenarActual_Click" Tag="Nombre" Content="{x:Static recurso:Etiquetas.lsvNombre}"/>
                                     </GridViewColumn>
                                 </GridView>
                             </ListView.View>

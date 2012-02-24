@@ -919,9 +919,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Cesiones
                     }
                     else
                     {
-                        if (((Poder)this._ventana.PoderCedenteFiltrado).Id == int.MinValue)
-                            this._validar = true;
-
+                        this._poderesCedente = this._poderServicios.ConsultarPoderesPorInteresado(((Interesado)_ventana.CedenteFiltrado));
                         this._ventana.InteresadoCedente = this._interesadoServicios.ConsultarInteresadoConTodo((Interesado)this._ventana.CedenteFiltrado);
                         this._ventana.NombreCedente = ((Interesado)this._ventana.InteresadoCedente).Nombre;
                         retorno = true;                                                
@@ -1008,9 +1006,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Cesiones
                     }
                     else
                     {
-                        if (((Poder)this._ventana.PoderCedenteFiltrado).Id == int.MinValue)
-                            this._validar = true;
-
+                        this._poderesApoderadosCedente = this._poderServicios.ConsultarPoderesPorAgente(((Agente)_ventana.ApoderadoCedenteFiltrado));
                         this._ventana.ApoderadoCedente = this._ventana.ApoderadoCedenteFiltrado;
                         this._ventana.NombreApoderadoCedente = ((Agente)this._ventana.ApoderadoCedenteFiltrado).Nombre;
                         retorno = true;
@@ -1022,6 +1018,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Cesiones
                     this._ventana.NombreApoderadoCedente = ((Agente)this._ventana.ApoderadoCedenteFiltrado).Nombre;
                     retorno = true;
                 }
+
+                this._ventana.ConvertirEnteroMinimoABlanco("Cedente");
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -1424,9 +1422,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Cesiones
                     }
                     else
                     {
-                        if (((Poder)this._ventana.PoderCesionarioFiltrado).Id == int.MinValue)
-                            this._validar = true;
-
+                        this._poderesCesionario = this._poderServicios.ConsultarPoderesPorInteresado(((Interesado)_ventana.CesionarioFiltrado));
                         this._ventana.InteresadoCesionario = this._interesadoServicios.ConsultarInteresadoConTodo((Interesado)this._ventana.CesionarioFiltrado);
                         this._ventana.NombreCesionario = ((Interesado)this._ventana.InteresadoCesionario).Nombre;
                         retorno = true;
@@ -1516,9 +1512,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Cesiones
                     }
                     else
                     {
-                        if (((Poder)this._ventana.PoderCesionarioFiltrado).Id == int.MinValue)
-                            this._validar = true;
-
+                        this._poderesApoderadosCesionario = this._poderServicios.ConsultarPoderesPorAgente(((Agente)_ventana.ApoderadoCesionarioFiltrado));
                         this._ventana.ApoderadoCesionario = this._ventana.ApoderadoCesionarioFiltrado;
                         this._ventana.NombreApoderadoCesionario = ((Agente)this._ventana.ApoderadoCesionarioFiltrado).Nombre;
                         retorno = true;

@@ -924,7 +924,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
                         }
                     }
                     else
-                    {                        
+                    {
+                        this._poderesSobreviviente = this._poderServicios.ConsultarPoderesPorInteresado(((Interesado)_ventana.InteresadoSobrevivienteFiltrado));
                         this._ventana.InteresadoSobreviviente = this._interesadoServicios.ConsultarInteresadoConTodo((Interesado)this._ventana.InteresadoSobrevivienteFiltrado);
                         this._ventana.NombreInteresadoSobreviviente = ((Interesado)this._ventana.InteresadoSobreviviente).Nombre;
                         retorno = true;                                                
@@ -1115,7 +1116,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
                         }
                     }
                     else
-                    {                        
+                    {
+                        this._poderesApoderado = this._poderServicios.ConsultarPoderesPorAgente(((Agente)_ventana.AgenteApoderadoFiltrado));
                         this._ventana.AgenteApoderado = this._ventana.AgenteApoderadoFiltrado;
                         this._ventana.NombreAgenteApoderado = ((Agente)this._ventana.AgenteApoderadoFiltrado).Nombre;
                         retorno = true;
