@@ -1512,8 +1512,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeDomicilio
             Mouse.OverrideCursor = Cursors.Wait;
 
             bool retorno = false;
-            IList<Poder> listaIntereseccionInteresado = new List<Poder>();
-            IList<Poder> listaIntereseccionCesionario = new List<Poder>();
+            IList<Poder> listaIntereseccionInteresado = new List<Poder>();            
             Poder primerPoder = new Poder(int.MinValue);
 
             Poder poderActual = new Poder();

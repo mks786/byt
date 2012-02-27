@@ -1225,25 +1225,25 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDePeticionario
                 Interesado primerInteresado = new Interesado(int.MinValue);
 
                 Mouse.OverrideCursor = Cursors.Wait;
-                Interesado cesionario = new Interesado();
-                IList<Interesado> cesionariosFiltrados;
-                cesionario.Nombre = this._ventana.NombreActualFiltrar.ToUpper();
-                cesionario.Id = this._ventana.IdActualFiltrar.Equals("") ? 0 : int.Parse(this._ventana.IdActualFiltrar);
+                Interesado interesadoActual = new Interesado();
+                IList<Interesado> interesadoActualsFiltrados;
+                interesadoActual.Nombre = this._ventana.NombreActualFiltrar.ToUpper();
+                interesadoActual.Id = this._ventana.IdActualFiltrar.Equals("") ? 0 : int.Parse(this._ventana.IdActualFiltrar);
 
-                if ((!cesionario.Nombre.Equals("")) || (cesionario.Id != 0))
-                    cesionariosFiltrados = this._interesadoServicios.ObtenerInteresadosFiltro(cesionario);
+                if ((!interesadoActual.Nombre.Equals("")) || (interesadoActual.Id != 0))
+                    interesadoActualsFiltrados = this._interesadoServicios.ObtenerInteresadosFiltro(interesadoActual);
                 else
-                    cesionariosFiltrados = new List<Interesado>();
+                    interesadoActualsFiltrados = new List<Interesado>();
 
-                if (cesionariosFiltrados.ToList<Interesado>().Count != 0)
+                if (interesadoActualsFiltrados.ToList<Interesado>().Count != 0)
                 {
-                    cesionariosFiltrados.Insert(0, primerInteresado);
-                    this._ventana.ActualsFiltrados = cesionariosFiltrados.ToList<Interesado>();
+                    interesadoActualsFiltrados.Insert(0, primerInteresado);
+                    this._ventana.ActualsFiltrados = interesadoActualsFiltrados.ToList<Interesado>();
                     this._ventana.ActualFiltrado = primerInteresado;
                 }
                 else
                 {
-                    cesionariosFiltrados.Insert(0, primerInteresado);
+                    interesadoActualsFiltrados.Insert(0, primerInteresado);
                     this._ventana.ActualsFiltrados = this._interesadosActual;
                     this._ventana.ActualFiltrado = primerInteresado;
                     this._ventana.Mensaje(Recursos.MensajesConElUsuario.NoHayResultados, 1);
