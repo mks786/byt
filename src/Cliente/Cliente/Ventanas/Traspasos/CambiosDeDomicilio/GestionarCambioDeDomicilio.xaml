@@ -342,7 +342,7 @@
                     </Grid>
 
 
-                </WrapPanel>                
+                </WrapPanel>
                 <WrapPanel>
                     <Grid Width="640" DataContext="{Binding}" Name="_gridDatosApoderado">
                         <Grid.ColumnDefinitions>

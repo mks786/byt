@@ -517,6 +517,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDePeticionario
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
+                Marca primeraMarca = new Marca(int.MinValue);
+
                 Mouse.OverrideCursor = Cursors.Wait;
                 Marca marca = new Marca();
                 IList<Marca> marcasFiltradas;
@@ -530,13 +532,15 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDePeticionario
 
                 if (marcasFiltradas.ToList<Marca>().Count != 0)
                 {
-                    marcasFiltradas.Insert(0, new Marca(int.MinValue));
+                    marcasFiltradas.Insert(0, primeraMarca);
                     this._ventana.MarcasFiltradas = marcasFiltradas.ToList<Marca>();
+                    this._ventana.MarcaFiltrada = primeraMarca;
                 }
                 else
                 {
-                    marcasFiltradas.Insert(0, new Marca(int.MinValue));
+                    marcasFiltradas.Insert(0, primeraMarca);
                     this._ventana.MarcasFiltradas = this._marcas;
+                    this._ventana.MarcaFiltrada = primeraMarca;
                     this._ventana.Mensaje(Recursos.MensajesConElUsuario.NoHayResultados, 1);
                 }
 
@@ -699,6 +703,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDePeticionario
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
+                Interesado primerInteresado = new Interesado(int.MinValue);
+
                 Mouse.OverrideCursor = Cursors.Wait;
                 Interesado interesado = new Interesado();
                 IList<Interesado> interesadosFiltrados;
@@ -712,13 +718,15 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDePeticionario
 
                 if (interesadosFiltrados.Count != 0)
                 {
-                    interesadosFiltrados.Insert(0, new Interesado(int.MinValue));                    
+                    interesadosFiltrados.Insert(0, primerInteresado);
                     this._ventana.AnteriorsFiltrados = interesadosFiltrados;
+                    this._ventana.AnteriorFiltrado = primerInteresado;
                 }
                 else
                 {
-                    interesadosFiltrados.Insert(0, new Interesado(int.MinValue));
+                    interesadosFiltrados.Insert(0, primerInteresado);
                     this._ventana.AnteriorsFiltrados = this._interesadosAnterior;
+                    this._ventana.AnteriorFiltrado = primerInteresado;
                     this._ventana.Mensaje(Recursos.MensajesConElUsuario.NoHayResultados, 1);
                 }
 
@@ -760,26 +768,30 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDePeticionario
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
+                Agente primerAgente = new Agente("");
+
                 Mouse.OverrideCursor = Cursors.Wait;
-                Agente apoderadoInteresado = new Agente();
-                IList<Agente> agentesInteresadoFiltrados;
-                apoderadoInteresado.Nombre = this._ventana.NombreApoderadoAnteriorFiltrar.ToUpper();
-                apoderadoInteresado.Id = this._ventana.IdApoderadoAnteriorFiltrar.ToUpper();
+                Agente apoderadoAnterior = new Agente();
+                IList<Agente> agentesAnteriorFiltrados;
+                apoderadoAnterior.Nombre = this._ventana.NombreApoderadoAnteriorFiltrar.ToUpper();
+                apoderadoAnterior.Id = this._ventana.IdApoderadoAnteriorFiltrar.ToUpper();
 
-                if ((!apoderadoInteresado.Nombre.Equals("")) || (!apoderadoInteresado.Id.Equals("")))
-                    agentesInteresadoFiltrados = this._agenteServicios.ObtenerAgentesFiltro(apoderadoInteresado);
+                if ((!apoderadoAnterior.Nombre.Equals("")) || (!apoderadoAnterior.Id.Equals("")))
+                    agentesAnteriorFiltrados = this._agenteServicios.ObtenerAgentesFiltro(apoderadoAnterior);
                 else
-                    agentesInteresadoFiltrados = new List<Agente>();
+                    agentesAnteriorFiltrados = new List<Agente>();
 
-                if (agentesInteresadoFiltrados.ToList<Agente>().Count != 0)
+                if (agentesAnteriorFiltrados.Count != 0)
                 {
-                    agentesInteresadoFiltrados.Insert(0, new Agente(""));                   
-                    this._ventana.ApoderadosAnteriorFiltrados = agentesInteresadoFiltrados;
+                    agentesAnteriorFiltrados.Insert(0, primerAgente);
+                    this._ventana.ApoderadoAnteriorFiltrado = primerAgente;
+                    this._ventana.ApoderadosAnteriorFiltrados = agentesAnteriorFiltrados.ToList<Agente>();
                 }
                 else
                 {
-                    agentesInteresadoFiltrados.Insert(0, new Agente(""));
+                    agentesAnteriorFiltrados.Insert(0, primerAgente);
                     this._ventana.ApoderadosAnteriorFiltrados = this._agentesAnterior;
+                    this._ventana.ApoderadoAnteriorFiltrado = primerAgente;
                     this._ventana.Mensaje(Recursos.MensajesConElUsuario.NoHayResultados, 1);
                 }
 
@@ -821,10 +833,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDePeticionario
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
+                Poder primerPoder = new Poder(int.MinValue);
+
                 Mouse.OverrideCursor = Cursors.Wait;
                 Poder poderAnterior = new Poder();
-                IList<Poder> poderesAnteriorFiltrados;                
-                
+                IList<Poder> poderesAnteriorFiltrados;
+
                 if (!this._ventana.IdPoderAnteriorFiltrar.Equals(""))
                     poderAnterior.Id = int.Parse(this._ventana.IdPoderAnteriorFiltrar);
 
@@ -838,17 +852,19 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDePeticionario
 
                 if (poderesAnteriorFiltrados.ToList<Poder>().Count != 0)
                 {
-                    poderesAnteriorFiltrados.Insert(0, new Poder(int.MinValue));
-                    this._ventana.PoderesAnteriorFiltrados = this._poderesAnterior;                    
-                    this._ventana.PoderesAnteriorFiltrados = poderesAnteriorFiltrados;                    
+                    poderesAnteriorFiltrados.Insert(0, primerPoder);
+                    this._ventana.PoderesAnteriorFiltrados = this._poderesAnterior;
+                    this._ventana.PoderAnteriorFiltrado = primerPoder;
+                    this._ventana.PoderesAnteriorFiltrados = poderesAnteriorFiltrados;
                 }
                 else
                 {
-                    poderesAnteriorFiltrados.Insert(0, new Poder(int.MinValue));
+                    poderesAnteriorFiltrados.Insert(0, primerPoder);
                     this._ventana.PoderesAnteriorFiltrados = this._poderesAnterior;
+                    this._ventana.PoderAnteriorFiltrado = primerPoder;
                     this._ventana.Mensaje(Recursos.MensajesConElUsuario.NoHayResultados, 1);
                 }
-                
+
 
                 Mouse.OverrideCursor = null;
 
@@ -914,6 +930,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDePeticionario
                             }
                             else if (!this.ValidarListaDePoderes(this._poderesAnterior, _poderesApoderadosAnterior, "Anterior"))
                             {
+                                this._ventana.ConvertirEnteroMinimoABlanco("Anterior");
                                 this._ventana.Mensaje(string.Format(Recursos.MensajesConElUsuario.ErrorInteresadoNoPoseePoderConAgente, "Anterior"), 0);
                             }
                         }
@@ -1001,6 +1018,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDePeticionario
                             }
                             else if (!this.ValidarListaDePoderes(this._poderesAnterior, this._poderesApoderadosAnterior, "Anterior"))
                             {
+                                this._ventana.ConvertirEnteroMinimoABlanco("Anterior");
                                 this._ventana.Mensaje(string.Format(Recursos.MensajesConElUsuario.ErrorAgenteNoPoseePoderConInteresado, "Anterior"), 0);
                             }
                         }
@@ -1193,7 +1211,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDePeticionario
                     }
                 }
             }
-        }          
+        }
 
         public void ConsultarActuals()
         {
@@ -1203,6 +1221,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDePeticionario
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
+
+                Interesado primerInteresado = new Interesado(int.MinValue);
 
                 Mouse.OverrideCursor = Cursors.Wait;
                 Interesado cesionario = new Interesado();
@@ -1217,13 +1237,15 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDePeticionario
 
                 if (cesionariosFiltrados.ToList<Interesado>().Count != 0)
                 {
-                    cesionariosFiltrados.Insert(0, new Interesado(int.MinValue));
+                    cesionariosFiltrados.Insert(0, primerInteresado);
                     this._ventana.ActualsFiltrados = cesionariosFiltrados.ToList<Interesado>();
+                    this._ventana.ActualFiltrado = primerInteresado;
                 }
                 else
                 {
-                    cesionariosFiltrados.Insert(0, new Interesado(int.MinValue));
+                    cesionariosFiltrados.Insert(0, primerInteresado);
                     this._ventana.ActualsFiltrados = this._interesadosActual;
+                    this._ventana.ActualFiltrado = primerInteresado;
                     this._ventana.Mensaje(Recursos.MensajesConElUsuario.NoHayResultados, 1);
                 }
 
@@ -1265,6 +1287,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDePeticionario
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
+                Agente primerAgente = new Agente("");
+
                 Mouse.OverrideCursor = Cursors.Wait;
                 Agente apoderadoActual = new Agente();
                 IList<Agente> agentesActualFiltrados;
@@ -1278,13 +1302,15 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDePeticionario
 
                 if (agentesActualFiltrados.Count != 0)
                 {
-                    agentesActualFiltrados.Insert(0, new Agente(""));
+                    agentesActualFiltrados.Insert(0, primerAgente);
+                    this._ventana.ApoderadoActualFiltrado = primerAgente;
                     this._ventana.ApoderadosActualFiltrados = agentesActualFiltrados.ToList<Agente>();
                 }
                 else
                 {
-                    agentesActualFiltrados.Insert(0, new Agente(""));
+                    agentesActualFiltrados.Insert(0, primerAgente);
                     this._ventana.ApoderadosActualFiltrados = this._agentesActual;
+                    this._ventana.ApoderadoActualFiltrado = primerAgente;
                     this._ventana.Mensaje(Recursos.MensajesConElUsuario.NoHayResultados, 1);
                 }
 
@@ -1326,6 +1352,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDePeticionario
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
+                Poder primerPoder = new Poder(int.MinValue);
+
                 Mouse.OverrideCursor = Cursors.Wait;
                 Poder poderActual = new Poder();
                 IList<Poder> poderesActualFiltrados;
@@ -1343,15 +1371,19 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDePeticionario
 
                 if (poderesActualFiltrados.ToList<Poder>().Count != 0)
                 {
-                    poderesActualFiltrados.Insert(0, new Poder(int.MinValue));
-                    this._ventana.PoderesActualFiltrados = poderesActualFiltrados.ToList<Poder>();
+                    poderesActualFiltrados.Insert(0, primerPoder);
+                    this._ventana.PoderesActualFiltrados = this._poderesActual;
+                    this._ventana.PoderActualFiltrado = primerPoder;
+                    this._ventana.PoderesActualFiltrados = poderesActualFiltrados;
                 }
                 else
                 {
-                    poderesActualFiltrados.Insert(0, new Poder(int.MinValue));
+                    poderesActualFiltrados.Insert(0, primerPoder);
                     this._ventana.PoderesActualFiltrados = this._poderesActual;
+                    this._ventana.PoderActualFiltrado = primerPoder;
                     this._ventana.Mensaje(Recursos.MensajesConElUsuario.NoHayResultados, 1);
                 }
+
 
                 Mouse.OverrideCursor = null;
 
@@ -1417,6 +1449,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDePeticionario
                             }
                             else if (!this.ValidarListaDePoderes(this._poderesActual, _poderesApoderadosActual, "Actual"))
                             {
+                                this._ventana.ConvertirEnteroMinimoABlanco("Actual");
                                 this._ventana.Mensaje(string.Format(Recursos.MensajesConElUsuario.ErrorInteresadoNoPoseePoderConAgente, "Actual"), 0);
                             }
                         }
@@ -1507,6 +1540,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDePeticionario
                             }
                             else if (!this.ValidarListaDePoderes(this._poderesActual, this._poderesApoderadosActual, "Actual"))
                             {
+                                this._ventana.ConvertirEnteroMinimoABlanco("Actual");
                                 this._ventana.Mensaje(string.Format(Recursos.MensajesConElUsuario.ErrorAgenteNoPoseePoderConInteresado, "Actual"), 0);
                             }
                         }
