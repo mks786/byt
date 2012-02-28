@@ -130,7 +130,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Licencias
             get { return this._gridDatosPoderLicenciante.DataContext; }
             set { this._gridDatosPoderLicenciante.DataContext = value; }            
         }
-        
+
+
         public object PoderLicenciatario
         {
             get { return this._gridDatosPoderLicenciatario.DataContext; }
@@ -322,11 +323,13 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Licencias
 
         public string IdPoderLicenciante
         {
+            get { return this._txtIdPoderLicenciante.Text; }
             set { this._txtIdPoderLicenciante.Text = value; }
         }
 
         public string IdPoderLicenciatario
         {
+            get { return this._txtIdPoderLicenciatario.Text; }
             set { this._txtIdPoderLicenciatario.Text = value; }
         }
 
@@ -388,6 +391,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Licencias
             InitializeComponent();
             this._cargada = false;
             this._presentador = new PresentadorGestionarLicencia(this, Licencia);
+
         }
 
         private void _btnModificar_Click(object sender, RoutedEventArgs e)
@@ -459,6 +463,62 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Licencias
         private void _btnAnexo_Click(object sender, RoutedEventArgs e)
         {
             
+        }
+
+        public void ConvertirEnteroMinimoABlanco(string tipo)
+        {
+            if (tipo.Equals("Licenciante"))
+            {
+                if (!this.IdPoderLicenciante.Equals(""))
+                {
+                    if (int.Parse(this.IdPoderLicenciante) == int.MinValue)
+                        this.IdPoderLicenciante = "";
+                }
+            }
+            if (tipo.Equals("Licenciatario"))
+            {
+                if (!this.IdPoderLicenciatario.Equals(""))
+                {
+                    if (int.Parse(this.IdPoderLicenciatario) == int.MinValue)
+                        this.IdPoderLicenciatario = "";
+                }
+            }
+        }
+
+        public void GestionarBotonConsultarInteresados(string tipo, bool value)
+        {
+            if (tipo.Equals("Licenciante"))
+            {
+                this._btnConsultarLicenciante.IsEnabled = value;
+            }
+            else if (tipo.Equals("Licenciatario"))
+            {
+                this._btnConsultarLicenciatario.IsEnabled = value;
+            }
+        }
+
+        public void GestionarBotonConsultarApoderados(string tipo, bool value)
+        {
+            if (tipo.Equals("Licenciante"))
+            {
+                this._btnConsultarApoderadoLicenciante.IsEnabled = value;
+            }
+            else if (tipo.Equals("Licenciatario"))
+            {
+                this._btnConsultarApoderadoLicenciatario.IsEnabled = value;
+            }
+        }
+
+        public void GestionarBotonConsultarPoderes(string tipo, bool value)
+        {
+            if (tipo.Equals("Licenciante"))
+            {
+                this._btnConsultarPoderLicenciante.IsEnabled = value;
+            }
+            else if (tipo.Equals("Licenciatario"))
+            {
+                this._btnConsultarPoderLicenciatario.IsEnabled = value;
+            }
         }
 
         #region Marca
@@ -563,7 +623,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Licencias
                 GestionarVisibilidadDatosDePoderLicenciante(Visibility.Visible);
                 GestionarVisibilidadFiltroPoderLicenciante(Visibility.Collapsed);
 
-                if (this._presentador.VerificarCambioPoder())
+                if (this._presentador.VerificarCambioPoder("Licenciante"))
                 {
                     this._btnConsultarApoderadoLicenciante.IsEnabled = false;
                     this._btnConsultarLicenciante.IsEnabled = false;

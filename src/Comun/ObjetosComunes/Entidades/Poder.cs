@@ -10,7 +10,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
     {
         #region Atributos
 
-        private int _id;
+        private int? _id;
         private string _numPoder;
         private DateTime? _fecha;
         private Boletin _boletin;
@@ -46,7 +46,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         /// <summary>
         /// Propiedad que asigna u obtiene el Id del poder
         /// </summary>
-        public virtual int Id
+        public virtual int? Id
         {
             get { return this._id; }
             set { this._id = value; }

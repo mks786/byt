@@ -78,6 +78,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             _bgw.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(bgw_RunWorkerCompleted);
             _bgw.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(bgw_ProgressChanged);
         }
+
         void bgw_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
         {
             _bgw.ReportProgress(1);

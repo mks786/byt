@@ -15,7 +15,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         private DateTime _fecha;
         private string _operacion;
         private string _tabla;
-        private int _fk;
+        private int? _fk;
 
         #endregion
 
@@ -69,7 +69,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         /// <summary>
         /// Propiedad que asigna la clave foranea de la tabla que se le realizo la operacion
         /// </summary>
-        public virtual int Fk
+        public virtual int? Fk
         {
             get { return _fk; }
             set { _fk = value; }

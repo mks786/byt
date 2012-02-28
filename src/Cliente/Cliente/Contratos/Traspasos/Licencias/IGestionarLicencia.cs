@@ -76,6 +76,8 @@ namespace Trascend.Bolet.Cliente.Contratos.Traspasos.Licencias
 
         object PoderLicencianteFiltrado { get; set; }
 
+        string IdPoderLicenciante { set; get; }
+
         //----------------
 
         //Poder Licenciatario
@@ -87,6 +89,8 @@ namespace Trascend.Bolet.Cliente.Contratos.Traspasos.Licencias
         object PoderesLicenciatarioFiltrados { get; set; }
 
         object PoderLicenciatarioFiltrado { get; set; }
+
+        string IdPoderLicenciatario { set; get; }
 
         //----------------
   
@@ -105,11 +109,7 @@ namespace Trascend.Bolet.Cliente.Contratos.Traspasos.Licencias
 
         string NombreApoderadoLicenciante { set; }
 
-        string NombreApoderadoLicenciatario { set; }        
-
-        string IdPoderLicenciante { set; }
-
-        string IdPoderLicenciatario { set; }
+        string NombreApoderadoLicenciatario { set; }
 
         string PaisLicenciante { set; }
 
@@ -138,5 +138,13 @@ namespace Trascend.Bolet.Cliente.Contratos.Traspasos.Licencias
         SortAdorner CurAdorner { get; set; }
 
         void Mensaje(string mensaje, int opcion);
+
+        void ConvertirEnteroMinimoABlanco(string tipo);
+
+        void GestionarBotonConsultarInteresados(string tipo, bool value);
+
+        void GestionarBotonConsultarApoderados(string tipo, bool value);
+
+        void GestionarBotonConsultarPoderes(string tipo, bool value);
     }
 }

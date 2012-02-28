@@ -423,7 +423,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
 
         
 
-        #region Metodos de los filstros de asociados
+        #region Metodos de los filtros de asociados
 
         public void CambiarAsociadoSolicitud()
         {
@@ -544,7 +544,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
 
         #endregion
 
-        #region Metodos de los filstros de interesados
+        #region Metodos de los filtros de interesados
 
         public void CambiarInteresadoSolicitud()
         {
@@ -672,7 +672,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
 
         #endregion
 
-        #region Metodos de los filstros de corresponsales
+        #region Metodos de los filtros de corresponsales
 
         public void CambiarCorresponsalSolicitud()
         {

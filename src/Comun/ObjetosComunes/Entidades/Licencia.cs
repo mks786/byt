@@ -340,8 +340,8 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         /// </summary>
         public virtual Agente AgenteLicenciatario
         {
-            get { return _agenteLicenciante; }
-            set { _agenteLicenciante = value; }
+            get { return _agenteLicenciatario; }
+            set { _agenteLicenciatario = value; }
         }
 
         public virtual string Representante
