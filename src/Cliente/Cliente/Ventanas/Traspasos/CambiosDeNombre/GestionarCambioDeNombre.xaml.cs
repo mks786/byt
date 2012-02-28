@@ -182,6 +182,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.CambiosDeNombre
                 this._txtBoletinPoder.IsEnabled = value;
                 this._txtFacultadPoder.IsEnabled = value;
                 this._txtFechaPoder.IsEnabled = value;
+                this._txtNumPoder.IsEnabled = value;
 
                 this._lblPoderFiltrar.IsEnabled = value;
                 this._lblIdPoderFiltrar.IsEnabled = value;

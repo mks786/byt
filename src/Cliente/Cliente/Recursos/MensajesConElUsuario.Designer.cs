@@ -160,6 +160,33 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Cambio de domicilio modificado con éxito.
+        /// </summary>
+        internal static string CambioDeDomicilio {
+            get {
+                return ResourceManager.GetString("CambioDeDomicilio", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Cambio de nombre modificado con éxito.
+        /// </summary>
+        internal static string CambioNombre {
+            get {
+                return ResourceManager.GetString("CambioNombre", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Cambio de peticionario modificado con éxito.
+        /// </summary>
+        internal static string CambioPeticionario {
+            get {
+                return ResourceManager.GetString("CambioPeticionario", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Carta insertada con éxito.
         /// </summary>
         internal static string CartaInsertada {

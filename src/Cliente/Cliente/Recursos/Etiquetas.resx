@@ -1677,4 +1677,13 @@ libro</value>
   <data name="titleGestionarCambioPeticionario" xml:space="preserve">
     <value>Gestionar Cambio de Peticionario de Marca</value>
   </data>
+  <data name="titleAgregarCambioDeDomicilio" xml:space="preserve">
+    <value>Agregar Cambio de Domicilio de Marcas</value>
+  </data>
+  <data name="titleAgregarCambioDeNombre" xml:space="preserve">
+    <value>Agregar Cambio de Nombre de Marcas</value>
+  </data>
+  <data name="titleAgregarCambioPeticionario" xml:space="preserve">
+    <value>Agregar Cambio Peticionario de Marcas</value>
+  </data>
 </root>

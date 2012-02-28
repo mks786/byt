@@ -115,7 +115,7 @@
                         </Label>
 
                         <custom:ByTTextBox IsEnabled="False"  Grid.Column="1" Grid.Row="1" Name="_txtIdMarcaFiltrar" VerticalAlignment="Center" 
-                         MaxLength="255" Grid.ColumnSpan="2" Visibility="Collapsed" GotFocus="_txtMarcaFiltrar_GotFocus" 
+                         MaxLength="255" Grid.ColumnSpan="2" Visibility="Collapsed" GotFocus="_txtMarcaFiltrar_GotFocus" SoloNumero="True"
                                            GotKeyboardFocus="_txtMarcaFiltrar_GotFocus"></custom:ByTTextBox>
 
                         <Label Name="_lblNombreMarca" Grid.Column="3" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Center" Visibility="Collapsed">
@@ -288,7 +288,7 @@
                                Visibility="Collapsed">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblId}"/>
                         </Label>
-                        <custom:ByTTextBox Visibility="Collapsed" IsEnabled="False"  Grid.Column="2" Grid.Row="1" Name="_txtIdAnteriorFiltrar"
+                        <custom:ByTTextBox Visibility="Collapsed" IsEnabled="False"  Grid.Column="2" Grid.Row="1" Name="_txtIdAnteriorFiltrar" SoloNumero="True"
                                            VerticalAlignment="Center" MaxLength="255" Grid.ColumnSpan="1" GotFocus="_txtAnteriorFiltrar_GotFocus"></custom:ByTTextBox>
                         <!--Fin Campo-->
 
@@ -473,7 +473,7 @@
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblId}"/>
                         </Label>
                         <custom:ByTTextBox  IsEnabled="False"  Grid.Column="2" Grid.ColumnSpan="1" Grid.Row="1" Name="_txtIdPoderAnteriorFiltrar" VerticalAlignment="Center" 
-                                            Visibility="Collapsed" MaxLength="255" GotFocus="_txtPoderAnteriorFiltrar_GotFocus"></custom:ByTTextBox>
+                                            Visibility="Collapsed" MaxLength="255" GotFocus="_txtPoderAnteriorFiltrar_GotFocus" SoloNumero="True"></custom:ByTTextBox>
                         <!--Fin Campo-->
 
                         <!--Campo-->

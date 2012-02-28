@@ -46,7 +46,9 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         /// <summary>
         /// Constructor predeterminado
         /// </summary>
-        public CambioNombre() { }
+        public CambioNombre()
+        {          
+        }
 
         /// <summary>
         /// Constructor que inicializa el Id del Agente
@@ -321,7 +323,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
             get { return _agente; }
             set { _agente = value; }
         }
-
+       
         #endregion
     }
 }

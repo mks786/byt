@@ -350,7 +350,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Principales
 
         private void _menuItemCambiosPeticionarioAgregar_Click(object sender, RoutedEventArgs e)
         {
-
+            this._presentador.AgregarCambioPeticionario();
         }
 
         private void _menuItemLicenciasGestionar_Click(object sender, RoutedEventArgs e)
@@ -370,7 +370,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Principales
 
         private void _menuItemCambiosDeDomicilioAgregar_Click(object sender, RoutedEventArgs e)
         {
-
+            this._presentador.AgregarCambioDeDomicilio();
         }
 
         private void _menuItemCambiosDeNombreConsultar_Click(object sender, RoutedEventArgs e)
@@ -380,7 +380,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Principales
 
         private void _menuItemCambiosNombreAgregar_Click(object sender, RoutedEventArgs e)
         {
-            this._presentador.GestionarCambioDeNombre();
+            this._presentador.AgregarCambioDeNombre();
         }
          
         #endregion

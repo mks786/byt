@@ -5,16 +5,16 @@
 
   <class name="CambioNombre" table="MYP_MNOMBRES">
     <id name="Id" column="CNOMBRE" type="int"/>
-    <property name="Registro" column="IREGISTRO" type="char"/>
+    <!--<property name="Registro" column="IREGISTRO" type="char"/>
     <property name="OtrosC1" column="IOTROS1" type="char"/>
     <property name="OtrosC2" column="IOTROS2" type="char"/>
     <property name="OtrosC3" column="IOTROS3" type="char"/>
     <property name="Documento" column="IDOCUMENTO" type="char"/>
     <property name="Solvencia" column="ISOLVENCIA" type="char"/>
     <property name="PoderC" column="IPODER" type="char"/>
-    <property name="Acta" column="IACTA" type="char"/>
     <property name="Timbre" column="ITIMBRE" type="char"/>
     <property name="Certificada" column="ICERTIFICADA" type="string"/>
+    <property name="Acta" column="IACTA" type="char"/>-->
     <property name="CodigoExpediente" column="CEXPEDIENTE" type="string"/>
     <property name="Referencia" column="XREFERENCIA" type="string"/>
     <property name="Anexo" column="XANEXO" type="string"/>

@@ -24,6 +24,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeNombre
         private static PaginaPrincipal _paginaPrincipal = PaginaPrincipal.ObtenerInstancia;
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
+        private bool _agregar = true;
         private IGestionarCambioDeNombre _ventana;
 
         private IMarcaServicios _marcaServicios;
@@ -44,6 +45,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeNombre
         private IOperacionServicios _operacionServicios;
         private IBusquedaServicios _busquedaServicios;
         private IStatusWebServicios _statusWebServicios;
+        private ICambioNombreServicios _cambioDeNombreServicios;
 
         private IList<Asociado> _asociados;
         private IList<Interesado> _interesados;
@@ -67,9 +69,14 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeNombre
         {
             try
             {
+                this._ventana = ventana;                
 
-                this._ventana = ventana;
-                this._ventana.CambioDeNombre = CambioDeNombre;
+                if (CambioDeNombre != null)
+                {
+                    this._ventana.CambioDeNombre = CambioDeNombre;
+                    _agregar = false;
+                }                
+
 
                 #region Servicios
 
@@ -109,6 +116,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeNombre
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["BusquedaServicios"]);
                 this._statusWebServicios = (IStatusWebServicios)Activator.GetObject(typeof(IStatusWebServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["StatusWebServicios"]);
+                this._cambioDeNombreServicios = (ICambioNombreServicios)Activator.GetObject(typeof(ICambioNombreServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["CambioNombreServicios"]);
 
                 #endregion
             }
@@ -121,7 +130,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeNombre
 
         public void ActualizarTitulo()
         {
-            this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleGestionarCambiosDeNombre,
+            if (_agregar == true)
+                this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleAgregarCambioDeNombre,
+                Recursos.Ids.GestionarCambioDeNombre);
+            else
+                this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleGestionarCambiosDeNombre,
                 Recursos.Ids.GestionarCambioDeNombre);
         }
 
@@ -139,32 +152,35 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeNombre
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-                this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleGestionarCambiosDeNombre,
-                                                      Recursos.Ids.GestionarCambioDeNombre);
+                ActualizarTitulo();
 
-                CambioNombre CambioDeNombre = (CambioNombre)this._ventana.CambioDeNombre;               
+                if (_agregar == false)
+                {                    
+                    CambioNombre CambioDeNombre = (CambioNombre)this._ventana.CambioDeNombre;
 
-                if (((CambioNombre)CambioDeNombre).Marca != null)
-                this._ventana.Marca = this._marcaServicios.ConsultarMarcaConTodo(((CambioNombre)CambioDeNombre).Marca);
-              
-                this._ventana.NombreMarca = ((Marca)this._ventana.Marca).Descripcion;
-                this._ventana.AgenteApoderado = ((CambioNombre)CambioDeNombre).Agente;
-                this._ventana.Poder = CambioDeNombre.Poder;
+                    if (((CambioNombre)CambioDeNombre).Marca != null)
+                        this._ventana.Marca = this._marcaServicios.ConsultarMarcaConTodo(((CambioNombre)CambioDeNombre).Marca);
+
+                    this._ventana.NombreMarca = ((Marca)this._ventana.Marca).Descripcion;
+                    this._ventana.AgenteApoderado = ((CambioNombre)CambioDeNombre).Agente;
+                    this._ventana.Poder = CambioDeNombre.Poder;
 
 
-                CargarMarca();
+                    CargarMarca();
 
-                CargarInteresado("Anterior");
+                    CargarInteresado("Anterior");
 
-                CargarInteresado("Actual");
+                    CargarInteresado("Actual");
 
-                CargarApoderado();
+                    CargarApoderado();
 
-                CargarPoder();
+                    CargarPoder();
 
-                LlenarListasPoderes((CambioNombre)this._ventana.CambioDeNombre);
+                    LlenarListasPoderes((CambioNombre)this._ventana.CambioDeNombre);
 
-                ValidarInteresado();                      
+                    ValidarInteresado();
+
+                }
 
                 this._ventana.FocoPredeterminado();
 
@@ -250,56 +266,26 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeNombre
         public CambioNombre CargarCambioDeNombreDeLaPantalla()
         {
 
-            CambioNombre CambioDeNombre = (CambioNombre)this._ventana.CambioDeNombre;
+            CambioNombre cambioDeNombre = (CambioNombre)this._ventana.CambioDeNombre;
 
-            //marca.Operacion = "MODIFY";
+            (cambioDeNombre.Marca).BEtiqueta = ((CambioNombre)this._ventana.CambioDeNombre).Marca.BEtiqueta;
 
-            //if (null != this._ventana.Agente)
-            //    marca.Agente = !((Agente)this._ventana.Agente).Id.Equals("NGN") ? (Agente)this._ventana.Agente : null;
+            if (null != this._ventana.Marca)
+                cambioDeNombre.Marca = ((Marca)this._ventana.Marca).Id != int.MinValue ? (Marca)this._ventana.Marca : null;
 
-            //if (null != this._ventana.AsociadoSolicitud)
-            //    marca.Asociado = ((Asociado)this._ventana.AsociadoSolicitud).Id != int.MinValue ? (Asociado)this._ventana.AsociadoSolicitud : null;
+            if (null != this._ventana.InteresadoAnterior)
+                cambioDeNombre.InteresadoAnterior = ((Interesado)this._ventana.InteresadoAnterior).Id != int.MinValue ? (Interesado)this._ventana.InteresadoAnterior : null;
 
-            //if (null != this._ventana.BoletinConcesion)
-            //    marca.BoletinConcesion = ((Boletin)this._ventana.BoletinConcesion).Id != int.MinValue ? (Boletin)this._ventana.BoletinConcesion : null;
+            if (null != this._ventana.InteresadoActual)
+                cambioDeNombre.InteresadoActual = ((Interesado)this._ventana.InteresadoActual).Id != int.MinValue ? (Interesado)this._ventana.InteresadoActual : null;
 
-            //if (null != this._ventana.BoletinPublicacion)
-            //    marca.BoletinPublicacion = ((Boletin)this._ventana.BoletinPublicacion).Id != int.MinValue ? (Boletin)this._ventana.BoletinPublicacion : null;
+            if (null != this._ventana.AgenteApoderado)
+                cambioDeNombre.Agente = !((Agente)this._ventana.AgenteApoderado).Id.Equals("") ? (Agente)this._ventana.AgenteApoderado : null;
 
-            //if (null != this._ventana.InteresadoSolicitud)
-            //    marca.Interesado = !((Interesado)this._ventana.InteresadoSolicitud).Id.Equals("NGN") ? ((Interesado)this._ventana.InteresadoSolicitud) : null;
+            if (null != this._ventana.Poder)
+                cambioDeNombre.Poder = ((Poder)this._ventana.Poder).Id != int.MinValue ? (Poder)this._ventana.Poder : null;
 
-            //if (null != this._ventana.Servicio)
-            //    marca.Servicio = !((Servicio)this._ventana.Servicio).Id.Equals("NGN") ? ((Servicio)this._ventana.Servicio) : null;
-
-            //if (null != this._ventana.PoderSolicitud)
-            //    marca.Poder = !((Poder)this._ventana.PoderSolicitud).Id.Equals("NGN") ? ((Poder)this._ventana.PoderSolicitud) : null;
-
-            //if (null != this._ventana.PaisSolicitud)
-            //    marca.Pais = ((Pais)this._ventana.PaisSolicitud).Id != int.MinValue ? ((Pais)this._ventana.PaisSolicitud) : null;
-
-            //if (null != this._ventana.StatusWeb)
-            //    marca.StatusWeb = ((StatusWeb)this._ventana.StatusWeb).Id.Equals("NGN") ? ((StatusWeb)this._ventana.StatusWeb) : null;
-
-            //if (null != this._ventana.CorresponsalSolicitud)
-            //    marca.Corresponsal = ((Corresponsal)this._ventana.CorresponsalSolicitud).Id != int.MinValue ? ((Corresponsal)this._ventana.CorresponsalSolicitud) : null;
-
-            //if (null != this._ventana.Sector)
-            //    marca.Sector = !((ListaDatosDominio)this._ventana.Sector).Id.Equals("NGN") ? ((ListaDatosDominio)this._ventana.Sector).Id : null;
-
-            //if (null != this._ventana.TipoReproduccion)
-            //    marca.TipoRps = ((ListaDatosDominio)this._ventana.TipoReproduccion).Id[0];
-
-            //if (null != this._ventana.TipoMarcaDatos)
-            //    marca.Tipo = !((ListaDatosDominio)this._ventana.TipoMarcaDatos).Id.Equals("NGN") ? ((ListaDatosDominio)this._ventana.TipoMarcaDatos).Id : null;
-
-            //if(string.IsNullOrEmpty(this._ventana.IdInternacional))
-            //    marca.Internacional = null;
-
-            //if(string.IsNullOrEmpty(this._ventana.IdNacional))
-            //    marca.Nacional = null;
-
-            return CambioDeNombre;
+            return cambioDeNombre;
         }
 
         public void CambiarAModificar()
@@ -331,12 +317,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeNombre
                 //Modifica los datos del Pais
                 else
                 {
-                    CambioNombre CambioDeNombre = CargarCambioDeNombreDeLaPantalla();
+                    CambioNombre cambioDeNombre = CargarCambioDeNombreDeLaPantalla();                   
 
-                    //bool exitoso = this._marcaServicios.InsertarOModificar(CambioDeNombre, UsuarioLogeado.Hash);
+                    bool exitoso = this._cambioDeNombreServicios.InsertarOModificar(cambioDeNombre, UsuarioLogeado.Hash);
 
-                    //if (exitoso)
-                    //    this.Navegar(Recursos.MensajesConElUsuario.MarcaModificada, false);
+                    if (exitoso)
+                        this.Navegar(Recursos.MensajesConElUsuario.CambioNombre, false);
                 }
 
                 #region trace

@@ -229,7 +229,25 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         {
             get { return _marca; }
             set { _marca = value; }
-        }         
+        }
+
+        public virtual bool BActa
+        {
+            get
+            {
+                if (this.Acta.ToString().ToUpper().Equals("T"))
+                    return true;
+                else
+                    return false;
+            }
+            set
+            {
+                if (value)
+                    this.Acta = 'T';
+                else
+                    this.Acta = 'F';
+            }
+        }
   
         #endregion
     }

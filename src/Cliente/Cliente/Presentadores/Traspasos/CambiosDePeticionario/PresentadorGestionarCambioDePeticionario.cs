@@ -24,7 +24,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDePeticionario
         private static PaginaPrincipal _paginaPrincipal = PaginaPrincipal.ObtenerInstancia;
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
-        private bool _validar = true;
+        private bool _agregar = true;
         private IGestionarCambioDePeticionario _ventana;
 
         private IMarcaServicios _marcaServicios;
@@ -45,6 +45,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDePeticionario
         private IOperacionServicios _operacionServicios;
         private IBusquedaServicios _busquedaServicios;
         private IStatusWebServicios _statusWebServicios;
+        private ICambioPeticionarioServicios _cambioPeticionarioServicios;
 
         private IList<Interesado> _interesadosAnterior;
         private IList<Interesado> _interesadosActual;
@@ -72,7 +73,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDePeticionario
 
                 this._ventana = ventana;
 
-                this._ventana.CambioPeticionario = cambioPeticionario;
+                if (cambioPeticionario != null)
+                {
+                    this._ventana.CambioPeticionario = cambioPeticionario;
+                    _agregar = false;
+                }                
 
                 this._marcaServicios = (IMarcaServicios)Activator.GetObject(typeof(IMarcaServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["MarcaServicios"]);
@@ -110,6 +115,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDePeticionario
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["BusquedaServicios"]);
                 this._statusWebServicios = (IStatusWebServicios)Activator.GetObject(typeof(IStatusWebServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["StatusWebServicios"]);
+                this._cambioPeticionarioServicios = (ICambioPeticionarioServicios)Activator.GetObject(typeof(ICambioPeticionarioServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["CambioPeticionarioServicios"]);
 
             }
             catch (Exception ex)
@@ -121,7 +128,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDePeticionario
 
         public void ActualizarTitulo()
         {
-            this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleGestionarCambioPeticionario,
+            if (_agregar == true)
+                this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleAgregarCambioPeticionario,
+                Recursos.Ids.GestionarCambioPeticionario);
+            else
+                this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleGestionarCambioPeticionario,
                 Recursos.Ids.GestionarCambioPeticionario);
         }
 
@@ -141,40 +152,44 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDePeticionario
 
                 ActualizarTitulo();
 
-                this._ventana.ConvertirEnteroMinimoABlanco("Anterior");
-                this._ventana.ConvertirEnteroMinimoABlanco("Actual");
+                if (_agregar == false)
+                {                        
+                    this._ventana.ConvertirEnteroMinimoABlanco("Anterior");
+                    this._ventana.ConvertirEnteroMinimoABlanco("Actual");
 
-                CambioPeticionario cesion = (CambioPeticionario)this._ventana.CambioPeticionario;
-                
-                this._ventana.Marca = this._marcaServicios.ConsultarMarcaConTodo(cesion.Marca);                                
-                
-                this._ventana.NombreMarca = ((Marca)this._ventana.Marca).Descripcion;                
-                
-                this._ventana.ApoderadoAnterior = cesion.AgenteAnterior;
-                this._ventana.ApoderadoActual = cesion.AgenteActual;
-                this._ventana.PoderAnterior = cesion.PoderAnterior;
-                this._ventana.PoderActual = cesion.PoderActual;
+                    CambioPeticionario cesion = (CambioPeticionario)this._ventana.CambioPeticionario;
 
-                
-                CargarMarca();
-                                                             
-                CargarInteresado("Anterior");             
-                
-                CargarApoderado("Anterior");
-                            
-                CargarPoder("Anterior");            
-               
-                CargarInteresado("Actual");                                        
-                
-                CargarApoderado("Actual");                         
-                               
-                CargarPoder("Actual");                          
+                    this._ventana.Marca = this._marcaServicios.ConsultarMarcaConTodo(cesion.Marca);
 
-                LlenarListasPoderes((CambioPeticionario)this._ventana.CambioPeticionario);
-                
-                ValidarAnterior();
+                    this._ventana.NombreMarca = ((Marca)this._ventana.Marca).Descripcion;
 
-                ValidarActual();
+                    this._ventana.ApoderadoAnterior = cesion.AgenteAnterior;
+                    this._ventana.ApoderadoActual = cesion.AgenteActual;
+                    this._ventana.PoderAnterior = cesion.PoderAnterior;
+                    this._ventana.PoderActual = cesion.PoderActual;
+
+
+                    CargarMarca();
+
+                    CargarInteresado("Anterior");
+
+                    CargarApoderado("Anterior");
+
+                    CargarPoder("Anterior");
+
+                    CargarInteresado("Actual");
+
+                    CargarApoderado("Actual");
+
+                    CargarPoder("Actual");
+
+                    LlenarListasPoderes((CambioPeticionario)this._ventana.CambioPeticionario);
+
+                    ValidarAnterior();
+
+                    ValidarActual();
+
+                }
 
                 this._ventana.FocoPredeterminado();
 
@@ -339,9 +354,30 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDePeticionario
         public CambioPeticionario CargarCambioPeticionarioDeLaPantalla()
         {
 
-            CambioPeticionario cesion = (CambioPeticionario)this._ventana.CambioPeticionario;
+            CambioPeticionario cambioPeticionario = (CambioPeticionario)this._ventana.CambioPeticionario;
+            
+            if (null != this._ventana.Marca)
+                cambioPeticionario.Marca = ((Marca)this._ventana.Marca).Id != int.MinValue ? (Marca)this._ventana.Marca : null;
 
-            return cesion;
+            if (null != this._ventana.InteresadoAnterior)
+                cambioPeticionario.InteresadoAnterior = ((Interesado)this._ventana.InteresadoAnterior).Id != int.MinValue ? (Interesado)this._ventana.InteresadoAnterior : null;
+
+            if (null != this._ventana.InteresadoActual)
+                cambioPeticionario.InteresadoActual = ((Interesado)this._ventana.InteresadoActual).Id != int.MinValue ? (Interesado)this._ventana.InteresadoActual : null;
+
+            if (null != this._ventana.ApoderadoActual)
+                cambioPeticionario.AgenteActual = !((Agente)this._ventana.ApoderadoActual).Id.Equals("") ? (Agente)this._ventana.ApoderadoActual : null;
+
+            if (null != this._ventana.ApoderadoAnterior)
+                cambioPeticionario.AgenteAnterior = !((Agente)this._ventana.ApoderadoAnterior).Id.Equals("") ? (Agente)this._ventana.ApoderadoAnterior : null;
+
+            if (null != this._ventana.PoderActual)
+                cambioPeticionario.PoderActual = ((Poder)this._ventana.PoderActual).Id != int.MinValue ? (Poder)this._ventana.PoderActual : null;
+
+            if (null != this._ventana.PoderAnterior)
+                cambioPeticionario.PoderAnterior = ((Poder)this._ventana.PoderAnterior).Id != int.MinValue ? (Poder)this._ventana.PoderAnterior : null;          
+
+            return cambioPeticionario;
         }
 
         public void CambiarAModificar()
@@ -373,12 +409,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDePeticionario
                 //Modifica los datos del Pais
                 else
                 {
-                    CambioPeticionario cesion = CargarCambioPeticionarioDeLaPantalla();
+                    CambioPeticionario cambioPeticionario = CargarCambioPeticionarioDeLaPantalla();
 
-                    //bool exitoso = this._marcaServicios.InsertarOModificar(fusion, UsuarioLogeado.Hash);
+                    bool exitoso = this._cambioPeticionarioServicios.InsertarOModificar(cambioPeticionario, UsuarioLogeado.Hash);
 
-                    //if (exitoso)
-                    //    this.Navegar(Recursos.MensajesConElUsuario.MarcaModificada, false);
+                    if (exitoso)
+                        this.Navegar(Recursos.MensajesConElUsuario.CambioPeticionario, false);
                 }
 
                 #region trace
@@ -1734,9 +1770,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDePeticionario
 
                 else
                     retorno = false;
-            }
-            
-            this._validar = !retorno;
+            }                       
 
             Mouse.OverrideCursor = null;
             
@@ -1857,9 +1891,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDePeticionario
                         this._ventana.Mensaje(Recursos.MensajesConElUsuario.NoHayResultados, 1);
                         this._ventana.ApoderadoActualFiltrado = primerAgente;
                     }
-                }
-
-                this._validar = false;
+                }                
 
                 Mouse.OverrideCursor = null;
 

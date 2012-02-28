@@ -379,6 +379,14 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
         }
 
         /// <summary>
+        /// Método que coloca la página "AgregarCambioDeDomicilio" en el Frame principal
+        /// </summary>
+        public void AgregarCambioDeDomicilio()
+        {
+            this._ventana.Contenedor.Navigate(new GestionarCambioDeDomicilio(null));
+        }
+
+        /// <summary>
         /// Método que coloca la página "CambiosDeNombre" en el Frame principal
         /// </summary>
         public void ConsultarCambiosDeNombre()
@@ -387,11 +395,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
         }
 
         /// <summary>
-        /// Método que coloca la página "CambiosDeNombre" en el Frame principal
+        /// Método que coloca la página "AgregarCambioDeNombre" en el Frame principal
         /// </summary>
-        public void GestionarCambioDeNombre()
+        public void AgregarCambioDeNombre()
         {
-         //   this._ventana.Contenedor.Navigate(new GestionarCambioDeNombre());
+            this._ventana.Contenedor.Navigate(new GestionarCambioDeNombre(null));
         }
 
         /// <summary>
@@ -409,6 +417,15 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
         {
             this._ventana.Contenedor.Navigate(new ConsultarCambiosPeticionario());
         }
+
+        /// <summary>
+        /// Método que coloca la página "AgregarCambioPeticionario" en el Frame principal
+        /// </summary>
+        public void AgregarCambioPeticionario()
+        {
+            this._ventana.Contenedor.Navigate(new GestionarCambioPeticionario(null));
+        }
+
         /// <summary>
         /// Método que coloca la página "Licencias" en el Frame principal
         /// </summary>

@@ -24,6 +24,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeDomicilio
         private static PaginaPrincipal _paginaPrincipal = PaginaPrincipal.ObtenerInstancia;
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
+        private bool _agregar = true;
         private IGestionarCambioDeDomicilio _ventana;
 
         private IMarcaServicios _marcaServicios;
@@ -70,7 +71,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeDomicilio
             {
 
                 this._ventana = ventana;
-                this._ventana.CambioDeDomicilio = cambioDeDomicilio;
+
+                if (cambioDeDomicilio != null)
+                {
+                    this._ventana.CambioDeDomicilio = cambioDeDomicilio;
+                    _agregar = false;
+                }    
 
                 #region Servicios
 
@@ -124,7 +130,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeDomicilio
 
         public void ActualizarTitulo()
         {
-            this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleGestionarCambioDeDomicilio,
+            if (_agregar == true)
+                this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleAgregarCambioDeDomicilio,
+                Recursos.Ids.GestionarCambioDeDomicilio);
+            else
+                this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleGestionarCambioDeDomicilio,
                 Recursos.Ids.GestionarCambioDeDomicilio);
         }
 
@@ -142,32 +152,35 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeDomicilio
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-                this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleGestionarCambioDeDomicilio,
-                                                      Recursos.Ids.GestionarCambioDeDomicilio);
+                ActualizarTitulo();
 
-                CambioDeDomicilio cambioDeDomicilio = (CambioDeDomicilio)this._ventana.CambioDeDomicilio;
+                if (_agregar == false)
+                {                    
+                    CambioDeDomicilio cambioDeDomicilio = (CambioDeDomicilio)this._ventana.CambioDeDomicilio;
 
-                if (((CambioDeDomicilio)cambioDeDomicilio).Marca != null)
-                    this._ventana.Marca = this._marcaServicios.ConsultarMarcaConTodo(((CambioDeDomicilio)cambioDeDomicilio).Marca);
+                    if (((CambioDeDomicilio)cambioDeDomicilio).Marca != null)
+                        this._ventana.Marca = this._marcaServicios.ConsultarMarcaConTodo(((CambioDeDomicilio)cambioDeDomicilio).Marca);
 
-                this._ventana.NombreMarca = ((Marca)this._ventana.Marca).Descripcion;
-                this._ventana.AgenteApoderado = ((CambioDeDomicilio)cambioDeDomicilio).Agente;
-                this._ventana.Poder = cambioDeDomicilio.Poder;
+                    this._ventana.NombreMarca = ((Marca)this._ventana.Marca).Descripcion;
+                    this._ventana.AgenteApoderado = ((CambioDeDomicilio)cambioDeDomicilio).Agente;
+                    this._ventana.Poder = cambioDeDomicilio.Poder;
 
 
-                CargarMarca();
+                    CargarMarca();
 
-                CargarInteresado("Anterior");
+                    CargarInteresado("Anterior");
 
-                CargarInteresado("Actual");
+                    CargarInteresado("Actual");
 
-                CargarApoderado();
+                    CargarApoderado();
 
-                CargarPoder();
+                    CargarPoder();
 
-                LlenarListasPoderes((CambioDeDomicilio)this._ventana.CambioDeDomicilio);
+                    LlenarListasPoderes((CambioDeDomicilio)this._ventana.CambioDeDomicilio);
 
-                ValidarInteresado();
+                    ValidarInteresado();
+
+                }
 
                 this._ventana.FocoPredeterminado();
 
@@ -253,14 +266,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeDomicilio
         public CambioDeDomicilio CargarCambioDeDomicilioDeLaPantalla()
         {
 
-            CambioDeDomicilio cambioDeDomicilio = (CambioDeDomicilio)this._ventana.CambioDeDomicilio;
-            cambioDeDomicilio.InteresadoActual = (Interesado) this._ventana.InteresadoActualFiltrado;
-            cambioDeDomicilio.InteresadoAnterior = (Interesado) this._ventana.InteresadoAnteriorFiltrado;
-
-            cambioDeDomicilio.Poder = (Poder)this._ventana.PoderFiltrado;
-
-
-
+            CambioDeDomicilio cambioDeDomicilio = (CambioDeDomicilio)this._ventana.CambioDeDomicilio;          
 
             if (null != this._ventana.Marca)
                 cambioDeDomicilio.Marca = ((Marca)this._ventana.Marca).Id != int.MinValue ? (Marca)this._ventana.Marca : null;
@@ -275,13 +281,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeDomicilio
                 cambioDeDomicilio.Agente = !((Agente)this._ventana.AgenteApoderado).Id.Equals("") ? (Agente)this._ventana.AgenteApoderado : null;            
 
             if (null != this._ventana.Poder)
-                cambioDeDomicilio.Poder = ((Poder)this._ventana.Poder).Id != int.MinValue ? (Poder)this._ventana.Poder : null;
-
-            if (null != (((Interesado)this._ventana.InteresadoAnterior).Domicilio))
-                cambioDeDomicilio.Poder = ((Poder)this._ventana.Poder).Id != int.MinValue ? (Poder)this._ventana.Poder : null;
-
-            if (null != (((Interesado)this._ventana.InteresadoActual).Domicilio))
-                cambioDeDomicilio.Poder = ((Poder)this._ventana.Poder).Id != int.MinValue ? (Poder)this._ventana.Poder : null;            
+                cambioDeDomicilio.Poder = ((Poder)this._ventana.Poder).Id != int.MinValue ? (Poder)this._ventana.Poder : null;              
 
             return cambioDeDomicilio;
         }
@@ -320,7 +320,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeDomicilio
                     bool exitoso = this._cambioDeDomicilioServicios.InsertarOModificar(cambioDeDomicilio, UsuarioLogeado.Hash);
 
                     if (exitoso)
-                        this.Navegar(Recursos.MensajesConElUsuario.MarcaModificada, false);
+                        this.Navegar(Recursos.MensajesConElUsuario.CambioDeDomicilio, false);
                 }
 
                 #region trace
