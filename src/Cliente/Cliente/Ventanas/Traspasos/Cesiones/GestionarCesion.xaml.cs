@@ -256,6 +256,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Cesiones
                 this._txtTipo.IsEnabled = value;
                 this._txtUbicacion.IsEnabled = value;                                
                 this._btnConsultarMarca.IsEnabled = value;
+                this._dpkFechaBoletin.IsEnabled = value;
                 
                 this._txtNombreCedente.IsEnabled = value;
                 this._txtPaisCedente.IsEnabled = value;

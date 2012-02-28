@@ -52,7 +52,7 @@
                     </Label>
                     <DatePicker IsEnabled="False" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Left"  Name="_dpkFechaBoletin" Width="180" Focusable="False" BorderBrush="{x:Null}">
                         <DatePicker.SelectedDate>
-                            <Binding Path="FechaBoletin" UpdateSourceTrigger="PropertyChanged"/>
+                            <Binding Path="Fecha" UpdateSourceTrigger="PropertyChanged"/>
                         </DatePicker.SelectedDate>
                     </DatePicker>
                 </WrapPanel>

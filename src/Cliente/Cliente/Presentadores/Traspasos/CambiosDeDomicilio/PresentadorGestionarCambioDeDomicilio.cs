@@ -44,6 +44,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeDomicilio
         private IOperacionServicios _operacionServicios;
         private IBusquedaServicios _busquedaServicios;
         private IStatusWebServicios _statusWebServicios;
+        private ICambioDeDomicilioServicios _cambioDeDomicilioServicios;
 
         private IList<Asociado> _asociados;
         private IList<Interesado> _interesados;
@@ -109,6 +110,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeDomicilio
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["BusquedaServicios"]);
                 this._statusWebServicios = (IStatusWebServicios)Activator.GetObject(typeof(IStatusWebServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["StatusWebServicios"]);
+                this._cambioDeDomicilioServicios = (ICambioDeDomicilioServicios)Activator.GetObject(typeof(ICambioDeDomicilioServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["CambioDeDomicilioServicios"]);
 
                 #endregion
             }
@@ -251,53 +254,34 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeDomicilio
         {
 
             CambioDeDomicilio cambioDeDomicilio = (CambioDeDomicilio)this._ventana.CambioDeDomicilio;
+            cambioDeDomicilio.InteresadoActual = (Interesado) this._ventana.InteresadoActualFiltrado;
+            cambioDeDomicilio.InteresadoAnterior = (Interesado) this._ventana.InteresadoAnteriorFiltrado;
 
-            //marca.Operacion = "MODIFY";
+            cambioDeDomicilio.Poder = (Poder)this._ventana.PoderFiltrado;
 
-            //if (null != this._ventana.Agente)
-            //    marca.Agente = !((Agente)this._ventana.Agente).Id.Equals("NGN") ? (Agente)this._ventana.Agente : null;
 
-            //if (null != this._ventana.AsociadoSolicitud)
-            //    marca.Asociado = ((Asociado)this._ventana.AsociadoSolicitud).Id != int.MinValue ? (Asociado)this._ventana.AsociadoSolicitud : null;
 
-            //if (null != this._ventana.BoletinConcesion)
-            //    marca.BoletinConcesion = ((Boletin)this._ventana.BoletinConcesion).Id != int.MinValue ? (Boletin)this._ventana.BoletinConcesion : null;
 
-            //if (null != this._ventana.BoletinPublicacion)
-            //    marca.BoletinPublicacion = ((Boletin)this._ventana.BoletinPublicacion).Id != int.MinValue ? (Boletin)this._ventana.BoletinPublicacion : null;
+            if (null != this._ventana.Marca)
+                cambioDeDomicilio.Marca = ((Marca)this._ventana.Marca).Id != int.MinValue ? (Marca)this._ventana.Marca : null;
 
-            //if (null != this._ventana.InteresadoSolicitud)
-            //    marca.Interesado = !((Interesado)this._ventana.InteresadoSolicitud).Id.Equals("NGN") ? ((Interesado)this._ventana.InteresadoSolicitud) : null;
+            if (null != this._ventana.InteresadoAnterior)
+                cambioDeDomicilio.InteresadoAnterior = ((Interesado)this._ventana.InteresadoAnterior).Id != int.MinValue ? (Interesado)this._ventana.InteresadoAnterior : null;
 
-            //if (null != this._ventana.Servicio)
-            //    marca.Servicio = !((Servicio)this._ventana.Servicio).Id.Equals("NGN") ? ((Servicio)this._ventana.Servicio) : null;
+            if (null != this._ventana.InteresadoActual)
+                cambioDeDomicilio.InteresadoActual = ((Interesado)this._ventana.InteresadoActual).Id != int.MinValue ? (Interesado)this._ventana.InteresadoActual : null;
 
-            //if (null != this._ventana.PoderSolicitud)
-            //    marca.Poder = !((Poder)this._ventana.PoderSolicitud).Id.Equals("NGN") ? ((Poder)this._ventana.PoderSolicitud) : null;
+            if (null != this._ventana.AgenteApoderado)
+                cambioDeDomicilio.Agente = !((Agente)this._ventana.AgenteApoderado).Id.Equals("") ? (Agente)this._ventana.AgenteApoderado : null;            
 
-            //if (null != this._ventana.PaisSolicitud)
-            //    marca.Pais = ((Pais)this._ventana.PaisSolicitud).Id != int.MinValue ? ((Pais)this._ventana.PaisSolicitud) : null;
+            if (null != this._ventana.Poder)
+                cambioDeDomicilio.Poder = ((Poder)this._ventana.Poder).Id != int.MinValue ? (Poder)this._ventana.Poder : null;
 
-            //if (null != this._ventana.StatusWeb)
-            //    marca.StatusWeb = ((StatusWeb)this._ventana.StatusWeb).Id.Equals("NGN") ? ((StatusWeb)this._ventana.StatusWeb) : null;
+            if (null != (((Interesado)this._ventana.InteresadoAnterior).Domicilio))
+                cambioDeDomicilio.Poder = ((Poder)this._ventana.Poder).Id != int.MinValue ? (Poder)this._ventana.Poder : null;
 
-            //if (null != this._ventana.CorresponsalSolicitud)
-            //    marca.Corresponsal = ((Corresponsal)this._ventana.CorresponsalSolicitud).Id != int.MinValue ? ((Corresponsal)this._ventana.CorresponsalSolicitud) : null;
-
-            //if (null != this._ventana.Sector)
-            //    marca.Sector = !((ListaDatosDominio)this._ventana.Sector).Id.Equals("NGN") ? ((ListaDatosDominio)this._ventana.Sector).Id : null;
-
-            //if (null != this._ventana.TipoReproduccion)
-            //    marca.TipoRps = ((ListaDatosDominio)this._ventana.TipoReproduccion).Id[0];
-
-            //if (null != this._ventana.TipoMarcaDatos)
-            //    marca.Tipo = !((ListaDatosDominio)this._ventana.TipoMarcaDatos).Id.Equals("NGN") ? ((ListaDatosDominio)this._ventana.TipoMarcaDatos).Id : null;
-
-            //if(string.IsNullOrEmpty(this._ventana.IdInternacional))
-            //    marca.Internacional = null;
-
-            //if(string.IsNullOrEmpty(this._ventana.IdNacional))
-            //    marca.Nacional = null;
+            if (null != (((Interesado)this._ventana.InteresadoActual).Domicilio))
+                cambioDeDomicilio.Poder = ((Poder)this._ventana.Poder).Id != int.MinValue ? (Poder)this._ventana.Poder : null;            
 
             return cambioDeDomicilio;
         }
@@ -333,10 +317,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeDomicilio
                 {
                     CambioDeDomicilio cambioDeDomicilio = CargarCambioDeDomicilioDeLaPantalla();
 
-                    //bool exitoso = this._marcaServicios.InsertarOModificar(cambioDeDomicilio, UsuarioLogeado.Hash);
+                    bool exitoso = this._cambioDeDomicilioServicios.InsertarOModificar(cambioDeDomicilio, UsuarioLogeado.Hash);
 
-                    //if (exitoso)
-                    //    this.Navegar(Recursos.MensajesConElUsuario.MarcaModificada, false);
+                    if (exitoso)
+                        this.Navegar(Recursos.MensajesConElUsuario.MarcaModificada, false);
                 }
 
                 #region trace

@@ -666,6 +666,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.CambiosDeDomicilio
         private void GestionarVisibilidadFiltroAgenteApoderado(object value)
         {
             this._lblIdApoderadoFiltrar.Visibility = (System.Windows.Visibility)value;
+            this._lblNombreApoderadoFiltrar.Visibility = (System.Windows.Visibility)value;
             this._txtNombreApoderadoFiltrar.Visibility = (System.Windows.Visibility)value;
             this._txtIdApoderadoFiltrar.Visibility = (System.Windows.Visibility)value;
             this._lstApoderados.Visibility = (System.Windows.Visibility)value;

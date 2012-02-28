@@ -29,10 +29,6 @@
         </Grid.RowDefinitions>
 
 
-
-
-
-
         <GroupBox Grid.Column="0" Grid.Row="0" Margin="5,5,30,5" Height="35" VerticalAlignment="Top">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                 <Label>
@@ -179,7 +175,7 @@
                         <GridViewColumn DisplayMemberBinding="{Binding Path=Marca.Descripcion}" Width="150">
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="Marca.Descripcion" Content="{x:Static recurso:Etiquetas.lsvMarca}"/>
                         </GridViewColumn>
-                        <GridViewColumn DisplayMemberBinding="{Binding Path=Fecha}" Width="150">
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=FechaDomicilio}" Width="150">
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="Fecha" Content="{x:Static recurso:Etiquetas.lsvFecha}"/>
                         </GridViewColumn>
                     </GridView>

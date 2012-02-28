@@ -165,7 +165,7 @@
                         <GridViewColumn DisplayMemberBinding="{Binding Path=Marca.Descripcion}" Width="150">
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="Marca.Descripcion" Content="{x:Static recurso:Etiquetas.lsvMarca}"/>
                         </GridViewColumn>
-                        <GridViewColumn DisplayMemberBinding="{Binding Path=FechaCesion}" Width="150">
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=FechaPeticionario}" Width="150">
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="FechaCesion" Content="{x:Static recurso:Etiquetas.lsvFecha}"/>
                         </GridViewColumn>                        
                     </GridView>

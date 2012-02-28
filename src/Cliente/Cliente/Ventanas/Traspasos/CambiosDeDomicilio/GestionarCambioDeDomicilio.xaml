@@ -52,7 +52,7 @@
                     </Label>
                     <DatePicker IsEnabled="False" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Left"  Name="_dpkFechaBoletin" Width="180" Focusable="False" BorderBrush="{x:Null}">
                         <DatePicker.SelectedDate>
-                            <Binding Path="FechaBoletin" UpdateSourceTrigger="PropertyChanged"/>
+                            <Binding Path="FechaDomicilio" UpdateSourceTrigger="PropertyChanged"/>
                         </DatePicker.SelectedDate>
                     </DatePicker>
                 </WrapPanel>
@@ -506,7 +506,7 @@
 
                         <!--Campo-->
                         <DatePicker Grid.ColumnSpan="2" Grid.Row="1" Grid.Column="4"  HorizontalAlignment="Right"  Name="_dpkFechaPoderFiltrar" Width="180"
-                        Focusable="False" BorderBrush="{x:Null}" >
+                        Focusable="False" BorderBrush="{x:Null}">
                         </DatePicker>
                         <!--Fin Campo-->
 

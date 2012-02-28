@@ -359,18 +359,39 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Licencias
 
             Licencia licencia = (Licencia)this._ventana.Licencia;
             licencia.Marca = (Marca)this._ventana.Marca;
-            licencia.InteresadoLicenciante = (Interesado)this._ventana.InteresadoLicenciante;
-            licencia.InteresadoLicenciatario = (Interesado)this._ventana.InteresadoLicenciatario;
-            licencia.AgenteLicenciante = (Agente)this._ventana.ApoderadoLicenciante;
-            licencia.AgenteLicenciatario = (Agente)this._ventana.ApoderadoLicenciatario;
-            licencia.PoderLicenciante = (Poder)this._ventana.PoderLicenciante;
-            licencia.PoderLicenciatario = (Poder)this._ventana.PoderLicenciatario;    
+            licencia.InteresadoLicenciante = (Interesado)this._ventana.LicencianteFiltrado;
+            licencia.InteresadoLicenciatario = (Interesado)this._ventana.LicenciatarioFiltrado;
+            licencia.AgenteLicenciante = (Agente)this._ventana.ApoderadoLicencianteFiltrado;
+            licencia.AgenteLicenciatario = (Agente)this._ventana.ApoderadoLicenciatarioFiltrado;
+            licencia.PoderLicenciante = (Poder)this._ventana.PoderLicencianteFiltrado;
+            licencia.PoderLicenciatario = (Poder)this._ventana.PoderLicenciatarioFiltrado;    
 
-            if (((Poder)this._ventana.PoderLicenciante).Id == int.MinValue)
-                ((Poder)this._ventana.PoderLicenciante).Id = null;
+            //if (((Poder)this._ventana.PoderLicenciante).Id == int.MinValue)
+            //    ((Poder)this._ventana.PoderLicenciante).Id = null;
 
-            if (((Poder)this._ventana.PoderLicenciatario).Id == int.MinValue)
-                ((Poder)this._ventana.PoderLicenciatario).Id = null;
+            //if (((Poder)this._ventana.PoderLicenciatario).Id == int.MinValue)
+            //    ((Poder)this._ventana.PoderLicenciatario).Id = null;
+
+            if (null != this._ventana.Marca)
+                licencia.Marca = ((Marca)this._ventana.Marca).Id != int.MinValue ? (Marca)this._ventana.Marca : null;
+
+            if (null != this._ventana.InteresadoLicenciante)
+                licencia.InteresadoLicenciante = ((Interesado)this._ventana.InteresadoLicenciante).Id != int.MinValue ? (Interesado)this._ventana.InteresadoLicenciante : null;
+
+            if (null != this._ventana.InteresadoLicenciatario)
+                licencia.InteresadoLicenciatario = ((Interesado)this._ventana.InteresadoLicenciatario).Id != int.MinValue ? (Interesado)this._ventana.InteresadoLicenciatario : null;
+
+            if (null != this._ventana.ApoderadoLicenciante)
+                licencia.AgenteLicenciante = !((Agente)this._ventana.ApoderadoLicenciante).Id.Equals("") ? (Agente)this._ventana.ApoderadoLicenciante : null;
+
+            if (null != this._ventana.ApoderadoLicenciatario)
+                licencia.AgenteLicenciatario = !((Agente)this._ventana.ApoderadoLicenciatario).Id.Equals("") ? (Agente)this._ventana.ApoderadoLicenciatario : null;
+
+            if (null != this._ventana.PoderLicenciante)
+                licencia.PoderLicenciante = ((Poder)this._ventana.PoderLicenciante).Id != int.MinValue ? (Poder)this._ventana.PoderLicenciante : null;
+            
+            if (null != this._ventana.PoderLicenciatario)
+                licencia.PoderLicenciatario = ((Poder)this._ventana.PoderLicenciatario).Id != int.MinValue ? (Poder)this._ventana.PoderLicenciatario : null;
         
 
             return licencia;

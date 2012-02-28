@@ -256,6 +256,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.CambiosPeticionario
                 this._txtTipo.IsEnabled = value;
                 this._txtUbicacion.IsEnabled = value;                                
                 this._btnConsultarMarca.IsEnabled = value;
+                this._dpkFechaBoletin.IsEnabled = value;
                 
                 this._txtNombreAnterior.IsEnabled = value;
                 this._txtPaisAnterior.IsEnabled = value;
