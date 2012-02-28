@@ -108,10 +108,11 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
 
                 IQuery query = Session.GetNamedQuery("ProcedimientoP1");
                 query.SetParameter<string>("usr", "HP");
-                query.SetParameter<bool>("way", true);
+                query.SetParameter<int>("way", 1);
                 query.SetParameter<int>("cod", 60747);
 
                 query.UniqueResult();
+                //query.ExecuteUpdate();
 
 
                 #region trace
@@ -119,7 +120,7 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
                     logger.Debug("Saliendo del Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
             }
-            catch (Exception ex)
+                catch (Exception ex)
             {
                 logger.Error(ex.Message);
                 throw new ApplicationException(Recursos.Errores.ExConsultarTodosUsuariosPorUsuario);

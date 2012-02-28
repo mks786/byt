@@ -33,6 +33,9 @@ namespace Trascend.Bolet.Comandos.Comandos.ComandosMarca
                     logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
+                //IDaoStoredProcedureP1 dao = FabricaDaoStoredProcedureBase.ObtenerFabricaDaoStoredProcedures().ObtenerDaoStoredProcedureP1();
+                //dao.EjecutarProcedimiento("P1");
+
                 IDaoMarca dao = FabricaDaoBase.ObtenerFabricaDao().ObtenerDaoMarca();
                 this.Receptor = new Receptor<string>(dao.EjecutarProcedimientoP1(this._marca));
 

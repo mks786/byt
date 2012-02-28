@@ -95,22 +95,27 @@
 
   </class>
 
-  <sql-query name="GetCustomerOrderHistory">
-    //code name of your SP
-    <return-scalar column="ProductName" type="String" /> //all the return parameters
-    <return-scalar column="Total" type="Int32" />
-    exec CustOrderHist :?
-  </sql-query>
 
   <sql-query name="ProcedimientoP1">
 
     <query-param name="usr" type="string" />
-    <query-param name="way" type="bool" />
+    <query-param name="way" type="int" />
     <query-param name="cod" type="int" />
 
-    exec PCK_MYP_MARCAS.P1 :usr, :way, :cod
+    begin PCK_MYP_MARCAS.P1(:usr, :way, :cod); end;
 
   </sql-query>
+
+
+  <!--<sql-query name="P1" >
+    <return alias="P1">
+      <return-property name="Id" column="FiscalMonthId"/>
+      <return-property name="StartDate" column="StartDate"/>
+      <return-property name="EndDate" column="EndDate"/>
+      <return-property name="NumberofDaysinMonth" column="NumberofDaysinMonth"/>
+    </return>
+    exec P1 :usr, :way, :cod
+  </sql-query>-->
 
 </hibernate-mapping>
 

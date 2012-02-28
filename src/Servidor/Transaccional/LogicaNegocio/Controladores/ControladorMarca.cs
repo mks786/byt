@@ -260,8 +260,16 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
 
         public static string EjecutarProcedimientoP1(Marca marca)
         {
-            ComandoBase<string> comando = FabricaComandosMarca.ObtenerComandoEjecutarProcedimientoP1(marca);
-            comando.Ejecutar();
+            try
+            {
+                ComandoBase<string> comando = FabricaComandosMarca.ObtenerComandoEjecutarProcedimientoP1(marca);
+                comando.Ejecutar();
+            }
+            catch (ApplicationException ex)
+            {
+                logger.Error(ex.Message);
+                throw ex;
+            }
             return "";
         }
     }
