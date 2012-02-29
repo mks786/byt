@@ -59,13 +59,13 @@
                     <Label Grid.Row="0" Grid.Column="0" HorizontalAlignment="Right">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblId}"/>
                     </Label>
-                    <custom:ByTTextBox Name="_txtId" MaxLength="40" Grid.Row="0" Grid.Column="1" 
+                    <custom:ByTTextBox Name="_txtId" MaxLength="40" Grid.Row="0" Grid.Column="1"
                                        Text="{Binding Path=Id}" IsEnabled="False" Margin="0,0,5,0" IsReadOnly="True"/>
                     <Label Grid.Row="0" Grid.Column="2" HorizontalAlignment="Right">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblExpediente}"/>
                     </Label>
-                    <custom:ByTTextBox Name="_txtExpediente" MaxLength="40" Grid.Row="0" Grid.Column="3"  
-                                       Text="{Binding Path=Expediente}" IsEnabled="False" Margin="0,0,5,0" IsReadOnly="True"/>
+                    <custom:ByTTextBox Name="_txtExpediente" MaxLength="40" Grid.Row="0" Grid.Column="3" IsReadOnly="True" 
+                                       Text="{Binding Path=Expediente}" IsEnabled="False" Margin="0,0,5,0"/>
                     <Label Grid.Row="0" Grid.Column="4" HorizontalAlignment="Right">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblFecha}"/>
                     </Label>
