@@ -294,10 +294,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Cesiones
                 this._txtObservacionCesion.IsEnabled = value;
                 this._txtOtrosCesion.IsEnabled = value;
                 this._txtReferenciaCesion.IsEnabled = value;                                
-                this._txtBoletinCesion.IsEnabled = value;
                 this._txtAnexoCesion.IsEnabled = value;                              
                 this._txtComentarioCesion.IsEnabled = value;
                 this._chkAsientoEnLibro.IsEnabled = value;
+                this._cbxBoletin.IsEnabled = value;
+               
             }
         }
 
@@ -333,6 +334,17 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Cesiones
             set { this._txtIdPoderCesionario.Text = value; }
         }
 
+        public object Boletines
+        {
+            get { return this._cbxBoletin.DataContext; }
+            set { this._cbxBoletin.DataContext = value; }
+        }
+
+        public object Boletin
+        {
+            get { return this._cbxBoletin.SelectedItem; }
+            set { this._cbxBoletin.SelectedItem = value; }
+        }
         public string NombreCesionario
         {
             set { this._txtNombreCesionario.Text = value; }

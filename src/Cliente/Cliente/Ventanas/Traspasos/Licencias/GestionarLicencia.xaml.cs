@@ -294,10 +294,10 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Licencias
                 this._txtObservacionLicencia.IsEnabled = value;
                 this._txtOtrosLicencia.IsEnabled = value;
                 this._txtReferenciaLicencia.IsEnabled = value;                                
-                this._txtBoletinLicencia.IsEnabled = value;
                 this._txtAnexoLicencia.IsEnabled = value;                              
                 this._txtComentarioLicencia.IsEnabled = value;
                 this._chkAsientoEnLibro.IsEnabled = value;
+                this._cbxBoletin.IsEnabled = value;
             }
         }
 
@@ -331,6 +331,18 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Licencias
         {
             get { return this._txtIdPoderLicenciatario.Text; }
             set { this._txtIdPoderLicenciatario.Text = value; }
+        }
+
+        public object Boletines
+        {
+            get { return this._cbxBoletin.DataContext; }
+            set { this._cbxBoletin.DataContext = value; }
+        }
+
+        public object Boletin
+        {
+            get { return this._cbxBoletin.SelectedItem; }
+            set { this._cbxBoletin.SelectedItem = value; }
         }
 
         public string NombreLicenciatario
@@ -608,10 +620,20 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Licencias
 
         private void _lstLicenciantes_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
+          
             if (this._presentador.CambiarLicenciante())
             {
                 GestionarVisibilidadDatosDeLicenciante(Visibility.Visible);
                 GestionarVisibilidadFiltroLicenciante(Visibility.Collapsed);
+
+                if (this._presentador.VerificarCambioInteresado("Licenciante"))
+                {
+                    this._btnConsultarPoderLicenciante.IsEnabled = false;
+                }
+                else
+                {
+                    this._btnConsultarPoderLicenciante.IsEnabled = false;
+                }
             }
 
         }
@@ -637,11 +659,20 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Licencias
         }
 
         private void _lstApoderadosLicenciante_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
-        {
+        {           
             if (this._presentador.CambiarApoderadoLicenciante())
             {
                 GestionarVisibilidadDatosDeApoderadoLicenciante(Visibility.Visible);
                 GestionarVisibilidadFiltroApoderadoLicenciante(Visibility.Collapsed);
+
+                if (this._presentador.VerificarCambioAgente("Licenciante"))
+                {
+                    this._btnConsultarPoderLicenciante.IsEnabled = false;
+                }
+                else
+                {
+                    this._btnConsultarPoderLicenciante.IsEnabled = true;
+                }
             }
         }
 
@@ -846,15 +877,34 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Licencias
             {
                 GestionarVisibilidadDatosDeLicenciatario(Visibility.Visible);
                 GestionarVisibilidadFiltroLicenciatario(Visibility.Collapsed);
+
+                if (this._presentador.VerificarCambioInteresado("Licenciatario"))
+                {
+                    this._btnConsultarPoderLicenciatario.IsEnabled = false;
+                }
+                else
+                {
+                    this._btnConsultarPoderLicenciatario.IsEnabled = false;
+                }
             }
         }
 
         private void _lstApoderadosLicenciatario_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
+
             if (this._presentador.CambiarApoderadoLicenciatario())
             {
                 GestionarVisibilidadDatosDeApoderadoLicenciatario(Visibility.Visible);
                 GestionarVisibilidadFiltroApoderadoLicenciatario(Visibility.Collapsed);
+
+                if (this._presentador.VerificarCambioAgente("Licenciatario"))
+                {
+                    this._btnConsultarPoderLicenciatario.IsEnabled = false;
+                }
+                else
+                {
+                    this._btnConsultarPoderLicenciatario.IsEnabled = true;
+                }
             }
         }
 

@@ -293,11 +293,17 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.CambiosPeticionario
 
                 this._txtObservacionCambioPeticionario.IsEnabled = value;
                 this._txtOtrosCambioPeticionario.IsEnabled = value;
+                this._txtReferenciaCambioPeticionario.IsEnabled = value;
+                this._txtAnexoCambioPeticionario.IsEnabled = value;
+                this._txtComentarioCambioPeticionario.IsEnabled = value;
+                this._txtObservacionCambioPeticionario.IsEnabled = value;
+                this._txtOtrosCambioPeticionario.IsEnabled = value;
                 this._txtReferenciaCambioPeticionario.IsEnabled = value;                                
                 this._txtBoletinCambioPeticionario.IsEnabled = value;
                 this._txtAnexoCambioPeticionario.IsEnabled = value;                              
                 this._txtComentarioCambioPeticionario.IsEnabled = value;
                 this._chkAsientoEnLibro.IsEnabled = value;
+                this._cbxBoletin.IsEnabled = value;
             }
         }
 
@@ -325,6 +331,18 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.CambiosPeticionario
         {
             get { return this._txtIdPoderAnterior.Text; }
             set { this._txtIdPoderAnterior.Text = value; }
+        }
+
+        public object Boletines
+        {
+            get { return this._cbxBoletin.DataContext; }
+            set { this._cbxBoletin.DataContext = value; }
+        }
+
+        public object Boletin
+        {
+            get { return this._cbxBoletin.SelectedItem; }
+            set { this._cbxBoletin.SelectedItem = value; }
         }
 
         public string IdPoderActual

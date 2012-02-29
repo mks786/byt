@@ -168,6 +168,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDePeticionario
                     this._ventana.PoderAnterior = cesion.PoderAnterior;
                     this._ventana.PoderActual = cesion.PoderActual;
 
+                    CargaBoletines();
+
+                    this._ventana.Boletin = this.BuscarBoletin((IList<Boletin>)this._ventana.Boletines, cesion.BoletinPublicacion);
 
                     CargarMarca();
 
@@ -207,8 +210,15 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDePeticionario
             {
                 Mouse.OverrideCursor = null;
             }
-        }        
+        }
 
+        private void CargaBoletines()
+        {
+
+            IList<Boletin> boletines = this._boletinServicios.ConsultarTodos();
+            this._ventana.Boletines = boletines;
+
+        }
         private void CargarInteresado(string tipo)
         {
             Interesado primerInteresado = new Interesado(int.MinValue);
@@ -375,8 +385,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDePeticionario
                 cambioPeticionario.PoderActual = ((Poder)this._ventana.PoderActual).Id != int.MinValue ? (Poder)this._ventana.PoderActual : null;
 
             if (null != this._ventana.PoderAnterior)
-                cambioPeticionario.PoderAnterior = ((Poder)this._ventana.PoderAnterior).Id != int.MinValue ? (Poder)this._ventana.PoderAnterior : null;          
+                cambioPeticionario.PoderAnterior = ((Poder)this._ventana.PoderAnterior).Id != int.MinValue ? (Poder)this._ventana.PoderAnterior : null;
 
+            if (null != this._ventana.Boletin)
+                cambioPeticionario.BoletinPublicacion = ((Boletin)this._ventana.Boletin).Id != int.MinValue ? (Boletin)this._ventana.Boletin : null;
+       
             return cambioPeticionario;
         }
 

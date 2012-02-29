@@ -45,6 +45,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Cesiones
         private IOperacionServicios _operacionServicios;
         private IBusquedaServicios _busquedaServicios;
         private IStatusWebServicios _statusWebServicios;
+        private ICesionServicios _cesionServicios;
 
         private IList<Interesado> _interesadosCedente;
         private IList<Interesado> _interesadosCesionario;
@@ -73,6 +74,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Cesiones
                 this._ventana = ventana;
 
                 this._ventana.Cesion = cesion;
+                
 
                 this._marcaServicios = (IMarcaServicios)Activator.GetObject(typeof(IMarcaServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["MarcaServicios"]);
@@ -110,6 +112,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Cesiones
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["BusquedaServicios"]);
                 this._statusWebServicios = (IStatusWebServicios)Activator.GetObject(typeof(IStatusWebServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["StatusWebServicios"]);
+                this._cesionServicios = (ICesionServicios)Activator.GetObject(typeof(ICesionServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["CesionServicios"]);
 
             }
             catch (Exception ex)
@@ -154,7 +158,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Cesiones
                 this._ventana.ApoderadoCesionario = cesion.AgenteCesionario;
                 this._ventana.PoderCedente = cesion.PoderCedente;
                 this._ventana.PoderCesionario = cesion.PoderCesionario;
-                
+
+                CargaBoletines();
+
+                this._ventana.Boletin = this.BuscarBoletin((IList<Boletin>)this._ventana.Boletines, cesion.BoletinPublicacion);
+
                 CargarMarca();
                                                              
                 CargarInteresado("Cedente");             
@@ -191,7 +199,15 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Cesiones
             {
                 Mouse.OverrideCursor = null;
             }
-        }        
+        }
+
+        private void CargaBoletines()
+        {
+
+            IList<Boletin> boletines = this._boletinServicios.ConsultarTodos();
+            this._ventana.Boletines = boletines;
+        }
+
 
         private void CargarInteresado(string tipo)
         {
@@ -339,6 +355,39 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Cesiones
         {
 
             Cesion cesion = (Cesion)this._ventana.Cesion;
+            //cesion.Marca = (Marca)this._ventana.MarcaFiltrada;
+            //cesion.Cedente = (Interesado)this._ventana.CedenteFiltrado;
+            //cesion.Cesionario = (Interesado)this._ventana.CesionarioFiltrado;
+            //cesion.AgenteCedente = (Agente)this._ventana.ApoderadoCedenteFiltrado;
+            //cesion.AgenteCesionario = (Agente)this._ventana.ApoderadoCesionarioFiltrado;
+            //cesion.PoderCedente = (Poder)this._ventana.PoderCedenteFiltrado;
+            //cesion.PoderCesionario = (Poder)this._ventana.PoderCesionarioFiltrado;
+            //cesion.BoletinPublicacion = (Boletin)this._ventana.Boletin;
+
+            if (null != this._ventana.MarcaFiltrada)
+                cesion.Marca = ((Marca)this._ventana.MarcaFiltrada).Id != int.MinValue ? (Marca)this._ventana.MarcaFiltrada : null;
+
+            if (null != this._ventana.CedenteFiltrado)
+                cesion.Cedente = ((Interesado)this._ventana.CedenteFiltrado).Id != int.MinValue ? (Interesado)this._ventana.CedenteFiltrado : null;
+
+            if (null != this._ventana.CesionarioFiltrado)
+                cesion.Cesionario = ((Interesado)this._ventana.CesionarioFiltrado).Id != int.MinValue ? (Interesado)this._ventana.CesionarioFiltrado : null;
+
+            if (null != this._ventana.ApoderadoCedenteFiltrado)
+                cesion.AgenteCedente = !((Agente)this._ventana.ApoderadoCedenteFiltrado).Id.Equals("") ? (Agente)this._ventana.ApoderadoCedenteFiltrado : null;
+
+            if (null != this._ventana.ApoderadoCesionarioFiltrado)
+                cesion.AgenteCesionario = !((Agente)this._ventana.ApoderadoCesionarioFiltrado).Id.Equals("") ? (Agente)this._ventana.ApoderadoCesionarioFiltrado : null;
+
+            if (null != this._ventana.PoderCedenteFiltrado)
+                cesion.PoderCedente = ((Poder)this._ventana.PoderCedenteFiltrado).Id != int.MinValue ? (Poder)this._ventana.PoderCedenteFiltrado : null;
+
+            if (null != this._ventana.PoderCesionarioFiltrado)
+                cesion.PoderCesionario = ((Poder)this._ventana.PoderCesionarioFiltrado).Id != int.MinValue ? (Poder)this._ventana.PoderCesionarioFiltrado : null;
+          
+            if (null != this._ventana.Boletin)
+                cesion.BoletinPublicacion = ((Boletin)this._ventana.Boletin).Id != int.MinValue ? (Boletin)this._ventana.Boletin : null;
+              
 
             return cesion;
         }
@@ -355,6 +404,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Cesiones
         /// </summary>
         public void Modificar()
         {
+            bool retorno = false;
             try
             {
                 #region trace
@@ -376,8 +426,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Cesiones
 
                     //bool exitoso = this._marcaServicios.InsertarOModificar(fusion, UsuarioLogeado.Hash);
 
-                    //if (exitoso)
-                    //    this.Navegar(Recursos.MensajesConElUsuario.MarcaModificada, false);
+                    bool exitoso = this._cesionServicios.InsertarOModificar(cesion, UsuarioLogeado.Hash);
+                    if (exitoso)
+                    {
+                        retorno = true;
+                    } 
                 }
 
                 #region trace

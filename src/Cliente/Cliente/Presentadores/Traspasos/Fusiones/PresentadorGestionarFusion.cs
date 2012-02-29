@@ -44,6 +44,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
         private IOperacionServicios _operacionServicios;
         private IBusquedaServicios _busquedaServicios;
         private IStatusWebServicios _statusWebServicios;
+        private IFusionServicios _fusionesServicios;
 
         private IList<Asociado> _asociados;
         private IList<Interesado> _interesados;        
@@ -110,6 +111,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["BusquedaServicios"]);
                 this._statusWebServicios = (IStatusWebServicios)Activator.GetObject(typeof(IStatusWebServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["StatusWebServicios"]);
+                this._fusionesServicios = (IFusionServicios)Activator.GetObject(typeof(IFusionServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["FusionServicios"]);
+
 
                 #endregion
             }
@@ -309,9 +313,30 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
         {
 
             Fusion fusion = (Fusion)this._ventana.Fusion;
+          //  fusion.Marca = (Marca)this._ventana.MarcaFiltrada;
+          //  fusion.InteresadoEntre = (Interesado)this._ventana.InteresadoEntreFiltrado;
+          //  fusion.InteresadoSobreviviente = (Interesado)this._ventana.InteresadoSobrevivienteFiltrado;
+          //  fusion.Agente = (Agente)this._ventana.AgenteApoderadoFiltrado;
+          //  fusion.Poder = (Poder)this._ventana.PoderFiltrado;
+          //  fusion.Asociado = ((Fusion)this._ventana.Fusion).Asociado;
 
+              if (null != this._ventana.MarcaFiltrada)
+                fusion.Marca = ((Marca)this._ventana.MarcaFiltrada).Id != int.MinValue ? (Marca)this._ventana.Marca : null;
+
+              if (null != this._ventana.InteresadoEntreFiltrado)
+                fusion.InteresadoEntre = ((Interesado)this._ventana.InteresadoEntreFiltrado).Id != int.MinValue ? (Interesado)this._ventana.InteresadoEntreFiltrado : null;
+
+              if (null != this._ventana.InteresadoSobrevivienteFiltrado)
+                  fusion.InteresadoSobreviviente = ((Interesado)this._ventana.InteresadoSobrevivienteFiltrado).Id != int.MinValue ? (Interesado)this._ventana.InteresadoSobrevivienteFiltrado : null;
+
+              if (null != this._ventana.AgenteApoderadoFiltrado)
+                  fusion.Agente = !((Agente)this._ventana.AgenteApoderadoFiltrado).Id.Equals("") ? (Agente)this._ventana.AgenteApoderadoFiltrado : null;
+
+              if (null != this._ventana.PoderFiltrado)
+                  fusion.Poder = ((Poder)this._ventana.PoderFiltrado).Id != int.MinValue ? (Poder)this._ventana.PoderFiltrado : null;
+ 
+            #region Comentado
             //marca.Operacion = "MODIFY";
-
             //if (null != this._ventana.Agente)
             //    marca.Agente = !((Agente)this._ventana.Agente).Id.Equals("NGN") ? (Agente)this._ventana.Agente : null;
 
@@ -356,7 +381,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
 
             //if(string.IsNullOrEmpty(this._ventana.IdNacional))
             //    marca.Nacional = null;
-
+            #endregion
             return fusion;
         }
 
@@ -372,6 +397,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
         /// </summary>
         public void Modificar()
         {
+            bool retorno = false;
             try
             {
                 #region trace
@@ -393,8 +419,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
 
                     //bool exitoso = this._marcaServicios.InsertarOModificar(fusion, UsuarioLogeado.Hash);
 
-                    //if (exitoso)
-                    //    this.Navegar(Recursos.MensajesConElUsuario.MarcaModificada, false);
+                    bool exitoso = this._fusionesServicios.InsertarOModificar(fusion, UsuarioLogeado.Hash);
+                    if (exitoso)
+                    {
+                        retorno = true;
+                    }
                 }
 
                 #region trace

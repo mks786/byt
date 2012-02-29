@@ -897,9 +897,21 @@
                         <Label Name="_lblBoletinCesion" Grid.Row="2" Grid.Column="4" HorizontalAlignment="Right" VerticalAlignment="Center">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblBoletin}"/>
                         </Label>
-                        <custom:ByTTextBox  IsEnabled="False"  Grid.Column="5" Grid.ColumnSpan="1" Grid.Row="2" Name="_txtBoletinCesion" VerticalAlignment="Center" 
-                                            MaxLength="255" Text="{Binding Path=BoletinPublicacion.Id}"></custom:ByTTextBox>
+                        <ComboBox Name="_cbxBoletin" Grid.Column="5" Grid.ColumnSpan="1" Grid.Row="2" ItemsSource="{Binding}" Height="25" IsEnabled="False">
 
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock>
+                                <TextBlock.Text>
+                                    <MultiBinding Converter="{StaticResource convertirADosValores}">
+                                        <Binding Path="Id" />
+                                        <Binding Path="FechaBoletin" />
+                                    </MultiBinding>
+                                </TextBlock.Text>
+                                    </TextBlock>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
 
                         <CheckBox Grid.Column="7" Grid.Row="2" Content="{x:Static recurso:Etiquetas.chkAsientoEnLibro}" IsEnabled="False"
                                   Height="32" HorizontalAlignment="Right" IsChecked="{Binding Path=BActa}" Margin="5,0,0,0" Name="_chkAsientoEnLibro" VerticalAlignment="Center"

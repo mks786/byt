@@ -133,6 +133,10 @@ namespace Trascend.Bolet.Cliente.Contratos.Traspasos.CambiosDePeticionario
 
         object PoderActual { get; set; }
 
+        object Boletines { get; set; }
+
+        object Boletin { get; set; }
+
         GridViewColumnHeader CurSortCol { get; set; }
 
         SortAdorner CurAdorner { get; set; }
