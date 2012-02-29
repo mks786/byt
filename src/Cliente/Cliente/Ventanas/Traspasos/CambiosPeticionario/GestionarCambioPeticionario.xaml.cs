@@ -291,12 +291,12 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.CambiosPeticionario
                 this._txtPaisActual.IsEnabled = value;
                 this._txtNacionalidadActual.IsEnabled = value;
 
-                this._txtObservacionCesion.IsEnabled = value;
-                this._txtOtrosCesion.IsEnabled = value;
-                this._txtReferenciaCesion.IsEnabled = value;                                
-                this._txtBoletinCesion.IsEnabled = value;
-                this._txtAnexoCesion.IsEnabled = value;                              
-                this._txtComentarioCesion.IsEnabled = value;
+                this._txtObservacionCambioPeticionario.IsEnabled = value;
+                this._txtOtrosCambioPeticionario.IsEnabled = value;
+                this._txtReferenciaCambioPeticionario.IsEnabled = value;                                
+                this._txtBoletinCambioPeticionario.IsEnabled = value;
+                this._txtAnexoCambioPeticionario.IsEnabled = value;                              
+                this._txtComentarioCambioPeticionario.IsEnabled = value;
                 this._chkAsientoEnLibro.IsEnabled = value;
             }
         }

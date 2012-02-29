@@ -531,4 +531,13 @@
   <data name="CambioPeticionario" xml:space="preserve">
     <value>Cambio de peticionario modificado con éxito</value>
   </data>
+  <data name="CambioDeDomicilioEliminado" xml:space="preserve">
+    <value>Cambio de domicilio eliminado con éxito</value>
+  </data>
+  <data name="CambioNombreEliminado" xml:space="preserve">
+    <value>Cambio de nombre eliminado con éxito</value>
+  </data>
+  <data name="CambioPeticionarioEliminado" xml:space="preserve">
+    <value>Cambio peticionario eliminado con éxito</value>
+  </data>
 </root>

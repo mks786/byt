@@ -169,6 +169,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Cambio de domicilio eliminado con éxito.
+        /// </summary>
+        internal static string CambioDeDomicilioEliminado {
+            get {
+                return ResourceManager.GetString("CambioDeDomicilioEliminado", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Cambio de nombre modificado con éxito.
         /// </summary>
         internal static string CambioNombre {
@@ -178,11 +187,29 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Cambio de nombre eliminado con éxito.
+        /// </summary>
+        internal static string CambioNombreEliminado {
+            get {
+                return ResourceManager.GetString("CambioNombreEliminado", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Cambio de peticionario modificado con éxito.
         /// </summary>
         internal static string CambioPeticionario {
             get {
                 return ResourceManager.GetString("CambioPeticionario", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Cambio peticionario eliminado con éxito.
+        /// </summary>
+        internal static string CambioPeticionarioEliminado {
+            get {
+                return ResourceManager.GetString("CambioPeticionarioEliminado", resourceCulture);
             }
         }
         

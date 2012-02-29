@@ -328,11 +328,16 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.CambiosDeDomicilio
 
         #endregion
 
-        public GestionarCambioDeDomicilio(object fusion)
+        public GestionarCambioDeDomicilio(object cambioDeDomicilio)
         {
             InitializeComponent();
             this._cargada = false;
-            this._presentador = new PresentadorGestionarCambioDeDomicilio(this, fusion);
+            this._presentador = new PresentadorGestionarCambioDeDomicilio(this, cambioDeDomicilio);
+        }
+
+        public void OcultarControlesAlAgregar()
+        {
+            this._btnEliminar.Visibility = System.Windows.Visibility.Collapsed;
         }
 
         private void _btnModificar_Click(object sender, RoutedEventArgs e)

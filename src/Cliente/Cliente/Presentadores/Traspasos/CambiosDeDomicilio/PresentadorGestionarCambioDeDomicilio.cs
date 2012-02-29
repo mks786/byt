@@ -76,7 +76,29 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeDomicilio
                 {
                     this._ventana.CambioDeDomicilio = cambioDeDomicilio;
                     _agregar = false;
-                }    
+                }
+                else
+                {
+                    CambioDeDomicilio cambioDeDomicilioAgregar = new CambioDeDomicilio();
+                    
+                    this._ventana.CambioDeDomicilio = cambioDeDomicilioAgregar;
+                    
+                    //Poder primerPoder = new Poder();
+                    //Marca primeraMarca = new Marca();
+                    //Interesado primerInteresado = new Interesado();
+                    //Agente primerAgente = new Agente("");                    
+
+                    this._ventana.Marca = null;
+                    this._ventana.Poder = null;
+                    this._ventana.InteresadoAnterior = null;
+                    this._ventana.InteresadoActual = null;
+                    this._ventana.AgenteApoderado = null;
+                    
+                    this._ventana.TextoBotonModificar = "Agregar";
+                                       
+                    this._ventana.OcultarControlesAlAgregar();
+                    this._ventana.HabilitarCampos = true;
+                }
 
                 #region Servicios
 
@@ -155,7 +177,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeDomicilio
                 ActualizarTitulo();
 
                 if (_agregar == false)
-                {                    
+                {
                     CambioDeDomicilio cambioDeDomicilio = (CambioDeDomicilio)this._ventana.CambioDeDomicilio;
 
                     if (((CambioDeDomicilio)cambioDeDomicilio).Marca != null)
@@ -164,7 +186,6 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeDomicilio
                     this._ventana.NombreMarca = ((Marca)this._ventana.Marca).Descripcion;
                     this._ventana.AgenteApoderado = ((CambioDeDomicilio)cambioDeDomicilio).Agente;
                     this._ventana.Poder = cambioDeDomicilio.Poder;
-
 
                     CargarMarca();
 
@@ -180,6 +201,18 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeDomicilio
 
                     ValidarInteresado();
 
+                }
+                else
+                {
+                    CargarMarca();
+
+                    CargarInteresado("Anterior");
+
+                    CargarInteresado("Actual");
+
+                    CargarApoderado();
+
+                    CargarPoder();
                 }
 
                 this._ventana.FocoPredeterminado();
@@ -362,11 +395,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeDomicilio
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-                //if (this._anexoServicios.Eliminar((Anexo)this._ventana.Anexo, UsuarioLogeado.Hash))
-                //{
-                //    _paginaPrincipal.MensajeUsuario = Recursos.MensajesConElUsuario.PaisEliminado;
-                //    this.Navegar(_paginaPrincipal);
-                //}
+                if (this._cambioDeDomicilioServicios.Eliminar((CambioDeDomicilio)this._ventana.CambioDeDomicilio, UsuarioLogeado.Hash))
+                {
+                    _paginaPrincipal.MensajeUsuario = Recursos.MensajesConElUsuario.CambioDeDomicilioEliminado;
+                    this.Navegar(_paginaPrincipal);
+                }
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -575,10 +608,17 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeDomicilio
             this._marcas.Add(primeraMarca);
 
             if ((Marca)this._ventana.Marca != null)
+            {
                 this._marcas.Add((Marca)this._ventana.Marca);
-
-            this._ventana.MarcasFiltradas = this._marcas;
-            this._ventana.MarcaFiltrada = (Marca)this._ventana.Marca;
+                this._ventana.MarcasFiltradas = this._marcas;
+                this._ventana.MarcaFiltrada = (Marca)this._ventana.Marca;
+            }
+            else
+            {
+                this._ventana.MarcasFiltradas = this._marcas;
+                this._ventana.MarcaFiltrada = primeraMarca;
+            }                           
+                 
         }
 
         public void ConsultarMarcas()
