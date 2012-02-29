@@ -50,7 +50,7 @@
                     <Label>
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblFecha}"/>
                     </Label>
-                    <DatePicker IsEnabled="False" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Left"  Name="_dpkFechaBoletin" Width="180" Focusable="False" BorderBrush="{x:Null}">
+                    <DatePicker IsEnabled="False" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Left"  Name="_dpkFechaDomicilio" Width="180" Focusable="False" BorderBrush="{x:Null}">
                         <DatePicker.SelectedDate>
                             <Binding Path="FechaDomicilio" UpdateSourceTrigger="PropertyChanged"/>
                         </DatePicker.SelectedDate>

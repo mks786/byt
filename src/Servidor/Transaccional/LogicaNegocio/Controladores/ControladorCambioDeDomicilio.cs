@@ -62,27 +62,44 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
 
                 if (cambioDeDomicilio.Id == 0)
                 {
-                    ComandoBase<bool> comandoInteresadoContador = null;
+                    ComandoBase<bool> comandoCambioDeDomicilioContador = null;
+                    ComandoBase<bool> comandoOperacionContador = null;
 
-                    ComandoBase<Contador> comandoContadorInteresadoProximoValor = FabricaComandosContador.ObtenerComandoConsultarPorId("MYP_MDOMICILIOS");
-                    comandoContadorInteresadoProximoValor.Ejecutar();
-                    Contador contador = comandoContadorInteresadoProximoValor.Receptor.ObjetoAlmacenado;
+                    ComandoBase<Contador> comandoContadorCambioDeDomicilioProximoValor = FabricaComandosContador.ObtenerComandoConsultarPorId("MYP_MDOMICILIOS");
+                    comandoContadorCambioDeDomicilioProximoValor.Ejecutar();
+                    Contador contadorCambioDeDomicilio = comandoContadorCambioDeDomicilioProximoValor.Receptor.ObjetoAlmacenado;
 
-                    comandoInteresadoContador = FabricaComandosContador.ObtenerComandoInsertarOModificar(contador);                    
-                    cambioDeDomicilio.Id = contador.ProximoValor++;
+                    comandoCambioDeDomicilioContador = FabricaComandosContador.ObtenerComandoInsertarOModificar(contadorCambioDeDomicilio);
+                    cambioDeDomicilio.Id = contadorCambioDeDomicilio.ProximoValor++;
+
+                    Operacion operacion = new Operacion();
+
+                    ComandoBase<Contador> comandoContadorOperacionesProximoValor = FabricaComandosContador.ObtenerComandoConsultarPorId("MYP_OPERACIONES");
+                    comandoContadorOperacionesProximoValor.Ejecutar();
+
+                    Contador contadorOperacion = comandoContadorOperacionesProximoValor.Receptor.ObjetoAlmacenado;
+
+                    comandoOperacionContador = FabricaComandosContador.ObtenerComandoInsertarOModificar(contadorOperacion);
+                    operacion.Id = contadorOperacion.ProximoValor++;
+                    operacion.Fecha = System.DateTime.Now;
+                    operacion.Aplicada = 'M';
+                    operacion.CodigoAplicada = cambioDeDomicilio.Marca.Id;
+                    operacion.Interno = cambioDeDomicilio.Id;
+                    operacion.Servicio = new Servicio("CD");
+
+                    ComandoBase<bool> comandoOperacion = FabricaComandosOperacion.ObtenerComandoInsertarOModificar(operacion);
 
                     ComandoBase<bool> comando = FabricaComandosCambioDeDomicilio.ObtenerComandoInsertarOModificar(cambioDeDomicilio);
                     comando.Ejecutar();
+                    comandoOperacion.Ejecutar();
+
                     exitoso = comando.Receptor.ObjetoAlmacenado;
 
                     if (exitoso)
-                        comandoInteresadoContador.Ejecutar();
-                }
-                else
-                {
-                    ComandoBase<bool> comando = FabricaComandosCambioDeDomicilio.ObtenerComandoInsertarOModificar(cambioDeDomicilio);
-                    comando.Ejecutar();
-                    exitoso = comando.Receptor.ObjetoAlmacenado;
+                    {
+                        comandoCambioDeDomicilioContador.Ejecutar();
+                        comandoOperacionContador.Ejecutar();
+                    }
                 }
 
                 #region trace

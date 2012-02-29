@@ -148,7 +148,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.CambiosDeDomicilio
                 this._txtNumRegistro.IsEnabled = value;
                 this._txtTipo.IsEnabled = value;
                 this._btnConsultarMarca.IsEnabled = value;
-                this._dpkFechaBoletin.IsEnabled = value;
+                this._dpkFechaDomicilio.IsEnabled = value;
                 this._chkEtiqueta.IsEnabled = value;
 
                 _btnConsultarInteresadoAnterior.IsEnabled = value;
@@ -346,6 +346,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.CambiosDeDomicilio
             this._btnEliminar.Visibility = System.Windows.Visibility.Collapsed;
             this._lblIdCambioDeDomicilio.Visibility = System.Windows.Visibility.Collapsed;
             this._txtIdCambioDeDomicilio.Visibility = System.Windows.Visibility.Collapsed;
+            this._dpkFechaDomicilio.IsEnabled = false;
         }
 
         private void _btnModificar_Click(object sender, RoutedEventArgs e)
