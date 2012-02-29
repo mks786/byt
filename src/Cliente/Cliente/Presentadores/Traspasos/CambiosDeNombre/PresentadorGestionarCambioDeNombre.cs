@@ -322,7 +322,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeNombre
                     bool exitoso = this._cambioDeNombreServicios.InsertarOModificar(cambioDeNombre, UsuarioLogeado.Hash);
 
                     if (exitoso)
-                        this.Navegar(Recursos.MensajesConElUsuario.CambioNombre, false);
+                        this.Navegar(Recursos.MensajesConElUsuario.CambioNombreModificado, false);
                 }
 
                 #region trace

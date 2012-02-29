@@ -41,7 +41,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.CambiosDeDomicilio
         {
             get { throw new System.NotImplementedException(); }
         }
-
+        
         public string NombreAsociadoFiltrar
         {
             get { throw new System.NotImplementedException(); }
@@ -129,7 +129,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.CambiosDeDomicilio
 
         public void FocoPredeterminado()
         {
-            this._txtId.Focus();
+            this._txtIdCambioDeDomicilio.Focus();
         }
 
         public bool HabilitarCampos
@@ -140,7 +140,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.CambiosDeDomicilio
                 this._txtClaseInternacional.IsEnabled = value;
                 this._txtClaseNacional.IsEnabled = value;
                 this._txtExpediente.IsEnabled = value;
-                this._txtId.IsEnabled = value;
+                this._txtIdCambioDeDomicilio.IsEnabled = value;
                 this._txtIdMarcaFiltrar.IsEnabled = value;
                 this._txtNombreMarca.IsEnabled = value;
                 this._txtNombreMarcaFiltrar.IsEnabled = value;
@@ -272,6 +272,12 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.CambiosDeDomicilio
             set { this._txbModificar.Text = value; }
         }
 
+        public string TextoBotonRegresar
+        {
+            get { return this._txbRegresar.Text; }
+            set { this._txbRegresar.Text = value; }
+        }
+
         public GridViewColumnHeader CurSortCol
         {
             get { return _CurSortCol; }
@@ -335,9 +341,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.CambiosDeDomicilio
             this._presentador = new PresentadorGestionarCambioDeDomicilio(this, cambioDeDomicilio);
         }
 
-        public void OcultarControlesAlAgregar()
+        public void ActivarControlesAlAgregar()
         {
             this._btnEliminar.Visibility = System.Windows.Visibility.Collapsed;
+            this._lblIdCambioDeDomicilio.Visibility = System.Windows.Visibility.Collapsed;
+            this._txtIdCambioDeDomicilio.Visibility = System.Windows.Visibility.Collapsed;
         }
 
         private void _btnModificar_Click(object sender, RoutedEventArgs e)
@@ -347,7 +355,10 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.CambiosDeDomicilio
 
         private void _btnRegresar_Click(object sender, RoutedEventArgs e)
         {
-            this._presentador.Regresar();
+            if (this.TextoBotonRegresar == Recursos.Etiquetas.btnRegresar)
+                this._presentador.Regresar();
+            else if (this.TextoBotonRegresar == Recursos.Etiquetas.btnCancelar)
+                this._presentador.Cancelar();
         }
 
         private void _btnEliminar_Click(object sender, RoutedEventArgs e)
@@ -374,7 +385,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.CambiosDeDomicilio
             {
                 if (int.Parse(this.IdPoder) == int.MinValue)
                     this.IdPoder = "";
-            }
+            }           
         }
 
         #region Eventos Marcas

@@ -23,7 +23,7 @@
     <property name="DiaCredito" column="DIASC" type="int"/>
     <property name="Activo" column="IACTIVO" type="string"/>
     <property name="EdoCuenta" column="IESTADO" type="char"/>
-    <property name="EdoCuentaDigital" column="IDIGITAL" type="string"/>
+    <property name="EdoCuentaDigital" column="IDIGITAL" type="char"/>
     <property name="PendienteStatement" column="ITSF" type="char"/>
     <property name="Isf" column="ISP" type="char"/>
     <property name="Alerta" column="IALERTA" type="char"/>

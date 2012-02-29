@@ -80,24 +80,20 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeDomicilio
                 else
                 {
                     CambioDeDomicilio cambioDeDomicilioAgregar = new CambioDeDomicilio();
-                    
-                    this._ventana.CambioDeDomicilio = cambioDeDomicilioAgregar;
-                    
-                    //Poder primerPoder = new Poder();
-                    //Marca primeraMarca = new Marca();
-                    //Interesado primerInteresado = new Interesado();
-                    //Agente primerAgente = new Agente("");                    
+                    this._ventana.CambioDeDomicilio = cambioDeDomicilioAgregar;                                            
 
                     this._ventana.Marca = null;
                     this._ventana.Poder = null;
                     this._ventana.InteresadoAnterior = null;
                     this._ventana.InteresadoActual = null;
-                    this._ventana.AgenteApoderado = null;
-                    
-                    this._ventana.TextoBotonModificar = "Agregar";
+                    this._ventana.AgenteApoderado = null;                    
+
+                    CambiarAModificar();
+
+                    this._ventana.TextoBotonRegresar = Recursos.Etiquetas.btnCancelar;
                                        
-                    this._ventana.OcultarControlesAlAgregar();
-                    this._ventana.HabilitarCampos = true;
+                    this._ventana.ActivarControlesAlAgregar();
+                    
                 }
 
                 #region Servicios
@@ -345,17 +341,19 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeDomicilio
                     this._ventana.TextoBotonModificar = Recursos.Etiquetas.btnAceptar;
                 }
 
-                //Modifica los datos del Pais
-                else
+                //Modifica los datos del Cambio de Domicilio
+                else if (this._ventana.TextoBotonModificar == Recursos.Etiquetas.btnAceptar)
                 {
-                    CambioDeDomicilio cambioDeDomicilio = CargarCambioDeDomicilioDeLaPantalla();
-
+                    CambioDeDomicilio cambioDeDomicilio = CargarCambioDeDomicilioDeLaPantalla();                                                            
+                   
                     bool exitoso = this._cambioDeDomicilioServicios.InsertarOModificar(cambioDeDomicilio, UsuarioLogeado.Hash);
 
-                    if (exitoso)
-                        this.Navegar(Recursos.MensajesConElUsuario.CambioDeDomicilio, false);
+                    if ( (exitoso) && (this._agregar == false) )
+                        this.Navegar(Recursos.MensajesConElUsuario.CambioDeDomicilioModificado, false);
+                    else if ( (exitoso) && (this._agregar == true) )
+                        this.Navegar(Recursos.MensajesConElUsuario.CambioDeDomicilioInsertado, false);
                 }
-
+                
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
                     logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
@@ -384,7 +382,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeDomicilio
         }
 
         /// <summary>
-        /// Metodo que se encarga de eliminar una Marca
+        /// Metodo que se encarga de eliminar un Cambio de Domicilio
         /// </summary>
         public void Eliminar()
         {
@@ -1375,11 +1373,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeDomicilio
             }
             else
             {
-                this._ventana.Poder = primerPoder;
                 this._ventana.PoderesFiltrados = this._poderes;
-                this._ventana.PoderFiltrado = primerPoder;
-                this._ventana.ConvertirEnteroMinimoABlanco();
+                this._ventana.PoderFiltrado = this.BuscarPoder(this._poderes, this._poderes[0]);
+                this._ventana.ConvertirEnteroMinimoABlanco(); 
             }
+
+             
         }
 
         public void ConsultarPoderes()

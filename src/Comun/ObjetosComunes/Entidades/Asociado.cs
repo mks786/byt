@@ -27,7 +27,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         private int _diaCredito;
         private string _activo;
         private char _edoCuenta;
-        private string _edoCuentaDigital;
+        private char _edoCuentaDigital;
         private char _pendienteStatement;
         private char _isf;
         private char _alerta;
@@ -56,7 +56,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         {
             this._activo = "NO";
             this._contribuyente = "NO";
-            this._edoCuentaDigital = "NO";
+            this._edoCuentaDigital = 'N';
             this._edoCuenta = 'F';
             this._isf = 'F';
             this._alerta = 'F';
@@ -348,7 +348,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         /// <summary>
         /// Propiedad que asigna u obtiene si se le manda estados de cuentas digitales
         /// </summary>
-        public virtual string EdoCuentaDigital
+        public virtual char EdoCuentaDigital
         {
             get { return _edoCuentaDigital; }
             set { _edoCuentaDigital = value; }
@@ -362,7 +362,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         {
             get
             {
-                if (this.EdoCuentaDigital != null && this.EdoCuentaDigital.Equals("SI"))
+                if (this.EdoCuentaDigital.Equals('S'))
                     return true;
                 else
                     return false;
@@ -370,9 +370,9 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
             set
             {
                 if (value)
-                    this.EdoCuentaDigital = "SI";
+                    this.EdoCuentaDigital = 'S';
                 else
-                    this.EdoCuentaDigital = "NO";
+                    this.EdoCuentaDigital = 'N';
             }
         }
 

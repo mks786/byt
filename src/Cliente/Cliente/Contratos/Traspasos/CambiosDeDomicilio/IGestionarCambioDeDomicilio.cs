@@ -5,7 +5,7 @@ namespace Trascend.Bolet.Cliente.Contratos.Traspasos.CambiosDeDomicilio
 {
     interface IGestionarCambioDeDomicilio : IPaginaBase
     {
-        object CambioDeDomicilio { get; set; }
+        object CambioDeDomicilio { get; set; }        
 
         string IdAsociadoFiltrar { get; }
 
@@ -101,6 +101,8 @@ namespace Trascend.Bolet.Cliente.Contratos.Traspasos.CambiosDeDomicilio
 
         string TextoBotonModificar { get; set; }
 
+        string TextoBotonRegresar { get; set; }
+
 
         GridViewColumnHeader CurSortCol { get; set; }
 
@@ -116,6 +118,6 @@ namespace Trascend.Bolet.Cliente.Contratos.Traspasos.CambiosDeDomicilio
 
         void GestionarBotonConsultarPoder(bool value);
 
-        void OcultarControlesAlAgregar();       
+        void ActivarControlesAlAgregar();       
     }
 }

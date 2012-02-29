@@ -427,7 +427,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDePeticionario
                     bool exitoso = this._cambioPeticionarioServicios.InsertarOModificar(cambioPeticionario, UsuarioLogeado.Hash);
 
                     if (exitoso)
-                        this.Navegar(Recursos.MensajesConElUsuario.CambioPeticionario, false);
+                        this.Navegar(Recursos.MensajesConElUsuario.CambioPeticionarioModificado, false);
                 }
 
                 #region trace

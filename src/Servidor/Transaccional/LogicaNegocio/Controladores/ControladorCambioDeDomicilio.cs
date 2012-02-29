@@ -60,9 +60,30 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
                     logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-                ComandoBase<bool> comando = FabricaComandosCambioDeDomicilio.ObtenerComandoInsertarOModificar(cambioDeDomicilio);
-                comando.Ejecutar();
-                exitoso = comando.Receptor.ObjetoAlmacenado;
+                if (cambioDeDomicilio.Id == 0)
+                {
+                    ComandoBase<bool> comandoInteresadoContador = null;
+
+                    ComandoBase<Contador> comandoContadorInteresadoProximoValor = FabricaComandosContador.ObtenerComandoConsultarPorId("MYP_MDOMICILIOS");
+                    comandoContadorInteresadoProximoValor.Ejecutar();
+                    Contador contador = comandoContadorInteresadoProximoValor.Receptor.ObjetoAlmacenado;
+
+                    comandoInteresadoContador = FabricaComandosContador.ObtenerComandoInsertarOModificar(contador);                    
+                    cambioDeDomicilio.Id = contador.ProximoValor++;
+
+                    ComandoBase<bool> comando = FabricaComandosCambioDeDomicilio.ObtenerComandoInsertarOModificar(cambioDeDomicilio);
+                    comando.Ejecutar();
+                    exitoso = comando.Receptor.ObjetoAlmacenado;
+
+                    if (exitoso)
+                        comandoInteresadoContador.Ejecutar();
+                }
+                else
+                {
+                    ComandoBase<bool> comando = FabricaComandosCambioDeDomicilio.ObtenerComandoInsertarOModificar(cambioDeDomicilio);
+                    comando.Ejecutar();
+                    exitoso = comando.Receptor.ObjetoAlmacenado;
+                }
 
                 #region trace
                 if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))

@@ -522,13 +522,13 @@
   <data name="ErrorInteresadoNoPoseePoderConAgente" xml:space="preserve">
     <value>El {0} no posee poderes asociados con el apoderado</value>
   </data>
-  <data name="CambioDeDomicilio" xml:space="preserve">
+  <data name="CambioDeDomicilioModificado" xml:space="preserve">
     <value>Cambio de domicilio modificado con éxito</value>
   </data>
-  <data name="CambioNombre" xml:space="preserve">
+  <data name="CambioNombreModificado" xml:space="preserve">
     <value>Cambio de nombre modificado con éxito</value>
   </data>
-  <data name="CambioPeticionario" xml:space="preserve">
+  <data name="CambioPeticionarioModificado" xml:space="preserve">
     <value>Cambio de peticionario modificado con éxito</value>
   </data>
   <data name="CambioDeDomicilioEliminado" xml:space="preserve">
@@ -539,5 +539,14 @@
   </data>
   <data name="CambioPeticionarioEliminado" xml:space="preserve">
     <value>Cambio peticionario eliminado con éxito</value>
+  </data>
+  <data name="CambioDeDomicilioInsertado" xml:space="preserve">
+    <value>Cambio de domicilio insertado con éxito</value>
+  </data>
+  <data name="CambioDeNombreInsertado" xml:space="preserve">
+    <value>Cambio de nombre insertado con éxito</value>
+  </data>
+  <data name="CambioPeticionarioInsertado" xml:space="preserve">
+    <value>Cambio de peticionario insertado con éxito</value>
   </data>
 </root>

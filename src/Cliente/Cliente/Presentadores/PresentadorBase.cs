@@ -71,7 +71,7 @@ namespace Trascend.Bolet.Cliente.Presentadores
         /// la página principal
         /// </summary>
         public void Regresar()
-        {
+        {            
             if (_ventanaPrincipal.Contenedor.CanGoBack)
                 _ventanaPrincipal.Contenedor.GoBack();
             else
