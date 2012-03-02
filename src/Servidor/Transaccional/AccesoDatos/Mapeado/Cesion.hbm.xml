@@ -17,7 +17,7 @@
     <property name="Acta" column="IACTA" type="char"/>
     <property name="Timbre" column="ITIMBRE" type="char"/>
     <property name="Certificada" column="ICERTIFICADA" type="string"/>
-    <property name="CodigoExpediente" column="CEXPEDIENTE" type="string"/>
+    <property name="Expediente" column="CEXPEDIENTE" type="string"/>
     <property name="Referencia" column="XREFERENCIA" type="string"/>
     <property name="Anexo" column="XANEXO" type="string"/>
     <property name="OtrosS1" column="XOTROS1" type="string"/>

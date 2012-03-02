@@ -28,9 +28,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeNombre
         private IMarcaServicios _marcaServicios;
         private IAsociadoServicios _asociadoServicios;
         private IInteresadoServicios _interesadoServicios;
-        private ICambioNombreServicios _cambioDeNombreServicios;
+        private ICambioDeNombreServicios _cambioDeNombreServicios;
 
-        private IList<CambioNombre> _cambiosDeNombre;
+        private IList<CambioDeNombre> _cambiosDeNombre;
         private IList<Marca> _marcas;
         private IList<Interesado> _interesados;
 
@@ -49,8 +49,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeNombre
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["AsociadoServicios"]);
                 this._interesadoServicios = (IInteresadoServicios)Activator.GetObject(typeof(IInteresadoServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["InteresadoServicios"]);
-                this._cambioDeNombreServicios = (ICambioNombreServicios)Activator.GetObject(typeof(ICambioNombreServicios),
-                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["CambioNombreServicios"]);
+                this._cambioDeNombreServicios = (ICambioDeNombreServicios)Activator.GetObject(typeof(ICambioDeNombreServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["CambioDeNombreServicios"]);
             }
             catch (Exception ex)
             {
@@ -149,7 +149,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeNombre
                 int filtroValido = 0;//Variable utilizada para limitar a que el filtro se ejecute solo cuando 
                 //dos filtros sean utilizados
 
-                CambioNombre CambioDeNombreAuxiliar = new CambioNombre();
+                CambioDeNombre CambioDeNombreAuxiliar = new CambioDeNombre();
 
                 if (!this._ventana.Id.Equals(""))
                 {
@@ -192,7 +192,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeNombre
 
                 if (filtroValido >= 2)
                 {
-                    this._cambiosDeNombre = this._cambioDeNombreServicios.ObtenerCambioNombreFiltro(CambioDeNombreAuxiliar);
+                    this._cambiosDeNombre = this._cambioDeNombreServicios.ObtenerCambioDeNombreFiltro(CambioDeNombreAuxiliar);
 
                     this._ventana.Resultados = this._cambiosDeNombre;
                     this._ventana.TotalHits = _cambiosDeNombre.Count.ToString();

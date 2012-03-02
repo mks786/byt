@@ -20,7 +20,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         private string _certificada;
         private char _acta;
         private char _contrato;
-        private string _codigoExpediente;
+        private string _expediente;
         private string _referencia;
         private string _anexo;
         private string _otrosS1;
@@ -53,9 +53,9 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         public Licencia() { }
 
         /// <summary>
-        /// Constructor que inicializa el Id del Agente
+        /// Constructor que inicializa el Id de la Agente
         /// </summary>
-        /// <param name="id">Id del Agente</param>
+        /// <param name="id">Id de la Agente</param>
         public Licencia(int id)
         {
             this._id = id;
@@ -66,7 +66,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         #region Propiedades
 
         /// <summary>
-        /// Propiedad que asigna u obtiene el Id del cambio de nombre
+        /// Propiedad que asigna u obtiene el Id de la Licencia
         /// </summary>
         public virtual int Id
         {
@@ -75,7 +75,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         }
 
         /// <summary>
-        /// Propiedad que asigna u obtiene el Registro del cambio de nombre
+        /// Propiedad que asigna u obtiene el Registro de la Licencia
         /// </summary>
         public virtual char Registro
         {
@@ -84,7 +84,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         }
 
         /// <summary>
-        /// Propiedad que asigna u obtiene el campo OtrosC1 del cambio de nombre
+        /// Propiedad que asigna u obtiene el campo OtrosC1 de la Licencia
         /// </summary>
         public virtual char OtrosC1
         {
@@ -93,7 +93,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         }
 
         /// <summary>
-        /// Propiedad que asigna u obtiene el campo OtrosC2 del cambio de nombre
+        /// Propiedad que asigna u obtiene el campo OtrosC2 de la Licencia
         /// </summary>
         public virtual char OtrosC2
         {
@@ -102,7 +102,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         }
 
         /// <summary>
-        /// Propiedad que asigna u obtiene el campo OtrosC3 del cambio de nombre
+        /// Propiedad que asigna u obtiene el campo OtrosC3 de la Licencia
         /// </summary>
         public virtual char OtrosC3
         {
@@ -111,7 +111,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         }
 
         /// <summary>
-        /// Propiedad que asigna u obtiene el campo Documento del cambio de nombre
+        /// Propiedad que asigna u obtiene el campo Documento de la Licencia
         /// </summary>
         public virtual char Documento
         {
@@ -120,7 +120,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         }
 
         /// <summary>
-        /// Propiedad que asigna u obtiene el campo Solvencia del cambio de nombre
+        /// Propiedad que asigna u obtiene el campo Solvencia de la Licencia
         /// </summary>
         public virtual char Solvencia
         {
@@ -129,7 +129,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         }
         
         /// <summary>
-        /// Propiedad que asigna u obtiene el campo Poder del cambio de nombre
+        /// Propiedad que asigna u obtiene el campo Poder de la Licencia
         /// </summary>
         public virtual char PoderC
         {
@@ -138,7 +138,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         }
 
         /// <summary>
-        /// Propiedad que asigna u obtiene el campo Acta del cambio de nombre
+        /// Propiedad que asigna u obtiene el campo Acta de la Licencia
         /// </summary>
         public virtual char Acta
         {
@@ -147,7 +147,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         }
 
         /// <summary>
-        /// Propiedad que asigna u obtiene el campo Timbre del cambio de nombre
+        /// Propiedad que asigna u obtiene el campo Timbre de la Licencia
         /// </summary>
         public virtual char Timbre
         {
@@ -156,7 +156,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         }
 
         /// <summary>
-        /// Propiedad que asigna u obtiene el campo Certificada del cambio de nombre
+        /// Propiedad que asigna u obtiene el campo Certificada de la Licencia
         /// </summary>
         public virtual string Certificada
         {
@@ -165,16 +165,16 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         }
 
         /// <summary>
-        /// Propiedad que asigna u obtiene el campo CodigoExpediente del cambio de nombre
+        /// Propiedad que asigna u obtiene el campo Expediente de la Licencia
         /// </summary>
-        public virtual string CodigoExpediente
+        public virtual string Expediente
         {
-            get { return _codigoExpediente; }
-            set { _codigoExpediente = value; }
+            get { return _expediente; }
+            set { _expediente = value; }
         }
 
         /// <summary>
-        /// Propiedad que asigna u obtiene el campo Referencia del cambio de nombre
+        /// Propiedad que asigna u obtiene el campo Referencia de la Licencia
         /// </summary>
         public virtual string Referencia
         {
@@ -183,7 +183,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         }
 
         /// <summary>
-        /// Propiedad que asigna u obtiene el campo Anexo del cambio de nombre
+        /// Propiedad que asigna u obtiene el campo Anexo de la Licencia
         /// </summary>
         public virtual string Anexo
         {
@@ -192,7 +192,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         }
 
         /// <summary>
-        /// Propiedad que asigna u obtiene el campo OtrosS1 del cambio de nombre
+        /// Propiedad que asigna u obtiene el campo OtrosS1 de la Licencia
         /// </summary>
         public virtual string OtrosS1
         {
@@ -201,7 +201,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         }
 
         /// <summary>
-        /// Propiedad que asigna u obtiene el campo OtrosS2 del cambio de nombre
+        /// Propiedad que asigna u obtiene el campo OtrosS2 de la Licencia
         /// </summary>
         public virtual string OtrosS2
         {
@@ -210,7 +210,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         }
 
         /// <summary>
-        /// Propiedad que asigna u obtiene el campo OtrosS3 del cambio de nombre
+        /// Propiedad que asigna u obtiene el campo OtrosS3 de la Licencia
         /// </summary>
         public virtual string OtrosS3
         {
@@ -219,7 +219,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         }
 
         /// <summary>
-        /// Propiedad que asigna u obtiene el campo Ubicacion del cambio de nombre
+        /// Propiedad que asigna u obtiene el campo Ubicacion de la Licencia
         /// </summary>
         public virtual string Ubicacion
         {
@@ -228,7 +228,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         }
 
         /// <summary>
-        /// Propiedad que asigna u obtiene el campo Comentario del cambio de nombre
+        /// Propiedad que asigna u obtiene el campo Comentario de la Licencia
         /// </summary>
         public virtual string Comentario
         {
@@ -237,7 +237,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         }
 
         /// <summary>
-        /// Propiedad que asigna u obtiene el campo Observacion del cambio de nombre
+        /// Propiedad que asigna u obtiene el campo Observacion de la Licencia
         /// </summary>
         public virtual string Observacion
         {
@@ -246,7 +246,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         }
 
         /// <summary>
-        /// Propiedad que asigna u obtiene el campo Asociado del cambio de nombre
+        /// Propiedad que asigna u obtiene el campo Asociado de la Licencia
         /// </summary>
         public virtual Asociado Asociado
         {
@@ -255,7 +255,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         }
 
         /// <summary>
-        /// Propiedad que asigna u obtiene el campo PoderLicenciante del cambio de nombre
+        /// Propiedad que asigna u obtiene el campo PoderLicenciante de la Licencia
         /// </summary>
         public virtual Poder PoderLicenciante
         {
@@ -264,7 +264,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         }
 
         /// <summary>
-        /// Propiedad que asigna u obtiene el campo PoderLicenciatario del cambio de nombre
+        /// Propiedad que asigna u obtiene el campo PoderLicenciatario de la Licencia
         /// </summary>
         public virtual Poder PoderLicenciatario
         {
@@ -273,7 +273,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         }
 
         /// <summary>
-        /// Propiedad que asigna u obtiene el campo Marca del cambio de nombre
+        /// Propiedad que asigna u obtiene el campo Marca de la Licencia
         /// </summary>
         public virtual Marca Marca
         {
@@ -282,7 +282,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         }
 
         /// <summary>
-        /// Propiedad que asigna u obtiene el campo InteresadoLicenciatario del cambio de nombre
+        /// Propiedad que asigna u obtiene el campo InteresadoLicenciatario de la Licencia
         /// </summary>
         public virtual Interesado InteresadoLicenciatario
         {
@@ -291,7 +291,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         }
 
         /// <summary>
-        /// Propiedad que asigna u obtiene el campo InteresadoLicenciante del cambio de nombre
+        /// Propiedad que asigna u obtiene el campo InteresadoLicenciante de la Licencia
         /// </summary>
         public virtual Interesado InteresadoLicenciante
         {
@@ -300,7 +300,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         }
 
         /// <summary>
-        /// Propiedad que asigna u obtiene el campo BoletinPublicacion del cambio de nombre
+        /// Propiedad que asigna u obtiene el campo BoletinPublicacion de la Licencia
         /// </summary>
         public virtual Boletin Boletin
         {
@@ -309,7 +309,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         }
 
         /// <summary>
-        /// Propiedad que asigna u obtiene el campo FechaPublicacion del cambio de nombre
+        /// Propiedad que asigna u obtiene el campo FechaPublicacion de la Licencia
         /// </summary>
         public virtual DateTime? FechaPublicacion
         {
@@ -318,7 +318,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         }
 
         /// <summary>
-        /// Propiedad que asigna u obtiene el campo FechaCesion del cambio de nombre
+        /// Propiedad que asigna u obtiene el campo FechaCesion de la Licencia
         /// </summary>
         public virtual DateTime? Fecha
         {
@@ -327,7 +327,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         }
 
         /// <summary>
-        /// Propiedad que asigna u obtiene el campo AgenteCedente del cambio de nombre
+        /// Propiedad que asigna u obtiene el campo AgenteCedente de la Licencia
         /// </summary>
         public virtual Agente AgenteLicenciante
         {
@@ -336,7 +336,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         }
 
         /// <summary>
-        /// Propiedad que asigna u obtiene el campo AgenteCedente del cambio de nombre
+        /// Propiedad que asigna u obtiene el campo AgenteCedente de la Licencia
         /// </summary>
         public virtual Agente AgenteLicenciatario
         {
@@ -354,6 +354,27 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         {
             get { return _contrato; }
             set { _contrato = value; }
+        }
+
+        /// <summary>
+        /// Propiedad que asigna u obtiene el Check de Acta
+        /// </summary>
+        public virtual bool BActa
+        {
+            get
+            {
+                if (this.Acta.ToString().ToUpper().Equals("T"))
+                    return true;
+                else
+                    return false;
+            }
+            set
+            {
+                if (value)
+                    this.Acta = 'T';
+                else
+                    this.Acta = 'F';
+            }
         }
         #endregion
     }

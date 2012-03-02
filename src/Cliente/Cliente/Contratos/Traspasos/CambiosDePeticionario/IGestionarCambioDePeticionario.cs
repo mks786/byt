@@ -96,6 +96,8 @@ namespace Trascend.Bolet.Cliente.Contratos.Traspasos.CambiosDePeticionario
         string Region { get; set; }
 
         string TextoBotonModificar { get; set; }
+        
+        string TextoBotonRegresar { get; set; }
 
         string NombreMarca { set; }
 
@@ -149,6 +151,8 @@ namespace Trascend.Bolet.Cliente.Contratos.Traspasos.CambiosDePeticionario
         
         void GestionarBotonConsultarApoderados(string tipo, bool value);
         
-        void GestionarBotonConsultarPoderes(string tipo, bool value);
+        void GestionarBotonConsultarPoderes(string tipo, bool value);       
+
+        void ActivarControlesAlAgregar();
     }
 }

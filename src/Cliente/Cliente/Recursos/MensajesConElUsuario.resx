@@ -525,7 +525,7 @@
   <data name="CambioDeDomicilioModificado" xml:space="preserve">
     <value>Cambio de domicilio modificado con éxito</value>
   </data>
-  <data name="CambioNombreModificado" xml:space="preserve">
+  <data name="CambioDeNombreModificado" xml:space="preserve">
     <value>Cambio de nombre modificado con éxito</value>
   </data>
   <data name="CambioPeticionarioModificado" xml:space="preserve">
@@ -534,7 +534,7 @@
   <data name="CambioDeDomicilioEliminado" xml:space="preserve">
     <value>Cambio de domicilio eliminado con éxito</value>
   </data>
-  <data name="CambioNombreEliminado" xml:space="preserve">
+  <data name="CambioDeNombreEliminado" xml:space="preserve">
     <value>Cambio de nombre eliminado con éxito</value>
   </data>
   <data name="CambioPeticionarioEliminado" xml:space="preserve">
@@ -548,5 +548,50 @@
   </data>
   <data name="CambioPeticionarioInsertado" xml:space="preserve">
     <value>Cambio de peticionario insertado con éxito</value>
+  </data>
+  <data name="ConfirmacionEliminarCambioDeDomicilio" xml:space="preserve">
+    <value>¿Seguro que desea eliminar el cambio de domicilio?</value>
+  </data>
+  <data name="ConfirmacionEliminarCambioDeNombre" xml:space="preserve">
+    <value>¿Seguro que desea eliminar el cambio nombre?</value>
+  </data>
+  <data name="ConfirmacionEliminarCambioPeticionario" xml:space="preserve">
+    <value>¿Seguro que desea eliminar el cambio peticionario?</value>
+  </data>
+  <data name="ConfirmacionEliminarCesion" xml:space="preserve">
+    <value>¿Seguro que desea eliminar la cesión?</value>
+  </data>
+  <data name="ConfirmacionEliminarFusion" xml:space="preserve">
+    <value>¿Seguro que desea eliminar la fusión?</value>
+  </data>
+  <data name="ConfirmacionEliminarLicencia" xml:space="preserve">
+    <value>¿Seguro que desea eliminar la licencia?</value>
+  </data>
+  <data name="CesionInsertada" xml:space="preserve">
+    <value>Cesión insertada con éxito</value>
+  </data>
+  <data name="CesionModificada" xml:space="preserve">
+    <value>Cesión modificada con éxito</value>
+  </data>
+  <data name="FusionInsertada" xml:space="preserve">
+    <value>Fusión insertada con éxito</value>
+  </data>
+  <data name="FusionModificada" xml:space="preserve">
+    <value>Fusión modificada con éxito</value>
+  </data>
+  <data name="LicenciaInsertada" xml:space="preserve">
+    <value>Licencia insertada con éxito</value>
+  </data>
+  <data name="LicenciaModificada" xml:space="preserve">
+    <value>Licencia modificada con éxito</value>
+  </data>
+  <data name="CesionEliminada" xml:space="preserve">
+    <value>Cesión eliminada con éxito</value>
+  </data>
+  <data name="FusionEliminada" xml:space="preserve">
+    <value>Fusión eliminada con éxito</value>
+  </data>
+  <data name="LicenciaEliminada" xml:space="preserve">
+    <value>Licencia eliminada con éxito</value>
   </data>
 </root>

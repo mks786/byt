@@ -60,9 +60,54 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
                     logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-                ComandoBase<bool> comando = FabricaComandosCambioPeticionario.ObtenerComandoInsertarOModificar(cambioPeticionario);
-                comando.Ejecutar();
-                exitoso = comando.Receptor.ObjetoAlmacenado;
+
+                if (cambioPeticionario.Id == 0)
+                {
+                    ComandoBase<bool> comandoCambioPeticionarioContador = null;
+                    ComandoBase<bool> comandoOperacionContador = null;
+
+                    ComandoBase<Contador> comandoContadorCambioPeticionarioProximoValor = FabricaComandosContador.ObtenerComandoConsultarPorId("MYP_MPETICIONARIOS");
+                    comandoContadorCambioPeticionarioProximoValor.Ejecutar();
+                    Contador contadorCambioPeticionario = comandoContadorCambioPeticionarioProximoValor.Receptor.ObjetoAlmacenado;
+
+                    comandoCambioPeticionarioContador = FabricaComandosContador.ObtenerComandoInsertarOModificar(contadorCambioPeticionario);
+                    cambioPeticionario.Id = contadorCambioPeticionario.ProximoValor++;
+
+                    Operacion operacion = new Operacion();
+
+                    ComandoBase<Contador> comandoContadorOperacionesProximoValor = FabricaComandosContador.ObtenerComandoConsultarPorId("MYP_OPERACIONES");
+                    comandoContadorOperacionesProximoValor.Ejecutar();
+
+                    Contador contadorOperacion = comandoContadorOperacionesProximoValor.Receptor.ObjetoAlmacenado;
+
+                    comandoOperacionContador = FabricaComandosContador.ObtenerComandoInsertarOModificar(contadorOperacion);
+                    operacion.Id = contadorOperacion.ProximoValor++;
+                    operacion.Fecha = System.DateTime.Now;
+                    operacion.Aplicada = 'M';
+                    operacion.CodigoAplicada = cambioPeticionario.Marca.Id;
+                    operacion.Interno = cambioPeticionario.Id;
+                    operacion.Servicio = new Servicio("CT");
+
+                    ComandoBase<bool> comandoOperacion = FabricaComandosOperacion.ObtenerComandoInsertarOModificar(operacion);
+
+                    ComandoBase<bool> comando = FabricaComandosCambioPeticionario.ObtenerComandoInsertarOModificar(cambioPeticionario);
+                    comando.Ejecutar();
+                    comandoOperacion.Ejecutar();
+
+                    exitoso = comando.Receptor.ObjetoAlmacenado;
+
+                    if (exitoso)
+                    {
+                        comandoCambioPeticionarioContador.Ejecutar();
+                        comandoOperacionContador.Ejecutar();
+                    }
+                }
+                else
+                {
+                    ComandoBase<bool> comando = FabricaComandosCambioPeticionario.ObtenerComandoInsertarOModificar(cambioPeticionario);
+                    comando.Ejecutar();
+                    exitoso = comando.Receptor.ObjetoAlmacenado;
+                }
 
                 #region trace
                 if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))

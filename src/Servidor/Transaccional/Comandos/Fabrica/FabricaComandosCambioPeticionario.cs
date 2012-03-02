@@ -31,27 +31,41 @@ namespace Trascend.Bolet.Comandos.Fabrica
         }
 
         /// <summary>
-        /// 
+        /// Método que devuelve el Comando para consultar todos los CambioPeticionarios
         /// </summary>
-        /// <returns></returns>
+        /// <returns>El Comando para consultar todos los CambioPeticionarios</returns>
         public static ComandoBase<IList<CambioPeticionario>> ObtenerComandoConsultarTodos()
         {
-            throw new NotImplementedException();
+            return new ComandoConsultarTodosCambioPeticionario();
         }
 
+        /// <summary>
+        /// Método que devuelve el Comando para consultar un CambioPeticionario por su ID
+        /// </summary>
+        /// <returns></returns>
         public static ComandoBase<CambioPeticionario> ObtenerComandoConsultarPorID(CambioPeticionario cambioPeticionario)
         {
             throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// Método que devuelve el Comando para elimnar un cambio Peticionario
+        /// </summary>
+        /// <param name="cambioPeticionario">CambioPeticionario que se va a eliminar</param>
+        /// <returns>Comando para eliminar</returns>
         public static ComandoBase<bool> ObtenerComandoEliminarCambioPeticionario(CambioPeticionario cambioPeticionario)
         {
-            throw new NotImplementedException();
+            return new ComandoEliminarCambioPeticionario(cambioPeticionario);
         }
 
+        /// <summary>
+        /// Método que devuelve el Comando verificar existencia
+        /// </summary>
+        /// <param name="cambioPeticionario">CambioPeticionario a verificar</param>
+        /// <returns>True: si se realizo el comando con exito; False: en caso contrario</returns>
         public static ComandoBase<bool> ObtenerComandoVerificarExistenciaCambioPeticionario(CambioPeticionario cambioPeticionario)
         {
-            throw new NotImplementedException();
+            return new ComandoVerificarExistenciaCambioPeticionario(cambioPeticionario);
         }
 
         /// <summary>

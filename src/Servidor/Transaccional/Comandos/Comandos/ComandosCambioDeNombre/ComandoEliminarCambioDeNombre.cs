@@ -1,22 +1,27 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Configuration;
+using System.Linq;
+using System.Text;
 using NLog;
+using Trascend.Bolet.ObjetosComunes.Entidades;
+using System.Configuration;
 using Trascend.Bolet.AccesoDatos.Contrato;
 using Trascend.Bolet.AccesoDatos.Fabrica;
-using Trascend.Bolet.ObjetosComunes.Entidades;
 
-namespace Trascend.Bolet.Comandos.Comandos.ComandosCambioNombre
+namespace Trascend.Bolet.Comandos.Comandos.ComandosCambioDeNombre
 {
-    class ComandoConsultarCambiosNombreFiltro : ComandoBase<IList<CambioNombre>>
+    public class ComandoEliminarCambioDeNombre : ComandoBase<bool>
     {
         private static Logger logger = LogManager.GetCurrentClassLogger();
-        private CambioNombre _cambioNombre;
+        private CambioDeNombre _cambioDeNombre;
 
-
-        public ComandoConsultarCambiosNombreFiltro(CambioNombre cambioNombre)
+        /// <summary>
+        /// Constructor predeterminado
+        /// </summary>
+        /// <param name="cambioNombre">CambioNombre a eliminar</param>
+        public ComandoEliminarCambioDeNombre(CambioDeNombre cambioDeNombre)
         {
-            this._cambioNombre = cambioNombre;
+            this._cambioDeNombre = cambioDeNombre;
         }
 
         /// <summary>
@@ -31,8 +36,8 @@ namespace Trascend.Bolet.Comandos.Comandos.ComandosCambioNombre
                     logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-                IDaoCambioNombre dao = FabricaDaoBase.ObtenerFabricaDao().ObtenerDaoCambioNombre();
-                this.Receptor = new Receptor<IList<CambioNombre>>(dao.ObtenerCambiosDeNombreFiltro(this._cambioNombre));
+                IDaoCambioDeNombre dao = FabricaDaoBase.ObtenerFabricaDao().ObtenerDaoCambioDeNombre();
+                 this.Receptor = new Receptor<bool>(dao.Eliminar(this._cambioDeNombre));
 
                 #region trace
                 if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))

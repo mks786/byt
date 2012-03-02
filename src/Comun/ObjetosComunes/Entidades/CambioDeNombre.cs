@@ -4,7 +4,7 @@ using System.Collections.Generic;
 namespace Trascend.Bolet.ObjetosComunes.Entidades
 {
     [Serializable]
-    public class CambioNombre
+    public class CambioDeNombre
     {
         #region Atributos
 
@@ -19,7 +19,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         private char _poderC;
         private char _certificada;
         private char _acta;
-        private string _codigoExpediente;
+        private string _expediente;
         private string _referencia;
         private string _anexo;
         private string _otrosS1;
@@ -46,7 +46,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         /// <summary>
         /// Constructor predeterminado
         /// </summary>
-        public CambioNombre()
+        public CambioDeNombre()
         {          
         }
 
@@ -54,7 +54,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         /// Constructor que inicializa el Id del Agente
         /// </summary>
         /// <param name="id">Id del Agente</param>
-        public CambioNombre(int id)
+        public CambioDeNombre(int id)
         {
             this._id = id;
         }
@@ -163,12 +163,12 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         }
 
         /// <summary>
-        /// Propiedad que asigna u obtiene el campo CodigoExpediente del cambio de nombre
+        /// Propiedad que asigna u obtiene el campo Expediente del cambio de nombre
         /// </summary>
-        public virtual string CodigoExpediente
+        public virtual string Expediente
         {
-            get { return _codigoExpediente; }
-            set { _codigoExpediente = value; }
+            get { return _expediente; }
+            set { _expediente = value; }
         }
 
         /// <summary>

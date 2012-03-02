@@ -1,24 +1,22 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Configuration;
 using NLog;
 using Trascend.Bolet.AccesoDatos.Contrato;
 using Trascend.Bolet.AccesoDatos.Fabrica;
 using Trascend.Bolet.ObjetosComunes.Entidades;
 
-namespace Trascend.Bolet.Comandos.Comandos.ComandosCambioNombre
+namespace Trascend.Bolet.Comandos.Comandos.ComandosCambioDeNombre
 {
-    public class ComandoVerificarExistenciaCambioNombre : ComandoBase<bool>
+    class ComandoConsultarCambiosDeNombreFiltro : ComandoBase<IList<CambioDeNombre>>
     {
         private static Logger logger = LogManager.GetCurrentClassLogger();
-        private CambioNombre _cambioNombre;
+        private CambioDeNombre _cambioDeNombre;
 
-        /// <summary>
-        /// Constructor predeterminado
-        /// </summary>
-        /// <param name="cambioNombre">CambioNombre a verificar</param>
-        public ComandoVerificarExistenciaCambioNombre(CambioNombre cambioNombre)
+
+        public ComandoConsultarCambiosDeNombreFiltro(CambioDeNombre cambioDeNombre)
         {
-            this._cambioNombre = cambioNombre;
+            this._cambioDeNombre = cambioDeNombre;
         }
 
         /// <summary>
@@ -33,8 +31,8 @@ namespace Trascend.Bolet.Comandos.Comandos.ComandosCambioNombre
                     logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-                IDaoCambioNombre dao = FabricaDaoBase.ObtenerFabricaDao().ObtenerDaoCambioNombre();
-                this.Receptor = new Receptor<bool>(dao.VerificarExistencia(this._cambioNombre.Id));
+                IDaoCambioDeNombre dao = FabricaDaoBase.ObtenerFabricaDao().ObtenerDaoCambioDeNombre();
+                this.Receptor = new Receptor<IList<CambioDeNombre>>(dao.ObtenerCambiosDeNombreFiltro(this._cambioDeNombre));
 
                 #region trace
                 if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))

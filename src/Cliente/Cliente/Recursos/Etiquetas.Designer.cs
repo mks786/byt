@@ -3825,6 +3825,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Agregar Cesión de marcas.
+        /// </summary>
+        public static string titleAgregarCesion {
+            get {
+                return ResourceManager.GetString("titleAgregarCesion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Agregar Contacto.
         /// </summary>
         public static string titleAgregarContacto {
@@ -3870,6 +3879,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Agregar Fusión de marcas.
+        /// </summary>
+        public static string titleAgregarFusion {
+            get {
+                return ResourceManager.GetString("titleAgregarFusion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Agregar Interesado.
         /// </summary>
         public static string titleAgregarInteresado {
@@ -3893,6 +3911,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string titleAgregarJustificacion {
             get {
                 return ResourceManager.GetString("titleAgregarJustificacion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Agregar Licencia de marcas.
+        /// </summary>
+        public static string titleAgregarLicencia {
+            get {
+                return ResourceManager.GetString("titleAgregarLicencia", resourceCulture);
             }
         }
         

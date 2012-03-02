@@ -1,28 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using NLog;
-using Trascend.Bolet.ObjetosComunes.Entidades;
+﻿using System.Collections.Generic;
 using System.Configuration;
+using NLog;
 using Trascend.Bolet.AccesoDatos.Contrato;
 using Trascend.Bolet.AccesoDatos.Fabrica;
+using Trascend.Bolet.ObjetosComunes.Entidades;
+using System;
 
-namespace Trascend.Bolet.Comandos.Comandos.ComandosCambioNombre
+namespace Trascend.Bolet.Comandos.Comandos.ComandosCambioDeNombre
 {
-    public class ComandoEliminarCambioNombre : ComandoBase<bool>
+    public class ComandoConsultarTodosCambioDeNombre : ComandoBase<IList<CambioDeNombre>>
     {
         private static Logger logger = LogManager.GetCurrentClassLogger();
-        private CambioNombre _cambioNombre;
-
-        /// <summary>
-        /// Constructor predeterminado
-        /// </summary>
-        /// <param name="cambioNombre">CambioNombre a eliminar</param>
-        public ComandoEliminarCambioNombre(CambioNombre cambioNombre)
-        {
-            this._cambioNombre = cambioNombre;
-        }
 
         /// <summary>
         /// Método que ejecuta el comando
@@ -36,8 +24,8 @@ namespace Trascend.Bolet.Comandos.Comandos.ComandosCambioNombre
                     logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-                IDaoCambioNombre dao = FabricaDaoBase.ObtenerFabricaDao().ObtenerDaoCambioNombre();
-                 this.Receptor = new Receptor<bool>(dao.Eliminar(this._cambioNombre));
+                IDaoCambioDeNombre dao = FabricaDaoBase.ObtenerFabricaDao().ObtenerDaoCambioDeNombre();
+                this.Receptor = new Receptor<IList<CambioDeNombre>>(dao.ObtenerTodos());
 
                 #region trace
                 if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))

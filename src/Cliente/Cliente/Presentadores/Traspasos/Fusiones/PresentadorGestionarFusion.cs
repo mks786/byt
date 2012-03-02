@@ -24,6 +24,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
         private static PaginaPrincipal _paginaPrincipal = PaginaPrincipal.ObtenerInstancia;
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
+        private bool _agregar = true;
         private IGestionarFusion _ventana;
 
         private IMarcaServicios _marcaServicios;
@@ -69,9 +70,31 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
         {
             try
             {
+                this._ventana = ventana;                
 
-                this._ventana = ventana;
-                this._ventana.Fusion = fusion;
+                if (fusion != null)
+                {
+                    this._ventana.Fusion = fusion;
+                    _agregar = false;
+                }
+                else
+                {
+                    Fusion fusionAgregar = new Fusion();
+                    this._ventana.Fusion = fusionAgregar;
+
+                    ((Fusion)this._ventana.Fusion).Fecha= DateTime.Now;
+                    this._ventana.Marca = null;
+                    this._ventana.Poder = null;                    
+                    this._ventana.InteresadoEntre = null;
+                    this._ventana.InteresadoSobreviviente = null;
+                    this._ventana.AgenteApoderado = null;                    
+
+                    CambiarAModificar();
+
+                    this._ventana.TextoBotonRegresar = Recursos.Etiquetas.btnCancelar;
+
+                    this._ventana.ActivarControlesAlAgregar();
+                }
 
                 #region Servicios
 
@@ -126,7 +149,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
 
         public void ActualizarTitulo()
         {
-            this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleGestionarFusion,
+            
+            if (_agregar == true)
+                this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleAgregarFusion,
+                Recursos.Ids.GestionarFusion);
+            else
+                this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleGestionarFusion,
                 Recursos.Ids.GestionarFusion);
         }
 
@@ -144,34 +172,50 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-                this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleGestionarFusion,
-                                                      Recursos.Ids.GestionarFusion);
+                ActualizarTitulo();
 
-                Fusion fusion = (Fusion)this._ventana.Fusion;
+                if (_agregar == false)
+                {
 
-                if (((Fusion)fusion).Marca != null)
-                    this._ventana.Marca = this._marcaServicios.ConsultarMarcaConTodo(((Fusion)fusion).Marca);                
+                    Fusion fusion = (Fusion)this._ventana.Fusion;
 
-                this._ventana.NombreMarca = ((Marca)this._ventana.Marca).Descripcion;
-                this._ventana.AgenteApoderado = ((Fusion)fusion).Agente;
-                this._ventana.Poder = fusion.Poder;
+                    if (((Fusion)fusion).Marca != null)
+                        this._ventana.Marca = this._marcaServicios.ConsultarMarcaConTodo(((Fusion)fusion).Marca);
+
+                    this._ventana.NombreMarca = ((Marca)this._ventana.Marca).Descripcion;
+                    this._ventana.AgenteApoderado = ((Fusion)fusion).Agente;
+                    this._ventana.Poder = fusion.Poder;
 
 
-                CargarMarca();
+                    CargarMarca();
 
-                CargarInteresado("Entre");
+                    CargarInteresado("Entre");
 
-                CargarInteresado("Sobreviviente");
+                    CargarInteresado("Sobreviviente");
 
-                CargarApoderado();
+                    CargarApoderado();
 
-                CargarPoder();
+                    CargarPoder();
 
-                LlenarListasPoderes((Fusion)this._ventana.Fusion);
+                    LlenarListasPoderes((Fusion)this._ventana.Fusion);
 
-                ValidarInteresado();
+                    ValidarInteresado();
 
-                this._ventana.FocoPredeterminado();
+                    this._ventana.FocoPredeterminado();
+
+                }
+                else
+                {
+                    CargarMarca();
+
+                    CargarInteresado("Entre");
+
+                    CargarInteresado("Sobreviviente");
+
+                    CargarApoderado();
+
+                    CargarPoder();
+                }
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -259,10 +303,16 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
             this._marcas.Add(primeraMarca);
 
             if ((Marca)this._ventana.Marca != null)
+            {
                 this._marcas.Add((Marca)this._ventana.Marca);
-
-            this._ventana.MarcasFiltradas = this._marcas;
-            this._ventana.MarcaFiltrada = (Marca)this._ventana.Marca;
+                this._ventana.MarcasFiltradas = this._marcas;
+                this._ventana.MarcaFiltrada = (Marca)this._ventana.Marca;
+            }
+            else
+            {
+                this._ventana.MarcasFiltradas = this._marcas;
+                this._ventana.MarcaFiltrada = primeraMarca;
+            }
         }
 
         private void CargarApoderado()
@@ -301,8 +351,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
                 this._ventana.PoderFiltrado = this.BuscarPoder((IList<Poder>)this._ventana.PoderesFiltrados, (Poder)this._ventana.Poder);
             }
             else
-            {
-                this._ventana.Poder = primerPoder;
+            {                
                 this._ventana.PoderesFiltrados = this._poderes;
                 this._ventana.PoderFiltrado = primerPoder;
                 this._ventana.ConvertirEnteroMinimoABlanco();
@@ -313,13 +362,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
         {
 
             Fusion fusion = (Fusion)this._ventana.Fusion;
-          //  fusion.Marca = (Marca)this._ventana.MarcaFiltrada;
-          //  fusion.InteresadoEntre = (Interesado)this._ventana.InteresadoEntreFiltrado;
-          //  fusion.InteresadoSobreviviente = (Interesado)this._ventana.InteresadoSobrevivienteFiltrado;
-          //  fusion.Agente = (Agente)this._ventana.AgenteApoderadoFiltrado;
-          //  fusion.Poder = (Poder)this._ventana.PoderFiltrado;
-          //  fusion.Asociado = ((Fusion)this._ventana.Fusion).Asociado;
-
+       
               if (null != this._ventana.MarcaFiltrada)
                 fusion.Marca = ((Marca)this._ventana.MarcaFiltrada).Id != int.MinValue ? (Marca)this._ventana.Marca : null;
 
@@ -397,7 +440,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
         /// </summary>
         public void Modificar()
         {
-            bool retorno = false;
+            Mouse.OverrideCursor = Cursors.Wait;
             try
             {
                 #region trace
@@ -412,18 +455,17 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
                     this._ventana.TextoBotonModificar = Recursos.Etiquetas.btnAceptar;
                 }
 
-                //Modifica los datos del Pais
-                else
+                //Modifica los datos de la fusion
+                else if (this._ventana.TextoBotonModificar == Recursos.Etiquetas.btnAceptar)
                 {
                     Fusion fusion = CargarFusionDeLaPantalla();
 
-                    //bool exitoso = this._marcaServicios.InsertarOModificar(fusion, UsuarioLogeado.Hash);
-
                     bool exitoso = this._fusionesServicios.InsertarOModificar(fusion, UsuarioLogeado.Hash);
-                    if (exitoso)
-                    {
-                        retorno = true;
-                    }
+
+                    if ((exitoso) && (this._agregar == false))
+                        this.Navegar(Recursos.MensajesConElUsuario.FusionModificada, false);
+                    else if ((exitoso) && (this._agregar == true))
+                        this.Navegar(Recursos.MensajesConElUsuario.FusionInsertada, false);
                 }
 
                 #region trace
@@ -451,6 +493,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
                 logger.Error(ex.Message);
                 this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
             }
+            finally
+            {
+                Mouse.OverrideCursor = null;
+            }
         }
 
         /// <summary>
@@ -458,6 +504,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
         /// </summary>
         public void Eliminar()
         {
+            Mouse.OverrideCursor = Cursors.Wait;
+
             try
             {
                 #region trace
@@ -465,11 +513,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-                //if (this._anexoServicios.Eliminar((Anexo)this._ventana.Anexo, UsuarioLogeado.Hash))
-                //{
-                //    _paginaPrincipal.MensajeUsuario = Recursos.MensajesConElUsuario.PaisEliminado;
-                //    this.Navegar(_paginaPrincipal);
-                //}
+                if (this._fusionesServicios.Eliminar((Fusion)this._ventana.Fusion, UsuarioLogeado.Hash))
+                {
+                    _paginaPrincipal.MensajeUsuario = Recursos.MensajesConElUsuario.FusionEliminada;
+                    this.Navegar(_paginaPrincipal);
+                }
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -495,6 +543,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
             {
                 logger.Error(ex.Message);
                 this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
+            }
+            finally
+            {
+                Mouse.OverrideCursor = null;
             }
         }
 
@@ -572,11 +624,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
             #endregion
         }
 
-        #region Marcas
-
-        public void ConsultarMarcas()
+        public void LlenarListaAgenteEInteresado(Poder poder, bool cargaInicial)
         {
-
             try
             {
                 #region trace
@@ -584,30 +633,61 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-                Mouse.OverrideCursor = Cursors.Wait;
-                Marca marca = new Marca();
-                IList<Marca> marcasFiltradas;
-                marca.Descripcion = this._ventana.NombreMarcaFiltrar.ToUpper();
-                marca.Id = this._ventana.IdMarcaFiltrar.Equals("") ? 0 : int.Parse(this._ventana.IdMarcaFiltrar);
+                Interesado interesado = new Interesado();
+                IList<Agente> agentesInteresadoFiltrados;
+                IList<Interesado> interesadosFiltrados = new List<Interesado>();
+                Poder poderFiltrar = new Poder();
 
-                if ((!marca.Descripcion.Equals("")) || (marca.Id != 0))
-                    marcasFiltradas = this._marcaServicios.ObtenerMarcasFiltro(marca);
+                Interesado primerInteresado = new Interesado(int.MinValue);
+                Agente primerAgente = new Agente("");
+
+                Agente agenteActual = new Agente();
+
+                agentesInteresadoFiltrados = new List<Agente>();
+
+                if (poder.Id == null)
+                    poderFiltrar.Id = this._ventana.IdPoderFiltrar.Equals("") ? 0 : int.Parse(this._ventana.IdPoderFiltrar);
                 else
-                    marcasFiltradas = new List<Marca>();
+                    poderFiltrar.Id = poder.Id;
 
-                if (marcasFiltradas.ToList<Marca>().Count != 0)
+                if (poderFiltrar.Id != 0)
                 {
-                    marcasFiltradas.Insert(0, new Marca(int.MinValue));
-                    this._ventana.MarcasFiltradas = marcasFiltradas.ToList<Marca>();
+                    interesado = this._interesadoServicios.ObtenerInteresadosDeUnPoder((Poder)this._ventana.PoderFiltrado);
+                    agentesInteresadoFiltrados = this._agenteServicios.ObtenerAgentesDeUnPoder((Poder)this._ventana.PoderFiltrado);
+                }
+
+                if (interesado != null)
+                {
+                    interesadosFiltrados.Insert(0, primerInteresado);
+                    interesadosFiltrados.Add(interesado);
+                    this._ventana.InteresadosSobrevivienteFiltrados = interesadosFiltrados;
+
+                    if (cargaInicial)
+                        this._ventana.InteresadoSobrevivienteFiltrado = this.BuscarInteresado(interesadosFiltrados, interesado);
+                    else
+                        this._ventana.InteresadoSobrevivienteFiltrado = primerInteresado;
                 }
                 else
                 {
-                    marcasFiltradas.Insert(0, new Marca(int.MinValue));
-                    this._ventana.MarcasFiltradas = this._marcas;
+                    interesadosFiltrados.Insert(0, primerInteresado);
                     this._ventana.Mensaje(Recursos.MensajesConElUsuario.NoHayResultados, 1);
+                    this._ventana.InteresadoSobrevivienteFiltrado = primerInteresado;
                 }
 
-                Mouse.OverrideCursor = null;
+                if (agentesInteresadoFiltrados.Count != 0)
+                {
+                    agenteActual = (Agente)this._ventana.AgenteApoderadoFiltrado;
+                    agentesInteresadoFiltrados.Insert(0, primerAgente);
+                    this._ventana.AgenteApoderadoFiltrados = agentesInteresadoFiltrados;
+                    this._ventana.AgenteApoderadoFiltrado = BuscarAgente(agentesInteresadoFiltrados, agenteActual);
+                }
+                else
+                {
+                    agentesInteresadoFiltrados.Insert(0, primerAgente);
+                    this._ventana.AgenteApoderadoFiltrados = this._agentesApoderados;
+                    this._ventana.Mensaje(Recursos.MensajesConElUsuario.NoHayResultados, 1);
+                    this._ventana.AgenteApoderadoFiltrado = primerAgente;
+                }
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -634,10 +714,194 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
                 logger.Error(ex.Message);
                 this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
             }
+
+        }
+
+        public bool ValidarListaDePoderes(IList<Poder> listaPoderesA, IList<Poder> listaPoderesB)
+        {
+            bool retorno = false;
+            IList<Poder> listaIntereseccionInteresado = new List<Poder>();
+            Poder primerPoder = new Poder(int.MinValue);
+
+            Poder poderActual = new Poder();
+
+            listaIntereseccionInteresado.Add(primerPoder);
+
+
+            if ((listaPoderesA.Count != 0) && (listaPoderesB.Count != 0))
+            {
+                foreach (Poder poderA in listaPoderesA)
+                {
+                    foreach (Poder poderB in listaPoderesB)
+                    {
+                        if (poderA.Id == poderB.Id)
+                        {
+                            listaIntereseccionInteresado.Add(poderA);
+                            retorno = true;
+                        }
+
+                    }
+
+                }
+
+                if (listaIntereseccionInteresado.Count != 0)
+                {
+                    poderActual = (Poder)this._ventana.PoderFiltrado;
+                    this._poderesInterseccion = listaIntereseccionInteresado;
+                    this._ventana.PoderesFiltrados = listaIntereseccionInteresado;
+                    this._ventana.PoderFiltrado = BuscarPoder((IList<Poder>)this._ventana.PoderesFiltrados, poderActual);
+                }
+                else
+                    retorno = false;
+            }
+
+            return retorno;
+        }
+
+        public void LlenarListasPoderes(Fusion fusion)
+        {
+            if (fusion.InteresadoSobreviviente != null)
+                this._poderesSobreviviente = this._poderServicios.ConsultarPoderesPorInteresado(fusion.InteresadoSobreviviente);
+
+            if (fusion.Agente != null)
+                this._poderesApoderado = this._poderServicios.ConsultarPoderesPorAgente(fusion.Agente);
+        }
+
+        public bool VerificarCambioInteresado()
+        {
+            bool retorno = false;
+
+            if ((((Interesado)this._ventana.InteresadoSobrevivienteFiltrado).Id != int.MinValue) || !(((Agente)this._ventana.AgenteApoderadoFiltrado).Id.Equals("")))
+                retorno = true;
+
+            return retorno;
+        }
+
+        public bool VerificarCambioAgente()
+        {
+            bool retorno = false;
+
+            if (!(((Agente)this._ventana.AgenteApoderadoFiltrado).Id.Equals("")) || (((Interesado)this._ventana.InteresadoSobrevivienteFiltrado).Id != int.MinValue))
+                retorno = true;
+
+            return retorno;
+        }
+
+        public bool VerificarCambioPoder()
+        {
+            bool retorno = false;
+
+            if (((Poder)this._ventana.PoderFiltrado).Id != int.MinValue)
+                retorno = true;
+
+            return retorno;
+        }
+
+        public void LimpiarListaInteresado()
+        {
+            Interesado primerInteresado = new Interesado(int.MinValue);
+            IList<Interesado> listaInteresados = new List<Interesado>();
+            listaInteresados.Add(primerInteresado);
+
+            this._ventana.InteresadosSobrevivienteFiltrados = listaInteresados;
+            this._ventana.InteresadoSobrevivienteFiltrado = BuscarInteresado(listaInteresados, primerInteresado);
+            this._ventana.InteresadoSobreviviente = this._ventana.InteresadoSobrevivienteFiltrado;
+        }
+
+        public void LimpiarListaAgente()
+        {
+            Agente primerAgente = new Agente("");
+            IList<Agente> listaAgentes = new List<Agente>();
+            listaAgentes.Add(primerAgente);
+
+            this._ventana.AgenteApoderadoFiltrados = listaAgentes;
+            this._ventana.AgenteApoderadoFiltrado = BuscarAgente(listaAgentes, primerAgente);
+            this._ventana.AgenteApoderado = this._ventana.AgenteApoderadoFiltrado;
+
+        }
+
+        public void LimpiarListaPoder()
+        {
+            Poder primerPoder = new Poder(int.MinValue);
+            IList<Poder> listaPoderes = new List<Poder>();
+            listaPoderes.Add(primerPoder);
+
+            this._ventana.PoderesFiltrados = listaPoderes;
+            this._ventana.PoderFiltrado = BuscarPoder(listaPoderes, primerPoder);
+            this._ventana.Poder = this._ventana.PoderFiltrado;
+
+        }                           
+
+        #region Marcas
+
+        public void ConsultarMarcas()
+        {
+            Mouse.OverrideCursor = Cursors.Wait;
+
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+                
+                Marca marca = new Marca();
+                IList<Marca> marcasFiltradas;
+                marca.Descripcion = this._ventana.NombreMarcaFiltrar.ToUpper();
+                marca.Id = this._ventana.IdMarcaFiltrar.Equals("") ? 0 : int.Parse(this._ventana.IdMarcaFiltrar);
+
+                if ((!marca.Descripcion.Equals("")) || (marca.Id != 0))
+                    marcasFiltradas = this._marcaServicios.ObtenerMarcasFiltro(marca);
+                else
+                    marcasFiltradas = new List<Marca>();
+
+                if (marcasFiltradas.ToList<Marca>().Count != 0)
+                {
+                    marcasFiltradas.Insert(0, new Marca(int.MinValue));
+                    this._ventana.MarcasFiltradas = marcasFiltradas.ToList<Marca>();
+                }
+                else
+                {
+                    marcasFiltradas.Insert(0, new Marca(int.MinValue));
+                    this._ventana.MarcasFiltradas = this._marcas;
+                    this._ventana.Mensaje(Recursos.MensajesConElUsuario.NoHayResultados, 1);
+                }
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (ApplicationException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(ex.Message, true);
+            }
+            catch (RemotingException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorRemoting, true);
+            }
+            catch (SocketException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorConexionServidor, true);
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
+            }
+            finally
+            {
+                Mouse.OverrideCursor = null;
+            }
         }
 
         public bool CambiarMarca()
         {
+            Mouse.OverrideCursor = Cursors.Wait;
+
             bool retorno = false;
 
             try
@@ -682,6 +946,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
             {
                 logger.Error(ex.Message);
                 this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
+            }
+            finally
+            {
+                Mouse.OverrideCursor = null;
             }
 
             return retorno;
@@ -823,7 +1091,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
                 }
                 else
                 {
-                    if (((Cesion)this._ventana.PoderFiltrado).Id == int.MinValue)
+                    if (((Fusion)this._ventana.PoderFiltrado).Id == int.MinValue)
                         this._ventana.GestionarBotonConsultarInteresado(false);
 
                     else
@@ -877,6 +1145,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
 
         public void ConsultarInteresadosSobreviviente()
         {
+            Mouse.OverrideCursor = Cursors.Wait;
+
             try
             {
                 #region trace
@@ -884,9 +1154,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-                Interesado primerInteresado = new Interesado(int.MinValue);
-
-                Mouse.OverrideCursor = Cursors.Wait;
+                Interesado primerInteresado = new Interesado(int.MinValue);                
                 Interesado interesado = new Interesado();
                 IList<Interesado> interesadosFiltrados;
                 interesado.Nombre = this._ventana.NombreInteresadoSobrevivienteFiltrar.ToUpper();
@@ -910,8 +1178,6 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
                     this._ventana.InteresadoSobrevivienteFiltrado = primerInteresado;
                     this._ventana.Mensaje(Recursos.MensajesConElUsuario.NoHayResultados, 1);
                 }
-
-                Mouse.OverrideCursor = null;
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -938,12 +1204,17 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
                 logger.Error(ex.Message);
                 this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
             }
+            finally
+            {
+                Mouse.OverrideCursor = null;
+            }
         }
 
         public bool CambiarInteresadoSobreviviente()
         {
+            Mouse.OverrideCursor = Cursors.Wait;
 
-             bool retorno = false;
+            bool retorno = false;
 
             try
             {
@@ -1024,6 +1295,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
             {
                 logger.Error(ex.Message);
                 this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
+            }
+            finally
+            {
+                Mouse.OverrideCursor = null;
             }
 
             return retorno;
@@ -1376,222 +1651,6 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
             return retorno;
         }
 
-        #endregion
-
-        public void LlenarListaAgenteEInteresado(Poder poder, bool cargaInicial)
-        {
-            try
-            {
-                #region trace
-                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
-                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
-                #endregion
-
-                Mouse.OverrideCursor = Cursors.Wait;
-
-                Interesado interesado = new Interesado();
-                IList<Agente> agentesInteresadoFiltrados;
-                IList<Interesado> interesadosFiltrados = new List<Interesado>();
-                Poder poderFiltrar = new Poder();
-
-                Interesado primerInteresado = new Interesado(int.MinValue);
-                Agente primerAgente = new Agente("");
-
-                Agente agenteActual = new Agente();
-
-                agentesInteresadoFiltrados = new List<Agente>();
-               
-                if (poder.Id == null)
-                    poderFiltrar.Id = this._ventana.IdPoderFiltrar.Equals("") ? 0 : int.Parse(this._ventana.IdPoderFiltrar);
-                else
-                    poderFiltrar.Id = poder.Id;
-
-                if (poderFiltrar.Id != 0)
-                {
-                    interesado = this._interesadoServicios.ObtenerInteresadosDeUnPoder((Poder)this._ventana.PoderFiltrado);
-                    agentesInteresadoFiltrados = this._agenteServicios.ObtenerAgentesDeUnPoder((Poder)this._ventana.PoderFiltrado);
-                }
-
-                if (interesado != null)
-                {
-                    interesadosFiltrados.Insert(0, primerInteresado);
-                    interesadosFiltrados.Add(interesado);
-                    this._ventana.InteresadosSobrevivienteFiltrados = interesadosFiltrados;
-
-                    if (cargaInicial)
-                        this._ventana.InteresadoSobrevivienteFiltrado = this.BuscarInteresado(interesadosFiltrados, interesado);
-                    else
-                        this._ventana.InteresadoSobrevivienteFiltrado = primerInteresado;
-                }
-                else
-                {
-                    interesadosFiltrados.Insert(0, primerInteresado);
-                    this._ventana.Mensaje(Recursos.MensajesConElUsuario.NoHayResultados, 1);
-                    this._ventana.InteresadoSobrevivienteFiltrado = primerInteresado;
-                }
-
-                if (agentesInteresadoFiltrados.Count != 0)
-                {
-                    agenteActual = (Agente)this._ventana.AgenteApoderadoFiltrado;
-                    agentesInteresadoFiltrados.Insert(0, primerAgente);
-                    this._ventana.AgenteApoderadoFiltrados = agentesInteresadoFiltrados;
-                    this._ventana.AgenteApoderadoFiltrado = BuscarAgente(agentesInteresadoFiltrados, agenteActual);
-                }
-                else
-                {
-                    agentesInteresadoFiltrados.Insert(0, primerAgente);
-                    this._ventana.AgenteApoderadoFiltrados = this._agentesApoderados;
-                    this._ventana.Mensaje(Recursos.MensajesConElUsuario.NoHayResultados, 1);
-                    this._ventana.AgenteApoderadoFiltrado = primerAgente;
-                }                               
-
-                Mouse.OverrideCursor = null;
-
-                #region trace
-                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
-                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
-                #endregion
-            }
-            catch (ApplicationException ex)
-            {
-                logger.Error(ex.Message);
-                this.Navegar(ex.Message, true);
-            }
-            catch (RemotingException ex)
-            {
-                logger.Error(ex.Message);
-                this.Navegar(Recursos.MensajesConElUsuario.ErrorRemoting, true);
-            }
-            catch (SocketException ex)
-            {
-                logger.Error(ex.Message);
-                this.Navegar(Recursos.MensajesConElUsuario.ErrorConexionServidor, true);
-            }
-            catch (Exception ex)
-            {
-                logger.Error(ex.Message);
-                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
-            }
-
-        }
-
-        public bool ValidarListaDePoderes(IList<Poder> listaPoderesA, IList<Poder> listaPoderesB)
-        {
-            Mouse.OverrideCursor = Cursors.Wait;
-
-            bool retorno = false;
-            IList<Poder> listaIntereseccionInteresado = new List<Poder>();           
-            Poder primerPoder = new Poder(int.MinValue);
-
-            Poder poderActual = new Poder();
-
-            listaIntereseccionInteresado.Add(primerPoder);
-            
-
-            if ((listaPoderesA.Count != 0) && (listaPoderesB.Count != 0))
-            {
-                foreach (Poder poderA in listaPoderesA)
-                {
-                    foreach (Poder poderB in listaPoderesB)
-                    {
-                        if (poderA.Id == poderB.Id)
-                        {
-                            listaIntereseccionInteresado.Add(poderA);
-                            retorno = true;
-                        }
-
-                    }
-
-                }
-
-                if (listaIntereseccionInteresado.Count != 0)
-                {
-                    poderActual = (Poder)this._ventana.PoderFiltrado;
-                    this._poderesInterseccion = listaIntereseccionInteresado;
-                    this._ventana.PoderesFiltrados = listaIntereseccionInteresado;
-                    this._ventana.PoderFiltrado = BuscarPoder((IList<Poder>)this._ventana.PoderesFiltrados, poderActual);
-                }
-                else
-                    retorno = false;
-            }
-            
-            Mouse.OverrideCursor = null;
-
-            return retorno;
-        }
-
-        public void LlenarListasPoderes(Fusion fusion)
-        {
-            if (fusion.InteresadoSobreviviente != null)
-                this._poderesSobreviviente = this._poderServicios.ConsultarPoderesPorInteresado(fusion.InteresadoSobreviviente);
-
-            if (fusion.Agente != null)
-                this._poderesApoderado = this._poderServicios.ConsultarPoderesPorAgente(fusion.Agente);           
-        }
-
-        public bool VerificarCambioInteresado()
-        {
-            bool retorno = false;
-           
-            if ((((Interesado)this._ventana.InteresadoSobrevivienteFiltrado).Id != int.MinValue) || !(((Agente)this._ventana.AgenteApoderadoFiltrado).Id.Equals("")))
-                retorno = true;                     
-
-            return retorno;
-        }
-
-        public bool VerificarCambioAgente()
-        {
-            bool retorno = false;
-           
-            if (!(((Agente)this._ventana.AgenteApoderadoFiltrado).Id.Equals("")) || (((Interesado)this._ventana.InteresadoSobrevivienteFiltrado).Id != int.MinValue))
-                retorno = true;           
-
-            return retorno;
-        }
-
-        public bool VerificarCambioPoder()
-        {
-            bool retorno = false;
-
-            if (((Poder)this._ventana.PoderFiltrado).Id != int.MinValue)
-                retorno = true;
-            
-            return retorno;
-        }
-
-        public void LimpiarListaInteresado()
-        {
-            Interesado primerInteresado = new Interesado(int.MinValue);
-            IList<Interesado> listaInteresados = new List<Interesado>();
-            listaInteresados.Add(primerInteresado);
-          
-            this._ventana.InteresadosSobrevivienteFiltrados = listaInteresados;
-            this._ventana.InteresadoSobrevivienteFiltrado = BuscarInteresado(listaInteresados, primerInteresado);
-            this._ventana.InteresadoSobreviviente = this._ventana.InteresadoSobrevivienteFiltrado;           
-        }
-
-        public void LimpiarListaAgente()
-        {
-            Agente primerAgente = new Agente("");
-            IList<Agente> listaAgentes = new List<Agente>();
-            listaAgentes.Add(primerAgente);
-           
-            this._ventana.AgenteApoderadoFiltrados = listaAgentes;
-            this._ventana.AgenteApoderadoFiltrado = BuscarAgente(listaAgentes, primerAgente);
-            this._ventana.AgenteApoderado = this._ventana.AgenteApoderadoFiltrado;
-            
-        }
-
-        public void LimpiarListaPoder()
-        {
-            Poder primerPoder = new Poder(int.MinValue);
-            IList<Poder> listaPoderes = new List<Poder>();
-            listaPoderes.Add(primerPoder);
-            
-            this._ventana.PoderesFiltrados = listaPoderes;
-            this._ventana.PoderFiltrado = BuscarPoder(listaPoderes, primerPoder);
-            this._ventana.Poder = this._ventana.PoderFiltrado;                       
-            
-        }                           
+        #endregion       
     }
 }

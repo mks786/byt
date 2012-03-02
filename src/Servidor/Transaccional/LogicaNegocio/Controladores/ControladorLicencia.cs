@@ -25,10 +25,10 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
                 if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
                     logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
-
-                ComandoBase<IList<Licencia>> comando = FabricaComandosLicencia.ObtenerComandoConsultarTodos();
-                comando.Ejecutar();
-                retorno = comando.Receptor.ObjetoAlmacenado;
+               
+                    ComandoBase<IList<Licencia>> comando = FabricaComandosLicencia.ObtenerComandoConsultarTodos();
+                    comando.Ejecutar();
+                    retorno = comando.Receptor.ObjetoAlmacenado;                
 
                 #region trace
                 if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
@@ -60,9 +60,53 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
                     logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-                ComandoBase<bool> comando = FabricaComandosLicencia.ObtenerComandoInsertarOModificar(licencia);
-                comando.Ejecutar();
-                exitoso = comando.Receptor.ObjetoAlmacenado;
+                if (licencia.Id == 0)
+                {
+                    ComandoBase<bool> comandoLicenciaContador = null;
+                    ComandoBase<bool> comandoOperacionContador = null;
+
+                    ComandoBase<Contador> comandoContadorLicenciaProximoValor = FabricaComandosContador.ObtenerComandoConsultarPorId("MYP_MLICENCIAS");
+                    comandoContadorLicenciaProximoValor.Ejecutar();
+                    Contador contadorLicencia = comandoContadorLicenciaProximoValor.Receptor.ObjetoAlmacenado;
+
+                    comandoLicenciaContador = FabricaComandosContador.ObtenerComandoInsertarOModificar(contadorLicencia);
+                    licencia.Id = contadorLicencia.ProximoValor++;
+
+                    Operacion operacion = new Operacion();
+
+                    ComandoBase<Contador> comandoContadorOperacionesProximoValor = FabricaComandosContador.ObtenerComandoConsultarPorId("MYP_OPERACIONES");
+                    comandoContadorOperacionesProximoValor.Ejecutar();
+
+                    Contador contadorOperacion = comandoContadorOperacionesProximoValor.Receptor.ObjetoAlmacenado;
+
+                    comandoOperacionContador = FabricaComandosContador.ObtenerComandoInsertarOModificar(contadorOperacion);
+                    operacion.Id = contadorOperacion.ProximoValor++;
+                    operacion.Fecha = System.DateTime.Now;
+                    operacion.Aplicada = 'M';
+                    operacion.CodigoAplicada = licencia.Marca.Id;
+                    operacion.Interno = licencia.Id;
+                    operacion.Servicio = new Servicio("LU");
+
+                    ComandoBase<bool> comandoOperacion = FabricaComandosOperacion.ObtenerComandoInsertarOModificar(operacion);
+
+                    ComandoBase<bool> comando = FabricaComandosLicencia.ObtenerComandoInsertarOModificar(licencia);
+                    comando.Ejecutar();
+                    comandoOperacion.Ejecutar();
+
+                    exitoso = comando.Receptor.ObjetoAlmacenado;
+
+                    if (exitoso)
+                    {
+                        comandoLicenciaContador.Ejecutar();
+                        comandoOperacionContador.Ejecutar();
+                    }
+                }
+                else
+                {
+                    ComandoBase<bool> comando = FabricaComandosLicencia.ObtenerComandoInsertarOModificar(licencia);
+                    comando.Ejecutar();
+                    exitoso = comando.Receptor.ObjetoAlmacenado;
+                }
 
                 #region trace
                 if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))

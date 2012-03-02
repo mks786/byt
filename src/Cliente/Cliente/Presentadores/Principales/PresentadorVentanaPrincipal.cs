@@ -363,11 +363,24 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
         }
 
         /// <summary>
+        /// Método que coloca la página "GestionarCesion" en el Frame principal
+        /// </summary>
+        internal void AgregarCesion()
+        {
+            this._ventana.Contenedor.Navigate(new GestionarCesion(null));   
+        }
+
+        /// <summary>
         /// Método que coloca la página "Fusiones" en el Frame principal
         /// </summary>
         public void ConsultarFusiones()
         {
             this._ventana.Contenedor.Navigate(new ConsultarFusiones());
+        }
+       
+        internal void AgregarFusion()
+        {
+            this._ventana.Contenedor.Navigate(new GestionarFusion(null));
         }
 
         /// <summary>
@@ -434,11 +447,13 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
             this._ventana.Contenedor.Navigate(new ConsultarLicencias());
         }
 
-        /// Método que coloca la página "Licencias" en el Frame principal Gestionar   
-      //  public void IrGestionarLicencia()
-      //  {
-      //      this._ventana.Contenedor.Navigate(new GestionarLicencia());
-      //  }
+        /// <summary>
+        /// Método que coloca la página "Gestionar Licencias" en el Frame principal
+        /// </summary>
+        internal void AgregarLicencia()
+        {
+            this._ventana.Contenedor.Navigate(new GestionarLicencia(null));
+        }    
 
         /// <summary>
         /// Método que coloca la página "ConsultarResumenes" en el Frame principal
@@ -754,5 +769,6 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
                     }
             }
         }
+        
     }
 }

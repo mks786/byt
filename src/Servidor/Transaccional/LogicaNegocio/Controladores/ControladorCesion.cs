@@ -60,9 +60,53 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
                     logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-                ComandoBase<bool> comando = FabricaComandosCesion.ObtenerComandoInsertarOModificar(cesion);
-                comando.Ejecutar();
-                exitoso = comando.Receptor.ObjetoAlmacenado;
+                if (cesion.Id == 0)
+                {
+                    ComandoBase<bool> comandoCesionContador = null;
+                    ComandoBase<bool> comandoOperacionContador = null;
+
+                    ComandoBase<Contador> comandoContadorCesionProximoValor = FabricaComandosContador.ObtenerComandoConsultarPorId("MYP_MCESIONES");
+                    comandoContadorCesionProximoValor.Ejecutar();
+                    Contador contadorCesion = comandoContadorCesionProximoValor.Receptor.ObjetoAlmacenado;
+
+                    comandoCesionContador = FabricaComandosContador.ObtenerComandoInsertarOModificar(contadorCesion);
+                    cesion.Id = contadorCesion.ProximoValor++;
+
+                    Operacion operacion = new Operacion();
+
+                    ComandoBase<Contador> comandoContadorOperacionesProximoValor = FabricaComandosContador.ObtenerComandoConsultarPorId("MYP_OPERACIONES");
+                    comandoContadorOperacionesProximoValor.Ejecutar();
+
+                    Contador contadorOperacion = comandoContadorOperacionesProximoValor.Receptor.ObjetoAlmacenado;
+
+                    comandoOperacionContador = FabricaComandosContador.ObtenerComandoInsertarOModificar(contadorOperacion);
+                    operacion.Id = contadorOperacion.ProximoValor++;
+                    operacion.Fecha = System.DateTime.Now;
+                    operacion.Aplicada = 'M';
+                    operacion.CodigoAplicada = cesion.Marca.Id;
+                    operacion.Interno = cesion.Id;
+                    operacion.Servicio = new Servicio("CS");
+
+                    ComandoBase<bool> comandoOperacion = FabricaComandosOperacion.ObtenerComandoInsertarOModificar(operacion);
+
+                    ComandoBase<bool> comando = FabricaComandosCesion.ObtenerComandoInsertarOModificar(cesion);
+                    comando.Ejecutar();
+                    comandoOperacion.Ejecutar();
+
+                    exitoso = comando.Receptor.ObjetoAlmacenado;
+
+                    if (exitoso)
+                    {
+                        comandoCesionContador.Ejecutar();
+                        comandoOperacionContador.Ejecutar();
+                    }
+                }
+                else
+                {
+                    ComandoBase<bool> comando = FabricaComandosCesion.ObtenerComandoInsertarOModificar(cesion);
+                    comando.Ejecutar();
+                    exitoso = comando.Receptor.ObjetoAlmacenado;
+                }
 
                 #region trace
                 if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))

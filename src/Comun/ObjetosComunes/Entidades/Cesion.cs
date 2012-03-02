@@ -21,7 +21,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         private char _acta;
         private char _timbre;
         private string _certificada;
-        private string _codigoExpediente;
+        private string _expediente;
         private string _referencia;
         private string _anexo;
         private string _otrosS1;
@@ -203,10 +203,10 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         /// <summary>
         /// Propiedad que asigna u obtiene el campo CodigoExpediente de la cesion
         /// </summary>
-        public virtual string CodigoExpediente
+        public virtual string Expediente
         {
-            get { return _codigoExpediente; }
-            set { _codigoExpediente = value; }
+            get { return _expediente; }
+            set { _expediente = value; }
         }
 
         /// <summary>

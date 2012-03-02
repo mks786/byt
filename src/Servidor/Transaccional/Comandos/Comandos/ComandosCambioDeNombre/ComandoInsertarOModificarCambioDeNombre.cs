@@ -1,16 +1,25 @@
-﻿using System.Collections.Generic;
+﻿using System;
 using System.Configuration;
 using NLog;
 using Trascend.Bolet.AccesoDatos.Contrato;
 using Trascend.Bolet.AccesoDatos.Fabrica;
 using Trascend.Bolet.ObjetosComunes.Entidades;
-using System;
 
-namespace Trascend.Bolet.Comandos.Comandos.ComandosCambioNombre
+namespace Trascend.Bolet.Comandos.Comandos.ComandosCambioDeNombre
 {
-    public class ComandoConsultarTodosCambioNombre : ComandoBase<IList<CambioNombre>>
+    public class ComandoInsertarOModificarCambioDeNombre : ComandoBase<bool>
     {
         private static Logger logger = LogManager.GetCurrentClassLogger();
+        CambioDeNombre _cambioNombre;
+
+        /// <summary>
+        /// Constructor predeterminado
+        /// </summary>
+        /// <param name="usuario">Usuario a insertar o modificar</param>
+        public ComandoInsertarOModificarCambioDeNombre(CambioDeNombre cambioNombre)
+        {
+            this._cambioNombre = cambioNombre;
+        }
 
         /// <summary>
         /// Método que ejecuta el comando
@@ -24,8 +33,8 @@ namespace Trascend.Bolet.Comandos.Comandos.ComandosCambioNombre
                     logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-                IDaoCambioNombre dao = FabricaDaoBase.ObtenerFabricaDao().ObtenerDaoCambioNombre();
-                this.Receptor = new Receptor<IList<CambioNombre>>(dao.ObtenerTodos());
+                IDaoCambioDeNombre dao = FabricaDaoBase.ObtenerFabricaDao().ObtenerDaoCambioDeNombre();
+                this.Receptor = new Receptor<bool>(dao.InsertarOModificar(this._cambioNombre));
 
                 #region trace
                 if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))

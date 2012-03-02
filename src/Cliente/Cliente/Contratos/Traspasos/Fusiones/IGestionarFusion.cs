@@ -101,6 +101,7 @@ namespace Trascend.Bolet.Cliente.Contratos.Traspasos.Fusiones
 
         string TextoBotonModificar { get; set; }
 
+        string TextoBotonRegresar { get; set; }
 
         GridViewColumnHeader CurSortCol { get; set; }
 
@@ -115,5 +116,7 @@ namespace Trascend.Bolet.Cliente.Contratos.Traspasos.Fusiones
         void GestionarBotonConsultarApoderado(bool value);
 
         void GestionarBotonConsultarPoder(bool value);
+
+        void ActivarControlesAlAgregar();
     }
 }

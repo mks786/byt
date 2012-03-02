@@ -101,6 +101,14 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
                         comandoOperacionContador.Ejecutar();
                     }
                 }
+                else
+                {
+                    ComandoBase<bool> comando = FabricaComandosCambioDeDomicilio.ObtenerComandoInsertarOModificar(cambioDeDomicilio);
+                    comando.Ejecutar();
+                    exitoso = comando.Receptor.ObjetoAlmacenado;
+
+                }
+
 
                 #region trace
                 if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))

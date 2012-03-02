@@ -7,7 +7,7 @@
     
     <id name="Id" column="CFUSION" type="int"/>
     
-    <property name="CodigoExpediente" column="CEXPEDIENTE" type="string"/>
+    <property name="Expediente" column="CEXPEDIENTE" type="string"/>
     <property name="Ubicacion" column="XUBICACION" type="string"/>
     <property name="Anexo" column="XANEXO" type="string"/>
     <property name="Comentario" column="XCOMENTARIO" type="string"/>

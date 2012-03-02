@@ -129,7 +129,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Fusiones
 
         public void FocoPredeterminado()
         {
-            this._txtId.Focus();
+            this._txtIdFusion.Focus();
         }
 
         public bool HabilitarCampos
@@ -140,7 +140,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Fusiones
                 this._txtClaseInternacional.IsEnabled = value;
                 this._txtClaseNacional.IsEnabled = value;
                 this._txtExpediente.IsEnabled = value;
-                this._txtId.IsEnabled = value;
+                this._txtIdFusion.IsEnabled = value;
                 this._txtIdMarcaFiltrar.IsEnabled = value;
                 this._txtNombreMarca.IsEnabled = value;
                 this._txtNombreMarcaFiltrar.IsEnabled = value;
@@ -148,45 +148,51 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Fusiones
                 this._txtNumRegistro.IsEnabled = value;
                 this._txtTipo.IsEnabled = value;
                 this._btnConsultarMarca.IsEnabled = value;
-                this._dpkFechaBoletin.IsEnabled = value;
+                this._dpkFechaFusion.IsEnabled = value;
                 this._chkEtiqueta.IsEnabled = value;
 
-                _btnConsultarInteresadoEntre.IsEnabled = value;
-                _txtNombreInteresadoEntre.IsEnabled = value;
-                _txtNombreInteresadoEntreFiltrar.IsEnabled = value;
-                _txtIdInteresadoEntreFiltrar.IsEnabled = value;
-                _txtPaisInteresadoEntre.IsEnabled = value;
-                _txtCiudadInteresadoEntre.IsEnabled = value;
-                
-                _txtNombreInteresadoSobreviviente.IsEnabled = value;
-                _txtNombreInteresadoSobrevivienteFiltrar.IsEnabled = value;
-                _txtIdInteresadoSobrevivienteFiltrar.IsEnabled = value;
-                _txtPaisInteresadoSobreviviente.IsEnabled = value;
-                _txtCiudadInteresadoSobreviviente.IsEnabled = value;
-                
-                _txtNombreApoderado.IsEnabled = value;
-                _txtNombreApoderadoFiltrar.IsEnabled = value;
-                _txtIdApoderadoFiltrar.IsEnabled = value;
+                this._btnConsultarInteresadoEntre.IsEnabled = value;
+                this._txtNombreInteresadoEntre.IsEnabled = value;
+                this._txtNombreInteresadoEntreFiltrar.IsEnabled = value;
+                this._txtIdInteresadoEntreFiltrar.IsEnabled = value;
+                this._txtPaisInteresadoEntre.IsEnabled = value;
+                this._txtCiudadInteresadoEntre.IsEnabled = value;
 
-                _lblIdPoder.IsEnabled = value;
-                _lblFomento.IsEnabled = value;
-                _lblAnexoPoder.IsEnabled = value;
-                _lblBoletinPoder.IsEnabled = value;
-                _lblFechaPoder.IsEnabled = value;
-                _lblFacultadPoder.IsEnabled = value;
-                _txtIdPoder.IsEnabled = value;
-                _txtFacultadPoder.IsEnabled = value;
-                _txtAnexoPoder.IsEnabled = value;
-                _txtBoletinPoder.IsEnabled = value;
-                _txtFacultadPoder.IsEnabled = value;
-                _txtFechaPoder.IsEnabled = value;
-                _txtNumPoder.IsEnabled = value;
-                              
-                _lblPoderFiltrar.IsEnabled = value;
-                _lblIdPoderFiltrar.IsEnabled = value;
-                _lblIdPoderFiltrar.IsEnabled = value;
-                _txtIdPoderFiltrar.IsEnabled = value;                                
-                _dpkFechaPoderFiltrar.IsEnabled = value;
+                this._txtIdMarcaTercero.IsEnabled = value;
+                this._txtPaisMarcaTercero.IsEnabled = value;
+                this._txtNacionalidadMarcaTercero.IsEnabled = value;
+                this._txtEstadoMarcaTercero.IsEnabled = value;
+                this._txtDomicilioMarcaTercero.IsEnabled = value;
+
+                this._txtNombreInteresadoSobreviviente.IsEnabled = value;
+                this._txtNombreInteresadoSobrevivienteFiltrar.IsEnabled = value;
+                this._txtIdInteresadoSobrevivienteFiltrar.IsEnabled = value;
+                this._txtPaisInteresadoSobreviviente.IsEnabled = value;
+                this._txtCiudadInteresadoSobreviviente.IsEnabled = value;
+
+                this._txtNombreApoderado.IsEnabled = value;
+                this._txtNombreApoderadoFiltrar.IsEnabled = value;
+                this._txtIdApoderadoFiltrar.IsEnabled = value;
+
+                this._lblIdPoder.IsEnabled = value;
+                this._lblFomento.IsEnabled = value;
+                this._lblAnexoPoder.IsEnabled = value;
+                this._lblBoletinPoder.IsEnabled = value;
+                this._lblFechaPoder.IsEnabled = value;
+                this._lblFacultadPoder.IsEnabled = value;
+                this._txtIdPoder.IsEnabled = value;
+                this._txtFacultadPoder.IsEnabled = value;
+                this._txtAnexoPoder.IsEnabled = value;
+                this._txtBoletinPoder.IsEnabled = value;
+                this._txtFacultadPoder.IsEnabled = value;
+                this._txtFechaPoder.IsEnabled = value;
+                this._txtNumPoder.IsEnabled = value;
+
+                this._lblPoderFiltrar.IsEnabled = value;
+                this._lblIdPoderFiltrar.IsEnabled = value;
+                this._lblIdPoderFiltrar.IsEnabled = value;
+                this._txtIdPoderFiltrar.IsEnabled = value;
+                this._dpkFechaPoderFiltrar.IsEnabled = value;
 
             }
         }
@@ -271,6 +277,12 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Fusiones
             set { this._txbModificar.Text = value; }
         }
 
+        public string TextoBotonRegresar
+        {
+            get { return this._txbRegresar.Text; }
+            set { this._txbRegresar.Text = value; }
+        }
+
         public GridViewColumnHeader CurSortCol
         {
             get { return _CurSortCol; }
@@ -334,20 +346,31 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Fusiones
             this._presentador = new PresentadorGestionarFusion(this, fusion);
         }
 
+        public void ActivarControlesAlAgregar()
+        {
+            this._btnEliminar.Visibility = System.Windows.Visibility.Collapsed;
+            this._lblIdFusion.Visibility = System.Windows.Visibility.Collapsed;
+            this._txtIdFusion.Visibility = System.Windows.Visibility.Collapsed;
+            this._dpkFechaFusion.IsEnabled = false;
+        }
+
         private void _btnModificar_Click(object sender, RoutedEventArgs e)
         {
             this._presentador.Modificar();
         }
 
         private void _btnRegresar_Click(object sender, RoutedEventArgs e)
-        {
-            this._presentador.Regresar();
+        {            
+            if (this.TextoBotonRegresar == Recursos.Etiquetas.btnRegresar)
+                this._presentador.Regresar();
+            else if (this.TextoBotonRegresar == Recursos.Etiquetas.btnCancelar)
+                this._presentador.Cancelar();
         }
 
         private void _btnEliminar_Click(object sender, RoutedEventArgs e)
         {
-            if (MessageBoxResult.Yes == MessageBox.Show(Recursos.MensajesConElUsuario.ConfirmacionEliminarPais,
-                "Eliminar Pais", MessageBoxButton.YesNo, MessageBoxImage.Question))
+            if (MessageBoxResult.Yes == MessageBox.Show(Recursos.MensajesConElUsuario.ConfirmacionEliminarFusion,
+                "Eliminar Fusion", MessageBoxButton.YesNo, MessageBoxImage.Question))
             {
                 this._presentador.Eliminar();
             }

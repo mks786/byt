@@ -66,7 +66,7 @@
     <Compile Include="Comandos\ComandosCambioDeDomicilio\ComandoEliminarCambioDeDomicilio.cs" />
     <Compile Include="Comandos\ComandosCambioDeDomicilio\ComandoInsertarOModificarCambioDeDomicilio.cs" />
     <Compile Include="Comandos\ComandosCambioDeDomicilio\ComandoVerificarExistenciaCambioDeDomicilio.cs" />
-    <Compile Include="Comandos\ComandosCambioNombre\ComandoConsultarCambiosNombreFiltro.cs" />
+    <Compile Include="Comandos\ComandosCambioDeNombre\ComandoConsultarCambiosDeNombreFiltro.cs" />
     <Compile Include="Comandos\ComandosCambioPeticionario\ComandoConsultarCambiosPeticionarioFiltro.cs" />
     <Compile Include="Comandos\ComandosCambioPeticionario\ComandoConsultarTodosCambioPeticionario.cs" />
     <Compile Include="Comandos\ComandosCambioPeticionario\ComandoEliminarCambioPeticionario.cs" />
@@ -254,10 +254,10 @@
     <Compile Include="Comandos\ComandosFusion\ComandoEliminarFusion.cs" />
     <Compile Include="Comandos\ComandosFusion\ComandoInsertarOModificarFusion.cs" />
     <Compile Include="Comandos\ComandosFusion\ComandoVerificarExistenciaFusion.cs" />
-    <Compile Include="Comandos\ComandosCambioNombre\ComandoConsultarTodosCambioNombre.cs" />
-    <Compile Include="Comandos\ComandosCambioNombre\ComandoEliminarCambioNombre.cs" />
-    <Compile Include="Comandos\ComandosCambioNombre\ComandoInsertarOModificarCambioNombre.cs" />
-    <Compile Include="Comandos\ComandosCambioNombre\ComandoVerificarExistenciaCambioNombre.cs" />
+    <Compile Include="Comandos\ComandosCambioDeNombre\ComandoConsultarTodosCambioDeNombre.cs" />
+    <Compile Include="Comandos\ComandosCambioDeNombre\ComandoEliminarCambioDeNombre.cs" />
+    <Compile Include="Comandos\ComandosCambioDeNombre\ComandoInsertarOModificarCambioDeNombre.cs" />
+    <Compile Include="Comandos\ComandosCambioDeNombre\ComandoVerificarExistenciaCambioDeNombre.cs" />
     <Compile Include="Comandos\ComandosLicencia\ComandoConsultarTodosLicencia.cs" />
     <Compile Include="Comandos\ComandosLicencia\ComandoEliminarLicencia.cs" />
     <Compile Include="Comandos\ComandosLicencia\ComandoInsertarOModificarLicencia.cs" />
@@ -275,7 +275,7 @@
     <Compile Include="Fabrica\FabricaComandosCambioDeDomicilio.cs" />
     <Compile Include="Fabrica\FabricaComandosCesion.cs" />
     <Compile Include="Fabrica\FabricaComandosLicencia.cs" />
-    <Compile Include="Fabrica\FabricaComandosCambioNombre.cs" />
+    <Compile Include="Fabrica\FabricaComandosCambioDeNombre.cs" />
     <Compile Include="Fabrica\FabricaComandosFusion.cs" />
     <Compile Include="Fabrica\FabricaComandosStatusWeb.cs" />
     <Compile Include="Fabrica\FabricaComandosBusqueda.cs" />

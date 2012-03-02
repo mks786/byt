@@ -118,6 +118,8 @@ namespace Trascend.Bolet.Cliente.Contratos.Traspasos.Cesiones
 
         string TextoBotonModificar { get; set; }
 
+        string TextoBotonRegresar { get; set; }
+
         object Boletines { get; set; }
 
         object Boletin { get; set; }
@@ -135,5 +137,7 @@ namespace Trascend.Bolet.Cliente.Contratos.Traspasos.Cesiones
         void GestionarBotonConsultarApoderados(string tipo, bool value);
         
         void GestionarBotonConsultarPoderes(string tipo, bool value);
+
+        void ActivarControlesAlAgregar();
     }
 }

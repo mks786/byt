@@ -558,9 +558,9 @@ namespace Trascend.Bolet.AccesoDatos.Fabrica
         /// Método que devuelve el DaoCambioNombre
         /// </summary>
         /// <returns>IDaoCambioNombre</returns>
-        public override IDaoCambioNombre ObtenerDaoCambioNombre()
+        public override IDaoCambioDeNombre ObtenerDaoCambioDeNombre()
         {
-            return new DaoCambioNombreNHibernate();
+            return new DaoCambioDeNombreNHibernate();
         }
 
         /// <summary>

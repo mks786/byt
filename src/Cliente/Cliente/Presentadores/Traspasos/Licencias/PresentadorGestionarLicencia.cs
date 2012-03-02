@@ -24,7 +24,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Licencias
         private static PaginaPrincipal _paginaPrincipal = PaginaPrincipal.ObtenerInstancia;
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
-        private bool _validar = true;
+        private bool _agregar = true;
         private IGestionarLicencia _ventana;
 
         private IMarcaServicios _marcaServicios;
@@ -72,8 +72,34 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Licencias
             try
             {
 
-                this._ventana = ventana;
-                this._ventana.Licencia = licencia;
+                this._ventana = ventana;               
+
+                if (licencia != null)
+                {
+                    this._ventana.Licencia = licencia;
+                    _agregar = false;
+                }
+                else
+                {
+                    Licencia licenciaAgregar = new Licencia();
+                    this._ventana.Licencia = licenciaAgregar;
+
+                    ((Licencia)this._ventana.Licencia).Fecha = DateTime.Now;
+                    this._ventana.Marca = null;
+                    this._ventana.PoderLicenciante = null;
+                    this._ventana.PoderLicenciatario = null;
+                    this._ventana.InteresadoLicenciante = null;
+                    this._ventana.InteresadoLicenciatario = null;
+                    this._ventana.ApoderadoLicenciante = null;
+                    this._ventana.ApoderadoLicenciatario = null;
+                    this._ventana.Boletin = null;
+
+                    CambiarAModificar();
+
+                    this._ventana.TextoBotonRegresar = Recursos.Etiquetas.btnCancelar;
+
+                    this._ventana.ActivarControlesAlAgregar();
+                }
 
                 #region Servicios
 
@@ -127,8 +153,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Licencias
         }
 
         public void ActualizarTitulo()
-        {
-            this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleGestionarLicencia,
+        {            
+            if (_agregar == true)
+                this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleAgregarLicencia,
+                Recursos.Ids.GestionarCambioPeticionario);
+            else
+                this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleGestionarLicencia,
                 Recursos.Ids.GestionarLicencias);
         }
 
@@ -148,10 +178,13 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Licencias
 
                 ActualizarTitulo();
 
-                this._ventana.ConvertirEnteroMinimoABlanco("Licenciante");
-                this._ventana.ConvertirEnteroMinimoABlanco("Licenciatario");
+                if (_agregar == false)
+                {
 
-                Licencia licencia = (Licencia)this._ventana.Licencia;
+                    this._ventana.ConvertirEnteroMinimoABlanco("Licenciante");
+                    this._ventana.ConvertirEnteroMinimoABlanco("Licenciatario");
+
+                    Licencia licencia = (Licencia)this._ventana.Licencia;
 
 
                     this._ventana.Marca = this._marcaServicios.ConsultarMarcaConTodo(licencia.Marca);
@@ -190,6 +223,26 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Licencias
 
                     this._ventana.Boletin = licencia.Boletin;
 
+                }
+                else
+                {
+                    CargarMarca();
+
+                    CargarInteresado("Licenciante");
+
+                    CargarApoderado("Licenciante");
+
+                    CargarPoder("Licenciante");
+
+                    CargarInteresado("Licenciatario");
+
+                    CargarApoderado("Licenciatario");
+
+                    CargarPoder("Licenciatario");
+
+                    CargaBoletines();
+                }
+
                 this._ventana.FocoPredeterminado();
 
                 #region trace
@@ -210,11 +263,13 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Licencias
 
         private void CargaBoletines()
         {
-
+            Boletin primerBoletin = new Boletin(int.MinValue);
             IList<Boletin> boletines = this._boletinServicios.ConsultarTodos();
+            boletines.Insert(0, primerBoletin);
             this._ventana.Boletines = boletines;
-        
+
         }
+
         private void CargarInteresado(string tipo)
         {
             Interesado primerInteresado = new Interesado(int.MinValue);
@@ -329,8 +384,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Licencias
                     this._ventana.PoderLicencianteFiltrado = this.BuscarPoder((IList<Poder>)this._ventana.PoderesLicencianteFiltrados, (Poder)this._ventana.PoderLicenciante);
                 }
                 else
-                {
-                    this._ventana.PoderLicenciante = primerPoder;
+                {                    
                     this._ventana.PoderesLicencianteFiltrados = this._poderesLicenciante;
                     this._ventana.PoderLicencianteFiltrado = primerPoder;
                     this._ventana.ConvertirEnteroMinimoABlanco("Licenciante");
@@ -350,8 +404,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Licencias
                     this._ventana.PoderLicenciatarioFiltrado = this.BuscarPoder((IList<Poder>)this._ventana.PoderesLicenciatarioFiltrados, (Poder)this._ventana.PoderLicenciatario);
                 }
                 else
-                {
-                    this._ventana.PoderLicenciatario = primerPoder;
+                {                    
                     this._ventana.PoderesLicenciatarioFiltrados = this._poderesLicenciatario;
                     this._ventana.PoderLicenciatarioFiltrado = primerPoder;
                     this._ventana.ConvertirEnteroMinimoABlanco("Licenciatario");                    
@@ -364,15 +417,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Licencias
         public Licencia CargarLicenciaDeLaPantalla()
         {
 
-            Licencia licencia = (Licencia)this._ventana.Licencia;
-            //licencia.Marca = (Marca)this._ventana.MarcaFiltrada;
-            //licencia.InteresadoLicenciante = (Interesado)this._ventana.LicencianteFiltrado;
-            //licencia.InteresadoLicenciatario = (Interesado)this._ventana.LicenciatarioFiltrado;
-            //licencia.AgenteLicenciante = (Agente)this._ventana.ApoderadoLicencianteFiltrado;
-            //licencia.AgenteLicenciatario = (Agente)this._ventana.ApoderadoLicenciatarioFiltrado;
-            //licencia.PoderLicenciante = (Poder)this._ventana.PoderLicencianteFiltrado;
-            //licencia.PoderLicenciatario = (Poder)this._ventana.PoderLicenciatarioFiltrado;
-            //licencia.Boletin = (Boletin)this._ventana.Boletin;
+            Licencia licencia = (Licencia)this._ventana.Licencia;            
 
             if (null != this._ventana.MarcaFiltrada)
                 licencia.Marca = ((Marca)this._ventana.MarcaFiltrada).Id != int.MinValue ? (Marca)this._ventana.MarcaFiltrada : null;
@@ -415,7 +460,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Licencias
         /// </summary>
         public void Modificar()
         {
-            bool retorno = false;
+            Mouse.OverrideCursor = Cursors.Wait;
+
             try
             {
                 #region trace
@@ -431,17 +477,16 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Licencias
                 }
 
                 //Modifica los datos del Pais
-                else
+                else if (this._ventana.TextoBotonModificar == Recursos.Etiquetas.btnAceptar)
                 {
                     Licencia licencia = CargarLicenciaDeLaPantalla();
 
-                    //bool exitoso = this._marcaServicios.InsertarOModificar(fusion, UsuarioLogeado.Hash);
-
                     bool exitoso = this._licenciaServicios.InsertarOModificar(licencia, UsuarioLogeado.Hash);
-                    if (exitoso)
-                    {
-                        retorno = true;
-                    }
+
+                    if ((exitoso) && (this._agregar == false))
+                        this.Navegar(Recursos.MensajesConElUsuario.LicenciaModificada, false);
+                    else if ((exitoso) && (this._agregar == true))
+                        this.Navegar(Recursos.MensajesConElUsuario.LicenciaInsertada, false);
                 }
 
                 #region trace
@@ -469,6 +514,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Licencias
                 logger.Error(ex.Message);
                 this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
             }
+            finally
+            {
+                Mouse.OverrideCursor = null;
+            }
         }
 
         /// <summary>
@@ -476,6 +525,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Licencias
         /// </summary>
         public void Eliminar()
         {
+            Mouse.OverrideCursor = Cursors.Wait;
+
             try
             {
                 #region trace
@@ -483,11 +534,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Licencias
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-                //if (this._anexoServicios.Eliminar((Anexo)this._ventana.Anexo, UsuarioLogeado.Hash))
-                //{
-                //    _paginaPrincipal.MensajeUsuario = Recursos.MensajesConElUsuario.PaisEliminado;
-                //    this.Navegar(_paginaPrincipal);
-                //}
+                if (this._licenciaServicios.Eliminar((Licencia)this._ventana.Licencia, UsuarioLogeado.Hash))
+                {
+                    _paginaPrincipal.MensajeUsuario = Recursos.MensajesConElUsuario.LicenciaEliminada;
+                    this.Navegar(_paginaPrincipal);
+                }
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -513,6 +564,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Licencias
             {
                 logger.Error(ex.Message);
                 this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
+            }
+            finally
+            {
+                Mouse.OverrideCursor = null;
             }
         }
 
@@ -550,1183 +605,6 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Licencias
             #endregion
         }
 
-        #region Marca
-
-        public void IrConsultarMarcas()
-        {
-            this.Navegar(new ConsultarMarcas());
-        }
-
-        private void CargarMarca()
-        {
-            this._marcas = new List<Marca>();
-            Marca primeraMarca = new Marca(int.MinValue);
-            this._marcas.Add(primeraMarca);
-
-            if ((Marca)this._ventana.Marca != null)
-                this._marcas.Add((Marca)this._ventana.Marca);
-
-            this._ventana.MarcasFiltradas = this._marcas;
-            this._ventana.MarcaFiltrada = (Marca)this._ventana.Marca;
-        }
-
-        public void ConsultarMarcas()
-        {
-
-            try
-            {
-                #region trace
-                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
-                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
-                #endregion
-
-                Marca primeraMarca = new Marca(int.MinValue);
-
-                Mouse.OverrideCursor = Cursors.Wait;
-                Marca marca = new Marca();
-                IList<Marca> marcasFiltradas;
-                marca.Descripcion = this._ventana.NombreMarcaFiltrar.ToUpper();
-                marca.Id = this._ventana.IdMarcaFiltrar.Equals("") ? 0 : int.Parse(this._ventana.IdMarcaFiltrar);
-
-                if ((!marca.Descripcion.Equals("")) || (marca.Id != 0))
-                    marcasFiltradas = this._marcaServicios.ObtenerMarcasFiltro(marca);
-                else
-                    marcasFiltradas = new List<Marca>();
-
-                if (marcasFiltradas.ToList<Marca>().Count != 0)
-                {
-                    marcasFiltradas.Insert(0, primeraMarca);
-                    this._ventana.MarcasFiltradas = marcasFiltradas.ToList<Marca>();
-                    this._ventana.MarcaFiltrada = primeraMarca;
-                }
-                else
-                {
-                    marcasFiltradas.Insert(0, primeraMarca);
-                    this._ventana.MarcasFiltradas = this._marcas;
-                    this._ventana.MarcaFiltrada = primeraMarca;
-                    this._ventana.Mensaje(Recursos.MensajesConElUsuario.NoHayResultados, 1);
-                }
-
-                Mouse.OverrideCursor = null;
-
-                #region trace
-                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
-                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
-                #endregion
-            }
-            catch (ApplicationException ex)
-            {
-                logger.Error(ex.Message);
-                this.Navegar(ex.Message, true);
-            }
-            catch (RemotingException ex)
-            {
-                logger.Error(ex.Message);
-                this.Navegar(Recursos.MensajesConElUsuario.ErrorRemoting, true);
-            }
-            catch (SocketException ex)
-            {
-                logger.Error(ex.Message);
-                this.Navegar(Recursos.MensajesConElUsuario.ErrorConexionServidor, true);
-            }
-            catch (Exception ex)
-            {
-                logger.Error(ex.Message);
-                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
-            }
-        }
-
-        public bool CambiarMarca()
-        {
-            bool retorno = false;
-
-            try
-            {
-                #region trace
-                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
-                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
-                #endregion
-
-
-                if (this._ventana.MarcaFiltrada != null)
-                {
-                    this._ventana.Marca = this._ventana.MarcaFiltrada;
-                    this._ventana.NombreMarca = ((Marca)this._ventana.MarcaFiltrada).Descripcion;
-                    retorno = true;
-                }
-
-                #region trace
-                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
-                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
-                #endregion
-
-            }
-            catch (ApplicationException ex)
-            {
-                logger.Error(ex.Message);
-                this.Navegar(ex.Message, true);
-            }
-            catch (RemotingException ex)
-            {
-                logger.Error(ex.Message);
-                this.Navegar(Recursos.MensajesConElUsuario.ErrorRemoting, true);
-            }
-            catch (SocketException ex)
-            {
-                logger.Error(ex.Message);
-                this.Navegar(Recursos.MensajesConElUsuario.ErrorConexionServidor, true);
-            }
-            catch (Exception ex)
-            {
-                logger.Error(ex.Message);
-                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
-            }
-
-            return retorno;
-        }
-
-        #endregion
-
-        #region Licenciante
-
-        private void ValidarLicenciante()
-        {
-            if (((Interesado)this._ventana.LicencianteFiltrado).Id == int.MinValue)
-            {
-                if (((Agente)this._ventana.ApoderadoLicencianteFiltrado).Id.Equals(""))
-                {
-                    if (((Poder)this._ventana.PoderLicencianteFiltrado).Id != int.MinValue)
-                    {
-                        LlenarListaAgenteEInteresado((Poder)this._ventana.PoderLicenciante,"Licenciante", true);
-
-                        this._ventana.GestionarBotonConsultarInteresados("Licenciante", false);
-                        this._ventana.GestionarBotonConsultarApoderados("Licenciante", false);
-                    }
-                }
-                else
-                {
-                    if (((Licencia)this._ventana.PoderLicencianteFiltrado).Id == int.MinValue)
-                        this._ventana.GestionarBotonConsultarInteresados("Licenciante", false);
-
-                    else
-                    {
-                        LlenarListaAgenteEInteresado((Poder)this._ventana.PoderLicenciante, "Licenciante", true);
-
-                        this._ventana.GestionarBotonConsultarInteresados("Licenciante", false);
-                        this._ventana.GestionarBotonConsultarApoderados("Licenciante", false);
-                        this._ventana.GestionarBotonConsultarPoderes("Licenciante", false);
-                    }
-
-                }
-            }
-            else
-            {
-                if (((Agente)this._ventana.ApoderadoLicencianteFiltrado).Id.Equals(""))
-                {
-                    if (((Poder)this._ventana.PoderLicencianteFiltrado).Id == int.MinValue)
-                        this._ventana.GestionarBotonConsultarPoderes("Licenciante", false);
-
-                    else
-                    {
-                        LlenarListaAgenteEInteresado((Poder)this._ventana.PoderLicenciante, "Licenciante", true);
-
-                        this._ventana.GestionarBotonConsultarInteresados("Licenciante", false);
-                        this._ventana.GestionarBotonConsultarApoderados("Licenciante", false);
-                        this._ventana.GestionarBotonConsultarPoderes("Licenciante", false);
-
-                    }
-                }
-                else
-                {
-                    if (((Poder)this._ventana.PoderLicencianteFiltrado).Id == int.MinValue)
-                    {
-                        ValidarListaDePoderes(this._poderesLicenciante, this._poderesApoderadosLicenciante, "Licenciante");
-
-                        this._ventana.GestionarBotonConsultarPoderes("Licenciante", false);
-                    }
-                    else
-                    {
-                        LlenarListaAgenteEInteresado((Poder)this._ventana.PoderLicenciante, "Licenciante", true);
-                        ValidarListaDePoderes(this._poderesLicenciante, this._poderesApoderadosLicenciante, "Licenciante");
-
-                        this._ventana.GestionarBotonConsultarInteresados("Licenciante", false);
-                        this._ventana.GestionarBotonConsultarApoderados("Licenciante", false);
-                        this._ventana.GestionarBotonConsultarPoderes("Licenciante", false);
-                    }
-                }
-            }
-        }
-
-        public void ConsultarLicenciantes()
-        {
-            try
-            {
-                #region trace
-                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
-                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
-                #endregion
-
-                Interesado primerInteresado = new Interesado(int.MinValue);
-
-                Mouse.OverrideCursor = Cursors.Wait;
-                Interesado interesado = new Interesado();
-                IList<Interesado> interesadosFiltrados;
-                interesado.Nombre = this._ventana.NombreLicencianteFiltrar.ToUpper();
-                interesado.Id = this._ventana.IdLicencianteFiltrar.Equals("") ? 0 : int.Parse(this._ventana.IdLicencianteFiltrar);
-
-                if ((!interesado.Nombre.Equals("")) || (interesado.Id != 0))
-                    interesadosFiltrados = this._interesadoServicios.ObtenerInteresadosFiltro(interesado);
-                else
-                    interesadosFiltrados = new List<Interesado>();
-
-                if (interesadosFiltrados.Count != 0)
-                {
-                    interesadosFiltrados.Insert(0, primerInteresado);
-                    this._ventana.LicenciantesFiltrados = interesadosFiltrados;
-                    this._ventana.LicencianteFiltrado = primerInteresado;
-                }
-                else
-                {
-                    interesadosFiltrados.Insert(0, primerInteresado);
-                    this._ventana.LicenciantesFiltrados = this._interesadosLicenciante;
-                    this._ventana.LicencianteFiltrado = primerInteresado;
-                    this._ventana.Mensaje(Recursos.MensajesConElUsuario.NoHayResultados, 1);
-                }
-
-                Mouse.OverrideCursor = null;
-
-                #region trace
-                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
-                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
-                #endregion
-            }
-            catch (ApplicationException ex)
-            {
-                logger.Error(ex.Message);
-                this.Navegar(ex.Message, true);
-            }
-            catch (RemotingException ex)
-            {
-                logger.Error(ex.Message);
-                this.Navegar(Recursos.MensajesConElUsuario.ErrorRemoting, true);
-            }
-            catch (SocketException ex)
-            {
-                logger.Error(ex.Message);
-                this.Navegar(Recursos.MensajesConElUsuario.ErrorConexionServidor, true);
-            }
-            catch (Exception ex)
-            {
-                logger.Error(ex.Message);
-                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
-            }
-        }
-
-        public void ConsultarApoderadosLicenciante()
-        {
-            try
-            {
-                #region trace
-                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
-                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
-                #endregion
-
-                Agente primerAgente = new Agente("");
-
-                Mouse.OverrideCursor = Cursors.Wait;
-                Agente apoderadoLicenciante = new Agente();
-                IList<Agente> agentesLicencianteFiltrados;
-                apoderadoLicenciante.Nombre = this._ventana.NombreApoderadoLicencianteFiltrar.ToUpper();
-                apoderadoLicenciante.Id = this._ventana.IdApoderadoLicencianteFiltrar.ToUpper();
-
-                if ((!apoderadoLicenciante.Nombre.Equals("")) || (!apoderadoLicenciante.Id.Equals("")))
-                    agentesLicencianteFiltrados = this._agenteServicios.ObtenerAgentesFiltro(apoderadoLicenciante);
-                else
-                    agentesLicencianteFiltrados = new List<Agente>();
-
-                if (agentesLicencianteFiltrados.Count != 0)
-                {
-                    agentesLicencianteFiltrados.Insert(0, primerAgente);
-                    this._ventana.ApoderadoLicencianteFiltrado = primerAgente;
-                    this._ventana.ApoderadosLicencianteFiltrados = agentesLicencianteFiltrados.ToList<Agente>();
-                }
-                else
-                {
-                    agentesLicencianteFiltrados.Insert(0, primerAgente);
-                    this._ventana.ApoderadosLicencianteFiltrados = this._agentesLicenciante;
-                    this._ventana.ApoderadoLicencianteFiltrado = primerAgente;
-                    this._ventana.Mensaje(Recursos.MensajesConElUsuario.NoHayResultados, 1);
-                }
-
-                Mouse.OverrideCursor = null;
-
-                #region trace
-                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
-                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
-                #endregion
-            }
-            catch (ApplicationException ex)
-            {
-                logger.Error(ex.Message);
-                this.Navegar(ex.Message, true);
-            }
-            catch (RemotingException ex)
-            {
-                logger.Error(ex.Message);
-                this.Navegar(Recursos.MensajesConElUsuario.ErrorRemoting, true);
-            }
-            catch (SocketException ex)
-            {
-                logger.Error(ex.Message);
-                this.Navegar(Recursos.MensajesConElUsuario.ErrorConexionServidor, true);
-            }
-            catch (Exception ex)
-            {
-                logger.Error(ex.Message);
-                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
-            }
-        }
-
-        public void ConsultarPoderesLicenciante()
-        {
-            try
-            {
-                #region trace
-                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
-                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
-                #endregion
-
-                Poder primerPoder = new Poder(int.MinValue);
-
-                Mouse.OverrideCursor = Cursors.Wait;
-                Poder poderLicenciante = new Poder();
-                IList<Poder> poderesLicencianteFiltrados;
-
-                if (!this._ventana.IdPoderLicencianteFiltrar.Equals(""))
-                    poderLicenciante.Id = int.Parse(this._ventana.IdPoderLicencianteFiltrar);
-
-                if (!this._ventana.FechaPoderLicencianteFiltrar.Equals(""))
-                    poderLicenciante.Fecha = DateTime.Parse(this._ventana.FechaPoderLicencianteFiltrar);
-
-                if ((!poderLicenciante.Fecha.Equals("")) || (poderLicenciante.Id != 0))
-                    poderesLicencianteFiltrados = this._poderServicios.ObtenerPoderesFiltro(poderLicenciante);
-                else
-                    poderesLicencianteFiltrados = new List<Poder>();
-
-                if (poderesLicencianteFiltrados.ToList<Poder>().Count != 0)
-                {
-                    poderesLicencianteFiltrados.Insert(0, primerPoder);
-                    this._ventana.PoderesLicencianteFiltrados = this._poderesLicenciante;
-                    this._ventana.PoderLicencianteFiltrado = primerPoder;
-                    this._ventana.PoderesLicencianteFiltrados = poderesLicencianteFiltrados;
-                }
-                else
-                {
-                    poderesLicencianteFiltrados.Insert(0, primerPoder);
-                    this._ventana.PoderesLicencianteFiltrados = this._poderesLicenciante;
-                    this._ventana.PoderLicencianteFiltrado = primerPoder;
-                    this._ventana.Mensaje(Recursos.MensajesConElUsuario.NoHayResultados, 1);
-                }
-
-
-                Mouse.OverrideCursor = null;
-
-                #region trace
-                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
-                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
-                #endregion
-            }
-            catch (ApplicationException ex)
-            {
-                logger.Error(ex.Message);
-                this.Navegar(ex.Message, true);
-            }
-            catch (RemotingException ex)
-            {
-                logger.Error(ex.Message);
-                this.Navegar(Recursos.MensajesConElUsuario.ErrorRemoting, true);
-            }
-            catch (SocketException ex)
-            {
-                logger.Error(ex.Message);
-                this.Navegar(Recursos.MensajesConElUsuario.ErrorConexionServidor, true);
-            }
-            catch (Exception ex)
-            {
-                logger.Error(ex.Message);
-                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
-            }
-        }
-
-        public bool CambiarLicenciante()
-        {
-            bool retorno = false;
-
-            try
-            {
-                #region trace
-                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
-                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
-                #endregion
-
-                if (((Interesado)this._ventana.LicencianteFiltrado).Id != int.MinValue)
-                {
-                    if (!((Agente)this._ventana.ApoderadoLicencianteFiltrado).Id.Equals(""))
-                    {
-                        if (((Poder)this._ventana.PoderLicencianteFiltrado).Id != int.MinValue)
-                        {
-                            this._ventana.InteresadoLicenciante = this._interesadoServicios.ConsultarInteresadoConTodo((Interesado)this._ventana.LicencianteFiltrado);
-                            this._ventana.NombreLicenciante = ((Interesado)this._ventana.InteresadoLicenciante).Nombre;
-                            retorno = true;
-                        }
-                        else
-                        {
-                            this._poderesLicenciante = this._poderServicios.ConsultarPoderesPorInteresado(((Interesado)_ventana.LicencianteFiltrado));
-
-                            LimpiarListaPoder("Licenciante");
-
-                            if ((this.ValidarListaDePoderes(this._poderesLicenciante, this._poderesApoderadosLicenciante, "Licenciante")))
-                            {
-                                this._ventana.InteresadoLicenciante = this._ventana.LicencianteFiltrado;
-                                this._ventana.NombreLicenciante = ((Interesado)this._ventana.LicencianteFiltrado).Nombre;
-                                retorno = true;
-                            }
-                            else if (!this.ValidarListaDePoderes(this._poderesLicenciante, _poderesApoderadosLicenciante, "Licenciante"))
-                            {
-                                this._ventana.ConvertirEnteroMinimoABlanco("Licenciante");
-                                this._ventana.Mensaje(string.Format(Recursos.MensajesConElUsuario.ErrorInteresadoNoPoseePoderConAgente, "Licenciante"), 0);
-                            }
-                        }
-                    }
-                    else
-                    {
-                        this._poderesLicenciante = this._poderServicios.ConsultarPoderesPorInteresado(((Interesado)_ventana.LicencianteFiltrado));
-                        this._ventana.InteresadoLicenciante = this._interesadoServicios.ConsultarInteresadoConTodo((Interesado)this._ventana.LicencianteFiltrado);
-                        this._ventana.NombreLicenciante = ((Interesado)this._ventana.InteresadoLicenciante).Nombre;
-                        retorno = true;
-                    }
-
-                }
-                else
-                {
-                    this._ventana.InteresadoLicenciante = this._ventana.LicencianteFiltrado;
-                    this._ventana.NombreLicenciante = ((Interesado)this._ventana.InteresadoLicenciante).Nombre;
-                    retorno = true;
-                }
-
-                this._ventana.ConvertirEnteroMinimoABlanco("Licenciante");
-
-                #region trace
-                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
-                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
-                #endregion
-
-            }
-            catch (ApplicationException ex)
-            {
-                logger.Error(ex.Message);
-                this.Navegar(ex.Message, true);
-            }
-            catch (RemotingException ex)
-            {
-                logger.Error(ex.Message);
-                this.Navegar(Recursos.MensajesConElUsuario.ErrorRemoting, true);
-            }
-            catch (SocketException ex)
-            {
-                logger.Error(ex.Message);
-                this.Navegar(Recursos.MensajesConElUsuario.ErrorConexionServidor, true);
-            }
-            catch (Exception ex)
-            {
-                logger.Error(ex.Message);
-                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
-            }
-
-            return retorno;
-        }
-
-        public bool CambiarApoderadoLicenciante()
-        {
-            bool retorno = false;
-
-            try
-            {
-                #region trace
-                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
-                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
-                #endregion
-
-                if (!((Agente)this._ventana.ApoderadoLicencianteFiltrado).Id.Equals(""))
-                {
-                    if (((Interesado)this._ventana.LicencianteFiltrado).Id != int.MinValue)
-                    {
-                        if (((Poder)this._ventana.PoderLicencianteFiltrado).Id != int.MinValue)
-                        {
-                            this._ventana.ApoderadoLicenciante = this._ventana.ApoderadoLicencianteFiltrado;
-                            this._ventana.NombreApoderadoLicenciante = ((Agente)this._ventana.ApoderadoLicencianteFiltrado).Nombre;
-                            retorno = true;
-                        }
-                        else
-                        {
-                            this._poderesApoderadosLicenciante = this._poderServicios.ConsultarPoderesPorAgente(((Agente)_ventana.ApoderadoLicencianteFiltrado));
-
-                            LimpiarListaPoder("Licenciante");
-
-                            if ((this.ValidarListaDePoderes(this._poderesLicenciante, this._poderesApoderadosLicenciante, "Licenciante")))
-                            {
-                                this._ventana.ApoderadoLicenciante = this._ventana.ApoderadoLicencianteFiltrado;
-                                this._ventana.NombreApoderadoLicenciante = ((Agente)this._ventana.ApoderadoLicencianteFiltrado).Nombre;
-                                retorno = true;
-                            }
-                            else if (!this.ValidarListaDePoderes(this._poderesLicenciante, this._poderesApoderadosLicenciante, "Licenciante"))
-                            {
-                                this._ventana.ConvertirEnteroMinimoABlanco("Licenciante");
-                                this._ventana.Mensaje(string.Format(Recursos.MensajesConElUsuario.ErrorAgenteNoPoseePoderConInteresado, "Licenciante"), 0);
-                            }
-                        }
-                    }
-                    else
-                    {
-                        this._poderesApoderadosLicenciante = this._poderServicios.ConsultarPoderesPorAgente(((Agente)_ventana.ApoderadoLicencianteFiltrado));
-                        this._ventana.ApoderadoLicenciante = this._ventana.ApoderadoLicencianteFiltrado;
-                        this._ventana.NombreApoderadoLicenciante = ((Agente)this._ventana.ApoderadoLicencianteFiltrado).Nombre;
-                        retorno = true;
-                    }
-                }
-                else
-                {
-                    this._ventana.ApoderadoLicenciante = this._ventana.ApoderadoLicencianteFiltrado;
-                    this._ventana.NombreApoderadoLicenciante = ((Agente)this._ventana.ApoderadoLicencianteFiltrado).Nombre;
-                    retorno = true;
-                }
-
-                this._ventana.ConvertirEnteroMinimoABlanco("Licenciante");
-
-                #region trace
-                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
-                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
-                #endregion
-
-            }
-            catch (ApplicationException ex)
-            {
-                logger.Error(ex.Message);
-                this.Navegar(ex.Message, true);
-            }
-            catch (RemotingException ex)
-            {
-                logger.Error(ex.Message);
-                this.Navegar(Recursos.MensajesConElUsuario.ErrorRemoting, true);
-            }
-            catch (SocketException ex)
-            {
-                logger.Error(ex.Message);
-                this.Navegar(Recursos.MensajesConElUsuario.ErrorConexionServidor, true);
-            }
-            catch (Exception ex)
-            {
-                logger.Error(ex.Message);
-                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
-            }
-
-            return retorno;
-        }
-
-        public bool CambiarPoderLicenciante()
-        {
-            bool retorno = false;
-
-            try
-            {
-                #region trace
-                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
-                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
-                #endregion
-
-                if (((Poder)this._ventana.PoderLicencianteFiltrado).Id != int.MinValue)
-                {
-                    if ((((Interesado)this._ventana.LicencianteFiltrado).Id == int.MinValue) || (((Agente)this._ventana.ApoderadoLicencianteFiltrado).Id.Equals("")))
-                    {
-                        LimpiarListaInteresado("Licenciante");
-
-                        LimpiarListaAgente("Licenciante");
-
-                        LlenarListaAgenteEInteresado((Poder)this._ventana.PoderLicencianteFiltrado, "Licenciante", false);
-
-                        this._ventana.PoderLicenciante = this._ventana.PoderLicencianteFiltrado;
-                        this._ventana.IdPoderLicenciante = ((Poder)this._ventana.PoderLicencianteFiltrado).Id.ToString();
-                        retorno = true;
-                    }
-                    else
-                    {
-                        this._ventana.PoderLicenciante = this._ventana.PoderLicencianteFiltrado;
-                        this._ventana.IdPoderLicenciante = ((Poder)this._ventana.PoderLicencianteFiltrado).Id.ToString();
-                        retorno = true;
-                    }
-                }
-                else
-                {
-                    this._ventana.PoderLicenciante = this._ventana.PoderLicencianteFiltrado;
-                    this._ventana.IdPoderLicenciante = ((Poder)this._ventana.PoderLicencianteFiltrado).Id.ToString();
-                    retorno = true;
-                }
-
-                this._ventana.ConvertirEnteroMinimoABlanco("Licenciante");
-
-                #region trace
-                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
-                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
-                #endregion
-            }
-            catch (ApplicationException ex)
-            {
-                logger.Error(ex.Message);
-                this.Navegar(ex.Message, true);
-            }
-            catch (RemotingException ex)
-            {
-                logger.Error(ex.Message);
-                this.Navegar(Recursos.MensajesConElUsuario.ErrorRemoting, true);
-            }
-            catch (SocketException ex)
-            {
-                logger.Error(ex.Message);
-                this.Navegar(Recursos.MensajesConElUsuario.ErrorConexionServidor, true);
-            }
-            catch (Exception ex)
-            {
-                logger.Error(ex.Message);
-                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
-            }
-
-            return retorno;
-        }
-
-        #endregion
-
-        #region Licenciatario
-
-        private void ValidarLicenciatario()
-        {
-            if (((Interesado)this._ventana.LicenciatarioFiltrado).Id == int.MinValue)
-            {
-                if (((Agente)this._ventana.ApoderadoLicenciatarioFiltrado).Id.Equals(""))
-                {
-                    if (((Poder)this._ventana.PoderLicenciatarioFiltrado).Id != int.MinValue)
-                    {
-                        LlenarListaAgenteEInteresado((Poder)this._ventana.PoderLicenciatario, "Licenciatario", true);
-                        this._ventana.GestionarBotonConsultarInteresados("Licenciatario", false);
-                        this._ventana.GestionarBotonConsultarApoderados("Licenciatario", false);
-                    }
-                }
-                else
-                {
-                    if (((Licencia)this._ventana.PoderLicenciatarioFiltrado).Id == int.MinValue)
-                        this._ventana.GestionarBotonConsultarInteresados("Licenciatario", false);
-
-                    else
-                    {
-
-                        LlenarListaAgenteEInteresado((Poder)this._ventana.PoderLicenciatario, "Licenciatario", true);
-
-                        this._ventana.GestionarBotonConsultarInteresados("Licenciatario", false);
-                        this._ventana.GestionarBotonConsultarApoderados("Licenciatario", false);
-                        this._ventana.GestionarBotonConsultarPoderes("Licenciatario", false);
-                    }
-
-                }
-            }
-            else
-            {
-                if (((Agente)this._ventana.ApoderadoLicenciatarioFiltrado).Id.Equals(""))
-                {
-                    if (((Poder)this._ventana.PoderLicenciatarioFiltrado).Id == int.MinValue)
-                        this._ventana.GestionarBotonConsultarPoderes("Licenciatario", false);
-
-                    else
-                    {
-                        LlenarListaAgenteEInteresado((Poder)this._ventana.PoderLicenciatario, "Licenciatario", true);
-
-                        this._ventana.GestionarBotonConsultarInteresados("Licenciatario", false);
-                        this._ventana.GestionarBotonConsultarApoderados("Licenciatario", false);
-                        this._ventana.GestionarBotonConsultarPoderes("Licenciatario", false);
-
-                    }
-                }
-                else
-                {
-                    if (((Poder)this._ventana.PoderLicenciatarioFiltrado).Id == int.MinValue)
-                    {
-
-                        ValidarListaDePoderes(this._poderesLicenciatario, this._poderesApoderadosLicenciatario, "Licenciatario");
-
-                        this._ventana.GestionarBotonConsultarPoderes("Licenciatario", false);
-                    }
-                    else
-                    {
-                        LlenarListaAgenteEInteresado((Poder)this._ventana.PoderLicenciatario, "Licenciatario", true);
-                        ValidarListaDePoderes(this._poderesLicenciatario, this._poderesApoderadosLicenciatario, "Licenciatario");
-
-                        this._ventana.GestionarBotonConsultarInteresados("Licenciatario", false);
-                        this._ventana.GestionarBotonConsultarApoderados("Licenciatario", false);
-                        this._ventana.GestionarBotonConsultarPoderes("Licenciatario", false);
-                    }
-                }
-            }
-        }
-
-        public void ConsultarLicenciatarios()
-        {
-            try
-            {
-                #region trace
-                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
-                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
-                #endregion
-
-                Interesado primerInteresado = new Interesado(int.MinValue);
-
-                Mouse.OverrideCursor = Cursors.Wait;
-                Interesado licenciaario = new Interesado();
-                IList<Interesado> licenciaariosFiltrados;
-                licenciaario.Nombre = this._ventana.NombreLicenciatarioFiltrar.ToUpper();
-                licenciaario.Id = this._ventana.IdLicenciatarioFiltrar.Equals("") ? 0 : int.Parse(this._ventana.IdLicenciatarioFiltrar);
-
-                if ((!licenciaario.Nombre.Equals("")) || (licenciaario.Id != 0))
-                    licenciaariosFiltrados = this._interesadoServicios.ObtenerInteresadosFiltro(licenciaario);
-                else
-                    licenciaariosFiltrados = new List<Interesado>();
-
-                if (licenciaariosFiltrados.ToList<Interesado>().Count != 0)
-                {
-                    licenciaariosFiltrados.Insert(0, primerInteresado);
-                    this._ventana.LicenciatariosFiltrados = licenciaariosFiltrados.ToList<Interesado>();
-                    this._ventana.LicenciatarioFiltrado = primerInteresado;
-                }
-                else
-                {
-                    licenciaariosFiltrados.Insert(0, primerInteresado);
-                    this._ventana.LicenciatariosFiltrados = this._interesadosLicenciatario;
-                    this._ventana.LicenciatarioFiltrado = primerInteresado;
-                    this._ventana.Mensaje(Recursos.MensajesConElUsuario.NoHayResultados, 1);
-                }
-
-                Mouse.OverrideCursor = null;
-
-                #region trace
-                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
-                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
-                #endregion
-            }
-            catch (ApplicationException ex)
-            {
-                logger.Error(ex.Message);
-                this.Navegar(ex.Message, true);
-            }
-            catch (RemotingException ex)
-            {
-                logger.Error(ex.Message);
-                this.Navegar(Recursos.MensajesConElUsuario.ErrorRemoting, true);
-            }
-            catch (SocketException ex)
-            {
-                logger.Error(ex.Message);
-                this.Navegar(Recursos.MensajesConElUsuario.ErrorConexionServidor, true);
-            }
-            catch (Exception ex)
-            {
-                logger.Error(ex.Message);
-                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
-            }
-        }
-
-        public void ConsultarApoderadosLicenciatario()
-        {
-            try
-            {
-                #region trace
-                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
-                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
-                #endregion
-
-                Agente primerAgente = new Agente("");
-
-                Mouse.OverrideCursor = Cursors.Wait;
-                Agente apoderadoLicenciatario = new Agente();
-                IList<Agente> agentesLicenciatarioFiltrados;
-                apoderadoLicenciatario.Nombre = this._ventana.NombreApoderadoLicenciatarioFiltrar.ToUpper();
-                apoderadoLicenciatario.Id = this._ventana.IdApoderadoLicenciatarioFiltrar.ToUpper();
-
-                if ((!apoderadoLicenciatario.Nombre.Equals("")) || (!apoderadoLicenciatario.Id.Equals("")))
-                    agentesLicenciatarioFiltrados = this._agenteServicios.ObtenerAgentesFiltro(apoderadoLicenciatario);
-                else
-                    agentesLicenciatarioFiltrados = new List<Agente>();
-
-                if (agentesLicenciatarioFiltrados.Count != 0)
-                {
-                    agentesLicenciatarioFiltrados.Insert(0, primerAgente);
-                    this._ventana.ApoderadoLicenciatarioFiltrado = primerAgente;
-                    this._ventana.ApoderadosLicenciatarioFiltrados = agentesLicenciatarioFiltrados.ToList<Agente>();
-                }
-                else
-                {
-                    agentesLicenciatarioFiltrados.Insert(0, primerAgente);
-                    this._ventana.ApoderadosLicenciatarioFiltrados = this._agentesLicenciatario;
-                    this._ventana.ApoderadoLicenciatarioFiltrado = primerAgente;
-                    this._ventana.Mensaje(Recursos.MensajesConElUsuario.NoHayResultados, 1);
-                }
-
-                Mouse.OverrideCursor = null;
-
-                #region trace
-                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
-                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
-                #endregion
-            }
-            catch (ApplicationException ex)
-            {
-                logger.Error(ex.Message);
-                this.Navegar(ex.Message, true);
-            }
-            catch (RemotingException ex)
-            {
-                logger.Error(ex.Message);
-                this.Navegar(Recursos.MensajesConElUsuario.ErrorRemoting, true);
-            }
-            catch (SocketException ex)
-            {
-                logger.Error(ex.Message);
-                this.Navegar(Recursos.MensajesConElUsuario.ErrorConexionServidor, true);
-            }
-            catch (Exception ex)
-            {
-                logger.Error(ex.Message);
-                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
-            }
-        }
-
-        public void ConsultarPoderesLicenciatario()
-        {
-            try
-            {
-                #region trace
-                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
-                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
-                #endregion
-
-                Poder primerPoder = new Poder(int.MinValue);
-
-                Mouse.OverrideCursor = Cursors.Wait;
-                Poder poderLicenciatario = new Poder();
-                IList<Poder> poderesLicenciatarioFiltrados;
-
-                if (!this._ventana.IdPoderLicenciatarioFiltrar.Equals(""))
-                    poderLicenciatario.Id = int.Parse(this._ventana.IdPoderLicenciatarioFiltrar);
-
-                if (!this._ventana.FechaPoderLicenciatarioFiltrar.Equals(""))
-                    poderLicenciatario.Fecha = DateTime.Parse(this._ventana.FechaPoderLicenciatarioFiltrar);
-
-                if ((!poderLicenciatario.Fecha.Equals("")) || (poderLicenciatario.Id != 0))
-                    poderesLicenciatarioFiltrados = this._poderServicios.ObtenerPoderesFiltro(poderLicenciatario);
-                else
-                    poderesLicenciatarioFiltrados = new List<Poder>();
-
-                if (poderesLicenciatarioFiltrados.ToList<Poder>().Count != 0)
-                {
-                    poderesLicenciatarioFiltrados.Insert(0, primerPoder);
-                    this._ventana.PoderesLicenciatarioFiltrados = this._poderesLicenciatario;
-                    this._ventana.PoderLicenciatarioFiltrado = primerPoder;
-                    this._ventana.PoderesLicenciatarioFiltrados = poderesLicenciatarioFiltrados;
-                }
-                else
-                {
-                    poderesLicenciatarioFiltrados.Insert(0, primerPoder);
-                    this._ventana.PoderesLicenciatarioFiltrados = this._poderesLicenciatario;
-                    this._ventana.PoderLicenciatarioFiltrado = primerPoder;
-                    this._ventana.Mensaje(Recursos.MensajesConElUsuario.NoHayResultados, 1);
-                }
-
-
-                Mouse.OverrideCursor = null;
-
-                #region trace
-                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
-                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
-                #endregion
-            }
-            catch (ApplicationException ex)
-            {
-                logger.Error(ex.Message);
-                this.Navegar(ex.Message, true);
-            }
-            catch (RemotingException ex)
-            {
-                logger.Error(ex.Message);
-                this.Navegar(Recursos.MensajesConElUsuario.ErrorRemoting, true);
-            }
-            catch (SocketException ex)
-            {
-                logger.Error(ex.Message);
-                this.Navegar(Recursos.MensajesConElUsuario.ErrorConexionServidor, true);
-            }
-            catch (Exception ex)
-            {
-                logger.Error(ex.Message);
-                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
-            }
-        }
-
-        public bool CambiarLicenciatario()
-        {
-            bool retorno = false;
-
-            try
-            {
-                #region trace
-                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
-                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
-                #endregion
-
-                if (((Interesado)this._ventana.LicenciatarioFiltrado).Id != int.MinValue)
-                {
-                    if (!((Agente)this._ventana.ApoderadoLicenciatarioFiltrado).Id.Equals(""))
-                    {
-                        if (((Poder)this._ventana.PoderLicenciatarioFiltrado).Id != int.MinValue)
-                        {
-                            this._ventana.InteresadoLicenciatario = this._interesadoServicios.ConsultarInteresadoConTodo((Interesado)this._ventana.LicenciatarioFiltrado);
-                            this._ventana.NombreLicenciatario = ((Interesado)this._ventana.InteresadoLicenciatario).Nombre;
-                            retorno = true;
-                        }
-                        else
-                        {
-                            this._poderesLicenciatario = this._poderServicios.ConsultarPoderesPorInteresado(((Interesado)_ventana.LicenciatarioFiltrado));
-
-                            LimpiarListaPoder("Licenciatario");
-
-                            if ((this.ValidarListaDePoderes(this._poderesLicenciatario, this._poderesApoderadosLicenciatario, "Licenciatario")))
-                            {
-                                this._ventana.InteresadoLicenciatario = this._ventana.LicenciatarioFiltrado;
-                                this._ventana.NombreLicenciatario = ((Interesado)this._ventana.LicenciatarioFiltrado).Nombre;
-                                retorno = true;
-                            }
-                            else if (!this.ValidarListaDePoderes(this._poderesLicenciatario, _poderesApoderadosLicenciatario, "Licenciatario"))
-                            {
-                                this._ventana.ConvertirEnteroMinimoABlanco("Licenciatario");
-                                this._ventana.Mensaje(string.Format(Recursos.MensajesConElUsuario.ErrorInteresadoNoPoseePoderConAgente, "Licenciatario"), 0);
-                            }
-                        }
-                    }
-                    else
-                    {
-                        this._poderesLicenciatario = this._poderServicios.ConsultarPoderesPorInteresado(((Interesado)_ventana.LicenciatarioFiltrado));
-                        this._ventana.InteresadoLicenciatario = this._interesadoServicios.ConsultarInteresadoConTodo((Interesado)this._ventana.LicenciatarioFiltrado);
-                        this._ventana.NombreLicenciatario = ((Interesado)this._ventana.InteresadoLicenciatario).Nombre;
-                        retorno = true;
-                    }
-
-                }
-                else
-                {
-                    this._ventana.InteresadoLicenciatario = this._ventana.LicenciatarioFiltrado;
-                    this._ventana.NombreLicenciatario = ((Interesado)this._ventana.InteresadoLicenciatario).Nombre;
-                    retorno = true;
-                }
-
-                this._ventana.ConvertirEnteroMinimoABlanco("Licenciatario");
-
-                #region trace
-                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
-                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
-                #endregion
-
-            }
-            catch (ApplicationException ex)
-            {
-                logger.Error(ex.Message);
-                this.Navegar(ex.Message, true);
-            }
-            catch (RemotingException ex)
-            {
-                logger.Error(ex.Message);
-                this.Navegar(Recursos.MensajesConElUsuario.ErrorRemoting, true);
-            }
-            catch (SocketException ex)
-            {
-                logger.Error(ex.Message);
-                this.Navegar(Recursos.MensajesConElUsuario.ErrorConexionServidor, true);
-            }
-            catch (Exception ex)
-            {
-                logger.Error(ex.Message);
-                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
-            }
-
-            return retorno;
-        }
-
-        public bool CambiarApoderadoLicenciatario()
-        {
-            bool retorno = false;
-
-            try
-            {
-                #region trace
-                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
-                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
-                #endregion
-
-                if (!((Agente)this._ventana.ApoderadoLicenciatarioFiltrado).Id.Equals(""))
-                {
-                    if (((Interesado)this._ventana.LicenciatarioFiltrado).Id != int.MinValue)
-                    {
-                        if (((Poder)this._ventana.PoderLicenciatarioFiltrado).Id != int.MinValue)
-                        {
-                            this._ventana.ApoderadoLicenciatario = this._ventana.ApoderadoLicenciatarioFiltrado;
-                            this._ventana.NombreApoderadoLicenciatario = ((Agente)this._ventana.ApoderadoLicenciatarioFiltrado).Nombre;
-                            retorno = true;
-                        }
-                        else
-                        {
-                            this._poderesApoderadosLicenciatario = this._poderServicios.ConsultarPoderesPorAgente(((Agente)_ventana.ApoderadoLicenciatarioFiltrado));
-
-                            LimpiarListaPoder("Licenciatario");
-
-                            if ((this.ValidarListaDePoderes(this._poderesLicenciatario, this._poderesApoderadosLicenciatario, "Licenciatario")))
-                            {
-                                this._ventana.ApoderadoLicenciatario = this._ventana.ApoderadoLicenciatarioFiltrado;
-                                this._ventana.NombreApoderadoLicenciatario = ((Agente)this._ventana.ApoderadoLicenciatarioFiltrado).Nombre;
-
-                                this._ventana.ConvertirEnteroMinimoABlanco("Licenciatario");
-
-                                retorno = true;
-                            }
-                            else if (!this.ValidarListaDePoderes(this._poderesLicenciatario, this._poderesApoderadosLicenciatario, "Licenciatario"))
-                            {
-                                this._ventana.ConvertirEnteroMinimoABlanco("Licenciatario");
-                                this._ventana.Mensaje(string.Format(Recursos.MensajesConElUsuario.ErrorAgenteNoPoseePoderConInteresado, "Licenciatario"), 0);
-                            }
-                        }
-                    }
-                    else
-                    {
-                        this._poderesApoderadosLicenciatario = this._poderServicios.ConsultarPoderesPorAgente(((Agente)_ventana.ApoderadoLicenciatarioFiltrado));
-                        this._ventana.ApoderadoLicenciatario = this._ventana.ApoderadoLicenciatarioFiltrado;
-                        this._ventana.NombreApoderadoLicenciatario = ((Agente)this._ventana.ApoderadoLicenciatarioFiltrado).Nombre;
-                        retorno = true;
-                    }
-                }
-                else
-                {
-                    this._ventana.ApoderadoLicenciatario = this._ventana.ApoderadoLicenciatarioFiltrado;
-                    this._ventana.NombreApoderadoLicenciatario = ((Agente)this._ventana.ApoderadoLicenciatarioFiltrado).Nombre;
-                    retorno = true;
-                }
-
-                this._ventana.ConvertirEnteroMinimoABlanco("Licenciatario");
-
-                #region trace
-                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
-                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
-                #endregion
-
-            }
-            catch (ApplicationException ex)
-            {
-                logger.Error(ex.Message);
-                this.Navegar(ex.Message, true);
-            }
-            catch (RemotingException ex)
-            {
-                logger.Error(ex.Message);
-                this.Navegar(Recursos.MensajesConElUsuario.ErrorRemoting, true);
-            }
-            catch (SocketException ex)
-            {
-                logger.Error(ex.Message);
-                this.Navegar(Recursos.MensajesConElUsuario.ErrorConexionServidor, true);
-            }
-            catch (Exception ex)
-            {
-                logger.Error(ex.Message);
-                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
-            }
-
-            return retorno;
-        }
-
-        public bool CambiarPoderLicenciatario()
-        {
-            bool retorno = false;
-
-            try
-            {
-                #region trace
-                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
-                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
-                #endregion
-
-                if (((Poder)this._ventana.PoderLicenciatarioFiltrado).Id != int.MinValue)
-                {
-                    if ((((Interesado)this._ventana.LicenciatarioFiltrado).Id == int.MinValue) || (((Agente)this._ventana.ApoderadoLicenciatarioFiltrado).Id.Equals("")))
-                    {
-                        LimpiarListaInteresado("Licenciatario");
-
-                        LimpiarListaAgente("Licenciatario");
-
-                        LlenarListaAgenteEInteresado((Poder)this._ventana.PoderLicenciatarioFiltrado, "Licenciatario", false);
-
-                        this._ventana.PoderLicenciatario = this._ventana.PoderLicenciatarioFiltrado;
-                        this._ventana.IdPoderLicenciatario = ((Poder)this._ventana.PoderLicenciatarioFiltrado).Id.ToString();
-                        retorno = true;
-                    }
-                    else
-                    {
-                        this._ventana.PoderLicenciatario = this._ventana.PoderLicenciatarioFiltrado;
-                        this._ventana.IdPoderLicenciatario = ((Poder)this._ventana.PoderLicenciatarioFiltrado).Id.ToString();
-                        retorno = true;
-                    }
-                }
-                else
-                {
-                    this._ventana.PoderLicenciatario = this._ventana.PoderLicenciatarioFiltrado;
-                    this._ventana.IdPoderLicenciatario = ((Poder)this._ventana.PoderLicenciatarioFiltrado).Id.ToString();
-                    retorno = true;
-                }
-
-                this._ventana.ConvertirEnteroMinimoABlanco("Licenciatario");
-
-                #region trace
-                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
-                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
-                #endregion
-            }
-            catch (ApplicationException ex)
-            {
-                logger.Error(ex.Message);
-                this.Navegar(ex.Message, true);
-            }
-            catch (RemotingException ex)
-            {
-                logger.Error(ex.Message);
-                this.Navegar(Recursos.MensajesConElUsuario.ErrorRemoting, true);
-            }
-            catch (SocketException ex)
-            {
-                logger.Error(ex.Message);
-                this.Navegar(Recursos.MensajesConElUsuario.ErrorConexionServidor, true);
-            }
-            catch (Exception ex)
-            {
-                logger.Error(ex.Message);
-                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
-            }
-
-            return retorno;
-        }
-
-        #endregion
-
         public void LlenarListasPoderes(Licencia licencia)
         {
 
@@ -1745,8 +623,6 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Licencias
 
         public bool ValidarListaDePoderes(IList<Poder> listaPoderesA, IList<Poder> listaPoderesB, string tipo)
         {
-            Mouse.OverrideCursor = Cursors.Wait;
-
             bool retorno = false;
             IList<Poder> listaIntereseccionLicenciante = new List<Poder>();
             IList<Poder> listaIntereseccionLicenciatario = new List<Poder>();
@@ -1799,10 +675,6 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Licencias
                     retorno = false;
             }
 
-            this._validar = !retorno;
-
-            Mouse.OverrideCursor = null;
-
             return retorno;
         }
 
@@ -1814,8 +686,6 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Licencias
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
-
-                Mouse.OverrideCursor = Cursors.Wait;
 
                 Interesado interesado = new Interesado();
                 IList<Agente> agentesInteresadoFiltrados;
@@ -1921,10 +791,6 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Licencias
                         this._ventana.ApoderadoLicenciatarioFiltrado = primerAgente;
                     }
                 }
-
-                this._validar = false;
-
-                Mouse.OverrideCursor = null;
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -2064,63 +930,1249 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Licencias
                 this._ventana.PoderLicenciatarioFiltrado = BuscarPoder(listaPoderes, primerPoder);
                 this._ventana.PoderLicenciatario = this._ventana.PoderLicenciatarioFiltrado;
             }
+        }    
+
+        #region Marca
+
+        public void IrConsultarMarcas()
+        {
+            this.Navegar(new ConsultarMarcas());
         }
 
-        public void VerificarCasos(string tipo)
+        private void CargarMarca()
         {
+            this._marcas = new List<Marca>();
+            Marca primeraMarca = new Marca(int.MinValue);
+            this._marcas.Add(primeraMarca);
 
-            if (LlenarPoderes(tipo) == 1)
+            if ((Marca)this._ventana.Marca != null)
             {
-                //llenamos Poderes y quitamos consultar de poder
-                ValidarListaDePoderes(this._poderesLicenciante, this._poderesApoderadosLicenciante, "Licenciante");
-
-
+                this._marcas.Add((Marca)this._ventana.Marca);
+                this._ventana.MarcasFiltradas = this._marcas;
+                this._ventana.MarcaFiltrada = (Marca)this._ventana.Marca;
             }
-            else if (LlenarPoderes(tipo) == 0)
+            else
             {
-                //llenamos agentes e interesado, quitamos consultar de los mismos
-                LlenarListaAgenteEInteresado((Poder)this._ventana.PoderLicencianteFiltrado, tipo, false);
+                this._ventana.MarcasFiltradas = this._marcas;
+                this._ventana.MarcaFiltrada = primeraMarca;
             }
         }
 
-        private int LlenarPoderes(string tipo)
-        {
-            int retorno = -1;
+        public void ConsultarMarcas()
+        { 
+            Mouse.OverrideCursor = Cursors.Wait;
 
-            if (tipo.Equals("Licenciante"))
+            try
             {
-                if (((Interesado)this._ventana.InteresadoLicenciante).Id != int.MinValue)
-                    if (!((Agente)this._ventana.ApoderadoLicenciante).Id.Equals(""))
-                        if (((Poder)this._ventana.PoderLicenciante).Id == int.MinValue)
-                        {
-                            retorno = 1;
-                        }
-                if (((Interesado)this._ventana.InteresadoLicenciante).Id == int.MinValue)
-                    if (((Agente)this._ventana.ApoderadoLicenciante).Id.Equals(""))
-                        if (((Poder)this._ventana.PoderLicenciante).Id != int.MinValue)
-                        {
-                            retorno = 0;
-                        }
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                Marca primeraMarca = new Marca(int.MinValue);
+
+               
+                Marca marca = new Marca();
+                IList<Marca> marcasFiltradas;
+                marca.Descripcion = this._ventana.NombreMarcaFiltrar.ToUpper();
+                marca.Id = this._ventana.IdMarcaFiltrar.Equals("") ? 0 : int.Parse(this._ventana.IdMarcaFiltrar);
+
+                if ((!marca.Descripcion.Equals("")) || (marca.Id != 0))
+                    marcasFiltradas = this._marcaServicios.ObtenerMarcasFiltro(marca);
+                else
+                    marcasFiltradas = new List<Marca>();
+
+                if (marcasFiltradas.ToList<Marca>().Count != 0)
+                {
+                    marcasFiltradas.Insert(0, primeraMarca);
+                    this._ventana.MarcasFiltradas = marcasFiltradas.ToList<Marca>();
+                    this._ventana.MarcaFiltrada = primeraMarca;
+                }
+                else
+                {
+                    marcasFiltradas.Insert(0, primeraMarca);
+                    this._ventana.MarcasFiltradas = this._marcas;
+                    this._ventana.MarcaFiltrada = primeraMarca;
+                    this._ventana.Mensaje(Recursos.MensajesConElUsuario.NoHayResultados, 1);
+                }
+             
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (ApplicationException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(ex.Message, true);
+            }
+            catch (RemotingException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorRemoting, true);
+            }
+            catch (SocketException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorConexionServidor, true);
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
+            }
+            finally
+            {
+                Mouse.OverrideCursor = null;
+            }
+        }
+
+        public bool CambiarMarca()
+        {
+            Mouse.OverrideCursor = Cursors.Wait;
+
+            bool retorno = false;
+
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+
+                if (this._ventana.MarcaFiltrada != null)
+                {
+                    this._ventana.Marca = this._ventana.MarcaFiltrada;
+                    this._ventana.NombreMarca = ((Marca)this._ventana.MarcaFiltrada).Descripcion;
+                    retorno = true;
+                }
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
 
             }
-            else if (tipo.Equals("Licenciante"))
+            catch (ApplicationException ex)
             {
-                if (((Interesado)this._ventana.InteresadoLicenciatario).Id != int.MinValue)
-                    if (!((Agente)this._ventana.ApoderadoLicenciatario).Id.Equals(""))
-                        if (((Poder)this._ventana.PoderLicenciatario).Id == int.MinValue)
-                        {
-                            retorno = 1;
-                        }
-                if (((Interesado)this._ventana.InteresadoLicenciatario).Id == int.MinValue)
-                    if (((Agente)this._ventana.ApoderadoLicenciatario).Id.Equals(""))
-                        if (((Poder)this._ventana.PoderLicenciatario).Id != int.MinValue)
-                        {
-                            retorno = 0;
-                        }
+                logger.Error(ex.Message);
+                this.Navegar(ex.Message, true);
+            }
+            catch (RemotingException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorRemoting, true);
+            }
+            catch (SocketException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorConexionServidor, true);
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
+            }
+            finally
+            {
+                Mouse.OverrideCursor = null;
             }
 
             return retorno;
         }
 
+        #endregion
+
+        #region Licenciante
+
+        private void ValidarLicenciante()
+        {
+            if (((Interesado)this._ventana.LicencianteFiltrado).Id == int.MinValue)
+            {
+                if (((Agente)this._ventana.ApoderadoLicencianteFiltrado).Id.Equals(""))
+                {
+                    if (((Poder)this._ventana.PoderLicencianteFiltrado).Id != int.MinValue)
+                    {
+                        LlenarListaAgenteEInteresado((Poder)this._ventana.PoderLicenciante,"Licenciante", true);
+
+                        this._ventana.GestionarBotonConsultarInteresados("Licenciante", false);
+                        this._ventana.GestionarBotonConsultarApoderados("Licenciante", false);
+                    }
+                }
+                else
+                {
+                    if (((Licencia)this._ventana.PoderLicencianteFiltrado).Id == int.MinValue)
+                        this._ventana.GestionarBotonConsultarInteresados("Licenciante", false);
+
+                    else
+                    {
+                        LlenarListaAgenteEInteresado((Poder)this._ventana.PoderLicenciante, "Licenciante", true);
+
+                        this._ventana.GestionarBotonConsultarInteresados("Licenciante", false);
+                        this._ventana.GestionarBotonConsultarApoderados("Licenciante", false);
+                        this._ventana.GestionarBotonConsultarPoderes("Licenciante", false);
+                    }
+
+                }
+            }
+            else
+            {
+                if (((Agente)this._ventana.ApoderadoLicencianteFiltrado).Id.Equals(""))
+                {
+                    if (((Poder)this._ventana.PoderLicencianteFiltrado).Id == int.MinValue)
+                        this._ventana.GestionarBotonConsultarPoderes("Licenciante", false);
+
+                    else
+                    {
+                        LlenarListaAgenteEInteresado((Poder)this._ventana.PoderLicenciante, "Licenciante", true);
+
+                        this._ventana.GestionarBotonConsultarInteresados("Licenciante", false);
+                        this._ventana.GestionarBotonConsultarApoderados("Licenciante", false);
+                        this._ventana.GestionarBotonConsultarPoderes("Licenciante", false);
+
+                    }
+                }
+                else
+                {
+                    if (((Poder)this._ventana.PoderLicencianteFiltrado).Id == int.MinValue)
+                    {
+                        ValidarListaDePoderes(this._poderesLicenciante, this._poderesApoderadosLicenciante, "Licenciante");
+
+                        this._ventana.GestionarBotonConsultarPoderes("Licenciante", false);
+                    }
+                    else
+                    {
+                        LlenarListaAgenteEInteresado((Poder)this._ventana.PoderLicenciante, "Licenciante", true);
+                        ValidarListaDePoderes(this._poderesLicenciante, this._poderesApoderadosLicenciante, "Licenciante");
+
+                        this._ventana.GestionarBotonConsultarInteresados("Licenciante", false);
+                        this._ventana.GestionarBotonConsultarApoderados("Licenciante", false);
+                        this._ventana.GestionarBotonConsultarPoderes("Licenciante", false);
+                    }
+                }
+            }
+        }
+
+        public void ConsultarLicenciantes()
+        {
+            Mouse.OverrideCursor = Cursors.Wait;
+
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                Interesado primerInteresado = new Interesado(int.MinValue);
+                
+                Interesado interesado = new Interesado();
+                IList<Interesado> interesadosFiltrados;
+                interesado.Nombre = this._ventana.NombreLicencianteFiltrar.ToUpper();
+                interesado.Id = this._ventana.IdLicencianteFiltrar.Equals("") ? 0 : int.Parse(this._ventana.IdLicencianteFiltrar);
+
+                if ((!interesado.Nombre.Equals("")) || (interesado.Id != 0))
+                    interesadosFiltrados = this._interesadoServicios.ObtenerInteresadosFiltro(interesado);
+                else
+                    interesadosFiltrados = new List<Interesado>();
+
+                if (interesadosFiltrados.Count != 0)
+                {
+                    interesadosFiltrados.Insert(0, primerInteresado);
+                    this._ventana.LicenciantesFiltrados = interesadosFiltrados;
+                    this._ventana.LicencianteFiltrado = primerInteresado;
+                }
+                else
+                {
+                    interesadosFiltrados.Insert(0, primerInteresado);
+                    this._ventana.LicenciantesFiltrados = this._interesadosLicenciante;
+                    this._ventana.LicencianteFiltrado = primerInteresado;
+                    this._ventana.Mensaje(Recursos.MensajesConElUsuario.NoHayResultados, 1);
+                }
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (ApplicationException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(ex.Message, true);
+            }
+            catch (RemotingException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorRemoting, true);
+            }
+            catch (SocketException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorConexionServidor, true);
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
+            }
+            finally
+            {
+                Mouse.OverrideCursor = null;
+            }
+        }
+
+        public void ConsultarApoderadosLicenciante()
+        { 
+            Mouse.OverrideCursor = Cursors.Wait;
+
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                Agente primerAgente = new Agente("");
+
+               
+                Agente apoderadoLicenciante = new Agente();
+                IList<Agente> agentesLicencianteFiltrados;
+                apoderadoLicenciante.Nombre = this._ventana.NombreApoderadoLicencianteFiltrar.ToUpper();
+                apoderadoLicenciante.Id = this._ventana.IdApoderadoLicencianteFiltrar.ToUpper();
+
+                if ((!apoderadoLicenciante.Nombre.Equals("")) || (!apoderadoLicenciante.Id.Equals("")))
+                    agentesLicencianteFiltrados = this._agenteServicios.ObtenerAgentesFiltro(apoderadoLicenciante);
+                else
+                    agentesLicencianteFiltrados = new List<Agente>();
+
+                if (agentesLicencianteFiltrados.Count != 0)
+                {
+                    agentesLicencianteFiltrados.Insert(0, primerAgente);
+                    this._ventana.ApoderadoLicencianteFiltrado = primerAgente;
+                    this._ventana.ApoderadosLicencianteFiltrados = agentesLicencianteFiltrados.ToList<Agente>();
+                }
+                else
+                {
+                    agentesLicencianteFiltrados.Insert(0, primerAgente);
+                    this._ventana.ApoderadosLicencianteFiltrados = this._agentesLicenciante;
+                    this._ventana.ApoderadoLicencianteFiltrado = primerAgente;
+                    this._ventana.Mensaje(Recursos.MensajesConElUsuario.NoHayResultados, 1);
+                }
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (ApplicationException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(ex.Message, true);
+            }
+            catch (RemotingException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorRemoting, true);
+            }
+            catch (SocketException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorConexionServidor, true);
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
+            }
+            finally
+            {
+                Mouse.OverrideCursor = null;
+            }
+        }
+
+        public void ConsultarPoderesLicenciante()
+        {
+            Mouse.OverrideCursor = Cursors.Wait;
+
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                Poder primerPoder = new Poder(int.MinValue);
+                
+                Poder poderLicenciante = new Poder();
+                IList<Poder> poderesLicencianteFiltrados;
+
+                if (!this._ventana.IdPoderLicencianteFiltrar.Equals(""))
+                    poderLicenciante.Id = int.Parse(this._ventana.IdPoderLicencianteFiltrar);
+
+                if (!this._ventana.FechaPoderLicencianteFiltrar.Equals(""))
+                    poderLicenciante.Fecha = DateTime.Parse(this._ventana.FechaPoderLicencianteFiltrar);
+
+                if ((!poderLicenciante.Fecha.Equals("")) || (poderLicenciante.Id != 0))
+                    poderesLicencianteFiltrados = this._poderServicios.ObtenerPoderesFiltro(poderLicenciante);
+                else
+                    poderesLicencianteFiltrados = new List<Poder>();
+
+                if (poderesLicencianteFiltrados.ToList<Poder>().Count != 0)
+                {
+                    poderesLicencianteFiltrados.Insert(0, primerPoder);
+                    this._ventana.PoderesLicencianteFiltrados = this._poderesLicenciante;
+                    this._ventana.PoderLicencianteFiltrado = primerPoder;
+                    this._ventana.PoderesLicencianteFiltrados = poderesLicencianteFiltrados;
+                }
+                else
+                {
+                    poderesLicencianteFiltrados.Insert(0, primerPoder);
+                    this._ventana.PoderesLicencianteFiltrados = this._poderesLicenciante;
+                    this._ventana.PoderLicencianteFiltrado = primerPoder;
+                    this._ventana.Mensaje(Recursos.MensajesConElUsuario.NoHayResultados, 1);
+                }
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (ApplicationException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(ex.Message, true);
+            }
+            catch (RemotingException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorRemoting, true);
+            }
+            catch (SocketException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorConexionServidor, true);
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
+            }
+            finally
+            {
+                Mouse.OverrideCursor = null;
+            }
+        }
+
+        public bool CambiarLicenciante()
+        {
+            Mouse.OverrideCursor = Cursors.Wait;
+
+            bool retorno = false;
+
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                if (((Interesado)this._ventana.LicencianteFiltrado).Id != int.MinValue)
+                {
+                    if (!((Agente)this._ventana.ApoderadoLicencianteFiltrado).Id.Equals(""))
+                    {
+                        if (((Poder)this._ventana.PoderLicencianteFiltrado).Id != int.MinValue)
+                        {
+                            this._ventana.InteresadoLicenciante = this._interesadoServicios.ConsultarInteresadoConTodo((Interesado)this._ventana.LicencianteFiltrado);
+                            this._ventana.NombreLicenciante = ((Interesado)this._ventana.InteresadoLicenciante).Nombre;
+                            retorno = true;
+                        }
+                        else
+                        {
+                            this._poderesLicenciante = this._poderServicios.ConsultarPoderesPorInteresado(((Interesado)_ventana.LicencianteFiltrado));
+
+                            LimpiarListaPoder("Licenciante");
+
+                            if ((this.ValidarListaDePoderes(this._poderesLicenciante, this._poderesApoderadosLicenciante, "Licenciante")))
+                            {
+                                this._ventana.InteresadoLicenciante = this._ventana.LicencianteFiltrado;
+                                this._ventana.NombreLicenciante = ((Interesado)this._ventana.LicencianteFiltrado).Nombre;
+                                retorno = true;
+                            }
+                            else if (!this.ValidarListaDePoderes(this._poderesLicenciante, _poderesApoderadosLicenciante, "Licenciante"))
+                            {
+                                this._ventana.ConvertirEnteroMinimoABlanco("Licenciante");
+                                this._ventana.Mensaje(string.Format(Recursos.MensajesConElUsuario.ErrorInteresadoNoPoseePoderConAgente, "Licenciante"), 0);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        this._poderesLicenciante = this._poderServicios.ConsultarPoderesPorInteresado(((Interesado)_ventana.LicencianteFiltrado));
+                        this._ventana.InteresadoLicenciante = this._interesadoServicios.ConsultarInteresadoConTodo((Interesado)this._ventana.LicencianteFiltrado);
+                        this._ventana.NombreLicenciante = ((Interesado)this._ventana.InteresadoLicenciante).Nombre;
+                        retorno = true;
+                    }
+
+                }
+                else
+                {
+                    this._ventana.InteresadoLicenciante = this._ventana.LicencianteFiltrado;
+                    this._ventana.NombreLicenciante = ((Interesado)this._ventana.InteresadoLicenciante).Nombre;
+                    retorno = true;
+                }
+
+                this._ventana.ConvertirEnteroMinimoABlanco("Licenciante");
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+            }
+            catch (ApplicationException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(ex.Message, true);
+            }
+            catch (RemotingException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorRemoting, true);
+            }
+            catch (SocketException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorConexionServidor, true);
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
+            }
+            finally
+            {
+                Mouse.OverrideCursor = null;
+            }
+
+            return retorno;
+        }
+
+        public bool CambiarApoderadoLicenciante()
+        {
+            Mouse.OverrideCursor = Cursors.Wait;
+
+            bool retorno = false;
+
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                if (!((Agente)this._ventana.ApoderadoLicencianteFiltrado).Id.Equals(""))
+                {
+                    if (((Interesado)this._ventana.LicencianteFiltrado).Id != int.MinValue)
+                    {
+                        if (((Poder)this._ventana.PoderLicencianteFiltrado).Id != int.MinValue)
+                        {
+                            this._ventana.ApoderadoLicenciante = this._ventana.ApoderadoLicencianteFiltrado;
+                            this._ventana.NombreApoderadoLicenciante = ((Agente)this._ventana.ApoderadoLicencianteFiltrado).Nombre;
+                            retorno = true;
+                        }
+                        else
+                        {
+                            this._poderesApoderadosLicenciante = this._poderServicios.ConsultarPoderesPorAgente(((Agente)_ventana.ApoderadoLicencianteFiltrado));
+
+                            LimpiarListaPoder("Licenciante");
+
+                            if ((this.ValidarListaDePoderes(this._poderesLicenciante, this._poderesApoderadosLicenciante, "Licenciante")))
+                            {
+                                this._ventana.ApoderadoLicenciante = this._ventana.ApoderadoLicencianteFiltrado;
+                                this._ventana.NombreApoderadoLicenciante = ((Agente)this._ventana.ApoderadoLicencianteFiltrado).Nombre;
+                                retorno = true;
+                            }
+                            else if (!this.ValidarListaDePoderes(this._poderesLicenciante, this._poderesApoderadosLicenciante, "Licenciante"))
+                            {
+                                this._ventana.ConvertirEnteroMinimoABlanco("Licenciante");
+                                this._ventana.Mensaje(string.Format(Recursos.MensajesConElUsuario.ErrorAgenteNoPoseePoderConInteresado, "Licenciante"), 0);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        this._poderesApoderadosLicenciante = this._poderServicios.ConsultarPoderesPorAgente(((Agente)_ventana.ApoderadoLicencianteFiltrado));
+                        this._ventana.ApoderadoLicenciante = this._ventana.ApoderadoLicencianteFiltrado;
+                        this._ventana.NombreApoderadoLicenciante = ((Agente)this._ventana.ApoderadoLicencianteFiltrado).Nombre;
+                        retorno = true;
+                    }
+                }
+                else
+                {
+                    this._ventana.ApoderadoLicenciante = this._ventana.ApoderadoLicencianteFiltrado;
+                    this._ventana.NombreApoderadoLicenciante = ((Agente)this._ventana.ApoderadoLicencianteFiltrado).Nombre;
+                    retorno = true;
+                }
+
+                this._ventana.ConvertirEnteroMinimoABlanco("Licenciante");
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+            }
+            catch (ApplicationException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(ex.Message, true);
+            }
+            catch (RemotingException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorRemoting, true);
+            }
+            catch (SocketException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorConexionServidor, true);
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
+            }
+            finally
+            {
+                Mouse.OverrideCursor = null;
+            }
+
+            return retorno;
+        }
+
+        public bool CambiarPoderLicenciante()
+        {
+            Mouse.OverrideCursor = Cursors.Wait;
+
+            bool retorno = false;
+
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                if (((Poder)this._ventana.PoderLicencianteFiltrado).Id != int.MinValue)
+                {
+                    if ((((Interesado)this._ventana.LicencianteFiltrado).Id == int.MinValue) || (((Agente)this._ventana.ApoderadoLicencianteFiltrado).Id.Equals("")))
+                    {
+                        LimpiarListaInteresado("Licenciante");
+
+                        LimpiarListaAgente("Licenciante");
+
+                        LlenarListaAgenteEInteresado((Poder)this._ventana.PoderLicencianteFiltrado, "Licenciante", false);
+
+                        this._ventana.PoderLicenciante = this._ventana.PoderLicencianteFiltrado;
+                        this._ventana.IdPoderLicenciante = ((Poder)this._ventana.PoderLicencianteFiltrado).Id.ToString();
+                        retorno = true;
+                    }
+                    else
+                    {
+                        this._ventana.PoderLicenciante = this._ventana.PoderLicencianteFiltrado;
+                        this._ventana.IdPoderLicenciante = ((Poder)this._ventana.PoderLicencianteFiltrado).Id.ToString();
+                        retorno = true;
+                    }
+                }
+                else
+                {
+                    this._ventana.PoderLicenciante = this._ventana.PoderLicencianteFiltrado;
+                    this._ventana.IdPoderLicenciante = ((Poder)this._ventana.PoderLicencianteFiltrado).Id.ToString();
+                    retorno = true;
+                }
+
+                this._ventana.ConvertirEnteroMinimoABlanco("Licenciante");
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (ApplicationException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(ex.Message, true);
+            }
+            catch (RemotingException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorRemoting, true);
+            }
+            catch (SocketException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorConexionServidor, true);
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
+            }
+            finally
+            {
+                Mouse.OverrideCursor = null;
+            }
+
+            return retorno;
+        }
+
+        #endregion
+
+        #region Licenciatario
+
+        private void ValidarLicenciatario()
+        {
+            if (((Interesado)this._ventana.LicenciatarioFiltrado).Id == int.MinValue)
+            {
+                if (((Agente)this._ventana.ApoderadoLicenciatarioFiltrado).Id.Equals(""))
+                {
+                    if (((Poder)this._ventana.PoderLicenciatarioFiltrado).Id != int.MinValue)
+                    {
+                        LlenarListaAgenteEInteresado((Poder)this._ventana.PoderLicenciatario, "Licenciatario", true);
+                        this._ventana.GestionarBotonConsultarInteresados("Licenciatario", false);
+                        this._ventana.GestionarBotonConsultarApoderados("Licenciatario", false);
+                    }
+                }
+                else
+                {
+                    if (((Poder)this._ventana.PoderLicenciatarioFiltrado).Id == int.MinValue)
+                        this._ventana.GestionarBotonConsultarInteresados("Licenciatario", false);
+
+                    else
+                    {
+
+                        LlenarListaAgenteEInteresado((Poder)this._ventana.PoderLicenciatario, "Licenciatario", true);
+
+                        this._ventana.GestionarBotonConsultarInteresados("Licenciatario", false);
+                        this._ventana.GestionarBotonConsultarApoderados("Licenciatario", false);
+                        this._ventana.GestionarBotonConsultarPoderes("Licenciatario", false);
+                    }
+
+                }
+            }
+            else
+            {
+                if (((Agente)this._ventana.ApoderadoLicenciatarioFiltrado).Id.Equals(""))
+                {
+                    if (((Poder)this._ventana.PoderLicenciatarioFiltrado).Id == int.MinValue)
+                        this._ventana.GestionarBotonConsultarPoderes("Licenciatario", false);
+
+                    else
+                    {
+                        LlenarListaAgenteEInteresado((Poder)this._ventana.PoderLicenciatario, "Licenciatario", true);
+
+                        this._ventana.GestionarBotonConsultarInteresados("Licenciatario", false);
+                        this._ventana.GestionarBotonConsultarApoderados("Licenciatario", false);
+                        this._ventana.GestionarBotonConsultarPoderes("Licenciatario", false);
+
+                    }
+                }
+                else
+                {
+                    if (((Poder)this._ventana.PoderLicenciatarioFiltrado).Id == int.MinValue)
+                    {
+
+                        ValidarListaDePoderes(this._poderesLicenciatario, this._poderesApoderadosLicenciatario, "Licenciatario");
+
+                        this._ventana.GestionarBotonConsultarPoderes("Licenciatario", false);
+                    }
+                    else
+                    {
+                        LlenarListaAgenteEInteresado((Poder)this._ventana.PoderLicenciatario, "Licenciatario", true);
+                        ValidarListaDePoderes(this._poderesLicenciatario, this._poderesApoderadosLicenciatario, "Licenciatario");
+
+                        this._ventana.GestionarBotonConsultarInteresados("Licenciatario", false);
+                        this._ventana.GestionarBotonConsultarApoderados("Licenciatario", false);
+                        this._ventana.GestionarBotonConsultarPoderes("Licenciatario", false);
+                    }
+                }
+            }
+        }
+
+        public void ConsultarLicenciatarios()
+        { 
+            Mouse.OverrideCursor = Cursors.Wait;
+
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                Interesado primerInteresado = new Interesado(int.MinValue);
+             
+                Interesado licenciaario = new Interesado();
+                IList<Interesado> licenciaariosFiltrados;
+                licenciaario.Nombre = this._ventana.NombreLicenciatarioFiltrar.ToUpper();
+                licenciaario.Id = this._ventana.IdLicenciatarioFiltrar.Equals("") ? 0 : int.Parse(this._ventana.IdLicenciatarioFiltrar);
+
+                if ((!licenciaario.Nombre.Equals("")) || (licenciaario.Id != 0))
+                    licenciaariosFiltrados = this._interesadoServicios.ObtenerInteresadosFiltro(licenciaario);
+                else
+                    licenciaariosFiltrados = new List<Interesado>();
+
+                if (licenciaariosFiltrados.ToList<Interesado>().Count != 0)
+                {
+                    licenciaariosFiltrados.Insert(0, primerInteresado);
+                    this._ventana.LicenciatariosFiltrados = licenciaariosFiltrados.ToList<Interesado>();
+                    this._ventana.LicenciatarioFiltrado = primerInteresado;
+                }
+                else
+                {
+                    licenciaariosFiltrados.Insert(0, primerInteresado);
+                    this._ventana.LicenciatariosFiltrados = this._interesadosLicenciatario;
+                    this._ventana.LicenciatarioFiltrado = primerInteresado;
+                    this._ventana.Mensaje(Recursos.MensajesConElUsuario.NoHayResultados, 1);
+                }
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (ApplicationException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(ex.Message, true);
+            }
+            catch (RemotingException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorRemoting, true);
+            }
+            catch (SocketException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorConexionServidor, true);
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
+            }
+            finally
+            {
+                Mouse.OverrideCursor = null;
+            }
+        }
+
+        public void ConsultarApoderadosLicenciatario()
+        {
+            Mouse.OverrideCursor = Cursors.Wait;
+
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                Agente primerAgente = new Agente("");             
+                Agente apoderadoLicenciatario = new Agente();
+                IList<Agente> agentesLicenciatarioFiltrados;
+                apoderadoLicenciatario.Nombre = this._ventana.NombreApoderadoLicenciatarioFiltrar.ToUpper();
+                apoderadoLicenciatario.Id = this._ventana.IdApoderadoLicenciatarioFiltrar.ToUpper();
+
+                if ((!apoderadoLicenciatario.Nombre.Equals("")) || (!apoderadoLicenciatario.Id.Equals("")))
+                    agentesLicenciatarioFiltrados = this._agenteServicios.ObtenerAgentesFiltro(apoderadoLicenciatario);
+                else
+                    agentesLicenciatarioFiltrados = new List<Agente>();
+
+                if (agentesLicenciatarioFiltrados.Count != 0)
+                {
+                    agentesLicenciatarioFiltrados.Insert(0, primerAgente);
+                    this._ventana.ApoderadoLicenciatarioFiltrado = primerAgente;
+                    this._ventana.ApoderadosLicenciatarioFiltrados = agentesLicenciatarioFiltrados.ToList<Agente>();
+                }
+                else
+                {
+                    agentesLicenciatarioFiltrados.Insert(0, primerAgente);
+                    this._ventana.ApoderadosLicenciatarioFiltrados = this._agentesLicenciatario;
+                    this._ventana.ApoderadoLicenciatarioFiltrado = primerAgente;
+                    this._ventana.Mensaje(Recursos.MensajesConElUsuario.NoHayResultados, 1);
+                }
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (ApplicationException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(ex.Message, true);
+            }
+            catch (RemotingException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorRemoting, true);
+            }
+            catch (SocketException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorConexionServidor, true);
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
+            }
+            finally
+            {
+                Mouse.OverrideCursor = null;
+            }
+        }
+
+        public void ConsultarPoderesLicenciatario()
+        {                
+            Mouse.OverrideCursor = Cursors.Wait;
+
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                Poder primerPoder = new Poder(int.MinValue);
+                Poder poderLicenciatario = new Poder();
+                IList<Poder> poderesLicenciatarioFiltrados;
+
+                if (!this._ventana.IdPoderLicenciatarioFiltrar.Equals(""))
+                    poderLicenciatario.Id = int.Parse(this._ventana.IdPoderLicenciatarioFiltrar);
+
+                if (!this._ventana.FechaPoderLicenciatarioFiltrar.Equals(""))
+                    poderLicenciatario.Fecha = DateTime.Parse(this._ventana.FechaPoderLicenciatarioFiltrar);
+
+                if ((!poderLicenciatario.Fecha.Equals("")) || (poderLicenciatario.Id != 0))
+                    poderesLicenciatarioFiltrados = this._poderServicios.ObtenerPoderesFiltro(poderLicenciatario);
+                else
+                    poderesLicenciatarioFiltrados = new List<Poder>();
+
+                if (poderesLicenciatarioFiltrados.ToList<Poder>().Count != 0)
+                {
+                    poderesLicenciatarioFiltrados.Insert(0, primerPoder);
+                    this._ventana.PoderesLicenciatarioFiltrados = this._poderesLicenciatario;
+                    this._ventana.PoderLicenciatarioFiltrado = primerPoder;
+                    this._ventana.PoderesLicenciatarioFiltrados = poderesLicenciatarioFiltrados;
+                }
+                else
+                {
+                    poderesLicenciatarioFiltrados.Insert(0, primerPoder);
+                    this._ventana.PoderesLicenciatarioFiltrados = this._poderesLicenciatario;
+                    this._ventana.PoderLicenciatarioFiltrado = primerPoder;
+                    this._ventana.Mensaje(Recursos.MensajesConElUsuario.NoHayResultados, 1);
+                }
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (ApplicationException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(ex.Message, true);
+            }
+            catch (RemotingException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorRemoting, true);
+            }
+            catch (SocketException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorConexionServidor, true);
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
+            }
+            finally
+            {
+                Mouse.OverrideCursor = null;
+            }
+        }
+
+        public bool CambiarLicenciatario()
+        {
+            Mouse.OverrideCursor = Cursors.Wait;
+
+            bool retorno = false;
+
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                if (((Interesado)this._ventana.LicenciatarioFiltrado).Id != int.MinValue)
+                {
+                    if (!((Agente)this._ventana.ApoderadoLicenciatarioFiltrado).Id.Equals(""))
+                    {
+                        if (((Poder)this._ventana.PoderLicenciatarioFiltrado).Id != int.MinValue)
+                        {
+                            this._ventana.InteresadoLicenciatario = this._interesadoServicios.ConsultarInteresadoConTodo((Interesado)this._ventana.LicenciatarioFiltrado);
+                            this._ventana.NombreLicenciatario = ((Interesado)this._ventana.InteresadoLicenciatario).Nombre;
+                            retorno = true;
+                        }
+                        else
+                        {
+                            this._poderesLicenciatario = this._poderServicios.ConsultarPoderesPorInteresado(((Interesado)_ventana.LicenciatarioFiltrado));
+
+                            LimpiarListaPoder("Licenciatario");
+
+                            if ((this.ValidarListaDePoderes(this._poderesLicenciatario, this._poderesApoderadosLicenciatario, "Licenciatario")))
+                            {
+                                this._ventana.InteresadoLicenciatario = this._ventana.LicenciatarioFiltrado;
+                                this._ventana.NombreLicenciatario = ((Interesado)this._ventana.LicenciatarioFiltrado).Nombre;
+                                retorno = true;
+                            }
+                            else if (!this.ValidarListaDePoderes(this._poderesLicenciatario, _poderesApoderadosLicenciatario, "Licenciatario"))
+                            {
+                                this._ventana.ConvertirEnteroMinimoABlanco("Licenciatario");
+                                this._ventana.Mensaje(string.Format(Recursos.MensajesConElUsuario.ErrorInteresadoNoPoseePoderConAgente, "Licenciatario"), 0);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        this._poderesLicenciatario = this._poderServicios.ConsultarPoderesPorInteresado(((Interesado)_ventana.LicenciatarioFiltrado));
+                        this._ventana.InteresadoLicenciatario = this._interesadoServicios.ConsultarInteresadoConTodo((Interesado)this._ventana.LicenciatarioFiltrado);
+                        this._ventana.NombreLicenciatario = ((Interesado)this._ventana.InteresadoLicenciatario).Nombre;
+                        retorno = true;
+                    }
+
+                }
+                else
+                {
+                    this._ventana.InteresadoLicenciatario = this._ventana.LicenciatarioFiltrado;
+                    this._ventana.NombreLicenciatario = ((Interesado)this._ventana.InteresadoLicenciatario).Nombre;
+                    retorno = true;
+                }
+
+                this._ventana.ConvertirEnteroMinimoABlanco("Licenciatario");
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+            }
+            catch (ApplicationException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(ex.Message, true);
+            }
+            catch (RemotingException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorRemoting, true);
+            }
+            catch (SocketException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorConexionServidor, true);
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
+            }
+            finally
+            {
+                Mouse.OverrideCursor = null;
+            }
+
+            return retorno;
+        }
+
+        public bool CambiarApoderadoLicenciatario()
+        {
+            Mouse.OverrideCursor = Cursors.Wait;
+
+            bool retorno = false;
+
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                if (!((Agente)this._ventana.ApoderadoLicenciatarioFiltrado).Id.Equals(""))
+                {
+                    if (((Interesado)this._ventana.LicenciatarioFiltrado).Id != int.MinValue)
+                    {
+                        if (((Poder)this._ventana.PoderLicenciatarioFiltrado).Id != int.MinValue)
+                        {
+                            this._ventana.ApoderadoLicenciatario = this._ventana.ApoderadoLicenciatarioFiltrado;
+                            this._ventana.NombreApoderadoLicenciatario = ((Agente)this._ventana.ApoderadoLicenciatarioFiltrado).Nombre;
+                            retorno = true;
+                        }
+                        else
+                        {
+                            this._poderesApoderadosLicenciatario = this._poderServicios.ConsultarPoderesPorAgente(((Agente)_ventana.ApoderadoLicenciatarioFiltrado));
+
+                            LimpiarListaPoder("Licenciatario");
+
+                            if ((this.ValidarListaDePoderes(this._poderesLicenciatario, this._poderesApoderadosLicenciatario, "Licenciatario")))
+                            {
+                                this._ventana.ApoderadoLicenciatario = this._ventana.ApoderadoLicenciatarioFiltrado;
+                                this._ventana.NombreApoderadoLicenciatario = ((Agente)this._ventana.ApoderadoLicenciatarioFiltrado).Nombre;
+
+                                this._ventana.ConvertirEnteroMinimoABlanco("Licenciatario");
+
+                                retorno = true;
+                            }
+                            else if (!this.ValidarListaDePoderes(this._poderesLicenciatario, this._poderesApoderadosLicenciatario, "Licenciatario"))
+                            {
+                                this._ventana.ConvertirEnteroMinimoABlanco("Licenciatario");
+                                this._ventana.Mensaje(string.Format(Recursos.MensajesConElUsuario.ErrorAgenteNoPoseePoderConInteresado, "Licenciatario"), 0);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        this._poderesApoderadosLicenciatario = this._poderServicios.ConsultarPoderesPorAgente(((Agente)_ventana.ApoderadoLicenciatarioFiltrado));
+                        this._ventana.ApoderadoLicenciatario = this._ventana.ApoderadoLicenciatarioFiltrado;
+                        this._ventana.NombreApoderadoLicenciatario = ((Agente)this._ventana.ApoderadoLicenciatarioFiltrado).Nombre;
+                        retorno = true;
+                    }
+                }
+                else
+                {
+                    this._ventana.ApoderadoLicenciatario = this._ventana.ApoderadoLicenciatarioFiltrado;
+                    this._ventana.NombreApoderadoLicenciatario = ((Agente)this._ventana.ApoderadoLicenciatarioFiltrado).Nombre;
+                    retorno = true;
+                }
+
+                this._ventana.ConvertirEnteroMinimoABlanco("Licenciatario");
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+            }
+            catch (ApplicationException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(ex.Message, true);
+            }
+            catch (RemotingException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorRemoting, true);
+            }
+            catch (SocketException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorConexionServidor, true);
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
+            }
+            finally
+            {
+                Mouse.OverrideCursor = null;
+            }
+
+            return retorno;
+        }
+
+        public bool CambiarPoderLicenciatario()
+        {
+            Mouse.OverrideCursor = Cursors.Wait;
+
+            bool retorno = false;
+
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                if (((Poder)this._ventana.PoderLicenciatarioFiltrado).Id != int.MinValue)
+                {
+                    if ((((Interesado)this._ventana.LicenciatarioFiltrado).Id == int.MinValue) || (((Agente)this._ventana.ApoderadoLicenciatarioFiltrado).Id.Equals("")))
+                    {
+                        LimpiarListaInteresado("Licenciatario");
+
+                        LimpiarListaAgente("Licenciatario");
+
+                        LlenarListaAgenteEInteresado((Poder)this._ventana.PoderLicenciatarioFiltrado, "Licenciatario", false);
+
+                        this._ventana.PoderLicenciatario = this._ventana.PoderLicenciatarioFiltrado;
+                        this._ventana.IdPoderLicenciatario = ((Poder)this._ventana.PoderLicenciatarioFiltrado).Id.ToString();
+                        retorno = true;
+                    }
+                    else
+                    {
+                        this._ventana.PoderLicenciatario = this._ventana.PoderLicenciatarioFiltrado;
+                        this._ventana.IdPoderLicenciatario = ((Poder)this._ventana.PoderLicenciatarioFiltrado).Id.ToString();
+                        retorno = true;
+                    }
+                }
+                else
+                {
+                    this._ventana.PoderLicenciatario = this._ventana.PoderLicenciatarioFiltrado;
+                    this._ventana.IdPoderLicenciatario = ((Poder)this._ventana.PoderLicenciatarioFiltrado).Id.ToString();
+                    retorno = true;
+                }
+
+                this._ventana.ConvertirEnteroMinimoABlanco("Licenciatario");
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (ApplicationException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(ex.Message, true);
+            }
+            catch (RemotingException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorRemoting, true);
+            }
+            catch (SocketException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorConexionServidor, true);
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
+            }
+            finally
+            {
+                Mouse.OverrideCursor = null;
+            }
+
+            return retorno;
+        }
+
+        #endregion        
     }
 }

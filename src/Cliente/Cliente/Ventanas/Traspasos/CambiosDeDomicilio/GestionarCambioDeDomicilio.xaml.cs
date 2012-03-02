@@ -364,8 +364,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.CambiosDeDomicilio
 
         private void _btnEliminar_Click(object sender, RoutedEventArgs e)
         {
-            if (MessageBoxResult.Yes == MessageBox.Show(Recursos.MensajesConElUsuario.ConfirmacionEliminarPais,
-                "Eliminar Pais", MessageBoxButton.YesNo, MessageBoxImage.Question))
+            if (MessageBoxResult.Yes == MessageBox.Show(Recursos.MensajesConElUsuario.ConfirmacionEliminarCambioDeDomicilio,
+                "Eliminar Cambio de domicilio", MessageBoxButton.YesNo, MessageBoxImage.Question))
             {
                 this._presentador.Eliminar();
             }

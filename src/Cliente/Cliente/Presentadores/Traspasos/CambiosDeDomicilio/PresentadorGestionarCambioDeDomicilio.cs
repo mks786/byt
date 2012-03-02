@@ -328,6 +328,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeDomicilio
         /// </summary>
         public void Modificar()
         {
+            Mouse.OverrideCursor = Cursors.Wait;
+
             try
             {
                 #region trace
@@ -342,19 +344,19 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeDomicilio
                     this._ventana.TextoBotonModificar = Recursos.Etiquetas.btnAceptar;
                 }
 
-                //Modifica los datos del Cambio de Domicilio
+                //Modifica o inserta los datos del Cambio de Domicilio
                 else if (this._ventana.TextoBotonModificar == Recursos.Etiquetas.btnAceptar)
                 {
-                    CambioDeDomicilio cambioDeDomicilio = CargarCambioDeDomicilioDeLaPantalla();                                                            
-                   
+                    CambioDeDomicilio cambioDeDomicilio = CargarCambioDeDomicilioDeLaPantalla();
+
                     bool exitoso = this._cambioDeDomicilioServicios.InsertarOModificar(cambioDeDomicilio, UsuarioLogeado.Hash);
 
-                    if ( (exitoso) && (this._agregar == false) )
+                    if ((exitoso) && (this._agregar == false))
                         this.Navegar(Recursos.MensajesConElUsuario.CambioDeDomicilioModificado, false);
-                    else if ( (exitoso) && (this._agregar == true) )
+                    else if ((exitoso) && (this._agregar == true))
                         this.Navegar(Recursos.MensajesConElUsuario.CambioDeDomicilioInsertado, false);
                 }
-                
+
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
                     logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
@@ -380,6 +382,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeDomicilio
                 logger.Error(ex.Message);
                 this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
             }
+            finally
+            {
+                Mouse.OverrideCursor = null;
+            }
         }
 
         /// <summary>
@@ -387,6 +393,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeDomicilio
         /// </summary>
         public void Eliminar()
         {
+            Mouse.OverrideCursor = Cursors.Wait;
+
             try
             {
                 #region trace
@@ -424,6 +432,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeDomicilio
             {
                 logger.Error(ex.Message);
                 this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
+            }
+            finally
+            {
+                Mouse.OverrideCursor = null;
             }
         }
 
@@ -622,6 +634,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeDomicilio
 
         public void ConsultarMarcas()
         {
+ 
+            Mouse.OverrideCursor = Cursors.Wait;
 
             try
             {
@@ -632,7 +646,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeDomicilio
 
                 Marca primeraMarca = new Marca(int.MinValue);
 
-                Mouse.OverrideCursor = Cursors.Wait;
+               
                 Marca marca = new Marca();
                 IList<Marca> marcasFiltradas;
                 marca.Descripcion = this._ventana.NombreMarcaFiltrar.ToUpper();
@@ -684,10 +698,16 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeDomicilio
                 logger.Error(ex.Message);
                 this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
             }
+            finally
+            {
+                Mouse.OverrideCursor = null;
+            }
         }        
 
         public bool CambiarMarca()
         {
+            Mouse.OverrideCursor = Cursors.Wait;
+
             bool retorno = false;
 
             try
@@ -733,6 +753,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeDomicilio
                 logger.Error(ex.Message);
                 this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
             }
+            finally
+            {
+                Mouse.OverrideCursor = null;
+            }
 
             return retorno;
         }
@@ -743,6 +767,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeDomicilio
 
         public void ConsultarInteresadosAnterior()
         {
+            Mouse.OverrideCursor = Cursors.Wait;
+
             try
             {
                 #region trace
@@ -751,8 +777,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeDomicilio
                 #endregion
 
                 Interesado primerInteresado = new Interesado(int.MinValue);
-
-                Mouse.OverrideCursor = Cursors.Wait;
+                
                 Interesado interesado = new Interesado();
                 IList<Interesado> interesadosFiltrados;
                 interesado.Nombre = this._ventana.NombreInteresadoAnteriorFiltrar.ToUpper();
@@ -775,9 +800,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeDomicilio
                     this._ventana.InteresadosAnteriorFiltrados = this._interesadosAnterior;
                     this._ventana.InteresadoAnteriorFiltrado = primerInteresado;
                     this._ventana.Mensaje(Recursos.MensajesConElUsuario.NoHayResultados, 1);
-                }
-
-                Mouse.OverrideCursor = null;
+                }               
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -804,10 +827,16 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeDomicilio
                 logger.Error(ex.Message);
                 this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
             }
+            finally
+            {
+                Mouse.OverrideCursor = null;
+            }
         }
 
         public bool CambiarInteresadoAnterior()
         {
+            Mouse.OverrideCursor = Cursors.Wait;
+
             bool retorno = false;
 
             try
@@ -852,6 +881,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeDomicilio
             {
                 logger.Error(ex.Message);
                 this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
+            }
+            finally
+            {
+                Mouse.OverrideCursor = null;
             }
 
             return retorno;
@@ -931,6 +964,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeDomicilio
 
         public void ConsultarInteresadosActual()
         {
+            Mouse.OverrideCursor = Cursors.Wait;
+
             try
             {
                 #region trace
@@ -939,8 +974,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeDomicilio
                 #endregion
 
                 Interesado primerInteresado = new Interesado(int.MinValue);
-
-                Mouse.OverrideCursor = Cursors.Wait;
+                
                 Interesado interesado = new Interesado();
                 IList<Interesado> interesadosFiltrados;
                 interesado.Nombre = this._ventana.NombreInteresadoActualFiltrar.ToUpper();
@@ -992,10 +1026,16 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeDomicilio
                 logger.Error(ex.Message);
                 this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
             }
+            finally
+            {
+                Mouse.OverrideCursor = null;
+            }
         }
 
         public bool CambiarInteresadoActual()
         {
+            Mouse.OverrideCursor = Cursors.Wait;
+
             bool retorno = false;
 
             try
@@ -1058,32 +1098,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeDomicilio
                 #endregion
 
             }
-
-            //bool retorno = false;
-
-            //try
-            //{
-            //    #region trace
-            //    if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
-            //        logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
-            //    #endregion
-
-            //    if (this._ventana.InteresadoActualFiltrado != null)
-            //    {
-            //        this._ventana.InteresadoActual =
-            //            this._interesadoServicios.ConsultarInteresadoConTodo((Interesado)this._ventana.InteresadoActualFiltrado);
-            //        this._ventana.NombreInteresadoActual = ((Interesado)this._ventana.InteresadoActualFiltrado).Nombre;
-            //        this._interesadosActual.RemoveAt(0);
-            //        this._interesadosActual.Add((Interesado)this._ventana.InteresadoActualFiltrado);
-            //        retorno = true;
-            //    }
-
-            //    #region trace
-            //    if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
-            //        logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
-            //    #endregion
-
-            //}
+           
             catch (ApplicationException ex)
             {
                 logger.Error(ex.Message);
@@ -1103,6 +1118,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeDomicilio
             {
                 logger.Error(ex.Message);
                 this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
+            }
+            finally
+            {
+                Mouse.OverrideCursor = null;
             }
 
             return retorno;
@@ -1157,6 +1176,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeDomicilio
 
         public void ConsultarApoderados()
         {
+            Mouse.OverrideCursor = Cursors.Wait;
+
             try
             {
                 #region trace
@@ -1166,7 +1187,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeDomicilio
 
                 Agente primerAgente = new Agente("");
 
-                Mouse.OverrideCursor = Cursors.Wait;
+                
                 Agente apoderadoInteresado = new Agente();
                 IList<Agente> agentesInteresadoFiltrados;
                 apoderadoInteresado.Nombre = this._ventana.NombreAgenteApoderadoFiltrar.ToUpper();
@@ -1189,9 +1210,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeDomicilio
                     this._ventana.AgenteApoderadoFiltrados = this._agentesApoderados;
                     this._ventana.AgenteApoderadoFiltrado = primerAgente;
                     this._ventana.Mensaje(Recursos.MensajesConElUsuario.NoHayResultados, 1);
-                }
-
-                Mouse.OverrideCursor = null;
+                }                
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -1218,10 +1237,15 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeDomicilio
                 logger.Error(ex.Message);
                 this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
             }
+            finally
+            {
+                Mouse.OverrideCursor = null;
+            }
         }
 
         public bool CambiarApoderado()
         {
+            Mouse.OverrideCursor = Cursors.Wait;
 
             bool retorno = false;
 
@@ -1283,32 +1307,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeDomicilio
                     logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-            }
-            //bool retorno = false;
-
-            //try
-            //{
-            //    #region trace
-            //    if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
-            //        logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
-            //    #endregion
-
-            //    if (this._ventana.AgenteApoderadoFiltrado != null)
-            //    {
-            //        this._ventana.AgenteApoderado = this._ventana.AgenteApoderadoFiltrado;
-            //        this._ventana.NombreAgenteApoderado = ((Agente)this._ventana.AgenteApoderadoFiltrado).Nombre;
-            //        this._agentesApoderados.RemoveAt(0);
-            //        this._agentesApoderados.Add((Agente)this._ventana.AgenteApoderadoFiltrado);
-            //        retorno = true;
-
-            //    }
-
-            //    #region trace
-            //    if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
-            //        logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
-            //    #endregion
-
-            //}
+            }            
             catch (ApplicationException ex)
             {
                 logger.Error(ex.Message);
@@ -1328,6 +1327,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeDomicilio
             {
                 logger.Error(ex.Message);
                 this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
+            }
+            finally
+            {
+                Mouse.OverrideCursor = null;
             }
 
             return retorno;
@@ -1384,6 +1387,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeDomicilio
 
         public void ConsultarPoderes()
         {
+            Mouse.OverrideCursor = Cursors.Wait;
+
             try
             {
                 #region trace
@@ -1393,7 +1398,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeDomicilio
 
                 Poder pimerPoder = new Poder(int.MinValue);
 
-                Mouse.OverrideCursor = Cursors.Wait;
+                
                 Poder poder = new Poder();
                 IList<Poder> poderesFiltrados;
 
@@ -1420,10 +1425,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeDomicilio
                     this._ventana.PoderesFiltrados = this._poderes;
                     this._ventana.PoderFiltrado = pimerPoder;
                     this._ventana.Mensaje(Recursos.MensajesConElUsuario.NoHayResultados, 1);
-                }
-
-
-                Mouse.OverrideCursor = null;
+                }               
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -1450,10 +1452,16 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeDomicilio
                 logger.Error(ex.Message);
                 this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
             }
+            finally
+            {
+                Mouse.OverrideCursor = null;
+            }
         }
 
         public bool CambiarPoder()
         {
+            Mouse.OverrideCursor = Cursors.Wait;
+
             bool retorno = false;
 
             try
@@ -1517,6 +1525,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeDomicilio
             {
                 logger.Error(ex.Message);
                 this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
+            }
+            finally
+            {
+                Mouse.OverrideCursor = null;
             }
 
             return retorno;

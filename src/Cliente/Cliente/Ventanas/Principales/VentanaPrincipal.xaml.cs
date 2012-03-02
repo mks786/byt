@@ -333,9 +333,19 @@ namespace Trascend.Bolet.Cliente.Ventanas.Principales
             this._presentador.ConsultarCesiones();            
         }
 
+        private void _menuItemCesionAgregar_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.AgregarCesion();
+        }
+
         private void _menuItemFusionesConsultar_Click(object sender, RoutedEventArgs e)
         {
             this._presentador.ConsultarFusiones();
+        }
+
+        private void _menuItemFusionAgregar_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.AgregarFusion();
         }
 
         private void _menuItemCambioDeNombre_Click(object sender, RoutedEventArgs e)
@@ -353,14 +363,14 @@ namespace Trascend.Bolet.Cliente.Ventanas.Principales
             this._presentador.AgregarCambioPeticionario();
         }
 
-        private void _menuItemLicenciasGestionar_Click(object sender, RoutedEventArgs e)
-        {
-            // this._presentador.IrGestionarLicencia();
-        }
-
         private void _menuItemLicenciasConsultar_Click(object sender, RoutedEventArgs e)
         {
             this._presentador.IrConsultarLicencias();
+        }
+
+        private void _menuItemLicenciaAgregar_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.AgregarLicencia();
         }
 
         private void _menuItemCambiosDeDomicilioConsultar_Click(object sender, RoutedEventArgs e)

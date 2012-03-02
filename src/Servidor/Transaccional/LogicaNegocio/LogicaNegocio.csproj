@@ -98,7 +98,7 @@
     <Compile Include="Controladores\ControladorFusion.cs" />
     <Compile Include="Controladores\ControladorCambioDeDomicilio.cs" />
     <Compile Include="Controladores\ControladorCambioPeticionario.cs" />
-    <Compile Include="Controladores\ControladorCambioNombre.cs" />
+    <Compile Include="Controladores\ControladorCambioDeNombre.cs" />
     <Compile Include="Controladores\ControladorLicencia.cs" />
     <Compile Include="Controladores\ControladorMarcaTercero.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

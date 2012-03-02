@@ -187,6 +187,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Cambio de nombre eliminado con éxito.
+        /// </summary>
+        internal static string CambioDeNombreEliminado {
+            get {
+                return ResourceManager.GetString("CambioDeNombreEliminado", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Cambio de nombre insertado con éxito.
         /// </summary>
         internal static string CambioDeNombreInsertado {
@@ -196,20 +205,11 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Cambio de nombre eliminado con éxito.
-        /// </summary>
-        internal static string CambioNombreEliminado {
-            get {
-                return ResourceManager.GetString("CambioNombreEliminado", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Busca una cadena traducida similar a Cambio de nombre modificado con éxito.
         /// </summary>
-        internal static string CambioNombreModificado {
+        internal static string CambioDeNombreModificado {
             get {
-                return ResourceManager.GetString("CambioNombreModificado", resourceCulture);
+                return ResourceManager.GetString("CambioDeNombreModificado", resourceCulture);
             }
         }
         
@@ -286,6 +286,33 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Cesión eliminada con éxito.
+        /// </summary>
+        internal static string CesionEliminada {
+            get {
+                return ResourceManager.GetString("CesionEliminada", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Cesión insertada con éxito.
+        /// </summary>
+        internal static string CesionInsertada {
+            get {
+                return ResourceManager.GetString("CesionInsertada", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Cesión modificada con éxito.
+        /// </summary>
+        internal static string CesionModificada {
+            get {
+                return ResourceManager.GetString("CesionModificada", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a ¿Seguro que desea duplicar la Marca?.
         /// </summary>
         internal static string ConfirmacionDuplicarMarca {
@@ -340,11 +367,47 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a ¿Seguro que desea eliminar el cambio de domicilio?.
+        /// </summary>
+        internal static string ConfirmacionEliminarCambioDeDomicilio {
+            get {
+                return ResourceManager.GetString("ConfirmacionEliminarCambioDeDomicilio", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a ¿Seguro que desea eliminar el cambio nombre?.
+        /// </summary>
+        internal static string ConfirmacionEliminarCambioDeNombre {
+            get {
+                return ResourceManager.GetString("ConfirmacionEliminarCambioDeNombre", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a ¿Seguro que desea eliminar el cambio peticionario?.
+        /// </summary>
+        internal static string ConfirmacionEliminarCambioPeticionario {
+            get {
+                return ResourceManager.GetString("ConfirmacionEliminarCambioPeticionario", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a ¿Seguro que desea eliminar la categoría?.
         /// </summary>
         internal static string ConfirmacionEliminarCategoria {
             get {
                 return ResourceManager.GetString("ConfirmacionEliminarCategoria", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a ¿Seguro que desea eliminar la cesión?.
+        /// </summary>
+        internal static string ConfirmacionEliminarCesion {
+            get {
+                return ResourceManager.GetString("ConfirmacionEliminarCesion", resourceCulture);
             }
         }
         
@@ -394,6 +457,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a ¿Seguro que desea eliminar la fusión?.
+        /// </summary>
+        internal static string ConfirmacionEliminarFusion {
+            get {
+                return ResourceManager.GetString("ConfirmacionEliminarFusion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a ¿Seguro que desea eliminar la info Bol?.
         /// </summary>
         internal static string ConfirmacionEliminarInfoBol {
@@ -426,6 +498,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         internal static string ConfirmacionEliminarJustificacion {
             get {
                 return ResourceManager.GetString("ConfirmacionEliminarJustificacion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a ¿Seguro que desea eliminar la licencia?.
+        /// </summary>
+        internal static string ConfirmacionEliminarLicencia {
+            get {
+                return ResourceManager.GetString("ConfirmacionEliminarLicencia", resourceCulture);
             }
         }
         
@@ -907,6 +988,33 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Fusión eliminada con éxito.
+        /// </summary>
+        internal static string FusionEliminada {
+            get {
+                return ResourceManager.GetString("FusionEliminada", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Fusión insertada con éxito.
+        /// </summary>
+        internal static string FusionInsertada {
+            get {
+                return ResourceManager.GetString("FusionInsertada", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Fusión modificada con éxito.
+        /// </summary>
+        internal static string FusionModificada {
+            get {
+                return ResourceManager.GetString("FusionModificada", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Usuario o clave incorrectos.
         /// </summary>
         internal static string IdOClaveIncorrectos {
@@ -984,6 +1092,33 @@ namespace Trascend.Bolet.Cliente.Recursos {
         internal static string JustificacionModificado {
             get {
                 return ResourceManager.GetString("JustificacionModificado", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Licencia eliminada con éxito.
+        /// </summary>
+        internal static string LicenciaEliminada {
+            get {
+                return ResourceManager.GetString("LicenciaEliminada", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Licencia insertada con éxito.
+        /// </summary>
+        internal static string LicenciaInsertada {
+            get {
+                return ResourceManager.GetString("LicenciaInsertada", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Licencia modificada con éxito.
+        /// </summary>
+        internal static string LicenciaModificada {
+            get {
+                return ResourceManager.GetString("LicenciaModificada", resourceCulture);
             }
         }
         

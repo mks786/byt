@@ -9,7 +9,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         #region Atributos
 
         private int _id;
-        private string _codigoExpediente;
+        private string _expediente;
         private string _ubicacion;
         private string _anexo;
         private string _comentario;
@@ -61,10 +61,10 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         /// <summary>
         /// Propiedad que asigna u obtiene el CodigoExpediente de la Fusion
         /// </summary>
-        public virtual string CodigoExpediente
+        public virtual string Expediente
         {
-            get { return _codigoExpediente; }
-            set { _codigoExpediente = value; }
+            get { return _expediente; }
+            set { _expediente = value; }
         }
 
         /// <summary>

@@ -7,13 +7,13 @@ using System;
 
 namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
 {
-    public class DaoCambioNombreNHibernate : DaoBaseNHibernate<CambioNombre, int>, IDaoCambioNombre
+    public class DaoCambioDeNombreNHibernate : DaoBaseNHibernate<CambioDeNombre, int>, IDaoCambioDeNombre
     {
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
-        public IList<CambioNombre> ObtenerCambiosDeNombreFiltro(CambioNombre cambioDeNombre)
+        public IList<CambioDeNombre> ObtenerCambiosDeNombreFiltro(CambioDeNombre cambioDeNombre)
         {
-            IList<CambioNombre> CambioDeNombres = null;
+            IList<CambioDeNombre> CambioDeNombres = null;
 
             try
             {
@@ -61,7 +61,7 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
                 //    filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerCambioDeDomicilioFecha, fecha, fecha2);
                 //}C:\Users\Shachuel\Desktop\Bolet\trunk\src\Servidor\Transaccional\AccesoDatos\Mapeado\ContadorAsignacion.hbm.xml
                 IQuery query = Session.CreateQuery(cabecera + filtro);
-                CambioDeNombres = query.List<CambioNombre>();
+                CambioDeNombres = query.List<CambioDeNombre>();
             }
             catch (Exception ex)
             {

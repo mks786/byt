@@ -8,7 +8,7 @@ using Trascend.Bolet.ObjetosComunes.Entidades;
 
 namespace Trascend.Bolet.Servicios.Implementacion
 {
-    public class CambioNombreServicios : MarshalByRefObject, ICambioNombreServicios
+    public class CambioDeNombreServicios : MarshalByRefObject, ICambioDeNombreServicios
     {
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
@@ -16,37 +16,37 @@ namespace Trascend.Bolet.Servicios.Implementacion
         /// Método que obtiene todos los cambioNombres
         /// </summary>
         /// <returns>Todos los cambioNombres</returns>
-        public IList<CambioNombre> ConsultarTodos()
+        public IList<CambioDeNombre> ConsultarTodos()
         {
             #region trace
             if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
                 logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
 
-            IList<CambioNombre> cambioNombres = ControladorCambioNombre.ConsultarTodos();
+            IList<CambioDeNombre> cambioDeNombres = ControladorCambioDeNombre.ConsultarTodos();
 
             #region trace
             if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
                 logger.Debug("Saliendo del Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
 
-            return cambioNombres;
+            return cambioDeNombres;
         }
 
 
-        public CambioNombre ConsultarPorId(CambioNombre entidad)
+        public CambioDeNombre ConsultarPorId(CambioDeNombre entidad)
         {
             throw new NotImplementedException();
         }
 
-        public bool InsertarOModificar(CambioNombre cambioNombre, int hash)
+        public bool InsertarOModificar(CambioDeNombre cambioDeNombre, int hash)
         {
             #region trace
             if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
                 logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
 
-            bool exitoso = ControladorCambioNombre.InsertarOModificar(cambioNombre, hash);
+            bool exitoso = ControladorCambioDeNombre.InsertarOModificar(cambioDeNombre, hash);
 
             #region trace
             if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
@@ -56,14 +56,14 @@ namespace Trascend.Bolet.Servicios.Implementacion
             return exitoso;
         }
 
-        public bool Eliminar(CambioNombre cambioNombre,int hash)
+        public bool Eliminar(CambioDeNombre cambioDeNombre,int hash)
         {
             #region trace
             if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
                 logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
 
-            bool exitoso = ControladorCambioNombre.Eliminar(cambioNombre, hash);
+            bool exitoso = ControladorCambioDeNombre.Eliminar(cambioDeNombre, hash);
 
             #region trace
             if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
@@ -73,14 +73,14 @@ namespace Trascend.Bolet.Servicios.Implementacion
             return exitoso;
         }
 
-        public bool VerificarExistencia(CambioNombre cambioNombre)
+        public bool VerificarExistencia(CambioDeNombre cambioDeNombre)
         {
             #region trace
             if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
                 logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
 
-            bool exitoso = ControladorCambioNombre.VerificarExistencia(cambioNombre);
+            bool exitoso = ControladorCambioDeNombre.VerificarExistencia(cambioDeNombre);
 
             #region trace
             if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
@@ -90,18 +90,18 @@ namespace Trascend.Bolet.Servicios.Implementacion
             return exitoso;
         }
 
-        public IList<CambioNombre> ObtenerCambioNombreFiltro(CambioNombre CambioNombre)
+        public IList<CambioDeNombre> ObtenerCambioDeNombreFiltro(CambioDeNombre CambioDeNombre)
         {
             #region trace
             if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
                 logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
 
-            IList<CambioNombre> cambiosNombre;
+            IList<CambioDeNombre> cambiosDeNombre;
 
-            cambiosNombre = ControladorCambioNombre.ConsultarCambioNombreFiltro(CambioNombre);
+            cambiosDeNombre = ControladorCambioDeNombre.ConsultarCambioNombreFiltro(CambioDeNombre);
 
-            return cambiosNombre;
+            return cambiosDeNombre;
 
             #region trace
             if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))

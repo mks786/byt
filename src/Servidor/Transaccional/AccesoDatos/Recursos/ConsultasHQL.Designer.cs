@@ -79,7 +79,7 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Select c from CambioNombre c left join fetch c.Marca as marca left join fetch c.InteresadoActual as interesadoActual left join fetch c.InteresadoAnterior as interesadoAnterior left join fetch c.Agente as agente left join fetch c.Poder as poder where .
+        ///   Busca una cadena traducida similar a Select c from CambioDeNombre c left join fetch c.Marca as marca left join fetch c.InteresadoActual as interesadoActual left join fetch c.InteresadoAnterior as interesadoAnterior left join fetch c.Agente as agente left join fetch c.Poder as poder where .
         /// </summary>
         public static string CabeceraObtenerCambioDeNombre {
             get {

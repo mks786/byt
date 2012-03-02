@@ -1686,4 +1686,13 @@ libro</value>
   <data name="titleAgregarCambioPeticionario" xml:space="preserve">
     <value>Agregar Cambio Peticionario de Marcas</value>
   </data>
+  <data name="titleAgregarCesion" xml:space="preserve">
+    <value>Agregar Cesión de marcas</value>
+  </data>
+  <data name="titleAgregarFusion" xml:space="preserve">
+    <value>Agregar Fusión de marcas</value>
+  </data>
+  <data name="titleAgregarLicencia" xml:space="preserve">
+    <value>Agregar Licencia de marcas</value>
+  </data>
 </root>

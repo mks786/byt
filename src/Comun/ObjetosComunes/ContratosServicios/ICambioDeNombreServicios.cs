@@ -4,8 +4,8 @@ using Trascend.Bolet.ObjetosComunes.Entidades;
 
 namespace Trascend.Bolet.ObjetosComunes.ContratosServicios
 {
-    public interface ICambioNombreServicios : IServicioBase<CambioNombre>
+    public interface ICambioDeNombreServicios : IServicioBase<CambioDeNombre>
     {
-        IList<CambioNombre> ObtenerCambioNombreFiltro(CambioNombre CambioNombre);
+        IList<CambioDeNombre> ObtenerCambioDeNombreFiltro(CambioDeNombre cambioDeNombre);
     }
 }

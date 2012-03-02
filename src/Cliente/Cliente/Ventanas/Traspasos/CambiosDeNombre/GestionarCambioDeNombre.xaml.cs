@@ -129,7 +129,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.CambiosDeNombre
 
         public void FocoPredeterminado()
         {
-            this._txtId.Focus();
+            this._txtIdCambioDeNombre.Focus();
         }
 
         public bool HabilitarCampos
@@ -140,7 +140,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.CambiosDeNombre
                 this._txtClaseInternacional.IsEnabled = value;
                 this._txtClaseNacional.IsEnabled = value;
                 this._txtExpediente.IsEnabled = value;
-                this._txtId.IsEnabled = value;
+                this._txtIdCambioDeNombre.IsEnabled = value;
                 this._txtIdMarcaFiltrar.IsEnabled = value;
                 this._txtNombreMarca.IsEnabled = value;
                 this._txtNombreMarcaFiltrar.IsEnabled = value;
@@ -148,7 +148,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.CambiosDeNombre
                 this._txtNumRegistro.IsEnabled = value;
                 this._txtTipo.IsEnabled = value;
                 this._btnConsultarMarca.IsEnabled = value;
-                this._dpkFechaBoletin.IsEnabled = value;
+                this._dpkFechaCambioDeNombre.IsEnabled = value;
                 this._chkEtiqueta.IsEnabled = value;
 
                 this._btnConsultarInteresadoAnterior.IsEnabled = value;
@@ -272,6 +272,12 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.CambiosDeNombre
             set { this._txbModificar.Text = value; }
         }
 
+        public string TextoBotonRegresar
+        {
+            get { return this._txbRegresar.Text; }
+            set { this._txbRegresar.Text = value; }
+        }
+
         public GridViewColumnHeader CurSortCol
         {
             get { return _CurSortCol; }
@@ -335,20 +341,31 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.CambiosDeNombre
             this._presentador = new PresentadorGestionarCambioDeNombre(this, fusion);
         }
 
+        public void ActivarControlesAlAgregar()
+        {
+            this._btnEliminar.Visibility = System.Windows.Visibility.Collapsed;
+            this._lblIdCambioDeNombre.Visibility = System.Windows.Visibility.Collapsed;
+            this._txtIdCambioDeNombre.Visibility = System.Windows.Visibility.Collapsed;
+            this._dpkFechaCambioDeNombre.IsEnabled = false;
+        }
+
         private void _btnModificar_Click(object sender, RoutedEventArgs e)
         {
             this._presentador.Modificar();
         }
 
         private void _btnRegresar_Click(object sender, RoutedEventArgs e)
-        {
-            this._presentador.Regresar();
+        {            
+            if (this.TextoBotonRegresar == Recursos.Etiquetas.btnRegresar)
+                this._presentador.Regresar();
+            else if (this.TextoBotonRegresar == Recursos.Etiquetas.btnCancelar)
+                this._presentador.Cancelar();
         }
 
         private void _btnEliminar_Click(object sender, RoutedEventArgs e)
         {
-            if (MessageBoxResult.Yes == MessageBox.Show(Recursos.MensajesConElUsuario.ConfirmacionEliminarPais,
-                "Eliminar Pais", MessageBoxButton.YesNo, MessageBoxImage.Question))
+            if (MessageBoxResult.Yes == MessageBox.Show(Recursos.MensajesConElUsuario.ConfirmacionEliminarCambioDeNombre,
+                "Eliminar Cambio de nombre", MessageBoxButton.YesNo, MessageBoxImage.Question))
             {
                 this._presentador.Eliminar();
             }

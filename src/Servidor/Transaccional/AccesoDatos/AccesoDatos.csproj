@@ -65,7 +65,7 @@
     <Compile Include="Contrato\IDaoCambioPeticionario.cs" />
     <Compile Include="Contrato\IDaoCambioDeDomicilio.cs" />
     <Compile Include="Contrato\IDaoLicencia.cs" />
-    <Compile Include="Contrato\IDaoCambioNombre.cs" />
+    <Compile Include="Contrato\IDaoCambioDeNombre.cs" />
     <Compile Include="Contrato\IDaoCesion.cs" />
     <Compile Include="Contrato\IDaoFusion.cs" />
     <Compile Include="Contrato\IDaoStatusWeb.cs" />
@@ -128,7 +128,7 @@
     <Compile Include="Dao\NHibernate\DaoCambioPeticionarioNHibernate.cs" />
     <Compile Include="Dao\NHibernate\DaoCambioDeDomicilioNHibernate.cs" />
     <Compile Include="Dao\NHibernate\DaoLicenciaNHibernate.cs" />
-    <Compile Include="Dao\NHibernate\DaoCambioNombreNHibernate.cs" />
+    <Compile Include="Dao\NHibernate\DaoCambioDeNombreNHibernate.cs" />
     <Compile Include="Dao\NHibernate\DaoCesionNHibernate.cs" />
     <Compile Include="Dao\NHibernate\DaoFusionNHibernate.cs" />
     <Compile Include="Dao\NHibernate\DaoStatusWebNHibernate.cs" />
@@ -496,7 +496,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Mapeado\CambioNombre.hbm.xml">
+    <EmbeddedResource Include="Mapeado\CambioDeNombre.hbm.xml">
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>

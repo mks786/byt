@@ -60,9 +60,53 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
                     logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-                ComandoBase<bool> comando = FabricaComandosFusion.ObtenerComandoInsertarOModificar(fusion);
-                comando.Ejecutar();
-                exitoso = comando.Receptor.ObjetoAlmacenado;
+                if (fusion.Id == 0)
+                {
+                    ComandoBase<bool> comandoFusionContador = null;
+                    ComandoBase<bool> comandoOperacionContador = null;
+
+                    ComandoBase<Contador> comandoContadorFusionProximoValor = FabricaComandosContador.ObtenerComandoConsultarPorId("MYP_MFUSIONES");
+                    comandoContadorFusionProximoValor.Ejecutar();
+                    Contador contadorFusion = comandoContadorFusionProximoValor.Receptor.ObjetoAlmacenado;
+
+                    comandoFusionContador = FabricaComandosContador.ObtenerComandoInsertarOModificar(contadorFusion);
+                    fusion.Id = contadorFusion.ProximoValor++;
+
+                    Operacion operacion = new Operacion();
+
+                    ComandoBase<Contador> comandoContadorOperacionesProximoValor = FabricaComandosContador.ObtenerComandoConsultarPorId("MYP_OPERACIONES");
+                    comandoContadorOperacionesProximoValor.Ejecutar();
+
+                    Contador contadorOperacion = comandoContadorOperacionesProximoValor.Receptor.ObjetoAlmacenado;
+
+                    comandoOperacionContador = FabricaComandosContador.ObtenerComandoInsertarOModificar(contadorOperacion);
+                    operacion.Id = contadorOperacion.ProximoValor++;
+                    operacion.Fecha = System.DateTime.Now;
+                    operacion.Aplicada = 'M';
+                    operacion.CodigoAplicada = fusion.Marca.Id;
+                    operacion.Interno = fusion.Id;
+                    operacion.Servicio = new Servicio("FU");
+
+                    ComandoBase<bool> comandoOperacion = FabricaComandosOperacion.ObtenerComandoInsertarOModificar(operacion);
+
+                    ComandoBase<bool> comando = FabricaComandosFusion.ObtenerComandoInsertarOModificar(fusion);
+                    comando.Ejecutar();
+                    comandoOperacion.Ejecutar();
+
+                    exitoso = comando.Receptor.ObjetoAlmacenado;
+
+                    if (exitoso)
+                    {
+                        comandoFusionContador.Ejecutar();
+                        comandoOperacionContador.Ejecutar();
+                    }
+                }
+                else
+                {
+                    ComandoBase<bool> comando = FabricaComandosFusion.ObtenerComandoInsertarOModificar(fusion);
+                    comando.Ejecutar();
+                    exitoso = comando.Receptor.ObjetoAlmacenado;
+                }
 
                 #region trace
                 if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))

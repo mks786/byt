@@ -1,30 +1,30 @@
 ﻿using System;
 using System.Collections.Generic;
 using Trascend.Bolet.Comandos.Comandos;
-using Trascend.Bolet.Comandos.Comandos.ComandosCambioNombre;
+using Trascend.Bolet.Comandos.Comandos.ComandosCambioDeNombre;
 using Trascend.Bolet.ObjetosComunes.Entidades;
 
 namespace Trascend.Bolet.Comandos.Fabrica
 {
-    public static class FabricaComandosCambioNombre
+    public static class FabricaComandosCambioDeNombre
     {
         /// <summary>
         /// Método que devuelve el Comando para agregar un CambioNombre
         /// </summary>
         /// <param name="CambioNombre">CambioNombre a agregar en la base de datos</param>
         /// <returns>El Comando que permite agregar el CambioNombre en la base de datos</returns>
-        public static ComandoBase<bool> ObtenerComandoInsertarOModificar(CambioNombre cambioNombre)
+        public static ComandoBase<bool> ObtenerComandoInsertarOModificar(CambioDeNombre cambioDeNombre)
         {
-            return new ComandoInsertarOModificarCambioNombre(cambioNombre);
+            return new ComandoInsertarOModificarCambioDeNombre(cambioDeNombre);
         }
 
         /// <summary>
         /// Método que devuelve el Comando para consultar todos los CambioNombres
         /// </summary>
         /// <returns>El Comando para consultar todos los CambioNombres</returns>
-        public static ComandoBase<IList<CambioNombre>> ObtenerComandoConsultarTodos()
+        public static ComandoBase<IList<CambioDeNombre>> ObtenerComandoConsultarTodos()
         {
-            return new ComandoConsultarTodosCambioNombre();
+            return new ComandoConsultarTodosCambioDeNombre();
         }
 
         /// <summary>
@@ -32,16 +32,16 @@ namespace Trascend.Bolet.Comandos.Fabrica
         /// </summary>
         /// <param name="agente">CambioNombre que se va a eliminar</param>
         /// <returns>Comando para eliminar</returns>
-        public static ComandoBase<bool> ObtenerComandoEliminarCambioNombre(CambioNombre cambioNombre)
+        public static ComandoBase<bool> ObtenerComandoEliminarCambioNombre(CambioDeNombre cambioDeNombre)
         {
-            return new ComandoEliminarCambioNombre(cambioNombre);
+            return new ComandoEliminarCambioDeNombre(cambioDeNombre);
         }
 
         /// <summary>
         /// Método que devuelve el Comando para consultar un CambioNombre por su ID
         /// </summary>
         /// <returns></returns>
-        public static ComandoBase<CambioNombre> ObtenerComandoConsultarPorID(CambioNombre cambioNombre)
+        public static ComandoBase<CambioDeNombre> ObtenerComandoConsultarPorID(CambioDeNombre cambioDeNombre)
         {
             throw new NotImplementedException();
         }
@@ -51,9 +51,9 @@ namespace Trascend.Bolet.Comandos.Fabrica
         /// </summary>
         /// <param name="cambioNombre">CambioNombre a verificar</param>
         /// <returns>True: si se realizo el comando con exito; False: en caso contrario</returns>
-        public static ComandoBase<bool> ObtenerComandoVerificarExistenciaCambioNombre(CambioNombre cambioNombre)
+        public static ComandoBase<bool> ObtenerComandoVerificarExistenciaCambioNombre(CambioDeNombre cambioDeNombre)
         {
-            return new ComandoVerificarExistenciaCambioNombre(cambioNombre);
+            return new ComandoVerificarExistenciaCambioDeNombre(cambioDeNombre);
         }
 
         /// <summary>
@@ -61,9 +61,9 @@ namespace Trascend.Bolet.Comandos.Fabrica
         /// </summary>
         /// <param name="fusion">Fusion a consultar</param>
         /// <returns>Lista de fusiones que cumplan con el filtro</returns>
-        public static ComandoBase<IList<CambioNombre>> ObtenerComandoConsultarCambiosNombreFiltro(CambioNombre cambioNombre)
+        public static ComandoBase<IList<CambioDeNombre>> ObtenerComandoConsultarCambiosNombreFiltro(CambioDeNombre cambioDeNombre)
         {
-            return new ComandoConsultarCambiosNombreFiltro(cambioNombre);
+            return new ComandoConsultarCambiosDeNombreFiltro(cambioDeNombre);
         }
     }
 }

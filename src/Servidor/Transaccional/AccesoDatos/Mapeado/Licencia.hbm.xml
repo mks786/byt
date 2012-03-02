@@ -15,7 +15,7 @@
     <property name="Timbre" column="ITIMBRE" type="char"/>
     <property name="Contrato" column="ICONTRATO" type="char"/>
     <property name="Certificada" column="ICERTIFICADA" type="string"/>
-    <property name="CodigoExpediente" column="CEXPEDIENTE" type="string"/>
+    <property name="Expediente" column="CEXPEDIENTE" type="string"/>
     <property name="Comentario" column="XCOMENTARIO" type="string"/>
     <property name="Representante" column="XREPRESENTANTE" type="string"/>
     <property name="Observacion" column="XOBSERVACION" type="string"/>
@@ -24,6 +24,7 @@
     <property name="OtrosS2" column="XOTROS2" type="string"/>
     <property name="OtrosS3" column="XOTROS3" type="string"/>
     <property name="Ubicacion" column="XUBICACION" type="string"/>
+    <property name="Referencia" column="XREFERENCIA" type="string"/>
     <property name="FechaPublicacion" column="FPUBLICACION" type="Date"/>
     <property name="Fecha" column="FLICENCIA" type="Date"/>
 

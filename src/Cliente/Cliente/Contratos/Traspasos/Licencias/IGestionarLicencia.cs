@@ -101,6 +101,8 @@ namespace Trascend.Bolet.Cliente.Contratos.Traspasos.Licencias
 
         string TextoBotonModificar { get; set; }
 
+        string TextoBotonRegresar { get; set; }
+
         string NombreMarca { set; }
 
         string NombreLicenciante { set; }
@@ -150,5 +152,7 @@ namespace Trascend.Bolet.Cliente.Contratos.Traspasos.Licencias
         void GestionarBotonConsultarApoderados(string tipo, bool value);
 
         void GestionarBotonConsultarPoderes(string tipo, bool value);
+        
+        void ActivarControlesAlAgregar();
     }
 }

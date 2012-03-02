@@ -235,7 +235,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.CambiosPeticionario
 
         public void FocoPredeterminado()
         {
-            this._txtId.Focus();
+            this._txtIdCambioPeticionario.Focus();
         }
 
         public bool HabilitarCampos
@@ -246,7 +246,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.CambiosPeticionario
                 this._txtClaseInternacional.IsEnabled = value;
                 this._txtClaseNacional.IsEnabled = value;
                 this._txtExpediente.IsEnabled = value;
-                this._txtId.IsEnabled = value;
+                this._txtIdCambioPeticionario.IsEnabled = value;
                 this._txtIdMarcaFiltrar.IsEnabled = value;
                 this._txtNombreMarca.IsEnabled = value;
                 this._txtNombreMarcaFiltrar.IsEnabled = value;
@@ -256,7 +256,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.CambiosPeticionario
                 this._txtTipo.IsEnabled = value;
                 this._txtUbicacion.IsEnabled = value;                                
                 this._btnConsultarMarca.IsEnabled = value;
-                this._dpkFechaBoletin.IsEnabled = value;
+                this._dpkFechaCambioPeticionario.IsEnabled = value;
                 
                 this._txtNombreAnterior.IsEnabled = value;
                 this._txtPaisAnterior.IsEnabled = value;
@@ -291,15 +291,12 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.CambiosPeticionario
                 this._txtPaisActual.IsEnabled = value;
                 this._txtNacionalidadActual.IsEnabled = value;
 
-                this._txtObservacionCambioPeticionario.IsEnabled = value;
-                this._txtOtrosCambioPeticionario.IsEnabled = value;
+                this._txtObservacionCambioPeticionario.IsEnabled = value;                
                 this._txtReferenciaCambioPeticionario.IsEnabled = value;
                 this._txtAnexoCambioPeticionario.IsEnabled = value;
                 this._txtComentarioCambioPeticionario.IsEnabled = value;
-                this._txtObservacionCambioPeticionario.IsEnabled = value;
-                this._txtOtrosCambioPeticionario.IsEnabled = value;
-                this._txtReferenciaCambioPeticionario.IsEnabled = value;                                
-                this._txtBoletinCambioPeticionario.IsEnabled = value;
+                this._txtObservacionCambioPeticionario.IsEnabled = value;                
+                this._txtReferenciaCambioPeticionario.IsEnabled = value;                                                
                 this._txtAnexoCambioPeticionario.IsEnabled = value;                              
                 this._txtComentarioCambioPeticionario.IsEnabled = value;
                 this._chkAsientoEnLibro.IsEnabled = value;
@@ -382,6 +379,12 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.CambiosPeticionario
             set { this._txbModificar.Text = value; }
         }
 
+        public string TextoBotonRegresar
+        {
+            get { return this._txbRegresar.Text; }
+            set { this._txbRegresar.Text = value; }
+        }
+
         public GridViewColumnHeader CurSortCol
         {
             get { return _CurSortCol; }
@@ -411,6 +414,14 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.CambiosPeticionario
             this._presentador = new PresentadorGestionarCambioDePeticionario(this, cambioPeticionario);
         }
 
+        public void ActivarControlesAlAgregar()
+        {
+            this._btnEliminar.Visibility = System.Windows.Visibility.Collapsed;
+            this._lblIdCambioPeticionario.Visibility = System.Windows.Visibility.Collapsed;
+            this._txtIdCambioPeticionario.Visibility = System.Windows.Visibility.Collapsed;
+            this._dpkFechaCambioPeticionario.IsEnabled = false;
+        }
+
         private void _btnModificar_Click(object sender, RoutedEventArgs e)
         {
             this._presentador.Modificar();
@@ -418,13 +429,16 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.CambiosPeticionario
 
         private void _btnRegresar_Click(object sender, RoutedEventArgs e)
         {
-            this._presentador.Regresar();
+            if (this.TextoBotonRegresar == Recursos.Etiquetas.btnRegresar)
+                this._presentador.Regresar();
+            else if (this.TextoBotonRegresar == Recursos.Etiquetas.btnCancelar)
+                this._presentador.Cancelar();
         }
 
         private void _btnEliminar_Click(object sender, RoutedEventArgs e)
         {
-            if (MessageBoxResult.Yes == MessageBox.Show(Recursos.MensajesConElUsuario.ConfirmacionEliminarPais,
-                "Eliminar Pais", MessageBoxButton.YesNo, MessageBoxImage.Question))
+            if (MessageBoxResult.Yes == MessageBox.Show(Recursos.MensajesConElUsuario.ConfirmacionEliminarCambioPeticionario,
+               "Eliminar Cambio peticionario", MessageBoxButton.YesNo, MessageBoxImage.Question))
             {
                 this._presentador.Eliminar();
             }
