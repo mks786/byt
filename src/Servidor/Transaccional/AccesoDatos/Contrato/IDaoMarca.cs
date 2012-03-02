@@ -9,6 +9,5 @@ namespace Trascend.Bolet.AccesoDatos.Contrato
 
         Marca ObtenerMarcaConTodo(Marca marca);
 
-        string EjecutarProcedimientoP1(Marca marca);
     }
 }

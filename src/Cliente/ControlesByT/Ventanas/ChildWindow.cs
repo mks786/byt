@@ -12,9 +12,11 @@ namespace Trascend.Bolet.ControlesByT.Ventanas
     public partial class ChildWindow : Form
     {
         ByTTextBox _textBox;
+
         public ChildWindow(ByTTextBox descripcion)
         {
             InitializeComponent();
+
             this._textBox = descripcion;
             this._detalle.Text = this._textBox.Text;
             this._detalle.AcceptsReturn = true;

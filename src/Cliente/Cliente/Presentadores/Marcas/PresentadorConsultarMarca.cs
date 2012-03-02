@@ -16,6 +16,8 @@ using Trascend.Bolet.Cliente.Ventanas.Marcas;
 using Trascend.Bolet.ObjetosComunes.ContratosServicios;
 using Trascend.Bolet.ObjetosComunes.Entidades;
 using Trascend.Bolet.Cliente.Ventanas.Auditorias;
+using Trascend.Bolet.ControlesByT.Ventanas;
+using System.Text;
 
 namespace Trascend.Bolet.Cliente.Presentadores.Marcas
 {
@@ -44,6 +46,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
         private IOperacionServicios _operacionServicios;
         private IBusquedaServicios _busquedaServicios;
         private IStatusWebServicios _statusWebServicios;
+        private IPlanillaServicios _planillaServicios;
 
         private IList<Asociado> _asociados;
         private IList<Interesado> _interesados;
@@ -109,6 +112,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["BusquedaServicios"]);
                 this._statusWebServicios = (IStatusWebServicios)Activator.GetObject(typeof(IStatusWebServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["StatusWebServicios"]);
+                this._planillaServicios = (IPlanillaServicios)Activator.GetObject(typeof(IPlanillaServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["PlanillaServicios"]);
 
             }
             catch (Exception ex)
@@ -1048,7 +1053,17 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 {
                     if (validarMarcaAntesDeImprimirFM02())
                     {
-                        string retorno = this._marcaServicios.ImprimirFM02((Marca)this._ventana.Marca);
+                        Planilla planilla = this._planillaServicios.ImprimirFM02((Marca)this._ventana.Marca, UsuarioLogeado.Hash,1);
+                        if (planilla != null)
+                        {
+                            Impresion _ventana = new Impresion("FM02", planilla.Folio.Replace("\n",Environment.NewLine));
+                            _ventana.ShowDialog();
+                            //Llamado al archivo .bat 
+                            //this.EjecutarArchivoBAT("print");
+
+
+                            planilla = this._planillaServicios.ImprimirFM02((Marca)this._ventana.Marca, UsuarioLogeado.Hash, 0);
+                        }
                     }
                 }
             }

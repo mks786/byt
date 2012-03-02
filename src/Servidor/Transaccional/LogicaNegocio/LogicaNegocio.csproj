@@ -101,6 +101,7 @@
     <Compile Include="Controladores\ControladorCambioDeNombre.cs" />
     <Compile Include="Controladores\ControladorLicencia.cs" />
     <Compile Include="Controladores\ControladorMarcaTercero.cs" />
+    <Compile Include="Controladores\ControladorPlanilla.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

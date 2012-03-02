@@ -11,7 +11,5 @@ namespace Trascend.Bolet.ObjetosComunes.ContratosServicios
         IList<Auditoria> AuditoriaPorFkyTabla(Auditoria auditoria);
 
         Marca ConsultarMarcaConTodo(Marca marca);
-
-        string ImprimirFM02(Marca marca);
     }
 }

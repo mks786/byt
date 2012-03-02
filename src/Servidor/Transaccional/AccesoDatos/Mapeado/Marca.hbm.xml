@@ -96,7 +96,7 @@
   </class>
 
 
-  <sql-query name="ProcedimientoP1">
+  <!--<sql-query name="ProcedimientoP1">
 
     <query-param name="usr" type="string" />
     <query-param name="way" type="int" />
@@ -104,7 +104,7 @@
 
     begin PCK_MYP_MARCAS.P1(:usr, :way, :cod); end;
 
-  </sql-query>
+  </sql-query>-->
 
 
   <!--<sql-query name="P1" >

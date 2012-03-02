@@ -55,10 +55,5 @@ namespace Trascend.Bolet.Comandos.Fabrica
         {
             return new ComandoConsultarMarcaConTodo(marca);
         }
-
-        public static ComandoBase<string> ObtenerComandoEjecutarProcedimientoP1(Marca marca)
-        {
-            return new ComandoEjecutarProcedimientoP1(marca);
-        }
     }
 }

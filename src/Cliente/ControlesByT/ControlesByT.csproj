@@ -60,6 +60,12 @@
     <Compile Include="Ventanas\ChildWindow.Designer.cs">
       <DependentUpon>ChildWindow.cs</DependentUpon>
     </Compile>
+    <Compile Include="Ventanas\Impresion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Ventanas\Impresion.Designer.cs">
+      <DependentUpon>Impresion.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -69,8 +75,10 @@
     <EmbeddedResource Include="Ventanas\ChildWindow.resx">
       <DependentUpon>ChildWindow.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Ventanas\Impresion.resx">
+      <DependentUpon>Impresion.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

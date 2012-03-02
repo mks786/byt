@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+                   assembly="Trascend.Bolet.ObjetosComunes"
+                   namespace="Trascend.Bolet.ObjetosComunes.Entidades">
+
+  <class name="Planilla" table="PLANILLAS">
+
+    <id name="Id" column="CODIGO" type="int"/>
+    <property name="Folio" column="FOLIO" type="string"/>
+
+  </class>
+
+
+  <sql-query name="ProcedimientoP1">
+
+    <query-param name="usr" type="string" />
+    <query-param name="way" type="int" />
+    <query-param name="cod" type="int" />
+
+    begin PCK_MYP_MARCAS.P1(:usr, :way, :cod); end;
+
+  </sql-query>
+
+
+  <!--<sql-query name="ProcedimientoPID">
+
+    <query-param name="s" type="string" />
+
+    <return-scalar column="p" type="int"/>
+
+    begin PCK_GENERAL.PID(:s); end;
+
+  </sql-query>-->
+
+  <sql-query name="ProcedimientoPID">
+    <return-scalar column="p" type="int"/>
+    <query-param name="s" type="string" />
+    {  begin ? :=Pck_General.PID(:s); end; }
+
+  </sql-query>
+
+  <!--<sql-query name="ProcedimientoPID">
+    <query-param name="s" type="string"/>
+    <return-scalar column="p" type="decimal"/>
+    begin Pck_General.PID(:s); end;
+  </sql-query>-->
+
+  <!--<sql-query name="ProcedimientoPID">
+    <query-param name="s" type="string"/>
+    begin Pck_General.PID(:s); end;
+  </sql-query>-->
+  
+</hibernate-mapping>
+
+
+

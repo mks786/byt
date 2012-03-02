@@ -580,5 +580,14 @@ namespace Trascend.Bolet.AccesoDatos.Fabrica
         {
             return new DaoMarcaTerceroNHibernate();
         }
+
+        /// <summary>
+        /// Método que devuelve el DaoPlanilla
+        /// </summary>
+        /// <returns>IDaoPlanilla</returns>
+        public override IDaoPlanilla ObtenerDaoPlanilla()
+        {
+            return new DaoPlanillaNHibernate();
+        }
     }
 }

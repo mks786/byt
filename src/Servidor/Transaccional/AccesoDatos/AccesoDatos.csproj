@@ -61,6 +61,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Contrato\IDaoPlanilla.cs" />
     <Compile Include="Contrato\IDaoMarcaTercero.cs" />
     <Compile Include="Contrato\IDaoCambioPeticionario.cs" />
     <Compile Include="Contrato\IDaoCambioDeDomicilio.cs" />
@@ -124,6 +125,7 @@
     <Compile Include="Contrato\IDaoBase.cs" />
     <Compile Include="Contrato\IDaoUsuario.cs" />
     <Compile Include="Contrato\IFabricaDaoBase.cs" />
+    <Compile Include="Dao\NHibernate\DaoPlanillaNHibernate.cs" />
     <Compile Include="Dao\NHibernate\DaoMarcaTerceroNHibernate.cs" />
     <Compile Include="Dao\NHibernate\DaoCambioPeticionarioNHibernate.cs" />
     <Compile Include="Dao\NHibernate\DaoCambioDeDomicilioNHibernate.cs" />
@@ -515,7 +517,11 @@
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Mapeado\Planilla.hbm.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

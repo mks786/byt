@@ -391,5 +391,11 @@ namespace Trascend.Bolet.AccesoDatos.Fabrica
         /// <returns>IDaoMarcaTercero</returns>
         public abstract IDaoMarcaTercero ObtenerDaoMarcaTercero();
 
+        /// <summary>
+        /// Método que devuelve el DaoPlanilla del manejador que se esté utilizando
+        /// </summary>
+        /// <returns>IDaoPlanilla</returns>
+        public abstract IDaoPlanilla ObtenerDaoPlanilla();
+
     }
 }

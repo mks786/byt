@@ -1137,5 +1137,29 @@ namespace Trascend.Bolet.Cliente.Presentadores
 
             return retorno;
         }
+
+
+        /// <summary>
+        /// Metodo que recibe el nombre del archivo .bat a ejecutar
+        /// </summary>
+        /// <param name="nombreArchivo">nombre del archivo a ejecutar</param>
+        public void EjecutarArchivoBAT(string nombreArchivo)
+        {
+            System.Diagnostics.Process proc = new System.Diagnostics.Process(); // Declare New Process
+            proc.StartInfo.FileName = nombreArchivo;
+            proc.StartInfo.RedirectStandardError = true;
+            proc.StartInfo.RedirectStandardOutput = true;
+            proc.StartInfo.UseShellExecute = false;
+
+            //proc.Start();
+
+            proc.WaitForExit(2000);
+
+            string errorMessage = proc.StandardError.ReadToEnd();
+            proc.WaitForExit();
+
+            string outputMessage = proc.StandardOutput.ReadToEnd();
+            proc.WaitForExit();
+        }
     }
 }
