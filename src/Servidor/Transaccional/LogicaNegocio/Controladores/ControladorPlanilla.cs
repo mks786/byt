@@ -50,6 +50,7 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
         {
             Planilla retorno = new Planilla();
             bool exitoso;
+            
             try
             {
                 #region trace
@@ -63,6 +64,8 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
                 if (way == 1)
                 {
                     ComandoBase<bool> comandoEliminarPlanilla = FabricaComandosPlanilla.ObtenerComandoEliminarPlanilla(new Planilla(id));
+                    comandoEliminarPlanilla.Ejecutar();
+
                 }
 
                 ComandoBase<bool> comando = FabricaComandosPlanilla.ObtenerComandoEjecutarProcedimientoP1(marca, usuario, way);

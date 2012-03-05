@@ -1145,21 +1145,30 @@ namespace Trascend.Bolet.Cliente.Presentadores
         /// <param name="nombreArchivo">nombre del archivo a ejecutar</param>
         public void EjecutarArchivoBAT(string nombreArchivo)
         {
-            System.Diagnostics.Process proc = new System.Diagnostics.Process(); // Declare New Process
-            proc.StartInfo.FileName = nombreArchivo;
-            proc.StartInfo.RedirectStandardError = true;
-            proc.StartInfo.RedirectStandardOutput = true;
-            proc.StartInfo.UseShellExecute = false;
 
-            //proc.Start();
+            try
+            {
+                System.Diagnostics.Process proc = new System.Diagnostics.Process(); // Declare New Process
+                proc.StartInfo.FileName = "C:\\" + nombreArchivo + ".bat";
+                proc.StartInfo.RedirectStandardError = true;
+                proc.StartInfo.RedirectStandardOutput = true;
+                proc.StartInfo.UseShellExecute = false;
+                proc.StartInfo.Arguments = "C:\\print.txt";
 
-            proc.WaitForExit(2000);
+                proc.Start();
 
-            string errorMessage = proc.StandardError.ReadToEnd();
-            proc.WaitForExit();
+                proc.WaitForExit(2000);
 
-            string outputMessage = proc.StandardOutput.ReadToEnd();
-            proc.WaitForExit();
+                string errorMessage = proc.StandardError.ReadToEnd();
+                proc.WaitForExit();
+
+                string outputMessage = proc.StandardOutput.ReadToEnd();
+                proc.WaitForExit();
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException();
+            }
         }
     }
 }

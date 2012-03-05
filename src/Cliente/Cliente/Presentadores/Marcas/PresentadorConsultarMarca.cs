@@ -146,7 +146,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleConsultarMarca, "");
 
                 Marca marca = (Marca)this._ventana.Marca;
-                    
+
                 Anaqua anaqua = new Anaqua();
                 anaqua.IdMarca = marca.Id;
                 InfoAdicional infoAdicional = new InfoAdicional("M." + marca.Id);
@@ -293,8 +293,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             }
         }
 
-        public void IrConsultarMarcas() 
-        { 
+        public void IrConsultarMarcas()
+        {
             this.Navegar(new ConsultarMarcas());
         }
 
@@ -343,11 +343,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
 
             if (null != this._ventana.TipoMarcaDatos)
                 marca.Tipo = !((ListaDatosDominio)this._ventana.TipoMarcaDatos).Id.Equals("NGN") ? ((ListaDatosDominio)this._ventana.TipoMarcaDatos).Id : null;
-            
-            if(string.IsNullOrEmpty(this._ventana.IdInternacional))
+
+            if (string.IsNullOrEmpty(this._ventana.IdInternacional))
                 marca.Internacional = null;
 
-            if(string.IsNullOrEmpty(this._ventana.IdNacional))
+            if (string.IsNullOrEmpty(this._ventana.IdNacional))
                 marca.Nacional = null;
 
             return marca;
@@ -482,7 +482,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
         {
             this.Navegar(new GestionarAnaqua(CargarMarcaDeLaPantalla()));
         }
-        
+
         public void IrBusquedas(string tab)
         {
             this.Navegar(new ListaBusquedas(CargarMarcaDeLaPantalla(), tab));
@@ -575,7 +575,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
                 logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
-        
+
         }
 
         /// <summary>
@@ -1053,13 +1053,14 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 {
                     if (validarMarcaAntesDeImprimirFM02())
                     {
-                        Planilla planilla = this._planillaServicios.ImprimirFM02((Marca)this._ventana.Marca, UsuarioLogeado.Hash,1);
+                        Planilla planilla = this._planillaServicios.ImprimirFM02((Marca)this._ventana.Marca, UsuarioLogeado.Hash, 1);
                         if (planilla != null)
                         {
-                            Impresion _ventana = new Impresion("FM02", planilla.Folio.Replace("\n",Environment.NewLine));
+                            Impresion _ventana = new Impresion("FM02", planilla.Folio.Replace("\n",  Environment.NewLine));
                             _ventana.ShowDialog();
                             //Llamado al archivo .bat 
-                            //this.EjecutarArchivoBAT("print");
+                            if (_ventana.ClickImprimir)
+                                this.EjecutarArchivoBAT("print");
 
 
                             planilla = this._planillaServicios.ImprimirFM02((Marca)this._ventana.Marca, UsuarioLogeado.Hash, 0);

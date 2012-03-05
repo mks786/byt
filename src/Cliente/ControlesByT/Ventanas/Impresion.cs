@@ -11,6 +11,13 @@ namespace Trascend.Bolet.ControlesByT.Ventanas
 {
     public partial class Impresion : Form
     {
+        private bool _clickImprimir = false;
+
+        public bool ClickImprimir
+        {
+            get { return _clickImprimir; }
+            set { _clickImprimir = value; }
+        }
 
         public Impresion(string titulo, string folio)
         {
@@ -28,6 +35,7 @@ namespace Trascend.Bolet.ControlesByT.Ventanas
         private void _imprimir_Click(object sender, EventArgs e)
         {
             System.IO.File.WriteAllText(@"C:\print.txt", this._folio.Text);
+            ClickImprimir = true;
 
             this.Close();
 

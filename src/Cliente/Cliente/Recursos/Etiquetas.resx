@@ -305,7 +305,7 @@
     <value>Fecha de impresion</value>
   </data>
   <data name="lsvId" xml:space="preserve">
-    <value>Id</value>
+    <value>Código</value>
   </data>
   <data name="lsvIdBoletin" xml:space="preserve">
     <value>Id del Boletin</value>

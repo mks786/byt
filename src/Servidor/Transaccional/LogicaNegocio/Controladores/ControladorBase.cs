@@ -26,7 +26,10 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
             foreach (Usuario usu in _usuarios)
             {
                 if (usu.Id == usuario.Id)
+                {
                     agregar = false;
+                    usuario.Hash = usu.Hash;
+                }
             }
 
             if (agregar)
