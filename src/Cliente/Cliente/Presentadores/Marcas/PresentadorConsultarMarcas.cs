@@ -76,17 +76,14 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
 
                 ActualizarTitulo();
 
-                //this._marcas = this._marcaServicios.ConsultarTodos();
-                //this._ventana.Resultados = this._marcas;
-
-                IList<Asociado> asociados = this._asociadoServicios.ConsultarTodos();
+                IList<Asociado> asociados = new List<Asociado>();
                 Asociado primerAsociado = new Asociado();
                 primerAsociado.Id = int.MinValue;
                 asociados.Insert(0, primerAsociado);
                 this._ventana.Asociados = asociados;
                 this._asociados = asociados;
 
-                IList<Interesado> interesados = this._interesadoServicios.ConsultarTodos();
+                IList<Interesado> interesados = new List<Interesado>();
                 Interesado primerInteresado = new Interesado();
                 primerInteresado.Id = int.MinValue;
                 interesados.Insert(0, primerInteresado);
@@ -156,13 +153,13 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 if ((null != this._ventana.Asociado) && (((Asociado)this._ventana.Asociado).Id != int.MinValue))
                 {
                     MarcaAuxiliar.Asociado = (Asociado)this._ventana.Asociado;
-                    filtroValido++;
+                    filtroValido = 2;
                 }
 
                 if ((null != this._ventana.Interesado) && (((Interesado)this._ventana.Interesado).Id != int.MinValue))
                 {
                     MarcaAuxiliar.Interesado = (Interesado)this._ventana.Interesado;
-                    filtroValido++;
+                    filtroValido = 2;
                 }
 
 
@@ -221,10 +218,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                     this._ventana.Resultados = marcasDesinfladas;
                     this._ventana.TotalHits = marcasDesinfladas.Count.ToString();
                     if (marcasDesinfladas.Count == 0)
-                        this._ventana.Mensaje(Recursos.MensajesConElUsuario.NoHayResultados,1);
+                        this._ventana.Mensaje(Recursos.MensajesConElUsuario.NoHayResultados, 1);
                 }
                 else
-                    this._ventana.Mensaje(Recursos.MensajesConElUsuario.ErrorFiltroIncompleto,0);
+                    this._ventana.Mensaje(Recursos.MensajesConElUsuario.ErrorFiltroIncompleto, 0);
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -257,18 +254,18 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 Marca marcaParaNavegar = null;
                 bool encontrada = false;
                 int cont = 0;
-                while(!encontrada)
+                while (!encontrada)
                 {
                     Marca marca = this._marcas[cont];
-                    if(marca.Id == ((Marca)this._ventana.MarcaSeleccionada).Id)
+                    if (marca.Id == ((Marca)this._ventana.MarcaSeleccionada).Id)
                     {
                         marcaParaNavegar = marca;
                         encontrada = true;
                     }
                     cont++;
                 }
-                    
-                    
+
+
                 this.Navegar(new ConsultarMarca(marcaParaNavegar));
             }
 
@@ -312,54 +309,187 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             #endregion
         }
 
-        public void BuscarAsociado()
-        {
-            IEnumerable<Asociado> asociadosFiltrados = (IList<Asociado>)this._asociados;
+        //public void BuscarAsociado()
+        //{
+        //    IEnumerable<Asociado> asociadosFiltrados = (IList<Asociado>)this._asociados;
 
-            if (!string.IsNullOrEmpty(this._ventana.IdAsociadoFiltrar))
-            {
-                asociadosFiltrados = from p in asociadosFiltrados
-                                     where p.Id == int.Parse(this._ventana.IdAsociadoFiltrar)
-                                     select p;
-            }
+        //    if (!string.IsNullOrEmpty(this._ventana.IdAsociadoFiltrar))
+        //    {
+        //        asociadosFiltrados = from p in asociadosFiltrados
+        //                             where p.Id == int.Parse(this._ventana.IdAsociadoFiltrar)
+        //                             select p;
+        //    }
 
-            if (!string.IsNullOrEmpty(this._ventana.NombreAsociadoFiltrar))
-            {
-                asociadosFiltrados = from p in asociadosFiltrados
-                                     where p.Nombre != null &&
-                                     p.Nombre.ToLower().Contains(this._ventana.NombreAsociadoFiltrar.ToLower())
-                                     select p;
-            }
+        //    if (!string.IsNullOrEmpty(this._ventana.NombreAsociadoFiltrar))
+        //    {
+        //        asociadosFiltrados = from p in asociadosFiltrados
+        //                             where p.Nombre != null &&
+        //                             p.Nombre.ToLower().Contains(this._ventana.NombreAsociadoFiltrar.ToLower())
+        //                             select p;
+        //    }
 
-            if (asociadosFiltrados.ToList<Asociado>().Count != 0)
-                this._ventana.Asociados = asociadosFiltrados.ToList<Asociado>();
-            else
-                this._ventana.Asociados = this._asociados;
-        }
+        //    if (asociadosFiltrados.ToList<Asociado>().Count != 0)
+        //        this._ventana.Asociados = asociadosFiltrados.ToList<Asociado>();
+        //    else
+        //        this._ventana.Asociados = this._asociados;
+        //}
 
+        //public void BuscarInteresado()
+        //{
+        //    IEnumerable<Interesado> interesadosFiltrados = (IList<Interesado>)this._interesados;
+
+        //    if (!string.IsNullOrEmpty(this._ventana.IdInteresadoFiltrar))
+        //    {
+        //        interesadosFiltrados = from p in interesadosFiltrados
+        //                             where p.Id == int.Parse(this._ventana.IdInteresadoFiltrar)
+        //                             select p;
+        //    }
+
+        //    if (!string.IsNullOrEmpty(this._ventana.NombreInteresadoFiltrar))
+        //    {
+        //        interesadosFiltrados = from p in interesadosFiltrados
+        //                             where p.Nombre != null &&
+        //                             p.Nombre.ToLower().Contains(this._ventana.NombreInteresadoFiltrar.ToLower())
+        //                             select p;
+        //    }
+
+        //    if (interesadosFiltrados.ToList<Interesado>().Count != 0)
+        //        this._ventana.Interesados = interesadosFiltrados.ToList<Interesado>();
+        //    else
+        //        this._ventana.Interesados = this._interesados;
+        //}
+
+        /// <summary>
+        /// Método que se encarga de buscar el interesado definido en el filtro
+        /// </summary>
         public void BuscarInteresado()
         {
-            IEnumerable<Interesado> interesadosFiltrados = (IList<Interesado>)this._interesados;
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
 
-            if (!string.IsNullOrEmpty(this._ventana.IdInteresadoFiltrar))
+            Interesado interesadoABuscar = new Interesado();
+
+            interesadoABuscar.Id = !this._ventana.IdInteresadoFiltrar.Equals("") ?
+                                   int.Parse(this._ventana.IdInteresadoFiltrar) : 0;
+
+            interesadoABuscar.Nombre = !this._ventana.NombreInteresadoFiltrar.Equals("") ?
+                                       this._ventana.NombreInteresadoFiltrar.ToUpper() : "";
+
+            if ((interesadoABuscar.Id != 0) || !(interesadoABuscar.Nombre.Equals("")))
             {
-                interesadosFiltrados = from p in interesadosFiltrados
-                                     where p.Id == int.Parse(this._ventana.IdInteresadoFiltrar)
-                                     select p;
+                IList<Interesado> interesados = this._interesadoServicios.ObtenerInteresadosFiltro(interesadoABuscar);
+                interesados.Insert(0,new Interesado(int.MinValue));
+                this._ventana.Interesados = interesados;
             }
-
-            if (!string.IsNullOrEmpty(this._ventana.NombreInteresadoFiltrar))
-            {
-                interesadosFiltrados = from p in interesadosFiltrados
-                                     where p.Nombre != null &&
-                                     p.Nombre.ToLower().Contains(this._ventana.NombreInteresadoFiltrar.ToLower())
-                                     select p;
-            }
-
-            if (interesadosFiltrados.ToList<Interesado>().Count != 0)
-                this._ventana.Interesados = interesadosFiltrados.ToList<Interesado>();
             else
+            {
                 this._ventana.Interesados = this._interesados;
+                this._ventana.Mensaje(Recursos.MensajesConElUsuario.NoHayResultados, 1);
+            }
+
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+        }
+
+        /// <summary>
+        /// Método que se encarga de buscar el asociado definido en el filtro
+        /// </summary>
+        public void BuscarAsociado()
+        {
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+            Mouse.OverrideCursor = Cursors.Wait;
+
+            Asociado asociadoABuscar = new Asociado();
+
+            asociadoABuscar.Id = !this._ventana.IdAsociadoFiltrar.Equals("") ?
+                                 int.Parse(this._ventana.IdAsociadoFiltrar) : 0;
+
+            asociadoABuscar.Nombre = !this._ventana.NombreAsociadoFiltrar.Equals("") ?
+                                     this._ventana.NombreAsociadoFiltrar.ToUpper() : "";
+
+            if ((asociadoABuscar.Id != 0) || !(asociadoABuscar.Nombre.Equals("")))
+            {
+                IList<Asociado> asociados = this._asociadoServicios.ObtenerAsociadosFiltro(asociadoABuscar);
+                asociados.Insert(0,new Asociado(int.MinValue));
+                this._ventana.Asociados = asociados;
+                    
+            }
+            else
+            {
+                this._ventana.Mensaje(Recursos.MensajesConElUsuario.NoHayResultados, 1);
+                this._ventana.Asociados = this._asociados;
+            }
+
+            Mouse.OverrideCursor = null;
+
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+        }
+
+        /// <summary>
+        /// Metodo que cambia el texto del interesado en la interfaz
+        /// </summary>
+        /// <returns>true en caso de que el interesado haya sido valido, false en caso contrario</returns>
+        public bool CambiarInteresado()
+        {
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+            bool retorno = false;
+
+            if (this._ventana.Interesado != null)
+            {
+                this._ventana.InteresadoFiltro = ((Interesado)this._ventana.Interesado).Nombre;
+                retorno = true;
+            }
+
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+            return retorno;
+
+        }
+
+        /// <summary>
+        /// Metodo que cambia el texto del Asociado en la interfaz
+        /// </summary>
+        /// <returns>true en caso de que el Asociado haya sido valido, false en caso contrario</returns>
+        public bool CambiarAsociado()
+        {
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+            bool retorno = false;
+
+            if (this._ventana.Asociado != null)
+            {
+                this._ventana.AsociadoFiltro = ((Asociado)this._ventana.Asociado).Nombre;
+                retorno =  true;
+            }
+
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+            return retorno;
         }
     }
 }

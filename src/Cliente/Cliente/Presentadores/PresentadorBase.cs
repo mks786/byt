@@ -1143,17 +1143,17 @@ namespace Trascend.Bolet.Cliente.Presentadores
         /// Metodo que recibe el nombre del archivo .bat a ejecutar
         /// </summary>
         /// <param name="nombreArchivo">nombre del archivo a ejecutar</param>
-        public void EjecutarArchivoBAT(string nombreArchivo)
+        public void EjecutarArchivoBAT(string nombreArchivoBat, string nombreArchivoLectura)
         {
 
             try
             {
                 System.Diagnostics.Process proc = new System.Diagnostics.Process(); // Declare New Process
-                proc.StartInfo.FileName = "C:\\" + nombreArchivo + ".bat";
+                proc.StartInfo.FileName = nombreArchivoBat;
                 proc.StartInfo.RedirectStandardError = true;
                 proc.StartInfo.RedirectStandardOutput = true;
                 proc.StartInfo.UseShellExecute = false;
-                proc.StartInfo.Arguments = "C:\\print.txt";
+                proc.StartInfo.Arguments = nombreArchivoLectura;
 
                 proc.Start();
 

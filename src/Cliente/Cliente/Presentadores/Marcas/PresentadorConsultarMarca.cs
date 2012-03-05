@@ -1060,7 +1060,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                             _ventana.ShowDialog();
                             //Llamado al archivo .bat 
                             if (_ventana.ClickImprimir)
-                                this.EjecutarArchivoBAT("print");
+                                this.EjecutarArchivoBAT(ConfigurationManager.AppSettings["batPrint"], ConfigurationManager.AppSettings["txtPrint"]);
 
 
                             planilla = this._planillaServicios.ImprimirFM02((Marca)this._ventana.Marca, UsuarioLogeado.Hash, 0);

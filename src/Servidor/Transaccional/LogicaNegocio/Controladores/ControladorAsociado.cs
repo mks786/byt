@@ -209,6 +209,40 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
 
             return retorno;
         }
+
+
+        /// <summary>
+        /// Método que consulta un Interesado con uno o mas filtros
+        /// </summary>
+        /// <returns>Interesado Filtrado</returns>
+        public static IList<Asociado> ConsultarAsociadosFiltro(Asociado asociado)
+        {
+            IList<Asociado> retorno;
+
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                ComandoBase<IList<Asociado>> comando = FabricaComandosAsociado.ObtenerComandoConsultarAsociadosFiltro(asociado);
+                comando.Ejecutar();
+                retorno = comando.Receptor.ObjetoAlmacenado;
+
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Saliendo del Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (ApplicationException ex)
+            {
+                logger.Error(ex.Message);
+                throw ex;
+            }
+
+            return retorno;
+        }
     }
 }
 

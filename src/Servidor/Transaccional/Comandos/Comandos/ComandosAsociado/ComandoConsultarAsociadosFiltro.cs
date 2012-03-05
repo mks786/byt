@@ -8,19 +8,17 @@ using Trascend.Bolet.ObjetosComunes.Entidades;
 
 namespace Trascend.Bolet.Comandos.Comandos.ComandosAsociado
 {
-    class ComandoConsultarAsociadoConTodo : ComandoBase<Asociado>
+    class ComandoConsultarAsociadosFiltro : ComandoBase<IList<Asociado>>
     {
         private static Logger logger = LogManager.GetCurrentClassLogger();
-        private Asociado _asociado;
+        private Asociado _Asociado;
 
-        /// <summary>
-        /// Constructor predeterminado
-        /// </summary>
-        /// <param name="asociado">Asociado a consultar</param>
-        public ComandoConsultarAsociadoConTodo(Asociado asociado)
+
+        public ComandoConsultarAsociadosFiltro(Asociado Asociado)
         {
-            this._asociado = asociado;
+            this._Asociado = Asociado;
         }
+
         /// <summary>
         /// Método que ejecuta el comando
         /// </summary>
@@ -34,7 +32,7 @@ namespace Trascend.Bolet.Comandos.Comandos.ComandosAsociado
                 #endregion
 
                 IDaoAsociado dao = FabricaDaoBase.ObtenerFabricaDao().ObtenerDaoAsociado();
-                this.Receptor = new Receptor<Asociado>(dao.ObtenerAsociadoConTodo(this._asociado));
+                this.Receptor = new Receptor<IList<Asociado>>(dao.ObtenerAsociadosFiltro(this._Asociado));
 
                 #region trace
                 if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))

@@ -137,10 +137,34 @@ namespace Trascend.Bolet.Servicios.Implementacion
             return asociadoConTodo;
         }
 
-
         public bool VerificarExistencia(Asociado entidad)
         {
             throw new NotImplementedException();
+        }
+
+
+        /// <summary>
+        /// Servicio que consulta una serie de Interesados por uno o mas parametros
+        /// </summary>
+        /// <param name="asociado">Interesado que contiene los parametros de la consulta</param>
+        /// <returns>Lista de interesados filtrados</returns>
+        public IList<Asociado> ObtenerAsociadosFiltro(Asociado asociado)
+        {
+            #region trace
+            if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+            IList<Asociado> asociados;
+
+            asociados = ControladorAsociado.ConsultarAsociadosFiltro(asociado);
+
+            return asociados;
+
+            #region trace
+            if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                logger.Debug("Saliendo del Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
         }
     }
 }

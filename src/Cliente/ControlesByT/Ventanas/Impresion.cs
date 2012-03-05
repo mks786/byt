@@ -34,6 +34,7 @@ namespace Trascend.Bolet.ControlesByT.Ventanas
 
         private void _imprimir_Click(object sender, EventArgs e)
         {
+            //Genero el .txt utilizado para ejecutar el .bat
             System.IO.File.WriteAllText(@"C:\print.txt", this._folio.Text);
             ClickImprimir = true;
 

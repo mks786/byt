@@ -131,6 +131,16 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
                 MessageBox.Show(mensaje, "Advertencia", MessageBoxButton.OK, MessageBoxImage.Exclamation);
         }
 
+        public string AsociadoFiltro
+        {
+            set { this._txtAsociado.Text = value; }
+        }
+
+        public string InteresadoFiltro
+        {
+            set { this._txtInteresado.Text = value; }
+        }
+
         public string TotalHits
         {
             set { this._lblHits.Text = value; }
@@ -255,6 +265,83 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
         private void _btnTransferir_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void _txtAsociado_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            GestionarVisibilidadFiltroAsociado(true);
+            GestionarVisibilidadFiltroInteresado(false);
+        }
+
+        private void _txtInteresado_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            GestionarVisibilidadFiltroAsociado(false);
+            GestionarVisibilidadFiltroInteresado(true);
+        }
+
+        private void GestionarVisibilidadFiltroAsociado(bool visibilidad)
+        {
+            if (visibilidad)
+            {
+                this._txtAsociado.Visibility = Visibility.Collapsed;
+
+                this._txtIdAsociado.Visibility = Visibility.Visible;
+                this._txtNombreAsociado.Visibility = Visibility.Visible;
+                this._lblIdAsociado.Visibility = Visibility.Visible;
+                this._lblNombreAsociado.Visibility = Visibility.Visible;
+                this._lstAsociados.Visibility = Visibility.Visible;
+                this._btnConsultarAsociado.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                this._txtAsociado.Visibility = Visibility.Visible;
+
+                this._txtIdAsociado.Visibility = Visibility.Collapsed;
+                this._txtNombreAsociado.Visibility = Visibility.Collapsed;
+                this._lblIdAsociado.Visibility = Visibility.Collapsed;
+                this._lblNombreAsociado.Visibility = Visibility.Collapsed;
+                this._lstAsociados.Visibility = Visibility.Collapsed;
+                this._btnConsultarAsociado.Visibility = Visibility.Collapsed;
+            }
+        }
+
+        private void GestionarVisibilidadFiltroInteresado(bool visibilidad)
+        {
+            if (visibilidad)
+            {
+                this._txtInteresado.Visibility = Visibility.Collapsed;
+
+                this._txtIdInteresado.Visibility = Visibility.Visible;
+                this._txtNombreInteresado.Visibility = Visibility.Visible;
+                this._lblIdInteresado.Visibility = Visibility.Visible;
+                this._lblNombreInteresado.Visibility = Visibility.Visible;
+                this._lstInteresados.Visibility = Visibility.Visible;
+                this._btnConsultarInteresado.Visibility = Visibility.Visible;
+
+            }
+            else
+            {
+                this._txtInteresado.Visibility = Visibility.Visible;
+
+                this._txtIdInteresado.Visibility = Visibility.Collapsed;
+                this._txtNombreInteresado.Visibility = Visibility.Collapsed;
+                this._lblIdInteresado.Visibility = Visibility.Collapsed;
+                this._lblNombreInteresado.Visibility = Visibility.Collapsed;
+                this._lstInteresados.Visibility = Visibility.Collapsed;
+                this._btnConsultarInteresado.Visibility = Visibility.Collapsed;
+            }
+        }
+
+        private void _lstAsociados_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            if (this._presentador.CambiarAsociado())
+                GestionarVisibilidadFiltroAsociado(false);
+        }
+
+        private void _lstInteresados_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            if (this._presentador.CambiarInteresado())
+                GestionarVisibilidadFiltroInteresado(false);
         }
     }
 }

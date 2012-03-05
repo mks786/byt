@@ -387,4 +387,16 @@
     <value>marca.Id = {0}</value>
     <comment>Filtro por Marca</comment>
   </data>
+  <data name="CabeceraObtenerAsociado" xml:space="preserve">
+    <value>Select a from Asociado a where </value>
+    <comment>Cabecera del query para el filtro de asociados</comment>
+  </data>
+  <data name="FiltroObtenerAsociadoId" xml:space="preserve">
+    <value>a.Id = {0}</value>
+    <comment>Filtro por Id</comment>
+  </data>
+  <data name="FiltroObtenerAsociadoNombre" xml:space="preserve">
+    <value>upper(a.Nombre) like '%{0}%'</value>
+    <comment>Filtro por Nombre</comment>
+  </data>
 </root>

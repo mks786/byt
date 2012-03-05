@@ -19,7 +19,7 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
         /// </summary>
         /// <param name="asociado">usuario a autenticar</param>
         /// <returns>Usuario autenticado</returns>
-        public Asociado ObtenerAsocidoConTodo(Asociado asociado)
+        public Asociado ObtenerAsociadoConTodo(Asociado asociado)
         {
             Asociado retorno;
             try
@@ -48,6 +48,34 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
             }
 
             return retorno;
+        }
+
+
+        /// <summary>
+        /// Método que obtiene un asociado con uno o mas filtros
+        /// </summary>
+        /// <param name="asociado">filtros de asociado</param>
+        /// <returns>asociado filtrado</returns>
+        public IList<Asociado> ObtenerAsociadosFiltro(Asociado asociado)
+        {
+            IList<Asociado> asociados = null;
+            bool variosFiltros = false;
+            string filtro = "";
+            string cabecera = string.Format(Recursos.ConsultasHQL.CabeceraObtenerAsociado);
+            if ((null != asociado) && (asociado.Id != 0))
+            {
+                filtro = string.Format(Recursos.ConsultasHQL.FiltroObtenerAsociadoId, asociado.Id);
+                variosFiltros = true;
+            }
+            if (!string.IsNullOrEmpty(asociado.Nombre))
+            {
+                if (variosFiltros)
+                    filtro += " and ";
+                filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerAsociadoNombre, asociado.Nombre);
+            }
+            IQuery query = Session.CreateQuery(cabecera + filtro);
+            asociados = query.List<Asociado>();
+            return asociados;
         }
     }
 }

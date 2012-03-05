@@ -45,6 +45,11 @@ namespace Trascend.Bolet.Comandos.Fabrica
             return new ComandoConsultarAsociadoConTodo(asociado);
         }
 
-        
+
+
+        public static ComandoBase<IList<Asociado>> ObtenerComandoConsultarAsociadosFiltro(Asociado asociado)
+        {
+            return new ComandoConsultarAsociadosFiltro(asociado);
+        }
     }
 }

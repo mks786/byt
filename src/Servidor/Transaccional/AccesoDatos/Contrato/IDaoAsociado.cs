@@ -5,6 +5,9 @@ namespace Trascend.Bolet.AccesoDatos.Contrato
 {
     public interface IDaoAsociado : IDaoBase<Asociado, int>
     {
-        Asociado ObtenerAsocidoConTodo(Asociado usuario);
+        Asociado ObtenerAsociadoConTodo(Asociado usuario);
+
+        IList<Asociado> ObtenerAsociadosFiltro(Asociado asociado);
+
     }
 }

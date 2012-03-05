@@ -32,6 +32,7 @@ namespace Trascend.Bolet.Servicios.Implementacion
 
             return interesados;
         }
+
         public Interesado ConsultarPorId(Interesado entidad)
         {
             throw new NotImplementedException();

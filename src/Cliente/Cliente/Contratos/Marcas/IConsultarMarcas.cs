@@ -41,6 +41,10 @@ namespace Trascend.Bolet.Cliente.Contratos.Marcas
 
         void Mensaje(string mensaje, int opcion);
 
+        string AsociadoFiltro { set; }
+
+        string InteresadoFiltro { set; }
+
         string TotalHits { set; }
     }
 }
