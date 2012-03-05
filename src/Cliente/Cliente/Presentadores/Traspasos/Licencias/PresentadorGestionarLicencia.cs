@@ -820,6 +820,26 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Licencias
 
         }
 
+        private void LlenarListaAgente(Poder poder, string tipo)
+        {
+            Agente primerAgente = new Agente("");
+
+            if (tipo.Equals("Licenciante"))
+            {
+                this._agentesLicenciante = this._agenteServicios.ObtenerAgentesDeUnPoder(poder);
+                this._agentesLicenciante.Insert(0, primerAgente);
+                this._ventana.ApoderadosLicencianteFiltrados = this._agentesLicenciante;
+                this._ventana.ApoderadoLicencianteFiltrado = primerAgente;
+            }
+            else if (tipo.Equals("Licenciatario"))
+            {
+                this._agentesLicenciatario = this._agenteServicios.ObtenerAgentesDeUnPoder(poder);
+                this._agentesLicenciatario.Insert(0, primerAgente);
+                this._ventana.ApoderadosLicenciatarioFiltrados = this._agentesLicenciatario;
+                this._ventana.ApoderadoLicenciatarioFiltrado = primerAgente;
+            }
+        }
+
         public bool VerificarCambioInteresado(string tipo)
         {
             bool retorno = false;
@@ -1408,10 +1428,28 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Licencias
                     }
                     else
                     {
-                        this._poderesLicenciante = this._poderServicios.ConsultarPoderesPorInteresado(((Interesado)_ventana.LicencianteFiltrado));
-                        this._ventana.InteresadoLicenciante = this._interesadoServicios.ConsultarInteresadoConTodo((Interesado)this._ventana.LicencianteFiltrado);
-                        this._ventana.NombreLicenciante = ((Interesado)this._ventana.InteresadoLicenciante).Nombre;
-                        retorno = true;
+                        if (((Poder)this._ventana.PoderLicencianteFiltrado).Id == int.MinValue)
+                        {
+                            Poder primerPoder = new Poder(int.MinValue);
+
+                            this._poderesLicenciante = this._poderServicios.ConsultarPoderesPorInteresado(((Interesado)_ventana.LicencianteFiltrado));
+                            this._poderesLicenciante.Insert(0, primerPoder);
+                            this._ventana.PoderesLicencianteFiltrados = this._poderesLicenciante;
+                            this._ventana.PoderLicencianteFiltrado = primerPoder;
+
+                            this._poderesLicenciante = this._poderServicios.ConsultarPoderesPorInteresado(((Interesado)_ventana.LicencianteFiltrado));
+                            this._ventana.InteresadoLicenciante = this._interesadoServicios.ConsultarInteresadoConTodo((Interesado)this._ventana.LicencianteFiltrado);
+                            this._ventana.NombreLicenciante = ((Interesado)this._ventana.InteresadoLicenciante).Nombre;
+                            retorno = true;
+                        }
+                        else
+                        {
+
+                            this._poderesLicenciante = this._poderServicios.ConsultarPoderesPorInteresado(((Interesado)_ventana.LicencianteFiltrado));
+                            this._ventana.InteresadoLicenciante = this._interesadoServicios.ConsultarInteresadoConTodo((Interesado)this._ventana.LicencianteFiltrado);
+                            this._ventana.NombreLicenciante = ((Interesado)this._ventana.InteresadoLicenciante).Nombre;
+                            retorno = true;
+                        }
                     }
 
                 }
@@ -1502,10 +1540,19 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Licencias
                     }
                     else
                     {
-                        this._poderesApoderadosLicenciante = this._poderServicios.ConsultarPoderesPorAgente(((Agente)_ventana.ApoderadoLicencianteFiltrado));
-                        this._ventana.ApoderadoLicenciante = this._ventana.ApoderadoLicencianteFiltrado;
-                        this._ventana.NombreApoderadoLicenciante = ((Agente)this._ventana.ApoderadoLicencianteFiltrado).Nombre;
-                        retorno = true;
+                        if (((Poder)this._ventana.PoderLicencianteFiltrado).Id != int.MinValue)
+                        {
+                            this._ventana.ApoderadoLicenciante = this._ventana.ApoderadoLicencianteFiltrado;
+                            this._ventana.NombreApoderadoLicenciante = ((Agente)this._ventana.ApoderadoLicencianteFiltrado).Nombre;
+                            retorno = true;
+                        }
+                        else
+                        {
+                            this._poderesApoderadosLicenciante = this._poderServicios.ConsultarPoderesPorAgente(((Agente)_ventana.ApoderadoLicencianteFiltrado));
+                            this._ventana.ApoderadoLicenciante = this._ventana.ApoderadoLicencianteFiltrado;
+                            this._ventana.NombreApoderadoLicenciante = ((Agente)this._ventana.ApoderadoLicencianteFiltrado).Nombre;
+                            retorno = true;
+                        }
                     }
                 }
                 else
@@ -1566,17 +1613,31 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Licencias
 
                 if (((Poder)this._ventana.PoderLicencianteFiltrado).Id != int.MinValue)
                 {
-                    if ((((Interesado)this._ventana.LicencianteFiltrado).Id == int.MinValue) || (((Agente)this._ventana.ApoderadoLicencianteFiltrado).Id.Equals("")))
+                    if (((Agente)this._ventana.ApoderadoLicencianteFiltrado).Id.Equals(""))
                     {
-                        LimpiarListaInteresado("Licenciante");
+                        if (((Interesado)this._ventana.LicencianteFiltrado).Id != int.MinValue)
+                        {
+                            LimpiarListaAgente("Licenciante");
 
-                        LimpiarListaAgente("Licenciante");
+                            LlenarListaAgente((Poder)this._ventana.PoderLicencianteFiltrado, "Licenciante");
 
-                        LlenarListaAgenteEInteresado((Poder)this._ventana.PoderLicencianteFiltrado, "Licenciante", false);
+                            this._ventana.PoderLicenciante = this._ventana.PoderLicencianteFiltrado;
+                            this._ventana.IdPoderLicenciante = ((Poder)this._ventana.PoderLicencianteFiltrado).Id.ToString();
+                            retorno = true;
 
-                        this._ventana.PoderLicenciante = this._ventana.PoderLicencianteFiltrado;
-                        this._ventana.IdPoderLicenciante = ((Poder)this._ventana.PoderLicencianteFiltrado).Id.ToString();
-                        retorno = true;
+                        }
+                        else
+                        {
+                            LimpiarListaInteresado("Licenciante");
+
+                            LimpiarListaAgente("Licenciante");
+
+                            LlenarListaAgenteEInteresado((Poder)this._ventana.PoderLicencianteFiltrado, "Licenciante", false);
+
+                            this._ventana.PoderLicenciante = this._ventana.PoderLicencianteFiltrado;
+                            this._ventana.IdPoderLicenciante = ((Poder)this._ventana.PoderLicencianteFiltrado).Id.ToString();
+                            retorno = true;
+                        }
                     }
                     else
                     {
@@ -1625,7 +1686,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Licencias
             }
 
             return retorno;
-        }
+        }        
 
         #endregion
 
@@ -1951,10 +2012,28 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Licencias
                     }
                     else
                     {
-                        this._poderesLicenciatario = this._poderServicios.ConsultarPoderesPorInteresado(((Interesado)_ventana.LicenciatarioFiltrado));
-                        this._ventana.InteresadoLicenciatario = this._interesadoServicios.ConsultarInteresadoConTodo((Interesado)this._ventana.LicenciatarioFiltrado);
-                        this._ventana.NombreLicenciatario = ((Interesado)this._ventana.InteresadoLicenciatario).Nombre;
-                        retorno = true;
+                        if (((Poder)this._ventana.PoderLicenciatarioFiltrado).Id == int.MinValue)
+                        {
+                            Poder primerPoder = new Poder(int.MinValue);
+
+                            this._poderesLicenciatario = this._poderServicios.ConsultarPoderesPorInteresado(((Interesado)_ventana.LicenciatarioFiltrado));
+                            this._poderesLicenciatario.Insert(0, primerPoder);
+                            this._ventana.PoderesLicenciatarioFiltrados = this._poderesLicenciatario;
+                            this._ventana.PoderLicenciatarioFiltrado = primerPoder;
+
+                            this._poderesLicenciatario = this._poderServicios.ConsultarPoderesPorInteresado(((Interesado)_ventana.LicenciatarioFiltrado));
+                            this._ventana.InteresadoLicenciatario = this._interesadoServicios.ConsultarInteresadoConTodo((Interesado)this._ventana.LicenciatarioFiltrado);
+                            this._ventana.NombreLicenciatario = ((Interesado)this._ventana.InteresadoLicenciatario).Nombre;
+                            retorno = true;
+                        }
+                        else
+                        {
+
+                            this._poderesLicenciatario = this._poderServicios.ConsultarPoderesPorInteresado(((Interesado)_ventana.LicenciatarioFiltrado));
+                            this._ventana.InteresadoLicenciatario = this._interesadoServicios.ConsultarInteresadoConTodo((Interesado)this._ventana.LicenciatarioFiltrado);
+                            this._ventana.NombreLicenciatario = ((Interesado)this._ventana.InteresadoLicenciatario).Nombre;
+                            retorno = true;
+                        }
                     }
 
                 }
@@ -2034,9 +2113,6 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Licencias
                             {
                                 this._ventana.ApoderadoLicenciatario = this._ventana.ApoderadoLicenciatarioFiltrado;
                                 this._ventana.NombreApoderadoLicenciatario = ((Agente)this._ventana.ApoderadoLicenciatarioFiltrado).Nombre;
-
-                                this._ventana.ConvertirEnteroMinimoABlanco("Licenciatario");
-
                                 retorno = true;
                             }
                             else if (!this.ValidarListaDePoderes(this._poderesLicenciatario, this._poderesApoderadosLicenciatario, "Licenciatario"))
@@ -2048,10 +2124,19 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Licencias
                     }
                     else
                     {
-                        this._poderesApoderadosLicenciatario = this._poderServicios.ConsultarPoderesPorAgente(((Agente)_ventana.ApoderadoLicenciatarioFiltrado));
-                        this._ventana.ApoderadoLicenciatario = this._ventana.ApoderadoLicenciatarioFiltrado;
-                        this._ventana.NombreApoderadoLicenciatario = ((Agente)this._ventana.ApoderadoLicenciatarioFiltrado).Nombre;
-                        retorno = true;
+                        if (((Poder)this._ventana.PoderLicenciatarioFiltrado).Id != int.MinValue)
+                        {
+                            this._ventana.ApoderadoLicenciatario = this._ventana.ApoderadoLicenciatarioFiltrado;
+                            this._ventana.NombreApoderadoLicenciatario = ((Agente)this._ventana.ApoderadoLicenciatarioFiltrado).Nombre;
+                            retorno = true;
+                        }
+                        else
+                        {
+                            this._poderesApoderadosLicenciatario = this._poderServicios.ConsultarPoderesPorAgente(((Agente)_ventana.ApoderadoLicenciatarioFiltrado));
+                            this._ventana.ApoderadoLicenciatario = this._ventana.ApoderadoLicenciatarioFiltrado;
+                            this._ventana.NombreApoderadoLicenciatario = ((Agente)this._ventana.ApoderadoLicenciatarioFiltrado).Nombre;
+                            retorno = true;
+                        }
                     }
                 }
                 else
@@ -2112,17 +2197,31 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Licencias
 
                 if (((Poder)this._ventana.PoderLicenciatarioFiltrado).Id != int.MinValue)
                 {
-                    if ((((Interesado)this._ventana.LicenciatarioFiltrado).Id == int.MinValue) || (((Agente)this._ventana.ApoderadoLicenciatarioFiltrado).Id.Equals("")))
+                    if (((Agente)this._ventana.ApoderadoLicenciatarioFiltrado).Id.Equals(""))
                     {
-                        LimpiarListaInteresado("Licenciatario");
+                        if (((Interesado)this._ventana.LicenciatarioFiltrado).Id != int.MinValue)
+                        {
+                            LimpiarListaAgente("Licenciatario");
 
-                        LimpiarListaAgente("Licenciatario");
+                            LlenarListaAgente((Poder)this._ventana.PoderLicenciatarioFiltrado, "Licenciatario");
 
-                        LlenarListaAgenteEInteresado((Poder)this._ventana.PoderLicenciatarioFiltrado, "Licenciatario", false);
+                            this._ventana.PoderLicenciatario = this._ventana.PoderLicenciatarioFiltrado;
+                            this._ventana.IdPoderLicenciatario = ((Poder)this._ventana.PoderLicenciatarioFiltrado).Id.ToString();
+                            retorno = true;
 
-                        this._ventana.PoderLicenciatario = this._ventana.PoderLicenciatarioFiltrado;
-                        this._ventana.IdPoderLicenciatario = ((Poder)this._ventana.PoderLicenciatarioFiltrado).Id.ToString();
-                        retorno = true;
+                        }
+                        else
+                        {
+                            LimpiarListaInteresado("Licenciatario");
+
+                            LimpiarListaAgente("Licenciatario");
+
+                            LlenarListaAgenteEInteresado((Poder)this._ventana.PoderLicenciatarioFiltrado, "Licenciatario", false);
+
+                            this._ventana.PoderLicenciatario = this._ventana.PoderLicenciatarioFiltrado;
+                            this._ventana.IdPoderLicenciatario = ((Poder)this._ventana.PoderLicenciatarioFiltrado).Id.ToString();
+                            retorno = true;
+                        }
                     }
                     else
                     {
@@ -2171,7 +2270,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Licencias
             }
 
             return retorno;
-        }
+        }        
 
         #endregion        
     }
