@@ -46,12 +46,12 @@
                     </Label>
                     <TextBox Name="_txtNombre" Width="150" MaxLength="255"  Text="{Binding Path=Nombre}"></TextBox>
                 </WrapPanel>
-                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
+                <!--<WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
                     <Label>
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblDomicilio}"/>
                     </Label>
                     <TextBox Name="_txtDomicilio" Width="150" MaxLength="255"  Text="{Binding Path=Domicilio}"></TextBox>
-                </WrapPanel>
+                </WrapPanel>-->
                 <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
                     <Label>
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblTelefono}"/>
@@ -122,6 +122,9 @@
                         </GridViewColumn>
                         <GridViewColumn DisplayMemberBinding="{Binding Path=Telefono}" Width="120">
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="Telefono" Content="{x:Static recurso:Etiquetas.lsvTelefono}"/>
+                        </GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Domicilio}" Width="120">
+                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="Telefono" Content="{x:Static recurso:Etiquetas.lsvDomicilio}"/>
                         </GridViewColumn>
                     </GridView>
                 </ListView.View>

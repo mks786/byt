@@ -160,11 +160,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Agentes
                 this._txtNombre.Focus();
             }
 
-            if (!this._txtDomicilio.Text.Equals(""))
-            {
-                todosCamposVacios = false;
-                this._txtDomicilio.Focus();
-            }
+            //if (!this._txtDomicilio.Text.Equals(""))
+            //{
+            //    todosCamposVacios = false;
+            //    this._txtDomicilio.Focus();
+            //}
 
             if (!this._txtTelefono.Text.Equals(""))
             {

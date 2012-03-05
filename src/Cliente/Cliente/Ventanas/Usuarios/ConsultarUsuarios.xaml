@@ -89,7 +89,7 @@
                 <ListView.View>
                     <GridView>
                         <GridViewColumn DisplayMemberBinding="{Binding Path=Id}" Width="120">
-                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="Id" Content="{x:Static recurso:Etiquetas.lsvId}"/>
+                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="Id" Content="{x:Static recurso:Etiquetas.lsvCodigo}"/>
                         </GridViewColumn>
                         <GridViewColumn DisplayMemberBinding="{Binding Path=NombreCompleto}" Width="150">
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="NombreCompleto" Content="{x:Static recurso:Etiquetas.lsvNombre}"/>
