@@ -120,7 +120,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
         }
 
         /// <summary>
-        /// Método que realiza toda la lógica para agregar al Usuario dentro de la base de datos
+        /// Método que realiza toda la lógica para agregar la InfoAdicional dentro de la base de datos
         /// </summary>
         public bool Aceptar()
         {
@@ -183,6 +183,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             return exitoso;
         }
 
+        /// <summary>
+        /// Método que se encarga de mostrar ventana de lista de Auditorías
+        /// </summary>
         public void Auditoria()
         {
             try

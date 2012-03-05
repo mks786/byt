@@ -78,7 +78,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Paises
         }
 
         /// <summary>
-        /// Método que realiza toda la lógica para agregar al Usuario dentro de la base de datos
+        /// Método que realiza toda la lógica para agregar al País dentro de la base de datos
         /// </summary>
         public void Aceptar()
         {

@@ -112,7 +112,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
         }
 
         /// <summary>
-        /// Método que realiza toda la lógica para agregar al Usuario dentro de la base de datos
+        /// Método que realiza toda la lógica para agregar la Anaqua dentro de la base de datos
         /// </summary>
         public bool Aceptar()
         {
@@ -169,12 +169,20 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             return retorno;
         }
 
+        /// <summary>
+        /// Método que se encarga de imprimir el mensaje en caso de que la operación se realizara con éxito
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void imprimirMensajeExito(object sender, DoWorkEventArgs e)
         {
             this._ventana.TextoBotonModificar = (string)e.Argument;
             Thread.Sleep(2000);
         }
 
+        /// <summary>
+        /// Método que se encarga de mostrar ventana de lista de Auditorías
+        /// </summary>
         public void Auditoria()
         {
             try

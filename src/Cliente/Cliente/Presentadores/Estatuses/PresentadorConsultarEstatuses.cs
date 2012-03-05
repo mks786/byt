@@ -46,12 +46,14 @@ namespace Trascend.Bolet.Cliente.Presentadores.Estatuses
             }
         }
 
+        /// <summary>
+        /// Método que actualiza el título de la ventana
+        /// </summary>
         public void ActualizarTitulo()
         {
             this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleConsultarEstatuses,
             Recursos.Ids.ConsultarEstatuses);
         }
-
 
         /// <summary>
         /// Método que carga los datos iniciales a mostrar en la página

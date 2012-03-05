@@ -134,6 +134,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.DatosTransferencias
             }
         }
 
+        /// <summary>
+        /// Método que se encarga de eliminar un DatosTransferencia
+        /// </summary>
         public void Eliminar()
         {
             try

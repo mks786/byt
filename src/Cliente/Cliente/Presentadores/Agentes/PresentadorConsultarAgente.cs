@@ -31,6 +31,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Agentes
         {
             try
             {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
                 this._ventana = ventana;
                 this._ventana.Agente = agente;
 
@@ -42,6 +47,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Agentes
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["ListaDatosValoresServicios"]);
                 this._listaDatosDominioServicios = (IListaDatosDominioServicios)Activator.GetObject(typeof(IListaDatosDominioServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["ListaDatosDominioServicios"]);
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
             }
             catch (Exception ex)
             {
@@ -159,6 +169,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Agentes
             }
         }
 
+        /// <summary>
+        /// Método que elimina un agente
+        /// </summary>
         public void Eliminar()
         {
             try

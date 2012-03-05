@@ -293,11 +293,18 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             }
         }
 
+        /// <summary>
+        /// Método que carga la ventana de consulta marcas
+        /// </summary>
         public void IrConsultarMarcas()
         {
             this.Navegar(new ConsultarMarcas());
         }
 
+        /// <summary>
+        /// Método que guardar los datos de la ventana y los almacena en las variables
+        /// </summary>
+        /// <returns></returns>
         public Marca CargarMarcaDeLaPantalla()
         {
 
@@ -353,6 +360,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             return marca;
         }
 
+        /// <summary>
+        /// Método que se encarga de cambiar el boton y habilitar los campos de la ventana para
+        /// su modificación
+        /// </summary>
         public void CambiarAModificar()
         {
             this._ventana.HabilitarCampos = true;
@@ -361,7 +372,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
 
         /// <summary>
         /// Método que dependiendo del estado de la página, habilita los campos o 
-        /// modifica los datos del usuario
+        /// modifica los datos de la Marca
         /// </summary>
         public void Modificar()
         {
@@ -462,32 +473,52 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             }
         }
 
+        /// <summary>
+        /// Método que se encarga de mostrar la ventana de información adicional
+        /// </summary>
+        /// <param name="tab"></param>
         public void IrInfoAdicional(string tab)
         {
             this.Navegar(new GestionarInfoAdicional(CargarMarcaDeLaPantalla(), tab));
         }
 
+        /// <summary>
+        /// Método que se encarga de mostrar la ventana de InfoBoles
+        /// </summary>
         public void IrInfoBoles()
         {
 
             this.Navegar(new ListaInfoBoles(CargarMarcaDeLaPantalla()));
         }
 
+        /// <summary>
+        /// Método que se encarga de mostrar la ventana de las operaciones de la Marca
+        /// </summary>
         public void IrOperaciones()
         {
             this.Navegar(new ListaOperaciones(CargarMarcaDeLaPantalla()));
         }
 
+        /// <summary>
+        /// Método que se encarga de mostrar la ventana de Anaqua de la Marca
+        /// </summary>
         public void IrAnaqua()
         {
             this.Navegar(new GestionarAnaqua(CargarMarcaDeLaPantalla()));
         }
 
+        /// <summary>
+        /// Método que se encarga de mostrar la ventana de la lista de búsquedas de la marca
+        /// </summary>
+        /// <param name="tab"></param>
         public void IrBusquedas(string tab)
         {
             this.Navegar(new ListaBusquedas(CargarMarcaDeLaPantalla(), tab));
         }
 
+        /// <summary>
+        /// Método que se encarga de mostrar la ventana con la lista de Auditorías
+        /// </summary>
         public void Auditoria()
         {
             try
@@ -562,6 +593,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             #endregion
         }
 
+        /// <summary>
+        /// Método que se encarga de duplicar la marca
+        /// </summary>
         public void Duplicar()
         {
             #region trace
@@ -1044,7 +1078,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
 
         #endregion
 
-
+        /// <summary>
+        /// Método que se encarga de cargar la ventana de impresión de la Marca
+        /// </summary>
+        /// <param name="nombreBoton"></param>
         public void IrImprimir(string nombreBoton)
         {
             try
@@ -1074,6 +1111,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             }
         }
 
+        /// <summary>
+        /// Método que realiza todas las validaciones de la Marca antes de imprimir
+        /// </summary>
+        /// <returns></returns>
         private bool validarMarcaAntesDeImprimirFM02()
         {
             bool retorno = false;

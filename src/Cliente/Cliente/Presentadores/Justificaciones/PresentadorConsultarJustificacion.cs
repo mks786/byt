@@ -86,7 +86,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Justificaciones
 
         /// <summary>
         /// Método que dependiendo del estado de la página, habilita los campos o 
-        /// modifica los datos del usuario
+        /// modifica los datos de la Justificación
         /// </summary>
         public void Modificar()
         {
@@ -149,6 +149,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Justificaciones
             }
         }
 
+        /// <summary>
+        /// Método que elimina una Justificación de la base de datos
+        /// </summary>
         public void Eliminar()
         {
             try

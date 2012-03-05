@@ -103,7 +103,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Justificaciones
         }
 
         /// <summary>
-        /// Método que realiza toda la lógica para agregar al Usuario dentro de la base de datos
+        /// Método que realiza toda la lógica para agregar la Justificación dentro de la base de datos
         /// </summary>
         public void Aceptar()
         {

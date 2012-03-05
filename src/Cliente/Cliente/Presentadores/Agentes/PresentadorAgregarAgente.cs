@@ -27,7 +27,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.Agentes
         public PresentadorAgregarAgente(IAgregarAgente ventana)
         {
             try
-            { 
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
                 this._ventana = ventana;
                 this._ventana.Agente = new Agente();
                 this._agenteServicios = (IAgenteServicios)Activator.GetObject(typeof(IAgenteServicios),
@@ -36,6 +41,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.Agentes
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["ListaDatosValoresServicios"]);
                 this._listaDatosDominioServicios = (IListaDatosDominioServicios)Activator.GetObject(typeof(IListaDatosDominioServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["ListaDatosDominioServicios"]);
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
             }
             catch (Exception ex)
             {
@@ -53,6 +64,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Agentes
 
             try
             {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
                 this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleAgregarAgente,
                     Recursos.Ids.AgregarAgente);
 
@@ -62,6 +78,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.Agentes
                     ConsultarListaDatosValoresPorParametro(new ListaDatosValores(Recursos.Etiquetas.cbiCategoriaSexo));
 
                 this._ventana.FocoPredeterminado();
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
             }
             catch (ApplicationException ex)
             {
@@ -96,6 +118,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Agentes
         {
             try
             {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
                 Agente agente = (Agente)this._ventana.Agente;
 
                 agente.EstadoCivil = ((ListaDatosDominio)this._ventana.EstadoCivil).Id[0];
@@ -112,6 +139,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Agentes
                 {
                     this._ventana.Mensaje(Recursos.MensajesConElUsuario.ErrorAgenteRepetido);
                 }
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
 
             }
             catch (ApplicationException ex)

@@ -37,11 +37,21 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
         {
             try
             {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
                 this._ventana = ventana;
                 this._cartaServicios = (ICartaServicios)Activator.GetObject(typeof(ICartaServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["CartaServicios"]);
                 this._asociadoServicios = (IAsociadoServicios)Activator.GetObject(typeof(IAsociadoServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["AsociadoServicios"]);
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
             }
             catch (Exception ex)
             {
@@ -50,10 +60,23 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
             }
         }
 
+        /// <summary>
+        /// Método que se encarga de actualizar el título de la ventana Consultar Carta
+        /// </summary>
         public void ActualizarTitulo()
         {
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
             this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleConsultarCartas,
                 Recursos.Ids.ConsultarCartas);
+
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
         }
 
         /// <summary>
@@ -241,8 +264,16 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
             #endregion
         }
 
+        /// <summary>
+        /// Método que se encarga de buscar un asociado con filtros
+        /// </summary>
         public void BuscarAsociado()
         {
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
             IEnumerable<Asociado> asociadosFiltrados = (IList<Asociado>)this._asociados;
 
             if (!string.IsNullOrEmpty(this._ventana.IdAsociadoFiltrar))
@@ -264,6 +295,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
                 this._ventana.Asociados = asociadosFiltrados.ToList<Asociado>();
             else
                 this._ventana.Asociados = this._asociados;
+
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
         }
     }
 }

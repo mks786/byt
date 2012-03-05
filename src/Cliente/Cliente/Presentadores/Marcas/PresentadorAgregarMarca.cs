@@ -105,6 +105,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             }
         }
 
+        /// <summary>
+        /// Método que se encarga de duplicar una marca ya existente
+        /// </summary>
         public void CargarDatosDeMarcaDuplicada()
         {
             try
@@ -169,6 +172,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             }
         }
 
+        /// <summary>
+        /// Método que se encarga de actualizar el título de la ventana
+        /// </summary>
         public void ActualizarTitulo()
         {
             this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleAgregarMarca,
@@ -281,7 +287,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
         }
 
         /// <summary>
-        /// Método que realiza toda la lógica para agregar al Usuario dentro de la base de datos
+        /// Método que realiza toda la lógica para agregar la Marca dentro de la base de datos
         /// </summary>
         public void Aceptar()
         {
@@ -419,9 +425,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 logger.Error(ex.Message);
                 this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
             }
-        }
-
-        
+        }        
 
         #region Metodos de los filtros de asociados
 

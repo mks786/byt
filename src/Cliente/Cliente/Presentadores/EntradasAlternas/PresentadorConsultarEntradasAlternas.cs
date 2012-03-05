@@ -59,6 +59,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.EntradasAlternas
             }
         }
 
+        /// <summary>
+        /// Método que actualiza el título de la ventana
+        /// </summary>
         public void ActualizarTitulo()
         {
             this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleConsultarEntradaAlterna,

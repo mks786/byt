@@ -172,6 +172,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Interesados
             }
         }
 
+        /// <summary>
+        /// Método que elimina un Interesado de la base de datos
+        /// </summary>
         public void Eliminar()
         {
             try
@@ -222,6 +225,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Interesados
             }
         }
 
+        /// <summary>
+        /// Método que guarda el registro para la auditoría
+        /// </summary>
         public void Auditoria()
         {
             try
@@ -267,6 +273,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Interesados
             }
         }
 
+        /// <summary>
+        /// Método que llama a la ventana para ver la lista de poderes del
+        /// interesado
+        /// </summary>
         public void VerPoderes()
         {
             try
@@ -308,7 +318,6 @@ namespace Trascend.Bolet.Cliente.Presentadores.Interesados
                 this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
             }
         }
-
 
         /// <summary>
         /// Método que invoca una nueva página "ConsultarInteresados" y la instancia con el objeto seleccionado

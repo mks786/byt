@@ -47,6 +47,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Nacionales
             }
         }
 
+        /// <summary>
+        /// Método que se encarga de cambiar el título de la ventana
+        /// </summary>
         public void ActualizarTitulo()
         {
             this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleConsultarNacionales,

@@ -76,7 +76,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Objetos
 
         /// <summary>
         /// Método que dependiendo del estado de la página, habilita los campos o 
-        /// modifica los datos del usuario
+        /// modifica los datos del Objeto
         /// </summary>
         public void Modificar()
         {
@@ -131,6 +131,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Objetos
             }
         }
 
+        /// <summary>
+        /// Método que se encarga de eliminar un Objeto
+        /// </summary>
         public void Eliminar()
         {
             try

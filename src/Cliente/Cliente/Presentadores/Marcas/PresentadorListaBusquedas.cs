@@ -159,7 +159,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             #endregion
         }
 
-
+        /// <summary>
+        /// Método que se encarga de consultar una Busqueda
+        /// </summary>
         public void Consultar()
         {
             try

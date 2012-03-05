@@ -134,6 +134,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Estatuses
             }
         }
 
+        /// <summary>
+        /// Método que elimina un Estatus de la base de datos
+        /// </summary>
         public void Eliminar()
         {
             try

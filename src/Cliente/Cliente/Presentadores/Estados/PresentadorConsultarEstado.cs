@@ -68,7 +68,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Estados
 
         /// <summary>
         /// Método que dependiendo del estado de la página, habilita los campos o 
-        /// modifica los datos del estado
+        /// modifica los datos del Estado
         /// </summary>
         public void Modificar()
         {
@@ -124,6 +124,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Estados
             }
         }
 
+        /// <summary>
+        /// Método que elimina un Estado
+        /// </summary>
         public void Eliminar()
         {
             try

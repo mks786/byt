@@ -40,6 +40,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
         {
             try
             {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
                 this._ventana = ventana;
                 this._ventana.Carta = new Carta();
                 ((Carta)this._ventana.Carta).Fecha = System.DateTime.Now;
@@ -59,6 +64,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["DepartamentoServicios"]);
                 this._asociadoServicios = (IAsociadoServicios)Activator.GetObject(typeof(IAsociadoServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["AsociadoServicios"]);
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
             }
             catch (Exception ex)
             {
@@ -76,6 +86,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
 
             try
             {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
                 this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleAgregarCarta,
                     Recursos.Ids.AgregarCarta);
 
@@ -121,6 +136,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
                 this._ventana.Responsables = _responsables;
 
                 this._ventana.FocoPredeterminado();
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
             }
             catch (ApplicationException ex)
             {
@@ -155,6 +175,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
         {
             try
             {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
                 bool tracking = true;
 
                 if (null != (((Medio)this._ventana.Medio).Formato) && (!String.IsNullOrEmpty(((Carta)this._ventana.Carta).Tracking)))
@@ -192,6 +217,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
                     }
                 }
 
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
             }
             catch (ApplicationException ex)
             {
@@ -215,14 +245,28 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
             }
         }
 
+        /// <summary>
+        /// Método que se encarga de cambiar el asociado de la ventana
+        /// </summary>
         public void CambiarAsociado()
         {
             try
             {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
                 Asociado asociado = this._asociadoServicios.ConsultarAsociadoConTodo((Asociado)this._ventana.Asociado);
                 asociado.Contactos = this._contactoServicios.ConsultarContactosPorAsociado(asociado);
                 this._ventana.NombreAsociado = ((Asociado)this._ventana.Asociado).Nombre;
                 this._ventana.Personas = asociado.Contactos;
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
             }
             catch (ApplicationException e)
             {
@@ -230,8 +274,16 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
             }
         }
 
+        /// <summary>
+        /// Método que se encarga de buscar un asociado con filtros
+        /// </summary>
         public void BuscarAsociado()
         {
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
             IEnumerable<Asociado> asociadosFiltrados = this._asociados;
 
             if (!string.IsNullOrEmpty(this._ventana.idAsociadoFiltrar))
@@ -253,10 +305,24 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
                 this._ventana.Asociados = asociadosFiltrados.ToList<Asociado>();
             else
                 this._ventana.Asociados = this._asociados;
+
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
         }
 
+        /// <summary>
+        /// Método que se encarga de agregar un anexo carta
+        /// </summary>
+        /// <returns>retorno true si se agrego el anexo</returns>
         public bool AgregarAnexoCarta()
         {
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
             IList<Anexo> anexosCarta;
             bool retorno = false;
             if ((null != (Anexo)this._ventana.Anexo) && (!((Anexo)this._ventana.Anexo).Id.Equals("NGN")))
@@ -273,11 +339,26 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
                 this._ventana.Anexos = this._anexos.ToList<Anexo>();
                 retorno = true;
             }
+
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
             return retorno;
         }
 
+        /// <summary>
+        /// Método que se encarga de agregar un anexo carta confirmación
+        /// </summary>
+        /// <returns>retorno true si se agrego</returns>
         public bool AgregarAnexoCartaConfirmacion()
         {
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
             IList<Anexo> anexosCarta;
             bool retorno = false;
             if ((null != (Anexo)this._ventana.AnexoConfirmacion) && (!((Anexo)this._ventana.AnexoConfirmacion).Id.Equals("NGN")))
@@ -294,11 +375,26 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
                 this._ventana.AnexosConfirmacion = this._anexosConfirmacion.ToList<Anexo>();
                 retorno = true;
             }
+
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
             return retorno;
         }
 
+        /// <summary>
+        /// Metodo que deshabilita los anexos de carta
+        /// </summary>
+        /// <returns>retorno true si se deshabilitó</returns>
         public bool DeshabilitarAnexosCarta()
         {
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
             IList<Anexo> anexosCarta;
             bool respuesta = false;
 
@@ -319,11 +415,26 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
                     respuesta = true;
 
             }
+
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
             return respuesta;
         }
 
+        /// <summary>
+        /// Método que deshabilita los anexos confirmación de carta
+        /// </summary>
+        /// <returns>retorno true si se deshabilitó</returns>
         public bool DeshabilitarAnexosCartaConfirmacion()
         {
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
             IList<Anexo> anexosCarta;
             bool respuesta = false;
 
@@ -344,21 +455,64 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
                     respuesta = true;
 
             }
+
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
             return respuesta;
         }
 
+        /// <summary>
+        /// Método que cambia el formato de la pantalla entre vacío a
+        /// contenido
+        /// </summary>
         public void CarmbiarFormatoTracking()
         {
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
             this._ventana.FormatoTracking = !((Medio)this._ventana.Medio).Id.Equals("NGN") ? "Formato: " + ((Medio)this._ventana.Medio).Formato : "Formato: ";
+
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
         }
 
+        /// <summary>
+        /// Método que cambia el formato confirmación de la pantalla entre vacío       
+        /// a contenido
+        /// </summary>
         public void CarmbiarFormatoTrackingConfirmacion()
         {
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
             this._ventana.FormatoTrackingConfirmacion = !((Medio)this._ventana.MedioTrackingConfirmacion).Id.Equals("NGN") ? "Formato: " + ((Medio)this._ventana.MedioTrackingConfirmacion).Formato : "Formato: ";
+
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
         }
 
+        /// <summary>
+        /// Método que se encarga de agregar un responsable a la carta
+        /// </summary>
+        /// <returns>retorno true si se agregó</returns>
         public bool AgregarResponsable()
         {
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
             bool retorno = false;
             IList<Asignacion> asignacionLista;
             if ((null != (Usuario)_ventana.Responsable) && (!((Usuario)this._ventana.Responsable).Id.Equals("NGN")))
@@ -385,22 +539,53 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
 
                 retorno = true;
             }
+
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
             return retorno;
 
         }
 
+        /// <summary>
+        /// Metodo que convierte una lista de asignaciones a usuarios
+        /// </summary>
+        /// <param name="asignaciones">lista de asignaciones</param>
+        /// <returns>lista de usuarios</returns>
         private IList<Usuario> ListAsignacionesToUsuarios(IList<Asignacion> asignaciones)
         {
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
             IList<Usuario> usuarios = new List<Usuario>();
             foreach (Asignacion asignacion in asignaciones)
             {
                 usuarios.Add(asignacion.Responsable);
             }
+
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
             return usuarios;
         }
 
+        /// <summary>
+        /// Método que deshabilita un responsable de la carta
+        /// </summary>
+        /// <returns>retorno true si se realizó correctamente</returns>
         public bool DeshabilitarResponsable()
         {
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
             bool retorno = false;
             IList<Asignacion> asignacionLista;
             if (null != (Usuario)this._ventana.ResponsableList)
@@ -423,11 +608,26 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
             if (((Carta)this._ventana.Carta).Asignaciones.Count == 0)
                 retorno = true;
 
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
             return retorno;
         }
 
+        /// <summary>
+        /// Método que elimina un responsable de la carta
+        /// </summary>
+        /// <param name="asignaciones">lista de asignaciones</param>
+        /// <returns>lista con el responsable removido</returns>
         private IList<Asignacion> RemoverResponsable(IList<Asignacion> asignaciones)
         {
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
             int index = 0;
             int borrar = 0;
             foreach (Asignacion asignacion in asignaciones)
@@ -438,7 +638,13 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
             }
             asignaciones.RemoveAt(borrar);
 
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
             return asignaciones;
+
         }
 
     }

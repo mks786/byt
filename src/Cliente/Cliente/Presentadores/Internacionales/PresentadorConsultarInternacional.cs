@@ -121,6 +121,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Internacionales
             }
         }
 
+        /// <summary>
+        /// Método que elimina un internacional de la base de datos
+        /// </summary>
         public void Eliminar()
         {
             try

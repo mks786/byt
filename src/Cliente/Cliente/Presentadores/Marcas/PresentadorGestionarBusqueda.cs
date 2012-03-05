@@ -125,7 +125,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
         }
 
         /// <summary>
-        /// Método que realiza toda la lógica para agregar al Usuario dentro de la base de datos
+        /// Método que realiza toda la lógica para agregar la Busqueda dentro de la base de datos
         /// </summary>
         public bool Aceptar()
         {
@@ -177,6 +177,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             return exitoso;
         }
 
+        /// <summary>
+        /// Método que se encarga de eliminar una Busqueda
+        /// </summary>
+        /// <returns></returns>
         public bool Eliminar()
         {
             bool exitoso = false;
@@ -223,6 +227,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             return exitoso;
         }
 
+        /// <summary>
+        /// Método que se encarga de mostrar la ventana de lista de Busqueda
+        /// </summary>
         public void irListaBusqueda()
         {
             this.Navegar(new ListaBusquedas(((Busqueda)this._ventana.Busqueda).Marca));

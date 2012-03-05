@@ -46,6 +46,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Paises
             }
         }
 
+        /// <summary>
+        /// Método que se encarga de actualizar el título de la ventana
+        /// </summary>
         public void ActualizarTitulo()
         {
             this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleConsultarPaises,

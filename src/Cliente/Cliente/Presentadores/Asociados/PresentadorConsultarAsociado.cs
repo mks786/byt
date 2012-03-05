@@ -42,6 +42,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
         {
             try
             {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
 
                 this._ventana = ventana;
                 this._ventana.Asociado = asociado;
@@ -67,6 +71,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["DatosTransferenciaServicios"]);
                 this._listaDatosDominioServicios = (IListaDatosDominioServicios)Activator.GetObject(typeof(IListaDatosDominioServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["ListaDatosDominioServicios"]);
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
             }
             catch (Exception ex)
             {
@@ -250,6 +259,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
             }
         }
 
+        /// <summary>
+        /// Método que elimina un asociado
+        /// </summary>
         public void Eliminar()
         {
             try
@@ -291,14 +303,15 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
             }
         }
 
+        /// <summary>
+        /// Método que muestra la ventana de Justificaciones de un Asociado
+        /// </summary>
         public void IrListaJustificaciones()
         {
             #region trace
             if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
                 logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
-
-
 
             this.Navegar(new ListaJustificaciones(this._ventana.Asociado));
 
@@ -309,6 +322,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
 
         }
 
+        /// <summary>
+        /// Método que muestra la ventana de Contactos de un Asociado
+        /// </summary>
         public void IrListaContactos()
         {
             #region trace
@@ -324,6 +340,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
             #endregion
         }
 
+        /// <summary>
+        /// Método que muestra la ventana de transferencia de un Asociado
+        /// </summary>
         public void IrListaDatosTransferencia()
         {
             #region trace
@@ -339,6 +358,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
             #endregion
         }
 
+        /// <summary>
+        /// Método que muestra la ventana de Auditoría de un Asociado
+        /// </summary>
         public void Auditoria()
         {
             try
@@ -348,9 +370,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-
                 this.Navegar(new ListaAuditorias(_auditorias));
-
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -379,6 +399,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
             }
         }
 
+        /// <summary>
+        /// Metodo que muestra el expediente de un asociado en PDF
+        /// </summary>
         public void AbrirExpediente()
         {
             try

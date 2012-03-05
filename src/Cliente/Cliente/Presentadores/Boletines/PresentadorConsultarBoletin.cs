@@ -27,10 +27,20 @@ namespace Trascend.Bolet.Cliente.Presentadores.Boletines
         {
             try
             {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
                 this._ventana = ventana;
                 this._ventana.Boletin = boletin;
                 this._boletinServicios = (IBoletinServicios)Activator.GetObject(typeof(IBoletinServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["BoletinServicios"]);
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
             }
             catch (Exception ex)
             {
@@ -48,12 +58,22 @@ namespace Trascend.Bolet.Cliente.Presentadores.Boletines
 
             try
             {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
                 //crear titulo
                 this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleConsultarBoletin,
                     Recursos.Ids.ConsultarBoletin);
 
                 if (!((Boletin)this._ventana.Boletin).FechaBoletinVence.ToString().Equals("01/01/0001 12:00:00 a.m."))
                     this._ventana.DeshabilitarFecha = true;
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
 
             }
             catch (Exception ex)
@@ -125,6 +145,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Boletines
             }
         }
 
+        /// <summary>
+        /// Método que elimina un Boletín
+        /// </summary>
         public void Eliminar()
         {
             try

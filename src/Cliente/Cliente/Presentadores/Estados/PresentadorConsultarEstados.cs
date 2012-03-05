@@ -46,6 +46,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Estados
             }
         }
 
+        /// <summary>
+        /// Método que actualiza el titulo de la ventana
+        /// </summary>
         public void ActualizarTitulo()
         {
 

@@ -36,6 +36,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
         {
             try
             {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
                 this._ventana = ventana;
                 this._ventana.Asociado = new Asociado();
                 this._asociadoServicios = (IAsociadoServicios)Activator.GetObject(typeof(IAsociadoServicios),
@@ -56,6 +61,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["PaisServicios"]);
                 this._listaDatosDominioServicios = (IListaDatosDominioServicios)Activator.GetObject(typeof(IListaDatosDominioServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["ListaDatosDominioServicios"]);
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
             }
             catch (Exception ex)
             {
@@ -73,6 +83,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
 
             try
             {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
                 this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleAgregarAsociado,
                     Recursos.Ids.AgregarAsociado);
 
@@ -106,6 +121,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
                 this._ventana.TiposClientes = this._tipoClienteServicios.ConsultarTodos();
 
                 this._ventana.FocoPredeterminado();
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
             }
             catch (ApplicationException ex)
             {
@@ -140,6 +160,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
         {
             try
             {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
                 Asociado asociado = (Asociado)this._ventana.Asociado;
 
                 asociado.Operacion = "CREATE";
@@ -156,6 +181,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
                 
                if (exitoso)
                     this.Navegar(Recursos.MensajesConElUsuario.AsociadoInsertado, false);
+
+               #region trace
+               if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                   logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+               #endregion
             }
             catch (ApplicationException ex)
             {

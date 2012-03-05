@@ -75,7 +75,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Categorias
 
         /// <summary>
         /// Método que dependiendo del estado de la página, habilita los campos o 
-        /// modifica los datos del usuario
+        /// modifica los datos de la categoría
         /// </summary>
         public void Modificar()
         {

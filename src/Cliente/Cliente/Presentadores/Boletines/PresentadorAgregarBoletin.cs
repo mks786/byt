@@ -26,6 +26,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Boletines
         {
             try
             {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
                 this._ventana = ventana;
                 this._boletinServicios = (IBoletinServicios)Activator.GetObject(typeof(IBoletinServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["BoletinServicios"]);
@@ -35,6 +40,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Boletines
                 boletin.FechaBoletin = System.DateTime.Today;
                 boletin.FechaBoletinVence = System.DateTime.Today;
                 this._ventana.Boletin = boletin;
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
             }
             catch (Exception ex)
             {

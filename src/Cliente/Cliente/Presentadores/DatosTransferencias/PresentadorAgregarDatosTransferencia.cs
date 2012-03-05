@@ -90,7 +90,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.DatosTransferencias
         }
 
         /// <summary>
-        /// Método que realiza toda la lógica para agregar al Usuario dentro de la base de datos
+        /// Método que realiza toda la lógica para agregar los DatosTransferencia dentro de la base de datos
         /// </summary>
         public void Aceptar()
         {

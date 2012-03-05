@@ -55,6 +55,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Interesados
             }
         }
 
+        /// <summary>
+        /// Método que actualiza el título de la ventana
+        /// </summary>
         public void ActualizarTitulo()
         {
             this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleConsultarInteresados,

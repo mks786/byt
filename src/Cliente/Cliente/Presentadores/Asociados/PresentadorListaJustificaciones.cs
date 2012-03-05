@@ -31,8 +31,18 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
         /// <param name="ventana">página que satisface el contrato</param>
         public PresentadorListaJustificaciones(IListaJustificaciones ventana, object asociado)
         {
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
             this._ventana = ventana;
             this._asociado = (Asociado)asociado;
+
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
         }
 
         /// <summary>
@@ -90,6 +100,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
             #endregion
         }
 
+        /// <summary>
+        /// Método que invoca una nueva página "AgregarJustificacion" y la instancia con el objeto seleccionado
+        /// </summary>
         public void IrAgregarJustificacion()
         {
             #region trace

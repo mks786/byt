@@ -139,7 +139,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.EntradasAlternas
 
         /// <summary>
         /// Método que dependiendo del estado de la página, habilita los campos o 
-        /// modifica los datos del usuario
+        /// modifica los datos de la EntradaAlterna
         /// </summary>
         public void Modificar()
         {
@@ -217,6 +217,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.EntradasAlternas
             }
         }
 
+        /// <summary>
+        /// Método que elimina una EntradaAlterna
+        /// </summary>
         public void Eliminar()
         {
             try

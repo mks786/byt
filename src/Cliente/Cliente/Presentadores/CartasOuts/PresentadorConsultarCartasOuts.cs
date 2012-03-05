@@ -50,6 +50,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.CartasOuts
             }
         }
 
+        /// <summary>
+        /// Método que se encarga de actualizar el título de la ventana
+        /// </summary>
         public void ActualizarTitulo()
         {
             this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleTransferirPlantilla,
@@ -170,7 +173,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.CartasOuts
         }
 
         /// <summary>
-        /// Método que invoca una nueva página "ConsultarPoder" y la instancia con el objeto seleccionado
+        /// Método que invoca una nueva página "ConsultarCarta" y la instancia con el objeto seleccionado
         /// </summary>
         public void IrConsultarCarta()
         {
@@ -220,9 +223,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.CartasOuts
                 logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
         }
-
-        
-
+      
         /// <summary>
         /// Método que se encarga de realizar la transferencia de la plantilla (COR_MAIL_OUT a ENTRADA)
         /// </summary>

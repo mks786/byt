@@ -140,7 +140,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
         }
 
         /// <summary>
-        /// Método que realiza toda la lógica para agregar al Usuario dentro de la base de datos
+        /// Método que realiza toda la lógica para agregar el InfoBol dentro de la base de datos
         /// </summary>
         public bool Aceptar()
         {
@@ -200,6 +200,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             return exitoso;
         }
 
+        /// <summary>
+        /// Método que se encarga de eliminar un InfoBol
+        /// </summary>
+        /// <returns>true si se realizó correctamente</returns>
         public bool Eliminar()
         {
             bool exitoso = false;
@@ -280,11 +284,17 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             #endregion
         }
 
+        /// <summary>
+        /// Métodos que se encarga de mostrar la ventana de lista de InfoBol
+        /// </summary>
         public void irListaInfoBol()
         {
             this.Navegar(new ListaInfoBoles(((InfoBol)this._ventana.InfoBol).Marca));
         }
-
+       
+        /// <summary>
+        /// Método que se encarga de cambiar el Cambio de la ventana
+        /// </summary>
         public void CambiarCambio()
         {
             try
@@ -300,11 +310,18 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             }
         }
 
+        /// <summary>
+        /// Metodo que devuelve la listaCambio
+        /// </summary>
+        /// <returns>lista de Cambios</returns>
         public bool TieneElementosListaCambio()
         {
             return this._tieneListaCambios;
         }
 
+        /// <summary>
+        /// Método que se encarga de cargar los datos de Cambio
+        /// </summary>
         public void CargarCambio()
         {
             Operacion operacion = new Operacion();

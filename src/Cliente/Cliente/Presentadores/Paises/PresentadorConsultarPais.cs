@@ -78,7 +78,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Paises
 
         /// <summary>
         /// Método que dependiendo del estado de la página, habilita los campos o 
-        /// modifica los datos del usuario
+        /// modifica los datos del País
         /// </summary>
         public void Modificar()
         {
@@ -136,6 +136,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Paises
             }
         }
 
+        /// <summary>
+        /// Método que se encarga de eliminar un País
+        /// </summary>
         public void Eliminar()
         {
             try
