@@ -393,34 +393,10 @@ namespace Trascend.Bolet.Cliente.Ventanas.Principales
             this._presentador.AgregarCambioDeNombre();
         }
 
-        private void _menuItemRenovacion_Click(object sender, RoutedEventArgs e)
-        {
-            //llamada
-            this._presentador.RenovacionMarca();
-        }
-
         private void _menuItemRecordatorio_Click(object sender, RoutedEventArgs e)
         {
             //llamada
             this._presentador.Recordatorios();
-        }
-
-        private void _menuItemEstadosMarca_Click(object sender, RoutedEventArgs e)
-        {
-            //llamada
-            this._presentador.EstadosMarca();
-        }
-
-        private void _menuItemTipoBase_Click(object sender, RoutedEventArgs e)
-        {
-            //llamada
-            this._presentador.TipoBase();
-        }
-
-        private void _menuItemAbandono_Click(object sender, RoutedEventArgs e)
-        {
-            //llamada
-            this._presentador.Abandono();
         }
 
         private void _menuItemMarcasATercerosConsultar_Click(object sender, RoutedEventArgs e)
@@ -434,7 +410,54 @@ namespace Trascend.Bolet.Cliente.Ventanas.Principales
             //llamada
             this._presentador.GestionarMarcaATercero();
         }
-         
+        private void _menuItemTipoBaseConsultar_Click(object sender, RoutedEventArgs e)
+        {
+            //llamada
+            this._presentador.ConsultarTipoBase();
+        }
+
+        private void _menuItemTipoBaseGestionar_Click(object sender, RoutedEventArgs e)
+        {
+            //llamada
+            this._presentador.GestionarTipoBase();
+        }
+
+        private void _menuItemEstadosMarcaConsultar_Click(object sender, RoutedEventArgs e)
+        {
+            //llamada
+            this._presentador.ConsultarEstadosMarca();
+        }
+
+        private void _menuItemEstadosMarcaGestionar_Click(object sender, RoutedEventArgs e)
+        {
+            //llamada
+            this._presentador.GestionarEstadosMarca();
+        }
+
+        private void _menuItemAbandonoConsultar_Click(object sender, RoutedEventArgs e)
+        {
+            //llamada
+            this._presentador.ConsultarAbandonos();
+        }
+
+        private void _menuItemAbandonoGestionar_Click(object sender, RoutedEventArgs e)
+        {
+            //llamada
+            this._presentador.GestionarAbandonos();
+        }
+
+        private void _menuItemRenovacionesConsultar_Click(object sender, RoutedEventArgs e)
+        {
+            //llamada
+            this._presentador.ConsultarRenovacionMarca();
+        }
+
+        private void _menuItemRenovacionesAgregar_Click(object sender, RoutedEventArgs e)
+        {
+            //llamada
+            this._presentador.GestionarRenovacionMarca();
+        }
+
         #endregion
 
         #endregion
@@ -471,6 +494,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Principales
         }
 
         #endregion   
+
 
     }
 }

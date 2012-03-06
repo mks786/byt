@@ -458,7 +458,15 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
         /// <summary>
         /// Método que coloca la página "Gestionar Licencias" en el Frame principal
         /// </summary>
-        public void RenovacionMarca()
+        public void ConsultarRenovacionMarca()
+        {
+            //this._ventana.Contenedor.Navigate(ventana*);
+        }
+
+        /// <summary>
+        /// Método que coloca la página "Gestionar Licencias" en el Frame principal
+        /// </summary>
+        public void GestionarRenovacionMarca()
         {
             //this._ventana.Contenedor.Navigate(ventana*);
         }
@@ -474,7 +482,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
         /// <summary>
         /// Método que coloca la página "Gestionar Licencias" en el Frame principal
         /// </summary>
-        public void EstadosMarca()
+        public void ConsultarEstadosMarca()
         {
             //this._ventana.Contenedor.Navigate(ventana*);
         }
@@ -482,7 +490,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
         /// <summary>
         /// Método que coloca la página "Gestionar Licencias" en el Frame principal
         /// </summary>
-        public void TipoBase()
+        public void GestionarEstadosMarca()
         {
             //this._ventana.Contenedor.Navigate(ventana*);
         }
@@ -490,7 +498,30 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
         /// <summary>
         /// Método que coloca la página "Gestionar Licencias" en el Frame principal
         /// </summary>
-        public void Abandono()
+        public void ConsultarTipoBase()
+        {
+            //this._ventana.Contenedor.Navigate(ventana*);
+        }
+
+        /// <summary>
+        /// Método que coloca la página "Gestionar Licencias" en el Frame principal
+        /// </summary>
+        public void GestionarTipoBase()
+        {
+            //this._ventana.Contenedor.Navigate(ventana*);
+        }
+
+        /// <summary>
+        /// Método que coloca la página "Gestionar Licencias" en el Frame principal
+        /// </summary>
+        public void ConsultarAbandonos()
+        {
+            //this._ventana.Contenedor.Navigate(ventana*);
+        }
+        /// <summary>
+        /// Método que coloca la página "Gestionar Licencias" en el Frame principal
+        /// </summary>
+        public void GestionarAbandonos()
         {
             //this._ventana.Contenedor.Navigate(ventana*);
         }
