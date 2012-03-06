@@ -1692,6 +1692,18 @@ libro</value>
   <data name="titleAgregarLicencia" xml:space="preserve">
     <value>Agregar Licencia de marcas</value>
   </data>
+  <data name="lblRenovacion" xml:space="preserve">
+    <value>Renovación</value>
+  </data>
+  <data name="lsvFechaProxima" xml:space="preserve">
+    <value>Fecha Proxima Renovación</value>
+  </data>
+  <data name="lsvFechaRenovacion" xml:space="preserve">
+    <value>Fecha Renovación</value>
+  </data>
+  <data name="titleConsultarRenovaciones" xml:space="preserve">
+    <value>Consultar Renovaciones de Marcas</value>
+  </data>
   <data name="btnAceptar" xml:space="preserve">
     <value>Aceptar</value>
   </data>

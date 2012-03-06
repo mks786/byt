@@ -397,5 +397,11 @@ namespace Trascend.Bolet.AccesoDatos.Fabrica
         /// <returns>IDaoPlanilla</returns>
         public abstract IDaoPlanilla ObtenerDaoPlanilla();
 
+        /// <summary>
+        /// Método que devuelve el DaoRenovacion del manejador que se esté utilizando
+        /// </summary>
+        /// <returns>IDaoRenovacion</returns>
+        public abstract IDaoRenovacion ObtenerDaoRenovacion();
+
     }
 }

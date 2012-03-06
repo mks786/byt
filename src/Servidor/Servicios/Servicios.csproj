@@ -57,6 +57,7 @@
     <Compile Include="Implementacion\CambioDeNombreServicios.cs" />
     <Compile Include="Implementacion\CambioDeDomicilioServicios.cs" />
     <Compile Include="Implementacion\CambioPeticionarioServicios.cs" />
+    <Compile Include="Implementacion\RenovacionServicios.cs" />
     <Compile Include="Implementacion\PlanillaServicios.cs" />
     <Compile Include="Implementacion\MarcaTerceroServicios.cs" />
     <Compile Include="Implementacion\LicenciaServicios.cs" />

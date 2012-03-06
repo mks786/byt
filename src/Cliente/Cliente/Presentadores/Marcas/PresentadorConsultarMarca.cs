@@ -1121,7 +1121,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
 
             Marca marca = CargarMarcaDeLaPantalla();
 
-            if (marca.Poder.NumPoder.Equals(""))
+            if ((null == marca.Poder) || (marca.Poder.NumPoder.Equals("")))
                 retorno = retorno ? this._ventana.MensajeAlerta(Recursos.MensajesConElUsuario.MarcaSinNumeroDePoder) == retorno : retorno;
 
             if (((this._ventana.ClaseInternacional.Equals("")) && (this._ventana.ClaseNacional.Equals(""))) && (retorno))
@@ -1130,7 +1130,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             if ((marca.EtiquetaDescripcion.Equals("")) && (retorno))
                 retorno = retorno ? this._ventana.MensajeAlerta(Recursos.MensajesConElUsuario.MarcaSinDescripcionDelSigno) == retorno : retorno;
 
-            if ((marca.Distingue.Equals("")) && (retorno))
+            if ((null == marca.Distingue) || (marca.Distingue.Equals("")) && (retorno))
                 retorno = retorno ? this._ventana.MensajeAlerta(Recursos.MensajesConElUsuario.MarcaSinDistingue) == retorno : retorno;
 
             return retorno;

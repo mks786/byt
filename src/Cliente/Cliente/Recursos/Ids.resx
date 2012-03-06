@@ -339,6 +339,9 @@
   <data name="ConsultarRemitentes" xml:space="preserve">
     <value>MYPTAGENTE</value>
   </data>
+  <data name="ConsultarRenovaciones" xml:space="preserve">
+    <value>MYP_RENOVACIONES</value>
+  </data>
   <data name="ConsultarResolucion" xml:space="preserve">
     <value>MYP_RESOLBOL</value>
   </data>

@@ -266,7 +266,7 @@
   </data>
   <data name="FiltroObtenerFusionIdMarca" xml:space="preserve">
     <value>marca.Id = {0}</value>
-    <comment>Filtro por Asociado</comment>
+    <comment>Filtro por marca</comment>
   </data>
   <data name="CabeceraObtenerCesion" xml:space="preserve">
     <value>Select c from Cesion c left join fetch c.Marca as marca left join fetch c.Cedente as cedente left join fetch c.AgenteCedente as agenteCed left join fetch c.AgenteCesionario as agenteCes left join fetch c.PoderCedente as PoderCed  left join fetch c.PoderCesionario as PoderCes left join fetch c.Cedente as interesadoCed left join fetch c.Cesionario as interesadoCes left join fetch c.BoletinPublicacion as boletin where </value>
@@ -398,5 +398,21 @@
   <data name="FiltroObtenerAsociadoNombre" xml:space="preserve">
     <value>upper(a.Nombre) like '%{0}%'</value>
     <comment>Filtro por Nombre</comment>
+  </data>
+  <data name="CabeceraObtenerRenovacion" xml:space="preserve">
+    <value>Select r from Renovacion r left join fetch r.Marca as marca left join fetch r.Interesado as interesado left join fetch r.Agente as agente  left join fetch r.Poder as poder  left join fetch r.BoletinPublicacion as boletin where </value>
+    <comment>Cabecera del query para el filtro de Renovacion</comment>
+  </data>
+  <data name="FiltroObtenerRenovacionFecha" xml:space="preserve">
+    <value>r.FechaRenovacion between '{0}' and '{1}'</value>
+    <comment>Filtro por fecha</comment>
+  </data>
+  <data name="FiltroObtenerRenovacionId" xml:space="preserve">
+    <value>r.Id = {0}</value>
+    <comment>Filtro por id</comment>
+  </data>
+  <data name="FiltroObtenerRenovacionIdMarca" xml:space="preserve">
+    <value>marca.Id = {0}</value>
+    <comment>Filtro por marca</comment>
   </data>
 </root>

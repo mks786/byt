@@ -106,6 +106,8 @@
     <Compile Include="Comandos\ComandosPlanilla\ComandoEliminarPlanilla.cs" />
     <Compile Include="Comandos\ComandosPoder\ComandoConsultarPoderesFiltro.cs" />
     <Compile Include="Comandos\ComandosPoder\ComandoConsultarPoderesPorAgente.cs" />
+    <Compile Include="Comandos\ComandosRenovacion\ComandoConsultarRenovacionesFiltro.cs" />
+    <Compile Include="Comandos\ComandosRenovacion\ComandoVerificarExistenciaRenovacion.cs" />
     <Compile Include="Comandos\ComandosResumen\ComandoVerificarExistenciaResumen.cs" />
     <Compile Include="Comandos\ComandosCarta\ComandoVerificarExistenciaCarta.cs" />
     <Compile Include="Comandos\ComandosConcepto\ComandoConsultarTodosConceptos.cs" />
@@ -270,10 +272,14 @@
     <Compile Include="Comandos\ComandosMarcaTercero\ComandoInsertarOModificarMarcaTercero.cs" />
     <Compile Include="Comandos\ComandosMarcaTercero\ComandoVerificarExistenciaMarcaTercero.cs" />
     <Compile Include="Comandos\ComandosPlanilla\ComandoConsultarPlanillaPorId.cs" />
+    <Compile Include="Comandos\ComandosRenovacion\ComandoConsultarTodosRenovacion.cs" />
+    <Compile Include="Comandos\ComandosRenovacion\ComandoEliminarRenovacion.cs" />
+    <Compile Include="Comandos\ComandosRenovacion\ComandoInsertarOModificarRenovacion.cs" />
     <Compile Include="Comandos\Receptor.cs" />
     <Compile Include="Comandos\ComandosUsuario\ComandoConsultarTodosUsuarios.cs" />
     <Compile Include="Comandos\ComandosUsuario\ComandoConsultarUsuarioPorID.cs" />
     <Compile Include="Comandos\ComandosUsuario\ComandoInsertarOModificarUsuario.cs" />
+    <Compile Include="Fabrica\FabricaComandosRenovacion.cs" />
     <Compile Include="Fabrica\FabricaComandosPlanilla.cs" />
     <Compile Include="Fabrica\FabricaComandosMarcaTercero.cs" />
     <Compile Include="Fabrica\FabricaComandosCambioPeticionario.cs" />

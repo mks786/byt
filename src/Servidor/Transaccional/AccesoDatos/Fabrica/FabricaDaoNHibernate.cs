@@ -589,5 +589,14 @@ namespace Trascend.Bolet.AccesoDatos.Fabrica
         {
             return new DaoPlanillaNHibernate();
         }
+
+        /// <summary>
+        /// Método que devuelve el DaoRenovacion
+        /// </summary>
+        /// <returns>IDaoRenovacion</returns>
+        public override IDaoRenovacion ObtenerDaoRenovacion()
+        {
+            return new DaoRenovacionNHibernate();
+        }
     }
 }

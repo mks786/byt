@@ -40,6 +40,7 @@ using Trascend.Bolet.Cliente.Ventanas;
 using Trascend.Bolet.Cliente.Ventanas.Traspasos.CambiosDeDomicilio;
 using Trascend.Bolet.Cliente.Ventanas.Traspasos.CambiosDeNombre;
 using Trascend.Bolet.Cliente.Ventanas.Traspasos.CambiosPeticionario;
+using Trascend.Bolet.Cliente.Ventanas.Renovaciones;
 
 namespace Trascend.Bolet.Cliente.Presentadores.Principales
 {
@@ -456,11 +457,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
         }
 
         /// <summary>
-        /// Método que coloca la página "Gestionar Licencias" en el Frame principal
+        /// Método que coloca la página "Gestionar Renovaciones" en el Frame principal
         /// </summary>
         public void ConsultarRenovacionMarca()
         {
-            //this._ventana.Contenedor.Navigate(ventana*);
+            this._ventana.Contenedor.Navigate(new ConsultarRenovaciones());
         }
 
         /// <summary>
