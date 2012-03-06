@@ -1088,12 +1088,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             {
                 if (nombreBoton.Equals("_btn" + Recursos.Etiquetas.btnFM02))
                 {
-                    if (validarMarcaAntesDeImprimirFM02())
+                    if (ValidarMarcaAntesDeImprimirFM02())
                     {
                         Planilla planilla = this._planillaServicios.ImprimirFM02((Marca)this._ventana.Marca, UsuarioLogeado.Hash, 1);
                         if (planilla != null)
                         {
-                            Impresion _ventana = new Impresion("FM02", planilla.Folio.Replace("\n",  Environment.NewLine));
+                            Impresion _ventana = new Impresion("FM02", planilla.Folio.Replace("\n", Environment.NewLine));
                             _ventana.ShowDialog();
                             //Llamado al archivo .bat 
                             if (_ventana.ClickImprimir)
@@ -1115,11 +1115,25 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
         /// Método que realiza todas las validaciones de la Marca antes de imprimir
         /// </summary>
         /// <returns></returns>
-        private bool validarMarcaAntesDeImprimirFM02()
+        private bool ValidarMarcaAntesDeImprimirFM02()
         {
-            bool retorno = false;
+            bool retorno = true;
 
-            return true;
+            Marca marca = CargarMarcaDeLaPantalla();
+
+            if (marca.Poder.NumPoder.Equals(""))
+                retorno = retorno ? this._ventana.MensajeAlerta(Recursos.MensajesConElUsuario.MarcaSinNumeroDePoder) == retorno : retorno;
+
+            if (((this._ventana.ClaseInternacional.Equals("")) && (this._ventana.ClaseNacional.Equals(""))) && (retorno))
+                retorno = retorno ? this._ventana.MensajeAlerta(Recursos.MensajesConElUsuario.MarcaSinClase) == retorno : retorno;
+
+            if ((marca.EtiquetaDescripcion.Equals("")) && (retorno))
+                retorno = retorno ? this._ventana.MensajeAlerta(Recursos.MensajesConElUsuario.MarcaSinDescripcionDelSigno) == retorno : retorno;
+
+            if ((marca.Distingue.Equals("")) && (retorno))
+                retorno = retorno ? this._ventana.MensajeAlerta(Recursos.MensajesConElUsuario.MarcaSinDistingue) == retorno : retorno;
+
+            return retorno;
         }
     }
 }

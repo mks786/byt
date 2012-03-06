@@ -32,7 +32,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             get { return this._tbcPestañas.DataContext; }
             set { this._tbcPestañas.DataContext = value; }
         }
-        
+
         public string NumPoderDatos
         {
             get { return this._txtPoderDatos.Text; }
@@ -192,6 +192,17 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
         public void Mensaje(string mensaje)
         {
             throw new System.NotImplementedException();
+        }
+
+        public bool MensajeAlerta(string mensaje)
+        {
+            bool retorno = false;
+
+            if (MessageBoxResult.Yes == MessageBox.Show(mensaje,
+                "Alerta", MessageBoxButton.YesNo, MessageBoxImage.Question))
+                retorno = true;
+
+            return retorno;
         }
 
         public bool EstaCargada
@@ -712,6 +723,15 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             this._txtClaseNacionalDatos.Text = this._txtClaseNacionalDatos.Text.Equals("0") ? "" : this._txtClaseNacionalDatos.Text;
         }
 
+        public string ClaseInternacional
+        {
+            get { return this._txtClaseInternacional.Text; }
+        }
+
+        public string ClaseNacional
+        {
+            get { return this._txtClaseNacional.Text; }
+        }
         public GridViewColumnHeader CurSortCol
         {
             get { return _CurSortCol; }
@@ -725,7 +745,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
         }
 
         #endregion
-        
+
         public ConsultarMarca(object marcaSeleccionada)
         {
             InitializeComponent();
@@ -738,7 +758,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             this._presentador = new PresentadorConsultarMarca(this, marcaSeleccionada);
         }
 
-        public ConsultarMarca(object marcaSeleccionada, string tab) : this(marcaSeleccionada)
+        public ConsultarMarca(object marcaSeleccionada, string tab)
+            : this(marcaSeleccionada)
         {
             this._presentador.CambiarAModificar();
 
@@ -1325,9 +1346,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
 
         private void _btnFM02_Click(object sender, RoutedEventArgs e)
         {
-           this._presentador.IrImprimir(((Button)sender).Name);
+            this._presentador.IrImprimir(((Button)sender).Name);
         }
-
-
     }
 }

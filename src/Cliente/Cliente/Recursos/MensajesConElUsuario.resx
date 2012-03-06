@@ -594,4 +594,16 @@
   <data name="LicenciaEliminada" xml:space="preserve">
     <value>Licencia eliminada con éxito</value>
   </data>
+  <data name="MarcaSinClase" xml:space="preserve">
+    <value>La marca no tiene clase ¿Desea imprimir de todas maneras?</value>
+  </data>
+  <data name="MarcaSinDescripcionDelSigno" xml:space="preserve">
+    <value>El campo descripción del signo está vacío ¿Desea imprimir de todas maneras?</value>
+  </data>
+  <data name="MarcaSinDistingue" xml:space="preserve">
+    <value>La marca no tiene distingue ¿Desea imprimir de todas maneras?</value>
+  </data>
+  <data name="MarcaSinNumeroDePoder" xml:space="preserve">
+    <value>La marca no tiene número de poder ¿Desea imprimir de todas maneras?</value>
+  </data>
 </root>

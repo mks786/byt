@@ -168,6 +168,12 @@ namespace Trascend.Bolet.Cliente.Contratos.Marcas
 
         void BorrarCeros();
 
+        bool MensajeAlerta(string mensaje);
+
+        string ClaseInternacional { get; }
+
+        string ClaseNacional { get; }
+
         GridViewColumnHeader CurSortCol { get; set; }
 
         SortAdorner CurAdorner { get; set; }

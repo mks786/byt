@@ -25,6 +25,9 @@ namespace Trascend.Bolet.ControlesByT.Ventanas
             this._folio.ScrollBars = ScrollBars.Vertical;
             this.Text = titulo;
             this._folio.Text = folio;
+
+            this._folio.SelectionStart = this._folio.Text.Length;
+            this._folio.SelectionLength = 0;
         }
 
         private void _btnCerrar_Click(object sender, EventArgs e)
