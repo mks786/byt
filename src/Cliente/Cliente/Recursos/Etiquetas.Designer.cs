@@ -3303,6 +3303,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Abandono.
+        /// </summary>
+        public static string menuItemAbandono {
+            get {
+                return ResourceManager.GetString("menuItemAbandono", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Agente.
         /// </summary>
         public static string menuItemAgente {
@@ -3483,11 +3492,29 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Escritos.
+        /// </summary>
+        public static string menuItemEscritos {
+            get {
+                return ResourceManager.GetString("menuItemEscritos", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Estado.
         /// </summary>
         public static string menuItemEstado {
             get {
                 return ResourceManager.GetString("menuItemEstado", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Estados.
+        /// </summary>
+        public static string menuItemEstados {
+            get {
+                return ResourceManager.GetString("menuItemEstados", resourceCulture);
             }
         }
         
@@ -3582,6 +3609,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Marcas a Terceros.
+        /// </summary>
+        public static string menuItemMarcasATerceros {
+            get {
+                return ResourceManager.GetString("menuItemMarcasATerceros", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Medio.
         /// </summary>
         public static string menuItemMedio {
@@ -3636,11 +3672,38 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Recordatorios.
+        /// </summary>
+        public static string menuItemRecordatorios {
+            get {
+                return ResourceManager.GetString("menuItemRecordatorios", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Remitente.
         /// </summary>
         public static string menuItemRemitente {
             get {
                 return ResourceManager.GetString("menuItemRemitente", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Renovacion.
+        /// </summary>
+        public static string menuItemRenovacion {
+            get {
+                return ResourceManager.GetString("menuItemRenovacion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Renovaciones.
+        /// </summary>
+        public static string menuItemRenovaciones {
+            get {
+                return ResourceManager.GetString("menuItemRenovaciones", resourceCulture);
             }
         }
         
@@ -3677,6 +3740,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string menuItemSalir {
             get {
                 return ResourceManager.GetString("menuItemSalir", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tipo Base.
+        /// </summary>
+        public static string menuItemTipoBase {
+            get {
+                return ResourceManager.GetString("menuItemTipoBase", resourceCulture);
             }
         }
         

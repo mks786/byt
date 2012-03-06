@@ -365,7 +365,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
         /// <summary>
         /// Método que coloca la página "GestionarCesion" en el Frame principal
         /// </summary>
-        internal void AgregarCesion()
+        public void AgregarCesion()
         {
             this._ventana.Contenedor.Navigate(new GestionarCesion(null));   
         }
@@ -378,7 +378,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
             this._ventana.Contenedor.Navigate(new ConsultarFusiones());
         }
        
-        internal void AgregarFusion()
+        public void AgregarFusion()
         {
             this._ventana.Contenedor.Navigate(new GestionarFusion(null));
         }
@@ -450,10 +450,66 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
         /// <summary>
         /// Método que coloca la página "Gestionar Licencias" en el Frame principal
         /// </summary>
-        internal void AgregarLicencia()
+        public void AgregarLicencia()
         {
             this._ventana.Contenedor.Navigate(new GestionarLicencia(null));
-        }    
+        }
+
+        /// <summary>
+        /// Método que coloca la página "Gestionar Licencias" en el Frame principal
+        /// </summary>
+        public void RenovacionMarca()
+        {
+            //this._ventana.Contenedor.Navigate(ventana*);
+        }
+
+        /// <summary>
+        /// Método que coloca la página "Gestionar Licencias" en el Frame principal
+        /// </summary>
+        public void Recordatorios()
+        {
+            //this._ventana.Contenedor.Navigate(ventana*);
+        }
+
+        /// <summary>
+        /// Método que coloca la página "Gestionar Licencias" en el Frame principal
+        /// </summary>
+        public void EstadosMarca()
+        {
+            //this._ventana.Contenedor.Navigate(ventana*);
+        }
+
+        /// <summary>
+        /// Método que coloca la página "Gestionar Licencias" en el Frame principal
+        /// </summary>
+        public void TipoBase()
+        {
+            //this._ventana.Contenedor.Navigate(ventana*);
+        }
+
+        /// <summary>
+        /// Método que coloca la página "Gestionar Licencias" en el Frame principal
+        /// </summary>
+        public void Abandono()
+        {
+            //this._ventana.Contenedor.Navigate(ventana*);
+        }
+
+        /// <summary>
+        /// Método que coloca la página "Gestionar Licencias" en el Frame principal
+        /// </summary>
+        public void ConsultarMarcaATerceros()
+        {
+            //this._ventana.Contenedor.Navigate(ventana*);
+        }
+
+        /// <summary>
+        /// Método que coloca la página "Gestionar Licencias" en el Frame principal
+        /// </summary>
+        public void GestionarMarcaATercero()
+        {
+            //this._ventana.Contenedor.Navigate(ventana*);
+        }
 
         /// <summary>
         /// Método que coloca la página "ConsultarResumenes" en el Frame principal
@@ -566,6 +622,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
             this._ventana.Contenedor.Navigate(new AgregarCarta());
         }
 
+
         #endregion
 
         /// <summary>
@@ -669,6 +726,38 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
                                     if (objeto.Id.Equals(Recursos.Ids.Marca))
                                         itemNivel2.Visibility = System.Windows.Visibility.Visible;
                                     break;
+                                case "_menuItemRenovaciones":
+                                    if (objeto.Id.Equals(Recursos.Ids.Marca))
+                                        itemNivel2.Visibility = System.Windows.Visibility.Visible;
+                                    break;
+                                case "_menuItemRenovacion":
+                                    if (objeto.Id.Equals(Recursos.Ids.Marca))
+                                        itemNivel2.Visibility = System.Windows.Visibility.Visible;
+                                    break;
+                                case "_menuItemRecordatorios":
+                                    if (objeto.Id.Equals(Recursos.Ids.Marca))
+                                        itemNivel2.Visibility = System.Windows.Visibility.Visible;
+                                    break;
+                                case "_menuItemEscritos":
+                                    if (objeto.Id.Equals(Recursos.Ids.Marca))
+                                        itemNivel2.Visibility = System.Windows.Visibility.Visible;
+                                    break;
+                                case "_menuItemMarcasATerceros":
+                                    if (objeto.Id.Equals(Recursos.Ids.Marca))
+                                        itemNivel2.Visibility = System.Windows.Visibility.Visible;
+                                    break;
+                                case "_menuItemTipoBase":
+                                    if (objeto.Id.Equals(Recursos.Ids.Marca))
+                                        itemNivel2.Visibility = System.Windows.Visibility.Visible;
+                                    break;
+                                case "_menuItemEstadosMarca":
+                                    if (objeto.Id.Equals(Recursos.Ids.Marca))
+                                        itemNivel2.Visibility = System.Windows.Visibility.Visible;
+                                    break;
+                                case "_menuItemAbandono":
+                                    if (objeto.Id.Equals(Recursos.Ids.Marca))
+                                        itemNivel2.Visibility = System.Windows.Visibility.Visible;
+                                    break;
                                 case "_menuItemAnexo":
                                     if (objeto.Id.Equals(Recursos.Ids.Anexo))
                                         itemNivel2.Visibility = System.Windows.Visibility.Visible;
@@ -769,6 +858,5 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
                     }
             }
         }
-        
     }
 }

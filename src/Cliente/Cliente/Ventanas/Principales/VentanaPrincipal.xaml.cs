@@ -392,6 +392,48 @@ namespace Trascend.Bolet.Cliente.Ventanas.Principales
         {
             this._presentador.AgregarCambioDeNombre();
         }
+
+        private void _menuItemRenovacion_Click(object sender, RoutedEventArgs e)
+        {
+            //llamada
+            this._presentador.RenovacionMarca();
+        }
+
+        private void _menuItemRecordatorio_Click(object sender, RoutedEventArgs e)
+        {
+            //llamada
+            this._presentador.Recordatorios();
+        }
+
+        private void _menuItemEstadosMarca_Click(object sender, RoutedEventArgs e)
+        {
+            //llamada
+            this._presentador.EstadosMarca();
+        }
+
+        private void _menuItemTipoBase_Click(object sender, RoutedEventArgs e)
+        {
+            //llamada
+            this._presentador.TipoBase();
+        }
+
+        private void _menuItemAbandono_Click(object sender, RoutedEventArgs e)
+        {
+            //llamada
+            this._presentador.Abandono();
+        }
+
+        private void _menuItemMarcasATercerosConsultar_Click(object sender, RoutedEventArgs e)
+        {
+            //llamada
+            this._presentador.ConsultarMarcaATerceros();
+        }
+
+        private void _menuItemMarcasATercerosGestionar_Click(object sender, RoutedEventArgs e)
+        {
+            //llamada
+            this._presentador.GestionarMarcaATercero();
+        }
          
         #endregion
 
@@ -429,8 +471,6 @@ namespace Trascend.Bolet.Cliente.Ventanas.Principales
         }
 
         #endregion   
-
-
 
     }
 }

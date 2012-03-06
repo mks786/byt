@@ -117,9 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="btnAceptar" xml:space="preserve">
-    <value>Aceptar</value>
-  </data>
   <data name="btnAgregar" xml:space="preserve">
     <value>&gt;&gt;</value>
   </data>
@@ -1694,5 +1691,32 @@ libro</value>
   </data>
   <data name="titleAgregarLicencia" xml:space="preserve">
     <value>Agregar Licencia de marcas</value>
+  </data>
+  <data name="btnAceptar" xml:space="preserve">
+    <value>Aceptar</value>
+  </data>
+  <data name="menuItemAbandono" xml:space="preserve">
+    <value>Abandono</value>
+  </data>
+  <data name="menuItemEscritos" xml:space="preserve">
+    <value>Escritos</value>
+  </data>
+  <data name="menuItemEstados" xml:space="preserve">
+    <value>Estados</value>
+  </data>
+  <data name="menuItemMarcasATerceros" xml:space="preserve">
+    <value>Marcas a Terceros</value>
+  </data>
+  <data name="menuItemRecordatorios" xml:space="preserve">
+    <value>Recordatorios</value>
+  </data>
+  <data name="menuItemRenovacion" xml:space="preserve">
+    <value>Renovacion</value>
+  </data>
+  <data name="menuItemRenovaciones" xml:space="preserve">
+    <value>Renovaciones</value>
+  </data>
+  <data name="menuItemTipoBase" xml:space="preserve">
+    <value>Tipo Base</value>
   </data>
 </root>
