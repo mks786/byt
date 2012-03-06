@@ -313,6 +313,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Cesiones
         //        this._ventana.Interesados = this._interesados;
         //}
 
+        /// <summary>
+        /// Método que busca las marcas registradas
+        /// </summary>
         public void BuscarMarca()
         {
             Mouse.OverrideCursor = Cursors.Wait;
@@ -333,6 +336,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Cesiones
             Mouse.OverrideCursor = null;
         }
 
+        /// <summary>
+        /// Método que permite seleccionar marcas
+        /// </summary>
         public bool ElegirMarca()
         {
             bool retorno = false;

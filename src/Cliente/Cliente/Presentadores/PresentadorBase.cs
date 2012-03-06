@@ -330,7 +330,6 @@ namespace Trascend.Bolet.Cliente.Presentadores
             return retorno;
         }
 
-
         /// <summary>
         /// Busca el tipo de destinatario correspondiente a la inicial que se le esté pasando
         /// </summary>
@@ -644,6 +643,9 @@ namespace Trascend.Bolet.Cliente.Presentadores
             return retorno;
         }
 
+        /// <summary>
+        /// Metodo que carga 1 comboBox de Minutos y 1 ComboBox de horas
+        /// </summary>
         public void CargarComboBoxTiempo(object horas, object minutos)
         {
             ((ComboBox)horas).Items.Add("");
@@ -815,11 +817,11 @@ namespace Trascend.Bolet.Cliente.Presentadores
         }
 
         /// <summary>
-        /// Método que busca un concepto dentro de una lista de conceptos
+        /// Método que busca un Sector dentro de una lista de Sectores
         /// </summary>
-        /// <param name="estados">Lista de conceptos</param>
-        /// <param name="estadoBuscado">concepto a buscar</param>
-        /// <returns>Concepto dentro de la lista</returns>
+        /// <param name="estados">Lista de Sectores</param>
+        /// <param name="estadoBuscado">Sector a buscar</param>
+        /// <returns>Sector dentro de la lista</returns>
         public ListaDatosDominio BuscarSector(IList<ListaDatosDominio> sectores, string sectorBuscado)
         {
             ListaDatosDominio retorno = null;
@@ -861,11 +863,11 @@ namespace Trascend.Bolet.Cliente.Presentadores
         }
 
         /// <summary>
-        /// Método que busca un concepto dentro de una lista de conceptos
+        /// Método que busca Tipo de Reproduccion dentro de una lista de Reproducciones
         /// </summary>
-        /// <param name="estados">Lista de conceptos</param>
-        /// <param name="estadoBuscado">concepto a buscar</param>
-        /// <returns>Concepto dentro de la lista</returns>
+        /// <param name="estados">Lista de Reproducciones</param>
+        /// <param name="estadoBuscado">reproduccion a buscar</param>
+        /// <returns>Reproduccion dentro de la lista</returns>
         public ListaDatosDominio BuscarTipoReproduccion(IList<ListaDatosDominio> tipoReproducciones, string tipoReproduccionBuscado)
         {
             ListaDatosDominio retorno = null;
@@ -884,11 +886,8 @@ namespace Trascend.Bolet.Cliente.Presentadores
         }
 
         /// <summary>
-        /// Método que busca un concepto dentro de una lista de conceptos
+        /// Método que busca un id en el texto que va en el Combobox
         /// </summary>
-        /// <param name="estados">Lista de conceptos</param>
-        /// <param name="estadoBuscado">concepto a buscar</param>
-        /// <returns>Concepto dentro de la lista</returns>
         public string BuscarDepartamentoContacto(string departamentoBuscado)
         {
             string retorno = "NGN";
@@ -913,6 +912,9 @@ namespace Trascend.Bolet.Cliente.Presentadores
             return retorno;
         }
 
+        /// <summary>
+        /// Método que busca un id en el texto que va en el Combobox
+        /// </summary>
         public string BuscarFuncionContacto(string funcionBuscada)
         {
             string retorno = "NGN";
@@ -949,6 +951,9 @@ namespace Trascend.Bolet.Cliente.Presentadores
             return retorno;
         }
 
+        /// <summary>
+        /// Método que busca un id en el texto que va en el Combobox
+        /// </summary>
         public string transformarDepartamento(string departamento)
         {
             string retorno = "";
@@ -972,6 +977,9 @@ namespace Trascend.Bolet.Cliente.Presentadores
             return retorno;
         }
 
+        /// <summary>
+        /// Método que busca un id en el texto que va en el Combobox
+        /// </summary>
         public string transformarFuncion(string funcion)
         {
             string retorno = "";
@@ -1007,6 +1015,9 @@ namespace Trascend.Bolet.Cliente.Presentadores
             return retorno;
         }
 
+        /// <summary>
+        /// Método que verifica el formato
+        /// </summary>
         public bool verificarFormato(string formato, string tracking)
         {
             bool trackingCorrecto = true;
@@ -1113,8 +1124,6 @@ namespace Trascend.Bolet.Cliente.Presentadores
             Process.Start(URL);
         }
 
-
-
         /// <summary>
         /// Método que busca un StatusWeb dentro de una lista de StatusWebs
         /// </summary>
@@ -1137,7 +1146,6 @@ namespace Trascend.Bolet.Cliente.Presentadores
 
             return retorno;
         }
-
 
         /// <summary>
         /// Metodo que recibe el nombre del archivo .bat a ejecutar

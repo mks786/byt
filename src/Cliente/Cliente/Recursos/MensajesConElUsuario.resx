@@ -594,6 +594,15 @@
   <data name="LicenciaEliminada" xml:space="preserve">
     <value>Licencia eliminada con éxito</value>
   </data>
+  <data name="EstadoMarcaEliminado" xml:space="preserve">
+    <value>Estado de Marca eliminado con éxito</value>
+  </data>
+  <data name="EstadoMarcaInsertado" xml:space="preserve">
+    <value>Estado de Marca insertado con éxito</value>
+  </data>
+  <data name="EstadoMarcaModificado" xml:space="preserve">
+    <value>Estado de Marca Modificado con éxito</value>
+  </data>
   <data name="MarcaSinClase" xml:space="preserve">
     <value>La marca no tiene clase ¿Desea imprimir de todas maneras?</value>
   </data>

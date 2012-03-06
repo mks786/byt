@@ -47,6 +47,7 @@
     <Compile Include="Controladores\ControladorBusqueda.cs" />
     <Compile Include="Controladores\ControladorCorresponsal.cs" />
     <Compile Include="Controladores\ControladorEstado.cs" />
+    <Compile Include="Controladores\ControladorEstadoMarca.cs" />
     <Compile Include="Controladores\ControladorObjeto.cs" />
     <Compile Include="Controladores\ControladorUsuario.cs" />
     <Compile Include="Controladores\ControladorDepartamento.cs" />

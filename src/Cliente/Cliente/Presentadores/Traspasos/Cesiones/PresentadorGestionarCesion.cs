@@ -253,7 +253,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Cesiones
                 Mouse.OverrideCursor = null;
             }
         }
-          
+
+        /// <summary>
+        /// Método que carga los boletines registrados
+        /// </summary>
         private void CargaBoletines()
         {
             Boletin primerBoletin = new Boletin(int.MinValue);
@@ -262,6 +265,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Cesiones
             this._ventana.Boletines = boletines;       
         }
 
+        /// <summary>
+        /// Método que carga el interesado
+        /// </summary>
         private void CargarInteresado(string tipo)
         {
             Interesado primerInteresado = new Interesado(int.MinValue);
@@ -318,6 +324,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Cesiones
             }
         }
 
+        /// <summary>
+        /// Método que carga el apoderado
+        /// </summary>
         private void CargarApoderado(string tipo)
         {
             Agente primerAgente = new Agente("");
@@ -360,6 +369,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Cesiones
             }
         }
 
+        /// <summary>
+        /// Método que carga el poder
+        /// </summary>
         private void CargarPoder(string tipo)
         {
             Poder primerPoder = new Poder(int.MinValue);
@@ -401,7 +413,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Cesiones
                 }
             }
         }
-      
+
+        /// <summary>
+        /// Método que segun el estatus de la pagina carga una cesion registrada
+        /// o una cesion nueva
+        /// </summary>
         public Cesion CargarCesionDeLaPantalla()
         {
 
@@ -434,6 +450,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Cesiones
             return cesion;
         }
 
+        /// <summary>
+        /// Método que habilita los campos
+        /// </summary>
         public void CambiarAModificar()
         {
             this._ventana.HabilitarCampos = true;
@@ -507,7 +526,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Cesiones
         }
 
         /// <summary>
-        /// Metodo que se encarga de eliminar una Marca
+        /// Metodo que se encarga de eliminar una cesion
         /// </summary>
         public void Eliminar()
         {
@@ -591,6 +610,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Cesiones
             #endregion
         }
 
+        /// <summary>
+        /// Método que carga los poderes
+        /// </summary>
         public void LlenarListasPoderes(Cesion cesion)
         {
 
@@ -607,6 +629,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Cesiones
                 this._poderesApoderadosCesionario = this._poderServicios.ConsultarPoderesPorAgente(cesion.AgenteCesionario);
         }
 
+        /// <summary>
+        /// Método que valida los poderes
+        /// </summary>
         public bool ValidarListaDePoderes(IList<Poder> listaPoderesA, IList<Poder> listaPoderesB, string tipo)
         {
             bool retorno = false;
@@ -664,6 +689,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Cesiones
             return retorno;
         }
 
+        /// <summary>
+        /// Método que carga los interesados y los agentes
+        /// </summary>
         public void LlenarListaAgenteEInteresado(Poder poder, string tipo, bool cargaInicial)
         {
             try
@@ -806,6 +834,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Cesiones
 
         }
 
+        /// <summary>
+        /// Método que carga los agentes
+        /// </summary>
         private void LlenarListaAgente(Poder poder, string tipo)
         {
             Agente primerAgente = new Agente("");
@@ -826,6 +857,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Cesiones
             }
         }
 
+        /// <summary>
+        /// Método que verifica el cambio del interesado
+        /// </summary>
         public bool VerificarCambioInteresado(string tipo)
         {
             bool retorno = false;
@@ -844,6 +878,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Cesiones
             return retorno;
         }
 
+        /// <summary>
+        /// Método que verifica el cambio de agente
+        /// </summary>
         public bool VerificarCambioAgente(string tipo)
         {
             bool retorno = false;
@@ -862,6 +899,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Cesiones
             return retorno;
         }
 
+        /// <summary>
+        /// Método que verifica el cambio de poder
+        /// </summary>
         public bool VerificarCambioPoder(string tipo)
         {
             if (tipo.Equals("Cedente"))
@@ -878,6 +918,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Cesiones
             return false;
         }
 
+        /// <summary>
+        /// Método que borra la lista de interesados
+        /// </summary>
         public void LimpiarListaInteresado(string tipo)
         {
             Interesado primerInteresado = new Interesado(int.MinValue);
@@ -898,6 +941,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Cesiones
             }
         }
 
+        /// <summary>
+        /// Método que borra la lista de agentes
+        /// </summary>
         public void LimpiarListaAgente(string tipo)
         {
             Agente primerAgente = new Agente("");
@@ -918,6 +964,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Cesiones
             }
         }
 
+        /// <summary>
+        /// Método que borra la lista de poder
+        /// </summary>
         public void LimpiarListaPoder(string tipo)
         {
             Poder primerPoder = new Poder(int.MinValue);
@@ -940,11 +989,17 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Cesiones
 
         #region Marca
 
+        /// <summary>
+        /// Método que consulta las marcas
+        /// </summary>
         public void IrConsultarMarcas()
         {
             this.Navegar(new ConsultarMarcas());
         }
 
+        /// <summary>
+        /// Método que carga la Marca
+        /// </summary>
         private void CargarMarca()
         {
             this._marcas = new List<Marca>();
@@ -964,6 +1019,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Cesiones
             }
         }
 
+        /// <summary>
+        /// Método que consulta las marcas
+        /// </summary>
         public void ConsultarMarcas()
         {
             Mouse.OverrideCursor = Cursors.Wait;
@@ -1031,8 +1089,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Cesiones
             {
                 Mouse.OverrideCursor = null;
             }
-        }        
+        }
 
+        /// <summary>
+        /// Método que cambia las marcas
+        /// </summary>
         public bool CambiarMarca()
         {
             Mouse.OverrideCursor = Cursors.Wait;
@@ -1092,6 +1153,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Cesiones
 
         #region Cedente
 
+        /// <summary>
+        /// Método que valida el cedente seleccionado
+        /// </summary>
         private void ValidarCedente()
         {
             if (((Interesado)this._ventana.CedenteFiltrado).Id == int.MinValue)
@@ -1160,6 +1224,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Cesiones
             }
         }
 
+        /// <summary>
+        /// Método que consulta los cedentes
+        /// </summary>
         public void ConsultarCedentes()
         {
             Mouse.OverrideCursor = Cursors.Wait;
@@ -1229,6 +1296,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Cesiones
             }
         }
 
+        /// <summary>
+        /// Método que consulta a los apoderados
+        /// </summary>
         public void ConsultarApoderadosCedente()
         {
             Mouse.OverrideCursor = Cursors.Wait;
@@ -1298,6 +1368,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Cesiones
             }
         }
 
+        /// <summary>
+        /// Método que consulta los poderes
+        /// </summary>
         public void ConsultarPoderesCedente()
         {
             Mouse.OverrideCursor = Cursors.Wait;
@@ -1372,6 +1445,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Cesiones
             }
         }
 
+        /// <summary>
+        /// Método que Cambia el cedente
+        /// </summary>
         public bool CambiarCedente()
         {
             Mouse.OverrideCursor = Cursors.Wait;
@@ -1484,6 +1560,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Cesiones
             return retorno;
         }
 
+        /// <summary>
+        /// Método que cambia el apoderado
+        /// </summary>
         public bool CambiarApoderadoCedente()
         {
             Mouse.OverrideCursor = Cursors.Wait;
@@ -1586,6 +1665,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Cesiones
             return retorno;
         }
 
+        /// <summary>
+        /// Método que cambia el poder
+        /// </summary>
         public bool CambiarPoderCedente()
         {
             Mouse.OverrideCursor = Cursors.Wait;
@@ -1680,6 +1762,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Cesiones
 
         #region Cesionario
 
+        /// <summary>
+        /// Método que valida el cesionario
+        /// </summary>
         private void ValidarCesionario()
         {
             if (((Interesado)this._ventana.CesionarioFiltrado).Id == int.MinValue)
@@ -1747,8 +1832,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Cesiones
                     }
                 }
             }
-        }          
+        }
 
+        /// <summary>
+        /// Método que consulta los cesionarios
+        /// </summary>
         public void ConsultarCesionarios()
         {
             Mouse.OverrideCursor = Cursors.Wait;
@@ -1818,6 +1906,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Cesiones
             }
         }
 
+        /// <summary>
+        /// Método que consulta apoderados
+        /// </summary>
         public void ConsultarApoderadosCesionario()
         { 
             Mouse.OverrideCursor = Cursors.Wait;
@@ -1887,6 +1978,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Cesiones
             }
         }
 
+        /// <summary>
+        /// Método que consulta los poderes
+        /// </summary>
         public void ConsultarPoderesCesionario()
         {
             Mouse.OverrideCursor = Cursors.Wait;
@@ -1960,6 +2054,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Cesiones
             }
         }
 
+        /// <summary>
+        /// Método que cambia el cesionario
+        /// </summary>
         public bool CambiarCesionario()
         {
             Mouse.OverrideCursor = Cursors.Wait;
@@ -2072,6 +2169,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Cesiones
             return retorno;
         }
 
+        /// <summary>
+        /// Método que cambia apoderados
+        /// </summary>
         public bool CambiarApoderadoCesionario()
         {
             Mouse.OverrideCursor = Cursors.Wait;
@@ -2174,6 +2274,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Cesiones
             return retorno;
         }
 
+        /// <summary>
+        /// Método que cambia el poder
+        /// </summary>
         public bool CambiarPoderCesionario()
         {
             Mouse.OverrideCursor = Cursors.Wait;

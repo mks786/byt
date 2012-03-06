@@ -1692,6 +1692,15 @@ libro</value>
   <data name="titleAgregarLicencia" xml:space="preserve">
     <value>Agregar Licencia de marcas</value>
   </data>
+  <data name="titleAgregarEstadoMarca" xml:space="preserve">
+    <value>Agregar Estado Marca</value>
+  </data>
+  <data name="titleConsultarEstadoMarca" xml:space="preserve">
+    <value>Consultar Estado Marca</value>
+  </data>
+  <data name="titleConsultarEstadosMarcas" xml:space="preserve">
+    <value>Consultar Estados de Marcas</value>
+  </data>
   <data name="lblRenovacion" xml:space="preserve">
     <value>Renovación</value>
   </data>

@@ -36,6 +36,7 @@ using Trascend.Bolet.Cliente.Ventanas.Marcas;
 using Trascend.Bolet.Cliente.Ventanas.Traspasos.Fusiones;
 using Trascend.Bolet.Cliente.Ventanas.Traspasos.Cesiones;
 using Trascend.Bolet.Cliente.Ventanas.Traspasos.Licencias;
+using Trascend.Bolet.Cliente.Ventanas.EstadosMarca;
 using Trascend.Bolet.Cliente.Ventanas;
 using Trascend.Bolet.Cliente.Ventanas.Traspasos.CambiosDeDomicilio;
 using Trascend.Bolet.Cliente.Ventanas.Traspasos.CambiosDeNombre;
@@ -481,11 +482,19 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
         }
 
         /// <summary>
-        /// Método que coloca la página "Gestionar Licencias" en el Frame principal
+        /// Método que coloca la página "Consultar Estados De Marcas" en el Frame principal
         /// </summary>
         public void ConsultarEstadosMarca()
         {
-            //this._ventana.Contenedor.Navigate(ventana*);
+            this._ventana.Contenedor.Navigate(new ConsultarEstadosMarcas());
+        }
+
+        /// <summary>
+        /// Método que coloca la página "Agregar Estado De Marca" en el Frame principal
+        /// </summary>
+        public void AgregarEstadosMarcas()
+        {
+            this._ventana.Contenedor.Navigate(new AgregarEstadoMarca());
         }
 
         /// <summary>

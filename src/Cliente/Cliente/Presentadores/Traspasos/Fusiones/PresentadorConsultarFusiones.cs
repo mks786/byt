@@ -219,7 +219,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
         }
 
         /// <summary>
-        /// Método que invoca una nueva página "ConsultarPoder" y la instancia con el objeto seleccionado
+        /// Método que invoca una nueva página "ConsultarFusion" y la instancia con el objeto seleccionado
         /// </summary>
         public void IrConsultarFusion()
         {
@@ -273,6 +273,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
             #endregion
         }
 
+        /// <summary>
+        /// Método que Carga las Marcas registradas
+        /// </summary>
         public void BuscarMarca()
         {
             try
@@ -326,14 +329,26 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
             }
         }
 
+        /// <summary>
+        /// Método que permite seleccionar marca
+        /// </summary>
         public bool ElegirMarca()
         {
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
             bool retorno = false;
             if (this._ventana.Marca != null)
             {
                 retorno = true;
                 this._ventana.NombreMarca = ((Marca)this._ventana.Marca).Descripcion;
             }
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
 
             return retorno;
         }

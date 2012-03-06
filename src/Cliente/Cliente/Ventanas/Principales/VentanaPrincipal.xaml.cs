@@ -424,14 +424,12 @@ namespace Trascend.Bolet.Cliente.Ventanas.Principales
 
         private void _menuItemEstadosMarcaConsultar_Click(object sender, RoutedEventArgs e)
         {
-            //llamada
             this._presentador.ConsultarEstadosMarca();
         }
 
         private void _menuItemEstadosMarcaGestionar_Click(object sender, RoutedEventArgs e)
         {
-            //llamada
-            this._presentador.GestionarEstadosMarca();
+            this._presentador.AgregarEstadosMarcas();
         }
 
         private void _menuItemAbandonoConsultar_Click(object sender, RoutedEventArgs e)
@@ -458,6 +456,15 @@ namespace Trascend.Bolet.Cliente.Ventanas.Principales
             this._presentador.GestionarRenovacionMarca();
         }
 
+        private void _menuItemEstadosMarcasConsultar_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.ConsultarEstadosMarca();
+        }
+
+        private void _menuItemEstadosMarcaAgregar_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.AgregarEstadosMarcas();
+        }
         #endregion
 
         #endregion

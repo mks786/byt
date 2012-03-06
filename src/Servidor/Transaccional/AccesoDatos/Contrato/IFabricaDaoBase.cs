@@ -11,6 +11,8 @@ namespace Trascend.Bolet.AccesoDatos.Contrato
 
          IDaoEstado ObtenerDaoEstado();
 
+         IDaoEstadoMarca ObtenerDaoEstadoMarca();
+
          IDaoEstatus ObtenerDaoEstatus();
 
          IDaoInternacional ObtenerDaoInternacional();

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+                   assembly="Trascend.Bolet.ObjetosComunes"
+                   namespace="Trascend.Bolet.ObjetosComunes.Entidades">
+
+  <class name="EstadoMarca" table="MYP_ESTADOS_TER">
+    
+    <id name="Id" column="TESTADO" />
+    <property name="Descripcion" column="XESTADO" type="string"/>
+    <property name="DescripcionIngles" column="XESTADOIN" type="string"/>
+    
+  </class>
+
+</hibernate-mapping>

@@ -67,6 +67,15 @@ namespace Trascend.Bolet.AccesoDatos.Fabrica
         }
 
         /// <summary>
+        /// Método que devuelve el DaoEstadoMarca
+        /// </summary>
+        /// <returns>IDaoEstadoMarca</returns>
+        public override IDaoEstadoMarca ObtenerDaoEstadoMarca()
+        {
+            return new DaoEstadoMarcaNHibernate();
+        }
+
+        /// <summary>
         /// Método que devuelve el DaoEstatus
         /// </summary>
         /// <returns>IDaoEstatus</returns>

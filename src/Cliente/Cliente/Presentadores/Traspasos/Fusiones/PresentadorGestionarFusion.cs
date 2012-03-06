@@ -48,7 +48,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
         private IFusionServicios _fusionesServicios;
 
         private IList<Asociado> _asociados;
-        private IList<Interesado> _interesados;        
+        private IList<Interesado> _interesados;
         private IList<Corresponsal> _corresponsales;
         private IList<Auditoria> _auditorias;
         private IList<Marca> _marcas;
@@ -238,8 +238,16 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
             this.Navegar(new ConsultarMarcas());
         }
 
+        /// <summary>
+        /// Método que carga el Interesado registrado
+        /// </summary>
         private void CargarInteresado(string tipo)
         {
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
             Interesado primerInteresado = new Interesado(int.MinValue);
 
             if (tipo.Equals("Entre"))
@@ -294,10 +302,23 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
 
                 }
             }
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
         }
 
+        /// <summary>
+        /// Método que carga la Marca registrada
+        /// </summary>
         private void CargarMarca()
         {
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
             this._marcas = new List<Marca>();
             Marca primeraMarca = new Marca(int.MinValue);
             this._marcas.Add(primeraMarca);
@@ -313,10 +334,23 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
                 this._ventana.MarcasFiltradas = this._marcas;
                 this._ventana.MarcaFiltrada = primeraMarca;
             }
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
         }
 
+        /// <summary>
+        /// Método que carga el Apoderado registrado
+        /// </summary>
         private void CargarApoderado()
         {
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
             Agente primerAgente = new Agente("");
 
             this._agentesApoderados = new List<Agente>();
@@ -334,11 +368,23 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
                 this._ventana.AgenteApoderadoFiltrados = this._agentesApoderados;
                 this._ventana.AgenteApoderadoFiltrado = primerAgente;
             }
-           
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
         }
 
+        /// <summary>
+        /// Método que carga el poder resgistrado
+        /// </summary>
         private void CargarPoder()
         {
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
             Poder primerPoder = new Poder(int.MinValue);
             
             this._poderes = new List<Poder>();
@@ -355,11 +401,24 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
                 this._ventana.PoderesFiltrados = this._poderes;
                 this._ventana.PoderFiltrado = primerPoder;
                 this._ventana.ConvertirEnteroMinimoABlanco();
-            }          
+            }
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
         }
 
+        /// <summary>
+        /// Método que dependiendo del estado de la pagina carga una fusion seleccionada
+        /// o una nueva
+        /// </summary>
         public Fusion CargarFusionDeLaPantalla()
         {
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
 
             Fusion fusion = (Fusion)this._ventana.Fusion;
        
@@ -425,9 +484,18 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
             //if(string.IsNullOrEmpty(this._ventana.IdNacional))
             //    marca.Nacional = null;
             #endregion
+
+              #region trace
+              if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                  logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+              #endregion
+
             return fusion;
         }
 
+        /// <summary>
+        /// Método que habilita los campos
+        /// </summary>
         public void CambiarAModificar()
         {
             this._ventana.HabilitarCampos = true;
@@ -500,7 +568,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
         }
 
         /// <summary>
-        /// Metodo que se encarga de eliminar una Marca
+        /// Metodo que se encarga de eliminar una Fusion
         /// </summary>
         public void Eliminar()
         {
@@ -550,6 +618,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
             }
         }
 
+        /// <summary>
+        /// Metodo que nos muestra la lista de auditorias
+        /// </summary>
         public void Auditoria()
         {
             try
@@ -624,6 +695,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
             #endregion
         }
 
+        /// <summary>
+        /// Método que Carga la lista de agentes y la lista de interesados
+        /// </summary>
         public void LlenarListaAgenteEInteresado(Poder poder, bool cargaInicial)
         {
             try
@@ -717,18 +791,35 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
 
         }
 
+        /// <summary>
+        /// Método llena la lista de agentes
+        /// </summary>
         private void LlenarListaAgente(Poder poder)
         {
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
             Agente primerAgente = new Agente("");
 
             this._agentesApoderados = this._agenteServicios.ObtenerAgentesDeUnPoder(poder);
             this._agentesApoderados.Insert(0, primerAgente);
             this._ventana.AgenteApoderadoFiltrados = this._agentesApoderados;
             this._ventana.AgenteApoderadoFiltrado = primerAgente;
+
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
         }
 
         #region Marcas
 
+        /// <summary>
+        /// Método Muestra las marcas consultadas
+        /// </summary>
         public void ConsultarMarcas()
         {
             Mouse.OverrideCursor = Cursors.Wait;
@@ -793,6 +884,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
             }
         }
 
+        /// <summary>
+        /// Método que cambia la marca
+        /// </summary>
         public bool CambiarMarca()
         {
             Mouse.OverrideCursor = Cursors.Wait;
@@ -854,6 +948,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
 
         #region InteresadoEntre
 
+        /// <summary>
+        /// Método carga los interesados 
+        /// </summary>
         public void ConsultarInteresadosEntre()
         {
             try
@@ -915,6 +1012,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
             }
         }
 
+        /// <summary>
+        /// Método que cambia los interesados
+        /// </summary>
         public bool CambiarInteresadoEntre()
         {
             bool retorno = false;
@@ -970,8 +1070,16 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
 
         #region InteresadoSobreviviente
 
+        /// <summary>
+        /// Método que Valida el interesado seleccionado
+        /// </summary>
         private void ValidarInteresado()
         {
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
             if (((Interesado)this._ventana.InteresadoSobrevivienteFiltrado).Id == int.MinValue)
             {
                 if (((Agente)this._ventana.AgenteApoderadoFiltrado).Id.Equals(""))
@@ -1036,8 +1144,16 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
                     }
                 }
             }
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
         }
 
+        /// <summary>
+        /// Método que muestra los interesados
+        /// </summary>
         public void ConsultarInteresadosSobreviviente()
         {
             Mouse.OverrideCursor = Cursors.Wait;
@@ -1104,7 +1220,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
                 Mouse.OverrideCursor = null;
             }
         }
-       
+
+        /// <summary>
+        /// Método que cambia los interesados
+        /// </summary>
         public bool CambiarInteresadoSobreviviente()
         {
             Mouse.OverrideCursor = Cursors.Wait;
@@ -1217,8 +1336,16 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
             return retorno;
         }
 
+        /// <summary>
+        /// Método que borra la lista de interesados
+        /// </summary>
         public void LimpiarListaInteresado()
         {
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
             Interesado primerInteresado = new Interesado(int.MinValue);
             IList<Interesado> listaInteresados = new List<Interesado>();
             listaInteresados.Add(primerInteresado);
@@ -1226,14 +1353,33 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
             this._ventana.InteresadosSobrevivienteFiltrados = listaInteresados;
             this._ventana.InteresadoSobrevivienteFiltrado = BuscarInteresado(listaInteresados, primerInteresado);
             this._ventana.InteresadoSobreviviente = this._ventana.InteresadoSobrevivienteFiltrado;
+
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
         }
 
+        /// <summary>
+        /// Método que revisa y valida el cambio de interesado
+        /// </summary>
         public bool VerificarCambioInteresado()
         {
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
             bool retorno = false;
 
             if ((((Interesado)this._ventana.InteresadoSobrevivienteFiltrado).Id != int.MinValue) || !(((Agente)this._ventana.AgenteApoderadoFiltrado).Id.Equals("")))
                 retorno = true;
+
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
 
             return retorno;
         }
@@ -1242,6 +1388,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
 
         #region Agente Apoderado
 
+        /// <summary>
+        /// Método que consulta los apoderados
+        /// </summary>
         public void ConsultarApoderados()
         {
             try
@@ -1305,8 +1454,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
                 logger.Error(ex.Message);
                 this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
             }
-        }      
+        }
 
+        /// <summary>
+        /// Método que permite cambiar el apoderado
+        /// </summary>
         public bool CambiarApoderado()
         {
             Mouse.OverrideCursor = Cursors.Wait;
@@ -1409,8 +1561,16 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
             return retorno;
         }
 
+        /// <summary>
+        /// Método que borra la lista de agentes
+        /// </summary>
         public void LimpiarListaAgente()
         {
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
             Agente primerAgente = new Agente("");
             IList<Agente> listaAgentes = new List<Agente>();
             listaAgentes.Add(primerAgente);
@@ -1419,14 +1579,32 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
             this._ventana.AgenteApoderadoFiltrado = BuscarAgente(listaAgentes, primerAgente);
             this._ventana.AgenteApoderado = this._ventana.AgenteApoderadoFiltrado;
 
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
         }
 
+        /// <summary>
+        /// Método que revisa y valida el cambio de Agente
+        /// </summary>
         public bool VerificarCambioAgente()
         {
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
             bool retorno = false;
 
             if (!(((Agente)this._ventana.AgenteApoderadoFiltrado).Id.Equals("")) || (((Interesado)this._ventana.InteresadoSobrevivienteFiltrado).Id != int.MinValue))
                 retorno = true;
+
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
 
             return retorno;
         }
@@ -1435,6 +1613,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
 
         #region Poder
 
+        /// <summary>
+        /// Método que consulta los poderess
+        /// </summary>
         public void ConsultarPoderes()
         {
             try
@@ -1503,8 +1684,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
                 logger.Error(ex.Message);
                 this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
             }
-        }       
+        }
 
+        /// <summary>
+        /// Método que cambia el poder
+        /// </summary>
         public bool CambiarPoder()
         {
             Mouse.OverrideCursor = Cursors.Wait;
@@ -1593,10 +1777,18 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
             }
 
             return retorno;
-        }        
+        }
 
+        /// <summary>
+        /// Método que borra la lista de poderes
+        /// </summary>
         public void LimpiarListaPoder()
         {
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
             Poder primerPoder = new Poder(int.MinValue);
             IList<Poder> listaPoderes = new List<Poder>();
             listaPoderes.Add(primerPoder);
@@ -1605,29 +1797,69 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
             this._ventana.PoderFiltrado = BuscarPoder(listaPoderes, primerPoder);
             this._ventana.Poder = this._ventana.PoderFiltrado;
 
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
         }
 
+        /// <summary>
+        /// Método que revisa y valida el cambio de poder
+        /// </summary>
         public bool VerificarCambioPoder()
         {
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
             bool retorno = false;
 
             if (((Poder)this._ventana.PoderFiltrado).Id != int.MinValue)
                 retorno = true;
 
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
             return retorno;
         }
 
+        /// <summary>
+        /// Método que carga la lista de poderes
+        /// </summary>
         public void LlenarListasPoderes(Fusion fusion)
         {
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
             if (fusion.InteresadoSobreviviente != null)
                 this._poderesSobreviviente = this._poderServicios.ConsultarPoderesPorInteresado(fusion.InteresadoSobreviviente);
 
             if (fusion.Agente != null)
                 this._poderesApoderado = this._poderServicios.ConsultarPoderesPorAgente(fusion.Agente);
+
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
         }
 
+        /// <summary>
+        /// Método que valida la lista de poderes a mostrar
+        /// </summary>
         public bool ValidarListaDePoderes(IList<Poder> listaPoderesA, IList<Poder> listaPoderesB)
         {
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
             bool retorno = false;
             IList<Poder> listaIntereseccionInteresado = new List<Poder>();
             Poder primerPoder = new Poder(int.MinValue);
@@ -1663,6 +1895,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
                 else
                     retorno = false;
             }
+
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
 
             return retorno;
         }

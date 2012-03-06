@@ -261,17 +261,38 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Licencias
             }
         }
 
+        /// <summary>
+        /// Método que carga los boletines registrados
+        /// </summary>
         private void CargaBoletines()
         {
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
             Boletin primerBoletin = new Boletin(int.MinValue);
             IList<Boletin> boletines = this._boletinServicios.ConsultarTodos();
             boletines.Insert(0, primerBoletin);
             this._ventana.Boletines = boletines;
 
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
         }
 
+        /// <summary>
+        /// Método que carga los interesados implicados
+        /// </summary>
         private void CargarInteresado(string tipo)
         {
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
             Interesado primerInteresado = new Interesado(int.MinValue);
 
             if (tipo.Equals("Licenciante"))
@@ -324,8 +345,16 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Licencias
                     this._ventana.LicenciatarioFiltrado = primerInteresado;
                 }
             }
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
         }
 
+        /// <summary>
+        /// Método que carga los Apoderados implicados
+        /// </summary>
         private void CargarApoderado(string tipo)
         {
             Agente primerAgente = new Agente("");
@@ -368,6 +397,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Licencias
             }
         }
 
+        /// <summary>
+        /// Método que carga los Poderes
+        /// </summary>
         private void CargarPoder(string tipo)
         {
             Poder primerPoder = new Poder(int.MinValue);
@@ -414,8 +446,16 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Licencias
             }            
         }
 
+        /// <summary>
+        /// Método que dependiendo del estado de la pagina carga una licencia registrada
+        /// o nueva
+        /// </summary>
         public Licencia CargarLicenciaDeLaPantalla()
         {
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
 
             Licencia licencia = (Licencia)this._ventana.Licencia;            
 
@@ -442,12 +482,19 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Licencias
 
             if (null != this._ventana.Boletin)
                 licencia.Boletin = ((Boletin)this._ventana.Boletin).Id != int.MinValue ? (Boletin)this._ventana.Boletin : null;
-        
+
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
 
 
             return licencia;
         }
 
+        /// <summary>
+        /// Método que habilita los campos
+        /// </summary>
         public void CambiarAModificar()
         {
             this._ventana.HabilitarCampos = true;
@@ -605,8 +652,15 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Licencias
             #endregion
         }
 
+        /// <summary>
+        /// Carga la lista de poderes por interesado
+        /// </summary>
         public void LlenarListasPoderes(Licencia licencia)
         {
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
 
             if (licencia.InteresadoLicenciante != null)
                 this._poderesLicenciante = this._poderServicios.ConsultarPoderesPorInteresado(licencia.InteresadoLicenciante);
@@ -619,10 +673,24 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Licencias
 
             if (licencia.AgenteLicenciatario != null)
                 this._poderesApoderadosLicenciatario = this._poderServicios.ConsultarPoderesPorAgente(licencia.AgenteLicenciatario);
+     
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
         }
 
+        /// <summary>
+        /// Valida la lista de poderes por interesado
+        /// </summary>
         public bool ValidarListaDePoderes(IList<Poder> listaPoderesA, IList<Poder> listaPoderesB, string tipo)
         {
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
             bool retorno = false;
             IList<Poder> listaIntereseccionLicenciante = new List<Poder>();
             IList<Poder> listaIntereseccionLicenciatario = new List<Poder>();
@@ -675,9 +743,17 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Licencias
                     retorno = false;
             }
 
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
             return retorno;
         }
 
+        /// <summary>
+        /// Carga la lista de Agentes y la lista de interesados
+        /// </summary>
         public void LlenarListaAgenteEInteresado(Poder poder, string tipo, bool cargaInicial)
         {
             try
@@ -820,8 +896,16 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Licencias
 
         }
 
+        /// <summary>
+        /// Carga la lista de Agentes
+        /// </summary>
         private void LlenarListaAgente(Poder poder, string tipo)
         {
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
             Agente primerAgente = new Agente("");
 
             if (tipo.Equals("Licenciante"))
@@ -838,10 +922,23 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Licencias
                 this._ventana.ApoderadosLicenciatarioFiltrados = this._agentesLicenciatario;
                 this._ventana.ApoderadoLicenciatarioFiltrado = primerAgente;
             }
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
         }
 
+        /// <summary>
+        /// Verifica si se cambio el Interesado
+        /// </summary>
         public bool VerificarCambioInteresado(string tipo)
         {
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
             bool retorno = false;
 
             if (tipo.Equals("Licenciante"))
@@ -855,11 +952,24 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Licencias
                     retorno = true;
             }
 
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
             return retorno;
         }
 
+        /// <summary>
+        /// Verifica si se cambio el Agente
+        /// </summary>
         public bool VerificarCambioAgente(string tipo)
         {
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
             bool retorno = false;
 
             if (tipo.Equals("Licenciante"))
@@ -873,11 +983,24 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Licencias
                     retorno = true;
             }
 
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
             return retorno;
         }
 
+        /// <summary>
+        /// Verifica si se cambio el Poder
+        /// </summary>
         public bool VerificarCambioPoder(string tipo)
         {
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
             if (tipo.Equals("Licenciante"))
             {
                 if (((Poder)this._ventana.PoderLicencianteFiltrado).Id != int.MinValue)
@@ -889,11 +1012,24 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Licencias
                     return true;
             }
 
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
             return false;
         }
 
+        /// <summary>
+        /// Vacia la lista de Interesados
+        /// </summary>
         public void LimpiarListaInteresado(string tipo)
         {
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
             Interesado primerInteresado = new Interesado(int.MinValue);
             IList<Interesado> listaInteresados = new List<Interesado>();
             listaInteresados.Add(primerInteresado);
@@ -910,10 +1046,23 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Licencias
                 this._ventana.LicenciatarioFiltrado = BuscarInteresado(listaInteresados, primerInteresado);
                 this._ventana.InteresadoLicenciatario = this._ventana.LicenciatarioFiltrado;
             }
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
         }
 
+        /// <summary>
+        /// Vacia la lista de Agentes
+        /// </summary>
         public void LimpiarListaAgente(string tipo)
         {
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
             Agente primerAgente = new Agente("");
             IList<Agente> listaAgentes = new List<Agente>();
             listaAgentes.Add(primerAgente);
@@ -930,10 +1079,24 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Licencias
                 this._ventana.ApoderadoLicenciatarioFiltrado = BuscarAgente(listaAgentes, primerAgente);
                 this._ventana.ApoderadoLicenciatario = this._ventana.ApoderadoLicenciatarioFiltrado;
             }
+
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
         }
 
+        /// <summary>
+        /// Vacia la lista de Poderes
+        /// </summary>
         public void LimpiarListaPoder(string tipo)
         {
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
             Poder primerPoder = new Poder(int.MinValue);
             IList<Poder> listaPoderes = new List<Poder>();
             listaPoderes.Add(primerPoder);
@@ -950,6 +1113,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Licencias
                 this._ventana.PoderLicenciatarioFiltrado = BuscarPoder(listaPoderes, primerPoder);
                 this._ventana.PoderLicenciatario = this._ventana.PoderLicenciatarioFiltrado;
             }
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
         }    
 
         #region Marca
@@ -959,8 +1127,16 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Licencias
             this.Navegar(new ConsultarMarcas());
         }
 
+        /// <summary>
+        /// Metodo que carga las Marcas registradas
+        /// </summary>
         private void CargarMarca()
         {
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
             this._marcas = new List<Marca>();
             Marca primeraMarca = new Marca(int.MinValue);
             this._marcas.Add(primeraMarca);
@@ -976,8 +1152,16 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Licencias
                 this._ventana.MarcasFiltradas = this._marcas;
                 this._ventana.MarcaFiltrada = primeraMarca;
             }
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
         }
 
+        /// <summary>
+        /// Metodo que Consulta las Marcas
+        /// </summary>
         public void ConsultarMarcas()
         { 
             Mouse.OverrideCursor = Cursors.Wait;
@@ -1047,6 +1231,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Licencias
             }
         }
 
+        /// <summary>
+        /// Metodo que cambia la Marca
+        /// </summary>
         public bool CambiarMarca()
         {
             Mouse.OverrideCursor = Cursors.Wait;
@@ -1106,8 +1293,16 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Licencias
 
         #region Licenciante
 
+        /// <summary>
+        /// Metodo que valida al licenciante seleccionado
+        /// </summary>
         private void ValidarLicenciante()
         {
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
             if (((Interesado)this._ventana.LicencianteFiltrado).Id == int.MinValue)
             {
                 if (((Agente)this._ventana.ApoderadoLicencianteFiltrado).Id.Equals(""))
@@ -1172,8 +1367,16 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Licencias
                     }
                 }
             }
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
         }
 
+        /// <summary>
+        /// Metodo que Consulta posibles licenciantes
+        /// </summary>
         public void ConsultarLicenciantes()
         {
             Mouse.OverrideCursor = Cursors.Wait;
@@ -1242,6 +1445,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Licencias
             }
         }
 
+        /// <summary>
+        /// Metodo que Consulta posibles Apoderados
+        /// </summary>
         public void ConsultarApoderadosLicenciante()
         { 
             Mouse.OverrideCursor = Cursors.Wait;
@@ -1311,6 +1517,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Licencias
             }
         }
 
+        /// <summary>
+        /// Metodo que Consulta los poderes del licenciante
+        /// </summary>
         public void ConsultarPoderesLicenciante()
         {
             Mouse.OverrideCursor = Cursors.Wait;
@@ -1384,6 +1593,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Licencias
             }
         }
 
+        /// <summary>
+        /// Metodo que valida el cambio de licenciante
+        /// </summary>
         public bool CambiarLicenciante()
         {
             Mouse.OverrideCursor = Cursors.Wait;
@@ -1496,6 +1708,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Licencias
             return retorno;
         }
 
+        /// <summary>
+        /// Metodo que valida el cambio de Apoderado
+        /// </summary>
         public bool CambiarApoderadoLicenciante()
         {
             Mouse.OverrideCursor = Cursors.Wait;
@@ -1598,6 +1813,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Licencias
             return retorno;
         }
 
+        /// <summary>
+        /// Metodo que valida el cambio de poder del licenciante
+        /// </summary>
         public bool CambiarPoderLicenciante()
         {
             Mouse.OverrideCursor = Cursors.Wait;
@@ -1692,8 +1910,16 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Licencias
 
         #region Licenciatario
 
+        /// <summary>
+        /// Metodo que Valida el licenciatario seleccionado
+        /// </summary>
         private void ValidarLicenciatario()
         {
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
             if (((Interesado)this._ventana.LicenciatarioFiltrado).Id == int.MinValue)
             {
                 if (((Agente)this._ventana.ApoderadoLicenciatarioFiltrado).Id.Equals(""))
@@ -1759,8 +1985,16 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Licencias
                     }
                 }
             }
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
         }
 
+        /// <summary>
+        /// Metodo que carga los licenciatarios
+        /// </summary>
         public void ConsultarLicenciatarios()
         { 
             Mouse.OverrideCursor = Cursors.Wait;
@@ -1829,6 +2063,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Licencias
             }
         }
 
+        /// <summary>
+        /// Metodo que carga los apoderados
+        /// </summary>
         public void ConsultarApoderadosLicenciatario()
         {
             Mouse.OverrideCursor = Cursors.Wait;
@@ -1896,6 +2133,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Licencias
             }
         }
 
+        /// <summary>
+        /// Metodo que carga los poderes
+        /// </summary>
         public void ConsultarPoderesLicenciatario()
         {                
             Mouse.OverrideCursor = Cursors.Wait;
@@ -1968,6 +2208,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Licencias
             }
         }
 
+        /// <summary>
+        /// Metodo que Valida el cambio de licenciatario
+        /// </summary>
         public bool CambiarLicenciatario()
         {
             Mouse.OverrideCursor = Cursors.Wait;
@@ -2080,6 +2323,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Licencias
             return retorno;
         }
 
+        /// <summary>
+        /// Metodo que Valida el cambio de Apoderado
+        /// </summary>
         public bool CambiarApoderadoLicenciatario()
         {
             Mouse.OverrideCursor = Cursors.Wait;
@@ -2182,6 +2428,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Licencias
             return retorno;
         }
 
+        /// <summary>
+        /// Metodo que Valida el cambio de Poder
+        /// </summary>
         public bool CambiarPoderLicenciatario()
         {
             Mouse.OverrideCursor = Cursors.Wait;

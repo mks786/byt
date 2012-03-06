@@ -48,6 +48,12 @@ namespace Trascend.Bolet.AccesoDatos.Fabrica
         public abstract IDaoEstado ObtenerDaoEstado();
 
         /// <summary>
+        /// Método que devuelve el DaoEstadoMarca del manejador que se esté utilizando
+        /// </summary>
+        /// <returns>IDaoEstadoMarca</returns>
+        public abstract IDaoEstadoMarca ObtenerDaoEstadoMarca();
+
+        /// <summary>
         /// Método que devuelve el DaoEstatus del manejador que se esté utilizando
         /// </summary>
         /// <returns>IDaoEstatus</returns>

@@ -209,7 +209,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Licencias
         }
 
         /// <summary>
-        /// Método que invoca una nueva página "ConsultarCesion" y la instancia con el objeto seleccionado
+        /// Método que invoca una nueva página "ConsultarLicencia" y la instancia con el objeto seleccionado
         /// </summary>
         public void IrConsultarLicencia()
         {
@@ -313,8 +313,16 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Licencias
         //        this._ventana.Interesados = this._interesados;
         //}
 
+        /// <summary>
+        /// Método que obtiene todas las marcas registradas
+        /// </summary>
         public void BuscarMarca()
         {
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
             Mouse.OverrideCursor = Cursors.Wait;
             Marca marca = new Marca();
             IEnumerable<Marca> marcasFiltradas;
@@ -331,16 +339,35 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Licencias
                 this._ventana.Marcas = this._marcas;
 
             Mouse.OverrideCursor = null;
+
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
         }
 
+        /// <summary>
+        /// Método que retorna la marca seleccionada
+        /// </summary>
         public bool ElegirMarca()
         {
+
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
             bool retorno = false;
             if (this._ventana.Marca != null)
             {
                 retorno = true;
                 this._ventana.NombreMarca = ((Marca)this._ventana.Marca).Descripcion;
             }
+
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
 
             return retorno;
         }

@@ -1,23 +1,21 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Configuration;
+using System.Net.Sockets;
+using System.Runtime.Remoting;
 using System.Windows.Input;
 using NLog;
-using Trascend.Bolet.Cliente.Contratos.Usuarios;
+using Trascend.Bolet.Cliente.Contratos.EstadosMarca;
 using Trascend.Bolet.Cliente.Ventanas.Principales;
 using Trascend.Bolet.ObjetosComunes.ContratosServicios;
 using Trascend.Bolet.ObjetosComunes.Entidades;
-using System.Runtime.Remoting;
-using System.Net.Sockets;
 
-namespace Trascend.Bolet.Cliente.Presentadores.Usuarios
+namespace Trascend.Bolet.Cliente.Presentadores.EstadosMarca
 {
-    class PresentadorConsultarUsuario : PresentadorBase
+    class PresentadorConsultarEstadoMarca : PresentadorBase
     {
-        private IConsultarUsuario _ventana;
-        private IDepartamentoServicios _departamentoServicios;
-        private IRolServicios _rolServicios;
-        private IUsuarioServicios _usuarioServicios;
+
+        private IConsultarEstadoMarca _ventana;
+        private IEstadoMarcaServicios _estadoMarcaServicios;
         private static PaginaPrincipal _paginaPrincipal = PaginaPrincipal.ObtenerInstancia;
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
@@ -25,25 +23,31 @@ namespace Trascend.Bolet.Cliente.Presentadores.Usuarios
         /// Constructor predeterminado
         /// </summary>
         /// <param name="ventana">Página que satisface el contrato</param>
-        /// <param name="usuario">Usuario a mostrar</param>
-        public PresentadorConsultarUsuario(IConsultarUsuario ventana, object usuario)
+        /// <param name="anexo">Anexo a mostrar</param>
+        public PresentadorConsultarEstadoMarca(IConsultarEstadoMarca ventana, object estadoMarca)
         {
             try
             {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
                 this._ventana = ventana;
-                this._ventana.Usuario = usuario;
-                this._departamentoServicios = (IDepartamentoServicios)Activator.GetObject(typeof(IDepartamentoServicios),
-                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["DepartamentoServicios"]);
-                this._rolServicios = (IRolServicios)Activator.GetObject(typeof(IRolServicios),
-                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["RolServicios"]);
-                this._usuarioServicios = (IUsuarioServicios)Activator.GetObject(typeof(IUsuarioServicios),
-                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["UsuarioServicios"]);
+                this._ventana.EstadoMarca = estadoMarca;
+
+                this._estadoMarcaServicios = (IEstadoMarcaServicios)Activator.GetObject(typeof(IEstadoMarcaServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["EstadoMarcaServicios"]);
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
             }
             catch (Exception ex)
             {
-                _paginaPrincipal.MensajeError = Recursos.MensajesConElUsuario.ErrorInesperado;
                 logger.Error(ex.Message);
-                this.Navegar(_paginaPrincipal);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado,true);
             }
         }
 
@@ -61,19 +65,56 @@ namespace Trascend.Bolet.Cliente.Presentadores.Usuarios
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-                this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleConsultarUsuario,
-                    Recursos.Ids.ConsultarUsuario);
-
-                Usuario usuario = (Usuario)this._ventana.Usuario;
-
-                IList<Rol> roles = this._rolServicios.ConsultarTodos();
-                this._ventana.Roles = roles;
-                this._ventana.Rol = this.BuscarRol(roles, usuario.Rol);
-
-                IList<Departamento> departamentos = this._departamentoServicios.ConsultarTodos();
-                this._ventana.Departamentos = departamentos;
-                this._ventana.Departamento = this.BuscarDepartamento(departamentos, usuario.Departamento);
+                this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleConsultarEstadoMarca,"");
                 this._ventana.FocoPredeterminado();
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado,true);
+            }
+            finally
+            {
+                Mouse.OverrideCursor = null;
+            }
+        }
+
+        /// <summary>
+        /// Método que dependiendo del estado de la página, habilita los campos o 
+        /// modifica los datos del usuario
+        /// </summary>
+        public void Modificar()
+        {
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                //Habilitar campos
+                if (this._ventana.TextoBotonModificar == Recursos.Etiquetas.btnModificar)
+                {
+                    this._ventana.HabilitarCampos = true;
+                    this._ventana.TextoBotonModificar = Recursos.Etiquetas.btnAceptar;
+                }
+
+                //Modifica los datos del Pais
+                else
+                {
+                    EstadoMarca estadoMarca = (EstadoMarca)this._ventana.EstadoMarca;
+
+                    if (this._estadoMarcaServicios.InsertarOModificar(estadoMarca, UsuarioLogeado.Hash))
+                    {
+                        _paginaPrincipal.MensajeUsuario = Recursos.MensajesConElUsuario.EstadoMarcaModificado;
+                        this.Navegar(_paginaPrincipal);
+                    }
+                }
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -100,76 +141,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Usuarios
                 logger.Error(ex.Message);
                 this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
             }
-            finally
-            {
-                Mouse.OverrideCursor = null;
-            }
         }
 
         /// <summary>
-        /// Método que dependiendo del estado de la página, habilita los campos o 
-        /// modifica los datos del usuario
-        /// </summary>
-        public void Modificar()
-        {
-            try
-            {
-                //Habilitar campos
-                if (this._ventana.TextoBotonModificar == Recursos.Etiquetas.btnModificar)
-                {
-                    this._ventana.HabilitarCampos = true;
-                    this._ventana.TextoBotonModificar = Recursos.Etiquetas.btnAceptar;
-                }
-
-                //Modifica los datos del usuario
-                else
-                {
-                    Usuario usuario = (Usuario)this._ventana.Usuario;
-
-                    if (this._ventana.Rol != null)
-                    {
-                        Rol rol = (Rol)this._ventana.Rol;
-                        usuario.Rol = rol;
-                    }
-                    if (this._ventana.Departamento != null)
-                    {
-                        Departamento departamento = (Departamento)this._ventana.Departamento;
-                        usuario.Departamento = departamento;
-                    }
-                    bool exitoso = this._usuarioServicios.InsertarOModificar(usuario, UsuarioLogeado.Hash);
-
-                    if (exitoso)
-                    {
-                        PaginaPrincipal paginaPrincipal = PaginaPrincipal.ObtenerInstancia;
-                        paginaPrincipal.MensajeUsuario = Recursos.MensajesConElUsuario.UsuarioModificado;
-                        this.Navegar(paginaPrincipal);
-                    }
-                }
-            }
-            catch (ApplicationException ex)
-            {
-                logger.Error(ex.Message);
-                this.Navegar(ex.Message, true);
-            }
-            catch (RemotingException ex)
-            {
-                logger.Error(ex.Message);
-                this.Navegar(Recursos.MensajesConElUsuario.ErrorRemoting, true);
-            }
-            catch (SocketException ex)
-            {
-                logger.Error(ex.Message);
-                this.Navegar(Recursos.MensajesConElUsuario.ErrorConexionServidor, true);
-            }
-            catch (Exception ex)
-            {
-                logger.Error(ex.Message);
-                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
-            }
-        }
-
-        /// <summary>
-        /// Método que Elimina a un usuario
+        /// Metodo que se encarga de eliminar un Anexo
         /// </summary>
         public void Eliminar()
         {
@@ -180,9 +155,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Usuarios
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-                if (this._usuarioServicios.Eliminar((Usuario)this._ventana.Usuario, UsuarioLogeado.Hash))
+                if (this._estadoMarcaServicios.Eliminar((EstadoMarca)this._ventana.EstadoMarca, UsuarioLogeado.Hash))
                 {
-                    _paginaPrincipal.MensajeUsuario = Recursos.MensajesConElUsuario.UsuarioEliminado;
+                    _paginaPrincipal.MensajeUsuario = Recursos.MensajesConElUsuario.PaisEliminado;
                     this.Navegar(_paginaPrincipal);
                 }
 

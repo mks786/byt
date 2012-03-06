@@ -81,13 +81,13 @@
                     <MenuItem Name="_menuItemMarcasATercerosConsultar" Header="{x:Static resx:Etiquetas.menuItemConsultar}" Click="_menuItemMarcasATercerosConsultar_Click"/>
                     <MenuItem Name="_menuItemMarcasATercerosGestionar" Header="{x:Static resx:Etiquetas.menuItemAgregar}" Click="_menuItemMarcasATercerosGestionar_Click"/>
                 </MenuItem>
+                <MenuItem Name="_menuItemEstadosMarca" Visibility="Collapsed" Header="{x:Static resx:Etiquetas.menuItemEstados}">
+                    <MenuItem Name="_menuItemEstadosMarcasConsultar" Header="{x:Static resx:Etiquetas.menuItemConsultar}" Click="_menuItemEstadosMarcasConsultar_Click"/>
+                    <MenuItem Name="_menuItemEstadosMarcaAgregar" Header="{x:Static resx:Etiquetas.menuItemAgregar}" Click="_menuItemEstadosMarcaAgregar_Click"/>
+                </MenuItem>
                 <MenuItem Name="_menuItemTipoBase" Visibility="Collapsed" Header="{x:Static resx:Etiquetas.menuItemTipoBase}">
                     <MenuItem Name="_menuItemTipoBaseConsultar" Header="{x:Static resx:Etiquetas.menuItemConsultar}" Click="_menuItemTipoBaseConsultar_Click"/>
                     <MenuItem Name="_menuItemTipoBaseGestionar" Header="{x:Static resx:Etiquetas.menuItemAgregar}" Click="_menuItemTipoBaseGestionar_Click"/>
-                </MenuItem>
-                <MenuItem Name="_menuItemEstadosMarca" Visibility="Collapsed" Header="{x:Static resx:Etiquetas.menuItemEstados}">
-                    <MenuItem Name="_menuItemEstadosMarcaConsultar" Header="{x:Static resx:Etiquetas.menuItemConsultar}" Click="_menuItemEstadosMarcaConsultar_Click"/>
-                    <MenuItem Name="_menuItemEstadosMarcaGestionar" Header="{x:Static resx:Etiquetas.menuItemAgregar}" Click="_menuItemEstadosMarcaGestionar_Click"/>
                 </MenuItem>
             </MenuItem>
             <MenuItem Name="_menuItemCorrespondencia" Header="{x:Static resx:Etiquetas.menuItemCorrespondencia}">

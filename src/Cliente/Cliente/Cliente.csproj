@@ -109,6 +109,9 @@
     <Compile Include="Contratos\EntradasAlternas\IAgregarEntradaAlterna.cs" />
     <Compile Include="Contratos\EntradasAlternas\IConsultarEntradaAlterna.cs" />
     <Compile Include="Contratos\EntradasAlternas\IConsultarEntradasAlternas.cs" />
+    <Compile Include="Contratos\EstadosMarca\IAgregarEstadoMarca.cs" />
+    <Compile Include="Contratos\EstadosMarca\IConsultarEstadoMarca.cs" />
+    <Compile Include="Contratos\EstadosMarca\IConsultarEstadosMarcas.cs" />
     <Compile Include="Contratos\Marcas\IConsultarMarca.cs" />
     <Compile Include="Contratos\Marcas\IConsultarMarcas.cs" />
     <Compile Include="Contratos\Marcas\IListaBusquedas.cs" />
@@ -225,6 +228,9 @@
     <Compile Include="Presentadores\EntradasAlternas\PresentadorAgregarEntradaAlterna.cs" />
     <Compile Include="Presentadores\EntradasAlternas\PresentadorConsultarEntradaAlterna.cs" />
     <Compile Include="Presentadores\EntradasAlternas\PresentadorConsultarEntradasAlternas.cs" />
+    <Compile Include="Presentadores\EstadosMarca\PresentadorAgregarEstadoMarca.cs" />
+    <Compile Include="Presentadores\EstadosMarca\PresentadorConsultarEstadoMarca.cs" />
+    <Compile Include="Presentadores\EstadosMarca\PresentadorConsultarEstadosMarcas.cs" />
     <Compile Include="Presentadores\Marcas\PresentadorListaBusquedas.cs" />
     <Compile Include="Presentadores\Marcas\PresentadorListaOperaciones.cs" />
     <Compile Include="Presentadores\Marcas\PresentadorGestionarBusqueda.cs" />
@@ -407,6 +413,15 @@
     </Compile>
     <Compile Include="Ventanas\Cartas\ConsultarCartas.xaml.cs">
       <DependentUpon>ConsultarCartas.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\EstadosMarca\AgregarEstadoMarca.xaml.cs">
+      <DependentUpon>AgregarEstadoMarca.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\EstadosMarca\ConsultarEstadoMarca.xaml.cs">
+      <DependentUpon>ConsultarEstadoMarca.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\EstadosMarca\ConsultarEstadosMarcas.xaml.cs">
+      <DependentUpon>ConsultarEstadosMarcas.xaml</DependentUpon>
     </Compile>
     <Compile Include="Ventanas\Marcas\AgregarMarca.xaml.cs">
       <DependentUpon>AgregarMarca.xaml</DependentUpon>
@@ -768,6 +783,18 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Ventanas\EntradasAlternas\ConsultarEntradasAlternas.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\EstadosMarca\AgregarEstadoMarca.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\EstadosMarca\ConsultarEstadoMarca.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\EstadosMarca\ConsultarEstadosMarcas.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
