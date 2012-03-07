@@ -12,7 +12,7 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
 
-        public bool EjecutarProcedimientoP1(Marca marca, Usuario usuario, int way)
+        public bool EjecutarProcedimiento(ParametroProcedimiento parametro)
         {
             bool retorno = true;
             try
@@ -23,10 +23,10 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
                 #endregion
 
                 
-                IQuery query = Session.GetNamedQuery("ProcedimientoP1");
-                query.SetParameter<string>("usr", usuario.Iniciales);
-                query.SetParameter<int>("way", way);
-                query.SetParameter<int>("cod", marca.Id);
+                IQuery query = Session.GetNamedQuery(parametro.NombreProcedimiento);
+                query.SetParameter<string>("usr", parametro.Usuario.Iniciales);
+                query.SetParameter<int>("way", parametro.Via);
+                query.SetParameter<int>("cod", parametro.Marca.Id);
 
                 query.UniqueResult();
 

@@ -18,9 +18,9 @@ namespace Trascend.Bolet.Comandos.Fabrica
             return new ComandoConsultarPlanillaPorId(id);
         }
 
-        public static ComandoBase<bool> ObtenerComandoEjecutarProcedimientoP1(Marca marca, Usuario usuario, int way)
+        public static ComandoBase<bool> ObtenerComandoEjecutarProcedimiento(ParametroProcedimiento parametro)
         {
-            return new ComandoEjecutarProcedimientoP1(marca, usuario, way);
+            return new ComandoEjecutarProcedimiento(parametro);
         }
 
         public static ComandoBase<Planilla> ObtenerComandoConsultarPlanillaPorUsuario(Usuario usuario)

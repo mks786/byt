@@ -46,7 +46,7 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
             return retorno;
         }
 
-        public static Planilla EjecutarProcedimientoP1(Marca marca, int hash, int way)
+        public static Planilla EjecutarProcedimiento(ParametroProcedimiento parametro)
         {
             Planilla retorno = new Planilla();
             bool exitoso;
@@ -58,17 +58,16 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
                     logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-                Usuario usuario = ObtenerUsuarioPorHash(hash);
-                int id = SimularPID(usuario.Iniciales);
+                int id = SimularPID(parametro.Usuario.Iniciales);
 
-                if (way == 1)
+                if (parametro.Via == 1)
                 {
                     ComandoBase<bool> comandoEliminarPlanilla = FabricaComandosPlanilla.ObtenerComandoEliminarPlanilla(new Planilla(id));
                     comandoEliminarPlanilla.Ejecutar();
 
                 }
 
-                ComandoBase<bool> comando = FabricaComandosPlanilla.ObtenerComandoEjecutarProcedimientoP1(marca, usuario, way);
+                ComandoBase<bool> comando = FabricaComandosPlanilla.ObtenerComandoEjecutarProcedimiento(parametro);
                 comando.Ejecutar();
                 exitoso = comando.Receptor.ObjetoAlmacenado;
 
@@ -80,7 +79,7 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
 
                     //Funcion de base de datos a la cual hay que realizar el llamado a través
                     //de NHibernate-----------------------------------------------------------
-                    Planilla planilla = new Planilla(SimularPID(usuario.Iniciales));
+                    Planilla planilla = new Planilla(SimularPID(parametro.Usuario.Iniciales));
                     //------------------------------------------------------------------------
 
                     if (planilla != null)

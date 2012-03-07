@@ -7,22 +7,18 @@ using Trascend.Bolet.ObjetosComunes.Entidades;
 
 namespace Trascend.Bolet.Comandos.Comandos.ComandosPlanilla
 {
-    public class ComandoEjecutarProcedimientoP1 : ComandoBase<bool>
+    public class ComandoEjecutarProcedimiento : ComandoBase<bool>
     {
         private static Logger logger = LogManager.GetCurrentClassLogger();
-        private Marca _marca;
-        private Usuario _usuario;
-        private int _way;
+        private ParametroProcedimiento _parametro;
 
         /// <summary>
         /// Constructor predeterminado
         /// </summary>
         /// <param name="marca">Marca a verificar</param>
-        public ComandoEjecutarProcedimientoP1(Marca marca, Usuario usuario, int way)
+        public ComandoEjecutarProcedimiento(ParametroProcedimiento parametro)
         {
-            this._marca = marca;
-            this._usuario = usuario;
-            this._way = way;
+            this._parametro = parametro;
         }
 
         /// <summary>
@@ -41,7 +37,7 @@ namespace Trascend.Bolet.Comandos.Comandos.ComandosPlanilla
                 //dao.EjecutarProcedimiento("P1");
 
                 IDaoPlanilla dao = FabricaDaoBase.ObtenerFabricaDao().ObtenerDaoPlanilla();
-                this.Receptor = new Receptor<bool>(dao.EjecutarProcedimientoP1(this._marca,this._usuario,this._way));
+                this.Receptor = new Receptor<bool>(dao.EjecutarProcedimiento(this._parametro));
 
                 #region trace
                 if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))

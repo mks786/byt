@@ -1086,23 +1086,28 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
         {
             try
             {
-                if (nombreBoton.Equals("_btn" + Recursos.Etiquetas.btnFM02))
+                switch (nombreBoton)
                 {
-                    if (ValidarMarcaAntesDeImprimirFM02())
-                    {
-                        Planilla planilla = this._planillaServicios.ImprimirFM02((Marca)this._ventana.Marca, UsuarioLogeado.Hash, 1);
-                        if (planilla != null)
-                        {
-                            Impresion _ventana = new Impresion("FM02", planilla.Folio.Replace("\n", Environment.NewLine));
-                            _ventana.ShowDialog();
-                            //Llamado al archivo .bat 
-                            if (_ventana.ClickImprimir)
-                                this.EjecutarArchivoBAT(ConfigurationManager.AppSettings["batPrint"], ConfigurationManager.AppSettings["txtPrint"]);
-
-
-                            planilla = this._planillaServicios.ImprimirFM02((Marca)this._ventana.Marca, UsuarioLogeado.Hash, 0);
-                        }
-                    }
+                    case "_btnFM02":
+                        ImprimirFM02("Normal");
+                        break;
+                    case "_btnFM02Venen":
+                        ImprimirFM02Venen("Normal");
+                        break;
+                    case "_btnAnexoFM02":
+                        ImprimirAnexoFM02("Normal");
+                        break;
+                    case "_btnLFM02":
+                        ImprimirFM02("Laser");
+                        break;
+                    case "_btnLFM02Venen":
+                        ImprimirFM02Venen("Laser");
+                        break;
+                    case "_btnLAnexoFM02":
+                        ImprimirAnexoFM02("Laser");
+                        break;
+                    default:
+                        break;
                 }
             }
             catch (ApplicationException ex)
@@ -1111,10 +1116,90 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             }
         }
 
+        private void ImprimirFM02(string modo)
+        {
+            if (ValidarMarcaAntesDeImprimirFM02())
+            {
+                string procedimiento = modo.Equals("Laser") ? "P31" : "P1";
+                ParametroProcedimiento parametro =
+                    new ParametroProcedimiento((Marca)this._ventana.Marca, UsuarioLogeado, 1, procedimiento);
+
+                Planilla planilla = this._planillaServicios.ImprimirProcedimiento(parametro);
+                if (planilla != null)
+                {
+                    Impresion _ventana =
+                        new Impresion(Recursos.Etiquetas.btnFM02, planilla.Folio.Replace("\n", Environment.NewLine));
+                    _ventana.ShowDialog();
+
+                    //Llamado al archivo .bat 
+                    //if (_ventana.ClickImprimir)
+                    //    this.EjecutarArchivoBAT(ConfigurationManager.AppSettings["batPrint"], 
+                    //ConfigurationManager.AppSettings["txtPrint"]);
+
+                    parametro.Via = 0;
+                    planilla = this._planillaServicios.ImprimirProcedimiento(parametro);
+                }
+            }
+        }
+
+        private void ImprimirFM02Venen(string modo)
+        {
+            if (ValidarMarcaAntesDeImprimirFM02Venen())
+            {
+                string procedimiento = modo.Equals("Laser") ? "P32" : "P2";
+                ParametroProcedimiento parametro =
+                    new ParametroProcedimiento((Marca)this._ventana.Marca, UsuarioLogeado, 1, procedimiento);
+
+                Planilla planilla = this._planillaServicios.ImprimirProcedimiento(parametro);
+                if (planilla != null)
+                {
+                    Impresion _ventana =
+                        new Impresion(Recursos.Etiquetas.btnFM02Venen, planilla.Folio.Replace("\n", Environment.NewLine));
+
+                    _ventana.ShowDialog();
+
+                    //Llamado al archivo .bat 
+                    //if (_ventana.ClickImprimir)
+                    //    this.EjecutarArchivoBAT(ConfigurationManager.AppSettings["batPrint"], 
+                    //ConfigurationManager.AppSettings["txtPrint"]);
+
+                    parametro.Via = 0;
+                    planilla = this._planillaServicios.ImprimirProcedimiento(parametro);
+                }
+            }
+        }
+
+        private void ImprimirAnexoFM02(string modo)
+        {
+            if (ValidarMarcaAntesDeImprimirAnexoFM02())
+            {
+                string procedimiento = modo.Equals("Laser") ? "P33" : "P3";
+                ParametroProcedimiento parametro = 
+                    new ParametroProcedimiento((Marca)this._ventana.Marca, UsuarioLogeado, 1, procedimiento);
+
+                Planilla planilla = this._planillaServicios.ImprimirProcedimiento(parametro);
+                if (planilla != null)
+                {
+                    Impresion _ventana = 
+                        new Impresion(Recursos.Etiquetas.btnAnexoFM02, planilla.Folio.Replace("\n", Environment.NewLine));
+
+                    _ventana.ShowDialog();
+
+                    //Llamado al archivo .bat 
+                    //if (_ventana.ClickImprimir)
+                    //    this.EjecutarArchivoBAT(ConfigurationManager.AppSettings["batPrint"], 
+                    //ConfigurationManager.AppSettings["txtPrint"]);
+
+                    parametro.Via = 0;
+                    planilla = this._planillaServicios.ImprimirProcedimiento(parametro);
+                }
+            }
+        }
+
         /// <summary>
         /// Método que realiza todas las validaciones de la Marca antes de imprimir
         /// </summary>
-        /// <returns></returns>
+        /// <returns>true en caso de que todo este correcto, false en caso contrario</returns>
         private bool ValidarMarcaAntesDeImprimirFM02()
         {
             bool retorno = true;
@@ -1122,16 +1207,52 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             Marca marca = CargarMarcaDeLaPantalla();
 
             if ((null == marca.Poder) || (marca.Poder.NumPoder.Equals("")))
-                retorno = retorno ? this._ventana.MensajeAlerta(Recursos.MensajesConElUsuario.MarcaSinNumeroDePoder) == retorno : retorno;
+                retorno = retorno ? 
+                    this._ventana.MensajeAlerta(Recursos.MensajesConElUsuario.MarcaSinNumeroDePoder) == retorno : retorno;
 
             if (((this._ventana.ClaseInternacional.Equals("")) && (this._ventana.ClaseNacional.Equals(""))) && (retorno))
-                retorno = retorno ? this._ventana.MensajeAlerta(Recursos.MensajesConElUsuario.MarcaSinClase) == retorno : retorno;
+                retorno = retorno ? 
+                    this._ventana.MensajeAlerta(Recursos.MensajesConElUsuario.MarcaSinClase) == retorno : retorno;
 
             if ((marca.EtiquetaDescripcion.Equals("")) && (retorno))
-                retorno = retorno ? this._ventana.MensajeAlerta(Recursos.MensajesConElUsuario.MarcaSinDescripcionDelSigno) == retorno : retorno;
+                retorno = retorno ? 
+                    this._ventana.MensajeAlerta(Recursos.MensajesConElUsuario.MarcaSinDescripcionDelSigno) == retorno : retorno;
 
             if ((null == marca.Distingue) || (marca.Distingue.Equals("")) && (retorno))
-                retorno = retorno ? this._ventana.MensajeAlerta(Recursos.MensajesConElUsuario.MarcaSinDistingue) == retorno : retorno;
+                retorno = retorno ? 
+                    this._ventana.MensajeAlerta(Recursos.MensajesConElUsuario.MarcaSinDistingue) == retorno : retorno;
+
+            return retorno;
+        }
+
+        /// <summary>
+        /// Método que realiza todas las validaciones de la Marca antes de imprimir
+        /// </summary>
+        /// <returns>true en caso de que todo este correcto, false en caso contrario</returns>
+        private bool ValidarMarcaAntesDeImprimirFM02Venen()
+        {
+            bool retorno = true;
+
+            Marca marca = CargarMarcaDeLaPantalla();
+
+            if ((null == marca.Distingue) || (marca.Distingue.Equals("")))
+                retorno = retorno ? 
+                    this._ventana.MensajeAlerta(Recursos.MensajesConElUsuario.MarcaSinDistingue) == retorno : retorno;
+
+            else if (marca.Distingue.Length > 1800)
+                retorno = retorno ? 
+                    this._ventana.MensajeAlerta(Recursos.MensajesConElUsuario.MarcaSinDistingue) == retorno : retorno;
+
+            return retorno;
+        }
+
+        /// <summary>
+        /// Método que realiza todas las validaciones de la Marca antes de imprimir
+        /// </summary>
+        /// <returns>true en caso de que todo este correcto, false en caso contrario</returns>
+        private bool ValidarMarcaAntesDeImprimirAnexoFM02()
+        {
+            bool retorno = true;
 
             return retorno;
         }

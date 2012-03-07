@@ -353,9 +353,9 @@ namespace Trascend.Bolet.Cliente.Recursos {
         /// <summary>
         ///   Busca una cadena traducida similar a L Anexo FM02.
         /// </summary>
-        public static string btnLAnexoFM021 {
+        public static string btnLAnexoFM02 {
             get {
-                return ResourceManager.GetString("btnLAnexoFM021", resourceCulture);
+                return ResourceManager.GetString("btnLAnexoFM02", resourceCulture);
             }
         }
         

@@ -50,7 +50,7 @@ namespace Trascend.Bolet.Servicios.Implementacion
             throw new NotImplementedException();
         }
 
-        public Planilla ImprimirFM02(Marca marca, int hash, int way)
+        public Planilla ImprimirProcedimiento(ParametroProcedimiento parametro)
         {
             Planilla retorno;
             try
@@ -60,7 +60,7 @@ namespace Trascend.Bolet.Servicios.Implementacion
                     logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-                retorno = ControladorPlanilla.EjecutarProcedimientoP1(marca, hash, way);
+                retorno = ControladorPlanilla.EjecutarProcedimiento(parametro);
 
                 #region trace
                 if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
