@@ -3,6 +3,7 @@ using Trascend.Bolet.AccesoDatos.Contrato;
 using Trascend.Bolet.ObjetosComunes.Entidades;
 using NHibernate;
 using System.Collections.Generic;
+using NHibernate.Criterion;
 using System;
 
 namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
@@ -17,8 +18,11 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
 
             try
             {
-                IQuery query = Session.CreateQuery(string.Format(Recursos.ConsultasHQL.ObtenerListaDatosValoresPorParametro, listaDatosValores.Id));
+                IQuery query = Session.CreateQuery(string.Format(Recursos.ConsultasHQL.ObtenerListaDatosValoresPorParametro, listaDatosValores.Id));                
+
                 listaDaosValores = query.List<ListaDatosValores>();
+
+                //listaDaosValores = Session.CreateCriteria(typeof(IDaoListaDatosValores)).AddOrder(Order.Asc(listaDatosValores.Id)).List<ListaDatosValores>();
             }
             catch (Exception ex)
             {

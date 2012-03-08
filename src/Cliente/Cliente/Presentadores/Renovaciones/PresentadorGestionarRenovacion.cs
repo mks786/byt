@@ -1,0 +1,1432 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Configuration;
+using System.Linq;
+using System.Net.Sockets;
+using System.Runtime.Remoting;
+using System.Windows.Controls;
+using System.Windows.Documents;
+using System.Windows.Input;
+using NLog;
+using Trascend.Bolet.Cliente.Ayuda;
+using Trascend.Bolet.Cliente.Contratos.Renovaciones;
+using Trascend.Bolet.Cliente.Ventanas.Principales;
+using Trascend.Bolet.Cliente.Ventanas.Marcas;
+using Trascend.Bolet.ObjetosComunes.ContratosServicios;
+using Trascend.Bolet.ObjetosComunes.Entidades;
+using Trascend.Bolet.Cliente.Ventanas.Auditorias;
+
+namespace Trascend.Bolet.Cliente.Presentadores.Renovaciones
+{
+    class PresentadorGestionarRenovacion : PresentadorBase
+    {
+        private static PaginaPrincipal _paginaPrincipal = PaginaPrincipal.ObtenerInstancia;
+        private static Logger logger = LogManager.GetCurrentClassLogger();
+
+        private bool _agregar = true;
+        private IGestionarRenovacion _ventana;
+
+        private IMarcaServicios _marcaServicios;        
+        private IAsociadoServicios _asociadoServicios;
+        private IAgenteServicios _agenteServicios;
+        private IPoderServicios _poderServicios;        
+        private IPaisServicios _paisServicios;
+        private IInteresadoServicios _interesadoServicios;
+        private IServicioServicios _servicioServicios;
+        private IRenovacionServicios _renovacionServicios;
+        private IListaDatosValoresServicios _listaDatosValoresServicios;
+
+        private IList<Asociado> _asociados;        
+        private IList<Marca> _marcas;        
+        private IList<Interesado> _interesados;
+        private IList<Agente> _agentes;
+        private IList<Poder> _poderes;
+
+        private IList<Poder> _poderesInterseccion;
+        private IList<Poder> _poderesInteresado;
+        private IList<Poder> _poderesAgente;
+
+        /// <summary>
+        /// Constructor Predeterminado
+        /// </summary>
+        /// <param name="ventana">página que satisface el contrato</param>
+        public PresentadorGestionarRenovacion(IGestionarRenovacion ventana, object renovacion)
+        {
+            try
+            {
+
+                this._ventana = ventana;
+
+                if (renovacion != null)
+                {
+                    this._ventana.HabilitarCampos = true;
+                    this._ventana.Renovacion = renovacion;
+                    _agregar = false;
+                }
+                else
+                {
+                    Renovacion renovacionAgregar = new Renovacion();
+                    this._ventana.Renovacion = renovacionAgregar;
+
+                    ((Renovacion)this._ventana.Renovacion).Fecha = DateTime.Now;
+                    this._ventana.Marca = null;
+                    this._ventana.Poder = null;                    
+                    this._ventana.Interesado = null;
+                    this._ventana.Agente = null;                                        
+
+                    this._ventana.TextoBotonRegresar = Recursos.Etiquetas.btnCancelar;
+                                       
+                    this._ventana.ActivarControlesAlAgregar();
+
+                    
+                    
+                }
+
+                #region Servicios
+
+                this._marcaServicios = (IMarcaServicios)Activator.GetObject(typeof(IMarcaServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["MarcaServicios"]);
+                this._asociadoServicios = (IAsociadoServicios)Activator.GetObject(typeof(IAsociadoServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["AsociadoServicios"]);
+                this._agenteServicios = (IAgenteServicios)Activator.GetObject(typeof(IAgenteServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["AgenteServicios"]);
+                this._poderServicios = (IPoderServicios)Activator.GetObject(typeof(IPoderServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["PoderServicios"]);             
+                this._paisServicios = (IPaisServicios)Activator.GetObject(typeof(IPaisServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["PaisServicios"]);               
+                this._interesadoServicios = (IInteresadoServicios)Activator.GetObject(typeof(IInteresadoServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["InteresadoServicios"]);
+                this._servicioServicios = (IServicioServicios)Activator.GetObject(typeof(IServicioServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["ServicioServicios"]);
+                this._renovacionServicios = (IRenovacionServicios)Activator.GetObject(typeof(IRenovacionServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["RenovacionServicios"]);
+                this._listaDatosValoresServicios = (IListaDatosValoresServicios)Activator.GetObject(typeof(IListaDatosValoresServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["ListaDatosValoresServicios"]);
+
+                #endregion
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
+            }
+        }
+
+        public void ActualizarTitulo()
+        {
+            if (_agregar == true)
+                this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleAgregarRenovacion,
+                Recursos.Ids.GestionarRenovacion);
+            else
+                this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleGestionarRenovacion,
+                Recursos.Ids.GestionarRenovacion);
+        }
+
+        /// <summary>
+        /// Método que carga los datos iniciales a mostrar en la página
+        /// </summary>
+        public void CargarPagina()
+        {
+            Mouse.OverrideCursor = Cursors.Wait;
+
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                ActualizarTitulo();
+
+                if (_agregar == false)
+                {
+
+                    
+
+                    Renovacion renovacion = (Renovacion)this._ventana.Renovacion;
+
+                    if (((Renovacion)renovacion).Marca != null)
+                        this._ventana.Marca = this._marcaServicios.ConsultarMarcaConTodo(((Renovacion)renovacion).Marca);
+
+                    this._ventana.NombreMarca = ((Marca)this._ventana.Marca).Descripcion;
+                    this._ventana.Agente = ((Renovacion)renovacion).Agente;
+                    this._ventana.Poder = renovacion.Poder;
+
+                    CargarMarca();                  
+
+                    CargarInteresado();
+
+                    CargarAgente();
+
+                    CargarPoder();                    
+
+                    CargarTipoRenovacion();                   
+
+                }
+                else
+                {
+                    CargarMarca();
+
+                    CargarInteresado();
+
+                    CargarAgente();
+
+                    CargarPoder();
+
+                    CargarTipoRenovacion();
+                }
+
+                this._ventana.FocoPredeterminado();
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
+            }
+            finally
+            {
+                Mouse.OverrideCursor = null;
+            }
+        }
+
+        private void CargarTipoRenovacion()
+        {
+
+
+            ListaDatosValores filtro = new ListaDatosValores(Recursos.Etiquetas.cbiTipoRenovacion);
+            IList<ListaDatosValores> listaTipoRenovacion = 
+                this._listaDatosValoresServicios.ConsultarListaDatosValoresPorParametro(filtro);
+            filtro.Valor = ((Renovacion)this._ventana.Renovacion).TipoR.ToString();
+            this._ventana.TiposRenovaciones = listaTipoRenovacion;
+            this._ventana.TipoRenovacion = this.BuscarTipoRenovacion(listaTipoRenovacion, filtro);
+
+            //ListaDatosValores tipoRenovacion = new ListaDatosValores();
+            //tipoRenovacion.Id = ((Renovacion)this._ventana.Renovacion).TipoRenovacion.Id;
+
+            //this._ventana.TipoRenovacion = this.BuscarTipoRenovacion(listaTipoRenovacion, tipoRenovacion);
+        }
+        
+        private void CargarInteresado()
+        {
+            Interesado primerInteresado = new Interesado(int.MinValue);
+          
+            this._interesados = new List<Interesado>();
+
+            this._interesados.Add(primerInteresado);
+
+            if (((Renovacion)this._ventana.Renovacion).Interesado != null)
+            {
+                this._ventana.Interesado = this._interesadoServicios.ConsultarInteresadoConTodo(((Renovacion)this._ventana.Renovacion).Interesado);
+                this._ventana.NombreInteresado = ((Interesado)this._ventana.Interesado).Nombre;
+
+                if ((Interesado)this._ventana.Interesado != null)
+                {
+                    this._interesados.Add((Interesado)this._ventana.Interesado);
+                    this._ventana.InteresadosFiltrados = this._interesados;
+                    this._ventana.InteresadoFiltrado = this.BuscarInteresado((IList<Interesado>)this._ventana.InteresadosFiltrados, (Interesado)this._ventana.Interesado);
+                }
+            }
+            else
+            {
+                this._ventana.Interesado = primerInteresado;
+                this._ventana.InteresadosFiltrados = this._interesados;
+                this._ventana.InteresadoFiltrado = primerInteresado;
+
+            }            
+        }
+
+        public void IrConsultarMarcas()
+        {
+            this.Navegar(new ConsultarMarcas());
+        }
+
+        public Renovacion CargarRenovacionDeLaPantalla()
+        {
+
+            Renovacion renovacion = (Renovacion)this._ventana.Renovacion;          
+
+            if (null != this._ventana.Marca)
+                renovacion.Marca = ((Marca)this._ventana.Marca).Id != int.MinValue ? (Marca)this._ventana.Marca : null;            
+
+            if (null != this._ventana.Interesado)
+                renovacion.Interesado = ((Interesado)this._ventana.Interesado).Id != int.MinValue ? (Interesado)this._ventana.Interesado : null;
+
+            if (null != this._ventana.Agente)
+                renovacion.Agente = !((Agente)this._ventana.Agente).Id.Equals("") ? (Agente)this._ventana.Agente : null;            
+
+            if (null != this._ventana.Poder)
+                renovacion.Poder = ((Poder)this._ventana.Poder).Id != int.MinValue ? (Poder)this._ventana.Poder : null;
+
+            return renovacion;
+        }        
+
+        /// <summary>
+        /// Método que dependiendo del estado de la página, habilita los campos o 
+        /// modifica los datos del usuario
+        /// </summary>
+        public void Agregar()
+        {
+            Mouse.OverrideCursor = Cursors.Wait;
+
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                //inserta los datos del Cambio de Domicilio                
+                Renovacion renovacion = CargarRenovacionDeLaPantalla();
+
+                bool exitoso = this._renovacionServicios.InsertarOModificar(renovacion, UsuarioLogeado.Hash);
+
+                if (exitoso)
+                    this.Navegar(Recursos.MensajesConElUsuario.RenovacionInsertada, false);
+                else 
+                    this.Navegar(Recursos.MensajesConElUsuario.RenovacionInsertada,true);
+                
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (ApplicationException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(ex.Message, true);
+            }
+            catch (RemotingException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorRemoting, true);
+            }
+            catch (SocketException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorConexionServidor, true);
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
+            }
+            finally
+            {
+                Mouse.OverrideCursor = null;
+            }
+        }
+
+        /// <summary>
+        /// Metodo que se encarga de eliminar un Cambio de Domicilio
+        /// </summary>
+        public void Eliminar()
+        {
+            Mouse.OverrideCursor = Cursors.Wait;
+
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                if (this._renovacionServicios.Eliminar((Renovacion)this._ventana.Renovacion, UsuarioLogeado.Hash))
+                {
+                    _paginaPrincipal.MensajeUsuario = Recursos.MensajesConElUsuario.RenovacionEliminada;
+                    this.Navegar(_paginaPrincipal);
+                }
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (ApplicationException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(ex.Message, true);
+            }
+            catch (RemotingException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorRemoting, true);
+            }
+            catch (SocketException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorConexionServidor, true);
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
+            }
+            finally
+            {
+                Mouse.OverrideCursor = null;
+            }
+        }   
+
+        /// <summary>
+        /// Método que ordena una columna
+        /// </summary>
+        public void OrdenarColumna(GridViewColumnHeader column, ListView ListaResultados)
+        {
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+            String field = column.Tag as String;
+
+            if (this._ventana.CurSortCol != null)
+            {
+                AdornerLayer.GetAdornerLayer(this._ventana.CurSortCol).Remove(this._ventana.CurAdorner);
+                ListaResultados.Items.SortDescriptions.Clear();
+            }
+
+            ListSortDirection newDir = ListSortDirection.Ascending;
+            if (this._ventana.CurSortCol == column && this._ventana.CurAdorner.Direction == newDir)
+                newDir = ListSortDirection.Descending;
+
+            this._ventana.CurSortCol = column;
+            this._ventana.CurAdorner = new SortAdorner(this._ventana.CurSortCol, newDir);
+            AdornerLayer.GetAdornerLayer(this._ventana.CurSortCol).Add(this._ventana.CurAdorner);
+            ListaResultados.Items.SortDescriptions.Add(
+                new SortDescription(field, newDir));
+
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+        }
+
+        public void LlenarListaAgenteEInteresado(Poder poder, bool cargaInicial)
+        {
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                Mouse.OverrideCursor = Cursors.Wait;
+
+                Interesado interesado = new Interesado();
+                IList<Agente> agentesInteresadoFiltrados;
+                IList<Interesado> interesadosFiltrados = new List<Interesado>();
+                Poder poderFiltrar = new Poder();
+
+                Interesado primerInteresado = new Interesado(int.MinValue);
+                Agente primerAgente = new Agente("");
+
+                Agente agente = new Agente();
+
+                agentesInteresadoFiltrados = new List<Agente>();
+
+                if (poder.Id == null)
+                    poderFiltrar.Id = this._ventana.IdPoderFiltrar.Equals("") ? 0 : int.Parse(this._ventana.IdPoderFiltrar);
+                else
+                    poderFiltrar.Id = poder.Id;
+
+                if (poderFiltrar.Id != 0)
+                {
+                    interesado = this._interesadoServicios.ObtenerInteresadosDeUnPoder((Poder)this._ventana.PoderFiltrado);
+                    agentesInteresadoFiltrados = this._agenteServicios.ObtenerAgentesDeUnPoder((Poder)this._ventana.PoderFiltrado);
+                }
+
+                if (interesado != null)
+                {
+                    interesadosFiltrados.Insert(0, primerInteresado);
+                    interesadosFiltrados.Add(interesado);
+                    this._ventana.InteresadosFiltrados = interesadosFiltrados;
+
+                    if (cargaInicial)
+                        this._ventana.InteresadoFiltrado = this.BuscarInteresado(interesadosFiltrados, interesado);
+                    else
+                        this._ventana.InteresadoFiltrado = primerInteresado;
+                }
+                else
+                {
+                    interesadosFiltrados.Insert(0, primerInteresado);
+                    this._ventana.Mensaje(Recursos.MensajesConElUsuario.NoHayResultados, 1);
+                    this._ventana.InteresadoFiltrado = primerInteresado;
+                }
+
+                if (agentesInteresadoFiltrados.Count != 0)
+                {
+                    agente = (Agente)this._ventana.AgenteFiltrado;
+                    agentesInteresadoFiltrados.Insert(0, primerAgente);
+                    this._ventana.AgentesFiltrados = agentesInteresadoFiltrados;
+                    this._ventana.AgenteFiltrado = BuscarAgente(agentesInteresadoFiltrados, agente);
+                }
+                else
+                {
+                    agentesInteresadoFiltrados.Insert(0, primerAgente);
+                    this._ventana.AgentesFiltrados = this._agentes;
+                    this._ventana.Mensaje(Recursos.MensajesConElUsuario.NoHayResultados, 1);
+                    this._ventana.AgenteFiltrado = primerAgente;
+                }
+
+                Mouse.OverrideCursor = null;
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (ApplicationException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(ex.Message, true);
+            }
+            catch (RemotingException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorRemoting, true);
+            }
+            catch (SocketException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorConexionServidor, true);
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
+            }
+
+        }
+
+        private void LlenarListaAgente(Poder poder)
+        {
+            Agente primerAgente = new Agente("");
+           
+            this._agentes = this._agenteServicios.ObtenerAgentesDeUnPoder(poder);
+            this._agentes.Insert(0, primerAgente);
+            this._ventana.AgentesFiltrados = this._agentes;
+            this._ventana.AgenteFiltrado = primerAgente;               
+        }
+
+        #region Marcas
+
+        private void CargarMarca()
+        {
+            this._marcas = new List<Marca>();
+            Marca primeraMarca = new Marca(int.MinValue);
+            this._marcas.Add(primeraMarca);
+
+            if ((Marca)this._ventana.Marca != null)
+            {
+                this._marcas.Add((Marca)this._ventana.Marca);
+                this._ventana.MarcasFiltradas = this._marcas;
+                this._ventana.MarcaFiltrada = (Marca)this._ventana.Marca;
+            }
+            else
+            {
+                this._ventana.MarcasFiltradas = this._marcas;
+                this._ventana.MarcaFiltrada = primeraMarca;
+            }                           
+                 
+        }
+
+        public void ConsultarMarcas()
+        {
+ 
+            Mouse.OverrideCursor = Cursors.Wait;
+
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                Marca primeraMarca = new Marca(int.MinValue);
+
+               
+                Marca marca = new Marca();
+                IList<Marca> marcasFiltradas;
+                marca.Descripcion = this._ventana.NombreMarcaFiltrar.ToUpper();
+                marca.Id = this._ventana.IdMarcaFiltrar.Equals("") ? 0 : int.Parse(this._ventana.IdMarcaFiltrar);
+
+                if ((!marca.Descripcion.Equals("")) || (marca.Id != 0))
+                    marcasFiltradas = this._marcaServicios.ObtenerMarcasFiltro(marca);
+                else
+                    marcasFiltradas = new List<Marca>();
+
+                if (marcasFiltradas.ToList<Marca>().Count != 0)
+                {
+                    marcasFiltradas.Insert(0, primeraMarca);
+                    this._ventana.MarcasFiltradas = marcasFiltradas.ToList<Marca>();
+                    this._ventana.MarcaFiltrada = primeraMarca;
+                }
+                else
+                {
+                    marcasFiltradas.Insert(0, primeraMarca);
+                    this._ventana.MarcasFiltradas = this._marcas;
+                    this._ventana.MarcaFiltrada = primeraMarca;
+                    this._ventana.Mensaje(Recursos.MensajesConElUsuario.NoHayResultados, 1);
+                }
+
+                Mouse.OverrideCursor = null;
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (ApplicationException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(ex.Message, true);
+            }
+            catch (RemotingException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorRemoting, true);
+            }
+            catch (SocketException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorConexionServidor, true);
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
+            }
+            finally
+            {
+                Mouse.OverrideCursor = null;
+            }
+        }        
+
+        public bool CambiarMarca()
+        {
+            Mouse.OverrideCursor = Cursors.Wait;
+
+            bool retorno = false;
+
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+
+                if (this._ventana.MarcaFiltrada != null)
+                {
+                    this._ventana.Marca = this._ventana.MarcaFiltrada;
+                    this._ventana.NombreMarca = ((Marca)this._ventana.MarcaFiltrada).Descripcion;
+                    this._marcas.RemoveAt(0);
+                    this._marcas.Add((Marca)this._ventana.MarcaFiltrada);
+                    retorno = true;
+                }
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+            }
+            catch (ApplicationException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(ex.Message, true);
+            }
+            catch (RemotingException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorRemoting, true);
+            }
+            catch (SocketException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorConexionServidor, true);
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
+            }
+            finally
+            {
+                Mouse.OverrideCursor = null;
+            }
+
+            return retorno;
+        }
+
+        #endregion       
+
+        #region Interesado
+
+        private void ValidarInteresado()
+        {
+            if (((Interesado)this._ventana.InteresadoFiltrado).Id == int.MinValue)
+            {
+                if (((Agente)this._ventana.AgenteFiltrado).Id.Equals(""))
+                {
+                    if (((Poder)this._ventana.PoderFiltrado).Id != int.MinValue)
+                    {
+                        LlenarListaAgenteEInteresado((Poder)this._ventana.Poder, true);
+
+                        this._ventana.GestionarBotonConsultarInteresado(false);
+                        this._ventana.GestionarBotonConsultarAgente(false);
+                    }
+                }
+                else
+                {
+                    if (((Cesion)this._ventana.PoderFiltrado).Id == int.MinValue)
+                        this._ventana.GestionarBotonConsultarInteresado(false);
+
+                    else
+                    {
+                        LlenarListaAgenteEInteresado((Poder)this._ventana.Poder, true);
+
+                        this._ventana.GestionarBotonConsultarInteresado(false);
+                        this._ventana.GestionarBotonConsultarAgente(false);
+                        this._ventana.GestionarBotonConsultarPoder(false);
+                    }
+
+                }
+            }
+            else
+            {
+                if (((Agente)this._ventana.AgenteFiltrado).Id.Equals(""))
+                {
+                    if (((Poder)this._ventana.PoderFiltrado).Id == int.MinValue)
+                        this._ventana.GestionarBotonConsultarPoder(false);
+
+                    else
+                    {
+                        LlenarListaAgenteEInteresado((Poder)this._ventana.Poder, true);
+
+                        this._ventana.GestionarBotonConsultarInteresado(false);
+                        this._ventana.GestionarBotonConsultarAgente(false);
+                        this._ventana.GestionarBotonConsultarPoder(false);
+
+                    }
+                }
+                else
+                {
+                    if (((Poder)this._ventana.PoderFiltrado).Id == int.MinValue)
+                    {
+                        ValidarListaDePoderes(this._poderesInteresado, this._poderes);
+
+                        this._ventana.GestionarBotonConsultarPoder(false);
+                    }
+                    else
+                    {
+                        LlenarListaAgenteEInteresado((Poder)this._ventana.Poder, true);
+                        ValidarListaDePoderes(this._poderesInteresado, this._poderes);
+
+                        this._ventana.GestionarBotonConsultarInteresado(false);
+                        this._ventana.GestionarBotonConsultarAgente(false);
+                        this._ventana.GestionarBotonConsultarPoder(false);
+                    }
+                }
+            }
+        }
+
+        public void ConsultarInteresados()
+        {
+            Mouse.OverrideCursor = Cursors.Wait;
+
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                Interesado primerInteresado = new Interesado(int.MinValue);
+                
+                Interesado interesado = new Interesado();
+                IList<Interesado> interesadosFiltrados;
+                interesado.Nombre = this._ventana.NombreInteresadoFiltrar.ToUpper();
+                interesado.Id = this._ventana.IdInteresadoFiltrar.Equals("") ? 0 : int.Parse(this._ventana.IdInteresadoFiltrar);
+
+                if ((!interesado.Nombre.Equals("")) || (interesado.Id != 0))
+                    interesadosFiltrados = this._interesadoServicios.ObtenerInteresadosFiltro(interesado);
+                else
+                    interesadosFiltrados = new List<Interesado>();
+
+                if (interesadosFiltrados.Count != 0)
+                {
+                    interesadosFiltrados.Insert(0, primerInteresado);
+                    this._ventana.InteresadosFiltrados = interesadosFiltrados;
+                    this._ventana.InteresadoFiltrado = primerInteresado;
+                }
+                else
+                {
+                    interesadosFiltrados.Insert(0, primerInteresado);
+                    this._ventana.InteresadosFiltrados = this._interesados;
+                    this._ventana.InteresadoFiltrado = primerInteresado;
+                    this._ventana.Mensaje(Recursos.MensajesConElUsuario.NoHayResultados, 1);
+                }
+
+                Mouse.OverrideCursor = null;
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (ApplicationException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(ex.Message, true);
+            }
+            catch (RemotingException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorRemoting, true);
+            }
+            catch (SocketException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorConexionServidor, true);
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
+            }
+            finally
+            {
+                Mouse.OverrideCursor = null;
+            }
+        }        
+
+        public bool CambiarInteresado()
+        {
+            Mouse.OverrideCursor = Cursors.Wait;
+
+            bool retorno = false;
+
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                if (((Interesado)this._ventana.InteresadoFiltrado).Id != int.MinValue)
+                {
+                    if (!((Agente)this._ventana.AgenteFiltrado).Id.Equals(""))
+                    {
+                        if (((Poder)this._ventana.PoderFiltrado).Id != int.MinValue)
+                        {
+                            this._ventana.Interesado = this._interesadoServicios.ConsultarInteresadoConTodo((Interesado)this._ventana.InteresadoFiltrado);
+                            this._ventana.NombreInteresado = ((Interesado)this._ventana.Interesado).Nombre;
+                            retorno = true;
+                        }
+                        else
+                        {
+                            this._poderesInteresado = this._poderServicios.ConsultarPoderesPorInteresado(((Interesado)_ventana.InteresadoFiltrado));
+
+                            LimpiarListaPoder();
+
+                            if ((this.ValidarListaDePoderes(this._poderesInteresado, this._poderes)))
+                            {
+                                this._ventana.Interesado = this._ventana.InteresadoFiltrado;
+                                this._ventana.NombreInteresado = ((Interesado)this._ventana.InteresadoFiltrado).Nombre;
+                                retorno = true;
+                            }
+                            else if (!this.ValidarListaDePoderes(this._poderesInteresado, this._poderes))
+                            {
+                                this._ventana.ConvertirEnteroMinimoABlanco();
+                                this._ventana.Mensaje(string.Format(Recursos.MensajesConElUsuario.ErrorInteresadoNoPoseePoderConAgente, ""), 0);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        if (((Poder)this._ventana.PoderFiltrado).Id == int.MinValue)
+                        {
+                            Poder primerPoder = new Poder(int.MinValue);
+
+                            this._poderesInteresado = this._poderServicios.ConsultarPoderesPorInteresado(((Interesado)_ventana.InteresadoFiltrado));
+                            this._poderesInteresado.Insert(0, primerPoder);
+                            this._ventana.PoderesFiltrados = this._poderesInteresado;
+                            this._ventana.PoderFiltrado = primerPoder;
+
+                            this._poderesInteresado = this._poderServicios.ConsultarPoderesPorInteresado(((Interesado)_ventana.InteresadoFiltrado));
+                            this._ventana.Interesado = this._interesadoServicios.ConsultarInteresadoConTodo((Interesado)this._ventana.InteresadoFiltrado);
+                            this._ventana.NombreInteresado = ((Interesado)this._ventana.Interesado).Nombre;
+                            retorno = true;
+                        }
+                        else
+                        {
+
+                            this._poderesInteresado = this._poderServicios.ConsultarPoderesPorInteresado(((Interesado)_ventana.InteresadoFiltrado));
+                            this._ventana.Interesado = this._interesadoServicios.ConsultarInteresadoConTodo((Interesado)this._ventana.InteresadoFiltrado);
+                            this._ventana.NombreInteresado = ((Interesado)this._ventana.Interesado).Nombre;
+                            retorno = true;
+                        }
+                    }
+
+                }
+                else
+                {
+                    this._ventana.Interesado = this._ventana.InteresadoFiltrado;
+                    this._ventana.NombreInteresado = ((Interesado)this._ventana.Interesado).Nombre;
+                    retorno = true;
+                }
+
+                this._ventana.ConvertirEnteroMinimoABlanco();
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+            }
+            catch (ApplicationException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(ex.Message, true);
+            }
+            catch (RemotingException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorRemoting, true);
+            }
+            catch (SocketException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorConexionServidor, true);
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
+            }
+            finally
+            {
+                Mouse.OverrideCursor = null;
+            }
+
+            return retorno;
+        }
+
+        public bool VerificarCambioInteresado()
+        {
+            bool retorno = false;
+
+            if ((((Interesado)this._ventana.InteresadoFiltrado).Id != int.MinValue) || !(((Agente)this._ventana.AgenteFiltrado).Id.Equals("")))
+                retorno = true;
+
+            return retorno;
+        }
+
+        public void LimpiarListaInteresado()
+        {
+            Interesado primerInteresado = new Interesado(int.MinValue);
+            IList<Interesado> listaInteresados = new List<Interesado>();
+            listaInteresados.Add(primerInteresado);
+
+            this._ventana.InteresadosFiltrados = listaInteresados;
+            this._ventana.InteresadoFiltrado = BuscarInteresado(listaInteresados, primerInteresado);
+            this._ventana.Interesado = this._ventana.InteresadoFiltrado;
+        }
+
+        #endregion
+
+        #region Agente 
+
+        private void CargarAgente()
+        {
+            Agente primerAgente = new Agente("");
+
+            this._agentes = new List<Agente>();
+            this._agentes.Add(primerAgente);
+
+            if ((Agente)this._ventana.Agente != null)
+            {
+                this._agentes.Add((Agente)this._ventana.Agente);
+                this._ventana.AgentesFiltrados = this._agentes;
+                this._ventana.AgenteFiltrado = this.BuscarAgente((IList<Agente>)this._ventana.AgentesFiltrados, (Agente)this._ventana.Agente);
+            }
+            else
+            {
+                this._ventana.Agente = primerAgente;
+                this._ventana.AgentesFiltrados = this._agentes;
+                this._ventana.AgenteFiltrado = primerAgente;
+            }
+
+        }
+
+        public void ConsultarAgentes()
+        {
+            Mouse.OverrideCursor = Cursors.Wait;
+
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                Agente primerAgente = new Agente("");
+
+                
+                Agente apoderadoInteresado = new Agente();
+                IList<Agente> agentesInteresadoFiltrados;
+                apoderadoInteresado.Nombre = this._ventana.NombreAgenteFiltrar.ToUpper();
+                apoderadoInteresado.Id = this._ventana.IdAgenteFiltrar.ToUpper();
+
+                if ((!apoderadoInteresado.Nombre.Equals("")) || (!apoderadoInteresado.Id.Equals("")))
+                    agentesInteresadoFiltrados = this._agenteServicios.ObtenerAgentesFiltro(apoderadoInteresado);
+                else
+                    agentesInteresadoFiltrados = new List<Agente>();
+
+                if (agentesInteresadoFiltrados.ToList<Agente>().Count != 0)
+                {
+                    agentesInteresadoFiltrados.Insert(0, primerAgente);
+                    this._ventana.AgentesFiltrados = agentesInteresadoFiltrados;
+                    this._ventana.AgenteFiltrado = primerAgente;
+                }
+                else
+                {
+                    agentesInteresadoFiltrados.Insert(0, primerAgente);
+                    this._ventana.AgentesFiltrados = this._agentes;
+                    this._ventana.AgenteFiltrado = primerAgente;
+                    this._ventana.Mensaje(Recursos.MensajesConElUsuario.NoHayResultados, 1);
+                }                
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (ApplicationException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(ex.Message, true);
+            }
+            catch (RemotingException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorRemoting, true);
+            }
+            catch (SocketException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorConexionServidor, true);
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
+            }
+            finally
+            {
+                Mouse.OverrideCursor = null;
+            }
+        }       
+
+        public bool CambiarAgente()
+        {
+            Mouse.OverrideCursor = Cursors.Wait;
+
+            bool retorno = false;
+
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                if (!((Agente)this._ventana.AgenteFiltrado).Id.Equals(""))
+                {
+                    if (((Interesado)this._ventana.Interesado).Id != int.MinValue)
+                    {
+                        if (((Poder)this._ventana.PoderFiltrado).Id != int.MinValue)
+                        {
+                            this._ventana.Agente = this._ventana.AgenteFiltrado;
+                            this._ventana.NombreAgente = ((Agente)this._ventana.AgenteFiltrado).Nombre;
+                            retorno = true;
+                        }
+                        else
+                        {
+                            this._poderes = this._poderServicios.ConsultarPoderesPorAgente(((Agente)_ventana.AgenteFiltrado));
+
+                            LimpiarListaPoder();
+
+                            if ((this.ValidarListaDePoderes(this._poderesInteresado, this._poderes)))
+                            {
+                                this._ventana.Agente = this._ventana.AgenteFiltrado;
+                                this._ventana.NombreAgente = ((Agente)this._ventana.AgenteFiltrado).Nombre;
+                                retorno = true;
+                            }
+                            else if (!this.ValidarListaDePoderes(this._poderesInteresado, this._poderes))
+                            {
+                                this._ventana.ConvertirEnteroMinimoABlanco();
+                                this._ventana.Mensaje(string.Format(Recursos.MensajesConElUsuario.ErrorAgenteNoPoseePoderConInteresado, "Cedente"), 0);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        if (((Poder)this._ventana.PoderFiltrado).Id != int.MinValue)
+                        {
+                            this._ventana.Agente = this._ventana.AgenteFiltrado;
+                            this._ventana.NombreAgente = ((Agente)this._ventana.AgenteFiltrado).Nombre;
+                            retorno = true;
+                        }
+                        else
+                        {
+                            this._poderes = this._poderServicios.ConsultarPoderesPorAgente(((Agente)_ventana.AgenteFiltrado));
+                            this._ventana.Agente = this._ventana.AgenteFiltrado;
+                            this._ventana.NombreAgente = ((Agente)this._ventana.AgenteFiltrado).Nombre;
+                            retorno = true;
+                        }
+                    }
+                }
+                else
+                {
+                    this._ventana.Agente = this._ventana.AgenteFiltrado;
+                    this._ventana.NombreAgente = ((Agente)this._ventana.AgenteFiltrado).Nombre;
+                    retorno = true;
+                }
+
+                this._ventana.ConvertirEnteroMinimoABlanco();
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+            }
+            catch (ApplicationException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(ex.Message, true);
+            }
+            catch (RemotingException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorRemoting, true);
+            }
+            catch (SocketException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorConexionServidor, true);
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
+            }
+            finally
+            {
+                Mouse.OverrideCursor = null;
+            }
+
+            return retorno;
+        }
+
+        public bool VerificarCambioAgente()
+        {
+            bool retorno = false;
+
+            if (!(((Agente)this._ventana.AgenteFiltrado).Id.Equals("")) || (((Interesado)this._ventana.InteresadoFiltrado).Id != int.MinValue))
+                retorno = true;
+
+            return retorno;
+        }
+
+        public void LimpiarListaAgente()
+        {
+            Agente primerAgente = new Agente("");
+            IList<Agente> listaAgentes = new List<Agente>();
+            listaAgentes.Add(primerAgente);
+
+            this._ventana.AgentesFiltrados = listaAgentes;
+            this._ventana.AgenteFiltrado = BuscarAgente(listaAgentes, primerAgente);
+            this._ventana.Agente = this._ventana.AgenteFiltrado;
+
+        }
+
+        #endregion
+
+        #region Poder
+
+        private void CargarPoder()
+        {
+            Poder primerPoder = new Poder(int.MinValue);
+
+            this._poderes = new List<Poder>();
+            this._poderes.Add(primerPoder);
+
+            if (((Renovacion)this._ventana.Renovacion).Poder != null)
+            {
+                this._poderes.Add((Poder)this._ventana.Poder);
+                this._ventana.PoderesFiltrados = this._poderes;
+                this._ventana.PoderFiltrado = this.BuscarPoder((IList<Poder>)this._ventana.PoderesFiltrados, (Poder)this._ventana.Poder);
+            }
+            else
+            {
+                this._ventana.PoderesFiltrados = this._poderes;
+                this._ventana.PoderFiltrado = this.BuscarPoder(this._poderes, this._poderes[0]);
+                this._ventana.ConvertirEnteroMinimoABlanco(); 
+            }
+
+             
+        }
+
+        public void ConsultarPoderes()
+        {
+            Mouse.OverrideCursor = Cursors.Wait;
+
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                Poder pimerPoder = new Poder(int.MinValue);
+
+                
+                Poder poder = new Poder();
+                IList<Poder> poderesFiltrados;
+
+                if (!this._ventana.IdPoderFiltrar.Equals(""))
+                    poder.Id = int.Parse(this._ventana.IdPoderFiltrar);
+
+                if (!this._ventana.FechaPoderFiltrar.Equals(""))
+                    poder.Fecha = DateTime.Parse(this._ventana.FechaPoderFiltrar);
+
+                if ((!poder.Fecha.Equals("")) || (poder.Id != 0))
+                    poderesFiltrados = this._poderServicios.ObtenerPoderesFiltro(poder);
+                else
+                    poderesFiltrados = new List<Poder>();
+
+                if (poderesFiltrados.ToList<Poder>().Count != 0)
+                {
+                    poderesFiltrados.Insert(0, pimerPoder);
+                    this._ventana.PoderesFiltrados = poderesFiltrados;
+                    this._ventana.PoderFiltrado = pimerPoder;
+                }
+                else
+                {
+                    poderesFiltrados.Insert(0, pimerPoder);
+                    this._ventana.PoderesFiltrados = this._poderes;
+                    this._ventana.PoderFiltrado = pimerPoder;
+                    this._ventana.Mensaje(Recursos.MensajesConElUsuario.NoHayResultados, 1);
+                }               
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (ApplicationException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(ex.Message, true);
+            }
+            catch (RemotingException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorRemoting, true);
+            }
+            catch (SocketException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorConexionServidor, true);
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
+            }
+            finally
+            {
+                Mouse.OverrideCursor = null;
+            }
+        }        
+
+        public bool CambiarPoder()
+        {
+            Mouse.OverrideCursor = Cursors.Wait;
+
+            bool retorno = false;
+
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                if (((Poder)this._ventana.PoderFiltrado).Id != int.MinValue)
+                {
+                    if (((Agente)this._ventana.AgenteFiltrado).Id.Equals(""))
+                    {
+                        if (((Interesado)this._ventana.InteresadoFiltrado).Id != int.MinValue)
+                        {
+                            LimpiarListaAgente();
+
+                            LlenarListaAgente((Poder)this._ventana.PoderFiltrado);
+
+                            this._ventana.Poder = this._ventana.PoderFiltrado;
+                            this._ventana.IdPoder = ((Poder)this._ventana.PoderFiltrado).Id.ToString();
+                            retorno = true;
+
+                        }
+                        else
+                        {
+                            LimpiarListaInteresado();
+
+                            LimpiarListaAgente();
+
+                            LlenarListaAgenteEInteresado((Poder)this._ventana.PoderFiltrado, false);
+
+                            this._ventana.Poder = this._ventana.PoderFiltrado;
+                            this._ventana.IdPoder = ((Poder)this._ventana.PoderFiltrado).Id.ToString();
+                            retorno = true;
+                        }
+                    }
+                    else
+                    {
+                        this._ventana.Poder = this._ventana.PoderFiltrado;
+                        this._ventana.IdPoder = ((Poder)this._ventana.PoderFiltrado).Id.ToString();
+                        retorno = true;
+                    }
+                }
+                else
+                {
+                    this._ventana.Poder = this._ventana.PoderFiltrado;
+                    this._ventana.IdPoder = ((Poder)this._ventana.PoderFiltrado).Id.ToString();
+                    retorno = true;
+                }
+
+                this._ventana.ConvertirEnteroMinimoABlanco();
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (ApplicationException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(ex.Message, true);
+            }
+            catch (RemotingException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorRemoting, true);
+            }
+            catch (SocketException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorConexionServidor, true);
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
+            }
+            finally
+            {
+                Mouse.OverrideCursor = null;
+            }
+
+            return retorno;
+        }        
+
+        public void LlenarListasPoderes(Renovacion cambioDeDomicilio)
+        {
+            if (cambioDeDomicilio.Interesado != null)
+                this._poderesInteresado = this._poderServicios.ConsultarPoderesPorInteresado(cambioDeDomicilio.Interesado);
+
+            if (cambioDeDomicilio.Agente != null)
+                this._poderes = this._poderServicios.ConsultarPoderesPorAgente(cambioDeDomicilio.Agente);
+        }
+
+        public bool ValidarListaDePoderes(IList<Poder> listaPoderesA, IList<Poder> listaPoderesB)
+        {
+            Mouse.OverrideCursor = Cursors.Wait;
+
+            bool retorno = false;
+            IList<Poder> listaIntereseccionInteresado = new List<Poder>();            
+            Poder primerPoder = new Poder(int.MinValue);
+
+            Poder poder = new Poder();
+
+            listaIntereseccionInteresado.Add(primerPoder);
+
+
+            if ((listaPoderesA.Count != 0) && (listaPoderesB.Count != 0))
+            {
+                foreach (Poder poderA in listaPoderesA)
+                {
+                    foreach (Poder poderB in listaPoderesB)
+                    {
+                        if (poderA.Id == poderB.Id)
+                        {
+                            listaIntereseccionInteresado.Add(poderA);
+                            retorno = true;
+                        }
+
+                    }
+
+                }
+
+                if (listaIntereseccionInteresado.Count != 0)
+                {
+                    poder = (Poder)this._ventana.PoderFiltrado;
+                    this._poderesInterseccion = listaIntereseccionInteresado;
+                    this._ventana.PoderesFiltrados = listaIntereseccionInteresado;
+                    this._ventana.PoderFiltrado = BuscarPoder((IList<Poder>)this._ventana.PoderesFiltrados, poder);
+                }
+                else
+                    retorno = false;
+            }
+
+            Mouse.OverrideCursor = null;
+
+            return retorno;
+        }
+
+        public bool VerificarCambioPoder()
+        {
+            bool retorno = false;
+
+            if (((Poder)this._ventana.PoderFiltrado).Id != int.MinValue)
+                retorno = true;
+
+            return retorno;
+        }
+
+        public void LimpiarListaPoder()
+        {
+            Poder primerPoder = new Poder(int.MinValue);
+            IList<Poder> listaPoderes = new List<Poder>();
+            listaPoderes.Add(primerPoder);
+
+            this._ventana.PoderesFiltrados = listaPoderes;
+            this._ventana.PoderFiltrado = BuscarPoder(listaPoderes, primerPoder);
+            this._ventana.Poder = this._ventana.PoderFiltrado;
+
+        }
+
+        #endregion
+
+    }
+}

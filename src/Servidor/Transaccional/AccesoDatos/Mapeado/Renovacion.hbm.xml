@@ -24,9 +24,9 @@
     <property name="OtrosS5" column="XOTROS5" type="string"/>
     <property name="Ubicacion" column="XUBICACION" type="string"/>    
     <property name="Observacion" column="XOBSERVACION" type="string"/>
-    <property name="FechaRenovacion" column="FRENOVACION" type="DateTime"/>
-    <property name="FechaRenovacionProxima" column="FRENOVACION_PROXIMA" type="DateTime"/>
-    <property name="FechaRenovacionProximaUltima" column="FRENOVACION_ULTIMA" type="DateTime"/>
+    <property name="Fecha" column="FRENOVACION" type="DateTime"/>
+    <property name="FechaProxima" column="FRENOVACION_PROXIMA" type="DateTime"/>
+    <property name="FechaUltima" column="FRENOVACION_ULTIMA" type="DateTime"/>
 
     <many-to-one name="Marca" class="Marca">
       <column name="CMARCA"/>

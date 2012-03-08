@@ -470,7 +470,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
         /// </summary>
         public void GestionarRenovacionMarca()
         {
-            //this._ventana.Contenedor.Navigate(ventana*);
+            this._ventana.Contenedor.Navigate(new GestionarRenovacion(null));
         }
 
         /// <summary>

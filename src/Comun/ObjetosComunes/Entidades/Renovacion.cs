@@ -8,7 +8,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
     {
         #region Atributos
 
-        private int _id;       
+        private int _id;
         private char _rif;
         private char _acta;
         private char _timbre;
@@ -28,15 +28,16 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         private string _otrosS5;
         private string _observacion;
         private string _expediente;
-        private DateTime? _fechaRenovacion;
-        private DateTime? _fechaRenovacionUltima;
-        private DateTime? _fechaRenovacionProxima;
+        private DateTime? _fecha;
+        private DateTime? _fechaUltima;
+        private DateTime? _fechaProxima;
         private Agente _agente;
         private Asociado _asociado;
         private Boletin _boletinPublicacion;
         private Interesado _interesado;
-        private Poder _poder;               
-        private Marca _marca;               
+        private Poder _poder;
+        private Marca _marca;
+        private ListaDatosValores _tipoRenovacion;
 
         #endregion
 
@@ -121,7 +122,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         {
             get { return _otrosC5; }
             set { _otrosC5 = value; }
-        }   
+        }
 
         /// <summary>
         /// Propiedad que asigna u obtiene el campo Poder de la Renovacion
@@ -188,7 +189,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
             get { return _tipoR; }
             set { _tipoR = value; }
         }
-       
+
         /// <summary>
         /// Propiedad que asigna u obtiene el campo Expediente de la Renovacion
         /// </summary>
@@ -197,7 +198,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
             get { return _expediente; }
             set { _expediente = value; }
         }
-               
+
         /// <summary>
         /// Propiedad que asigna u obtiene el campo OtrosS1 de la Renovacion
         /// </summary>
@@ -250,7 +251,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         {
             get { return _ubicacion; }
             set { _ubicacion = value; }
-        }        
+        }
 
         /// <summary>
         /// Propiedad que asigna u obtiene el campo Observacion de la Renovacion
@@ -277,7 +278,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         {
             get { return _poder; }
             set { _poder = value; }
-        }       
+        }
 
         /// <summary>
         /// Propiedad que asigna u obtiene el campo Marca de la Renovacion
@@ -296,7 +297,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
             get { return _interesado; }
             set { _interesado = value; }
         }
-      
+
         /// <summary>
         /// Propiedad que asigna u obtiene el campo BoletinPublicacion de la Renovacion
         /// </summary>
@@ -309,28 +310,28 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         /// <summary>
         /// Propiedad que asigna u obtiene el campo FechaRenovacion de la Renovacion
         /// </summary>
-        public virtual DateTime? FechaRenovacion
+        public virtual DateTime? Fecha
         {
-            get { return _fechaRenovacion; }
-            set { _fechaRenovacion = value; }
+            get { return _fecha; }
+            set { _fecha = value; }
         }
 
         /// <summary>
         /// Propiedad que asigna u obtiene el campo FechaRenovacionProxima de la Renovacion
         /// </summary>
-        public virtual DateTime? FechaRenovacionProxima
+        public virtual DateTime? FechaProxima
         {
-            get { return _fechaRenovacionProxima; }
-            set { _fechaRenovacionProxima = value; }
+            get { return _fechaProxima; }
+            set { _fechaProxima = value; }
         }
 
         /// <summary>
         /// Propiedad que asigna u obtiene el campo FechaRenovacionUltima de la Renovacion
         /// </summary>
-        public virtual DateTime? FechaRenovacionProximaUltima
+        public virtual DateTime? FechaUltima
         {
-            get { return _fechaRenovacionUltima; }
-            set { _fechaRenovacionUltima = value; }
+            get { return _fechaUltima; }
+            set { _fechaUltima = value; }
         }
 
         /// <summary>
@@ -340,7 +341,16 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         {
             get { return _agente; }
             set { _agente = value; }
-        }        
+        }
+
+        /// <summary>
+        /// Propiedad que asigna u obtiene el campo AgenteCedente de la Renovacion
+        /// </summary>
+        public virtual ListaDatosValores TipoRenovacion
+        {
+            get { return _tipoRenovacion; }
+            set { _tipoRenovacion = value; }
+        }
 
         #endregion
     }

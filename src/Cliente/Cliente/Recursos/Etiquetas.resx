@@ -1624,10 +1624,10 @@ libro</value>
     <value>Consultar Fusiones</value>
   </data>
   <data name="titleGestionarCesion" xml:space="preserve">
-    <value>Gestionar Cesión</value>
+    <value>Gestionar Cesión  de Marcas</value>
   </data>
   <data name="titleGestionarFusion" xml:space="preserve">
-    <value>Gestionar Fusión</value>
+    <value>Gestionar Fusión  de Marcas</value>
   </data>
   <data name="lblSobreviviente" xml:space="preserve">
     <value>Sobreviviente:</value>
@@ -1642,7 +1642,7 @@ libro</value>
     <value>Consultar Licencia</value>
   </data>
   <data name="titleGestionarLicencia" xml:space="preserve">
-    <value>Gestionar Licencia</value>
+    <value>Gestionar Licencia  de Marcas</value>
   </data>
   <data name="lblLicenciante" xml:space="preserve">
     <value>Licenciante:</value>
@@ -1654,7 +1654,7 @@ libro</value>
     <value>Consulta Cambios de Domicilio de Marcas</value>
   </data>
   <data name="titleGestionarCambioDeDomicilio" xml:space="preserve">
-    <value>Gestionar Cambio de Domicilio</value>
+    <value>Gestionar Cambio de Domicilio  de Marcas</value>
   </data>
   <data name="lblActual" xml:space="preserve">
     <value>Actual:</value>
@@ -1666,13 +1666,13 @@ libro</value>
     <value>Consulta Cambios de Nombre de Marcas</value>
   </data>
   <data name="titleGestionarCambiosDeNombre" xml:space="preserve">
-    <value>Gestionar Cambio de Nombre</value>
+    <value>Gestionar Cambio de Nombre de Marcas</value>
   </data>
   <data name="titleConsultarCambioPeticionarios" xml:space="preserve">
     <value>Consultar Cambios de Peticionarios de Marca</value>
   </data>
   <data name="titleGestionarCambioPeticionario" xml:space="preserve">
-    <value>Gestionar Cambio de Peticionario de Marca</value>
+    <value>Gestionar Cambio de Peticionario de Marcas</value>
   </data>
   <data name="titleAgregarCambioDeDomicilio" xml:space="preserve">
     <value>Agregar Cambio de Domicilio de Marcas</value>
@@ -1739,5 +1739,31 @@ libro</value>
   </data>
   <data name="menuItemTipoBase" xml:space="preserve">
     <value>Tipo Base</value>
+  </data>
+  <data name="titleAgregarRenovacion" xml:space="preserve">
+    <value>Agregar Renovaciónes de Marcas</value>
+  </data>
+  <data name="titleGestionarRenovacion" xml:space="preserve">
+    <value>Gestionar Renovaciones de Marcas</value>
+  </data>
+  <data name="lblEstatus" xml:space="preserve">
+    <value>Estatus:</value>
+  </data>
+  <data name="btnCopiarDistingue" xml:space="preserve">
+    <value>Copiar
+Distingue</value>
+  </data>
+  <data name="btnPeriodoDeGracia" xml:space="preserve">
+    <value>Período 
+de Gracia</value>
+  </data>
+  <data name="lblProximaRenovacion" xml:space="preserve">
+    <value>Próxima Renovación</value>
+  </data>
+  <data name="lblFechaProxima" xml:space="preserve">
+    <value>F/Próxima Renovación</value>
+  </data>
+  <data name="cbiTipoRenovacion" xml:space="preserve">
+    <value>TIPORENOV</value>
   </data>
 </root>

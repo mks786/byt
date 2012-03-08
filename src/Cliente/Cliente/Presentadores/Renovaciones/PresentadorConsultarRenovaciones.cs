@@ -126,10 +126,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Renovaciones
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-                Mouse.OverrideCursor = Cursors.Wait;
-                bool consultaResumen = false;
-                int filtroValido = 0;//Variable utilizada para limitar a que el filtro se ejecute solo cuando 
-                //dos filtros sean utilizados
+                Mouse.OverrideCursor = Cursors.Wait;                
+                int filtroValido = 0;
 
                 Renovacion RenovacionAuxiliar = new Renovacion();
 
@@ -139,7 +137,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Renovaciones
                     RenovacionAuxiliar.Id = int.Parse(this._ventana.Id);
                 }
 
-                if ((null != this._ventana.Marca) && (((Asociado)this._ventana.Marca).Id != int.MinValue))
+                if ((null != this._ventana.Marca) && (((Marca)this._ventana.Marca).Id != int.MinValue))
                 {
                     RenovacionAuxiliar.Marca = (Marca)this._ventana.Marca;
                     filtroValido = 2;
@@ -169,9 +167,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Renovaciones
                             RenovacionAuxiliar.Interesado = interesadoAuxiliar;
                         }
 
-                        RenovacionAuxiliar.FechaRenovacion = renovacion.FechaRenovacion != null ? renovacion.FechaRenovacion : null;
+                        RenovacionAuxiliar.Fecha = renovacion.Fecha != null ? renovacion.Fecha : null;
 
-                        RenovacionAuxiliar.FechaRenovacionProxima = renovacion.FechaRenovacionProxima != null ? renovacion.FechaRenovacionProxima : null;
+                        RenovacionAuxiliar.FechaProxima = renovacion.FechaProxima != null ? renovacion.FechaProxima : null;
 
                         renovacionesDesinfladas.Add(RenovacionAuxiliar);
 
@@ -219,7 +217,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Renovaciones
                 while (!encontrada)
                 {
                     Renovacion renovacion = this._renovaciones[cont];
-                    if (renovacion.Id == ((Marca)this._ventana.RenovacionSeleccionada).Id)
+                    if (renovacion.Id == ((Renovacion)this._ventana.RenovacionSeleccionada).Id)
                     {
                         renovacionesParaNavegar = renovacion;
                         encontrada = true;
@@ -228,7 +226,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Renovaciones
                 }
 
 
-                //this.Navegar(new ConsultarRenovacion(renovacionesParaNavegar));
+                this.Navegar(new GestionarRenovacion(renovacionesParaNavegar));
             }
 
             #region trace

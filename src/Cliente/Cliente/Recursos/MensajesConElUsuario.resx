@@ -615,4 +615,10 @@
   <data name="MarcaSinNumeroDePoder" xml:space="preserve">
     <value>La marca no tiene número de poder ¿Desea imprimir de todas maneras?</value>
   </data>
+  <data name="RenovacionEliminada" xml:space="preserve">
+    <value>Renovación eliminada con éxito</value>
+  </data>
+  <data name="RenovacionInsertada" xml:space="preserve">
+    <value>Renovación insertada con éxito</value>
+  </data>
 </root>

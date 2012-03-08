@@ -30,12 +30,12 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
                 variosFiltros = true;
             }
            
-            if ((null != renovacion.FechaRenovacion) && (!renovacion.FechaRenovacion.Equals(DateTime.MinValue)))
+            if ((null != renovacion.Fecha) && (!renovacion.Fecha.Equals(DateTime.MinValue)))
             {
                 if (variosFiltros)
                     filtro += " and ";
-                string fecha = String.Format("{0:dd/MM/yy}", renovacion.FechaRenovacion);
-                string fecha2 = String.Format("{0:dd/MM/yy}", renovacion.FechaRenovacion.Value.AddDays(1));
+                string fecha = String.Format("{0:dd/MM/yy}", renovacion.Fecha);
+                string fecha2 = String.Format("{0:dd/MM/yy}", renovacion.Fecha.Value.AddDays(1));
                 filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerRenovacionFecha, fecha, fecha2);
             }
             IQuery query = Session.CreateQuery(cabecera + filtro);

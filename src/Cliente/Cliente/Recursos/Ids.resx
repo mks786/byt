@@ -483,6 +483,9 @@
   <data name="GestionarLicencias" xml:space="preserve">
     <value>MYP_MLICM</value>
   </data>
+  <data name="GestionarRenovacion" xml:space="preserve">
+    <value>MYPMRENM</value>
+  </data>
   <data name="InfoAdicional" xml:space="preserve">
     <value>MYPTAGENTE</value>
   </data>

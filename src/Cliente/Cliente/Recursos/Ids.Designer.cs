@@ -1159,6 +1159,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a MYPMRENM.
+        /// </summary>
+        public static string GestionarRenovacion {
+            get {
+                return ResourceManager.GetString("GestionarRenovacion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a MYPTAGENTE.
         /// </summary>
         public static string InfoAdicional {

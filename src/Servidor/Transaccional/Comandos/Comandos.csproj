@@ -104,7 +104,7 @@
     <Compile Include="Comandos\ComandosLicencia\ComandoConsultarLicenciasFiltro.cs" />
     <Compile Include="Comandos\ComandosMarca\ComandoConsultarMarcaConTodo.cs" />
     <Compile Include="Comandos\ComandosMarca\ComandoConsultarMarcasFiltro.cs" />
-    <Compile Include="Comandos\ComandosPlanilla\ComandoEjecutarProcedimientoP1.cs" />
+    <Compile Include="Comandos\ComandosPlanilla\ComandoEjecutarProcedimiento.cs" />
     <Compile Include="Comandos\ComandosOperacion\ComandoConsultarOperacionesPorMarcaYServicio.cs" />
     <Compile Include="Comandos\ComandosPlanilla\ComandoConsultarPlanillaPorUsuario.cs" />
     <Compile Include="Comandos\ComandosPlanilla\ComandoEliminarPlanilla.cs" />

@@ -277,6 +277,29 @@ namespace Trascend.Bolet.Cliente.Presentadores
         }
 
         /// <summary>
+        /// Busca la el Tipo renovación correspondiente a la inicial que se le esté pasando
+        /// </summary>
+        /// <param name="listasTipoRenovacion">Lista de tipos de renovación</param>        
+        /// <param name="listaDatosValorBuscado">Tipo de renovación buscado</param>
+        /// <returns>El tipo de renovación correspondiente</returns>
+        public ListaDatosValores BuscarTipoRenovacion(IList<ListaDatosValores> listasTipoRenovacion, ListaDatosValores listaDatosValorBuscado)
+        {
+            ListaDatosValores retorno = null;
+
+            if (listaDatosValorBuscado != null)
+                foreach (ListaDatosValores listaDatosValores in listasTipoRenovacion)
+                {
+                    if (listaDatosValores.Valor == listaDatosValorBuscado.Valor)
+                    {
+                        retorno = listaDatosValores;
+                        break;
+                    }
+                }
+
+            return retorno;
+        }
+
+        /// <summary>
         /// Busca el tipode persona correspondiente a la inicial que se le esté pasando
         /// </summary>
         /// <param name="tipoPersona">Inicial del tipo de persona</param>

@@ -135,6 +135,7 @@
     <Compile Include="Contratos\Medios\IAgregarMedio.cs" />
     <Compile Include="Contratos\Medios\IConsultarMedio.cs" />
     <Compile Include="Contratos\Medios\IConsultarMedios.cs" />
+    <Compile Include="Contratos\Renovaciones\IGestionarRenovacion.cs" />
     <Compile Include="Contratos\Resumenes\IAgregarResumen.cs" />
     <Compile Include="Contratos\Resumenes\IConsultarResumen.cs" />
     <Compile Include="Contratos\Resumenes\IConsultarResumenes.cs" />
@@ -247,6 +248,7 @@
     <Compile Include="Presentadores\Categorias\PresentadorAgregarCategoria.cs" />
     <Compile Include="Presentadores\Categorias\PresentadorConsultarCategoria.cs" />
     <Compile Include="Presentadores\Categorias\PresentadorConsultarCategorias.cs" />
+    <Compile Include="Presentadores\Renovaciones\PresentadorGestionarRenovacion.cs" />
     <Compile Include="Presentadores\Resumenes\PresentadorAgregarResumen.cs" />
     <Compile Include="Presentadores\Resumenes\PresentadorConsultarResumen.cs" />
     <Compile Include="Presentadores\Resumenes\PresentadorConsultarResumenes.cs" />
@@ -527,6 +529,9 @@
     </Compile>
     <Compile Include="Ventanas\Poderes\GestionarPoderesXAgentes.xaml.cs">
       <DependentUpon>GestionarPoderesXAgentes.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Renovaciones\GestionarRenovacion.xaml.cs">
+      <DependentUpon>GestionarRenovacion.xaml</DependentUpon>
     </Compile>
     <Compile Include="Ventanas\Resumenes\AgregarResumen.xaml.cs">
       <DependentUpon>AgregarResumen.xaml</DependentUpon>
@@ -923,6 +928,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Ventanas\Poderes\GestionarPoderesXAgentes.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\Renovaciones\GestionarRenovacion.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
