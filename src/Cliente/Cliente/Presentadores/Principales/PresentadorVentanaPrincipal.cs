@@ -37,6 +37,7 @@ using Trascend.Bolet.Cliente.Ventanas.Traspasos.Fusiones;
 using Trascend.Bolet.Cliente.Ventanas.Traspasos.Cesiones;
 using Trascend.Bolet.Cliente.Ventanas.Traspasos.Licencias;
 using Trascend.Bolet.Cliente.Ventanas.EstadosMarca;
+using Trascend.Bolet.Cliente.Ventanas.TiposBase;
 using Trascend.Bolet.Cliente.Ventanas;
 using Trascend.Bolet.Cliente.Ventanas.Traspasos.CambiosDeDomicilio;
 using Trascend.Bolet.Cliente.Ventanas.Traspasos.CambiosDeNombre;
@@ -502,7 +503,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
         /// </summary>
         public void GestionarEstadosMarca()
         {
-            //this._ventana.Contenedor.Navigate(ventana*);
+            this._ventana.Contenedor.Navigate(new AgregarEstadoMarca());
         }
 
         /// <summary>
@@ -510,7 +511,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
         /// </summary>
         public void ConsultarTipoBase()
         {
-            //this._ventana.Contenedor.Navigate(ventana*);
+            this._ventana.Contenedor.Navigate(new ConsultarTiposBase());
         }
 
         /// <summary>
@@ -518,7 +519,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
         /// </summary>
         public void GestionarTipoBase()
         {
-            //this._ventana.Contenedor.Navigate(ventana*);
+            this._ventana.Contenedor.Navigate(new AgregarTipoBase());
         }
 
         /// <summary>

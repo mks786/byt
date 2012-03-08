@@ -156,6 +156,10 @@
     <Compile Include="Comandos\ComandosRol\ComandoConsultarRolesYObjetos.cs" />
     <Compile Include="Comandos\ComandosRol\ComandoVerificarExistenciaRol.cs" />
     <Compile Include="Comandos\ComandosTarifa\ComandoConsultarTodosTarifas.cs" />
+    <Compile Include="Comandos\ComandosTipoBase\ComandoConsultarTodosTiposBase.cs" />
+    <Compile Include="Comandos\ComandosTipoBase\ComandoEliminarTipoBase.cs" />
+    <Compile Include="Comandos\ComandosTipoBase\ComandoInsertarOModificarTipoBase.cs" />
+    <Compile Include="Comandos\ComandosTipoBase\ComandoVerificarExistenciaTipoBase.cs" />
     <Compile Include="Comandos\ComandosTipoCliente\ComandoConsultarTodosTipoClientes.cs" />
     <Compile Include="Comandos\ComandosTipoFecha\ComandoVerificarExistenciaTipoFecha.cs" />
     <Compile Include="Comandos\ComandosTipoInfobol\ComandoVerificarExistenciaTipoInfoBol.cs" />
@@ -283,6 +287,7 @@
     <Compile Include="Comandos\ComandosUsuario\ComandoConsultarTodosUsuarios.cs" />
     <Compile Include="Comandos\ComandosUsuario\ComandoConsultarUsuarioPorID.cs" />
     <Compile Include="Comandos\ComandosUsuario\ComandoInsertarOModificarUsuario.cs" />
+    <Compile Include="Fabrica\FabricaComandosTipoBase.cs" />
     <Compile Include="Fabrica\FabricaComandosEstadoMarca.cs" />
     <Compile Include="Fabrica\FabricaComandosRenovacion.cs" />
     <Compile Include="Fabrica\FabricaComandosPlanilla.cs" />

@@ -1,20 +1,20 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
-using Trascend.Bolet.Cliente.Contratos.EstadosMarca;
-using Trascend.Bolet.Cliente.Presentadores.EstadosMarca;
+using Trascend.Bolet.Cliente.Contratos.TiposBase;
+using Trascend.Bolet.Cliente.Presentadores.TiposBase;
+using Trascend.Bolet.ObjetosComunes.Entidades;
 
-namespace Trascend.Bolet.Cliente.Ventanas.EstadosMarca
+namespace Trascend.Bolet.Cliente.Ventanas.TiposBase
 {
     /// <summary>
-    /// Interaction logic for ConsultarObjeto.xaml
+    /// Interaction logic for ConsultarTipoBase.xaml
     /// </summary>
-    public partial class ConsultarEstadoMarca : Page, IConsultarEstadoMarca
+    public partial class ConsultarTipoBase : Page, IConsultarTipoBase
     {
-
-        private PresentadorConsultarEstadoMarca _presentador;
+        private PresentadorConsultarTipoBase _presentador;
         private bool _cargada;
 
-        #region IConsultarPais
+        #region IConsultarTipoBase
 
         public bool EstaCargada
         {
@@ -27,7 +27,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.EstadosMarca
             this._txtId.Focus();
         }
 
-        public object EstadoMarca
+        public object TipoBase
         {
             get { return this._gridDatos.DataContext; }
             set { this._gridDatos.DataContext = value; }
@@ -35,14 +35,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.EstadosMarca
 
         public bool HabilitarCampos
         {
-            set
-            {
-                //this._txtId.IsEnabled = value;
-                this._txtDescripcion.IsEnabled = value;
-                this._txtDescripcionIngles.IsEnabled = value;
-            }
+            set { this._txtDescripcion.IsEnabled = value; }
         }
-
 
         public string TextoBotonModificar
         {
@@ -52,12 +46,12 @@ namespace Trascend.Bolet.Cliente.Ventanas.EstadosMarca
 
         #endregion
 
-        public ConsultarEstadoMarca(object estadoMarca)
+
+        public ConsultarTipoBase(object estado)
         {
             InitializeComponent();
             this._cargada = false;
-            this._presentador = new PresentadorConsultarEstadoMarca(this, estadoMarca);
-
+            this._presentador = new PresentadorConsultarTipoBase(this, (TipoBase)estado);
         }
 
         private void _btnModificar_Click(object sender, RoutedEventArgs e)
@@ -72,11 +66,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.EstadosMarca
 
         private void _btnEliminar_Click(object sender, RoutedEventArgs e)
         {
-            if (MessageBoxResult.Yes == MessageBox.Show(Recursos.MensajesConElUsuario.ConfirmacionEliminarPais,
-                "Eliminar EstadoMarca", MessageBoxButton.YesNo, MessageBoxImage.Question))
-            {
+            if (MessageBoxResult.Yes == MessageBox.Show(Recursos.MensajesConElUsuario.ConfirmacionEliminarTipoBase, "Eliminar TipoBase", MessageBoxButton.YesNo, MessageBoxImage.Question))
                 this._presentador.Eliminar();
-            }
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)

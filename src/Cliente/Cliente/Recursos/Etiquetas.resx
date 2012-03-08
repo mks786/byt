@@ -1766,4 +1766,13 @@ de Gracia</value>
   <data name="cbiTipoRenovacion" xml:space="preserve">
     <value>TIPORENOV</value>
   </data>
+  <data name="titleAgregarTipoBase" xml:space="preserve">
+    <value>Agregar Tipo de Base</value>
+  </data>
+  <data name="titleConsultarTipoBase" xml:space="preserve">
+    <value>Consultar Tipo de base</value>
+  </data>
+  <data name="titleConsultarTiposBase" xml:space="preserve">
+    <value>Consultar Tipos de Base</value>
+  </data>
 </root>

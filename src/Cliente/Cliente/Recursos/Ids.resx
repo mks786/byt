@@ -186,6 +186,9 @@
   <data name="AgregarRol" xml:space="preserve">
     <value>SEGMROL</value>
   </data>
+  <data name="AgregarTipoBase" xml:space="preserve">
+    <value>MYP_TIPO_BASE</value>
+  </data>
   <data name="AgregarTipoFecha" xml:space="preserve">
     <value>MYP_TFECHAS</value>
   </data>
@@ -360,6 +363,9 @@
   <data name="ConsultarRoles" xml:space="preserve">
     <value>SEGMROL</value>
   </data>
+  <data name="ConsultarTipoBase" xml:space="preserve">
+    <value>MYP_TIPO_BASE</value>
+  </data>
   <data name="ConsultarTipoFecha" xml:space="preserve">
     <value>MYP_TFECHAS</value>
   </data>
@@ -371,6 +377,9 @@
   </data>
   <data name="ConsultarTipoInfoboles" xml:space="preserve">
     <value>MYP_TINFOBOL</value>
+  </data>
+  <data name="ConsultarTiposBase" xml:space="preserve">
+    <value>MYP_TIPO_BASE</value>
   </data>
   <data name="ConsultarUsuario" xml:space="preserve">
     <value>SEGTUSU</value>

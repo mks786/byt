@@ -140,6 +140,14 @@ namespace Trascend.Bolet.AccesoDatos.Fabrica
         }
 
         /// <summary>
+        /// Método que devuelve el DaoTipoBase
+        /// </summary>
+        /// <returns>IDaoTipoBase</returns>
+        public override IDaoTipoBase ObtenerDaoTipoBase()
+        {
+            return new DaoTipoBaseNHibernate();
+        }
+        /// <summary>
         /// Método que devuelve el DaoTipoFecha
         /// </summary>
         /// <returns>IDaoTipoFecha</returns>

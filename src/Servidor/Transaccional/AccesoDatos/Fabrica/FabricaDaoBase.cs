@@ -97,6 +97,11 @@ namespace Trascend.Bolet.AccesoDatos.Fabrica
         public abstract IDaoRol ObtenerDaoRol();
 
         /// <summary>
+        /// Método que devuelve el DaoTipoBase del manejador que se esté utilizando
+        /// </summary>
+        /// <returns>IDaoTipoBase</returns>
+        public abstract IDaoTipoBase ObtenerDaoTipoBase();
+        /// <summary>
         /// Método que devuelve el DaoTipoFecha del manejador que se esté utilizando
         /// </summary>
         /// <returns>IDaoTipoFecha</returns>

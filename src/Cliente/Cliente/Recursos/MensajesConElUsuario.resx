@@ -621,4 +621,19 @@
   <data name="RenovacionInsertada" xml:space="preserve">
     <value>Renovación insertada con éxito</value>
   </data>
+  <data name="ErrorTipoBaseRepetido" xml:space="preserve">
+    <value>El Tipo de Base a insertar ya existe</value>
+  </data>
+  <data name="TipoBaseEliminado" xml:space="preserve">
+    <value>El tipo de base fue eliminado con exito</value>
+  </data>
+  <data name="TipoBaseInsertado" xml:space="preserve">
+    <value>El tipo de base fue insertado con exito</value>
+  </data>
+  <data name="TipoBaseModificado" xml:space="preserve">
+    <value>El tipo de base fue modificado con exito</value>
+  </data>
+  <data name="ConfirmacionEliminarTipoBase" xml:space="preserve">
+    <value>¿Seguro que desea elimar este Tipo de Base?</value>
+  </data>
 </root>

@@ -3,13 +3,13 @@
                    assembly="Trascend.Bolet.ObjetosComunes"
                    namespace="Trascend.Bolet.ObjetosComunes.Entidades">
 
-  <class name="EstadoMarca" table="MYP_ESTADO_TER">
-
-    <id name="Id" column="TESTADO" />
-    <property name="Descripcion" column="XESTADO" type="string"/>
-    <property name="DescripcionIngles" column="XESTADOIN" type="string"/>
-
+  <class name="TipoBase" table="MYP_TIPO_BASE">
+    
+    <id name="Id" column="CTIPO_B" />
+    <property name="Descripcion" column="XBASE" type="string"/>
+    
   </class>
 
 </hibernate-mapping>
+
 

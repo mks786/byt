@@ -6,13 +6,12 @@ using System.Text;
 namespace Trascend.Bolet.ObjetosComunes.Entidades
 {
     [Serializable]
-    public class EstadoMarca
+    public class TipoBase
     {
         #region Atributos
 
         private string _id;
         private string _descripcion;
-        private string _descripcionIngles;
 
         #endregion
 
@@ -21,13 +20,13 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         /// <summary>
         /// Constructor Predeterminado
         /// </summary>
-        public EstadoMarca() { }
+        public TipoBase() { }
 
         /// <summary>
         /// Constructor que inicializa el id del Rol
         /// </summary>
         /// <param name="id">Id del Rol</param>
-        public EstadoMarca(string id)
+        public TipoBase(string id)
         {
             this._id = id;
         }
@@ -36,19 +35,18 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         /// Constructor que inicializa el id del Rol
         /// </summary>
         /// <param name="id">Id del Rol</param>
-        public EstadoMarca(string id, string descripcion)
+        public TipoBase(string id, string descripcion)
         {
             this._id = id;
             this._descripcion = descripcion;
         }
-
 
         #endregion
 
         #region Propiedades
 
         /// <summary>
-        /// Propiedad que asigna u obtiene el Id del estado
+        /// Propiedad que asigna u obtiene el Id del Tipo de Base
         /// </summary>
         public virtual string Id
         {
@@ -57,21 +55,11 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         }
 
         /// <summary>
-        /// Propiedad que asigna u obtiene la descripción del estado
-        /// </summary>
+        /// Propiedad que asigna u obtiene la descripción del Tipo de Base
         public virtual string Descripcion
         {
             get { return this._descripcion; }
             set { this._descripcion = value; }
-        }
-
-        /// <summary>
-        /// Propiedad que asigna u obtiene la descripción en ingles del estado
-        /// </summary>
-        public virtual string DescripcionIngles
-        {
-            get { return this._descripcionIngles; }
-            set { this._descripcionIngles = value; }
         }
 
         #endregion
