@@ -31,22 +31,11 @@ namespace Trascend.Bolet.ControlesByT.Ventanas
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Impresion));
-            this._folio = new System.Windows.Forms.TextBox();
             this._btnCerrar = new System.Windows.Forms.Button();
             this._imprimir = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
+            this._folio = new System.Windows.Forms.RichTextBox();
             this.SuspendLayout();
-            // 
-            // _folio
-            // 
-            this._folio.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this._folio.Location = new System.Drawing.Point(12, 17);
-            this._folio.Multiline = true;
-            this._folio.Name = "_folio";
-            this._folio.Size = new System.Drawing.Size(468, 408);
-            this._folio.TabIndex = 0;
             // 
             // _btnCerrar
             // 
@@ -84,6 +73,17 @@ namespace Trascend.Bolet.ControlesByT.Ventanas
             this.button2.Text = "Borrador";
             this.button2.UseVisualStyleBackColor = true;
             // 
+            // _folio
+            // 
+            this._folio.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this._folio.Location = new System.Drawing.Point(12, 12);
+            this._folio.Name = "_folio";
+            this._folio.Size = new System.Drawing.Size(468, 413);
+            this._folio.TabIndex = 4;
+            this._folio.Text = "";
+            // 
             // Impresion
             // 
             this.AcceptButton = this._btnCerrar;
@@ -91,26 +91,25 @@ namespace Trascend.Bolet.ControlesByT.Ventanas
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(235)))), ((int)(((byte)(194)))));
             this.ClientSize = new System.Drawing.Size(492, 466);
+            this.Controls.Add(this._folio);
             this.Controls.Add(this.button2);
             this.Controls.Add(this._imprimir);
             this.Controls.Add(this._btnCerrar);
-            this.Controls.Add(this._folio);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximumSize = new System.Drawing.Size(800, 800);
             this.MinimumSize = new System.Drawing.Size(500, 500);
             this.Name = "Impresion";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.TextBox _folio;
         private System.Windows.Forms.Button _btnCerrar;
         private System.Windows.Forms.Button _imprimir;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.RichTextBox _folio;
 
     }
 }

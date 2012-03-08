@@ -1120,24 +1120,27 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
         {
             if (ValidarMarcaAntesDeImprimirFM02())
             {
+                string paqueteProcedimiento = "PCK_MYP_MARCAS";
                 string procedimiento = modo.Equals("Laser") ? "P31" : "P1";
                 ParametroProcedimiento parametro =
-                    new ParametroProcedimiento((Marca)this._ventana.Marca, UsuarioLogeado, 1, procedimiento);
+                    new ParametroProcedimiento((Marca)this._ventana.Marca, UsuarioLogeado, 1, paqueteProcedimiento, procedimiento);
 
                 Planilla planilla = this._planillaServicios.ImprimirProcedimiento(parametro);
                 if (planilla != null)
                 {
-                    Impresion _ventana =
-                        new Impresion(Recursos.Etiquetas.btnFM02, planilla.Folio.Replace("\n", Environment.NewLine));
-                    _ventana.ShowDialog();
+                    //Impresion _ventana =
+                    //    new Impresion(Recursos.Etiquetas.btnFM02, planilla.Folio.Replace("\n", Environment.NewLine));
+                    //_ventana.ShowDialog();
 
-                    //Llamado al archivo .bat 
-                    //if (_ventana.ClickImprimir)
-                    //    this.EjecutarArchivoBAT(ConfigurationManager.AppSettings["batPrint"], 
-                    //ConfigurationManager.AppSettings["txtPrint"]);
+                    ////Llamado al archivo .bat 
+                    ////if (_ventana.ClickImprimir)
+                    ////    this.EjecutarArchivoBAT(ConfigurationManager.AppSettings["batPrint"], 
+                    ////ConfigurationManager.AppSettings["txtPrint"]);
 
-                    parametro.Via = 0;
-                    planilla = this._planillaServicios.ImprimirProcedimiento(parametro);
+                    //parametro.Via = 0;
+                    //planilla = this._planillaServicios.ImprimirProcedimiento(parametro);
+
+                    this.LlamarProcedimientoDeBaseDeDatos(parametro, Recursos.Etiquetas.btnFM02);
                 }
             }
         }
@@ -1146,25 +1149,28 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
         {
             if (ValidarMarcaAntesDeImprimirFM02Venen())
             {
+                string paqueteProcedimiento = "PCK_MYP_MARCAS";
                 string procedimiento = modo.Equals("Laser") ? "P32" : "P2";
                 ParametroProcedimiento parametro =
-                    new ParametroProcedimiento((Marca)this._ventana.Marca, UsuarioLogeado, 1, procedimiento);
+                    new ParametroProcedimiento((Marca)this._ventana.Marca, UsuarioLogeado, 1, paqueteProcedimiento, procedimiento);
 
                 Planilla planilla = this._planillaServicios.ImprimirProcedimiento(parametro);
                 if (planilla != null)
                 {
-                    Impresion _ventana =
-                        new Impresion(Recursos.Etiquetas.btnFM02Venen, planilla.Folio.Replace("\n", Environment.NewLine));
+                    //Impresion _ventana =
+                    //    new Impresion(Recursos.Etiquetas.btnFM02Venen, planilla.Folio.Replace("\n", Environment.NewLine));
 
-                    _ventana.ShowDialog();
+                    //_ventana.ShowDialog();
 
-                    //Llamado al archivo .bat 
-                    //if (_ventana.ClickImprimir)
-                    //    this.EjecutarArchivoBAT(ConfigurationManager.AppSettings["batPrint"], 
-                    //ConfigurationManager.AppSettings["txtPrint"]);
+                    ////Llamado al archivo .bat 
+                    ////if (_ventana.ClickImprimir)
+                    ////    this.EjecutarArchivoBAT(ConfigurationManager.AppSettings["batPrint"], 
+                    ////ConfigurationManager.AppSettings["txtPrint"]);
 
-                    parametro.Via = 0;
-                    planilla = this._planillaServicios.ImprimirProcedimiento(parametro);
+                    //parametro.Via = 0;
+                    //planilla = this._planillaServicios.ImprimirProcedimiento(parametro);
+
+                    this.LlamarProcedimientoDeBaseDeDatos(parametro, Recursos.Etiquetas.btnFM02Venen);
                 }
             }
         }
@@ -1173,25 +1179,28 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
         {
             if (ValidarMarcaAntesDeImprimirAnexoFM02())
             {
+                string paqueteProcedimiento = "PCK_MYP_MARCAS";
                 string procedimiento = modo.Equals("Laser") ? "P33" : "P3";
-                ParametroProcedimiento parametro = 
-                    new ParametroProcedimiento((Marca)this._ventana.Marca, UsuarioLogeado, 1, procedimiento);
+                ParametroProcedimiento parametro =
+                    new ParametroProcedimiento((Marca)this._ventana.Marca, UsuarioLogeado, 1, paqueteProcedimiento, procedimiento);
 
                 Planilla planilla = this._planillaServicios.ImprimirProcedimiento(parametro);
                 if (planilla != null)
                 {
-                    Impresion _ventana = 
-                        new Impresion(Recursos.Etiquetas.btnAnexoFM02, planilla.Folio.Replace("\n", Environment.NewLine));
+                    //Impresion _ventana =
+                    //    new Impresion(Recursos.Etiquetas.btnAnexoFM02, planilla.Folio.Replace("\n", Environment.NewLine));
 
-                    _ventana.ShowDialog();
+                    //_ventana.ShowDialog();
 
-                    //Llamado al archivo .bat 
-                    //if (_ventana.ClickImprimir)
-                    //    this.EjecutarArchivoBAT(ConfigurationManager.AppSettings["batPrint"], 
-                    //ConfigurationManager.AppSettings["txtPrint"]);
+                    ////Llamado al archivo .bat 
+                    ////if (_ventana.ClickImprimir)
+                    ////    this.EjecutarArchivoBAT(ConfigurationManager.AppSettings["batPrint"], 
+                    ////ConfigurationManager.AppSettings["txtPrint"]);
 
-                    parametro.Via = 0;
-                    planilla = this._planillaServicios.ImprimirProcedimiento(parametro);
+                    //parametro.Via = 0;
+                    //planilla = this._planillaServicios.ImprimirProcedimiento(parametro);
+
+                    this.LlamarProcedimientoDeBaseDeDatos(parametro, Recursos.Etiquetas.btnAnexoFM02);
                 }
             }
         }
@@ -1207,19 +1216,19 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             Marca marca = CargarMarcaDeLaPantalla();
 
             if ((null == marca.Poder) || (marca.Poder.NumPoder.Equals("")))
-                retorno = retorno ? 
+                retorno = retorno ?
                     this._ventana.MensajeAlerta(Recursos.MensajesConElUsuario.MarcaSinNumeroDePoder) == retorno : retorno;
 
             if (((this._ventana.ClaseInternacional.Equals("")) && (this._ventana.ClaseNacional.Equals(""))) && (retorno))
-                retorno = retorno ? 
+                retorno = retorno ?
                     this._ventana.MensajeAlerta(Recursos.MensajesConElUsuario.MarcaSinClase) == retorno : retorno;
 
             if ((marca.EtiquetaDescripcion.Equals("")) && (retorno))
-                retorno = retorno ? 
+                retorno = retorno ?
                     this._ventana.MensajeAlerta(Recursos.MensajesConElUsuario.MarcaSinDescripcionDelSigno) == retorno : retorno;
 
             if ((null == marca.Distingue) || (marca.Distingue.Equals("")) && (retorno))
-                retorno = retorno ? 
+                retorno = retorno ?
                     this._ventana.MensajeAlerta(Recursos.MensajesConElUsuario.MarcaSinDistingue) == retorno : retorno;
 
             return retorno;
@@ -1236,11 +1245,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             Marca marca = CargarMarcaDeLaPantalla();
 
             if ((null == marca.Distingue) || (marca.Distingue.Equals("")))
-                retorno = retorno ? 
+                retorno = retorno ?
                     this._ventana.MensajeAlerta(Recursos.MensajesConElUsuario.MarcaSinDistingue) == retorno : retorno;
 
             else if (marca.Distingue.Length > 1800)
-                retorno = retorno ? 
+                retorno = retorno ?
                     this._ventana.MensajeAlerta(Recursos.MensajesConElUsuario.MarcaSinDistingue) == retorno : retorno;
 
             return retorno;

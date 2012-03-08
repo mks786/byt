@@ -5,6 +5,9 @@ using Trascend.Bolet.Cliente.Contratos.Principales;
 using Trascend.Bolet.Cliente.Ventanas.Principales;
 using Trascend.Bolet.ObjetosComunes.Entidades;
 using System;
+using Trascend.Bolet.ObjetosComunes.ContratosServicios;
+using System.Configuration;
+using Trascend.Bolet.ControlesByT.Ventanas;
 
 namespace Trascend.Bolet.Cliente.Presentadores
 {
@@ -13,6 +16,13 @@ namespace Trascend.Bolet.Cliente.Presentadores
         private static IVentanaPrincipal _ventanaPrincipal = VentanaPrincipal.ObtenerInstancia;
         private static IPaginaPrincipal _paginaPrincipal = PaginaPrincipal.ObtenerInstancia;
         private static Usuario _usuarioLogeado;
+        private IPlanillaServicios _planillaServicios;
+
+        public PresentadorBase()
+        {
+            this._planillaServicios = (IPlanillaServicios)Activator.GetObject(typeof(IPlanillaServicios),
+                ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["PlanillaServicios"]);
+        }
 
         /// <summary>
         /// Propiedad que representa el usuario logeado en el sistema
@@ -1195,6 +1205,33 @@ namespace Trascend.Bolet.Cliente.Presentadores
 
                 string outputMessage = proc.StandardOutput.ReadToEnd();
                 proc.WaitForExit();
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException();
+            }
+        }
+
+        public void LlamarProcedimientoDeBaseDeDatos(ParametroProcedimiento parametro, string tituloVentana)
+        {
+            try 
+            {
+                Planilla planilla = this._planillaServicios.ImprimirProcedimiento(parametro);
+                if (planilla != null)
+                {
+                    Impresion _ventana =
+                        new Impresion(Recursos.Etiquetas.btnAnexoFM02, planilla.Folio.Replace("\n", Environment.NewLine));
+
+                    _ventana.ShowDialog();
+
+                    //Llamado al archivo .bat 
+                    //if (_ventana.ClickImprimir)
+                    //    this.EjecutarArchivoBAT(ConfigurationManager.AppSettings["batPrint"], 
+                    //ConfigurationManager.AppSettings["txtPrint"]);
+
+                    parametro.Via = 0;
+                    planilla = this._planillaServicios.ImprimirProcedimiento(parametro);
+                }
             }
             catch (Exception ex)
             {

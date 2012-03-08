@@ -11,7 +11,7 @@
   </class>
 
 
-  <sql-query name="P1">
+  <sql-query name="PCK_MYP_MARCASP1">
 
     <query-param name="usr" type="string" />
     <query-param name="way" type="int" />
@@ -21,7 +21,7 @@
 
   </sql-query>
 
-  <sql-query name="P2">
+  <sql-query name="PCK_MYP_MARCASP2">
 
     <query-param name="usr" type="string" />
     <query-param name="way" type="int" />
@@ -31,7 +31,7 @@
 
   </sql-query>
 
-  <sql-query name="P22">
+  <sql-query name="PCK_MYP_MARCASP22">
 
     <query-param name="usr" type="string" />
     <query-param name="way" type="int" />
@@ -41,7 +41,7 @@
 
   </sql-query>
 
-  <sql-query name="P3">
+  <sql-query name="PCK_MYP_MARCASP3">
 
     <query-param name="usr" type="string" />
     <query-param name="way" type="int" />
@@ -51,7 +51,7 @@
 
   </sql-query>
 
-  <sql-query name="P23">
+  <sql-query name="PCK_MYP_MARCASP23">
 
     <query-param name="usr" type="string" />
     <query-param name="way" type="int" />
@@ -61,7 +61,7 @@
 
   </sql-query>
 
-  <sql-query name="P31">
+  <sql-query name="PCK_MYP_MARCASP31">
 
     <query-param name="usr" type="string" />
     <query-param name="way" type="int" />
@@ -71,7 +71,7 @@
 
   </sql-query>
 
-  <sql-query name="P32">
+  <sql-query name="PCK_MYP_MARCASP32">
 
     <query-param name="usr" type="string" />
     <query-param name="way" type="int" />
@@ -81,7 +81,7 @@
 
   </sql-query>
 
-  <sql-query name="P33">
+  <sql-query name="PCK_MYP_MARCASP33">
 
     <query-param name="usr" type="string" />
     <query-param name="way" type="int" />

@@ -23,7 +23,7 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
                 #endregion
 
                 
-                IQuery query = Session.GetNamedQuery(parametro.NombreProcedimiento);
+                IQuery query = Session.GetNamedQuery(parametro.PaqueteProcedimiento+parametro.NombreProcedimiento);
                 query.SetParameter<string>("usr", parametro.Usuario.Iniciales);
                 query.SetParameter<int>("way", parametro.Via);
                 query.SetParameter<int>("cod", parametro.Marca.Id);
