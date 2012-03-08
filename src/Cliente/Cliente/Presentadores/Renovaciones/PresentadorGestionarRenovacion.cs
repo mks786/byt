@@ -230,11 +230,16 @@ namespace Trascend.Bolet.Cliente.Presentadores.Renovaciones
         public Renovacion CargarRenovacionDeLaPantalla()
         {
 
-            Renovacion renovacion = (Renovacion)this._ventana.Renovacion;          
+            Renovacion renovacion = (Renovacion)this._ventana.Renovacion;
 
+            if (null != this._ventana.TipoRenovacion)
+                renovacion.TipoR = Char.Parse(((ListaDatosValores)this._ventana.TipoRenovacion).Valor);
 
             if (null != this._ventana.Marca)
-                renovacion.Marca = ((Marca)this._ventana.Marca).Id != int.MinValue ? (Marca)this._ventana.Marca : null;            
+            {
+                renovacion.Marca = ((Marca)this._ventana.Marca).Id != int.MinValue ? (Marca)this._ventana.Marca : null;
+                renovacion.FechaProxima = DateTime.Parse(this._ventana.ProximaRenovacion);
+            }
 
             if (null != this._ventana.Interesado)
                 renovacion.Interesado = ((Interesado)this._ventana.Interesado).Id != int.MinValue ? (Interesado)this._ventana.Interesado : null;
@@ -285,6 +290,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Renovaciones
                     Marca marcaAuxiliar = new Marca();
                     marcaAuxiliar = ((Renovacion)this._ventana.Renovacion).Marca;
                     marcaAuxiliar.FechaRenovacion = ((Renovacion)this._ventana.Renovacion).FechaProxima;
+                    marcaAuxiliar.Operacion = "MODIFY";
 
                     marcaExitoso = this._marcaServicios.InsertarOModificar(marcaAuxiliar, UsuarioLogeado.Hash);
                 }

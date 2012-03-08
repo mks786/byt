@@ -265,7 +265,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Renovaciones
         {
             get { return this._txtOtros.Text; }
             set { this._txtOtros.Text = value; }
-        }
+        }        
 
         public string ProximaRenovacion
         {
