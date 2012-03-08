@@ -621,6 +621,16 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a (VAN / DIR).
+        /// </summary>
+        public static string btnVanDir {
+            get {
+                return ResourceManager.GetString("btnVanDir", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Ver Doc..
         ///   Looks up a localized string similar to Ver Doc..
         /// </summary>
         public static string btnVerDoc {

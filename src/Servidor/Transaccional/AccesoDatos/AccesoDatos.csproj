@@ -61,7 +61,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Contrato\IDaoTipoBase.cs" />
     <Compile Include="Contrato\IDaoEstadoMarca.cs" />
     <Compile Include="Contrato\IDaoRenovacion.cs" />
     <Compile Include="Contrato\IDaoPlanilla.cs" />
@@ -80,6 +79,7 @@
     <Compile Include="Contrato\IDaoAnaqua.cs" />
     <Compile Include="Contrato\IDaoCondicion.cs" />
     <Compile Include="Contrato\IDaoCorresponsal.cs" />
+    <Compile Include="Contrato\IDaoTipoBase.cs" />
     <Compile Include="Contrato\IDaoTipoEstado.cs" />
     <Compile Include="Contrato\IDaoServicio.cs" />
     <Compile Include="Contrato\IDaoMarca.cs" />
@@ -128,7 +128,6 @@
     <Compile Include="Contrato\IDaoBase.cs" />
     <Compile Include="Contrato\IDaoUsuario.cs" />
     <Compile Include="Contrato\IFabricaDaoBase.cs" />
-    <Compile Include="Dao\NHibernate\DaoTipoBaseNHibernate.cs" />
     <Compile Include="Dao\NHibernate\DaoEstadoMarcaNHibernate.cs" />
     <Compile Include="Dao\NHibernate\DaoRenovacionNHibernate.cs" />
     <Compile Include="Dao\NHibernate\DaoPlanillaNHibernate.cs" />
@@ -147,6 +146,7 @@
     <Compile Include="Dao\NHibernate\DaoAnaquaNHibernate.cs" />
     <Compile Include="Dao\NHibernate\DaoCondicionNHibernate.cs" />
     <Compile Include="Dao\NHibernate\DaoCorresponsalNHibernate.cs" />
+    <Compile Include="Dao\NHibernate\DaoTipoBaseNHibernate.cs" />
     <Compile Include="Dao\NHibernate\DaoTipoEstadoNHibernate.cs" />
     <Compile Include="Dao\NHibernate\DaoServicioNHibernate.cs" />
     <Compile Include="Dao\NHibernate\DaoMarcaNHibernate.cs" />
@@ -529,19 +529,15 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Mapeado\EstadoMarca.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
     <EmbeddedResource Include="Mapeado\Renovacion.hbm.xml">
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Mapeado\EstadoMarca.hbm.xml">
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Mapeado\TipoBase.hbm.xml">
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
+    <Content Include="Mapeado\TipoBase.hbm.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

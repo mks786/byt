@@ -1141,6 +1141,7 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a MYPMNOMM.
         ///   Looks up a localized string similar to MYP_MNOMM.
         /// </summary>
         public static string GestionarCambioDeNombre {
@@ -1177,6 +1178,7 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a MYPMLICM.
         ///   Looks up a localized string similar to MYP_MLICM.
         /// </summary>
         public static string GestionarLicencias {

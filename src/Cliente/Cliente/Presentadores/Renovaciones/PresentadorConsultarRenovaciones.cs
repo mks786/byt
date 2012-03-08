@@ -137,6 +137,13 @@ namespace Trascend.Bolet.Cliente.Presentadores.Renovaciones
                     RenovacionAuxiliar.Id = int.Parse(this._ventana.Id);
                 }
 
+                if (!this._ventana.FechaFiltrar.Equals(""))
+                {
+                    DateTime fechaCesion = DateTime.Parse(this._ventana.FechaFiltrar);
+                    filtroValido = 2;
+                    RenovacionAuxiliar.Fecha = fechaCesion;
+                }
+
                 if ((null != this._ventana.Marca) && (((Marca)this._ventana.Marca).Id != int.MinValue))
                 {
                     RenovacionAuxiliar.Marca = (Marca)this._ventana.Marca;
@@ -178,7 +185,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Renovaciones
                     this._ventana.Resultados = renovacionesDesinfladas;
                     this._ventana.TotalHits = renovacionesDesinfladas.Count.ToString();
                     if (renovacionesDesinfladas.Count == 0)
+                    {
                         this._ventana.Mensaje(Recursos.MensajesConElUsuario.NoHayResultados, 1);
+                        this._ventana.FechaFiltrar = "";
+                    }
                 }
                 else
                     this._ventana.Mensaje(Recursos.MensajesConElUsuario.ErrorFiltroIncompleto, 0);

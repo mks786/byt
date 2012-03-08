@@ -287,7 +287,6 @@
     <Compile Include="Comandos\ComandosUsuario\ComandoConsultarTodosUsuarios.cs" />
     <Compile Include="Comandos\ComandosUsuario\ComandoConsultarUsuarioPorID.cs" />
     <Compile Include="Comandos\ComandosUsuario\ComandoInsertarOModificarUsuario.cs" />
-    <Compile Include="Fabrica\FabricaComandosTipoBase.cs" />
     <Compile Include="Fabrica\FabricaComandosEstadoMarca.cs" />
     <Compile Include="Fabrica\FabricaComandosRenovacion.cs" />
     <Compile Include="Fabrica\FabricaComandosPlanilla.cs" />
@@ -306,6 +305,7 @@
     <Compile Include="Fabrica\FabricaComandosAnaqua.cs" />
     <Compile Include="Fabrica\FabricaComandosCondicion.cs" />
     <Compile Include="Fabrica\FabricaComandosCorresponsal.cs" />
+    <Compile Include="Fabrica\FabricaComandosTipoBase.cs" />
     <Compile Include="Fabrica\FabricaComandosTipoEstado.cs" />
     <Compile Include="Fabrica\FabricaComandosServicio.cs" />
     <Compile Include="Fabrica\FabricaComandosMarca.cs" />

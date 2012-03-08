@@ -1319,6 +1319,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDePeticionario
 
                 if (!this._ventana.IdPoderAnteriorFiltrar.Equals(""))
                     poderAnterior.Id = int.Parse(this._ventana.IdPoderAnteriorFiltrar);
+                else
+                    poderAnterior.Id = 0;
 
                 if (!this._ventana.FechaPoderAnteriorFiltrar.Equals(""))
                     poderAnterior.Fecha = DateTime.Parse(this._ventana.FechaPoderAnteriorFiltrar);
@@ -1915,6 +1917,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDePeticionario
 
                 if (!this._ventana.IdPoderActualFiltrar.Equals(""))
                     poderActual.Id = int.Parse(this._ventana.IdPoderActualFiltrar);
+                else
+                    poderActual.Id = 0;
 
                 if (!this._ventana.FechaPoderActualFiltrar.Equals(""))
                     poderActual.Fecha = DateTime.Parse(this._ventana.FechaPoderActualFiltrar);

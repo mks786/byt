@@ -261,6 +261,18 @@ namespace Trascend.Bolet.Cliente.Ventanas.Renovaciones
             get { return this._dpkFechaPoderFiltrar.Text; }
         }
 
+        public string Otros
+        {
+            get { return this._txtOtros.Text; }
+            set { this._txtOtros.Text = value; }
+        }
+
+        public string ProximaRenovacion
+        {
+            get { return this._txtProximaRenovacion.Text; }
+            set { this._txtProximaRenovacion.Text = value; }
+        }
+
         public object PoderesFiltrados
         {
             get { return this._lstPoderes.DataContext; }
@@ -305,7 +317,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Renovaciones
         {
             this.HabilitarCampos = true;
 
-            this._btnAgregar.Visibility = System.Windows.Visibility.Visible;
+            this._btnAceptar.Visibility = System.Windows.Visibility.Visible;
             this._btnEliminar.Visibility = System.Windows.Visibility.Collapsed;
             this._lblIdRenovacion.Visibility = System.Windows.Visibility.Collapsed;
             this._txtIdRenovacion.Visibility = System.Windows.Visibility.Collapsed;
@@ -314,7 +326,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Renovaciones
             this._chkAsientoEnLibro.IsEnabled = true;           
         }
 
-        private void _btnAgregar_Click(object sender, RoutedEventArgs e)
+        private void _btnAceptar_Click(object sender, RoutedEventArgs e)
         {
             this._presentador.Agregar();
         }
@@ -354,6 +366,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Renovaciones
 
         private void _btnCopiarDistingue_Click(object sender, RoutedEventArgs e)
         {
+            this._presentador.CopiarDistingue();
         }
 
         private void _btnPeriodoDeGracia_Click(object sender, RoutedEventArgs e)
@@ -393,7 +406,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Renovaciones
                 GestionarVisibilidadFiltroMarca(Visibility.Collapsed);
 
                 this._btnConsultarMarca.IsDefault = false;
-                this._btnAgregar.IsDefault = true;
+                this._btnAceptar.IsDefault = true;
             }
         }
 
@@ -416,7 +429,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Renovaciones
             GestionarVisibilidadFiltroAgente(Visibility.Collapsed);
 
             this._btnConsultarMarca.IsDefault = false;
-            this._btnAgregar.IsDefault = true;
+            this._btnAceptar.IsDefault = true;
         }
 
         private void GestionarVisibilidadFiltroMarca(object value)
@@ -455,7 +468,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Renovaciones
         private void _txtMarcaFiltrar_GotFocus(object sender, RoutedEventArgs e)
         {
             this._btnConsultarMarca.IsDefault = true;
-            this._btnAgregar.IsDefault = false;
+            this._btnAceptar.IsDefault = false;
         }
 
         #endregion
@@ -477,7 +490,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Renovaciones
                 if (this._presentador.VerificarCambioInteresado())
                 {
                     this._btnConsultarPoder.IsEnabled = false;
-                    this._btnAgregar.IsDefault = true;
+                    this._btnAceptar.IsDefault = true;
                 }
                 else
                 {
@@ -510,7 +523,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Renovaciones
             GestionarVisibilidadFiltroPoder(Visibility.Collapsed);
 
             this._btnConsultarInteresado.IsDefault = true;
-            this._btnAgregar.IsDefault = false;
+            this._btnAceptar.IsDefault = false;
         }
 
         private void GestionarVisibilidadFiltroInteresado(object value)
@@ -554,7 +567,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Renovaciones
                 if (this._presentador.VerificarCambioAgente())
                 {
                     this._btnConsultarPoder.IsEnabled = false;
-                    this._btnAgregar.IsDefault = true;
+                    this._btnAceptar.IsDefault = true;
                 }
                 else
                 {
@@ -571,7 +584,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Renovaciones
         private void _txtAgenteFiltrar_GotFocus(object sender, RoutedEventArgs e)
         {
             this._btnConsultarAgente.IsDefault = true;
-            this._btnAgregar.IsDefault = false;
+            this._btnAceptar.IsDefault = false;
         }
 
         private void _txtNombreAgente_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
@@ -592,7 +605,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Renovaciones
             GestionarVisibilidadFiltroPoder(Visibility.Collapsed);
 
             this._btnConsultarAgente.IsDefault = true;
-            this._btnAgregar.IsDefault = false;
+            this._btnAceptar.IsDefault = false;
         }
 
         private void GestionarVisibilidadFiltroAgente(object value)
@@ -625,7 +638,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Renovaciones
                 this._presentador.ConsultarMarcas();
             else if (((Button)sender).Name.Equals("_btnConsultarInteresado"))
                 this._presentador.ConsultarInteresados();
-            else if (((Button)sender).Name.Equals("_btnConsultarApoderado"))
+            else if (((Button)sender).Name.Equals("_btnConsultarAgente"))
                 this._presentador.ConsultarAgentes();
             else if (((Button)sender).Name.Equals("_btnConsultarPoder"))
                 this._presentador.ConsultarPoderes();
@@ -634,7 +647,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Renovaciones
         private void _txtPoderFiltrar_GotFocus(object sender, RoutedEventArgs e)
         {
             this._btnConsultarPoder.IsDefault = true;
-            this._btnAgregar.IsDefault = false;
+            this._btnAceptar.IsDefault = false;
         }
 
         private void _txtIdPoder_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
@@ -674,7 +687,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Renovaciones
                 {
                     this._btnConsultarAgente.IsEnabled = false;
                     this._btnConsultarInteresado.IsEnabled = false;
-                    this._btnAgregar.IsDefault = true;
+                    this._btnAceptar.IsDefault = true;
                 }
                 else
                 {

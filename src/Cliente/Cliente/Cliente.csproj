@@ -548,6 +548,15 @@
     <Compile Include="Ventanas\Resumenes\ConsultarResumenes.xaml.cs">
       <DependentUpon>ConsultarResumenes.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Ventanas\Roles\AgregarRol.xaml.cs">
+      <DependentUpon>AgregarRol.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Roles\ConsultarRol.xaml.cs">
+      <DependentUpon>ConsultarRol.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Roles\ConsultarRoles.xaml.cs">
+      <DependentUpon>ConsultarRoles.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Ventanas\TiposBase\AgregarTipoBase.xaml.cs">
       <DependentUpon>AgregarTipoBase.xaml</DependentUpon>
     </Compile>
@@ -643,15 +652,6 @@
     </Compile>
     <Compile Include="Ventanas\Principales\PaginaPrincipal.xaml.cs">
       <DependentUpon>PaginaPrincipal.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Ventanas\Remitentes\Roles\AgregarRol.xaml.cs">
-      <DependentUpon>AgregarRol.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Ventanas\Remitentes\Roles\ConsultarRol.xaml.cs">
-      <DependentUpon>ConsultarRol.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Ventanas\Remitentes\Roles\ConsultarRoles.xaml.cs">
-      <DependentUpon>ConsultarRoles.xaml</DependentUpon>
     </Compile>
     <Compile Include="Ventanas\Traspasos\CambiosDeNombre\ConsultarCambiosDeNombre.xaml.cs">
       <DependentUpon>ConsultarCambiosDeNombre.xaml</DependentUpon>
@@ -962,6 +962,18 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Ventanas\Roles\AgregarRol.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\Roles\ConsultarRol.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\Roles\ConsultarRoles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Ventanas\TiposBase\AgregarTipoBase.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -1105,18 +1117,6 @@
       <DependentUpon>VentanaPrincipal.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Ventanas\Remitentes\Roles\AgregarRol.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Ventanas\Remitentes\Roles\ConsultarRol.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Ventanas\Remitentes\Roles\ConsultarRoles.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Ventanas\Traspasos\CambiosDeNombre\ConsultarCambiosDeNombre.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

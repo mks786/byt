@@ -81,6 +81,12 @@ namespace Trascend.Bolet.Cliente.Ventanas.Renovaciones
             get { return this._txtIdMarcaFiltrar.Text; }
         }
 
+        public string FechaFiltrar
+        {
+            get { return this._dpkFecha.Text; }
+            set { this._dpkFecha.Text = value; }
+        }
+
         public string NombreMarcaFiltrar
         {
             get { return this._txtNombreMarcaFiltrar.Text; }
@@ -165,6 +171,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Renovaciones
         {
             this._btnConsultar.IsDefault = false;
             this._btnConsultarMarca.IsDefault = true;
+        }
+
+        private void _dpkFecha_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+
         }
 
         /// <summary>

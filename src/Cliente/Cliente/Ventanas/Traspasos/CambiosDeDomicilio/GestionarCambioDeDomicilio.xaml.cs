@@ -371,6 +371,36 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.CambiosDeDomicilio
             }
         }
 
+        private void _btnVanDir_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void _btnPlanilla_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void _btnPlanillaVan_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void _btnPlanillaVienen_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void _btnAnexo_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void _btnCarpeta_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+        
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
             if (!EstaCargada)

@@ -81,6 +81,10 @@ namespace Trascend.Bolet.Cliente.Contratos.Renovaciones
 
         string TextoBotonRegresar { get; set; }
 
+        string Otros { get; set; }
+
+        string ProximaRenovacion { get; set; }
+
         object TiposRenovaciones { get; set; }
 
         object TipoRenovacion { get; set; }

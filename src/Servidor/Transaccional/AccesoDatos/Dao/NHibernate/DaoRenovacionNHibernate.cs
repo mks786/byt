@@ -17,6 +17,7 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
             bool variosFiltros = false;
             string filtro = "";
             string cabecera = string.Format(Recursos.ConsultasHQL.CabeceraObtenerRenovacion);
+
             if ((null != renovacion) && (renovacion.Id != 0))
             {
                 filtro = string.Format(Recursos.ConsultasHQL.FiltroObtenerRenovacionId, renovacion.Id);

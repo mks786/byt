@@ -65,7 +65,7 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
                     ComandoBase<bool> comandoRenovacionContador = null;
                     ComandoBase<bool> comandoOperacionContador = null;
 
-                    ComandoBase<Contador> comandoContadorRenovacionProximoValor = FabricaComandosContador.ObtenerComandoConsultarPorId("MYP_MCESIONES");
+                    ComandoBase<Contador> comandoContadorRenovacionProximoValor = FabricaComandosContador.ObtenerComandoConsultarPorId("MYP_RENOVACIONES");
                     comandoContadorRenovacionProximoValor.Ejecutar();
                     Contador contadorRenovacion = comandoContadorRenovacionProximoValor.Receptor.ObjetoAlmacenado;
 
@@ -85,7 +85,7 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
                     operacion.Aplicada = 'M';
                     operacion.CodigoAplicada = renovacion.Marca.Id;
                     operacion.Interno = renovacion.Id;
-                    operacion.Servicio = new Servicio("CS");
+                    operacion.Servicio = new Servicio("RN");
 
                     ComandoBase<bool> comandoOperacion = FabricaComandosOperacion.ObtenerComandoInsertarOModificar(operacion);
 

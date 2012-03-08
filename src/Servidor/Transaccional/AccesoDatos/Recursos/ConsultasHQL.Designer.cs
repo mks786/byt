@@ -520,7 +520,7 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a r.FechaRenovacion between &apos;{0}&apos; and &apos;{1}&apos;.
+        ///   Busca una cadena traducida similar a r.Fecha between &apos;{0}&apos; and &apos;{1}&apos;.
         /// </summary>
         public static string FiltroObtenerRenovacionFecha {
             get {

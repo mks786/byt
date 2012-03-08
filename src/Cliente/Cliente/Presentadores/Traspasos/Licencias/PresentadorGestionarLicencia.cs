@@ -156,7 +156,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Licencias
         {            
             if (_agregar == true)
                 this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleAgregarLicencia,
-                Recursos.Ids.GestionarCambioPeticionario);
+                Recursos.Ids.GestionarLicencias);
             else
                 this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleGestionarLicencia,
                 Recursos.Ids.GestionarLicencias);
@@ -1538,6 +1538,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Licencias
 
                 if (!this._ventana.IdPoderLicencianteFiltrar.Equals(""))
                     poderLicenciante.Id = int.Parse(this._ventana.IdPoderLicencianteFiltrar);
+                else
+                    poderLicenciante.Id = 0;
 
                 if (!this._ventana.FechaPoderLicencianteFiltrar.Equals(""))
                     poderLicenciante.Fecha = DateTime.Parse(this._ventana.FechaPoderLicencianteFiltrar);
@@ -2153,6 +2155,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Licencias
 
                 if (!this._ventana.IdPoderLicenciatarioFiltrar.Equals(""))
                     poderLicenciatario.Id = int.Parse(this._ventana.IdPoderLicenciatarioFiltrar);
+                else
+                    poderLicenciatario.Id = 0;
 
                 if (!this._ventana.FechaPoderLicenciatarioFiltrar.Equals(""))
                     poderLicenciatario.Fecha = DateTime.Parse(this._ventana.FechaPoderLicenciatarioFiltrar);

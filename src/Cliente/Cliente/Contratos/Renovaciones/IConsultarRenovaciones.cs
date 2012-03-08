@@ -5,7 +5,7 @@ namespace Trascend.Bolet.Cliente.Contratos.Renovaciones
 {
     interface IConsultarRenovaciones : IPaginaBase
     {
-        string Id { get; }
+        string Id { get; }       
 
         object RenovacionSeleccionada { get; }
 
@@ -13,13 +13,15 @@ namespace Trascend.Bolet.Cliente.Contratos.Renovaciones
 
         string IdMarcaFiltrar { get; }
 
+        string FechaFiltrar { get; set; }
+
         string NombreMarcaFiltrar { get; }
 
         object Marcas { get; set; }
 
         object Marca { get; set; }
 
-        string MarcaFiltrada { get; set; }              
+        string MarcaFiltrada { get; set; }       
 
         GridViewColumnHeader CurSortCol { get; set; }
 

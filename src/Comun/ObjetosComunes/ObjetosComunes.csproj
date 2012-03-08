@@ -43,7 +43,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ContratosServicios\ITipoBaseServicios.cs" />
     <Compile Include="ContratosServicios\IEstadoMarcaServicios.cs" />
     <Compile Include="ContratosServicios\IRenovacionServicios.cs" />
     <Compile Include="ContratosServicios\IPlanillaServicios.cs" />
@@ -62,6 +61,7 @@
     <Compile Include="ContratosServicios\IAnaquaServicios.cs" />
     <Compile Include="ContratosServicios\ICondicionServicios.cs" />
     <Compile Include="ContratosServicios\ICorresponsalServicios.cs" />
+    <Compile Include="ContratosServicios\ITipoBaseServicios.cs" />
     <Compile Include="ContratosServicios\ITipoEstadoServicios.cs" />
     <Compile Include="ContratosServicios\IServicioServicios.cs" />
     <Compile Include="ContratosServicios\IMarcaServicios.cs" />
@@ -122,7 +122,6 @@
     <Compile Include="Entidades\CambioDeDomicilio.cs" />
     <Compile Include="Entidades\CambioPeticionario.cs" />
     <Compile Include="Entidades\CambioDeNombre.cs" />
-    <Compile Include="Entidades\TipoBase.cs" />
     <Compile Include="Entidades\ParametroProcedimiento.cs" />
     <Compile Include="Entidades\EstadoMarca.cs" />
     <Compile Include="Entidades\Renovacion.cs" />
@@ -135,6 +134,7 @@
     <Compile Include="Entidades\InfoBol.cs" />
     <Compile Include="Entidades\InfoAdicional.cs" />
     <Compile Include="Entidades\Corresponsal.cs" />
+    <Compile Include="Entidades\TipoBase.cs" />
     <Compile Include="Entidades\TipoEstado.cs" />
     <Compile Include="Entidades\Marca.cs" />
     <Compile Include="Entidades\Servicio.cs" />

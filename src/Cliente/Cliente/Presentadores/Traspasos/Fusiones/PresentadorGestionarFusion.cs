@@ -1633,6 +1633,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
 
                 if (!this._ventana.IdPoderFiltrar.Equals(""))
                     poder.Id = int.Parse(this._ventana.IdPoderFiltrar);
+                else
+                    poder.Id = 0;
 
                 if (!this._ventana.FechaPoderFiltrar.Equals(""))
                     poder.Fecha = DateTime.Parse(this._ventana.FechaPoderFiltrar);

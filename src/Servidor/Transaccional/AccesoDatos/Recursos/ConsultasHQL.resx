@@ -404,7 +404,7 @@
     <comment>Cabecera del query para el filtro de Renovacion</comment>
   </data>
   <data name="FiltroObtenerRenovacionFecha" xml:space="preserve">
-    <value>r.FechaRenovacion between '{0}' and '{1}'</value>
+    <value>r.Fecha between '{0}' and '{1}'</value>
     <comment>Filtro por fecha</comment>
   </data>
   <data name="FiltroObtenerRenovacionId" xml:space="preserve">

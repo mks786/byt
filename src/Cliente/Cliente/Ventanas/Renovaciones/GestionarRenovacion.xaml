@@ -182,8 +182,8 @@
                         <Label Name="_lblFechaProximaRenovacionMarca" Grid.Column="0" Grid.Row="3" HorizontalAlignment="Right" VerticalAlignment="Center" >
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblFechaProxima}"/>
                         </Label>
-                        <custom:ByTTextBox IsReadOnly="True"   IsEnabled="False"  Grid.Column="1" Grid.Row="3" Name="_txtFechaProximaRenovacionMarca" VerticalAlignment="Center"  
-                                           MaxLength="255"  Text="{Binding Path=FechaRenovacion}"></custom:ByTTextBox>
+                        <custom:ByTTextBox IsReadOnly="True"   IsEnabled="False"  Grid.Column="1" Grid.Row="3" Name="_txtFechaProximaRenovacionMarca" 
+                                           VerticalAlignment="Center" MaxLength="255"  Text="{Binding Path=FechaRenovacion}"></custom:ByTTextBox>
                         <!--Fin Campo-->                                                                      
 
                         <!--Campo-->
@@ -227,7 +227,7 @@
 
 
                         <Label Grid.Column="0" Grid.Row="1">
-                            <TextBlock Text="{x:Static recurso:Etiquetas.lblActual}"/>
+                            <TextBlock Text="{x:Static recurso:Etiquetas.lblInteresado}"/>
                         </Label>
                         <custom:ByTTextBox Text="{Binding Path=Nombre}" IsEnabled="False" MaxLength="255" Grid.Column="0" Grid.Row="1" Name="_txtNombreInteresado" VerticalAlignment="Center" 
                          Grid.ColumnSpan="3" MouseDoubleClick="_txtInteresado_MouseDoubleClick" IsReadOnly="True" Margin="45,3,0,3" BorderBrush="LightGreen"></custom:ByTTextBox>
@@ -510,7 +510,7 @@
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblProximaRenovacion}"/>
                         </Label>
                         <custom:ByTTextBox  IsEnabled="False"  Grid.Column="1" Margin="0,5,0,0" Grid.ColumnSpan="1" Grid.Row="2" Name="_txtProximaRenovacion"
-                                            Text="{Binding Path=FechaProxima}"  VerticalAlignment="Center" MaxLength="255"></custom:ByTTextBox>
+                                            Text="{Binding Path=FechaProxima}" IsReadOnly="True"  VerticalAlignment="Center" MaxLength="255"></custom:ByTTextBox>
 
                         <CheckBox Grid.Column="3" Grid.Row="2"  Margin="0,5,0,0" Content="{x:Static recurso:Etiquetas.chkAsientoEnLibro}" IsEnabled="False"
                                   Height="32" HorizontalAlignment="Right" IsChecked="{Binding Path=BActa}" Name="_chkAsientoEnLibro" VerticalAlignment="Center"
@@ -543,8 +543,8 @@
         </GroupBox>
 
         <WrapPanel Grid.Row="2" Grid.ColumnSpan="3" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="5" Orientation="Horizontal">
-            <Button Name="_btnAgregar"  VerticalAlignment="Bottom" Height="25" Width="90" Visibility="Collapsed"
-                    Click="_btnAgregar_Click">
+            <Button Name="_btnAceptar"  VerticalAlignment="Bottom" Height="25" Width="90" Visibility="Collapsed"
+                    Click="_btnAceptar_Click">                
                 <Button.Style>
                     <Style TargetType="Button">
                         <Style.Triggers>
@@ -554,7 +554,7 @@
                         </Style.Triggers>
                     </Style>
                 </Button.Style>
-                <TextBlock Name="_txbAgregar" Text="{x:Static recurso:Etiquetas.btnAgregar}" Visibility="Collapsed"/>
+                <TextBlock Name="_txbAceptar" Text="{x:Static recurso:Etiquetas.btnAceptar}"/>
             </Button>
             <Button Name="_btnEliminar" VerticalAlignment="Bottom" Height="25" Width="90"
                     Click="_btnEliminar_Click">

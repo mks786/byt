@@ -153,7 +153,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Cesiones
         {            
             if (_agregar == true)
                 this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleAgregarCesion,
-                Recursos.Ids.GestionarCambioPeticionario);
+                Recursos.Ids.GestionarCesion);
             else
                 this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleGestionarCesion,
                 Recursos.Ids.GestionarCesion);
@@ -1390,6 +1390,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Cesiones
                 
                 if (!this._ventana.IdPoderCedenteFiltrar.Equals(""))
                     poderCedente.Id = int.Parse(this._ventana.IdPoderCedenteFiltrar);
+                else
+                    poderCedente.Id = 0;
 
                 if (!this._ventana.FechaPoderCedenteFiltrar.Equals(""))
                     poderCedente.Fecha = DateTime.Parse(this._ventana.FechaPoderCedenteFiltrar);
@@ -1999,6 +2001,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Cesiones
 
                 if (!this._ventana.IdPoderCesionarioFiltrar.Equals(""))
                     poderCesionario.Id = int.Parse(this._ventana.IdPoderCesionarioFiltrar);
+                else
+                    poderCesionario.Id = 0;
 
                 if (!this._ventana.FechaPoderCesionarioFiltrar.Equals(""))
                     poderCesionario.Fecha = DateTime.Parse(this._ventana.FechaPoderCesionarioFiltrar);

@@ -478,7 +478,7 @@
     <value>MYPMDOMM</value>
   </data>
   <data name="GestionarCambioDeNombre" xml:space="preserve">
-    <value>MYP_MNOMM</value>
+    <value>MYPMNOMM</value>
   </data>
   <data name="GestionarCambioPeticionario" xml:space="preserve">
     <value>MYPMPETM</value>
@@ -490,7 +490,7 @@
     <value>MYPMFUSM</value>
   </data>
   <data name="GestionarLicencias" xml:space="preserve">
-    <value>MYP_MLICM</value>
+    <value>MYPMLICM</value>
   </data>
   <data name="GestionarRenovacion" xml:space="preserve">
     <value>MYPMRENM</value>

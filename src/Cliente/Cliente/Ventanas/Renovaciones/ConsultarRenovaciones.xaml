@@ -57,14 +57,26 @@
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblRenovacion}"/>
                     </Label>
                     <TextBox Name="_txtId" Text="{Binding Path=Id}" Width="150" MaxLength="8"
-                             GotFocus="_btnConsultarFocus" GotKeyboardFocus="_btnConsultarFocus"/>
-                </WrapPanel>                                   
+                             GotFocus="_btnConsultarFocus" GotKeyboardFocus="_btnConsultarFocus"/>                    
+                </WrapPanel>
+                <WrapPanel Margin="36,0,0,0" Orientation="Horizontal" HorizontalAlignment="Left">
+                    <Label>
+                        <TextBlock Text="{x:Static recurso:Etiquetas.lblFechaBoletin}"/>
+                    </Label>
+                    <DatePicker Name="_dpkFecha" Width="150" Focusable="False" BorderBrush="{x:Null}" 
+                                SelectedDateChanged="_dpkFecha_SelectedDateChanged" HorizontalContentAlignment="Left" Margin="26,5,0,0">
+                        <DatePicker.SelectedDate>
+                            <Binding Path="Fecha" UpdateSourceTrigger="PropertyChanged"/>
+                        </DatePicker.SelectedDate>
+                    </DatePicker>
+                </WrapPanel>
+                    
 
                     <Separator Margin="0,5,0,5"/>
                     <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,14,0">
                         <Grid>
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="84"/>
+                                <ColumnDefinition Width="Auto"/>
                                 <ColumnDefinition Width="316"/>
                             </Grid.ColumnDefinitions>
 
