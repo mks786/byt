@@ -22,16 +22,12 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
                     logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-                
                 IQuery query = Session.GetNamedQuery(parametro.PaqueteProcedimiento+parametro.NombreProcedimiento);
                 query.SetParameter<string>("usr", parametro.Usuario.Iniciales);
                 query.SetParameter<int>("way", parametro.Via);
-                query.SetParameter<int>("cod", parametro.Marca.Id);
+                query.SetParameter<int>("cod", parametro.Id);
 
                 query.UniqueResult();
-
-
-
 
                 #region trace
                 if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))

@@ -1652,5 +1652,116 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeNombre
         }
 
         #endregion
+
+        public void IrImprimir(string nombreBoton)
+        {
+            try
+            {
+                switch (nombreBoton)
+                {
+                    case "_btnPlanilla":
+                        ImprimirPlanilla();
+                        break;
+                    case "_btnAnexo":
+                        ImprimirAnexo();
+                        break;
+                    case "_btnCarpeta":
+                        ImprimirCarpeta();
+                        break;
+                    case "_btnPlanillaVan":
+                        ImprimirPlanillaVan();
+                        break;
+                    case "_btnPlanillaVienen":
+                        ImprimirPlanillaVienen();
+                        break;
+                    default:
+                        break;
+                }
+            }
+            catch (ApplicationException ex)
+            {
+                throw ex;
+            }
+        }
+
+        private void ImprimirPlanillaVienen()
+        {
+            if (ValidarMarcaAntesDeImprimirCarpeta())
+            {
+                string paqueteProcedimiento = "PCK_MYP_MNOMBRES";
+                string procedimiento = "P5";
+                ParametroProcedimiento parametro =
+                    new ParametroProcedimiento(((CambioDeNombre)this._ventana.CambioDeNombre).Id, UsuarioLogeado, 1, paqueteProcedimiento, procedimiento);
+
+                this.LlamarProcedimientoDeBaseDeDatos(parametro, Recursos.Etiquetas.btnPlanillaVienen);
+            }
+        }
+
+        private void ImprimirPlanillaVan()
+        {
+            if (ValidarMarcaAntesDeImprimirCarpeta())
+            {
+                string paqueteProcedimiento = "PCK_MYP_MNOMBRES";
+                string procedimiento = "P4";
+                ParametroProcedimiento parametro =
+                    new ParametroProcedimiento(((CambioDeNombre)this._ventana.CambioDeNombre).Id, UsuarioLogeado, 1, paqueteProcedimiento, procedimiento);
+
+                this.LlamarProcedimientoDeBaseDeDatos(parametro, Recursos.Etiquetas.btnPlanillaVan);
+            }
+        }
+
+        private void ImprimirCarpeta()
+        {
+            if (ValidarMarcaAntesDeImprimirCarpeta())
+            {
+                string paqueteProcedimiento = "PCK_MYP_MNOMBRES";
+                string procedimiento = "P4";
+                ParametroProcedimiento parametro =
+                    new ParametroProcedimiento(((CambioDeNombre)this._ventana.CambioDeNombre).Id, UsuarioLogeado, 1, paqueteProcedimiento, procedimiento);
+
+                this.LlamarProcedimientoDeBaseDeDatos(parametro, Recursos.Etiquetas.btnCarpeta);
+            }
+        }
+
+        private bool ValidarMarcaAntesDeImprimirCarpeta()
+        {
+            return true;
+        }
+
+        private void ImprimirAnexo()
+        {
+            if (ValidarMarcaAntesDeImprimirCarpeta())
+            {
+                string paqueteProcedimiento = "PCK_MYP_MNOMBRES";
+                string procedimiento = "P2";
+                ParametroProcedimiento parametro =
+                    new ParametroProcedimiento(((CambioDeNombre)this._ventana.CambioDeNombre).Id, UsuarioLogeado, 1, paqueteProcedimiento, procedimiento);
+
+                this.LlamarProcedimientoDeBaseDeDatos(parametro, Recursos.Etiquetas.btnAnexo);
+            }
+        }
+
+        private bool ValidarMarcaAntesDeImprimirAnexo()
+        {
+            return true;
+        }
+
+        private void ImprimirPlanilla()
+        {
+            if (ValidarMarcaAntesDeImprimirCarpeta())
+            {
+                string paqueteProcedimiento = "PCK_MYP_MNOMBRES";
+                string procedimiento = "P1";
+                ParametroProcedimiento parametro =
+                    new ParametroProcedimiento(((CambioDeNombre)this._ventana.CambioDeNombre).Id, UsuarioLogeado, 1, paqueteProcedimiento, procedimiento);
+
+                this.LlamarProcedimientoDeBaseDeDatos(parametro, Recursos.Etiquetas.btnPlanilla);
+            }
+        }
+
+        private bool ValidarMarcaAntesDeImprimirPlanilla()
+        {
+            return true;
+        }
     }
 }

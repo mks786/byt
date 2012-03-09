@@ -46,6 +46,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
         private IBusquedaServicios _busquedaServicios;
         private IStatusWebServicios _statusWebServicios;
         private IFusionServicios _fusionesServicios;
+        private IPlanillaServicios _planillaServicios;
 
         private IList<Asociado> _asociados;
         private IList<Interesado> _interesados;
@@ -60,7 +61,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
         private IList<Poder> _poderesApoderado;
         private IList<Poder> _poderesSobreviviente;
         private IList<Poder> _poderesInterseccion;
-        
+
 
         /// <summary>
         /// Constructor Predeterminado
@@ -70,7 +71,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
         {
             try
             {
-                this._ventana = ventana;                
+                this._ventana = ventana;
 
                 if (fusion != null)
                 {
@@ -82,12 +83,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
                     Fusion fusionAgregar = new Fusion();
                     this._ventana.Fusion = fusionAgregar;
 
-                    ((Fusion)this._ventana.Fusion).Fecha= DateTime.Now;
+                    ((Fusion)this._ventana.Fusion).Fecha = DateTime.Now;
                     this._ventana.Marca = null;
-                    this._ventana.Poder = null;                    
+                    this._ventana.Poder = null;
                     this._ventana.InteresadoEntre = null;
                     this._ventana.InteresadoSobreviviente = null;
-                    this._ventana.AgenteApoderado = null;                    
+                    this._ventana.AgenteApoderado = null;
 
                     CambiarAModificar();
 
@@ -136,6 +137,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["StatusWebServicios"]);
                 this._fusionesServicios = (IFusionServicios)Activator.GetObject(typeof(IFusionServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["FusionServicios"]);
+                this._planillaServicios = (IPlanillaServicios)Activator.GetObject(typeof(IPlanillaServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["PlanillaServicios"]);
 
 
                 #endregion
@@ -149,7 +152,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
 
         public void ActualizarTitulo()
         {
-            
+
             if (_agregar == true)
                 this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleAgregarFusion,
                 Recursos.Ids.GestionarFusion);
@@ -386,7 +389,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
             #endregion
 
             Poder primerPoder = new Poder(int.MinValue);
-            
+
             this._poderes = new List<Poder>();
             this._poderes.Add(primerPoder);
 
@@ -397,7 +400,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
                 this._ventana.PoderFiltrado = this.BuscarPoder((IList<Poder>)this._ventana.PoderesFiltrados, (Poder)this._ventana.Poder);
             }
             else
-            {                
+            {
                 this._ventana.PoderesFiltrados = this._poderes;
                 this._ventana.PoderFiltrado = primerPoder;
                 this._ventana.ConvertirEnteroMinimoABlanco();
@@ -421,22 +424,22 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
             #endregion
 
             Fusion fusion = (Fusion)this._ventana.Fusion;
-       
-              if (null != this._ventana.MarcaFiltrada)
+
+            if (null != this._ventana.MarcaFiltrada)
                 fusion.Marca = ((Marca)this._ventana.MarcaFiltrada).Id != int.MinValue ? (Marca)this._ventana.Marca : null;
 
-              if (null != this._ventana.InteresadoEntreFiltrado)
+            if (null != this._ventana.InteresadoEntreFiltrado)
                 fusion.InteresadoEntre = ((Interesado)this._ventana.InteresadoEntreFiltrado).Id != int.MinValue ? (Interesado)this._ventana.InteresadoEntreFiltrado : null;
 
-              if (null != this._ventana.InteresadoSobrevivienteFiltrado)
-                  fusion.InteresadoSobreviviente = ((Interesado)this._ventana.InteresadoSobrevivienteFiltrado).Id != int.MinValue ? (Interesado)this._ventana.InteresadoSobrevivienteFiltrado : null;
+            if (null != this._ventana.InteresadoSobrevivienteFiltrado)
+                fusion.InteresadoSobreviviente = ((Interesado)this._ventana.InteresadoSobrevivienteFiltrado).Id != int.MinValue ? (Interesado)this._ventana.InteresadoSobrevivienteFiltrado : null;
 
-              if (null != this._ventana.AgenteApoderadoFiltrado)
-                  fusion.Agente = !((Agente)this._ventana.AgenteApoderadoFiltrado).Id.Equals("") ? (Agente)this._ventana.AgenteApoderadoFiltrado : null;
+            if (null != this._ventana.AgenteApoderadoFiltrado)
+                fusion.Agente = !((Agente)this._ventana.AgenteApoderadoFiltrado).Id.Equals("") ? (Agente)this._ventana.AgenteApoderadoFiltrado : null;
 
-              if (null != this._ventana.PoderFiltrado)
-                  fusion.Poder = ((Poder)this._ventana.PoderFiltrado).Id != int.MinValue ? (Poder)this._ventana.PoderFiltrado : null;
- 
+            if (null != this._ventana.PoderFiltrado)
+                fusion.Poder = ((Poder)this._ventana.PoderFiltrado).Id != int.MinValue ? (Poder)this._ventana.PoderFiltrado : null;
+
             #region Comentado
             //marca.Operacion = "MODIFY";
             //if (null != this._ventana.Agente)
@@ -485,10 +488,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
             //    marca.Nacional = null;
             #endregion
 
-              #region trace
-              if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
-                  logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
-              #endregion
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
 
             return fusion;
         }
@@ -830,7 +833,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
-                
+
                 Marca marca = new Marca();
                 IList<Marca> marcasFiltradas;
                 marca.Descripcion = this._ventana.NombreMarcaFiltrar.ToUpper();
@@ -1165,7 +1168,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-                Interesado primerInteresado = new Interesado(int.MinValue);                
+                Interesado primerInteresado = new Interesado(int.MinValue);
                 Interesado interesado = new Interesado();
                 IList<Interesado> interesadosFiltrados;
                 interesado.Nombre = this._ventana.NombreInteresadoSobrevivienteFiltrar.ToUpper();
@@ -1646,7 +1649,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
 
                 if (poderesFiltrados.ToList<Poder>().Count != 0)
                 {
-                    poderesFiltrados.Insert(0, pimerPoder);                                       
+                    poderesFiltrados.Insert(0, pimerPoder);
                     this._ventana.PoderesFiltrados = poderesFiltrados;
                     this._ventana.PoderFiltrado = pimerPoder;
                 }
@@ -1906,6 +1909,98 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
             return retorno;
         }
 
-        #endregion       
+        #endregion
+
+
+        public void IrImprimir(string nombreBoton)
+        {
+            try
+            {
+                switch (nombreBoton)
+                {
+                    case "_btnPlanilla":
+                        ImprimirPlanilla();
+                        break;
+                    case "_btnAnexo":
+                        ImprimirAnexo();
+                        break;
+                    case "_btnCarpeta":
+                        ImprimirCarpeta();
+                        break;
+                    default:
+                        break;
+                }
+            }
+            catch (ApplicationException ex)
+            {
+                throw ex;
+            }
+        }
+
+        private void ImprimirCarpeta()
+        {
+            if (ValidarMarcaAntesDeImprimirCarpeta())
+            {
+                string paqueteProcedimiento = "PCK_MYP_MFUSIONES";
+                string procedimiento = "P4";
+                ParametroProcedimiento parametro =
+                    new ParametroProcedimiento(((Fusion)this._ventana.Fusion).Id, UsuarioLogeado, 1, paqueteProcedimiento, procedimiento);
+
+                //Planilla planilla = this._planillaServicios.ImprimirProcedimiento(parametro);
+                //if (planilla != null)
+                //{
+                this.LlamarProcedimientoDeBaseDeDatos(parametro, Recursos.Etiquetas.btnCarpeta);
+                //}
+            }
+        }
+
+        private bool ValidarMarcaAntesDeImprimirCarpeta()
+        {
+            return true;
+        }
+
+        private void ImprimirAnexo()
+        {
+            if (ValidarMarcaAntesDeImprimirCarpeta())
+            {
+                string paqueteProcedimiento = "PCK_MYP_MFUSIONES";
+                string procedimiento = "P2";
+                ParametroProcedimiento parametro =
+                    new ParametroProcedimiento(((Fusion)this._ventana.Fusion).Id, UsuarioLogeado, 1, paqueteProcedimiento, procedimiento);
+
+                //Planilla planilla = this._planillaServicios.ImprimirProcedimiento(parametro);
+                //if (planilla != null)
+                //{
+                this.LlamarProcedimientoDeBaseDeDatos(parametro, Recursos.Etiquetas.btnAnexo);
+                //}
+            }
+        }
+
+        private bool ValidarMarcaAntesDeImprimirAnexo()
+        {
+            return true;
+        }
+
+        private void ImprimirPlanilla()
+        {
+            if (ValidarMarcaAntesDeImprimirCarpeta())
+            {
+                string paqueteProcedimiento = "PCK_MYP_MFUSIONES";
+                string procedimiento = "P1";
+                ParametroProcedimiento parametro =
+                    new ParametroProcedimiento(((Fusion)this._ventana.Fusion).Id, UsuarioLogeado, 1, paqueteProcedimiento, procedimiento);
+
+                //Planilla planilla = this._planillaServicios.ImprimirProcedimiento(parametro);
+                //if (planilla != null)
+                //{
+                this.LlamarProcedimientoDeBaseDeDatos(parametro, Recursos.Etiquetas.btnPlanilla);
+                //}
+            }
+        }
+
+        private bool ValidarMarcaAntesDeImprimirPlanilla()
+        {
+            return true;
+        }
     }
 }

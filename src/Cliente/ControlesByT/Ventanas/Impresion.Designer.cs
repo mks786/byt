@@ -89,7 +89,7 @@ namespace Trascend.Bolet.ControlesByT.Ventanas
             this.AcceptButton = this._btnCerrar;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(235)))), ((int)(((byte)(194)))));
+            this.BackColor = System.Drawing.Color.Gainsboro;
             this.ClientSize = new System.Drawing.Size(492, 466);
             this.Controls.Add(this._folio);
             this.Controls.Add(this.button2);

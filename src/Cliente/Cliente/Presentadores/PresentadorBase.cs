@@ -1220,7 +1220,7 @@ namespace Trascend.Bolet.Cliente.Presentadores
                 if (planilla != null)
                 {
                     Impresion _ventana =
-                        new Impresion(Recursos.Etiquetas.btnAnexoFM02, planilla.Folio.Replace("\n", Environment.NewLine));
+                        new Impresion("Imprimir " + tituloVentana, planilla.Folio.Replace("\n", Environment.NewLine));
 
                     _ventana.ShowDialog();
 

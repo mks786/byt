@@ -930,7 +930,7 @@
                         </Grid.RowDefinitions>
 
 
-                        <Button Name="_btnPlanilla" Grid.Row="0" Grid.Column="0"  VerticalAlignment="Bottom" Height="25" Width="90"
+                        <!--<Button Name="_btnPlanilla" Grid.Row="0" Grid.Column="0"  VerticalAlignment="Bottom" Height="25" Width="90"
                     Click="_btnPlanilla_Click">
                             <TextBlock Name="_txbPlanilla" Text="{x:Static recurso:Etiquetas.btnPlanilla}"/>
                         </Button>
@@ -953,7 +953,7 @@
                         <Button Name="_btnPlanillaVienen" Grid.Row="0" Grid.Column="5" VerticalAlignment="Bottom" Height="25" Width="90"
                     Click="_btnPlanillaVienen_Click">
                             <TextBlock Name="_txbPlanillaVienen" Text="{x:Static recurso:Etiquetas.btnPlanillaVienen}"/>
-                        </Button>
+                        </Button>-->
 
                     </Grid>
                 </WrapPanel>

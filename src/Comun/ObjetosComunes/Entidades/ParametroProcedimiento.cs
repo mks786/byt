@@ -8,7 +8,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
     {
         #region Atributos
 
-        private Marca _marca;
+        private int _id;
         private Usuario _usuario;
         private int _via;
         private string _paqueteProcedimiento;
@@ -27,9 +27,9 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         /// Constructor que inicializa el Id del Pais
         /// </summary>
         /// <param name="id">Id del Pais</param>
-        public ParametroProcedimiento(Marca marca, Usuario usuario, int via, string paqueteProcedimiento ,string nombreProcedimiento)
+        public ParametroProcedimiento(int id, Usuario usuario, int via, string paqueteProcedimiento ,string nombreProcedimiento)
         {
-            this._marca = marca;
+            this._id = id;
             this._usuario = usuario;
             this._via = via;
             this._paqueteProcedimiento = paqueteProcedimiento;
@@ -43,10 +43,10 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         /// <summary>
         /// Propiedad que asigna u obtiene la marca del parametro
         /// </summary>
-        public virtual Marca Marca
+        public virtual int Id
         {
-            get { return _marca; }
-            set { _marca = value; }
+            get { return _id; }
+            set { _id = value; }
         }
 
         /// <summary>

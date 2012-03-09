@@ -471,30 +471,30 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.CambiosPeticionario
                 this._presentador.ConsultarPoderesActual();            
         }       
         
-        private void _btnPlanillaVienen_Click(object sender, RoutedEventArgs e)
-        {
-            
-        }
+        //private void _btnPlanillaVienen_Click(object sender, RoutedEventArgs e)
+        //{
+        //    this._presentador.IrImprimir(((Button)sender).Name);
+        //}
 
-        private void _btnPlanillaVan_Click(object sender, RoutedEventArgs e)
-        {
-            
-        }
+        //private void _btnPlanillaVan_Click(object sender, RoutedEventArgs e)
+        //{
+        //    this._presentador.IrImprimir(((Button)sender).Name);
+        //}
 
-        private void _btnPlanilla_Click(object sender, RoutedEventArgs e)
-        {
-            
-        }
+        //private void _btnPlanilla_Click(object sender, RoutedEventArgs e)
+        //{
+        //    this._presentador.IrImprimir(((Button)sender).Name);
+        //}
 
-        private void _btnCarpeta_Click(object sender, RoutedEventArgs e)
-        {
-            
-        }
+        //private void _btnCarpeta_Click(object sender, RoutedEventArgs e)
+        //{
+        //    this._presentador.IrImprimir(((Button)sender).Name);
+        //}
 
-        private void _btnAnexo_Click(object sender, RoutedEventArgs e)
-        {
-            
-        }
+        //private void _btnAnexo_Click(object sender, RoutedEventArgs e)
+        //{
+        //    this._presentador.IrImprimir(((Button)sender).Name);
+        //}
 
         public void ConvertirEnteroMinimoABlanco(string tipo)
         {

@@ -1123,7 +1123,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 string paqueteProcedimiento = "PCK_MYP_MARCAS";
                 string procedimiento = modo.Equals("Laser") ? "P31" : "P1";
                 ParametroProcedimiento parametro =
-                    new ParametroProcedimiento((Marca)this._ventana.Marca, UsuarioLogeado, 1, paqueteProcedimiento, procedimiento);
+                    new ParametroProcedimiento(((Marca)this._ventana.Marca).Id, UsuarioLogeado, 1, paqueteProcedimiento, procedimiento);
 
                 Planilla planilla = this._planillaServicios.ImprimirProcedimiento(parametro);
                 if (planilla != null)
@@ -1152,7 +1152,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 string paqueteProcedimiento = "PCK_MYP_MARCAS";
                 string procedimiento = modo.Equals("Laser") ? "P32" : "P2";
                 ParametroProcedimiento parametro =
-                    new ParametroProcedimiento((Marca)this._ventana.Marca, UsuarioLogeado, 1, paqueteProcedimiento, procedimiento);
+                    new ParametroProcedimiento(((Marca)this._ventana.Marca).Id, UsuarioLogeado, 1, paqueteProcedimiento, procedimiento);
 
                 Planilla planilla = this._planillaServicios.ImprimirProcedimiento(parametro);
                 if (planilla != null)
@@ -1182,7 +1182,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 string paqueteProcedimiento = "PCK_MYP_MARCAS";
                 string procedimiento = modo.Equals("Laser") ? "P33" : "P3";
                 ParametroProcedimiento parametro =
-                    new ParametroProcedimiento((Marca)this._ventana.Marca, UsuarioLogeado, 1, paqueteProcedimiento, procedimiento);
+                    new ParametroProcedimiento(((Marca)this._ventana.Marca).Id, UsuarioLogeado, 1, paqueteProcedimiento, procedimiento);
 
                 Planilla planilla = this._planillaServicios.ImprimirProcedimiento(parametro);
                 if (planilla != null)
