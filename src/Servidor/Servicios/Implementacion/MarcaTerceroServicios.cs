@@ -34,7 +34,7 @@ namespace Trascend.Bolet.Servicios.Implementacion
         }
 
 
-        public MarcaTercero ConsultarPorId(MarcaTercero entidad)
+        public MarcaTercero ConsultarPorId(MarcaTercero marcaTercero)
         {
             throw new NotImplementedException();
         }

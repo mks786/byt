@@ -187,6 +187,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to MYP_MACA_TER.
+        /// </summary>
+        public static string AgregarMarcaTercero {
+            get {
+                return ResourceManager.GetString("AgregarMarcaTercero", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to MYPTNAC.
         /// </summary>
         public static string AgregarNacional {
@@ -624,6 +633,24 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string ConsultarMarcas {
             get {
                 return ResourceManager.GetString("ConsultarMarcas", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to MYP_MARCA_TER.
+        /// </summary>
+        public static string ConsultarMarcasTercero {
+            get {
+                return ResourceManager.GetString("ConsultarMarcasTercero", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to MYP_MARCA_TER.
+        /// </summary>
+        public static string ConsultarMarcaTercero {
+            get {
+                return ResourceManager.GetString("ConsultarMarcaTercero", resourceCulture);
             }
         }
         
@@ -1141,8 +1168,7 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a MYPMNOMM.
-        ///   Looks up a localized string similar to MYP_MNOMM.
+        ///   Looks up a localized string similar to MYPMNOMM.
         /// </summary>
         public static string GestionarCambioDeNombre {
             get {
@@ -1178,8 +1204,7 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a MYPMLICM.
-        ///   Looks up a localized string similar to MYP_MLICM.
+        ///   Looks up a localized string similar to MYPMLICM.
         /// </summary>
         public static string GestionarLicencias {
             get {

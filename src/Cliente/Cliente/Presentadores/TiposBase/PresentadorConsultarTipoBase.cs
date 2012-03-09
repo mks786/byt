@@ -17,7 +17,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.TiposBase
     class PresentadorConsultarTipoBase : PresentadorBase
     {
         private IConsultarTipoBase _ventana;
-        private ITipoBaseServicios _estadoServicios;
+        private ITipoBaseServicios _tipoBaseServicios;
         private static PaginaPrincipal _paginaPrincipal = PaginaPrincipal.ObtenerInstancia;
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
@@ -26,13 +26,13 @@ namespace Trascend.Bolet.Cliente.Presentadores.TiposBase
         /// </summary>
         /// <param name="ventana">Página que satisface el contrato</param>
         /// <param name="estado">TipoBase a mostrar</param>
-        public PresentadorConsultarTipoBase(IConsultarTipoBase ventana, TipoBase estado)
+        public PresentadorConsultarTipoBase(IConsultarTipoBase ventana, TipoBase tipoBase)
         {
             try
             {
                 this._ventana = ventana;
-                this._ventana.TipoBase = estado;
-                this._estadoServicios = (ITipoBaseServicios)Activator.GetObject(typeof(ITipoBaseServicios),
+                this._ventana.TipoBase = tipoBase;
+                this._tipoBaseServicios = (ITipoBaseServicios)Activator.GetObject(typeof(ITipoBaseServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["TipoBaseServicios"]);
             }
             catch (Exception ex)
@@ -89,7 +89,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.TiposBase
                 //Modifica los datos del estado
                 else
                 {
-                    if (this._estadoServicios.InsertarOModificar((TipoBase)this._ventana.TipoBase, UsuarioLogeado.Hash))
+                    if (this._tipoBaseServicios.InsertarOModificar((TipoBase)this._ventana.TipoBase, UsuarioLogeado.Hash))
                     {
                         PaginaPrincipal paginaPrincipal = PaginaPrincipal.ObtenerInstancia;
                         paginaPrincipal.MensajeUsuario = Recursos.MensajesConElUsuario.TipoBaseModificado;
@@ -136,7 +136,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.TiposBase
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-                if (this._estadoServicios.Eliminar((TipoBase)this._ventana.TipoBase, UsuarioLogeado.Hash))
+                if (this._tipoBaseServicios.Eliminar((TipoBase)this._ventana.TipoBase, UsuarioLogeado.Hash))
                 {
                     _paginaPrincipal.MensajeUsuario = Recursos.MensajesConElUsuario.TipoBaseEliminado;
                     this.Navegar(_paginaPrincipal);

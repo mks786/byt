@@ -34,7 +34,7 @@ namespace Trascend.Bolet.Comandos.Comandos.ComandosMarcaTercero
                 #endregion
 
                 IDaoMarcaTercero dao = FabricaDaoBase.ObtenerFabricaDao().ObtenerDaoMarcaTercero();
-                this.Receptor = new Receptor<bool>(dao.VerificarExistencia(this._anexo.Id));
+            // OJO!!!!DESCOMENTAR    this.Receptor = new Receptor<bool>(dao.VerificarExistencia(this._anexo.Id));
 
                 #region trace
                 if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))

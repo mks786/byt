@@ -1,29 +1,104 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
                    assembly="Trascend.Bolet.ObjetosComunes"
-                   namespace="Trascend.Bolet.ObjetosComunes.Entidades">
+                   namespace="Trascend.Bolet.ObjetosComunes.Entidades"
+                   auto-import="true">
 
-  <class name="MarcaTercero" table="MYP_MTERCEROS">
-    <composite-id>
-      <key-property name="Id" column="`NSECUEN`" />
-      <key-many-to-one name="Fusion" column="CFUSION" class="Fusion"/>
-    </composite-id>
+  <class name="MarcaTercero" table="MYP_MARCAS_TER">
+    <id name="Id" column="CMARCAT" type="string"/>
+    <property name="Descripcion" column="XMARCA" type="string"/>
+    <property name="Tipo" column="ITIPO" type="string"/>
+    <property name="Prioridad" column="CPRIORIDAD" type="string"/>
+    <property name="AsociadoTercero" column="XASOCIADOT" type="string"/>
+    <property name="InteresadoTercero" column="XINTERESADOT" type="string"/>
+    <property name="TelefonoTercero" column="XTLFT" type="string"/>
+    <property name="FaxTercero" column="XFAXT" type="string"/>
+    <property name="DomicilioTercero" column="XDOMICILIOT" type="string"/>
+    <property name="ComentarioTercero" column="XCOMENTARIOT" type="string"/>
+    <property name="FechaPrioridad" column="FPRIORIDAD" type="DateTime"/>
+    <property name="PrimeraReferencia" column="XREFERENCIA1" type="string"/>
+    <property name="FechaInscripcion" column="FINSCRIPCION" type="DateTime"/>
+    <property name="CodigoInscripcion" column="CINSCRIPCION" type="string"/>
+    <property name="FechaPublicacion" column="FPUBLICACION" type="DateTime"/>
+    <property name="FechaConcesion" column="FCONCESION" type="DateTime"/>
+    <property name="CodigoRegistro" column="CREGISTRO" type="string"/>
+    <property name="FechaRegistro" column="FREGISTRO" type="DateTime"/>
+    <property name="IPoder" column="IPODER" type="string"/>
+    <property name="Fascimiles" column="IFASCIMILES" type="string"/>
+    <property name="Etiqueta" column="IETIQUETA" type="string"/>
+    <property name="Traduccion" column="ITRADUCCION" type="char"/>
+    <property name="Fichas" column="IFICHAS" type="string"/>
+    <property name="Registro" column="IREGISTRO" type="char"/>
+    <property name="Acta" column="IACTA" type="char"/>
+    <property name="CodigoExpediente" column="CEXPEDIENTE" type="string"/>
+    <property name="Ubicacion" column="XUBICACION" type="string"/>
+    <property name="UbicacionRenovacion" column="XUBICACION_RENOVACION" type="string"/>
+    <property name="FechaRenovacion" column="FRENOVACION" type="DateTime"/>
+    <property name="EtiquetaDescripcion" column="XETIQUETA" type="string"/>
+    <property name="PrimerOtro" column="XOTROS1" type="string"/>
+    <property name="Representante" column="XREPRESENTANTE" type="string"/>
+    <property name="Observacion" column="XOBSERVACION" type="string"/>
+    <property name="Distingue" column="XDISTINGUE" type="string"/>
+    <property name="NumeroCondiciones" column="NCONDI" type="int"/>
 
-    <property name="Nombre" type="String" column="`XNOMBRE`"/>
+    <property name="Rev" column="IREV" type="char"/>
+
+
+    <many-to-one name="Agente" class="Agente">
+      <column name="CAGENTE"/>
+    </many-to-one>
+
+    <many-to-one name="Asociado" class="Asociado">
+      <column name="CASOCIADO"/>
+    </many-to-one>
+
+    <many-to-one name="BoletinConcesion" class="Boletin">
+      <column name="CBOLETIN_CONCESION"/>
+    </many-to-one>
+
+    <many-to-one name="BoletinPublicacion" class="Boletin">
+      <column name="CBOLETIN_PUBLICACION"/>
+    </many-to-one>
+
+    <many-to-one name="Internacional" class="Internacional">
+      <column name="CINTER"/>
+    </many-to-one>
+
+    <many-to-one name="Nacional" class="Nacional">
+      <column name="CNACIONAL"/>
+    </many-to-one>
+
+    <many-to-one name="Interesado" class="Interesado">
+      <column name="CINTERESADO"/>
+    </many-to-one>
 
     <many-to-one name="Pais" class="Pais">
-      <column name="CPAIS"/>
+      <column name="CPAIS_PRIORIDAD"/>
     </many-to-one>
 
-    <many-to-one name="Estado" class="Estado">
-      <column name="CESTADO"/>
+    <many-to-one name="StatusWeb" class="StatusWeb">
+      <column name="TESTADO"/>
     </many-to-one>
-    
-    <many-to-one name="Nacionalidad" class="Pais">
-      <column name="CNACIONALIDAD"/>
+
+    <many-to-one name="Poder" class="Poder" lazy="false">
+      <column name="CPODER"/>
     </many-to-one>
-    
+
+    <many-to-one name="Servicio" class="Servicio">
+      <column name="CSERVICIO"/>
+    </many-to-one>
+
+    <many-to-one name="TipoEstado" class="TipoEstado">
+      <column name="TESTADO"/>
+    </many-to-one>
+
+    <many-to-one name="Anexo" class="Anexo">
+      <column name="CANEXO"/>
+    </many-to-one>
+
   </class>
+
+
 </hibernate-mapping>
 
 

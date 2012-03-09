@@ -38,6 +38,7 @@ using Trascend.Bolet.Cliente.Ventanas.Traspasos.Cesiones;
 using Trascend.Bolet.Cliente.Ventanas.Traspasos.Licencias;
 using Trascend.Bolet.Cliente.Ventanas.EstadosMarca;
 using Trascend.Bolet.Cliente.Ventanas.TiposBase;
+using Trascend.Bolet.Cliente.Ventanas.MarcasTercero;
 using Trascend.Bolet.Cliente.Ventanas;
 using Trascend.Bolet.Cliente.Ventanas.Traspasos.CambiosDeDomicilio;
 using Trascend.Bolet.Cliente.Ventanas.Traspasos.CambiosDeNombre;
@@ -542,7 +543,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
         /// </summary>
         public void ConsultarMarcaATerceros()
         {
-            //this._ventana.Contenedor.Navigate(ventana*);
+            this._ventana.Contenedor.Navigate(new AgregarMarcaTercero(null));
         }
 
         /// <summary>
@@ -550,7 +551,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
         /// </summary>
         public void GestionarMarcaATercero()
         {
-            //this._ventana.Contenedor.Navigate(ventana*);
+            this._ventana.Contenedor.Navigate(new ConsultarMarcasTercero());
         }
 
         /// <summary>

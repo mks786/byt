@@ -105,6 +105,9 @@
     <Compile Include="Contratos\Anexos\IConsultarAnexo.cs" />
     <Compile Include="Contratos\Anexos\IConsultarAnexos.cs" />
     <Compile Include="Contratos\CartasOuts\IConsultarCartasOuts.cs" />
+    <Compile Include="Contratos\MarcasTercero\IAgregarMarcaTercero.cs" />
+    <Compile Include="Contratos\MarcasTercero\IConsultarMarcaTercero.cs" />
+    <Compile Include="Contratos\MarcasTercero\IConsultarMarcasTercero.cs" />
     <Compile Include="Contratos\Renovaciones\IConsultarRenovaciones.cs" />
     <Compile Include="Contratos\EntradasAlternas\IAgregarEntradaAlterna.cs" />
     <Compile Include="Contratos\EntradasAlternas\IConsultarEntradaAlterna.cs" />
@@ -228,6 +231,9 @@
     <Compile Include="Presentadores\Contactos\PresentadorAgregarContacto.cs" />
     <Compile Include="Presentadores\Contactos\PresentadorConsultarContacto.cs" />
     <Compile Include="Presentadores\CartasOuts\PresentadorConsultarCartasOuts.cs" />
+    <Compile Include="Presentadores\MarcasTercero\PresentadorAgregarMarcaTercero.cs" />
+    <Compile Include="Presentadores\MarcasTercero\PresentadorConsultarMarcaTercero.cs" />
+    <Compile Include="Presentadores\MarcasTercero\PresentadorConsultarMarcasTercero.cs" />
     <Compile Include="Presentadores\Renovaciones\PresentadorConsultarRenovaciones.cs" />
     <Compile Include="Presentadores\EntradasAlternas\PresentadorAgregarEntradaAlterna.cs" />
     <Compile Include="Presentadores\EntradasAlternas\PresentadorConsultarEntradaAlterna.cs" />
@@ -406,6 +412,15 @@
     </Compile>
     <Compile Include="Ventanas\Anexos\ConsultarAnexos.xaml.cs">
       <DependentUpon>ConsultarAnexos.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\MarcasTercero\AgregarMarcaTercero.xaml.cs">
+      <DependentUpon>AgregarMarcaTercero.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\MarcasTercero\ConsultarMarcaTercero.xaml.cs">
+      <DependentUpon>ConsultarMarcaTercero.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\MarcasTercero\ConsultarMarcasTercero.xaml.cs">
+      <DependentUpon>ConsultarMarcasTercero.xaml</DependentUpon>
     </Compile>
     <Compile Include="Ventanas\Renovaciones\ConsultarRenovaciones.xaml.cs">
       <DependentUpon>ConsultarRenovaciones.xaml</DependentUpon>
@@ -787,6 +802,18 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Ventanas\Cartas\ConsultarCartas.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\MarcasTercero\AgregarMarcaTercero.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\MarcasTercero\ConsultarMarcaTercero.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\MarcasTercero\ConsultarMarcasTercero.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -1270,6 +1297,7 @@
   <ItemGroup>
     <Resource Include="images\logoBoletI.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

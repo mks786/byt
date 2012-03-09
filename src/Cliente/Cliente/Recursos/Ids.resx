@@ -159,6 +159,9 @@
   <data name="AgregarMarca" xml:space="preserve">
     <value>MYP_MARCAS</value>
   </data>
+  <data name="AgregarMarcaTercero" xml:space="preserve">
+    <value>MYP_MACA_TER</value>
+  </data>
   <data name="AgregarNacional" xml:space="preserve">
     <value>MYPTNAC</value>
   </data>
@@ -305,6 +308,12 @@
   </data>
   <data name="ConsultarMarcas" xml:space="preserve">
     <value>MYP_MARCAS</value>
+  </data>
+  <data name="ConsultarMarcasTercero" xml:space="preserve">
+    <value>MYP_MARCA_TER</value>
+  </data>
+  <data name="ConsultarMarcaTercero" xml:space="preserve">
+    <value>MYP_MARCA_TER</value>
   </data>
   <data name="ConsultarNacional" xml:space="preserve">
     <value>MYPTNAC</value>

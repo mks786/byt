@@ -37,7 +37,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.TiposBase
                 this._ventana = ventana;
                 this._tipoBaseServicios = (ITipoBaseServicios)Activator.GetObject(typeof(ITipoBaseServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["TipoBaseServicios"]);
-                this._ventana.TipoBaseFiltrar = new Estado();
+                this._ventana.TipoBaseFiltrar = new TipoBase();
             }
             catch (Exception ex)
             {

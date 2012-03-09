@@ -1778,4 +1778,16 @@ de Gracia</value>
   <data name="btnVanDir" xml:space="preserve">
     <value>(VAN / DIR)</value>
   </data>
+  <data name="cbiCateroriaMarcaTercero" xml:space="preserve">
+    <value>MARCATERCERO</value>
+  </data>
+  <data name="titleAgregarMarcaTercero" xml:space="preserve">
+    <value>Agregar una Marcar Tercero</value>
+  </data>
+  <data name="titleConsultarMarcasTercero" xml:space="preserve">
+    <value>Consultar Marcas Tercero</value>
+  </data>
+  <data name="titleConsultarMarcaTercero" xml:space="preserve">
+    <value>Consultar una Marca Tercero</value>
+  </data>
 </root>

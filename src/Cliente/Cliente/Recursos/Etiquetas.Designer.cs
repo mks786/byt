@@ -621,7 +621,7 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a (VAN / DIR).
+        ///   Looks up a localized string similar to (VAN / DIR).
         /// </summary>
         public static string btnVanDir {
             get {
@@ -630,7 +630,6 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Ver Doc..
         ///   Looks up a localized string similar to Ver Doc..
         /// </summary>
         public static string btnVerDoc {
@@ -789,6 +788,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string cbiCategoriaTipoPersona {
             get {
                 return ResourceManager.GetString("cbiCategoriaTipoPersona", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to MARCATERCERO.
+        /// </summary>
+        public static string cbiCateroriaMarcaTercero {
+            get {
+                return ResourceManager.GetString("cbiCateroriaMarcaTercero", resourceCulture);
             }
         }
         
@@ -4107,6 +4115,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Agregar una Marcar Tercero.
+        /// </summary>
+        public static string titleAgregarMarcaTercero {
+            get {
+                return ResourceManager.GetString("titleAgregarMarcaTercero", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Agregar Medio.
         /// </summary>
         public static string titleAgregarMedio {
@@ -4553,6 +4570,24 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string titleConsultarMarcas {
             get {
                 return ResourceManager.GetString("titleConsultarMarcas", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Consultar Marcas Tercero.
+        /// </summary>
+        public static string titleConsultarMarcasTercero {
+            get {
+                return ResourceManager.GetString("titleConsultarMarcasTercero", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Consultar una Marca Tercero.
+        /// </summary>
+        public static string titleConsultarMarcaTercero {
+            get {
+                return ResourceManager.GetString("titleConsultarMarcaTercero", resourceCulture);
             }
         }
         

@@ -322,6 +322,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ¿Seguro que desea duplicar la Marca Tercera?.
+        /// </summary>
+        internal static string ConfirmacionDuplicarMarcaTercero {
+            get {
+                return ResourceManager.GetString("ConfirmacionDuplicarMarcaTercero", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ¿Seguro que desea eliminar el agente?.
         /// </summary>
         internal static string ConfirmacionEliminarAgente {
@@ -1218,6 +1227,33 @@ namespace Trascend.Bolet.Cliente.Recursos {
         internal static string MarcaSinNumeroDePoder {
             get {
                 return ResourceManager.GetString("MarcaSinNumeroDePoder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Marca Tercero Eliminado con éxito.
+        /// </summary>
+        internal static string MarcaTerceroEliminado {
+            get {
+                return ResourceManager.GetString("MarcaTerceroEliminado", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to MarcaTercero insertada con éxito.
+        /// </summary>
+        internal static string MarcaTerceroInsertada {
+            get {
+                return ResourceManager.GetString("MarcaTerceroInsertada", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Marca Tercero modificado con éxito.
+        /// </summary>
+        internal static string MarcaTerceroModificado {
+            get {
+                return ResourceManager.GetString("MarcaTerceroModificado", resourceCulture);
             }
         }
         
