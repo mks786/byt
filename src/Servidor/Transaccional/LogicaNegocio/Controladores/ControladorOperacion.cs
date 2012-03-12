@@ -30,9 +30,22 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
+                ComandoBase<bool> comandoOperacionContador = null;
+
+                ComandoBase<Contador> comandoContadorOperacionesProximoValor = FabricaComandosContador.ObtenerComandoConsultarPorId("MYP_OPERACIONES");
+                comandoContadorOperacionesProximoValor.Ejecutar();
+
+                Contador contadorOperacion = comandoContadorOperacionesProximoValor.Receptor.ObjetoAlmacenado;
+
+                comandoOperacionContador = FabricaComandosContador.ObtenerComandoInsertarOModificar(contadorOperacion);
+                operacion.Id = contadorOperacion.ProximoValor++;
+
                 ComandoBase<bool> comando = FabricaComandosOperacion.ObtenerComandoInsertarOModificar(operacion);
                 comando.Ejecutar();
                 exitoso = comando.Receptor.ObjetoAlmacenado;
+
+                if (exitoso)
+                    comandoOperacionContador.Ejecutar();
 
                 #region trace
                 if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
@@ -231,6 +244,47 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
                 logger.Error(ex.Message);
                 throw ex;
             }
+            return retorno;
+        }
+
+        public static IList<Operacion> ConsultarOperacionesFiltro(Operacion operacion)
+        {
+            IList<Operacion> retorno;
+
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                ComandoBase<IList<Operacion>> comando = FabricaComandosOperacion.ObtenerComandoConsultarOperacionesFiltro(operacion);
+                comando.Ejecutar();
+                retorno = comando.Receptor.ObjetoAlmacenado;
+
+                ComandoBase<Marca> comandoConsultarMarca = null;
+
+                foreach (Operacion operacionConMyP in retorno)
+                {
+                    if (operacion.Aplicada.Equals('M'))
+                    {
+                        comandoConsultarMarca = FabricaComandosMarca.ObtenerComandoConsultarPorId(operacionConMyP.CodigoAplicada);
+                        comandoConsultarMarca.Ejecutar();
+                        operacionConMyP.Marca = comandoConsultarMarca.Receptor.ObjetoAlmacenado;
+                    }
+                }
+
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Saliendo del Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (ApplicationException ex)
+            {
+                logger.Error(ex.Message);
+                throw ex;
+            }
+
             return retorno;
         }
     }

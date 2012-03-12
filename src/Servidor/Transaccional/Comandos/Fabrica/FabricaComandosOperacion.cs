@@ -84,6 +84,16 @@ namespace Trascend.Bolet.Comandos.Fabrica
         {
             return new ComandoConsultarOperacionesPorMarcaYServicio(operacion);
         }
+
+        /// <summary>
+        /// Metodo que obtiene el comando ConsultarOperacionesFiltro
+        /// </summary>
+        /// <param name="operacion">Operacion a consultar</param>
+        /// <returns>Lista de operaciones que cumplan con el filtro</returns>         
+        public static ComandoBase<IList<Operacion>> ObtenerComandoConsultarOperacionesFiltro(Operacion operacion)
+        {
+            return new ComandoConsultarOperacionesFiltro(operacion);
+        }
     }
     
 }

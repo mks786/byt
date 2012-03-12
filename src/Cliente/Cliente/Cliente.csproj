@@ -86,6 +86,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Ayuda\SortAdorner.cs" />
+    <Compile Include="Contratos\Abandonos\IConsultarAbandonos.cs" />
+    <Compile Include="Contratos\Abandonos\IGestionarAbandono.cs" />
     <Compile Include="Contratos\Agentes\IAgregarAgente.cs" />
     <Compile Include="Contratos\Agentes\IConsultarAgente.cs" />
     <Compile Include="Contratos\Agentes\IConsultarAgentes.cs" />
@@ -208,6 +210,8 @@
     <Compile Include="Contratos\Usuarios\IConsultarUsuarios.cs" />
     <Compile Include="Contratos\IPaginaBase.cs" />
     <Compile Include="App.cs" />
+    <Compile Include="Presentadores\Abandonos\PresentadorConsultarAbandonos.cs" />
+    <Compile Include="Presentadores\Abandonos\PresentadorGestionarAbandono.cs" />
     <Compile Include="Presentadores\Agentes\PresentadorAgregarAgente.cs" />
     <Compile Include="Presentadores\Agentes\PresentadorConsultarAgente.cs" />
     <Compile Include="Presentadores\Agentes\PresentadorConsultarAgentes.cs" />
@@ -359,6 +363,12 @@
     <Compile Include="Validaciones\CorreoElectronico.cs" />
     <Compile Include="Validaciones\LongitudMaxima.cs" />
     <Compile Include="Validaciones\Obligatorio.cs" />
+    <Compile Include="Ventanas\Abandonos\ConsultarAbondonos.xaml.cs">
+      <DependentUpon>ConsultarAbondonos.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Abandonos\GestionarAbandono.xaml.cs">
+      <DependentUpon>GestionarAbandono.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Ventanas\Agentes\AgregarAgente.xaml.cs">
       <DependentUpon>AgregarAgente.xaml</DependentUpon>
     </Compile>
@@ -713,6 +723,14 @@
     <Compile Include="Ventanas\Usuarios\AgregarUsuario.xaml.cs">
       <DependentUpon>AgregarUsuario.xaml</DependentUpon>
     </Compile>
+    <Page Include="Ventanas\Abandonos\ConsultarAbondonos.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\Abandonos\GestionarAbandono.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Ventanas\Agentes\AgregarAgente.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -1235,6 +1253,7 @@
     <EmbeddedResource Include="Recursos\MensajesConElUsuario.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>MensajesConElUsuario.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Recursos\MensajesValidaciones.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

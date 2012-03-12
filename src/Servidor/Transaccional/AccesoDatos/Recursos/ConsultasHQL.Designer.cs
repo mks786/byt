@@ -169,6 +169,15 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Select o from Operacion o left join fetch o.Interesado as interesado left join fetch o.Asociado as asociado left join fetch o.Boletin as boletin left join fetch o.Servicio as servicio where .
+        /// </summary>
+        public static string CabeceraObtenerOperacion {
+            get {
+                return ResourceManager.GetString("CabeceraObtenerOperacion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Select p from Poder p left join fetch p.Boletin as boletin left join fetch p.Interesado as interesado where .
         /// </summary>
         public static string CabeceraObtenerPoder {
@@ -498,6 +507,51 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         public static string FiltroObtenerMarcaIdInteresado {
             get {
                 return ResourceManager.GetString("FiltroObtenerMarcaIdInteresado", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a o.Fecha between &apos;{0}&apos; and &apos;{1}&apos;.
+        /// </summary>
+        public static string FiltroObtenerOperacionFecha {
+            get {
+                return ResourceManager.GetString("FiltroObtenerOperacionFecha", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a o.Id = {0}.
+        /// </summary>
+        public static string FiltroObtenerOperacionId {
+            get {
+                return ResourceManager.GetString("FiltroObtenerOperacionId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a o.CodigoAplicada = {0}.
+        /// </summary>
+        public static string FiltroObtenerOperacionIdMarca {
+            get {
+                return ResourceManager.GetString("FiltroObtenerOperacionIdMarca", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a o.Aplicada = &apos;{0}&apos;.
+        /// </summary>
+        public static string FiltroObtenerOperacionMarca {
+            get {
+                return ResourceManager.GetString("FiltroObtenerOperacionMarca", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a servicio.Id = &apos;{0}&apos;.
+        /// </summary>
+        public static string FiltroObtenerOperacionServicio {
+            get {
+                return ResourceManager.GetString("FiltroObtenerOperacionServicio", resourceCulture);
             }
         }
         

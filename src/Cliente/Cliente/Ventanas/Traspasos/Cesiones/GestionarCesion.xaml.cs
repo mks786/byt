@@ -345,6 +345,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Cesiones
             get { return this._cbxBoletin.SelectedItem; }
             set { this._cbxBoletin.SelectedItem = value; }
         }
+
         public string NombreCesionario
         {
             set { this._txtNombreCesionario.Text = value; }

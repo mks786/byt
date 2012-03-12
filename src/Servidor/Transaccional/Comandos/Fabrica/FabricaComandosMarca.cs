@@ -55,5 +55,15 @@ namespace Trascend.Bolet.Comandos.Fabrica
         {
             return new ComandoConsultarMarcaConTodo(marca);
         }
+
+        /// <summary>
+        /// Método que devuelve el ComandoConsultarPorId
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>ComandoConsultarPorId</returns>
+        public static ComandoBase<Marca> ObtenerComandoConsultarPorId(int id)
+        {
+            return new ComandoConsultarMarcaPorId(id);
+        }
     }
 }

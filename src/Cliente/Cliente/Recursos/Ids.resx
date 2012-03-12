@@ -219,6 +219,9 @@
   <data name="Categoria" xml:space="preserve">
     <value>COR_TENTRADA</value>
   </data>
+  <data name="ConsultarAbandonos" xml:space="preserve">
+    <value>MYPMABAM</value>
+  </data>
   <data name="ConsultarAgente" xml:space="preserve">
     <value>MYPTAGENTE</value>
   </data>
@@ -482,6 +485,9 @@
   </data>
   <data name="Estatus" xml:space="preserve">
     <value>MYP_TESTADOS</value>
+  </data>
+  <data name="GestionarAbandono" xml:space="preserve">
+    <value>MYPMABAM</value>
   </data>
   <data name="GestionarCambioDeDomicilio" xml:space="preserve">
     <value>MYPMDOMM</value>

@@ -6,6 +6,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using NLog;
 using Trascend.Bolet.Cliente.Contratos.Principales;
+using Trascend.Bolet.Cliente.Ventanas.Abandonos;
 using Trascend.Bolet.Cliente.Ventanas.Agentes;
 using Trascend.Bolet.Cliente.Ventanas.Anexos;
 using Trascend.Bolet.Cliente.Ventanas.Categorias;
@@ -528,14 +529,14 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
         /// </summary>
         public void ConsultarAbandonos()
         {
-            //this._ventana.Contenedor.Navigate(ventana*);
+            this._ventana.Contenedor.Navigate(new ConsultarAbandonos());
         }
         /// <summary>
         /// Método que coloca la página "Gestionar Licencias" en el Frame principal
         /// </summary>
         public void GestionarAbandonos()
         {
-            //this._ventana.Contenedor.Navigate(ventana*);
+            this._ventana.Contenedor.Navigate(new GestionarAbandono(null));
         }
 
         /// <summary>

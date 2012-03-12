@@ -130,5 +130,29 @@ namespace Trascend.Bolet.Servicios.Implementacion
                 logger.Debug("Saliendo del Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
         }
+
+        /// <summary>
+        /// Servicio que consulta una serie de Operaciones por uno o mas parametros
+        /// </summary>
+        /// <param name="operacion">Operacion que contiene los parametros de la consulta</param>
+        /// <returns>operaciones filtradas</returns>
+        public IList<Operacion> ObtenerOperacionFiltro(Operacion operacion)
+        {
+            #region trace
+            if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+            IList<Operacion> operaciones;
+
+            operaciones = ControladorOperacion.ConsultarOperacionesFiltro(operacion);
+
+            return operaciones;
+
+            #region trace
+            if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                logger.Debug("Saliendo del Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+        }
     }
 }

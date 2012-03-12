@@ -415,4 +415,28 @@
     <value>marca.Id = {0}</value>
     <comment>Filtro por marca</comment>
   </data>
+  <data name="CabeceraObtenerOperacion" xml:space="preserve">
+    <value>Select o from Operacion o left join fetch o.Interesado as interesado left join fetch o.Asociado as asociado left join fetch o.Boletin as boletin left join fetch o.Servicio as servicio where </value>
+    <comment>Cabecera del query para el filtro de operacion</comment>
+  </data>
+  <data name="FiltroObtenerOperacionFecha" xml:space="preserve">
+    <value>o.Fecha between '{0}' and '{1}'</value>
+    <comment>Filtro por Fecha</comment>
+  </data>
+  <data name="FiltroObtenerOperacionId" xml:space="preserve">
+    <value>o.Id = {0}</value>
+    <comment>Filtro por Id</comment>
+  </data>
+  <data name="FiltroObtenerOperacionIdMarca" xml:space="preserve">
+    <value>o.CodigoAplicada = {0}</value>
+    <comment>Filtro por Marca</comment>
+  </data>
+  <data name="FiltroObtenerOperacionMarca" xml:space="preserve">
+    <value>o.Aplicada = '{0}'</value>
+    <comment>Filtro por Aplicada</comment>
+  </data>
+  <data name="FiltroObtenerOperacionServicio" xml:space="preserve">
+    <value>servicio.Id = '{0}'</value>
+    <comment>Filtro por Servicio</comment>
+  </data>
 </root>

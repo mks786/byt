@@ -1778,6 +1778,21 @@ de Gracia</value>
   <data name="btnVanDir" xml:space="preserve">
     <value>(VAN / DIR)</value>
   </data>
+  <data name="titleAgregarAbandono" xml:space="preserve">
+    <value>Agregar Abandono de Marcas</value>
+  </data>
+  <data name="titleGestionarAbandono" xml:space="preserve">
+    <value>Gestionar Abandono de Marcas</value>
+  </data>
+  <data name="lblAbandono" xml:space="preserve">
+    <value>Abandono:</value>
+  </data>
+  <data name="titleConsultarAbandonos" xml:space="preserve">
+    <value>Consultar Abandonos de Marcas</value>
+  </data>
+  <data name="lsvFechaOperacion" xml:space="preserve">
+    <value>Fecha Operación</value>
+  </data>
   <data name="cbiCateroriaMarcaTercero" xml:space="preserve">
     <value>MARCATERCERO</value>
   </data>

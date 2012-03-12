@@ -636,6 +636,12 @@
   <data name="ConfirmacionEliminarTipoBase" xml:space="preserve">
     <value>¿Seguro que desea elimar este Tipo de Base?</value>
   </data>
+  <data name="AbandonoEliminado" xml:space="preserve">
+    <value>Abandono eliminado con éxito</value>
+  </data>
+  <data name="AbandonoInsertado" xml:space="preserve">
+    <value>Abandono insertado con éxito</value>
+  </data>
   <data name="MarcaTerceroEliminado" xml:space="preserve">
     <value>Marca Tercero Eliminado con éxito</value>
   </data>
@@ -647,5 +653,8 @@
   </data>
   <data name="ConfirmacionDuplicarMarcaTercero" xml:space="preserve">
     <value>¿Seguro que desea duplicar la Marca Tercera?</value>
+  </data>
+  <data name="ConfirmacionEliminarAbandono" xml:space="preserve">
+    <value>¿Seguro que desea eliminar el abandono?</value>
   </data>
 </root>
