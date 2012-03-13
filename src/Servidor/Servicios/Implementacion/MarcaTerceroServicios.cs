@@ -106,5 +106,50 @@ namespace Trascend.Bolet.Servicios.Implementacion
 
             return exitoso;
         }
+
+        IList<MarcaTercero> IMarcaTerceroServicios.ObtenerMarcaTerceroFiltro(MarcaTercero MarcaTercero)
+        {
+            IList<MarcaTercero> marcas;
+
+            marcas = ControladorMarcaTercero.ConsultarMarcasTerceroFiltro(MarcaTercero);
+
+            return marcas;
+        }
+
+        IList<MarcaTercero> IServicioBase<MarcaTercero>.ConsultarTodos()
+        {
+            throw new NotImplementedException();
+        }
+
+        MarcaTercero IServicioBase<MarcaTercero>.ConsultarPorId(MarcaTercero entidad)
+        {
+            throw new NotImplementedException();
+        }
+
+        bool IServicioBase<MarcaTercero>.InsertarOModificar(MarcaTercero entidad, int hash)
+        {
+            throw new NotImplementedException();
+        }
+
+        bool IServicioBase<MarcaTercero>.Eliminar(MarcaTercero entidad, int hash)
+        {
+            throw new NotImplementedException();
+        }
+
+        bool IServicioBase<MarcaTercero>.VerificarExistencia(MarcaTercero entidad)
+        {
+            throw new NotImplementedException();
+        }
+
+
+        IList<Auditoria> IMarcaTerceroServicios.AuditoriaPorFkyTabla(Auditoria auditoria)
+        {
+            throw new NotImplementedException();
+        }
+
+        MarcaTercero IMarcaTerceroServicios.ConsultarMarcaConTodo(MarcaTercero marcaTercero)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

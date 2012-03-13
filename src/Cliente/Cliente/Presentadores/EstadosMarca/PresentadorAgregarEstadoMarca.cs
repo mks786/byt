@@ -34,7 +34,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.EstadosMarca
                 this._ventana = ventana;
                 this._estadoMarcaServicios = (IEstadoMarcaServicios)Activator.GetObject(typeof(IEstadoMarcaServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["EstadoMarcaServicios"]);
-                this._ventana.EstadoMarca = new Anexo();
+                this._ventana.EstadoMarca = new EstadoMarca();
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))

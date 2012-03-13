@@ -55,5 +55,10 @@ namespace Trascend.Bolet.Comandos.Fabrica
         {
             return new ComandoVerificarExistenciaMarcaTercero(marcaTercero);
         }
+
+        public static ComandoBase<IList<MarcaTercero>> ObtenerComandoConsultarMarcasTerceroFiltro(MarcaTercero marcaTercero)
+        {
+            return new ComandoConsultarMarcasTerceroFiltro(marcaTercero);
+        }
     }
 }

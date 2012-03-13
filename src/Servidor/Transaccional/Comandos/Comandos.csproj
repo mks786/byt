@@ -102,6 +102,7 @@
     <Compile Include="Comandos\ComandosInteresado\ComandoEliminarInteresado.cs" />
     <Compile Include="Comandos\ComandosInteresado\ComandoInsertarOModificarInteresado.cs" />
     <Compile Include="Comandos\ComandosLicencia\ComandoConsultarLicenciasFiltro.cs" />
+    <Compile Include="Comandos\ComandosMarcaTercero\ComandoConsultarMarcasTerceroFiltro.cs" />
     <Compile Include="Comandos\ComandosMarca\ComandoConsultarMarcaConTodo.cs" />
     <Compile Include="Comandos\ComandosMarca\ComandoConsultarMarcasFiltro.cs" />
     <Compile Include="Comandos\ComandosMarca\ComandoConsultarMarcaPorId.cs" />

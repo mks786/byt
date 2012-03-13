@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Configuration;
+using System.Linq;
+using System.Text;
 using NLog;
+using Trascend.Bolet.ObjetosComunes.Entidades;
+using System.Configuration;
 using Trascend.Bolet.Comandos.Comandos;
 using Trascend.Bolet.Comandos.Fabrica;
-using Trascend.Bolet.ObjetosComunes.Entidades;
 
 namespace Trascend.Bolet.LogicaNegocio.Controladores
 {
@@ -109,7 +111,7 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
             }
             return retorno;
         }
-
+        
         /// <summary>
         /// Método que elimina un MarcaTercero
         /// </summary>
@@ -176,5 +178,35 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
 
             return existe;
         }
+
+        public static IList<MarcaTercero> ConsultarMarcasTerceroFiltro(MarcaTercero marcaTercero)
+        {
+            IList<MarcaTercero> retorno;
+
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                ComandoBase<IList<MarcaTercero>> comando = FabricaComandosMarcaTercero.ObtenerComandoConsultarMarcasTerceroFiltro(marcaTercero);
+                comando.Ejecutar();
+                retorno = comando.Receptor.ObjetoAlmacenado;
+
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Saliendo del Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (ApplicationException ex)
+            {
+                logger.Error(ex.Message);
+                throw ex;
+            }
+
+            return retorno;
+        }
+
     }
 }

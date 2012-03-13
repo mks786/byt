@@ -147,7 +147,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
                 if (!this._ventana.Id.Equals(""))
                 {
                     filtroValido = 2;
-                    MarcaTerceroAuxiliar.Id = ""; //int.Parse(this._ventana.Id);
+                    MarcaTerceroAuxiliar.Id = this._ventana.Id;
                 }
 
                 if ((null != this._ventana.Asociado) && (((Asociado)this._ventana.Asociado).Id != int.MinValue))
@@ -185,7 +185,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
 
                 if (filtroValido >= 2)
                 {
-                  //OJO!!  this._marcasTercero = this._marcaTerceroServicios.ObtenerMarcasTerceroFiltro(MarcaTerceroAuxiliar);
+                    this._marcasTercero = this._marcaTerceroServicios.ObtenerMarcaTerceroFiltro(MarcaTerceroAuxiliar);
 
                     IList<MarcaTercero> marcasTerceroDesinfladas = new List<MarcaTercero>();
 

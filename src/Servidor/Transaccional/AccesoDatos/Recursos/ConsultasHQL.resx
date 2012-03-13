@@ -415,6 +415,30 @@
     <value>marca.Id = {0}</value>
     <comment>Filtro por marca</comment>
   </data>
+  <data name="CabeceraObtenerMarcaTercero" xml:space="preserve">
+    <value>Select m from MarcaTercero m left join fetch m.Asociado as asociado left join fetch m.Corresponsal as corresponsal left join fetch m.Interesado as interesado where </value>
+    <comment>Cabecera del query para el filtro de marcaTercero</comment>
+  </data>
+  <data name="FiltroObtenerMarcaTerceroAsociadoId" xml:space="preserve">
+    <value>asociado.Id = {0}</value>
+    <comment>filtro por asociado</comment>
+  </data>
+  <data name="FiltroObtenerMarcaTerceroFechas" xml:space="preserve">
+    <value>m.FechaPublicacion between '{0}' and '{1}'</value>
+    <comment>Filtro por Fechas</comment>
+  </data>
+  <data name="FiltroObtenerMarcaTerceroFichas" xml:space="preserve">
+    <value>upper(m.Fichas) like '%{0}%'</value>
+    <comment>Filtro por fichas</comment>
+  </data>
+  <data name="FiltroObtenerMarcaTerceroId" xml:space="preserve">
+    <value>m.Id = {0}</value>
+    <comment>filtro por id</comment>
+  </data>
+  <data name="FiltroObtenerMarcaTerceroInteresadoId" xml:space="preserve">
+    <value>interesado.Id = {0}</value>
+    <comment>Filtro por interesado</comment>
+  </data>
   <data name="CabeceraObtenerOperacion" xml:space="preserve">
     <value>Select o from Operacion o left join fetch o.Interesado as interesado left join fetch o.Asociado as asociado left join fetch o.Boletin as boletin left join fetch o.Servicio as servicio where </value>
     <comment>Cabecera del query para el filtro de operacion</comment>

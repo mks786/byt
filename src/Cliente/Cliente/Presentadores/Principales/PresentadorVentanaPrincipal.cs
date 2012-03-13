@@ -544,7 +544,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
         /// </summary>
         public void ConsultarMarcaATerceros()
         {
-            this._ventana.Contenedor.Navigate(new AgregarMarcaTercero(null));
+            this._ventana.Contenedor.Navigate(new ConsultarMarcasTercero());
         }
 
         /// <summary>
@@ -552,7 +552,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
         /// </summary>
         public void GestionarMarcaATercero()
         {
-            this._ventana.Contenedor.Navigate(new ConsultarMarcasTercero());
+            this._ventana.Contenedor.Navigate(new AgregarMarcaTercero(null));
         }
 
         /// <summary>
