@@ -708,8 +708,11 @@
                                 <TextBlock Name="_txbLFM02Venen" Text="{x:Static recurso:Etiquetas.btnLFM02Venen}"/>
                             </Button>
                             <Button IsEnabled="False" Name="_btnLAnexoFM02" Height="25" Width="100" Margin="8,0,0,0" Click="_impresion_Click">
-                                <TextBlock Name="_txbLAnexoFM02" Text="{x:Static recurso:Etiquetas.btnLAnexoFM02}"/></Button>
-                            <Button IsEnabled="False" Name="_btnCarpeta" Height="25" Width="100" Margin="8,0,0,0">Carpeta</Button>
+                                <TextBlock Name="_txbLAnexoFM02" Text="{x:Static recurso:Etiquetas.btnLAnexoFM02}"/>
+                            </Button>
+                            <Button IsEnabled="False" Name="_btnCarpeta" Height="25" Width="100" Margin="8,0,0,0" Click="_impresion_Click">
+                                <TextBlock Name="_txbCarpeta" Text="{x:Static recurso:Etiquetas.btnCarpeta}"/>
+                            </Button>
                         </WrapPanel>
                     </Grid>
                 </TabItem>

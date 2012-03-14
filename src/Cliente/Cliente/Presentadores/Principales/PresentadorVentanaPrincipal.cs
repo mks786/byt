@@ -45,6 +45,7 @@ using Trascend.Bolet.Cliente.Ventanas.Traspasos.CambiosDeDomicilio;
 using Trascend.Bolet.Cliente.Ventanas.Traspasos.CambiosDeNombre;
 using Trascend.Bolet.Cliente.Ventanas.Traspasos.CambiosPeticionario;
 using Trascend.Bolet.Cliente.Ventanas.Renovaciones;
+using Trascend.Bolet.Cliente.Ventanas.EscritosMarca;
 
 namespace Trascend.Bolet.Cliente.Presentadores.Principales
 {
@@ -364,7 +365,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
         /// </summary>
         public void ConsultarCesiones()
         {
-            this._ventana.Contenedor.Navigate(new ConsultarCesiones());       
+            this._ventana.Contenedor.Navigate(new ConsultarCesiones());
         }
 
         /// <summary>
@@ -372,7 +373,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
         /// </summary>
         public void AgregarCesion()
         {
-            this._ventana.Contenedor.Navigate(new GestionarCesion(null));   
+            this._ventana.Contenedor.Navigate(new GestionarCesion(null));
         }
 
         /// <summary>
@@ -382,7 +383,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
         {
             this._ventana.Contenedor.Navigate(new ConsultarFusiones());
         }
-       
+
         public void AgregarFusion()
         {
             this._ventana.Contenedor.Navigate(new GestionarFusion(null));
@@ -666,6 +667,17 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
             this._ventana.Contenedor.Navigate(new AgregarCarta());
         }
 
+        public void IrEscrito(string nombreBoton)
+        {
+            switch (nombreBoton)
+            {
+                case "_menuItemLimitacionDelDistingue":
+                    this._ventana.Contenedor.Navigate(new LimitacionDelDistingue());
+                    break;
+                default:
+                    break;
+            }
+        }
 
         #endregion
 
@@ -896,6 +908,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
                                     break;
                                 case "_menuItemUsuario":
                                     if (objeto.Id.Equals(Recursos.Ids.Usuario))
+                                        itemNivel2.Visibility = System.Windows.Visibility.Visible;
+                                    break;
+                                case "_menuItemLimitacionDelDistingue":
+                                    if (objeto.Id.Equals(Recursos.Ids.Marca))
                                         itemNivel2.Visibility = System.Windows.Visibility.Visible;
                                     break;
                             }

@@ -1680,7 +1680,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeNombre
             }
             catch (ApplicationException ex)
             {
-                throw ex;
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ExcepcionPaquetes, true);
             }
         }
 

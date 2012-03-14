@@ -895,7 +895,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
 
         #endregion
 
-        #region Metodos de los filstros de corresponsales
+        #region Metodos de los filtros de corresponsales
 
         public void CambiarCorresponsalSolicitud()
         {
@@ -1078,6 +1078,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
 
         #endregion
 
+        #region Impresiones
+
         /// <summary>
         /// Método que se encarga de cargar la ventana de impresión de la Marca
         /// </summary>
@@ -1106,16 +1108,24 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                     case "_btnLAnexoFM02":
                         ImprimirAnexoFM02("Laser");
                         break;
+                    case "_btnCarpeta":
+                        ImprimirCarpeta("Normal");
+                        break;
                     default:
                         break;
                 }
             }
             catch (ApplicationException ex)
             {
-                throw ex;
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ExcepcionPaquetes, true);
             }
         }
 
+        /// <summary>
+        /// Método que se encarga de llamar al formato de impresión FM02
+        /// </summary>
+        /// <param name="modo">Láser en caso de ser Láser, o normal en caso de ser normal</param>
         private void ImprimirFM02(string modo)
         {
             if (ValidarMarcaAntesDeImprimirFM02())
@@ -1145,6 +1155,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             }
         }
 
+        /// <summary>
+        /// Método que se encarga de llamar al formato de impresión FM02Venen
+        /// </summary>
+        /// <param name="modo">Láser en caso de ser Láser, o normal en caso de ser normal</param>
         private void ImprimirFM02Venen(string modo)
         {
             if (ValidarMarcaAntesDeImprimirFM02Venen())
@@ -1175,6 +1189,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             }
         }
 
+        /// <summary>
+        /// Método que se encarga de llamar al formato de impresión AnexoFM02
+        /// </summary>
+        /// <param name="modo">Láser en caso de ser Láser, o normal en caso de ser normal</param>
         private void ImprimirAnexoFM02(string modo)
         {
             if (ValidarMarcaAntesDeImprimirAnexoFM02())
@@ -1201,6 +1219,40 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                     //planilla = this._planillaServicios.ImprimirProcedimiento(parametro);
 
                     this.LlamarProcedimientoDeBaseDeDatos(parametro, Recursos.Etiquetas.btnAnexoFM02);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Método que se encarga de llamar al formato de impresión Carpeta
+        /// </summary>
+        /// <param name="modo">Láser en caso de ser Láser, o normal en caso de ser normal</param>
+        private void ImprimirCarpeta(string modo)
+        {
+            if (ValidarMarcaAntesDeImprimirCarpeta())
+            {
+                string paqueteProcedimiento = "PCK_MYP_MARCAS";
+                string procedimiento = modo.Equals("Laser") ? "" : "P12";
+                ParametroProcedimiento parametro =
+                    new ParametroProcedimiento(((Marca)this._ventana.Marca).Id, UsuarioLogeado, 1, paqueteProcedimiento, procedimiento);
+
+                Planilla planilla = this._planillaServicios.ImprimirProcedimiento(parametro);
+                if (planilla != null)
+                {
+                    //Impresion _ventana =
+                    //    new Impresion(Recursos.Etiquetas.btnAnexoFM02, planilla.Folio.Replace("\n", Environment.NewLine));
+
+                    //_ventana.ShowDialog();
+
+                    ////Llamado al archivo .bat 
+                    ////if (_ventana.ClickImprimir)
+                    ////    this.EjecutarArchivoBAT(ConfigurationManager.AppSettings["batPrint"], 
+                    ////ConfigurationManager.AppSettings["txtPrint"]);
+
+                    //parametro.Via = 0;
+                    //planilla = this._planillaServicios.ImprimirProcedimiento(parametro);
+
+                    this.LlamarProcedimientoDeBaseDeDatos(parametro, Recursos.Etiquetas.btnCarpeta);
                 }
             }
         }
@@ -1265,5 +1317,16 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
 
             return retorno;
         }
+
+        /// <summary>
+        /// Método que realiza todas las validaciones de la Marca antes de imprimir
+        /// </summary>
+        /// <returns>true en caso de que todo este correcto, false en caso contrario</returns>
+        private bool ValidarMarcaAntesDeImprimirCarpeta()
+        {
+            return true;
+        }
+
+        #endregion
     }
 }

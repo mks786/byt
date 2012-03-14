@@ -31,6 +31,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="50"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
             <RowDefinition Height="40"/>
             <RowDefinition Height="10"/>
         </Grid.RowDefinitions>
@@ -185,7 +186,7 @@
                     </Grid>
                 </WrapPanel>
                 <Separator Margin="5,5,0,0"/>
-                <WrapPanel  Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="8"  Orientation="Horizontal" 
+                <WrapPanel  Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="8"  Orientation="Horizontal" 
                            Margin="0,5,0,0">
                     <Grid Width="640" Name="_gridDatosInteresadoAnterior" DataContext="{Binding}">
                         <Grid.ColumnDefinitions>
@@ -264,8 +265,6 @@
                             </ListView.View>
                         </ListView>
                     </Grid>
-
-
                 </WrapPanel>
                 <Separator Margin="5,5,0,0"/>
                 <WrapPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="8"  Orientation="Horizontal" 

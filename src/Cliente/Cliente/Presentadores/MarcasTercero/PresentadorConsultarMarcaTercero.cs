@@ -895,7 +895,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
 
         #endregion
 
-        #region Metodos de los filstros de corresponsales
+        #region Metodos de los filtros de corresponsales
 
         //public void CambiarCorresponsalSolicitud()
         //{

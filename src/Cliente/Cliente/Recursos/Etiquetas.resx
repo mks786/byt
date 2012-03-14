@@ -1805,4 +1805,37 @@ de Gracia</value>
   <data name="titleConsultarMarcaTercero" xml:space="preserve">
     <value>Consultar una Marca Tercero</value>
   </data>
+  <data name="menuItemEscritoCambioDeTramitante" xml:space="preserve">
+    <value>Cambio de Tramitante</value>
+  </data>
+  <data name="menuItemEscritoContinuacionDeTramite" xml:space="preserve">
+    <value>Continuación de Trámite</value>
+  </data>
+  <data name="menuItemEscritoCopiaCertificada" xml:space="preserve">
+    <value>Copia Certificada</value>
+  </data>
+  <data name="menuItemEscritoCorreccionDelDistingue" xml:space="preserve">
+    <value>Corrección del Distingue</value>
+  </data>
+  <data name="menuItemEscritoCorreccionErrorMaterialDistingue" xml:space="preserve">
+    <value>Correccion Error Material Distingue</value>
+  </data>
+  <data name="menuItemEscritoDeDesistimiento" xml:space="preserve">
+    <value>De Desistimiento</value>
+  </data>
+  <data name="menuItemEscritoErrorMaterial" xml:space="preserve">
+    <value>Error Material</value>
+  </data>
+  <data name="menuItemEscritoLimitacionDelDistingue" xml:space="preserve">
+    <value>Limitación del Distingue</value>
+  </data>
+  <data name="menuItemEscritosCertificadoDeOrigen" xml:space="preserve">
+    <value>Certificado De Origen</value>
+  </data>
+  <data name="lblMarcasAgregadasAlEscrito" xml:space="preserve">
+    <value>Marcas agregadas al escrito:</value>
+  </data>
+  <data name="titleEscritoLimitacionDelDistingue" xml:space="preserve">
+    <value>Limitación del Distingue</value>
+  </data>
 </root>

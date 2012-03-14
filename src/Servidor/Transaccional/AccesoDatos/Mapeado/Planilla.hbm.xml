@@ -10,7 +10,7 @@
 
   </class>
 
-<!--Procedimientos PCK_MYP_MARCAS//////////////////////////////////////////////////////////////////////////////////-->
+<!--Procedimientos PCK_MYP_MARCAS-->
   
   <sql-query name="PCK_MYP_MARCASP1">
 
@@ -29,6 +29,16 @@
     <query-param name="cod" type="int" />
 
     begin PCK_MYP_MARCAS.P2(:usr, :way, :cod); end;
+
+  </sql-query>
+
+  <sql-query name="PCK_MYP_MARCASP12">
+
+    <query-param name="usr" type="string" />
+    <query-param name="way" type="int" />
+    <query-param name="cod" type="int" />
+
+    begin PCK_MYP_MARCAS.P12(:usr, :way, :cod); end;
 
   </sql-query>
 
@@ -93,9 +103,9 @@
   </sql-query>
 
 
-  <!-- Fin Procedimientos PCK_MYP_MARCAS***********************************************************************************-->
+  <!-- Fin Procedimientos PCK_MYP_MARCAS-->
 
-  <!--Procedimientos PCK_MYP_MMFUSIONES//////////////////////////////////////////////////////////////////////////////////-->
+  <!--Procedimientos PCK_MYP_MMFUSIONES-->
 
   <sql-query name="PCK_MYP_MFUSIONESP1">
 
@@ -127,9 +137,9 @@
 
   </sql-query>
 
-  <!-- Fin Procedimientos PCK_MYP_MMFUSIONES***********************************************************************************-->
+  <!-- Fin Procedimientos PCK_MYP_MMFUSIONES-->
 
-  <!--Procedimientos PCK_MYP_MCESIONES//////////////////////////////////////////////////////////////////////////////////-->
+  <!--Procedimientos PCK_MYP_MCESIONES-->
 
   <sql-query name="PCK_MYP_MCESIONESP1">
 
@@ -181,10 +191,10 @@
 
   </sql-query>
 
-  <!-- Fin Procedimientos PCK_MYP_MCESIONES***********************************************************************************-->
+  <!-- Fin Procedimientos PCK_MYP_MCESIONES-->
 
 
-  <!--Procedimientos PCK_MYP_MNOMBRES//////////////////////////////////////////////////////////////////////////////////-->
+  <!--Procedimientos PCK_MYP_MNOMBRES-->
 
   <sql-query name="PCK_MYP_MNOMBRESP1">
 
@@ -236,9 +246,9 @@
 
   </sql-query>
 
-  <!-- Fin Procedimientos PCK_MYP_MNOMBRES***********************************************************************************-->
+  <!-- Fin Procedimientos PCK_MYP_MNOMBRES-->
 
-  <!--Procedimientos PCK_MYP_MDOMICILIOS//////////////////////////////////////////////////////////////////////////////////-->
+  <!--Procedimientos PCK_MYP_MDOMICILIOS-->
 
   <sql-query name="PCK_MYP_MDOMICILIOSP1">
 
@@ -300,9 +310,9 @@
 
   </sql-query>
 
-  <!-- Fin Procedimientos PCK_MYP_MDOMICILIOS***********************************************************************************-->
+  <!-- Fin Procedimientos PCK_MYP_MDOMICILIOS-->
 
-  <!--Procedimientos PCK_MYP_MLICENCIAS//////////////////////////////////////////////////////////////////////////////////-->
+  <!--Procedimientos PCK_MYP_MLICENCIAS-->
 
   <sql-query name="PCK_MYP_MLICENCIASP1">
 
@@ -354,7 +364,7 @@
 
   </sql-query>
 
-  <!-- Fin Procedimientos PCK_MYP_MLICENCIAS***********************************************************************************-->
+  <!-- Fin Procedimientos PCK_MYP_MLICENCIAS-->
 
   <sql-query name="ProcedimientoPID">
     <return-scalar column="p" type="int"/>
@@ -364,6 +374,3 @@
   </sql-query>
 
 </hibernate-mapping>
-
-
-

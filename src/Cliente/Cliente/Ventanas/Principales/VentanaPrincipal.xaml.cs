@@ -467,6 +467,15 @@ namespace Trascend.Bolet.Cliente.Ventanas.Principales
         }
         #endregion
 
+        #region Escritos
+
+        private void _menuItemEscritos_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.IrEscrito(((MenuItem)sender).Name);
+        }
+
+        #endregion
+
         #endregion
 
         #region Eventos de la ventana
@@ -501,6 +510,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Principales
         }
 
         #endregion   
+
 
 
     }

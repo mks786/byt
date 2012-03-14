@@ -81,7 +81,7 @@ namespace Trascend.Bolet.Cliente.Presentadores
         /// la página principal
         /// </summary>
         public void Regresar()
-        {            
+        {
             if (_ventanaPrincipal.Contenedor.CanGoBack)
                 _ventanaPrincipal.Contenedor.GoBack();
             else
@@ -147,7 +147,7 @@ namespace Trascend.Bolet.Cliente.Presentadores
 
             return retorno;
         }
-        
+
         /// <summary>
         /// Método que busca un Departamento dentro de una lista de usuarios
         /// </summary>
@@ -240,7 +240,7 @@ namespace Trascend.Bolet.Cliente.Presentadores
 
             return retorno;
         }
-        
+
         /// <summary>
         /// Método que busca un Asociado dentro de una lista de Asociados
         /// </summary>
@@ -924,7 +924,7 @@ namespace Trascend.Bolet.Cliente.Presentadores
         public string BuscarDepartamentoContacto(string departamentoBuscado)
         {
             string retorno = "NGN";
-            switch (departamentoBuscado) 
+            switch (departamentoBuscado)
             {
                 case "LEG":
                     retorno = Recursos.Etiquetas.cbiLegal;
@@ -1212,9 +1212,41 @@ namespace Trascend.Bolet.Cliente.Presentadores
             }
         }
 
+        /// <summary>
+        /// Metodo que recibe el nombre del archivo .bat a ejecutar
+        /// </summary>
+        /// <param name="nombreArchivo">nombre del archivo a ejecutar</param>
+        public void EjecutarArchivoBAT(string nombreArchivoBat, string parametroA, string parametroB)
+        {
+
+            try
+            {
+                System.Diagnostics.Process proc = new System.Diagnostics.Process(); // Declare New Process
+                proc.StartInfo.FileName = nombreArchivoBat;
+                proc.StartInfo.RedirectStandardError = true;
+                proc.StartInfo.RedirectStandardOutput = true;
+                proc.StartInfo.UseShellExecute = false;
+                proc.StartInfo.Arguments = parametroA + " " + parametroB;
+
+                proc.Start();
+
+                proc.WaitForExit(2000);
+
+                string errorMessage = proc.StandardError.ReadToEnd();
+                proc.WaitForExit();
+
+                string outputMessage = proc.StandardOutput.ReadToEnd();
+                proc.WaitForExit();
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException();
+            }
+        }
+
         public void LlamarProcedimientoDeBaseDeDatos(ParametroProcedimiento parametro, string tituloVentana)
         {
-            try 
+            try
             {
                 Planilla planilla = this._planillaServicios.ImprimirProcedimiento(parametro);
                 if (planilla != null)
@@ -1237,6 +1269,29 @@ namespace Trascend.Bolet.Cliente.Presentadores
             {
                 throw new ApplicationException();
             }
+        }
+
+        /// <summary>
+        /// Método que arma el string en el formato necesario para llamar a los .BAT de los escritos
+        /// </summary>
+        /// <param name="listaMarcas">Lista de marcas a traducir</param>
+        /// <returns>el string en el formato correcto</returns>
+        public string ArmarStringParametroMarcas(IList<Marca> listaMarcas)
+        {
+            string retorno = "";
+
+            try
+            {
+                foreach (Marca marca in listaMarcas)
+                {
+                    retorno = retorno + marca.Id + "_";
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException();
+            }
+            return retorno.Substring(0, retorno.Length - 1);
         }
     }
 }

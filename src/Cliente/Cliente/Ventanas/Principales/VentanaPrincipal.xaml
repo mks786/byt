@@ -48,8 +48,10 @@
                     <MenuItem Name="_menuItemAbandonoConsultar" Header="{x:Static resx:Etiquetas.menuItemConsultar}" Click="_menuItemAbandonoConsultar_Click"/>
                     <MenuItem Name="_menuItemAbandonoGestionar" Header="{x:Static resx:Etiquetas.menuItemAgregar}" Click="_menuItemAbandonoGestionar_Click"/>
                 </MenuItem>
-                <MenuItem Name="_menuItemEscritos" Visibility="Collapsed" Header="{x:Static resx:Etiquetas.menuItemEscritos}"></MenuItem>
-                <MenuItem Name="_menuItemTraspasos" Visibility="Collapsed" Header="{x:Static resx:Etiquetas.menuItemTraspasos}">
+                <MenuItem Name="_menuItemEscritos" Visibility="Collapsed" Header="{x:Static resx:Etiquetas.menuItemEscritos}">
+                    <MenuItem Name="_menuItemLimitacionDelDistingue" Header="{x:Static resx:Etiquetas.menuItemEscritoLimitacionDelDistingue}" Click="_menuItemEscritos_Click"/>
+                </MenuItem>
+                <MenuItem Name="_menuItemTraspasos" Visibility="Collapsed" Header="{x:Static resx:Etiquetas.menuItemTraspasos}" BorderBrush="Gray">
                     <MenuItem Name="_menuItemCesiones" Header="{x:Static resx:Etiquetas.menuItemCesiones}">
                         <MenuItem Name="_menuItemCesionesConsultar" Header="{x:Static resx:Etiquetas.menuItemConsultar}" Click="_menuItemCesionesConsultar_Click"/>
                         <MenuItem Name="_menuItemCesionesAgregar" Header="{x:Static resx:Etiquetas.menuItemAgregar}" Click="_menuItemCesionAgregar_Click"/>
