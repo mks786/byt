@@ -416,7 +416,7 @@
     <comment>Filtro por marca</comment>
   </data>
   <data name="CabeceraObtenerMarcaTercero" xml:space="preserve">
-    <value>Select m from MarcaTercero m left join fetch m.Asociado as asociado left join fetch m.Corresponsal as corresponsal left join fetch m.Interesado as interesado where </value>
+    <value>Select m from MarcaTercero m left join fetch m.Asociado as asociado left join fetch m.Interesado as interesado where </value>
     <comment>Cabecera del query para el filtro de marcaTercero</comment>
   </data>
   <data name="FiltroObtenerMarcaTerceroAsociadoId" xml:space="preserve">

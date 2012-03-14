@@ -540,7 +540,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
         }
 
         /// <summary>
-        /// Método que coloca la página "Gestionar Licencias" en el Frame principal
+        /// Método que coloca la página "Gestionar MarcaTercero" en el Frame principal
         /// </summary>
         public void ConsultarMarcaATerceros()
         {
@@ -548,7 +548,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
         }
 
         /// <summary>
-        /// Método que coloca la página "Gestionar Licencias" en el Frame principal
+        /// Método que coloca la página "Gestionar Marca Tercero" en el Frame principal
         /// </summary>
         public void GestionarMarcaATercero()
         {

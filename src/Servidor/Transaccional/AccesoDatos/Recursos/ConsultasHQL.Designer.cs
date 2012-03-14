@@ -169,21 +169,20 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Select m from MarcaTercero m left join fetch m.Asociado as asociado left join fetch m.Corresponsal as corresponsal left join fetch m.Interesado as interesado where .
-        ///   Busca una cadena traducida similar a Select o from Operacion o left join fetch o.Interesado as interesado left join fetch o.Asociado as asociado left join fetch o.Boletin as boletin left join fetch o.Servicio as servicio where .
-        /// </summary>
-        public static string CabeceraObtenerOperacion {
-            get {
-                return ResourceManager.GetString("CabeceraObtenerOperacion", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Busca una cadena traducida similar a Select p from Poder p left join fetch p.Boletin as boletin left join fetch p.Interesado as interesado where .
+        ///   Looks up a localized string similar to Select m from MarcaTercero m left join fetch m.Asociado as asociado left join fetch m.Interesado as interesado where .
         /// </summary>
         public static string CabeceraObtenerMarcaTercero {
             get {
                 return ResourceManager.GetString("CabeceraObtenerMarcaTercero", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select o from Operacion o left join fetch o.Interesado as interesado left join fetch o.Asociado as asociado left join fetch o.Boletin as boletin left join fetch o.Servicio as servicio where .
+        /// </summary>
+        public static string CabeceraObtenerOperacion {
+            get {
+                return ResourceManager.GetString("CabeceraObtenerOperacion", resourceCulture);
             }
         }
         
@@ -522,52 +521,6 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         
         /// <summary>
         ///   Looks up a localized string similar to asociado.Id = {0}.
-        ///   Busca una cadena traducida similar a o.Fecha between &apos;{0}&apos; and &apos;{1}&apos;.
-        /// </summary>
-        public static string FiltroObtenerOperacionFecha {
-            get {
-                return ResourceManager.GetString("FiltroObtenerOperacionFecha", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Busca una cadena traducida similar a o.Id = {0}.
-        /// </summary>
-        public static string FiltroObtenerOperacionId {
-            get {
-                return ResourceManager.GetString("FiltroObtenerOperacionId", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Busca una cadena traducida similar a o.CodigoAplicada = {0}.
-        /// </summary>
-        public static string FiltroObtenerOperacionIdMarca {
-            get {
-                return ResourceManager.GetString("FiltroObtenerOperacionIdMarca", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Busca una cadena traducida similar a o.Aplicada = &apos;{0}&apos;.
-        /// </summary>
-        public static string FiltroObtenerOperacionMarca {
-            get {
-                return ResourceManager.GetString("FiltroObtenerOperacionMarca", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Busca una cadena traducida similar a servicio.Id = &apos;{0}&apos;.
-        /// </summary>
-        public static string FiltroObtenerOperacionServicio {
-            get {
-                return ResourceManager.GetString("FiltroObtenerOperacionServicio", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Busca una cadena traducida similar a p.Fecha between &apos;{0}&apos; and &apos;{1}&apos;.
         /// </summary>
         public static string FiltroObtenerMarcaTerceroAsociadoId {
             get {
@@ -608,6 +561,51 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         public static string FiltroObtenerMarcaTerceroInteresadoId {
             get {
                 return ResourceManager.GetString("FiltroObtenerMarcaTerceroInteresadoId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to o.Fecha between &apos;{0}&apos; and &apos;{1}&apos;.
+        /// </summary>
+        public static string FiltroObtenerOperacionFecha {
+            get {
+                return ResourceManager.GetString("FiltroObtenerOperacionFecha", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to o.Id = {0}.
+        /// </summary>
+        public static string FiltroObtenerOperacionId {
+            get {
+                return ResourceManager.GetString("FiltroObtenerOperacionId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to o.CodigoAplicada = {0}.
+        /// </summary>
+        public static string FiltroObtenerOperacionIdMarca {
+            get {
+                return ResourceManager.GetString("FiltroObtenerOperacionIdMarca", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to o.Aplicada = &apos;{0}&apos;.
+        /// </summary>
+        public static string FiltroObtenerOperacionMarca {
+            get {
+                return ResourceManager.GetString("FiltroObtenerOperacionMarca", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to servicio.Id = &apos;{0}&apos;.
+        /// </summary>
+        public static string FiltroObtenerOperacionServicio {
+            get {
+                return ResourceManager.GetString("FiltroObtenerOperacionServicio", resourceCulture);
             }
         }
         

@@ -23,8 +23,6 @@
     <property name="FechaConcesion" column="FCONCESION" type="DateTime"/>
     <property name="CodigoRegistro" column="CREGISTRO" type="string"/>
     <property name="FechaRegistro" column="FREGISTRO" type="DateTime"/>
-    <property name="IPoder" column="IPODER" type="string"/>
-    <property name="Fascimiles" column="IFASCIMILES" type="string"/>
     <property name="Etiqueta" column="IETIQUETA" type="string"/>
     <property name="Traduccion" column="ITRADUCCION" type="char"/>
     <property name="Fichas" column="IFICHAS" type="string"/>
@@ -40,7 +38,6 @@
     <property name="Observacion" column="XOBSERVACION" type="string"/>
     <property name="Distingue" column="XDISTINGUE" type="string"/>
     <property name="NumeroCondiciones" column="NCONDI" type="int"/>
-
     <property name="Rev" column="IREV" type="char"/>
 
 
@@ -80,6 +77,7 @@
       <column name="TESTADO"/>
     </many-to-one>
 
+    
     <many-to-one name="Poder" class="Poder" lazy="false">
       <column name="CPODER"/>
     </many-to-one>

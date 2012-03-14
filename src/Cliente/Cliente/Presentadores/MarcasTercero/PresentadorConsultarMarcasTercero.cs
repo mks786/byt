@@ -147,6 +147,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
                 if (!this._ventana.Id.Equals(""))
                 {
                     filtroValido = 2;
+                    MarcaTerceroAuxiliar.Id = this._ventana.Id; //int.Parse(this._ventana.Id);
                     MarcaTerceroAuxiliar.Id = this._ventana.Id;
                 }
 

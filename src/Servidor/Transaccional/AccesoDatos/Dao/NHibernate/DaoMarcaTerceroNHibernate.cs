@@ -18,9 +18,9 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
             bool variosFiltros = false;
             string filtro = "";
             string cabecera = string.Format(Recursos.ConsultasHQL.CabeceraObtenerMarcaTercero);
-            if ((null != marcaTercero) && (marcaTercero.Id != ""))
+            if ((null != marcaTercero) && (marcaTercero.Id != null))
             {
-                filtro = string.Format(Recursos.ConsultasHQL.FiltroObtenerMarcaTerceroId, marcaTercero.Id);
+                filtro = string.Format(Recursos.ConsultasHQL.FiltroObtenerMarcaTerceroId, "'" +marcaTercero.Id+ "'");
                 variosFiltros = true;
             }
             if ((null != marcaTercero.Asociado) && (!marcaTercero.Asociado.Id.Equals("")))
