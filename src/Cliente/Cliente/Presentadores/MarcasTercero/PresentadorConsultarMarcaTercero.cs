@@ -228,8 +228,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
                 this._ventana.NombreAsociadoDatos = marcaTercero.Asociado != null ? marcaTercero.Asociado.Nombre : "";
                 this._ventana.NombreAsociadoSolicitud = marcaTercero.Asociado != null ? marcaTercero.Asociado.Nombre : "";
 
-                this._ventana.DescripcionCorresponsalSolicitud = marcaTercero.Corresponsal != null ? marcaTercero.Corresponsal.Descripcion : "";
-                this._ventana.DescripcionCorresponsalDatos = marcaTercero.Corresponsal != null ? marcaTercero.Corresponsal.Descripcion : "";
+                //this._ventana.DescripcionCorresponsalSolicitud = marcaTercero.Corresponsal != null ? marcaTercero.Corresponsal.Descripcion : "";
+                //this._ventana.DescripcionCorresponsalDatos = marcaTercero.Corresponsal != null ? marcaTercero.Corresponsal.Descripcion : "";
 
                 this._ventana.NumPoderDatos = marcaTercero.Poder != null ? marcaTercero.Poder.NumPoder : "";
                 this._ventana.NumPoderSolicitud = marcaTercero.Poder != null ? marcaTercero.Poder.NumPoder : "";
@@ -255,8 +255,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
                 auditoria.Tabla = "MYP_MARCAS_TER";
               // OJO!!  this._auditorias = this._marcaTerceroServicios.AuditoriaPorFkyTabla(auditoria);
 
-                if (null != marcaTercero.InfoAdicional && !string.IsNullOrEmpty(marcaTercero.InfoAdicional.Id))
-                    this._ventana.PintarInfoAdicional();
+                //if (null != marcaTercero.InfoAdicional && !string.IsNullOrEmpty(marcaTercero.InfoAdicional.Id))
+                //    this._ventana.PintarInfoAdicional();
 
                 if (null != marcaTercero.Anaqua)
                     this._ventana.PintarAnaqua();
@@ -339,8 +339,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
             if (null != this._ventana.StatusWeb)
                 marcaTercero.StatusWeb = ((StatusWeb)this._ventana.StatusWeb).Id.Equals("NGN") ? ((StatusWeb)this._ventana.StatusWeb) : null;
 
-            if (null != this._ventana.CorresponsalSolicitud)
-                marcaTercero.Corresponsal = ((Corresponsal)this._ventana.CorresponsalSolicitud).Id != int.MinValue ? ((Corresponsal)this._ventana.CorresponsalSolicitud) : null;
+            //if (null != this._ventana.CorresponsalSolicitud)
+            //    marcaTercero.Corresponsal = ((Corresponsal)this._ventana.CorresponsalSolicitud).Id != int.MinValue ? ((Corresponsal)this._ventana.CorresponsalSolicitud) : null;
 
             if (null != this._ventana.Sector)
                 marcaTercero.Sector = !((ListaDatosDominio)this._ventana.Sector).Id.Equals("NGN") ? ((ListaDatosDominio)this._ventana.Sector).Id : null;
@@ -897,125 +897,125 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
 
         #region Metodos de los filstros de corresponsales
 
-        public void CambiarCorresponsalSolicitud()
-        {
-            try
-            {
-                if ((Corresponsal)this._ventana.CorresponsalSolicitud != null)
-                {
-                    //Corresponsal corresponsal = this._corresponsalServicios.ConsultarCorresponsalConTodo((Corresponsal)this._ventana.CorresponsalSolicitud);
-                    this._ventana.DescripcionCorresponsalSolicitud = ((Corresponsal)this._ventana.CorresponsalSolicitud).Descripcion;
-                    this._ventana.CorresponsalDatos = (Corresponsal)this._ventana.CorresponsalSolicitud;
-                    this._ventana.DescripcionCorresponsalDatos = ((Corresponsal)this._ventana.CorresponsalSolicitud).Descripcion;
-                }
-            }
-            catch (ApplicationException e)
-            {
-                this._ventana.DescripcionCorresponsalDatos = "";
-                this._ventana.DescripcionCorresponsalSolicitud = "";
-            }
-        }
+        //public void CambiarCorresponsalSolicitud()
+        //{
+        //    try
+        //    {
+        //        if ((Corresponsal)this._ventana.CorresponsalSolicitud != null)
+        //        {
+        //            //Corresponsal corresponsal = this._corresponsalServicios.ConsultarCorresponsalConTodo((Corresponsal)this._ventana.CorresponsalSolicitud);
+        //            this._ventana.DescripcionCorresponsalSolicitud = ((Corresponsal)this._ventana.CorresponsalSolicitud).Descripcion;
+        //            this._ventana.CorresponsalDatos = (Corresponsal)this._ventana.CorresponsalSolicitud;
+        //            this._ventana.DescripcionCorresponsalDatos = ((Corresponsal)this._ventana.CorresponsalSolicitud).Descripcion;
+        //        }
+        //    }
+        //    catch (ApplicationException e)
+        //    {
+        //        this._ventana.DescripcionCorresponsalDatos = "";
+        //        this._ventana.DescripcionCorresponsalSolicitud = "";
+        //    }
+        //}
 
-        public void CambiarCorresponsalDatos()
-        {
-            try
-            {
-                if ((Corresponsal)this._ventana.CorresponsalDatos != null)
-                {
-                    //Corresponsal corresponsal = this._corresponsalServicios.ConsultarCorresponsalConTodo((Corresponsal)this._ventana.CorresponsalDatos);
-                    this._ventana.DescripcionCorresponsalDatos = ((Corresponsal)this._ventana.CorresponsalDatos).Descripcion;
-                    this._ventana.CorresponsalSolicitud = (Corresponsal)this._ventana.CorresponsalDatos;
-                    this._ventana.DescripcionCorresponsalSolicitud = ((Corresponsal)this._ventana.CorresponsalDatos).Descripcion;
-                }
-            }
-            catch (ApplicationException e)
-            {
-                this._ventana.DescripcionCorresponsalDatos = "";
-                this._ventana.DescripcionCorresponsalSolicitud = "";
-            }
-        }
+        //public void CambiarCorresponsalDatos()
+        //{
+        //    try
+        //    {
+        //        if ((Corresponsal)this._ventana.CorresponsalDatos != null)
+        //        {
+        //            //Corresponsal corresponsal = this._corresponsalServicios.ConsultarCorresponsalConTodo((Corresponsal)this._ventana.CorresponsalDatos);
+        //            this._ventana.DescripcionCorresponsalDatos = ((Corresponsal)this._ventana.CorresponsalDatos).Descripcion;
+        //            this._ventana.CorresponsalSolicitud = (Corresponsal)this._ventana.CorresponsalDatos;
+        //            this._ventana.DescripcionCorresponsalSolicitud = ((Corresponsal)this._ventana.CorresponsalDatos).Descripcion;
+        //        }
+        //    }
+        //    catch (ApplicationException e)
+        //    {
+        //        this._ventana.DescripcionCorresponsalDatos = "";
+        //        this._ventana.DescripcionCorresponsalSolicitud = "";
+        //    }
+        //}
 
-        public void BuscarCorresponsal(int filtrarEn)
-        {
-            IEnumerable<Corresponsal> corresponsalesFiltrados = this._corresponsales;
+        //public void BuscarCorresponsal(int filtrarEn)
+        //{
+        //    IEnumerable<Corresponsal> corresponsalesFiltrados = this._corresponsales;
 
-            if (filtrarEn == 0)
-            {
-                if (!string.IsNullOrEmpty(this._ventana.IdCorresponsalSolicitudFiltrar))
-                {
-                    corresponsalesFiltrados = from p in corresponsalesFiltrados
-                                              where p.Id == int.Parse(this._ventana.IdCorresponsalSolicitudFiltrar)
-                                              select p;
-                }
+        //    if (filtrarEn == 0)
+        //    {
+        //        if (!string.IsNullOrEmpty(this._ventana.IdCorresponsalSolicitudFiltrar))
+        //        {
+        //            corresponsalesFiltrados = from p in corresponsalesFiltrados
+        //                                      where p.Id == int.Parse(this._ventana.IdCorresponsalSolicitudFiltrar)
+        //                                      select p;
+        //        }
 
-                if (!string.IsNullOrEmpty(this._ventana.DescripcionCorresponsalSolicitudFiltrar))
-                {
-                    corresponsalesFiltrados = from p in corresponsalesFiltrados
-                                              where p.Descripcion != null &&
-                                              p.Descripcion.ToLower().Contains(this._ventana.DescripcionCorresponsalSolicitudFiltrar.ToLower())
-                                              select p;
-                }
-            }
-            else
-            {
-                if (!string.IsNullOrEmpty(this._ventana.IdCorresponsalDatosFiltrar))
-                {
-                    corresponsalesFiltrados = from p in corresponsalesFiltrados
-                                              where p.Id == int.Parse(this._ventana.IdCorresponsalDatosFiltrar)
-                                              select p;
-                }
+        //        if (!string.IsNullOrEmpty(this._ventana.DescripcionCorresponsalSolicitudFiltrar))
+        //        {
+        //            corresponsalesFiltrados = from p in corresponsalesFiltrados
+        //                                      where p.Descripcion != null &&
+        //                                      p.Descripcion.ToLower().Contains(this._ventana.DescripcionCorresponsalSolicitudFiltrar.ToLower())
+        //                                      select p;
+        //        }
+        //    }
+        //    else
+        //    {
+        //        if (!string.IsNullOrEmpty(this._ventana.IdCorresponsalDatosFiltrar))
+        //        {
+        //            corresponsalesFiltrados = from p in corresponsalesFiltrados
+        //                                      where p.Id == int.Parse(this._ventana.IdCorresponsalDatosFiltrar)
+        //                                      select p;
+        //        }
 
-                if (!string.IsNullOrEmpty(this._ventana.DescripcionCorresponsalDatosFiltrar))
-                {
-                    corresponsalesFiltrados = from p in corresponsalesFiltrados
-                                              where p.Descripcion != null &&
-                                              p.Descripcion.ToLower().Contains(this._ventana.DescripcionCorresponsalDatosFiltrar.ToLower())
-                                              select p;
-                }
-            }
+        //        if (!string.IsNullOrEmpty(this._ventana.DescripcionCorresponsalDatosFiltrar))
+        //        {
+        //            corresponsalesFiltrados = from p in corresponsalesFiltrados
+        //                                      where p.Descripcion != null &&
+        //                                      p.Descripcion.ToLower().Contains(this._ventana.DescripcionCorresponsalDatosFiltrar.ToLower())
+        //                                      select p;
+        //        }
+        //    }
 
-            // filtrarEn = 0 significa en el listview de la pestaña solicitud
-            // filtrarEn = 1 significa en el listview de la pestaña Datos 
-            if (filtrarEn == 0)
-            {
-                if (corresponsalesFiltrados.ToList<Corresponsal>().Count != 0)
-                    this._ventana.CorresponsalesSolicitud = corresponsalesFiltrados.ToList<Corresponsal>();
-                else
-                    this._ventana.CorresponsalesSolicitud = this._asociados;
-            }
-            else
-            {
-                if (corresponsalesFiltrados.ToList<Corresponsal>().Count != 0)
-                    this._ventana.CorresponsalesDatos = corresponsalesFiltrados.ToList<Corresponsal>();
-                else
-                    this._ventana.CorresponsalesDatos = this._corresponsales;
-            }
-        }
+        //    // filtrarEn = 0 significa en el listview de la pestaña solicitud
+        //    // filtrarEn = 1 significa en el listview de la pestaña Datos 
+        //    if (filtrarEn == 0)
+        //    {
+        //        if (corresponsalesFiltrados.ToList<Corresponsal>().Count != 0)
+        //            this._ventana.CorresponsalesSolicitud = corresponsalesFiltrados.ToList<Corresponsal>();
+        //        else
+        //            this._ventana.CorresponsalesSolicitud = this._asociados;
+        //    }
+        //    else
+        //    {
+        //        if (corresponsalesFiltrados.ToList<Corresponsal>().Count != 0)
+        //            this._ventana.CorresponsalesDatos = corresponsalesFiltrados.ToList<Corresponsal>();
+        //        else
+        //            this._ventana.CorresponsalesDatos = this._corresponsales;
+        //    }
+        //}
 
-        public void CargarCorresponsales()
-        {
+        //public void CargarCorresponsales()
+        //{
 
-            Mouse.OverrideCursor = Cursors.Wait;
+        //    Mouse.OverrideCursor = Cursors.Wait;
 
-            IList<Corresponsal> corresponsales = this._corresponsalServicios.ConsultarTodos();
-            Corresponsal primerCorresponsal = new Corresponsal();
-            primerCorresponsal.Id = int.MinValue;
-            corresponsales.Insert(0, primerCorresponsal);
-            this._ventana.CorresponsalesSolicitud = corresponsales;
-            this._ventana.CorresponsalesDatos = corresponsales;
-            this._ventana.CorresponsalDatos = this.BuscarCorresponsal(corresponsales, ((MarcaTercero)this._ventana.MarcaTercero).Corresponsal);
-            this._ventana.CorresponsalSolicitud = this.BuscarCorresponsal(corresponsales, ((MarcaTercero)this._ventana.MarcaTercero).Corresponsal);
+        //    IList<Corresponsal> corresponsales = this._corresponsalServicios.ConsultarTodos();
+        //    Corresponsal primerCorresponsal = new Corresponsal();
+        //    primerCorresponsal.Id = int.MinValue;
+        //    corresponsales.Insert(0, primerCorresponsal);
+        //    this._ventana.CorresponsalesSolicitud = corresponsales;
+        //    this._ventana.CorresponsalesDatos = corresponsales;
+        //    this._ventana.CorresponsalDatos = this.BuscarCorresponsal(corresponsales, ((MarcaTercero)this._ventana.MarcaTercero).Corresponsal);
+        //    this._ventana.CorresponsalSolicitud = this.BuscarCorresponsal(corresponsales, ((MarcaTercero)this._ventana.MarcaTercero).Corresponsal);
 
-            this._ventana.DescripcionCorresponsalDatos = null == ((MarcaTercero)this._ventana.MarcaTercero).Corresponsal ?
-                                                         null : ((Corresponsal)this._ventana.CorresponsalSolicitud).Descripcion;
-            this._ventana.DescripcionCorresponsalSolicitud = null == ((MarcaTercero)this._ventana.MarcaTercero).Corresponsal ?
-                                                             null : ((Corresponsal)this._ventana.CorresponsalSolicitud).Descripcion;
-            this._corresponsales = corresponsales;
+        //    this._ventana.DescripcionCorresponsalDatos = null == ((MarcaTercero)this._ventana.MarcaTercero).Corresponsal ?
+        //                                                 null : ((Corresponsal)this._ventana.CorresponsalSolicitud).Descripcion;
+        //    this._ventana.DescripcionCorresponsalSolicitud = null == ((MarcaTercero)this._ventana.MarcaTercero).Corresponsal ?
+        //                                                     null : ((Corresponsal)this._ventana.CorresponsalSolicitud).Descripcion;
+        //    this._corresponsales = corresponsales;
 
-            this._ventana.CorresponsalesEstanCargados = true;
+        //    this._ventana.CorresponsalesEstanCargados = true;
 
-            Mouse.OverrideCursor = null;
-        }
+        //    Mouse.OverrideCursor = null;
+        //}
 
         #endregion
 

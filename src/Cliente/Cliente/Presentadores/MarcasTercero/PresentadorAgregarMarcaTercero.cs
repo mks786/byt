@@ -62,7 +62,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
                 }
                 else
                 {
-                   marcaTercero = new MarcaTercero();//OJO se mandaba un int 1
+                   marcaTercero = new MarcaTercero("E-00");//OJO se mandaba un int 1
                 }
 
                 marcaTercero.Nacional = new Nacional();

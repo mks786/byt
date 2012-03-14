@@ -173,7 +173,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.MarcasTercero
 
         private void _lstResultados_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            this._presentador.IrConsultarMarca();
+            this._presentador.IrConsultarMarcaTercero();
         }
 
         private void _Ordenar_Click(object sender, RoutedEventArgs e)

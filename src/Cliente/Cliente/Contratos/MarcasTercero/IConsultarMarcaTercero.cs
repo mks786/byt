@@ -36,17 +36,17 @@ namespace Trascend.Bolet.Cliente.Contratos.MarcasTercero
 
         string NumPoderSolicitud { get; set; }
 
-        string IdCorresponsalSolicitudFiltrar { get; }
+        //string IdCorresponsalSolicitudFiltrar { get; }
 
-        string IdCorresponsalDatosFiltrar { get; }
+        //string IdCorresponsalDatosFiltrar { get; }
 
-        string DescripcionCorresponsalSolicitudFiltrar { get; }
+        //string DescripcionCorresponsalSolicitudFiltrar { get; }
 
-        string DescripcionCorresponsalDatosFiltrar { get; }
+        //string DescripcionCorresponsalDatosFiltrar { get; }
 
-        string DescripcionCorresponsalSolicitud { get; set; }
+        //string DescripcionCorresponsalSolicitud { get; set; }
 
-        string DescripcionCorresponsalDatos { get; set; }
+        //string DescripcionCorresponsalDatos { get; set; }
 
         object AsociadosSolicitud { get; set; }
 
@@ -68,13 +68,13 @@ namespace Trascend.Bolet.Cliente.Contratos.MarcasTercero
 
         string InteresadoCiudadSolicitud { get; set; }
 
-        object CorresponsalesSolicitud { get; set; }
+        //object CorresponsalesSolicitud { get; set; }
 
-        object CorresponsalSolicitud { get; set; }
+        //object CorresponsalSolicitud { get; set; }
 
-        object CorresponsalesDatos { get; set; }
+        //object CorresponsalesDatos { get; set; }
 
-        object CorresponsalDatos { get; set; }
+        //object CorresponsalDatos { get; set; }
 
         object PoderesSolicitud { get; set; }
 
@@ -150,11 +150,11 @@ namespace Trascend.Bolet.Cliente.Contratos.MarcasTercero
 
         bool InteresadosEstanCargados { get; set; }
 
-        bool CorresponsalesEstanCargados { get; set; }
+        //bool CorresponsalesEstanCargados { get; set; }
 
         bool PoderesEstanCargados { get; set; }
 
-        void PintarInfoAdicional();
+        //void PintarInfoAdicional();
 
         void PintarAnaqua();
 

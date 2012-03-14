@@ -243,7 +243,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
         /// <summary>
         /// Método que invoca una nueva página "ConsultarPoder" y la instancia con el objeto seleccionado
         /// </summary>
-        public void IrConsultarMarca()
+        public void IrConsultarMarcaTercero()
         {
             #region trace
             if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
