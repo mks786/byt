@@ -33,11 +33,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.MarcasTercero
             set { this._tbcPestañas.DataContext = value; }
         }
 
-        public string NumPoderDatos
-        {
-            get { return this._txtPoderDatos.Text; }
-            set { this._txtPoderDatos.Text = value; }
-        }
+        //public string NumPoderDatos
+        //{
+        //    get { return this._txtPoderDatos.Text; }
+        //    set { this._txtPoderDatos.Text = value; }
+        //}
 
         public string NumPoderSolicitud
         {
@@ -57,17 +57,17 @@ namespace Trascend.Bolet.Cliente.Ventanas.MarcasTercero
             set { this._lstPoderesSolicitud.SelectedItem = value; }
         }
 
-        public object PoderesDatos
-        {
-            get { return this._lstPoderesDatos.DataContext; }
-            set { this._lstPoderesDatos.DataContext = value; }
-        }
+        //public object PoderesDatos
+        //{
+        //    get { return this._lstPoderesDatos.DataContext; }
+        //    set { this._lstPoderesDatos.DataContext = value; }
+        //}
 
-        public object PoderDatos
-        {
-            get { return this._lstPoderesDatos.SelectedItem; }
-            set { this._lstPoderesDatos.SelectedItem = value; }
-        }
+        //public object PoderDatos
+        //{
+        //    get { return this._lstPoderesDatos.SelectedItem; }
+        //    set { this._lstPoderesDatos.SelectedItem = value; }
+        //}
 
         public object Agentes
         {
@@ -141,17 +141,17 @@ namespace Trascend.Bolet.Cliente.Ventanas.MarcasTercero
             set { this._cbxDetalleDatos.SelectedItem = value; }
         }
 
-        public object Condicion
-        {
-            get { return this._cbxCondiciones.SelectedItem; }
-            set { this._cbxCondiciones.SelectedItem = value; }
-        }
+        //public object Condicion
+        //{
+        //    get { return this._cbxCondiciones.SelectedItem; }
+        //    set { this._cbxCondiciones.SelectedItem = value; }
+        //}
 
-        public object Condiciones
-        {
-            get { return this._cbxCondiciones.DataContext; }
-            set { this._cbxCondiciones.DataContext = value; }
-        }
+        //public object Condiciones
+        //{
+        //    get { return this._cbxCondiciones.DataContext; }
+        //    set { this._cbxCondiciones.DataContext = value; }
+        //}
 
         public object PaisSolicitud
         {
@@ -165,29 +165,29 @@ namespace Trascend.Bolet.Cliente.Ventanas.MarcasTercero
             set { this._cbxPaisPrioridad.DataContext = value; }
         }
 
-        public object TipoMarcasTerceroSolicitud
-        {
-            get { return this._cbxTipoMarcaTerceroSolicitud.DataContext; }
-            set { this._cbxTipoMarcaTerceroSolicitud.DataContext = value; }
-        }
+        //public object TipoMarcasTerceroSolicitud
+        //{
+        //    get { return this._cbxTipoMarcaTerceroSolicitud.DataContext; }
+        //    set { this._cbxTipoMarcaTerceroSolicitud.DataContext = value; }
+        //}
 
-        public object TipoMarcaTerceroSolicitud
-        {
-            get { return this._cbxTipoMarcaTerceroSolicitud.SelectedItem; }
-            set { this._cbxTipoMarcaTerceroSolicitud.SelectedItem = value; }
-        }
+        //public object TipoMarcaTerceroSolicitud
+        //{
+        //    get { return this._cbxTipoMarcaTerceroSolicitud.SelectedItem; }
+        //    set { this._cbxTipoMarcaTerceroSolicitud.SelectedItem = value; }
+        //}
 
-        public object TipoMarcasTerceroDatos
-        {
-            get { return this._cbxTipoMarcaTerceroDatos.DataContext; }
-            set { this._cbxTipoMarcaTerceroDatos.DataContext = value; }
-        }
+        //public object TipoMarcasTerceroDatos
+        //{
+        //    get { return this._cbxTipoMarcaTerceroDatos.DataContext; }
+        //    set { this._cbxTipoMarcaTerceroDatos.DataContext = value; }
+        //}
 
-        public object TipoMarcaTerceroDatos
-        {
-            get { return this._cbxTipoMarcaTerceroDatos.SelectedItem; }
-            set { this._cbxTipoMarcaTerceroDatos.SelectedItem = value; }
-        }
+        //public object TipoMarcaTerceroDatos
+        //{
+        //    get { return this._cbxTipoMarcaTerceroDatos.SelectedItem; }
+        //    set { this._cbxTipoMarcaTerceroDatos.SelectedItem = value; }
+        //}
 
         public void Mensaje(string mensaje)
         {
@@ -228,11 +228,22 @@ namespace Trascend.Bolet.Cliente.Ventanas.MarcasTercero
             set { this._txtClaseInternacional.Text = value; }
         }
 
-        public string IdNacional
+        public string ComentarioClienteEspanol
         {
-            get { return this._txtClaseNacionalDatos.Text; }
-            set { this._txtClaseNacionalDatos.Text = value; }
+            get { return this._txtComencliEsp.Text; }
+            set { this._txtComencliEsp.Text = value; }
         }
+
+        public string ComentarioClienteIngles
+        {
+            get { return this._txtComencliIng.Text; }
+            set { this._txtComencliIng.Text = value; }
+        }
+        //public string IdNacional
+        //{
+        //    get { return this._txtClaseNacionalDatos.Text; }
+        //    set { this._txtClaseNacionalDatos.Text = value; }
+        //}
 
         public bool HabilitarCampos
         {
@@ -240,60 +251,62 @@ namespace Trascend.Bolet.Cliente.Ventanas.MarcasTercero
             {
                 #region TextBoxs
 
-                this._txtAsociadoDatos.IsEnabled = value;
+                //this._txtAsociadoDatos.IsEnabled = value;
                 this._txtAsociadoSolicitud.IsEnabled = value;
-                this._txtBusqueda.IsEnabled = value;
+                //this._txtBusqueda.IsEnabled = value;
                 this._txtClaseInternacional.IsEnabled = value;
-                this._txtClaseInternacionalDatos.IsEnabled = value;
+                //this._txtClaseInternacionalDatos.IsEnabled = value;
                 this._txtClaseNacional.IsEnabled = value;
-                this._txtClaseNacionalDatos.IsEnabled = value;
+                //this._txtClaseNacionalDatos.IsEnabled = value;
                 this._txtCod.IsEnabled = value;
                 this._txtCodigoInscripcion.IsEnabled = value;
                 this._txtCodigoInscripcionSolicitud.IsEnabled = value;
                 this._txtCodigoPrioridad.IsEnabled = value;
                 this._txtCodigoRegistro.IsEnabled = value;
-                this._txtCodIntlDatos.IsEnabled = value;
-                this._txtComentarioDatos.IsEnabled = value;
-                this._txtConflictoDatos.IsEnabled = value;
+                this._txtComencliEsp.IsEnabled = value;
+                this._txtComencliIng.IsEnabled = value;
+                //this._txtCodIntlDatos.IsEnabled = value;
+                //this._txtComentarioDatos.IsEnabled = value;
+                //this._txtConflictoDatos.IsEnabled = value;
                 //this._txtCorresponsalDatos.IsEnabled = value;
                 //this._txtCorresponsalSolicitud.IsEnabled = value;
                 //this._txtCorresponsalDatos.IsEnabled = value;
-                this._txtDescripcionDatos.IsEnabled = value;
+                //this._txtDescripcionDatos.IsEnabled = value;
                 this._txtDescripcionSolicitud.IsEnabled = value;
                 this._txtDistingue.IsEnabled = value;
-                this._txtDistingueDatos.IsEnabled = value;
-                this._txtDistingueInglesDatos.IsEnabled = value;
+                //this._txtDistingueDatos.IsEnabled = value;
+                //this._txtDistingueInglesDatos.IsEnabled = value;
                 this._txtEtiqueta.IsEnabled = value;
-                this._txtEtiquetaDatos.IsEnabled = value;
-                this._txtExptyr.IsEnabled = value;
+                //this._txtEtiquetaDatos.IsEnabled = value;
+                //this._txtExptyr.IsEnabled = value;
                 this._txtFechaInscripcion.IsEnabled = value;
                 this._txtFechaRegistro.IsEnabled = value;
                 this._txtFechaRenovacion.IsEnabled = value;
-                this._txtIdAsociadoDatos.IsEnabled = value;
+                //this._txtIdAsociadoDatos.IsEnabled = value;
                 this._txtIdAsociadoSolicitud.IsEnabled = value;
                 //this._txtIdDatos.IsEnabled = value;
-                this._txtIdInteresadoDatos.IsEnabled = value;
+                //this._txtIdInteresadoDatos.IsEnabled = value;
                 this._txtIdInteresadoSolicitud.IsEnabled = value;
                 //this._txtIdSolicitud.IsEnabled = value;
-                this._txtInteresadoDatos.IsEnabled = value;
+                //this._txtInteresadoDatos.IsEnabled = value;
                 this._txtInteresadoSolicitud.IsEnabled = value;
                 this._txtLocalidad.IsEnabled = value;
-                this._txtLocalidadDatos.IsEnabled = value;
-                this._txtNombreAsociadoDatos.IsEnabled = value;
+                //this._txtLocalidadDatos.IsEnabled = value;
+                //this._txtNombreAsociadoDatos.IsEnabled = value;
                 this._txtNombreAsociadoSolicitud.IsEnabled = value;
-                this._txtNombreInteresadoDatos.IsEnabled = value;
+                //this._txtNombreInteresadoDatos.IsEnabled = value;
                 this._txtNombreInteresadoSolicitud.IsEnabled = value;
                 this._txtNum.IsEnabled = value;
-                this._txtNumIntlDatos.IsEnabled = value;
+                //this._txtNumIntlDatos.IsEnabled = value;
                 this._txtNumSapi.IsEnabled = value;
                 this._txtOtrosImp.IsEnabled = value;
                 this._txtPoderSolicitud.IsEnabled = value;
-                this._txtPoderDatos.IsEnabled = value;
-                this._txtPrimeraReferenciaDatos.IsEnabled = value;
-                this._txtReclasificacionDatos.IsEnabled = value;
+                //this._txtPoderDatos.IsEnabled = value;
+                //this._txtPrimeraReferenciaDatos.IsEnabled = value;
+                //this._txtReclasificacionDatos.IsEnabled = value;
                 this._txtReferencia.IsEnabled = value;
                 this._txtReferenciaAsocInt.IsEnabled = value;
-                this._txtReferenciaDatos.IsEnabled = value;
+                //this._txtReferenciaDatos.IsEnabled = value;
                 //this._txtSaldoPorVencer.IsEnabled = value;
                 //this._txtSaldoVencido.IsEnabled = value;
                 this._txtTipoClaseNacional.IsEnabled = value;
@@ -304,30 +317,30 @@ namespace Trascend.Bolet.Cliente.Ventanas.MarcasTercero
                 #region ComboBoxs
 
                 this._cbxAgente.IsEnabled = value;
-                this._cbxAsociadoInteresadoDatos.IsEnabled = value;
+                //this._cbxAsociadoInteresadoDatos.IsEnabled = value;
                 this._cbxAsocInt.IsEnabled = value;
                 this._cbxBoletinConcesion.IsEnabled = value;
                 this._cbxBoletinPublicacion.IsEnabled = value;
                 //this._cbxCartaOrden.IsEnabled = value;
-                this._cbxCondiciones.IsEnabled = value;
+                //this._cbxCondiciones.IsEnabled = value;
                 this._cbxConflicto.IsEnabled = value;
                 this._cbxDetalleDatos.IsEnabled = value;
-                this._cbxEstadoDatos.IsEnabled = value;
+                //this._cbxEstadoDatos.IsEnabled = value;
                 //this._cbxIdiomaDatos.IsEnabled = value;
-                this._cbxMarcaTerceroOrigen.IsEnabled = value;
+                //this._cbxMarcaTerceroOrigen.IsEnabled = value;
                 this._cbxMarcaTerceroOrigenSolicitud.IsEnabled = value;
                 this._cbxOrdenPublicacion.IsEnabled = value;
                 this._cbxPais.IsEnabled = value;
-                this._cbxPaisDatos.IsEnabled = value;
+                //this._cbxPaisDatos.IsEnabled = value;
                 this._cbxPaisPrioridad.IsEnabled = value;
-                this._cbxSector.IsEnabled = value;
+                //this._cbxSector.IsEnabled = value;
                 this._cbxSituacion.IsEnabled = value;
-                this._cbxTipoMarcaTerceroSolicitud.IsEnabled = value;
-                this._cbxTipoMarcaTerceroDatos.IsEnabled = value;
-                this._cbxTipoReproduccion.IsEnabled = value;
-                this._chkFacturacionDatos.IsEnabled = value;
-                this._chkDescuentoDatos.IsEnabled = value;
-                this._chkCorrespondenciaDatos.IsEnabled = value;
+                //this._cbxTipoMarcaTerceroSolicitud.IsEnabled = value;
+                //this._cbxTipoMarcaTerceroDatos.IsEnabled = value;
+                //this._cbxTipoReproduccion.IsEnabled = value;
+                //this._chkFacturacionDatos.IsEnabled = value;
+                //this._chkDescuentoDatos.IsEnabled = value;
+                //this._chkCorrespondenciaDatos.IsEnabled = value;
 
                 this._cbxBoletinConcesion.IsEnabled = value;
                 this._cbxBoletinPublicacion.IsEnabled = value;
@@ -337,26 +350,26 @@ namespace Trascend.Bolet.Cliente.Ventanas.MarcasTercero
 
                 #region CheckBox
 
-                this._checkBoxInstruccionesRenovacion.IsEnabled = value;
-                this._checkBoxRenovacionTramitente.IsEnabled = value;
+                //this._checkBoxInstruccionesRenovacion.IsEnabled = value;
+                //this._checkBoxRenovacionTramitente.IsEnabled = value;
                 //this._chkConflicto.IsEnabled = value;
                 this._chkEtiquetaSolicitud.IsEnabled = value;
-                this._chkEtiquetaDatos.IsEnabled = value;
+                //this._chkEtiquetaDatos.IsEnabled = value;
                 //this._chkOtraInf.IsEnabled = value;
                 //this._chkPoder.IsEnabled = value;
                 //this._chkPoderYPrioridad.IsEnabled = value;
                 //this._chkPrioridad.IsEnabled = value;
                 //this._chkReclasificacionNacional.IsEnabled = value;
-                this._chkOtroDatos.IsEnabled = value;
+                //this._chkOtroDatos.IsEnabled = value;
 
                 #endregion
 
                 #region Botones
 
                 this._btnAceptar.IsEnabled = value;
-                this._btnAnaqua.IsEnabled = value;
+                //this._btnAnaqua.IsEnabled = value;
                 //this._btnAnexoFM02.IsEnabled = value;
-                this._btnAuditoria.IsEnabled = value;
+                //this._btnAuditoria.IsEnabled = value;
                 this._btnBusquedaDatos.IsEnabled = value;
                 //this._btnBusquedaSolicitud.IsEnabled = value;
                 this._btnCancelar.IsEnabled = value;
@@ -366,22 +379,22 @@ namespace Trascend.Bolet.Cliente.Ventanas.MarcasTercero
                 //this._btnConflicto.IsEnabled = value;
                 //this._btnConflictoELI.IsEnabled = value;
                 //this._btnConflictoINC.IsEnabled = value;
-                this._btnConsultarAsociadoDatos.IsEnabled = value;
+                //this._btnConsultarAsociadoDatos.IsEnabled = value;
                 this._btnConsultarAsociadoSolicitud.IsEnabled = value;
-                this._btnConsultarInteresadoDatos.IsEnabled = value;
+                //this._btnConsultarInteresadoDatos.IsEnabled = value;
                 this._btnConsultarInteresadoSolicitud.IsEnabled = value;
                 //this._btnDuplicar.IsEnabled = value;
                 //this._btnEnviarRecordatorios.IsEnabled = value;
-                this._btnFacturacionDatos.IsEnabled = value;
+                //this._btnFacturacionDatos.IsEnabled = value;
                 //this._btnFM02.IsEnabled = value;
                 //this._btnFM02Venen.IsEnabled = value;
-                this._btnGenCartel.IsEnabled = value;
+                //this._btnGenCartel.IsEnabled = value;
             //    this._btnImprimirEdoCuenta.IsEnabled = value;
                 this._btnInfoAdicional.IsEnabled = value;
                 //this._btnInfoAdicionalSolicitud.IsEnabled = value;
                 this._btnInfobol.IsEnabled = value;
                 this._btnIngles.IsEnabled = value;
-                this._btnIntRenovacion.IsEnabled = value;
+                //this._btnIntRenovacion.IsEnabled = value;
                 this._btnIrReclasificar.IsEnabled = value;
                 //this._btnLAnexoFM02.IsEnabled = value;
                 //this._btnLFM02.IsEnabled = value;
@@ -389,7 +402,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.MarcasTercero
                 //this._btnLista.IsEnabled = value;
                 this._btnNoRegistro.IsEnabled = value;
                 this._btnNoSolicitud.IsEnabled = value;
-                this._btnOperacionesDatos.IsEnabled = value;
+                //this._btnOperacionesDatos.IsEnabled = value;
                 //this._btnOtraInf.IsEnabled = value;
                 //this._btnOtraInfELI.IsEnabled = value;
                 //this._btnOtraInfINC.IsEnabled = value;
@@ -405,10 +418,10 @@ namespace Trascend.Bolet.Cliente.Ventanas.MarcasTercero
                 //this._btnReclasificacionNacional.IsEnabled = value;
                 //this._btnReclasificacionNacionalELI.IsEnabled = value;
                 //this._btnReclasificacionNacionalINC.IsEnabled = value;
-                this._btnRenovacion.IsEnabled = value;
-                this._btnRevisarWeb.IsEnabled = value;
+                //this._btnRenovacion.IsEnabled = value;
+                //this._btnRevisarWeb.IsEnabled = value;
                 //this._btnSaldo.IsEnabled = value;
-                this._btnVerDocDatos.IsEnabled = value;
+                //this._btnVerDocDatos.IsEnabled = value;
 
                 #endregion
 
@@ -432,20 +445,20 @@ namespace Trascend.Bolet.Cliente.Ventanas.MarcasTercero
             get { return this._txtIdAsociadoSolicitud.Text; }
         }
 
-        public string IdAsociadoDatosFiltrar
-        {
-            get { return this._txtIdAsociadoDatos.Text; }
-        }
+        //public string IdAsociadoDatosFiltrar
+        //{
+        //    get { return this._txtIdAsociadoDatos.Text; }
+        //}
 
         public string NombreAsociadoSolicitudFiltrar
         {
             get { return this._txtNombreAsociadoSolicitud.Text; }
         }
 
-        public string NombreAsociadoDatosFiltrar
-        {
-            get { return this._txtNombreAsociadoDatos.Text; }
-        }
+        //public string NombreAsociadoDatosFiltrar
+        //{
+        //    get { return this._txtNombreAsociadoDatos.Text; }
+        //}
 
         public string NombreAsociadoSolicitud
         {
@@ -453,11 +466,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.MarcasTercero
             set { this._txtAsociadoSolicitud.Text = value; }
         }
 
-        public string NombreAsociadoDatos
-        {
-            get { return this._txtAsociadoDatos.Text; }
-            set { this._txtAsociadoDatos.Text = value; }
-        }
+        //public string NombreAsociadoDatos
+        //{
+        //    get { return this._txtAsociadoDatos.Text; }
+        //    set { this._txtAsociadoDatos.Text = value; }
+        //}
 
         public object AsociadosSolicitud
         {
@@ -475,31 +488,31 @@ namespace Trascend.Bolet.Cliente.Ventanas.MarcasTercero
             }
         }
 
-        public object AsociadosDatos
-        {
-            get { return this._lstAsociadosDatos.DataContext; }
-            set { this._lstAsociadosDatos.DataContext = value; }
-        }
+        //public object AsociadosDatos
+        //{
+        //    get { return this._lstAsociadosDatos.DataContext; }
+        //    set { this._lstAsociadosDatos.DataContext = value; }
+        //}
 
-        public object AsociadoDatos
-        {
-            get { return this._lstAsociadosDatos.SelectedItem; }
-            set
-            {
-                this._lstAsociadosDatos.SelectedItem = value;
-                //this._lstAsociadosDatos.ScrollIntoView(value);
-            }
-        }
+        //public object AsociadoDatos
+        //{
+        //    get { return this._lstAsociadosDatos.SelectedItem; }
+        //    set
+        //    {
+        //        this._lstAsociadosDatos.SelectedItem = value;
+        //        //this._lstAsociadosDatos.ScrollIntoView(value);
+        //    }
+        //}
 
         public string IdInteresadoSolicitudFiltrar
         {
             get { return this._txtIdInteresadoSolicitud.Text; }
         }
 
-        public string IdInteresadoDatosFiltrar
-        {
-            get { return this._txtIdInteresadoDatos.Text; }
-        }
+        //public string IdInteresadoDatosFiltrar
+        //{
+        //    get { return this._txtIdInteresadoDatos.Text; }
+        //}
 
         public string InteresadoPaisSolicitud
         {
@@ -529,11 +542,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.MarcasTercero
             set { this._txtInteresadoSolicitud.Text = value; }
         }
 
-        public string NombreInteresadoDatos
-        {
-            get { return this._txtInteresadoDatos.Text; }
-            set { this._txtInteresadoDatos.Text = value; }
-        }
+        //public string NombreInteresadoDatos
+        //{
+        //    get { return this._txtInteresadoDatos.Text; }
+        //    set { this._txtInteresadoDatos.Text = value; }
+        //}
 
         public object InteresadosSolicitud
         {
@@ -551,21 +564,21 @@ namespace Trascend.Bolet.Cliente.Ventanas.MarcasTercero
             }
         }
 
-        public object InteresadosDatos
-        {
-            get { return this._lstInteresadosDatos.DataContext; }
-            set { this._lstInteresadosDatos.DataContext = value; }
-        }
+        //public object InteresadosDatos
+        //{
+        //    get { return this._lstInteresadosDatos.DataContext; }
+        //    set { this._lstInteresadosDatos.DataContext = value; }
+        //}
 
-        public object InteresadoDatos
-        {
-            get { return this._lstInteresadosDatos.SelectedItem; }
-            set
-            {
-                this._lstInteresadosDatos.SelectedItem = value;
-                //this._lstInteresadosDatos.ScrollIntoView(value);
-            }
-        }
+        //public object InteresadoDatos
+        //{
+        //    get { return this._lstInteresadosDatos.SelectedItem; }
+        //    set
+        //    {
+        //        this._lstInteresadosDatos.SelectedItem = value;
+        //        //this._lstInteresadosDatos.ScrollIntoView(value);
+        //    }
+        //}
 
         //public string IdCorresponsalSolicitudFiltrar
         //{
@@ -647,41 +660,41 @@ namespace Trascend.Bolet.Cliente.Ventanas.MarcasTercero
             set { this._poderesCargados = value; }
         }
 
-        public object Sector
-        {
-            get { return this._cbxSector.SelectedItem; }
-            set { this._cbxSector.SelectedItem = value; }
-        }
+        //public object Sector
+        //{
+        //    get { return this._cbxSector.SelectedItem; }
+        //    set { this._cbxSector.SelectedItem = value; }
+        //}
 
-        public object Sectores
-        {
-            get { return this._cbxSector.DataContext; }
-            set { this._cbxSector.DataContext = value; }
-        }
+        //public object Sectores
+        //{
+        //    get { return this._cbxSector.DataContext; }
+        //    set { this._cbxSector.DataContext = value; }
+        //}
 
-        public object StatusWeb
-        {
-            get { return this._cbxEstadoDatos.SelectedItem; }
-            set { this._cbxEstadoDatos.SelectedItem = value; }
-        }
+        //public object StatusWeb
+        //{
+        //    get { return this._cbxEstadoDatos.SelectedItem; }
+        //    set { this._cbxEstadoDatos.SelectedItem = value; }
+        //}
 
-        public object StatusWebs
-        {
-            get { return this._cbxEstadoDatos.DataContext; }
-            set { this._cbxEstadoDatos.DataContext = value; }
-        }
+        //public object StatusWebs
+        //{
+        //    get { return this._cbxEstadoDatos.DataContext; }
+        //    set { this._cbxEstadoDatos.DataContext = value; }
+        //}
 
-        public object TipoReproduccion
-        {
-            get { return this._cbxTipoReproduccion.SelectedItem; }
-            set { this._cbxTipoReproduccion.SelectedItem = value; }
-        }
+        //public object TipoReproduccion
+        //{
+        //    get { return this._cbxTipoReproduccion.SelectedItem; }
+        //    set { this._cbxTipoReproduccion.SelectedItem = value; }
+        //}
 
-        public object TipoReproducciones
-        {
-            get { return this._cbxTipoReproduccion.DataContext; }
-            set { this._cbxTipoReproduccion.DataContext = value; }
-        }
+        //public object TipoReproducciones
+        //{
+        //    get { return this._cbxTipoReproduccion.DataContext; }
+        //    set { this._cbxTipoReproduccion.DataContext = value; }
+        //}
 
         //public void PintarInfoAdicional()
         //{
@@ -689,20 +702,20 @@ namespace Trascend.Bolet.Cliente.Ventanas.MarcasTercero
         //    this._btnInfoAdicionalSolicitud.Background = Brushes.LightGreen;
         //}
 
-        public void PintarAnaqua()
-        {
-            this._btnAnaqua.Background = Brushes.LightGreen;
-        }
+        //public void PintarAnaqua()
+        //{
+        //    this._btnAnaqua.Background = Brushes.LightGreen;
+        //}
 
         public void PintarInfoBoles()
         {
             this._btnInfobol.Background = Brushes.LightGreen;
         }
 
-        public void PintarOperaciones()
-        {
-            this._btnOperacionesDatos.Background = Brushes.LightGreen;
-        }
+        //public void PintarOperaciones()
+        //{
+        //    this._btnOperacionesDatos.Background = Brushes.LightGreen;
+        //}
 
         public void PintarBusquedas()
         {
@@ -710,17 +723,17 @@ namespace Trascend.Bolet.Cliente.Ventanas.MarcasTercero
             //this._btnBusquedaSolicitud.Background = Brushes.LightGreen;
         }
 
-        public void PintarAuditoria()
-        {
-            this._btnAuditoria.Background = Brushes.LightGreen;
-        }
+        //public void PintarAuditoria()
+        //{
+        //    this._btnAuditoria.Background = Brushes.LightGreen;
+        //}
 
         public void BorrarCeros()
         {
             this._txtClaseInternacional.Text = this._txtClaseInternacional.Text.Equals("0") ? "" : this._txtClaseInternacional.Text;
             this._txtClaseInternacional.Text = this._txtClaseInternacional.Text.Equals("0") ? "" : this._txtClaseInternacional.Text;
             this._txtClaseNacional.Text = this._txtClaseNacional.Text.Equals("0") ? "" : this._txtClaseNacional.Text;
-            this._txtClaseNacionalDatos.Text = this._txtClaseNacionalDatos.Text.Equals("0") ? "" : this._txtClaseNacionalDatos.Text;
+            //this._txtClaseNacionalDatos.Text = this._txtClaseNacionalDatos.Text.Equals("0") ? "" : this._txtClaseNacionalDatos.Text;
         }
 
         public string ClaseInternacional
@@ -846,53 +859,53 @@ namespace Trascend.Bolet.Cliente.Ventanas.MarcasTercero
         //    this._lblDescripcionCorresponsalSolicitud.Visibility = System.Windows.Visibility.Collapsed;
         //}
 
-        private void mostrarLstAsocaidoDatos()
-        {
-            this._lstAsociadosDatos.ScrollIntoView(this.AsociadoDatos);
-            this._txtAsociadoDatos.Visibility = System.Windows.Visibility.Collapsed;
-            this._lstAsociadosDatos.Visibility = System.Windows.Visibility.Visible;
-            this._lstAsociadosDatos.IsEnabled = true;
-            this._btnConsultarAsociadoDatos.Visibility = System.Windows.Visibility.Visible;
-            this._txtIdAsociadoDatos.Visibility = System.Windows.Visibility.Visible;
-            this._txtNombreAsociadoDatos.Visibility = System.Windows.Visibility.Visible;
-            this._lblIdAsociadoDatos.Visibility = System.Windows.Visibility.Visible;
-            this._lblNombreAsociadoDatos.Visibility = System.Windows.Visibility.Visible;
-        }
+        //private void mostrarLstAsocaidoDatos()
+        //{
+        //    this._lstAsociadosDatos.ScrollIntoView(this.AsociadoDatos);
+        //    this._txtAsociadoDatos.Visibility = System.Windows.Visibility.Collapsed;
+        //    this._lstAsociadosDatos.Visibility = System.Windows.Visibility.Visible;
+        //    this._lstAsociadosDatos.IsEnabled = true;
+        //    this._btnConsultarAsociadoDatos.Visibility = System.Windows.Visibility.Visible;
+        //    this._txtIdAsociadoDatos.Visibility = System.Windows.Visibility.Visible;
+        //    this._txtNombreAsociadoDatos.Visibility = System.Windows.Visibility.Visible;
+        //    this._lblIdAsociadoDatos.Visibility = System.Windows.Visibility.Visible;
+        //    this._lblNombreAsociadoDatos.Visibility = System.Windows.Visibility.Visible;
+        //}
 
-        private void ocultarLstAsociadoDatos()
-        {
-            this._lstAsociadosDatos.Visibility = System.Windows.Visibility.Collapsed;
-            this._btnConsultarAsociadoDatos.Visibility = System.Windows.Visibility.Collapsed;
-            this._txtIdAsociadoDatos.Visibility = System.Windows.Visibility.Collapsed;
-            this._txtNombreAsociadoDatos.Visibility = System.Windows.Visibility.Collapsed;
-            this._txtAsociadoDatos.Visibility = System.Windows.Visibility.Visible;
-            this._lblIdAsociadoDatos.Visibility = System.Windows.Visibility.Collapsed;
-            this._lblNombreAsociadoDatos.Visibility = System.Windows.Visibility.Collapsed;
-        }
+        //private void ocultarLstAsociadoDatos()
+        //{
+        //    this._lstAsociadosDatos.Visibility = System.Windows.Visibility.Collapsed;
+        //    this._btnConsultarAsociadoDatos.Visibility = System.Windows.Visibility.Collapsed;
+        //    this._txtIdAsociadoDatos.Visibility = System.Windows.Visibility.Collapsed;
+        //    this._txtNombreAsociadoDatos.Visibility = System.Windows.Visibility.Collapsed;
+        //    this._txtAsociadoDatos.Visibility = System.Windows.Visibility.Visible;
+        //    this._lblIdAsociadoDatos.Visibility = System.Windows.Visibility.Collapsed;
+        //    this._lblNombreAsociadoDatos.Visibility = System.Windows.Visibility.Collapsed;
+        //}
 
-        private void mostrarLstInteresadoDatos()
-        {
-            this._lstInteresadosDatos.ScrollIntoView(this.InteresadoDatos);
-            this._txtInteresadoDatos.Visibility = System.Windows.Visibility.Collapsed;
-            this._lstInteresadosDatos.Visibility = System.Windows.Visibility.Visible;
-            this._lstInteresadosDatos.IsEnabled = true;
-            this._btnConsultarInteresadoDatos.Visibility = System.Windows.Visibility.Visible;
-            this._txtIdInteresadoDatos.Visibility = System.Windows.Visibility.Visible;
-            this._txtNombreInteresadoDatos.Visibility = System.Windows.Visibility.Visible;
-            this._lblIdInteresadoDatos.Visibility = System.Windows.Visibility.Visible;
-            this._lblNombreInteresadoDatos.Visibility = System.Windows.Visibility.Visible;
-        }
+        //private void mostrarLstInteresadoDatos()
+        //{
+        //    this._lstInteresadosDatos.ScrollIntoView(this.InteresadoDatos);
+        //    this._txtInteresadoDatos.Visibility = System.Windows.Visibility.Collapsed;
+        //    this._lstInteresadosDatos.Visibility = System.Windows.Visibility.Visible;
+        //    this._lstInteresadosDatos.IsEnabled = true;
+        //    this._btnConsultarInteresadoDatos.Visibility = System.Windows.Visibility.Visible;
+        //    this._txtIdInteresadoDatos.Visibility = System.Windows.Visibility.Visible;
+        //    this._txtNombreInteresadoDatos.Visibility = System.Windows.Visibility.Visible;
+        //    this._lblIdInteresadoDatos.Visibility = System.Windows.Visibility.Visible;
+        //    this._lblNombreInteresadoDatos.Visibility = System.Windows.Visibility.Visible;
+        //}
 
-        private void ocultarLstInteresadoDatos()
-        {
-            this._lstInteresadosDatos.Visibility = System.Windows.Visibility.Collapsed;
-            this._btnConsultarInteresadoDatos.Visibility = System.Windows.Visibility.Collapsed;
-            this._txtIdInteresadoDatos.Visibility = System.Windows.Visibility.Collapsed;
-            this._txtNombreInteresadoDatos.Visibility = System.Windows.Visibility.Collapsed;
-            this._txtInteresadoDatos.Visibility = System.Windows.Visibility.Visible;
-            this._lblIdInteresadoDatos.Visibility = System.Windows.Visibility.Collapsed;
-            this._lblNombreInteresadoDatos.Visibility = System.Windows.Visibility.Collapsed;
-        }
+        //private void ocultarLstInteresadoDatos()
+        //{
+        //    this._lstInteresadosDatos.Visibility = System.Windows.Visibility.Collapsed;
+        //    this._btnConsultarInteresadoDatos.Visibility = System.Windows.Visibility.Collapsed;
+        //    this._txtIdInteresadoDatos.Visibility = System.Windows.Visibility.Collapsed;
+        //    this._txtNombreInteresadoDatos.Visibility = System.Windows.Visibility.Collapsed;
+        //    this._txtInteresadoDatos.Visibility = System.Windows.Visibility.Visible;
+        //    this._lblIdInteresadoDatos.Visibility = System.Windows.Visibility.Collapsed;
+        //    this._lblNombreInteresadoDatos.Visibility = System.Windows.Visibility.Collapsed;
+        //}
 
         //private void mostrarLstCorresponsalDatos()
         //{
@@ -999,7 +1012,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.MarcasTercero
         {
             this._presentador.CambiarAsociadoSolicitud();
             ocultarLstAsociadoSolicitud();
-            ocultarLstAsociadoDatos();
+            //ocultarLstAsociadoDatos();
             this._btnConsultarAsociadoSolicitud.IsDefault = false;
             this._btnAceptar.IsDefault = true;
         }
@@ -1040,7 +1053,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.MarcasTercero
         {
             this._presentador.CambiarInteresadoSolicitud();
             ocultarLstInteresadoSolicutud();
-            ocultarLstInteresadoDatos();
+            //ocultarLstInteresadoDatos();
 
             this._btnConsultarInteresadoSolicitud.IsDefault = false;
             this._btnAceptar.IsDefault = true;
@@ -1148,7 +1161,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.MarcasTercero
         {
             //this._presentador.CambiarCorresponsalSolicitud();
             ocultarLstPoderSolicutud();
-            ocultarLstPoderDatos();
+            //ocultarLstPoderDatos();
         }
 
         private void _OrdenarPoderSolicitud_Click(object sender, RoutedEventArgs e)
@@ -1156,10 +1169,10 @@ namespace Trascend.Bolet.Cliente.Ventanas.MarcasTercero
             this._presentador.OrdenarColumna(sender as GridViewColumnHeader, this._lstPoderesSolicitud);
         }
 
-        private void _cbxTipoMarcaTerceroSolicitud_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            this._cbxTipoMarcaTerceroDatos.SelectedItem = ((ComboBox)sender).SelectedItem;
-        }
+        //private void _cbxTipoMarcaTerceroSolicitud_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        //{
+        //    this._cbxTipoMarcaTerceroDatos.SelectedItem = ((ComboBox)sender).SelectedItem;
+        //}
 
         private void _btnDuplicar_Click(object sender, RoutedEventArgs e)
         {
@@ -1174,79 +1187,79 @@ namespace Trascend.Bolet.Cliente.Ventanas.MarcasTercero
 
         #region Eventos Datos
 
-        private void _txtAsociadoDatos_GotFocus(object sender, RoutedEventArgs e)
-        {
-            if (!this._asociadosCargados)
-            {
-                this._presentador.CargarAsociados();
-            }
+        //private void _txtAsociadoDatos_GotFocus(object sender, RoutedEventArgs e)
+        //{
+        //    if (!this._asociadosCargados)
+        //    {
+        //        this._presentador.CargarAsociados();
+        //    }
 
-            ocultarLstPoderDatos();
-            //ocultarLstCorresponsalDatos();
-            ocultarLstInteresadoDatos();
+        //    ocultarLstPoderDatos();
+        //    //ocultarLstCorresponsalDatos();
+        //    //ocultarLstInteresadoDatos();
 
-            this._btnAceptar.IsDefault = false;
-            this._btnConsultarAsociadoDatos.IsDefault = true;
+        //    this._btnAceptar.IsDefault = false;
+        //    //this._btnConsultarAsociadoDatos.IsDefault = true;
 
-            mostrarLstAsocaidoDatos();
-        }
+        //    //mostrarLstAsocaidoDatos();
+        //}
 
-        private void _lstAsociadosDatos_MouseDoubleClick(object sender, MouseButtonEventArgs e)
-        {
-            this._presentador.CambiarAsociadoDatos();
-            ocultarLstAsociadoDatos();
-            ocultarLstAsociadoSolicitud();
+        //private void _lstAsociadosDatos_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        //{
+        //    this._presentador.CambiarAsociadoDatos();
+        //    //ocultarLstAsociadoDatos();
+        //    ocultarLstAsociadoSolicitud();
 
-            this._btnConsultarAsociadoDatos.IsDefault = false;
-            this._btnAceptar.IsDefault = true;
-        }
+        //    //this._btnConsultarAsociadoDatos.IsDefault = false;
+        //    this._btnAceptar.IsDefault = true;
+        //}
 
-        private void _OrdenarAsociadoDatos_Click(object sender, RoutedEventArgs e)
-        {
-            this._presentador.OrdenarColumna(sender as GridViewColumnHeader, this._lstAsociadosDatos);
-        }
+        //private void _OrdenarAsociadoDatos_Click(object sender, RoutedEventArgs e)
+        //{
+        //    this._presentador.OrdenarColumna(sender as GridViewColumnHeader, this._lstAsociadosDatos);
+        //}
 
-        private void _btnConsultarAsociadoDatos_Click(object sender, RoutedEventArgs e)
-        {
-            this._presentador.BuscarAsociado(1);
-        }
+        //private void _btnConsultarAsociadoDatos_Click(object sender, RoutedEventArgs e)
+        //{
+        //    this._presentador.BuscarAsociado(1);
+        //}
 
-        private void _txtInteresadoDatos_GotFocus(object sender, RoutedEventArgs e)
-        {
-            if (!this._interesadosCargados)
-            {
-                this._presentador.CargarInteresados();
-            }
+        //private void _txtInteresadoDatos_GotFocus(object sender, RoutedEventArgs e)
+        //{
+        //    if (!this._interesadosCargados)
+        //    {
+        //        this._presentador.CargarInteresados();
+        //    }
 
-            ocultarLstPoderDatos();
-            //ocultarLstCorresponsalDatos();
-            ocultarLstAsociadoDatos();
+        //    ocultarLstPoderDatos();
+        //    //ocultarLstCorresponsalDatos();
+        //    //ocultarLstAsociadoDatos();
 
-            this._btnAceptar.IsDefault = false;
-            this._btnConsultarInteresadoDatos.IsDefault = true;
+        //    this._btnAceptar.IsDefault = false;
+        //    //this._btnConsultarInteresadoDatos.IsDefault = true;
 
-            mostrarLstInteresadoDatos();
-        }
+        //    //mostrarLstInteresadoDatos();
+        //}
 
-        private void _btnConsultarInteresadoDatos_Click(object sender, RoutedEventArgs e)
-        {
-            this._presentador.BuscarInteresado(1);
-        }
+        //private void _btnConsultarInteresadoDatos_Click(object sender, RoutedEventArgs e)
+        //{
+        //    this._presentador.BuscarInteresado(1);
+        //}
 
-        private void _lstInteresadosDatos_MouseDoubleClick(object sender, MouseButtonEventArgs e)
-        {
-            this._presentador.CambiarInteresadoDatos();
-            ocultarLstInteresadoDatos();
-            ocultarLstInteresadoSolicutud();
+        //private void _lstInteresadosDatos_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        //{
+        //    this._presentador.CambiarInteresadoDatos();
+        //    //ocultarLstInteresadoDatos();
+        //    ocultarLstInteresadoSolicutud();
 
-            this._btnConsultarInteresadoDatos.IsDefault = false;
-            this._btnAceptar.IsDefault = true;
-        }
+        //    //this._btnConsultarInteresadoDatos.IsDefault = false;
+        //    this._btnAceptar.IsDefault = true;
+        //}
 
-        private void _OrdenarInteresadoDatos_Click(object sender, RoutedEventArgs e)
-        {
-            this._presentador.OrdenarColumna(sender as GridViewColumnHeader, this._lstInteresadosDatos);
-        }
+        //private void _OrdenarInteresadoDatos_Click(object sender, RoutedEventArgs e)
+        //{
+        //    this._presentador.OrdenarColumna(sender as GridViewColumnHeader, this._lstInteresadosDatos);
+        //}
 
         //private void _btnConsultarCorresponsalDatos_Click(object sender, RoutedEventArgs e)
         //{
@@ -1284,48 +1297,48 @@ namespace Trascend.Bolet.Cliente.Ventanas.MarcasTercero
         //    this._presentador.OrdenarColumna(sender as GridViewColumnHeader, this._lstCorresponsalesDatos);
         //}
 
-        private void mostrarLstPoderDatos()
-        {
-            this._txtPoderDatos.Visibility = System.Windows.Visibility.Collapsed;
-            this._lstPoderesDatos.Visibility = System.Windows.Visibility.Visible;
-            this._lstPoderesDatos.IsEnabled = true;
-        }
+        //private void mostrarLstPoderDatos()
+        //{
+        //    this._txtPoderDatos.Visibility = System.Windows.Visibility.Collapsed;
+        //    this._lstPoderesDatos.Visibility = System.Windows.Visibility.Visible;
+        //    this._lstPoderesDatos.IsEnabled = true;
+        //}
 
-        private void ocultarLstPoderDatos()
-        {
-            this._presentador.CambiarPoderDatos();
-            this._lstPoderesDatos.Visibility = System.Windows.Visibility.Collapsed;
-            this._txtPoderDatos.Visibility = System.Windows.Visibility.Visible;
-        }
+        //private void ocultarLstPoderDatos()
+        //{
+        //    this._presentador.CambiarPoderDatos();
+        //    this._lstPoderesDatos.Visibility = System.Windows.Visibility.Collapsed;
+        //    this._txtPoderDatos.Visibility = System.Windows.Visibility.Visible;
+        //}
 
-        private void _txtPoderDatos_GotFocus(object sender, RoutedEventArgs e)
-        {
-            if (!this._poderesCargados)
-                this._presentador.CargarPoderes();
+        //private void _txtPoderDatos_GotFocus(object sender, RoutedEventArgs e)
+        //{
+        //    if (!this._poderesCargados)
+        //        this._presentador.CargarPoderes();
 
-            ocultarLstAsociadoDatos();
-            //ocultarLstCorresponsalDatos();
-            ocultarLstInteresadoDatos();
+        //    ocultarLstAsociadoDatos();
+        //    //ocultarLstCorresponsalDatos();
+        //    ocultarLstInteresadoDatos();
 
-            mostrarLstPoderDatos();
-        }
+        //    mostrarLstPoderDatos();
+        //}
 
-        private void _lstPoderesDatos_MouseDoubleClick(object sender, MouseButtonEventArgs e)
-        {
-            this._presentador.CambiarPoderDatos();
-            ocultarLstPoderSolicutud();
-            ocultarLstPoderDatos();
-        }
+        //private void _lstPoderesDatos_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        //{
+        //    this._presentador.CambiarPoderDatos();
+        //    ocultarLstPoderSolicutud();
+        //    ocultarLstPoderDatos();
+        //}
 
-        private void _OrdenarPoderDatos_Click(object sender, RoutedEventArgs e)
-        {
-            this._presentador.OrdenarColumna(sender as GridViewColumnHeader, this._lstPoderesDatos);
-        }
+        //private void _OrdenarPoderDatos_Click(object sender, RoutedEventArgs e)
+        //{
+        //    this._presentador.OrdenarColumna(sender as GridViewColumnHeader, this._lstPoderesDatos);
+        //}
 
-        private void _cbxTipoMarcaTerceroDatos_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            this._cbxTipoMarcaTerceroSolicitud.SelectedItem = ((ComboBox)sender).SelectedItem;
-        }
+        //private void _cbxTipoMarcaTerceroDatos_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        //{
+        //    this._cbxTipoMarcaTerceroSolicitud.SelectedItem = ((ComboBox)sender).SelectedItem;
+        //}
 
         private void _btnInfobol_Click(object sender, RoutedEventArgs e)
         {

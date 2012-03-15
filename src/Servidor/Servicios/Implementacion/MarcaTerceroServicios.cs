@@ -126,14 +126,47 @@ namespace Trascend.Bolet.Servicios.Implementacion
             throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// Servicio que insertar o modifica una Marca Tercera
+        /// </summary>
+        /// <param name="marca">Marca que se va a insertar o modificar</param>
+        /// <param name="hash">Hash del usuario que esta realiando la operacion</param>
+        /// <returns>True: si la inserción o modificación fue exitosa; False: en caso contrario</returns>
         bool IServicioBase<MarcaTercero>.InsertarOModificar(MarcaTercero entidad, int hash)
         {
+            #region trace
+            if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
             throw new NotImplementedException();
+         //   bool exitoso = ControladorMarcaTercero.InsertarOModificar(entidad, hash);
+
+            #region trace
+            if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                logger.Debug("Saliendo del Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
         }
 
+        /// <summary>
+        /// Servicio que elimina una Marca
+        /// </summary>
+        /// <param name="marca">Marca que se va a eliminar</param>
+        /// <returns>True: si la eliminacion fue exitosa; False: en caso contrario</returns>
         bool IServicioBase<MarcaTercero>.Eliminar(MarcaTercero entidad, int hash)
         {
+            #region trace
+            if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
             throw new NotImplementedException();
+       //     bool exitoso = ControladorMarcaTercero.Eliminar(entidad, hash);
+
+            #region trace
+            if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                logger.Debug("Saliendo del Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
         }
 
         bool IServicioBase<MarcaTercero>.VerificarExistencia(MarcaTercero entidad)

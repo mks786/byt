@@ -158,14 +158,14 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
                 marcaTercero.InfoAdicional = this._infoAdicionalServicios.ConsultarPorId(infoAdicional);
               //  marcaTercero.Anaqua = this._anaquaServicios.ConsultarPorId(anaqua);
 
-                IList<ListaDatosDominio> tiposMarcaTerceros = this._listaDatosDominioServicios.
-                    ConsultarListaDatosDominioPorParametro(new ListaDatosDominio(Recursos.Etiquetas.cbiCateroriaMarcaTercero));
-                ListaDatosDominio primerTipoMarcaTercero = new ListaDatosDominio();
-                primerTipoMarcaTercero.Id = "NGN";
-                tiposMarcaTerceros.Insert(0, primerTipoMarcaTercero);
-                this._ventana.TipoMarcaTerceroDatos = tiposMarcaTerceros;
-                this._ventana.TipoMarcaTerceroSolicitud = tiposMarcaTerceros;
-                this._ventana.TipoMarcaTerceroDatos = this.BuscarTipoMarca(tiposMarcaTerceros, marcaTercero.Tipo);
+                //IList<ListaDatosDominio> tiposMarcaTerceros = this._listaDatosDominioServicios.
+                //    ConsultarListaDatosDominioPorParametro(new ListaDatosDominio(Recursos.Etiquetas.cbiCateroriaMarcaTercero));
+                //ListaDatosDominio primerTipoMarcaTercero = new ListaDatosDominio();
+                //primerTipoMarcaTercero.Id = "NGN";
+                //tiposMarcaTerceros.Insert(0, primerTipoMarcaTercero);
+                //this._ventana.TipoMarcaTerceroDatos = tiposMarcaTerceros;
+                //this._ventana.TipoMarcaTerceroSolicitud = tiposMarcaTerceros;
+                //this._ventana.TipoMarcaTerceroDatos = this.BuscarTipoMarca(tiposMarcaTerceros, marcaTercero.Tipo);
 
                 IList<Agente> agentes = this._agenteServicios.ConsultarTodos();
                 Agente primerAgente = new Agente();
@@ -181,18 +181,18 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
                 this._ventana.PaisesSolicitud = paises;
                 this._ventana.PaisSolicitud = this.BuscarPais(paises, marcaTercero.Pais);
 
-                IList<StatusWeb> statusWebs = this._statusWebServicios.ConsultarTodos();
-                StatusWeb primerStatus = new StatusWeb();
-                primerStatus.Id = "NGN";
-                statusWebs.Insert(0, primerStatus);
-                this._ventana.StatusWebs = statusWebs;
-                this._ventana.StatusWeb = this.BuscarStatusWeb(statusWebs, marcaTercero.StatusWeb);
+                //IList<StatusWeb> statusWebs = this._statusWebServicios.ConsultarTodos();
+                //StatusWeb primerStatus = new StatusWeb();
+                //primerStatus.Id = "NGN";
+                //statusWebs.Insert(0, primerStatus);
+                //this._ventana.StatusWebs = statusWebs;
+                //this._ventana.StatusWeb = this.BuscarStatusWeb(statusWebs, marcaTercero.StatusWeb);
 
-                IList<Condicion> condiciones = this._condicionServicios.ConsultarTodos();
-                Condicion primeraCondicion = new Condicion();
-                primeraCondicion.Id = int.MinValue;
-                condiciones.Insert(0, primeraCondicion);
-                this._ventana.Condiciones = condiciones;
+                //IList<Condicion> condiciones = this._condicionServicios.ConsultarTodos();
+                //Condicion primeraCondicion = new Condicion();
+                //primeraCondicion.Id = int.MinValue;
+                //condiciones.Insert(0, primeraCondicion);
+                //this._ventana.Condiciones = condiciones;
 
                 IList<TipoEstado> tipoEstados = this._tipoEstadoServicios.ConsultarTodos();
                 TipoEstado primerDetalle = new TipoEstado();
@@ -219,36 +219,36 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
                 this._ventana.BoletinPublicacion = this.BuscarBoletin(boletines, marcaTercero.BoletinPublicacion);
 
                 Interesado interesado = (this._interesadoServicios.ConsultarInteresadoConTodo(marcaTercero.Interesado));
-                this._ventana.NombreInteresadoDatos = interesado.Nombre;
+                //this._ventana.NombreInteresadoDatos = interesado.Nombre;
                 this._ventana.NombreInteresadoSolicitud = interesado.Nombre;
                 this._ventana.InteresadoPaisSolicitud = interesado.Pais.NombreEspanol;
                 this._ventana.InteresadoCiudadSolicitud = interesado.Ciudad;
                 //this._ventana.InteresadoSolicitud = marcaTercero.Interesado;
 
-                this._ventana.NombreAsociadoDatos = marcaTercero.Asociado != null ? marcaTercero.Asociado.Nombre : "";
+                //this._ventana.NombreAsociadoDatos = marcaTercero.Asociado != null ? marcaTercero.Asociado.Nombre : "";
                 this._ventana.NombreAsociadoSolicitud = marcaTercero.Asociado != null ? marcaTercero.Asociado.Nombre : "";
 
                 //this._ventana.DescripcionCorresponsalSolicitud = marcaTercero.Corresponsal != null ? marcaTercero.Corresponsal.Descripcion : "";
                 //this._ventana.DescripcionCorresponsalDatos = marcaTercero.Corresponsal != null ? marcaTercero.Corresponsal.Descripcion : "";
 
-                this._ventana.NumPoderDatos = marcaTercero.Poder != null ? marcaTercero.Poder.NumPoder : "";
+                //this._ventana.NumPoderDatos = marcaTercero.Poder != null ? marcaTercero.Poder.NumPoder : "";
                 this._ventana.NumPoderSolicitud = marcaTercero.Poder != null ? marcaTercero.Poder.NumPoder : "";
 
-                IList<ListaDatosDominio> sectores = this._listaDatosDominioServicios.
-                    ConsultarListaDatosDominioPorParametro(new ListaDatosDominio(Recursos.Etiquetas.cbiSector));
-                ListaDatosDominio primerSector = new ListaDatosDominio();
-                primerSector.Id = "NGN";
-                sectores.Insert(0, primerSector);
-                this._ventana.Sectores = sectores;
-                this._ventana.Sector = this.BuscarSector(sectores, marcaTercero.Sector);
+                //IList<ListaDatosDominio> sectores = this._listaDatosDominioServicios.
+                //    ConsultarListaDatosDominioPorParametro(new ListaDatosDominio(Recursos.Etiquetas.cbiSector));
+                //ListaDatosDominio primerSector = new ListaDatosDominio();
+                //primerSector.Id = "NGN";
+                //sectores.Insert(0, primerSector);
+                //this._ventana.Sectores = sectores;
+                //this._ventana.Sector = this.BuscarSector(sectores, marcaTercero.Sector);
 
-                IList<ListaDatosDominio> tipoReproducciones = this._listaDatosDominioServicios.
-                    ConsultarListaDatosDominioPorParametro(new ListaDatosDominio(Recursos.Etiquetas.cbiTipoReproduccion));
-                ListaDatosDominio primerTipoReproduccion = new ListaDatosDominio();
-                primerTipoReproduccion.Id = "NGN";
-                tipoReproducciones.Insert(0, primerTipoReproduccion);
-                this._ventana.TipoReproducciones = tipoReproducciones;
-                this._ventana.TipoReproduccion = this.BuscarTipoReproduccion(tipoReproducciones, marcaTercero.Tipo);
+                //IList<ListaDatosDominio> tipoReproducciones = this._listaDatosDominioServicios.
+                //    ConsultarListaDatosDominioPorParametro(new ListaDatosDominio(Recursos.Etiquetas.cbiTipoReproduccion));
+                //ListaDatosDominio primerTipoReproduccion = new ListaDatosDominio();
+                //primerTipoReproduccion.Id = "NGN";
+                //tipoReproducciones.Insert(0, primerTipoReproduccion);
+                //this._ventana.TipoReproducciones = tipoReproducciones;
+                //this._ventana.TipoReproduccion = this.BuscarTipoReproduccion(tipoReproducciones, marcaTercero.Tipo);
 
                 Auditoria auditoria = new Auditoria();
                // auditoria.Fk = ((MarcaTercero)this._ventana.MarcaTercero).Id;
@@ -258,20 +258,20 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
                 //if (null != marcaTercero.InfoAdicional && !string.IsNullOrEmpty(marcaTercero.InfoAdicional.Id))
                 //    this._ventana.PintarInfoAdicional();
 
-                if (null != marcaTercero.Anaqua)
-                    this._ventana.PintarAnaqua();
+                //if (null != marcaTercero.Anaqua)
+                //    this._ventana.PintarAnaqua();
 
                 if (null != marcaTercero.InfoBoles && marcaTercero.InfoBoles.Count > 0)
                     this._ventana.PintarInfoBoles();
 
-                if (null != marcaTercero.Operaciones && marcaTercero.Operaciones.Count > 0)
-                    this._ventana.PintarOperaciones();
+                //if (null != marcaTercero.Operaciones && marcaTercero.Operaciones.Count > 0)
+                //    this._ventana.PintarOperaciones();
 
                 if (null != marcaTercero.Busquedas && marcaTercero.Busquedas.Count > 0)
                     this._ventana.PintarBusquedas();
 
-                if (null != this._auditorias && this._auditorias.Count > 0)
-                    this._ventana.PintarAuditoria();
+                //if (null != this._auditorias && this._auditorias.Count > 0)
+                //    this._ventana.PintarAuditoria();
 
                 this._ventana.BorrarCeros();
 
@@ -336,26 +336,26 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
             if (null != this._ventana.PaisSolicitud)
                 marcaTercero.Pais = ((Pais)this._ventana.PaisSolicitud).Id != int.MinValue ? ((Pais)this._ventana.PaisSolicitud) : null;
 
-            if (null != this._ventana.StatusWeb)
-                marcaTercero.StatusWeb = ((StatusWeb)this._ventana.StatusWeb).Id.Equals("NGN") ? ((StatusWeb)this._ventana.StatusWeb) : null;
+            //if (null != this._ventana.StatusWeb)
+            //    marcaTercero.StatusWeb = ((StatusWeb)this._ventana.StatusWeb).Id.Equals("NGN") ? ((StatusWeb)this._ventana.StatusWeb) : null;
 
             //if (null != this._ventana.CorresponsalSolicitud)
             //    marcaTercero.Corresponsal = ((Corresponsal)this._ventana.CorresponsalSolicitud).Id != int.MinValue ? ((Corresponsal)this._ventana.CorresponsalSolicitud) : null;
 
-            if (null != this._ventana.Sector)
-                marcaTercero.Sector = !((ListaDatosDominio)this._ventana.Sector).Id.Equals("NGN") ? ((ListaDatosDominio)this._ventana.Sector).Id : null;
+            //if (null != this._ventana.Sector)
+            //    marcaTercero.Sector = !((ListaDatosDominio)this._ventana.Sector).Id.Equals("NGN") ? ((ListaDatosDominio)this._ventana.Sector).Id : null;
 
-            if (null != this._ventana.TipoReproduccion)
-                marcaTercero.TipoRps = ((ListaDatosDominio)this._ventana.TipoReproduccion).Id[0];
+            //if (null != this._ventana.TipoReproduccion)
+            //    marcaTercero.TipoRps = ((ListaDatosDominio)this._ventana.TipoReproduccion).Id[0];
 
-            if (null != this._ventana.TipoMarcaTerceroDatos)
-                marcaTercero.Tipo = !((ListaDatosDominio)this._ventana.TipoMarcaTerceroDatos).Id.Equals("NGN") ? ((ListaDatosDominio)this._ventana.TipoMarcaTerceroDatos).Id : null;
+            //if (null != this._ventana.TipoMarcaTerceroDatos)
+            //    marcaTercero.Tipo = !((ListaDatosDominio)this._ventana.TipoMarcaTerceroDatos).Id.Equals("NGN") ? ((ListaDatosDominio)this._ventana.TipoMarcaTerceroDatos).Id : null;
 
             if (string.IsNullOrEmpty(this._ventana.IdInternacional))
                 marcaTercero.Internacional = null;
 
-            if (string.IsNullOrEmpty(this._ventana.IdNacional))
-                marcaTercero.Nacional = null;
+            //if (string.IsNullOrEmpty(this._ventana.IdNacional))
+            //    marcaTercero.Nacional = null;
 
             return marcaTercero;
         }
@@ -648,35 +648,35 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
                 {
                     Asociado asociado = this._asociadoServicios.ConsultarAsociadoConTodo((Asociado)this._ventana.AsociadoSolicitud);
                     this._ventana.NombreAsociadoSolicitud = ((Asociado)this._ventana.AsociadoSolicitud).Nombre;
-                    this._ventana.AsociadoDatos = (Asociado)this._ventana.AsociadoSolicitud;
-                    this._ventana.NombreAsociadoDatos = ((Asociado)this._ventana.AsociadoSolicitud).Nombre;
+                    //this._ventana.AsociadoDatos = (Asociado)this._ventana.AsociadoSolicitud;
+                    //this._ventana.NombreAsociadoDatos = ((Asociado)this._ventana.AsociadoSolicitud).Nombre;
                 }
             }
             catch (ApplicationException e)
             {
                 this._ventana.NombreAsociadoSolicitud = "";
-                this._ventana.NombreAsociadoDatos = "";
+                //this._ventana.NombreAsociadoDatos = "";
             }
         }
 
-        public void CambiarAsociadoDatos()
-        {
-            try
-            {
-                if ((Asociado)this._ventana.AsociadoDatos != null)
-                {
-                    Asociado asociado = this._asociadoServicios.ConsultarAsociadoConTodo((Asociado)this._ventana.AsociadoDatos);
-                    this._ventana.NombreAsociadoDatos = ((Asociado)this._ventana.AsociadoDatos).Nombre;
-                    this._ventana.AsociadoSolicitud = (Asociado)this._ventana.AsociadoDatos;
-                    this._ventana.NombreAsociadoSolicitud = ((Asociado)this._ventana.AsociadoDatos).Nombre;
-                }
-            }
-            catch (ApplicationException e)
-            {
-                this._ventana.NombreAsociadoSolicitud = "";
-                this._ventana.NombreAsociadoDatos = "";
-            }
-        }
+        //public void CambiarAsociadoDatos()
+        //{
+        //    try
+        //    {
+        //        if ((Asociado)this._ventana.AsociadoDatos != null)
+        //        {
+        //            Asociado asociado = this._asociadoServicios.ConsultarAsociadoConTodo((Asociado)this._ventana.AsociadoDatos);
+        //            this._ventana.NombreAsociadoDatos = ((Asociado)this._ventana.AsociadoDatos).Nombre;
+        //            this._ventana.AsociadoSolicitud = (Asociado)this._ventana.AsociadoDatos;
+        //            this._ventana.NombreAsociadoSolicitud = ((Asociado)this._ventana.AsociadoDatos).Nombre;
+        //        }
+        //    }
+        //    catch (ApplicationException e)
+        //    {
+        //        this._ventana.NombreAsociadoSolicitud = "";
+        //        this._ventana.NombreAsociadoDatos = "";
+        //    }
+        //}
 
         public void BuscarAsociado(int filtrarEn)
         {
@@ -700,24 +700,24 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
                                          select p;
                 }
             }
-            else
-            {
+            //else
+            //{
 
-                if (!string.IsNullOrEmpty(this._ventana.IdAsociadoDatosFiltrar))
-                {
-                    asociadosFiltrados = from p in asociadosFiltrados
-                                         where p.Id == int.Parse(this._ventana.IdAsociadoDatosFiltrar)
-                                         select p;
-                }
+            //    if (!string.IsNullOrEmpty(this._ventana.IdAsociadoDatosFiltrar))
+            //    {
+            //        asociadosFiltrados = from p in asociadosFiltrados
+            //                             where p.Id == int.Parse(this._ventana.IdAsociadoDatosFiltrar)
+            //                             select p;
+            //    }
 
-                if (!string.IsNullOrEmpty(this._ventana.NombreAsociadoDatosFiltrar))
-                {
-                    asociadosFiltrados = from p in asociadosFiltrados
-                                         where p.Nombre != null &&
-                                         p.Nombre.ToLower().Contains(this._ventana.NombreAsociadoDatosFiltrar.ToLower())
-                                         select p;
-                }
-            }
+            //    if (!string.IsNullOrEmpty(this._ventana.NombreAsociadoDatosFiltrar))
+            //    {
+            //        asociadosFiltrados = from p in asociadosFiltrados
+            //                             where p.Nombre != null &&
+            //                             p.Nombre.ToLower().Contains(this._ventana.NombreAsociadoDatosFiltrar.ToLower())
+            //                             select p;
+            //    }
+            //}
 
             // filtrarEn = 0 significa en el listview de la pestaña solicitud
             // filtrarEn = 1 significa en el listview de la pestaña Datos 
@@ -728,13 +728,13 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
                 else
                     this._ventana.AsociadosSolicitud = this._asociados;
             }
-            else
-            {
-                if (asociadosFiltrados.ToList<Asociado>().Count != 0)
-                    this._ventana.AsociadosDatos = asociadosFiltrados.ToList<Asociado>();
-                else
-                    this._ventana.AsociadosDatos = this._asociados;
-            }
+            //else
+            //{
+            //    if (asociadosFiltrados.ToList<Asociado>().Count != 0)
+            //        this._ventana.AsociadosDatos = asociadosFiltrados.ToList<Asociado>();
+            //    else
+            //        this._ventana.AsociadosDatos = this._asociados;
+            //}
         }
 
         public void CargarAsociados()
@@ -747,10 +747,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
             primerAsociado.Id = int.MinValue;
             asociados.Insert(0, primerAsociado);
             this._ventana.AsociadosSolicitud = asociados;
-            this._ventana.AsociadosDatos = asociados;
+            //this._ventana.AsociadosDatos = asociados;
             this._ventana.AsociadoSolicitud = this.BuscarAsociado(asociados, marcaTercero.Asociado);
-            this._ventana.AsociadoDatos = this.BuscarAsociado(asociados, marcaTercero.Asociado);
-            this._ventana.NombreAsociadoDatos = ((MarcaTercero)this._ventana.MarcaTercero).Asociado.Nombre;
+            //this._ventana.AsociadoDatos = this.BuscarAsociado(asociados, marcaTercero.Asociado);
+            //this._ventana.NombreAsociadoDatos = ((MarcaTercero)this._ventana.MarcaTercero).Asociado.Nombre;
             this._ventana.NombreAsociadoSolicitud = ((MarcaTercero)this._ventana.MarcaTercero).Asociado.Nombre;
             this._asociados = asociados;
             this._ventana.AsociadosEstanCargados = true;
@@ -770,8 +770,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
                 {
                     Interesado interesadoAux = this._interesadoServicios.ConsultarInteresadoConTodo((Interesado)this._ventana.InteresadoSolicitud);
                     this._ventana.NombreInteresadoSolicitud = ((Interesado)this._ventana.InteresadoSolicitud).Nombre;
-                    this._ventana.InteresadoDatos = (Interesado)this._ventana.InteresadoSolicitud;
-                    this._ventana.NombreInteresadoDatos = ((Interesado)this._ventana.InteresadoSolicitud).Nombre;
+                    //this._ventana.InteresadoDatos = (Interesado)this._ventana.InteresadoSolicitud;
+                    //this._ventana.NombreInteresadoDatos = ((Interesado)this._ventana.InteresadoSolicitud).Nombre;
                     this._ventana.InteresadoPaisSolicitud = interesadoAux.Pais != null ? interesadoAux.Pais.NombreEspanol : "";
                     this._ventana.InteresadoCiudadSolicitud = interesadoAux.Ciudad != null ? interesadoAux.Ciudad : "";
                 }
@@ -779,35 +779,35 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
             catch (ApplicationException e)
             {
                 this._ventana.NombreInteresadoSolicitud = "";
-                this._ventana.NombreInteresadoDatos = "";
+                //this._ventana.NombreInteresadoDatos = "";
                 this._ventana.InteresadoPaisSolicitud = "";
                 this._ventana.InteresadoCiudadSolicitud = "";
             }
         }
 
-        public void CambiarInteresadoDatos()
-        {
-            try
-            {
-                if ((Interesado)this._ventana.InteresadoDatos != null)
-                {
-                    Interesado interesadoAux = this._interesadoServicios.ConsultarInteresadoConTodo((Interesado)this._ventana.InteresadoSolicitud);
-                    this._ventana.InteresadoDatos = this._interesadoServicios.ConsultarInteresadoConTodo((Interesado)this._ventana.InteresadoDatos);
-                    this._ventana.NombreInteresadoDatos = ((Interesado)this._ventana.InteresadoDatos).Nombre;
-                    this._ventana.InteresadoSolicitud = (Interesado)this._ventana.InteresadoDatos;
-                    this._ventana.NombreInteresadoSolicitud = ((Interesado)this._ventana.InteresadoDatos).Nombre;
-                    this._ventana.InteresadoPaisSolicitud = interesadoAux.Pais != null ? interesadoAux.Pais.NombreEspanol : "";
-                    this._ventana.InteresadoCiudadSolicitud = interesadoAux.Ciudad != null ? interesadoAux.Ciudad : "";
-                }
-            }
-            catch (ApplicationException e)
-            {
-                this._ventana.NombreInteresadoSolicitud = "";
-                this._ventana.NombreInteresadoDatos = "";
-                this._ventana.InteresadoPaisSolicitud = "";
-                this._ventana.InteresadoCiudadSolicitud = "";
-            }
-        }
+        //public void CambiarInteresadoDatos()
+        //{
+        //    try
+        //    {
+        //        if ((Interesado)this._ventana.InteresadoDatos != null)
+        //        {
+        //            Interesado interesadoAux = this._interesadoServicios.ConsultarInteresadoConTodo((Interesado)this._ventana.InteresadoSolicitud);
+        //            this._ventana.InteresadoDatos = this._interesadoServicios.ConsultarInteresadoConTodo((Interesado)this._ventana.InteresadoDatos);
+        //            this._ventana.NombreInteresadoDatos = ((Interesado)this._ventana.InteresadoDatos).Nombre;
+        //            this._ventana.InteresadoSolicitud = (Interesado)this._ventana.InteresadoDatos;
+        //            this._ventana.NombreInteresadoSolicitud = ((Interesado)this._ventana.InteresadoDatos).Nombre;
+        //            this._ventana.InteresadoPaisSolicitud = interesadoAux.Pais != null ? interesadoAux.Pais.NombreEspanol : "";
+        //            this._ventana.InteresadoCiudadSolicitud = interesadoAux.Ciudad != null ? interesadoAux.Ciudad : "";
+        //        }
+        //    }
+        //    catch (ApplicationException e)
+        //    {
+        //        this._ventana.NombreInteresadoSolicitud = "";
+        //        this._ventana.NombreInteresadoDatos = "";
+        //        this._ventana.InteresadoPaisSolicitud = "";
+        //        this._ventana.InteresadoCiudadSolicitud = "";
+        //    }
+        //}
 
         public void BuscarInteresado(int filtrarEn)
         {
@@ -830,23 +830,23 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
                                            select p;
                 }
             }
-            else
-            {
-                if (!string.IsNullOrEmpty(this._ventana.IdInteresadoDatosFiltrar))
-                {
-                    interesadosFiltrados = from p in interesadosFiltrados
-                                           where p.Id == int.Parse(this._ventana.IdInteresadoDatosFiltrar)
-                                           select p;
-                }
+            //else
+            //{
+            //    if (!string.IsNullOrEmpty(this._ventana.IdInteresadoDatosFiltrar))
+            //    {
+            //        interesadosFiltrados = from p in interesadosFiltrados
+            //                               where p.Id == int.Parse(this._ventana.IdInteresadoDatosFiltrar)
+            //                               select p;
+            //    }
 
-                if (!string.IsNullOrEmpty(this._ventana.NombreInteresadoDatosFiltrar))
-                {
-                    interesadosFiltrados = from p in interesadosFiltrados
-                                           where p.Nombre != null &&
-                                           p.Nombre.ToLower().Contains(this._ventana.NombreInteresadoDatosFiltrar.ToLower())
-                                           select p;
-                }
-            }
+            //    if (!string.IsNullOrEmpty(this._ventana.NombreInteresadoDatosFiltrar))
+            //    {
+            //        interesadosFiltrados = from p in interesadosFiltrados
+            //                               where p.Nombre != null &&
+            //                               p.Nombre.ToLower().Contains(this._ventana.NombreInteresadoDatosFiltrar.ToLower())
+            //                               select p;
+            //    }
+            //}
 
             // filtrarEn = 0 significa en el listview de la pestaña solicitud
             // filtrarEn = 1 significa en el listview de la pestaña Datos 
@@ -857,13 +857,13 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
                 else
                     this._ventana.InteresadosSolicitud = this._interesados;
             }
-            else
-            {
-                if (interesadosFiltrados.ToList<Interesado>().Count != 0)
-                    this._ventana.InteresadosDatos = interesadosFiltrados.ToList<Interesado>();
-                else
-                    this._ventana.InteresadosDatos = this._interesados;
-            }
+            //else
+            //{
+            //    if (interesadosFiltrados.ToList<Interesado>().Count != 0)
+            //        this._ventana.InteresadosDatos = interesadosFiltrados.ToList<Interesado>();
+            //    else
+            //        this._ventana.InteresadosDatos = this._interesados;
+            //}
         }
 
         public void CargarInteresados()
@@ -875,16 +875,16 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
             Interesado primerInteresado = new Interesado();
             primerInteresado.Id = int.MinValue;
             interesados.Insert(0, primerInteresado);
-            this._ventana.InteresadosDatos = interesados;
+            //this._ventana.InteresadosDatos = interesados;
             this._ventana.InteresadosSolicitud = interesados;
             ((MarcaTercero)this._ventana.MarcaTercero).Interesado = this.BuscarInteresado(interesados, marcaTercero.Interesado);
             Interesado interesado = this.BuscarInteresado(interesados, marcaTercero.Interesado);
             this._ventana.InteresadoSolicitud = interesado;
-            this._ventana.InteresadoDatos = interesado;
+            //this._ventana.InteresadoDatos = interesado;
             interesado = this._interesadoServicios.ConsultarInteresadoConTodo(interesado);
             this._ventana.InteresadoPaisSolicitud = interesado.Pais.NombreEspanol;
             this._ventana.InteresadoCiudadSolicitud = interesado.Ciudad;
-            this._ventana.NombreInteresadoDatos = ((MarcaTercero)this._ventana.MarcaTercero).Interesado.Nombre;
+            //this._ventana.NombreInteresadoDatos = ((MarcaTercero)this._ventana.MarcaTercero).Interesado.Nombre;
             this._ventana.NombreInteresadoSolicitud = ((MarcaTercero)this._ventana.MarcaTercero).Interesado.Nombre;
             this._interesados = interesados;
 
@@ -1028,34 +1028,34 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
                 if ((Poder)this._ventana.PoderSolicitud != null)
                 {
                     this._ventana.NumPoderSolicitud = ((Poder)this._ventana.PoderSolicitud).NumPoder;
-                    this._ventana.PoderDatos = (Poder)this._ventana.PoderSolicitud;
-                    this._ventana.NumPoderDatos = ((Poder)this._ventana.PoderSolicitud).NumPoder;
+                    //this._ventana.PoderDatos = (Poder)this._ventana.PoderSolicitud;
+                    //this._ventana.NumPoderDatos = ((Poder)this._ventana.PoderSolicitud).NumPoder;
                 }
             }
             catch (ApplicationException e)
             {
                 this._ventana.NumPoderSolicitud = "";
-                this._ventana.NumPoderDatos = "";
+                //this._ventana.NumPoderDatos = "";
             }
         }
 
-        public void CambiarPoderDatos()
-        {
-            try
-            {
-                if ((Poder)this._ventana.PoderDatos != null)
-                {
-                    this._ventana.NumPoderDatos = ((Poder)this._ventana.PoderDatos).NumPoder;
-                    this._ventana.PoderSolicitud = (Poder)this._ventana.PoderDatos;
-                    this._ventana.NumPoderSolicitud = ((Poder)this._ventana.PoderDatos).NumPoder;
-                }
-            }
-            catch (ApplicationException e)
-            {
-                this._ventana.NumPoderSolicitud = "";
-                this._ventana.NumPoderDatos = "";
-            }
-        }
+        //public void CambiarPoderDatos()
+        //{
+        //    try
+        //    {
+        //        if ((Poder)this._ventana.PoderDatos != null)
+        //        {
+        //            this._ventana.NumPoderDatos = ((Poder)this._ventana.PoderDatos).NumPoder;
+        //            this._ventana.PoderSolicitud = (Poder)this._ventana.PoderDatos;
+        //            this._ventana.NumPoderSolicitud = ((Poder)this._ventana.PoderDatos).NumPoder;
+        //        }
+        //    }
+        //    catch (ApplicationException e)
+        //    {
+        //        this._ventana.NumPoderSolicitud = "";
+        //        this._ventana.NumPoderDatos = "";
+        //    }
+        //}
 
         public void CargarPoderes()
         {
@@ -1066,9 +1066,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
             Poder poder = new Poder();
             poder.Id = int.MinValue;
             poderes.Insert(0, poder);
-            this._ventana.PoderesDatos = poderes;
+            //this._ventana.PoderesDatos = poderes;
             this._ventana.PoderesSolicitud = poderes;
-            this._ventana.PoderDatos = this.BuscarPoder(poderes, marcaTercero.Poder);
+            //this._ventana.PoderDatos = this.BuscarPoder(poderes, marcaTercero.Poder);
             this._ventana.PoderSolicitud = this.BuscarPoder(poderes, marcaTercero.Poder);
 
             this._ventana.PoderesEstanCargados = true;

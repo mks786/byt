@@ -10,29 +10,29 @@ namespace Trascend.Bolet.Cliente.Contratos.MarcasTercero
 
         string IdAsociadoSolicitudFiltrar { get; }
 
-        string IdAsociadoDatosFiltrar { get; }
+        //string IdAsociadoDatosFiltrar { get; }
 
         string NombreAsociadoSolicitudFiltrar { get; }
 
-        string NombreAsociadoDatosFiltrar { get; }
+        //string NombreAsociadoDatosFiltrar { get; }
 
         string NombreAsociadoSolicitud { get; set; }
 
-        string NombreAsociadoDatos { get; set; }
+        //string NombreAsociadoDatos { get; set; }
 
         string IdInteresadoSolicitudFiltrar { get; }
 
-        string IdInteresadoDatosFiltrar { get; }
+        //string IdInteresadoDatosFiltrar { get; }
 
         string NombreInteresadoSolicitudFiltrar { get; }
 
-        string NombreInteresadoDatosFiltrar { get; }
+        //string NombreInteresadoDatosFiltrar { get; }
 
         string NombreInteresadoSolicitud { get; set; }
 
-        string NombreInteresadoDatos { get; set; }
+        //string NombreInteresadoDatos { get; set; }
 
-        string NumPoderDatos { get; set; }
+        //string NumPoderDatos { get; set; }
 
         string NumPoderSolicitud { get; set; }
 
@@ -52,17 +52,17 @@ namespace Trascend.Bolet.Cliente.Contratos.MarcasTercero
 
         object AsociadoSolicitud { get; set; }
 
-        object AsociadosDatos { get; set; }
+        //object AsociadosDatos { get; set; }
 
-        object AsociadoDatos { get; set; }
+        //object AsociadoDatos { get; set; }
 
         object InteresadosSolicitud { get; set; }
 
         object InteresadoSolicitud { get; set; }
 
-        object InteresadosDatos { get; set; }
+        //object InteresadosDatos { get; set; }
 
-        object InteresadoDatos { get; set; }
+        //object InteresadoDatos { get; set; }
 
         string InteresadoPaisSolicitud { get; set; }
 
@@ -80,9 +80,9 @@ namespace Trascend.Bolet.Cliente.Contratos.MarcasTercero
 
         object PoderSolicitud { get; set; }
 
-        object PoderesDatos { get; set; }
+        //object PoderesDatos { get; set; }
 
-        object PoderDatos { get; set; }
+        //object PoderDatos { get; set; }
 
         object Agentes { get; set; }
 
@@ -108,33 +108,17 @@ namespace Trascend.Bolet.Cliente.Contratos.MarcasTercero
 
         object Detalles { get; set; }
 
-        object Condiciones { get; set; }
+        //object Condiciones { get; set; }
 
-        object Condicion { get; set; }
+        //object Condicion { get; set; }
 
         object PaisesSolicitud { get; set; }
 
         object PaisSolicitud { get; set; }
 
-        object TipoMarcaTerceroSolicitud { get; set; }
+        //object StatusWeb { get; set; }
 
-        object TipoMarcasTerceroSolicitud { get; set; }
-
-        object TipoMarcaTerceroDatos { get; set; }
-
-        object TipoMarcasTerceroDatos { get; set; }
-
-        object TipoReproduccion { get; set; }
-
-        object TipoReproducciones { get; set; }
-
-        object Sector { get; set; }
-
-        object Sectores { get; set; }
-
-        object StatusWeb { get; set; }
-
-        object StatusWebs { get; set; }
+        //object StatusWebs { get; set; }
 
         void Mensaje(string mensaje);
 
@@ -142,7 +126,7 @@ namespace Trascend.Bolet.Cliente.Contratos.MarcasTercero
 
         string IdInternacional { get; set; }
 
-        string IdNacional { get; set; }
+        //string IdNacional { get; set; }
 
         bool HabilitarCampos { set; }
 
@@ -156,15 +140,15 @@ namespace Trascend.Bolet.Cliente.Contratos.MarcasTercero
 
         //void PintarInfoAdicional();
 
-        void PintarAnaqua();
+        //void PintarAnaqua();
 
         void PintarInfoBoles();
 
-        void PintarOperaciones();
+        //void PintarOperaciones();
 
         void PintarBusquedas();
 
-        void PintarAuditoria();
+        //void PintarAuditoria();
 
         void BorrarCeros();
 
