@@ -86,7 +86,7 @@
                                     <DataTemplate>
                                         <TextBlock>
                                         <TextBlock.Text>
-                                            <Binding Path="Id"/>
+                                            <Binding Path="Id" Converter="{StaticResource convertir}"/>
                                         </TextBlock.Text>
                                         </TextBlock>
                                     </DataTemplate>

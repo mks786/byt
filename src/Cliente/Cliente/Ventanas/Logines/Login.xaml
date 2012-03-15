@@ -55,7 +55,7 @@
                 <Button Name="_btnAceptar" Grid.Column="1" Grid.Row="3" Height="25" Width="90" HorizontalAlignment="Right" Click="_btnAceptar_Click" IsDefault="True">
                     <TextBlock Text="{x:Static resx:Etiquetas.btnAceptar}"/>
                 </Button>
-                <Button Name="_btnCancelar" Grid.Column="1" Grid.Row="3"  Height="25" Width="90" Click="_btnCancelar_Click">
+                <Button Name="_btnCancelarLogin" Grid.Column="1" Grid.Row="3"  Height="25" Width="90" Click="_btnCancelar_Click">
                     <TextBlock Text="{x:Static resx:Etiquetas.btnCancelar}"/>
                 </Button>
             </WrapPanel>

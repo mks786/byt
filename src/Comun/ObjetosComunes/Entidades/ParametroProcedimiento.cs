@@ -3,6 +3,10 @@ using System.Collections.Generic;
 
 namespace Trascend.Bolet.ObjetosComunes.Entidades
 {
+    /// <summary>
+    /// Esta clase esta dedicada para pasar un parametro al DAO para llamar a distintos
+    /// procedimientos situados en distintos packages en la Base de Datos
+    /// </summary>
     [Serializable]
     public class ParametroProcedimiento
     {
@@ -11,8 +15,8 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         private int _id;
         private Usuario _usuario;
         private int _via;
-        private string _paqueteProcedimiento;
-        private string _nombreProcedimiento;
+        private string _paqueteProcedimiento;//Paquete donde esta situado el procedimiento
+        private string _nombreProcedimiento;//Nombre del procedimiento a llamar
 
         #endregion
 

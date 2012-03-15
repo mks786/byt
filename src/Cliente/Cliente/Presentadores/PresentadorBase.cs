@@ -8,6 +8,10 @@ using System;
 using Trascend.Bolet.ObjetosComunes.ContratosServicios;
 using System.Configuration;
 using Trascend.Bolet.ControlesByT.Ventanas;
+using NLog;
+using System.Windows.Input;
+using System.Net.Sockets;
+using System.Runtime.Remoting;
 
 namespace Trascend.Bolet.Cliente.Presentadores
 {
@@ -16,12 +20,21 @@ namespace Trascend.Bolet.Cliente.Presentadores
         private static IVentanaPrincipal _ventanaPrincipal = VentanaPrincipal.ObtenerInstancia;
         private static IPaginaPrincipal _paginaPrincipal = PaginaPrincipal.ObtenerInstancia;
         private static Usuario _usuarioLogeado;
+
         private IPlanillaServicios _planillaServicios;
+        private IMarcaServicios _marcaServicios;
+        private IAgenteServicios _agenteServicios;
+
+        private static Logger logger = LogManager.GetCurrentClassLogger();
 
         public PresentadorBase()
         {
             this._planillaServicios = (IPlanillaServicios)Activator.GetObject(typeof(IPlanillaServicios),
                 ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["PlanillaServicios"]);
+            this._agenteServicios = (IAgenteServicios)Activator.GetObject(typeof(IAgenteServicios),
+                ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["AgenteServicios"]);
+            this._marcaServicios = (IMarcaServicios)Activator.GetObject(typeof(IMarcaServicios),
+                ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["MarcaServicios"]);
         }
 
         /// <summary>
@@ -1292,6 +1305,75 @@ namespace Trascend.Bolet.Cliente.Presentadores
                 throw new ApplicationException();
             }
             return retorno.Substring(0, retorno.Length - 1);
+        }
+
+        /// <summary>
+        /// Método que valida que un agente este en el poder de la lista de marcas
+        /// </summary>
+        /// <param name="agente">Agente a buscar</param>
+        /// <param name="marcas">Marcas con poder</param>
+        /// <returns>true en caso de que las marcas posean a ese agente como apoderado, false en caso contrario</returns>
+        public bool ValidarAgenteApoderadoDeMarcas(Agente agente, IList<Marca> marcas)
+        {
+            bool retorno = true;
+
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                foreach (Marca marca in marcas)
+                {
+                    bool validador = false;
+                    Marca marcaAux = this._marcaServicios.ConsultarMarcaConTodo(marca);
+                    if (marcaAux.Poder != null)
+                    {
+                        IList<Agente> agentes = this._agenteServicios.ObtenerAgentesDeUnPoder(marcaAux.Poder);
+
+                        foreach (Agente agenteEnPoder in agentes)
+                        {
+                            if (agenteEnPoder.Id == agente.Id)
+                                validador = true;
+                        }
+                        retorno = retorno && validador;
+                    }
+                    else
+                        return false;
+                }
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+            }
+            catch (ApplicationException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(ex.Message, true);
+            }
+            catch (RemotingException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorRemoting, true);
+            }
+            catch (SocketException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorConexionServidor, true);
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
+            }
+            finally
+            {
+                Mouse.OverrideCursor = null;
+            }
+            return retorno;
         }
     }
 }

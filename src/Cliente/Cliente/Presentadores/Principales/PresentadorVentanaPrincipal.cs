@@ -46,6 +46,7 @@ using Trascend.Bolet.Cliente.Ventanas.Traspasos.CambiosDeNombre;
 using Trascend.Bolet.Cliente.Ventanas.Traspasos.CambiosPeticionario;
 using Trascend.Bolet.Cliente.Ventanas.Renovaciones;
 using Trascend.Bolet.Cliente.Ventanas.EscritosMarca;
+using Trascend.Bolet.Cliente.Ventanas.Logines;
 
 namespace Trascend.Bolet.Cliente.Presentadores.Principales
 {

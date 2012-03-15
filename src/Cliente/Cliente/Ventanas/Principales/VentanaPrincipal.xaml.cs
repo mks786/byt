@@ -4,6 +4,7 @@ using System.Windows.Controls;
 using Trascend.Bolet.Cliente.Recursos;
 using Trascend.Bolet.Cliente.Presentadores.Principales;
 using Trascend.Bolet.Cliente.Contratos.Principales;
+using Trascend.Bolet.Cliente.Ventanas.Logines;
 
 namespace Trascend.Bolet.Cliente.Ventanas.Principales
 {
@@ -44,7 +45,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Principales
 
         #region IVentanaPrincipal
 
-        public Frame Contenedor 
+        public Frame Contenedor
         {
             get { return this._framePrincipal; }
         }
@@ -256,8 +257,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.Principales
         private void _menuItemUsuarioAgregar_Click(object sender, RoutedEventArgs e)
         {
             this._presentador.AgregarUsuarios();
-        } 
-        
+        }
+
         private void _menuItemTipoFechaConsultar_Click(object sender, RoutedEventArgs e)
         {
             this._presentador.ConsultarTipoFechas();
@@ -330,7 +331,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Principales
 
         private void _menuItemCesionesConsultar_Click(object sender, RoutedEventArgs e)
         {
-            this._presentador.ConsultarCesiones();            
+            this._presentador.ConsultarCesiones();
         }
 
         private void _menuItemCesionAgregar_Click(object sender, RoutedEventArgs e)
@@ -509,7 +510,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Principales
             this._presentador.AplicarPermisologia();
         }
 
-        #endregion   
+        #endregion
 
 
 

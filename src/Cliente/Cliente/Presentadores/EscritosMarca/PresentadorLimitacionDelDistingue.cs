@@ -28,6 +28,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
 
         Agente primerAgente = new Agente();
         Marca primerMarca = new Marca(int.MinValue);
+
         private IList<Agente> _Agentes;
         private IList<Marca> _marcas;
         private IList<Marca> _marcasAgregadas = new List<Marca>();
@@ -112,7 +113,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
                     {
                         if (this._marcasAgregadas.Count != 0)
                         {
-                            if (ValidarEscrito())
+                            if (this.ValidarAgenteApoderadoDeMarcas((Agente)this._ventana.AgenteFiltrado,this._marcasAgregadas))
                             {
                                 string parametroMarcas = ArmarStringParametroMarcas(this._marcasAgregadas);
                                 this.EjecutarArchivoBAT(ConfigurationManager.AppSettings["batEscrito"].ToString()
@@ -159,68 +160,6 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
             }
         }
 
-        private bool ValidarEscrito()
-        {
-            bool retorno = true;
-            try
-            {
-                #region trace
-                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
-                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
-                #endregion
-
-                foreach (Marca marca in this._marcasAgregadas)
-                {
-                    bool validador = false;
-                    Marca marcaAux = this._marcaServicios.ConsultarMarcaConTodo(marca);
-                    if (marcaAux.Poder != null)
-                    {
-                        IList<Agente> agentes = this._agenteServicios.ObtenerAgentesDeUnPoder(marcaAux.Poder);
-
-                        foreach (Agente agente in agentes)
-                        {
-                            if (agente.Id == ((Agente)this._ventana.Agente).Id)
-                                validador = true;
-                        }
-                        retorno = retorno && validador;
-                    }
-                    else
-                        return false;
-                }
-
-                #region trace
-                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
-                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
-                #endregion
-
-            }
-            catch (ApplicationException ex)
-            {
-                logger.Error(ex.Message);
-                this.Navegar(ex.Message, true);
-            }
-            catch (RemotingException ex)
-            {
-                logger.Error(ex.Message);
-                this.Navegar(Recursos.MensajesConElUsuario.ErrorRemoting, true);
-            }
-            catch (SocketException ex)
-            {
-                logger.Error(ex.Message);
-                this.Navegar(Recursos.MensajesConElUsuario.ErrorConexionServidor, true);
-            }
-            catch (Exception ex)
-            {
-                logger.Error(ex.Message);
-                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
-            }
-            finally
-            {
-                Mouse.OverrideCursor = null;
-            }
-            return retorno;
-        }
-
         /// <summary>
         /// Método que ordena una columna
         /// </summary>
@@ -257,6 +196,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
 
         #region Agente
 
+        /// <summary>
+        /// Método que se encarga de cambiar un agente
+        /// </summary>
+        /// <returns></returns>
         public bool CambiarAgente()
         {
             Mouse.OverrideCursor = Cursors.Wait;
@@ -314,6 +257,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
             return retorno;
         }
 
+        /// <summary>
+        /// Método que se encarga de Cargar el agente al iniciar la pantalla
+        /// </summary>
         private void CargarAgente()
         {
 
@@ -326,6 +272,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
 
         }
 
+        /// <summary>
+        /// Método que consulta los agentes que cumplan con el filtro
+        /// </summary>
         public void ConsultarAgente()
         {
             Mouse.OverrideCursor = Cursors.Wait;
@@ -386,6 +335,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
 
         #region Marca
 
+        /// <summary>
+        /// Método que se encarga de cambiar la marca seleccionada
+        /// </summary>
+        /// <returns></returns>
         public bool CambiarMarca()
         {
             Mouse.OverrideCursor = Cursors.Wait;
@@ -445,6 +398,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
             return retorno;
         }
 
+        /// <summary>
+        /// Método que realiza la carga inicial de las marcas
+        /// </summary>
         private void CargarMarca()
         {
 
@@ -457,6 +413,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
 
         }
 
+        /// <summary>
+        /// Método que se encarga de realizar la consulta de las marcas
+        /// </summary>
         public void ConsultarMarca()
         {
             Mouse.OverrideCursor = Cursors.Wait;
@@ -513,6 +472,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
             }
         }
 
+        /// <summary>
+        /// Método que se encarga de agregar la marca seleccionada a la lista de marcas agregadas
+        /// </summary>
         public void AgregarMarca()
         {
             try
@@ -567,6 +529,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
 
         }
 
+        /// <summary>
+        /// Método que se encarga de eliminar la marca seleccionada de la lista de marcas agregadas
+        /// </summary>
         public void EliminarMarca()
         {
             try
