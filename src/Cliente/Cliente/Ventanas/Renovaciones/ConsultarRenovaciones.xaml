@@ -56,8 +56,9 @@
                     <Label>
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblRenovacion}"/>
                     </Label>
-                    <TextBox Name="_txtId" Text="{Binding Path=Id}" Width="150" MaxLength="8"
-                             GotFocus="_btnConsultarFocus" GotKeyboardFocus="_btnConsultarFocus"/>                    
+                    <custom:ByTTextBox Name="_txtId" Text="{Binding Path=Id}" Width="150" MaxLength="8"
+                             GotFocus="_btnConsultarFocus" GotKeyboardFocus="_btnConsultarFocus" SoloNumero="True"/>  
+                    
                 </WrapPanel>
                 <WrapPanel Margin="36,0,0,0" Orientation="Horizontal" HorizontalAlignment="Left">
                     <Label>

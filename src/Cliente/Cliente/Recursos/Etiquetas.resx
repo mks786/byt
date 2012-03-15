@@ -1805,6 +1805,39 @@ de Gracia</value>
   <data name="titleConsultarMarcaTercero" xml:space="preserve">
     <value>Consultar una Marca Tercero</value>
   </data>
+  <data name="chkEmailPorEnviar" xml:space="preserve">
+    <value>Con Email por Enviar</value>
+  </data>
+  <data name="chkFaxPorEnviar" xml:space="preserve">
+    <value>Con Fax por Enviar</value>
+  </data>
+  <data name="lblAno" xml:space="preserve">
+    <value>Año:</value>
+  </data>
+  <data name="lblDesde" xml:space="preserve">
+    <value>Desde:</value>
+  </data>
+  <data name="lblFiltro" xml:space="preserve">
+    <value>Filtro:</value>
+  </data>
+  <data name="lblHasta" xml:space="preserve">
+    <value>Hasta:</value>
+  </data>
+  <data name="lblMes" xml:space="preserve">
+    <value>Mes:</value>
+  </data>
+  <data name="lsvIdioma" xml:space="preserve">
+    <value>Idioma</value>
+  </data>
+  <data name="lsvPais" xml:space="preserve">
+    <value>Pais</value>
+  </data>
+  <data name="lblRecordatorio" xml:space="preserve">
+    <value>Recordatorio:</value>
+  </data>
+  <data name="cbiRecordatorio" xml:space="preserve">
+    <value>NRECORDATORIO</value>
+  </data>
   <data name="menuItemEscritoCambioDeTramitante" xml:space="preserve">
     <value>Cambio de Tramitante</value>
   </data>
@@ -1837,5 +1870,8 @@ de Gracia</value>
   </data>
   <data name="titleEscritoLimitacionDelDistingue" xml:space="preserve">
     <value>Limitación del Distingue</value>
+  </data>
+  <data name="chkTodos" xml:space="preserve">
+    <value>Todos</value>
   </data>
 </root>

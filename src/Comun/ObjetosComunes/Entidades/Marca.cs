@@ -63,6 +63,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         private IList<InfoBol> _infoBoles;
         private IList<Operacion> _operaciones;
         private IList<Busqueda> _busquedas;
+        private int _recordatorio;
 
         #endregion
 
@@ -605,6 +606,16 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
             get { return _busquedas; }
             set { _busquedas = value; }
         }
+
+        /// <summary>
+        /// Propiedad que asigna u obtiene el recordatorio
+        /// </summary>
+        public virtual int Recordatorio
+        {
+            get { return _recordatorio; }
+            set { _recordatorio = value; }
+        }
+
         #endregion
     }
 }

@@ -18,11 +18,13 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
             bool variosFiltros = false;
             string filtro = "";
             string cabecera = string.Format(Recursos.ConsultasHQL.CabeceraObtenerMarca);
+
             if ((null != marca) && (marca.Id != 0))
             {
                 filtro = string.Format(Recursos.ConsultasHQL.FiltroObtenerMarcaId, marca.Id);
                 variosFiltros = true;
             }
+
             if ((null != marca.Asociado) && (!marca.Asociado.Id.Equals("")))
             {
                 if (variosFiltros)
@@ -30,6 +32,7 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
                 filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerMarcaIdAsociado, marca.Asociado.Id);
                 variosFiltros = true;
             }
+
             if ((null != marca.Interesado) && (!marca.Interesado.Id.Equals("")))
             {
                 if (variosFiltros)
@@ -37,18 +40,21 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
                 filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerMarcaIdInteresado, marca.Interesado.Id);
                 variosFiltros = true;
             }
+
             if (!string.IsNullOrEmpty(marca.Fichas))
             {
                 if (variosFiltros)
                     filtro += " and ";
                 filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerMarcaFichas, marca.Fichas);
             }
+
             if (!string.IsNullOrEmpty(marca.Descripcion))
             {
                 if (variosFiltros)
                     filtro += " and ";
                 filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerMarcaDescripcion, marca.Descripcion);
             }
+
             if ((null != marca.FechaPublicacion) && (!marca.FechaPublicacion.Equals(DateTime.MinValue)))
             {
                 if (variosFiltros)
@@ -57,6 +63,16 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
                 string fecha2 = String.Format("{0:dd/MM/yy}", marca.FechaPublicacion.Value.AddDays(1));
                 filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerMarcaFecha, fecha, fecha2);
             }
+
+            if (null != marca.Recordatorio)
+            {
+                if (variosFiltros)
+                    filtro += " and ";
+
+                filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerMarcaRecordatorio, marca.Recordatorio);
+            }
+            
+
             IQuery query = Session.CreateQuery(cabecera + filtro);
             Marcas = query.List<Marca>();
             return Marcas;

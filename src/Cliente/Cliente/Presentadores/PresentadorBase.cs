@@ -323,6 +323,29 @@ namespace Trascend.Bolet.Cliente.Presentadores
         }
 
         /// <summary>
+        /// Busca el recordatorio correspondiente a la inicial que se le esté pasando
+        /// </summary>
+        /// <param name="listaRenovacion">Lista de tipos de recordatorio</param>        
+        /// <param name="listaDatosValorBuscado">Tipo de recordatorio buscado</param>
+        /// <returns>El recordatorio correspondiente</returns>
+        public ListaDatosValores BuscarRecordatorio(IList<ListaDatosValores> listaRecordatorio, ListaDatosValores listaDatosValorBuscado)
+        {
+            ListaDatosValores retorno = null;
+
+            if (listaDatosValorBuscado != null)
+                foreach (ListaDatosValores listaDatosValores in listaRecordatorio)
+                {
+                    if (listaDatosValores.Valor == listaDatosValorBuscado.Valor)
+                    {
+                        retorno = listaDatosValores;
+                        break;
+                    }
+                }
+
+            return retorno;
+        }
+
+        /// <summary>
         /// Busca el tipode persona correspondiente a la inicial que se le esté pasando
         /// </summary>
         /// <param name="tipoPersona">Inicial del tipo de persona</param>

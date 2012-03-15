@@ -296,6 +296,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Renovaciones
             get { return this._cbxTipoR.SelectedItem; }
             set { this._cbxTipoR.SelectedItem = value; }
         }
+
         public void Mensaje(string mensaje, int opcion)
         {
             if (opcion == 0)

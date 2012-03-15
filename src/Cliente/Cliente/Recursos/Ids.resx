@@ -642,4 +642,7 @@
   <data name="Usuario" xml:space="preserve">
     <value>SEGTUSU</value>
   </data>
+  <data name="ConsultarRecordatorios" xml:space="preserve">
+    <value>ConsultarRecordatorio</value>
+  </data>
 </root>

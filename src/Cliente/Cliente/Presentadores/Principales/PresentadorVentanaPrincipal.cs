@@ -30,6 +30,7 @@ using Trascend.Bolet.Cliente.Ventanas.Estatuses;
 using Trascend.Bolet.Cliente.Ventanas.Poderes;
 using Trascend.Bolet.Cliente.Ventanas.Interesados;
 using Trascend.Bolet.Cliente.Ventanas.Asociados;
+using Trascend.Bolet.Cliente.Ventanas.Recordatorios;
 using Trascend.Bolet.Cliente.Ventanas.Resumenes;
 using Trascend.Bolet.Cliente.Ventanas.Remitentes;
 using Trascend.Bolet.Cliente.Ventanas.EntradasAlternas;
@@ -479,11 +480,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
         }
 
         /// <summary>
-        /// Método que coloca la página "Gestionar Licencias" en el Frame principal
+        /// Método que coloca la página "ConsultarRecordatorios" en el Frame principal
         /// </summary>
         public void Recordatorios()
         {
-            //this._ventana.Contenedor.Navigate(ventana*);
+            this._ventana.Contenedor.Navigate( new ConsultarRecordatorios());
         }
 
         /// <summary>

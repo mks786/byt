@@ -160,7 +160,7 @@
     <comment>Selecciona todos los datos de transferencia de un asociado</comment>
   </data>
   <data name="ObtenerListaDatosValoresPorParametro" xml:space="preserve">
-    <value>Select distinct(l) from ListaDatosValores l where l.Id = '{0}'</value>
+    <value>Select distinct(l) from ListaDatosValores l where l.Id = '{0}' order by l.Valor</value>
     <comment>Trae la lista de valores por el parametro del id</comment>
   </data>
   <data name="ObtenerListaDatosDominioPorParametro" xml:space="preserve">
@@ -202,7 +202,7 @@
     <value>c.FechaIngreso between '{0}' and '{1}'</value>
   </data>
   <data name="CabeceraObtenerMarca" xml:space="preserve">
-    <value>Select m from Marca m left join fetch m.Asociado as asociado left join fetch m.Corresponsal as corresponsal left join fetch m.Interesado as interesado where </value>
+    <value>Select m from Marca m left join fetch m.Asociado as asociado left join fetch m.Corresponsal as corresponsal left join fetch m.Interesado as interesado left join fetch asociado.Pais as pais left join fetch asociado.Idioma as pais where </value>
     <comment>Cabecera del query para el filtro de marcas</comment>
   </data>
   <data name="FiltroObtenerMarcaDescripcion" xml:space="preserve">
@@ -462,5 +462,9 @@
   <data name="FiltroObtenerOperacionServicio" xml:space="preserve">
     <value>servicio.Id = '{0}'</value>
     <comment>Filtro por Servicio</comment>
+  </data>
+  <data name="FiltroObtenerMarcaRecordatorio" xml:space="preserve">
+    <value>m.Recordatorio = {0}</value>
+    <comment>Filtro marca por recordatorio</comment>
   </data>
 </root>

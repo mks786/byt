@@ -187,8 +187,7 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a MYPTNAC.
-        ///   Looks up a localized string similar to MYP_MACA_TER.
+        ///   Busca una cadena traducida similar a MYP_MACA_TER.
         /// </summary>
         public static string AgregarMarcaTercero {
             get {
@@ -197,7 +196,7 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to MYPTNAC.
+        ///   Busca una cadena traducida similar a MYPTNAC.
         /// </summary>
         public static string AgregarNacional {
             get {
@@ -647,8 +646,7 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a MYPTNAC.
-        ///   Looks up a localized string similar to MYP_MARCA_TER.
+        ///   Busca una cadena traducida similar a MYP_MARCA_TER.
         /// </summary>
         public static string ConsultarMarcasTercero {
             get {
@@ -657,7 +655,7 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to MYP_MARCA_TER.
+        ///   Busca una cadena traducida similar a MYP_MARCA_TER.
         /// </summary>
         public static string ConsultarMarcaTercero {
             get {
@@ -666,7 +664,7 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to MYPTNAC.
+        ///   Busca una cadena traducida similar a MYPTNAC.
         /// </summary>
         public static string ConsultarNacional {
             get {
@@ -752,6 +750,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string ConsultarPoderes {
             get {
                 return ResourceManager.GetString("ConsultarPoderes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a ConsultarRecordatorio.
+        /// </summary>
+        public static string ConsultarRecordatorios {
+            get {
+                return ResourceManager.GetString("ConsultarRecordatorios", resourceCulture);
             }
         }
         
@@ -1189,7 +1196,6 @@ namespace Trascend.Bolet.Cliente.Recursos {
         
         /// <summary>
         ///   Busca una cadena traducida similar a MYPMNOMM.
-        ///   Looks up a localized string similar to MYPMNOMM.
         /// </summary>
         public static string GestionarCambioDeNombre {
             get {
@@ -1226,7 +1232,6 @@ namespace Trascend.Bolet.Cliente.Recursos {
         
         /// <summary>
         ///   Busca una cadena traducida similar a MYPMLICM.
-        ///   Looks up a localized string similar to MYPMLICM.
         /// </summary>
         public static string GestionarLicencias {
             get {

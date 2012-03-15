@@ -111,6 +111,7 @@
     <Compile Include="Contratos\MarcasTercero\IAgregarMarcaTercero.cs" />
     <Compile Include="Contratos\MarcasTercero\IConsultarMarcaTercero.cs" />
     <Compile Include="Contratos\MarcasTercero\IConsultarMarcasTercero.cs" />
+    <Compile Include="Contratos\Recordatorios\IConsultarRecordatorios.cs" />
     <Compile Include="Contratos\Renovaciones\IConsultarRenovaciones.cs" />
     <Compile Include="Contratos\EntradasAlternas\IAgregarEntradaAlterna.cs" />
     <Compile Include="Contratos\EntradasAlternas\IConsultarEntradaAlterna.cs" />
@@ -240,6 +241,7 @@
     <Compile Include="Presentadores\MarcasTercero\PresentadorAgregarMarcaTercero.cs" />
     <Compile Include="Presentadores\MarcasTercero\PresentadorConsultarMarcaTercero.cs" />
     <Compile Include="Presentadores\MarcasTercero\PresentadorConsultarMarcasTercero.cs" />
+    <Compile Include="Presentadores\Recordatorios\PresentadorConsultarRecordatorios.cs" />
     <Compile Include="Presentadores\Renovaciones\PresentadorConsultarRenovaciones.cs" />
     <Compile Include="Presentadores\EntradasAlternas\PresentadorAgregarEntradaAlterna.cs" />
     <Compile Include="Presentadores\EntradasAlternas\PresentadorConsultarEntradaAlterna.cs" />
@@ -436,6 +438,9 @@
     </Compile>
     <Compile Include="Ventanas\MarcasTercero\ConsultarMarcasTercero.xaml.cs">
       <DependentUpon>ConsultarMarcasTercero.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Recordatorios\ConsultarRecordatorios.xaml.cs">
+      <DependentUpon>ConsultarRecordatorios.xaml</DependentUpon>
     </Compile>
     <Compile Include="Ventanas\Renovaciones\ConsultarRenovaciones.xaml.cs">
       <DependentUpon>ConsultarRenovaciones.xaml</DependentUpon>
@@ -841,6 +846,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Ventanas\MarcasTercero\ConsultarMarcasTercero.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\Recordatorios\ConsultarRecordatorios.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
