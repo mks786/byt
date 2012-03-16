@@ -94,6 +94,11 @@
       <column name="CANEXO"/>
     </many-to-one>
 
+    <bag name="MarcasBaseTercero">
+      <key column="CMARCAT"/>
+      <one-to-many class="MarcaBaseTercero"/>
+    </bag>
+        
   </class>
 
 

@@ -71,6 +71,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         private IList<InfoBol> _infoBoles;
         private IList<Operacion> _operaciones;
         private IList<Busqueda> _busquedas;
+        private IList<MarcaBaseTercero> _marcasBaseTercero;
 
         #endregion
 
@@ -684,6 +685,16 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
             get { return _busquedas; }
             set { _busquedas = value; }
         }
+
+        /// <summary>
+        /// Propiedad que asigna u obtiene la lista de Busquedas
+        /// </summary>
+        public virtual IList<MarcaBaseTercero> MarcasBaseTercero
+        {
+            get { return _marcasBaseTercero; }
+            set { _marcasBaseTercero = value; }
+        }
+
         #endregion
     }
 }

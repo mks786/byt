@@ -102,6 +102,11 @@
     <Compile Include="Comandos\ComandosInteresado\ComandoEliminarInteresado.cs" />
     <Compile Include="Comandos\ComandosInteresado\ComandoInsertarOModificarInteresado.cs" />
     <Compile Include="Comandos\ComandosLicencia\ComandoConsultarLicenciasFiltro.cs" />
+    <Compile Include="Comandos\ComandosMarcaBaseTercero\ComandoConsultarMarcasBaseTerceroFiltro.cs" />
+    <Compile Include="Comandos\ComandosMarcaBaseTercero\ComandoConsultarTodosMarcaBaseTerceros.cs" />
+    <Compile Include="Comandos\ComandosMarcaBaseTercero\ComandoEliminarMarcaBaseTercero.cs" />
+    <Compile Include="Comandos\ComandosMarcaBaseTercero\ComandoInsertarOModificarMarcaBaseTercero.cs" />
+    <Compile Include="Comandos\ComandosMarcaBaseTercero\ComandoVerificarExistenciaMarcaBaseTercero.cs" />
     <Compile Include="Comandos\ComandosMarcaTercero\ComandoConsultarMarcasTerceroFiltro.cs" />
     <Compile Include="Comandos\ComandosMarca\ComandoConsultarMarcaConTodo.cs" />
     <Compile Include="Comandos\ComandosMarca\ComandoConsultarMarcasFiltro.cs" />
@@ -290,6 +295,7 @@
     <Compile Include="Comandos\ComandosUsuario\ComandoConsultarTodosUsuarios.cs" />
     <Compile Include="Comandos\ComandosUsuario\ComandoConsultarUsuarioPorID.cs" />
     <Compile Include="Comandos\ComandosUsuario\ComandoInsertarOModificarUsuario.cs" />
+    <Compile Include="Fabrica\FabricaComandosMarcaBaseTercero.cs" />
     <Compile Include="Fabrica\FabricaComandosEstadoMarca.cs" />
     <Compile Include="Fabrica\FabricaComandosRenovacion.cs" />
     <Compile Include="Fabrica\FabricaComandosPlanilla.cs" />

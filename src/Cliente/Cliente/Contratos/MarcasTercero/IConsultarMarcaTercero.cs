@@ -10,6 +10,18 @@ namespace Trascend.Bolet.Cliente.Contratos.MarcasTercero
 
         string IdAsociadoSolicitudFiltrar { get; }
 
+        object Marca { get; set; }
+
+        object MarcasFiltradas { get; set; }
+
+        object MarcaFiltrada { get; set; }
+
+        string NombreMarcaFiltrar { get; }
+
+        string IdMarcaFiltrar { get; }
+
+        string NombreMarca {set; }
+
         //string IdAsociadoDatosFiltrar { get; }
 
         string NombreAsociadoSolicitudFiltrar { get; }
@@ -120,8 +132,6 @@ namespace Trascend.Bolet.Cliente.Contratos.MarcasTercero
 
         //object StatusWebs { get; set; }
 
-        void Mensaje(string mensaje);
-
         string TextoBotonModificar { get; set; }
 
         string IdInternacional { get; set; }
@@ -161,6 +171,8 @@ namespace Trascend.Bolet.Cliente.Contratos.MarcasTercero
         GridViewColumnHeader CurSortCol { get; set; }
 
         SortAdorner CurAdorner { get; set; }
+
+        void Mensaje(string mensaje, int opcion);
 
     }
 }

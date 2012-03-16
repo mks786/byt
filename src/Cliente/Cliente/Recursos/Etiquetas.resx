@@ -1871,6 +1871,9 @@ de Gracia</value>
   <data name="titleEscritoLimitacionDelDistingue" xml:space="preserve">
     <value>Limitación del Distingue</value>
   </data>
+  <data name="lblByt" xml:space="preserve">
+    <value>Byt:</value>
+  </data>
   <data name="chkTodos" xml:space="preserve">
     <value>Todos</value>
   </data>

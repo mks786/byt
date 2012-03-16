@@ -169,8 +169,18 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Select m from MarcaBaseTercero where .
         ///   Busca una cadena traducida similar a Select m from MarcaTercero m left join fetch m.Asociado as asociado left join fetch m.Corresponsal as corresponsal left join fetch m.Interesado as interesado where .
         ///   Looks up a localized string similar to Select m from MarcaTercero m left join fetch m.Asociado as asociado left join fetch m.Interesado as interesado where .
+        /// </summary>
+        public static string CabeceraObtenerMarcaBaseTercero {
+            get {
+                return ResourceManager.GetString("CabeceraObtenerMarcaBaseTercero", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select m from MarcaTercero m left join fetch m.Asociado as asociado left join fetch m.Interesado as interesado left join fetch m.MarcasBaseTercero as marcaBaseTercero where .
         /// </summary>
         public static string CabeceraObtenerMarcaTercero {
             get {
@@ -467,7 +477,17 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to m.Id = {0}.
         ///   Busca una cadena traducida similar a upper(m.Descripcion) like &apos;%{0}%&apos;.
+        /// </summary>
+        public static string FiltroObtenerMarcaBaseTerceroId {
+            get {
+                return ResourceManager.GetString("FiltroObtenerMarcaBaseTerceroId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to upper(m.Descripcion) like &apos;%{0}%&apos;.
         /// </summary>
         public static string FiltroObtenerMarcaDescripcion {
             get {

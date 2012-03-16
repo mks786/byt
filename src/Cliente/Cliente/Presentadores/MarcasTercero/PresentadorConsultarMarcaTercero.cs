@@ -9,6 +9,7 @@ using System.Windows.Controls;
 using System.Windows.Documents;
 using System.Windows.Input;
 using NLog;
+using System.Windows;
 using Trascend.Bolet.Cliente.Ayuda;
 using Trascend.Bolet.Cliente.Contratos.MarcasTercero;
 using Trascend.Bolet.Cliente.Ventanas.Principales;
@@ -47,11 +48,15 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
         private IBusquedaServicios _busquedaServicios;
         private IStatusWebServicios _statusWebServicios;
         private IPlanillaServicios _planillaServicios;
+        private IMarcaServicios _marcaServicios;
+        private IMarcaBaseTerceroServicios _marcaBaseTerceroServicios;
 
         private IList<Asociado> _asociados;
         private IList<Interesado> _interesados;
         private IList<Corresponsal> _corresponsales;
         private IList<Auditoria> _auditorias;
+        private IList<Marca> _marcas;
+        private IList<MarcaBaseTercero> _marcasBaseTercero;
 
         /// <summary>
         /// Constructor Predeterminado
@@ -114,6 +119,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["StatusWebServicios"]);
                 this._planillaServicios = (IPlanillaServicios)Activator.GetObject(typeof(IPlanillaServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["PlanillaServicios"]);
+                this._marcaServicios = (IMarcaServicios)Activator.GetObject(typeof(IMarcaServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["MarcaServicios"]);
+                this._marcaBaseTerceroServicios = (IMarcaBaseTerceroServicios)Activator.GetObject(typeof(IMarcaBaseTerceroServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["MarcaBaseTerceroServicios"]);
 
             }
             catch (Exception ex)
@@ -473,6 +482,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
             }
         }
 
+        #region Metodos Ir
         /// <summary>
         /// Método que se encarga de mostrar la ventana de información adicional
         /// </summary>
@@ -516,6 +526,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
       //NO USA      this.Navegar(new ListaBusquedas(CargarMarcaTerceroDeLaPantalla(), tab));
         }
 
+        #endregion
+
+    
+        
         /// <summary>
         /// Método que se encarga de mostrar la ventana con la lista de Auditorías
         /// </summary>
@@ -1077,6 +1091,173 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
         }
 
         #endregion
+
+        #region Marca
+
+        /// <summary>
+        /// Metodo que carga las Marcas registradas
+        /// </summary>
+        private void CargarMarca()
+        {
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+            this._marcas = new List<Marca>();
+            Marca primeraMarca = new Marca(int.MinValue);
+            this._marcas.Add(primeraMarca);
+
+            if ((Marca)this._ventana.Marca != null)
+            {
+                this._marcas.Add((Marca)this._ventana.Marca);
+                this._ventana.MarcasFiltradas = this._marcas;
+                this._ventana.MarcaFiltrada = (Marca)this._ventana.Marca;
+            }
+            else
+            {
+                this._ventana.MarcasFiltradas = this._marcas;
+                this._ventana.MarcaFiltrada = primeraMarca;
+            }
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+        }
+
+        /// <summary>
+        /// Metodo que Consulta las Marcas
+        /// </summary>
+        public void ConsultarMarcas()
+        {
+            Mouse.OverrideCursor = Cursors.Wait;
+
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                Marca primeraMarca = new Marca(int.MinValue);
+
+
+                Marca marca = new Marca();
+                IList<Marca> marcasFiltradas;
+                marca.Descripcion = this._ventana.NombreMarcaFiltrar.ToUpper();
+                marca.Id = this._ventana.IdMarcaFiltrar.Equals("") ? 0 : int.Parse(this._ventana.IdMarcaFiltrar);
+
+                if ((!marca.Descripcion.Equals("")) || (marca.Id != 0))
+                    marcasFiltradas = this._marcaServicios.ObtenerMarcasFiltro(marca);
+                else
+                    marcasFiltradas = new List<Marca>();
+
+                if (marcasFiltradas.ToList<Marca>().Count != 0)
+                {
+                    marcasFiltradas.Insert(0, primeraMarca);
+                    this._ventana.MarcasFiltradas = marcasFiltradas.ToList<Marca>();
+                    this._ventana.MarcaFiltrada = primeraMarca;
+                }
+                else
+                {
+                    marcasFiltradas.Insert(0, primeraMarca);
+                    this._ventana.MarcasFiltradas = this._marcas;
+                    this._ventana.MarcaFiltrada = primeraMarca;
+                    this._ventana.Mensaje(Recursos.MensajesConElUsuario.NoHayResultados, 1);
+                }
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (ApplicationException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(ex.Message, true);
+            }
+            catch (RemotingException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorRemoting, true);
+            }
+            catch (SocketException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorConexionServidor, true);
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
+            }
+            finally
+            {
+                Mouse.OverrideCursor = null;
+            }
+        }
+
+        /// <summary>
+        /// Metodo que cambia la Marca
+        /// </summary>
+        public bool CambiarMarca()
+        {
+            Mouse.OverrideCursor = Cursors.Wait;
+
+            bool retorno = false;
+
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+
+                if (this._ventana.MarcaFiltrada != null)
+                {
+                    this._ventana.Marca = this._ventana.MarcaFiltrada;
+                    this._ventana.NombreMarca = ((Marca)this._ventana.MarcaFiltrada).Descripcion;
+                    retorno = true;
+                }
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+            }
+            catch (ApplicationException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(ex.Message, true);
+            }
+            catch (RemotingException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorRemoting, true);
+            }
+            catch (SocketException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorConexionServidor, true);
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
+            }
+            finally
+            {
+                Mouse.OverrideCursor = null;
+            }
+
+            return retorno;
+        }
+
+        #endregion
+
 
         //#region IMPRIMIR
         ///// <summary>

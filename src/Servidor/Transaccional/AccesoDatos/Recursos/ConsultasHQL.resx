@@ -416,7 +416,7 @@
     <comment>Filtro por marca</comment>
   </data>
   <data name="CabeceraObtenerMarcaTercero" xml:space="preserve">
-    <value>Select m from MarcaTercero m left join fetch m.Asociado as asociado left join fetch m.Interesado as interesado where </value>
+    <value>Select m from MarcaTercero m left join fetch m.Asociado as asociado left join fetch m.Interesado as interesado left join fetch m.MarcasBaseTercero as marcaBaseTercero where </value>
     <comment>Cabecera del query para el filtro de marcaTercero</comment>
   </data>
   <data name="FiltroObtenerMarcaTerceroAsociadoId" xml:space="preserve">
@@ -462,6 +462,12 @@
   <data name="FiltroObtenerOperacionServicio" xml:space="preserve">
     <value>servicio.Id = '{0}'</value>
     <comment>Filtro por Servicio</comment>
+  </data>
+  <data name="CabeceraObtenerMarcaBaseTercero" xml:space="preserve">
+    <value>Select m from MarcaBaseTercero where </value>
+  </data>
+  <data name="FiltroObtenerMarcaBaseTerceroId" xml:space="preserve">
+    <value>m.Id = {0}</value>
   </data>
   <data name="FiltroObtenerMarcaRecordatorio" xml:space="preserve">
     <value>m.Recordatorio = {0}</value>

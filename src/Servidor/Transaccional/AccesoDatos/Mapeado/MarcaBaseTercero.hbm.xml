@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+                   assembly="Trascend.Bolet.ObjetosComunes"
+                   namespace="Trascend.Bolet.ObjetosComunes.Entidades"
+                   auto-import="true">
+
+  <class name="MarcaBaseTercero" table="MYP_MARCAS_BASE_TER">
+    <id name="Id" column="CMARCAT" type="string"/>
+    <property name="Secuencia" column="NSECU" type="int"/>
+    <property name="Origen" column="ORIGEN" type="string"/>
+    <property name="Tipo" column="XTIPO" type="string"/>
+  
+
+    <many-to-one name="Pais" class="Pais">
+      <column name="CPAIS"/>
+    </many-to-one>
+
+    <many-to-one name="Internacional" class="Internacional">
+      <column name="CINTER_B"/>
+    </many-to-one>
+
+    <many-to-one name="Nacional" class="Nacional">
+      <column name="CNACIONAL_B"/>
+    </many-to-one>
+
+    <many-to-one name="Anexo" class="Anexo">
+      <column name="CANEXO"/>
+    </many-to-one>
+
+
+    <many-to-one name="Marca" class="Marca">
+      <column name="CMARCA_B"/>
+    </many-to-one>
+    
+    <many-to-one name="TipoDeBase" class="TipoBase">
+      <column name="CTIPO_B"/>
+    </many-to-one>
+
+  </class>
+
+
+</hibernate-mapping>
+
+
