@@ -673,11 +673,17 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
         {
             switch (nombreBoton)
             {
+                case "_menuItemCorreccionErrorMaterialDistingue":
+                    //this._ventana.Contenedor.Navigate(new CertificadoDeOrigen());
+                    break;
                 case "_menuItemCertificadoDeOrigen":
                     this._ventana.Contenedor.Navigate(new CertificadoDeOrigen());
                     break;
-                case "_menuItemLimitacionDelDistingue":
-                    this._ventana.Contenedor.Navigate(new LimitacionDelDistingue());
+                case "_menuItemContinuacionDeTramite":
+                    //this._ventana.Contenedor.Navigate(new CertificadoDeOrigen());
+                    break;
+                case "_menuItemCorreccionDelDistingue":
+                    //this._ventana.Contenedor.Navigate(new CertificadoDeOrigen());
                     break;
                 case "_menuItemCambioDeTramitante":
                     this._ventana.Contenedor.Navigate(new CambioDeTramitante());
@@ -685,9 +691,54 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
                 case "_menuItemDesistimiento":
                     this._ventana.Contenedor.Navigate(new DeDesistimiento());
                     break;
+                case "_menuItemLimitacionDelDistingue":
+                    this._ventana.Contenedor.Navigate(new LimitacionDelDistingue());
+                    break;
                 case "_menuItemNumeracionDePoderPorMarca":
                     this._ventana.Contenedor.Navigate(new NumeracionDePoderPorMarca());
-                    break;                    
+                    break;
+                case "_menuItemNumeracionDePoderPorInteresado":
+                    //this._ventana.Contenedor.Navigate(new CertificadoDeOrigen());
+                    break;
+                case "_menuItemPrioridadExtranjera":
+                    //this._ventana.Contenedor.Navigate(new CertificadoDeOrigen());
+                    break;
+                case "_menuItemReingresoDeClasificacion":
+                    //this._ventana.Contenedor.Navigate(new CertificadoDeOrigen());
+                    break;
+                case "_menuItemReingresoDeDistingue":
+                    //this._ventana.Contenedor.Navigate(new CertificadoDeOrigen());
+                    break;
+                case "_menuItemReingresoDePoderAnexo":
+                    //this._ventana.Contenedor.Navigate(new CertificadoDeOrigen());
+                    break;
+                case "_menuItemReingresoDeNombreDeMarca":
+                    //this._ventana.Contenedor.Navigate(new CertificadoDeOrigen());
+                    break;
+                case "_menuItemReingresoDePoderDistingueConSinClasificacion":
+                    //this._ventana.Contenedor.Navigate(new CertificadoDeOrigen());
+                    break;
+                case "_menuItemReingresoDePoderPresentado":
+                    //this._ventana.Contenedor.Navigate(new CertificadoDeOrigen());
+                    break;
+                case "_menuItemReingresoDePoderYReclasificacion":
+                    //this._ventana.Contenedor.Navigate(new CertificadoDeOrigen());
+                    break;
+                case "_menuItemReingresoDePoderYPrioridad":
+                    //this._ventana.Contenedor.Navigate(new CertificadoDeOrigen());
+                    break;
+                case "_menuItemRenunciaParcial":
+                    //this._ventana.Contenedor.Navigate(new CertificadoDeOrigen());
+                    break;
+                case "_menuItemConsignacionDeBusqueda":
+                    //this._ventana.Contenedor.Navigate(new CertificadoDeOrigen());
+                    break;
+                case "_menuItemNotificacionDeIngresoDePoder":
+                    //this._ventana.Contenedor.Navigate(new CertificadoDeOrigen());
+                    break;
+                case "":
+                    //this._ventana.Contenedor.Navigate(new CertificadoDeOrigen());
+                    break;                                      
                 default:
                     break;
             }

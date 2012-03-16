@@ -1838,29 +1838,14 @@ de Gracia</value>
   <data name="cbiRecordatorio" xml:space="preserve">
     <value>NRECORDATORIO</value>
   </data>
-  <data name="menuItemEscritoCambioDeTramitante" xml:space="preserve">
+  <data name="menuItemEscritosCambioDeTramitante" xml:space="preserve">
     <value>Cambio de Tramitante</value>
   </data>
-  <data name="menuItemEscritoContinuacionDeTramite" xml:space="preserve">
-    <value>Continuación de Trámite</value>
-  </data>
-  <data name="menuItemEscritoCopiaCertificada" xml:space="preserve">
-    <value>Copia Certificada</value>
-  </data>
-  <data name="menuItemEscritoCorreccionDelDistingue" xml:space="preserve">
-    <value>Corrección del Distingue</value>
-  </data>
-  <data name="menuItemEscritoCorreccionErrorMaterialDistingue" xml:space="preserve">
-    <value>Correccion Error Material Distingue</value>
-  </data>
-  <data name="menuItemEscritoDeDesistimiento" xml:space="preserve">
+  <data name="menuItemEscritosDeDesistimiento" xml:space="preserve">
     <value>De Desistimiento</value>
   </data>
-  <data name="menuItemEscritoErrorMaterial" xml:space="preserve">
+  <data name="menuItemEscritosErrorMaterial" xml:space="preserve">
     <value>Error Material</value>
-  </data>
-  <data name="menuItemEscritoLimitacionDelDistingue" xml:space="preserve">
-    <value>Limitación del Distingue</value>
   </data>
   <data name="menuItemEscritosCertificadoDeOrigen" xml:space="preserve">
     <value>Certificado De Origen</value>
@@ -1886,10 +1871,67 @@ de Gracia</value>
   <data name="titleEscritoDeDesistimiento" xml:space="preserve">
     <value>Escrito de De Desistimiento</value>
   </data>
-  <data name="menuItemEscritoNumeracionDePoderPorMarca" xml:space="preserve">
-    <value>Numeración de Poder por Marca</value>
-  </data>
   <data name="titleEscritoNumeracionDePoderPorMarca" xml:space="preserve">
     <value>Escrito de Numeración de Poder por Marca</value>
+  </data>
+  <data name="menuItemEscritosConsignacionDeBusqueda" xml:space="preserve">
+    <value>Consignación de Búsqueda</value>
+  </data>
+  <data name="menuItemEscritosContinuacionDeTramite" xml:space="preserve">
+    <value>Continuación de Trámite</value>
+  </data>
+  <data name="menuItemEscritosCopiaCertificada" xml:space="preserve">
+    <value>Copia Certificada</value>
+  </data>
+  <data name="menuItemEscritosCorreccionDelDistingue" xml:space="preserve">
+    <value>Corrección del Distingue</value>
+  </data>
+  <data name="menuItemEscritosCorreccionErrorMaterial" xml:space="preserve">
+    <value>Corrección Error Material</value>
+  </data>
+  <data name="menuItemEscritosCorreccionErrorMaterialDistingue" xml:space="preserve">
+    <value>Corrección Error Material Distingue</value>
+  </data>
+  <data name="menuItemEscritosLimitacionDelDistingue" xml:space="preserve">
+    <value>Limitación del Distingue</value>
+  </data>
+  <data name="menuItemEscritosNotificacionDeIngresoDePoder" xml:space="preserve">
+    <value>Notificación de Ingreso de Poder</value>
+  </data>
+  <data name="menuItemEscritosNumeracionDePoderPorInteresado" xml:space="preserve">
+    <value>Numeración de Poder por Interesado</value>
+  </data>
+  <data name="menuItemEscritosNumeracionDePoderPorMarca" xml:space="preserve">
+    <value>Numeración de Poder por Marca</value>
+  </data>
+  <data name="menuItemEscritosPrioridadExtranjera" xml:space="preserve">
+    <value>Prioridad Extranjera</value>
+  </data>
+  <data name="menuItemEscritosReingresoDeClasificacion" xml:space="preserve">
+    <value>Reingreso de Clasificación</value>
+  </data>
+  <data name="menuItemEscritosReingresoDeDistingue" xml:space="preserve">
+    <value>Reingreso de Distingue</value>
+  </data>
+  <data name="menuItemEscritosReingresoDeNombreDeMarca" xml:space="preserve">
+    <value>Reingreso de Nombre de Marca</value>
+  </data>
+  <data name="menuItemEscritosReingresoDePoderAnexo" xml:space="preserve">
+    <value>Reingreso de Poder Anexo</value>
+  </data>
+  <data name="menuItemEscritosReingresoDePoderDistingueConSinReclasificacion" xml:space="preserve">
+    <value>Reingreso de Poder Distingue con/sin Reclasificación</value>
+  </data>
+  <data name="menuItemEscritosReingresoDePoderPresentado" xml:space="preserve">
+    <value>Reingreso de Poder Presentado</value>
+  </data>
+  <data name="menuItemEscritosReingresoDePoderYPrioridad" xml:space="preserve">
+    <value>Reingreso de Poder y Prioridad</value>
+  </data>
+  <data name="menuItemEscritosReingresoDePoderYReclasificacion" xml:space="preserve">
+    <value>Reingreso de Poder y Reclasificación</value>
+  </data>
+  <data name="menuItemEscritosRenunciaParcial" xml:space="preserve">
+    <value>Renuncia Parcial</value>
   </data>
 </root>

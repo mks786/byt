@@ -48,13 +48,30 @@
                     <MenuItem Name="_menuItemAbandonoConsultar" Header="{x:Static resx:Etiquetas.menuItemConsultar}" Click="_menuItemAbandonoConsultar_Click"/>
                     <MenuItem Name="_menuItemAbandonoGestionar" Header="{x:Static resx:Etiquetas.menuItemAgregar}" Click="_menuItemAbandonoGestionar_Click"/>
                 </MenuItem>
-                <MenuItem Name="_menuItemEscritos" Visibility="Collapsed" Header="{x:Static resx:Etiquetas.menuItemEscritos}">
-
+                <MenuItem Name="_menuItemEscritos" Visibility="Collapsed" Header="{x:Static resx:Etiquetas.menuItemEscritos}">                    
+                    <MenuItem Name="_menuItemCopiaCertificada" Header="{x:Static resx:Etiquetas.menuItemEscritosCopiaCertificada}" Click="_menuItemEscritos_Click"/>
+                    <MenuItem Name="_menuItemCorreccionErrorMaterial" Header="{x:Static resx:Etiquetas.menuItemEscritosCorreccionErrorMaterial}" Click="_menuItemEscritos_Click"/>
+                    <MenuItem Name="_menuItemCorreccionErrorMaterialDistingue" Header="{x:Static resx:Etiquetas.menuItemEscritosCorreccionErrorMaterialDistingue}" Click="_menuItemEscritos_Click"/>
                     <MenuItem Name="_menuItemCertificadoDeOrigen" Header="{x:Static resx:Etiquetas.menuItemEscritosCertificadoDeOrigen}" Click="_menuItemEscritos_Click"/>
-                    <MenuItem Name="_menuItemLimitacionDelDistingue" Header="{x:Static resx:Etiquetas.menuItemEscritoLimitacionDelDistingue}" Click="_menuItemEscritos_Click"/>
-                    <MenuItem Name="_menuItemCambioDeTramitante" Header="{x:Static resx:Etiquetas.menuItemEscritoCambioDeTramitante}" Click="_menuItemEscritos_Click"/>
-                    <MenuItem Name="_menuItemDesistimiento" Header="{x:Static resx:Etiquetas.menuItemEscritoDeDesistimiento}" Click="_menuItemEscritos_Click"/>
-                    <MenuItem Name="_menuItemNumeracionDePoderPorMarca" Header="{x:Static resx:Etiquetas.menuItemEscritoNumeracionDePoderPorMarca}" Click="_menuItemEscritos_Click"/>
+                    <MenuItem Name="_menuItemContinuacionDeTramite" Header="{x:Static resx:Etiquetas.menuItemEscritosContinuacionDeTramite}" Click="_menuItemEscritos_Click"/>
+                    <MenuItem Name="_menuItemCorreccionDelDistingue" Header="{x:Static resx:Etiquetas.menuItemEscritosCorreccionDelDistingue}" Click="_menuItemEscritos_Click"/>                    
+                    <MenuItem Name="_menuItemCambioDeTramitante" Header="{x:Static resx:Etiquetas.menuItemEscritosCambioDeTramitante}" Click="_menuItemEscritos_Click"/>
+                    <MenuItem Name="_menuItemDesistimiento" Header="{x:Static resx:Etiquetas.menuItemEscritosDeDesistimiento}" Click="_menuItemEscritos_Click"/>
+                    <MenuItem Name="_menuItemLimitacionDelDistingue" Header="{x:Static resx:Etiquetas.menuItemEscritosLimitacionDelDistingue}" Click="_menuItemEscritos_Click"/>                                                                                                    
+                    <MenuItem Name="_menuItemNumeracionDePoderPorMarca" Header="{x:Static resx:Etiquetas.menuItemEscritosNumeracionDePoderPorMarca}" Click="_menuItemEscritos_Click"/>
+                    <MenuItem Name="_menuItemNumeracionDePoderPorInteresado" Header="{x:Static resx:Etiquetas.menuItemEscritosNumeracionDePoderPorInteresado}" Click="_menuItemEscritos_Click"/>
+                    <MenuItem Name="_menuItemPrioridadExtranjera" Header="{x:Static resx:Etiquetas.menuItemEscritosPrioridadExtranjera}" Click="_menuItemEscritos_Click"/>
+                    <MenuItem Name="_menuItemReingresoDeClasificacion" Header="{x:Static resx:Etiquetas.menuItemEscritosReingresoDeClasificacion}" Click="_menuItemEscritos_Click"/>
+                    <MenuItem Name="_menuItemReingresoDeDistingue" Header="{x:Static resx:Etiquetas.menuItemEscritosReingresoDeDistingue}" Click="_menuItemEscritos_Click"/>
+                    <MenuItem Name="_menuItemReingresoDePoderAnexo" Header="{x:Static resx:Etiquetas.menuItemEscritosReingresoDePoderAnexo}" Click="_menuItemEscritos_Click"/>
+                    <MenuItem Name="_menuItemReingresoDeNombreDeMarca" Header="{x:Static resx:Etiquetas.menuItemEscritosReingresoDeNombreDeMarca}" Click="_menuItemEscritos_Click"/>
+                    <MenuItem Name="_menuItemReingresoDePoderDistingueConSinClasificacion" Header="{x:Static resx:Etiquetas.menuItemEscritosReingresoDePoderDistingueConSinReclasificacion}" Click="_menuItemEscritos_Click"/>
+                    <MenuItem Name="_menuItemReingresoDePoderPresentado" Header="{x:Static resx:Etiquetas.menuItemEscritosReingresoDePoderPresentado}" Click="_menuItemEscritos_Click"/>
+                    <MenuItem Name="_menuItemReingresoDePoderYReclasificacion" Header="{x:Static resx:Etiquetas.menuItemEscritosReingresoDePoderYReclasificacion}" Click="_menuItemEscritos_Click"/>
+                    <MenuItem Name="_menuItemReingresoDePoderYPrioridad" Header="{x:Static resx:Etiquetas.menuItemEscritosReingresoDePoderYPrioridad}" Click="_menuItemEscritos_Click"/>
+                    <MenuItem Name="_menuItemRenunciaParcial" Header="{x:Static resx:Etiquetas.menuItemEscritosRenunciaParcial}" Click="_menuItemEscritos_Click"/>
+                    <MenuItem Name="_menuItemConsignacionDeBusqueda" Header="{x:Static resx:Etiquetas.menuItemEscritosConsignacionDeBusqueda}" Click="_menuItemEscritos_Click"/>
+                    <MenuItem Name="_menuItemNotificacionDeIngresoDePoder" Header="{x:Static resx:Etiquetas.menuItemEscritosNotificacionDeIngresoDePoder}" Click="_menuItemEscritos_Click"/>
                 </MenuItem>
                 <MenuItem Name="_menuItemTraspasos" Visibility="Collapsed" Header="{x:Static resx:Etiquetas.menuItemTraspasos}" BorderBrush="Gray">
                     <MenuItem Name="_menuItemCesiones" Header="{x:Static resx:Etiquetas.menuItemCesiones}">
