@@ -6,9 +6,12 @@
       mc:Ignorable="d" 
       xmlns:reglas="clr-namespace:Trascend.Bolet.Cliente.Validaciones"
       xmlns:custom="clr-namespace:Trascend.Bolet.ControlesByT;assembly=ControlesByT"
+      xmlns:conv="clr-namespace:Trascend.Bolet.Cliente.Transformadores"
       d:DesignHeight="550" d:DesignWidth="800"
       xmlns:recurso="clr-namespace:Trascend.Bolet.Cliente.Recursos" Loaded="Page_Loaded">
     <Page.Resources>
+        <conv:DosValresAUno x:Key="convertirADosValores"></conv:DosValresAUno>
+        <conv:EnteroMinimoABlanco x:Key="convertir"></conv:EnteroMinimoABlanco>
         <Style x:Key="ElementInError" TargetType="{x:Type FrameworkElement}">
             <Style.Triggers>
                 <Trigger Property="Validation.HasError" Value="True">
@@ -86,7 +89,7 @@
                                     <DataTemplate>
                                         <TextBlock>
                                         <TextBlock.Text>
-                                            <Binding Path="Id" Converter="{StaticResource convertir}"/>
+                                            <Binding Path="Id" />
                                         </TextBlock.Text>
                                         </TextBlock>
                                     </DataTemplate>
@@ -178,7 +181,7 @@
                                 <DataTemplate>
                                     <TextBlock>
                                         <TextBlock.Text>
-                                            <Binding Path="Id"/>
+                                            <Binding Path="Id" Converter="{StaticResource convertir}"/>
                                         </TextBlock.Text>
                                     </TextBlock>
                                 </DataTemplate>
