@@ -673,6 +673,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
         {
             switch (nombreBoton)
             {
+                case "_menuItemCertificadoDeOrigen":
+                    this._ventana.Contenedor.Navigate(new CertificadoDeOrigen());
+                    break;
                 case "_menuItemLimitacionDelDistingue":
                     this._ventana.Contenedor.Navigate(new LimitacionDelDistingue());
                     break;
