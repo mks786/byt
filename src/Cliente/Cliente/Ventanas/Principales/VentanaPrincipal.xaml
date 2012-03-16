@@ -49,7 +49,10 @@
                     <MenuItem Name="_menuItemAbandonoGestionar" Header="{x:Static resx:Etiquetas.menuItemAgregar}" Click="_menuItemAbandonoGestionar_Click"/>
                 </MenuItem>
                 <MenuItem Name="_menuItemEscritos" Visibility="Collapsed" Header="{x:Static resx:Etiquetas.menuItemEscritos}">
-                    <MenuItem Name="_menuItemLimitacionDelDistingue" Header="{x:Static resx:Etiquetas.menuItemEscritoLimitacionDelDistingue}" Click="_menuItemEscritos_Click"/>
+                    <MenuItem Name="_menuItemCambioDeTramitante" Header="{x:Static resx:Etiquetas.menuItemEscritoCambioDeTramitante}" Click="_menuItemEscritos_Click"/>
+                    <MenuItem Name="_menuItemDesistimiento" Header="{x:Static resx:Etiquetas.menuItemEscritoDeDesistimiento}" Click="_menuItemEscritos_Click"/>
+                    <MenuItem Name="_menuItemLimitacionDelDistingue" Header="{x:Static resx:Etiquetas.menuItemEscritoLimitacionDelDistingue}" Click="_menuItemEscritos_Click"/>                                        
+                    <MenuItem Name="_menuItemNumeracionDePoderPorMarca" Header="{x:Static resx:Etiquetas.menuItemEscritoNumeracionDePoderPorMarca}" Click="_menuItemEscritos_Click"/>
                 </MenuItem>
                 <MenuItem Name="_menuItemTraspasos" Visibility="Collapsed" Header="{x:Static resx:Etiquetas.menuItemTraspasos}" BorderBrush="Gray">
                     <MenuItem Name="_menuItemCesiones" Header="{x:Static resx:Etiquetas.menuItemCesiones}">

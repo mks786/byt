@@ -676,6 +676,15 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
                 case "_menuItemLimitacionDelDistingue":
                     this._ventana.Contenedor.Navigate(new LimitacionDelDistingue());
                     break;
+                case "_menuItemCambioDeTramitante":
+                    this._ventana.Contenedor.Navigate(new CambioDeTramitante());
+                    break;
+                case "_menuItemDesistimiento":
+                    this._ventana.Contenedor.Navigate(new DeDesistimiento());
+                    break;
+                case "_menuItemNumeracionDePoderPorMarca":
+                    this._ventana.Contenedor.Navigate(new NumeracionDePoderPorMarca());
+                    break;                    
                 default:
                     break;
             }

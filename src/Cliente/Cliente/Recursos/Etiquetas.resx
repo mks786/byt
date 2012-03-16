@@ -1869,12 +1869,24 @@ de Gracia</value>
     <value>Marcas agregadas al escrito:</value>
   </data>
   <data name="titleEscritoLimitacionDelDistingue" xml:space="preserve">
-    <value>Limitación del Distingue</value>
+    <value>Escrito de Limitación del Distingue</value>
   </data>
   <data name="lblByt" xml:space="preserve">
     <value>Byt:</value>
   </data>
   <data name="chkTodos" xml:space="preserve">
     <value>Todos</value>
+  </data>
+  <data name="titleEscritoCambioDeTramitante" xml:space="preserve">
+    <value>Escrito de Cambio de Tramitante</value>
+  </data>
+  <data name="titleEscritoDeDesistimiento" xml:space="preserve">
+    <value>Escrito de De Desistimiento</value>
+  </data>
+  <data name="menuItemEscritoNumeracionDePoderPorMarca" xml:space="preserve">
+    <value>Numeración de Poder por Marca</value>
+  </data>
+  <data name="titleEscritoNumeracionDePoderPorMarca" xml:space="preserve">
+    <value>Escrito de Numeración de Poder por Marca</value>
   </data>
 </root>

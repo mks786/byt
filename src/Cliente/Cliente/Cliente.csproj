@@ -107,6 +107,9 @@
     <Compile Include="Contratos\Anexos\IConsultarAnexo.cs" />
     <Compile Include="Contratos\Anexos\IConsultarAnexos.cs" />
     <Compile Include="Contratos\CartasOuts\IConsultarCartasOuts.cs" />
+    <Compile Include="Contratos\EscritosMarca\INumeracionDePoderPorMarca.cs" />
+    <Compile Include="Contratos\EscritosMarca\IDeDesisitimiento.cs" />
+    <Compile Include="Contratos\EscritosMarca\ICambioDeTramitante.cs" />
     <Compile Include="Contratos\EscritosMarca\ILimitacionDelDistingue.cs" />
     <Compile Include="Contratos\MarcasTercero\IAgregarMarcaTercero.cs" />
     <Compile Include="Contratos\MarcasTercero\IConsultarMarcaTercero.cs" />
@@ -237,6 +240,9 @@
     <Compile Include="Presentadores\Contactos\PresentadorAgregarContacto.cs" />
     <Compile Include="Presentadores\Contactos\PresentadorConsultarContacto.cs" />
     <Compile Include="Presentadores\CartasOuts\PresentadorConsultarCartasOuts.cs" />
+    <Compile Include="Presentadores\EscritosMarca\PresentadorNumeracionDePoderPorMarca.cs" />
+    <Compile Include="Presentadores\EscritosMarca\PresentadorDeDesistimiento.cs" />
+    <Compile Include="Presentadores\EscritosMarca\PresentadorCambioDeTramitante.cs" />
     <Compile Include="Presentadores\EscritosMarca\PresentadorLimitacionDelDistingue.cs" />
     <Compile Include="Presentadores\MarcasTercero\PresentadorAgregarMarcaTercero.cs" />
     <Compile Include="Presentadores\MarcasTercero\PresentadorConsultarMarcaTercero.cs" />
@@ -426,6 +432,15 @@
     </Compile>
     <Compile Include="Ventanas\Anexos\ConsultarAnexos.xaml.cs">
       <DependentUpon>ConsultarAnexos.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\EscritosMarca\CambioDeTramitante.xaml.cs">
+      <DependentUpon>CambioDeTramitante.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\EscritosMarca\NumeracionDePoderPorMarca.xaml.cs">
+      <DependentUpon>NumeracionDePoderPorMarca.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\EscritosMarca\DeDesistimiento.xaml.cs">
+      <DependentUpon>DeDesistimiento.xaml</DependentUpon>
     </Compile>
     <Compile Include="Ventanas\EscritosMarca\LimitacionDelDistingue.xaml.cs">
       <DependentUpon>LimitacionDelDistingue.xaml</DependentUpon>
@@ -830,6 +845,18 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Ventanas\Cartas\ConsultarCartas.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\EscritosMarca\CambioDeTramitante.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\EscritosMarca\NumeracionDePoderPorMarca.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\EscritosMarca\DeDesistimiento.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
