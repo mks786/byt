@@ -50,6 +50,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
         private IPlanillaServicios _planillaServicios;
         private IMarcaServicios _marcaServicios;
         private IMarcaBaseTerceroServicios _marcaBaseTerceroServicios;
+        private IEstadoMarcaServicios _estadoMarcaServicios;
+        private ITipoBaseServicios _tipoBaseServicios;
 
         private IList<Asociado> _asociados;
         private IList<Interesado> _interesados;
@@ -123,6 +125,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["MarcaServicios"]);
                 this._marcaBaseTerceroServicios = (IMarcaBaseTerceroServicios)Activator.GetObject(typeof(IMarcaBaseTerceroServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["MarcaBaseTerceroServicios"]);
+                this._estadoMarcaServicios = (IEstadoMarcaServicios)Activator.GetObject(typeof(IEstadoMarcaServicios),
+                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["EstadoMarcaServicios"]);
+                this._tipoBaseServicios = (ITipoBaseServicios)Activator.GetObject(typeof(ITipoBaseServicios),
+                      ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["TipoBaseServicios"]);
 
             }
             catch (Exception ex)
@@ -155,6 +161,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
                 this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleConsultarMarcaTercero, "");
 
                 MarcaTercero marcaTercero = (MarcaTercero)this._ventana.MarcaTercero;
+                EstadoMarca estadoMarca = new EstadoMarca();
+                TipoBase tipoBase = new TipoBase();
 
               //  Anaqua anaqua = new Anaqua();
               //  anaqua.IdMarcaTercero = marcaTercero.Id;
@@ -189,6 +197,21 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
                 paises.Insert(0, primerPais);
                 this._ventana.PaisesSolicitud = paises;
                 this._ventana.PaisSolicitud = this.BuscarPais(paises, marcaTercero.Pais);
+
+                IList<EstadoMarca> EstadosMarca = this._estadoMarcaServicios.ConsultarTodos();
+                EstadoMarca primerEstadoMarca = new EstadoMarca();
+                primerEstadoMarca.Id = "A";
+                EstadosMarca.Insert(0, primerEstadoMarca);
+                this._ventana.EstadosMarcaSolicitud = EstadosMarca;
+                this._ventana.EstadoMarcaSolicitud = this.BuscarEstadoMarca(EstadosMarca, estadoMarca);
+
+                
+                IList<TipoBase> TipoBase = this._tipoBaseServicios.ConsultarTodos();
+                TipoBase primerTipoBase = new TipoBase();
+                primerEstadoMarca.Id = "A";
+                TipoBase.Insert(0, primerTipoBase);
+                this._ventana.TiposBaseSolicitud = TipoBase;
+                this._ventana.TipoBaseSolicitud = this.BuscarTipoBase(TipoBase, tipoBase);
 
                 //IList<StatusWeb> statusWebs = this._statusWebServicios.ConsultarTodos();
                 //StatusWeb primerStatus = new StatusWeb();
@@ -364,7 +387,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
                 marcaTercero.Internacional = null;
 
             //if (string.IsNullOrEmpty(this._ventana.IdNacional))
-            //    marcaTercero.Nacional = null;
+            //   marcaTercero.Nacional = null;
+
 
             return marcaTercero;
         }
@@ -652,6 +676,159 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
             }
         }
 
+        /// <summary>
+        /// Método que carga lista de MarcasByt
+        /// </summary>
+        /// <returns>true si se realizó correctamente</returns>
+        public bool CargarMarcasByt()
+        {
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+            bool retorno = false;
+            MarcaTercero marcaTercero = (MarcaTercero)this._ventana.MarcaTercero;
+            if ((null != marcaTercero.MarcasBaseTercero) && (marcaTercero.MarcasBaseTercero.Count != 0))
+            {
+                this._ventana.MarcasByt = marcaTercero.MarcasBaseTercero;
+                retorno = true;
+               // this.LimpiarMarcasByt(marcaTercero);
+            }
+
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+            return retorno;
+        }
+
+        /// <summary>
+        /// Método que limpia lista de anexos de carta
+        /// </summary>
+        /// <param name="carta"></param>
+        private void LimpiarMarcasByt(MarcaTercero marcaTercero)
+        {
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+            IList<int> indices = new List<int>();
+            foreach (MarcaBaseTercero marcasBaseTercero in marcaTercero.MarcasBaseTercero)
+            {
+                int index = 0;
+                foreach (MarcaBaseTercero marcasBaseTerceroTotal in this._marcasBaseTercero)
+                {
+                    if (marcaTercero.Id == marcasBaseTerceroTotal.Id)
+                    {
+                        indices.Insert(0, index);
+                    }
+                    index++;
+                }
+            }
+
+            foreach (int indice in indices)
+            {
+                this._marcasBaseTercero.RemoveAt(indice);
+            }
+
+            ((MarcaTercero)this._ventana.MarcaTercero).MarcasBaseTercero = this._marcasBaseTercero;
+
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+        }
+
+        public bool AgregarMarcaByt()
+        {
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+            IList<MarcaBaseTercero> marcasBaseTercero;
+            bool retorno = false;
+            if ("" != this._ventana.NombreMarca)
+            {
+                if (null == ((MarcaTercero)this._ventana.MarcaTercero).MarcasBaseTercero)
+                    marcasBaseTercero = new List<MarcaBaseTercero>();
+                else
+                    marcasBaseTercero = ((MarcaTercero)this._ventana.MarcaTercero).MarcasBaseTercero;
+
+                MarcaBaseTercero aux = new MarcaBaseTercero();
+                string NombreDeMarca = this._ventana.NombreMarca;
+                aux.Id = ((MarcaTercero)this._ventana.MarcaTercero).Id;
+                aux.Pais = ((Pais)this._ventana.PaisSolicitud);
+                aux.TipoDeBase = ((TipoBase)this._ventana.TipoBaseSolicitud);
+                 if ((bool)this._ventana.Byt.IsChecked)
+                     { 
+                        aux.Marca = ((Marca)this._ventana.MarcaFiltrada); 
+                    }
+                 else
+                     {
+                        Marca nueva = new Marca();
+                        nueva.Descripcion = NombreDeMarca;
+                        aux.Marca = nueva;
+                        aux.Marca.Internacional.Descripcion = this._ventana.IdInternacionalByt;
+                        aux.Marca.Nacional.Descripcion = this._ventana.IdNacionalByt;
+                     }
+                marcasBaseTercero.Add(aux);
+                this._ventana.MarcasByt = marcasBaseTercero.ToList<MarcaBaseTercero>();
+               // this._marcasBaseTercero.Remove((MarcaBaseTercero)this._ventana.MarcaTercero);
+               // ((MarcaTercero)this._ventana.MarcaTercero).MarcasBaseTercero = this._marcasBaseTercero.ToList<MarcaBaseTercero>();
+                retorno = true;
+            }
+
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+            return retorno;
+        }
+
+        /// <summary>
+        /// Metodo que deshabilita los Marcas en el Byt
+        /// </summary>
+        /// <returns>retorno true si se deshabilitó</returns>
+        public bool DeshabilitarMarcasByt()
+        {
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+            IList<MarcaBaseTercero> marcasBaseTercero;
+            bool respuesta = false;
+
+            if (null != ((MarcaBaseTercero)this._ventana.MarcaByt))
+            {
+                if (null == ((MarcaTercero)this._ventana.MarcaTercero).MarcasBaseTercero)
+                    marcasBaseTercero = new List<MarcaBaseTercero>();
+                else
+                    marcasBaseTercero = ((MarcaTercero)this._ventana.MarcaTercero).MarcasBaseTercero;
+
+                marcasBaseTercero.Remove((MarcaBaseTercero)this._ventana.MarcaByt);
+                ((MarcaTercero)this._ventana.MarcaTercero).MarcasBaseTercero = marcasBaseTercero;
+             //   this._marcasBaseTercero.Add((MarcaBaseTercero)this._ventana.MarcaByt);
+                this._ventana.MarcasByt = marcasBaseTercero.ToList<MarcaBaseTercero>();
+            //    ((MarcaTercero)this._ventana.MarcaTercero).MarcasBaseTercero = this._marcasBaseTercero.ToList<MarcaBaseTercero>();
+
+                if (marcasBaseTercero.Count == 0)
+                    respuesta = true;
+
+            }
+
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+            return respuesta;
+        }
         #region Metodos de los filtros de asociados
 
         public void CambiarAsociadoSolicitud()
@@ -1219,6 +1396,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
                 {
                     this._ventana.Marca = this._ventana.MarcaFiltrada;
                     this._ventana.NombreMarca = ((Marca)this._ventana.MarcaFiltrada).Descripcion;
+                    this._ventana.PaisSolicitud = ((Marca)this._ventana.MarcaFiltrada).Pais.NombreEspanol;
+                    this._ventana.IdInternacionalByt = ((Marca)this._ventana.MarcaFiltrada).Internacional.Descripcion;
+                    this._ventana.IdNacionalByt = ((Marca)this._ventana.MarcaFiltrada).Nacional.Descripcion;
                     retorno = true;
                 }
 

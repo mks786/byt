@@ -1862,6 +1862,12 @@ de Gracia</value>
   <data name="chkTodos" xml:space="preserve">
     <value>Todos</value>
   </data>
+  <data name="lblEstadoMarca" xml:space="preserve">
+    <value>Estado Marca:</value>
+  </data>
+  <data name="lblTipoBase" xml:space="preserve">
+    <value>Tipo De Base:</value>
+  </data>
   <data name="titleEscritoCertificadoDeOrigen" xml:space="preserve">
     <value>Escrito Certificado de Origen</value>
   </data>

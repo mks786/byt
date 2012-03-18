@@ -10,15 +10,15 @@ namespace Trascend.Bolet.Comandos.Comandos.ComandosMarcaTercero
     public class ComandoInsertarOModificarMarcaTercero : ComandoBase<bool>
     {
         private static Logger logger = LogManager.GetCurrentClassLogger();
-        MarcaTercero _anexo;
+        MarcaTercero _marcaTercero;
 
         /// <summary>
         /// Constructor predeterminado
         /// </summary>
         /// <param name="usuario">Usuario a insertar o modificar</param>
-        public ComandoInsertarOModificarMarcaTercero(MarcaTercero anexo)
+        public ComandoInsertarOModificarMarcaTercero(MarcaTercero marcaTercero)
         {
-            this._anexo = anexo;
+            this._marcaTercero = marcaTercero;
         }
 
         /// <summary>
@@ -34,7 +34,7 @@ namespace Trascend.Bolet.Comandos.Comandos.ComandosMarcaTercero
                 #endregion
 
                 IDaoMarcaTercero dao = FabricaDaoBase.ObtenerFabricaDao().ObtenerDaoMarcaTercero();
-                this.Receptor = new Receptor<bool>(dao.InsertarOModificar(this._anexo));
+                this.Receptor = new Receptor<bool>(dao.InsertarOModificar(this._marcaTercero));
 
                 #region trace
                 if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))

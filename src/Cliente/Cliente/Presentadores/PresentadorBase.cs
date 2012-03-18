@@ -506,6 +506,52 @@ namespace Trascend.Bolet.Cliente.Presentadores
         }
 
         /// <summary>
+        /// Método que busca un estadoMarca dentro de una lista de estadosMarca
+        /// </summary>
+        /// <param name="estados">Lista de estadoMarcas</param>
+        /// <param name="estadoBuscado">estadoMarca a buscar</param>
+        /// <returns>Estado dentro de la lista</returns>
+        public EstadoMarca BuscarEstadoMarca(IList<EstadoMarca> estadosMarca, EstadoMarca estadoMarcaBuscado)
+        {
+            EstadoMarca retorno = null;
+
+            if (estadoMarcaBuscado != null)
+                foreach (EstadoMarca estadoMarca in estadosMarca)
+                {
+                    if (estadoMarca.Id == estadoMarcaBuscado.Id)
+                    {
+                        retorno = estadoMarca;
+                        break;
+                    }
+                }
+
+            return retorno;
+        }
+
+        /// <summary>
+        /// Método que busca un TipoBase dentro de una lista de tipoBase
+        /// </summary>
+        /// <param name="estados">Lista de tipoBase</param>
+        /// <param name="estadoBuscado">tipoBase a buscar</param>
+        /// <returns>tipoBase dentro de la lista</returns>
+        public TipoBase BuscarTipoBase(IList<TipoBase> tiposBase, TipoBase tipoBaseBuscado)
+        {
+            TipoBase retorno = null;
+
+            if (tipoBaseBuscado != null)
+                foreach (TipoBase tipoBase in tiposBase)
+                {
+                    if (tipoBase.Id == tipoBaseBuscado.Id)
+                    {
+                        retorno = tipoBase;
+                        break;
+                    }
+                }
+
+            return retorno;
+        }
+
+        /// <summary>
         /// Método que busca un estado dentro de una lista de Idiomas
         /// </summary>
         /// <param name="monedas">Lista de idiomas</param>

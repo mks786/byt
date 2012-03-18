@@ -139,13 +139,14 @@ namespace Trascend.Bolet.Servicios.Implementacion
                 logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
 
-            throw new NotImplementedException();
-         //   bool exitoso = ControladorMarcaTercero.InsertarOModificar(entidad, hash);
+            bool exitoso = ControladorMarcaTercero.InsertarOModificar(entidad, hash);
 
             #region trace
             if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
                 logger.Debug("Saliendo del Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
+
+            return exitoso;
         }
 
         /// <summary>

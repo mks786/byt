@@ -100,6 +100,18 @@ namespace Trascend.Bolet.Cliente.Ventanas.MarcasTercero
             set { this._cbxOrdenPublicacion.SelectedItem = value; }
         }
 
+        public object MarcaByt
+        {
+            get { return this._lstMarcasB.SelectedItem; }
+            set { this._lstMarcasB.SelectedItem = value; }
+        }
+
+        public object MarcasByt
+        {
+            get { return this._lstMarcasB.DataContext; }
+            set { this._lstMarcasB.DataContext = value; }
+        }
+
         public object BoletinesPublicacion
         {
             get { return this._cbxBoletinPublicacion.DataContext; }
@@ -171,7 +183,36 @@ namespace Trascend.Bolet.Cliente.Ventanas.MarcasTercero
             get { return this._cbxPaisPrioridad.SelectedItem; }
             set { this._cbxPaisPrioridad.SelectedItem = value; }
         }
+        
+        public CheckBox Byt
+        {
+            get { return this._chkByt; }
+            //set { this._chkByt = value; }
+        }
 
+        public string IdInternacionalByt
+        {
+            get { return this._txtClaseInternacionalByt.Text; }
+            set { this._txtClaseInternacionalByt.Text = value; }
+        }
+
+        public string IdNacionalByt
+        {
+            get { return this._txtClaseNacionalByt.Text; }
+            set { this._txtClaseNacionalByt.Text = value; }
+        }
+
+        public object EstadoMarcaSolicitud
+        {
+            get { return this._cbxEstadoMarca.SelectedItem; }
+            set { this._cbxEstadoMarca.SelectedItem = value; }
+        }
+
+        public object TipoBaseSolicitud
+        {
+            get { return this._cbxTipoBase.SelectedItem; }
+            set { this._cbxTipoBase.SelectedItem = value; }
+        }
 
         public string IdMarcaFiltrar
         {
@@ -190,9 +231,21 @@ namespace Trascend.Bolet.Cliente.Ventanas.MarcasTercero
         }
 
         public object PaisesSolicitud
-        {
+        {       
             get { return this._cbxPaisPrioridad.DataContext; }
             set { this._cbxPaisPrioridad.DataContext = value; }
+        }
+
+        public object EstadosMarcaSolicitud
+        {
+            get { return this._cbxEstadoMarca.DataContext; }
+            set { this._cbxEstadoMarca.DataContext = value; }
+        }
+
+        public object TiposBaseSolicitud
+        {
+            get { return this._cbxTipoBase.DataContext; }
+            set { this._cbxTipoBase.DataContext = value; }
         }
 
         //public object TipoMarcasTerceroSolicitud
@@ -296,6 +349,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.MarcasTercero
                 this._txtCodigoRegistro.IsEnabled = value;
                 this._txtComencliEsp.IsEnabled = value;
                 this._txtComencliIng.IsEnabled = value;
+                this._txtClaseInternacionalByt.IsEnabled = value;
+                this._txtClaseNacionalByt.IsEnabled = value;
                 //this._txtCodIntlDatos.IsEnabled = value;
                 //this._txtComentarioDatos.IsEnabled = value;
                 //this._txtConflictoDatos.IsEnabled = value;
@@ -366,6 +421,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.MarcasTercero
                 this._cbxPaisPrioridad.IsEnabled = value;
                 //this._cbxSector.IsEnabled = value;
                 this._cbxSituacion.IsEnabled = value;
+                this._cbxTipoBase.IsEnabled = value;
+                this._cbxEstadoMarca.IsEnabled = value;
                 //this._cbxTipoMarcaTerceroSolicitud.IsEnabled = value;
                 //this._cbxTipoMarcaTerceroDatos.IsEnabled = value;
                 //this._cbxTipoReproduccion.IsEnabled = value;
@@ -454,8 +511,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.MarcasTercero
                 //this._btnRevisarWeb.IsEnabled = value;
                 //this._btnSaldo.IsEnabled = value;
                 //this._btnVerDocDatos.IsEnabled = value;
-
+                this._lstMarcasB.IsEnabled = value;
+                this._btnMas.IsEnabled = value;
+                this._btnMenos.IsEnabled = value;
                 #endregion
+
 
                 #region DatePicker
 
@@ -475,6 +535,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.MarcasTercero
         public string NombreMarca
         {
             set { this._txtNombreMarca.Text = value; }
+            get { return this._txtNombreMarca.Text; }
         }
 
         public string IdAsociadoSolicitudFiltrar
@@ -987,6 +1048,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.MarcasTercero
             if (!EstaCargada)
             {
                 this._presentador.CargarPagina();
+                if (this._presentador.CargarMarcasByt())
+                    this._lstMarcasB.Visibility = System.Windows.Visibility.Visible;
                 EstaCargada = true;
             }
         }
@@ -1426,11 +1489,13 @@ namespace Trascend.Bolet.Cliente.Ventanas.MarcasTercero
 
         private void _lstMarcas_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
+
             if (this._presentador.CambiarMarca())
             {
                 GestionarVisibilidadDatosDeMarca(Visibility.Visible);
                 GestionarVisibilidadFiltroMarca(Visibility.Collapsed);
             }
+
         }
 
         private void _OrdenarMarcas_Click(object sender, RoutedEventArgs e)
@@ -1440,10 +1505,15 @@ namespace Trascend.Bolet.Cliente.Ventanas.MarcasTercero
 
         private void _txtNombreMarca_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            GestionarVisibilidadDatosDeMarca(Visibility.Collapsed);
+            if ((bool)this._chkByt.IsChecked)
+            {
+                GestionarVisibilidadDatosDeMarca(Visibility.Collapsed);
 
-            GestionarVisibilidadFiltroMarca(Visibility.Visible);
-
+                GestionarVisibilidadFiltroMarca(Visibility.Visible);
+                this._cbxPais.IsEnabled = false;
+                this._txtClaseInternacionalByt.IsEnabled = false;
+                this._txtClaseNacionalByt.IsEnabled = false;
+            }
         }
 
         private void GestionarVisibilidadDatosDeMarca(object value)
@@ -1475,6 +1545,59 @@ namespace Trascend.Bolet.Cliente.Ventanas.MarcasTercero
         //    this._presentador.IrImprimir(((Button)sender).Name);
         }
 
+        private void _chkByt_Click(object sender, RoutedEventArgs e)
+        {
+            if ((bool)!this._chkByt.IsChecked)
+            {
+                GestionarVisibilidadDatosDeMarca(Visibility.Visible);
 
+                GestionarVisibilidadFiltroMarca(Visibility.Collapsed);
+                this._cbxPais.IsEnabled = true;
+                this._txtClaseInternacionalByt.IsEnabled = true;
+                this._txtClaseNacionalByt.IsEnabled = true;
+
+            }
+        }
+
+        private void _btnMas_Click(object sender, RoutedEventArgs e)
+        {
+
+            if ((this._presentador.AgregarMarcaByt()) && (this._lstMarcasB.Visibility == System.Windows.Visibility.Collapsed))
+                this._lstMarcasB.Visibility = System.Windows.Visibility.Visible;
+
+        }
+
+        private void _btnMenos_Click(object sender, RoutedEventArgs e)
+        {
+            if (this._presentador.DeshabilitarMarcasByt())
+            {
+                this._lstMarcasB.Visibility = System.Windows.Visibility.Collapsed;
+            }
+
+        }
+
+
+
+
+        public void AgregarMarcaByt()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void DeshabilitarMarcasByt()
+        {
+            throw new NotImplementedException();
+        }
+
+
+        public void CargarMarcasByt()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void LimpiarMarcasByt()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

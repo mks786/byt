@@ -20,7 +20,7 @@ namespace Trascend.Bolet.Cliente.Contratos.MarcasTercero
 
         string IdMarcaFiltrar { get; }
 
-        string NombreMarca {set; }
+        string NombreMarca { set; get; }
 
         //string IdAsociadoDatosFiltrar { get; }
 
@@ -124,7 +124,15 @@ namespace Trascend.Bolet.Cliente.Contratos.MarcasTercero
 
         //object Condicion { get; set; }
 
+        object EstadoMarcaSolicitud { get; set; }
+
+        object TipoBaseSolicitud { get; set; }
+
         object PaisesSolicitud { get; set; }
+
+        object EstadosMarcaSolicitud { get; set; }
+
+        object TiposBaseSolicitud { get; set; }
 
         object PaisSolicitud { get; set; }
 
@@ -135,6 +143,12 @@ namespace Trascend.Bolet.Cliente.Contratos.MarcasTercero
         string TextoBotonModificar { get; set; }
 
         string IdInternacional { get; set; }
+
+        string IdInternacionalByt { get; set; }
+
+        string IdNacionalByt { get; set; }
+
+        CheckBox Byt { get; }
 
         //string IdNacional { get; set; }
 
@@ -158,9 +172,21 @@ namespace Trascend.Bolet.Cliente.Contratos.MarcasTercero
 
         void PintarBusquedas();
 
+        void AgregarMarcaByt();
+
+        void CargarMarcasByt();
+
+        void LimpiarMarcasByt();
+
+        void DeshabilitarMarcasByt();
+
         //void PintarAuditoria();
 
         void BorrarCeros();
+
+        object MarcasByt{get; set;}
+
+        object MarcaByt {get; set;}
 
         bool MensajeAlerta(string mensaje);
 
