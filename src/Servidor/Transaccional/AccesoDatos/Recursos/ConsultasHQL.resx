@@ -473,4 +473,8 @@
     <value>m.Recordatorio = {0}</value>
     <comment>Filtro marca por recordatorio</comment>
   </data>
+  <data name="CabeceraObtenerAgenteDesinflados" xml:space="preserve">
+    <value>Select distinct(a) from Agente a where </value>
+    <comment>Cabecera del query para el filtro de agentes</comment>
+  </data>
 </root>

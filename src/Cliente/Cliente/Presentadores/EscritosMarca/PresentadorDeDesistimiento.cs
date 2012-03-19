@@ -294,7 +294,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
                     AgenteConsulta.Nombre = !this._ventana.NombreAgenteFiltrar.Equals("") ?
                         this._ventana.NombreAgenteFiltrar.ToUpper() : string.Empty;
 
-                    this._Agentes = this._agenteServicios.ObtenerAgentesFiltro(AgenteConsulta);
+                    this._Agentes = this._agenteServicios.ObtenerAgentesSinPoderesFiltro(AgenteConsulta);
                     this._Agentes.Insert(0, this.primerAgente);
                     this._ventana.AgentesFiltrados = this._Agentes;
                 }

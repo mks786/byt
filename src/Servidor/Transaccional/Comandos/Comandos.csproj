@@ -47,6 +47,7 @@
     <Compile Include="Comandos\ComandosAgente\ComandoConsultarAgentesFiltro.cs" />
     <Compile Include="Comandos\ComandosAgente\ComandoVerificarExistenciaAgente.cs" />
     <Compile Include="Comandos\ComandosAgente\ComandoConsultarAgentesDeUnPoder.cs" />
+    <Compile Include="Comandos\ComandosAgente\ComandoConsultarAgentesSinPoderesFiltro.cs" />
     <Compile Include="Comandos\ComandosAnaqua\ComandoConsultarAnaquaPorID.cs" />
     <Compile Include="Comandos\ComandosAnexo\ComandoConsultarTodosAnexos.cs" />
     <Compile Include="Comandos\ComandosAnexo\ComandoEliminarAnexo.cs" />

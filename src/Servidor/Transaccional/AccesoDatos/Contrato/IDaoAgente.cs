@@ -10,5 +10,7 @@ namespace Trascend.Bolet.AccesoDatos.Contrato
         IList<Agente> ObtenerAgentesFiltro(Agente agente);
 
         IList<Agente> ObtenerAgentesDeUnPoder(Poder poder);
+
+        IList<Agente> ObtenerAgentesSinPoderesFiltro(Agente agente);
     }
 }

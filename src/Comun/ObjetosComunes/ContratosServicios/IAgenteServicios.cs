@@ -10,6 +10,8 @@ namespace Trascend.Bolet.ObjetosComunes.ContratosServicios
 
         IList<Agente> ObtenerAgentesFiltro(Agente agente);
 
+        IList<Agente> ObtenerAgentesSinPoderesFiltro(Agente agente);
+
         IList<Agente> ObtenerAgentesDeUnPoder(Poder poder);
     }
 }

@@ -152,5 +152,28 @@ namespace Trascend.Bolet.Servicios.Implementacion
 
             return agentes;
         }
+
+
+        /// <summary>
+        /// Servicio que consulta una serie de Agentes por uno o mas parametros
+        /// </summary>
+        /// <param name="Agente">Agente que contiene los parametros de la consulta</param>
+        /// <returns>Lista de Agentes</returns>
+        public IList<Agente> ObtenerAgentesSinPoderesFiltro(Agente agente)
+        {
+            #region trace
+            if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+            IList<Agente> agentes = ControladorAgente.ConsultarAgentesSinPoderes(agente);
+
+            #region trace
+            if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                logger.Debug("Saliendo del Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+            return agentes;
+        }
     }
 }
