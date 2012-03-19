@@ -1940,4 +1940,10 @@ de Gracia</value>
   <data name="menuItemEscritosRenunciaParcial" xml:space="preserve">
     <value>Renuncia Parcial</value>
   </data>
+  <data name="lblInteresadosAgregadosAlEscrito" xml:space="preserve">
+    <value>Interesados agregados al escrito:</value>
+  </data>
+  <data name="titleEscritoNumeracionDePoderPorInteresado" xml:space="preserve">
+    <value>Numeración de Poder por Interesado</value>
+  </data>
 </root>
