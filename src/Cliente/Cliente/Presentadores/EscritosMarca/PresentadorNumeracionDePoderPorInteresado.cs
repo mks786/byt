@@ -119,7 +119,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
                                 string parametroInteresados = ArmarStringParametroInteresados(this._interesadosAgregados);
                                 this.EjecutarArchivoBAT(ConfigurationManager.AppSettings["RutaBatEscrito"].ToString()
                                     + "\\" + ConfigurationManager.AppSettings["EscritoNumeracionDePoderPorInteresado"].ToString(),
-                                    ((Agente)this._ventana.AgenteFiltrado).Id, parametroInteresados);
+                                    ((Agente)this._ventana.AgenteFiltrado).Id+" "+ parametroInteresados);
                             }
                             else 
                             {

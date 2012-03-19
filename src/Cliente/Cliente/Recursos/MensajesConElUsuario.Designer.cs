@@ -133,6 +133,16 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Disculpe el escrito no posee Error definido.
+        /// </summary>
+        internal static string AlertaEscritoSinError {
+            get {
+                return ResourceManager.GetString("AlertaEscritoSinError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Disculpe el Escrito debe tener al menos una marca.
         ///   Busca una cadena traducida similar a Disculpe el Escrito debe tener al menos un Interesado.
         /// </summary>
         internal static string AlertaEscritoSinInteresados {

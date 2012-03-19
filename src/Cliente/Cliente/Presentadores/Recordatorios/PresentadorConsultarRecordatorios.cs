@@ -30,8 +30,6 @@ namespace Trascend.Bolet.Cliente.Presentadores.Recordatorios
         private IInteresadoServicios _interesadoServicios;
         private IListaDatosValoresServicios _listaDatosValoresServicios;
         private IList<Marca> _marcas;
-        private IList<Asociado> _asociados;
-        private IList<Interesado> _interesados;
 
         /// <summary>
         /// Constructor Predeterminado

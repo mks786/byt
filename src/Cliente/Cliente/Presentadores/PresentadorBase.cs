@@ -1273,39 +1273,39 @@ namespace Trascend.Bolet.Cliente.Presentadores
         /// Metodo que recibe el nombre del archivo .bat a ejecutar
         /// </summary>
         /// <param name="nombreArchivo">nombre del archivo a ejecutar</param>
-        public void EjecutarArchivoBAT(string nombreArchivoBat, string nombreArchivoLectura)
-        {
+        //public void EjecutarArchivoBAT(string nombreArchivoBat, string nombreArchivoLectura)
+        //{
 
-            try
-            {
-                System.Diagnostics.Process proc = new System.Diagnostics.Process(); // Declare New Process
-                proc.StartInfo.FileName = nombreArchivoBat;
-                proc.StartInfo.RedirectStandardError = true;
-                proc.StartInfo.RedirectStandardOutput = true;
-                proc.StartInfo.UseShellExecute = false;
-                proc.StartInfo.Arguments = nombreArchivoLectura;
+        //    try
+        //    {
+        //        System.Diagnostics.Process proc = new System.Diagnostics.Process(); // Declare New Process
+        //        proc.StartInfo.FileName = nombreArchivoBat;
+        //        proc.StartInfo.RedirectStandardError = true;
+        //        proc.StartInfo.RedirectStandardOutput = true;
+        //        proc.StartInfo.UseShellExecute = false;
+        //        proc.StartInfo.Arguments = nombreArchivoLectura;
 
-                proc.Start();
+        //        proc.Start();
 
-                proc.WaitForExit(2000);
+        //        proc.WaitForExit(2000);
 
-                string errorMessage = proc.StandardError.ReadToEnd();
-                proc.WaitForExit();
+        //        string errorMessage = proc.StandardError.ReadToEnd();
+        //        proc.WaitForExit();
 
-                string outputMessage = proc.StandardOutput.ReadToEnd();
-                proc.WaitForExit();
-            }
-            catch (Exception ex)
-            {
-                throw new ApplicationException();
-            }
-        }
+        //        string outputMessage = proc.StandardOutput.ReadToEnd();
+        //        proc.WaitForExit();
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw new ApplicationException();
+        //    }
+        //}
 
         /// <summary>
         /// Metodo que recibe el nombre del archivo .bat a ejecutar
         /// </summary>
         /// <param name="nombreArchivo">nombre del archivo a ejecutar</param>
-        public void EjecutarArchivoBAT(string nombreArchivoBat, string parametroA, string parametroB)
+        public void EjecutarArchivoBAT(string nombreArchivoBat, string parametroA)
         {
 
             try
@@ -1315,7 +1315,7 @@ namespace Trascend.Bolet.Cliente.Presentadores
                 proc.StartInfo.RedirectStandardError = true;
                 proc.StartInfo.RedirectStandardOutput = true;
                 proc.StartInfo.UseShellExecute = false;
-                proc.StartInfo.Arguments = parametroA + " " + parametroB;
+                proc.StartInfo.Arguments = parametroA;
 
                 proc.Start();
 

@@ -673,14 +673,20 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
         {
             switch (nombreBoton)
             {
+                case "_menuItemCopiaCertificada":
+                    this._ventana.Contenedor.Navigate(new CopiaCertificada());
+                    break;
+                case "_menuItemCorreccionErrorMaterial":
+                    this._ventana.Contenedor.Navigate(new CorreccionErrorMaterial());
+                    break;
                 case "_menuItemCorreccionErrorMaterialDistingue":
-                    //this._ventana.Contenedor.Navigate(new CertificadoDeOrigen());
+                    this._ventana.Contenedor.Navigate(new CorreccionErrorMaterialDistingue());
                     break;
                 case "_menuItemCertificadoDeOrigen":
                     this._ventana.Contenedor.Navigate(new CertificadoDeOrigen());
                     break;
                 case "_menuItemContinuacionDeTramite":
-                    //this._ventana.Contenedor.Navigate(new CertificadoDeOrigen());
+                    this._ventana.Contenedor.Navigate(new ContinuacionDeTramite());
                     break;
                 case "_menuItemCorreccionDelDistingue":
                     //this._ventana.Contenedor.Navigate(new CertificadoDeOrigen());

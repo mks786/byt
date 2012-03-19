@@ -16,9 +16,9 @@ using System.Collections.Generic;
 
 namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
 {
-    class PresentadorCertificadoDeOrigen : PresentadorBase
+    class PresentadorContinuacionDeTramite : PresentadorBase
     {
-        private ICertificadoDeOrigen _ventana;
+        private IContinuacionDeTramite _ventana;
 
         private IAgenteServicios _agenteServicios;
         private IMarcaServicios _marcaServicios;
@@ -37,7 +37,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
         /// Constructor predeterminado
         /// </summary>
         /// <param name="ventana">Página que satisface el contrato</param>
-        public PresentadorCertificadoDeOrigen(ICertificadoDeOrigen ventana)
+        public PresentadorContinuacionDeTramite(IContinuacionDeTramite ventana)
         {
             try
             {
@@ -64,7 +64,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
 
             try
             {
-                this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleEscritoCertificadoDeOrigen,
+                this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleEscritoContinuacionDeTramite,
                     "");
                 CargarAgente();
                 CargarMarca();
@@ -113,16 +113,16 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
                     {
                         if (this._marcasAgregadas.Count != 0)
                         {
-                            if (this.ValidarAgenteApoderadoDeMarcas((Agente)this._ventana.AgenteFiltrado,this._marcasAgregadas))
+                            if (this.ValidarAgenteApoderadoDeMarcas((Agente)this._ventana.AgenteFiltrado, this._marcasAgregadas))
                             {
                                 string parametroMarcas = ArmarStringParametroMarcas(this._marcasAgregadas);
                                 this.EjecutarArchivoBAT(ConfigurationManager.AppSettings["RutaBatEscrito"].ToString()
-                                    + "\\" + ConfigurationManager.AppSettings["EscritoCertificadoDeOrigen"].ToString(),
+                                    + "\\" + ConfigurationManager.AppSettings["EscritoContinuacionDeTramite"].ToString(),
                                     ((Agente)this._ventana.AgenteFiltrado).Id + " " + parametroMarcas);
                             }
-                            else 
+                            else
                             {
-                                this._ventana.MensajeAlerta(string.Format(Recursos.MensajesConElUsuario.AlertaAgenteNoApareceEnPoderDeMarca, 
+                                this._ventana.MensajeAlerta(string.Format(Recursos.MensajesConElUsuario.AlertaAgenteNoApareceEnPoderDeMarca,
                                     ((Agente)this._ventana.AgenteFiltrado).Nombre));
                             }
                         }

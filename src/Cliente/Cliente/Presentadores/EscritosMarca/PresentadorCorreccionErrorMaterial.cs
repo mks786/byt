@@ -16,12 +16,13 @@ using System.Collections.Generic;
 
 namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
 {
-    class PresentadorCertificadoDeOrigen : PresentadorBase
+    class PresentadorCorreccionErrorMaterial : PresentadorBase
     {
-        private ICertificadoDeOrigen _ventana;
+        private ICorreccionErrorMaterial _ventana;
 
         private IAgenteServicios _agenteServicios;
         private IMarcaServicios _marcaServicios;
+        private IListaDatosValoresServicios _listaDatosValoresServicios;
 
         private static PaginaPrincipal _paginaPrincipal = PaginaPrincipal.ObtenerInstancia;
         private static Logger logger = LogManager.GetCurrentClassLogger();
@@ -32,12 +33,13 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
         private IList<Agente> _Agentes;
         private IList<Marca> _marcas;
         private IList<Marca> _marcasAgregadas = new List<Marca>();
+        private IList<ListaDatosValores> _listaRecordatorios;
 
         /// <summary>
         /// Constructor predeterminado
         /// </summary>
         /// <param name="ventana">Página que satisface el contrato</param>
-        public PresentadorCertificadoDeOrigen(ICertificadoDeOrigen ventana)
+        public PresentadorCorreccionErrorMaterial(ICorreccionErrorMaterial ventana)
         {
             try
             {
@@ -47,6 +49,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["AgenteServicios"]);
                 this._marcaServicios = (IMarcaServicios)Activator.GetObject(typeof(IMarcaServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["MarcaServicios"]);
+                this._listaDatosValoresServicios = (IListaDatosValoresServicios)Activator.GetObject(typeof(IListaDatosValoresServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["ListaDatosValoresServicios"]);
             }
             catch (Exception ex)
             {
@@ -60,11 +64,13 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
         /// </summary>
         public void CargarPagina()
         {
-            Mouse.OverrideCursor = Cursors.Wait;
-
             try
             {
-                this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleEscritoCertificadoDeOrigen,
+                Mouse.OverrideCursor = Cursors.Wait;
+
+                CargarTipoCorreccionErrorMaterial();
+
+                this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleEscritoCorreccionErrorMaterial,
                     "");
                 CargarAgente();
                 CargarMarca();
@@ -97,45 +103,34 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
         }
 
         /// <summary>
+        /// Método que carga los datos iniciales de TipoRecordatorio a mostrar en la página
+        /// </summary>
+        private void CargarTipoCorreccionErrorMaterial()
+        {
+
+
+            ListaDatosValores filtro = new ListaDatosValores(Recursos.Etiquetas.cbiTipoCorreccionErrorMaterial);
+            _listaRecordatorios =
+                this._listaDatosValoresServicios.ConsultarListaDatosValoresPorParametro(filtro);
+            this._ventana.TiposErrores = _listaRecordatorios;
+            this._ventana.TipoError = _listaRecordatorios[0];
+            //this._ventana.TipoCorreccionErrorMaterial = this.BuscarRecordatorio(_listaRecordatorios, _listaRecordatorios.ElementAt(0));
+        }
+
+        /// <summary>
         /// Método que realiza toda la lógica para agregar al País dentro de la base de datos
         /// </summary>
         public void Aceptar()
         {
             try
             {
-                if (this._ventana.BotonModificar.Equals(Recursos.Etiquetas.btnModificar))
+                if (ValidarEscrito())
                 {
-                    this._ventana.HabilitarCampos = true;
-                }
-                else
-                {
-                    if ((this._ventana.AgenteFiltrado != null) && null != ((Agente)this._ventana.AgenteFiltrado).Id)
-                    {
-                        if (this._marcasAgregadas.Count != 0)
-                        {
-                            if (this.ValidarAgenteApoderadoDeMarcas((Agente)this._ventana.AgenteFiltrado,this._marcasAgregadas))
-                            {
-                                string parametroMarcas = ArmarStringParametroMarcas(this._marcasAgregadas);
-                                this.EjecutarArchivoBAT(ConfigurationManager.AppSettings["RutaBatEscrito"].ToString()
-                                    + "\\" + ConfigurationManager.AppSettings["EscritoCertificadoDeOrigen"].ToString(),
-                                    ((Agente)this._ventana.AgenteFiltrado).Id + " " + parametroMarcas);
-                            }
-                            else 
-                            {
-                                this._ventana.MensajeAlerta(string.Format(Recursos.MensajesConElUsuario.AlertaAgenteNoApareceEnPoderDeMarca, 
-                                    ((Agente)this._ventana.AgenteFiltrado).Nombre));
-                            }
-                        }
-                        else
-                        {
-                            this._ventana.MensajeAlerta(Recursos.MensajesConElUsuario.AlertaEscritoSinMarcas);
-                        }
-                    }
-                    else
-                    {
-                        this._ventana.MensajeAlerta(Recursos.MensajesConElUsuario.AlertaEscritoSinAgente);
-                    }
-
+                    string parametroMarcas = ArmarStringParametroMarcas(this._marcasAgregadas);
+                    this.EjecutarArchivoBAT(ConfigurationManager.AppSettings["RutaBatEscrito"].ToString()
+                        + "\\" + ConfigurationManager.AppSettings["EscritoCorreccionErrorMaterial"].ToString(),
+                        ((Agente)this._ventana.AgenteFiltrado).Id + " " + parametroMarcas +" "+ ((ListaDatosValores)this._ventana.TipoError).Valor 
+                        +" " +this._ventana.Error);
                 }
             }
             catch (ApplicationException ex)
@@ -158,6 +153,40 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
                 logger.Error(ex.Message);
                 this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
             }
+        }
+
+        private bool ValidarEscrito()
+        {
+            bool retorno = false;
+
+            if ((this._ventana.AgenteFiltrado != null) && null != ((Agente)this._ventana.AgenteFiltrado).Id)
+            {
+                if (this._marcasAgregadas.Count != 0)
+                {
+                    if (this.ValidarAgenteApoderadoDeMarcas((Agente)this._ventana.AgenteFiltrado, this._marcasAgregadas))
+                    {
+                        if (!this._ventana.Error.Equals(""))
+                            retorno = true;
+                        else
+                            this._ventana.MensajeAlerta(string.Format(Recursos.MensajesConElUsuario.AlertaEscritoSinError,""));
+                    }
+                    else
+                    {
+                        this._ventana.MensajeAlerta(string.Format(Recursos.MensajesConElUsuario.AlertaAgenteNoApareceEnPoderDeMarca,
+                            ((Agente)this._ventana.AgenteFiltrado).Nombre));
+                    }
+                }
+                else
+                {
+                    this._ventana.MensajeAlerta(Recursos.MensajesConElUsuario.AlertaEscritoSinMarcas);
+                }
+            }
+            else
+            {
+                this._ventana.MensajeAlerta(Recursos.MensajesConElUsuario.AlertaEscritoSinAgente);
+            }
+
+            return retorno;
         }
 
         /// <summary>
@@ -202,12 +231,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
         /// <returns></returns>
         public bool CambiarAgente()
         {
-            Mouse.OverrideCursor = Cursors.Wait;
-
             bool retorno = false;
 
             try
             {
+                Mouse.OverrideCursor = Cursors.Wait;
+
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
@@ -277,10 +306,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
         /// </summary>
         public void ConsultarAgente()
         {
-            Mouse.OverrideCursor = Cursors.Wait;
-
             try
             {
+                Mouse.OverrideCursor = Cursors.Wait;
+
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
@@ -341,12 +370,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
         /// <returns></returns>
         public bool CambiarMarca()
         {
-            Mouse.OverrideCursor = Cursors.Wait;
-
             bool retorno = false;
 
             try
             {
+                Mouse.OverrideCursor = Cursors.Wait;
+
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
@@ -418,10 +447,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
         /// </summary>
         public void ConsultarMarca()
         {
-            Mouse.OverrideCursor = Cursors.Wait;
-
             try
             {
+                Mouse.OverrideCursor = Cursors.Wait;
+
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);

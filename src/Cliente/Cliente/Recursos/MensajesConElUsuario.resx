@@ -672,6 +672,9 @@
   <data name="AlertaAgenteNoApareceEnPoderDeMarca" xml:space="preserve">
     <value>Disculpe el Agente {0} no aparece en el Poder de alguna de las Marcas seleccionadas</value>
   </data>
+  <data name="AlertaEscritoSinError" xml:space="preserve">
+    <value>Disculpe el escrito no posee Error definido</value>
+  </data>
   <data name="AlertaAgenteNoPoseePoderConInteresado" xml:space="preserve">
     <value>Disculpe el Agente {0} no posee Poderes relacionados con alguna de los Interesados seleccionadas</value>
   </data>

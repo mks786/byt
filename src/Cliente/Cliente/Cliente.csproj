@@ -107,6 +107,10 @@
     <Compile Include="Contratos\Anexos\IConsultarAnexo.cs" />
     <Compile Include="Contratos\Anexos\IConsultarAnexos.cs" />
     <Compile Include="Contratos\CartasOuts\IConsultarCartasOuts.cs" />
+    <Compile Include="Contratos\EscritosMarca\ICorreccionErrorMaterial.cs" />
+    <Compile Include="Contratos\EscritosMarca\ICorreccionErrorMaterialDistingue.cs" />
+    <Compile Include="Contratos\EscritosMarca\ICopiaCertificada.cs" />
+    <Compile Include="Contratos\EscritosMarca\IContinuacionDeTramite.cs" />
     <Compile Include="Contratos\EscritosMarca\INumeracionDePoderPorInteresado.cs" />
     <Compile Include="Contratos\EscritosMarca\ICertificadoDeOrigen.cs" />
     <Compile Include="Contratos\EscritosMarca\INumeracionDePoderPorMarca.cs" />
@@ -242,7 +246,11 @@
     <Compile Include="Presentadores\Contactos\PresentadorAgregarContacto.cs" />
     <Compile Include="Presentadores\Contactos\PresentadorConsultarContacto.cs" />
     <Compile Include="Presentadores\CartasOuts\PresentadorConsultarCartasOuts.cs" />
+    <Compile Include="Presentadores\EscritosMarca\PresentadorCorreccionErrorMaterial.cs" />
     <Compile Include="Presentadores\EscritosMarca\PresentadorNumeracionDePoderPorInteresado.cs" />
+    <Compile Include="Presentadores\EscritosMarca\PresentadorCorreccionErrorMaterialDistingue.cs" />
+    <Compile Include="Presentadores\EscritosMarca\PresentadorCopiaCertificada.cs" />
+    <Compile Include="Presentadores\EscritosMarca\PresentadorContinuacionDeTramite.cs" />
     <Compile Include="Presentadores\EscritosMarca\PresentadorCertificadoDeOrigen.cs" />
     <Compile Include="Presentadores\EscritosMarca\PresentadorNumeracionDePoderPorMarca.cs" />
     <Compile Include="Presentadores\EscritosMarca\PresentadorDeDesistimiento.cs" />
@@ -443,8 +451,20 @@
     <Compile Include="Ventanas\EscritosMarca\CambioDeTramitante.xaml.cs">
       <DependentUpon>CambioDeTramitante.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Ventanas\EscritosMarca\ContinuacionDeTramite.xaml.cs">
+      <DependentUpon>ContinuacionDeTramite.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Ventanas\EscritosMarca\NumeracionDePoderPorInteresado.xaml.cs">
       <DependentUpon>NumeracionDePoderPorInteresado.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\EscritosMarca\CopiaCertificada.xaml.cs">
+      <DependentUpon>CopiaCertificada.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\EscritosMarca\CorreccionErrorMaterial.xaml.cs">
+      <DependentUpon>CorreccionErrorMaterial.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\EscritosMarca\CorreccionErrorMaterialDistingue.xaml.cs">
+      <DependentUpon>CorreccionErrorMaterialDistingue.xaml</DependentUpon>
     </Compile>
     <Compile Include="Ventanas\EscritosMarca\NumeracionDePoderPorMarca.xaml.cs">
       <DependentUpon>NumeracionDePoderPorMarca.xaml</DependentUpon>
@@ -866,7 +886,23 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Ventanas\EscritosMarca\ContinuacionDeTramite.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Ventanas\EscritosMarca\NumeracionDePoderPorInteresado.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\EscritosMarca\CopiaCertificada.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\EscritosMarca\CorreccionErrorMaterial.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\EscritosMarca\CorreccionErrorMaterialDistingue.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
