@@ -116,8 +116,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
                             if (this.ValidarAgenteApoderadoDeMarcas((Agente)this._ventana.AgenteFiltrado,this._marcasAgregadas))
                             {
                                 string parametroMarcas = ArmarStringParametroMarcas(this._marcasAgregadas);
-                                this.EjecutarArchivoBAT(ConfigurationManager.AppSettings["batEscrito"].ToString()
-                                    + "\\" + ConfigurationManager.AppSettings["escritoCertificadoDeOrigen"].ToString(),
+                                this.EjecutarArchivoBAT(ConfigurationManager.AppSettings["RutaBatEscrito"].ToString()
+                                    + "\\" + ConfigurationManager.AppSettings["EscritoCertificadoDeOrigen"].ToString(),
                                     ((Agente)this._ventana.AgenteFiltrado).Id, parametroMarcas);
                             }
                             else 
