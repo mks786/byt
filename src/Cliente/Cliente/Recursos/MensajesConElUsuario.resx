@@ -684,4 +684,7 @@
   <data name="ConfirmacionGenerarEscritoInteresado" xml:space="preserve">
     <value>¿Está seguro que desea genera el escrito para las {0} interesado(s)?</value>
   </data>
+  <data name="AlertaEscritoSinCorreccion" xml:space="preserve">
+    <value>Disculpe el escrito no tiene Corrección</value>
+  </data>
 </root>

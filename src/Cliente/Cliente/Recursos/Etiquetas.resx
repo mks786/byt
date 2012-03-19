@@ -1973,6 +1973,9 @@ de Gracia</value>
   <data name="titleEscritoNumeracionDePoderPorInteresado" xml:space="preserve">
     <value>Numeración de Poder por Interesado</value>
   </data>
+  <data name="titleEscritoCorreccionDelDistingue" xml:space="preserve">
+    <value>Escrito de Corrección del Distingue</value>
+  </data>
   <data name="cbiDetallePrioridad" xml:space="preserve">
     <value>ESCRITOPRIORIDADEXTRANJERA</value>
   </data>

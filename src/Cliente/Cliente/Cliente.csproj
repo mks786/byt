@@ -107,6 +107,7 @@
     <Compile Include="Contratos\Anexos\IConsultarAnexo.cs" />
     <Compile Include="Contratos\Anexos\IConsultarAnexos.cs" />
     <Compile Include="Contratos\CartasOuts\IConsultarCartasOuts.cs" />
+    <Compile Include="Contratos\EscritosMarca\ICorreccionDelDistingue.cs" />
     <Compile Include="Contratos\EscritosMarca\ICorreccionErrorMaterial.cs" />
     <Compile Include="Contratos\EscritosMarca\ICorreccionErrorMaterialDistingue.cs" />
     <Compile Include="Contratos\EscritosMarca\ICopiaCertificada.cs" />
@@ -247,6 +248,7 @@
     <Compile Include="Presentadores\Contactos\PresentadorAgregarContacto.cs" />
     <Compile Include="Presentadores\Contactos\PresentadorConsultarContacto.cs" />
     <Compile Include="Presentadores\CartasOuts\PresentadorConsultarCartasOuts.cs" />
+    <Compile Include="Presentadores\EscritosMarca\PresentadorCorreccionDelDistingue.cs" />
     <Compile Include="Presentadores\EscritosMarca\PresentadorCorreccionErrorMaterial.cs" />
     <Compile Include="Presentadores\EscritosMarca\PresentadorPrioridadExtranjera.cs" />
     <Compile Include="Presentadores\EscritosMarca\PresentadorNumeracionDePoderPorInteresado.cs" />
@@ -455,6 +457,9 @@
     </Compile>
     <Compile Include="Ventanas\EscritosMarca\ContinuacionDeTramite.xaml.cs">
       <DependentUpon>ContinuacionDeTramite.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\EscritosMarca\CorreccionDelDistingue.xaml.cs">
+      <DependentUpon>CorreccionDelDistingue.xaml</DependentUpon>
     </Compile>
     <Compile Include="Ventanas\EscritosMarca\PrioridadExtranjera.xaml.cs">
       <DependentUpon>PrioridadExtranjera.xaml</DependentUpon>
@@ -892,6 +897,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Ventanas\EscritosMarca\ContinuacionDeTramite.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\EscritosMarca\CorreccionDelDistingue.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

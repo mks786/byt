@@ -689,7 +689,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
                     this._ventana.Contenedor.Navigate(new ContinuacionDeTramite());
                     break;
                 case "_menuItemCorreccionDelDistingue":
-                    //this._ventana.Contenedor.Navigate(new CertificadoDeOrigen());
+                    this._ventana.Contenedor.Navigate(new CorreccionDelDistingue());
                     break;
                 case "_menuItemCambioDeTramitante":
                     this._ventana.Contenedor.Navigate(new CambioDeTramitante());
