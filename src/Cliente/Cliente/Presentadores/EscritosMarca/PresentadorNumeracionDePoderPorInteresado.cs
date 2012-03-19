@@ -358,8 +358,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
                     if (((Interesado)this._ventana.InteresadoFiltrado).Id != int.MinValue)
                     {
                         this._ventana.Interesado =
-                            this._interesadoServicios.ConsultarInteresadoConTodo((Interesado)this._ventana.InteresadoFiltrado);
-                        //this._interesados.Add((Interesado)this._ventana.InteresadoFiltrado);
+                            this._interesadoServicios.ConsultarInteresadoConTodo((Interesado)this._ventana.InteresadoFiltrado);                        
                     }
                     this._ventana.NombreInteresado = ((Interesado)this._ventana.InteresadoFiltrado).Nombre;
                     retorno = true;

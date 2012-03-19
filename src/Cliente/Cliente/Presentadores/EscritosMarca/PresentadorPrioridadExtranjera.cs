@@ -16,12 +16,13 @@ using System.Collections.Generic;
 
 namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
 {
-    class PresentadorDeDesistimiento : PresentadorBase
+    class PresentadorPrioridadExtranjera : PresentadorBase
     {
-        private IDeDesistimiento _ventana;
+        private IPrioridadExtranjera _ventana;
 
         private IAgenteServicios _agenteServicios;
         private IMarcaServicios _marcaServicios;
+        private IListaDatosValoresServicios _listaDatosValoresServicios;
 
         private static PaginaPrincipal _paginaPrincipal = PaginaPrincipal.ObtenerInstancia;
         private static Logger logger = LogManager.GetCurrentClassLogger();
@@ -29,6 +30,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
         Agente primerAgente = new Agente();
         Marca primerMarca = new Marca(int.MinValue);
 
+        private IList<ListaDatosValores> _listaDetallePrioridad;
         private IList<Agente> _Agentes;
         private IList<Marca> _marcas;
         private IList<Marca> _marcasAgregadas = new List<Marca>();
@@ -37,7 +39,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
         /// Constructor predeterminado
         /// </summary>
         /// <param name="ventana">Página que satisface el contrato</param>
-        public PresentadorDeDesistimiento(IDeDesistimiento ventana)
+        public PresentadorPrioridadExtranjera(IPrioridadExtranjera ventana)
         {
             try
             {
@@ -47,6 +49,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["AgenteServicios"]);
                 this._marcaServicios = (IMarcaServicios)Activator.GetObject(typeof(IMarcaServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["MarcaServicios"]);
+                this._listaDatosValoresServicios = (IListaDatosValoresServicios)Activator.GetObject(typeof(IListaDatosValoresServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["ListaDatosValoresServicios"]);
             }
             catch (Exception ex)
             {
@@ -64,10 +68,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
             {
                 Mouse.OverrideCursor = Cursors.Wait;
 
-                this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleEscritoDeDesistimiento,
+                this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleEscritoNumeracionDePoderPorMarca,
                     "");
                 CargarAgente();
                 CargarMarca();
+                CargarTipoDetallePrioridad();
+
                 this._ventana.FocoPredeterminado();
             }
             catch (ApplicationException ex)
@@ -97,6 +103,21 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
         }
 
         /// <summary>
+        /// Método que carga los datos iniciales de TipoDetallePrioridad a mostrar en la página
+        /// </summary>
+        private void CargarTipoDetallePrioridad()
+        {
+
+
+            ListaDatosValores filtro = new ListaDatosValores(Recursos.Etiquetas.cbiDetallePrioridad);
+            _listaDetallePrioridad =
+                this._listaDatosValoresServicios.ConsultarListaDatosValoresPorParametro(filtro);
+            
+            this._ventana.TipoDetallePrioridades = _listaDetallePrioridad;
+            this._ventana.TipoDetallePrioridad = this.BuscarRecordatorio(_listaDetallePrioridad, _listaDetallePrioridad[0]);
+        }
+
+        /// <summary>
         /// Método que realiza toda la lógica para agregar al País dentro de la base de datos
         /// </summary>
         public void Aceptar()
@@ -117,8 +138,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
                             {
                                 string parametroMarcas = ArmarStringParametroMarcas(this._marcasAgregadas);
                                 this.EjecutarArchivoBAT(ConfigurationManager.AppSettings["RutaBatEscrito"].ToString()
-                                    + "\\" + ConfigurationManager.AppSettings["EscritoDeDesistimiento"].ToString(),
-                                    ((Agente)this._ventana.AgenteFiltrado).Id + " " + parametroMarcas);
+                                    + "\\" + ConfigurationManager.AppSettings["EscritoPrioridadExtranjera"].ToString(),
+                                    ((Agente)this._ventana.AgenteFiltrado).Id+" "+parametroMarcas);
                             }
                             else 
                             {

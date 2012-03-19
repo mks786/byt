@@ -812,6 +812,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a ESCRITOPRIORIDADEXTRANJERA.
+        /// </summary>
+        public static string cbiDetallePrioridad {
+            get {
+                return ResourceManager.GetString("cbiDetallePrioridad", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Divorciado(a).
         /// </summary>
         public static string cbiDivorciado {
@@ -2900,6 +2909,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string lblTipoDestinatario {
             get {
                 return ResourceManager.GetString("lblTipoDestinatario", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Tipo Detalle Prioridad:.
+        /// </summary>
+        public static string lblTipoDetallePrioridad {
+            get {
+                return ResourceManager.GetString("lblTipoDetallePrioridad", resourceCulture);
             }
         }
         
