@@ -719,7 +719,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
                     //this._ventana.Contenedor.Navigate(new CertificadoDeOrigen());
                     break;
                 case "_menuItemReingresoDeNombreDeMarca":
-                    //this._ventana.Contenedor.Navigate(new CertificadoDeOrigen());
+                    this._ventana.Contenedor.Navigate(new ReingresoDeNombreDeMarca());
                     break;
                 case "_menuItemReingresoDePoderDistingueConSinClasificacion":
                     //this._ventana.Contenedor.Navigate(new CertificadoDeOrigen());
@@ -734,13 +734,13 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
                     //this._ventana.Contenedor.Navigate(new CertificadoDeOrigen());
                     break;
                 case "_menuItemRenunciaParcial":
-                    //this._ventana.Contenedor.Navigate(new CertificadoDeOrigen());
+                    this._ventana.Contenedor.Navigate(new RenunciaParcial());
                     break;
                 case "_menuItemConsignacionDeBusqueda":
                     //this._ventana.Contenedor.Navigate(new CertificadoDeOrigen());
                     break;
                 case "_menuItemNotificacionDeIngresoDePoder":
-                    //this._ventana.Contenedor.Navigate(new CertificadoDeOrigen());
+                    this._ventana.Contenedor.Navigate(new NotificacionDeIngresoDePoder());
                     break;
                 case "":
                     //this._ventana.Contenedor.Navigate(new CertificadoDeOrigen());

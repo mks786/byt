@@ -691,6 +691,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
             MarcaTercero marcaTercero = (MarcaTercero)this._ventana.MarcaTercero;
             if ((null != marcaTercero.MarcasBaseTercero) && (marcaTercero.MarcasBaseTercero.Count != 0))
             {
+                this._ventana.MarcasByt = null;
                 this._ventana.MarcasByt = marcaTercero.MarcasBaseTercero;
                 retorno = true;
                // this.LimpiarMarcasByt(marcaTercero);
@@ -772,8 +773,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
                         Marca nueva = new Marca();
                         nueva.Descripcion = NombreDeMarca;
                         aux.Marca = nueva;
-                        aux.Marca.Internacional.Descripcion = this._ventana.IdInternacionalByt;
-                        aux.Marca.Nacional.Descripcion = this._ventana.IdNacionalByt;
+                        if (null!= aux.Marca.Internacional)
+                             aux.Marca.Internacional.Descripcion = this._ventana.IdInternacionalByt;
+                        if (null!=aux.Marca.Nacional)
+                             aux.Marca.Nacional.Descripcion = this._ventana.IdNacionalByt;
                      }
                 marcasBaseTercero.Add(aux);
                 this._ventana.MarcasByt = marcasBaseTercero.ToList<MarcaBaseTercero>();
@@ -1396,9 +1399,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
                 {
                     this._ventana.Marca = this._ventana.MarcaFiltrada;
                     this._ventana.NombreMarca = ((Marca)this._ventana.MarcaFiltrada).Descripcion;
-                    this._ventana.PaisSolicitud = ((Marca)this._ventana.MarcaFiltrada).Pais.NombreEspanol;
-                    this._ventana.IdInternacionalByt = ((Marca)this._ventana.MarcaFiltrada).Internacional.Descripcion;
-                    this._ventana.IdNacionalByt = ((Marca)this._ventana.MarcaFiltrada).Nacional.Descripcion;
+                    if (null != ((Marca)this._ventana.MarcaFiltrada).Pais)
+                         this._ventana.PaisSolicitud = ((Marca)this._ventana.MarcaFiltrada).Pais.NombreEspanol;
+                    //if (null != ((Marca)this._ventana.MarcaFiltrada).Internacional)
+                    //     this._ventana.IdInternacionalByt = ((Marca)this._ventana.MarcaFiltrada).Internacional.Descripcion;
+                    //if (null != ((Marca)this._ventana.MarcaFiltrada).Nacional)
+                    //      this._ventana.IdNacionalByt = ((Marca)this._ventana.MarcaFiltrada).Nacional.Descripcion;
                     retorno = true;
                 }
 
