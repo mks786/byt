@@ -722,16 +722,16 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
                     this._ventana.Contenedor.Navigate(new ReingresoDeNombreDeMarca());
                     break;
                 case "_menuItemReingresoDePoderDistingueConSinClasificacion":
-                    //this._ventana.Contenedor.Navigate(new CertificadoDeOrigen());
+                    this._ventana.Contenedor.Navigate(new ReingresoDePoderDistingueConSinClasificacion());
                     break;
                 case "_menuItemReingresoDePoderPresentado":
-                    //this._ventana.Contenedor.Navigate(new CertificadoDeOrigen());
+                    this._ventana.Contenedor.Navigate(new ReingresoDePoderPresentado());
                     break;
                 case "_menuItemReingresoDePoderYReclasificacion":
-                    //this._ventana.Contenedor.Navigate(new CertificadoDeOrigen());
+                    this._ventana.Contenedor.Navigate(new ReingresoDePoderYReclasificacion());
                     break;
                 case "_menuItemReingresoDePoderYPrioridad":
-                    //this._ventana.Contenedor.Navigate(new CertificadoDeOrigen());
+                    this._ventana.Contenedor.Navigate(new ReingresoDePoderYPrioridad());
                     break;
                 case "_menuItemRenunciaParcial":
                     this._ventana.Contenedor.Navigate(new RenunciaParcial());

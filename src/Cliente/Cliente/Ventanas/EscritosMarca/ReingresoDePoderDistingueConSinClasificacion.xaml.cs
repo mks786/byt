@@ -9,15 +9,15 @@ namespace Trascend.Bolet.Cliente.Ventanas.EscritosMarca
     /// <summary>
     /// Interaction logic for ConsultarUsuario.xaml
     /// </summary>
-    public partial class ReingresoDeNombreDeMarca : Page, IReingresoDeNombreDeMarca
+    public partial class ReingresoDePoderDistingueConSinClasificacion : Page, IReingresoDePoderDistingueConSinClasificacion
     {
-        private PresentadorReingresoDeNombreDeMarca _presentador;
+        private PresentadorReingresoDePoderDistingueConSinClasificacion _presentador;
         private bool _cargada;
 
         private GridViewColumnHeader _CurSortCol = null;
         private SortAdorner _CurAdorner = null;
 
-        #region IReingresoDeNombreDeMarca
+        #region IReingresoDePoderDistingueConSinClasificacion
 
         public bool EstaCargada
         {
@@ -76,6 +76,41 @@ namespace Trascend.Bolet.Cliente.Ventanas.EscritosMarca
             set { this._cbxBoletin.SelectedItem = value; }
         }
 
+        public object TipoDePoderes
+        {
+            get { return this._cbxTipoPoder.DataContext; }
+            set { this._cbxTipoPoder.DataContext = value; }
+        }
+
+        public object TipoDePoder
+        {
+            get { return this._cbxTipoPoder.SelectedItem; }
+            set { this._cbxTipoPoder.SelectedItem = value; }
+        }
+
+        public object TipoDeDistingues
+        {
+            get { return this._cbxTipoDistingue.DataContext; }
+            set { this._cbxTipoDistingue.DataContext = value; }
+        }
+
+        public object TipoDeDistingue
+        {
+            get { return this._cbxTipoDistingue.SelectedItem; }
+            set { this._cbxTipoDistingue.SelectedItem = value; }
+        }
+
+        public object Reclasificaciones
+        {
+            get { return this._cbxReclasificacion.DataContext; }
+            set { this._cbxReclasificacion.DataContext = value; }
+        }
+
+        public object Reclasificacion
+        {
+            get { return this._cbxReclasificacion.SelectedItem; }
+            set { this._cbxReclasificacion.SelectedItem = value; }
+        }
         public object CantidadNumerales
         {
             get { return this._cbxNumerales.DataContext; }
@@ -161,11 +196,6 @@ namespace Trascend.Bolet.Cliente.Ventanas.EscritosMarca
             set { this._txtNumerales.Text = value; }
         }
 
-        public string CalificativoNombreMarca
-        {
-            get { return this._txtCalifNombreMarca.Text; }
-            set { this._txtCalifNombreMarca.Text = value; }
-        }
 
         public bool HabilitarCampos
         {
@@ -183,7 +213,6 @@ namespace Trascend.Bolet.Cliente.Ventanas.EscritosMarca
                 this._btnMas.IsEnabled = value;
                 this._btnMenos.IsEnabled = value;
                 this._cbxBoletin.IsEnabled = value;
-                this._txtCalifNombreMarca.IsEnabled = value;
                 this._txtNumerales.IsEnabled = value;
             }
         }
@@ -196,11 +225,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.EscritosMarca
 
         #endregion
 
-        public ReingresoDeNombreDeMarca()
+        public ReingresoDePoderDistingueConSinClasificacion()
         {
             InitializeComponent();
             this._cargada = false;
-            this._presentador = new PresentadorReingresoDeNombreDeMarca(this);
+            this._presentador = new PresentadorReingresoDePoderDistingueConSinClasificacion(this);
         }
 
         private void _btnCancelar_Click(object sender, RoutedEventArgs e)

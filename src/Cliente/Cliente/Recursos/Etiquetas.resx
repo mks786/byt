@@ -2006,4 +2006,49 @@ de Gracia</value>
   <data name="lblTipoDetallePrioridad" xml:space="preserve">
     <value>Tipo Detalle Prioridad:</value>
   </data>
+  <data name="lblReclasificacion" xml:space="preserve">
+    <value>Reclasificación:</value>
+  </data>
+  <data name="lblTipoDistingue" xml:space="preserve">
+    <value>Tipo De Distingue:</value>
+  </data>
+  <data name="lblTipoPoder" xml:space="preserve">
+    <value>Tipo De Poder:</value>
+  </data>
+  <data name="titleEscritoReingresoDePoderDistingueConSinClasificacion" xml:space="preserve">
+    <value>Escrito Reingreso De Poder, Distingue con/sin Reclasificación</value>
+  </data>
+  <data name="titleEscritoReingresoDePoderPresentado" xml:space="preserve">
+    <value>Escrito Reingreso De Poder Presentado</value>
+  </data>
+  <data name="lblFechaPresentacionDeEscrito" xml:space="preserve">
+    <value>Fecha Presentación De Escrito</value>
+  </data>
+  <data name="lblTipoEtiqueta" xml:space="preserve">
+    <value>Tipo De Etiqueta:</value>
+  </data>
+  <data name="lblTipoPrioridad" xml:space="preserve">
+    <value>Tipo De Prioridad:</value>
+  </data>
+  <data name="titleEscritoReingresoDePoderYPrioridad" xml:space="preserve">
+    <value>Escrito De Reingreso De Poder Y Prioridad</value>
+  </data>
+  <data name="titleEscritoReingresoDePoderYReclasificacion" xml:space="preserve">
+    <value>Escrito Reingreso de Poder y Reclasificación</value>
+  </data>
+  <data name="cbiCategoriaReclasificar" xml:space="preserve">
+    <value>RECLASIFICAR</value>
+  </data>
+  <data name="cbiCategoriaTipoDistingue" xml:space="preserve">
+    <value>ESCRITOTIPODISTINGUE</value>
+  </data>
+  <data name="cbiCategoriaTipoEtiqueta" xml:space="preserve">
+    <value>ESCRITOTIPOETIQUETA</value>
+  </data>
+  <data name="cbiCategoriaTipoPoder" xml:space="preserve">
+    <value>ESCRITOTIPOPODER</value>
+  </data>
+  <data name="cbiCategoriaTipoPrioridad" xml:space="preserve">
+    <value>ESCRITOTIPOPRIORIDAD</value>
+  </data>
 </root>

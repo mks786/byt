@@ -103,39 +103,42 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
         {
             try
             {
-                if (this._ventana.BotonModificar.Equals(Recursos.Etiquetas.btnModificar))
+                if (ValidarEscrito())
                 {
-                    this._ventana.HabilitarCampos = true;
-                }
-                else
-                {
-                    if ((this._ventana.AgenteFiltrado != null) && null != ((Agente)this._ventana.AgenteFiltrado).Id)
+                    if (this._ventana.BotonModificar.Equals(Recursos.Etiquetas.btnModificar))
                     {
-                        if (this._marcasAgregadas.Count != 0)
+                        this._ventana.HabilitarCampos = true;
+                    }
+                    else
+                    {
+                        if ((this._ventana.AgenteFiltrado != null) && null != ((Agente)this._ventana.AgenteFiltrado).Id)
                         {
-                            if (this.ValidarAgenteApoderadoDeMarcas((Agente)this._ventana.AgenteFiltrado,this._marcasAgregadas))
+                            if (this._marcasAgregadas.Count != 0)
                             {
-                                string parametroMarcas = ArmarStringParametroMarcas(this._marcasAgregadas);
-                                this.EjecutarArchivoBAT(ConfigurationManager.AppSettings["RutaBatEscrito"].ToString()
-                                   + "\\" + ConfigurationManager.AppSettings["EscritoRenunciaParcial"].ToString(),
-                                  ((Agente)this._ventana.AgenteFiltrado).Id + " " + parametroMarcas);
+                                if (this.ValidarAgenteApoderadoDeMarcas((Agente)this._ventana.AgenteFiltrado, this._marcasAgregadas))
+                                {
+                                    string parametroMarcas = ArmarStringParametroMarcas(this._marcasAgregadas);
+                                    this.EjecutarArchivoBAT(ConfigurationManager.AppSettings["RutaBatEscrito"].ToString()
+                                       + "\\" + ConfigurationManager.AppSettings["EscritoRenunciaParcial"].ToString(),
+                                      ((Agente)this._ventana.AgenteFiltrado).Id + " " + parametroMarcas);
+                                }
+                                else
+                                {
+                                    this._ventana.MensajeAlerta(string.Format(Recursos.MensajesConElUsuario.AlertaAgenteNoApareceEnPoderDeMarca,
+                                        ((Agente)this._ventana.AgenteFiltrado).Nombre));
+                                }
                             }
-                            else 
+                            else
                             {
-                                this._ventana.MensajeAlerta(string.Format(Recursos.MensajesConElUsuario.AlertaAgenteNoApareceEnPoderDeMarca, 
-                                    ((Agente)this._ventana.AgenteFiltrado).Nombre));
+                                this._ventana.MensajeAlerta(Recursos.MensajesConElUsuario.AlertaEscritoSinMarcas);
                             }
                         }
                         else
                         {
-                            this._ventana.MensajeAlerta(Recursos.MensajesConElUsuario.AlertaEscritoSinMarcas);
+                            this._ventana.MensajeAlerta(Recursos.MensajesConElUsuario.AlertaEscritoSinAgente);
                         }
-                    }
-                    else
-                    {
-                        this._ventana.MensajeAlerta(Recursos.MensajesConElUsuario.AlertaEscritoSinAgente);
-                    }
 
+                    }
                 }
             }
             catch (ApplicationException ex)
@@ -158,6 +161,37 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
                 logger.Error(ex.Message);
                 this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
             }
+        }
+
+        private bool ValidarEscrito()
+        {
+            bool retorno = false;
+
+            if ((this._ventana.AgenteFiltrado != null) && null != ((Agente)this._ventana.AgenteFiltrado).Id)
+            {
+                if (this._marcasAgregadas.Count != 0)
+                {
+                    if (this.ValidarAgenteApoderadoDeMarcas((Agente)this._ventana.AgenteFiltrado, this._marcasAgregadas))
+                    {
+                        retorno = true;
+                    }
+                    else
+                    {
+                        this._ventana.MensajeAlerta(string.Format(Recursos.MensajesConElUsuario.AlertaAgenteNoApareceEnPoderDeMarca,
+                            ((Agente)this._ventana.AgenteFiltrado).Nombre));
+                    }
+                }
+                else
+                {
+                    this._ventana.MensajeAlerta(Recursos.MensajesConElUsuario.AlertaEscritoSinMarcas);
+                }
+            }
+            else
+            {
+                this._ventana.MensajeAlerta(Recursos.MensajesConElUsuario.AlertaEscritoSinAgente);
+            }
+
+            return retorno;
         }
 
         /// <summary>

@@ -16,9 +16,9 @@ using System.Collections.Generic;
 
 namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
 {
-    class PresentadorReingresoDeNombreDeMarca : PresentadorBase
+    class PresentadorReingresoDePoderDistingueConSinClasificacion : PresentadorBase
     {
-        private IReingresoDeNombreDeMarca _ventana;
+        private IReingresoDePoderDistingueConSinClasificacion _ventana;
 
         private IAgenteServicios _agenteServicios;
         private IMarcaServicios _marcaServicios;
@@ -39,7 +39,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
         /// Constructor predeterminado
         /// </summary>
         /// <param name="ventana">Página que satisface el contrato</param>
-        public PresentadorReingresoDeNombreDeMarca(IReingresoDeNombreDeMarca ventana)
+        public PresentadorReingresoDePoderDistingueConSinClasificacion(IReingresoDePoderDistingueConSinClasificacion ventana)
         {
             try
             {
@@ -70,12 +70,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
 
             try
             {
-                this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleEscritoReingresoDeNombreDeMarca,
+                this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleEscritoReingresoDePoderDistingueConSinClasificacion,
                     "");
                 CargarAgente();
                 CargarMarca();
                 CargaBoletines();
-                CargaNumerales();
+                CargaCombo();
                 this._ventana.FocoPredeterminado();
             }
             catch (ApplicationException ex)
@@ -127,7 +127,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
                                 {
                                     string parametroMarcas = ArmarStringParametroMarcas(this._marcasAgregadas);
                                     this.EjecutarArchivoBAT(ConfigurationManager.AppSettings["RutaBatEscrito"].ToString()
-                                      + "\\" + ConfigurationManager.AppSettings["EscritoReingresoDeNombreDeMarca"].ToString(),
+                                      + "\\" + ConfigurationManager.AppSettings["EscritoReingresoDePoderDistingueConSinClasificacion"].ToString(),
                                      ((Agente)this._ventana.AgenteFiltrado).Id + " " + parametroMarcas);
 
                                 }
@@ -654,7 +654,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
 
         }
 
-        private void CargaNumerales()
+        private void CargaCombo()
         {
             #region trace
             if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -665,6 +665,18 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
                 this._listaDatosValoresServicios.ConsultarListaDatosValoresPorParametro(new ListaDatosValores(Recursos.Etiquetas.cbiCategoriaNumerales));
             this._ventana.CantidadNumerales = numerales;
 
+            IList<ListaDatosValores> poderes =
+            this._listaDatosValoresServicios.ConsultarListaDatosValoresPorParametro(new ListaDatosValores(Recursos.Etiquetas.cbiCategoriaTipoPoder));
+            this._ventana.TipoDePoderes = poderes;
+
+            IList<ListaDatosValores> distingues =
+            this._listaDatosValoresServicios.ConsultarListaDatosValoresPorParametro(new ListaDatosValores(Recursos.Etiquetas.cbiCategoriaTipoDistingue));
+            this._ventana.TipoDeDistingues = distingues;
+
+            IList<ListaDatosValores> Reclasificaciones =
+            this._listaDatosValoresServicios.ConsultarListaDatosValoresPorParametro(new ListaDatosValores(Recursos.Etiquetas.cbiCategoriaReclasificar));
+            this._ventana.Reclasificaciones = Reclasificaciones;
+
             #region trace
             if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
                 logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
@@ -672,5 +684,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
 
         }
         #endregion
+
+
     }
 }

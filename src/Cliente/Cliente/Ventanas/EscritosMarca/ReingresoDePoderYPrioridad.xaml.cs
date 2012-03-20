@@ -9,15 +9,15 @@ namespace Trascend.Bolet.Cliente.Ventanas.EscritosMarca
     /// <summary>
     /// Interaction logic for ConsultarUsuario.xaml
     /// </summary>
-    public partial class ReingresoDeNombreDeMarca : Page, IReingresoDeNombreDeMarca
+    public partial class ReingresoDePoderYPrioridad : Page, IReingresoDePoderYPrioridad
     {
-        private PresentadorReingresoDeNombreDeMarca _presentador;
+        private PresentadorReingresoDePoderYPrioridad _presentador;
         private bool _cargada;
 
         private GridViewColumnHeader _CurSortCol = null;
         private SortAdorner _CurAdorner = null;
 
-        #region IReingresoDeNombreDeMarca
+        #region IReingresoDePoderYPrioridad
 
         public bool EstaCargada
         {
@@ -76,13 +76,38 @@ namespace Trascend.Bolet.Cliente.Ventanas.EscritosMarca
             set { this._cbxBoletin.SelectedItem = value; }
         }
 
-        public object CantidadNumerales
+        public object TipoDePoderes
+        {
+            get { return this._cbxTipoPoder.DataContext; }
+            set { this._cbxTipoPoder.DataContext = value; }
+        }
+
+        public object TipoDePoder
+        {
+            get { return this._cbxTipoPoder.SelectedItem; }
+            set { this._cbxTipoPoder.SelectedItem = value; }
+        }
+
+        public object TiposDePrioridad
+        {
+            get { return this._cbxTipoPrioridad.DataContext; }
+            set { this._cbxTipoPrioridad.DataContext = value; }
+        }
+
+        public object TipoDePrioridad
+        {
+            get { return this._cbxTipoPrioridad.SelectedItem; }
+            set { this._cbxTipoPrioridad.SelectedItem = value; }
+        }
+
+
+        public object CantidadNumeralSelec
         {
             get { return this._cbxNumerales.DataContext; }
             set { this._cbxNumerales.DataContext = value; }
         }
 
-        public object CantidadNumeralSelec
+        public object CantidadNumerales
         {
             get { return this._cbxNumerales.SelectedItem; }
             set { this._cbxNumerales.SelectedItem = value; }
@@ -90,6 +115,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.EscritosMarca
         public string NombreAgente
         {
             set { this._txtNombreAgente.Text = value; }
+        }
+
+        public string Fecha
+        {
+            get { return this._dpkFecha.SelectedDate.ToString(); }
         }
 
         public object AgentesFiltrados
@@ -161,11 +191,6 @@ namespace Trascend.Bolet.Cliente.Ventanas.EscritosMarca
             set { this._txtNumerales.Text = value; }
         }
 
-        public string CalificativoNombreMarca
-        {
-            get { return this._txtCalifNombreMarca.Text; }
-            set { this._txtCalifNombreMarca.Text = value; }
-        }
 
         public bool HabilitarCampos
         {
@@ -183,7 +208,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.EscritosMarca
                 this._btnMas.IsEnabled = value;
                 this._btnMenos.IsEnabled = value;
                 this._cbxBoletin.IsEnabled = value;
-                this._txtCalifNombreMarca.IsEnabled = value;
+                this._cbxTipoPrioridad.IsEnabled = value;
                 this._txtNumerales.IsEnabled = value;
             }
         }
@@ -196,11 +221,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.EscritosMarca
 
         #endregion
 
-        public ReingresoDeNombreDeMarca()
+        public ReingresoDePoderYPrioridad()
         {
             InitializeComponent();
             this._cargada = false;
-            this._presentador = new PresentadorReingresoDeNombreDeMarca(this);
+            this._presentador = new PresentadorReingresoDePoderYPrioridad(this);
         }
 
         private void _btnCancelar_Click(object sender, RoutedEventArgs e)
@@ -363,6 +388,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.EscritosMarca
         private void _lstMarcasAgregadas_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             _btnMenos_Click(sender, e);
+        }
+
+        private void _dpkFecha_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+
         }
     }
 }

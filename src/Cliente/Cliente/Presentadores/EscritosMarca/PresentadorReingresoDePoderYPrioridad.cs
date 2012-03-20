@@ -16,9 +16,9 @@ using System.Collections.Generic;
 
 namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
 {
-    class PresentadorReingresoDeNombreDeMarca : PresentadorBase
+    class PresentadorReingresoDePoderYPrioridad : PresentadorBase
     {
-        private IReingresoDeNombreDeMarca _ventana;
+        private IReingresoDePoderYPrioridad _ventana;
 
         private IAgenteServicios _agenteServicios;
         private IMarcaServicios _marcaServicios;
@@ -39,7 +39,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
         /// Constructor predeterminado
         /// </summary>
         /// <param name="ventana">Página que satisface el contrato</param>
-        public PresentadorReingresoDeNombreDeMarca(IReingresoDeNombreDeMarca ventana)
+        public PresentadorReingresoDePoderYPrioridad(IReingresoDePoderYPrioridad ventana)
         {
             try
             {
@@ -70,12 +70,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
 
             try
             {
-                this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleEscritoReingresoDeNombreDeMarca,
+                this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleEscritoReingresoDePoderYPrioridad,
                     "");
                 CargarAgente();
                 CargarMarca();
                 CargaBoletines();
-                CargaNumerales();
+                CargaCombo();
                 this._ventana.FocoPredeterminado();
             }
             catch (ApplicationException ex)
@@ -127,7 +127,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
                                 {
                                     string parametroMarcas = ArmarStringParametroMarcas(this._marcasAgregadas);
                                     this.EjecutarArchivoBAT(ConfigurationManager.AppSettings["RutaBatEscrito"].ToString()
-                                      + "\\" + ConfigurationManager.AppSettings["EscritoReingresoDeNombreDeMarca"].ToString(),
+                                      + "\\" + ConfigurationManager.AppSettings["EscritoReingresoDePoderYPrioridad"].ToString(),
                                      ((Agente)this._ventana.AgenteFiltrado).Id + " " + parametroMarcas);
 
                                 }
@@ -654,16 +654,24 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
 
         }
 
-        private void CargaNumerales()
+        private void CargaCombo()
         {
             #region trace
             if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
                 logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
 
-            IList<ListaDatosValores> numerales = 
+            IList<ListaDatosValores> numerales =
                 this._listaDatosValoresServicios.ConsultarListaDatosValoresPorParametro(new ListaDatosValores(Recursos.Etiquetas.cbiCategoriaNumerales));
-            this._ventana.CantidadNumerales = numerales;
+            this._ventana.CantidadNumeralSelec = numerales;
+
+            IList<ListaDatosValores> poderes =
+            this._listaDatosValoresServicios.ConsultarListaDatosValoresPorParametro(new ListaDatosValores(Recursos.Etiquetas.cbiCategoriaTipoPoder));
+            this._ventana.TipoDePoderes = poderes;
+
+            IList<ListaDatosValores> Prioridad =
+            this._listaDatosValoresServicios.ConsultarListaDatosValoresPorParametro(new ListaDatosValores(Recursos.Etiquetas.cbiCategoriaTipoPrioridad));
+            this._ventana.TiposDePrioridad = Prioridad;
 
             #region trace
             if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -671,6 +679,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
             #endregion
 
         }
+
         #endregion
     }
 }
