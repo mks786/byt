@@ -125,8 +125,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
                             {
                                 string parametroMarcas = ArmarStringParametroMarcas(this._marcasAgregadas);
                                 this.EjecutarArchivoBAT(ConfigurationManager.AppSettings["RutaBatEscrito"].ToString()
-                                    + "\\" + ConfigurationManager.AppSettings["EscritoReingresoDeNombreDeMarca"].ToString(),
-                                    ((Agente)this._ventana.AgenteFiltrado).Id, parametroMarcas);
+                                  + "\\" + ConfigurationManager.AppSettings["EscritoReingresoDeNombreDeMarca"].ToString(),
+                                 ((Agente)this._ventana.AgenteFiltrado).Id + " " + parametroMarcas);
+
                             }
                             else 
                             {
