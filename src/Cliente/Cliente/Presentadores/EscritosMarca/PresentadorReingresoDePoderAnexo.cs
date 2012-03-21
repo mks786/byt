@@ -128,7 +128,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
                     string parametroMarcas = ArmarStringParametroMarcas(this._marcasAgregadas);
                                 this.EjecutarArchivoBAT(ConfigurationManager.AppSettings["RutaBatEscrito"].ToString()
                                   + "\\" + ConfigurationManager.AppSettings["EscritoReingresoDePoderAnexo"].ToString(),
-                                 ((Agente)this._ventana.AgenteFiltrado).Id + " " + parametroMarcas);
+                                 ((Boletin)this._ventana.Boletin).Id + " " + ((Resolucion)this._ventana.Resolucion).Id
+                                 +" "+((ListaDatosValores)this._ventana.TipoDetalleAnexo).Valor
+                                 +" "+((Agente)this._ventana.AgenteFiltrado).Id + " " + parametroMarcas);
                 }
 
                 #region trace

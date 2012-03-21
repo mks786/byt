@@ -129,8 +129,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
                     string parametroMarcas = ArmarStringParametroMarcas(this._marcasAgregadas);
                     this.EjecutarArchivoBAT(ConfigurationManager.AppSettings["RutaBatEscrito"].ToString()
                         + "\\" + ConfigurationManager.AppSettings["EscritoCorreccionErrorMaterial"].ToString(),
-                        ((Agente)this._ventana.AgenteFiltrado).Id + " " + parametroMarcas +" "+ ((ListaDatosValores)this._ventana.TipoError).Valor 
-                        +" " +this._ventana.Error);
+                        ((ListaDatosValores)this._ventana.TipoError).Valor+" "+this._ventana.Error+" "
+                        +((Agente)this._ventana.AgenteFiltrado).Id + " " + parametroMarcas);
                 }
             }
             catch (ApplicationException ex)
