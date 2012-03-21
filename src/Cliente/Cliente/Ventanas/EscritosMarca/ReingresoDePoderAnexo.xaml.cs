@@ -7,17 +7,17 @@ using Trascend.Bolet.Cliente.Ayuda;
 namespace Trascend.Bolet.Cliente.Ventanas.EscritosMarca
 {
     /// <summary>
-    /// Interaction logic for ConsultarUsuario.xaml
+    /// Interaction logic for ReingresoDePoderAnexo.xaml
     /// </summary>
-    public partial class ReingresoDeClasificacion : Page, IReingresoDeClasificacion
+    public partial class ReingresoDePoderAnexo : Page, IReingresoDePoderAnexo
     {
-        private PresentadorReingresoDeClasificacion _presentador;
+        private PresentadorReingresoDePoderAnexo _presentador;
         private bool _cargada;
 
         private GridViewColumnHeader _CurSortCol = null;
         private SortAdorner _CurAdorner = null;
 
-        #region IReingresoDeNombreDeMarca
+        #region IReingresoDePoderAnexo
 
         public bool EstaCargada
         {
@@ -74,19 +74,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.EscritosMarca
         {
             get { return this._cbxBoletin.SelectedItem; }
             set { this._cbxBoletin.SelectedItem = value; }
-        }
-
-        public object CantidadNumerales
-        {
-            get { return this._cbxNumerales.DataContext; }
-            set { this._cbxNumerales.DataContext = value; }
-        }
-
-        public object CantidadNumeral
-        {
-            get { return this._cbxNumerales.SelectedItem; }
-            set { this._cbxNumerales.SelectedItem = value; }
-        }
+        }       
 
         public string NombreAgente
         {
@@ -160,19 +148,25 @@ namespace Trascend.Bolet.Cliente.Ventanas.EscritosMarca
         {
             get { return this._cbxResolucion.SelectedItem; }
             set { this._cbxResolucion.SelectedItem = value; }
-        }       
+        }
+
+        public object TipoDetalleAnexos
+        {
+            get { return this._cbxTipoDetalleAnexo.DataContext; }
+            set { this._cbxTipoDetalleAnexo.DataContext = value; }
+        }
+
+        public object TipoDetalleAnexo
+        {
+            get { return this._cbxTipoDetalleAnexo.SelectedItem; }
+            set { this._cbxTipoDetalleAnexo.SelectedItem = value; }
+        }     
 
         public string BotonModificar
         {
             get { return this._txbAceptar.Text; }
             set { this._txbAceptar.Text = value; }
-        }
-
-        public string Numerales
-        {
-            get { return this._txtNumerales.Text; }
-            set { this._txtNumerales.Text = value; }
-        }       
+        }    
 
         public bool HabilitarCampos
         {
@@ -190,7 +184,6 @@ namespace Trascend.Bolet.Cliente.Ventanas.EscritosMarca
                 this._btnMas.IsEnabled = value;
                 this._btnMenos.IsEnabled = value;
                 this._cbxBoletin.IsEnabled = value;                
-                this._txtNumerales.IsEnabled = value;
             }
         }
 
@@ -202,11 +195,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.EscritosMarca
 
         #endregion
 
-        public ReingresoDeClasificacion()
+        public ReingresoDePoderAnexo()
         {
             InitializeComponent();
             this._cargada = false;
-            this._presentador = new PresentadorReingresoDeClasificacion(this);
+            this._presentador = new PresentadorReingresoDePoderAnexo(this);
         }
 
         private void _btnCancelar_Click(object sender, RoutedEventArgs e)

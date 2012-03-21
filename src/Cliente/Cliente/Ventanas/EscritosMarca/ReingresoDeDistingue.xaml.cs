@@ -7,17 +7,17 @@ using Trascend.Bolet.Cliente.Ayuda;
 namespace Trascend.Bolet.Cliente.Ventanas.EscritosMarca
 {
     /// <summary>
-    /// Interaction logic for ConsultarUsuario.xaml
+    /// Interaction logic for ReingresoDeDistingue.xaml
     /// </summary>
-    public partial class ReingresoDeClasificacion : Page, IReingresoDeClasificacion
+    public partial class ReingresoDeDistingue : Page, IReingresoDeDistingue
     {
-        private PresentadorReingresoDeClasificacion _presentador;
+        private PresentadorReingresoDeDistingue _presentador;
         private bool _cargada;
 
         private GridViewColumnHeader _CurSortCol = null;
         private SortAdorner _CurAdorner = null;
 
-        #region IReingresoDeNombreDeMarca
+        #region IReingresoDeDistingue
 
         public bool EstaCargada
         {
@@ -160,7 +160,19 @@ namespace Trascend.Bolet.Cliente.Ventanas.EscritosMarca
         {
             get { return this._cbxResolucion.SelectedItem; }
             set { this._cbxResolucion.SelectedItem = value; }
-        }       
+        }
+
+        public object DetalleDistingues
+        {
+            get { return this._cbxDetalleDistingue; }
+            set { this._cbxDetalleDistingue.DataContext = value; }
+        }
+
+        public object DetalleDistingue
+        {
+            get { return this._cbxDetalleDistingue.SelectedItem; }
+            set { this._cbxDetalleDistingue.SelectedItem = value; }
+        } 
 
         public string BotonModificar
         {
@@ -202,11 +214,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.EscritosMarca
 
         #endregion
 
-        public ReingresoDeClasificacion()
+        public ReingresoDeDistingue()
         {
             InitializeComponent();
             this._cargada = false;
-            this._presentador = new PresentadorReingresoDeClasificacion(this);
+            this._presentador = new PresentadorReingresoDeDistingue(this);
         }
 
         private void _btnCancelar_Click(object sender, RoutedEventArgs e)

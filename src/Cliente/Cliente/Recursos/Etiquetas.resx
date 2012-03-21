@@ -2051,4 +2051,16 @@ de Gracia</value>
   <data name="cbiCategoriaTipoPrioridad" xml:space="preserve">
     <value>ESCRITOTIPOPRIORIDAD</value>
   </data>
+  <data name="cbiTipoDetalleAnexo" xml:space="preserve">
+    <value>ESCRITODETALLEANEXO</value>
+  </data>
+  <data name="cbiTipoDetalleDistingue" xml:space="preserve">
+    <value>ESCRITOTIPODETALLEDISTINGUE</value>
+  </data>
+  <data name="lblDetalleTipoDistingue" xml:space="preserve">
+    <value>Tipo Detalle del Distingue:</value>
+  </data>
+  <data name="lblTipoDetalleAnexo" xml:space="preserve">
+    <value>Tipo Detalle del Anexo:</value>
+  </data>
 </root>

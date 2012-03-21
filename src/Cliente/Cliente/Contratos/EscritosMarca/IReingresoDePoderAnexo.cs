@@ -3,7 +3,7 @@ using System.Windows.Controls;
 using Trascend.Bolet.Cliente.Ayuda;
 namespace Trascend.Bolet.Cliente.Contratos.EscritosMarca
 {
-    interface IReingresoDeClasificacion : IPaginaBase
+    interface IReingresoDePoderAnexo : IPaginaBase
     {
         object Escrito { get; set; }
 
@@ -61,11 +61,13 @@ namespace Trascend.Bolet.Cliente.Contratos.EscritosMarca
 
         object Boletin { get; set; }
 
-        object CantidadNumeral { get; set; }
+        #endregion
 
-        object CantidadNumerales { get; set; }
+        #region Detalle Anexo
 
-        string Numerales { get; set; }
+        object TipoDetalleAnexos { get; set; }
+
+        object TipoDetalleAnexo { get; set; }
 
         #endregion
 

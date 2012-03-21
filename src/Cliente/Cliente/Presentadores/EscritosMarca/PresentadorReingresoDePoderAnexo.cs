@@ -16,9 +16,9 @@ using System.Collections.Generic;
 
 namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
 {
-    class PresentadorReingresoDeClasificacion : PresentadorBase
+    class PresentadorReingresoDePoderAnexo : PresentadorBase
     {
-        private IReingresoDeClasificacion _ventana;
+        private IReingresoDePoderAnexo _ventana;
 
         private IAgenteServicios _agenteServicios;
         private IMarcaServicios _marcaServicios;
@@ -41,7 +41,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
         /// Constructor predeterminado
         /// </summary>
         /// <param name="ventana">Página que satisface el contrato</param>
-        public PresentadorReingresoDeClasificacion(IReingresoDeClasificacion ventana)
+        public PresentadorReingresoDePoderAnexo(IReingresoDePoderAnexo ventana)
         {
             try
             {
@@ -79,9 +79,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
                 
                 CargarMarca();
                 
-                CargaBoletines();
-                
-                CargaNumerales();                
+                CargaBoletines();                               
+
+                CargaTipoDetalleAnexo();
 
                 this._ventana.FocoPredeterminado();
             }
@@ -127,7 +127,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
                 {
                     string parametroMarcas = ArmarStringParametroMarcas(this._marcasAgregadas);
                                 this.EjecutarArchivoBAT(ConfigurationManager.AppSettings["RutaBatEscrito"].ToString()
-                                  + "\\" + ConfigurationManager.AppSettings["EscritoReingresoDeClasificacion"].ToString(),
+                                  + "\\" + ConfigurationManager.AppSettings["EscritoReingresoDePoderAnexo"].ToString(),
                                  ((Agente)this._ventana.AgenteFiltrado).Id + " " + parametroMarcas);
                 }
 
@@ -181,15 +181,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
                         if (((Boletin)this._ventana.Boletin != null) && (((Boletin)this._ventana.Boletin).Id != int.MinValue))
                         {
                             if (this._ventana.Resolucion != null)
-                            {    
-                                if (!this._ventana.Numerales.Equals(""))
-                                {                                
-                                    retorno = true;
-                                }
-                                else
-                                {
-                                    this._ventana.MensajeAlerta(string.Format(Recursos.MensajesConElUsuario.AlertaEscritoSinNumeral));
-                                }
+                            {                                                                    
+                                retorno = true;                                
                             }
                             else
                             {
@@ -653,7 +646,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
 
         #endregion
 
-        #region Boletines
+        #region Boletines, DetalleAnexo Y resoluciones
 
         /// <summary>
         /// Método que carga los boletines registrados
@@ -674,29 +667,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
             if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
                 logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
-        }
-
-        /// <summary>
-        /// Método que se encarga de la carga inicial de numerales
-        /// </summary>
-        private void CargaNumerales()
-        {
-            #region trace
-            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
-                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
-            #endregion
-
-            IList<ListaDatosValores> numerales = 
-                this._listaDatosValoresServicios.ConsultarListaDatosValoresPorParametro(new ListaDatosValores(Recursos.Etiquetas.cbiCategoriaNumerales));
-            this._ventana.CantidadNumerales = numerales;
-            this._ventana.CantidadNumeral = numerales[0];
-
-            #region trace
-            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
-                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
-            #endregion
-
-        }
+        }        
 
         /// <summary>
         /// Método que se encarga de actualizar las resoluciones de un boletin seleccionado
@@ -715,6 +686,30 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
                 this._ventana.Resolucion = null;
             }
         }
+
+        /// <summary>
+        /// Método que se encarga de la carga inicial de numerales
+        /// </summary>
+        private void CargaTipoDetalleAnexo()
+        {
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+            IList<ListaDatosValores> tipoDetalleAnexo =
+                this._listaDatosValoresServicios.ConsultarListaDatosValoresPorParametro(new ListaDatosValores(Recursos.Etiquetas.cbiTipoDetalleAnexo));
+            this._ventana.TipoDetalleAnexos = tipoDetalleAnexo;
+            this._ventana.TipoDetalleAnexo = tipoDetalleAnexo[0];
+
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+        }
+
+
 
         #endregion             
     }

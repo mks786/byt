@@ -3,7 +3,7 @@ using System.Windows.Controls;
 using Trascend.Bolet.Cliente.Ayuda;
 namespace Trascend.Bolet.Cliente.Contratos.EscritosMarca
 {
-    interface IReingresoDeClasificacion : IPaginaBase
+    interface IReingresoDeDistingue : IPaginaBase
     {
         object Escrito { get; set; }
 
@@ -53,6 +53,14 @@ namespace Trascend.Bolet.Cliente.Contratos.EscritosMarca
 
         object Resoluciones { get; set; }
         
+        #endregion
+
+        #region Distingue
+
+        object DetalleDistingues { get; set; }
+
+        object DetalleDistingue { get; set; }
+
         #endregion
 
         #region Boletin y Numerales

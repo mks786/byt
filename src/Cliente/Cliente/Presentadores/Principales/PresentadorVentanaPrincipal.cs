@@ -713,10 +713,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
                     this._ventana.Contenedor.Navigate(new ReingresoDeClasificacion());
                     break;
                 case "_menuItemReingresoDeDistingue":
-                    //this._ventana.Contenedor.Navigate(new CertificadoDeOrigen());
+                    this._ventana.Contenedor.Navigate(new ReingresoDeDistingue());
                     break;
                 case "_menuItemReingresoDePoderAnexo":
-                    //this._ventana.Contenedor.Navigate(new CertificadoDeOrigen());
+                    this._ventana.Contenedor.Navigate(new ReingresoDePoderAnexo());
                     break;
                 case "_menuItemReingresoDeNombreDeMarca":
                     this._ventana.Contenedor.Navigate(new ReingresoDeNombreDeMarca());

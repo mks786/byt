@@ -16,9 +16,9 @@ using System.Collections.Generic;
 
 namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
 {
-    class PresentadorReingresoDeClasificacion : PresentadorBase
+    class PresentadorReingresoDeDistingue : PresentadorBase
     {
-        private IReingresoDeClasificacion _ventana;
+        private IReingresoDeDistingue _ventana;
 
         private IAgenteServicios _agenteServicios;
         private IMarcaServicios _marcaServicios;
@@ -41,7 +41,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
         /// Constructor predeterminado
         /// </summary>
         /// <param name="ventana">Página que satisface el contrato</param>
-        public PresentadorReingresoDeClasificacion(IReingresoDeClasificacion ventana)
+        public PresentadorReingresoDeDistingue(IReingresoDeDistingue ventana)
         {
             try
             {
@@ -81,7 +81,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
                 
                 CargaBoletines();
                 
-                CargaNumerales();                
+                CargaNumerales();
+
+                CargarTipoDetalleDistingue();
 
                 this._ventana.FocoPredeterminado();
             }
@@ -109,7 +111,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
             {
                 Mouse.OverrideCursor = null;
             }
-        }
+        }        
 
         /// <summary>
         /// Método que realiza toda la lógica para agregar al País dentro de la base de datos
@@ -127,7 +129,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
                 {
                     string parametroMarcas = ArmarStringParametroMarcas(this._marcasAgregadas);
                                 this.EjecutarArchivoBAT(ConfigurationManager.AppSettings["RutaBatEscrito"].ToString()
-                                  + "\\" + ConfigurationManager.AppSettings["EscritoReingresoDeClasificacion"].ToString(),
+                                  + "\\" + ConfigurationManager.AppSettings["EscritoReingresoDeDistingue"].ToString(),
                                  ((Agente)this._ventana.AgenteFiltrado).Id + " " + parametroMarcas);
                 }
 
@@ -699,13 +701,35 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
         }
 
         /// <summary>
+        /// Método que se encarga de la carga inicial de TipoDetalleDistingue
+        /// </summary>
+        private void CargarTipoDetalleDistingue()
+        {
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+            IList<ListaDatosValores> detalleDistingue =
+                this._listaDatosValoresServicios.ConsultarListaDatosValoresPorParametro(new ListaDatosValores(Recursos.Etiquetas.cbiTipoDetalleDistingue));
+            this._ventana.DetalleDistingues = detalleDistingue;
+            this._ventana.DetalleDistingue = detalleDistingue[0];
+
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+        }
+
+        /// <summary>
         /// Método que se encarga de actualizar las resoluciones de un boletin seleccionado
         /// </summary>
         public void ActualizarResoluciones()
         {
             if (((Boletin)this._ventana.Boletin).Id != int.MinValue)
             {
-                IList<Resolucion> resoluciones = this._boletinServicios.ConsultarResolucionesDeBoletin((Boletin)this._ventana.Boletin);              
+                IList<Resolucion> resoluciones = this._boletinServicios.ConsultarResolucionesDeBoletin((Boletin)this._ventana.Boletin);             
                 this._ventana.Resoluciones = resoluciones;
                 this._ventana.Resolucion = resoluciones[0];
             }
