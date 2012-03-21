@@ -2051,6 +2051,24 @@ de Gracia</value>
   <data name="cbiCategoriaTipoPrioridad" xml:space="preserve">
     <value>ESCRITOTIPOPRIORIDAD</value>
   </data>
+  <data name="lblBusquedaMarca" xml:space="preserve">
+    <value>Busquedas de la Marca Seleccionada:</value>
+  </data>
+  <data name="lblDiseño" xml:space="preserve">
+    <value>Diseño:</value>
+  </data>
+  <data name="lblMixto" xml:space="preserve">
+    <value>Mixto:</value>
+  </data>
+  <data name="lblPalabra" xml:space="preserve">
+    <value>Palabra:</value>
+  </data>
+  <data name="lsvPedidoDiseno" xml:space="preserve">
+    <value>Pedido/Diseño</value>
+  </data>
+  <data name="lsvPedidoPalabra" xml:space="preserve">
+    <value>Pedido/Palabra</value>
+  </data>
   <data name="cbiTipoDetalleAnexo" xml:space="preserve">
     <value>ESCRITODETALLEANEXO</value>
   </data>
@@ -2062,5 +2080,8 @@ de Gracia</value>
   </data>
   <data name="lblTipoDetalleAnexo" xml:space="preserve">
     <value>Tipo Detalle del Anexo:</value>
+  </data>
+  <data name="titleEscritoReingresoDePoderAnexo" xml:space="preserve">
+    <value>Escrito De Reingreso De Poder Anexo</value>
   </data>
 </root>

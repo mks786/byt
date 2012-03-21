@@ -631,6 +631,21 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
 
         #endregion
 
+        public void ActualizarResoluciones()
+        {
+            if (((Boletin)this._ventana.Boletin).Id != int.MinValue)
+            {
+                IList<Resolucion> resoluciones = this._boletinServicios.ConsultarResolucionesDeBoletin((Boletin)this._ventana.Boletin);
+                this._ventana.Resoluciones = resoluciones;
+                this._ventana.Resolucion = resoluciones[0];
+            }
+            else
+            {
+                this._ventana.Resoluciones = null;
+                this._ventana.Resolucion = null;
+            }
+        }
+
         #region Boletines
         /// <summary>
         /// Método que carga los boletines registrados

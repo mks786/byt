@@ -76,6 +76,18 @@ namespace Trascend.Bolet.Cliente.Ventanas.EscritosMarca
             set { this._cbxBoletin.SelectedItem = value; }
         }
 
+        public object Resoluciones
+        {
+            get { return this._cbxResolucion.DataContext; }
+            set { this._cbxResolucion.DataContext = value; }
+        }
+
+        public object Resolucion
+        {
+            get { return this._cbxResolucion.SelectedItem; }
+            set { this._cbxResolucion.SelectedItem = value; }
+        }
+
         public object CantidadNumerales
         {
             get { return this._cbxNumerales.DataContext; }
@@ -363,6 +375,16 @@ namespace Trascend.Bolet.Cliente.Ventanas.EscritosMarca
         private void _lstMarcasAgregadas_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             _btnMenos_Click(sender, e);
+        }
+        private void _cbxBoletin_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            this._presentador.ActualizarResoluciones();
+        }
+
+
+        public void ActualizarResoluciones()
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

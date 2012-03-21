@@ -56,6 +56,16 @@ namespace Trascend.Bolet.Cliente.Contratos.EscritosMarca
 
         #endregion
 
+        #region Resolucion
+
+        object Resoluciones { get; set; }
+
+        object Resolucion { get; set; }
+
+        void ActualizarResoluciones();
+
+        #endregion
+
         object CantidadNumeralSelec { get; set; }
 
         object CantidadNumerales { get; set; }

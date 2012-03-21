@@ -59,6 +59,16 @@ namespace Trascend.Bolet.Cliente.Contratos.EscritosMarca
 
         #endregion
 
+        #region Resolucion
+
+        object Resoluciones { get; set; }
+
+        object Resolucion { get; set; }
+
+        void ActualizarResoluciones();
+
+        #endregion
+
         void MensajeAlerta(string mensaje);
 
         GridViewColumnHeader CurSortCol { get; set; }

@@ -72,7 +72,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
 
             try
             {
-                this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleEscritoReingresoDeNombreDeMarca,
+                this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleEscritoReingresoDePoderAnexo,
                     "");
                 
                 CargarAgente();

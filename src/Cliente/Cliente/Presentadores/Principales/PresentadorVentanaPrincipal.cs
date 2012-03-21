@@ -737,7 +737,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
                     this._ventana.Contenedor.Navigate(new RenunciaParcial());
                     break;
                 case "_menuItemConsignacionDeBusqueda":
-                    //this._ventana.Contenedor.Navigate(new CertificadoDeOrigen());
+                    this._ventana.Contenedor.Navigate(new ConsignacionDeBusqueda());
                     break;
                 case "_menuItemNotificacionDeIngresoDePoder":
                     this._ventana.Contenedor.Navigate(new NotificacionDeIngresoDePoder());

@@ -76,6 +76,19 @@ namespace Trascend.Bolet.Cliente.Ventanas.EscritosMarca
             set { this._cbxBoletin.SelectedItem = value; }
         }
 
+
+        public object Resoluciones
+        {
+            get { return this._cbxResolucion.DataContext; }
+            set { this._cbxResolucion.DataContext = value; }
+        }
+
+        public object Resolucion
+        {
+            get { return this._cbxResolucion.SelectedItem; }
+            set { this._cbxResolucion.SelectedItem = value; }
+        }
+
         public object TipoDePoderes
         {
             get { return this._cbxTipoPoder.DataContext; }
@@ -393,6 +406,16 @@ namespace Trascend.Bolet.Cliente.Ventanas.EscritosMarca
         private void _dpkFecha_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
         {
 
+        }
+        private void _cbxBoletin_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            this._presentador.ActualizarResoluciones();
+        }
+
+
+        public void ActualizarResoluciones()
+        {
+            throw new System.NotImplementedException();
         }
     }
 }
