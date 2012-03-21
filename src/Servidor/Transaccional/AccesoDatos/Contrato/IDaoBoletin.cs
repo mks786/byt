@@ -5,5 +5,6 @@ namespace Trascend.Bolet.AccesoDatos.Contrato
 {
     public interface IDaoBoletin : IDaoBase<Boletin, int>
     {
+        IList<Resolucion> ObtenerResolucionesDeBoletin(int id);
     }
 }

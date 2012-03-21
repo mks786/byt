@@ -146,6 +146,39 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
 
             return existe;
         }
+
+        /// <summary>
+        /// Método que consulta las resoluciones de un boletín
+        /// </summary>
+        /// <returns>Lista con todos las resoluciones del boletín filtrado</returns>       
+        public static IList<Resolucion> ResolucionesDeUnBoletin(Boletin boletin)
+        {
+            IList<Resolucion> retorno;
+
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                ComandoBase<IList<Resolucion>> comando = FabricaComandosBoletin.ObtenerComandoConsultarResolucionesDeBoletin(boletin);
+                comando.Ejecutar();
+                retorno = comando.Receptor.ObjetoAlmacenado;
+
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Saliendo del Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (ApplicationException ex)
+            {
+                logger.Error(ex.Message);
+                throw ex;
+            }
+
+            return retorno;
+        }
     }
 }
 

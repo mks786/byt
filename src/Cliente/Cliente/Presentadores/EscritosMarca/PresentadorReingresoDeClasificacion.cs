@@ -16,12 +16,15 @@ using System.Collections.Generic;
 
 namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
 {
-    class PresentadorNumeracionDePoderPorMarca : PresentadorBase
+    class PresentadorReingresoDeClasificacion : PresentadorBase
     {
-        private INumeracionDePoderPorMarca _ventana;
+        private IReingresoDeClasificacion _ventana;
 
         private IAgenteServicios _agenteServicios;
         private IMarcaServicios _marcaServicios;
+        private IBoletinServicios _boletinServicios;
+        private IResolucionServicios _resolucionServicios;
+        private IListaDatosValoresServicios _listaDatosValoresServicios;
 
         private static PaginaPrincipal _paginaPrincipal = PaginaPrincipal.ObtenerInstancia;
         private static Logger logger = LogManager.GetCurrentClassLogger();
@@ -29,7 +32,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
         Agente primerAgente = new Agente();
         Marca primerMarca = new Marca(int.MinValue);
 
-        private IList<Agente> _Agentes;
+        private IList<Agente> _agentes;
+        private IList<Resolucion> _resoluciones = new List<Resolucion>();
         private IList<Marca> _marcas;
         private IList<Marca> _marcasAgregadas = new List<Marca>();
 
@@ -37,7 +41,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
         /// Constructor predeterminado
         /// </summary>
         /// <param name="ventana">Página que satisface el contrato</param>
-        public PresentadorNumeracionDePoderPorMarca(INumeracionDePoderPorMarca ventana)
+        public PresentadorReingresoDeClasificacion(IReingresoDeClasificacion ventana)
         {
             try
             {
@@ -47,6 +51,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["AgenteServicios"]);
                 this._marcaServicios = (IMarcaServicios)Activator.GetObject(typeof(IMarcaServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["MarcaServicios"]);
+                this._boletinServicios = (IBoletinServicios)Activator.GetObject(typeof(IBoletinServicios),
+                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["BoletinServicios"]);
+                this._listaDatosValoresServicios = (IListaDatosValoresServicios)Activator.GetObject(typeof(IListaDatosValoresServicios),
+                      ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["ListaDatosValoresServicios"]);
             }
             catch (Exception ex)
             {
@@ -59,15 +67,22 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
         /// Método que carga los datos iniciales a mostrar en la página
         /// </summary>
         public void CargarPagina()
-        {           
+        {
+            Mouse.OverrideCursor = Cursors.Wait;
+
             try
             {
-                Mouse.OverrideCursor = Cursors.Wait;
-
-                this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleEscritoNumeracionDePoderPorMarca,
+                this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleEscritoReingresoDeNombreDeMarca,
                     "");
+                
                 CargarAgente();
+                
                 CargarMarca();
+                
+                CargaBoletines();
+                
+                CargaNumerales();                
+
                 this._ventana.FocoPredeterminado();
             }
             catch (ApplicationException ex)
@@ -97,11 +112,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
         }
 
         /// <summary>
-        /// Método que arma el string de parámetro y llama a ejecutar el .bat
+        /// Método que realiza toda la lógica para agregar al País dentro de la base de datos
         /// </summary>
         public void Aceptar()
-        {
-             try
+        {                        
+            try
             {
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -111,16 +126,17 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
                 if (ValidarEscrito())
                 {
                     string parametroMarcas = ArmarStringParametroMarcas(this._marcasAgregadas);
-                    this.EjecutarArchivoBAT(ConfigurationManager.AppSettings["RutaBatEscrito"].ToString()
-                        + "\\" + ConfigurationManager.AppSettings["EscritoNumeracionDePoderPorMarca"].ToString(),
-                        ((Agente)this._ventana.AgenteFiltrado).Id + " " + parametroMarcas);
+                                this.EjecutarArchivoBAT(ConfigurationManager.AppSettings["RutaBatEscrito"].ToString()
+                                  + "\\" + ConfigurationManager.AppSettings["EscritoReingresoDeClasificacion"].ToString(),
+                                 ((Agente)this._ventana.AgenteFiltrado).Id + " " + parametroMarcas);
                 }
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
-                #endregion
-            }          
+                #endregion           
+
+            }
             catch (ApplicationException ex)
             {
                 logger.Error(ex.Message);
@@ -141,6 +157,72 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
                 logger.Error(ex.Message);
                 this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
             }
+        }
+
+        /// <summary>
+        /// Metodo de hacer las validaciones necesarias antes de ejecutar el .bat
+        /// </summary>
+        /// <returns>true si es correcto, false en caso contrario</returns>
+        private bool ValidarEscrito()
+        {
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+            bool retorno = false;
+
+            if ((this._ventana.AgenteFiltrado != null) && null != ((Agente)this._ventana.AgenteFiltrado).Id)
+            {
+                if (this._marcasAgregadas.Count != 0)
+                {
+                    if (this.ValidarAgenteApoderadoDeMarcas((Agente)this._ventana.AgenteFiltrado, this._marcasAgregadas))
+                    {
+                        if (((Boletin)this._ventana.Boletin != null) && (((Boletin)this._ventana.Boletin).Id != int.MinValue))
+                        {
+                            if (this._ventana.Resolucion != null)
+                            {    
+                                if (!this._ventana.Numerales.Equals(""))
+                                {                                
+                                    retorno = true;
+                                }
+                                else
+                                {
+                                    this._ventana.MensajeAlerta(string.Format(Recursos.MensajesConElUsuario.AlertaEscritoSinNumeral));
+                                }
+                            }
+                            else
+                            {
+                                this._ventana.MensajeAlerta(string.Format(Recursos.MensajesConElUsuario.AlertaEscritoSinResolucion));
+                            }
+                        }
+                        else
+                        {
+                            this._ventana.MensajeAlerta(string.Format(Recursos.MensajesConElUsuario.AlertaEscritoSinBoletin));
+                        }
+                    }
+                    else
+                    {
+                        this._ventana.MensajeAlerta(string.Format(Recursos.MensajesConElUsuario.AlertaAgenteNoApareceEnPoderDeMarca,
+                            ((Agente)this._ventana.AgenteFiltrado).Nombre));
+                    }
+                }
+                else
+                {
+                    this._ventana.MensajeAlerta(Recursos.MensajesConElUsuario.AlertaEscritoSinMarcas);
+                }
+            }
+            else
+            {
+                this._ventana.MensajeAlerta(Recursos.MensajesConElUsuario.AlertaEscritoSinAgente);
+            }
+
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+            return retorno;
         }
 
         /// <summary>
@@ -177,51 +259,6 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
             #endregion
         }
 
-        /// <summary>
-        /// Metodo de hacer las validaciones necesarias antes de ejecutar el .bat
-        /// </summary>
-        /// <returns>true si es correcto, false en caso contrario</returns>
-        private bool ValidarEscrito()
-        {
-            #region trace
-            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
-                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
-            #endregion
-
-            bool retorno = false;
-
-            if ((this._ventana.AgenteFiltrado != null) && null != ((Agente)this._ventana.AgenteFiltrado).Id)
-            {
-                if (this._marcasAgregadas.Count != 0)
-                {
-                    if (this.ValidarAgenteApoderadoDeMarcas((Agente)this._ventana.AgenteFiltrado, this._marcasAgregadas))
-                    {
-                        retorno = true;
-                    }
-                    else
-                    {
-                        this._ventana.MensajeAlerta(string.Format(Recursos.MensajesConElUsuario.AlertaAgenteNoApareceEnPoderDeMarca,
-                            ((Agente)this._ventana.AgenteFiltrado).Nombre));
-                    }
-                }
-                else
-                {
-                    this._ventana.MensajeAlerta(Recursos.MensajesConElUsuario.AlertaEscritoSinMarcas);
-                }
-            }
-            else
-            {
-                this._ventana.MensajeAlerta(Recursos.MensajesConElUsuario.AlertaEscritoSinAgente);
-            }
-
-            #region trace
-            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
-                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
-            #endregion
-
-            return retorno;
-        }
-
         #region Agente
 
         /// <summary>
@@ -229,13 +266,13 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
         /// </summary>
         /// <returns></returns>
         public bool CambiarAgente()
-        {            
+        {
+            Mouse.OverrideCursor = Cursors.Wait;
+
             bool retorno = false;
 
             try
             {
-                Mouse.OverrideCursor = Cursors.Wait;
-
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
@@ -247,7 +284,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
                     //    this._agenteServicios.ConsultarPorId((Agente)this._ventana.AgenteFiltrado);
                     this._ventana.Agente = this._ventana.AgenteFiltrado;
                     this._ventana.NombreAgente = ((Agente)this._ventana.AgenteFiltrado).Nombre;
-                    this._Agentes.Add((Agente)this._ventana.AgenteFiltrado);
+                    this._agentes.Add((Agente)this._ventana.AgenteFiltrado);
                     retorno = true;
                 }
 
@@ -291,11 +328,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
         private void CargarAgente()
         {
 
-            this._Agentes = new List<Agente>();
+            this._agentes = new List<Agente>();
 
-            this._Agentes.Add(this.primerAgente);
+            this._agentes.Add(this.primerAgente);
             this._ventana.Agente = this.primerAgente;
-            this._ventana.AgentesFiltrados = this._Agentes;
+            this._ventana.AgentesFiltrados = this._agentes;
             this._ventana.AgenteFiltrado = this.primerAgente;
 
         }
@@ -304,11 +341,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
         /// Método que consulta los agentes que cumplan con el filtro
         /// </summary>
         public void ConsultarAgente()
-        {            
+        {
+            Mouse.OverrideCursor = Cursors.Wait;
+
             try
             {
-                Mouse.OverrideCursor = Cursors.Wait;
-
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
@@ -322,9 +359,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
                     AgenteConsulta.Nombre = !this._ventana.NombreAgenteFiltrar.Equals("") ?
                         this._ventana.NombreAgenteFiltrar.ToUpper() : string.Empty;
 
-                    this._Agentes = this._agenteServicios.ObtenerAgentesSinPoderesFiltro(AgenteConsulta);
-                    this._Agentes.Insert(0, this.primerAgente);
-                    this._ventana.AgentesFiltrados = this._Agentes;
+                    this._agentes = this._agenteServicios.ObtenerAgentesSinPoderesFiltro(AgenteConsulta);
+                    this._agentes.Insert(0, this.primerAgente);
+                    this._ventana.AgentesFiltrados = this._agentes;
                 }
 
                 #region trace
@@ -368,13 +405,13 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
         /// </summary>
         /// <returns></returns>
         public bool CambiarMarca()
-        {           
+        {
+            Mouse.OverrideCursor = Cursors.Wait;
+
             bool retorno = false;
 
             try
             {
-                Mouse.OverrideCursor = Cursors.Wait;
-
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
@@ -385,7 +422,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
                     if (((Marca)this._ventana.MarcaFiltrado).Id != int.MinValue)
                     {
                         this._ventana.Marca =
-                            this._marcaServicios.ConsultarMarcaConTodo((Marca)this._ventana.MarcaFiltrado);                        
+                            this._marcaServicios.ConsultarMarcaConTodo((Marca)this._ventana.MarcaFiltrado);
+                        this._marcas.Add((Marca)this._ventana.MarcaFiltrado);
                     }
                     this._ventana.NombreMarca = ((Marca)this._ventana.MarcaFiltrado).Descripcion;
                     retorno = true;
@@ -444,11 +482,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
         /// Método que se encarga de realizar la consulta de las marcas
         /// </summary>
         public void ConsultarMarca()
-        {           
+        {
+            Mouse.OverrideCursor = Cursors.Wait;
+
             try
             {
-                Mouse.OverrideCursor = Cursors.Wait;
-
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
@@ -614,5 +652,75 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
         }
 
         #endregion
+
+        #region Boletines
+
+        /// <summary>
+        /// Método que carga los boletines registrados
+        /// </summary>
+        private void CargaBoletines()
+        {
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+            Boletin primerBoletin = new Boletin(int.MinValue);
+            IList<Boletin> boletines = this._boletinServicios.ConsultarTodos();
+            boletines.Insert(0, primerBoletin);
+            this._ventana.Boletines = boletines;
+
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+        }
+
+        /// <summary>
+        /// Método que se encarga de la carga inicial de numerales
+        /// </summary>
+        private void CargaNumerales()
+        {
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+            IList<ListaDatosValores> numerales = 
+                this._listaDatosValoresServicios.ConsultarListaDatosValoresPorParametro(new ListaDatosValores(Recursos.Etiquetas.cbiCategoriaNumerales));
+            this._ventana.CantidadNumerales = numerales;
+            this._ventana.CantidadNumeral = numerales[0];
+
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+        }
+
+        /// <summary>
+        /// Método que se encarga de actualizar las resoluciones de un boletin seleccionado
+        /// </summary>
+        public void ActualizarResoluciones()
+        {
+            if (((Boletin)this._ventana.Boletin).Id != int.MinValue)
+            {
+                IList<Resolucion> resoluciones = this._boletinServicios.ConsultarResolucionesDeBoletin((Boletin)this._ventana.Boletin);
+                //Resolucion resolucion = new Resolucion();
+                //resolucion.Id = int.MinValue.ToString();
+                //resolucion.FechaResolucion = DateTime.MinValue;
+                //resolucion.Boletin = (Boletin)this._ventana.Boletin;
+                //resoluciones.Insert(0, resolucion);
+                //this._ventana.Resoluciones = null;
+                this._ventana.Resoluciones = resoluciones;
+            }
+            else
+            {
+                this._ventana.Resoluciones = null;
+                this._ventana.Resolucion = null;
+            }
+        }
+
+        #endregion             
     }
 }

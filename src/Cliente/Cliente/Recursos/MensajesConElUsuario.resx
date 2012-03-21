@@ -687,4 +687,13 @@
   <data name="AlertaEscritoSinCorreccion" xml:space="preserve">
     <value>Disculpe el escrito no tiene Corrección</value>
   </data>
+  <data name="AlertaEscritoSinBoletin" xml:space="preserve">
+    <value>Disculpe el Escrito debe tener al menos un Boletín</value>
+  </data>
+  <data name="AlertaEscritoSinNumeral" xml:space="preserve">
+    <value>Disculpe el escrito no posee Numeral definido</value>
+  </data>
+  <data name="AlertaEscritoSinResolucion" xml:space="preserve">
+    <value>Disculpe el Escrito debe tener al menos un Resolución</value>
+  </data>
 </root>

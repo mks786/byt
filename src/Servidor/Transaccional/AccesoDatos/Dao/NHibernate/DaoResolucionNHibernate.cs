@@ -44,7 +44,6 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
             }
 
             return existe;
-        }
-        
+        }                
     }
 }

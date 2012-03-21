@@ -16,7 +16,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         #endregion
 
         #region Propiedades
-
+       
         /// <summary>
         /// Sobreescritura del Método Equals debido a que la clase tiene id compuesto
         /// </summary>
@@ -28,9 +28,9 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
                 return false;
             var t = obj as Resolucion;
             if (t == null)
-                return false;
-            if ((Id == (t.Id)) && (Boletin.Id == (t.Boletin.Id)) && (FechaResolucion == t.FechaResolucion))
-                return true;
+                return false;                      
+            if ((Id == (t.Id)) && (Boletin.Id == (t.Boletin.Id)) && (FechaResolucion == t.FechaResolucion))            
+                return true;            
             return false;
 
         }
@@ -53,7 +53,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
             return base.ToString();
         }
         /// <summary>
-        /// Propiedad que asigna el id de la auditoria
+        /// Propiedad que asigna el id de la resolucion
         /// </summary>
         public virtual string Id
         {

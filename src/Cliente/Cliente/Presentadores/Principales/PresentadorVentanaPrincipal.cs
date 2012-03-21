@@ -710,7 +710,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
                     this._ventana.Contenedor.Navigate(new PrioridadExtranjera());
                     break;
                 case "_menuItemReingresoDeClasificacion":
-                    //this._ventana.Contenedor.Navigate(new CertificadoDeOrigen());
+                    this._ventana.Contenedor.Navigate(new ReingresoDeClasificacion());
                     break;
                 case "_menuItemReingresoDeDistingue":
                     //this._ventana.Contenedor.Navigate(new CertificadoDeOrigen());

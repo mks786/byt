@@ -477,4 +477,8 @@
     <value>Select distinct(a) from Agente a where </value>
     <comment>Cabecera del query para el filtro de agentes</comment>
   </data>
+  <data name="ObtenerResolucionesPorBoletin" xml:space="preserve">
+    <value>Select r from Resolucion r where r.Boletin.Id = {0}</value>
+    <comment>Selecciona las resoluciones de un boletin</comment>
+  </data>
 </root>

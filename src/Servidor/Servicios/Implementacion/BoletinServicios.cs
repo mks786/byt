@@ -106,5 +106,27 @@ namespace Trascend.Bolet.Servicios.Implementacion
 
             return exitoso;
         }
+
+        /// <summary>
+        /// Método que consulta las resoluciones de un boletín
+        /// </summary>
+        /// <param name="boletin">Boletín a filtrar</param>
+        /// <returns>Lista de resoluciones filtrados</returns>
+        public IList<Resolucion> ConsultarResolucionesDeBoletin(Boletin boletin)
+        {
+            #region trace
+            if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+            IList<Resolucion> resoluciones = ControladorBoletin.ResolucionesDeUnBoletin(boletin);
+
+            #region trace
+            if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                logger.Debug("Saliendo del Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+            return resoluciones;
+        }       
     }
 }

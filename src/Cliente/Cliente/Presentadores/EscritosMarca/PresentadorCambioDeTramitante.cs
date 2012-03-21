@@ -103,41 +103,24 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
         {
             try
             {
-                if (this._ventana.BotonModificar.Equals(Recursos.Etiquetas.btnModificar))
-                {
-                    this._ventana.HabilitarCampos = true;
-                }
-                else
-                {
-                    if ((this._ventana.AgenteFiltrado != null) && null != ((Agente)this._ventana.AgenteFiltrado).Id)
-                    {
-                        if (this._marcasAgregadas.Count != 0)
-                        {
-                            if (this.ValidarAgenteApoderadoDeMarcas((Agente)this._ventana.AgenteFiltrado,this._marcasAgregadas))
-                            {
-                                string parametroMarcas = ArmarStringParametroMarcas(this._marcasAgregadas);
-                                this.EjecutarArchivoBAT(ConfigurationManager.AppSettings["RutaBatEscrito"].ToString()
-                                    + "\\" + ConfigurationManager.AppSettings["EscritoLimitacionDistingue"].ToString(),
-                                    ((Agente)this._ventana.AgenteFiltrado).Id + " " + parametroMarcas);
-                            }
-                            else 
-                            {
-                                this._ventana.MensajeAlerta(string.Format(Recursos.MensajesConElUsuario.AlertaAgenteNoApareceEnPoderDeMarca, 
-                                    ((Agente)this._ventana.AgenteFiltrado).Nombre));
-                            }
-                        }
-                        else
-                        {
-                            this._ventana.MensajeAlerta(Recursos.MensajesConElUsuario.AlertaEscritoSinMarcas);
-                        }
-                    }
-                    else
-                    {
-                        this._ventana.MensajeAlerta(Recursos.MensajesConElUsuario.AlertaEscritoSinAgente);
-                    }
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
 
+                if (ValidarEscrito())
+                {
+                    string parametroMarcas = ArmarStringParametroMarcas(this._marcasAgregadas);
+                    this.EjecutarArchivoBAT(ConfigurationManager.AppSettings["RutaBatEscrito"].ToString()
+                        + "\\" + ConfigurationManager.AppSettings["EscritoCambioDeTramitante"].ToString(),
+                        ((Agente)this._ventana.AgenteFiltrado).Id + " " + parametroMarcas);
                 }
-            }
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }             
             catch (ApplicationException ex)
             {
                 logger.Error(ex.Message);
@@ -158,6 +141,51 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
                 logger.Error(ex.Message);
                 this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
             }
+        }
+
+        /// <summary>
+        /// Metodo de hacer las validaciones necesarias antes de ejecutar el .bat
+        /// </summary>
+        /// <returns>true si es correcto, false en caso contrario</returns>
+        private bool ValidarEscrito()
+        {
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+            bool retorno = false;
+
+            if ((this._ventana.AgenteFiltrado != null) && null != ((Agente)this._ventana.AgenteFiltrado).Id)
+            {
+                if (this._marcasAgregadas.Count != 0)
+                {
+                    if (this.ValidarAgenteApoderadoDeMarcas((Agente)this._ventana.AgenteFiltrado, this._marcasAgregadas))
+                    {
+                        retorno = true;
+                    }
+                    else
+                    {
+                        this._ventana.MensajeAlerta(string.Format(Recursos.MensajesConElUsuario.AlertaAgenteNoApareceEnPoderDeMarca,
+                            ((Agente)this._ventana.AgenteFiltrado).Nombre));
+                    }
+                }
+                else
+                {
+                    this._ventana.MensajeAlerta(Recursos.MensajesConElUsuario.AlertaEscritoSinMarcas);
+                }
+            }
+            else
+            {
+                this._ventana.MensajeAlerta(Recursos.MensajesConElUsuario.AlertaEscritoSinAgente);
+            }
+
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+            return retorno;
         }
 
         /// <summary>
