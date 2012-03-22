@@ -341,24 +341,25 @@ namespace Trascend.Bolet.Cliente.Ventanas.EscritosMarca
 
         private void _chkPalabra_Click(object sender, RoutedEventArgs e)
         {
-            this._presentador.AsignarCheckbox();
             this._chkDiseño.IsChecked = false;
             this._chkMixto.IsChecked = false;
+            this._presentador.AsignarCheckbox();
 
         }
 
         private void _chkMixto_Click(object sender, RoutedEventArgs e)
         {
-            this._presentador.AsignarCheckbox();
             this._chkDiseño.IsChecked = false;
             this._chkPalabra.IsChecked = false;
+            this._presentador.AsignarCheckbox();
         }
 
         private void _chkDiseño_Click(object sender, RoutedEventArgs e)
         {
-            this._presentador.AsignarCheckbox();
             this._chkPalabra.IsChecked = false;
             this._chkMixto.IsChecked = false;
+            this._presentador.AsignarCheckbox();
+
         }
     }
 }

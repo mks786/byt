@@ -47,6 +47,7 @@
                 <RowDefinition Height="25"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
             <!--Datos Agente-->
             <Grid DataContext="{Binding}" Name="_gridDatosAgente"  
@@ -139,7 +140,7 @@
             </Grid>
         <!--Fin Datos Agente-->
 
-            <Grid Grid.Column="0" Grid.Row="2">
+            <Grid Grid.Column="0" Grid.Row="6">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
