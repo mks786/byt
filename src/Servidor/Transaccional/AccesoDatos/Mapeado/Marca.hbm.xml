@@ -37,7 +37,7 @@
     <property name="TipoRps" column="TIPO_RPS" type="char"/>
     <property name="TipoCnac" column="TCNAC" type="string"/>
     <property name="Rev" column="IREV" type="char"/>
-    <property name="CodigoTipoEstado" column="CTESTADO" type="string"/>
+    <!--<property name="CodigoTipoEstado" column="CTESTADO" type="string"/>-->
     <property name="CodigoBus" column="CBUS" type="string"/>
     <property name="Ter" column="ITER" type="char"/>
     <property name="Recordatorio" column="NRECORDATORIO" type="int"/>
@@ -79,7 +79,7 @@
     </many-to-one>
 
     <many-to-one name="StatusWeb" class="StatusWeb">
-      <column name="TESTADO"/>
+      <column name="CTESTADO"/>
     </many-to-one>
 
     <many-to-one name="Poder" class="Poder" lazy="false">
