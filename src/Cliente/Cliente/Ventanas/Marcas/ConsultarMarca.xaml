@@ -1387,7 +1387,7 @@
                             <TextBlock Name="_txbInfobol" Text="{x:Static recurso:Etiquetas.btnInfoBol}"/>
                         </Button>
                         <Button IsEnabled="False" Grid.Column="8" Grid.Row="22" Grid.ColumnSpan="1" Name="_btnCertificados" Margin="8,0,0,0"
-                            Height="25">
+                            Height="25" Click="_btnCertificados_Click">
                             <TextBlock Name="_txbCertificados" Text="{x:Static recurso:Etiquetas.btnCertificados}"/>
                         </Button>
                         <Button IsEnabled="False" Grid.Column="9" Grid.Row="22" Grid.ColumnSpan="1" Name="_btnBusquedaDatos" Margin="8,0,0,0"
@@ -1398,7 +1398,7 @@
 
                         <!--Fila Dieciseis-->
                         <Button IsEnabled="False" Grid.Column="6" Grid.Row="23" Grid.ColumnSpan="1" Name="_btnGenCartel" Margin="8,0,0,0"
-                            Height="25">
+                            Height="25" Click="_btnGenCartel_Click">
                             <TextBlock Name="_txbGenCartel" Text="{x:Static recurso:Etiquetas.btnGenCartel}"/>
                         </Button>
                         <Button IsEnabled="False" Grid.Column="7" Grid.Row="23" Grid.ColumnSpan="1" Name="_btnAnaqua" Margin="8,0,0,0"

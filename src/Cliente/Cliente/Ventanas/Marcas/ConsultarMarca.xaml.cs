@@ -732,6 +732,12 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
         {
             get { return this._txtClaseNacional.Text; }
         }
+
+        public void ArchivoNoEncontrado()
+        {
+            MessageBox.Show(Recursos.MensajesConElUsuario.ErrorPoderNoEncontrado, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+        }
+
         public GridViewColumnHeader CurSortCol
         {
             get { return _CurSortCol; }
@@ -1348,5 +1354,16 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
         {
             this._presentador.IrImprimir(((Button)sender).Name);
         }
+
+        private void _btnGenCartel_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.GenerarCartel();
+        }
+
+        private void _btnCertificados_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.Certificado();
+        }
+
     }
 }

@@ -1328,5 +1328,62 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
         }
 
         #endregion
+
+        /// <summary>
+        ///Método que realiza el llamado al explorador para abrir el cartel de la marca
+        /// </summary>
+        public void GenerarCartel()
+        {
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                this.IrURL(ConfigurationManager.AppSettings["UrlGenerarCartel"] + ((Marca)this._ventana.Marca).Id);
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
+            }
+        }
+
+        /// <summary>
+        /// Método que se encarga de abrir el certificado de la marca en formato .pdf
+        /// </summary>
+        public void Certificado()
+        {
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                System.Diagnostics.Process.Start(ConfigurationManager.AppSettings["rutaCertificados"].ToString() + ((Marca)this._ventana.Marca).Id + ".pdf");
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (Win32Exception ex)
+            {
+                logger.Error(ex.Message);
+                this._ventana.ArchivoNoEncontrado();
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
+            }
+        }
     }
 }

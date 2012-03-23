@@ -9,6 +9,7 @@ using Trascend.Bolet.ObjetosComunes.ContratosServicios;
 using Trascend.Bolet.ObjetosComunes.Entidades;
 using System.Windows.Input;
 using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace Trascend.Bolet.Cliente.Presentadores.Logines
 {
@@ -115,7 +116,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Logines
         /// </summary>
         public void Salir()
         {
-            App.Current.Shutdown();
+            App.Current.Shutdown(); 
         }
     }
 }

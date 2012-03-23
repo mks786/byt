@@ -170,6 +170,8 @@ namespace Trascend.Bolet.Cliente.Contratos.Marcas
 
         bool MensajeAlerta(string mensaje);
 
+        void ArchivoNoEncontrado();
+
         string ClaseInternacional { get; }
 
         string ClaseNacional { get; }

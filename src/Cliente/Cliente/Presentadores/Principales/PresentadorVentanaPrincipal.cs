@@ -48,6 +48,8 @@ using Trascend.Bolet.Cliente.Ventanas.Traspasos.CambiosPeticionario;
 using Trascend.Bolet.Cliente.Ventanas.Renovaciones;
 using Trascend.Bolet.Cliente.Ventanas.EscritosMarca;
 using Trascend.Bolet.Cliente.Ventanas.Logines;
+using System.Diagnostics;
+using System.Collections.Generic;
 
 namespace Trascend.Bolet.Cliente.Presentadores.Principales
 {
@@ -767,6 +769,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
                 #endregion
 
                 this._usuarioServicios.CerrarSession(UsuarioLogeado.Hash);
+                EliminarSesionesRestantes(ConfigurationManager.AppSettings["NombreProceso"]);
+                EliminarSesionesRestantes(ConfigurationManager.AppSettings["NombreProcesoSVhost"]);
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -793,6 +797,33 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
             {
                 Mouse.OverrideCursor = null;
                 App.Current.Shutdown();
+            }
+        }
+
+        private void EliminarSesionesRestantes(string nombreDeImagen)
+        {
+
+            IList<Process> procesos = Process.GetProcessesByName(nombreDeImagen);
+            foreach (Process proceso in procesos)
+            {
+                try
+                {
+                    System.Diagnostics.ProcessStartInfo procStartInfo = new System.Diagnostics.ProcessStartInfo("cmd", "/c " + "Taskkill /PID " + proceso.Id + " /F");
+                    procStartInfo.RedirectStandardOutput = true;
+                    procStartInfo.UseShellExecute = false;
+                    // Do not create the black window.
+                    procStartInfo.CreateNoWindow = true;
+                    // Now we create a process, assign its ProcessStartInfo and start it
+                    System.Diagnostics.Process proc = new System.Diagnostics.Process();
+                    proc.StartInfo = procStartInfo;
+                    proc.Start();
+                    // Get the output into a string
+                    string result = proc.StandardOutput.ReadToEnd();
+                }
+                catch (Exception ex)
+                {
+                    throw new ApplicationException();
+                }
             }
         }
 
