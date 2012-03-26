@@ -29,12 +29,22 @@ namespace Trascend.Bolet.Cliente.Presentadores.Justificaciones
         {
             try
             {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
                 this._ventana = ventana;
                 this._ventana.Justificacion = justificacion;
                 this._asociadoServicios = (IAsociadoServicios)Activator.GetObject(typeof(IAsociadoServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["AsociadoServicios"]);
                 this._conceptoServicios = (IConceptoServicios)Activator.GetObject(typeof(IConceptoServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["ConceptoServicios"]);
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
             }
             catch (Exception ex)
             {
@@ -42,6 +52,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Justificaciones
                 this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
             }
         }
+
         /// <summary>
         /// Método que carga los datos iniciales a mostrar en la página
         /// </summary>

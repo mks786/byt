@@ -30,6 +30,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Interesados
         {
             try
             {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
                 this._ventana = ventana;
                 this._ventana.Interesado = new Interesado();
                 this._interesadoServicios = (IInteresadoServicios)Activator.GetObject(typeof(IInteresadoServicios),
@@ -40,6 +45,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Interesados
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["EstadoServicios"]);
                 this._listaDatosDominioServicios = (IListaDatosDominioServicios)Activator.GetObject(typeof(IListaDatosDominioServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["ListaDatosDominioServicios"]);
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
             }
             catch (Exception ex)
             {
@@ -57,6 +67,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Interesados
 
             try
             {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
                 this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleAgregarInteresado,
                     Recursos.Ids.AgregarInteresado);
                 this._ventana.FocoPredeterminado();
@@ -70,6 +85,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Interesados
                 this._ventana.TipoPersonas = tiposPersona;
                 this._ventana.Nacionalidades = paises;
                 this._ventana.Corporaciones = estados;
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
             }
             catch (ApplicationException ex)
             {
@@ -104,6 +124,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Interesados
         {
             try
             {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
                 Interesado interesado = (Interesado)this._ventana.Interesado;
 
                 interesado.Pais = (Pais)this._ventana.Pais;
@@ -115,6 +140,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Interesados
 
                 if (exitoso)
                     this.Navegar(Recursos.MensajesConElUsuario.InteresadoInsertado,false);
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
             }
             catch (ApplicationException ex)
             {

@@ -32,6 +32,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
         {
             try
             {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
                 this._ventana = ventana;
                 this._marca = (Marca)marca;
                 this._ventana.InfoAdicional = null != ((Marca)marca).InfoAdicional ? ((Marca)marca).InfoAdicional : new InfoAdicional("M." + this._marca.Id);
@@ -42,6 +47,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                  
                 this._infoAdicionalServicios = (IInfoAdicionalServicios)Activator.GetObject(typeof(IInfoAdicionalServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["InfoAdicionalServicios"]);
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
             }
             catch (Exception ex)
             {

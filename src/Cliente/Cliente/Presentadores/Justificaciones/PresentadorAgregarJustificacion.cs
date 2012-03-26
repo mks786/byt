@@ -34,6 +34,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Justificaciones
         {
             try
             {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
                 this._ventana = ventana;
                 Carta carta = new Carta();
                 Justificacion justificacion = new Justificacion();
@@ -46,6 +51,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Justificaciones
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["AsociadoServicios"]);
                 this._cartaServicios = (ICartaServicios)Activator.GetObject(typeof(ICartaServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["CartaServicios"]);
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
             }
             catch (Exception ex)
             {
@@ -63,6 +73,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Justificaciones
 
             try
             {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
                 this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleAgregarJustificacion,
                 Recursos.Ids.AgregarJustificacion);
                 this._ventana.FocoPredeterminado();
@@ -75,6 +90,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Justificaciones
                 this._ventana.Conceptos = conceptos;
                 this._ventana.BorrarId();
 
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
             }
             catch (ApplicationException ex)
             {
@@ -109,6 +128,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Justificaciones
         {
             try
             {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
                 if (this._cartaServicios.VerificarExistencia(((Justificacion)this._ventana.Justificacion).Carta))
                 {
                     Justificacion justificacion = (Justificacion)this._ventana.Justificacion;
@@ -130,7 +154,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Justificaciones
                     this._ventana.Mensaje(Recursos.MensajesConElUsuario.ErrorCartaNoEncontrada);
                 }
 
-
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
             }
             catch (ApplicationException ex)
             {

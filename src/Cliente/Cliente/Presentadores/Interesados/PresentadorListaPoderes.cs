@@ -28,9 +28,19 @@ namespace Trascend.Bolet.Cliente.Presentadores.Interesados
         /// <param name="ventana">página que satisface el contrato</param>
         public PresentadorListaPoderes(IListaPoderes ventana, object poderes, object interesado)
         {
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
             this._ventana = ventana;
             this._poderes = (IList<Poder>)poderes;
             this._interesado = (Interesado)interesado;
+
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
         }
 
         /// <summary>

@@ -40,6 +40,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
         {
             try
             {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
                 this._ventana = ventana;
                 this._ventana.InfoBol = null != (InfoBol)infoBol ? (InfoBol)infoBol : new InfoBol();
 
@@ -61,6 +66,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 this._ventana.Tipos = null;
                 this._ventana.Tipos = this._infoboles;
 
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
             }
             catch (Exception ex)
             {
@@ -78,6 +87,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
 
             try
             {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
                 this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleGestionalInfoBol,
                     Recursos.Ids.AgregarInfoBol);
 
@@ -112,6 +126,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 this._ventana.BorrarTextoCambio();
 
                 this._ventana.FocoPredeterminado();
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
             }
             catch (ApplicationException ex)
             {
@@ -147,6 +166,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             bool exitoso = false;
             try
             {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
 
                 //Habilitar campos
                 if (this._ventana.TextoBotonModificar == Recursos.Etiquetas.btnModificar)
@@ -175,6 +198,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                     exitoso = this._infoBolServicios.InsertarOModificar(infoBol, UsuarioLogeado.Hash);
 
                 }
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
             }
             catch (ApplicationException ex)
             {
@@ -289,7 +317,17 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
         /// </summary>
         public void irListaInfoBol()
         {
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
             this.Navegar(new ListaInfoBoles(((InfoBol)this._ventana.InfoBol).Marca));
+
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
         }
        
         /// <summary>
@@ -299,10 +337,20 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
         {
             try
             {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
                 if ((Operacion)this._ventana.Cambio != null)
                 {
                     this._ventana.TextoCambio = ((Operacion)this._ventana.Cambio).Interno.ToString();
                 }
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
             }
             catch (ApplicationException e)
             {
@@ -316,7 +364,18 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
         /// <returns>lista de Cambios</returns>
         public bool TieneElementosListaCambio()
         {
-            return this._tieneListaCambios;
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+		
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+            return this._tieneListaCambios;           
         }
 
         /// <summary>
@@ -324,6 +383,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
         /// </summary>
         public void CargarCambio()
         {
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
             Operacion operacion = new Operacion();
             operacion.Marca = new Marca(((InfoBol)this._ventana.InfoBol).Marca.Id);
 
@@ -354,6 +418,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             }
             else
                 this._tieneListaCambios = false;
+
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
         }
     }
 }

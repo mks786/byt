@@ -37,6 +37,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
         {
             try
             {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
                 this._ventana = ventana;
                 this._marca = (Marca)marca;
                 this._ventana.Anaqua = null != ((Marca)marca).Anaqua ? ((Marca)marca).Anaqua : new Anaqua(this._marca.Id);
@@ -51,6 +56,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
 
                 this._anaquaServicios = (IAnaquaServicios)Activator.GetObject(typeof(IAnaquaServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["AnaquaServicios"]);
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
             }
             catch (Exception ex)
             {
@@ -68,6 +78,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
 
             try
             {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
                 //cambiar titulo
                 this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleGestionarAnaqua,
                     "");
@@ -83,7 +98,13 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                     this._ventana.HabilitarCampos = true;
                     this._ventana.TextoBotonModificar = Recursos.Etiquetas.btnAceptar;
                 }
+
                 this._ventana.FocoPredeterminado();
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
             }
             catch (ApplicationException ex)
             {
@@ -117,8 +138,13 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
         public bool Aceptar()
         {
             bool retorno = false;
+
             try
             {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion				
 
                 //Habilitar campos
                 if (this._ventana.TextoBotonModificar == Recursos.Etiquetas.btnModificar)
@@ -145,6 +171,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                         retorno = true;
                     }
                 }
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
             }
             catch (ApplicationException ex)
             {
@@ -176,8 +207,18 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
         /// <param name="e"></param>
         private void imprimirMensajeExito(object sender, DoWorkEventArgs e)
         {
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+			
             this._ventana.TextoBotonModificar = (string)e.Argument;
             Thread.Sleep(2000);
+
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
         }
 
         /// <summary>

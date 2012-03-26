@@ -52,6 +52,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
         {
             try
             {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
                 this._ventana = ventana;
                 Marca marca;
 
@@ -97,6 +102,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["CondicionServicios"]);
                 this._statusWebServicios = (IStatusWebServicios)Activator.GetObject(typeof(IStatusWebServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["StatusWebServicios"]);
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
             }
             catch (Exception ex)
             {
@@ -112,6 +122,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
         {
             try
             {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
                 Marca marca = (Marca)this._ventana.Marca;
 
                 marca.Id = 1;
@@ -164,6 +179,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 this._ventana.Sector = this.BuscarSector((IList<ListaDatosDominio>)this._ventana.Sectores, marca.Sector);
                 this._ventana.TipoReproduccion = this.BuscarTipoReproduccion((IList<ListaDatosDominio>)this._ventana.TipoReproducciones, marca.Tipo);
 
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
             }
             catch (Exception ex)
             {
@@ -177,8 +197,18 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
         /// </summary>
         public void ActualizarTitulo()
         {
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
             this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleAgregarMarca,
                 Recursos.Ids.AgregarMarca);
+
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
         }
 
         /// <summary>
@@ -293,6 +323,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
         {
             try
             {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
                 Marca marca = (Marca)this._ventana.Marca;
 
                 marca.Operacion = "CREATE";
@@ -344,6 +379,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 if (exitoso)
                     this.Navegar(Recursos.MensajesConElUsuario.MarcaInsertada, false);
 
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
             }
             catch (ApplicationException ex)
             {
@@ -429,10 +468,18 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
 
         #region Metodos de los filtros de asociados
 
+        /// <summary>
+        /// Método que cambia el asociado solicitud seleccionado
+        /// </summary>
         public void CambiarAsociadoSolicitud()
         {
             try
             {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
                 if ((Asociado)this._ventana.AsociadoSolicitud != null)
                 {
                     Asociado asociado = this._asociadoServicios.ConsultarAsociadoConTodo((Asociado)this._ventana.AsociadoSolicitud);
@@ -440,6 +487,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                     this._ventana.AsociadoDatos = (Asociado)this._ventana.AsociadoSolicitud;
                     this._ventana.NombreAsociadoDatos = ((Asociado)this._ventana.AsociadoSolicitud).Nombre;
                 }
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
             }
             catch (ApplicationException e)
             {
@@ -448,10 +500,18 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             }
         }
 
+        /// <summary>
+        /// Método que cambia el asociado datos seleccionado
+        /// </summary>
         public void CambiarAsociadoDatos()
         {
             try
             {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
                 if ((Asociado)this._ventana.AsociadoDatos != null)
                 {
                     Asociado asociado = this._asociadoServicios.ConsultarAsociadoConTodo((Asociado)this._ventana.AsociadoDatos);
@@ -459,6 +519,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                     this._ventana.AsociadoSolicitud = (Asociado)this._ventana.AsociadoDatos;
                     this._ventana.NombreAsociadoSolicitud = ((Asociado)this._ventana.AsociadoDatos).Nombre;
                 }
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
             }
             catch (ApplicationException e)
             {
@@ -467,8 +532,17 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             }
         }
 
+        /// <summary>
+        /// Método que se encarga de buscar un asociado
+        /// </summary>
+        /// <param name="filtrarEn"></param>
         public void BuscarAsociado(int filtrarEn)
         {
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
             IEnumerable<Asociado> asociadosFiltrados = this._asociados;
 
             if (filtrarEn == 0)
@@ -523,8 +597,16 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             }
         }
 
+        /// <summary>
+        /// Método que se encarga de cargar los asociados
+        /// </summary>
         public void CargarAsociados()
         {
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
             Mouse.OverrideCursor = Cursors.Wait;
 
             Marca marca = (Marca)this._ventana.Marca;
@@ -544,16 +626,29 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             }
 
             Mouse.OverrideCursor = null;
+
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
         }
 
         #endregion
 
         #region Metodos de los filtros de interesados
 
+        /// <summary>
+        /// Método que cambia el interesado solicitud
+        /// </summary>
         public void CambiarInteresadoSolicitud()
         {
             try
             {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
                 if ((Interesado)this._ventana.InteresadoSolicitud != null)
                 {
                     Interesado interesadoAux = this._interesadoServicios.ConsultarInteresadoConTodo((Interesado)this._ventana.InteresadoSolicitud);
@@ -563,6 +658,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                     this._ventana.InteresadoPaisSolicitud = interesadoAux.Pais != null ? interesadoAux.Pais.NombreEspanol : "";
                     this._ventana.InteresadoCiudadSolicitud = interesadoAux.Ciudad != null ? interesadoAux.Ciudad : "";
                 }
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
             }
             catch (ApplicationException e)
             {
@@ -573,10 +673,18 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             }
         }
 
+        /// <summary>
+        /// Método que se encarga de cambiar interesado datos
+        /// </summary>
         public void CambiarInteresadoDatos()
         {
             try
             {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
                 if ((Interesado)this._ventana.InteresadoDatos != null)
                 {
                     Interesado interesadoAux = this._interesadoServicios.ConsultarInteresadoConTodo((Interesado)this._ventana.InteresadoDatos);
@@ -587,6 +695,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                     this._ventana.InteresadoPaisSolicitud = interesadoAux.Pais != null ? interesadoAux.Pais.NombreEspanol : "";
                     this._ventana.InteresadoCiudadSolicitud = interesadoAux.Ciudad != null ? interesadoAux.Ciudad : "";
                 }
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
             }
             catch (ApplicationException e)
             {
@@ -597,8 +710,17 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             }
         }
 
+        /// <summary>
+        /// Método que filtra interesado
+        /// </summary>
+        /// <param name="filtrarEn"></param>
         public void BuscarInteresado(int filtrarEn)
         {
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
             IEnumerable<Interesado> interesadosFiltrados = this._interesados;
 
             if (filtrarEn == 0)
@@ -651,10 +773,23 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 else
                     this._ventana.InteresadosDatos = this._interesados;
             }
+
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
         }
 
+        /// <summary>
+        /// Método que carga los interesados
+        /// </summary>
         public void CargarInteresados()
         {
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
             Mouse.OverrideCursor = Cursors.Wait;
             Marca marca = (Marca)this._ventana.Marca;
 
@@ -672,16 +807,29 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             }
 
             Mouse.OverrideCursor = null;
+
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
         }
 
         #endregion
 
         #region Metodos de los filtros de corresponsales
 
+        /// <summary>
+        /// Método que cambia el corresponsal solicitud
+        /// </summary>
         public void CambiarCorresponsalSolicitud()
         {
             try
             {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
                 if ((Corresponsal)this._ventana.CorresponsalSolicitud != null)
                 {
                     //Corresponsal corresponsal = this._corresponsalServicios.ConsultarCorresponsalConTodo((Corresponsal)this._ventana.CorresponsalSolicitud);
@@ -689,6 +837,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                     this._ventana.CorresponsalDatos = (Corresponsal)this._ventana.CorresponsalSolicitud;
                     this._ventana.DescripcionCorresponsalDatos = ((Corresponsal)this._ventana.CorresponsalSolicitud).Descripcion;
                 }
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
             }
             catch (ApplicationException e)
             {
@@ -701,6 +854,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
         {
             try
             {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
                 if ((Corresponsal)this._ventana.CorresponsalDatos != null)
                 {
                     //Corresponsal corresponsal = this._corresponsalServicios.ConsultarCorresponsalConTodo((Corresponsal)this._ventana.CorresponsalDatos);
@@ -708,6 +866,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                     this._ventana.CorresponsalSolicitud = (Corresponsal)this._ventana.CorresponsalDatos;
                     this._ventana.DescripcionCorresponsalSolicitud = ((Corresponsal)this._ventana.CorresponsalDatos).Descripcion;
                 }
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
             }
             catch (ApplicationException e)
             {
@@ -718,6 +881,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
 
         public void BuscarCorresponsal(int filtrarEn)
         {
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
             IEnumerable<Corresponsal> corresponsalesFiltrados = this._corresponsales;
 
             if (filtrarEn == 0)
@@ -770,10 +938,19 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 else
                     this._ventana.CorresponsalesDatos = this._corresponsales;
             }
+
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
         }
 
         public void CargarCorresponsales()
         {
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
 
             Mouse.OverrideCursor = Cursors.Wait;
 
@@ -796,22 +973,40 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             }
 
             Mouse.OverrideCursor = null;
+
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
         }
 
         #endregion
 
         #region Metodos de la lista de poderes
 
+        /// <summary>
+        /// Método que cambia poder solicitud
+        /// </summary>
         public void CambiarPoderSolicitud()
         {
             try
             {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
                 if ((Poder)this._ventana.PoderSolicitud != null)
                 {
                     this._ventana.NumPoderSolicitud = ((Poder)this._ventana.PoderSolicitud).NumPoder;
                     this._ventana.PoderDatos = (Poder)this._ventana.PoderSolicitud;
                     this._ventana.NumPoderDatos = ((Poder)this._ventana.PoderSolicitud).NumPoder;
                 }
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
             }
             catch (ApplicationException e)
             {
@@ -820,16 +1015,29 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             }
         }
 
+        /// <summary>
+        /// Método que cambia poder datos
+        /// </summary>
         public void CambiarPoderDatos()
         {
             try
             {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
                 if ((Poder)this._ventana.PoderDatos != null)
                 {
                     this._ventana.NumPoderDatos = ((Poder)this._ventana.PoderDatos).NumPoder;
                     this._ventana.PoderSolicitud = (Poder)this._ventana.PoderDatos;
                     this._ventana.NumPoderSolicitud = ((Poder)this._ventana.PoderDatos).NumPoder;
                 }
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
             }
             catch (ApplicationException e)
             {
@@ -838,8 +1046,16 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             }
         }
 
+        /// <summary>
+        /// Método que carga los poderes
+        /// </summary>
         public void CargarPoderes()
         {
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
             Mouse.OverrideCursor = Cursors.Wait;
 
             Marca marca = (Marca)this._ventana.Marca;
@@ -859,6 +1075,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             }
 
             Mouse.OverrideCursor = null;
+
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
         }
 
         #endregion

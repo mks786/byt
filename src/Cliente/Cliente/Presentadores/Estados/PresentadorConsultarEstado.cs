@@ -51,9 +51,20 @@ namespace Trascend.Bolet.Cliente.Presentadores.Estados
 
             try
             {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+
                 //crear titulo
                 this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleConsultarEstado,
                     Recursos.Ids.ConsultarEstado);
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
             }
             catch (Exception ex)
             {
