@@ -115,47 +115,19 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
 
                 if (ValidarEscrito())
                 {
-                    if (this._ventana.BotonModificar.Equals(Recursos.Etiquetas.btnModificar))
-                    {
-                        this._ventana.HabilitarCampos = true;
-                    }
-                    else
-                    {
-                        if ((this._ventana.AgenteFiltrado != null) && null != ((Agente)this._ventana.AgenteFiltrado).Id)
-                        {
-                            if (this._marcasAgregadas.Count != 0)
-                            {
-                                if (this.ValidarAgenteApoderadoDeMarcas((Agente)this._ventana.AgenteFiltrado, this._marcasAgregadas))
-                                {
-                                    string parametroMarcas = ArmarStringParametroMarcas(this._marcasAgregadas);
-                                    this.EjecutarArchivoBAT(ConfigurationManager.AppSettings["RutaBatEscrito"].ToString()
-                                       + "\\" + ConfigurationManager.AppSettings["EscritoConsignacionDeBusqueda"].ToString(),
-                                       ((Agente)this._ventana.AgenteFiltrado).Id + " " + parametroMarcas 
-                                       + " " + ((Busqueda)this._ventana.MarcaBusquedaSeleccionada).Id);
-                                }
-                                else
-                                {
-                                    this._ventana.MensajeAlerta(string.Format(Recursos.MensajesConElUsuario.AlertaAgenteNoApareceEnPoderDeMarca,
-                                        ((Agente)this._ventana.AgenteFiltrado).Nombre));
-                                }
-                            }
-                            else
-                            {
-                                this._ventana.MensajeAlerta(Recursos.MensajesConElUsuario.AlertaEscritoSinMarcas);
-                            }
-                        }
-                        else
-                        {
-                            this._ventana.MensajeAlerta(Recursos.MensajesConElUsuario.AlertaEscritoSinAgente);
-                        }
-
-                    }
+                    string parametroMarcas = ArmarStringParametroMarcas(this._marcasAgregadas);
+                    this.EjecutarArchivoBAT(ConfigurationManager.AppSettings["RutaBatEscrito"].ToString()
+                       + "\\" + ConfigurationManager.AppSettings["EscritoConsignacionDeBusqueda"].ToString(),
+                       ((Agente)this._ventana.AgenteFiltrado).Id + " " + parametroMarcas
+                       + " " + ((Busqueda)this._ventana.MarcaBusquedaSeleccionada).Id);
+                }
+         
 
                     #region trace
                     if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
                         logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                     #endregion
-                }
+                
             }
             catch (ApplicationException ex)
             {
@@ -198,7 +170,16 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
                 {
                     if (this.ValidarAgenteApoderadoDeMarcas((Agente)this._ventana.AgenteFiltrado, this._marcasAgregadas))
                     {
-                        retorno = true;
+                        if (this._ventana.MarcaBusquedaSeleccionada != null)
+                        {
+                            retorno = true;
+                        }
+                        else
+                        {
+                            this._ventana.MensajeAlerta(Recursos.MensajesConElUsuario.AlertaEscritoSinBusqueda);
+
+                        }
+
                     }
                     else
                     {
