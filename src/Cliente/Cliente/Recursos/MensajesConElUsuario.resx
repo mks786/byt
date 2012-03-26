@@ -696,4 +696,13 @@
   <data name="AlertaEscritoSinResolucion" xml:space="preserve">
     <value>Disculpe el Escrito debe tener al menos un Resolución</value>
   </data>
+  <data name="AlertaEscritoSinBusqueda" xml:space="preserve">
+    <value>Disuclpe El Escrito No Tiene Ninguna Busqueda Seleccionada</value>
+  </data>
+  <data name="AlertaEscritoSinCalificativoDeMarca" xml:space="preserve">
+    <value>Disculpe El Escrito No Tiene Calificativo De Nombre De marca</value>
+  </data>
+  <data name="AlertaEscritoSinFecha" xml:space="preserve">
+    <value>Disculpe El Escrito no Tiene Fecha De Presentacion</value>
+  </data>
 </root>

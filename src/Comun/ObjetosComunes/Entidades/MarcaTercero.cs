@@ -42,6 +42,10 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         private string _representante;
         private string _observacion;
         private string _distingue;
+        private string _casoT;
+        private string _estadoT;
+        private string _comentarioEsp;
+        private string _comentarioIng;
         private int _numeroCondiciones;
         private string _sector;
         private char _tipoRps;
@@ -197,6 +201,41 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
             set { _faxTercero = value; }
         }
 
+        /// <summary>
+        /// Propiedad que asigna u obtiene el  de _casoT
+        /// </summary>
+        public virtual string CasoT
+        {
+            get { return _casoT; }
+            set { _casoT = value; }
+        }
+
+        /// <summary>
+        /// Propiedad que asigna u obtiene el  de _estadoT
+        /// </summary>
+        public virtual string EstadoT
+        {
+            get { return _estadoT; }
+            set { _estadoT = value; }
+        }
+
+        /// <summary>
+        /// Propiedad que asigna u obtiene el  de ComentarioIngles
+        /// </summary>
+        public virtual string ComentarioIng
+        {
+            get { return _comentarioIng; }
+            set { _comentarioIng = value; }
+        }
+
+        /// <summary>
+        /// Propiedad que asigna u obtiene el  de Comentarioesp
+        /// </summary>
+        public virtual string ComentarioEsp
+        {
+            get { return _comentarioEsp; }
+            set { _comentarioEsp = value; }
+        }
         /// <summary>
         /// Propiedad que asigna u obtiene el  de DomicilioTercero
         /// </summary>

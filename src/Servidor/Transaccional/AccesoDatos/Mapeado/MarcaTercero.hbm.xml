@@ -39,7 +39,10 @@
     <property name="Distingue" column="XDISTINGUE" type="string"/>
     <property name="NumeroCondiciones" column="NCONDI" type="int"/>
     <property name="Rev" column="IREV" type="char"/>
-
+    <property name="EstadoT" column="TESTADO" type="string"/>
+    <property name="CasoT" column="TCASO" type="string"/>
+    <property name="ComentarioEsp" column="XCOMENCLI_ESP" type="string"/>
+    <property name="ComentarioIng" column="XCOMENCLI_ING" type="string"/>
 
     <many-to-one name="Agente" class="Agente">
       <column name="CAGENTE"/>

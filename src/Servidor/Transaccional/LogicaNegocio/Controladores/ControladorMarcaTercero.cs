@@ -54,7 +54,7 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
         public static bool InsertarOModificar(MarcaTercero marcaTercero, int hash)
         {
             bool exitoso = false;
-
+            char id;
             try
             {
                 #region trace
@@ -64,6 +64,12 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
 
                 if (marcaTercero.Id == "")
                 {
+                    id = marcaTercero.Descripcion[0];
+                    if ((id == 'E') && (marcaTercero.Descripcion[1]=='T'))
+                    {
+                    
+                    }
+
                     ComandoBase<bool> comando = FabricaComandosMarcaTercero.ObtenerComandoInsertarOModificar(marcaTercero);
                     comando.Ejecutar();
                     exitoso = comando.Receptor.ObjetoAlmacenado;

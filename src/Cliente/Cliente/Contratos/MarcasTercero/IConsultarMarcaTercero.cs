@@ -182,6 +182,10 @@ namespace Trascend.Bolet.Cliente.Contratos.MarcasTercero
 
         //void PintarAuditoria();
 
+        string ComentarioClienteEspanol { set; get; }
+
+        string ComentarioClienteIngles { set; get; }
+
         void BorrarCeros();
 
         object MarcasByt{get; set;}

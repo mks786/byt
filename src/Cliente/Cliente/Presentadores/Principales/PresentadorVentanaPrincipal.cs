@@ -557,7 +557,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
         /// </summary>
         public void GestionarMarcaATercero()
         {
-            this._ventana.Contenedor.Navigate(new AgregarMarcaTercero(null));
+            this._ventana.Contenedor.Navigate(new ConsultarMarcaTercero(null));
         }
 
         /// <summary>

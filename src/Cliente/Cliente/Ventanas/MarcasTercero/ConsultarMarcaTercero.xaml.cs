@@ -831,6 +831,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.MarcasTercero
         {
             this._txtClaseInternacional.Text = this._txtClaseInternacional.Text.Equals("0") ? "" : this._txtClaseInternacional.Text;
             this._txtClaseInternacional.Text = this._txtClaseInternacional.Text.Equals("0") ? "" : this._txtClaseInternacional.Text;
+            this._txtClaseInternacionalByt.Text = this._txtClaseInternacionalByt.Text.Equals("0") ? "" : this._txtClaseInternacionalByt.Text;
+            this._txtClaseNacionalByt.Text = this._txtClaseNacionalByt.Text.Equals("0") ? "" : this._txtClaseNacionalByt.Text;
             this._txtClaseNacional.Text = this._txtClaseNacional.Text.Equals("0") ? "" : this._txtClaseNacional.Text;
             //this._txtClaseNacionalDatos.Text = this._txtClaseNacionalDatos.Text.Equals("0") ? "" : this._txtClaseNacionalDatos.Text;
         }

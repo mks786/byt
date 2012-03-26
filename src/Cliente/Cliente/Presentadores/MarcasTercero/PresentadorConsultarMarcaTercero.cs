@@ -26,6 +26,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
     {
         private static PaginaPrincipal _paginaPrincipal = PaginaPrincipal.ObtenerInstancia;
         private static Logger logger = LogManager.GetCurrentClassLogger();
+        private bool _agregar = true;
 
         private IConsultarMarcaTercero _ventana;
 
@@ -70,18 +71,40 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
             {
 
                 this._ventana = ventana;
+                if (marcaTercero != null)
+                {
+                    this._ventana.MarcaTercero = marcaTercero;
+                    if (((MarcaTercero)marcaTercero).Internacional == null)
+                        ((MarcaTercero)marcaTercero).Internacional = new Internacional();
+                    else
+                        ((MarcaTercero)marcaTercero).Internacional = new Internacional(((MarcaTercero)marcaTercero).Internacional.Id);
 
-                if (((MarcaTercero)marcaTercero).Internacional == null)
-                    ((MarcaTercero)marcaTercero).Internacional = new Internacional();
-                else
-                    ((MarcaTercero)marcaTercero).Internacional = new Internacional(((MarcaTercero)marcaTercero).Internacional.Id);
+                    if (((MarcaTercero)marcaTercero).Nacional == null)
+                        ((MarcaTercero)marcaTercero).Nacional = new Nacional();
+                    else
+                        ((MarcaTercero)marcaTercero).Nacional = new Nacional(((MarcaTercero)marcaTercero).Nacional.Id);
 
-                if (((MarcaTercero)marcaTercero).Nacional == null)
-                    ((MarcaTercero)marcaTercero).Nacional = new Nacional();
+                    _agregar = false;
+                }
                 else
-                    ((MarcaTercero)marcaTercero).Nacional = new Nacional(((MarcaTercero)marcaTercero).Nacional.Id);
-                
-                this._ventana.MarcaTercero = marcaTercero;
+                {
+                    MarcaTercero marcaTerceroAgregar = new MarcaTercero();
+                    this._ventana.Marca = null;
+                    if (((MarcaTercero)marcaTerceroAgregar).BoletinConcesion == null)
+                        ((MarcaTercero)marcaTerceroAgregar).BoletinConcesion = new Boletin();
+                    if (((MarcaTercero)marcaTerceroAgregar).BoletinPublicacion == null)
+                        ((MarcaTercero)marcaTerceroAgregar).BoletinPublicacion = new Boletin();
+                    if (((MarcaTercero)marcaTerceroAgregar).Asociado == null)
+                        ((MarcaTercero)marcaTerceroAgregar).Asociado = new Asociado();
+                    if (((MarcaTercero)marcaTerceroAgregar).Interesado == null)
+                        ((MarcaTercero)marcaTerceroAgregar).Interesado = new Interesado();
+                    if (((MarcaTercero)marcaTerceroAgregar).AsociadoTercero == null)
+
+                    this._ventana.MarcaTercero = marcaTerceroAgregar;
+                    CambiarAModificar();
+                   
+                }
+
 
                 this._marcaTerceroServicios = (IMarcaTerceroServicios)Activator.GetObject(typeof(IMarcaTerceroServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["MarcaTerceroServicios"]);
@@ -160,152 +183,111 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
 
                 this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleConsultarMarcaTercero, "");
 
-                MarcaTercero marcaTercero = (MarcaTercero)this._ventana.MarcaTercero;
-                EstadoMarca estadoMarca = new EstadoMarca();
-                TipoBase tipoBase = new TipoBase();
+                if (_agregar == false)
+                {
+                    MarcaTercero marcaTercero = (MarcaTercero)this._ventana.MarcaTercero;
+                    EstadoMarca estadoMarca = new EstadoMarca();
+                    TipoBase tipoBase = new TipoBase();
 
-              //  Anaqua anaqua = new Anaqua();
-              //  anaqua.IdMarcaTercero = marcaTercero.Id;
-                InfoAdicional infoAdicional = new InfoAdicional("M." + marcaTercero.Id);
+                    //  Anaqua anaqua = new Anaqua();
+                    //  anaqua.IdMarcaTercero = marcaTercero.Id;
+                    InfoAdicional infoAdicional = new InfoAdicional("M." + marcaTercero.Id);
 
-              //  marcaTercero.InfoBoles = this._infoBolServicios.ConsultarInfoBolesPorMarcaTercero(marcaTercero);
-              //  marcaTercero.Operaciones = this._operacionServicios.ConsultarOperacionesPorMarcaTercero(marcaTercero);
-              //  marcaTercero.Busquedas = this._busquedaServicios.ConsultarBusquedasPorMarcaTercero(marcaTercero);
+                    //  marcaTercero.InfoBoles = this._infoBolServicios.ConsultarInfoBolesPorMarcaTercero(marcaTercero);
+                    //  marcaTercero.Operaciones = this._operacionServicios.ConsultarOperacionesPorMarcaTercero(marcaTercero);
+                    //  marcaTercero.Busquedas = this._busquedaServicios.ConsultarBusquedasPorMarcaTercero(marcaTercero);
 
-                marcaTercero.InfoAdicional = this._infoAdicionalServicios.ConsultarPorId(infoAdicional);
-              //  marcaTercero.Anaqua = this._anaquaServicios.ConsultarPorId(anaqua);
+                    marcaTercero.InfoAdicional = this._infoAdicionalServicios.ConsultarPorId(infoAdicional);
+                    //  marcaTercero.Anaqua = this._anaquaServicios.ConsultarPorId(anaqua);
 
-                //IList<ListaDatosDominio> tiposMarcaTerceros = this._listaDatosDominioServicios.
-                //    ConsultarListaDatosDominioPorParametro(new ListaDatosDominio(Recursos.Etiquetas.cbiCateroriaMarcaTercero));
-                //ListaDatosDominio primerTipoMarcaTercero = new ListaDatosDominio();
-                //primerTipoMarcaTercero.Id = "NGN";
-                //tiposMarcaTerceros.Insert(0, primerTipoMarcaTercero);
-                //this._ventana.TipoMarcaTerceroDatos = tiposMarcaTerceros;
-                //this._ventana.TipoMarcaTerceroSolicitud = tiposMarcaTerceros;
-                //this._ventana.TipoMarcaTerceroDatos = this.BuscarTipoMarca(tiposMarcaTerceros, marcaTercero.Tipo);
+                    //IList<ListaDatosDominio> tiposMarcaTerceros = this._listaDatosDominioServicios.
+                    //    ConsultarListaDatosDominioPorParametro(new ListaDatosDominio(Recursos.Etiquetas.cbiCateroriaMarcaTercero));
+                    //ListaDatosDominio primerTipoMarcaTercero = new ListaDatosDominio();
+                    //primerTipoMarcaTercero.Id = "NGN";
+                    //tiposMarcaTerceros.Insert(0, primerTipoMarcaTercero);
+                    //this._ventana.TipoMarcaTerceroDatos = tiposMarcaTerceros;
+                    //this._ventana.TipoMarcaTerceroSolicitud = tiposMarcaTerceros;
+                    //this._ventana.TipoMarcaTerceroDatos = this.BuscarTipoMarca(tiposMarcaTerceros, marcaTercero.Tipo);
 
-                IList<Agente> agentes = this._agenteServicios.ConsultarTodos();
-                Agente primerAgente = new Agente();
-                primerAgente.Id = "NGN";
-                agentes.Insert(0, primerAgente);
-                this._ventana.Agentes = agentes;
-                this._ventana.Agente = this.BuscarAgente(agentes, marcaTercero.Agente);
+                    CargaComboBox();
 
-                IList<Pais> paises = this._paisServicios.ConsultarTodos();
-                Pais primerPais = new Pais();
-                primerPais.Id = int.MinValue;
-                paises.Insert(0, primerPais);
-                this._ventana.PaisesSolicitud = paises;
-                this._ventana.PaisSolicitud = this.BuscarPais(paises, marcaTercero.Pais);
+                    this._ventana.ComentarioClienteEspanol = marcaTercero.ComentarioEsp;
+                    this._ventana.ComentarioClienteIngles = marcaTercero.ComentarioIng;
+                    //IList<StatusWeb> statusWebs = this._statusWebServicios.ConsultarTodos();
+                    //StatusWeb primerStatus = new StatusWeb();
+                    //primerStatus.Id = "NGN";
+                    //statusWebs.Insert(0, primerStatus);
+                    //this._ventana.StatusWebs = statusWebs;
+                    //this._ventana.StatusWeb = this.BuscarStatusWeb(statusWebs, marcaTercero.StatusWeb);
 
-                IList<EstadoMarca> EstadosMarca = this._estadoMarcaServicios.ConsultarTodos();
-                EstadoMarca primerEstadoMarca = new EstadoMarca();
-                primerEstadoMarca.Id = "A";
-                EstadosMarca.Insert(0, primerEstadoMarca);
-                this._ventana.EstadosMarcaSolicitud = EstadosMarca;
-                this._ventana.EstadoMarcaSolicitud = this.BuscarEstadoMarca(EstadosMarca, estadoMarca);
+                    //IList<Condicion> condiciones = this._condicionServicios.ConsultarTodos();
+                    //Condicion primeraCondicion = new Condicion();
+                    //primeraCondicion.Id = int.MinValue;
+                    //condiciones.Insert(0, primeraCondicion);
+                    //this._ventana.Condiciones = condiciones;
 
-                
-                IList<TipoBase> TipoBase = this._tipoBaseServicios.ConsultarTodos();
-                TipoBase primerTipoBase = new TipoBase();
-                primerEstadoMarca.Id = "A";
-                TipoBase.Insert(0, primerTipoBase);
-                this._ventana.TiposBaseSolicitud = TipoBase;
-                this._ventana.TipoBaseSolicitud = this.BuscarTipoBase(TipoBase, tipoBase);
+                    Interesado interesado = (this._interesadoServicios.ConsultarInteresadoConTodo(marcaTercero.Interesado));
+                    //this._ventana.NombreInteresadoDatos = interesado.Nombre;
+                    this._ventana.NombreInteresadoSolicitud = interesado.Nombre;
+                    this._ventana.InteresadoPaisSolicitud = interesado.Pais.NombreEspanol;
+                    this._ventana.InteresadoCiudadSolicitud = interesado.Ciudad;
+                    //this._ventana.InteresadoSolicitud = marcaTercero.Interesado;
 
-                //IList<StatusWeb> statusWebs = this._statusWebServicios.ConsultarTodos();
-                //StatusWeb primerStatus = new StatusWeb();
-                //primerStatus.Id = "NGN";
-                //statusWebs.Insert(0, primerStatus);
-                //this._ventana.StatusWebs = statusWebs;
-                //this._ventana.StatusWeb = this.BuscarStatusWeb(statusWebs, marcaTercero.StatusWeb);
+                    //this._ventana.NombreAsociadoDatos = marcaTercero.Asociado != null ? marcaTercero.Asociado.Nombre : "";
+                    this._ventana.NombreAsociadoSolicitud = marcaTercero.Asociado != null ? marcaTercero.Asociado.Nombre : "";
 
-                //IList<Condicion> condiciones = this._condicionServicios.ConsultarTodos();
-                //Condicion primeraCondicion = new Condicion();
-                //primeraCondicion.Id = int.MinValue;
-                //condiciones.Insert(0, primeraCondicion);
-                //this._ventana.Condiciones = condiciones;
+                    //this._ventana.DescripcionCorresponsalSolicitud = marcaTercero.Corresponsal != null ? marcaTercero.Corresponsal.Descripcion : "";
+                    //this._ventana.DescripcionCorresponsalDatos = marcaTercero.Corresponsal != null ? marcaTercero.Corresponsal.Descripcion : "";
 
-                IList<TipoEstado> tipoEstados = this._tipoEstadoServicios.ConsultarTodos();
-                TipoEstado primerDetalle = new TipoEstado();
-                primerDetalle.Id = "NGN";
-                tipoEstados.Insert(0, primerDetalle);
-                this._ventana.Detalles = tipoEstados;
+                    //this._ventana.NumPoderDatos = marcaTercero.Poder != null ? marcaTercero.Poder.NumPoder : "";
+                    this._ventana.NumPoderSolicitud = marcaTercero.Poder != null ? marcaTercero.Poder.NumPoder : "";
 
-                IList<Servicio> servicios = this._servicioServicios.ConsultarTodos();
-                Servicio primerServicio = new Servicio();
-                primerServicio.Id = "NGN";
-                servicios.Insert(0, primerServicio);
-                this._ventana.Servicios = servicios;
-                this._ventana.Servicio = this.BuscarServicio(servicios, marcaTercero.Servicio);
+                    //IList<ListaDatosDominio> sectores = this._listaDatosDominioServicios.
+                    //    ConsultarListaDatosDominioPorParametro(new ListaDatosDominio(Recursos.Etiquetas.cbiSector));
+                    //ListaDatosDominio primerSector = new ListaDatosDominio();
+                    //primerSector.Id = "NGN";
+                    //sectores.Insert(0, primerSector);
+                    //this._ventana.Sectores = sectores;
+                    //this._ventana.Sector = this.BuscarSector(sectores, marcaTercero.Sector);
 
+                    //IList<ListaDatosDominio> tipoReproducciones = this._listaDatosDominioServicios.
+                    //    ConsultarListaDatosDominioPorParametro(new ListaDatosDominio(Recursos.Etiquetas.cbiTipoReproduccion));
+                    //ListaDatosDominio primerTipoReproduccion = new ListaDatosDominio();
+                    //primerTipoReproduccion.Id = "NGN";
+                    //tipoReproducciones.Insert(0, primerTipoReproduccion);
+                    //this._ventana.TipoReproducciones = tipoReproducciones;
+                    //this._ventana.TipoReproduccion = this.BuscarTipoReproduccion(tipoReproducciones, marcaTercero.Tipo);
 
-                IList<Boletin> boletines = this._boletinServicios.ConsultarTodos();
-                Boletin primerBoletin = new Boletin();
-                primerBoletin.Id = int.MinValue;
-                boletines.Insert(0, primerBoletin);
-                this._ventana.BoletinesOrdenPublicacion = boletines;
-                this._ventana.BoletinesPublicacion = boletines;
-                this._ventana.BoletinConcesion = boletines;
-                this._ventana.BoletinConcesion = this.BuscarBoletin(boletines, marcaTercero.BoletinConcesion);
-                this._ventana.BoletinPublicacion = this.BuscarBoletin(boletines, marcaTercero.BoletinPublicacion);
+                    Auditoria auditoria = new Auditoria();
+                    // auditoria.Fk = ((MarcaTercero)this._ventana.MarcaTercero).Id;
+                    auditoria.Tabla = "MYP_MARCAS_TER";
+                    // OJO!!  this._auditorias = this._marcaTerceroServicios.AuditoriaPorFkyTabla(auditoria);
 
-                Interesado interesado = (this._interesadoServicios.ConsultarInteresadoConTodo(marcaTercero.Interesado));
-                //this._ventana.NombreInteresadoDatos = interesado.Nombre;
-                this._ventana.NombreInteresadoSolicitud = interesado.Nombre;
-                this._ventana.InteresadoPaisSolicitud = interesado.Pais.NombreEspanol;
-                this._ventana.InteresadoCiudadSolicitud = interesado.Ciudad;
-                //this._ventana.InteresadoSolicitud = marcaTercero.Interesado;
+                    //if (null != marcaTercero.InfoAdicional && !string.IsNullOrEmpty(marcaTercero.InfoAdicional.Id))
+                    //    this._ventana.PintarInfoAdicional();
 
-                //this._ventana.NombreAsociadoDatos = marcaTercero.Asociado != null ? marcaTercero.Asociado.Nombre : "";
-                this._ventana.NombreAsociadoSolicitud = marcaTercero.Asociado != null ? marcaTercero.Asociado.Nombre : "";
+                    //if (null != marcaTercero.Anaqua)
+                    //    this._ventana.PintarAnaqua();
 
-                //this._ventana.DescripcionCorresponsalSolicitud = marcaTercero.Corresponsal != null ? marcaTercero.Corresponsal.Descripcion : "";
-                //this._ventana.DescripcionCorresponsalDatos = marcaTercero.Corresponsal != null ? marcaTercero.Corresponsal.Descripcion : "";
+                    if (null != marcaTercero.InfoBoles && marcaTercero.InfoBoles.Count > 0)
+                        this._ventana.PintarInfoBoles();
 
-                //this._ventana.NumPoderDatos = marcaTercero.Poder != null ? marcaTercero.Poder.NumPoder : "";
-                this._ventana.NumPoderSolicitud = marcaTercero.Poder != null ? marcaTercero.Poder.NumPoder : "";
+                    //if (null != marcaTercero.Operaciones && marcaTercero.Operaciones.Count > 0)
+                    //    this._ventana.PintarOperaciones();
 
-                //IList<ListaDatosDominio> sectores = this._listaDatosDominioServicios.
-                //    ConsultarListaDatosDominioPorParametro(new ListaDatosDominio(Recursos.Etiquetas.cbiSector));
-                //ListaDatosDominio primerSector = new ListaDatosDominio();
-                //primerSector.Id = "NGN";
-                //sectores.Insert(0, primerSector);
-                //this._ventana.Sectores = sectores;
-                //this._ventana.Sector = this.BuscarSector(sectores, marcaTercero.Sector);
+                    if (null != marcaTercero.Busquedas && marcaTercero.Busquedas.Count > 0)
+                        this._ventana.PintarBusquedas();
 
-                //IList<ListaDatosDominio> tipoReproducciones = this._listaDatosDominioServicios.
-                //    ConsultarListaDatosDominioPorParametro(new ListaDatosDominio(Recursos.Etiquetas.cbiTipoReproduccion));
-                //ListaDatosDominio primerTipoReproduccion = new ListaDatosDominio();
-                //primerTipoReproduccion.Id = "NGN";
-                //tipoReproducciones.Insert(0, primerTipoReproduccion);
-                //this._ventana.TipoReproducciones = tipoReproducciones;
-                //this._ventana.TipoReproduccion = this.BuscarTipoReproduccion(tipoReproducciones, marcaTercero.Tipo);
+                    //if (null != this._auditorias && this._auditorias.Count > 0)
+                    //    this._ventana.PintarAuditoria();
 
-                Auditoria auditoria = new Auditoria();
-               // auditoria.Fk = ((MarcaTercero)this._ventana.MarcaTercero).Id;
-                auditoria.Tabla = "MYP_MARCAS_TER";
-              // OJO!!  this._auditorias = this._marcaTerceroServicios.AuditoriaPorFkyTabla(auditoria);
-
-                //if (null != marcaTercero.InfoAdicional && !string.IsNullOrEmpty(marcaTercero.InfoAdicional.Id))
-                //    this._ventana.PintarInfoAdicional();
-
-                //if (null != marcaTercero.Anaqua)
-                //    this._ventana.PintarAnaqua();
-
-                if (null != marcaTercero.InfoBoles && marcaTercero.InfoBoles.Count > 0)
-                    this._ventana.PintarInfoBoles();
-
-                //if (null != marcaTercero.Operaciones && marcaTercero.Operaciones.Count > 0)
-                //    this._ventana.PintarOperaciones();
-
-                if (null != marcaTercero.Busquedas && marcaTercero.Busquedas.Count > 0)
-                    this._ventana.PintarBusquedas();
-
-                //if (null != this._auditorias && this._auditorias.Count > 0)
-                //    this._ventana.PintarAuditoria();
-
-                this._ventana.BorrarCeros();
+                    this._ventana.BorrarCeros();
+                }
+                else 
+                {
+                    MarcaTercero marcaTercero = (MarcaTercero)this._ventana.MarcaTercero;
+                    CargaComboBox();
+                }
 
                 this._ventana.FocoPredeterminado();
 
@@ -333,6 +315,76 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
             this.Navegar(new ConsultarMarcasTercero());
         }
 
+
+        public void CargaComboBox()
+        {
+
+            MarcaTercero marcaTercero = (MarcaTercero)this._ventana.MarcaTercero;
+            EstadoMarca estadoMarca = new EstadoMarca();
+            TipoBase tipoBase = new TipoBase();
+
+            IList<Agente> agentes = this._agenteServicios.ConsultarTodos();
+            Agente primerAgente = new Agente();
+            primerAgente.Id = "NGN";
+            agentes.Insert(0, primerAgente);
+            this._ventana.Agentes = agentes;
+            if (!_agregar)
+                this._ventana.Agente = this.BuscarAgente(agentes, marcaTercero.Agente);
+
+            IList<Pais> paises = this._paisServicios.ConsultarTodos();
+            Pais primerPais = new Pais();
+            primerPais.Id = int.MinValue;
+            paises.Insert(0, primerPais);
+            this._ventana.PaisesSolicitud = paises;
+            if (!_agregar)
+                 this._ventana.PaisSolicitud = this.BuscarPais(paises, marcaTercero.Pais);
+
+            IList<EstadoMarca> EstadosMarca = this._estadoMarcaServicios.ConsultarTodos();
+            EstadoMarca primerEstadoMarca = new EstadoMarca();
+            primerEstadoMarca.Id = "A";
+            EstadosMarca.Insert(0, primerEstadoMarca);
+            this._ventana.EstadosMarcaSolicitud = EstadosMarca;
+            if (!_agregar)
+                  this._ventana.EstadoMarcaSolicitud = this.BuscarEstadoMarca(EstadosMarca, estadoMarca);
+
+
+            IList<TipoBase> TipoBase = this._tipoBaseServicios.ConsultarTodos();
+            TipoBase primerTipoBase = new TipoBase();
+            primerEstadoMarca.Id = "A";
+            TipoBase.Insert(0, primerTipoBase);
+            this._ventana.TiposBaseSolicitud = TipoBase;
+            if (!_agregar)
+                  this._ventana.TipoBaseSolicitud = this.BuscarTipoBase(TipoBase, tipoBase);
+
+            IList<TipoEstado> tipoEstados = this._tipoEstadoServicios.ConsultarTodos();
+            TipoEstado primerDetalle = new TipoEstado();
+            primerDetalle.Id = "NGN";
+            tipoEstados.Insert(0, primerDetalle);
+            this._ventana.Detalles = tipoEstados;
+
+            IList<Servicio> servicios = this._servicioServicios.ConsultarTodos();
+            Servicio primerServicio = new Servicio();
+            primerServicio.Id = "NGN";
+            servicios.Insert(0, primerServicio);
+            this._ventana.Servicios = servicios;
+            if (!_agregar)
+                 this._ventana.Servicio = this.BuscarServicio(servicios, marcaTercero.Servicio);
+
+            IList<Boletin> boletines = this._boletinServicios.ConsultarTodos();
+            Boletin primerBoletin = new Boletin();
+            primerBoletin.Id = int.MinValue;
+            boletines.Insert(0, primerBoletin);
+            this._ventana.BoletinesOrdenPublicacion = boletines;
+            this._ventana.BoletinesPublicacion = boletines;
+            this._ventana.BoletinConcesion = boletines;
+            if (!_agregar)
+            {
+                this._ventana.BoletinConcesion = this.BuscarBoletin(boletines, marcaTercero.BoletinConcesion);
+                this._ventana.BoletinPublicacion = this.BuscarBoletin(boletines, marcaTercero.BoletinPublicacion);
+            }
+        
+        }
+
         /// <summary>
         /// Método que guardar los datos de la ventana y los almacena en las variables
         /// </summary>
@@ -342,8 +394,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
 
             MarcaTercero marcaTercero = (MarcaTercero)this._ventana.MarcaTercero;
 
-            marcaTercero.Operacion = "MODIFY";
-
+            if(!_agregar)
+                marcaTercero.Operacion = "MODIFY";
+            else
+                marcaTercero.Operacion = "INSERT";
+           
             if (null != this._ventana.Agente)
                 marcaTercero.Agente = !((Agente)this._ventana.Agente).Id.Equals("NGN") ? (Agente)this._ventana.Agente : null;
 
@@ -368,6 +423,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
             if (null != this._ventana.PaisSolicitud)
                 marcaTercero.Pais = ((Pais)this._ventana.PaisSolicitud).Id != int.MinValue ? ((Pais)this._ventana.PaisSolicitud) : null;
 
+            if (null != ((MarcaTercero)this._ventana.MarcaTercero).MarcasBaseTercero)
+                marcaTercero.MarcasBaseTercero = ((MarcaTercero)this._ventana.MarcaTercero).MarcasBaseTercero;
+
+            marcaTercero.ComentarioEsp = this._ventana.ComentarioClienteEspanol;
+            marcaTercero.ComentarioIng = this._ventana.ComentarioClienteIngles;
             //if (null != this._ventana.StatusWeb)
             //    marcaTercero.StatusWeb = ((StatusWeb)this._ventana.StatusWeb).Id.Equals("NGN") ? ((StatusWeb)this._ventana.StatusWeb) : null;
 
@@ -383,10 +443,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
             //if (null != this._ventana.TipoMarcaTerceroDatos)
             //    marcaTercero.Tipo = !((ListaDatosDominio)this._ventana.TipoMarcaTerceroDatos).Id.Equals("NGN") ? ((ListaDatosDominio)this._ventana.TipoMarcaTerceroDatos).Id : null;
 
+
             if (string.IsNullOrEmpty(this._ventana.IdInternacional))
                 marcaTercero.Internacional = null;
 
-            //if (string.IsNullOrEmpty(this._ventana.IdNacional))
+            //if (string.IsNullOrEmpty(this._ventana.IdNacional
             //   marcaTercero.Nacional = null;
 
 
@@ -766,7 +827,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
                 aux.TipoDeBase = ((TipoBase)this._ventana.TipoBaseSolicitud);
                  if ((bool)this._ventana.Byt.IsChecked)
                      { 
-                        aux.Marca = ((Marca)this._ventana.MarcaFiltrada); 
+                        aux.Marca = ((Marca)this._ventana.MarcaFiltrada);
                     }
                  else
                      {
@@ -778,6 +839,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
                         if (null!=aux.Marca.Nacional)
                              aux.Marca.Nacional.Descripcion = this._ventana.IdNacionalByt;
                      }
+
+                aux.Id = ((MarcaTercero)this._ventana.MarcaTercero).Id;
                 marcasBaseTercero.Add(aux);
                 this._ventana.MarcasByt = marcasBaseTercero.ToList<MarcaBaseTercero>();
                // this._marcasBaseTercero.Remove((MarcaBaseTercero)this._ventana.MarcaTercero);
