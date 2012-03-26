@@ -187,6 +187,10 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
             }
         }
 
+        /// <summary>
+        /// Método que se encarga de cargar el XML de usuarios del sistema
+        /// </summary>
+        /// <returns>El XML cargado en caso de que exista</returns>
         private static XElement LoadXML()
         {
             if (System.IO.File.Exists(_rutaXMLUsuarios))
@@ -196,6 +200,7 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
             }
             return null;
         }
+
         /// <summary>
         /// Método que se encarga de eliminar un usuario en el XML
         /// </summary>

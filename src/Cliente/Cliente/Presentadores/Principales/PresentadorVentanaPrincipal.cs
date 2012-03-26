@@ -770,7 +770,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
 
                 this._usuarioServicios.CerrarSession(UsuarioLogeado.Hash);
                 EliminarSesionesRestantes(ConfigurationManager.AppSettings["NombreProceso"]);
-                EliminarSesionesRestantes(ConfigurationManager.AppSettings["NombreProcesoSVhost"]);
+                EliminarSesionesRestantes(ConfigurationManager.AppSettings["NombreProcesoVSHost"]);
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -804,25 +804,30 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
         {
 
             IList<Process> procesos = Process.GetProcessesByName(nombreDeImagen);
+            int id = Process.GetCurrentProcess().Id;
             //IList<Process> procesos1 = Process.GetProcesses();
             foreach (Process proceso in procesos)
             {
                 try
                 {
-                    System.Diagnostics.ProcessStartInfo procStartInfo = new System.Diagnostics.ProcessStartInfo("cmd", "/c " + "Taskkill /PID " + proceso.Id + " /F");
+                    if (proceso.Id != id)
+                    {
+                        System.Diagnostics.ProcessStartInfo procStartInfo = new System.Diagnostics.ProcessStartInfo("cmd", "/c " + "Taskkill /PID " + proceso.Id + " /F");
 
-
-
-                    procStartInfo.RedirectStandardOutput = true;
-                    procStartInfo.UseShellExecute = false;
-                    // Do not create the black window.
-                    procStartInfo.CreateNoWindow = true;
-                    // Now we create a process, assign its ProcessStartInfo and start it
-                    System.Diagnostics.Process proc = new System.Diagnostics.Process();
-                    proc.StartInfo = procStartInfo;
-                    proc.Start();
-                    // Get the output into a string
-                    string result = proc.StandardOutput.ReadToEnd();
+                        procStartInfo.RedirectStandardOutput = true;
+                        procStartInfo.UseShellExecute = false;
+                        // Do not create the black window.
+                        procStartInfo.CreateNoWindow = true;
+                        // Now we create a process, assign its ProcessStartInfo and start it
+                        System.Diagnostics.Process proc = new System.Diagnostics.Process();
+                        proc.StartInfo = procStartInfo;
+                        proc.Start();
+                        // Get the output into a string
+                        string result = proc.StandardOutput.ReadToEnd();
+                        #region Debug
+                        logger.Debug("Resultado:" + result);
+                        #endregion
+                    }
                 }
                 catch (Exception ex)
                 {
