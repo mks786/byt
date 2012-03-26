@@ -47,10 +47,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.DatosTransferencias
         /// </summary>
         public void CargarPagina()
         {
-            Mouse.OverrideCursor = Cursors.Wait;
-
             try
-            {
+            {            
+                Mouse.OverrideCursor = Cursors.Wait;
+            
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);

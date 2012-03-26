@@ -59,11 +59,18 @@ namespace Trascend.Bolet.Cliente.Presentadores.EntradasAlternas
         /// Método que carga los datos iniciales a mostrar en la página
         /// </summary>
         public void CargarPagina()
-        {
-            Mouse.OverrideCursor = Cursors.Wait;
-
+        { 
             try
             {
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                Mouse.OverrideCursor = Cursors.Wait;
+
+           
                 this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleAgregarEntradaAlterna,
                     Recursos.Ids.AgregarEntradaAlterna);
 
@@ -90,6 +97,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.EntradasAlternas
                 this.CargarComboBoxTiempo(this._ventana.Horas, this._ventana.Minutos);
 
                 this._ventana.FocoPredeterminado();
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
             }
             catch (ApplicationException ex)
             {
@@ -124,6 +136,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.EntradasAlternas
         {
             try
             {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
                 EntradaAlterna entradaAlterna = (EntradaAlterna)this._ventana.EntradaAlterna;
 
                 entradaAlterna.Medio = (Medio)this._ventana.Medio;
@@ -154,6 +171,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.EntradasAlternas
                 {
                     this._ventana.Mensaje(Recursos.MensajesConElUsuario.ErrorAgenteRepetido);
                 }
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
 
             }
             catch (ApplicationException ex)

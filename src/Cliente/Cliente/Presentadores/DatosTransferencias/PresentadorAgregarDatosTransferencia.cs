@@ -54,13 +54,24 @@ namespace Trascend.Bolet.Cliente.Presentadores.DatosTransferencias
         /// </summary>
         public void CargarPagina()
         {
-            Mouse.OverrideCursor = Cursors.Wait;
-
             try
-            {
+            {                
+                #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+                Mouse.OverrideCursor = Cursors.Wait;
+
+            
                 this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleAgregarJustificacion,
                 Recursos.Ids.AgregarJustificacion);
                 this._ventana.FocoPredeterminado();
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
 
             }
             catch (ApplicationException ex)
@@ -96,6 +107,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.DatosTransferencias
         {
             try
             {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
 
                 DatosTransferencia datosTransferencia = (DatosTransferencia)this._ventana.DatosTransferencia;
 
@@ -107,6 +122,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.DatosTransferencias
                     ((DatosTransferencia)this._ventana.DatosTransferencia).Asociado.DatosTransferencias.Add(datosTransferencia);
                     this.Navegar(new ListaDatosTransferencias(((DatosTransferencia)this._ventana.DatosTransferencia).Asociado));
                 }
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
 
             }
             catch (ApplicationException ex)

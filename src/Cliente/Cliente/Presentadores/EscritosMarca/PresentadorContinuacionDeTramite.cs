@@ -97,12 +97,17 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
         }
 
         /// <summary>
-        /// Método que realiza toda la lógica para agregar al País dentro de la base de datos
+        /// Método que realiza las validaciones y genera llama al método de ejecutar el .bat del escrito
         /// </summary>
         public void Aceptar()
         {
             try
             {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
                 if (this._ventana.BotonModificar.Equals(Recursos.Etiquetas.btnModificar))
                 {
                     this._ventana.HabilitarCampos = true;
@@ -137,6 +142,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
                     }
 
                 }
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
             }
             catch (ApplicationException ex)
             {
@@ -338,7 +348,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
         /// <summary>
         /// Método que se encarga de cambiar la marca seleccionada
         /// </summary>
-        /// <returns></returns>
+        /// <returns>true si cambia, false en caso contrario</returns>
         public bool CambiarMarca()
         {
             Mouse.OverrideCursor = Cursors.Wait;
@@ -402,6 +412,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
         /// </summary>
         private void CargarMarca()
         {
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
 
             this._marcas = new List<Marca>();
 
@@ -409,6 +423,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
             this._ventana.Marca = this.primerMarca;
             this._ventana.MarcasFiltrados = this._marcas;
             this._ventana.MarcaFiltrado = this.primerMarca;
+
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
 
         }
 

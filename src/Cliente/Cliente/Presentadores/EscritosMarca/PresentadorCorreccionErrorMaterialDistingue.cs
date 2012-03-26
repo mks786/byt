@@ -102,12 +102,17 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
         }
 
         /// <summary>
-        /// Método que realiza toda la lógica para agregar al País dentro de la base de datos
+        /// Método que ejectuta el método para generar el escrito
         /// </summary>
         public void Aceptar()
         {
             try
             {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
                 if (ValidarEscrito())
                 {
                     string parametroMarcas = ArmarStringParametroMarcas(this._marcasAgregadas);
@@ -115,6 +120,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
                         + "\\" + ConfigurationManager.AppSettings["EscritoCorreccionErrorMaterialDistingue"].ToString(),
                         this._ventana.Error+" "+((Agente)this._ventana.AgenteFiltrado).Id + " " + parametroMarcas);
                 }
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
             }
             catch (ApplicationException ex)
             {
@@ -138,8 +148,17 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
             }
         }
 
+        /// <summary>
+        /// Método que hace las validaciones necesarias antes de generar el escrito
+        /// </summary>
+        /// <returns></returns>
         private bool ValidarEscrito()
         {
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
             bool retorno = false;
 
             if ((this._ventana.AgenteFiltrado != null) && null != ((Agente)this._ventana.AgenteFiltrado).Id)
@@ -169,6 +188,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
             {
                 this._ventana.MensajeAlerta(Recursos.MensajesConElUsuario.AlertaEscritoSinAgente);
             }
+
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
 
             return retorno;
         }
@@ -212,7 +236,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
         /// <summary>
         /// Método que se encarga de cambiar un agente
         /// </summary>
-        /// <returns></returns>
+        /// <returns>true si se cambio, false en caso contrario</returns>
         public bool CambiarAgente()
         {
             bool retorno = false;
@@ -275,6 +299,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
         /// </summary>
         private void CargarAgente()
         {
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
 
             this._Agentes = new List<Agente>();
 
@@ -283,6 +311,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
             this._ventana.AgentesFiltrados = this._Agentes;
             this._ventana.AgenteFiltrado = this.primerAgente;
 
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
         }
 
         /// <summary>
@@ -351,7 +383,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
         /// <summary>
         /// Método que se encarga de cambiar la marca seleccionada
         /// </summary>
-        /// <returns></returns>
+        /// <returns>true si se cambio, false en caso contrario</returns>
         public bool CambiarMarca()
         {
             bool retorno = false;
@@ -415,6 +447,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
         /// </summary>
         private void CargarMarca()
         {
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
 
             this._marcas = new List<Marca>();
 
@@ -423,6 +459,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
             this._ventana.MarcasFiltrados = this._marcas;
             this._ventana.MarcaFiltrado = this.primerMarca;
 
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
         }
 
         /// <summary>

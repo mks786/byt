@@ -25,11 +25,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.Categorias
         public PresentadorAgregarCategoria(IAgregarCategoria ventana)
         {
             try
-            {
+            {               
+
                 this._ventana = ventana;
                 this._categoriaServicios = (ICategoriaServicios)Activator.GetObject(typeof(ICategoriaServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["CategoriaServicios"]);
-                this._ventana.Categoria = new Categoria();
+                this._ventana.Categoria = new Categoria();                
             }
             catch (Exception ex)
             {

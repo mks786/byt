@@ -804,11 +804,15 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
         {
 
             IList<Process> procesos = Process.GetProcessesByName(nombreDeImagen);
+            //IList<Process> procesos1 = Process.GetProcesses();
             foreach (Process proceso in procesos)
             {
                 try
                 {
                     System.Diagnostics.ProcessStartInfo procStartInfo = new System.Diagnostics.ProcessStartInfo("cmd", "/c " + "Taskkill /PID " + proceso.Id + " /F");
+
+
+
                     procStartInfo.RedirectStandardOutput = true;
                     procStartInfo.UseShellExecute = false;
                     // Do not create the black window.

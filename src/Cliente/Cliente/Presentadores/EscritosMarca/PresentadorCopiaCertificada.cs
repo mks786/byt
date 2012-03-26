@@ -103,11 +103,14 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
         }
 
         /// <summary>
-        /// Método que carga los datos iniciales de TipoRecordatorio a mostrar en la página
+        /// Método que carga los datos iniciales de TipoCopiaCertificada a mostrar en la página
         /// </summary>
         private void CargarTipoCopiaCertificada()
         {
-
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
 
             ListaDatosValores filtro = new ListaDatosValores(Recursos.Etiquetas.cbiTipoCopiaCertificada);
             _listaRecordatorios =
@@ -115,15 +118,26 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
             this._ventana.TipoCopiasCertificadas = _listaRecordatorios;
             this._ventana.TipoCopiaCertificada = _listaRecordatorios[0];
             //this._ventana.TipoCopiaCertificada = this.BuscarRecordatorio(_listaRecordatorios, _listaRecordatorios.ElementAt(0));
+
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
         }
 
         /// <summary>
-        /// Método que realiza toda la lógica para agregar al País dentro de la base de datos
+        /// Método que ejecuta el .bat que genera el escrito
         /// </summary>
         public void Aceptar()
         {
             try
             {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+                    
                 if (ValidarEscrito())
                 {
                     string parametroMarcas = ArmarStringParametroMarcas(this._marcasAgregadas);
@@ -131,6 +145,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
                         + "\\" + ConfigurationManager.AppSettings["EscritoCopiaCertificada"].ToString(),
                         ((ListaDatosValores)this._ventana.TipoCopiaCertificada).Valor+" "+((Agente)this._ventana.AgenteFiltrado).Id+ " " +parametroMarcas);
                 }
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
             }
             catch (ApplicationException ex)
             {
@@ -156,6 +175,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
 
         private bool ValidarEscrito()
         {
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
             bool retorno = false;
 
             if ((this._ventana.AgenteFiltrado != null) && null != ((Agente)this._ventana.AgenteFiltrado).Id)
@@ -181,6 +205,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
             {
                 this._ventana.MensajeAlerta(Recursos.MensajesConElUsuario.AlertaEscritoSinAgente);
             }
+
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
 
             return retorno;
         }
@@ -287,6 +316,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
         /// </summary>
         private void CargarAgente()
         {
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
 
             this._Agentes = new List<Agente>();
 
@@ -295,6 +328,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
             this._ventana.AgentesFiltrados = this._Agentes;
             this._ventana.AgenteFiltrado = this.primerAgente;
 
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
         }
 
         /// <summary>
@@ -427,6 +464,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
         /// </summary>
         private void CargarMarca()
         {
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
 
             this._marcas = new List<Marca>();
 
@@ -434,6 +475,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
             this._ventana.Marca = this.primerMarca;
             this._ventana.MarcasFiltrados = this._marcas;
             this._ventana.MarcaFiltrado = this.primerMarca;
+
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
 
         }
 

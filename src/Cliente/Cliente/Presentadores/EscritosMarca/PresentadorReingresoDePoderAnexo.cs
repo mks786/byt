@@ -112,7 +112,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
         }
 
         /// <summary>
-        /// Método que realiza toda la lógica para agregar al País dentro de la base de datos
+        /// Método que arma el string y llama a generar el escrito
         /// </summary>
         public void Aceptar()
         {                        
@@ -322,6 +322,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
         /// </summary>
         private void CargarAgente()
         {
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
 
             this._agentes = new List<Agente>();
 
@@ -330,6 +334,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
             this._ventana.AgentesFiltrados = this._agentes;
             this._ventana.AgenteFiltrado = this.primerAgente;
 
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
         }
 
         /// <summary>
@@ -463,6 +471,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
         /// </summary>
         private void CargarMarca()
         {
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
 
             this._marcas = new List<Marca>();
 
@@ -471,6 +483,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
             this._ventana.MarcasFiltrados = this._marcas;
             this._ventana.MarcaFiltrado = this.primerMarca;
 
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
         }
 
         /// <summary>
@@ -710,8 +726,6 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
             #endregion
 
         }
-
-
 
         #endregion             
     }

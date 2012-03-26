@@ -53,14 +53,24 @@ namespace Trascend.Bolet.Cliente.Presentadores.Contactos
         /// </summary>
         public void CargarPagina()
         {
-            Mouse.OverrideCursor = Cursors.Wait;
-
             try
-            {
+            {                            
+                #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+                Mouse.OverrideCursor = Cursors.Wait;
+
                 this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleAgregarContacto,
-                    Recursos.Ids.Contacto);
-                this._ventana.borrarId();
-                this._ventana.FocoPredeterminado();
+                        Recursos.Ids.Contacto);
+                    this._ventana.borrarId();
+                    this._ventana.FocoPredeterminado();
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
             }
             catch (ApplicationException ex)
             {
@@ -95,6 +105,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Contactos
         {
             try
             {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
                 bool exitoso = false;
                 Contacto contacto = (Contacto)this._ventana.Contacto;
                 contacto.Departamento = this.transformarDepartamento(this._ventana.getDepartamento);
@@ -126,6 +141,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Contactos
                     this._asociado.Contactos.Insert(0, contacto);
                     this.Navegar(new ListaContactos(this._asociado));
                 }
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
 
             }
             catch (ApplicationException ex)
