@@ -1848,13 +1848,13 @@ de Gracia</value>
     <value>Error Material</value>
   </data>
   <data name="menuItemEscritosCertificadoDeOrigen" xml:space="preserve">
-    <value>Certificado De Origen</value>
+    <value>Certificado de Origen</value>
   </data>
   <data name="lblMarcasAgregadasAlEscrito" xml:space="preserve">
     <value>Marcas agregadas al escrito:</value>
   </data>
   <data name="titleEscritoLimitacionDelDistingue" xml:space="preserve">
-    <value>Escrito de Limitación del Distingue</value>
+    <value>Escrito Limitación del Distingue</value>
   </data>
   <data name="lblByt" xml:space="preserve">
     <value>Byt:</value>
@@ -1872,13 +1872,13 @@ de Gracia</value>
     <value>Escrito Certificado de Origen</value>
   </data>
   <data name="titleEscritoCambioDeTramitante" xml:space="preserve">
-    <value>Escrito de Cambio de Tramitante</value>
+    <value>Escrito Cambio de Tramitante</value>
   </data>
   <data name="titleEscritoDeDesistimiento" xml:space="preserve">
-    <value>Escrito de De Desistimiento</value>
+    <value>Escrito de Desistimiento</value>
   </data>
   <data name="titleEscritoNumeracionDePoderPorMarca" xml:space="preserve">
-    <value>Escrito de Numeración de Poder por Marca</value>
+    <value>Escrito Numeración de Poder por Marca</value>
   </data>
   <data name="menuItemEscritosConsignacionDeBusqueda" xml:space="preserve">
     <value>Consignación de Búsqueda</value>
@@ -1941,13 +1941,13 @@ de Gracia</value>
     <value>Renuncia Parcial</value>
   </data>
   <data name="titleEscritoConsignacionDeBusqueda" xml:space="preserve">
-    <value>Escrito De Consignacion De Busqueda</value>
+    <value>Escrito Consignacion de Busqueda</value>
   </data>
   <data name="titleEscritoNotificacionDeIngresoDePoder" xml:space="preserve">
-    <value>Escrito De Notificacion De Ingreso De Poder</value>
+    <value>Escrito Notificación de Ingreso de Poder</value>
   </data>
   <data name="titleEscritoRenunciaParcial" xml:space="preserve">
-    <value>Escrito De Renuncia Parcial</value>
+    <value>Escrito Renuncia Parcial</value>
   </data>
   <data name="cbiCategoriaNumerales" xml:space="preserve">
     <value>NUMERALES</value>
@@ -1959,16 +1959,16 @@ de Gracia</value>
     <value>Numerales:</value>
   </data>
   <data name="titleEscritoReingresoDeNombreDeMarca" xml:space="preserve">
-    <value>Escrito De Reingreso De Nombre De Marca</value>
+    <value>Escrito Reingreso de Nombre de Marca</value>
   </data>
   <data name="lblCalifNombreMarca" xml:space="preserve">
     <value>Calificativo Nombre De Marca:</value>
   </data>
   <data name="titleEscritoContinuacionDeTramite" xml:space="preserve">
-    <value>Escrito de Continuación de Trámite</value>
+    <value>Escrito Continuación de Trámite</value>
   </data>
   <data name="titleEscritoCopiaCertificada" xml:space="preserve">
-    <value>Escrito de Copia Certificada</value>
+    <value>Escrito Copia Certificada</value>
   </data>
   <data name="cbiTipoCopiaCertificada" xml:space="preserve">
     <value>ESCRITOCOPIACERTIFICADA</value>
@@ -1980,7 +1980,7 @@ de Gracia</value>
     <value>Error:</value>
   </data>
   <data name="titleEscritoCorreccionErrorMaterialDistingue" xml:space="preserve">
-    <value>Escrito de Corrección Error Material Distingue</value>
+    <value>Escrito Corrección Error Material Distingue</value>
   </data>
   <data name="cbiTipoCorreccionErrorMaterial" xml:space="preserve">
     <value>ESCRITOCORRECCIONERRORMATERIAL</value>
@@ -1989,16 +1989,16 @@ de Gracia</value>
     <value>Tipo Error:</value>
   </data>
   <data name="titleEscritoCorreccionErrorMaterial" xml:space="preserve">
-    <value>Escrito de Corrección Error Material</value>
+    <value>Escrito Corrección Error Material</value>
   </data>
   <data name="lblInteresadosAgregadosAlEscrito" xml:space="preserve">
     <value>Interesados agregados al escrito:</value>
   </data>
   <data name="titleEscritoNumeracionDePoderPorInteresado" xml:space="preserve">
-    <value>Numeración de Poder por Interesado</value>
+    <value>Escrito Numeración de Poder por Interesado</value>
   </data>
   <data name="titleEscritoCorreccionDelDistingue" xml:space="preserve">
-    <value>Escrito de Corrección del Distingue</value>
+    <value>Escrito Corrección del Distingue</value>
   </data>
   <data name="cbiDetallePrioridad" xml:space="preserve">
     <value>ESCRITOPRIORIDADEXTRANJERA</value>
@@ -2016,10 +2016,10 @@ de Gracia</value>
     <value>Tipo De Poder:</value>
   </data>
   <data name="titleEscritoReingresoDePoderDistingueConSinClasificacion" xml:space="preserve">
-    <value>Escrito Reingreso De Poder, Distingue con/sin Reclasificación</value>
+    <value>Escrito Reingreso de Poder, Distingue con/sin Reclasificación</value>
   </data>
   <data name="titleEscritoReingresoDePoderPresentado" xml:space="preserve">
-    <value>Escrito Reingreso De Poder Presentado</value>
+    <value>Escrito Reingreso de Poder Presentado</value>
   </data>
   <data name="lblFechaPresentacionDeEscrito" xml:space="preserve">
     <value>Fecha Presentación De Escrito</value>
@@ -2031,7 +2031,7 @@ de Gracia</value>
     <value>Tipo De Prioridad:</value>
   </data>
   <data name="titleEscritoReingresoDePoderYPrioridad" xml:space="preserve">
-    <value>Escrito De Reingreso De Poder Y Prioridad</value>
+    <value>Escrito Reingreso de Poder y Prioridad</value>
   </data>
   <data name="titleEscritoReingresoDePoderYReclasificacion" xml:space="preserve">
     <value>Escrito Reingreso de Poder y Reclasificación</value>
@@ -2082,6 +2082,15 @@ de Gracia</value>
     <value>Tipo Detalle del Anexo:</value>
   </data>
   <data name="titleEscritoReingresoDePoderAnexo" xml:space="preserve">
-    <value>Escrito De Reingreso De Poder Anexo</value>
+    <value>Escrito Reingreso de Poder Anexo</value>
+  </data>
+  <data name="titleEscritoPrioridadExtranjera" xml:space="preserve">
+    <value>Escrito de Prioridad Extranjera</value>
+  </data>
+  <data name="titleEscritoReingresoDeClasificacion" xml:space="preserve">
+    <value>Escrito de Reingreso de Clasificación</value>
+  </data>
+  <data name="titleEscritoReingresoDeDistingue" xml:space="preserve">
+    <value>Escrito de Reingreso de Distingue</value>
   </data>
 </root>

@@ -347,6 +347,12 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.CambiosDeNombre
             this._lblIdCambioDeNombre.Visibility = System.Windows.Visibility.Collapsed;
             this._txtIdCambioDeNombre.Visibility = System.Windows.Visibility.Collapsed;
             this._dpkFechaCambioDeNombre.IsEnabled = false;
+
+            this._btnAnexo.Visibility = System.Windows.Visibility.Collapsed;
+            this._btnCarpeta.Visibility = System.Windows.Visibility.Collapsed;
+            this._btnPlanilla.Visibility = System.Windows.Visibility.Collapsed;
+            this._btnPlanillaVan.Visibility = System.Windows.Visibility.Collapsed;
+            this._btnPlanillaVienen.Visibility = System.Windows.Visibility.Collapsed;            
         }
 
         private void _btnModificar_Click(object sender, RoutedEventArgs e)

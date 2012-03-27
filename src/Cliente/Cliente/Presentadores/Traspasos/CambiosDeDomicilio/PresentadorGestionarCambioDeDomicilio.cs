@@ -319,7 +319,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeDomicilio
         public void CambiarAModificar()
         {
             this._ventana.HabilitarCampos = true;
-            this._ventana.TextoBotonModificar = Recursos.Etiquetas.btnAceptar;
+            this._ventana.TextoBotonModificar = Recursos.Etiquetas.btnAceptar;            
         }
 
         /// <summary>

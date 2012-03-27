@@ -322,11 +322,13 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
             #endregion
 
             this._Agentes = new List<Agente>();
-
-            this._Agentes.Add(this.primerAgente);
-            this._ventana.Agente = this.primerAgente;
+            this._Agentes = this._agenteServicios.ObtenerAgentesSinPoderesFiltro(new Agente("MP"));
+            this._Agentes.Insert(0, this.primerAgente);
             this._ventana.AgentesFiltrados = this._Agentes;
-            this._ventana.AgenteFiltrado = this.primerAgente;
+            this._ventana.AgenteFiltrado = this.BuscarAgente(this._Agentes, this._Agentes[1]);
+
+            this._ventana.Agente = this._Agentes[1];
+
 
             #region trace
             if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))

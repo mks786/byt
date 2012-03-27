@@ -419,6 +419,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Licencias
             this._lblIdLicencia.Visibility = System.Windows.Visibility.Collapsed;
             this._txtIdLicencia.Visibility = System.Windows.Visibility.Collapsed;
             this._dpkFechaLicencia.IsEnabled = false;
+            this._btnAnexo.Visibility = System.Windows.Visibility.Collapsed;
+            this._btnCarpeta.Visibility = System.Windows.Visibility.Collapsed;
+            this._btnPlanilla.Visibility = System.Windows.Visibility.Collapsed;
+            this._btnPlanillaVan.Visibility = System.Windows.Visibility.Collapsed;
+            this._btnPlanillaVienen.Visibility = System.Windows.Visibility.Collapsed;
         }
 
         private void _btnModificar_Click(object sender, RoutedEventArgs e)

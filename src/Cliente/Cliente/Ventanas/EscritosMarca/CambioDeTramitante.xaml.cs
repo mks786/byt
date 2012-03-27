@@ -65,7 +65,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.EscritosMarca
         }
 
         public string NombreAgente
-        {
+        {            
             set { this._txtNombreAgente.Text = value; }
         }
 

@@ -296,17 +296,18 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
             #endregion
 
             this._Agentes = new List<Agente>();
-
-            this._Agentes.Add(this.primerAgente);
-            this._ventana.Agente = this.primerAgente;
+            this._Agentes = this._agenteServicios.ObtenerAgentesSinPoderesFiltro(new Agente("MP"));
+            this._Agentes.Insert(0, this.primerAgente);
             this._ventana.AgentesFiltrados = this._Agentes;
-            this._ventana.AgenteFiltrado = this.primerAgente;
+            this._ventana.AgenteFiltrado = this.BuscarAgente(this._Agentes, this._Agentes[1]);
+
+            this._ventana.Agente = this._Agentes[1];
+
 
             #region trace
             if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
                 logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
-
         }
 
         /// <summary>
@@ -394,8 +395,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
                     if (((Marca)this._ventana.MarcaFiltrado).Id != int.MinValue)
                     {
                         this._ventana.Marca =
-                            this._marcaServicios.ConsultarMarcaConTodo((Marca)this._ventana.MarcaFiltrado);
-                        this._marcas.Add((Marca)this._ventana.MarcaFiltrado);
+                            this._marcaServicios.ConsultarMarcaConTodo((Marca)this._ventana.MarcaFiltrado);                        
                     }
                     this._ventana.NombreMarca = ((Marca)this._ventana.MarcaFiltrado).Descripcion;
                     retorno = true;

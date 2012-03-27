@@ -29,7 +29,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             get { return this._tbcPestañas.DataContext; }
             set { this._tbcPestañas.DataContext = value; }
         }
-
+       
         public string NumPoderDatos
         {
             get { return this._txtPoderDatos.Text; }
@@ -57,7 +57,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
         public string IdAsociadoSolicitudFiltrar
         {
             get { return this._txtIdAsociadoSolicitud.Text; }
-        }
+        }       
 
         public string IdAsociadoDatosFiltrar
         {

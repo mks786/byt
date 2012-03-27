@@ -5,7 +5,7 @@ namespace Trascend.Bolet.Cliente.Contratos.Marcas
 {
     interface IAgregarMarca : IPaginaBase
     {
-        object Marca { get; set; }
+        object Marca { get; set; }        
 
         string IdAsociadoSolicitudFiltrar { get; }
 

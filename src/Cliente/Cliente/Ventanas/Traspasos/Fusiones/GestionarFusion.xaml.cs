@@ -352,6 +352,10 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Fusiones
             this._lblIdFusion.Visibility = System.Windows.Visibility.Collapsed;
             this._txtIdFusion.Visibility = System.Windows.Visibility.Collapsed;
             this._dpkFechaFusion.IsEnabled = false;
+
+            this._btnAnexo.Visibility = System.Windows.Visibility.Collapsed;
+            this._btnCarpeta.Visibility = System.Windows.Visibility.Collapsed;
+            this._btnPlanilla.Visibility = System.Windows.Visibility.Collapsed;            
         }
 
         private void _btnModificar_Click(object sender, RoutedEventArgs e)

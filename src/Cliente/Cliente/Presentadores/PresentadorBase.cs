@@ -1181,10 +1181,13 @@ namespace Trascend.Bolet.Cliente.Presentadores
             if (agenteBuscado != null)
                 foreach (Agente agente in agentes)
                 {
-                    if (agente.Id.Equals(agenteBuscado.Id))
+                    if (agente.Id != null)
                     {
-                        retorno = agente;
-                        break;
+                        if (agente.Id.Equals(agenteBuscado.Id))
+                        {
+                            retorno = agente;
+                            break;
+                        }
                     }
                 }
 

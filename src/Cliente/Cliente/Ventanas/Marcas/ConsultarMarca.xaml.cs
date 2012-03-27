@@ -239,7 +239,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             set
             {
                 #region TextBoxs
-
+                
                 this._txtAsociadoDatos.IsEnabled = value;
                 this._txtAsociadoSolicitud.IsEnabled = value;
                 this._txtBusqueda.IsEnabled = value;
@@ -274,7 +274,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
                 //this._txtIdDatos.IsEnabled = value;
                 this._txtIdInteresadoDatos.IsEnabled = value;
                 this._txtIdInteresadoSolicitud.IsEnabled = value;
-                //this._txtIdSolicitud.IsEnabled = value;
+                this._txtIdSolicitud.IsEnabled = value;
                 this._txtInteresadoDatos.IsEnabled = value;
                 this._txtInteresadoSolicitud.IsEnabled = value;
                 this._txtLocalidad.IsEnabled = value;
@@ -429,7 +429,13 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
 
         public string IdAsociadoSolicitudFiltrar
         {
+            get { return this._txtIdAsociadoSolicitudFiltrar.Text; }
+        }
+
+        public string IdAsociadoSolicitud
+        {
             get { return this._txtIdAsociadoSolicitud.Text; }
+            set { this._txtIdAsociadoSolicitud.Text = value; }
         }
 
         public string IdAsociadoDatosFiltrar
@@ -493,7 +499,12 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
 
         public string IdInteresadoSolicitudFiltrar
         {
-            get { return this._txtIdInteresadoSolicitud.Text; }
+            get { return this._txtIdInteresadoSolicitudFiltrar.Text; }
+        }
+
+        public string IdInteresadoSolicitud
+        {
+            set { this._txtIdInteresadoSolicitud.Text = value; }
         }
 
         public string IdInteresadoDatosFiltrar
@@ -782,13 +793,14 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
         {
             this._lstAsociadosSolicitud.ScrollIntoView(this.AsociadoSolicitud);
             this._txtAsociadoSolicitud.Visibility = System.Windows.Visibility.Collapsed;
+            this._txtIdAsociadoSolicitud.Visibility = System.Windows.Visibility.Collapsed;
             this._lstAsociadosSolicitud.Visibility = System.Windows.Visibility.Visible;
             this._lstAsociadosSolicitud.IsEnabled = true;
-            this._btnConsultarAsociadoSolicitud.Visibility = System.Windows.Visibility.Visible;
-            this._txtIdAsociadoSolicitud.Visibility = System.Windows.Visibility.Visible;
+            this._btnConsultarAsociadoSolicitud.Visibility = System.Windows.Visibility.Visible;            
             this._txtNombreAsociadoSolicitud.Visibility = System.Windows.Visibility.Visible;
             this._lblIdAsociadoSolicitud.Visibility = System.Windows.Visibility.Visible;
             this._lblNombreAsociadoSolicitud.Visibility = System.Windows.Visibility.Visible;
+            this._txtIdAsociadoSolicitudFiltrar.Visibility = System.Windows.Visibility.Visible;
         }
 
         private void ocultarLstAsociadoSolicitud()
@@ -798,18 +810,22 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             this._txtIdAsociadoSolicitud.Visibility = System.Windows.Visibility.Collapsed;
             this._txtNombreAsociadoSolicitud.Visibility = System.Windows.Visibility.Collapsed;
             this._txtAsociadoSolicitud.Visibility = System.Windows.Visibility.Visible;
+            this._txtIdAsociadoSolicitud.Visibility = System.Windows.Visibility.Visible;
             this._lblIdAsociadoSolicitud.Visibility = System.Windows.Visibility.Collapsed;
             this._lblNombreAsociadoSolicitud.Visibility = System.Windows.Visibility.Collapsed;
+            this._txtIdAsociadoSolicitudFiltrar.Visibility = System.Windows.Visibility.Collapsed;
+
         }
 
         private void mostrarLstInteresadoSolicutud()
         {
             this._lstInteresadosSolicitud.ScrollIntoView(this.InteresadoSolicitud);
             this._txtInteresadoSolicitud.Visibility = System.Windows.Visibility.Collapsed;
+            this._txtIdInteresadoSolicitud.Visibility = System.Windows.Visibility.Collapsed;
             this._lstInteresadosSolicitud.Visibility = System.Windows.Visibility.Visible;
             this._lstInteresadosSolicitud.IsEnabled = true;
             this._btnConsultarInteresadoSolicitud.Visibility = System.Windows.Visibility.Visible;
-            this._txtIdInteresadoSolicitud.Visibility = System.Windows.Visibility.Visible;
+            this._txtIdInteresadoSolicitudFiltrar.Visibility = System.Windows.Visibility.Visible;
             this._txtNombreInteresadoSolicitud.Visibility = System.Windows.Visibility.Visible;
             this._lblIdInteresadoSolicitud.Visibility = System.Windows.Visibility.Visible;
             this._lblNombreInteresadoSolicitud.Visibility = System.Windows.Visibility.Visible;
@@ -823,6 +839,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             this._txtIdInteresadoSolicitud.Visibility = System.Windows.Visibility.Collapsed;
             this._txtNombreInteresadoSolicitud.Visibility = System.Windows.Visibility.Collapsed;
             this._txtInteresadoSolicitud.Visibility = System.Windows.Visibility.Visible;
+            this._txtIdInteresadoSolicitud.Visibility = System.Windows.Visibility.Visible;
+            this._txtIdInteresadoSolicitudFiltrar.Visibility = System.Windows.Visibility.Collapsed;
             this._lblIdInteresadoSolicitud.Visibility = System.Windows.Visibility.Collapsed;
             this._lblNombreInteresadoSolicitud.Visibility = System.Windows.Visibility.Collapsed;
         }

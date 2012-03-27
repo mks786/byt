@@ -72,7 +72,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
 
             try
             {
-                this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleEscritoReingresoDeNombreDeMarca,
+                this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleEscritoReingresoDeClasificacion,
                     "");
                 
                 CargarAgente();
@@ -335,11 +335,13 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
             #endregion
 
             this._agentes = new List<Agente>();
-
-            this._agentes.Add(this.primerAgente);
-            this._ventana.Agente = this.primerAgente;
+            this._agentes = this._agenteServicios.ObtenerAgentesSinPoderesFiltro(new Agente("MP"));
+            this._agentes.Insert(0, this.primerAgente);
             this._ventana.AgentesFiltrados = this._agentes;
-            this._ventana.AgenteFiltrado = this.primerAgente;
+            this._ventana.AgenteFiltrado = this.BuscarAgente(this._agentes, this._agentes[1]);
+
+            this._ventana.Agente = this._agentes[1];
+
 
             #region trace
             if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
