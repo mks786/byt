@@ -34,7 +34,7 @@ namespace Trascend.Bolet.ControlesByT.Ventanas
             this._btnCerrar = new System.Windows.Forms.Button();
             this._imprimir = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
-            this._folio = new System.Windows.Forms.RichTextBox();
+            this._folio = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // _btnCerrar
@@ -79,10 +79,10 @@ namespace Trascend.Bolet.ControlesByT.Ventanas
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this._folio.Location = new System.Drawing.Point(12, 12);
+            this._folio.Multiline = true;
             this._folio.Name = "_folio";
             this._folio.Size = new System.Drawing.Size(468, 413);
             this._folio.TabIndex = 4;
-            this._folio.Text = "";
             // 
             // Impresion
             // 
@@ -101,6 +101,7 @@ namespace Trascend.Bolet.ControlesByT.Ventanas
             this.Name = "Impresion";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -109,7 +110,7 @@ namespace Trascend.Bolet.ControlesByT.Ventanas
         private System.Windows.Forms.Button _btnCerrar;
         private System.Windows.Forms.Button _imprimir;
         private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.RichTextBox _folio;
+        private System.Windows.Forms.TextBox _folio;
 
     }
 }

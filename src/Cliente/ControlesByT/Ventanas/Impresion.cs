@@ -27,12 +27,15 @@ namespace Trascend.Bolet.ControlesByT.Ventanas
         public Impresion(string titulo, string folio)
         {
             InitializeComponent();
-            //this._folio.ScrollBars = ScrollBars.Vertical;
+            this._folio.ScrollBars = ScrollBars.Vertical;
             this.Text = titulo;
             this._folio.Text = folio;
 
             this._folio.SelectionStart = this._folio.Text.Length;
             this._folio.SelectionLength = 0;
+
+            this._folio.AcceptsReturn = true;
+
         }
 
         private void _btnCerrar_Click(object sender, EventArgs e)

@@ -31,21 +31,9 @@ namespace Trascend.Bolet.ControlesByT.Ventanas
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ChildWindow));
-            this._detalle = new System.Windows.Forms.TextBox();
             this._btnAceptar = new System.Windows.Forms.Button();
+            this._detalle = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
-            // 
-            // _detalle
-            // 
-            this._detalle.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this._detalle.Location = new System.Drawing.Point(12, 17);
-            this._detalle.Multiline = true;
-            this._detalle.Name = "_detalle";
-            this._detalle.Size = new System.Drawing.Size(268, 208);
-            this._detalle.TabIndex = 0;
-            this._detalle.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this._detalle_KeyPress);
             // 
             // _btnAceptar
             // 
@@ -61,6 +49,18 @@ namespace Trascend.Bolet.ControlesByT.Ventanas
             this._btnAceptar.Text = "Aceptar";
             this._btnAceptar.UseVisualStyleBackColor = false;
             this._btnAceptar.Click += new System.EventHandler(this._btnAceptar_Click);
+            // 
+            // _detalle
+            // 
+            this._detalle.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this._detalle.Location = new System.Drawing.Point(12, 17);
+            this._detalle.Multiline = true;
+            this._detalle.Name = "_detalle";
+            this._detalle.Size = new System.Drawing.Size(268, 208);
+            this._detalle.TabIndex = 0;
+            this._detalle.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this._detalle_KeyPress);
             // 
             // ChildWindow
             // 
@@ -84,8 +84,8 @@ namespace Trascend.Bolet.ControlesByT.Ventanas
 
         #endregion
 
-        private System.Windows.Forms.TextBox _detalle;
         private System.Windows.Forms.Button _btnAceptar;
+        private System.Windows.Forms.TextBox _detalle;
 
     }
 }
