@@ -5,6 +5,7 @@ using NHibernate;
 using System.Collections.Generic;
 using NHibernate.Criterion;
 using System;
+using System.Configuration;
 
 namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
 {
@@ -18,10 +19,19 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
 
             try
             {
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
                 IQuery query = Session.CreateQuery(string.Format(Recursos.ConsultasHQL.ObtenerListaDatosValoresPorParametro, listaDatosValores.Id));                
 
                 listaDaosValores = query.List<ListaDatosValores>();
 
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Saliendo del Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
                 //listaDaosValores = Session.CreateCriteria(typeof(IDaoListaDatosValores)).AddOrder(Order.Asc(listaDatosValores.Id)).List<ListaDatosValores>();
             }
             catch (Exception ex)

@@ -56,22 +56,44 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
         public IList<Interesado> ObtenerInteresadosFiltro(Interesado interesado)
         {
             IList<Interesado> interesados = null;
-            bool variosFiltros = false;
-            string filtro = "";
-            string cabecera = string.Format(Recursos.ConsultasHQL.CabeceraObtenerInteresado);
-            if ((null != interesado) && (interesado.Id != 0))
+            try
             {
-                filtro = string.Format(Recursos.ConsultasHQL.FiltroObtenerInteresadoId, interesado.Id);
-                variosFiltros = true;
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                bool variosFiltros = false;
+                string filtro = "";
+                string cabecera = string.Format(Recursos.ConsultasHQL.CabeceraObtenerInteresado);
+                if ((null != interesado) && (interesado.Id != 0))
+                {
+                    filtro = string.Format(Recursos.ConsultasHQL.FiltroObtenerInteresadoId, interesado.Id);
+                    variosFiltros = true;
+                }
+                if (!string.IsNullOrEmpty(interesado.Nombre))
+                {
+                    if (variosFiltros)
+                        filtro += " and ";
+                    filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerInteresadoNombre, interesado.Nombre);
+                }
+                IQuery query = Session.CreateQuery(cabecera + filtro);
+                interesados = query.List<Interesado>();
+
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Saliendo del Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
             }
-            if (!string.IsNullOrEmpty(interesado.Nombre))
+            catch (Exception ex)
             {
-                if (variosFiltros)
-                    filtro += " and ";
-                filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerInteresadoNombre, interesado.Nombre);
+                logger.Error(ex.Message);
+                throw new ApplicationException(Recursos.Errores.ExConsultarTodos);
             }
-            IQuery query = Session.CreateQuery(cabecera + filtro);
-            interesados = query.List<Interesado>();
+            finally
+            {
+                Session.Close();
+            }
             return interesados;
         }
 

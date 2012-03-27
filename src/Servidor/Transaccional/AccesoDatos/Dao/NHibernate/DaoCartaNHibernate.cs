@@ -15,37 +15,60 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
         public IList<Carta> ObtenerCartasFiltro(Carta carta)
         {
             IList<Carta> cartas = null;
-            bool variosFiltros = false;
-            string filtro = "";
-            string cabecera = string.Format(Recursos.ConsultasHQL.CabeceraObtenerCarta);
-            if ((null != carta) && (carta.Id != 0))
+
+            try
             {
-                filtro = string.Format(Recursos.ConsultasHQL.FiltroObtenerCartaId, carta.Id);
-                variosFiltros = true;
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                bool variosFiltros = false;
+                string filtro = "";
+                string cabecera = string.Format(Recursos.ConsultasHQL.CabeceraObtenerCarta);
+                if ((null != carta) && (carta.Id != 0))
+                {
+                    filtro = string.Format(Recursos.ConsultasHQL.FiltroObtenerCartaId, carta.Id);
+                    variosFiltros = true;
+                }
+                if ((null != carta.Asociado) && (!carta.Asociado.Id.Equals("")))
+                {
+                    if (variosFiltros)
+                        filtro += " and ";
+                    filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerCartaIdAsociado, carta.Asociado.Id);
+                    variosFiltros = true;
+                }
+                if ((null != carta.Resumen) && (!carta.Resumen.Descripcion.Equals("")))
+                {
+                    if (variosFiltros)
+                        filtro += " and ";
+                    filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerCartaResumen, carta.Resumen.Descripcion);
+                }
+                if ((null != carta.Fecha) && (!carta.Fecha.Equals(DateTime.MinValue)))
+                {
+                    if (variosFiltros)
+                        filtro += " and ";
+                    string fecha = String.Format("{0:dd/MM/yy}", carta.Fecha);
+                    string fecha2 = String.Format("{0:dd/MM/yy}", carta.Fecha.AddDays(1));
+                    filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerCartaFecha, fecha, fecha2);
+                }
+                IQuery query = Session.CreateQuery(cabecera + filtro);
+                cartas = query.List<Carta>();
+
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Saliendo del Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
             }
-            if ((null != carta.Asociado) && (!carta.Asociado.Id.Equals("")))
+            catch (Exception ex)
             {
-                if (variosFiltros)
-                    filtro += " and ";
-                filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerCartaIdAsociado, carta.Asociado.Id);
-                variosFiltros = true;
+                logger.Error(ex.Message);
+                throw new ApplicationException(Recursos.Errores.ExConsultarTodos);
             }
-            if ((null != carta.Resumen) && (!carta.Resumen.Descripcion.Equals("")))
+            finally
             {
-                if (variosFiltros)
-                    filtro += " and ";
-                filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerCartaResumen, carta.Resumen.Descripcion);
+                Session.Close();
             }
-            if ((null != carta.Fecha) && (!carta.Fecha.Equals(DateTime.MinValue)))
-            {
-                if (variosFiltros)
-                    filtro += " and ";
-                string fecha = String.Format("{0:dd/MM/yy}", carta.Fecha);
-                string fecha2 = String.Format("{0:dd/MM/yy}", carta.Fecha.AddDays(1));
-                filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerCartaFecha, fecha, fecha2);
-            }
-            IQuery query = Session.CreateQuery(cabecera + filtro);
-            cartas = query.List<Carta>();
             return cartas;
         }
 
@@ -60,9 +83,19 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
 
             try
             {
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
                 Session.Save(carta);
                 transaccion.Commit();
                 exitoso = transaccion.WasCommitted;
+
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Saliendo del Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
             }
             catch (Exception ex)
             {

@@ -27,6 +27,7 @@ namespace Trascend.Bolet.ControlesByT.Ventanas
         public Impresion(string titulo, string folio)
         {
             InitializeComponent();
+
             this._folio.ScrollBars = ScrollBars.Vertical;
             this.Text = titulo;
             this._folio.Text = folio;

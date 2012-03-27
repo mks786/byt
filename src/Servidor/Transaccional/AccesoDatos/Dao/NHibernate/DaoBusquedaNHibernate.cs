@@ -18,8 +18,18 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
 
             try
             {
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
                 IQuery query = Session.CreateQuery(string.Format(Recursos.ConsultasHQL.ObtenerBusquedasPorMarca, marca.Id));
                 busquedas = query.List<Busqueda>();
+
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Saliendo del Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
             }
             catch (Exception ex)
             {

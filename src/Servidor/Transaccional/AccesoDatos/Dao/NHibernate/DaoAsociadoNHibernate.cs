@@ -58,23 +58,47 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
         /// <returns>asociado filtrado</returns>
         public IList<Asociado> ObtenerAsociadosFiltro(Asociado asociado)
         {
+
             IList<Asociado> asociados = null;
-            bool variosFiltros = false;
-            string filtro = "";
-            string cabecera = string.Format(Recursos.ConsultasHQL.CabeceraObtenerAsociado);
-            if ((null != asociado) && (asociado.Id != 0))
+
+            try
             {
-                filtro = string.Format(Recursos.ConsultasHQL.FiltroObtenerAsociadoId, asociado.Id);
-                variosFiltros = true;
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                bool variosFiltros = false;
+                string filtro = "";
+                string cabecera = string.Format(Recursos.ConsultasHQL.CabeceraObtenerAsociado);
+                if ((null != asociado) && (asociado.Id != 0))
+                {
+                    filtro = string.Format(Recursos.ConsultasHQL.FiltroObtenerAsociadoId, asociado.Id);
+                    variosFiltros = true;
+                }
+                if (!string.IsNullOrEmpty(asociado.Nombre))
+                {
+                    if (variosFiltros)
+                        filtro += " and ";
+                    filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerAsociadoNombre, asociado.Nombre);
+                }
+                IQuery query = Session.CreateQuery(cabecera + filtro);
+                asociados = query.List<Asociado>();
+
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Saliendo del Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
             }
-            if (!string.IsNullOrEmpty(asociado.Nombre))
+            catch (Exception ex)
             {
-                if (variosFiltros)
-                    filtro += " and ";
-                filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerAsociadoNombre, asociado.Nombre);
+                logger.Error(ex.Message);
+                throw new ApplicationException(Recursos.Errores.ExConsultarTodos);
             }
-            IQuery query = Session.CreateQuery(cabecera + filtro);
-            asociados = query.List<Asociado>();
+            finally
+            {
+                Session.Close();
+            }
             return asociados;
         }
     }

@@ -4,6 +4,7 @@ using Trascend.Bolet.ObjetosComunes.Entidades;
 using NHibernate;
 using System.Collections.Generic;
 using System;
+using System.Configuration;
 
 namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
 {
@@ -18,6 +19,11 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
             
             try
             {
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
                 bool variosFiltros = false;
                 string filtro = "";
                 string cabecera = string.Format(Recursos.ConsultasHQL.CabeceraObtenerCambioDeDomicilio);
@@ -62,6 +68,11 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
                 //}
                 IQuery query = Session.CreateQuery(cabecera + filtro);
                 CambioDeDomicilios = query.List<CambioDeDomicilio>();
+
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Saliendo del Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
             }
             catch (Exception ex)
             {

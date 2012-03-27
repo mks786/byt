@@ -16,40 +16,63 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
         public IList<CartaOut> ObtenerCartasOutsFiltro(CartaOut carta)
         {
             IList<CartaOut> cartas = null;
-            bool variosFiltros = false;
-            string filtro = "";
-            string cabecera = string.Format(Recursos.ConsultasHQL.CabeceraObtenerCartaOut);
-            if ((null != carta) && (carta.Status != null))
-            {
-                filtro = string.Format(Recursos.ConsultasHQL.FiltroObtenerCartaOutStatus, carta.Status);
-                variosFiltros = true;
-            }
-            if ((null != carta) && (null != carta.Id) && (!carta.Id.Equals("")))
-            {
-                if (variosFiltros)
-                    filtro += " and ";
-                filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerCartaOutId, carta.Id);
-                variosFiltros = true;
-            }
-            if (carta.Asociado!=0)
-            {
-                if (variosFiltros)
-                    filtro += " and ";
-                filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerCartaIdAsociado, carta.Asociado);
-                variosFiltros = true;
-            }
-            if ((null != carta.Fecha) && (!carta.Fecha.Equals(DateTime.MinValue)))
-            {
-                if (variosFiltros)
-                    filtro += " and ";
-                string fecha = String.Format("{0:dd/MM/yy}", carta.Fecha);
-                DateTime fechaPrueba = Convert.ToDateTime(fecha);
-                string fecha2 = String.Format("{0:dd/MM/yy}", fechaPrueba.AddDays(1));
-                filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerCartaOutFecha, fecha, fecha2);
-            }
 
-            IQuery query = Session.CreateQuery(cabecera + filtro);
-            cartas = query.List<CartaOut>();
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                bool variosFiltros = false;
+                string filtro = "";
+                string cabecera = string.Format(Recursos.ConsultasHQL.CabeceraObtenerCartaOut);
+                if ((null != carta) && (carta.Status != null))
+                {
+                    filtro = string.Format(Recursos.ConsultasHQL.FiltroObtenerCartaOutStatus, carta.Status);
+                    variosFiltros = true;
+                }
+                if ((null != carta) && (null != carta.Id) && (!carta.Id.Equals("")))
+                {
+                    if (variosFiltros)
+                        filtro += " and ";
+                    filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerCartaOutId, carta.Id);
+                    variosFiltros = true;
+                }
+                if (carta.Asociado != 0)
+                {
+                    if (variosFiltros)
+                        filtro += " and ";
+                    filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerCartaIdAsociado, carta.Asociado);
+                    variosFiltros = true;
+                }
+                if ((null != carta.Fecha) && (!carta.Fecha.Equals(DateTime.MinValue)))
+                {
+                    if (variosFiltros)
+                        filtro += " and ";
+                    string fecha = String.Format("{0:dd/MM/yy}", carta.Fecha);
+                    DateTime fechaPrueba = Convert.ToDateTime(fecha);
+                    string fecha2 = String.Format("{0:dd/MM/yy}", fechaPrueba.AddDays(1));
+                    filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerCartaOutFecha, fecha, fecha2);
+                }
+
+                IQuery query = Session.CreateQuery(cabecera + filtro);
+                cartas = query.List<CartaOut>();
+
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Saliendo del Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                throw new ApplicationException(Recursos.Errores.ExConsultarTodos);
+            }
+            finally
+            {
+                Session.Close();
+            }
             return cartas;
         }
 
@@ -62,6 +85,11 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
             int index = 0;
             try
             {
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
                 foreach (Carta carta in cartas)
                 {
                     cartasOut[index].Status = 'M';
@@ -72,13 +100,21 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
                     index++;
                 }
                 transaccion.Commit();
-                return transaccion.WasCommitted;
+
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Saliendo del Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                transaccion.Rollback();
+                transaccion.Rollback(); 
+                logger.Error(ex.Message);
                 return false;
             }
+            finally { Session.Close(); }
+
+            return transaccion.WasCommitted;
         }
     }
 }

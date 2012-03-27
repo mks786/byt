@@ -4,6 +4,7 @@ using Trascend.Bolet.ObjetosComunes.Entidades;
 using NHibernate;
 using System.Collections.Generic;
 using System;
+using System.Configuration;
 
 namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
 {
@@ -14,50 +15,73 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
         public IList<Fusion> ObtenerFusionesFiltro(Fusion fusion)
         {
             IList<Fusion> Fusiones = null;
-            bool variosFiltros = false;
-            string filtro = "";
-            string cabecera = string.Format(Recursos.ConsultasHQL.CabeceraObtenerFusion);
-            if ((null != fusion) && (fusion.Id != 0))
+
+            try
             {
-                filtro = string.Format(Recursos.ConsultasHQL.FiltroObtenerFusionId, fusion.Id);
-                variosFiltros = true;
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                bool variosFiltros = false;
+                string filtro = "";
+                string cabecera = string.Format(Recursos.ConsultasHQL.CabeceraObtenerFusion);
+                if ((null != fusion) && (fusion.Id != 0))
+                {
+                    filtro = string.Format(Recursos.ConsultasHQL.FiltroObtenerFusionId, fusion.Id);
+                    variosFiltros = true;
+                }
+                if ((null != fusion.Marca) && (!fusion.Marca.Id.Equals("")))
+                {
+                    if (variosFiltros)
+                        filtro += " and ";
+                    filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerFusionIdMarca, fusion.Marca.Id);
+                    variosFiltros = true;
+                }
+                //if ((null != fusion.Interesado) && (!fusion.Interesado.Id.Equals("")))
+                //{
+                //    if (variosFiltros)
+                //        filtro += " and ";
+                //    filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerMarcaIdInteresado, fusion.Interesado.Id);
+                //    variosFiltros = true;
+                //}
+                //if (!string.IsNullOrEmpty(fusion.Fichas))
+                //{
+                //    if (variosFiltros)
+                //        filtro += " and ";
+                //    filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerMarcaFichas, fusion.Fichas);
+                //}
+                //if (!string.IsNullOrEmpty(fusion.Descripcion))
+                //{
+                //    if (variosFiltros)
+                //        filtro += " and ";
+                //    filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerMarcaDescripcion, fusion.Descripcion);
+                //}
+                if ((null != fusion.Fecha) && (!fusion.Fecha.Equals(DateTime.MinValue)))
+                {
+                    if (variosFiltros)
+                        filtro += " and ";
+                    string fecha = String.Format("{0:dd/MM/yy}", fusion.Fecha);
+                    string fecha2 = String.Format("{0:dd/MM/yy}", fusion.Fecha.Value.AddDays(1));
+                    filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerFusionFecha, fecha, fecha2);
+                }
+                IQuery query = Session.CreateQuery(cabecera + filtro);
+                Fusiones = query.List<Fusion>();
+
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Saliendo del Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
             }
-            if ((null != fusion.Marca) && (!fusion.Marca.Id.Equals("")))
+            catch (Exception ex)
             {
-                if (variosFiltros)
-                    filtro += " and ";
-                filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerFusionIdMarca, fusion.Marca.Id);
-                variosFiltros = true;
+                logger.Error(ex.Message);
+                throw new ApplicationException(Recursos.Errores.ExConsultarTodos);
             }
-            //if ((null != fusion.Interesado) && (!fusion.Interesado.Id.Equals("")))
-            //{
-            //    if (variosFiltros)
-            //        filtro += " and ";
-            //    filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerMarcaIdInteresado, fusion.Interesado.Id);
-            //    variosFiltros = true;
-            //}
-            //if (!string.IsNullOrEmpty(fusion.Fichas))
-            //{
-            //    if (variosFiltros)
-            //        filtro += " and ";
-            //    filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerMarcaFichas, fusion.Fichas);
-            //}
-            //if (!string.IsNullOrEmpty(fusion.Descripcion))
-            //{
-            //    if (variosFiltros)
-            //        filtro += " and ";
-            //    filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerMarcaDescripcion, fusion.Descripcion);
-            //}
-            if ((null != fusion.Fecha) && (!fusion.Fecha.Equals(DateTime.MinValue)))
+            finally
             {
-                if (variosFiltros)
-                    filtro += " and ";
-                string fecha = String.Format("{0:dd/MM/yy}", fusion.Fecha);
-                string fecha2 = String.Format("{0:dd/MM/yy}", fusion.Fecha.Value.AddDays(1));
-                filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerFusionFecha, fecha, fecha2);
+                Session.Close();
             }
-            IQuery query = Session.CreateQuery(cabecera + filtro);
-            Fusiones = query.List<Fusion>();
             return Fusiones;
         }
 

@@ -4,6 +4,7 @@ using Trascend.Bolet.ObjetosComunes.Entidades;
 using System.Collections.Generic;
 using NHibernate;
 using System;
+using System.Configuration;
 
 namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
 {
@@ -17,8 +18,18 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
 
             try
             {
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
                 IQuery query = Session.CreateQuery(string.Format(Recursos.ConsultasHQL.ObtenerDatosTransferenciaPorAsociado, asociado.Id));
                 datosTransferencia = query.List<DatosTransferencia>();
+
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Saliendo del Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
             }
             catch (Exception ex)
             {

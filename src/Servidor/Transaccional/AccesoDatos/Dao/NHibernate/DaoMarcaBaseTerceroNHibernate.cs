@@ -8,24 +8,46 @@ using Trascend.Bolet.ObjetosComunes.Entidades;
 
 namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
 {
-    public class DaoMarcaBaseTerceroNHibernate : DaoBaseNHibernate<MarcaBaseTercero, int>,  IDaoMarcaBaseTercero
+    public class DaoMarcaBaseTerceroNHibernate : DaoBaseNHibernate<MarcaBaseTercero, int>, IDaoMarcaBaseTercero
     {
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
         public IList<MarcaBaseTercero> ObtenerMarcaBaseTerceroFiltro(MarcaBaseTercero marcaBaseTercero)
         {
             IList<MarcaBaseTercero> MarcasTercero = null;
-            bool variosFiltros = false;
-            string filtro = "";
-            string cabecera = string.Format(Recursos.ConsultasHQL.CabeceraObtenerMarcaBaseTercero);
-            if ((null != marcaBaseTercero) && (marcaBaseTercero.Id != null))
+            try
             {
-                filtro = string.Format(Recursos.ConsultasHQL.FiltroObtenerMarcaBaseTerceroId, "'" + marcaBaseTercero.Id + "'");
-                variosFiltros = true;
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                bool variosFiltros = false;
+                string filtro = "";
+                string cabecera = string.Format(Recursos.ConsultasHQL.CabeceraObtenerMarcaBaseTercero);
+                if ((null != marcaBaseTercero) && (marcaBaseTercero.Id != null))
+                {
+                    filtro = string.Format(Recursos.ConsultasHQL.FiltroObtenerMarcaBaseTerceroId, "'" + marcaBaseTercero.Id + "'");
+                    variosFiltros = true;
+                }
+
+                IQuery query = Session.CreateQuery(cabecera + filtro);
+                MarcasTercero = query.List<MarcaBaseTercero>();
+
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
             }
-           
-            IQuery query = Session.CreateQuery(cabecera + filtro);
-            MarcasTercero = query.List<MarcaBaseTercero>();
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                throw new ApplicationException(Recursos.Errores.ExConsultarTodos);
+            }
+            finally
+            {
+                Session.Close();
+            }
             return MarcasTercero;
         }
 
