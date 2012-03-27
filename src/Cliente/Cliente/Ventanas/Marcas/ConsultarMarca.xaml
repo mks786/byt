@@ -92,7 +92,7 @@
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblId}"/>
                         </Label>
                         <custom:ByTTextBox IsEnabled="False" Grid.Column="1" Grid.Row="1" Name="_txtIdSolicitud" VerticalAlignment="Center"  
-                          Grid.ColumnSpan="3" MaxLength="255"
+                          MaxLength="255" Margin="0,0,5,0"
                              ToolTip="{Binding ElementName=_txtIdDatos, Path=(Validation.Errors)[0].ErrorContent}">
                             <custom:ByTTextBox.Text>
                                 <Binding Path="Id" UpdateSourceTrigger="PropertyChanged">
@@ -102,11 +102,11 @@
                                 </Binding>
                             </custom:ByTTextBox.Text>
                         </custom:ByTTextBox>
-                        <Label Grid.Column="4" Grid.Row="1" VerticalAlignment="Center" HorizontalContentAlignment="Right">
+                        <Label Grid.Column="2" Grid.Row="1" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblMarca}"/>
                         </Label>
-                        <custom:ByTTextBox IsEnabled="False" Grid.Column="5" Grid.Row="1" Name="_txtDescripcionSolicitud" VerticalAlignment="Center"  
-                         Margin="3" Grid.ColumnSpan="7" MaxLength="255"
+                        <custom:ByTTextBox IsEnabled="False" Grid.Column="3" Grid.Row="1" Name="_txtDescripcionSolicitud" VerticalAlignment="Center"  
+                         Margin="3" Grid.ColumnSpan="9" MaxLength="255"
                              ToolTip="{Binding ElementName=_txtDescripcionDatos, Path=(Validation.Errors)[0].ErrorContent}">
                             <custom:ByTTextBox.Text>
                                 <Binding Path="Descripcion" UpdateSourceTrigger="PropertyChanged">
@@ -796,11 +796,11 @@
                         </Grid.RowDefinitions>
 
                         <!--Primera Fila-->
-                        <Label Grid.Column="0" Grid.Row="0" VerticalAlignment="Bottom" HorizontalContentAlignment="Right" IsEnabled="False" Margin="0,0,0,5">
+                        <Label Grid.Column="0" Grid.Row="0" VerticalAlignment="Bottom" HorizontalContentAlignment="Right" IsEnabled="True">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblId}"/>
                         </Label>
                         <custom:ByTTextBox Grid.Column="1" Grid.Row="0" Name="_txtIdDatos" VerticalAlignment="Bottom"  
-                          Grid.ColumnSpan="3" MaxLength="255" IsEnabled="False" Margin="0,0,0,5"
+                          MaxLength="255" IsEnabled="False" Margin="0,0,5,0"
                              ToolTip="{Binding ElementName=_txtIdDatos, Path=(Validation.Errors)[0].ErrorContent}">
                             <custom:ByTTextBox.Text>
                                 <Binding Path="Id" UpdateSourceTrigger="PropertyChanged">
@@ -810,11 +810,11 @@
                                 </Binding>
                             </custom:ByTTextBox.Text>
                         </custom:ByTTextBox>
-                        <Label Grid.Column="4" Grid.Row="0" VerticalAlignment="Bottom" HorizontalContentAlignment="Right" IsEnabled="False" Margin="0,0,0,5">
+                        <Label Grid.Column="2" Grid.Row="0" VerticalAlignment="Bottom" HorizontalContentAlignment="Right" IsEnabled="True">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblMarca}" />
                         </Label>
-                        <custom:ByTTextBox IsEnabled="False" Grid.Column="5" Grid.Row="0" Name="_txtDescripcionDatos" VerticalAlignment="Bottom"  
-                         Grid.ColumnSpan="7" MaxLength="255" Margin="3,0,0,5"
+                        <custom:ByTTextBox IsEnabled="False" Grid.Column="3" Grid.Row="0" Name="_txtDescripcionDatos" VerticalAlignment="Bottom"  
+                         Grid.ColumnSpan="9" MaxLength="255" Margin="3,0,0,5"
                              ToolTip="{Binding ElementName=_txtDescripcionDatos, Path=(Validation.Errors)[0].ErrorContent}">
                             <custom:ByTTextBox.Text>
                                 <Binding Path="Descripcion" UpdateSourceTrigger="PropertyChanged">
@@ -848,13 +848,16 @@
                                 <RowDefinition Height="Auto"/>
                             </Grid.RowDefinitions>
 
-                            <custom:ByTTextBox IsEnabled="False" MaxLength="255" Grid.Column="0" Grid.Row="1" Name="_txtAsociadoDatos" VerticalAlignment="Center" 
-                         Grid.ColumnSpan="7" MouseDoubleClick="_txtAsociadoDatos_GotFocus" IsReadOnly="True"></custom:ByTTextBox>
+                            <custom:ByTTextBox IsReadOnly="True" Grid.Column="0" Grid.Row="1" Name="_txtIdAsociadoDatos" VerticalAlignment="Center"
+                         MaxLength="255" Margin="0,0,5,0" IsEnabled="False" Text="{Binding Path=Asociado.Id}"></custom:ByTTextBox>
+
+                            <custom:ByTTextBox IsEnabled="False" MaxLength="255" Grid.Column="1" Grid.Row="1" Name="_txtAsociadoDatos" VerticalAlignment="Center" 
+                         Grid.ColumnSpan="6" MouseDoubleClick="_txtAsociadoDatos_GotFocus" IsReadOnly="False"></custom:ByTTextBox>
 
                             <Label Name="_lblIdAsociadoDatos" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Center" Visibility="Collapsed">
                                 <TextBlock Text="{x:Static recurso:Etiquetas.lblId}"/>
                             </Label>
-                            <custom:ByTTextBox IsEnabled="False"   Grid.Column="1" Grid.Row="0" Name="_txtIdAsociadoDatos" VerticalAlignment="Center" 
+                            <custom:ByTTextBox IsEnabled="False"   Grid.Column="1" Grid.Row="0" Name="_txtIdAsociadoDatosFiltrar" VerticalAlignment="Center" 
                          MaxLength="255" Grid.ColumnSpan="2" Visibility="Collapsed"  ></custom:ByTTextBox>
 
                             <Label Name="_lblNombreAsociadoDatos" Grid.Column="3" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Center" Visibility="Collapsed">
@@ -920,13 +923,16 @@
                                 <RowDefinition Height="Auto"/>
                             </Grid.RowDefinitions>
 
-                            <custom:ByTTextBox IsEnabled="False" MaxLength="255" Grid.Column="0" Grid.Row="1" Name="_txtInteresadoDatos" VerticalAlignment="Center" 
-                         Grid.ColumnSpan="7" MouseDoubleClick="_txtInteresadoDatos_GotFocus" IsReadOnly="True"></custom:ByTTextBox>
+                            <custom:ByTTextBox IsReadOnly="True" Grid.Column="0" Grid.Row="1" Name="_txtIdInteresadoDatos" VerticalAlignment="Center"
+                         MaxLength="255" Margin="0,0,5,0" IsEnabled="False" Text="{Binding Path=Interesado.Id}"></custom:ByTTextBox>
+                            
+                            <custom:ByTTextBox IsEnabled="False" MaxLength="255" Grid.Column="1" Grid.Row="1" Name="_txtInteresadoDatos" VerticalAlignment="Center" 
+                         Grid.ColumnSpan="6" MouseDoubleClick="_txtInteresadoDatos_GotFocus" IsReadOnly="True"></custom:ByTTextBox>
 
                             <Label Name="_lblIdInteresadoDatos" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Center" Visibility="Collapsed">
                                 <TextBlock Text="{x:Static recurso:Etiquetas.lblId}"/>
                             </Label>
-                            <custom:ByTTextBox IsEnabled="False"    Grid.Column="1" Grid.Row="0" Name="_txtIdInteresadoDatos" VerticalAlignment="Center" 
+                            <custom:ByTTextBox IsEnabled="False"    Grid.Column="1" Grid.Row="0" Name="_txtIdInteresadoDatosFiltrar" VerticalAlignment="Center" 
                          MaxLength="255" Grid.ColumnSpan="2" Visibility="Collapsed"  ></custom:ByTTextBox>
 
                             <Label Name="_lblNombreInteresadoDatos" Grid.Column="3" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Center" Visibility="Collapsed">

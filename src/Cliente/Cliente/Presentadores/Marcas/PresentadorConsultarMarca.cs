@@ -758,6 +758,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                     this._ventana.IdAsociadoSolicitud = ((Asociado)this._ventana.AsociadoSolicitud).Id.ToString();
                     this._ventana.AsociadoDatos = (Asociado)this._ventana.AsociadoSolicitud;
                     this._ventana.NombreAsociadoDatos = ((Asociado)this._ventana.AsociadoSolicitud).Nombre;
+                    this._ventana.IdAsociadoDatos = ((Asociado)this._ventana.AsociadoSolicitud).Id.ToString();
                     
                 }
 
@@ -789,8 +790,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 {
                     Asociado asociado = this._asociadoServicios.ConsultarAsociadoConTodo((Asociado)this._ventana.AsociadoDatos);
                     this._ventana.NombreAsociadoDatos = ((Asociado)this._ventana.AsociadoDatos).Nombre;
+                    this._ventana.IdAsociadoDatos = ((Asociado)this._ventana.AsociadoDatos).Id.ToString();
                     this._ventana.AsociadoSolicitud = (Asociado)this._ventana.AsociadoDatos;
                     this._ventana.NombreAsociadoSolicitud = ((Asociado)this._ventana.AsociadoDatos).Nombre;
+                    this._ventana.IdAsociadoSolicitud = ((Asociado)this._ventana.AsociadoDatos).Id.ToString();
                 }
 
                 #region trace
@@ -935,6 +938,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                     this._ventana.IdInteresadoSolicitud = ((Interesado)this._ventana.InteresadoSolicitud).Id.ToString();
                     this._ventana.InteresadoDatos = (Interesado)this._ventana.InteresadoSolicitud;
                     this._ventana.NombreInteresadoDatos = ((Interesado)this._ventana.InteresadoSolicitud).Nombre;
+                    this._ventana.IdInteresadoDatos = ((Interesado)this._ventana.InteresadoSolicitud).Id.ToString();
                     this._ventana.InteresadoPaisSolicitud = interesadoAux.Pais != null ? interesadoAux.Pais.NombreEspanol : "";
                     this._ventana.InteresadoCiudadSolicitud = interesadoAux.Ciudad != null ? interesadoAux.Ciudad : "";
                 }
@@ -972,6 +976,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                     this._ventana.NombreInteresadoDatos = ((Interesado)this._ventana.InteresadoDatos).Nombre;
                     this._ventana.InteresadoSolicitud = (Interesado)this._ventana.InteresadoDatos;
                     this._ventana.NombreInteresadoSolicitud = ((Interesado)this._ventana.InteresadoDatos).Nombre;
+                    this._ventana.IdInteresadoSolicitud = ((Interesado)this._ventana.InteresadoDatos).Id.ToString();
                     this._ventana.InteresadoPaisSolicitud = interesadoAux.Pais != null ? interesadoAux.Pais.NombreEspanol : "";
                     this._ventana.InteresadoCiudadSolicitud = interesadoAux.Ciudad != null ? interesadoAux.Ciudad : "";
                 }
