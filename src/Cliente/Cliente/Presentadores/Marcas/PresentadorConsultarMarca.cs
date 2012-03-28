@@ -47,6 +47,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
         private IBusquedaServicios _busquedaServicios;
         private IStatusWebServicios _statusWebServicios;
         private IPlanillaServicios _planillaServicios;
+        private IInternacionalServicios _internacionalServicios;
 
         private IList<Asociado> _asociados;
         private IList<Interesado> _interesados;
@@ -118,6 +119,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["StatusWebServicios"]);
                 this._planillaServicios = (IPlanillaServicios)Activator.GetObject(typeof(IPlanillaServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["PlanillaServicios"]);
+                this._internacionalServicios = (IInternacionalServicios)Activator.GetObject(typeof(IInternacionalServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["InternacionalServicios"]);
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -1784,6 +1787,19 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 logger.Error(ex.Message);
                 this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
             }
+        }
+
+        /// <summary>
+        /// Método que consulta la clase internacional y lo pega en distingue
+        /// </summary>
+        public void TomarClaseInternacional()
+        {
+            Internacional internacionalAux = new Internacional();
+
+            internacionalAux = _internacionalServicios.ConsultarPorId(new Internacional(int.Parse(this._ventana.IdInternacional)));
+
+            this._ventana.DistingueSolicitud = internacionalAux.Descripcion;
+            this._ventana.DistingueDatos = internacionalAux.Descripcion;
         }
     }
 }

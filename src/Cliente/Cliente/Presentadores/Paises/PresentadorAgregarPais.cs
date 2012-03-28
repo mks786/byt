@@ -47,9 +47,19 @@ namespace Trascend.Bolet.Cliente.Presentadores.Paises
 
             try
             {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
                 this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleAgregarPais,
                     Recursos.Ids.AgregarUsuario);
                 this._ventana.FocoPredeterminado();
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
             }
             catch (ApplicationException ex)
             {
@@ -84,6 +94,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Paises
         {
             try
             {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
                 Pais pais = (Pais)this._ventana.Pais;
                 pais.Region = !this._ventana.Region.Equals("") ? this._ventana.Region : null;
 
@@ -98,6 +113,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Paises
                 {
                     this._ventana.Mensaje(Recursos.MensajesConElUsuario.ErrorPaisRepetido);
                 }
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
             }
             catch (ApplicationException ex)
             {

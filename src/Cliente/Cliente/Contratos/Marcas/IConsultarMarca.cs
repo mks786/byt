@@ -188,6 +188,10 @@ namespace Trascend.Bolet.Cliente.Contratos.Marcas
 
         string ClaseNacional { get; }
 
+        string DistingueSolicitud { set; }
+
+        string DistingueDatos { set; }
+
         GridViewColumnHeader CurSortCol { get; set; }
 
         SortAdorner CurAdorner { get; set; }

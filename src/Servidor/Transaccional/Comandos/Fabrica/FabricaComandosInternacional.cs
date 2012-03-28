@@ -45,5 +45,15 @@ namespace Trascend.Bolet.Comandos.Fabrica
         {
             return new ComandoVerificarExistenciaInternacional(internacional);
         }
+
+        /// <summary>
+        /// Método que devuelve el Comando consultar por Id
+        /// </summary>
+        /// <param name="internacional">Internacional a consultar</param>
+        /// <returns>Internacional consultado</returns>
+        public static ComandoBase<Internacional> ObtenerComandoConsultarPorId(Internacional internacional)
+        {
+            return new ComandoConsultarPorId(internacional);
+        }
     }
 }

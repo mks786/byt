@@ -40,9 +40,28 @@ namespace Trascend.Bolet.Servicios.Implementacion
             return internacional;
         }
 
-        public Internacional ConsultarPorId(Internacional nacional)
+        /// <summary>
+        /// Método que consulta un Internacional por Id
+        /// </summary>
+        /// <param name="nacional">Entidad con el id a consultar</param>
+        /// <returns>entidad completa</returns>
+        public Internacional ConsultarPorId(Internacional internacional)
         {
-            throw new NotImplementedException();
+            #region trace
+            if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+            Internacional internacionalAux = new Internacional();
+
+            internacionalAux = ControladorInternacional.ConsultarPorId(internacional);
+
+            #region trace
+            if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                logger.Debug("Saliendo del Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+            return internacionalAux;
         }
 
         /// <summary>

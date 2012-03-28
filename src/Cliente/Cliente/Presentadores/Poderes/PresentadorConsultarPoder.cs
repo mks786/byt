@@ -201,6 +201,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Poderes
             }
         }
 
+        /// <summary>
+        /// Método que elimina un poder de la base de datos
+        /// </summary>
         public void Eliminar()
         {
             try
@@ -248,6 +251,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Poderes
             }
         }
 
+        /// <summary>
+        /// Método que llama a la pantalla de auditoría
+        /// </summary>
         public void Auditoria()
         {
             try
@@ -293,6 +299,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Poderes
             }
         }
 
+        /// <summary>
+        /// Método que exporta el poder en un pdf
+        /// </summary>
         public void AbrirPoder()
         {
             try
@@ -320,7 +329,6 @@ namespace Trascend.Bolet.Cliente.Presentadores.Poderes
                 this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
             }
         }
-
 
         /// <summary>
         /// Método que ordena una columna
@@ -356,9 +364,22 @@ namespace Trascend.Bolet.Cliente.Presentadores.Poderes
             #endregion
         }
 
+        /// <summary>
+        /// Método que se encarga de cambiar el interesado seleccionado en la pantalla
+        /// </summary>
         public void cambiarInteresado()
         {
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
             this._ventana.NombreInteresado = ((Interesado)this._ventana.Interesado).Nombre;
+
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
         }
     }
 }

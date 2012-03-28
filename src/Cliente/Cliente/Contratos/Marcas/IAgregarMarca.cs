@@ -159,6 +159,10 @@ namespace Trascend.Bolet.Cliente.Contratos.Marcas
 
         string IdNacional { get; set; }
 
+        string DistingueSolicitud { set; }
+
+        string DistingueDatos { set; }
+
         void BorrarCeros();
 
         GridViewColumnHeader CurSortCol { get; set; }

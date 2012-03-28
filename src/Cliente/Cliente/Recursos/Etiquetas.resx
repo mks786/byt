@@ -2096,4 +2096,7 @@ de Gracia</value>
   <data name="lsvAnexo" xml:space="preserve">
     <value>Anexo</value>
   </data>
+  <data name="btnTomarClaseInternacional" xml:space="preserve">
+    <value>Tomar Clase Internacional</value>
+  </data>
 </root>

@@ -604,6 +604,16 @@ namespace Trascend.Bolet.Cliente.Recursos {
         
         /// <summary>
         ///   Looks up a localized string similar to Transferir.
+        ///   Busca una cadena traducida similar a Tomar Clase Internacional.
+        /// </summary>
+        public static string btnTomarClaseInternacional {
+            get {
+                return ResourceManager.GetString("btnTomarClaseInternacional", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Transferir.
         /// </summary>
         public static string btnTransferir {
             get {

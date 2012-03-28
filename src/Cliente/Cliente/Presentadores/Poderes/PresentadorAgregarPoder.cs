@@ -87,6 +87,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Poderes
 
             try
             {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
                 this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleAgregarPoder,
                     Recursos.Ids.AgregarUsuario);
                 this._ventana.FocoPredeterminado();
@@ -104,6 +109,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Poderes
                     this._ventana.InteresadoEsEditable = false;
                     this._ventana.TextoBotonCancelar = Recursos.Etiquetas.btnRegresar;
                 }
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
             }
             catch (ApplicationException ex)
             {
@@ -138,6 +148,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Poderes
         {
             try
             {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
                 Poder poder = (Poder)this._ventana.Poder;
 
                 poder.Boletin = (Boletin)this._ventana.Boletin;
@@ -150,6 +165,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Poderes
                         this.Navegar(new ConsultarInteresado(poder.Interesado));
                     else
                         this.Navegar(Recursos.MensajesConElUsuario.PoderInsertado, false);
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
             }
             catch (ApplicationException ex)
             {

@@ -48,6 +48,41 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
         }
 
         /// <summary>
+        /// Método que consulta un Internacional por Id
+        /// </summary>
+        /// <param name="nacional">Entidad con el id a consultar</param>
+        /// <returns>entidad completa</returns>
+        public static Internacional ConsultarPorId(Internacional internacional)
+        {
+
+            Internacional retorno;
+
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                ComandoBase<Internacional> comando = FabricaComandosInternacional.ObtenerComandoConsultarPorId(internacional);
+                comando.Ejecutar();
+                retorno = comando.Receptor.ObjetoAlmacenado;
+
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Saliendo del Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (ApplicationException ex)
+            {
+                logger.Error(ex.Message);
+                throw ex;
+            }
+
+            return retorno;
+        }
+
+        /// <summary>
         /// Método que elimina un internacional
         /// </summary>
         /// <param name="internacional">Internacional a eliminar</param>

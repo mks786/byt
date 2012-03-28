@@ -52,8 +52,18 @@ namespace Trascend.Bolet.Cliente.Presentadores.Nacionales
         /// </summary>
         public void ActualizarTitulo()
         {
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
             this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleConsultarNacionales,
                 Recursos.Ids.ConsultarNacionales);
+
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
         }
 
         /// <summary>

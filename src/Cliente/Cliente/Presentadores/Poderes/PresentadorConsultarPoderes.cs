@@ -55,8 +55,18 @@ namespace Trascend.Bolet.Cliente.Presentadores.Poderes
 
         public void ActualizarTitulo()
         {
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
             this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleConsultarPoderes,
                 Recursos.Ids.ConsultarPoderes);
+
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
         }
 
         /// <summary>
@@ -263,8 +273,16 @@ namespace Trascend.Bolet.Cliente.Presentadores.Poderes
             #endregion
         }
 
+        /// <summary>
+        /// Método que se encarga de filtrar un interesado
+        /// </summary>
         public void BuscarInteresado()
         {
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
             IEnumerable<Interesado> interesadosFiltrados = (IList<Interesado>)this._interesados;
 
             if (!string.IsNullOrEmpty(this._ventana.IdInteresadoFiltrar))
@@ -286,6 +304,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Poderes
                 this._ventana.Interesados = interesadosFiltrados.ToList<Interesado>();
             else
                 this._ventana.Interesados = this._interesados;
+
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
         }
     }
 }

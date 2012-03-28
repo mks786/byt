@@ -481,6 +481,10 @@
     <value>Select r from Resolucion r where r.Boletin.Id = {0}</value>
     <comment>Selecciona las resoluciones de un boletin</comment>
   </data>
+  <data name="ObtenerInternacionalPorId" xml:space="preserve">
+    <value>Select i from Internacional i where i.Id = {0}</value>
+    <comment>Selecciona un internacional por Id</comment>
+  </data>
   <data name="ObtenerMaxIdMarcaTercero" xml:space="preserve">
     <value>select max(m.Id) from MarcaTercero m where m.Id like '{0}-%'</value>
     <comment>Selecciona el ultimo insert de MarcaTercero del parametro dado</comment>

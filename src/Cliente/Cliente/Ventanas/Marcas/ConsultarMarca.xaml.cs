@@ -364,7 +364,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
                 this._btnCancelar.IsEnabled = value;
                 this._btnCarpeta.IsEnabled = value;
                 this._btnCertificados.IsEnabled = value;
-                this._btnClaseCompleta.IsEnabled = value;
+                this._btnClaseCompletaSolicitud.IsEnabled = value;
                 this._btnConflicto.IsEnabled = value;
                 this._btnConflictoELI.IsEnabled = value;
                 this._btnConflictoINC.IsEnabled = value;
@@ -766,6 +766,16 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             get { return this._txtClaseNacional.Text; }
         }
 
+        public string DistingueDatos
+        {
+            set { this._txtDistingueDatos.Text = value; }
+        }
+
+        public string DistingueSolicitud
+        {
+            set { this._txtDistingue.Text = value; }
+        }
+
         public void ArchivoNoEncontrado()
         {
             MessageBox.Show(Recursos.MensajesConElUsuario.ErrorPoderNoEncontrado, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -1143,7 +1153,21 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
 
         private void _btnClaseCompletaSolicitud_Click(object sender, RoutedEventArgs e)
         {
-
+            if (!this._txtClaseInternacional.Text.Equals(""))
+            {
+                if (this._txtDistingue.Text.Equals(""))
+                {
+                    this._presentador.TomarClaseInternacional();
+                }
+                else
+                {
+                    if (MessageBoxResult.Yes == MessageBox.Show(Recursos.MensajesConElUsuario.ConfirmacionTomarClaseInternacional,
+                    "Modificar Distingue de marca", MessageBoxButton.YesNo, MessageBoxImage.Question))
+                    {
+                        this._presentador.TomarClaseInternacional();
+                    }
+                }
+            }
         }
 
         private void _btnIrReclasificarSolicitud_Click(object sender, RoutedEventArgs e)

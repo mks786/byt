@@ -479,6 +479,16 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             set { this._poderesCargados = value; }
         }
 
+        public string DistingueDatos
+        {
+            set { this._txtDistingueDatos.Text = value; }
+        }
+
+        public string DistingueSolicitud
+        {
+            set { this._txtDistingue.Text = value; }
+        }
+
         public void BorrarCeros()
         {
             this._txtClaseInternacionalSolicitud.Text = this._txtClaseInternacionalSolicitud.Text.Equals("0") ? "" : this._txtClaseInternacionalSolicitud.Text;
@@ -869,7 +879,21 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
 
         private void _btnClaseCompletaSolicitud_Click(object sender, RoutedEventArgs e)
         {
-
+            if (!this._txtClaseInternacionalSolicitud.Text.Equals(""))
+            {
+                if (this._txtDistingue.Text.Equals(""))
+                {
+                    this._presentador.TomarClaseInternacional();
+                }
+                else
+                {
+                    if (MessageBoxResult.Yes == MessageBox.Show(Recursos.MensajesConElUsuario.ConfirmacionTomarClaseInternacional,
+                    "Modificar Distingue de marca", MessageBoxButton.YesNo, MessageBoxImage.Question))
+                    {
+                        this._presentador.TomarClaseInternacional();
+                    }
+                }
+            }
         }
 
         private void _btnIrReclasificarSolicitud_Click(object sender, RoutedEventArgs e)
@@ -1050,7 +1074,6 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             this._presentador.IrSAPI();
         }
 
-        #endregion
-
+        #endregion       
     }
 }

@@ -799,6 +799,16 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Select i from Internacional i where i.Id = {0}.
+        /// </summary>
+        public static string ObtenerInternacionalPorId {
+            get {
+                return ResourceManager.GetString("ObtenerInternacionalPorId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Select l from ListaDatosDominio l where l.Filtro = &apos;{0}&apos;.
         ///   Looks up a localized string similar to Select l from ListaDatosDominio l where l.Filtro = &apos;{0}&apos;.
         /// </summary>
         public static string ObtenerListaDatosDominioPorParametro {

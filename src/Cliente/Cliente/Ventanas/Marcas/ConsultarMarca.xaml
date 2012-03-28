@@ -409,7 +409,10 @@
                         <custom:ByTTextBox IsEnabled="False" MaxLength="255" Grid.Column="1" Grid.Row="10" Name="_txtClaseInternacional" VerticalAlignment="Center" 
                          Grid.ColumnSpan="1" Text="{Binding Path=Internacional.Id}" SoloNumero="True"></custom:ByTTextBox>
 
-                        <Button IsEnabled="False" Name="_btnClaseCompleta" VerticalAlignment="Bottom" Grid.Column="2" Grid.Row="10" Grid.ColumnSpan="2" Height="25" Width="90">Clase completa</Button>
+                        <Button IsEnabled="False" Name="_btnClaseCompletaSolicitud" VerticalAlignment="Bottom" Grid.Column="2" Grid.Row="10" Grid.ColumnSpan="2" 
+                            Height="25" Width="160" Click="_btnClaseCompletaSolicitud_Click">
+                            <TextBlock Text="{x:Static recurso:Etiquetas.btnTomarClaseInternacional}"/>
+                        </Button>
 
                         <Label Grid.Column="4" Grid.Row="10" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblClaseNac}"/>
