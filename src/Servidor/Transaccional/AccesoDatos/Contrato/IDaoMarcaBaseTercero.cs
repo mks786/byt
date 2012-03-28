@@ -7,6 +7,8 @@ namespace Trascend.Bolet.AccesoDatos.Contrato
     {
         IList<MarcaBaseTercero> ObtenerMarcaBaseTerceroFiltro(MarcaBaseTercero marcaBaseTercero);
 
+        int ObtenerMaxSecuencia();
+
     //    Marca ObtenerMarcaTerceroConTodo(MarcaTercero marcaTercero);
     }
 }

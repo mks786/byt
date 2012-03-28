@@ -351,6 +351,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.MarcasTercero
                 this._txtComencliIng.IsEnabled = value;
                 this._txtClaseInternacionalByt.IsEnabled = value;
                 this._txtClaseNacionalByt.IsEnabled = value;
+               // this._txtAnexo.IsEnabled = value; m
                 //this._txtCodIntlDatos.IsEnabled = value;
                 //this._txtComentarioDatos.IsEnabled = value;
                 //this._txtConflictoDatos.IsEnabled = value;
@@ -537,6 +538,14 @@ namespace Trascend.Bolet.Cliente.Ventanas.MarcasTercero
             set { this._txtNombreMarca.Text = value; }
             get { return this._txtNombreMarca.Text; }
         }
+
+        public string Anexo
+        {
+            set { this._txtAnexo.Text = value; }
+            get { return this._txtAnexo.Text; }
+        }
+
+   
 
         public string IdAsociadoSolicitudFiltrar
         {

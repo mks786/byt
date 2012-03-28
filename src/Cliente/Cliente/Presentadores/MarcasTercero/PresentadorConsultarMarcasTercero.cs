@@ -187,7 +187,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
                 if (filtroValido >= 2)
                 {
                     this._marcasTercero = this._marcaTerceroServicios.ObtenerMarcaTerceroFiltro(MarcaTerceroAuxiliar);
-
+                    MarcaTercero MarcaTerceroComparadora = _marcasTercero[0];
+                    int comprobador = 0;
                     IList<MarcaTercero> marcasTerceroDesinfladas = new List<MarcaTercero>();
 
                     foreach (var marcaTercero in this._marcasTercero)
@@ -197,7 +198,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
                         Interesado interesadoAuxiliar = new Interesado();
 
                         MarcaTerceroAuxiliar.Descripcion = marcaTercero.Descripcion != null ? marcaTercero.Descripcion : "";
-
+                        MarcaTerceroAuxiliar.Anexo = marcaTercero.Anexo;
                         if ((marcaTercero.Asociado != null) && (!string.IsNullOrEmpty(marcaTercero.Asociado.Nombre)))
                         {
                             asociadoAuxiliar.Nombre = marcaTercero.Asociado.Nombre;
@@ -210,10 +211,21 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
                             MarcaTerceroAuxiliar.Interesado = interesadoAuxiliar;
                         }
 
+
                         MarcaTerceroAuxiliar.FechaPublicacion = marcaTercero.FechaPublicacion != null ? marcaTercero.FechaPublicacion : null;
-
-                        marcasTerceroDesinfladas.Add(MarcaTerceroAuxiliar);
-
+                        //Filtra las busquedas repetidas
+                        if ((MarcaTerceroComparadora.Id == MarcaTerceroAuxiliar.Id) && (MarcaTerceroComparadora.Anexo == MarcaTerceroAuxiliar.Anexo))
+                        {
+                            if (comprobador <= 0)
+                            {
+                                marcasTerceroDesinfladas.Add(MarcaTerceroAuxiliar);
+                                comprobador++;
+                            }
+                        }
+                        else
+                        {
+                            marcasTerceroDesinfladas.Add(MarcaTerceroAuxiliar);
+                        }
                     }
 
                     this._ventana.Resultados = marcasTerceroDesinfladas;

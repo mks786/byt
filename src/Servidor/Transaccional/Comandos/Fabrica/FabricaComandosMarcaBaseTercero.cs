@@ -60,5 +60,14 @@ namespace Trascend.Bolet.Comandos.Fabrica
         {
             return new ComandoConsultarMarcasBaseTerceroFiltro(marcaBaseTercero);
         }
+
+        /// <summary>
+        /// Método que devuelve el ultimo Secuencia insertado de una marcaTercero
+        /// </summary>
+        /// <param name="pais">MarcaTercero a verificar</param>
+        public static ComandoBase<int> ObtenerComandoConsultarMarcaTerceroMaxSecuencia()
+        {
+            return new ComandoConsultarMaxSecuencia();
+        }
     }
 }

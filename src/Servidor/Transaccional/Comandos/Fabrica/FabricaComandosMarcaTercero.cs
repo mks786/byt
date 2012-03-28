@@ -56,9 +56,33 @@ namespace Trascend.Bolet.Comandos.Fabrica
             return new ComandoVerificarExistenciaMarcaTercero(marcaTercero);
         }
 
+        /// <summary>
+        /// Método que devuelve el Comando verificar existencia
+        /// </summary>
+        /// <param name="pais">MarcaTercero a verificar</param>
+     
         public static ComandoBase<IList<MarcaTercero>> ObtenerComandoConsultarMarcasTerceroFiltro(MarcaTercero marcaTercero)
         {
             return new ComandoConsultarMarcasTerceroFiltro(marcaTercero);
+        }
+
+        /// <summary>
+        /// Método que devuelve el ultimo Id de la letra Enviada
+        /// </summary>
+        /// <param name="pais">MarcaTercero a verificar</param>
+     
+        public static ComandoBase<string> ObtenerComandoConsultarMarcaTerceroMaxId(string maxId)
+        {
+            return new ComandoConsultarMaxId(maxId);
+        }
+
+        /// <summary>
+        /// Método que devuelve el ultimo Anexo insertado de una marcaTercero
+        /// </summary>
+        /// <param name="pais">MarcaTercero a verificar</param>
+        public static ComandoBase<int> ObtenerComandoConsultarMarcaTerceroMaxAnexo(string maxAnexo)
+        {
+            return new ComandoConsultarMaxAnexo(maxAnexo);
         }
     }
 }

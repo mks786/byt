@@ -51,6 +51,18 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
             return MarcasTercero;
         }
 
+
+        public int ObtenerMaxSecuencia()
+        {
+            int idConsultado;
+            string consulta = string.Format(Recursos.ConsultasHQL.ObtenerMaxSecuenciaMarcaBaseTercero);
+            IQuery query = Session.CreateQuery(consulta);
+            idConsultado = query.UniqueResult<int>();
+
+
+            return idConsultado;
+        }
+
         //public Marca ObtenerMarcaConTodo(Marca marca)
         //{
         //    Marca retorno;

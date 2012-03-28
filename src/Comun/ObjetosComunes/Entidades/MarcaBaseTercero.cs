@@ -9,7 +9,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         #region Atributos
 
         private string _id;
-        private Anexo _anexo;
+        private int _anexo;
         private int _secuencia;
         private string _origen;
         private string _tipo;
@@ -51,7 +51,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         /// <summary>
         /// Propiedad que asigna u obtiene la descripción
         /// </summary>
-        public virtual Anexo Anexo
+        public virtual int Anexo
         {
             get { return this._anexo; }
             set { this._anexo = value; }

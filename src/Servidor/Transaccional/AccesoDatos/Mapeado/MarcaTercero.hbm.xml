@@ -8,6 +8,7 @@
     <id name="Id" column="CMARCAT" type="string"/>
     <property name="Descripcion" column="XMARCA" type="string"/>
     <property name="Tipo" column="ITIPO" type="string"/>
+    <property name="Anexo" column="CANEXO" type="int"/>
     <property name="Prioridad" column="CPRIORIDAD" type="string"/>
     <property name="AsociadoTercero" column="XASOCIADOT" type="string"/>
     <property name="InteresadoTercero" column="XINTERESADOT" type="string"/>
@@ -91,10 +92,6 @@
 
     <many-to-one name="TipoEstado" class="TipoEstado">
       <column name="TESTADO"/>
-    </many-to-one>
-
-    <many-to-one name="Anexo" class="Anexo">
-      <column name="CANEXO"/>
     </many-to-one>
 
     <bag name="MarcasBaseTercero">

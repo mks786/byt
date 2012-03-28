@@ -54,7 +54,12 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
         public static bool InsertarOModificar(MarcaTercero marcaTercero, int hash)
         {
             bool exitoso = false;
-            char id;
+            string id;
+            string contadorStr;
+            int contador;
+            int indice;
+
+
             try
             {
                 #region trace
@@ -62,21 +67,55 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
                     logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-                if (marcaTercero.Id == "")
+                if (marcaTercero.Id == null) //Cuando se agrega un Registro
                 {
-                    id = marcaTercero.Descripcion[0];
-                    if ((id == 'E') && (marcaTercero.Descripcion[1]=='T'))
+                    id = (marcaTercero.Descripcion[0].ToString().ToUpper());// + marcaTercero.Descripcion[1].ToString().ToUpper());
+
+                    ComandoBase<string> idBuscado = FabricaComandosMarcaTercero.ObtenerComandoConsultarMarcaTerceroMaxId(id);
+                    idBuscado.Ejecutar();
+                    indice = idBuscado.Receptor.ObjetoAlmacenado.Length - 2;
+                    contadorStr = idBuscado.Receptor.ObjetoAlmacenado.Substring(2, indice);
+                    contador = int.Parse(contadorStr) + 1;
+                    marcaTercero.Id = idBuscado.Receptor.ObjetoAlmacenado.Substring(0, 2) + contador.ToString();
+                    marcaTercero.Anexo = 1;
+                    if ((id == "E") && (marcaTercero.Descripcion[1].ToString().ToUpper() == "T"))
                     {
-                    
+
+
                     }
 
+                    if (marcaTercero.MarcasBaseTercero != null)
+                    { 
+                        List<MarcaBaseTercero> marcasBaseTerceroModificada = new List<MarcaBaseTercero>();
+                        ComandoBase<int> idSecuencia = FabricaComandosMarcaBaseTercero.ObtenerComandoConsultarMarcaTerceroMaxSecuencia();
+                        idSecuencia.Ejecutar();
+                        int secuencia = idSecuencia.Receptor.ObjetoAlmacenado;
+                        foreach (MarcaBaseTercero marcaBaseTercero in marcaTercero.MarcasBaseTercero)
+                        {
+                            marcaBaseTercero.Id = marcaTercero.Id;
+                            marcaBaseTercero.Anexo = marcaTercero.Anexo;
+                            secuencia++;
+                            marcaBaseTercero.Secuencia = secuencia;
+                            marcasBaseTerceroModificada.Add(marcaBaseTercero);
+                            //ComandoBase<bool> comandoMbt = FabricaComandosMarcaBaseTercero.ObtenerComandoInsertarOModificar(marcaBaseTercero);
+                            //comandoMbt.Ejecutar();
+                            //exitoso = comandoMbt.Receptor.ObjetoAlmacenado;
+
+                        }
+                        marcaTercero.MarcasBaseTercero = marcasBaseTerceroModificada;
+                    }
                     ComandoBase<bool> comando = FabricaComandosMarcaTercero.ObtenerComandoInsertarOModificar(marcaTercero);
                     comando.Ejecutar();
                     exitoso = comando.Receptor.ObjetoAlmacenado;
                 }
-                else { 
-                
+                else //Cuando se Crea se Modifica un Registro
+                {
 
+                    ComandoBase<int> idAnexo = FabricaComandosMarcaTercero.ObtenerComandoConsultarMarcaTerceroMaxAnexo(marcaTercero.Id);
+                    idAnexo.Ejecutar();
+                    marcaTercero.Anexo = idAnexo.Receptor.ObjetoAlmacenado + 1;
+                    ComandoBase<int> idSecuencia = FabricaComandosMarcaBaseTercero.ObtenerComandoConsultarMarcaTerceroMaxSecuencia();
+                    idSecuencia.Ejecutar();
 
                 }
 

@@ -22,6 +22,8 @@ namespace Trascend.Bolet.Cliente.Contratos.MarcasTercero
 
         string NombreMarca { set; get; }
 
+        string Anexo { set; get; }
+
         //string IdAsociadoDatosFiltrar { get; }
 
         string NombreAsociadoSolicitudFiltrar { get; }

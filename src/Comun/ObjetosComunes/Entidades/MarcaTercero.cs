@@ -70,7 +70,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         private string _cPrioridad;
         private string _operacion;
         private Anaqua _anaqua;
-        private Anexo _anexo;
+        private int _anexo;
         private InfoAdicional _infoAdicional;
         private IList<InfoBol> _infoBoles;
         private IList<Operacion> _operaciones;
@@ -683,7 +683,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         /// <summary>
         /// Propiedad que asigna u obtiene el Anexo
         /// </summary>
-        public virtual Anexo Anexo
+        public virtual int Anexo
         {
             get { return _anexo; }
             set { _anexo = value; }

@@ -481,4 +481,16 @@
     <value>Select r from Resolucion r where r.Boletin.Id = {0}</value>
     <comment>Selecciona las resoluciones de un boletin</comment>
   </data>
+  <data name="ObtenerMaxIdMarcaTercero" xml:space="preserve">
+    <value>select max(m.Id) from MarcaTercero m where m.Id like '{0}-%'</value>
+    <comment>Selecciona el ultimo insert de MarcaTercero del parametro dado</comment>
+  </data>
+  <data name="ObtenerMaxAnexoMarcaTercero" xml:space="preserve">
+    <value>select max(m.Anexo) from MarcaTercero m where m.Id = '{0}'</value>
+    <comment>Obtiene el ultimo anexo insertado de un marca Tercero</comment>
+  </data>
+  <data name="ObtenerMaxSecuenciaMarcaBaseTercero" xml:space="preserve">
+    <value>select max(m.Secuencia) from MarcaBaseTercero m</value>
+    <comment>Obtiene la Ultima Secuencia de marcaBaseTercero</comment>
+  </data>
 </root>

@@ -213,6 +213,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
 
                     this._ventana.ComentarioClienteEspanol = marcaTercero.ComentarioEsp;
                     this._ventana.ComentarioClienteIngles = marcaTercero.ComentarioIng;
+                    this._ventana.Anexo = marcaTercero.Anexo.ToString();
                     //IList<StatusWeb> statusWebs = this._statusWebServicios.ConsultarTodos();
                     //StatusWeb primerStatus = new StatusWeb();
                     //primerStatus.Id = "NGN";
@@ -318,6 +319,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
 
         public void CargaComboBox()
         {
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
 
             MarcaTercero marcaTercero = (MarcaTercero)this._ventana.MarcaTercero;
             EstadoMarca estadoMarca = new EstadoMarca();
@@ -382,6 +387,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
                 this._ventana.BoletinConcesion = this.BuscarBoletin(boletines, marcaTercero.BoletinConcesion);
                 this._ventana.BoletinPublicacion = this.BuscarBoletin(boletines, marcaTercero.BoletinPublicacion);
             }
+
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
         
         }
 
@@ -397,7 +407,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
             if(!_agregar)
                 marcaTercero.Operacion = "MODIFY";
             else
-                marcaTercero.Operacion = "INSERT";
+                marcaTercero.Operacion = "CREATE";
            
             if (null != this._ventana.Agente)
                 marcaTercero.Agente = !((Agente)this._ventana.Agente).Id.Equals("NGN") ? (Agente)this._ventana.Agente : null;
@@ -702,7 +712,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
                 logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
 
-            this.Navegar(new AgregarMarcaTercero(CargarMarcaTerceroDeLaPantalla()));
+         //   this.Navegar(new AgregarMarcaTercero(CargarMarcaTerceroDeLaPantalla()));
 
             #region trace
             if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
