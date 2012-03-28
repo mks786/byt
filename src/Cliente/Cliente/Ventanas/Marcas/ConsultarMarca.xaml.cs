@@ -255,7 +255,9 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
                 this._txtCodIntlDatos.IsEnabled = value;
                 this._txtComentarioDatos.IsEnabled = value;
                 this._txtConflictoDatos.IsEnabled = value;
+                this._txtIdCorresponsalDatos.IsEnabled = value;
                 this._txtCorresponsalDatos.IsEnabled = value;
+                this._txtIdCorresponsalSolicitud.IsEnabled = value;
                 this._txtCorresponsalSolicitud.IsEnabled = value;
                 this._txtCorresponsalDatos.IsEnabled = value;
                 this._txtDescripcionDatos.IsEnabled = value;
@@ -590,12 +592,22 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
 
         public string IdCorresponsalSolicitudFiltrar
         {
-            get { return this._txtIdCorresponsalSolicitud.Text; }
+            get { return this._txtIdCorresponsalSolicitudFiltrar.Text; }
+        }
+
+        public string IdCorresponsalSolicitud
+        {
+            set { this._txtIdCorresponsalSolicitud.Text = value; }
         }
 
         public string IdCorresponsalDatosFiltrar
         {
-            get { return this._txtIdCorresponsalDatos.Text; }
+            get { return this._txtIdCorresponsalDatosFiltrar.Text; }
+        }
+
+        public string IdCorresponsalDatos
+        {
+            set { this._txtIdCorresponsalDatos.Text = value; }
         }
 
         public string DescripcionCorresponsalSolicitudFiltrar
@@ -846,11 +858,10 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             this._presentador.CambiarInteresadoSolicitud();
             this._lstInteresadosSolicitud.Visibility = System.Windows.Visibility.Collapsed;
             this._btnConsultarInteresadoSolicitud.Visibility = System.Windows.Visibility.Collapsed;
-            this._txtIdInteresadoSolicitud.Visibility = System.Windows.Visibility.Collapsed;
+            this._txtIdInteresadoSolicitudFiltrar.Visibility = System.Windows.Visibility.Collapsed;
             this._txtNombreInteresadoSolicitud.Visibility = System.Windows.Visibility.Collapsed;
             this._txtInteresadoSolicitud.Visibility = System.Windows.Visibility.Visible;
-            this._txtIdInteresadoSolicitud.Visibility = System.Windows.Visibility.Visible;
-            this._txtIdInteresadoSolicitudFiltrar.Visibility = System.Windows.Visibility.Collapsed;
+            this._txtIdInteresadoSolicitud.Visibility = System.Windows.Visibility.Visible;            
             this._lblIdInteresadoSolicitud.Visibility = System.Windows.Visibility.Collapsed;
             this._lblNombreInteresadoSolicitud.Visibility = System.Windows.Visibility.Collapsed;
         }
@@ -859,10 +870,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
         {
             this._lstCorresponsalesSolicitud.ScrollIntoView(this.CorresponsalSolicitud);
             this._txtCorresponsalSolicitud.Visibility = System.Windows.Visibility.Collapsed;
+            this._txtIdCorresponsalSolicitud.Visibility = System.Windows.Visibility.Collapsed;
             this._lstCorresponsalesSolicitud.Visibility = System.Windows.Visibility.Visible;
             this._lstCorresponsalesSolicitud.IsEnabled = true;
             this._btnConsultarCorresponsalSolicitud.Visibility = System.Windows.Visibility.Visible;
-            this._txtIdCorresponsalSolicitud.Visibility = System.Windows.Visibility.Visible;
+            this._txtIdCorresponsalSolicitudFiltrar.Visibility = System.Windows.Visibility.Visible;
             this._txtDescripcionCorresponsalSolicitud.Visibility = System.Windows.Visibility.Visible;
             this._lblIdCorresponsalSolicitud.Visibility = System.Windows.Visibility.Visible;
             this._lblDescripcionCorresponsalSolicitud.Visibility = System.Windows.Visibility.Visible;
@@ -873,9 +885,10 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             this._presentador.CambiarCorresponsalSolicitud();
             this._lstCorresponsalesSolicitud.Visibility = System.Windows.Visibility.Collapsed;
             this._btnConsultarCorresponsalSolicitud.Visibility = System.Windows.Visibility.Collapsed;
-            this._txtIdCorresponsalSolicitud.Visibility = System.Windows.Visibility.Collapsed;
+            this._txtIdCorresponsalSolicitudFiltrar.Visibility = System.Windows.Visibility.Collapsed;
             this._txtDescripcionCorresponsalSolicitud.Visibility = System.Windows.Visibility.Collapsed;
             this._txtCorresponsalSolicitud.Visibility = System.Windows.Visibility.Visible;
+            this._txtIdCorresponsalSolicitud.Visibility = System.Windows.Visibility.Visible;
             this._lblIdCorresponsalSolicitud.Visibility = System.Windows.Visibility.Collapsed;
             this._lblDescripcionCorresponsalSolicitud.Visibility = System.Windows.Visibility.Collapsed;
         }
@@ -936,10 +949,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
         {
             this._lstCorresponsalesDatos.ScrollIntoView(this.CorresponsalDatos);
             this._txtCorresponsalDatos.Visibility = System.Windows.Visibility.Collapsed;
+            this._txtIdCorresponsalDatos.Visibility = System.Windows.Visibility.Collapsed;
             this._lstCorresponsalesDatos.Visibility = System.Windows.Visibility.Visible;
             this._lstCorresponsalesDatos.IsEnabled = true;
             this._btnConsultarCorresponsalDatos.Visibility = System.Windows.Visibility.Visible;
-            this._txtIdCorresponsalDatos.Visibility = System.Windows.Visibility.Visible;
+            this._txtIdCorresponsalDatosFiltrar.Visibility = System.Windows.Visibility.Visible;
             this._txtDescripcionCorresponsalDatos.Visibility = System.Windows.Visibility.Visible;
             this._lblIdCorresponsalDatos.Visibility = System.Windows.Visibility.Visible;
             this._lblDescripcionCorresponsalDatos.Visibility = System.Windows.Visibility.Visible;
@@ -950,9 +964,10 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             this._presentador.CambiarCorresponsalDatos();
             this._lstCorresponsalesDatos.Visibility = System.Windows.Visibility.Collapsed;
             this._btnConsultarCorresponsalDatos.Visibility = System.Windows.Visibility.Collapsed;
-            this._txtIdCorresponsalDatos.Visibility = System.Windows.Visibility.Collapsed;
+            this._txtIdCorresponsalDatosFiltrar.Visibility = System.Windows.Visibility.Collapsed;
             this._txtDescripcionCorresponsalDatos.Visibility = System.Windows.Visibility.Collapsed;
             this._txtCorresponsalDatos.Visibility = System.Windows.Visibility.Visible;
+            this._txtIdCorresponsalDatos.Visibility = System.Windows.Visibility.Visible;
             this._lblIdCorresponsalDatos.Visibility = System.Windows.Visibility.Collapsed;
             this._lblDescripcionCorresponsalDatos.Visibility = System.Windows.Visibility.Collapsed;
         }
