@@ -2084,6 +2084,18 @@ de Gracia</value>
   <data name="titleEscritoReingresoDePoderAnexo" xml:space="preserve">
     <value>Escrito Reingreso de Poder Anexo</value>
   </data>
+  <data name="chkDatos" xml:space="preserve">
+    <value>Datos</value>
+  </data>
+  <data name="chkIndicadores" xml:space="preserve">
+    <value>Indicadores</value>
+  </data>
+  <data name="chkInternacional" xml:space="preserve">
+    <value>Internacional</value>
+  </data>
+  <data name="chkPrioridad" xml:space="preserve">
+    <value>Prioridad</value>
+  </data>
   <data name="titleEscritoPrioridadExtranjera" xml:space="preserve">
     <value>Escrito de Prioridad Extranjera</value>
   </data>
@@ -2092,6 +2104,24 @@ de Gracia</value>
   </data>
   <data name="titleEscritoReingresoDeDistingue" xml:space="preserve">
     <value>Escrito de Reingreso de Distingue</value>
+  </data>
+  <data name="chkInstruccionesDeRenovacion" xml:space="preserve">
+    <value>Instrucciones de Renovación</value>
+  </data>
+  <data name="chkNacional" xml:space="preserve">
+    <value>Nacional</value>
+  </data>
+  <data name="chkRenovadaPorOtroTramitante" xml:space="preserve">
+    <value>Renovada Por Otro Tramitante</value>
+  </data>
+  <data name="chkTYR" xml:space="preserve">
+    <value>TYR</value>
+  </data>
+  <data name="lblAsociadoInternacional" xml:space="preserve">
+    <value>Asociado Internacional</value>
+  </data>
+  <data name="lblCodigoInt" xml:space="preserve">
+    <value>Código Internacional:</value>
   </data>
   <data name="lsvAnexo" xml:space="preserve">
     <value>Anexo</value>

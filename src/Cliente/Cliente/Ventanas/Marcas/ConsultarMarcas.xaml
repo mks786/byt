@@ -27,12 +27,6 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="40"/>
         </Grid.RowDefinitions>
-
-
-
-
-
-
         <GroupBox Grid.Column="0" Grid.Row="0" Margin="5,5,30,5" Height="35" VerticalAlignment="Top">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                 <Label>
@@ -45,167 +39,350 @@
             </StackPanel>
         </GroupBox>
 
-        <!--<ScrollViewer HorizontalScrollBarVisibility="Auto">-->
+        <ScrollViewer HorizontalScrollBarVisibility="Auto" Margin="-4,39,4,1" Grid.RowSpan="2">
             <!--Área de Filtrado-->
             <GroupBox Grid.Column="0" Grid.Row="0" Margin="5,45,5,5">
                 <StackPanel Name="_splFiltro" DataContext="{Binding}" VerticalAlignment="Center">
+
                     <Separator Margin="0,0,0,5"/>
+
+                    <CheckBox IsEnabled="True" Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="7" Content="{x:Static recurso:Etiquetas.chkInternacional}" 
+                                  Height="16" HorizontalAlignment="Left" Margin="5,0,0,0" Name="_chkInternacional"
+                                  VerticalAlignment="Center" Click="_chkInternacional_Click" IsChecked="False"/>
                     <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,180,0">
-                        <Label>
+                        <Label Visibility="Collapsed" Name="_lblIdInternacional">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblId}"/>
                         </Label>
-                        <custom:ByTTextBox Name="_txtId" Width="150" MaxLength="40" SoloNumero="True" Filtro="True" 
+                        <custom:ByTTextBox Visibility="Collapsed"  Name="_txtIdInternacional" Width="150" MaxLength="40" SoloNumero="True" Filtro="True" 
                                        GotFocus="_btnConsultarFocus" GotKeyboardFocus="_btnConsultarFocus"/>
                     </WrapPanel>
                     <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,180,0">
-                        <Label>
-                            <TextBlock Text="{x:Static recurso:Etiquetas.lblMarca}"/>
+                        <Label Visibility="Collapsed" Name="_lblCodigoInternacional">
+                            <TextBlock Text="{x:Static recurso:Etiquetas.lblCodigoInt}"/>
                         </Label>
-                        <TextBox Name="_txtDescripcion" Text="{Binding Path=Id}" Width="150" MaxLength="8"
+                        <custom:ByTTextBox Visibility="Collapsed"  Name="_txtCodigoInternacional" Text="{Binding Path=Id}" Width="75" MaxLength="8"
+                             GotFocus="_btnConsultarFocus" GotKeyboardFocus="_btnConsultarFocus"/>
+                        <custom:ByTTextBox Visibility="Collapsed"  Name="_txtCodigoInternacional2" Text="{Binding Path=Id}" Width="75" MaxLength="8"
                              GotFocus="_btnConsultarFocus" GotKeyboardFocus="_btnConsultarFocus"/>
                     </WrapPanel>
+
                     <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,180,0">
+                        <Label Visibility="Collapsed" Name="_lblPaisInternacional" >
+                            <TextBlock Text="{x:Static recurso:Etiquetas.lblPais}"/>
+                        </Label>
+                        <ComboBox Visibility="Collapsed"  Name="_cbxPaisInternacional" Width="150" ItemsSource="{Binding}" DisplayMemberPath="NombreEspanol" >
+                        </ComboBox>
+                    </WrapPanel>
+
+                    <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,180,0">
+                        <Label Visibility="Collapsed" Name="_lblReferenciaInternacional">
+                            <TextBlock Text="{x:Static recurso:Etiquetas.lblReferencia}"/>
+                        </Label>
+                        <custom:ByTTextBox Visibility="Collapsed"  Name="_txtReferenciaInternacional" Text="{Binding Path=Id}" Width="150" MaxLength="8"
+                             GotFocus="_btnConsultarFocus" GotKeyboardFocus="_btnConsultarFocus"/>
+                    </WrapPanel>
+
+                    <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,180,0">
+                        <Label Visibility="Collapsed" Name="_lblAsociadoInternacional">
+                            <TextBlock Text="{x:Static recurso:Etiquetas.lblAsociadoInternacional}"/>
+                        </Label>
+                        <TextBox Visibility="Collapsed" Name="_txtAsociadoInternacional" Text="{Binding Path=Id}" Width="150" MaxLength="8"
+                             GotFocus="_btnConsultarFocus" GotKeyboardFocus="_btnConsultarFocus"/>
+                    </WrapPanel>
+
+                    <Separator Margin="0,0,0,5"/>
+                    <CheckBox IsEnabled="True" Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="7" Content="{x:Static recurso:Etiquetas.chkNacional}" 
+                                  Height="16" HorizontalAlignment="Left" Margin="5,0,0,0" Name="_chkNacional"
+                                  VerticalAlignment="Center" Click="_chkNacional_Click" IsChecked="True"/>
+                    <StackPanel Name="_nacional">
+                        <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,180,0">
+                            <Label Name="_lblId">
+                                <TextBlock Text="{x:Static recurso:Etiquetas.lblId}"/>
+                            </Label>
+                            <custom:ByTTextBox Name="_txtId" Width="150" MaxLength="40" SoloNumero="True" Filtro="True" 
+                                       GotFocus="_btnConsultarFocus" GotKeyboardFocus="_btnConsultarFocus"/>
+                        </WrapPanel>
+                        <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,180,0">
+                            <Label Name="_lblSolicitud">
+                                <TextBlock Text="{x:Static recurso:Etiquetas.lblSolicitud}"/>
+                            </Label>
+                            <custom:ByTTextBox Name="_txtSolicitud" Width="75" MaxLength="40" SoloNumero="True" Filtro="True" 
+                                       GotFocus="_btnConsultarFocus" GotKeyboardFocus="_btnConsultarFocus"/>
+
+                            <DatePicker Name="_dpkFecha" Width="75" Focusable="False" BorderBrush="{x:Null}" SelectedDateChanged="_dpkFecha_SelectedDateChanged">
+                                <DatePicker.SelectedDate>
+                                    <Binding Path="Fecha" UpdateSourceTrigger="PropertyChanged"/>
+                                </DatePicker.SelectedDate>
+                            </DatePicker>
+                        </WrapPanel>
+                        <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,180,0">
+                            <Label Name="_lblMarca">
+                                <TextBlock Text="{x:Static recurso:Etiquetas.lblMarca}"/>
+                            </Label>
+                            <TextBox Name="_txtDescripcion" Text="{Binding Path=Id}" Width="150" MaxLength="8"
+                             GotFocus="_btnConsultarFocus" GotKeyboardFocus="_btnConsultarFocus"/>
+                        </WrapPanel>
+                        <!--<WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,180,0">
                         <Label>
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblFichas}"/>
                         </Label>
                         <TextBox Name="_txtFichas" Text="" Width="150" MaxLength="15"
                              GotFocus="_btnConsultarFocus" GotKeyboardFocus="_btnConsultarFocus" CharacterCasing="Upper"/>
-                    </WrapPanel>
-                    <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,180,0">
-                        <Label VerticalAlignment="Center" HorizontalContentAlignment="Right">
-                            <TextBlock Text="{x:Static recurso:Etiquetas.lblFechaBoletin}"/>
-                        </Label>
-                        <DatePicker Name="_dpkFecha" Width="150" Focusable="False" BorderBrush="{x:Null}" SelectedDateChanged="_dpkFecha_SelectedDateChanged">
-                            <DatePicker.SelectedDate>
-                                <Binding Path="Fecha" UpdateSourceTrigger="PropertyChanged"/>
-                            </DatePicker.SelectedDate>
-                        </DatePicker>
-                    </WrapPanel>
+                    </WrapPanel>-->
+                        <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,14,0">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="84"/>
+                                    <ColumnDefinition Width="316"/>
+                                </Grid.ColumnDefinitions>
 
-
-                    <Separator Margin="0,5,0,5"/>
-                    <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,14,0">
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="84"/>
-                                <ColumnDefinition Width="316"/>
-                            </Grid.ColumnDefinitions>
-
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
-                            </Grid.RowDefinitions>
-                            <Label VerticalAlignment="Center" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Left">
-                                <TextBlock Text="{x:Static recurso:Etiquetas.lblAsociado}"/>
-                            </Label>
-                            <Label Name="_lblIdAsociado" Visibility="Collapsed"  VerticalAlignment="Center" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Right">
-                                <TextBlock Text="{x:Static recurso:Etiquetas.lblId}"/>
-                            </Label>
-                            <custom:ByTTextBox BorderBrush="LightGreen" Name="_txtAsociado" Text="" Width="150" MaxLength="15" Grid.Row="0" Grid.Column="1" Height="25" HorizontalAlignment="Left"
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <Label Name="_lblAsociado" VerticalAlignment="Center" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Left">
+                                    <TextBlock Text="{x:Static recurso:Etiquetas.lblAsociado}"/>
+                                </Label>
+                                <Label Name="_lblIdAsociado" Visibility="Collapsed"  VerticalAlignment="Center" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Right">
+                                    <TextBlock Text="{x:Static recurso:Etiquetas.lblId}"/>
+                                </Label>
+                                <custom:ByTTextBox BorderBrush="LightGreen" Name="_txtAsociado" Text="" Width="150" MaxLength="15" Grid.Row="0" Grid.Column="1" Height="25" HorizontalAlignment="Left"
                                  MouseDoubleClick="_txtAsociado_MouseDoubleClick" IsReadOnly="True"/>
-                            <custom:ByTTextBox Visibility="Collapsed" Name="_txtIdAsociado" Text="" Width="150" MaxLength="15" Grid.Row="1" Grid.Column="1" Height="25" HorizontalAlignment="Left"
+                                <custom:ByTTextBox Visibility="Collapsed" Name="_txtIdAsociado" Text="" Width="150" MaxLength="15" Grid.Row="1" Grid.Column="1" Height="25" HorizontalAlignment="Left"
                                  GotFocus="_btnConsultarAsociadoFocus" GotKeyboardFocus="_btnConsultarAsociadoFocus" SoloNumero="True" Filtro="True" Margin="0,3" />
 
-                            <Label Name="_lblNombreAsociado" Visibility="Collapsed"  VerticalAlignment="Center" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Right">
-                                <TextBlock Text="{x:Static recurso:Etiquetas.lblNombre}"/>
-                            </Label>
-                            <TextBox Visibility="Collapsed"  Name="_txtNombreAsociado" Text="" Width="150" MaxLength="255" Grid.Row="2" Grid.Column="1" Height="25" HorizontalAlignment="Left"
+                                <Label Name="_lblNombreAsociado" Visibility="Collapsed"  VerticalAlignment="Center" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Right">
+                                    <TextBlock Text="{x:Static recurso:Etiquetas.lblNombre}"/>
+                                </Label>
+                                <TextBox Visibility="Collapsed"  Name="_txtNombreAsociado" Text="" Width="150" MaxLength="255" Grid.Row="2" Grid.Column="1" Height="25" HorizontalAlignment="Left"
                                  GotFocus="_btnConsultarAsociadoFocus" GotKeyboardFocus="_btnConsultarAsociadoFocus" Margin="0,3" />
 
-                            <Button Visibility="Collapsed"  Name="_btnConsultarAsociado" Width="100" IsDefault="False" Grid.Row="2" Grid.Column="1" Height="25" HorizontalAlignment="Right" Click="_btnConsultarAsociado_Click">
-                                <TextBlock Text="{x:Static recurso:Etiquetas.btnConsultar}"/>
-                            </Button>
-                            <!--Path=Id, Converter={StaticResource convertir}-->
-                            <ListView Visibility="Collapsed"  Height="198" Name="_lstAsociados" ItemsSource="{Binding}" 
+                                <Button Visibility="Collapsed"  Name="_btnConsultarAsociado" Width="100" IsDefault="False" Grid.Row="2" Grid.Column="1" Height="25" HorizontalAlignment="Right" Click="_btnConsultarAsociado_Click">
+                                    <TextBlock Text="{x:Static recurso:Etiquetas.btnConsultar}"/>
+                                </Button>
+                                <!--Path=Id, Converter={StaticResource convertir}-->
+                                <ListView Visibility="Collapsed"  Height="198" Name="_lstAsociados" ItemsSource="{Binding}" 
                       SelectionMode="Single" MouseDoubleClick="_lstAsociados_MouseDoubleClick"
                       Style="{DynamicResource EstiloListView}" Grid.Row="3" Grid.ColumnSpan="2">
-                                <ListView.View>
-                                    <GridView>
-                                        <GridViewColumn Width="45">
-                                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="Id" Content="{x:Static recurso:Etiquetas.lsvId}"/>
-                                            <GridViewColumn.CellTemplate>
-                                                <DataTemplate>
-                                                    <TextBlock>
+                                    <ListView.View>
+                                        <GridView>
+                                            <GridViewColumn Width="45">
+                                                <GridViewColumnHeader Click="_Ordenar_Click" Tag="Id" Content="{x:Static recurso:Etiquetas.lsvId}"/>
+                                                <GridViewColumn.CellTemplate>
+                                                    <DataTemplate>
+                                                        <TextBlock>
                                                 <TextBlock.Text>
                                                     <Binding Path="Id" Converter="{StaticResource convertir}"/>
                                                 </TextBlock.Text>
-                                                    </TextBlock>
-                                                </DataTemplate>
-                                            </GridViewColumn.CellTemplate>
-                                        </GridViewColumn>
-                                        <GridViewColumn DisplayMemberBinding="{Binding Path=Nombre}" Width="250">
-                                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="Nombre" Content="{x:Static recurso:Etiquetas.lsvNombre}"/>
-                                        </GridViewColumn>
-                                    </GridView>
-                                </ListView.View>
-                            </ListView>
-                        </Grid>
-                    </WrapPanel>
+                                                        </TextBlock>
+                                                    </DataTemplate>
+                                                </GridViewColumn.CellTemplate>
+                                            </GridViewColumn>
+                                            <GridViewColumn DisplayMemberBinding="{Binding Path=Nombre}" Width="250">
+                                                <GridViewColumnHeader Click="_Ordenar_Click" Tag="Nombre" Content="{x:Static recurso:Etiquetas.lsvNombre}"/>
+                                            </GridViewColumn>
+                                        </GridView>
+                                    </ListView.View>
+                                </ListView>
+                            </Grid>
+                        </WrapPanel>
+                        <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,14,0">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="84"/>
+                                    <ColumnDefinition Width="316"/>
+                                </Grid.ColumnDefinitions>
 
-                    <Separator Margin="0,5,0,5"/>
-                    <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,14,0">
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="84"/>
-                                <ColumnDefinition Width="316"/>
-                            </Grid.ColumnDefinitions>
-
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
-                            </Grid.RowDefinitions>
-                            <Label VerticalAlignment="Center" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Left">
-                                <TextBlock Text="{x:Static recurso:Etiquetas.lblInteresado}"/>
-                            </Label>
-                            <Label Name="_lblIdInteresado" Visibility="Collapsed" VerticalAlignment="Center" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Right">
-                                <TextBlock Text="{x:Static recurso:Etiquetas.lblId}"/>
-                            </Label>
-                            <custom:ByTTextBox BorderBrush="LightGreen" Name="_txtInteresado" Text="" Width="150" MaxLength="15" Grid.Row="0" Grid.Column="1" Height="25" HorizontalAlignment="Left"
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <Label Name="_lblInteresado" VerticalAlignment="Center" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Left">
+                                    <TextBlock Text="{x:Static recurso:Etiquetas.lblInteresado}"/>
+                                </Label>
+                                <Label Name="_lblIdInteresado" Visibility="Collapsed" VerticalAlignment="Center" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Right">
+                                    <TextBlock Text="{x:Static recurso:Etiquetas.lblId}"/>
+                                </Label>
+                                <custom:ByTTextBox BorderBrush="LightGreen" Name="_txtInteresado" Text="" Width="150" MaxLength="15" Grid.Row="0" Grid.Column="1" Height="25" HorizontalAlignment="Left"
                                  MouseDoubleClick="_txtInteresado_MouseDoubleClick" IsReadOnly="True"/>
 
-                            <custom:ByTTextBox Visibility="Collapsed"  Name="_txtIdInteresado" Text="" Width="150" MaxLength="15" Grid.Row="1" Grid.Column="1" Height="25" HorizontalAlignment="Left"
+                                <custom:ByTTextBox Visibility="Collapsed"  Name="_txtIdInteresado" Text="" Width="150" MaxLength="15" Grid.Row="1" Grid.Column="1" Height="25" HorizontalAlignment="Left"
                                  GotFocus="_btnConsultarInteresadoFocus" GotKeyboardFocus="_btnConsultarInteresadoFocus" SoloNumero="True" Filtro="True" Margin="0,3" />
 
-                            <Label Name="_lblNombreInteresado" Visibility="Collapsed"  VerticalAlignment="Center" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Right">
-                                <TextBlock Text="{x:Static recurso:Etiquetas.lblNombre}"/>
-                            </Label>
-                            <TextBox Visibility="Collapsed"  Name="_txtNombreInteresado" Text="" Width="150" MaxLength="15" Grid.Row="2" Grid.Column="1" Height="25" HorizontalAlignment="Left"
+                                <Label Name="_lblNombreInteresado" Visibility="Collapsed"  VerticalAlignment="Center" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Right">
+                                    <TextBlock Text="{x:Static recurso:Etiquetas.lblNombre}"/>
+                                </Label>
+                                <TextBox Visibility="Collapsed"  Name="_txtNombreInteresado" Text="" Width="150" MaxLength="15" Grid.Row="2" Grid.Column="1" Height="25" HorizontalAlignment="Left"
                                  GotFocus="_btnConsultarInteresadoFocus" GotKeyboardFocus="_btnConsultarInteresadoFocus" Margin="0,3" />
 
-                            <Button Visibility="Collapsed"  Name="_btnConsultarInteresado" Width="100" IsDefault="False" Grid.Row="2" Grid.Column="1" Height="25" HorizontalAlignment="Right" Click="_btnConsultarInteresado_Click">
-                                <TextBlock Text="{x:Static recurso:Etiquetas.btnConsultar}"/>
-                            </Button>
-                            <!--Path=Id, Converter={StaticResource convertir}-->
-                            <ListView Visibility="Collapsed"  Height="198" Name="_lstInteresados" ItemsSource="{Binding}" 
+                                <Button Visibility="Collapsed"  Name="_btnConsultarInteresado" Width="100" IsDefault="False" Grid.Row="2" Grid.Column="1" Height="25" HorizontalAlignment="Right" Click="_btnConsultarInteresado_Click">
+                                    <TextBlock Text="{x:Static recurso:Etiquetas.btnConsultar}"/>
+                                </Button>
+                                <!--Path=Id, Converter={StaticResource convertir}-->
+                                <ListView Visibility="Collapsed"  Height="198" Name="_lstInteresados" ItemsSource="{Binding}" 
                       SelectionMode="Single" MouseDoubleClick="_lstInteresados_MouseDoubleClick"
                       Style="{DynamicResource EstiloListView}" Grid.Row="3" Grid.ColumnSpan="2">
-                                <ListView.View>
-                                    <GridView>
-                                        <GridViewColumn Width="45">
-                                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="Id" Content="{x:Static recurso:Etiquetas.lsvId}"/>
-                                            <GridViewColumn.CellTemplate>
-                                                <DataTemplate>
-                                                    <TextBlock>
+                                    <ListView.View>
+                                        <GridView>
+                                            <GridViewColumn Width="45">
+                                                <GridViewColumnHeader Click="_Ordenar_Click" Tag="Id" Content="{x:Static recurso:Etiquetas.lsvId}"/>
+                                                <GridViewColumn.CellTemplate>
+                                                    <DataTemplate>
+                                                        <TextBlock>
                                                 <TextBlock.Text>
                                                     <Binding Path="Id" Converter="{StaticResource convertir}"/>
                                                 </TextBlock.Text>
-                                                    </TextBlock>
-                                                </DataTemplate>
-                                            </GridViewColumn.CellTemplate>
-                                        </GridViewColumn>
-                                        <GridViewColumn DisplayMemberBinding="{Binding Path=Nombre}" Width="250">
-                                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="Nombre" Content="{x:Static recurso:Etiquetas.lsvNombre}"/>
-                                        </GridViewColumn>
-                                    </GridView>
-                                </ListView.View>
-                            </ListView>
-                        </Grid>
-                    </WrapPanel>
+                                                        </TextBlock>
+                                                    </DataTemplate>
+                                                </GridViewColumn.CellTemplate>
+                                            </GridViewColumn>
+                                            <GridViewColumn DisplayMemberBinding="{Binding Path=Nombre}" Width="250">
+                                                <GridViewColumnHeader Click="_Ordenar_Click" Tag="Nombre" Content="{x:Static recurso:Etiquetas.lsvNombre}"/>
+                                            </GridViewColumn>
+                                        </GridView>
+                                    </ListView.View>
+                                </ListView>
+                            </Grid>
+                        </WrapPanel>
+                        <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,14,0">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="84"/>
+                                    <ColumnDefinition Width="316"/>
+                                </Grid.ColumnDefinitions>
 
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <Label Name="_lblCorresponsal" VerticalAlignment="Center" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Left">
+                                    <TextBlock Text="{x:Static recurso:Etiquetas.lblCorresponsal}"/>
+                                </Label>
+                                <Label Name="_lblIdCorresponsal" Visibility="Collapsed"  VerticalAlignment="Center" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Right">
+                                    <TextBlock Text="{x:Static recurso:Etiquetas.lblId}"/>
+                                </Label>
+                                <custom:ByTTextBox BorderBrush="LightGreen" Name="_txtCorresponsal" Text="" Width="150" MaxLength="15" Grid.Row="0" Grid.Column="1" Height="25" HorizontalAlignment="Left"
+                                 MouseDoubleClick="_txtCorresponsal_MouseDoubleClick" IsReadOnly="True"/>
+                                <custom:ByTTextBox Visibility="Collapsed" Name="_txtIdCorresponsal" Text="" Width="150" MaxLength="15" Grid.Row="1" Grid.Column="1" Height="25" HorizontalAlignment="Left"
+                                 GotFocus="_btnConsultarCorresponsalFocus" GotKeyboardFocus="_btnConsultarCorresponsalFocus" SoloNumero="True" Filtro="True" Margin="0,3" />
+
+                                <Label Name="_lblNombreCorresponsal" Visibility="Collapsed"  VerticalAlignment="Center" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Right">
+                                    <TextBlock Text="{x:Static recurso:Etiquetas.lblNombre}"/>
+                                </Label>
+                                <TextBox Visibility="Collapsed"  Name="_txtNombreCorresponsal" Text="" Width="150" MaxLength="255" Grid.Row="2" Grid.Column="1" Height="25" HorizontalAlignment="Left"
+                                 GotFocus="_btnConsultarCorresponsalFocus" GotKeyboardFocus="_btnConsultarCorresponsalFocus" Margin="0,3" />
+
+                                <Button Visibility="Collapsed"  Name="_btnConsultarCorresponsal" Width="100" IsDefault="False" Grid.Row="2" Grid.Column="1" Height="25" HorizontalAlignment="Right" Click="_btnConsultarCorresponsal_Click">
+                                    <TextBlock Text="{x:Static recurso:Etiquetas.btnConsultar}"/>
+                                </Button>
+                                <!--Path=Id, Converter={StaticResource convertir}-->
+                                <ListView Visibility="Collapsed"  Height="198" Name="_lstCorresponsals" ItemsSource="{Binding}" 
+                      SelectionMode="Single" MouseDoubleClick="_lstCorresponsals_MouseDoubleClick"
+                      Style="{DynamicResource EstiloListView}" Grid.Row="3" Grid.ColumnSpan="2">
+                                    <ListView.View>
+                                        <GridView>
+                                            <GridViewColumn Width="45">
+                                                <GridViewColumnHeader Click="_Ordenar_Click" Tag="Id" Content="{x:Static recurso:Etiquetas.lsvId}"/>
+                                                <GridViewColumn.CellTemplate>
+                                                    <DataTemplate>
+                                                        <TextBlock>
+                                                <TextBlock.Text>
+                                                    <Binding Path="Id" Converter="{StaticResource convertir}"/>
+                                                </TextBlock.Text>
+                                                        </TextBlock>
+                                                    </DataTemplate>
+                                                </GridViewColumn.CellTemplate>
+                                            </GridViewColumn>
+                                            <GridViewColumn DisplayMemberBinding="{Binding Path=Descripcion}" Width="250">
+                                                <GridViewColumnHeader Click="_Ordenar_Click" Tag="Descripcion" Content="{x:Static recurso:Etiquetas.lsvNombre}"/>
+                                            </GridViewColumn>
+                                        </GridView>
+                                    </ListView.View>
+                                </ListView>
+                            </Grid>
+                        </WrapPanel>
+                        <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,180,0">
+                            <Label Name="_lblClaseInternacional">
+                                <TextBlock Text="{x:Static recurso:Etiquetas.lblClaseInt}"/>
+                            </Label>
+                            <custom:ByTTextBox Name="_txtClaseInternacional" Width="150" MaxLength="40" SoloNumero="True" Filtro="True" 
+                                       GotFocus="_btnConsultarFocus" GotKeyboardFocus="_btnConsultarFocus"/>
+                        </WrapPanel>
+                        <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,180,0">
+                            <Label Name="_lblClaseNacional">
+                                <TextBlock Text="{x:Static recurso:Etiquetas.lblClaseNac}"/>
+                            </Label>
+                            <custom:ByTTextBox Name="_txtClaseNacional" Width="150" MaxLength="40" SoloNumero="True" Filtro="True" 
+                                       GotFocus="_btnConsultarFocus" GotKeyboardFocus="_btnConsultarFocus"/>
+                        </WrapPanel>
+                        <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,180,0">
+                            <Label Name="_lblDistingue">
+                                <TextBlock Text="{x:Static recurso:Etiquetas.lblDistingue}"/>
+                            </Label>
+                            <custom:ByTTextBox Name="_txtDistingue" Width="150" MaxLength="40" SoloNumero="True" Filtro="True" 
+                                       GotFocus="_btnConsultarFocus" GotKeyboardFocus="_btnConsultarFocus"/>
+                        </WrapPanel>
+                        <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,180,0">
+                            <Label VerticalAlignment="Center" HorizontalContentAlignment="Right">
+                                <TextBlock Text="{x:Static recurso:Etiquetas.lblSituacion}"/>
+                            </Label>
+                            <ComboBox Name="_cbxSituacion" Height="20" Width="150"
+                              ItemsSource="{Binding}" DisplayMemberPath="Descripcion" SelectedIndex="0">
+                            </ComboBox>
+                        </WrapPanel>
+                        <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,180,0">
+                            <Label VerticalAlignment="Center" HorizontalContentAlignment="Right">
+                                <TextBlock Text="{x:Static recurso:Etiquetas.lblDetalle}"/>
+                            </Label>
+                            <ComboBox Width="150" Name="_cbxDetalleDatos" Height="20" 
+                              ItemsSource="{Binding}" DisplayMemberPath="Descripcion" SelectedIndex="0">
+                            </ComboBox>
+                        </WrapPanel>
+                    </StackPanel>
+                    <Separator Margin="0,5,0,5"/>
+                    <CheckBox IsEnabled="True" Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="7" Content="{x:Static recurso:Etiquetas.chkTYR}" 
+                                  Height="16" HorizontalAlignment="Left" Margin="5,0,0,0" Name="_chkTYR"
+                                  VerticalAlignment="Center" Click="_chkTYR_Click" IsChecked="True"/>
+                    <StackPanel Name="TYR">
+                        <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,180,0">
+                            <Label Name="_lblRegistroTYR">
+                                <TextBlock Text="{x:Static recurso:Etiquetas.lblRegistro}"/>
+                            </Label>
+                            <custom:ByTTextBox Name="_txtRegistroTYR" Width="150" MaxLength="40" SoloNumero="True" Filtro="True" 
+                                       GotFocus="_btnConsultarFocus" GotKeyboardFocus="_btnConsultarFocus"/>
+                        </WrapPanel>
+
+                        <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,180,0">
+
+                            <Label Name="_lblFechaTYR">
+                                <TextBlock Text="{x:Static recurso:Etiquetas.lblFecha}"/>
+                            </Label>
+                            <DatePicker Name="_dpkFechaTYR" Width="150" Focusable="False" BorderBrush="{x:Null}" SelectedDateChanged="_dpkFecha_SelectedDateChanged">
+                                <DatePicker.SelectedDate>
+                                    <Binding Path="Fecha" UpdateSourceTrigger="PropertyChanged"/>
+                                </DatePicker.SelectedDate>
+                            </DatePicker>
+                        </WrapPanel>
+
+                        <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,180,0">
+                            <CheckBox IsEnabled="True" Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="7" 
+                                      Content="{x:Static recurso:Etiquetas.chkRenovadaPorOtroTramitante}" 
+                                  Height="16" HorizontalAlignment="Left" Margin="5,0,0,0" Name="_chkRenovadaPorOtroTramitante"
+                                  VerticalAlignment="Center" Click="_chkInternacional_Click" IsChecked="False"/>
+                        </WrapPanel>
+                        <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,180,0">
+                            <CheckBox IsEnabled="True" Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="7" 
+                                      Content="{x:Static recurso:Etiquetas.chkInstruccionesDeRenovacion}" 
+                                  Height="16" HorizontalAlignment="Left" Margin="5,0,0,0" Name="_chkInstruccionesDeRenovacion"
+                                  VerticalAlignment="Center" Click="_chkInternacional_Click" IsChecked="False"/>
+                        </WrapPanel>
+                    </StackPanel>
                     <Separator Margin="0,5,0,5"/>
                     <Button Name="_btnConsultar" Width="100" IsDefault="True" Click="_btnConsultar_Click">
                         <TextBlock Text="{x:Static recurso:Etiquetas.btnConsultar}"/>
@@ -213,15 +390,7 @@
                     <Separator Margin="0,5,0,5"/>
                 </StackPanel>
             </GroupBox>
-        <!--</ScrollViewer>-->
-
-
-
-
-
-
-
-
+        </ScrollViewer>
 
         <!--Resultados-->
         <GroupBox Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="2" Margin="5">

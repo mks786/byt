@@ -778,7 +778,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
 
         public void ArchivoNoEncontrado()
         {
-            MessageBox.Show(Recursos.MensajesConElUsuario.ErrorPoderNoEncontrado, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            MessageBox.Show(Recursos.MensajesConElUsuario.ErrorCertificadoNoEncontrado, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
         }
 
         public GridViewColumnHeader CurSortCol

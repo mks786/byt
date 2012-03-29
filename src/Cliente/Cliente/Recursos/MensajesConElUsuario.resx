@@ -705,6 +705,9 @@
   <data name="AlertaEscritoSinFecha" xml:space="preserve">
     <value>Disculpe El Escrito no Tiene Fecha De Presentacion</value>
   </data>
+  <data name="ErrorCertificadoNoEncontrado" xml:space="preserve">
+    <value>Disculpe el certificado no fue encontrado</value>
+  </data>
   <data name="ConfirmacionTomarClaseInternacional" xml:space="preserve">
     <value>Esto modificará el Distingue. ¿Seguro que desea tomar clase internacional?</value>
   </data>
