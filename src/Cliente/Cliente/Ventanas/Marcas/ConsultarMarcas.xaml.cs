@@ -30,6 +30,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             get { return this._txtId.Text; }
         }
 
+        public string NombreMarca
+        {
+            set { this._txtMarcaNombre.Text = value; }
+        }
+
         public object MarcaSeleccionada
         {
             get { return this._lstResultados.SelectedItem; }
@@ -207,6 +212,93 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
         {
             get { return this._cbxPaisInternacional.SelectedItem; }
             set { this._cbxPaisInternacional.SelectedItem = value; }
+        }
+
+        public object PaisesPrioridad
+        {
+            get { return this._cbxPrioridadPais.DataContext; }
+            set { this._cbxPrioridadPais.DataContext = value; }
+        }
+
+        public object PaisPrioridad
+        {
+            get { return this._cbxPrioridadPais.SelectedItem; }
+            set { this._cbxPrioridadPais.SelectedItem = value; }
+        }
+
+        public object Condiciones
+        {
+            get { return this._cbxCondicion.DataContext; }
+            set { this._cbxCondicion.DataContext = value; }
+        }
+
+        public object Condicion
+        {
+            get { return this._cbxCondicion.SelectedItem; }
+            set { this._cbxCondicion.SelectedItem = value; }
+        }
+
+        public object BoletinesOrdenPublicacion
+        {
+            get { return this._cbxBolOrdPublicacion.DataContext; }
+            set { this._cbxBolOrdPublicacion.DataContext = value; }
+        }
+
+        public object BoletinOrdenPublicacion
+        {
+            get { return this._cbxBolOrdPublicacion.SelectedItem; }
+            set { this._cbxBolOrdPublicacion.SelectedItem = value; }
+        }
+
+        public object BoletinesPublicacion
+        {
+            get { return this._cbxBolPublicacion.DataContext; }
+            set { this._cbxBolPublicacion.DataContext = value; }
+        }
+
+        public object BoletinPublicacion
+        {
+            get { return this._cbxBolPublicacion.SelectedItem; }
+            set { this._cbxBolPublicacion.SelectedItem = value; }
+        }
+
+        public object BoletinesConcesion
+        {
+            get { return this._cbxBolConcesion.DataContext; }
+            set { this._cbxBolConcesion.DataContext = value; }
+        }
+
+        public object BoletinConcesion
+        {
+            get { return this._cbxBolConcesion.SelectedItem; }
+            set { this._cbxBolConcesion.SelectedItem = value; }
+        }
+
+        public object CambioDeDomicilioSeleccionada
+        {
+            get { return this._lstResultados.SelectedItem; }
+        }
+
+        public string IdMarcaFiltrar
+        {
+            get { return this._txtIdMarcaFiltrar.Text; }
+        }
+
+        public string NombreMarcaFiltrar
+        {
+            get { return this._txtNombreMarcaFiltrar.Text; }
+        }
+
+        public object Marcas
+        {
+            get { return this._lstMarcas.DataContext; }
+            set { this._lstMarcas.DataContext = value; }
+        }
+
+        public object Marca
+        {
+            get { return this._lstMarcas.SelectedItem; }
+            set { this._lstMarcas.SelectedItem = value; }
         }
 
         #endregion
@@ -593,8 +685,85 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
 
         private void _chkTYR_Click(object sender, RoutedEventArgs e)
         {
-
+            if (this._chkTYR.IsChecked.Value)
+                this._TYR.Visibility = Visibility.Visible;
+            else
+                this._TYR.Visibility = Visibility.Collapsed;
         }
+
+        private void _chkBoletines_Click(object sender, RoutedEventArgs e)
+        {
+            if (this._chkBoletines.IsChecked.Value)
+                this._boletines.Visibility = Visibility.Visible;
+            else
+                this._boletines.Visibility = Visibility.Collapsed;
+        }
+
+        private void _chkPrioridad_Click(object sender, RoutedEventArgs e)
+        {
+            if (this._chkPrioridad.IsChecked.Value)
+                this._prioridad.Visibility = Visibility.Visible;
+            else
+                this._prioridad.Visibility = Visibility.Collapsed;
+        }
+
+        private void _chkIndicadores_Click(object sender, RoutedEventArgs e)
+        {
+            if (this._chkIndicadores.IsChecked.Value)
+                this._indicadores.Visibility = Visibility.Visible;
+            else
+                this._indicadores.Visibility = Visibility.Collapsed;
+        }
+
+        private void _btnConsultarMarca_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.BuscarMarca();
+        }
+
+        private void _btnConsultarMarcaFocus(object sender, RoutedEventArgs e)
+        {
+            this._btnConsultar.IsDefault = false;
+            this._btnConsultarMarca.IsDefault = true;
+            //this._btnConsultarInteresado.IsDefault = false;
+        }
+
+        //private void _btnConsultarFocus(object sender, RoutedEventArgs e)
+        //{
+        //    this._btnConsultar.IsDefault = true;
+        //    this._btnConsultarMarca.IsDefault = false;
+        //    //this._btnConsultarInteresado.IsDefault = false;
+        //}
+
+        private void _txtMarcaNombre_GotFocus(object sender, RoutedEventArgs e)
+        {
+            GestionarVisibilidadDatosDeMarca(Visibility.Collapsed);
+            GestionarVisibilidadFiltroMarca(Visibility.Visible);
+        }
+
+        private void _lstMarcas_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            if (this._presentador.ElegirMarca())
+            {
+                GestionarVisibilidadDatosDeMarca(Visibility.Visible);
+                GestionarVisibilidadFiltroMarca(Visibility.Collapsed);
+            }
+        }
+
+        private void GestionarVisibilidadFiltroMarca(object value)
+        {
+            this._txtIdMarcaFiltrar.Visibility = (System.Windows.Visibility)value;
+            this._txtNombreMarcaFiltrar.Visibility = (System.Windows.Visibility)value;
+            this._btnConsultarMarca.Visibility = (System.Windows.Visibility)value;
+            this._lstMarcas.Visibility = (System.Windows.Visibility)value;
+            this._lblCodigo.Visibility = (System.Windows.Visibility)value;
+            this._lblNombre.Visibility = (System.Windows.Visibility)value;
+        }
+
+        private void GestionarVisibilidadDatosDeMarca(object value)
+        {
+            this._txtMarcaNombre.Visibility = (System.Windows.Visibility)value;
+        }
+
 
     }
 }

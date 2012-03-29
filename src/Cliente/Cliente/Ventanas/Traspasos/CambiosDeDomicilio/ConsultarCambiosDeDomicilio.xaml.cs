@@ -34,6 +34,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.CambiosDeDomicilio
         {
             set { this._txtMarcaNombre.Text = value; }
         }
+
         public object CambioDeDomicilioSeleccionada
         {
             get { return this._lstResultados.SelectedItem; }
@@ -153,25 +154,6 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.CambiosDeDomicilio
                 this._presentador.ActualizarTitulo();
         }
 
-        private void _btnConsultarMarca_Click(object sender, RoutedEventArgs e)
-        {
-            this._presentador.BuscarMarca();
-        }
-
-        private void _btnConsultarMarcaFocus(object sender, RoutedEventArgs e)
-        {
-            this._btnConsultar.IsDefault = false;
-            this._btnConsultarMarca.IsDefault = true;
-            //this._btnConsultarInteresado.IsDefault = false;
-        }
-
-        private void _btnConsultarFocus(object sender, RoutedEventArgs e)
-        {
-            this._btnConsultar.IsDefault = true;
-            this._btnConsultarMarca.IsDefault = false;
-            //this._btnConsultarInteresado.IsDefault = false;
-        }
-
         /// <summary>
         /// Método que se encarga de posicionar el cursor en los campos del filto
         /// </summary>
@@ -206,9 +188,23 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.CambiosDeDomicilio
                 this._txtId.Focus();
         }
 
-        private void _dpkFecha_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        private void _btnConsultarMarca_Click(object sender, RoutedEventArgs e)
         {
+            this._presentador.BuscarMarca();
+        }
 
+        private void _btnConsultarMarcaFocus(object sender, RoutedEventArgs e)
+        {
+            this._btnConsultar.IsDefault = false;
+            this._btnConsultarMarca.IsDefault = true;
+            //this._btnConsultarInteresado.IsDefault = false;
+        }
+
+        private void _btnConsultarFocus(object sender, RoutedEventArgs e)
+        {
+            this._btnConsultar.IsDefault = true;
+            this._btnConsultarMarca.IsDefault = false;
+            //this._btnConsultarInteresado.IsDefault = false;
         }
 
         private void _txtMarcaNombre_GotFocus(object sender, RoutedEventArgs e)
@@ -239,6 +235,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.CambiosDeDomicilio
         private void GestionarVisibilidadDatosDeMarca(object value)
         {
             this._txtMarcaNombre.Visibility = (System.Windows.Visibility)value;
+        }
+
+        private void _dpkFecha_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+
         }
     }
 }

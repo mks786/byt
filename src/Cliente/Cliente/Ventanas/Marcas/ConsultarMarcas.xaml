@@ -348,8 +348,8 @@
                     <Separator Margin="0,5,0,5"/>
                     <CheckBox IsEnabled="True" Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="7" Content="{x:Static recurso:Etiquetas.chkTYR}" 
                                   Height="16" HorizontalAlignment="Left" Margin="5,0,0,0" Name="_chkTYR"
-                                  VerticalAlignment="Center" Click="_chkTYR_Click" IsChecked="True"/>
-                    <StackPanel Name="TYR">
+                                  VerticalAlignment="Center" Click="_chkTYR_Click"/>
+                    <StackPanel Name="_TYR" Visibility="Collapsed">
                         <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,180,0">
                             <Label Name="_lblRegistroTYR">
                                 <TextBlock Text="{x:Static recurso:Etiquetas.lblRegistro}"/>
@@ -376,12 +376,205 @@
                                   Height="16" HorizontalAlignment="Left" Margin="5,0,0,0" Name="_chkRenovadaPorOtroTramitante"
                                   VerticalAlignment="Center" Click="_chkInternacional_Click" IsChecked="False"/>
                         </WrapPanel>
+
+                        <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,180,0">
+                            <Label VerticalAlignment="Center" HorizontalContentAlignment="Right">
+                                <TextBlock Text="{x:Static recurso:Etiquetas.lblSituacion}"/>
+                            </Label>
+                            <ComboBox Name="_cbxCondicion" Height="20" Width="150"
+                              ItemsSource="{Binding}" DisplayMemberPath="Descripcion" SelectedIndex="0">
+                            </ComboBox>
+                        </WrapPanel>
+                        <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,180,0">
+                            <Label Name="_lblExpCambioPend">
+                                <TextBlock Text="{x:Static recurso:Etiquetas.lblExpCambioPend}"/>
+                            </Label>
+                            <custom:ByTTextBox Name="_txtCambioPendiente" Width="150" MaxLength="40" SoloNumero="True" Filtro="True" 
+                                       GotFocus="_btnConsultarFocus" GotKeyboardFocus="_btnConsultarFocus"/>
+                        </WrapPanel>
                         <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,180,0">
                             <CheckBox IsEnabled="True" Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="7" 
                                       Content="{x:Static recurso:Etiquetas.chkInstruccionesDeRenovacion}" 
                                   Height="16" HorizontalAlignment="Left" Margin="5,0,0,0" Name="_chkInstruccionesDeRenovacion"
                                   VerticalAlignment="Center" Click="_chkInternacional_Click" IsChecked="False"/>
                         </WrapPanel>
+                    </StackPanel>
+                    <Separator Margin="0,5,0,5"/>
+                    <CheckBox IsEnabled="True" Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="7" Content="{x:Static recurso:Etiquetas.chkBoletines}" 
+                                  Height="16" HorizontalAlignment="Left" Margin="5,0,0,0" Name="_chkBoletines"
+                                  VerticalAlignment="Center" Click="_chkBoletines_Click"/>
+                    <StackPanel Name="_boletines" Visibility="Collapsed">
+
+                        <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,180,0">
+                            <Label VerticalAlignment="Center" HorizontalContentAlignment="Right">
+                                <TextBlock Text="{x:Static recurso:Etiquetas.lblOrdPublicacion}"/>
+                            </Label>
+                            <ComboBox Name="_cbxBolOrdPublicacion" Height="20" Width="150"
+                              ItemsSource="{Binding}" SelectedIndex="0">
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock>
+                                <TextBlock.Text>
+                                    <MultiBinding Converter="{StaticResource convertirADosValores}">
+                                        <Binding Path="Id" />
+                                        <Binding Path="FechaBoletin" />
+                                    </MultiBinding>
+                                </TextBlock.Text>
+                                        </TextBlock>
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
+                            </ComboBox>
+                        </WrapPanel>
+
+                        <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,180,0">
+                            <Label VerticalAlignment="Center" HorizontalContentAlignment="Right">
+                                <TextBlock Text="{x:Static recurso:Etiquetas.lblBolPublicacion}"/>
+                            </Label>
+                            <ComboBox Name="_cbxBolPublicacion" Height="20" Width="150"
+                              ItemsSource="{Binding}" SelectedIndex="0">
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock>
+                                <TextBlock.Text>
+                                    <MultiBinding Converter="{StaticResource convertirADosValores}">
+                                        <Binding Path="Id" />
+                                        <Binding Path="FechaBoletin" />
+                                    </MultiBinding>
+                                </TextBlock.Text>
+                                        </TextBlock>
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
+                            </ComboBox>
+                        </WrapPanel>
+
+                        <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,180,0">
+                            <Label VerticalAlignment="Center" HorizontalContentAlignment="Right">
+                                <TextBlock Text="{x:Static recurso:Etiquetas.lblBolConcesion}"/>
+                            </Label>
+                            <ComboBox Name="_cbxBolConcesion" Height="20" Width="150"
+                              ItemsSource="{Binding}" SelectedIndex="0">
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock>
+                                <TextBlock.Text>
+                                    <MultiBinding Converter="{StaticResource convertirADosValores}">
+                                        <Binding Path="Id" />
+                                        <Binding Path="FechaBoletin" />
+                                    </MultiBinding>
+                                </TextBlock.Text>
+                                        </TextBlock>
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
+                            </ComboBox>
+                        </WrapPanel>
+                    </StackPanel>
+                    <Separator Margin="0,5,0,5"/>
+                    <CheckBox IsEnabled="True" Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="7" Content="{x:Static recurso:Etiquetas.chkPrioridades}" 
+                                  Height="16" HorizontalAlignment="Left" Margin="5,0,0,0" Name="_chkPrioridad"
+                                  VerticalAlignment="Center" Click="_chkPrioridad_Click"/>
+                    <StackPanel Name="_prioridad" Visibility="Collapsed">
+                        <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,180,0">
+                            <Label>
+                                <TextBlock Text="{x:Static recurso:Etiquetas.lblCodigo}"/>
+                            </Label>
+                            <custom:ByTTextBox Name="_txtPrioridadCodigo" Width="150" MaxLength="40" SoloNumero="True" Filtro="True" 
+                                       GotFocus="_btnConsultarFocus" GotKeyboardFocus="_btnConsultarFocus"/>
+                        </WrapPanel>
+
+                        <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,180,0">
+
+                            <Label>
+                                <TextBlock Text="{x:Static recurso:Etiquetas.lblFecha}"/>
+                            </Label>
+                            <DatePicker Name="_dpkPrioridadFecha" Width="150" Focusable="False" BorderBrush="{x:Null}" SelectedDateChanged="_dpkFecha_SelectedDateChanged">
+                                <DatePicker.SelectedDate>
+                                    <Binding Path="Fecha" UpdateSourceTrigger="PropertyChanged"/>
+                                </DatePicker.SelectedDate>
+                            </DatePicker>
+                        </WrapPanel>
+
+                        <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,180,0">
+                            <Label>
+                                <TextBlock Text="{x:Static recurso:Etiquetas.lblPais}"/>
+                            </Label>
+                            <ComboBox Name="_cbxPrioridadPais" Width="150" ItemsSource="{Binding}" DisplayMemberPath="NombreEspanol" >
+                            </ComboBox>
+                        </WrapPanel>
+                    </StackPanel>
+                    <Separator Margin="0,5,0,5"/>
+                    <CheckBox IsEnabled="True" Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="7" Content="{x:Static recurso:Etiquetas.chkIndicadores}" 
+                                  Height="16" HorizontalAlignment="Left" Margin="5,0,0,0" Name="_chkIndicadores"
+                                  VerticalAlignment="Center" Click="_chkIndicadores_Click"/>
+                    <StackPanel Name="_indicadores" Visibility="Collapsed">
+                        <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,180,0">
+                            <Label>
+                                <TextBlock Text="{x:Static recurso:Etiquetas.lblReclasificada}"/>
+                            </Label>
+                            <custom:ByTTextBox Name="_txtIndicadoresReclasificada" Width="150" MaxLength="40" SoloNumero="True" Filtro="True" 
+                                       GotFocus="_btnConsultarFocus" GotKeyboardFocus="_btnConsultarFocus"/>
+                        </WrapPanel>
+
+                        <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,14,0">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="84"/>
+                                    <ColumnDefinition Width="316"/>
+                                </Grid.ColumnDefinitions>
+
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <Label VerticalAlignment="Center" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Left">
+                                    <TextBlock Text="{x:Static recurso:Etiquetas.lblMarca}"/>
+                                </Label>
+                                <custom:ByTTextBox Name="_txtMarcaNombre" Text="" Width="150" MaxLength="15" Grid.Row="0" Grid.Column="1" Height="25" HorizontalAlignment="Left"
+                                 MouseDoubleClick="_txtMarcaNombre_GotFocus" BorderBrush="LightGreen" SoloNumero="True" Filtro="True" IsReadOnly="True" />
+                                <Label Name="_lblCodigo" Visibility="Collapsed" VerticalAlignment="Center" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Right">
+                                    <TextBlock Text="{x:Static recurso:Etiquetas.lblId}"/>
+                                </Label>
+                                <custom:ByTTextBox Visibility="Collapsed" Name="_txtIdMarcaFiltrar" Text="" Width="150" MaxLength="15" Grid.Row="1" Grid.Column="1" Height="25" HorizontalAlignment="Left"
+                                 GotFocus="_btnConsultarMarcaFocus" GotKeyboardFocus="_btnConsultarMarcaFocus" SoloNumero="True" Filtro="True" Margin="0,0,0,5" />
+
+                                <Label Name="_lblNombre" Visibility="Collapsed" VerticalAlignment="Center" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Right">
+                                    <TextBlock Text="{x:Static recurso:Etiquetas.lblNombre}"/>
+                                </Label>
+                                <TextBox Visibility="Collapsed" Name="_txtNombreMarcaFiltrar" Text="" Width="150" MaxLength="255" Grid.Row="2" Grid.Column="1" Height="25" HorizontalAlignment="Left"
+                                 GotFocus="_btnConsultarMarcaFocus" GotKeyboardFocus="_btnConsultarMarcaFocus" Margin="0,0,0,5" />
+
+                                <Button Visibility="Collapsed" Name="_btnConsultarMarca" Width="100" IsDefault="False" Grid.Row="2" Grid.Column="1" Height="25" HorizontalAlignment="Right" 
+                                        Click="_btnConsultarMarca_Click">
+                                    <TextBlock Text="{x:Static recurso:Etiquetas.btnConsultar}"/>
+                                </Button>
+                                <!--Path=Id, Converter={StaticResource convertir}-->
+                                <ListView Visibility="Collapsed" Height="198" Name="_lstMarcas" ItemsSource="{Binding}" 
+                      SelectionMode="Single" Style="{DynamicResource EstiloListView}" Grid.Row="3" Grid.ColumnSpan="2"
+                                      MouseDoubleClick="_lstMarcas_MouseDoubleClick">
+                                    <ListView.View>
+                                        <GridView>
+                                            <GridViewColumn Width="45">
+                                                <GridViewColumnHeader Click="_Ordenar_Click" Tag="Id" Content="{x:Static recurso:Etiquetas.lsvId}"/>
+                                                <GridViewColumn.CellTemplate>
+                                                    <DataTemplate>
+                                                        <TextBlock>
+                                                <TextBlock.Text>
+                                                    <Binding Path="Id" Converter="{StaticResource convertir}"/>
+                                                </TextBlock.Text>
+                                                        </TextBlock>
+                                                    </DataTemplate>
+                                                </GridViewColumn.CellTemplate>
+                                            </GridViewColumn>
+                                            <GridViewColumn DisplayMemberBinding="{Binding Path=Descripcion}" Width="250">
+                                                <GridViewColumnHeader Click="_Ordenar_Click" Tag="Descripcion" Content="{x:Static recurso:Etiquetas.lsvNombre}"/>
+                                            </GridViewColumn>
+                                        </GridView>
+                                    </ListView.View>
+                                </ListView>
+                            </Grid>
+                        </WrapPanel>
+
                     </StackPanel>
                     <Separator Margin="0,5,0,5"/>
                     <Button Name="_btnConsultar" Width="100" IsDefault="True" Click="_btnConsultar_Click">

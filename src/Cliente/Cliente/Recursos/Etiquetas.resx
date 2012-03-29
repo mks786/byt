@@ -1167,7 +1167,7 @@ Cuenta solo digital:</value>
     <value>Consultar Marcas</value>
   </data>
   <data name="menuItemGestionDeMarcas" xml:space="preserve">
-    <value>Gestion de Marcas</value>
+    <value>Marcas</value>
   </data>
   <data name="menuItemMarca" xml:space="preserve">
     <value>Marcas</value>
@@ -2128,5 +2128,17 @@ de Gracia</value>
   </data>
   <data name="btnTomarClaseInternacional" xml:space="preserve">
     <value>Tomar Clase Internacional</value>
+  </data>
+  <data name="chkBoletines" xml:space="preserve">
+    <value>Boletines</value>
+  </data>
+  <data name="lblExpCambioPend" xml:space="preserve">
+    <value>Exp. Cambio Pend:</value>
+  </data>
+  <data name="chkPrioridades" xml:space="preserve">
+    <value>Prioridades</value>
+  </data>
+  <data name="lblReclasificada" xml:space="preserve">
+    <value>Reclasificada:</value>
   </data>
 </root>

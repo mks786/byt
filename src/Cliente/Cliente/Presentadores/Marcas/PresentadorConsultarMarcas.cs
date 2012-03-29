@@ -32,6 +32,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
         private IServicioServicios _servicioServicios;
         private ITipoEstadoServicios _tipoEstadoServicios;
         private IPaisServicios _paisServicios;
+        private ICondicionServicios _condicionServicios;
+        private IBoletinServicios _boletinServicios;
 
         private IList<Marca> _marcas;
         private IList<Asociado> _asociados;
@@ -66,6 +68,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["TipoEstadoServicios"]);
                 this._paisServicios = (IPaisServicios)Activator.GetObject(typeof(IPaisServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["PaisServicios"]);
+                this._condicionServicios = (ICondicionServicios)Activator.GetObject(typeof(ICondicionServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["CondicionServicios"]);
+                this._boletinServicios = (IBoletinServicios)Activator.GetObject(typeof(IBoletinServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["BoletinServicios"]);
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -140,6 +146,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 primerPais.Id = int.MinValue;
                 paises.Insert(0, primerPais);
                 this._ventana.Paises = paises;
+                this._ventana.PaisesPrioridad = paises;
 
                 IList<TipoEstado> tipoEstados = this._tipoEstadoServicios.ConsultarTodos();
                 TipoEstado primerDetalle = new TipoEstado();
@@ -153,6 +160,20 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 servicios.Insert(0, primerServicio);
                 this._ventana.Servicios = servicios;
                 //this._ventana.Servicio = this.BuscarServicio(servicios, marca.Servicio);
+
+                IList<Condicion> condiciones = this._condicionServicios.ConsultarTodos();
+                Condicion primeraCondicion = new Condicion();
+                primeraCondicion.Id = int.MinValue;
+                condiciones.Insert(0, primeraCondicion);
+                this._ventana.Condiciones = condiciones;
+
+                IList<Boletin> boletines = this._boletinServicios.ConsultarTodos();
+                Boletin primerBoletin = new Boletin();
+                primerBoletin.Id = int.MinValue;
+                boletines.Insert(0, primerBoletin);
+                this._ventana.BoletinesOrdenPublicacion = boletines;
+                this._ventana.BoletinesPublicacion = boletines;
+                this._ventana.BoletinesConcesion = boletines;
 
                 this._ventana.TotalHits = "0";
                 this._ventana.FocoPredeterminado();
@@ -637,5 +658,72 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
         }
 
         #endregion
+
+
+
+        public void BuscarMarca()
+        {
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                Mouse.OverrideCursor = Cursors.Wait;
+                Marca marca = new Marca();
+                IEnumerable<Marca> marcasFiltradas;
+                marca.Descripcion = this._ventana.NombreMarcaFiltrar.ToUpper();
+                marca.Id = this._ventana.IdMarcaFiltrar.Equals("") ? 0 : int.Parse(this._ventana.IdMarcaFiltrar);
+                if ((!marca.Descripcion.Equals("")) || (marca.Id != 0))
+                    marcasFiltradas = this._marcaServicios.ObtenerMarcasFiltro(marca);
+                else
+                    marcasFiltradas = new List<Marca>();
+
+                if (marcasFiltradas.ToList<Marca>().Count != 0)
+                    this._ventana.Marcas = marcasFiltradas.ToList<Marca>();
+                else
+                    this._ventana.Marcas = this._marcas;
+
+                Mouse.OverrideCursor = null;
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (ApplicationException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(ex.Message, true);
+            }
+            catch (RemotingException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorRemoting, true);
+            }
+            catch (SocketException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorConexionServidor, true);
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
+            }
+        }
+
+        public bool ElegirMarca()
+        {
+            bool retorno = false;
+            if (this._ventana.Marca != null)
+            {
+                retorno = true;
+                this._ventana.NombreMarca = ((Marca)this._ventana.Marca).Descripcion;
+            }
+
+            return retorno;
+        }
     }
 }

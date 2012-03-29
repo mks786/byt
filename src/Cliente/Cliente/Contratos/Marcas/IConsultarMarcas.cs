@@ -68,5 +68,36 @@ namespace Trascend.Bolet.Cliente.Contratos.Marcas
         object Pais { get; set; }
 
         object Paises { get; set; }
+
+        object PaisPrioridad { get; set; }
+
+        object PaisesPrioridad { get; set; }
+
+        object Condicion { get; set; }
+
+        object Condiciones { get; set; }
+
+        object BoletinesOrdenPublicacion { get; set; }
+
+        object BoletinOrdenPublicacion { get; set; }
+
+        object BoletinesPublicacion { get; set; }
+
+        object BoletinPublicacion { get; set; }
+
+        object BoletinesConcesion { get; set; }
+
+        object BoletinConcesion { get; set; }
+
+        string IdMarcaFiltrar { get; }
+
+        string NombreMarcaFiltrar { get; }
+
+        object Marcas { get; set; }
+
+        object Marca { get; set; }
+
+        string NombreMarca { set; }
+
     }
 }
