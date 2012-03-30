@@ -219,7 +219,7 @@
                             <Label Name="_lblIdInteresadoSolicitud" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Center" Visibility="Collapsed">
                                 <TextBlock Text="{x:Static recurso:Etiquetas.lblId}"/>
                             </Label>
-                            <custom:ByTTextBox IsEnabled="False"    Grid.Column="1" Grid.Row="0" Name="_txtIdInteresadoSolicitudFiltrar" VerticalAlignment="Center" 
+                            <custom:ByTTextBox IsEnabled="True"    Grid.Column="1" Grid.Row="0" Name="_txtIdInteresadoSolicitudFiltrar" VerticalAlignment="Center" 
                          MaxLength="255" Grid.ColumnSpan="2" Visibility="Collapsed"  ></custom:ByTTextBox>
 
                             <Label Name="_lblNombreInteresadoSolicitud" Grid.Column="3" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Center" Visibility="Collapsed">
@@ -858,7 +858,7 @@
                             <Label Name="_lblIdAsociadoDatos" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Center" Visibility="Collapsed">
                                 <TextBlock Text="{x:Static recurso:Etiquetas.lblId}"/>
                             </Label>
-                            <custom:ByTTextBox IsEnabled="False"   Grid.Column="1" Grid.Row="0" Name="_txtIdAsociadoDatosFiltrar" VerticalAlignment="Center" 
+                            <custom:ByTTextBox IsEnabled="True"   Grid.Column="1" Grid.Row="0" Name="_txtIdAsociadoDatosFiltrar" VerticalAlignment="Center" 
                          MaxLength="255" Grid.ColumnSpan="2" Visibility="Collapsed"  ></custom:ByTTextBox>
 
                             <Label Name="_lblNombreAsociadoDatos" Grid.Column="3" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Center" Visibility="Collapsed">
@@ -933,7 +933,7 @@
                             <Label Name="_lblIdInteresadoDatos" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Center" Visibility="Collapsed">
                                 <TextBlock Text="{x:Static recurso:Etiquetas.lblId}"/>
                             </Label>
-                            <custom:ByTTextBox IsEnabled="False"    Grid.Column="1" Grid.Row="0" Name="_txtIdInteresadoDatosFiltrar" VerticalAlignment="Center" 
+                            <custom:ByTTextBox IsEnabled="true"    Grid.Column="1" Grid.Row="0" Name="_txtIdInteresadoDatosFiltrar" VerticalAlignment="Center" 
                          MaxLength="255" Grid.ColumnSpan="2" Visibility="Collapsed"  ></custom:ByTTextBox>
 
                             <Label Name="_lblNombreInteresadoDatos" Grid.Column="3" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Center" Visibility="Collapsed">
@@ -1360,7 +1360,9 @@
                         <Label Grid.Column="6" Grid.Row="19" Grid.ColumnSpan="2" VerticalAlignment="Center">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblRenovadoPorOtroTramitante}"/>
                         </Label>
-                        <CheckBox IsEnabled="False" Margin="3" Grid.Column="8" Grid.ColumnSpan="1" Grid.Row="19" Height="16" VerticalAlignment="Center" Name="_checkBoxRenovacionTramitente"/>
+                        <CheckBox IsEnabled="False" Margin="3" Grid.Column="8" Grid.ColumnSpan="1" Grid.Row="19" Height="16" VerticalAlignment="Center" 
+                                  Name="_chkRenovacionTramitente" IsChecked="{Binding Path=BRenovacionOtroTramitante}"/>
+                        
                         <Button IsEnabled="False" Grid.Column="8" Grid.Row="19" Grid.ColumnSpan="2" Grid.RowSpan="2" Name="_btnIntRenovacion" Margin="25,6,3,6">
                             <TextBlock Name="_txbIntRenovacion" Text="{x:Static recurso:Etiquetas.btnNoRegistro}"/>
                         </Button>
@@ -1371,7 +1373,8 @@
                         <Label Grid.Column="6" Grid.Row="20" Grid.ColumnSpan="2" VerticalAlignment="Center">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblInstruccionesDeRenovacion}"/>
                         </Label>
-                        <CheckBox IsEnabled="False" Margin="3" Grid.Column="8" Grid.ColumnSpan="1" Grid.Row="20" Height="16" VerticalAlignment="Center" Name="_checkBoxInstruccionesRenovacion"/>
+                        <CheckBox IsEnabled="False" Margin="3" Grid.Column="8" Grid.ColumnSpan="1" Grid.Row="20" Height="16" VerticalAlignment="Center" 
+                                  Name="_chkInstruccionesRenovacion" IsChecked="{Binding Path=BInstruccionesRenovacion}"/>
                         <!--Fin Fila Trece-->
 
                         <!--Fila Catorce-->

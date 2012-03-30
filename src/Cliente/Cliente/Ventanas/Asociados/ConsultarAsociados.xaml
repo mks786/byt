@@ -118,7 +118,7 @@
                         <TextBlock Text="{x:Static recurso:Etiquetas.btnConsultar}"/>
                     </Button>
                 </WrapPanel>
-                <Separator Margin="0,5,0,5"/>
+                <Separator Margin="0,5,0,5"/>                               
             </StackPanel>
         </GroupBox>
 
@@ -138,16 +138,24 @@
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="Telefono" Content="{x:Static recurso:Etiquetas.lsvDomicilio}"/>
                         </GridViewColumn>
                     </GridView>
-                </ListView.View>
-            </ListView>
+                </ListView.View>                
+            </ListView>           
         </GroupBox>
+
+        <Button Name="_btnLimpiarCampos" Grid.Column="1" Grid.Row="1" Margin="5" Width="100" HorizontalAlignment="Left" Click="_btnLimpiarCampos_Click">
+                <TextBlock Text="{x:Static recurso:Etiquetas.btnLimpiarCampos}"/>
+            </Button>
+        
 
         <!--Botones Regresar-->
         <GroupBox Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="1" BorderBrush="{x:Null}">
-            <StackPanel HorizontalAlignment="Right" VerticalAlignment="Bottom">
-                <Button Name="_btnCancelar" Width="100" Click="_btnCancelar_Click">
+            <StackPanel HorizontalAlignment="Right" VerticalAlignment="Bottom" Orientation="Horizontal">                
+                
+                <Button Grid.Row="0" Grid.Column="1" Name="_btnCancelar" Width="100" Click="_btnCancelar_Click">
                     <TextBlock Text="{x:Static recurso:Etiquetas.btnCancelar}"/>
                 </Button>
+            
+                
             </StackPanel>
         </GroupBox>
 

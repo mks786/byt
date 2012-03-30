@@ -376,5 +376,30 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
                 logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
         }
+
+        /// <summary>
+        /// Método que limpia los campos de búsqueda
+        /// </summary>
+        internal void LimpiarCampos()
+        {
+            IEnumerable<Asociado> asociadosFiltrados = this._asociados;
+
+            this._ventana.Resultados = asociadosFiltrados.ToList<Asociado>();
+            this._ventana.TotalHits = asociadosFiltrados.ToList<Asociado>().Count.ToString();
+
+            this._ventana.Id = null;
+            this._ventana.NombreAsociado = null;
+            this._ventana.DomicilioAsociado = null;
+
+            this._ventana.Moneda = this.BuscarMoneda((IList<Moneda>)this._ventana.Monedas,new Moneda("NGN"));
+            this._ventana.Pais = this.BuscarPais((IList<Pais>)this._ventana.Paises, new Pais(int.MinValue));
+            this._ventana.Etiqueta = this.BuscarEtiqueta((IList<Etiqueta>)this._ventana.Etiquetas, new Etiqueta("NGN"));
+            
+            this._ventana.TipoPersona = ((IList<ListaDatosDominio>)this._ventana.TipoPersonas)[0];
+            this._ventana.Idioma = this.BuscarIdioma((IList<Idioma>)this._ventana.Idiomas, new Idioma("NGN"));
+            this._ventana.TipoCliente = this.BuscarTipoCliente((IList<TipoCliente>)this._ventana.TiposClientes, new TipoCliente("NGN"));
+            this._ventana.Tarifa = this.BuscarTarifa((IList<Tarifa>)this._ventana.Tarifas, new Tarifa("NGN"));
+            this._ventana.DetallePago = this.BuscarDetallePago((IList<DetallePago>)this._ventana.DetallesPagos, new DetallePago("NGN"));
+        }
     }
 }

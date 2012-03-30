@@ -7,7 +7,7 @@ namespace Trascend.Bolet.Cliente.Contratos.Asociados
     {
         object AsociadoFiltrar { get; set; }
 
-        object AsociadoSeleccionado { get; }
+        object AsociadoSeleccionado { set; get; }
 
         object Resultados { get; set; }
 
@@ -45,6 +45,10 @@ namespace Trascend.Bolet.Cliente.Contratos.Asociados
 
         string Id { get; set; }
 
+        string NombreAsociado { get; set; }
+
+        string DomicilioAsociado { get; set; }
+
         object TipoPersona { get; set; }
 
         object TipoPersonas { get; set; }
@@ -55,6 +59,6 @@ namespace Trascend.Bolet.Cliente.Contratos.Asociados
 
         ListView ListaResultados { get; set; }
 
-        string TotalHits { set; }
+        string TotalHits { set; }        
     }
 }

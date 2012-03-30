@@ -5,24 +5,25 @@ namespace Trascend.Bolet.Cliente.Contratos.Cartas
 {
     interface IConsultarCartas : IPaginaBase
     {
-        string Id { get; }
+        string Id { get; set; }
+
         object CartaSeleccionado { get; }
 
         object Resultados { get; set; }
 
         object CartaFiltrar { get; set; }
 
-        string IdAsociadoFiltrar { get; }
+        string IdAsociadoFiltrar { get; set; }
 
-        string NombreAsociadoFiltrar { get; }
+        string NombreAsociadoFiltrar { get; set; }
 
         object Asociados { get; set; }
 
         object Asociado { get; set; }
 
-        string ResumenFiltrar { get; }
+        string ResumenFiltrar { get; set; }
 
-        string Fecha { get; }
+        string Fecha { get; set; }
 
         GridViewColumnHeader CurSortCol { get; set; }
 

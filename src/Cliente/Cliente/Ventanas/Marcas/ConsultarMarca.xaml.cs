@@ -339,8 +339,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
 
                 #region CheckBox
 
-                this._checkBoxInstruccionesRenovacion.IsEnabled = value;
-                this._checkBoxRenovacionTramitente.IsEnabled = value;
+                this._chkInstruccionesRenovacion.IsEnabled = value;
+                this._chkRenovacionTramitente.IsEnabled = value;
                 this._chkConflicto.IsEnabled = value;
                 this._chkEtiquetaSolicitud.IsEnabled = value;
                 this._chkEtiquetaDatos.IsEnabled = value;

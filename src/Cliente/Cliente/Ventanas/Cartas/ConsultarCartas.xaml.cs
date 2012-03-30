@@ -30,12 +30,13 @@ namespace Trascend.Bolet.Cliente.Ventanas.Cartas
         public string Id
         {
             get { return this._txtId.Text; }
+            set { this._txtId.Text = value; }
         }
 
 
         public object CartaSeleccionado
         {
-            get { return this._lstResultados.SelectedItem; }
+            get { return this._lstResultados.SelectedItem; }            
         }
 
         public object CartaFiltrar
@@ -47,21 +48,25 @@ namespace Trascend.Bolet.Cliente.Ventanas.Cartas
         public string IdAsociadoFiltrar
         {
             get { return this._txtIdAsociado.Text; }
+            set { this._txtIdAsociado.Text = value; }
         }
 
         public string NombreAsociadoFiltrar
         {
             get { return this._txtNombreAsociado.Text; }
+            set { this._txtNombreAsociado.Text = value; }
         }
 
         public string ResumenFiltrar
         {
             get { return this._txtResumen.Text; }
+            set { this._txtResumen.Text = value; }
         }
 
         public string Fecha
         {
             get { return this._dpkFecha.SelectedDate.ToString(); }
+            set { this._dpkFecha.Text = value; }
         }
 
         public bool EstaCargada
@@ -224,6 +229,10 @@ namespace Trascend.Bolet.Cliente.Ventanas.Cartas
 
         }
 
+        private void _btnLimpiarCampos_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.LimpiarCampos();
+        }
 
     }
 }

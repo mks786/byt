@@ -43,6 +43,18 @@ namespace Trascend.Bolet.Cliente.Ventanas.Asociados
             set { this._txtId.Text = value; }
         }
 
+        public string NombreAsociado
+        {
+            get { return this._txtNombre.Text; }
+            set { this._txtNombre.Text = value; }
+        }
+
+        public string DomicilioAsociado
+        {
+            get { return this._txtDomicilio.Text; }
+            set { this._txtDomicilio.Text = value; }
+        }
+
         public bool EstaCargada
         {
             get { return this._cargada; }
@@ -63,6 +75,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Asociados
         public object AsociadoSeleccionado
         {
             get { return this._lstResultados.SelectedItem; }
+            set { this._lstResultados.SelectedItem = value; }
 
         }
 
@@ -307,6 +320,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Asociados
             {
                 this._txtId.Focus();
             }
+        }
+       
+        private void _btnLimpiarCampos_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.LimpiarCampos();
         }
     }
 }

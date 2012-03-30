@@ -2129,6 +2129,9 @@ de Gracia</value>
   <data name="btnTomarClaseInternacional" xml:space="preserve">
     <value>Tomar Clase Internacional</value>
   </data>
+  <data name="btnLimpiarCampos" xml:space="preserve">
+    <value>Limpiar Campos</value>
+  </data>
   <data name="chkBoletines" xml:space="preserve">
     <value>Boletines</value>
   </data>

@@ -544,6 +544,48 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         }
 
         /// <summary>
+        /// Propiedad que asigna u obtiene el Check de renovación por otro tramitante
+        /// </summary>
+        public virtual bool BRenovacionOtroTramitante
+        {
+            get
+            {
+                if (this.Ter.Equals('T'))
+                    return true;
+                else
+                    return false;
+            }
+            set
+            {
+                if (value)
+                    this.Ter = 'T';
+                else
+                    this.Ter = 'F';
+            }
+        }
+
+        /// <summary>
+        /// Propiedad que asigna u obtiene el Check de instrucciones de renovación
+        /// </summary>
+        public virtual bool BInstruccionesRenovacion
+        {
+            get
+            {
+                if (this.Rev.Equals('T'))
+                    return true;
+                else
+                    return false;
+            }
+            set
+            {
+                if (value)
+                    this.Rev = 'T';
+                else
+                    this.Rev = 'F';
+            }
+        }
+
+        /// <summary>
         ///Propiedad que asigna u obtiene el CPrioridad
         /// </summary>
         public virtual string CPrioridad
