@@ -301,6 +301,36 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             set { this._lstMarcas.SelectedItem = value; }
         }
 
+        public bool InternacionalEstaSeleccionado
+        {
+            get { return this._chkInternacional.IsChecked.Value; }
+        }
+
+        public bool NacionalEstaSeleccionado
+        {
+            get { return this._chkNacional.IsChecked.Value; }
+        }
+
+        public bool TYREstaSeleccionado
+        {
+            get { return this._chkInternacional.IsChecked.Value; }
+        }
+
+        public bool IndicadoresEstaSeleccionado
+        {
+            get { return this._chkIndicadores.IsChecked.Value; }
+        }
+
+        public bool PrioridadesEstaSeleccionado
+        {
+            get { return this._chkPrioridad.IsChecked.Value; }
+        }
+
+        public bool BoletinesEstaSeleccionado
+        {
+            get { return this._chkBoletines.IsChecked.Value; }
+        }
+
         #endregion
 
         /// <summary>
@@ -567,6 +597,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
 
         #endregion
 
+        #region Checks
+
         private void _chkInternacional_Click(object sender, RoutedEventArgs e)
         {
             GestionarVisibilidadFiltroInternacional(this._chkInternacional.IsChecked.Value);
@@ -633,7 +665,6 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
                 GestionarVisibilidadFiltroInternacional(!this._chkNacional.IsChecked.Value);
             }
         }
-
 
         private void GestionarVisibilidadFiltroNacional(bool visibilidad)
         {
@@ -727,13 +758,6 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             //this._btnConsultarInteresado.IsDefault = false;
         }
 
-        //private void _btnConsultarFocus(object sender, RoutedEventArgs e)
-        //{
-        //    this._btnConsultar.IsDefault = true;
-        //    this._btnConsultarMarca.IsDefault = false;
-        //    //this._btnConsultarInteresado.IsDefault = false;
-        //}
-
         private void _txtMarcaNombre_GotFocus(object sender, RoutedEventArgs e)
         {
             GestionarVisibilidadDatosDeMarca(Visibility.Collapsed);
@@ -764,6 +788,6 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             this._txtMarcaNombre.Visibility = (System.Windows.Visibility)value;
         }
 
-
+        #endregion
     }
 }

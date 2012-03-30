@@ -40,6 +40,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
         private IList<Interesado> _interesados;
         private IList<Corresponsal> _corresponsales;
 
+        private int _filtroValido;//Variable utilizada para limitar a que el filtro se ejecute solo cuando 
+        //dos filtros sean utilizados
+
         /// <summary>
         /// Constructor Predeterminado
         /// </summary>
@@ -224,51 +227,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
 
                 Mouse.OverrideCursor = Cursors.Wait;
                 bool consultaResumen = false;
-                int filtroValido = 0;//Variable utilizada para limitar a que el filtro se ejecute solo cuando 
-                //dos filtros sean utilizados
 
-                Marca MarcaAuxiliar = new Marca();
+                _filtroValido = 0;
 
-                if (!this._ventana.Id.Equals(""))
-                {
-                    filtroValido = 2;
-                    MarcaAuxiliar.Id = int.Parse(this._ventana.Id);
-                }
+                Marca MarcaAuxiliar = ObtenerMarcaFiltro();
 
-                if ((null != this._ventana.Asociado) && (((Asociado)this._ventana.Asociado).Id != int.MinValue))
-                {
-                    MarcaAuxiliar.Asociado = (Asociado)this._ventana.Asociado;
-                    filtroValido = 2;
-                }
-
-                if ((null != this._ventana.Interesado) && (((Interesado)this._ventana.Interesado).Id != int.MinValue))
-                {
-                    MarcaAuxiliar.Interesado = (Interesado)this._ventana.Interesado;
-                    filtroValido = 2;
-                }
-
-
-                //if (!this._ventana.FichasFiltrar.Equals(""))
-                //{
-                //    MarcaAuxiliar.Fichas = this._ventana.FichasFiltrar.ToUpper();
-                //    filtroValido++;
-                //}
-
-
-                if (!this._ventana.DescripcionFiltrar.Equals(""))
-                {
-                    filtroValido = 2;
-                    MarcaAuxiliar.Descripcion = this._ventana.DescripcionFiltrar.ToUpper();
-                }
-
-                if (!this._ventana.Fecha.Equals(""))
-                {
-                    DateTime fechaPublicacion = DateTime.Parse(this._ventana.Fecha);
-                    filtroValido = 2;
-                    MarcaAuxiliar.FechaPublicacion = fechaPublicacion;
-                }
-
-                if (filtroValido >= 2)
+                if (_filtroValido >= 2)
                 {
                     this._marcas = this._marcaServicios.ObtenerMarcasFiltro(MarcaAuxiliar);
 
@@ -322,6 +286,148 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             {
                 Mouse.OverrideCursor = null;
             }
+        }
+
+        private Marca ObtenerMarcaFiltro()
+        {
+            Marca marcaAuxiliar = new Marca();
+            try
+            {
+                if (ValidarBusquedaDeMarcas())
+                {
+                    if (this._ventana.InternacionalEstaSeleccionado) 
+                    {
+                        marcaAuxiliar = TomarDatosMarcaFiltroInternacional(marcaAuxiliar);
+                    }
+
+                    if (this._ventana.NacionalEstaSeleccionado)
+                    {
+                        marcaAuxiliar = TomarDatosMarcaFiltroNacional(marcaAuxiliar);
+                    }
+
+                    if (this._ventana.BoletinesEstaSeleccionado)
+                    {
+                        marcaAuxiliar = TomarDatosMarcaFiltroBoletines(marcaAuxiliar);
+                    }
+
+                    if (this._ventana.IndicadoresEstaSeleccionado)
+                    {
+                        marcaAuxiliar = TomarDatosMarcaFiltroIndicadores(marcaAuxiliar);
+                    }
+
+                    if (this._ventana.PrioridadesEstaSeleccionado)
+                    {
+                        marcaAuxiliar = TomarDatosMarcaFiltroPrioridades(marcaAuxiliar);
+                    }
+
+                    if (this._ventana.TYREstaSeleccionado)
+                    {
+                        marcaAuxiliar = TomarDatosMarcaFiltroTYR(marcaAuxiliar);
+                    }
+                }
+                else
+                {
+                    //Error ya que debe seleccionar al menos un check
+                    //this._ventana.Mensaje()
+                }
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
+            }
+            finally
+            {
+                Mouse.OverrideCursor = null;
+            }
+            return marcaAuxiliar;
+        }
+
+        private Marca TomarDatosMarcaFiltroTYR(Marca marcaAuxiliar)
+        {
+            return marcaAuxiliar;
+        }
+
+        private Marca TomarDatosMarcaFiltroPrioridades(Marca marcaAuxiliar)
+        {
+            return marcaAuxiliar;
+        }
+
+        private Marca TomarDatosMarcaFiltroIndicadores(Marca marcaAuxiliar)
+        {
+            return marcaAuxiliar;
+        }
+
+        private Marca TomarDatosMarcaFiltroBoletines(Marca marcaAuxiliar)
+        {
+            return marcaAuxiliar;
+        }
+
+        private Marca TomarDatosMarcaFiltroNacional(Marca marcaAuxiliar)
+        {
+            if (!this._ventana.Id.Equals(""))
+            {
+                _filtroValido = 2;
+                marcaAuxiliar.Id = int.Parse(this._ventana.Id);
+            }
+
+            if ((null != this._ventana.Asociado) && (((Asociado)this._ventana.Asociado).Id != int.MinValue))
+            {
+                marcaAuxiliar.Asociado = (Asociado)this._ventana.Asociado;
+                _filtroValido = 2;
+            }
+
+            if ((null != this._ventana.Interesado) && (((Interesado)this._ventana.Interesado).Id != int.MinValue))
+            {
+                marcaAuxiliar.Interesado = (Interesado)this._ventana.Interesado;
+                _filtroValido = 2;
+            }
+
+            if (!this._ventana.DescripcionFiltrar.Equals(""))
+            {
+                _filtroValido = 2;
+                marcaAuxiliar.Descripcion = this._ventana.DescripcionFiltrar.ToUpper();
+            }
+
+            if (!this._ventana.Fecha.Equals(""))
+            {
+                DateTime fechaPublicacion = DateTime.Parse(this._ventana.Fecha);
+                _filtroValido = 2;
+                marcaAuxiliar.FechaPublicacion = fechaPublicacion;
+            }
+
+            return marcaAuxiliar;
+        }
+
+        private Marca TomarDatosMarcaFiltroInternacional(Marca marcaAuxiliar)
+        {
+            return marcaAuxiliar;
+        }
+
+        /// <summary>
+        /// Método que valida que la pantalla de busqueda se encuentre seleccionado al menos un check
+        /// </summary>
+        /// <returns>true en caso de que haya al menos uno seleccionado, false en caso contrario</returns>
+        private bool ValidarBusquedaDeMarcas()
+        {
+            bool retorno = true;
+
+            if (!this._ventana.InternacionalEstaSeleccionado)
+
+                if (!this._ventana.NacionalEstaSeleccionado)
+
+                    if (!this._ventana.BoletinesEstaSeleccionado)
+
+                        if (!this._ventana.IndicadoresEstaSeleccionado)
+
+                            if (!this._ventana.PrioridadesEstaSeleccionado)
+
+                                if (!this._ventana.TYREstaSeleccionado)
+
+                                    retorno = false;
+
+
+            return retorno;
         }
 
         /// <summary>
@@ -467,7 +573,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             if ((interesadoABuscar.Id != 0) || !(interesadoABuscar.Nombre.Equals("")))
             {
                 IList<Interesado> interesados = this._interesadoServicios.ObtenerInteresadosFiltro(interesadoABuscar);
-                interesados.Insert(0,new Interesado(int.MinValue));
+                interesados.Insert(0, new Interesado(int.MinValue));
                 this._ventana.Interesados = interesados;
             }
             else
@@ -512,7 +618,6 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
         }
 
         #endregion
-
 
         #region Asociado
 
@@ -586,7 +691,6 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
 
         #endregion
 
-
         #region Corresponsal
 
         /// <summary>
@@ -659,7 +763,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
 
         #endregion
 
-
+        #region Marca
 
         public void BuscarMarca()
         {
@@ -725,5 +829,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
 
             return retorno;
         }
+
+        #endregion
     }
 }

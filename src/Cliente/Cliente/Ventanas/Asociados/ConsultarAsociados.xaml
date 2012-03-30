@@ -128,14 +128,14 @@
                       MouseDoubleClick="_lstResultados_MouseDoubleClick" Style="{DynamicResource EstiloListView}">
                 <ListView.View>
                     <GridView>
-                        <GridViewColumn DisplayMemberBinding="{Binding Path=Id}" Width="120">
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Id}" Width="120" >
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="Id" Content="{x:Static recurso:Etiquetas.lsvId}"/>
                         </GridViewColumn>
                         <GridViewColumn DisplayMemberBinding="{Binding Path=Nombre}" Width="300">
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="Nombre" Content="{x:Static recurso:Etiquetas.lsvNombre}"/>
                         </GridViewColumn>
                         <GridViewColumn DisplayMemberBinding="{Binding Path=Domicilio}" Width="300">
-                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="Telefono" Content="{x:Static recurso:Etiquetas.lsvDomicilio}"/>
+                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="Domicilio" Content="{x:Static recurso:Etiquetas.lsvDomicilio}"/>
                         </GridViewColumn>
                     </GridView>
                 </ListView.View>                

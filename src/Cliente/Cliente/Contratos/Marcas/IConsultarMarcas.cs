@@ -99,5 +99,17 @@ namespace Trascend.Bolet.Cliente.Contratos.Marcas
 
         string NombreMarca { set; }
 
+        bool InternacionalEstaSeleccionado { get; }
+
+        bool NacionalEstaSeleccionado { get; }
+
+        bool TYREstaSeleccionado { get; }
+
+        bool IndicadoresEstaSeleccionado { get; }
+
+        bool PrioridadesEstaSeleccionado { get; }
+
+        bool BoletinesEstaSeleccionado { get; }
+
     }
 }
