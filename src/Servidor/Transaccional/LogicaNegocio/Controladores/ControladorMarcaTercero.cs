@@ -78,32 +78,13 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
                     contador = int.Parse(contadorStr) + 1;
                     marcaTercero.Id = idBuscado.Receptor.ObjetoAlmacenado.Substring(0, 2) + contador.ToString();
                     marcaTercero.Anexo = 1;
+                    marcaTercero.Tipo = "MP";
                     if ((id == "E") && (marcaTercero.Descripcion[1].ToString().ToUpper() == "T"))
                     {
 
 
                     }
 
-                    if (marcaTercero.MarcasBaseTercero != null)
-                    { 
-                        List<MarcaBaseTercero> marcasBaseTerceroModificada = new List<MarcaBaseTercero>();
-                        ComandoBase<int> idSecuencia = FabricaComandosMarcaBaseTercero.ObtenerComandoConsultarMarcaTerceroMaxSecuencia();
-                        idSecuencia.Ejecutar();
-                        int secuencia = idSecuencia.Receptor.ObjetoAlmacenado;
-                        foreach (MarcaBaseTercero marcaBaseTercero in marcaTercero.MarcasBaseTercero)
-                        {
-                            marcaBaseTercero.Id = marcaTercero.Id;
-                            marcaBaseTercero.Anexo = marcaTercero.Anexo;
-                            secuencia++;
-                            marcaBaseTercero.Secuencia = secuencia;
-                            marcasBaseTerceroModificada.Add(marcaBaseTercero);
-                            //ComandoBase<bool> comandoMbt = FabricaComandosMarcaBaseTercero.ObtenerComandoInsertarOModificar(marcaBaseTercero);
-                            //comandoMbt.Ejecutar();
-                            //exitoso = comandoMbt.Receptor.ObjetoAlmacenado;
-
-                        }
-                        marcaTercero.MarcasBaseTercero = marcasBaseTerceroModificada;
-                    }
                     ComandoBase<bool> comando = FabricaComandosMarcaTercero.ObtenerComandoInsertarOModificar(marcaTercero);
                     comando.Ejecutar();
                     exitoso = comando.Receptor.ObjetoAlmacenado;
@@ -111,11 +92,36 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
                 else //Cuando se Crea se Modifica un Registro
                 {
 
-                    ComandoBase<int> idAnexo = FabricaComandosMarcaTercero.ObtenerComandoConsultarMarcaTerceroMaxAnexo(marcaTercero.Id);
-                    idAnexo.Ejecutar();
-                    marcaTercero.Anexo = idAnexo.Receptor.ObjetoAlmacenado + 1;
+                    //ComandoBase<int> idAnexo = FabricaComandosMarcaTercero.ObtenerComandoConsultarMarcaTerceroMaxAnexo(marcaTercero.Id);
+                    //idAnexo.Ejecutar();
+                    //marcaTercero.Anexo = idAnexo.Receptor.ObjetoAlmacenado + 1;
+                    List<MarcaBaseTercero> marcasBaseTerceroModificada = new List<MarcaBaseTercero>();
                     ComandoBase<int> idSecuencia = FabricaComandosMarcaBaseTercero.ObtenerComandoConsultarMarcaTerceroMaxSecuencia();
                     idSecuencia.Ejecutar();
+                    int secuencia = idSecuencia.Receptor.ObjetoAlmacenado;
+                    foreach (MarcaBaseTercero marcaBaseTercero in marcaTercero.MarcasBaseTercero)
+                    {
+                        marcaBaseTercero.Id =  marcaTercero.Id;
+                        marcaBaseTercero.Anexo = marcaTercero.Anexo;
+                        secuencia++;
+                        if (marcaBaseTercero.Secuencia == 0)
+                            marcaBaseTercero.Secuencia = secuencia;
+                        marcasBaseTerceroModificada.Add(marcaBaseTercero);
+                        //ComandoBase<bool> comandoMbt = FabricaComandosMarcaBaseTercero.ObtenerComandoInsertarOModificar(marcaBaseTercero);
+                        //comandoMbt.Ejecutar();
+                        //exitoso = comandoMbt.Receptor.ObjetoAlmacenado;
+
+                        ComandoBase<bool> comandoMTB = FabricaComandosMarcaBaseTercero.ObtenerComandoInsertarOModificar(marcaBaseTercero);
+                        comandoMTB.Ejecutar();
+                        exitoso = comandoMTB.Receptor.ObjetoAlmacenado;
+
+                    }
+                    marcaTercero.MarcasBaseTercero = null;
+                    marcaTercero.Tipo = "MP";
+
+                    ComandoBase<bool> comando = FabricaComandosMarcaTercero.ObtenerComandoInsertarOModificar(marcaTercero);
+                    comando.Ejecutar();
+                    exitoso = comando.Receptor.ObjetoAlmacenado;
 
                 }
 

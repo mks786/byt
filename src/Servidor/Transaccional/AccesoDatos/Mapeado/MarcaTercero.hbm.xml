@@ -77,11 +77,6 @@
       <column name="CPAIS_PRIORIDAD"/>
     </many-to-one>
 
-    <many-to-one name="StatusWeb" class="StatusWeb">
-      <column name="TESTADO"/>
-    </many-to-one>
-
-    
     <many-to-one name="Poder" class="Poder" lazy="false">
       <column name="CPODER"/>
     </many-to-one>
@@ -90,15 +85,18 @@
       <column name="CSERVICIO"/>
     </many-to-one>
 
-    <many-to-one name="TipoEstado" class="TipoEstado">
-      <column name="TESTADO"/>
-    </many-to-one>
-
     <bag name="MarcasBaseTercero">
-      <key column="CMARCAT"/>
-      <one-to-many class="MarcaBaseTercero"/>
+        <key column="CMARCAT"/>
+        <one-to-many class="MarcaBaseTercero"/>
     </bag>
-        
+
+    <!--<bag name="MarcasBaseTercero" table="MYP_MARCAS_BASE_TER" >
+      <key column="CMARCAT"/>
+      <composite-element class="MarcasBaseTercero">
+        <many-to-one name="Anexo" column="CANEXO"/>
+      </composite-element>
+    </bag>-->
+    
   </class>
 
 

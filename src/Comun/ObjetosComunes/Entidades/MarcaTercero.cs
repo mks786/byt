@@ -64,7 +64,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         private Nacional _nacional;
         private Interesado _interesado;
         private Pais _pais;
-        private StatusWeb _statusWeb;
+     //   private StatusWeb _statusWeb;
         private Servicio _servicio;
         private Poder _poder;
         private string _cPrioridad;
@@ -607,11 +607,11 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         /// <summary>
         /// Propiedad que asigna u obtiene el StatusWeb
         /// </summary>
-        public virtual StatusWeb StatusWeb
-        {
-            get { return _statusWeb; }
-            set { _statusWeb = value; }
-        }
+        //public virtual StatusWeb StatusWeb
+        //{
+        //    get { return _statusWeb; }
+        //    set { _statusWeb = value; }
+        //}
 
         /// <summary>
         /// Propiedad que asigna u obtiene el Servicio

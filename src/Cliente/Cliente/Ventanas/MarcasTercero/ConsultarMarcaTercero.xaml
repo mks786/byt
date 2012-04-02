@@ -436,7 +436,7 @@
                     <Separator Grid.Column="0" Grid.Row="15" Grid.ColumnSpan="11" Margin="10 0" VerticalAlignment="Center" />
                 
                     <!-- BYT Inicio-->
-                    <Grid Grid.Column="1" Grid.Row="16" Grid.ColumnSpan="7">
+                    <Grid Grid.Column="1" Grid.Row="16" Grid.ColumnSpan="7" Name="_gridByt">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="25"/>
                             <ColumnDefinition Width="25"/>
@@ -531,9 +531,6 @@
                                                     </DataTemplate>
                                                 </GridViewColumn.CellTemplate>
                                             </GridViewColumn>
-                                            <GridViewColumn DisplayMemberBinding="{Binding Path=Anexo}" Width="80">
-                                                <GridViewColumnHeader Click="_OrdenarMarcas_Click" Tag="Anexo" Content="{x:Static recurso:Etiquetas.lsvAnexo}"/>
-                                            </GridViewColumn>
                                             <GridViewColumn DisplayMemberBinding="{Binding Path=Descripcion}" Width="300">
                                                 <GridViewColumnHeader Click="_OrdenarMarcas_Click" Tag="Nombre" Content="{x:Static recurso:Etiquetas.lsvNombre}"/>
                                             </GridViewColumn>
@@ -579,6 +576,9 @@
                                 <GridView>
                                     <GridViewColumn DisplayMemberBinding="{Binding Path=Id}" Width="50">
                                         <GridViewColumnHeader  Tag="Id" Content="{x:Static recurso:Etiquetas.lsvId}"/>
+                                    </GridViewColumn>
+                                    <GridViewColumn DisplayMemberBinding="{Binding Path=Anexo}" Width="80">
+                                        <GridViewColumnHeader Click="_OrdenarMarcas_Click" Tag="Anexo" Content="{x:Static recurso:Etiquetas.lsvAnexo}"/>
                                     </GridViewColumn>
                                     <GridViewColumn DisplayMemberBinding="{Binding Path=Marca.Descripcion}" Width="150">
                                         <GridViewColumnHeader  Tag="Descripcion" Content="{x:Static recurso:Etiquetas.lsvNombre}"/>

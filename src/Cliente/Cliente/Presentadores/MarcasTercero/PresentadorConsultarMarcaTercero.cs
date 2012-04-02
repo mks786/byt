@@ -101,6 +101,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
                     if (((MarcaTercero)marcaTerceroAgregar).AsociadoTercero == null)
 
                     this._ventana.MarcaTercero = marcaTerceroAgregar;
+                    this._ventana.MostrarByt();
                     CambiarAModificar();
                    
                 }
@@ -494,7 +495,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
                     this._ventana.TextoBotonModificar = Recursos.Etiquetas.btnAceptar;
                 }
 
-                //Modifica los datos del Pais
+                //Modifica los datos de la marcaTercero
                 else
                 {
                     MarcaTercero marcaTercero = CargarMarcaTerceroDeLaPantalla();
@@ -838,6 +839,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
                  if ((bool)this._ventana.Byt.IsChecked)
                      { 
                         aux.Marca = ((Marca)this._ventana.MarcaFiltrada);
+                        aux.Internacional = ((Marca)aux.Marca).Internacional;
+                        aux.Nacional = ((Marca)aux.Marca).Nacional;
+              
                     }
                  else
                      {
@@ -851,7 +855,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
                      }
 
                 aux.Id = ((MarcaTercero)this._ventana.MarcaTercero).Id;
+                aux.Anexo = ((MarcaTercero)this._ventana.MarcaTercero).Anexo;
                 marcasBaseTercero.Add(aux);
+                ((MarcaTercero)this._ventana.MarcaTercero).MarcasBaseTercero = marcasBaseTercero;
                 this._ventana.MarcasByt = marcasBaseTercero.ToList<MarcaBaseTercero>();
                // this._marcasBaseTercero.Remove((MarcaBaseTercero)this._ventana.MarcaTercero);
                // ((MarcaTercero)this._ventana.MarcaTercero).MarcasBaseTercero = this._marcasBaseTercero.ToList<MarcaBaseTercero>();

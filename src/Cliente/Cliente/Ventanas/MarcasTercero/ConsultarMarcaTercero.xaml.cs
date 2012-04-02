@@ -18,6 +18,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.MarcasTercero
         private SortAdorner _CurAdorner = null;
         private PresentadorConsultarMarcaTercero _presentador;
         private bool _cargada;
+        private bool _agregar = false;
 
         private bool _asociadosCargados;
         private bool _interesadosCargados;
@@ -228,6 +229,12 @@ namespace Trascend.Bolet.Cliente.Ventanas.MarcasTercero
         {
             get { return this._gridDatosMarca.DataContext; }
             set { this._gridDatosMarca.DataContext = value; }
+        }
+
+        public object GridByt
+        {
+            get { return this._gridByt.DataContext; }
+            set { this._gridByt.DataContext = value; }
         }
 
         public object PaisesSolicitud
@@ -1072,6 +1079,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.MarcasTercero
 
         private void _btnCancelar_Click(object sender, RoutedEventArgs e)
         {
+            if (_agregar)
+                this._presentador.Cancelar();
             this._presentador.IrConsultarMarcasTercero();
         }
 
@@ -1487,6 +1496,12 @@ namespace Trascend.Bolet.Cliente.Ventanas.MarcasTercero
 
         #region BYT
 
+        public void MostrarByt()
+        {
+            _agregar = true;
+            this._gridByt.Visibility = System.Windows.Visibility.Collapsed;
+        }
+
         private void ValidarByt()
         {
             this._chkByt.IsChecked = true;
@@ -1610,5 +1625,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.MarcasTercero
         {
             throw new NotImplementedException();
         }
+
+
     }
 }

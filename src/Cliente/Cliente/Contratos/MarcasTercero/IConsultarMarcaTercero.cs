@@ -12,6 +12,8 @@ namespace Trascend.Bolet.Cliente.Contratos.MarcasTercero
 
         object Marca { get; set; }
 
+        object GridByt { get; set; }
+
         object MarcasFiltradas { get; set; }
 
         object MarcaFiltrada { get; set; }
@@ -205,6 +207,8 @@ namespace Trascend.Bolet.Cliente.Contratos.MarcasTercero
         SortAdorner CurAdorner { get; set; }
 
         void Mensaje(string mensaje, int opcion);
+
+        void MostrarByt();
 
     }
 }
