@@ -5,41 +5,41 @@ namespace Trascend.Bolet.Cliente.Contratos.Marcas
 {
     interface IConsultarMarcas : IPaginaBase
     {
-        string Id { get; }
+        string Id { get; set; }
 
         object MarcaSeleccionada { get; }
 
         object Resultados { get; set; }
 
-        string IdAsociadoFiltrar { get; }
+        string IdAsociadoFiltrar { get; set; }
 
-        string NombreAsociadoFiltrar { get; }
+        string NombreAsociadoFiltrar { get; set; }
 
         object Asociados { get; set; }
 
         object Asociado { get; set; }
 
-        string IdCorresponsalFiltrar { get; }
+        string IdCorresponsalFiltrar { get; set; }
 
-        string NombreCorresponsalFiltrar { get; }
+        string NombreCorresponsalFiltrar { get; set; }
 
         object Corresponsales { get; set; }
 
         object Corresponsal { get; set; }
 
-        string IdInteresadoFiltrar { get; }
+        string IdInteresadoFiltrar { get; set; }
 
-        string NombreInteresadoFiltrar { get; }
+        string NombreInteresadoFiltrar { get; set; }
 
         object Interesados { get; set; }
 
         object Interesado { get; set; }
 
-        string DescripcionFiltrar { get; }
+        string DescripcionFiltrar { get; set; }
 
         //string FichasFiltrar { get; }
 
-        string Fecha { get; }
+        string Fecha { get; set; }
 
         GridViewColumnHeader CurSortCol { get; set; }
 
@@ -89,9 +89,9 @@ namespace Trascend.Bolet.Cliente.Contratos.Marcas
 
         object BoletinConcesion { get; set; }
 
-        string IdMarcaFiltrar { get; }
+        string IdMarcaFiltrar { get; set; }
 
-        string NombreMarcaFiltrar { get; }
+        string NombreMarcaFiltrar { get; set; }
 
         object Marcas { get; set; }
 
@@ -99,17 +99,17 @@ namespace Trascend.Bolet.Cliente.Contratos.Marcas
 
         string NombreMarca { set; }
 
-        bool InternacionalEstaSeleccionado { get; }
+        bool InternacionalEstaSeleccionado { get; set; }
 
-        bool NacionalEstaSeleccionado { get; }
+        bool NacionalEstaSeleccionado { get; set; }
 
-        bool TYREstaSeleccionado { get; }
+        bool TYREstaSeleccionado { get; set; }
 
-        bool IndicadoresEstaSeleccionado { get; }
+        bool IndicadoresEstaSeleccionado { get; set; }
 
-        bool PrioridadesEstaSeleccionado { get; }
+        bool PrioridadesEstaSeleccionado { get; set; }
 
-        bool BoletinesEstaSeleccionado { get; }
+        bool BoletinesEstaSeleccionado { get; set; }
 
         #region TYR
 
@@ -125,5 +125,10 @@ namespace Trascend.Bolet.Cliente.Contratos.Marcas
 
         #endregion
 
+        void GestionarVisibilidadFiltroInternacional(bool visibilidad);
+
+        void GestionarVisibilidadFiltroNacional(bool visibilidad);
+
+        void GestionarVisibilidadLimpiarFiltros();
     }
 }

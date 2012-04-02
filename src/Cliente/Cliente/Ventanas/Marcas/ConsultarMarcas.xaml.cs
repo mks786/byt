@@ -28,16 +28,17 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
         public string Id
         {
             get { return this._txtId.Text; }
+            set { this._txtId.Text = value; }
         }
 
         public string NombreMarca
         {
-            set { this._txtMarcaNombre.Text = value; }
+            set { this._txtMarcaNombre.Text = value; }            
         }
 
         public object MarcaSeleccionada
         {
-            get { return this._lstResultados.SelectedItem; }
+            get { return this._lstResultados.SelectedItem; }            
         }
 
         //public string FichasFiltrar
@@ -48,11 +49,13 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
         public string DescripcionFiltrar
         {
             get { return this._txtDescripcion.Text; }
+            set { this._txtDescripcion.Text = value; }
         }
 
         public string Fecha
         {
             get { return this._dpkFecha.SelectedDate.ToString(); }
+            set { this._dpkFecha.Text = value; }
         }
 
         public bool EstaCargada
@@ -87,11 +90,13 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
         public string IdAsociadoFiltrar
         {
             get { return this._txtIdAsociado.Text; }
+            set { this._txtIdAsociado.Text = value; }
         }
 
         public string NombreAsociadoFiltrar
         {
             get { return this._txtNombreAsociado.Text; }
+            set { this._txtNombreAsociado.Text = value; }
         }
 
         public object Asociados
@@ -109,11 +114,13 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
         public string IdCorresponsalFiltrar
         {
             get { return this._txtIdCorresponsal.Text; }
+            set { this._txtIdCorresponsal.Text = value; }
         }
 
         public string NombreCorresponsalFiltrar
         {
             get { return this._txtNombreCorresponsal.Text; }
+            set { this._txtNombreCorresponsal.Text = value; }
         }
 
         public object Corresponsales
@@ -131,11 +138,13 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
         public string IdInteresadoFiltrar
         {
             get { return this._txtIdInteresado.Text; }
+            set { this._txtIdInteresado.Text = value; }
         }
 
         public string NombreInteresadoFiltrar
         {
             get { return this._txtNombreInteresado.Text; }
+            set { this._txtNombreInteresado.Text = value; }
         }
 
         public object Interesados
@@ -282,11 +291,13 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
         public string IdMarcaFiltrar
         {
             get { return this._txtIdMarcaFiltrar.Text; }
+            set { this._txtIdMarcaFiltrar.Text = value; }
         }
 
         public string NombreMarcaFiltrar
         {
             get { return this._txtNombreMarcaFiltrar.Text; }
+            set { this._txtNombreMarcaFiltrar.Text = value; }
         }
 
         public object Marcas
@@ -304,31 +315,37 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
         public bool InternacionalEstaSeleccionado
         {
             get { return this._chkInternacional.IsChecked.Value; }
+            set { this._chkInternacional.IsChecked = value; }
         }
 
         public bool NacionalEstaSeleccionado
         {
             get { return this._chkNacional.IsChecked.Value; }
+            set { this._chkNacional.IsChecked = value; }
         }
 
         public bool TYREstaSeleccionado
         {
-            get { return this._chkInternacional.IsChecked.Value; }
+            get { return this._chkTYR.IsChecked.Value; }
+            set { this._chkTYR.IsChecked = value; }
         }
 
         public bool IndicadoresEstaSeleccionado
         {
             get { return this._chkIndicadores.IsChecked.Value; }
+            set { this._chkIndicadores.IsChecked = value; }
         }
 
         public bool PrioridadesEstaSeleccionado
         {
             get { return this._chkPrioridad.IsChecked.Value; }
+            set { this._chkPrioridad.IsChecked = value; }
         }
 
         public bool BoletinesEstaSeleccionado
         {
             get { return this._chkBoletines.IsChecked.Value; }
+            set { this._chkBoletines.IsChecked = value; }
         }
 
         public string CodigoRegistro
@@ -446,6 +463,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
 
             if (todosCamposVacios)
                 this._txtId.Focus();
+        }
+
+        private void _btnLimpiarCampos_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.LimpiarCampos();
         }
 
         private void _dpkFecha_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
@@ -639,7 +661,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             }
         }
 
-        private void GestionarVisibilidadFiltroInternacional(bool visibilidad)
+        public void GestionarVisibilidadFiltroInternacional(bool visibilidad)
         {
             if (visibilidad)
             {
@@ -696,7 +718,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             }
         }
 
-        private void GestionarVisibilidadFiltroNacional(bool visibilidad)
+        public void GestionarVisibilidadFiltroNacional(bool visibilidad)
         {
             if (visibilidad)
             {
@@ -744,7 +766,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             }
         }
 
-        private void _chkTYR_Click(object sender, RoutedEventArgs e)
+        public void _chkTYR_Click(object sender, RoutedEventArgs e)
         {
             if (this._chkTYR.IsChecked.Value)
                 this._TYR.Visibility = Visibility.Visible;
@@ -752,7 +774,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
                 this._TYR.Visibility = Visibility.Collapsed;
         }
 
-        private void _chkBoletines_Click(object sender, RoutedEventArgs e)
+        public void _chkBoletines_Click(object sender, RoutedEventArgs e)
         {
             if (this._chkBoletines.IsChecked.Value)
                 this._boletines.Visibility = Visibility.Visible;
@@ -760,7 +782,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
                 this._boletines.Visibility = Visibility.Collapsed;
         }
 
-        private void _chkPrioridad_Click(object sender, RoutedEventArgs e)
+        public void _chkPrioridad_Click(object sender, RoutedEventArgs e)
         {
             if (this._chkPrioridad.IsChecked.Value)
                 this._prioridad.Visibility = Visibility.Visible;
@@ -768,7 +790,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
                 this._prioridad.Visibility = Visibility.Collapsed;
         }
 
-        private void _chkIndicadores_Click(object sender, RoutedEventArgs e)
+        public void _chkIndicadores_Click(object sender, RoutedEventArgs e)
         {
             if (this._chkIndicadores.IsChecked.Value)
                 this._indicadores.Visibility = Visibility.Visible;
@@ -818,6 +840,15 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             this._txtMarcaNombre.Visibility = (System.Windows.Visibility)value;
         }
 
+        public void GestionarVisibilidadLimpiarFiltros()
+        {
+            this._TYR.Visibility = Visibility.Collapsed;
+            this._boletines.Visibility = Visibility.Collapsed;
+            this._prioridad.Visibility = Visibility.Collapsed;
+            this._indicadores.Visibility = Visibility.Collapsed;
+
+        }
+       
         #endregion
 
     }

@@ -54,15 +54,15 @@
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblId}"/>
                         </Label>
                         <custom:ByTTextBox Visibility="Collapsed"  Name="_txtIdInternacional" Width="150" MaxLength="40" SoloNumero="True" Filtro="True" 
-                                       GotFocus="_btnConsultarFocus" GotKeyboardFocus="_btnConsultarFocus"/>
+                                       GotFocus="_btnConsultarFocus" GotKeyboardFocus="_btnConsultarFocus" Text="{Binding Path=Id}" />
                     </WrapPanel>
                     <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,180,0">
                         <Label Visibility="Collapsed" Name="_lblCodigoInternacional">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblCodigoInt}"/>
                         </Label>
-                        <custom:ByTTextBox Visibility="Collapsed"  Name="_txtCodigoInternacional" Text="{Binding Path=Id}" Width="75" MaxLength="8"
+                        <custom:ByTTextBox Visibility="Collapsed"  Name="_txtCodigoInternacional" Width="75" MaxLength="8"
                              GotFocus="_btnConsultarFocus" GotKeyboardFocus="_btnConsultarFocus"/>
-                        <custom:ByTTextBox Visibility="Collapsed"  Name="_txtCodigoInternacional2" Text="{Binding Path=Id}" Width="75" MaxLength="8"
+                        <custom:ByTTextBox Visibility="Collapsed"  Name="_txtCodigoInternacional2" Width="75" MaxLength="8"
                              GotFocus="_btnConsultarFocus" GotKeyboardFocus="_btnConsultarFocus"/>
                     </WrapPanel>
 
@@ -78,7 +78,7 @@
                         <Label Visibility="Collapsed" Name="_lblReferenciaInternacional">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblReferencia}"/>
                         </Label>
-                        <custom:ByTTextBox Visibility="Collapsed"  Name="_txtReferenciaInternacional" Text="{Binding Path=Id}" Width="150" MaxLength="8"
+                        <custom:ByTTextBox Visibility="Collapsed"  Name="_txtReferenciaInternacional" Width="150" MaxLength="8"
                              GotFocus="_btnConsultarFocus" GotKeyboardFocus="_btnConsultarFocus"/>
                     </WrapPanel>
 
@@ -86,7 +86,7 @@
                         <Label Visibility="Collapsed" Name="_lblAsociadoInternacional">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblAsociadoInternacional}"/>
                         </Label>
-                        <TextBox Visibility="Collapsed" Name="_txtAsociadoInternacional" Text="{Binding Path=Id}" Width="150" MaxLength="8"
+                        <TextBox Visibility="Collapsed" Name="_txtAsociadoInternacional" Width="150" MaxLength="8"
                              GotFocus="_btnConsultarFocus" GotKeyboardFocus="_btnConsultarFocus"/>
                     </WrapPanel>
 
@@ -379,7 +379,7 @@
 
                         <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,180,0">
                             <Label VerticalAlignment="Center" HorizontalContentAlignment="Right">
-                                <TextBlock Text="{x:Static recurso:Etiquetas.lblSituacion}"/>
+                                <TextBlock Text="{x:Static recurso:Etiquetas.lblCondicicon}"/>
                             </Label>
                             <ComboBox Name="_cbxCondicion" Height="20" Width="150"
                               ItemsSource="{Binding}" DisplayMemberPath="Descripcion" SelectedIndex="0">
@@ -528,7 +528,7 @@
                                     <RowDefinition Height="Auto"/>
                                 </Grid.RowDefinitions>
                                 <Label VerticalAlignment="Center" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Left">
-                                    <TextBlock Text="{x:Static recurso:Etiquetas.lblMarca}"/>
+                                    <TextBlock Text="{x:Static recurso:Etiquetas.lblMarcaBase}"/>
                                 </Label>
                                 <custom:ByTTextBox Name="_txtMarcaNombre" Text="" Width="150" MaxLength="15" Grid.Row="0" Grid.Column="1" Height="25" HorizontalAlignment="Left"
                                  MouseDoubleClick="_txtMarcaNombre_GotFocus" BorderBrush="LightGreen" SoloNumero="True" Filtro="True" IsReadOnly="True" />
@@ -622,6 +622,9 @@
             </DataGrid>-->
         </GroupBox>
 
+        <Button Name="_btnLimpiarCampos" Grid.Column="1" Grid.Row="1" Margin="5" Width="100" HorizontalAlignment="Left" Click="_btnLimpiarCampos_Click">
+            <TextBlock Text="{x:Static recurso:Etiquetas.btnLimpiarCampos}"/>
+        </Button>
         <!--Botones Aceptar|Cancelar-->
         <GroupBox Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="1" BorderBrush="{x:Null}">
             <StackPanel HorizontalAlignment="Right" VerticalAlignment="Bottom" Orientation="Horizontal">

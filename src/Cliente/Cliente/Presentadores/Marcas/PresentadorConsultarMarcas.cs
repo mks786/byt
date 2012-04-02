@@ -587,6 +587,90 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
         //        this._ventana.Interesados = this._interesados;
         //}
 
+        /// <summary>
+        /// Método que limpia los campos de búsqueda
+        /// </summary>
+        internal void LimpiarCampos()
+        {                                       
+            this._ventana.TotalHits = "0";
+            this._ventana.Resultados = null;
+
+            this._ventana.GestionarVisibilidadFiltroInternacional(false);
+
+            this._ventana.GestionarVisibilidadFiltroNacional(true);
+
+            this._ventana.GestionarVisibilidadLimpiarFiltros();
+
+            #region Internacional
+
+            this._ventana.InternacionalEstaSeleccionado = false;
+
+            #endregion
+
+            #region Nacional
+
+            this._ventana.NacionalEstaSeleccionado = true;
+            this._ventana.Id = null;
+            this._ventana.DescripcionFiltrar = null;
+            this._ventana.Fecha = null;
+      
+            this._ventana.AsociadoFiltro = null;
+            this._ventana.IdAsociadoFiltrar = null;
+            this._ventana.NombreAsociadoFiltrar = null;
+            this._ventana.Asociados = null;
+
+            this._ventana.IdInteresadoFiltrar = null;
+            this._ventana.NombreInteresadoFiltrar = null;
+            this._ventana.InteresadoFiltro = null;
+            this._ventana.Interesados = null;
+
+            this._ventana.IdCorresponsalFiltrar = null;
+            this._ventana.NombreCorresponsalFiltrar = null;
+            this._ventana.CorresponsalFiltro = null;
+            this._ventana.Corresponsal = null;
+
+
+            this._ventana.Servicio = this.BuscarServicio((IList<Servicio>)this._ventana.Servicios, new Servicio("NGN"));            
+            //this._ventana.Detalle = this.BuscarDetalle((IList<TipoEstado>)this._ventana.Detalles, new TipoEstado("NGN"));
+            this._ventana.Detalle = ((IList<TipoEstado>)this._ventana.Detalles)[0];
+
+            #endregion            
+
+            #region TYR
+
+            this._ventana.TYREstaSeleccionado = false;
+            this._ventana.CodigoRegistro = null;
+            this._ventana.FechaRegistro = null;
+            this._ventana.RenovadoPorOtroTramitante = false;
+            this._ventana.Condicion = this.BuscarCondicion((IList<Condicion>) this._ventana.Condiciones, new Condicion(int.MinValue));
+            this._ventana.ExpCambioPendiente = null;
+            this._ventana.InstruccionesDeRenovacion = false;
+
+            #endregion
+
+            #region Boletines
+
+            this._ventana.BoletinesEstaSeleccionado = false;
+            this._ventana.BoletinOrdenPublicacion = this.BuscarBoletin((IList<Boletin>)this._ventana.BoletinesOrdenPublicacion, new Boletin(int.MinValue));
+            this._ventana.BoletinPublicacion = this.BuscarBoletin((IList<Boletin>)this._ventana.BoletinesPublicacion, new Boletin(int.MinValue));
+            this._ventana.BoletinConcesion = this.BuscarBoletin((IList<Boletin>)this._ventana.BoletinesConcesion, new Boletin(int.MinValue));
+
+            #endregion
+
+            #region Prioridades
+
+            this._ventana.PrioridadesEstaSeleccionado = false;           
+
+            #endregion            
+
+            #region Indicadores
+
+            this._ventana.IndicadoresEstaSeleccionado = false;            
+
+            #endregion            
+
+        }
+
         #region Interesado
 
         /// <summary>

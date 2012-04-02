@@ -2144,4 +2144,10 @@ de Gracia</value>
   <data name="lblReclasificada" xml:space="preserve">
     <value>Reclasificada:</value>
   </data>
+  <data name="lblCondicicon" xml:space="preserve">
+    <value>Condición:</value>
+  </data>
+  <data name="lblMarcaBase" xml:space="preserve">
+    <value>Marca Base:</value>
+  </data>
 </root>

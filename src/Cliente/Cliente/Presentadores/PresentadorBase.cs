@@ -307,6 +307,28 @@ namespace Trascend.Bolet.Cliente.Presentadores
         }
 
         /// <summary>
+        /// Busca la la Condición correspondiente a la inicial que se le esté pasando
+        /// </summary>
+        /// <param name="condicion">Inicial de la condicion</param>
+        /// <returns>La condición correspondiente</returns>
+        public Condicion BuscarCondicion(IList<Condicion> listaCondiciones, Condicion condicionBuscada)
+        {
+            Condicion retorno = null;
+
+            if (listaCondiciones != null)
+                foreach (Condicion condicion in listaCondiciones)
+                {
+                    if (condicion.Id == condicionBuscada.Id)
+                    {
+                        retorno = condicion;
+                        break;
+                    }
+                }
+
+            return retorno;
+        }
+
+        /// <summary>
         /// Busca la el Tipo renovación correspondiente a la inicial que se le esté pasando
         /// </summary>
         /// <param name="listasTipoRenovacion">Lista de tipos de renovación</param>        
@@ -892,6 +914,30 @@ namespace Trascend.Bolet.Cliente.Presentadores
                     if (detallePago.Id.Equals(detallePagoBuscado.Id))
                     {
                         retorno = detallePago;
+                        break;
+                    }
+                }
+
+            return retorno;
+        }
+
+        /// <summary>
+        /// Método que busca un detalle estado dentro de una lista de Detalles
+        /// </summary>
+        /// <param name="detalles">Lista de Detalles</param>
+        /// <param name="detalleBuscado">Detalle a buscar</param>
+        /// <returns>Detalle dentro de la lista</returns>
+        public TipoEstado BuscarDetalle(IList<TipoEstado> listaTipoEstados, TipoEstado tipoEstadoBuscado)
+        {
+            TipoEstado retorno = null;
+
+            if (tipoEstadoBuscado != null)
+
+                foreach (TipoEstado detalle in listaTipoEstados)
+                {
+                    if (detalle.Id.Equals(tipoEstadoBuscado.Id))
+                    {
+                        retorno = tipoEstadoBuscado;
                         break;
                     }
                 }
