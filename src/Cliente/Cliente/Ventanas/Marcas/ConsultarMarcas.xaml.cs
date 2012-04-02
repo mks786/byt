@@ -331,6 +331,36 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             get { return this._chkBoletines.IsChecked.Value; }
         }
 
+        public string CodigoRegistro
+        {
+            get { return this._txtRegistroTYR.Text; }
+            set { this._txtRegistroTYR.Text = value; }
+        }
+
+        public string FechaRegistro
+        {
+            get { return this._dpkFechaTYR.Text; }
+            set { this._dpkFechaTYR.Text = value; }
+        }
+
+        public bool RenovadoPorOtroTramitante
+        {
+            get { return this._chkRenovadaPorOtroTramitante.IsChecked.Value; }
+            set { this._chkRenovadaPorOtroTramitante.IsChecked = value; }
+        }
+
+        public bool InstruccionesDeRenovacion
+        {
+            get { return this._chkInstruccionesDeRenovacion.IsChecked.Value; }
+            set { this._chkInstruccionesDeRenovacion.IsChecked = value; }
+        }
+
+        public string ExpCambioPendiente
+        {
+            get { return this._txtCambioPendiente.Text; }
+            set { this._txtCambioPendiente.Text = value; }
+        }
+
         #endregion
 
         /// <summary>
@@ -789,5 +819,6 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
         }
 
         #endregion
+
     }
 }

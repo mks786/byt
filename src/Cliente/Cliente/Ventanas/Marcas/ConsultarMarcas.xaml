@@ -354,7 +354,7 @@
                             <Label Name="_lblRegistroTYR">
                                 <TextBlock Text="{x:Static recurso:Etiquetas.lblRegistro}"/>
                             </Label>
-                            <custom:ByTTextBox Name="_txtRegistroTYR" Width="150" MaxLength="40" SoloNumero="True" Filtro="True" 
+                            <custom:ByTTextBox Name="_txtRegistroTYR" Width="150" MaxLength="40" Filtro="True" 
                                        GotFocus="_btnConsultarFocus" GotKeyboardFocus="_btnConsultarFocus"/>
                         </WrapPanel>
 

@@ -345,6 +345,43 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
 
         private Marca TomarDatosMarcaFiltroTYR(Marca marcaAuxiliar)
         {
+            if (!this._ventana.CodigoRegistro.Equals(""))
+            {
+                _filtroValido = 2;
+                marcaAuxiliar.CodigoRegistro = this._ventana.CodigoRegistro;
+            }
+
+            if (!this._ventana.FechaRegistro.Equals(""))
+            {
+                _filtroValido = 2;
+                marcaAuxiliar.FechaRegistro = (DateTime.Parse(this._ventana.FechaRegistro));
+            }
+
+            if ((null != this._ventana.Asociado) && (((Asociado)this._ventana.Asociado).Id != int.MinValue))
+            {
+                marcaAuxiliar.Asociado = (Asociado)this._ventana.Asociado;
+                _filtroValido = 2;
+            }
+
+            if ((null != this._ventana.Interesado) && (((Interesado)this._ventana.Interesado).Id != int.MinValue))
+            {
+                marcaAuxiliar.Interesado = (Interesado)this._ventana.Interesado;
+                _filtroValido = 2;
+            }
+
+            if (!this._ventana.DescripcionFiltrar.Equals(""))
+            {
+                _filtroValido = 2;
+                marcaAuxiliar.Descripcion = this._ventana.DescripcionFiltrar.ToUpper();
+            }
+
+            if (!this._ventana.Fecha.Equals(""))
+            {
+                DateTime fechaPublicacion = DateTime.Parse(this._ventana.Fecha);
+                _filtroValido = 2;
+                marcaAuxiliar.FechaPublicacion = fechaPublicacion;
+            }
+
             return marcaAuxiliar;
         }
 

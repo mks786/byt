@@ -111,5 +111,19 @@ namespace Trascend.Bolet.Cliente.Contratos.Marcas
 
         bool BoletinesEstaSeleccionado { get; }
 
+        #region TYR
+
+        string CodigoRegistro { get; set; }
+
+        string FechaRegistro { get; set; }
+
+        bool RenovadoPorOtroTramitante { get; set; }
+
+        bool InstruccionesDeRenovacion { get; set; }
+
+        string ExpCambioPendiente { get; set; }
+
+        #endregion
+
     }
 }
