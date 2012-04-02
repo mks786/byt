@@ -28,7 +28,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Interesados
         public object InteresadoSeleccionado
         {
             get { return this._lstResultados.SelectedItem; }
-
+            set { this._lstResultados.SelectedItem = value; }
         }
 
         public object Resultados
@@ -40,6 +40,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Interesados
         public string Id
         {
             get { return this._txtId.Text; }
+            set { this._txtId.Text = value; }
         }
 
         public object TipoPersonas
@@ -259,6 +260,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Interesados
 
             if (todosCamposVacios)
                 this._txtId.Focus();
+        }
+
+        private void _btnLimpiarCampos_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.LimpiarCampos();
         }
     }
 }

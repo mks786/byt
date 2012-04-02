@@ -305,8 +305,13 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
         /// <summary>
         /// Método que limpia los campos de búsqueda
         /// </summary>
-        internal void LimpiarCampos()
+        public void LimpiarCampos()
         {
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
             IEnumerable<Carta> cartasFiltradas = this._cartas;
             IEnumerable<Asociado> asociadosFiltrados = (IList<Asociado>)this._asociados;
 
@@ -326,6 +331,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
                 this._ventana.TotalHits = cartasFiltradas.ToList<Carta>().Count.ToString();
             else
                 this._ventana.TotalHits = "0";
+
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
         }
     }
 }

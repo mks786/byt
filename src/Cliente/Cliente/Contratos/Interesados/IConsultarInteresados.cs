@@ -5,11 +5,11 @@ namespace Trascend.Bolet.Cliente.Contratos.Interesados
 {
     interface IConsultarInteresados : IPaginaBase
     {
-        object InteresadoSeleccionado { get; }
+        object InteresadoSeleccionado { get; set; }
 
         object Resultados { get; set; }
 
-        string Id { get; }
+        string Id { get; set; }
 
         object TipoPersona { get; set; }
 

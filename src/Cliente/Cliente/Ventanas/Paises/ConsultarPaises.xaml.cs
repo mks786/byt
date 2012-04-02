@@ -39,6 +39,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Paises
         public object PaisSeleccionado
         {
             get { return this._lstResultados.SelectedItem; }
+            set { this._lstResultados.SelectedItem = value; }
 
         }
 
@@ -54,9 +55,16 @@ namespace Trascend.Bolet.Cliente.Ventanas.Paises
             set { this._txtId.Text = value; }
         }
 
-        public string Region
+        public object Region
         {
-            get { return (string)this._cbxRegion.Text; }
+            get { return this._cbxRegion.SelectedItem; }
+            set { this._cbxRegion.SelectedItem = value; }
+        }
+
+        public object Regiones
+        {
+            get { return this._cbxRegion.DataContext; }
+            set { this._cbxRegion.DataContext = value; }
         }
 
         public GridViewColumnHeader CurSortCol
@@ -172,6 +180,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Paises
 
             if (todosCamposVacios)
                 this._txtId.Focus();
+        }
+
+        private void _btnLimpiarCampos_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.LimpiarCampos();
         }
     }
 }

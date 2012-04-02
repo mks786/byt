@@ -39,6 +39,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Estatuses
         public object EstatusSeleccionado
         {
             get { return this._lstResultados.SelectedItem; }
+            set { this._lstResultados.SelectedItem = value; }
 
         }
 
@@ -160,5 +161,10 @@ namespace Trascend.Bolet.Cliente.Ventanas.Estatuses
             if (todosCamposVacios)
                 this._txtId.Focus();
         }
+
+        private void _btnLimpiarCampos_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.LimpiarCampos();
+        }      
     }
 }

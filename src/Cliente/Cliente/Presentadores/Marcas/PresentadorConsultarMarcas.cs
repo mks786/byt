@@ -590,8 +590,13 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
         /// <summary>
         /// Método que limpia los campos de búsqueda
         /// </summary>
-        internal void LimpiarCampos()
-        {                                       
+        public void LimpiarCampos()
+        {
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
             this._ventana.TotalHits = "0";
             this._ventana.Resultados = null;
 
@@ -669,6 +674,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
 
             #endregion            
 
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
         }
 
         #region Interesado

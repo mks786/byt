@@ -6,15 +6,15 @@ namespace Trascend.Bolet.Cliente.Contratos.Resoluciones
 {
     interface IConsultarResoluciones : IPaginaBase
     {
-        object ResolucionSeleccionado { get; }
+        object ResolucionSeleccionado { get; set; }
 
-        string Id { get; }
+        string Id { get; set; }
 
-        string FechaResolucion { get; }
+        string FechaResolucion { get; set; }
 
-        string Volumen { get; }
+        string Volumen { get; set; }
 
-        string Pagina { get; }
+        string Pagina { get; set; }
 
         object Resultados { get; set; }
 

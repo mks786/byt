@@ -352,5 +352,31 @@ namespace Trascend.Bolet.Cliente.Presentadores.Interesados
                 logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
         }
+
+        /// <summary>
+        /// Método que limpia los campos de búsqueda
+        /// </summary>
+        public void LimpiarCampos()
+        {
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+            this._ventana.InteresadoFiltrar = new Interesado();
+            this._ventana.Id = null;
+            this._ventana.Pais = ((IList<Pais>)this._ventana.Paises)[0];
+            this._ventana.TipoPersona = ((IList<ListaDatosDominio>)this._ventana.TipoPersonas)[0];
+            this._ventana.Nacionalidad = ((IList<Pais>)this._ventana.Nacionalidades)[0];
+            this._ventana.Corporacion = ((IList<Estado>)this._ventana.Corporaciones)[0];
+
+            this._ventana.Resultados = _interesados;
+            this._ventana.TotalHits = _interesados.Count().ToString();
+
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+        }
     }
 }

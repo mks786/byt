@@ -7,7 +7,7 @@ namespace Trascend.Bolet.Cliente.Contratos.Agentes
     {
         object AgenteFiltrar { get; set; }
 
-        object AgenteSeleccionado { get; }
+        object AgenteSeleccionado { get; set; }
 
         object Resultados { get; set; }
 

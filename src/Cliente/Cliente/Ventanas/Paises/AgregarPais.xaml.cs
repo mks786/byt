@@ -37,9 +37,16 @@ namespace Trascend.Bolet.Cliente.Ventanas.Paises
             MessageBox.Show(mensaje, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
         }
 
-        public string Region
+        public object Region
         {
-            get { return (string)this._cbxRegion.Text; }
+            get { return this._cbxRegion.SelectedItem; }
+            set { this._cbxRegion.SelectedItem = value; }
+        }
+
+        public object Regiones
+        {
+            get { return this._cbxRegion.DataContext; }
+            set { this._cbxRegion.DataContext = value; }
         }
 
         #endregion

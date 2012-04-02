@@ -380,8 +380,13 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
         /// <summary>
         /// Método que limpia los campos de búsqueda
         /// </summary>
-        internal void LimpiarCampos()
+        public void LimpiarCampos()
         {
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
             IEnumerable<Asociado> asociadosFiltrados = this._asociados;
 
             this._ventana.Resultados = asociadosFiltrados.ToList<Asociado>();
@@ -400,6 +405,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
             this._ventana.TipoCliente = this.BuscarTipoCliente((IList<TipoCliente>)this._ventana.TiposClientes, new TipoCliente("NGN"));
             this._ventana.Tarifa = this.BuscarTarifa((IList<Tarifa>)this._ventana.Tarifas, new Tarifa("NGN"));
             this._ventana.DetallePago = this.BuscarDetallePago((IList<DetallePago>)this._ventana.DetallesPagos, new DetallePago("NGN"));
+
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
         }
     }
 }

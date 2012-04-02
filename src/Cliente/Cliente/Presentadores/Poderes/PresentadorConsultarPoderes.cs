@@ -310,5 +310,26 @@ namespace Trascend.Bolet.Cliente.Presentadores.Poderes
                 logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
         }
+
+        /// <summary>
+        /// Método que limpia los campos de búsqueda
+        /// </summary>
+        public void LimpiarCampos()
+        {
+            this._ventana.Id = null;
+            this._ventana.NombreInteresadoFiltrar = null;
+            this._ventana.IdInteresadoFiltrar = null;
+            this._ventana.Observaciones = null;                       
+            this._ventana.PoderSeleccionado = null;
+            this._ventana.Anexo = null;
+            this._ventana.NumPoder = null;
+            this._ventana.Facultad = null;
+            
+            this._ventana.Boletin = ((IList<Boletin>)this._ventana.Boletines)[0];
+            this._ventana.Interesado = null;
+
+            this._ventana.Resultados = this._poderes;
+            this._ventana.TotalHits = this._poderes.Count().ToString();
+        }
     }
 }

@@ -7,13 +7,15 @@ namespace Trascend.Bolet.Cliente.Contratos.Paises
     {
         object PaisFiltrar { get; set; }
 
-        object PaisSeleccionado { get; }
+        object PaisSeleccionado { get; set; }
 
         object Resultados { get; set; }
 
         string Id { get; set; }
 
-        string Region { get; }
+        object Region { get; set; }
+
+        object Regiones { get; set; }
 
         GridViewColumnHeader CurSortCol { get; set; }
 

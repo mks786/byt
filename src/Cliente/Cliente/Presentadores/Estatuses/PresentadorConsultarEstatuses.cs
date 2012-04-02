@@ -251,5 +251,26 @@ namespace Trascend.Bolet.Cliente.Presentadores.Estatuses
                 logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
         }
+
+        /// <summary>
+        /// Método que limpia los campos de búsqueda
+        /// </summary>
+        public void LimpiarCampos()
+        {
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+       
+            this._ventana.EstatusFiltrar = new Estatus();
+            this._ventana.EstatusSeleccionado = null;
+            this._ventana.Resultados = this._estatuses;
+            this._ventana.TotalHits = this._estatuses.Count().ToString();
+
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+        }
     }
 }

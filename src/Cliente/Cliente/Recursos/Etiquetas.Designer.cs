@@ -2909,7 +2909,7 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Region:.
+        ///   Busca una cadena traducida similar a Región:.
         /// </summary>
         public static string lblRegion {
             get {

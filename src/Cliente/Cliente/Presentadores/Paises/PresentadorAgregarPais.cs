@@ -8,6 +8,7 @@ using Trascend.Bolet.Cliente.Contratos.Paises;
 using Trascend.Bolet.Cliente.Ventanas.Principales;
 using Trascend.Bolet.ObjetosComunes.ContratosServicios;
 using Trascend.Bolet.ObjetosComunes.Entidades;
+using System.Collections.Generic;
 
 namespace Trascend.Bolet.Cliente.Presentadores.Paises
 {
@@ -15,6 +16,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Paises
     {
         private IAgregarPais _ventana;
         private IPaisServicios _paisServicios;
+        private IListaDatosValoresServicios _listaDatosValoresServicios;
         private static PaginaPrincipal _paginaPrincipal = PaginaPrincipal.ObtenerInstancia;
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
@@ -30,6 +32,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Paises
                 this._ventana.Pais = new Pais();
                 this._paisServicios = (IPaisServicios)Activator.GetObject(typeof(IPaisServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["PaisServicios"]);
+                this._listaDatosValoresServicios = (IListaDatosValoresServicios)Activator.GetObject(typeof(IListaDatosValoresServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["ListaDatosValoresServicios"]);
             }
             catch (Exception ex)
             {
@@ -54,6 +58,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Paises
 
                 this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleAgregarPais,
                     Recursos.Ids.AgregarUsuario);
+
+                this.CargarRegiones();
+
                 this._ventana.FocoPredeterminado();
 
                 #region trace
@@ -88,6 +95,30 @@ namespace Trascend.Bolet.Cliente.Presentadores.Paises
         }
 
         /// <summary>
+        /// Método que carga las regiones iniciales
+        /// </summary>
+        private void CargarRegiones()
+        {
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+            ListaDatosValores listaAux = new ListaDatosValores("CONTINENTE");
+            this._ventana.Regiones = this._listaDatosValoresServicios.ConsultarListaDatosValoresPorParametro(listaAux);
+
+            ListaDatosValores primerValor = new ListaDatosValores("NGN");
+            primerValor.Descripcion = "";
+            ((IList<ListaDatosValores>)this._ventana.Regiones).Insert(0, primerValor);
+            this._ventana.Region = ((IList<ListaDatosValores>)this._ventana.Regiones)[0];
+
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+        }
+
+        /// <summary>
         /// Método que realiza toda la lógica para agregar al País dentro de la base de datos
         /// </summary>
         public void Aceptar()
@@ -100,7 +131,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Paises
                 #endregion
 
                 Pais pais = (Pais)this._ventana.Pais;
-                pais.Region = !this._ventana.Region.Equals("") ? this._ventana.Region : null;
+                pais.Region = !((ListaDatosValores)this._ventana.Region).Descripcion.Equals("") ? ((ListaDatosValores)this._ventana.Region).Descripcion : null;
 
                 if (!this._paisServicios.VerificarExistencia(pais))
                 {

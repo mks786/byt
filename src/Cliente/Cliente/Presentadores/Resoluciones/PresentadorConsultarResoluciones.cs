@@ -233,5 +233,28 @@ namespace Trascend.Bolet.Cliente.Presentadores.Resoluciones
                 logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
         }
+
+        public void LimpiarCampos()
+        {
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+            this._ventana.Id = null;
+            this._ventana.Pagina = null;
+            this._ventana.Volumen = null;
+            this._ventana.FechaResolucion = null;
+
+            this._ventana.Boletin = ((IList<Boletin>)this._ventana.Boletines)[0];
+
+            this._ventana.Resultados = this._resoluciones;
+            this._ventana.TotalHits = this._resoluciones.Count().ToString();
+
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+        }
     }
 }

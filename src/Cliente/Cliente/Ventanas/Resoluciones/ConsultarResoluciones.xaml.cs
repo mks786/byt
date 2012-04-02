@@ -55,16 +55,19 @@ namespace Trascend.Bolet.Cliente.Ventanas.Resoluciones
         public object ResolucionSeleccionado
         {
             get { return this._lstResultados.SelectedItem; }
+            set { this._lstResultados.SelectedItem = value; }
         }
 
         public string Id
         {
             get { return this._txtId.Text; }
+            set { this._txtId.Text = value; }
         }
 
         public string FechaResolucion
         {
             get { return this._dpkFechaResolucion.SelectedDate.ToString(); }
+            set { this._dpkFechaResolucion.Text = value; }
         }
 
         public object Resultados
@@ -94,11 +97,13 @@ namespace Trascend.Bolet.Cliente.Ventanas.Resoluciones
         public string Volumen
         {
             get { return this._txtVolumen.Text; }
+            set { this._txtVolumen.Text = value; }
         }
 
         public string Pagina
         {
             get { return this._txtPagina.Text; }
+            set { this._txtPagina.Text = value; }
         }
 
         public string TotalHits
@@ -186,6 +191,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Resoluciones
 
             if (todosCamposVacios)
                 this._txtId.Focus();
+        }
+
+        private void _btnLimpiarCampos_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.LimpiarCampos();
         }
     }
 }

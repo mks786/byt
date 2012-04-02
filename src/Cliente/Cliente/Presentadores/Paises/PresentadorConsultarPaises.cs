@@ -25,6 +25,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Paises
 
         private IConsultarPaises _ventana;
         private IPaisServicios _paisServicios;
+        private IListaDatosValoresServicios _listaDatosValoresServicios;
         private IList<Pais> _paises;
 
         /// <summary>
@@ -38,6 +39,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Paises
                 this._ventana = ventana;
                 this._paisServicios = (IPaisServicios)Activator.GetObject(typeof(IPaisServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["PaisServicios"]);
+                this._listaDatosValoresServicios = (IListaDatosValoresServicios)Activator.GetObject(typeof(IListaDatosValoresServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["ListaDatosValoresServicios"]);
             }
             catch (Exception ex)
             {
@@ -87,6 +90,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Paises
                 this._ventana.PaisFiltrar = new Pais();
                 this._ventana.FocoPredeterminado();
 
+                this.CargarRegiones();
+
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
                     logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
@@ -119,6 +124,19 @@ namespace Trascend.Bolet.Cliente.Presentadores.Paises
         }
 
         /// <summary>
+        /// Método que carga las regiones iniciales
+        /// </summary>
+        private void CargarRegiones()
+        {
+            ListaDatosValores listaAux = new ListaDatosValores("CONTINENTE");            
+            this._ventana.Regiones = this._listaDatosValoresServicios.ConsultarListaDatosValoresPorParametro(listaAux);
+
+            ListaDatosValores primerValor = new ListaDatosValores("NGN");
+            primerValor.Descripcion = "";
+            ((IList<ListaDatosValores>)this._ventana.Regiones).Insert(0, primerValor);
+        }
+
+        /// <summary>
         /// Método que realiza una consulta al servicio, con el fin de filtrar los datos que se muestran 
         /// por pantalla
         /// </summary>
@@ -132,7 +150,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Paises
                 #endregion
 
                 Pais pais = (Pais) this._ventana.PaisFiltrar;
-                pais.Region = !this._ventana.Region.Equals("") ? this._ventana.Region : null;
+                pais.Region = !((ListaDatosValores)this._ventana.Region).Descripcion.Equals("") ? ((ListaDatosValores)this._ventana.Region).Descripcion : null;
 
                 IEnumerable<Pais> paisesFiltrados = this._paises;
 
@@ -243,6 +261,28 @@ namespace Trascend.Bolet.Cliente.Presentadores.Paises
             AdornerLayer.GetAdornerLayer(this._ventana.CurSortCol).Add(this._ventana.CurAdorner);
             this._ventana.ListaResultados.Items.SortDescriptions.Add(
                 new SortDescription(field, newDir));
+
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+        }
+
+        public void LimpiarCampos()
+        {
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+            this._ventana.Id = null;
+            this._ventana.PaisFiltrar = new Pais();
+            this._ventana.PaisSeleccionado = null;
+            this._ventana.Region = ((IList<ListaDatosValores>)this._ventana.Regiones)[0];
+            
+
+            this._ventana.Resultados = this._paises;
+            this._ventana.TotalHits = this._paises.Count.ToString();
 
             #region trace
             if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))

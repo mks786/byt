@@ -30,11 +30,13 @@ namespace Trascend.Bolet.Cliente.Ventanas.Poderes
         public string Id
         {
             get { return this._txtId.Text; }
+            set { this._txtId.Text = value; }
         }
 
         public string NumPoder
         {
             get { return this._txtNumPoder.Text; }
+            set { this._txtNumPoder.Text = value; }
         }
 
         public object Boletines
@@ -64,16 +66,19 @@ namespace Trascend.Bolet.Cliente.Ventanas.Poderes
         public string Facultad
         {
             get { return this._txtFacultad.Text; }
+            set { this._txtFacultad.Text = value; }
         }
 
         public string Anexo
         {
             get { return this._txtAnexo.Text; }
+            set { this._txtAnexo.Text = value; }
         }
 
         public string Observaciones
         {
             get { return this._txtObservaciones.Text; }
+            set { this._txtObservaciones.Text = value; }
         }
 
         public bool EstaCargada
@@ -90,6 +95,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Poderes
         public object PoderSeleccionado
         {
             get { return this._lstResultados.SelectedItem; }
+            set { this._lstResultados.SelectedItem = value; }
         }
 
         public GridViewColumnHeader CurSortCol
@@ -113,10 +119,12 @@ namespace Trascend.Bolet.Cliente.Ventanas.Poderes
         public string IdInteresadoFiltrar
         {
             get { return this._txtIdInteresado.Text; }
+            set { this._txtIdInteresado.Text = value; }
         }
         public string NombreInteresadoFiltrar
         {
             get { return this._txtNombreInteresado.Text; }
+            set { this._txtNombreInteresado.Text = value; }
         }
 
         public string TotalHits
@@ -231,6 +239,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Poderes
 
             if (todosCamposVacios)
                 this._txtId.Focus();
+        }
+
+        private void _btnLimpiarCampos_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.LimpiarCampos();
         }
 
     }

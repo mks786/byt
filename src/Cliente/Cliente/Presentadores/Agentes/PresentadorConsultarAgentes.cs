@@ -302,5 +302,28 @@ namespace Trascend.Bolet.Cliente.Presentadores.Agentes
                 logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
         }
+
+        /// <summary>
+        /// Método que limpia los campos de búsqueda
+        /// </summary>
+        public void LimpiarCampos()
+        {
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+            this._ventana.AgenteFiltrar = new Agente();
+            this._ventana.EstadoCivil = ((IList<ListaDatosDominio>)this._ventana.EstadosCivil)[0];            
+            this._ventana.Sexo = this.BuscarSexo((IList<ListaDatosValores>)this._ventana.Sexos, new ListaDatosValores("NGN"));
+
+            this._ventana.Resultados = this._agentes;
+            this._ventana.TotalHits = (this._agentes).Count.ToString();
+            
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+        }
     }
 }

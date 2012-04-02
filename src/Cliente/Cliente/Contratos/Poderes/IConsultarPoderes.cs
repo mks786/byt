@@ -5,17 +5,17 @@ namespace Trascend.Bolet.Cliente.Contratos.Poderes
 {
     interface IConsultarPoderes : IPaginaBase
     {
-        object PoderSeleccionado { get; }
+        object PoderSeleccionado { get; set; }
 
         object Resultados { get; set; }
 
-        string Id { get; }
+        string Id { get; set; }
 
-        string IdInteresadoFiltrar { get; }
+        string IdInteresadoFiltrar { get; set; }
 
-        string NombreInteresadoFiltrar { get; }
+        string NombreInteresadoFiltrar { get; set; }
 
-        string NumPoder { get; }
+        string NumPoder { get; set; }
 
         object Boletines { get; set; }
 
@@ -25,11 +25,11 @@ namespace Trascend.Bolet.Cliente.Contratos.Poderes
 
         object Interesado { get; set; }
 
-        string Facultad { get; }
+        string Facultad { get; set; }
 
-        string Anexo { get; }
+        string Anexo { get; set; }
 
-        string Observaciones { get; }
+        string Observaciones { get; set; }
 
         GridViewColumnHeader CurSortCol { get; set; }
 
