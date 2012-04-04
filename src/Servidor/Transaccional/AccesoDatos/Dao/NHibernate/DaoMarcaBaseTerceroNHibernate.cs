@@ -94,5 +94,19 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
         //    return retorno;
         //}
 
+
+
+        public List<MarcaBaseTercero> ObtenerTodosPorId(MarcaBaseTercero marcaBaseTercero)
+        {
+            
+                List<MarcaBaseTercero> MarcasBaseTercero = null;
+                string consulta = string.Format(Recursos.ConsultasHQL.ObtenerTodosMarcaBaseTerceroPorId,marcaBaseTercero.Id, marcaBaseTercero.MarcaTercero.Anexo);
+                IQuery query = Session.CreateQuery(consulta);
+                MarcasBaseTercero =(List<MarcaBaseTercero>)query.List<MarcaBaseTercero>();
+            
+                return MarcasBaseTercero;
+
+
+        }
     }
 }

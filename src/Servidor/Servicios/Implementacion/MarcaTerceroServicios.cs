@@ -45,14 +45,14 @@ namespace Trascend.Bolet.Servicios.Implementacion
         /// <param name="marcaTercero">MarcaTercero a insertar o modificar</param>
         /// <param name="hash">hash del usuario loggeado</param>
         /// <returns></returns>
-        public bool InsertarOModificar(MarcaTercero marcaTercero, int hash)
+        public bool InsertarOModificar(MarcaTercero marcaTercero,List<MarcaBaseTercero> marcasBaseTercero, int hash)
         {
             #region trace
             if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
                 logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
 
-            bool exitoso = ControladorMarcaTercero.InsertarOModificar(marcaTercero, hash);
+            bool exitoso = ControladorMarcaTercero.InsertarOModificar(marcaTercero,hash);
 
             #region trace
             if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
@@ -185,5 +185,6 @@ namespace Trascend.Bolet.Servicios.Implementacion
         {
             throw new NotImplementedException();
         }
+
     }
 }

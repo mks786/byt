@@ -439,6 +439,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
 
             marcaTercero.ComentarioEsp = this._ventana.ComentarioClienteEspanol;
             marcaTercero.ComentarioIng = this._ventana.ComentarioClienteIngles;
+
             //if (null != this._ventana.StatusWeb)
             //    marcaTercero.StatusWeb = ((StatusWeb)this._ventana.StatusWeb).Id.Equals("NGN") ? ((StatusWeb)this._ventana.StatusWeb) : null;
 
@@ -794,7 +795,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
                 int index = 0;
                 foreach (MarcaBaseTercero marcasBaseTerceroTotal in this._marcasBaseTercero)
                 {
-                    if (marcaTercero.Id == marcasBaseTerceroTotal.Id)
+                    if (marcaTercero.Id == marcasBaseTerceroTotal.MarcaTercero.Id)
                     {
                         indices.Insert(0, index);
                     }
@@ -833,12 +834,14 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
 
                 MarcaBaseTercero aux = new MarcaBaseTercero();
                 string NombreDeMarca = this._ventana.NombreMarca;
-                aux.Id = ((MarcaTercero)this._ventana.MarcaTercero).Id;
+                aux.MarcaTercero.Id = ((MarcaTercero)this._ventana.MarcaTercero).Id;
                 aux.Pais = ((Pais)this._ventana.PaisSolicitud);
                 aux.TipoDeBase = ((TipoBase)this._ventana.TipoBaseSolicitud);
+                aux.NombreTipoBase = ((TipoBase)this._ventana.TipoBaseSolicitud).Descripcion; 
                  if ((bool)this._ventana.Byt.IsChecked)
                      { 
                         aux.Marca = ((Marca)this._ventana.MarcaFiltrada);
+                        aux.NombreMarca = ((Marca)this._ventana.MarcaFiltrada).Descripcion; 
                         aux.Internacional = ((Marca)aux.Marca).Internacional;
                         aux.Nacional = ((Marca)aux.Marca).Nacional;
               
@@ -848,14 +851,15 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
                         Marca nueva = new Marca();
                         nueva.Descripcion = NombreDeMarca;
                         aux.Marca = nueva;
+                        aux.NombreMarca = NombreDeMarca;
                         if (null!= aux.Marca.Internacional)
                              aux.Marca.Internacional.Descripcion = this._ventana.IdInternacionalByt;
                         if (null!=aux.Marca.Nacional)
                              aux.Marca.Nacional.Descripcion = this._ventana.IdNacionalByt;
                      }
 
-                aux.Id = ((MarcaTercero)this._ventana.MarcaTercero).Id;
-                aux.Anexo = ((MarcaTercero)this._ventana.MarcaTercero).Anexo;
+                aux.MarcaTercero.Id = ((MarcaTercero)this._ventana.MarcaTercero).Id;
+                aux.MarcaTercero.Anexo = ((MarcaTercero)this._ventana.MarcaTercero).Anexo;
                 marcasBaseTercero.Add(aux);
                 ((MarcaTercero)this._ventana.MarcaTercero).MarcasBaseTercero = marcasBaseTercero;
                 this._ventana.MarcasByt = marcasBaseTercero.ToList<MarcaBaseTercero>();

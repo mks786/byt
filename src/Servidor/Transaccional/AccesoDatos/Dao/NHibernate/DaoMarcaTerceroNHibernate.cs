@@ -27,7 +27,7 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
                 string cabecera = string.Format(Recursos.ConsultasHQL.CabeceraObtenerMarcaTercero);
                 if ((null != marcaTercero) && (marcaTercero.Id != null))
                 {
-                    filtro = string.Format(Recursos.ConsultasHQL.FiltroObtenerMarcaTerceroId, "'" + marcaTercero.Id + "'");
+                    filtro = string.Format(Recursos.ConsultasHQL.FiltroObtenerMarcaTerceroId,marcaTercero.Id);
                     variosFiltros = true;
                 }
                 if ((null != marcaTercero.Asociado) && (!marcaTercero.Asociado.Id.Equals("")))
@@ -66,6 +66,19 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
                 }
                 IQuery query = Session.CreateQuery(cabecera + filtro);
                 MarcasTercero = query.List<MarcaTercero>();
+
+                //Busca la lista de marcaBaseTercero por cada marcaTercero
+                foreach (MarcaTercero aux in MarcasTercero)
+                {
+                    int i = 0;
+                    IList<MarcaBaseTercero> MarcasBaseTercero = null;
+                    string CabeceraBase = string.Format(Recursos.ConsultasHQL.CabeceraObtenerMarcaBaseTercero, aux.Id, aux.Anexo);
+                    IQuery query2 = Session.CreateQuery(CabeceraBase);
+                    MarcasBaseTercero=query2.List<MarcaBaseTercero>();
+                    MarcasTercero[i].MarcasBaseTercero = MarcasBaseTercero;
+                    i++;
+
+                }
 
                 #region trace
                 if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))

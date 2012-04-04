@@ -110,6 +110,7 @@
     <Compile Include="Comandos\ComandosMarcaBaseTercero\ComandoEliminarMarcaBaseTercero.cs" />
     <Compile Include="Comandos\ComandosMarcaBaseTercero\ComandoInsertarOModificarMarcaBaseTercero.cs" />
     <Compile Include="Comandos\ComandosMarcaBaseTercero\ComandoVerificarExistenciaMarcaBaseTercero.cs" />
+    <Compile Include="Comandos\ComandosMarcaBaseTercero\ComandoConsultarTodosMarcaBaseTercerosPorId.cs" />
     <Compile Include="Comandos\ComandosMarcaTercero\ComandoConsultarMarcasTerceroFiltro.cs" />
     <Compile Include="Comandos\ComandosMarcaTercero\ComandoConsultarMaxId.cs" />
     <Compile Include="Comandos\ComandosMarcaTercero\ComandoConsultarMaxAnexo.cs" />

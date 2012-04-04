@@ -69,5 +69,14 @@ namespace Trascend.Bolet.Comandos.Fabrica
         {
             return new ComandoConsultarMaxSecuencia();
         }
+
+        /// <summary>
+        /// Método que devuelve el Comando para consultar todos los MarcaBaseTerceros de una marca
+        /// </summary>
+        /// <returns>El Comando para consultar todos los MarcaBaseTerceros de una marca</returns>
+        public static ComandoBase<List<MarcaBaseTercero>> ObtenerComandoConsultarTodosPorId(string idMarcaTercero,int idAnexo)
+        {
+            return new ComandoConsultarTodosMarcaBaseTerceroPorId(idMarcaTercero, idAnexo);
+        }
     }
 }

@@ -9,6 +9,8 @@ namespace Trascend.Bolet.AccesoDatos.Contrato
 
         int ObtenerMaxSecuencia();
 
+        List<MarcaBaseTercero> ObtenerTodosPorId(MarcaBaseTercero marcaBaseTercero);
+
     //    Marca ObtenerMarcaTerceroConTodo(MarcaTercero marcaTercero);
     }
 }

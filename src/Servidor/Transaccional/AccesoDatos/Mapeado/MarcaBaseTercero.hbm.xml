@@ -6,25 +6,28 @@
 
   <class name="MarcaBaseTercero" table="MYP_MARCAS_BASE_TER">
 
-    <!--<composite-id>
-      <key-many-to-one name="Id" column="CMARCAT"/>
-      <key-many-to-one name="Anexo" column="CANEXO"/>
-      <key-property name="Secuencia" column="NSECU"/>
-    </composite-id>-->
+    <composite-id>
+      <key-property name="Id" column="NSECU"/>
+      <key-many-to-one name="MarcaTercero">
+        <column name="CMARCAT"/>
+        <column name="CANEXO"/>
+      </key-many-to-one>
+    </composite-id>
 
-    <id name="Secuencia" column="NSECU" type="int"/>
-    <property name="Id" column="CMARCAT" type="string"/>
-    <property name="Anexo" column="CANEXO" type="int"/>
+    <!--<id name="Id" column="NSECU" type="int"/>-->
+    <!--<property name="Anexo" column="CANEXO" type="int"/>-->
     <property name="Origen" column="ORIGEN" type="string"/>
     <property name="Tipo" column="XTIPO" type="string"/>
-    <!--<property name="Marca.Id" class="Marca" column="CMARCA_B" type="string"/>
-    <property name="Marca.Descripcion" class="Marca" column="XMARCA_B" type="string"/>-->
-  
+    <property name="NombreMarca" column="XMARCA_B" type="string"/>
+    <property name="NombreTipoBase" column="XTIPO_B" type="string"/>
 
     <many-to-one name="Pais" class="Pais">
       <column name="CPAIS"/>
     </many-to-one>
 
+    <many-to-one name="Marca" class="Marca">
+      <column name="CMARCA_B"/>
+    </many-to-one>
     <many-to-one name="Internacional" class="Internacional">
       <column name="CINTER_B"/>
     </many-to-one>

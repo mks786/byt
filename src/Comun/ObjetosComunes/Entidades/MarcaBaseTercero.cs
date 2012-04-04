@@ -8,13 +8,14 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
     {
         #region Atributos
 
-        private string _id;
-        private int _anexo;
-        private int _secuencia;
+        private MarcaTercero _marcaTercero;
+        private int _id;
         private string _origen;
         private string _tipo;
         private Marca _marca;
+        private string _nombreMarca;
         private TipoBase _tipoBase;
+        private string _nombreTipoBase;
         private Pais _pais;
         private Internacional _internacional;
         private Nacional _nacional;
@@ -30,7 +31,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         /// Constructor que inicializa el id de la marcaTercero
         /// </summary>
         /// <param name="id">Id de la marcaTercero</param>
-        public MarcaBaseTercero(string id): this()
+        public MarcaBaseTercero(int id): this()
         {
             this._id = id;
         }
@@ -52,7 +53,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
             var t = obj as MarcaBaseTercero;
             if (t == null)
                 return false;
-            if ((Id == (t.Id)) && (this.Id == (t.Id)))
+            if ((Id == (t.Id)) && (MarcaTercero.Id.Equals(t.MarcaTercero.Id)))
                 return true;
             return false;
 
@@ -79,28 +80,20 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         /// <summary>
         /// Propiedad que asigna u obtiene el Id
         /// </summary>
-        public virtual string Id
+        public virtual int Id
         {
             get { return this._id; }
             set { this._id = value; }
         }
 
-        /// <summary>
-        /// Propiedad que asigna u obtiene la descripción
-        /// </summary>
-        public virtual int Anexo
-        {
-            get { return this._anexo; }
-            set { this._anexo = value; }
-        }
 
         /// <summary>
         /// Propiedad que asigna u obtiene el Tipo
         /// </summary>
-        public virtual int Secuencia
+        public virtual MarcaTercero MarcaTercero
         {
-            get { return _secuencia; }
-            set { _secuencia = value; }
+            get { return _marcaTercero; }
+            set { _marcaTercero = value; }
         }
 
         /// <summary>
@@ -165,7 +158,23 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
             set { _pais = value; }
         }
 
-       
+        /// <summary>
+        /// Propiedad que asigna u obtiene el NombreMarca
+        /// </summary>
+        public virtual string NombreMarca
+        {
+            get { return this._nombreMarca; }
+            set { this._nombreMarca = value; }
+        }
+
+        /// <summary>
+        /// Propiedad que asigna u obtiene el NombreMarca
+        /// </summary>
+        public virtual string NombreTipoBase
+        {
+            get { return this._nombreTipoBase; }
+            set { this._nombreTipoBase = value; }
+        }
         #endregion
     }
 }

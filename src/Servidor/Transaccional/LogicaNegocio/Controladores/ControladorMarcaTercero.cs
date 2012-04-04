@@ -67,7 +67,7 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
                     logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-                if (marcaTercero.Id == null) //Cuando se agrega un Registro
+                if (marcaTercero.Id == null) //Cuando se agrega un Registro nuevo
                 {
                     id = (marcaTercero.Descripcion[0].ToString().ToUpper());// + marcaTercero.Descripcion[1].ToString().ToUpper());
 
@@ -89,7 +89,7 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
                     comando.Ejecutar();
                     exitoso = comando.Receptor.ObjetoAlmacenado;
                 }
-                else //Cuando se Crea se Modifica un Registro
+                else //Cuando se se Modifica un Registro
                 {
 
                     //ComandoBase<int> idAnexo = FabricaComandosMarcaTercero.ObtenerComandoConsultarMarcaTerceroMaxAnexo(marcaTercero.Id);
@@ -97,27 +97,72 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
                     //marcaTercero.Anexo = idAnexo.Receptor.ObjetoAlmacenado + 1;
                     List<MarcaBaseTercero> marcasBaseTerceroModificada = new List<MarcaBaseTercero>();
                     ComandoBase<int> idSecuencia = FabricaComandosMarcaBaseTercero.ObtenerComandoConsultarMarcaTerceroMaxSecuencia();
+                    ComandoBase<List<MarcaBaseTercero>> marcasBase = FabricaComandosMarcaBaseTercero.ObtenerComandoConsultarTodosPorId(marcaTercero.Id, marcaTercero.Anexo);
                     idSecuencia.Ejecutar();
+                    marcasBase.Ejecutar();
+                    List<MarcaBaseTercero> marcasBaseEnBase = marcasBase.Receptor.ObjetoAlmacenado;
                     int secuencia = idSecuencia.Receptor.ObjetoAlmacenado;
-                    foreach (MarcaBaseTercero marcaBaseTercero in marcaTercero.MarcasBaseTercero)
+                    if (marcaTercero.MarcasBaseTercero.Count() != 0)
                     {
-                        marcaBaseTercero.Id =  marcaTercero.Id;
-                        marcaBaseTercero.Anexo = marcaTercero.Anexo;
-                        secuencia++;
-                        if (marcaBaseTercero.Secuencia == 0)
-                            marcaBaseTercero.Secuencia = secuencia;
-                        marcasBaseTerceroModificada.Add(marcaBaseTercero);
-                        //ComandoBase<bool> comandoMbt = FabricaComandosMarcaBaseTercero.ObtenerComandoInsertarOModificar(marcaBaseTercero);
-                        //comandoMbt.Ejecutar();
-                        //exitoso = comandoMbt.Receptor.ObjetoAlmacenado;
+                        //Recorre las marcaBase que han sido seleccionadas en el Presentador
+                        foreach (MarcaBaseTercero marcaBaseTercero in marcaTercero.MarcasBaseTercero)
+                        {
+                            bool bandera = true;
+                            marcaBaseTercero.MarcaTercero.Id = marcaTercero.Id;
+                            marcaBaseTercero.MarcaTercero.Anexo = marcaTercero.Anexo;
+                            secuencia++;
+                            if (marcaBaseTercero.Id == 0)
+                            {
+                                marcaBaseTercero.Id = secuencia;
+                            }
+                            
+                                //Recorre las marcaBase que tiene guardad en base de datos
+                                foreach (MarcaBaseTercero MarcaEnBd in marcasBaseEnBase)
+                                {
+                                    bool bandera2 = false;
+                                   
+                                        //Se recorre y compara lo que se encuentra en la base de datos
+                                        //con lo que se selecciono para saber si hay que eliminar algun registro
+                                        foreach (MarcaBaseTercero marcaBaseTercero2 in marcaTercero.MarcasBaseTercero)
+                                        {
+                                            if (marcaBaseTercero2.Id == MarcaEnBd.Id)
+                                                bandera2 = true;
+                                            
+                                        }
+                                        //si Bandera2 no cambia a true es por que no fue seleccionado o fue eliminado
+                                        //de la lista en el rpesentador una marcabase
+                                        if (!bandera2)
+                                        {
+                                            ComandoBase<bool> comando2 = FabricaComandosMarcaBaseTercero.ObtenerComandoEliminarMarcaBaseTercero(MarcaEnBd);
+                                            comando2.Ejecutar();
+                                        }
+                                }
+                           marcasBaseTerceroModificada.Add(marcaBaseTercero);
+                            
+                          
+                               
+                            //ComandoBase<bool> comandoMbt = FabricaComandosMarcaBaseTercero.ObtenerComandoInsertarOModificar(marcaBaseTercero);
+                            //comandoMbt.Ejecutar();
+                            //exitoso = comandoMbt.Receptor.ObjetoAlmacenado;
 
-                        ComandoBase<bool> comandoMTB = FabricaComandosMarcaBaseTercero.ObtenerComandoInsertarOModificar(marcaBaseTercero);
-                        comandoMTB.Ejecutar();
-                        exitoso = comandoMTB.Receptor.ObjetoAlmacenado;
+                            ComandoBase<bool> comandoMTB = FabricaComandosMarcaBaseTercero.ObtenerComandoInsertarOModificar(marcaBaseTercero);
+                            comandoMTB.Ejecutar();
+                            exitoso = comandoMTB.Receptor.ObjetoAlmacenado;
 
+                        }
                     }
-                    marcaTercero.MarcasBaseTercero = null;
+                    else
+                    { 
+                        foreach(MarcaBaseTercero marca in marcasBaseEnBase)
+                        {
+                            ComandoBase<bool> comando2 = FabricaComandosMarcaBaseTercero.ObtenerComandoEliminarMarcaBaseTercero(marca);
+                            comando2.Ejecutar();
+                            marcaTercero.MarcasBaseTercero = null;
+                        }
+                    }
+
                     marcaTercero.Tipo = "MP";
+                    //marcaTercero.MarcasBaseTercero = new List<MarcaBaseTercero>();
 
                     ComandoBase<bool> comando = FabricaComandosMarcaTercero.ObtenerComandoInsertarOModificar(marcaTercero);
                     comando.Ejecutar();

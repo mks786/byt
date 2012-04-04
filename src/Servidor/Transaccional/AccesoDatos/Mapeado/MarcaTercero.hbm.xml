@@ -5,10 +5,27 @@
                    auto-import="true">
 
   <class name="MarcaTercero" table="MYP_MARCAS_TER">
-    <id name="Id" column="CMARCAT" type="string"/>
+
+    <!--<composite-id>
+      <key-property name="Id" column="CMARCAT"/>
+      <key-property name="Anexo" column="CANEXO"/>
+    </composite-id>-->
+    <!--<composite-id name="ClaveMarcaTercero" class =”MarcaTercero” unsaved-value=”none”>
+      <key-property name="Anexo" column="CANEXO" type="int"/>
+      <key-property  name="Descripcion" column="XMARCA" type="string"/>
+    </composite-id>-->
+    
+    
+    <composite-id>
+      <key-property name="Id" column="CMARCAT"/>
+      <key-property name="Anexo" column="CANEXO"/>
+    </composite-id>
+    
+    
+    <!--<id name="Anexo" column="CANEXO" type="int"/>
+    <property name="Id" column="CMARCAT" type="string"/>-->
     <property name="Descripcion" column="XMARCA" type="string"/>
     <property name="Tipo" column="ITIPO" type="string"/>
-    <property name="Anexo" column="CANEXO" type="int"/>
     <property name="Prioridad" column="CPRIORIDAD" type="string"/>
     <property name="AsociadoTercero" column="XASOCIADOT" type="string"/>
     <property name="InteresadoTercero" column="XINTERESADOT" type="string"/>
@@ -85,10 +102,29 @@
       <column name="CSERVICIO"/>
     </many-to-one>
 
-    <bag name="MarcasBaseTercero">
+    <!--<bag name="MarcasBaseTercero">
         <key column="CMARCAT"/>
         <one-to-many class="MarcaBaseTercero"/>
-    </bag>
+    </bag>-->
+
+
+    <!--<bag name="MarcasBaseTercero" table="MYP_MARCAS_BASE_TER" inverse="true" generic="true">
+      <key>
+        <column name="NSECU" />
+      </key>
+      <composite-element class="MarcaBaseTercero">
+        <many-to-one name="MarcaTercero" class="MarcaTercero" column="CMARCAT"/>
+      </composite-element>
+    </bag>-->
+
+
+    <!--<bag name="MarcasBaseTercero" table="MYP_MARCAS_BASE_TER">
+      <key column="NSECU"/>
+      <composite-element class="MarcaBaseTercero">
+        <many-to-one name="Id" class="MarcaBaseTercero" column="CMARCAT"/>
+        <many-to-one name="Anexo" class="MarcaBaseTercero" column="CANEXO"/>
+      </composite-element>
+    </bag>-->
 
     <!--<bag name="MarcasBaseTercero" table="MYP_MARCAS_BASE_TER" >
       <key column="CMARCAT"/>
@@ -96,7 +132,7 @@
         <many-to-one name="Anexo" column="CANEXO"/>
       </composite-element>
     </bag>-->
-    
+
   </class>
 
 

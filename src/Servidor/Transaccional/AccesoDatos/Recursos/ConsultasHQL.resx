@@ -416,7 +416,7 @@
     <comment>Filtro por marca</comment>
   </data>
   <data name="CabeceraObtenerMarcaTercero" xml:space="preserve">
-    <value>Select m from MarcaTercero m left join fetch m.Asociado as asociado left join fetch m.Interesado as interesado left join fetch m.MarcasBaseTercero as marcaBaseTercero where </value>
+    <value>Select m from MarcaTercero m left join fetch m.Asociado as asociado left join fetch m.Interesado as interesado where </value>
     <comment>Cabecera del query para el filtro de marcaTercero</comment>
   </data>
   <data name="FiltroObtenerMarcaTerceroAsociadoId" xml:space="preserve">
@@ -432,7 +432,7 @@
     <comment>Filtro por fichas</comment>
   </data>
   <data name="FiltroObtenerMarcaTerceroId" xml:space="preserve">
-    <value>m.Id = {0}</value>
+    <value>m.Id = '{0}'</value>
     <comment>filtro por id</comment>
   </data>
   <data name="FiltroObtenerMarcaTerceroInteresadoId" xml:space="preserve">
@@ -464,7 +464,7 @@
     <comment>Filtro por Servicio</comment>
   </data>
   <data name="CabeceraObtenerMarcaBaseTercero" xml:space="preserve">
-    <value>Select m from MarcaBaseTercero where </value>
+    <value>Select m from MarcaBaseTercero m left join fetch m.MarcaTercero as mt where mt.Id= '{0}' and mt.Anexo = {1}</value>
   </data>
   <data name="FiltroObtenerMarcaBaseTerceroId" xml:space="preserve">
     <value>m.Id = {0}</value>
@@ -496,5 +496,9 @@
   <data name="ObtenerMaxSecuenciaMarcaBaseTercero" xml:space="preserve">
     <value>select max(m.Secuencia) from MarcaBaseTercero m</value>
     <comment>Obtiene la Ultima Secuencia de marcaBaseTercero</comment>
+  </data>
+  <data name="ObtenerTodosMarcaBaseTerceroPorId" xml:space="preserve">
+    <value>select m from MarcaBaseTercero m where m.Id like '{0}' and m.Anexo = {1}</value>
+    <comment>Selecciona las MarcaBaseTercero por Id y Anexo</comment>
   </data>
 </root>

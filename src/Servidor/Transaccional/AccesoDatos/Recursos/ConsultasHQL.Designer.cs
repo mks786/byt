@@ -178,7 +178,7 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Select m from MarcaBaseTercero where .
+        ///   Looks up a localized string similar to Select m from MarcaBaseTercero m left join fetch m.MarcaTercero as mt where mt.Id= &apos;{0}&apos; and mt.Anexo = {1}.
         /// </summary>
         public static string CabeceraObtenerMarcaBaseTercero {
             get {
@@ -187,7 +187,7 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Select m from MarcaTercero m left join fetch m.Asociado as asociado left join fetch m.Interesado as interesado left join fetch m.MarcasBaseTercero as marcaBaseTercero where .
+        ///   Looks up a localized string similar to Select m from MarcaTercero m left join fetch m.Asociado as asociado left join fetch m.Interesado as interesado where .
         /// </summary>
         public static string CabeceraObtenerMarcaTercero {
             get {
@@ -583,7 +583,7 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to m.Id = {0}.
+        ///   Looks up a localized string similar to m.Id = &apos;{0}&apos;.
         /// </summary>
         public static string FiltroObtenerMarcaTerceroId {
             get {
@@ -912,6 +912,15 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         public static string ObtenerRolesYObjetos {
             get {
                 return ResourceManager.GetString("ObtenerRolesYObjetos", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to select m from MarcaBaseTercero m where m.Id like &apos;{0}&apos; and m.Anexo = {1}.
+        /// </summary>
+        public static string ObtenerTodosMarcaBaseTerceroPorId {
+            get {
+                return ResourceManager.GetString("ObtenerTodosMarcaBaseTerceroPorId", resourceCulture);
             }
         }
         
