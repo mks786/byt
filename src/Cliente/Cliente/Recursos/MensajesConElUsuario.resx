@@ -241,13 +241,13 @@
     <value>Tipo de infobol modificado con éxito</value>
   </data>
   <data name="BoletinEliminado" xml:space="preserve">
-    <value>Boletin eliminado con éxito</value>
+    <value>Boletín eliminado con éxito</value>
   </data>
   <data name="BoletinInsertado" xml:space="preserve">
-    <value>Boletin insertado con éxito</value>
+    <value>Boletín insertado con éxito</value>
   </data>
   <data name="BoletinModificado" xml:space="preserve">
-    <value>Boletin modificado con éxito</value>
+    <value>Boletín modificado con éxito</value>
   </data>
   <data name="ConfirmacionEliminarBoletin" xml:space="preserve">
     <value>¿Seguro que desea eliminar el boletin?</value>
@@ -316,7 +316,7 @@
     <value>Interesado modificado con éxito</value>
   </data>
   <data name="AsociadoEliminado" xml:space="preserve">
-    <value>Agente eliminado con éxito</value>
+    <value>Asociado eliminado con éxito</value>
   </data>
   <data name="AsociadoInsertado" xml:space="preserve">
     <value>Asociado insertado con éxito</value>
@@ -325,7 +325,7 @@
     <value>Asociado modificado con éxito</value>
   </data>
   <data name="ConfirmacionEliminarAsociado" xml:space="preserve">
-    <value>¿Seguro que desea eliminar el agente?</value>
+    <value>¿Seguro que desea eliminar el Asociado?</value>
   </data>
   <data name="ErrorAsociadoNoEncontrado" xml:space="preserve">
     <value>Archivo del asociado no encontrado.</value>
@@ -710,5 +710,8 @@
   </data>
   <data name="ConfirmacionTomarClaseInternacional" xml:space="preserve">
     <value>Esto modificará el Distingue. ¿Seguro que desea tomar clase internacional?</value>
+  </data>
+  <data name="ErrorCartaRepetida" xml:space="preserve">
+    <value>Disculpe la Carta de Código: {0} ya existe</value>
   </data>
 </root>

@@ -2144,10 +2144,19 @@ de Gracia</value>
   <data name="lblReclasificada" xml:space="preserve">
     <value>Reclasificada:</value>
   </data>
+  <data name="menuItemEscritosNumeracionDePoderPorPatente" xml:space="preserve">
+    <value>Numeración de Poder por Patente</value>
+  </data>
+  <data name="menuItemEscritosReingresoDeNombreDePatente" xml:space="preserve">
+    <value>Reingreso de Nombre de Patente</value>
+  </data>
   <data name="lblCondicicon" xml:space="preserve">
     <value>Condición:</value>
   </data>
   <data name="lblMarcaBase" xml:space="preserve">
     <value>Marca Base:</value>
+  </data>
+  <data name="menuItemPatente" xml:space="preserve">
+    <value>Patentes</value>
   </data>
 </root>

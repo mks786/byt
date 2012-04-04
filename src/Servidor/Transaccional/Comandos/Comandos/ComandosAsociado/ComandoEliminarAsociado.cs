@@ -34,7 +34,7 @@ namespace Trascend.Bolet.Comandos.Comandos.ComandosAsociado
                 #endregion
 
                 IDaoAsociado dao = FabricaDaoBase.ObtenerFabricaDao().ObtenerDaoAsociado();
-                dao.Eliminar(this._asociado);
+                this.Receptor = new Receptor<bool>(dao.Eliminar(this._asociado));
 
                 #region trace
                 if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))

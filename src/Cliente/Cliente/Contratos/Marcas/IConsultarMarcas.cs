@@ -125,10 +125,14 @@ namespace Trascend.Bolet.Cliente.Contratos.Marcas
 
         #endregion
 
+        object MarcaParaFiltrar { get; set; }
+
         void GestionarVisibilidadFiltroInternacional(bool visibilidad);
 
         void GestionarVisibilidadFiltroNacional(bool visibilidad);
 
         void GestionarVisibilidadLimpiarFiltros();
+
+        void LimpiarCampos();
     }
 }

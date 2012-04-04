@@ -466,7 +466,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Principales
         {
             this._presentador.AgregarEstadosMarcas();
         }
-        #endregion
+
 
         #region Escritos
 
@@ -474,6 +474,24 @@ namespace Trascend.Bolet.Cliente.Ventanas.Principales
         {
             this._presentador.IrEscrito(((MenuItem)sender).Name);
         }
+
+        #endregion
+
+        #endregion
+
+        #region Patentes
+
+
+
+
+        #region Escritos
+
+        private void _menuItemEscritosPatente_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.IrEscrito(((MenuItem)sender).Name);
+        }
+
+        #endregion
 
         #endregion
 
@@ -511,6 +529,81 @@ namespace Trascend.Bolet.Cliente.Ventanas.Principales
         }
 
         #endregion
+
+        private void _menuItemPatentesConsultar_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void _menuItemPatentesAgregar_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void _menuItemRenovacionesConsultarPatente_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void _menuItemRenovacionesAgregarPatente_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void _menuItemAbandonoPatenteConsultarPatente_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void _menuItemAbandonoPatenteGestionarPatente_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void _menuItemCopiaCertificadaPatentePatente_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void _menuItemCopiaCertificadaPatente_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void _menuItemCorreccionErrorMaterialPatente_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void _menuItemPatentesATercerosConsultarPatente_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void _menuItemPatentesATercerosGestionarPatente_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void _menuItemEstadosPatentesConsultarPatente_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void _menuItemEstadosPatenteAgregarPatente_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void _menuItemTipoBaseConsultarPatente_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void _menuItemTipoBaseGestionarPatente_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
 
 
 

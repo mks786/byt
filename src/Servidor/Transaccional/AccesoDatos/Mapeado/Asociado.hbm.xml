@@ -57,7 +57,7 @@
       <column name="CODPG"/>
     </many-to-one>
 
-    <bag name="Cartas">
+    <bag name="Cartas" inverse="true">
       <key column="CODIGO"/>
       <one-to-many class="Carta" not-found="ignore"/>
     </bag>

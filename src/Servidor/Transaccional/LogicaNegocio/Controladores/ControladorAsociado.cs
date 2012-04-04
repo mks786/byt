@@ -108,7 +108,6 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
                 comandoContadorAuditoriaPoximoValor.Ejecutar();
                 ContadorAuditoria contadorAuditoria = comandoContadorAuditoriaPoximoValor.Receptor.ObjetoAlmacenado;
 
-
                 auditoria.Id = contadorAuditoria.ProximoValor++;
                 auditoria.Usuario = ObtenerUsuarioPorHash(hash).Id;
                 auditoria.Fecha = System.DateTime.Now;
@@ -116,13 +115,13 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
                 auditoria.Tabla = "FAC_ASOCIADOS";
                 auditoria.Fk = asociado.Id;
 
-                ComandoBase<bool> comandoInteresado = FabricaComandosAsociado.ObtenerComandoEliminarAsociado(asociado);
+                ComandoBase<bool> comandoAsociado = FabricaComandosAsociado.ObtenerComandoEliminarAsociado(asociado);
                 ComandoBase<bool> comandoAuditoria = FabricaComandosAuditoria.ObtenerComandoInsertarOModificar(auditoria);
                 ComandoBase<bool> comandoAuditoriaContador = FabricaComandosContadorAuditoria.ObtenerComandoInsertarOModificar(contadorAuditoria);
 
 
-                comandoInteresado.Ejecutar();
-                exitoso = comandoInteresado.Receptor.ObjetoAlmacenado;
+                comandoAsociado.Ejecutar();
+                exitoso = comandoAsociado.Receptor.ObjetoAlmacenado;
 
                 if (exitoso)
                 {

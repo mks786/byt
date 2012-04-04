@@ -119,7 +119,7 @@
                             <Label Name="_lblMarca">
                                 <TextBlock Text="{x:Static recurso:Etiquetas.lblMarca}"/>
                             </Label>
-                            <TextBox Name="_txtDescripcion" Text="{Binding Path=Id}" Width="150" MaxLength="8"
+                            <TextBox Name="_txtDescripcion" Text="{Binding Path=Descripcion}" Width="150" MaxLength="8"
                              GotFocus="_btnConsultarFocus" GotKeyboardFocus="_btnConsultarFocus"/>
                         </WrapPanel>
                         <!--<WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,180,0">
@@ -312,21 +312,21 @@
                                 <TextBlock Text="{x:Static recurso:Etiquetas.lblClaseInt}"/>
                             </Label>
                             <custom:ByTTextBox Name="_txtClaseInternacional" Width="150" MaxLength="40" SoloNumero="True" Filtro="True" 
-                                       GotFocus="_btnConsultarFocus" GotKeyboardFocus="_btnConsultarFocus"/>
+                                       GotFocus="_btnConsultarFocus" GotKeyboardFocus="_btnConsultarFocus" Text="{Binding Path=Internacional.Id}"/>
                         </WrapPanel>
                         <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,180,0">
                             <Label Name="_lblClaseNacional">
                                 <TextBlock Text="{x:Static recurso:Etiquetas.lblClaseNac}"/>
                             </Label>
                             <custom:ByTTextBox Name="_txtClaseNacional" Width="150" MaxLength="40" SoloNumero="True" Filtro="True" 
-                                       GotFocus="_btnConsultarFocus" GotKeyboardFocus="_btnConsultarFocus"/>
+                                       GotFocus="_btnConsultarFocus" GotKeyboardFocus="_btnConsultarFocus" Text="{Binding Path=Nacional.Id}"/>
                         </WrapPanel>
                         <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,180,0">
                             <Label Name="_lblDistingue">
                                 <TextBlock Text="{x:Static recurso:Etiquetas.lblDistingue}"/>
                             </Label>
                             <custom:ByTTextBox Name="_txtDistingue" Width="150" MaxLength="40" SoloNumero="True" Filtro="True" 
-                                       GotFocus="_btnConsultarFocus" GotKeyboardFocus="_btnConsultarFocus"/>
+                                       GotFocus="_btnConsultarFocus" GotKeyboardFocus="_btnConsultarFocus" Text="{Binding Path=Distingue}"/>
                         </WrapPanel>
                         <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,180,0">
                             <Label VerticalAlignment="Center" HorizontalContentAlignment="Right">
@@ -355,7 +355,7 @@
                                 <TextBlock Text="{x:Static recurso:Etiquetas.lblRegistro}"/>
                             </Label>
                             <custom:ByTTextBox Name="_txtRegistroTYR" Width="150" MaxLength="40" Filtro="True" 
-                                       GotFocus="_btnConsultarFocus" GotKeyboardFocus="_btnConsultarFocus"/>
+                                       GotFocus="_btnConsultarFocus" GotKeyboardFocus="_btnConsultarFocus" Text="{Binding Path=CodigoRegistro}" />
                         </WrapPanel>
 
                         <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,180,0">
@@ -365,7 +365,7 @@
                             </Label>
                             <DatePicker Name="_dpkFechaTYR" Width="150" Focusable="False" BorderBrush="{x:Null}" SelectedDateChanged="_dpkFecha_SelectedDateChanged">
                                 <DatePicker.SelectedDate>
-                                    <Binding Path="Fecha" UpdateSourceTrigger="PropertyChanged"/>
+                                    <Binding Path="FechaRegistro" UpdateSourceTrigger="PropertyChanged"/>
                                 </DatePicker.SelectedDate>
                             </DatePicker>
                         </WrapPanel>
@@ -374,7 +374,7 @@
                             <CheckBox IsEnabled="True" Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="7" 
                                       Content="{x:Static recurso:Etiquetas.chkRenovadaPorOtroTramitante}" 
                                   Height="16" HorizontalAlignment="Left" Margin="5,0,0,0" Name="_chkRenovadaPorOtroTramitante"
-                                  VerticalAlignment="Center" Click="_chkInternacional_Click" IsChecked="False"/>
+                                  VerticalAlignment="Center" Click="_chkInternacional_Click" IsChecked="{Binding Path=BRenovacionOtroTramitante}"/>
                         </WrapPanel>
 
                         <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,180,0">
@@ -396,7 +396,7 @@
                             <CheckBox IsEnabled="True" Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="7" 
                                       Content="{x:Static recurso:Etiquetas.chkInstruccionesDeRenovacion}" 
                                   Height="16" HorizontalAlignment="Left" Margin="5,0,0,0" Name="_chkInstruccionesDeRenovacion"
-                                  VerticalAlignment="Center" Click="_chkInternacional_Click" IsChecked="False"/>
+                                  VerticalAlignment="Center" Click="_chkInternacional_Click" IsChecked="{Binding Path=BInstruccionesRenovacion}"/>
                         </WrapPanel>
                     </StackPanel>
                     <Separator Margin="0,5,0,5"/>

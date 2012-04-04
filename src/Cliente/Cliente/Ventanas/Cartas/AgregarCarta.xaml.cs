@@ -302,7 +302,6 @@ namespace Trascend.Bolet.Cliente.Ventanas.Cartas
             this._txtAsociado.Visibility = System.Windows.Visibility.Visible;
             this._lblIdAsociado.Visibility = System.Windows.Visibility.Collapsed;
             this._lblNombreAsociado.Visibility = System.Windows.Visibility.Collapsed;
-
         }
 
         private void _btnConsultarAsociado_Click(object sender, RoutedEventArgs e)

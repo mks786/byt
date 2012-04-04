@@ -33,12 +33,12 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
 
         public string NombreMarca
         {
-            set { this._txtMarcaNombre.Text = value; }            
+            set { this._txtMarcaNombre.Text = value; }
         }
 
         public object MarcaSeleccionada
         {
-            get { return this._lstResultados.SelectedItem; }            
+            get { return this._lstResultados.SelectedItem; }
         }
 
         //public string FichasFiltrar
@@ -376,6 +376,18 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
         {
             get { return this._txtCambioPendiente.Text; }
             set { this._txtCambioPendiente.Text = value; }
+        }
+
+        public object MarcaParaFiltrar
+        {
+            get { return this._splFiltro.DataContext; }
+            set { this._splFiltro.DataContext = value; }
+        }
+
+        public void LimpiarCampos()
+        {
+            this._txtClaseInternacional.Text = "";
+            this._txtClaseNacional.Text = "";
         }
 
         #endregion
@@ -848,7 +860,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             this._indicadores.Visibility = Visibility.Collapsed;
 
         }
-       
+
         #endregion
 
     }

@@ -201,7 +201,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
                         carta.Resumen = !((Resumen)this._ventana.Resumen).Id.Equals("NGN") ? ((Resumen)this._ventana.Resumen): null;
 
                     carta.Medio = ((Medio)this._ventana.Medio).Id;
-                    carta.AnexoMedio = ((Medio)this._ventana.MedioTrackingConfirmacion).Id;
+                    carta.AnexoMedio = ((Medio)this._ventana.MedioTrackingConfirmacion) == null ? "" : ((Medio)this._ventana.MedioTrackingConfirmacion).Id;
                     carta.Receptor = ((Usuario)this._ventana.Receptor).Iniciales;
 
                     if (!this._cartaServicios.VerificarExistencia(carta))
@@ -213,7 +213,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
                     }
                     else
                     {
-                        this._ventana.Mensaje(Recursos.MensajesConElUsuario.ErrorAgenteRepetido);
+                        this._ventana.Mensaje(String.Format(Recursos.MensajesConElUsuario.ErrorCartaRepetida,carta.Id));
                     }
                 }
 

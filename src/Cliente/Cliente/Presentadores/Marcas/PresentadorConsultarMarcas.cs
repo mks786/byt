@@ -57,6 +57,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 #endregion
 
                 this._ventana = ventana;
+                Marca marca = new Marca();
+                marca.Internacional = new Internacional();
+                marca.Nacional = new Nacional();
+
+                this._ventana.MarcaParaFiltrar = marca;
+
                 this._marcaServicios = (IMarcaServicios)Activator.GetObject(typeof(IMarcaServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["MarcaServicios"]);
                 this._asociadoServicios = (IAsociadoServicios)Activator.GetObject(typeof(IAsociadoServicios),
@@ -122,6 +128,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 #endregion
 
                 ActualizarTitulo();
+
+                this._ventana.LimpiarCampos();
 
                 IList<Asociado> asociados = new List<Asociado>();
                 Asociado primerAsociado = new Asociado();
@@ -288,11 +296,21 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             }
         }
 
+        /// <summary>
+        /// Método que devuelve la marca que se utilizara para realizar el filtrado
+        /// </summary>
+        /// <returns>Marca cargada con el filtro</returns>
         private Marca ObtenerMarcaFiltro()
         {
-            Marca marcaAuxiliar = new Marca();
+            Marca marcaAuxiliar = ((Marca)this._ventana.MarcaParaFiltrar);
             try
             {
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
                 if (ValidarBusquedaDeMarcas())
                 {
                     if (this._ventana.InternacionalEstaSeleccionado) 
@@ -330,6 +348,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                     //Error ya que debe seleccionar al menos un check
                     //this._ventana.Mensaje()
                 }
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
             }
             catch (Exception ex)
             {
@@ -343,101 +366,246 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             return marcaAuxiliar;
         }
 
+        /// <summary>
+        /// Método que devuelve la marca con los datos del check TYR
+        /// </summary>
+        /// <param name="marcaAuxiliar">Marca a cargar</param>
+        /// <returns>marca cargada con los datos de TYR</returns>
         private Marca TomarDatosMarcaFiltroTYR(Marca marcaAuxiliar)
         {
-            if (!this._ventana.CodigoRegistro.Equals(""))
+            try
             {
-                _filtroValido = 2;
-                marcaAuxiliar.CodigoRegistro = this._ventana.CodigoRegistro;
-            }
 
-            if (!this._ventana.FechaRegistro.Equals(""))
-            {
-                _filtroValido = 2;
-                marcaAuxiliar.FechaRegistro = (DateTime.Parse(this._ventana.FechaRegistro));
-            }
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
 
-            if ((null != this._ventana.Asociado) && (((Asociado)this._ventana.Asociado).Id != int.MinValue))
-            {
-                marcaAuxiliar.Asociado = (Asociado)this._ventana.Asociado;
-                _filtroValido = 2;
-            }
+                //if ((null != this._ventana.Condicion) && (((Condicion)this._ventana.Condicion).Id != int.MinValue))
+                //{
+                //    //marcaAuxiliar.Condicion = (Condicion)this._ventana.Condicion;
+                //    //_filtroValido = 2;
+                //}
 
-            if ((null != this._ventana.Interesado) && (((Interesado)this._ventana.Interesado).Id != int.MinValue))
-            {
-                marcaAuxiliar.Interesado = (Interesado)this._ventana.Interesado;
-                _filtroValido = 2;
-            }
+                //if ((null != this._ventana.Interesado) && (((Interesado)this._ventana.Interesado).Id != int.MinValue))
+                //{
+                //    marcaAuxiliar.Interesado = (Interesado)this._ventana.Interesado;
+                //    _filtroValido = 2;
+                //}
 
-            if (!this._ventana.DescripcionFiltrar.Equals(""))
-            {
-                _filtroValido = 2;
-                marcaAuxiliar.Descripcion = this._ventana.DescripcionFiltrar.ToUpper();
-            }
+                //if ((null != this._ventana.Corresponsal) && (((Corresponsal)this._ventana.Corresponsal).Id != int.MinValue))
+                //{
+                //    marcaAuxiliar.Corresponsal = (Corresponsal)this._ventana.Corresponsal;
+                //    _filtroValido = 2;
+                //}
 
-            if (!this._ventana.Fecha.Equals(""))
+                //if (!this._ventana.DescripcionFiltrar.Equals(""))
+                //{
+                //    _filtroValido = 2;
+                //    marcaAuxiliar.Descripcion = this._ventana.DescripcionFiltrar.ToUpper();
+                //}
+
+                //if (!this._ventana.Fecha.Equals(""))
+                //{
+                //    DateTime fechaPublicacion = DateTime.Parse(this._ventana.Fecha);
+                //    _filtroValido = 2;
+                //    marcaAuxiliar.FechaPublicacion = fechaPublicacion;
+                //}
+
+                //if (!((TipoEstado)this._ventana.Detalle).Id.Equals("NGN"))
+                //{
+                //    _filtroValido = 2;
+                //    marcaAuxiliar.TipoEstado = ((TipoEstado)this._ventana.Detalle);
+                //}
+
+                //if (!((Servicio)this._ventana.Detalle).Id.Equals("NGN"))
+                //{
+                //    _filtroValido = 2;
+                //    marcaAuxiliar.Servicio = ((Servicio)this._ventana.Detalle);
+                //}
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (ApplicationException ex)
             {
-                DateTime fechaPublicacion = DateTime.Parse(this._ventana.Fecha);
-                _filtroValido = 2;
-                marcaAuxiliar.FechaPublicacion = fechaPublicacion;
+                logger.Debug(ex.Message);
             }
 
             return marcaAuxiliar;
         }
 
+        /// <summary>
+        /// Método que devuelve la marca con los datos del check Prioridades
+        /// </summary>
+        /// <param name="marcaAuxiliar">Marca a cargar</param>
+        /// <returns>marca cargada con los datos de Prioridades</returns>
         private Marca TomarDatosMarcaFiltroPrioridades(Marca marcaAuxiliar)
         {
+
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
             return marcaAuxiliar;
         }
 
+        /// <summary>
+        /// Método que devuelve la marca con los datos del check Indicadores
+        /// </summary>
+        /// <param name="marcaAuxiliar">Marca a cargar</param>
+        /// <returns>marca cargada con los datos de Indicadores</returns>
         private Marca TomarDatosMarcaFiltroIndicadores(Marca marcaAuxiliar)
         {
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
             return marcaAuxiliar;
         }
 
+        /// <summary>
+        /// Método que devuelve la marca con los datos del check Boletines
+        /// </summary>
+        /// <param name="marcaAuxiliar">Marca a cargar</param>
+        /// <returns>marca cargada con los datos de Boletines</returns>
         private Marca TomarDatosMarcaFiltroBoletines(Marca marcaAuxiliar)
         {
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+            if (((Boletin)this._ventana.BoletinConcesion).Id != int.MinValue)
+            {
+                marcaAuxiliar.BoletinConcesion = ((Boletin)this._ventana.BoletinConcesion);
+            }
+
+            if (((Boletin)this._ventana.BoletinPublicacion).Id != int.MinValue)
+            {
+                marcaAuxiliar.BoletinPublicacion = ((Boletin)this._ventana.BoletinPublicacion);
+            }
+
+            //if (((Boletin)this._ventana.BoletinConcesion).Id != int.MinValue)
+            //{
+            //    marcaAuxiliar.BoletinConcesion = ((Boletin)this._ventana.BoletinConcesion);
+            //}
+
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
             return marcaAuxiliar;
         }
 
+        /// <summary>
+        /// Método que devuelve la marca con los datos del check Nacional
+        /// </summary>
+        /// <param name="marcaAuxiliar">Marca a cargar</param>
+        /// <returns>marca cargada con los datos de Nacional</returns>
         private Marca TomarDatosMarcaFiltroNacional(Marca marcaAuxiliar)
         {
-            if (!this._ventana.Id.Equals(""))
-            {
-                _filtroValido = 2;
-                marcaAuxiliar.Id = int.Parse(this._ventana.Id);
-            }
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
 
-            if ((null != this._ventana.Asociado) && (((Asociado)this._ventana.Asociado).Id != int.MinValue))
+            try
             {
-                marcaAuxiliar.Asociado = (Asociado)this._ventana.Asociado;
-                _filtroValido = 2;
-            }
+                if (!this._ventana.Id.Equals(""))
+                {
+                    _filtroValido = 2;
+                    marcaAuxiliar.Id = int.Parse(this._ventana.Id);
+                }
 
-            if ((null != this._ventana.Interesado) && (((Interesado)this._ventana.Interesado).Id != int.MinValue))
-            {
-                marcaAuxiliar.Interesado = (Interesado)this._ventana.Interesado;
-                _filtroValido = 2;
-            }
+                if ((null != this._ventana.Asociado) && (((Asociado)this._ventana.Asociado).Id != int.MinValue))
+                {
+                    marcaAuxiliar.Asociado = (Asociado)this._ventana.Asociado;
+                    _filtroValido = 2;
+                }
 
-            if (!this._ventana.DescripcionFiltrar.Equals(""))
-            {
-                _filtroValido = 2;
-                marcaAuxiliar.Descripcion = this._ventana.DescripcionFiltrar.ToUpper();
-            }
+                if ((null != this._ventana.Interesado) && (((Interesado)this._ventana.Interesado).Id != int.MinValue))
+                {
+                    marcaAuxiliar.Interesado = (Interesado)this._ventana.Interesado;
+                    _filtroValido = 2;
+                }
 
-            if (!this._ventana.Fecha.Equals(""))
+                if ((null != this._ventana.Corresponsal) && (((Corresponsal)this._ventana.Corresponsal).Id != int.MinValue))
+                {
+                    marcaAuxiliar.Corresponsal = (Corresponsal)this._ventana.Corresponsal;
+                    _filtroValido = 2;
+                }
+
+                if (!this._ventana.DescripcionFiltrar.Equals(""))
+                {
+                    _filtroValido = 2;
+                    marcaAuxiliar.Descripcion = this._ventana.DescripcionFiltrar.ToUpper();
+                }
+
+                if (!this._ventana.Fecha.Equals(""))
+                {
+                    DateTime fechaPublicacion = DateTime.Parse(this._ventana.Fecha);
+                    _filtroValido = 2;
+                    marcaAuxiliar.FechaPublicacion = fechaPublicacion;
+                }
+
+                if (!((TipoEstado)this._ventana.Detalle).Id.Equals("NGN"))
+                {
+                    _filtroValido = 2;
+                    marcaAuxiliar.TipoEstado = ((TipoEstado)this._ventana.Detalle);
+                }
+
+                //if (!((Servicio)this._ventana.Detalle).Id.Equals("NGN"))
+                //{
+                //    _filtroValido = 2;
+                //    marcaAuxiliar.Servicio = ((Servicio)this._ventana.Detalle);
+                //}
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (ApplicationException ex)
             {
-                DateTime fechaPublicacion = DateTime.Parse(this._ventana.Fecha);
-                _filtroValido = 2;
-                marcaAuxiliar.FechaPublicacion = fechaPublicacion;
+                logger.Debug(ex.Message);
             }
 
             return marcaAuxiliar;
         }
 
+        /// <summary>
+        /// Método que devuelve la marca con los datos del check Internacional
+        /// </summary>
+        /// <param name="marcaAuxiliar">Marca a cargar</param>
+        /// <returns>marca cargada con los datos de Internacional</returns>
         private Marca TomarDatosMarcaFiltroInternacional(Marca marcaAuxiliar)
         {
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+
+            #region trace
+
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
             return marcaAuxiliar;
         }
 
@@ -447,6 +615,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
         /// <returns>true en caso de que haya al menos uno seleccionado, false en caso contrario</returns>
         private bool ValidarBusquedaDeMarcas()
         {
+
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
             bool retorno = true;
 
             if (!this._ventana.InternacionalEstaSeleccionado)
@@ -463,6 +637,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
 
                                     retorno = false;
 
+
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
 
             return retorno;
         }
