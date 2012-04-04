@@ -39,7 +39,7 @@
                     <Label>
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblId}"/>
                     </Label>
-                    <custom:ByTTextBox Name="_txtId" Width="150" MaxLength="4" SoloNumero="True" Filtro="True"></custom:ByTTextBox>
+                    <custom:ByTTextBox Name="_txtId" Width="150" MaxLength="6" SoloNumero="True" Filtro="True"></custom:ByTTextBox>
                 </WrapPanel>
                 <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
                     <Label>
