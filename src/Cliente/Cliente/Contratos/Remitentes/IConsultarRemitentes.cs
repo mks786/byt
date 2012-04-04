@@ -5,11 +5,11 @@ namespace Trascend.Bolet.Cliente.Contratos.Remitentes
 {
     interface IConsultarRemitentes : IPaginaBase
     {
-        object RemitenteSeleccionado { get; }
+        object RemitenteSeleccionado { get; set; }
 
         object Resultados { get; set; }
 
-        char TipoRemitente { get; }
+        char TipoRemitente { get; set; }
 
         object RemitenteFiltrar { get; set; }
 

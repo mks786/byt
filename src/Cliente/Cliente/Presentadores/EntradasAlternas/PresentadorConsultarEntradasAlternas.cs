@@ -296,5 +296,32 @@ namespace Trascend.Bolet.Cliente.Presentadores.EntradasAlternas
                 logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
         }
+
+        /// <summary>
+        /// Método que limpia los campos de búsqueda
+        /// </summary>
+        public void LimpiarCampos()
+        {
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+            this._ventana.Id = null;
+            this._ventana.FechaEntradaAlterna = null;
+            this._ventana.Receptor = ((IList<Usuario>)this._ventana.Receptores)[0];
+            this._ventana.Medio = ((IList<Medio>)this._ventana.Medios)[0];
+            this._ventana.Remitente = ((IList<Remitente>)this._ventana.Remitentes)[0];
+            this._ventana.Categoria = ((IList<Categoria>)this._ventana.Categorias)[0];
+            this._ventana.Descripcion = null;
+
+            this._ventana.Resultados = this._entradasAlternas.ToList<EntradaAlterna>();
+            this._ventana.TotalHits = this._entradasAlternas.ToList<EntradaAlterna>().Count.ToString();
+
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+        }
     }
 }

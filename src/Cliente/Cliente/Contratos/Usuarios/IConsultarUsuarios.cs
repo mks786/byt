@@ -6,17 +6,17 @@ namespace Trascend.Bolet.Cliente.Contratos.Usuarios
     interface IConsultarUsuarios: IPaginaBase
     {
 
-        string Id { get; }
+        string Id { get; set; }
 
-        string NombreCompleto { get; }
+        string NombreCompleto { get; set; }
 
-        string Iniciales { get; }
+        string Iniciales { get; set; }
 
-        object Rol { get; }
+        object Rol { get; set; }
 
-        object Departamento { get; }
+        object Departamento { get; set; }
 
-        string Email { get; }
+        string Email { get; set; }
 
         object Departamentos { get; set; }
 
@@ -24,7 +24,7 @@ namespace Trascend.Bolet.Cliente.Contratos.Usuarios
 
         object Roles { get; set; }
 
-        object UsuarioSeleccionado { get; }
+        object UsuarioSeleccionado { get; set; }
 
         GridViewColumnHeader CurSortCol { get; set; }
 

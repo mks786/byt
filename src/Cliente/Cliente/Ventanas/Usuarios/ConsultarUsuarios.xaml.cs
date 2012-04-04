@@ -45,31 +45,37 @@ namespace Trascend.Bolet.Cliente.Ventanas.Usuarios
         public string Id
         {
             get { return this._txtId.Text; }
+            set { this._txtId.Text = value; }
         }
 
         public string NombreCompleto
         {
             get { return this._txtNombre.Text; }
+            set { this._txtNombre.Text = value; }
         }
 
         public string Iniciales
         {
             get { return this._txtIniciales.Text; }
+            set { this._txtIniciales.Text = value; }
         }
 
         public object Rol
         {
             get { return this._cbxRol.SelectedItem; }
+            set { this._cbxRol.SelectedItem = value; }
         }
 
         public object Departamento
         {
             get { return this._cbxDepartamento.SelectedItem; }
+            set { this._cbxDepartamento.SelectedItem = value; }
         }
 
         public string Email
         {
             get { return this._txtEmail.Text; }
+            set { this._txtEmail.Text = value; }
         }
 
         public object Departamentos
@@ -93,6 +99,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Usuarios
         public object UsuarioSeleccionado
         {
             get { return this._lstResultados.SelectedItem; }
+            set { this._lstResultados.SelectedItem = value; }
         }
 
         public ListView ListaResultados
@@ -192,6 +199,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Usuarios
 
             if (todosCamposVacios)
                 this._txtId.Focus();
+        }
+
+        private void _btnLimpiarCampos_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.LimpiarCampos();
         }
     }
 }

@@ -6,13 +6,13 @@ namespace Trascend.Bolet.Cliente.Contratos.EntradasAlternas
 {
     interface IConsultarEntradasAlternas : IPaginaBase
     {
-        object EntradaAlternaSeleccionado { get; }
+        object EntradaAlternaSeleccionado { get; set; }
 
-        string Id { get; }
+        string Id { get; set; }
 
-        string Descripcion { get; }
+        string Descripcion { get; set; }
 
-        string FechaEntradaAlterna { get; }
+        string FechaEntradaAlterna { get; set; }
 
         object Resultados { get; set; }
 

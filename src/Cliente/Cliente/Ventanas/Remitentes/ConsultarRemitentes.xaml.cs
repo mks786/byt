@@ -55,6 +55,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Remitentes
         public object RemitenteSeleccionado
         {
             get { return this._lstResultados.SelectedItem; }
+            set { this._lstResultados.SelectedItem = value; }
         }
 
         public object Resultados
@@ -96,6 +97,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.Remitentes
                 else
                     return ' ';
             }
+
+            set { this._cbxTipoRemitente.SelectedIndex = 0; }
         }
 
         public string TotalHits
@@ -209,6 +212,12 @@ namespace Trascend.Bolet.Cliente.Ventanas.Remitentes
             {
                 this._txtId.Focus();
             }
+        }
+
+        private void _btnLimpiarCampos_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.LimpiarCampos();
+
         }
     }
 }

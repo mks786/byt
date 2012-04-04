@@ -259,5 +259,33 @@ namespace Trascend.Bolet.Cliente.Presentadores.Usuarios
                 logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
         }
+
+        /// <summary>
+        /// Método que limpia los campos de la ventana
+        /// </summary>
+        public void LimpiarCampos()
+        {
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+            this._ventana.Id = null;
+            this._ventana.Iniciales = null;
+            this._ventana.NombreCompleto = null;
+            this._ventana.Email = null;
+            this._ventana.Departamento = ((IList<Departamento>)this._ventana.Departamentos)[0];
+            this._ventana.Rol = ((IList<Rol>)this._ventana.Roles)[0];
+            this._ventana.UsuarioSeleccionado = null;
+
+
+            this._ventana.Resultados = this._usuarios;
+            this._ventana.TotalHits = this._usuarios.ToList<Usuario>().Count.ToString();
+            
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+        }
     }
 }

@@ -234,6 +234,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Resoluciones
             #endregion
         }
 
+        /// <summary>
+        /// Método que limpia los campos de la ventana
+        /// </summary>
         public void LimpiarCampos()
         {
             #region trace

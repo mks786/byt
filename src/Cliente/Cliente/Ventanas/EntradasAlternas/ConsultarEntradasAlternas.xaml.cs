@@ -51,21 +51,25 @@ namespace Trascend.Bolet.Cliente.Ventanas.EntradasAlternas
         public object EntradaAlternaSeleccionado
         {
             get { return this._lstResultados.SelectedItem; }
+            set { this._lstResultados.SelectedItem = value; }
         }
 
         public string Id
         {
             get { return this._txtId.Text; }
+            set { this._txtId.Text = value; }
         }
 
         public string Descripcion
         {
             get { return this._txtDescripcion.Text; }
+            set { this._txtDescripcion.Text = value; }
         }
 
         public string FechaEntradaAlterna
         {
             get { return this._dpkFecha.SelectedDate.ToString(); }
+            set { this._dpkFecha.Text = value; }
         }
 
         public object Resultados
@@ -77,6 +81,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.EntradasAlternas
         public object CategoriaSeleccionado
         {
             get { return this._lstResultados.SelectedItem; }
+            set { this._lstResultados.SelectedItem = value; }
 
         }
 
@@ -222,6 +227,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.EntradasAlternas
 
             if (todosCamposVacios)
                 this._txtId.Focus();
+        }
+
+        private void _btnLimpiarCampos_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.LimpiarCampos();
         }
     }
 }
