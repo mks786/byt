@@ -342,14 +342,14 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
             set { _cPrioridad = value; }
         }
 
-        /// <summary>
-        /// Propiedad que asigna u obtiene la Informacion Adicional 
-        /// </summary>
-        public virtual InfoAdicional InfoAdicional
-        {
-            get { return _infoAdicional; }
-            set { _infoAdicional = value; }
-        }
+        ///// <summary>
+        ///// Propiedad que asigna u obtiene la Informacion Adicional 
+        ///// </summary>
+        //public virtual InfoAdicional InfoAdicional
+        //{
+        //    get { return _infoAdicional; }
+        //    set { _infoAdicional = value; }
+        //}
 
         /// <summary>
         /// Propiedad que asigna u obtiene la Omisión
