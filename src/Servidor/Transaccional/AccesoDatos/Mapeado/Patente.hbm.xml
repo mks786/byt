@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+                   assembly="Trascend.Bolet.ObjetosComunes"
+                   namespace="Trascend.Bolet.ObjetosComunes.Entidades"
+                   auto-import="true">
+
+  <class name="Marca" table="MYP_PATENTES">
+    <id name="Id" column="CPATENTE" type="int"/>
+    <property name="Descripcion" column="XPATENTE" type="string"/>
+    <property name="Tipo" column="ITIPO" type="string"/>
+    <property name="FechaPrioridad" column="FPRIORIDAD" type="DateTime"/>
+    <property name="PrimeraReferencia" column="XREFERENCIA1" type="string"/>
+    <property name="FechaInscripcion" column="FINSCRIPCION" type="DateTime"/>
+    <property name="CodigoInscripcion" column="CINSCRIPCION" type="string"/>
+    <property name="FechaPublicacion" column="FPUBLICACION" type="DateTime"/>
+    <property name="FechaConcesion" column="FCONCESION" type="DateTime"/>
+    <property name="CodigoRegistro" column="CREGISTRO" type="string"/>
+    <property name="FechaRegistro" column="FREGISTRO" type="DateTime"/>
+    <property name="IPoder" column="IPODER" type="string"/>
+    <property name="Fascimiles" column="IFASCIMILES" type="char"/>
+    <property name="Traduccion" column="ITRADUCCION" type="char"/>
+    <property name="CodigoExpediente" column="CEXPEDIENTE" type="string"/>
+    <property name="Ubicacion" column="XUBICACION" type="string"/>
+    <property name="Observacion" column="XOBSERVACION" type="string"/>
+    <property name="Rev" column="IREV" type="char"/>
+    <property name="CPrioridad" column="CPRIORIDAD" type="string"/>
+    <property name="Orden" column="XORDEN" type="string"/>
+    <property name="FechaOrden" column="FORDEN" type="DateTime"/>
+    <property name="Presentacion" column="IPRESENTACION" type="char"/>
+    <property name="Copia" column="ICOPIA" type="char"/>
+    <property name="Juramento" column="IJURAMENTO" type="char"/>
+    <property name="Cesion" column="ICESION" type="char"/>
+    <property name="Dibujo" column="IDIBUJO" type="char"/>
+    <property name="ITipoEstado" column="TESTADO" type="char"/>
+    <property name="FechaBase" column="FBASE" type="DateTime"/>
+    <property name="FechaTermino" column="FTERMINO" type="DateTime"/>
+    <property name="Observacion1" column="XOBSERVACION1" type="string"/>
+    <property name="Ime" column="IME" type="char"/>
+    <property name="Resumen" column="XRESUMEN" type="string"/>
+    <property name="Omision" column="XOMISION" type="string"/>    
+
+    <many-to-one name="Agente" class="Agente">
+      <column name="CAGENTE"/>
+    </many-to-one>
+
+    <many-to-one name="Asociado" class="Asociado">
+      <column name="CASOCIADO"/>
+    </many-to-one>
+
+    <many-to-one name="BoletinConcesion" class="Boletin">
+      <column name="CBOLETIN_CONCESION"/>
+    </many-to-one>
+
+    <many-to-one name="BoletinPublicacion" class="Boletin">
+      <column name="CBOLETIN_PUBLICACION"/>
+    </many-to-one>    
+    
+    <many-to-one name="Interesado" class="Interesado">
+      <column name="CINTERESADO"/>
+    </many-to-one>
+
+    <many-to-one name="Pais" class="Pais">
+      <column name="CPAIS_PRIORIDAD"/>
+    </many-to-one>
+
+    <many-to-one name="Servicio" class="Servicio">
+      <column name="CSERVICIO"/>
+    </many-to-one>
+
+    <many-to-one name="Poder" class="Poder" lazy="false">
+      <column name="CPODER"/>
+    </many-to-one>
+
+    <many-to-one name="BoletinOrdenPublicacion" class="Boletin">
+      <column name="CBOLETIN_ORDENPUB"/>
+    </many-to-one>
+
+    <many-to-one name="TipoEstado" class="StatusWeb">
+      <column name="CTESTADO"/>
+    </many-to-one>    
+
+  </class>
+
+
+</hibernate-mapping>
+
+

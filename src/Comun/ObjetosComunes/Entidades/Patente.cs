@@ -35,7 +35,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         private Servicio _servicio;
         private Poder _poder;
         private string _cPrioridad;
-        private InfoAdicional _infoAdicional;
+        //private InfoAdicional _infoAdicional;
         private string _orden;
         private DateTime? _fechaOrden;
         private char _presentacion;
