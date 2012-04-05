@@ -354,7 +354,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         /// <summary>
         /// Propiedad que asigna u obtiene la Omisión
         /// </summary>
-        public string Omision
+        public virtual string Omision
         {
             get { return _omision; }
             set { _omision = value; }
@@ -363,7 +363,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         /// <summary>
         /// Propiedad que asigna u obtiene el resumen
         /// </summary>
-        public string Resumen
+        public virtual string Resumen
         {
             get { return _resumen; }
             set { _resumen = value; }
@@ -372,7 +372,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         /// <summary>
         /// Propiedad que asigna u obtiene el ime
         /// </summary>
-        public char Ime
+        public virtual char Ime
         {
             get { return _ime; }
             set { _ime = value; }
@@ -381,7 +381,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         /// <summary>
         /// Propiedad que asigna u obtiene la observacion1
         /// </summary>
-        public string Observacion1
+        public virtual string Observacion1
         {
             get { return _observacion1; }
             set { _observacion1 = value; }
@@ -390,7 +390,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         /// <summary>
         /// Propiedad que asigna u obtiene la fechatermino
         /// </summary>
-        public DateTime? FechaTermino
+        public virtual DateTime? FechaTermino
         {
             get { return _fechaTermino; }
             set { _fechaTermino = value; }
@@ -399,7 +399,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         /// <summary>
         /// Propiedad que asigna u obtiene la fechaBase
         /// </summary>
-        public DateTime? FechaBase
+        public virtual DateTime? FechaBase
         {
             get { return _fechaBase; }
             set { _fechaBase = value; }
@@ -408,7 +408,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         /// <summary>
         /// Propiedad que asigna u obtiene el tipo estado
         /// </summary>
-        public TipoEstado TipoEstado
+        public virtual TipoEstado TipoEstado
         {
             get { return _tipoEstado; }
             set { _tipoEstado = value; }
@@ -417,7 +417,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         /// <summary>
         /// Propiedad que asigna u obtiene el boletinOrdenPublicacion
         /// </summary>
-        public Boletin BoletinOrdenPublicacion
+        public virtual Boletin BoletinOrdenPublicacion
         {
             get { return _boletinOrdenPublicacion; }
             set { _boletinOrdenPublicacion = value; }
@@ -426,7 +426,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         /// <summary>
         /// Propiedad que asigna u obtiene el tipoestado
         /// </summary>
-        public char ITipoEstado
+        public virtual char ITipoEstado
         {
             get { return _iTipoEstado; }
             set { _iTipoEstado = value; }
@@ -435,7 +435,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         /// <summary>
         /// Propiedad que asigna u obtiene el dibujo
         /// </summary>
-        public char Dibujo
+        public virtual char Dibujo
         {
             get { return _dibujo; }
             set { _dibujo = value; }
@@ -444,7 +444,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         /// <summary>
         /// Propiedad que asigna u obtiene la cesion
         /// </summary>
-        public char Cesion
+        public virtual char Cesion
         {
             get { return _cesion; }
             set { _cesion = value; }
@@ -453,7 +453,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         /// <summary>
         /// Propiedad que asigna u obtiene el juramento
         /// </summary>
-        public char Juramento
+        public virtual char Juramento
         {
             get { return _juramento; }
             set { _juramento = value; }
@@ -462,7 +462,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         /// <summary>
         /// Propiedad que asigna u obtiene la copia
         /// </summary>
-        public char Copia
+        public virtual char Copia
         {
             get { return _copia; }
             set { _copia = value; }
@@ -471,7 +471,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         /// <summary>
         /// Propiedad que asigna u obtiene la presentacion
         /// </summary>
-        public char Presentacion
+        public virtual char Presentacion
         {
             get { return _presentacion; }
             set { _presentacion = value; }
@@ -480,7 +480,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         /// <summary>
         /// Propiedad que asigna u obtiene la Orden
         /// </summary>
-        public string Orden
+        public virtual string Orden
         {
             get { return _orden; }
             set { _orden = value; }
@@ -489,7 +489,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         /// <summary>
         /// Propiedad que asigna u obtiene la fechaOrden
         /// </summary>
-        public DateTime? FechaOrden
+        public virtual DateTime? FechaOrden
         {
             get { return _fechaOrden; }
             set { _fechaOrden = value; }

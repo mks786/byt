@@ -4,7 +4,7 @@
                    namespace="Trascend.Bolet.ObjetosComunes.Entidades"
                    auto-import="true">
 
-  <class name="Marca" table="MYP_PATENTES">
+  <class name="Patente" table="MYP_PATENTES">
     <id name="Id" column="CPATENTE" type="int"/>
     <property name="Descripcion" column="XPATENTE" type="string"/>
     <property name="Tipo" column="ITIPO" type="string"/>
