@@ -155,28 +155,28 @@
                 </MenuItem>
                 <MenuItem Name="_menuItemTraspasosPatente" Visibility="Collapsed" Header="{x:Static resx:Etiquetas.menuItemTraspasos}" BorderBrush="Gray">
                     <MenuItem Name="_menuItemCesionesPatente" Header="{x:Static resx:Etiquetas.menuItemCesiones}">
-                        <MenuItem Name="_menuItemCesionesConsultarPatente" Header="{x:Static resx:Etiquetas.menuItemConsultar}" Click="_menuItemCesionesConsultar_Click"/>
-                        <MenuItem Name="_menuItemCesionesAgregarPatente" Header="{x:Static resx:Etiquetas.menuItemAgregar}" Click="_menuItemCesionAgregar_Click"/>
+                        <MenuItem Name="_menuItemCesionesConsultarPatente" Header="{x:Static resx:Etiquetas.menuItemConsultar}" Click="_menuItemCesionesPatentesConsultar_Click"/>
+                        <MenuItem Name="_menuItemCesionesAgregarPatente" Header="{x:Static resx:Etiquetas.menuItemAgregar}" Click="_menuItemCesionPatentesAgregar_Click"/>
                     </MenuItem>
                     <MenuItem Name="_menuItemFusionesPatente" Header="{x:Static resx:Etiquetas.menuItemFusiones}">
-                        <MenuItem Name="_menuItemFusionesConsultarPatente" Header="{x:Static resx:Etiquetas.menuItemConsultar}" Click="_menuItemFusionesConsultar_Click"/>
-                        <MenuItem Name="_menuItemFusionesAgregarPatente" Header="{x:Static resx:Etiquetas.menuItemAgregar}" Click="_menuItemFusionAgregar_Click"/>
+                        <MenuItem Name="_menuItemFusionesConsultarPatente" Header="{x:Static resx:Etiquetas.menuItemConsultar}" Click="_menuItemFusionesPatentesConsultar_Click"/>
+                        <MenuItem Name="_menuItemFusionesAgregarPatente" Header="{x:Static resx:Etiquetas.menuItemAgregar}" Click="_menuItemFusionPatentesAgregar_Click"/>
                     </MenuItem>
                     <MenuItem Name="_menuItemCambiosDeDomicilioPatente" Header="{x:Static resx:Etiquetas.menuItemCambioDeDomicilio}">
-                        <MenuItem Name="_menuItemCambiosDeDomicilioConsultarPatente" Header="{x:Static resx:Etiquetas.menuItemConsultar}" Click="_menuItemCambiosDeDomicilioConsultar_Click"/>
-                        <MenuItem Name="_menuItemCambiosDeDomicilioAgregarPatente" Header="{x:Static resx:Etiquetas.menuItemAgregar}" Click="_menuItemCambiosDeDomicilioAgregar_Click"/>
+                        <MenuItem Name="_menuItemCambiosDeDomicilioConsultarPatente" Header="{x:Static resx:Etiquetas.menuItemConsultar}" Click="_menuItemCambiosDeDomicilioPatentesConsultar_Click"/>
+                        <MenuItem Name="_menuItemCambiosDeDomicilioAgregarPatente" Header="{x:Static resx:Etiquetas.menuItemAgregar}" Click="_menuItemCambiosDeDomicilioPatentesAgregar_Click"/>
                     </MenuItem>
                     <MenuItem Name="_menuItemCambioDeNombrePatente" Header="{x:Static resx:Etiquetas.menuItemCambioDeNombre}">
-                        <MenuItem Name="_menuItemCambiosDeNombreConsultarPatente" Header="{x:Static resx:Etiquetas.menuItemConsultar}" Click="_menuItemCambiosDeNombreConsultar_Click"/>
-                        <MenuItem Name="_menuItemCambiosNombreAgregarPatente" Header="{x:Static resx:Etiquetas.menuItemAgregar}" Click="_menuItemCambiosNombreAgregar_Click"/>
+                        <MenuItem Name="_menuItemCambiosDeNombreConsultarPatente" Header="{x:Static resx:Etiquetas.menuItemConsultar}" Click="_menuItemCambiosDeNombrePatentesConsultar_Click"/>
+                        <MenuItem Name="_menuItemCambiosNombreAgregarPatente" Header="{x:Static resx:Etiquetas.menuItemAgregar}" Click="_menuItemCambiosNombrePatentesAgregar_Click"/>
                     </MenuItem>
                     <MenuItem Name="_menuItemCambiosPeticionarioPatente" Header="{x:Static resx:Etiquetas.menuItemCambioPeticionario}">
-                        <MenuItem Name="_menuItemCambiosPeticionarioConsultarPatente" Header="{x:Static resx:Etiquetas.menuItemConsultar}" Click="_menuItemCambiosPeticionarioConsultar_Click"/>
-                        <MenuItem Name="_menuItemCambiosPeticionarioAgregarPatente" Header="{x:Static resx:Etiquetas.menuItemAgregar}" Click="_menuItemCambiosPeticionarioAgregar_Click"/>
+                        <MenuItem Name="_menuItemCambiosPeticionarioConsultarPatente" Header="{x:Static resx:Etiquetas.menuItemConsultar}" Click="_menuItemCambiosPeticionarioPatentesConsultar_Click"/>
+                        <MenuItem Name="_menuItemCambiosPeticionarioAgregarPatente" Header="{x:Static resx:Etiquetas.menuItemAgregar}" Click="_menuItemCambiosPeticionarioPatentesAgregar_Click"/>
                     </MenuItem>
                     <MenuItem Name="_menuItemLicenciasPatente" Header="{x:Static resx:Etiquetas.menuItemLicencias}">
-                        <MenuItem Name="_menuItemLicenciasConsultarPatente" Header="{x:Static resx:Etiquetas.menuItemConsultar}" Click="_menuItemLicenciasConsultar_Click"/>
-                        <MenuItem Name="_menuItemLicenciasGestionarPatente" Header="{x:Static resx:Etiquetas.menuItemAgregar}" Click="_menuItemLicenciaAgregar_Click"/>
+                        <MenuItem Name="_menuItemLicenciasConsultarPatente" Header="{x:Static resx:Etiquetas.menuItemConsultar}" Click="_menuItemLicenciasPatentesConsultar_Click"/>
+                        <MenuItem Name="_menuItemLicenciasGestionarPatente" Header="{x:Static resx:Etiquetas.menuItemAgregar}" Click="_menuItemLicenciaPatentesAgregar_Click"/>
                     </MenuItem>
                 </MenuItem>
 

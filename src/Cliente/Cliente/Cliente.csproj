@@ -108,6 +108,8 @@
     <Compile Include="Contratos\Anexos\IConsultarAnexo.cs" />
     <Compile Include="Contratos\Anexos\IConsultarAnexos.cs" />
     <Compile Include="Contratos\CartasOuts\IConsultarCartasOuts.cs" />
+    <Compile Include="Contratos\TraspasosPatentes\CambiosDeDomicilioPatentes\IConsultarCambiosDeDomicilioPatentes.cs" />
+    <Compile Include="Contratos\TraspasosPatentes\CambiosDeDomicilioPatentes\IGestionarCambioDeDomicilioPatentes.cs" />
     <Compile Include="Contratos\EscritosMarca\IConsignacionDeBusqueda.cs" />
     <Compile Include="Contratos\EscritosMarca\IReingresoDePoderAnexo.cs" />
     <Compile Include="Contratos\EscritosMarca\IReingresoDeDistingue.cs" />
@@ -259,6 +261,8 @@
     <Compile Include="Presentadores\Contactos\PresentadorAgregarContacto.cs" />
     <Compile Include="Presentadores\Contactos\PresentadorConsultarContacto.cs" />
     <Compile Include="Presentadores\CartasOuts\PresentadorConsultarCartasOuts.cs" />
+    <Compile Include="Presentadores\TraspasosPatentes\CambiosDeDomicilioPatentes\PresentadorConsultarCambiosDeDomicilioPatentes.cs" />
+    <Compile Include="Presentadores\TraspasosPatentes\CambiosDeDomicilioPatentes\PresentadorGestionarCambioDeDomicilioPatentes.cs" />
     <Compile Include="Presentadores\EscritosMarca\PresentadorConsignacionDeBusqueda.cs" />
     <Compile Include="Presentadores\EscritosMarca\PresentadorReingresoDePoderAnexo.cs" />
     <Compile Include="Presentadores\EscritosMarca\PresentadorReingresoDeDistingue.cs" />
@@ -794,11 +798,11 @@
     <Compile Include="Ventanas\Principales\PaginaPrincipal.xaml.cs">
       <DependentUpon>PaginaPrincipal.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Ventanas\TraspasosPatentes\Cesiones\ConsultarCesiones.xaml.cs">
-      <DependentUpon>ConsultarCesiones.xaml</DependentUpon>
+    <Compile Include="Ventanas\TraspasosPatentes\CambiosDeDomicilioPatentes\ConsultarCambiosDeDomicilioPatentes.xaml.cs">
+      <DependentUpon>ConsultarCambiosDeDomicilioPatentes.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Ventanas\TraspasosPatentes\Cesiones\GestionarCesion.xaml.cs">
-      <DependentUpon>GestionarCesion.xaml</DependentUpon>
+    <Compile Include="Ventanas\TraspasosPatentes\CambiosDeDomicilioPatentes\GestionarCambioDeDomicilioPatentes.xaml.cs">
+      <DependentUpon>GestionarCambioDeDomicilioPatentes.xaml</DependentUpon>
     </Compile>
     <Compile Include="Ventanas\Traspasos\CambiosDeNombre\ConsultarCambiosDeNombre.xaml.cs">
       <DependentUpon>ConsultarCambiosDeNombre.xaml</DependentUpon>
@@ -1376,11 +1380,11 @@
       <DependentUpon>VentanaPrincipal.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Ventanas\TraspasosPatentes\Cesiones\ConsultarCesiones.xaml">
+    <Page Include="Ventanas\TraspasosPatentes\CambiosDeDomicilioPatentes\ConsultarCambiosDeDomicilioPatentes.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Ventanas\TraspasosPatentes\Cesiones\GestionarCesion.xaml">
+    <Page Include="Ventanas\TraspasosPatentes\CambiosDeDomicilioPatentes\GestionarCambioDeDomicilioPatentes.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

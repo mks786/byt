@@ -481,55 +481,6 @@ namespace Trascend.Bolet.Cliente.Ventanas.Principales
 
         #region Patentes
 
-
-
-
-        #region Escritos
-
-        private void _menuItemEscritosPatente_Click(object sender, RoutedEventArgs e)
-        {
-            this._presentador.IrEscritoPatentes(((MenuItem)sender).Name);
-        }
-
-        #endregion
-
-        #endregion
-
-        #endregion
-
-        #region Eventos de la ventana
-
-        private void btnSalir_Click(object sender, RoutedEventArgs e)
-        {
-            //Al ejecutar la siClienteente línea se dispara el evento "Window_Closing"
-
-            this.Close();
-        }
-
-        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-            if (MessageBoxResult.Yes == MessageBox.Show(Recursos.MensajesConElUsuario.ConfirmacionSalirDelSistema,
-                "Salir del sistema", MessageBoxButton.YesNo, MessageBoxImage.Question))
-            {
-                this._presentador.Salir();
-            }
-            else
-            {
-                e.Cancel = true;
-            }
-        }
-
-        #endregion
-
-        #region Métodos
-
-        public void AplicarPermisologia()
-        {
-            this._presentador.AplicarPermisologia();
-        }
-
-        #endregion
-
         private void _menuItemPatentesConsultar_Click(object sender, RoutedEventArgs e)
         {
 
@@ -605,7 +556,115 @@ namespace Trascend.Bolet.Cliente.Ventanas.Principales
 
         }
 
+        #region TraspasosPatentes
 
+        private void _menuItemCesionesPatentesConsultar_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.AgregarCambioDeDomicilioPatentes();
+        }
+
+        private void _menuItemCesionPatentesAgregar_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.AgregarCambioDeDomicilioPatentes();
+        }
+
+        private void _menuItemFusionesPatentesConsultar_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.AgregarCambioDeDomicilioPatentes();
+        }
+
+        private void _menuItemFusionPatentesAgregar_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.AgregarCambioDeDomicilioPatentes();
+        }
+
+        private void _menuItemCambiosDeDomicilioPatentesConsultar_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.ConsultarCambiosDeDomicilioPatentes();
+        }
+
+        private void _menuItemCambiosDeDomicilioPatentesAgregar_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.AgregarCambioDeDomicilioPatentes();
+        }
+
+        private void _menuItemCambiosDeNombrePatentesConsultar_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.AgregarCambioDeDomicilioPatentes();
+        }
+
+        private void _menuItemCambiosNombrePatentesAgregar_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.AgregarCambioDeDomicilioPatentes();
+        }
+
+        private void _menuItemCambiosPeticionarioPatentesConsultar_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.AgregarCambioDeDomicilioPatentes();
+        }
+
+        private void _menuItemCambiosPeticionarioPatentesAgregar_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.AgregarCambioDeDomicilioPatentes();
+        }
+
+        private void _menuItemLicenciasPatentesConsultar_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.AgregarCambioDeDomicilioPatentes();
+        }
+
+        private void _menuItemLicenciaPatentesAgregar_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.AgregarCambioDeDomicilioPatentes();
+        }
+
+        #endregion
+
+        #region Escritos
+
+        private void _menuItemEscritosPatente_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.IrEscritoPatentes(((MenuItem)sender).Name);
+        }
+
+        #endregion
+
+        #endregion
+
+        #endregion
+
+        #region Eventos de la ventana
+
+        private void btnSalir_Click(object sender, RoutedEventArgs e)
+        {
+            //Al ejecutar la siClienteente línea se dispara el evento "Window_Closing"
+
+            this.Close();
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (MessageBoxResult.Yes == MessageBox.Show(Recursos.MensajesConElUsuario.ConfirmacionSalirDelSistema,
+                "Salir del sistema", MessageBoxButton.YesNo, MessageBoxImage.Question))
+            {
+                this._presentador.Salir();
+            }
+            else
+            {
+                e.Cancel = true;
+            }
+        }
+
+        #endregion
+
+        #region Métodos
+
+        public void AplicarPermisologia()
+        {
+            this._presentador.AplicarPermisologia();
+        }
+
+        #endregion
 
     }
 }

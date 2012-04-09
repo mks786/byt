@@ -38,6 +38,9 @@ using Trascend.Bolet.Cliente.Ventanas.Marcas;
 using Trascend.Bolet.Cliente.Ventanas.Traspasos.Fusiones;
 using Trascend.Bolet.Cliente.Ventanas.Traspasos.Cesiones;
 using Trascend.Bolet.Cliente.Ventanas.Traspasos.Licencias;
+//using Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.FusionesPatentes;
+//using Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.CesionesPatentes;
+//using Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.LicenciasPatentes;
 using Trascend.Bolet.Cliente.Ventanas.EstadosMarca;
 using Trascend.Bolet.Cliente.Ventanas.TiposBase;
 using Trascend.Bolet.Cliente.Ventanas.MarcasTercero;
@@ -45,6 +48,9 @@ using Trascend.Bolet.Cliente.Ventanas;
 using Trascend.Bolet.Cliente.Ventanas.Traspasos.CambiosDeDomicilio;
 using Trascend.Bolet.Cliente.Ventanas.Traspasos.CambiosDeNombre;
 using Trascend.Bolet.Cliente.Ventanas.Traspasos.CambiosPeticionario;
+using Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.CambiosDeDomicilioPatentes;
+//using Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.CambiosDeNombrePatentes;
+//using Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.CambiosPeticionarioPatentes;
 using Trascend.Bolet.Cliente.Ventanas.Renovaciones;
 using Trascend.Bolet.Cliente.Ventanas.EscritosMarca;
 using Trascend.Bolet.Cliente.Ventanas.Logines;
@@ -829,6 +835,104 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
                     break;
             }
         }
+
+        /// <summary>
+        /// Método que coloca la página "CesionesPatentes" en el Frame principal
+        /// </summary>
+        public void ConsultarCesionesPatentes()
+        {
+            //this._ventana.Contenedor.Navigate(new ConsultarCesionesPatentes());
+        }
+
+        /// <summary>
+        /// Método que coloca la página "GestionarCesionPatentes" en el Frame principal
+        /// </summary>
+        public void AgregarCesionPatentes()
+        {
+            //this._ventana.Contenedor.Navigate(new GestionarCesionPatentes(null));
+        }
+
+        /// <summary>
+        /// Método que coloca la página "FusionesPatentes" en el Frame principal
+        /// </summary>
+        public void ConsultarFusionesPatentes()
+        {
+            //this._ventana.Contenedor.Navigate(new ConsultarFusionesPatentes());
+        }
+
+        /// <summary>
+        /// Método que coloca la página "GestionarFusionPatentes" en el Frame principal
+        /// </summary>
+        public void AgregarFusionPatentes()
+        {
+            //this._ventana.Contenedor.Navigate(new GestionarFusionPatentes(null));
+        }
+
+        /// <summary>
+        /// Método que coloca la página "CambiosDeDomicilioPatentes" en el Frame principal
+        /// </summary>
+        public void ConsultarCambiosDeDomicilioPatentes()
+        {
+            this._ventana.Contenedor.Navigate(new ConsultarCambiosDeDomicilioPatentes());
+        }
+
+        /// <summary>
+        /// Método que coloca la página "AgregarCambioDeDomicilioPatentes" en el Frame principal
+        /// </summary>
+        public void AgregarCambioDeDomicilioPatentes()
+        {
+            this._ventana.Contenedor.Navigate(new GestionarCambioDeDomicilioPatentes(null));
+        }
+
+        /// <summary>
+        /// Método que coloca la página "CambiosDeNombrePatentes" en el Frame principal
+        /// </summary>
+        public void ConsultarCambiosDeNombrePatentes()
+        {
+            //this._ventana.Contenedor.Navigate(new ConsultarCambiosDeNombrePatentes());
+        }
+
+        /// <summary>
+        /// Método que coloca la página "AgregarCambioDeNombrePatentes" en el Frame principal
+        /// </summary>
+        public void AgregarCambioDeNombrePatentes()
+        {
+            //this._ventana.Contenedor.Navigate(new GestionarCambioDeNombrePatentes(null));
+        }
+
+        /// <summary>
+        /// Método que coloca la página "CambiosDeDomicilioPatentes" en el Frame principal
+        /// </summary>
+        public void ConsultarCambiosDePeticionarioPatentes()
+        {
+            //this._ventana.Contenedor.Navigate(new ConsultarCambiosPeticionarioPatentes());
+        }
+
+        /// <summary>
+        /// Método que coloca la página "AgregarCambioPeticionarioPatentes" en el Frame principal
+        /// </summary>
+        public void AgregarCambioPeticionarioPatentes()
+        {
+            //this._ventana.Contenedor.Navigate(new GestionarCambioPeticionarioPatentes(null));
+        }
+
+        /// <summary>
+        /// Método que coloca la página "LicenciasPatentes" en el Frame principal
+        /// </summary>
+        public void IrConsultarLicenciasPatentes()
+        {
+            //this._ventana.Contenedor.Navigate(new ConsultarLicenciasPatentes());
+        }
+
+        /// <summary>
+        /// Método que coloca la página "GestionarLicenciasPatentes" en el Frame principal
+        /// </summary>
+        public void AgregarLicenciaPatentes()
+        {
+            //this._ventana.Contenedor.Navigate(new GestionarLicenciaPatentes(null));
+        }
+
+
         #endregion
 
         /// <summary>
