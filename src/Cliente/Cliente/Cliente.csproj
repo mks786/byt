@@ -219,6 +219,8 @@
     <Compile Include="Contratos\TiposBase\IAgregarTipoBase.cs" />
     <Compile Include="Contratos\TiposBase\IConsultarTipoBase.cs" />
     <Compile Include="Contratos\TiposBase\IConsultarTiposBase.cs" />
+    <Compile Include="Contratos\TraspasosPatentes\CambiosDeNombrePatentes\IConsultarCambiosDeNombrePatentes.cs" />
+    <Compile Include="Contratos\TraspasosPatentes\CambiosDeNombrePatentes\IGestionarCambioDeNombrePatentes.cs" />
     <Compile Include="Contratos\Traspasos\CambiosDeNombre\IConsultarCambiosDeNombre.cs" />
     <Compile Include="Contratos\Traspasos\CambiosDeNombre\IGestionarCambioDeNombre.cs" />
     <Compile Include="Contratos\Traspasos\Cesiones\IConsultarCesiones.cs" />
@@ -372,6 +374,8 @@
     <Compile Include="Presentadores\TiposBase\PresentadorAgregarTipoBase.cs" />
     <Compile Include="Presentadores\TiposBase\PresentadorConsultarTipoBase.cs" />
     <Compile Include="Presentadores\TiposBase\PresentadorConsultarTiposBase.cs" />
+    <Compile Include="Presentadores\TraspasosPatentes\CambiosDeNombrePatentes\PresentadorConsultarCambiosDeNombrePatentes.cs" />
+    <Compile Include="Presentadores\TraspasosPatentes\CambiosDeNombrePatentes\PresentadorGestionarCambioDeNombrePatentes.cs" />
     <Compile Include="Presentadores\Traspasos\CambiosDeNombre\PresentadorConsultarCambiosDeNombre.cs" />
     <Compile Include="Presentadores\Traspasos\CambiosDeNombre\PresentadorGestionarCambioDeNombre.cs" />
     <Compile Include="Presentadores\Traspasos\Cesiones\PresentadorConsultarCesiones.cs" />
@@ -803,6 +807,12 @@
     </Compile>
     <Compile Include="Ventanas\TraspasosPatentes\CambiosDeDomicilioPatentes\GestionarCambioDeDomicilioPatentes.xaml.cs">
       <DependentUpon>GestionarCambioDeDomicilioPatentes.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\TraspasosPatentes\CambiosDeNombrePatentes\ConsultarCambiosDeNombrePatentes.xaml.cs">
+      <DependentUpon>ConsultarCambiosDeNombrePatentes.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\TraspasosPatentes\CambiosDeNombrePatentes\GestionarCambioDeNombrePatentes.xaml.cs">
+      <DependentUpon>GestionarCambioDeNombrePatentes.xaml</DependentUpon>
     </Compile>
     <Compile Include="Ventanas\Traspasos\CambiosDeNombre\ConsultarCambiosDeNombre.xaml.cs">
       <DependentUpon>ConsultarCambiosDeNombre.xaml</DependentUpon>
@@ -1385,6 +1395,14 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Ventanas\TraspasosPatentes\CambiosDeDomicilioPatentes\GestionarCambioDeDomicilioPatentes.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\TraspasosPatentes\CambiosDeNombrePatentes\ConsultarCambiosDeNombrePatentes.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\TraspasosPatentes\CambiosDeNombrePatentes\GestionarCambioDeNombrePatentes.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
