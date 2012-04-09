@@ -671,6 +671,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
             this._ventana.Contenedor.Navigate(new AgregarCarta());
         }
 
+        /// <summary>
+        /// Método que se encarga de realizar el llamado a las pantallas de los escritos
+        /// </summary>
+        /// <param name="nombreBoton">nombre del boton que creo el evento</param>
         public void IrEscrito(string nombreBoton)
         {
             switch (nombreBoton)
@@ -752,7 +756,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
             }
         }
 
-
+        /// <summary>
+        /// Método que se encarga de realizar el llamado a las pantallas de los escritos
+        /// de patentes
+        /// </summary>
+        /// <param name="nombreBoton">nombre del boton que creo el evento</param>
         public void IrEscritoPatentes(string nombreBoton)
         {
             switch (nombreBoton)

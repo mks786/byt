@@ -794,6 +794,12 @@
     <Compile Include="Ventanas\Principales\PaginaPrincipal.xaml.cs">
       <DependentUpon>PaginaPrincipal.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Ventanas\TraspasosPatentes\Cesiones\ConsultarCesiones.xaml.cs">
+      <DependentUpon>ConsultarCesiones.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\TraspasosPatentes\Cesiones\GestionarCesion.xaml.cs">
+      <DependentUpon>GestionarCesion.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Ventanas\Traspasos\CambiosDeNombre\ConsultarCambiosDeNombre.xaml.cs">
       <DependentUpon>ConsultarCambiosDeNombre.xaml</DependentUpon>
     </Compile>
@@ -1370,6 +1376,14 @@
       <DependentUpon>VentanaPrincipal.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Ventanas\TraspasosPatentes\Cesiones\ConsultarCesiones.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\TraspasosPatentes\Cesiones\GestionarCesion.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Ventanas\Traspasos\CambiosDeNombre\ConsultarCambiosDeNombre.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -1524,7 +1538,9 @@
   <ItemGroup>
     <Resource Include="images\logoBoletI.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Ventanas\EscritosPatente\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
