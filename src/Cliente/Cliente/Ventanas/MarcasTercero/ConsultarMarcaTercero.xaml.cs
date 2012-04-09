@@ -83,6 +83,18 @@ namespace Trascend.Bolet.Cliente.Ventanas.MarcasTercero
             set { this._cbxAgente.DataContext = value; }
         }
 
+        public object TipoCbx
+        {
+            get { return this._cbxTipo.DataContext; }
+            set { this._cbxTipo.DataContext = value; }
+        }
+
+        public object TiposCbx
+        {
+            get { return this._cbxTipo.SelectedItem; }
+            set { this._cbxTipo.SelectedItem = value; }
+        }
+
         public object Agente
         {
             get { return this._cbxAgente.SelectedItem; }
@@ -415,7 +427,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.MarcasTercero
                 this._cbxAsocInt.IsEnabled = value;
                 this._cbxBoletinConcesion.IsEnabled = value;
                 this._cbxBoletinPublicacion.IsEnabled = value;
-                //this._cbxCartaOrden.IsEnabled = value;
+                this._cbxTipo.IsEnabled = value;
                 //this._cbxCondiciones.IsEnabled = value;
                 this._cbxConflicto.IsEnabled = value;
                 this._cbxDetalleDatos.IsEnabled = value;

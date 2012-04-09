@@ -70,13 +70,9 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
                 //Busca la lista de marcaBaseTercero por cada marcaTercero
                 foreach (MarcaTercero aux in MarcasTercero)
                 {
-                    int i = 0;
-                    IList<MarcaBaseTercero> MarcasBaseTercero = null;
                     string CabeceraBase = string.Format(Recursos.ConsultasHQL.CabeceraObtenerMarcaBaseTercero, aux.Id, aux.Anexo);
                     IQuery query2 = Session.CreateQuery(CabeceraBase);
-                    MarcasBaseTercero=query2.List<MarcaBaseTercero>();
-                    MarcasTercero[i].MarcasBaseTercero = MarcasBaseTercero;
-                    i++;
+                    aux.MarcasBaseTercero=query2.List<MarcaBaseTercero>();
 
                 }
 

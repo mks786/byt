@@ -98,12 +98,12 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
                     List<MarcaBaseTercero> marcasBaseTerceroModificada = new List<MarcaBaseTercero>();
                     ComandoBase<int> idSecuencia = FabricaComandosMarcaBaseTercero.ObtenerComandoConsultarMarcaTerceroMaxSecuencia();
                     ComandoBase<List<MarcaBaseTercero>> marcasBase = FabricaComandosMarcaBaseTercero.ObtenerComandoConsultarTodosPorId(marcaTercero.Id, marcaTercero.Anexo);
-                    idSecuencia.Ejecutar();
                     marcasBase.Ejecutar();
                     List<MarcaBaseTercero> marcasBaseEnBase = marcasBase.Receptor.ObjetoAlmacenado;
-                    int secuencia = idSecuencia.Receptor.ObjetoAlmacenado;
                     if (marcaTercero.MarcasBaseTercero.Count() != 0)
                     {
+                        idSecuencia.Ejecutar();
+                        int secuencia = idSecuencia.Receptor.ObjetoAlmacenado;
                         //Recorre las marcaBase que han sido seleccionadas en el Presentador
                         foreach (MarcaBaseTercero marcaBaseTercero in marcaTercero.MarcasBaseTercero)
                         {
@@ -162,7 +162,7 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
                     }
 
                     marcaTercero.Tipo = "MP";
-                    //marcaTercero.MarcasBaseTercero = new List<MarcaBaseTercero>();
+                    marcaTercero.MarcasBaseTercero = new List<MarcaBaseTercero>();
 
                     ComandoBase<bool> comando = FabricaComandosMarcaTercero.ObtenerComandoInsertarOModificar(marcaTercero);
                     comando.Ejecutar();

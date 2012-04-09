@@ -14,6 +14,10 @@ namespace Trascend.Bolet.Cliente.Contratos.MarcasTercero
 
         object GridByt { get; set; }
 
+        object TiposCbx { get; set; }
+
+        object TipoCbx { get; set; }
+
         object MarcasFiltradas { get; set; }
 
         object MarcaFiltrada { get; set; }

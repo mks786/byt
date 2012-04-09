@@ -199,7 +199,7 @@
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblInteresado}"/>
                     </Label>
 
-                    <Grid Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="7">
+                    <Grid Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="5">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="*"/>
@@ -259,6 +259,13 @@
                             </ListView.View>
                         </ListView>
                     </Grid>
+                    
+                    <Label Grid.Column="6" Grid.Row="3" VerticalAlignment="Center" HorizontalContentAlignment="Right">
+                        <TextBlock Text="{x:Static recurso:Etiquetas.lblTipo}"/>
+                    </Label>
+                    <ComboBox IsEnabled="False" Grid.Column="7" Grid.Row="3" Grid.ColumnSpan="1" Name="_cbxTipo" Height="20" 
+                              ItemsSource="{Binding}" DisplayMemberPath="NombreEspañol" SelectedIndex="0">
+                    </ComboBox>
 
                     <custom:ByTTextBox IsEnabled="False" MaxLength="40" Grid.Column="8" Grid.Row="3" Name="_txtPaisSolicitud" VerticalAlignment="Center" 
                          Grid.ColumnSpan="2" Margin="3,0,0,0"></custom:ByTTextBox>
@@ -580,7 +587,7 @@
                                     <GridViewColumn DisplayMemberBinding="{Binding Path=Anexo}" Width="80">
                                         <GridViewColumnHeader Click="_OrdenarMarcas_Click" Tag="Anexo" Content="{x:Static recurso:Etiquetas.lsvAnexo}"/>
                                     </GridViewColumn>
-                                    <GridViewColumn DisplayMemberBinding="{Binding Path=Marca.Descripcion}" Width="150">
+                                    <GridViewColumn DisplayMemberBinding="{Binding Path=NombreMarca}" Width="150">
                                         <GridViewColumnHeader  Tag="Descripcion" Content="{x:Static recurso:Etiquetas.lsvNombre}"/>
                                     </GridViewColumn>
                                 </GridView>

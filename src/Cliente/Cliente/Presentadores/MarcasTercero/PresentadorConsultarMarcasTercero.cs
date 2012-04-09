@@ -147,8 +147,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
                 if (!this._ventana.Id.Equals(""))
                 {
                     filtroValido = 2;
-                    MarcaTerceroAuxiliar.Id = this._ventana.Id; //int.Parse(this._ventana.Id);
-                    MarcaTerceroAuxiliar.Id = this._ventana.Id;
+                    MarcaTerceroAuxiliar.Id = this._ventana.Id; 
                 }
 
                 if ((null != this._ventana.Asociado) && (((Asociado)this._ventana.Asociado).Id != int.MinValue))
@@ -187,7 +186,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
                 if (filtroValido >= 2)
                 {
                     this._marcasTercero = this._marcaTerceroServicios.ObtenerMarcaTerceroFiltro(MarcaTerceroAuxiliar);
-                    MarcaTercero MarcaTerceroComparadora = _marcasTercero[0];
+                    if (_marcasTercero.Count() != 0)
+                    {
+                        MarcaTercero MarcaTerceroComparadora = _marcasTercero[0];
+                    }
                     int comprobador = 0;
                     IList<MarcaTercero> marcasTerceroDesinfladas = new List<MarcaTercero>();
 
@@ -213,19 +215,20 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
 
 
                         MarcaTerceroAuxiliar.FechaPublicacion = marcaTercero.FechaPublicacion != null ? marcaTercero.FechaPublicacion : null;
+                        marcasTerceroDesinfladas.Add(MarcaTerceroAuxiliar);
                         //Filtra las busquedas repetidas
-                        if ((MarcaTerceroComparadora.Id == MarcaTerceroAuxiliar.Id) && (MarcaTerceroComparadora.Anexo == MarcaTerceroAuxiliar.Anexo))
-                        {
-                            if (comprobador <= 0)
-                            {
-                                marcasTerceroDesinfladas.Add(MarcaTerceroAuxiliar);
-                                comprobador++;
-                            }
-                        }
-                        else
-                        {
-                            marcasTerceroDesinfladas.Add(MarcaTerceroAuxiliar);
-                        }
+                        //if ((MarcaTerceroComparadora.Id == MarcaTerceroAuxiliar.Id) && (MarcaTerceroComparadora.Anexo == MarcaTerceroAuxiliar.Anexo))
+                        //{
+                        //    if (comprobador <= 0)
+                        //    {
+                        //        marcasTerceroDesinfladas.Add(MarcaTerceroAuxiliar);
+                        //        comprobador++;
+                        //    }
+                        //}
+                        //else
+                        //{
+                        //    marcasTerceroDesinfladas.Add(MarcaTerceroAuxiliar);
+                        //}
                     }
 
                     this._ventana.Resultados = marcasTerceroDesinfladas;

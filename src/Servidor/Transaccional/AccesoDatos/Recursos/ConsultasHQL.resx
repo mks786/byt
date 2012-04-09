@@ -498,7 +498,7 @@
     <comment>Obtiene la Ultima Secuencia de marcaBaseTercero</comment>
   </data>
   <data name="ObtenerTodosMarcaBaseTerceroPorId" xml:space="preserve">
-    <value>select m from MarcaBaseTercero m where m.Id like '{0}' and m.Anexo = {1}</value>
+    <value>select m from MarcaBaseTercero m left join fetch m.MarcaTercero as mt where mt.Id like '{0}' and mt.Anexo = {1}</value>
     <comment>Selecciona las MarcaBaseTercero por Id y Anexo</comment>
   </data>
 </root>

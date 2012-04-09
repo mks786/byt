@@ -916,7 +916,7 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to select m from MarcaBaseTercero m where m.Id like &apos;{0}&apos; and m.Anexo = {1}.
+        ///   Looks up a localized string similar to select m from MarcaBaseTercero m left join fetch m.MarcaTercero as mt where mt.Id like &apos;{0}&apos; and mt.Anexo = {1}.
         /// </summary>
         public static string ObtenerTodosMarcaBaseTerceroPorId {
             get {

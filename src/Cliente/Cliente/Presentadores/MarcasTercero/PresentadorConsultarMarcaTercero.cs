@@ -233,6 +233,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
                     this._ventana.NombreInteresadoSolicitud = interesado.Nombre;
                     this._ventana.InteresadoPaisSolicitud = interesado.Pais.NombreEspanol;
                     this._ventana.InteresadoCiudadSolicitud = interesado.Ciudad;
+                    this._ventana.TipoCbx = marcaTercero.Tipo;
                     //this._ventana.InteresadoSolicitud = marcaTercero.Interesado;
 
                     //this._ventana.NombreAsociadoDatos = marcaTercero.Asociado != null ? marcaTercero.Asociado.Nombre : "";

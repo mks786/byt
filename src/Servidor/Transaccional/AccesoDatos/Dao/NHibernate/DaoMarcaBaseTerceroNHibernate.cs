@@ -100,7 +100,7 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
         {
             
                 List<MarcaBaseTercero> MarcasBaseTercero = null;
-                string consulta = string.Format(Recursos.ConsultasHQL.ObtenerTodosMarcaBaseTerceroPorId,marcaBaseTercero.Id, marcaBaseTercero.MarcaTercero.Anexo);
+                string consulta = string.Format(Recursos.ConsultasHQL.ObtenerTodosMarcaBaseTerceroPorId,marcaBaseTercero.MarcaTercero.Id, marcaBaseTercero.MarcaTercero.Anexo);
                 IQuery query = Session.CreateQuery(consulta);
                 MarcasBaseTercero =(List<MarcaBaseTercero>)query.List<MarcaBaseTercero>();
             

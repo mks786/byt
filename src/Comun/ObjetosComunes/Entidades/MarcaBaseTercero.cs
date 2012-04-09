@@ -53,7 +53,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
             var t = obj as MarcaBaseTercero;
             if (t == null)
                 return false;
-            if ((Id == (t.Id)) && (MarcaTercero.Id.Equals(t.MarcaTercero.Id)))
+            if ((Id== (t.Id)))
                 return true;
             return false;
 
