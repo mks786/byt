@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ContratosServicios\IPatenteServicios.cs" />
     <Compile Include="ContratosServicios\IMarcaBaseTerceroServicios.cs" />
     <Compile Include="ContratosServicios\IEstadoMarcaServicios.cs" />
     <Compile Include="ContratosServicios\IRenovacionServicios.cs" />

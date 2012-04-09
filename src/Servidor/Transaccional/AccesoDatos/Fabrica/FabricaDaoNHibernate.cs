@@ -623,5 +623,14 @@ namespace Trascend.Bolet.AccesoDatos.Fabrica
         {
             return new DaoRenovacionNHibernate();
         }
+
+        /// <summary>
+        /// Método que devuelve el DaoPatente
+        /// </summary>
+        /// <returns>IDaoPatente</returns>
+        public override IDaoPatente ObtenerDaoPatente()
+        {
+            return new DaoPatenteNHibernate();
+        }
     }
 }

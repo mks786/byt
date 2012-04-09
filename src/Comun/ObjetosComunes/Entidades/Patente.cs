@@ -52,6 +52,8 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         private char _ime;
         private string _resumen;
         private string _omision;
+        private string _operacion;
+        private InfoAdicional _infoAdicional;
 
         #endregion
 
@@ -495,6 +497,23 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
             set { _fechaOrden = value; }
         }
 
+        /// <summary>
+        /// Propiedad que asigna u obtiene la operacion de la patente
+        /// </summary>
+        public string Operacion
+        {
+            get { return _operacion; }
+            set { _operacion = value; }
+        }
+
+        /// <summary>
+        /// Propiedad que asigna u obtiene la Informacion Adicional 
+        /// </summary>
+        public virtual InfoAdicional InfoAdicional
+        {
+            get { return _infoAdicional; }
+            set { _infoAdicional = value; }
+        }
         #endregion
     }
 }

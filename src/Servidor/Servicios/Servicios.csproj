@@ -58,6 +58,7 @@
     <Compile Include="Implementacion\CambioDeDomicilioServicios.cs" />
     <Compile Include="Implementacion\CambioPeticionarioServicios.cs" />
     <Compile Include="Implementacion\ConfiguracionServicios.cs" />
+    <Compile Include="Implementacion\PatenteServicios.cs" />
     <Compile Include="Implementacion\MarcaBaseTerceroServicios.cs" />
     <Compile Include="Implementacion\TipoBaseServicios.cs" />
     <Compile Include="Implementacion\EstadoMarcaServicios.cs" />

@@ -61,6 +61,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Contrato\IDaoPatente.cs" />
     <Compile Include="Contrato\IDaoMarcaBaseTercero.cs" />
     <Compile Include="Contrato\IDaoEstadoMarca.cs" />
     <Compile Include="Contrato\IDaoRenovacion.cs" />
@@ -129,6 +130,7 @@
     <Compile Include="Contrato\IDaoBase.cs" />
     <Compile Include="Contrato\IDaoUsuario.cs" />
     <Compile Include="Contrato\IFabricaDaoBase.cs" />
+    <Compile Include="Dao\NHibernate\DaoPatenteNHibernate.cs" />
     <Compile Include="Dao\NHibernate\DaoMarcaBaseTerceroNHibernate.cs" />
     <Compile Include="Dao\NHibernate\DaoEstadoMarcaNHibernate.cs" />
     <Compile Include="Dao\NHibernate\DaoRenovacionNHibernate.cs" />

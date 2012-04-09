@@ -106,6 +106,7 @@
     <Compile Include="Controladores\ControladorPlanilla.cs" />
     <Compile Include="Controladores\ControladorRenovacion.cs" />
     <Compile Include="Controladores\ControladorMarcaBaseTercero.cs" />
+    <Compile Include="Controladores\ControladorPatente.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

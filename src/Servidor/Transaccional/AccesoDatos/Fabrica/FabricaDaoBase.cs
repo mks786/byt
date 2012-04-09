@@ -420,5 +420,11 @@ namespace Trascend.Bolet.AccesoDatos.Fabrica
         /// <returns>IDaoRenovacion</returns>
         public abstract IDaoRenovacion ObtenerDaoRenovacion();
 
+        /// <summary>
+        /// Método que devuelve el DaoPatente del manejador que se esté utilizando
+        /// </summary>
+        /// <returns>IDaoPatente</returns>
+        public abstract IDaoPatente ObtenerDaoPatente();
+
     }
 }

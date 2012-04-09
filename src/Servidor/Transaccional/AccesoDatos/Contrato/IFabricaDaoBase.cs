@@ -128,5 +128,7 @@ namespace Trascend.Bolet.AccesoDatos.Contrato
          IDaoMarcaTercero ObtenerDaoMarcaTercero();
 
          IDaoPlanilla ObtenerDaoPlanilla();
+
+         IDaoPatente ObtenerDaoPatente();
     }
 }
