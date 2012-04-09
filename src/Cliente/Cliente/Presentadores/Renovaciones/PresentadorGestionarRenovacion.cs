@@ -1555,6 +1555,55 @@ namespace Trascend.Bolet.Cliente.Presentadores.Renovaciones
         }
 
         #endregion
-       
+
+
+        public void IrImprimir(string nombreBoton)
+        {
+            try
+            {
+                switch (nombreBoton)
+                {
+                    case "_btnAnexo":
+                        ImprimirAnexo();
+                        break;
+                    case "_btnSolicitud":
+                        ImprimirSolicitud();
+                        break;
+                    case "_btnSolicitudVan":
+                        ImprimirSolicitudVan();
+                        break;
+                    case "_btnCarpeta":
+                        ImprimirCarpeta();
+                        break;
+                    default:
+                        break;
+                }
+            }
+            catch (ApplicationException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ExcepcionPaquetes, true);
+            }
+        }
+
+        private void ImprimirSolicitud()
+        {
+            
+        }
+
+        private void ImprimirSolicitudVan()
+        {
+            
+        }
+
+        private void ImprimirCarpeta()
+        {
+            
+        }
+
+        private void ImprimirAnexo()
+        {
+            
+        }
     }
 }

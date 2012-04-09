@@ -303,6 +303,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Recordatorios
                 logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
         }
-       
+
+        public void GenerarInformacion()
+        {
+            
+        }
     }
 }

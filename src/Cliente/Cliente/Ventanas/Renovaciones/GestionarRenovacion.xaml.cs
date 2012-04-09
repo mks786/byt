@@ -324,7 +324,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Renovaciones
             this._txtIdRenovacion.Visibility = System.Windows.Visibility.Collapsed;
             this._dpkFechaRenovacion.IsEnabled = false;
             this._cbxTipoR.IsEnabled = true;
-            this._chkAsientoEnLibro.IsEnabled = true;           
+            this._chkAsientoEnLibro.IsEnabled = true;
+            this._btnCarpeta.Visibility = System.Windows.Visibility.Collapsed;
+            this._btnSolicitud.Visibility = System.Windows.Visibility.Collapsed;
+            this._btnSolicitudVan.Visibility = System.Windows.Visibility.Collapsed;
+            this._btnAnexo.Visibility = System.Windows.Visibility.Collapsed;
         }
 
         private void _btnAceptar_Click(object sender, RoutedEventArgs e)
@@ -351,18 +355,22 @@ namespace Trascend.Bolet.Cliente.Ventanas.Renovaciones
 
         private void _btnAnexo_Click(object sender, RoutedEventArgs e)
         {
+            this._presentador.IrImprimir(((Button)sender).Name);
         }
 
         private void _btnSolicitud_Click(object sender, RoutedEventArgs e)
         {
+            this._presentador.IrImprimir(((Button)sender).Name);
         }
 
         private void _btnSolicitudVan_Click(object sender, RoutedEventArgs e)
         {
+            this._presentador.IrImprimir(((Button)sender).Name);
         }
 
         private void _btnCarpeta_Click(object sender, RoutedEventArgs e)
         {
+            this._presentador.IrImprimir(((Button)sender).Name);
         }
 
         private void _btnCopiarDistingue_Click(object sender, RoutedEventArgs e)

@@ -516,24 +516,24 @@
                                   Height="32" HorizontalAlignment="Right" IsChecked="{Binding Path=BActa}" Name="_chkAsientoEnLibro" VerticalAlignment="Center"
                                   />
 
-                        <Button IsEnabled="True" Name="_btnSolicitud" Width="65" IsDefault="False" Grid.Row="3" Grid.Column="4" Height="25" 
-                    HorizontalAlignment="Right" Click="_btnSolicitud_Click" Visibility="Collapsed">
-                            <TextBlock Text="{x:Static recurso:Etiquetas.btnConsultar}"/>
+                        <Button IsEnabled="True" Name="_btnSolicitud" Width="65" IsDefault="False" Grid.Row="3" Grid.Column="3" Height="25" 
+                    HorizontalAlignment="Right" Margin="0,5,0,0" Click="_btnSolicitud_Click" Visibility="Visible">
+                            <TextBlock Text="{x:Static recurso:Etiquetas.btnSolicitud}"/>
                         </Button>
 
-                        <Button IsEnabled="True" Name="_btnSolicitudVan" Width="65" IsDefault="False" Grid.Row="3" Grid.Column="5" Height="25" 
-                    HorizontalAlignment="Right" Click="_btnSolicitudVan_Click" Visibility="Collapsed">
-                            <TextBlock Text="{x:Static recurso:Etiquetas.btnConsultar}"/>
+                        <Button IsEnabled="True" Name="_btnSolicitudVan" Width="85" IsDefault="False" Grid.Row="3" Grid.Column="4" Height="25" 
+                    HorizontalAlignment="Right" Margin="0,5,0,0" Click="_btnSolicitudVan_Click" Visibility="Visible">
+                            <TextBlock Text="{x:Static recurso:Etiquetas.btnSolicitudVan}"/>
                         </Button>
 
-                        <Button IsEnabled="True" Name="_btnCarpeta" Width="65" IsDefault="False" Grid.Row="3" Grid.Column="6" Height="25" 
-                    HorizontalAlignment="Right" Click="_btnCarpeta_Click" Visibility="Collapsed">
-                            <TextBlock Text="{x:Static recurso:Etiquetas.btnConsultar}"/>
+                        <Button IsEnabled="True" Name="_btnCarpeta" Width="65" IsDefault="False" Grid.Row="3" Grid.Column="5" Height="25" 
+                    HorizontalAlignment="Right" Margin="0,5,0,0" Click="_btnCarpeta_Click" Visibility="Visible">
+                            <TextBlock Text="{x:Static recurso:Etiquetas.btnCarpeta}"/>
                         </Button>
 
-                        <Button IsEnabled="True" Name="_btnAnexo" Width="65" IsDefault="False" Grid.Row="3" Grid.Column="7" Height="25" 
-                    HorizontalAlignment="Right" Click="_btnAnexo_Click" Visibility="Collapsed">
-                            <TextBlock Text="{x:Static recurso:Etiquetas.btnConsultar}"/>
+                        <Button IsEnabled="True" Name="_btnAnexo" Width="65" IsDefault="False" Grid.Row="3" Grid.Column="6" Height="25" 
+                    HorizontalAlignment="Right" Margin="0,5,0,0" Click="_btnAnexo_Click" Visibility="Visible">
+                            <TextBlock Text="{x:Static recurso:Etiquetas.btnAnexo}"/>
                         </Button>
 
                     </Grid>
@@ -541,7 +541,7 @@
                 
             </StackPanel>
         </GroupBox>
-
+        
         <WrapPanel Grid.Row="2" Grid.ColumnSpan="3" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="5" Orientation="Horizontal">
             <Button Name="_btnAceptar"  VerticalAlignment="Bottom" Height="25" Width="90" Visibility="Collapsed"
                     Click="_btnAceptar_Click">                

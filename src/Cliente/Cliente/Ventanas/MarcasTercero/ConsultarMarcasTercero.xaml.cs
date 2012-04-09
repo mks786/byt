@@ -28,36 +28,43 @@ namespace Trascend.Bolet.Cliente.Ventanas.MarcasTercero
         public string Id
         {
             get { return this._txtId.Text; }
+            set { this._txtId.Text = value; }
         }
 
         public object MarcaTerceroSeleccionada
         {
             get { return this._lstResultados.SelectedItem; }
+            set { this._lstResultados.SelectedItem = value; }
         }
 
         public string IdAsociadoFiltrar
         {
             get { return this._txtIdAsociado.Text; }
+            set { this._txtIdAsociado.Text = value; }
         }
 
         public string NombreAsociadoFiltrar
         {
             get { return this._txtNombreAsociado.Text; }
+            set { this._txtNombreAsociado.Text = value; }
         }
 
         public string FichasFiltrar
         {
             get { return this._txtFichas.Text; }
+            set { this._txtFichas.Text = value; }
         }
 
         public string DescripcionFiltrar
         {
             get { return this._txtDescripcion.Text; }
+            set { this._txtDescripcion.Text = value; }
         }
 
         public string Fecha
         {
             get { return this._dpkFecha.SelectedDate.ToString(); }
+            set { this._dpkFecha.Text = value; }
         }
 
         public bool EstaCargada
@@ -104,11 +111,13 @@ namespace Trascend.Bolet.Cliente.Ventanas.MarcasTercero
         public string IdInteresadoFiltrar
         {
             get { return this._txtIdInteresado.Text; }
+            set { this._txtIdInteresado.Text = value; }
         }
 
         public string NombreInteresadoFiltrar
         {
             get { return this._txtNombreInteresado.Text; }
+            set { this._txtNombreInteresado.Text = value; }
         }
 
         public object Interesados
@@ -342,6 +351,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.MarcasTercero
         {
             if (this._presentador.CambiarInteresado())
                 GestionarVisibilidadFiltroInteresado(false);
+        }
+
+        private void _btnLimpiarCampos_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.LimpiarCampos();
         }
     }
 }

@@ -504,5 +504,29 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
 
             return retorno;
         }
+
+        public void LimpiarCampos()
+        {
+            this._ventana.Id = null;
+            this._ventana.DescripcionFiltrar = null;
+            this._ventana.FichasFiltrar = null;
+            this._ventana.Fecha = null;
+
+            this._ventana.Asociados = null;
+            this._ventana.IdAsociadoFiltrar = null;
+            this._ventana.NombreAsociadoFiltrar = null;
+            this._ventana.AsociadoFiltro = null;
+
+            this._ventana.Interesados = null; 
+            this._ventana.IdInteresadoFiltrar = null;
+            this._ventana.NombreInteresadoFiltrar = null;
+            this._ventana.InteresadoFiltro = null;
+
+            this._ventana.MarcaTerceroSeleccionada = null;
+
+            this._ventana.Resultados = null;
+            this._ventana.TotalHits = "0";
+
+        }
     }
 }

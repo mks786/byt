@@ -201,6 +201,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Recordatorios
             }
             else
                 GestionarEnableChecksFiltro(true);
+        }
+
+        private void _btnGenerarInformacion_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.GenerarInformacion();
         }       
      
     }

@@ -5,33 +5,33 @@ namespace Trascend.Bolet.Cliente.Contratos.MarcasTercero
 {
     interface IConsultarMarcasTercero : IPaginaBase
     {
-        string Id { get; }
+        string Id { get; set; }
 
-        object MarcaTerceroSeleccionada { get; }
+        object MarcaTerceroSeleccionada { get; set; }
 
         object Resultados { get; set; }
 
-        string IdAsociadoFiltrar { get; }
+        string IdAsociadoFiltrar { get; set; }
 
-        string NombreAsociadoFiltrar { get; }
+        string NombreAsociadoFiltrar { get; set; }
 
         object Asociados { get; set; }
 
         object Asociado { get; set; }
 
-        string IdInteresadoFiltrar { get; }
+        string IdInteresadoFiltrar { get; set; }
 
-        string NombreInteresadoFiltrar { get; }
+        string NombreInteresadoFiltrar { get; set; }
 
         object Interesados { get; set; }
 
         object Interesado { get; set; }
 
-        string DescripcionFiltrar { get; }
+        string DescripcionFiltrar { get; set; }
 
-        string FichasFiltrar { get; }
+        string FichasFiltrar { get; set; }
 
-        string Fecha { get; }
+        string Fecha { get; set; }
 
         GridViewColumnHeader CurSortCol { get; set; }
 

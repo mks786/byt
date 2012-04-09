@@ -2159,4 +2159,13 @@ de Gracia</value>
   <data name="menuItemPatente" xml:space="preserve">
     <value>Patentes</value>
   </data>
+  <data name="btnGenerarInformacion" xml:space="preserve">
+    <value>Generar Información</value>
+  </data>
+  <data name="btnSolicitud" xml:space="preserve">
+    <value>Solicitud</value>
+  </data>
+  <data name="btnSolicitudVan" xml:space="preserve">
+    <value>Solicitud Van</value>
+  </data>
 </root>
