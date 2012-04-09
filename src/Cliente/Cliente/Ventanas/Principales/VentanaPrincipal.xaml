@@ -132,29 +132,26 @@
                     <MenuItem Name="_menuItemAbandonoPatenteGestionarPatente" Header="{x:Static resx:Etiquetas.menuItemAgregar}" Click="_menuItemAbandonoPatenteGestionarPatente_Click"/>
                 </MenuItem>
                 <MenuItem Name="_menuItemEscritosPatente" Visibility="Collapsed" Header="{x:Static resx:Etiquetas.menuItemEscritos}">
-                    <MenuItem Name="_menuItemCopiaCertificadaPatente" Header="{x:Static resx:Etiquetas.menuItemEscritosCopiaCertificada}" Click="_menuItemEscritosPatente_Click"/>
-                    <MenuItem Name="_menuItemCorreccionErrorMaterialPatente" Header="{x:Static resx:Etiquetas.menuItemEscritosCorreccionErrorMaterial}" Click="_menuItemEscritosPatente_Click"/>
-                    <MenuItem Name="_menuItemCorreccionErrorMaterialDistinguePatente" Header="{x:Static resx:Etiquetas.menuItemEscritosCorreccionErrorMaterialDistingue}" Click="_menuItemEscritosPatente_Click"/>
-                    <MenuItem Name="_menuItemCertificadoDeOrigenPatente" Header="{x:Static resx:Etiquetas.menuItemEscritosCertificadoDeOrigen}" Click="_menuItemEscritosPatente_Click"/>
-                    <MenuItem Name="_menuItemContinuacionDeTramitePatente" Header="{x:Static resx:Etiquetas.menuItemEscritosContinuacionDeTramite}" Click="_menuItemEscritosPatente_Click"/>
-                    <MenuItem Name="_menuItemCorreccionDelDistinguePatente" Header="{x:Static resx:Etiquetas.menuItemEscritosCorreccionDelDistingue}" Click="_menuItemEscritosPatente_Click"/>
-                    <MenuItem Name="_menuItemCambioDeTramitantePatente" Header="{x:Static resx:Etiquetas.menuItemEscritosCambioDeTramitante}" Click="_menuItemEscritosPatente_Click"/>
-                    <MenuItem Name="_menuItemDesistimientoPatente" Header="{x:Static resx:Etiquetas.menuItemEscritosDeDesistimiento}" Click="_menuItemEscritosPatente_Click"/>
-                    <MenuItem Name="_menuItemLimitacionDelDistinguePatente" Header="{x:Static resx:Etiquetas.menuItemEscritosLimitacionDelDistingue}" Click="_menuItemEscritosPatente_Click"/>
+                    <MenuItem Name="_menuItemConsignacionDeJuramentoYPoder" Header="{x:Static resx:Etiquetas.menuItemEscritosConsignacionDeJuramentoYPoder}" Click="_menuItemEscritosPatente_Click"/>
+                    <MenuItem Name="_menuItemConsignacionDeJuramento" Header="{x:Static resx:Etiquetas.menuItemEscritosConsignacionDeJuramento}" Click="_menuItemEscritosPatente_Click"/>
+                    <MenuItem Name="_menuItemConsignacionDePoder" Header="{x:Static resx:Etiquetas.menuItemEscritosConsignacionDePoder}" Click="_menuItemEscritosPatente_Click"/>
+                    <MenuItem Name="_menuItemOficioDeJuramentoYPoderSinConsignar" Header="{x:Static resx:Etiquetas.menuItemEscritosOficioDeJuramentoYPoderSinConsignar}" Click="_menuItemEscritosPatente_Click"/>
+                    <MenuItem Name="_menuItemOficioDeJuramento" Header="{x:Static resx:Etiquetas.menuItemEscritosOficioDeJuramento}" Click="_menuItemEscritosPatente_Click"/>
+                    <MenuItem Name="_menuItemOficioDePoder" Header="{x:Static resx:Etiquetas.menuItemEscritosOficioDePoder}" Click="_menuItemEscritosPatente_Click"/>
+                    <MenuItem Name="_menuItemConsignacionDePrioridadExtranjera" Header="{x:Static resx:Etiquetas.menuItemEscritosConsignacionDePrioridadExtranjera}" Click="_menuItemEscritosPatente_Click"/>
+                    <MenuItem Name="_menuItemExamenDePatentibilidad" Header="{x:Static resx:Etiquetas.menuItemEscritosExamenDePatentibilidad}" Click="_menuItemEscritosPatente_Click"/>
                     <MenuItem Name="_menuItemNumeracionDePoderPorPatente" Header="{x:Static resx:Etiquetas.menuItemEscritosNumeracionDePoderPorPatente}" Click="_menuItemEscritosPatente_Click"/>
-                    <MenuItem Name="_menuItemNumeracionDePoderPorInteresadoPatente" Header="{x:Static resx:Etiquetas.menuItemEscritosNumeracionDePoderPorInteresado}" Click="_menuItemEscritosPatente_Click"/>
-                    <MenuItem Name="_menuItemPrioridadExtranjeraPatente" Header="{x:Static resx:Etiquetas.menuItemEscritosPrioridadExtranjera}" Click="_menuItemEscritosPatente_Click"/>
-                    <MenuItem Name="_menuItemReingresoDeClasificacionPatente" Header="{x:Static resx:Etiquetas.menuItemEscritosReingresoDeClasificacion}" Click="_menuItemEscritosPatente_Click"/>
-                    <MenuItem Name="_menuItemReingresoDeDistinguePatente" Header="{x:Static resx:Etiquetas.menuItemEscritosReingresoDeDistingue}" Click="_menuItemEscritosPatente_Click"/>
-                    <MenuItem Name="_menuItemReingresoDePoderAnexoPatente" Header="{x:Static resx:Etiquetas.menuItemEscritosReingresoDePoderAnexo}" Click="_menuItemEscritosPatente_Click"/>
-                    <MenuItem Name="_menuItemReingresoDeNombreDePatente" Header="{x:Static resx:Etiquetas.menuItemEscritosReingresoDeNombreDePatente}" Click="_menuItemEscritosPatente_Click"/>
-                    <MenuItem Name="_menuItemReingresoDePoderDistingueConSinClasificacionPatente" Header="{x:Static resx:Etiquetas.menuItemEscritosReingresoDePoderDistingueConSinReclasificacion}" Click="_menuItemEscritosPatente_Click"/>
-                    <MenuItem Name="_menuItemReingresoDePoderPresentadoPatente" Header="{x:Static resx:Etiquetas.menuItemEscritosReingresoDePoderPresentado}" Click="_menuItemEscritosPatente_Click"/>
-                    <MenuItem Name="_menuItemReingresoDePoderYReclasificacionPatente" Header="{x:Static resx:Etiquetas.menuItemEscritosReingresoDePoderYReclasificacion}" Click="_menuItemEscritosPatente_Click"/>
-                    <MenuItem Name="_menuItemReingresoDePoderYPrioridadPatente" Header="{x:Static resx:Etiquetas.menuItemEscritosReingresoDePoderYPrioridad}" Click="_menuItemEscritosPatente_Click"/>
-                    <MenuItem Name="_menuItemRenunciaParcialPatente" Header="{x:Static resx:Etiquetas.menuItemEscritosRenunciaParcial}" Click="_menuItemEscritosPatente_Click"/>
-                    <MenuItem Name="_menuItemConsignacionDeBusquedaPatente" Header="{x:Static resx:Etiquetas.menuItemEscritosConsignacionDeBusqueda}" Click="_menuItemEscritosPatente_Click"/>
-                    <MenuItem Name="_menuItemNotificacionDeIngresoDePoderPatente" Header="{x:Static resx:Etiquetas.menuItemEscritosNotificacionDeIngresoDePoder}" Click="_menuItemEscritosPatente_Click"/>
+                    <MenuItem Name="_menuItemProrrogaDeFondo" Header="{x:Static resx:Etiquetas.menuItemEscritosProrrogaDeFondo}" Click="_menuItemEscritosPatente_Click"/>
+                    <MenuItem Name="_menuItemProrrogaDeForma" Header="{x:Static resx:Etiquetas.menuItemEscritosProrrogaDeForma}" Click="_menuItemEscritosPatente_Click"/>
+                    <MenuItem Name="_menuItemProrrogaDeContestacionAOposicion" Header="{x:Static resx:Etiquetas.menuItemEscritosProrrogaDeContestacionAOposicion}" Click="_menuItemEscritosPatente_Click"/>
+                    <MenuItem Name="_menuItemOficioDeFondo" Header="{x:Static resx:Etiquetas.menuItemEscritosOficioDeFondo}" Click="_menuItemEscritosPatente_Click"/>
+                    <MenuItem Name="_menuItemCorreccionVoluntaria" Header="{x:Static resx:Etiquetas.menuItemEscritosCorreccionVoluntaria}" Click="_menuItemEscritosPatente_Click"/>
+                    <MenuItem Name="_menuItemReconsideracionPerencion" Header="{x:Static resx:Etiquetas.menuItemEscritosReconsideracionPerencion}" Click="_menuItemEscritosPatente_Click"/>
+                    <MenuItem Name="_menuItemReconsideracionPerimidaVariante" Header="{x:Static resx:Etiquetas.menuItemEscritosReconsideracionPerimidaVariante}" Click="_menuItemEscritosPatente_Click"/>
+                    <MenuItem Name="_menuItemPagoAnualidadPatente" Header="{x:Static resx:Etiquetas.menuItemEscritosPagoAnualidadPatente}" Click="_menuItemEscritosPatente_Click"/>
+                    <MenuItem Name="_menuItemReconsideracionPrioridadExtinguida" Header="{x:Static resx:Etiquetas.menuItemEscritosReconsideracionPrioridadExtinguida}" Click="_menuItemEscritosPatente_Click"/>
+                    <MenuItem Name="_menuItemContestacionAOposicion" Header="{x:Static resx:Etiquetas.menuItemEscritosContestacionOposicion}" Click="_menuItemEscritosPatente_Click"/>
+                    <MenuItem Name="_menuItemCorreccionErrorDePublicacionEnPrensa" Header="{x:Static resx:Etiquetas.menuItemEscritosCorreccionErrorDePublicacionEnPrensa}" Click="_menuItemEscritosPatente_Click"/>
                 </MenuItem>
                 <MenuItem Name="_menuItemTraspasosPatente" Visibility="Collapsed" Header="{x:Static resx:Etiquetas.menuItemTraspasos}" BorderBrush="Gray">
                     <MenuItem Name="_menuItemCesionesPatente" Header="{x:Static resx:Etiquetas.menuItemCesiones}">

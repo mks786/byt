@@ -746,12 +746,81 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
                     break;
                 case "":
                     //this._ventana.Contenedor.Navigate(new CertificadoDeOrigen());
-                    break;                                      
+                    break;
                 default:
                     break;
             }
         }
 
+
+        public void IrEscritoPatentes(string nombreBoton)
+        {
+            switch (nombreBoton)
+            {
+                case "_menuItemConsignacionDeJuramentoYPoder":
+                    //this._ventana.Contenedor.Navigate(new CopiaCertificada());
+                    break;
+                case "_menuItemConsignacionDeJuramento":
+                    //this._ventana.Contenedor.Navigate(new CorreccionErrorMaterial());
+                    break;
+                case "_menuItemConsignacionDePoder":
+                    //this._ventana.Contenedor.Navigate(new CorreccionErrorMaterialDistingue());
+                    break;
+                case "_menuItemOficioDeJuramentoYPoderSinConsignar":
+                    //this._ventana.Contenedor.Navigate(new CertificadoDeOrigen());
+                    break;
+                case "_menuItemOficioDeJuramento":
+                    //this._ventana.Contenedor.Navigate(new ContinuacionDeTramite());
+                    break;
+                case "_menuItemOficioDePoder":
+                    //this._ventana.Contenedor.Navigate(new CorreccionDelDistingue());
+                    break;
+                case "_menuItemConsignacionDePrioridadExtranjera":
+                    //this._ventana.Contenedor.Navigate(new CambioDeTramitante());
+                    break;
+                case "_menuItemExamenDePatentibilidad":
+                    //this._ventana.Contenedor.Navigate(new DeDesistimiento());
+                    break;
+                case "_menuItemNumeracionDePoderPorPatente":
+                    //this._ventana.Contenedor.Navigate(new LimitacionDelDistingue());
+                    break;
+                case "_menuItemProrrogaDeFondo":
+                    //this._ventana.Contenedor.Navigate(new NumeracionDePoderPorMarca());
+                    break;
+                case "_menuItemProrrogaDeForma":
+                    //this._ventana.Contenedor.Navigate(new NumeracionDePoderPorInteresado());
+                    break;
+                case "_menuItemProrrogaDeContestacionAOposicion":
+                    //this._ventana.Contenedor.Navigate(new PrioridadExtranjera());
+                    break;
+                case "_menuItemOficioDeFondo":
+                    //this._ventana.Contenedor.Navigate(new ReingresoDeClasificacion());
+                    break;
+                case "_menuItemCorreccionVoluntaria":
+                    //this._ventana.Contenedor.Navigate(new ReingresoDeDistingue());
+                    break;
+                case "_menuItemReconsideracionPerencion":
+                    //this._ventana.Contenedor.Navigate(new ReingresoDePoderAnexo());
+                    break;
+                case "_menuItemReconsideracionPerimidaVariante":
+                    //this._ventana.Contenedor.Navigate(new ReingresoDeNombreDeMarca());
+                    break;
+                case "_menuItemPagoAnualidadPatente":
+                    //this._ventana.Contenedor.Navigate(new ReingresoDePoderDistingueConSinClasificacion());
+                    break;
+                case "_menuItemReconsideracionPrioridadExtinguida":
+                    //this._ventana.Contenedor.Navigate(new ReingresoDePoderPresentado());
+                    break;
+                case "_menuItemContestacionAOposicion":
+                    //this._ventana.Contenedor.Navigate(new ReingresoDePoderYReclasificacion());
+                    break;
+                case "_menuItemCorreccionErrorDePublicacionEnPrensa":
+                    //this._ventana.Contenedor.Navigate(new ReingresoDePoderYPrioridad());
+                    break;
+                default:
+                    break;
+            }
+        }
         #endregion
 
         /// <summary>
@@ -1022,6 +1091,38 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
                                         itemNivel2.Visibility = System.Windows.Visibility.Visible;
                                     break;
                                 case "_menuItemLimitacionDelDistingue":
+                                    if (objeto.Id.Equals(Recursos.Ids.Marca))
+                                        itemNivel2.Visibility = System.Windows.Visibility.Visible;
+                                    break;
+                                case "_menuItemGestionDePatentes":
+                                    if (objeto.Id.Equals(Recursos.Ids.Marca))
+                                        itemNivel2.Visibility = System.Windows.Visibility.Visible;
+                                    break;
+                                case "_menuItemRenovacionesPatentes":
+                                    if (objeto.Id.Equals(Recursos.Ids.Marca))
+                                        itemNivel2.Visibility = System.Windows.Visibility.Visible;
+                                    break;
+                                case "_menuItemRecordatorioPatente":
+                                    if (objeto.Id.Equals(Recursos.Ids.Marca))
+                                        itemNivel2.Visibility = System.Windows.Visibility.Visible;
+                                    break;
+                                case "_menuItemAbandonoPatente":
+                                    if (objeto.Id.Equals(Recursos.Ids.Marca))
+                                        itemNivel2.Visibility = System.Windows.Visibility.Visible;
+                                    break;
+                                case "_menuItemEscritosPatente":
+                                    if (objeto.Id.Equals(Recursos.Ids.Marca))
+                                        itemNivel2.Visibility = System.Windows.Visibility.Visible;
+                                    break;
+                                case "_menuItemTraspasosPatente":
+                                    if (objeto.Id.Equals(Recursos.Ids.Marca))
+                                        itemNivel2.Visibility = System.Windows.Visibility.Visible;
+                                    break;
+                                case "_menuItemEstadosPatente":
+                                    if (objeto.Id.Equals(Recursos.Ids.Marca))
+                                        itemNivel2.Visibility = System.Windows.Visibility.Visible;
+                                    break;
+                                case "_menuItemTipoBasePatente":
                                     if (objeto.Id.Equals(Recursos.Ids.Marca))
                                         itemNivel2.Visibility = System.Windows.Visibility.Visible;
                                     break;

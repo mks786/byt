@@ -2168,4 +2168,61 @@ de Gracia</value>
   <data name="btnSolicitudVan" xml:space="preserve">
     <value>Solicitud Van</value>
   </data>
+  <data name="menuItemEscritosConsignacionDeJuramento" xml:space="preserve">
+    <value>Consignación de Juramento</value>
+  </data>
+  <data name="menuItemEscritosConsignacionDeJuramentoYPoder" xml:space="preserve">
+    <value>Consignación de Juramento y Poder</value>
+  </data>
+  <data name="menuItemEscritosConsignacionDePoder" xml:space="preserve">
+    <value>Consignación de Poder</value>
+  </data>
+  <data name="menuItemEscritosConsignacionDePrioridadExtranjera" xml:space="preserve">
+    <value>Consignación de Prioridad Extranjera</value>
+  </data>
+  <data name="menuItemEscritosContestacionOposicion" xml:space="preserve">
+    <value>Contestación a Oposición</value>
+  </data>
+  <data name="menuItemEscritosCorreccionErrorDePublicacionEnPrensa" xml:space="preserve">
+    <value>Corrección Error de Publicación en Prensa</value>
+  </data>
+  <data name="menuItemEscritosCorreccionVoluntaria" xml:space="preserve">
+    <value>Corrección Voluntaria</value>
+  </data>
+  <data name="menuItemEscritosExamenDePatentibilidad" xml:space="preserve">
+    <value>Examen de Patentibilidad</value>
+  </data>
+  <data name="menuItemEscritosOficioDeFondo" xml:space="preserve">
+    <value>Oficio de Fondo</value>
+  </data>
+  <data name="menuItemEscritosOficioDeJuramento" xml:space="preserve">
+    <value>Oficio de Juramento</value>
+  </data>
+  <data name="menuItemEscritosOficioDeJuramentoYPoderSinConsignar" xml:space="preserve">
+    <value>Oficio de Juramento y Poder sin Consignar</value>
+  </data>
+  <data name="menuItemEscritosOficioDePoder" xml:space="preserve">
+    <value>Oficio de Poder</value>
+  </data>
+  <data name="menuItemEscritosPagoAnualidadPatente" xml:space="preserve">
+    <value>Pago Anualidad Patente</value>
+  </data>
+  <data name="menuItemEscritosProrrogaDeContestacionAOposicion" xml:space="preserve">
+    <value>Prórroga de Contestación de Oposición</value>
+  </data>
+  <data name="menuItemEscritosProrrogaDeFondo" xml:space="preserve">
+    <value>Prórroga de Fondo</value>
+  </data>
+  <data name="menuItemEscritosProrrogaDeForma" xml:space="preserve">
+    <value>Prórroga de Forma</value>
+  </data>
+  <data name="menuItemEscritosReconsideracionPerencion" xml:space="preserve">
+    <value>Reconsidreación Perención</value>
+  </data>
+  <data name="menuItemEscritosReconsideracionPerimidaVariante" xml:space="preserve">
+    <value>Reconsideración perimida variante</value>
+  </data>
+  <data name="menuItemEscritosReconsideracionPrioridadExtinguida" xml:space="preserve">
+    <value>Reconsidreación Prioridad Extinguida</value>
+  </data>
 </root>

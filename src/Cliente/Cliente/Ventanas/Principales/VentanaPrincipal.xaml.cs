@@ -488,7 +488,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Principales
 
         private void _menuItemEscritosPatente_Click(object sender, RoutedEventArgs e)
         {
-            this._presentador.IrEscrito(((MenuItem)sender).Name);
+            this._presentador.IrEscritoPatentes(((MenuItem)sender).Name);
         }
 
         #endregion
