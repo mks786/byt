@@ -500,7 +500,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         /// <summary>
         /// Propiedad que asigna u obtiene la operacion de la patente
         /// </summary>
-        public string Operacion
+        public virtual string Operacion
         {
             get { return _operacion; }
             set { _operacion = value; }
