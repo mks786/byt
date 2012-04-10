@@ -95,25 +95,33 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
                     //ComandoBase<int> idAnexo = FabricaComandosMarcaTercero.ObtenerComandoConsultarMarcaTerceroMaxAnexo(marcaTercero.Id);
                     //idAnexo.Ejecutar();
                     //marcaTercero.Anexo = idAnexo.Receptor.ObjetoAlmacenado + 1;
+                    ContadorFac contadorSecuencia = new ContadorFac();
                     List<MarcaBaseTercero> marcasBaseTerceroModificada = new List<MarcaBaseTercero>();
-                    ComandoBase<int> idSecuencia = FabricaComandosMarcaBaseTercero.ObtenerComandoConsultarMarcaTerceroMaxSecuencia();
+                    ComandoBase<ContadorFac> maxSecuencia = FabricaComandosContadorFac.ObtenerComandoConsultarPorId("MYP_MARCAS_BASE_TER");
                     ComandoBase<List<MarcaBaseTercero>> marcasBase = FabricaComandosMarcaBaseTercero.ObtenerComandoConsultarTodosPorId(marcaTercero.Id, marcaTercero.Anexo);
                     marcasBase.Ejecutar();
                     List<MarcaBaseTercero> marcasBaseEnBase = marcasBase.Receptor.ObjetoAlmacenado;
                     if (marcaTercero.MarcasBaseTercero.Count() != 0)
                     {
-                        idSecuencia.Ejecutar();
-                        int secuencia = idSecuencia.Receptor.ObjetoAlmacenado;
+                        
+                        
                         //Recorre las marcaBase que han sido seleccionadas en el Presentador
                         foreach (MarcaBaseTercero marcaBaseTercero in marcaTercero.MarcasBaseTercero)
                         {
-                            bool bandera = true;
+
+                            bool bandera = false;
+                            marcaBaseTercero.MarcaTercero = new MarcaTercero();
                             marcaBaseTercero.MarcaTercero.Id = marcaTercero.Id;
                             marcaBaseTercero.MarcaTercero.Anexo = marcaTercero.Anexo;
-                            secuencia++;
                             if (marcaBaseTercero.Id == 0)
                             {
+                                maxSecuencia.Ejecutar();
+                                int secuencia = maxSecuencia.Receptor.ObjetoAlmacenado.ProximoValor;
+                                secuencia++;
+                                contadorSecuencia.Id = "MYP_MARCAS_BASE_TER";
+                                contadorSecuencia.ProximoValor = secuencia;
                                 marcaBaseTercero.Id = secuencia;
+                                bandera = true;
                             }
                             
                                 //Recorre las marcaBase que tiene guardad en base de datos
@@ -148,6 +156,12 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
                             ComandoBase<bool> comandoMTB = FabricaComandosMarcaBaseTercero.ObtenerComandoInsertarOModificar(marcaBaseTercero);
                             comandoMTB.Ejecutar();
                             exitoso = comandoMTB.Receptor.ObjetoAlmacenado;
+
+                            if ((bandera)&&(exitoso))
+                            {
+                                ComandoBase<bool> comandoSec = FabricaComandosContadorFac.ObtenerComandoInsertarOModificar(contadorSecuencia);
+                                comandoSec.Ejecutar();
+                            }
 
                         }
                     }

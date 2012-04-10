@@ -273,7 +273,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
                 while (!encontrada)
                 {
                     MarcaTercero marcaTercero = this._marcasTercero[cont];
-                    if (marcaTercero.Id == ((MarcaTercero)this._ventana.MarcaTerceroSeleccionada).Id)
+                    if ((marcaTercero.Id == ((MarcaTercero)this._ventana.MarcaTerceroSeleccionada).Id) &&
+                        (marcaTercero.Anexo == ((MarcaTercero)this._ventana.MarcaTerceroSeleccionada).Anexo))
                     {
                         marcaTerceroParaNavegar = marcaTercero;
                         encontrada = true;

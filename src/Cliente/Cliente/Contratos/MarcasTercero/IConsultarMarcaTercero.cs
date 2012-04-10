@@ -120,9 +120,9 @@ namespace Trascend.Bolet.Cliente.Contratos.MarcasTercero
 
         object BoletinConcesion { get; set; }
 
-        object Servicios { get; set; }
+        object Situaciones { get; set; }
 
-        object Servicio { get; set; }
+        object Situacion { get; set; }
 
         object Detalle { get; set; }
 

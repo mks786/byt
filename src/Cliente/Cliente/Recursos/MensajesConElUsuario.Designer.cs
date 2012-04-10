@@ -223,6 +223,42 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to La Marca a tercero Requiere un Asociado.
+        /// </summary>
+        internal static string AlertaMarcaTerceroSinAsociado {
+            get {
+                return ResourceManager.GetString("AlertaMarcaTerceroSinAsociado", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to La Marca a tercero Requiere un Interesado.
+        /// </summary>
+        internal static string AlertaMarcaTerceroSinInteresado {
+            get {
+                return ResourceManager.GetString("AlertaMarcaTerceroSinInteresado", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to La Marca a tercero Debe Tener un Nombre Asignado.
+        /// </summary>
+        internal static string AlertaMarcaTerceroSinNombre {
+            get {
+                return ResourceManager.GetString("AlertaMarcaTerceroSinNombre", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to La Marca a tercero Requiere una Situacion.
+        /// </summary>
+        internal static string AlertaMarcaTerceroSinSituacion {
+            get {
+                return ResourceManager.GetString("AlertaMarcaTerceroSinSituacion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Anexo insertado con éxito.
         /// </summary>
         internal static string AnexoInsertado {

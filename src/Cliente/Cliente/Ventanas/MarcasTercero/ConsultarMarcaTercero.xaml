@@ -264,7 +264,7 @@
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblTipo}"/>
                     </Label>
                     <ComboBox IsEnabled="False" Grid.Column="7" Grid.Row="3" Grid.ColumnSpan="1" Name="_cbxTipo" Height="20" 
-                              ItemsSource="{Binding}" DisplayMemberPath="NombreEspañol" SelectedIndex="0">
+                              ItemsSource="{Binding}" DisplayMemberPath="Id" SelectedIndex="0">
                     </ComboBox>
 
                     <custom:ByTTextBox IsEnabled="False" MaxLength="40" Grid.Column="8" Grid.Row="3" Name="_txtPaisSolicitud" VerticalAlignment="Center" 
@@ -576,19 +576,22 @@
                         </WrapPanel>
 
 
-                        <ListView IsEnabled="False" Grid.Column="2" Grid.Row="3" Grid.ColumnSpan="7" Margin="0,25,0,0" Grid.RowSpan="4" Name="_lstMarcasB" ItemsSource="{Binding}" 
+                        <ListView IsEnabled="False" Grid.Column="2" Grid.Row="3" Grid.ColumnSpan="8" Margin="0,25,0,0" Grid.RowSpan="4" Name="_lstMarcasB" ItemsSource="{Binding}" 
                       SelectionMode="Single" VerticalAlignment="Top" 
                       Style="{DynamicResource EstiloListView}" Visibility="Collapsed" Height="110" >
                             <ListView.View>
                                 <GridView>
-                                    <GridViewColumn DisplayMemberBinding="{Binding Path=Id}" Width="50">
+                                    <GridViewColumn DisplayMemberBinding="{Binding Path=Id}" Width="40">
                                         <GridViewColumnHeader  Tag="Id" Content="{x:Static recurso:Etiquetas.lsvId}"/>
-                                    </GridViewColumn>
-                                    <GridViewColumn DisplayMemberBinding="{Binding Path=Anexo}" Width="80">
-                                        <GridViewColumnHeader Click="_OrdenarMarcas_Click" Tag="Anexo" Content="{x:Static recurso:Etiquetas.lsvAnexo}"/>
                                     </GridViewColumn>
                                     <GridViewColumn DisplayMemberBinding="{Binding Path=NombreMarca}" Width="150">
                                         <GridViewColumnHeader  Tag="Descripcion" Content="{x:Static recurso:Etiquetas.lsvNombre}"/>
+                                    </GridViewColumn>
+                                    <GridViewColumn DisplayMemberBinding="{Binding Path=Origen}" Width="50">
+                                        <GridViewColumnHeader  Tag="Origen" Content="{x:Static recurso:Etiquetas.lsvNombre}"/>
+                                    </GridViewColumn>
+                                    <GridViewColumn DisplayMemberBinding="{Binding Path=Internacional.Id}" Width="50">
+                                        <GridViewColumnHeader  Tag="Internacional" Content="{x:Static recurso:Etiquetas.lsvNombre}"/>
                                     </GridViewColumn>
                                 </GridView>
                             </ListView.View>

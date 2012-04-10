@@ -149,13 +149,13 @@ namespace Trascend.Bolet.Cliente.Ventanas.MarcasTercero
             set { this._cbxBoletinConcesion.SelectedItem = value; }
         }
 
-        public object Servicios
+        public object Situaciones
         {
             get { return this._cbxSituacion.DataContext; }
             set { this._cbxSituacion.DataContext = value; }
         }
 
-        public object Servicio
+        public object Situacion
         {
             get { return this._cbxSituacion.SelectedItem; }
             set { this._cbxSituacion.SelectedItem = value; }

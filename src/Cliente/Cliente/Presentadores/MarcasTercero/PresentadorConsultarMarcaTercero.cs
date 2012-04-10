@@ -238,6 +238,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
 
                     //this._ventana.NombreAsociadoDatos = marcaTercero.Asociado != null ? marcaTercero.Asociado.Nombre : "";
                     this._ventana.NombreAsociadoSolicitud = marcaTercero.Asociado != null ? marcaTercero.Asociado.Nombre : "";
+                    //this._ventana.TipoCbx = this.BuscarTipoMarca((IList<ListaDatosDominio>)this._ventana.TiposCbx, marcaTercero.Tipo);
 
                     //this._ventana.DescripcionCorresponsalSolicitud = marcaTercero.Corresponsal != null ? marcaTercero.Corresponsal.Descripcion : "";
                     //this._ventana.DescripcionCorresponsalDatos = marcaTercero.Corresponsal != null ? marcaTercero.Corresponsal.Descripcion : "";
@@ -373,9 +374,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
             Servicio primerServicio = new Servicio();
             primerServicio.Id = "NGN";
             servicios.Insert(0, primerServicio);
-            this._ventana.Servicios = servicios;
+            this._ventana.Situaciones = servicios;
             if (!_agregar)
-                 this._ventana.Servicio = this.BuscarServicio(servicios, marcaTercero.Servicio);
+                 this._ventana.Situacion = this.BuscarServicio(servicios, marcaTercero.Servicio);
 
             IList<Boletin> boletines = this._boletinServicios.ConsultarTodos();
             Boletin primerBoletin = new Boletin();
@@ -389,6 +390,13 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
                 this._ventana.BoletinConcesion = this.BuscarBoletin(boletines, marcaTercero.BoletinConcesion);
                 this._ventana.BoletinPublicacion = this.BuscarBoletin(boletines, marcaTercero.BoletinPublicacion);
             }
+
+            IList<ListaDatosDominio> tiposMarcas = this._listaDatosDominioServicios.
+            ConsultarListaDatosDominioPorParametro(new ListaDatosDominio(Recursos.Etiquetas.cbiCategoriaMarca));
+            ListaDatosDominio primerTipoMarca = new ListaDatosDominio();
+            primerTipoMarca.Id = "NGN";
+            tiposMarcas.Insert(0, primerTipoMarca);
+            this._ventana.TiposCbx = tiposMarcas;
 
             #region trace
             if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -426,8 +434,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
             if (null != this._ventana.InteresadoSolicitud)
                 marcaTercero.Interesado = !((Interesado)this._ventana.InteresadoSolicitud).Id.Equals("NGN") ? ((Interesado)this._ventana.InteresadoSolicitud) : null;
 
-            if (null != this._ventana.Servicio)
-                marcaTercero.Servicio = !((Servicio)this._ventana.Servicio).Id.Equals("NGN") ? ((Servicio)this._ventana.Servicio) : null;
+            if (null != this._ventana.Situacion)
+                marcaTercero.Servicio = !((Servicio)this._ventana.Situacion).Id.Equals("NGN") ? ((Servicio)this._ventana.Situacion) : null;
 
             if (null != this._ventana.PoderSolicitud)
                 marcaTercero.Poder = !((Poder)this._ventana.PoderSolicitud).Id.Equals("NGN") ? ((Poder)this._ventana.PoderSolicitud) : null;
@@ -437,6 +445,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
 
             if (null != ((MarcaTercero)this._ventana.MarcaTercero).MarcasBaseTercero)
                 marcaTercero.MarcasBaseTercero = ((MarcaTercero)this._ventana.MarcaTercero).MarcasBaseTercero;
+
+            //if (null != this._ventana.TipoCbx)
+            //    marcaTercero.Tipo = !((ListaDatosDominio)this._ventana.TipoCbx).Id.Equals("NGN") ? ((ListaDatosDominio)this._ventana.TipoCbx).Id : null;
 
             marcaTercero.ComentarioEsp = this._ventana.ComentarioClienteEspanol;
             marcaTercero.ComentarioIng = this._ventana.ComentarioClienteIngles;
@@ -478,6 +489,55 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
         }
 
         /// <summary>
+        /// Metodo que valida si los campos necesarios para crear una MarcaTercero no esten Vacios
+        /// </summary>
+        public bool ValidarCampos() 
+        {
+            bool bandera = false;
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+            if ((this._ventana.AsociadoSolicitud != null) && null != ((Asociado)this._ventana.AsociadoSolicitud).Id)
+            {
+                if ((this._ventana.InteresadoSolicitud != null) && null!=((Interesado)this._ventana.InteresadoSolicitud).Id)
+                {
+                    if ((this._ventana.Situacion ==null)&&((Servicio)this._ventana.Situacion).Descripcion != null)
+                    {
+                        if (((MarcaTercero)this._ventana.MarcaTercero).Descripcion != "")
+                        {
+                            bandera = true;
+                        }
+                        else 
+                        {
+                            this._ventana.MensajeAlerta(Recursos.MensajesConElUsuario.AlertaMarcaTerceroSinNombre);
+                        }
+                    }
+                    else 
+                    {
+                        this._ventana.MensajeAlerta(Recursos.MensajesConElUsuario.AlertaMarcaTerceroSinSituacion);
+                    }
+                }
+                else
+                {
+                    this._ventana.MensajeAlerta(Recursos.MensajesConElUsuario.AlertaMarcaTerceroSinInteresado);
+                }
+            }
+            else
+            {
+                this._ventana.MensajeAlerta(Recursos.MensajesConElUsuario.AlertaMarcaTerceroSinAsociado);
+            }
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+           // return bandera;
+            return true;
+        }
+
+        /// <summary>
         /// Método que dependiendo del estado de la página, habilita los campos o 
         /// modifica los datos de la MarcaTercero
         /// </summary>
@@ -500,12 +560,16 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
                 //Modifica los datos de la marcaTercero
                 else
                 {
-                    MarcaTercero marcaTercero = CargarMarcaTerceroDeLaPantalla();
+                    if (ValidarCampos())
+                    {
+                        MarcaTercero marcaTercero = CargarMarcaTerceroDeLaPantalla();
 
-                    bool exitoso = this._marcaTerceroServicios.InsertarOModificar(marcaTercero, UsuarioLogeado.Hash);
+                        bool exitoso = this._marcaTerceroServicios.InsertarOModificar(marcaTercero, UsuarioLogeado.Hash);
 
-                    if (exitoso)
-                        this.Navegar(Recursos.MensajesConElUsuario.MarcaTerceroModificado, false);
+
+                        if (exitoso)
+                            this.Navegar(Recursos.MensajesConElUsuario.MarcaTerceroModificado, false);
+                    }
                 }
 
                 #region trace
@@ -834,33 +898,42 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
                     marcasBaseTercero = ((MarcaTercero)this._ventana.MarcaTercero).MarcasBaseTercero;
 
                 MarcaBaseTercero aux = new MarcaBaseTercero();
+                MarcaTercero marcaT = new MarcaTercero();
                 string NombreDeMarca = this._ventana.NombreMarca;
-                aux.MarcaTercero.Id = ((MarcaTercero)this._ventana.MarcaTercero).Id;
+                marcaT.Id = ((MarcaTercero)this._ventana.MarcaTercero).Id;
+                marcaT.Anexo = ((MarcaTercero)this._ventana.MarcaTercero).Anexo;
+                aux.MarcaTercero = marcaT;
                 aux.Pais = ((Pais)this._ventana.PaisSolicitud);
                 aux.TipoDeBase = ((TipoBase)this._ventana.TipoBaseSolicitud);
-                aux.NombreTipoBase = ((TipoBase)this._ventana.TipoBaseSolicitud).Descripcion; 
                  if ((bool)this._ventana.Byt.IsChecked)
                      { 
                         aux.Marca = ((Marca)this._ventana.MarcaFiltrada);
                         aux.NombreMarca = ((Marca)this._ventana.MarcaFiltrada).Descripcion; 
                         aux.Internacional = ((Marca)aux.Marca).Internacional;
                         aux.Nacional = ((Marca)aux.Marca).Nacional;
+                        if (null != this._ventana.TipoBaseSolicitud)
+                            aux.TipoDeBase = ((TipoBase)this._ventana.TipoBaseSolicitud).Id != null ? ((TipoBase)this._ventana.TipoBaseSolicitud) : null;
+                        aux.NombreTipoBase = ((TipoBase)this._ventana.TipoBaseSolicitud).Descripcion;
               
                     }
                  else
                      {
                         Marca nueva = new Marca();
+                        aux.Internacional = new Internacional();
+                        aux.Nacional = new Nacional(); 
                         nueva.Descripcion = NombreDeMarca;
                         aux.Marca = nueva;
                         aux.NombreMarca = NombreDeMarca;
                         if (null!= aux.Marca.Internacional)
-                             aux.Marca.Internacional.Descripcion = this._ventana.IdInternacionalByt;
+                             aux.Marca.Internacional.Id = Int32.Parse(this._ventana.IdInternacionalByt);
                         if (null!=aux.Marca.Nacional)
-                             aux.Marca.Nacional.Descripcion = this._ventana.IdNacionalByt;
+                            aux.Marca.Nacional.Id = Int32.Parse(this._ventana.IdNacionalByt);
+                        aux.Internacional.Id = Int32.Parse(this._ventana.IdInternacionalByt);
+                        aux.Nacional.Id = Int32.Parse(this._ventana.IdInternacionalByt);
+                        aux.Tipo = ((TipoBase)this._ventana.TipoBaseSolicitud).Descripcion;
+                        aux.TipoDeBase = null;
                      }
 
-                aux.MarcaTercero.Id = ((MarcaTercero)this._ventana.MarcaTercero).Id;
-                aux.MarcaTercero.Anexo = ((MarcaTercero)this._ventana.MarcaTercero).Anexo;
                 marcasBaseTercero.Add(aux);
                 ((MarcaTercero)this._ventana.MarcaTercero).MarcasBaseTercero = marcasBaseTercero;
                 this._ventana.MarcasByt = marcasBaseTercero.ToList<MarcaBaseTercero>();
@@ -1050,8 +1123,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
                     this._ventana.NombreInteresadoSolicitud = ((Interesado)this._ventana.InteresadoSolicitud).Nombre;
                     //this._ventana.InteresadoDatos = (Interesado)this._ventana.InteresadoSolicitud;
                     //this._ventana.NombreInteresadoDatos = ((Interesado)this._ventana.InteresadoSolicitud).Nombre;
-                    this._ventana.InteresadoPaisSolicitud = interesadoAux.Pais != null ? interesadoAux.Pais.NombreEspanol : "";
-                    this._ventana.InteresadoCiudadSolicitud = interesadoAux.Ciudad != null ? interesadoAux.Ciudad : "";
+                    if (interesadoAux != null)
+                    {
+
+                        this._ventana.InteresadoPaisSolicitud = interesadoAux.Pais != null ? interesadoAux.Pais.NombreEspanol : "";
+                        this._ventana.InteresadoCiudadSolicitud = interesadoAux.Ciudad != null ? interesadoAux.Ciudad : "";
+                    }
                 }
             }
             catch (ApplicationException e)

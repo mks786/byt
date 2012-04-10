@@ -714,4 +714,16 @@
   <data name="ErrorCartaRepetida" xml:space="preserve">
     <value>Disculpe la Carta de Código: {0} ya existe</value>
   </data>
+  <data name="AlertaMarcaTerceroSinAsociado" xml:space="preserve">
+    <value>La Marca a tercero Requiere un Asociado</value>
+  </data>
+  <data name="AlertaMarcaTerceroSinInteresado" xml:space="preserve">
+    <value>La Marca a tercero Requiere un Interesado</value>
+  </data>
+  <data name="AlertaMarcaTerceroSinNombre" xml:space="preserve">
+    <value>La Marca a tercero Debe Tener un Nombre Asignado</value>
+  </data>
+  <data name="AlertaMarcaTerceroSinSituacion" xml:space="preserve">
+    <value>La Marca a tercero Requiere una Situacion</value>
+  </data>
 </root>

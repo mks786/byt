@@ -175,6 +175,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
             get { return this._nombreTipoBase; }
             set { this._nombreTipoBase = value; }
         }
+
         #endregion
     }
 }
