@@ -59,7 +59,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Recordatorios
 
         public void ActualizarTitulo()
         {
-            this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleConsultarMarcas,
+            this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleConsultarRecordatorios,
                 Recursos.Ids.ConsultarRecordatorios);
         }
 
@@ -144,15 +144,25 @@ namespace Trascend.Bolet.Cliente.Presentadores.Recordatorios
             MarcaAuxiliar.Recordatorio = int.Parse(listaAuxiliar.Valor);
 
             DateTime[] fechas = this.ObtenerFechaFinRecordatorio();
+            
 
-            this._marcas = this._marcaServicios.ObtenerMarcasPorFechaRenovacion(MarcaAuxiliar,fechas);
+            if (this._ventana.AutomaticoFiltro.Value)
+            {
+                this._marcas = this._marcaServicios.ObtenerMarcasPorFechaRenovacion(MarcaAuxiliar, fechas);
+            }
+            else
+            {
+                this._marcas = this._marcaServicios.ObtenerMarcasFiltro(MarcaAuxiliar);   
+            }
 
             IEnumerable<Marca> marcasDesinfladas = this._marcas;
 
-            if (true)
+            if (this._ventana.AutomaticoFiltro.Value)
+            {
                 marcasDesinfladas = from m in marcasDesinfladas
                                     where fechas[0] < m.FechaRenovacion && m.FechaRenovacion <= fechas[1]
                                     select m;
+            }
 
             this._ventana.GestionarEnableChecksFiltro(false);
 
@@ -257,6 +267,23 @@ namespace Trascend.Bolet.Cliente.Presentadores.Recordatorios
                                         select m;
                     filtroValido = 1;
                 }
+
+                if (this._ventana.FechaDesdeFiltro.HasValue)
+                {
+                    marcasDesinfladas = from m in marcasDesinfladas
+                                        where m.FechaRenovacion.Value >= this._ventana.FechaDesdeFiltro
+                                        select m;
+                    filtroValido = 1;
+                }
+
+                if (this._ventana.FechaHastaFiltro.HasValue)
+                {
+                    marcasDesinfladas = from m in marcasDesinfladas
+                                        where m.FechaRenovacion.Value <= this._ventana.FechaHastaFiltro
+                                        select m;
+                    filtroValido = 1;
+                }
+
 
                 this._ventana.Resultados = marcasDesinfladas;
                 this._ventana.TotalHits = marcasDesinfladas.ToList<Marca>().Count.ToString();
@@ -394,6 +421,21 @@ namespace Trascend.Bolet.Cliente.Presentadores.Recordatorios
 
                 string[] tipoRecordatorio = this.ValidarTipoRecordatorio();
 
+                if (((IList<object>)this._ventana.Resultado).Count != 0)
+                {
+                    this._marcas = new List<Marca>();
+
+                    IList<object> resultadoAux = (IList<object>)this._ventana.Resultado;
+
+                    foreach (Marca marca in resultadoAux)
+                    {
+                        this._marcas.Add(marca);
+                    }
+                    
+                }
+                //else
+                //    marcaAux = this._marcas;
+
                 foreach (Marca marcaRecordatorio in this._marcas)
                 {
 
@@ -466,6 +508,34 @@ namespace Trascend.Bolet.Cliente.Presentadores.Recordatorios
             #endregion
 
             return tipoRecordatorio;
+        }
+
+        /// <summary>
+        /// Método que limpia los campos de búsqueda
+        /// </summary>
+        public void LimpiarCampos()
+        {
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+            this._ventana.AnoFiltro = null;
+            this._ventana.MesFiltro = null;
+            this._ventana.FechaDesdeFiltro = DateTime.MinValue;
+            this._ventana.FechaHastaFiltro = DateTime.MinValue;
+            this._ventana.Recordatorio = this._listaRecordatorios[0];
+            this._ventana.AutomaticoFiltro = true;
+            this._ventana.Resultado = null;
+            
+            this._ventana.GestionarEnableChecksFiltro(false);
+
+            this.ActualizarMarcasRecordatorio();
+
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
         }
     }
 }

@@ -69,52 +69,59 @@
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>                    
                     <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
 
                 <Label VerticalAlignment="Center" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Left">
                     <TextBlock Text="{x:Static recurso:Etiquetas.lblFiltro}"/>
                 </Label>
-                <Label Grid.Column="0" Grid.Row="3" HorizontalAlignment="Right" VerticalAlignment="Center">
+
+                <CheckBox IsEnabled="True" Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="3" Content="{x:Static recurso:Etiquetas.chkAutomatico}" 
+                                  Height="16" IsChecked="True" HorizontalAlignment="Left" Margin="5,0,0,5" Name="_chkAutomatico"
+                                  VerticalAlignment="Center" Click="_chkAutomatico_Click"/>
+
+                <Label Grid.Column="0" Grid.Row="4" HorizontalAlignment="Right" VerticalAlignment="Center">
                     <TextBlock Text="{x:Static recurso:Etiquetas.lblRecordatorio}"/>
                 </Label>
-                <ComboBox Name="_cbxRecordatorio" Width="150" Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="3" ItemsSource="{Binding}" Height="25" 
+                <ComboBox Name="_cbxRecordatorio" Width="150" Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="4" ItemsSource="{Binding}" Height="25" 
                                   DisplayMemberPath="Descripcion" IsEnabled="True" SelectionChanged="_cbxRecordatorio_SelectionChanged  ">
                 </ComboBox>
-                <Label Name="_lblAno" VerticalAlignment="Center" Grid.Row="4" Grid.Column="0" HorizontalAlignment="Right">
+                <Label Name="_lblAno" VerticalAlignment="Center" Grid.Row="5" Grid.Column="0" HorizontalAlignment="Right">
                     <TextBlock Text="{x:Static recurso:Etiquetas.lblAno}" Margin="5,5,0,0"/>
                 </Label>               
-                <custom:ByTTextBox Name="_txtAno" Text="" Width="50" MaxLength="15" Grid.Row="4" Grid.Column="1" 
+                <custom:ByTTextBox Name="_txtAno" Text="" Width="50" MaxLength="15" Grid.Row="5" Grid.Column="1" 
                                    Height="25" HorizontalAlignment="Left" Margin="5,5,0,0" SoloNumero="True"/>
 
-                <Label Name="_lblMes" VerticalAlignment="Center" Grid.Row="4" Grid.Column="2" HorizontalAlignment="Right">
+                <Label Name="_lblMes" VerticalAlignment="Center" Grid.Row="5" Grid.Column="2" HorizontalAlignment="Right">
                     <TextBlock Text="{x:Static recurso:Etiquetas.lblMes}" Margin="5,5,0,0"/>
                 </Label>
-                <custom:ByTTextBox Name="_txtMes" Text="" Width="30" MaxLength="15" Grid.Row="4" Grid.Column="3" 
+                <custom:ByTTextBox Name="_txtMes" Text="" Width="30" MaxLength="15" Grid.Row="5" Grid.Column="3" 
                                    Height="25" HorizontalAlignment="Left" Margin="5,5,0,0" SoloNumero="True"/>
 
-                <Label VerticalAlignment="Center" HorizontalContentAlignment="Right" Grid.Row="5" Grid.Column="0">
+                <Label VerticalAlignment="Center" HorizontalContentAlignment="Right" Grid.Row="7" Grid.Column="0">
                     <TextBlock Text="{x:Static recurso:Etiquetas.lblDesde}" Margin="5,5,0,0"/>
                 </Label>
-                <DatePicker Name="_dpkFechaDesde" Width="150" Focusable="False" BorderBrush="{x:Null}" Grid.Row="5"
+                <DatePicker Name="_dpkFechaDesde" Width="150" Focusable="False" BorderBrush="{x:Null}" Grid.Row="7"
                             Grid.Column="1" Grid.ColumnSpan="3" Margin="0,5,0,0">                    
                 </DatePicker>
 
-                <Label VerticalAlignment="Center" HorizontalContentAlignment="Right" Grid.Row="6" Grid.Column="0">
+                <Label VerticalAlignment="Center" HorizontalContentAlignment="Right" Grid.Row="8" Grid.Column="0">
                     <TextBlock Text="{x:Static recurso:Etiquetas.lblHasta}" Margin="5,5,0,0"/>
                 </Label>
-                <DatePicker Name="_dpkFechaHasta" Width="150" Focusable="False" BorderBrush="{x:Null}"  Grid.Row="6"
+                <DatePicker Name="_dpkFechaHasta" Width="150" Focusable="False" BorderBrush="{x:Null}"  Grid.Row="8"
                             Grid.Column="1" Grid.ColumnSpan="3" Margin="0,5,0,0">
                 </DatePicker>
 
-                <CheckBox IsEnabled="True" Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="7" Content="{x:Static recurso:Etiquetas.chkTodos}" 
+                <CheckBox IsEnabled="True" Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="9" Content="{x:Static recurso:Etiquetas.chkTodos}" 
                                   Height="16" HorizontalAlignment="Left" Margin="5,15,0,0" Name="_chkTodos"
                                   VerticalAlignment="Center" Click="_chkTodos_Click" IsChecked="True"/>
 
-                <CheckBox IsEnabled="True" Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="8" Content="{x:Static recurso:Etiquetas.chkEmailPorEnviar}" 
+                <CheckBox IsEnabled="True" Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="10" Content="{x:Static recurso:Etiquetas.chkEmailPorEnviar}" 
                                   Height="16" HorizontalAlignment="Left" Margin="5,15,0,0" Name="_chkEmailPorEnviar"
                                   VerticalAlignment="Center"/>
 
-                <CheckBox IsEnabled="True" Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="9" Content="{x:Static recurso:Etiquetas.chkFaxPorEnviar}" 
+                <CheckBox IsEnabled="True" Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="11" Content="{x:Static recurso:Etiquetas.chkFaxPorEnviar}" 
                                   Height="16" HorizontalAlignment="Left" Margin="5,15,0,0" Name="_chkFaxPorEnviar"
                                   VerticalAlignment="Center"/>                
             </Grid>
@@ -122,7 +129,7 @@
 
 
         <Separator Margin="0,60,0,5" Grid.Row="2"/>
-        <WrapPanel Orientation="Horizontal" Grid.Row="3" Margin="0,-20,0,0" HorizontalAlignment="Center">
+        <WrapPanel Orientation="Horizontal" Grid.Row="3" Margin="0,0,0,0" HorizontalAlignment="Center">
             
             <Grid>
                 <Grid.ColumnDefinitions>
@@ -146,7 +153,7 @@
 
         <!--Resultados-->
         <GroupBox Grid.Column="1" Grid.Row="0" Grid.RowSpan="5" Grid.ColumnSpan="2" Margin="5">
-            <ListView Name="_lstResultados" ItemsSource="{Binding}"  SelectionMode="Single"
+            <ListView Name="_lstResultados" ItemsSource="{Binding}"  SelectionMode="Multiple"
                       Style="{DynamicResource EstiloListView}">
                 <ListView.View>
                     <GridView>
@@ -195,6 +202,9 @@
             </DataGrid>-->
         </GroupBox>
 
+        <Button Name="_btnLimpiarCampos" Grid.Column="1" Grid.Row="7" Margin="5" Width="100" HorizontalAlignment="Left" Click="_btnLimpiarCampos_Click">
+            <TextBlock Text="{x:Static recurso:Etiquetas.btnLimpiarCampos}"/>
+        </Button>
         <!--Botones Aceptar|Cancelar-->
         <GroupBox Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="7" BorderBrush="{x:Null}">
             <StackPanel HorizontalAlignment="Right" VerticalAlignment="Bottom" Orientation="Horizontal">

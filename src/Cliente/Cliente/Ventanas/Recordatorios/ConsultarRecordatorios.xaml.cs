@@ -4,6 +4,8 @@ using System.Windows.Input;
 using Trascend.Bolet.Cliente.Ayuda;
 using Trascend.Bolet.Cliente.Contratos.Recordatorios;
 using Trascend.Bolet.Cliente.Presentadores.Recordatorios;
+using System;
+using System.Collections.Generic;
 
 namespace Trascend.Bolet.Cliente.Ventanas.Recordatorios
 {
@@ -25,14 +27,28 @@ namespace Trascend.Bolet.Cliente.Ventanas.Recordatorios
             set { this._lstResultados.DataContext = value; }
         }
 
+        public object Resultado
+        {
+            get { return this._lstResultados.SelectedItems; }
+            set { this._lstResultados.SelectedItem = value; }
+        }
+
         public string MesFiltro
         {
             get { return this._txtMes.Text; }
+            set { this._txtMes.Text = value; }
         }
         
         public string AnoFiltro
         {
             get { return this._txtAno.Text; }
+            set { this._txtAno.Text = value; }
+        }
+
+        public bool? AutomaticoFiltro
+        {
+            get { return this._chkAutomatico.IsChecked; }
+            set { this._chkAutomatico.IsChecked = value; }
         }
 
         public bool? EmailFiltro
@@ -50,14 +66,16 @@ namespace Trascend.Bolet.Cliente.Ventanas.Recordatorios
             get { return this._chkTodos.IsChecked; }
         }              
 
-        public string FechaDesdeFiltro
+        public DateTime? FechaDesdeFiltro
         {
-            get { return this._dpkFechaDesde.SelectedDate.ToString(); }
+            get { return this._dpkFechaDesde.SelectedDate; }
+            set { this._dpkFechaDesde.SelectedDate = value; }
         }
         
-        public string FechaHastaFiltro
+        public DateTime? FechaHastaFiltro
         {
-            get { return this._dpkFechaHasta.SelectedDate.ToString(); }
+            get { return this._dpkFechaHasta.SelectedDate; }
+            set { this._dpkFechaHasta.SelectedDate = value; }
         }
 
         public bool EstaCargada
@@ -186,7 +204,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Recordatorios
         {            
             this._chkEmailPorEnviar.IsEnabled = value;         
             this._chkFaxPorEnviar.IsEnabled = value;
-            this._chkTodos.IsChecked = value;
+            this._chkTodos.IsChecked = !value;
         }
 
         private void GestionarCheckedChecksFiltro(bool value)
@@ -209,6 +227,16 @@ namespace Trascend.Bolet.Cliente.Ventanas.Recordatorios
         private void _btnGenerarInformacion_Click(object sender, RoutedEventArgs e)
         {
             this._presentador.GenerarInformacion();
+        }
+
+        private void _chkAutomatico_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.ActualizarMarcasRecordatorio();
+        }
+
+        private void _btnLimpiarCampos_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.LimpiarCampos();
         }       
      
     }

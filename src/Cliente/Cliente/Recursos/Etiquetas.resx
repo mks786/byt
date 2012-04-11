@@ -2225,4 +2225,10 @@ de Gracia</value>
   <data name="menuItemEscritosReconsideracionPrioridadExtinguida" xml:space="preserve">
     <value>Reconsidreación Prioridad Extinguida</value>
   </data>
+  <data name="chkAutomatico" xml:space="preserve">
+    <value>Automático</value>
+  </data>
+  <data name="titleConsultarRecordatorios" xml:space="preserve">
+    <value>Consultar Recordatorios de Marcas</value>
+  </data>
 </root>

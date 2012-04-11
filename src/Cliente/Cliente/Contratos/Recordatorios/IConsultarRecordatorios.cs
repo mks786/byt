@@ -1,26 +1,31 @@
 ﻿using System.Windows.Controls;
 using Trascend.Bolet.Cliente.Ayuda;
+using System;
 
 namespace Trascend.Bolet.Cliente.Contratos.Recordatorios
 {
     interface IConsultarRecordatorios : IPaginaBase
-    {        
+    {
 
-        string FechaDesdeFiltro { get; }
+        DateTime? FechaDesdeFiltro { get; set; }
 
-        string FechaHastaFiltro { get; }
+        DateTime? FechaHastaFiltro { get; set; }
 
-        string MesFiltro { get; }
+        string MesFiltro { get; set; }
 
-        string AnoFiltro { get; }
+        string AnoFiltro { get; set; }
 
         bool? EmailFiltro { get; }
 
         bool? FaxFiltro { get; }
 
-        bool? TodosFiltro { get; }        
+        bool? TodosFiltro { get; }
+
+        bool? AutomaticoFiltro { get; set; }
 
         object Resultados { get;  set; }
+
+        object Resultado { get; set; }
 
         object Recordatorio { get; set; }
 
