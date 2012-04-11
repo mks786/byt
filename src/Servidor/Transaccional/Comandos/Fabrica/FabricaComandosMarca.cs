@@ -2,6 +2,7 @@
 using Trascend.Bolet.Comandos.Comandos;
 using Trascend.Bolet.Comandos.Comandos.ComandosMarca;
 using Trascend.Bolet.ObjetosComunes.Entidades;
+using System;
 
 namespace Trascend.Bolet.Comandos.Fabrica
 {
@@ -49,6 +50,17 @@ namespace Trascend.Bolet.Comandos.Fabrica
         public static ComandoBase<IList<Marca>> ObtenerComandoConsultarMarcasFiltro(Marca marca)
         {
             return new ComandoConsultarMarcasFiltro(marca);
+        }
+
+        /// <summary>
+        /// Método que devuelve el Comando ObtenerMarcasPorFechaRenovacion
+        /// </summary>
+        /// <param name="marca">marca con NRecordatorio</param>
+        /// <param name="fechas">Arreglo con las fechas a filtrar [0]FechaInicio y [1]FechaFin</param>
+        /// <returns>True si se realizó el comando con éxito; False: en caso contrario</returns>
+        public static ComandoBase<IList<Marca>> ObtenerComandoObtenerMarcasPorFechaRenovacion(Marca marca, DateTime[] fechas)
+        {
+            return new ComandoConsultarMarcasPorFechaRenovacion(marca, fechas);
         }
 
         public static ComandoBase<Marca> ObtenerComandoConsultarMarcaConTodo(Marca marca)

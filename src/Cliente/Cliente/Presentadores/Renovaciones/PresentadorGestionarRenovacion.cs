@@ -291,6 +291,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Renovaciones
                     marcaAuxiliar = ((Renovacion)this._ventana.Renovacion).Marca;
                     marcaAuxiliar.FechaRenovacion = ((Renovacion)this._ventana.Renovacion).FechaProxima;
                     marcaAuxiliar.Operacion = "MODIFY";
+                    marcaAuxiliar.Recordatorio = 0;
 
                     marcaExitoso = this._marcaServicios.InsertarOModificar(marcaAuxiliar, UsuarioLogeado.Hash);
                 }
@@ -1588,22 +1589,59 @@ namespace Trascend.Bolet.Cliente.Presentadores.Renovaciones
 
         private void ImprimirSolicitud()
         {
-            
+            if (ValidarMarcaAntesDeImprimirCarpeta())
+            {
+                string paqueteProcedimiento = "PCK_MYP_RENOVACIONES";
+                string procedimiento = "P1";
+                ParametroProcedimiento parametro =
+                    new ParametroProcedimiento(((Renovacion)this._ventana.Renovacion).Id, UsuarioLogeado, 1, paqueteProcedimiento, procedimiento);
+
+                this.LlamarProcedimientoDeBaseDeDatos(parametro, Recursos.Etiquetas.btnSolicitud);
+            }
         }
 
         private void ImprimirSolicitudVan()
         {
-            
+            if (ValidarMarcaAntesDeImprimirCarpeta())
+            {
+                string paqueteProcedimiento = "PCK_MYP_RENOVACIONES";
+                string procedimiento = "P2";
+                ParametroProcedimiento parametro =
+                    new ParametroProcedimiento(((Renovacion)this._ventana.Renovacion).Id, UsuarioLogeado, 1, paqueteProcedimiento, procedimiento);
+
+                this.LlamarProcedimientoDeBaseDeDatos(parametro, Recursos.Etiquetas.btnSolicitud);
+            }
         }
 
         private void ImprimirCarpeta()
         {
-            
+            if (ValidarMarcaAntesDeImprimirCarpeta())
+            {
+                string paqueteProcedimiento = "PCK_MYP_RENOVACIONES";
+                string procedimiento = "P3";
+                ParametroProcedimiento parametro =
+                    new ParametroProcedimiento(((Renovacion)this._ventana.Renovacion).Id, UsuarioLogeado, 1, paqueteProcedimiento, procedimiento);
+
+                this.LlamarProcedimientoDeBaseDeDatos(parametro, Recursos.Etiquetas.btnCarpeta);
+            }
         }
 
         private void ImprimirAnexo()
         {
-            
+            if (ValidarMarcaAntesDeImprimirCarpeta())
+            {
+                string paqueteProcedimiento = "PCK_MYP_RENOVACIONES";
+                string procedimiento = "P4";
+                ParametroProcedimiento parametro =
+                    new ParametroProcedimiento(((Renovacion)this._ventana.Renovacion).Id, UsuarioLogeado, 1, paqueteProcedimiento, procedimiento);
+
+                this.LlamarProcedimientoDeBaseDeDatos(parametro, Recursos.Etiquetas.btnAnexo);
+            }
+        }
+
+        private bool ValidarMarcaAntesDeImprimirCarpeta()
+        {
+            return true;
         }
     }
 }

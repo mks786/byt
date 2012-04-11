@@ -133,6 +133,31 @@ namespace Trascend.Bolet.Servicios.Implementacion
             #endregion
         }
 
+        /// <summary>
+        /// Servicio que consulta una serie de Marcas por recordatorio o entre fechas usando fechaRenovacion
+        /// </summary>
+        /// <param name="marca">Marca que contiene el NRecordatorio</param>
+        /// <param name="fechas">Arreglo que contiene [0]FechaInicio y [1]FechaFin</param>
+        /// <returns>Lista de marcas filtradas</returns>
+        public IList<Marca> ObtenerMarcasPorFechaRenovacion(Marca marca, DateTime[] fechas)
+        {
+            #region trace
+            if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+            IList<Marca> marcas;
+
+            marcas = ControladorMarca.ObtenerMarcasPorFechaRenovacion(marca, fechas);
+
+            return marcas;
+
+            #region trace
+            if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                logger.Debug("Saliendo del Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+        }
+
         public IList<Auditoria> AuditoriaPorFkyTabla(Auditoria auditoria)
         {
             #region trace

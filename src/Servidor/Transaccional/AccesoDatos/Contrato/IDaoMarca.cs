@@ -1,5 +1,6 @@
 ﻿using Trascend.Bolet.ObjetosComunes.Entidades;
 using System.Collections.Generic;
+using System;
 
 namespace Trascend.Bolet.AccesoDatos.Contrato
 {
@@ -8,6 +9,8 @@ namespace Trascend.Bolet.AccesoDatos.Contrato
         IList<Marca> ObtenerMarcasFiltro(Marca marca);
 
         Marca ObtenerMarcaConTodo(Marca marca);
+
+        IList<Marca> ObtenerMarcasPorFechaRenovacion(Marca marca, DateTime[] fechas);
 
     }
 }

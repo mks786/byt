@@ -218,6 +218,41 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
         }
 
         /// <summary>
+        /// Metodo que obtiene el marcas por fecha de renovacion
+        /// </summary>
+        /// <param name="marca">marca con NRecordatorio a filtrar</param>
+        /// <param name="fechas">Arreglo con las fechas a filtrar [0]FechaInicio y [1]FechaFin</param>
+        /// <returns>Lista de Marcas fitlradas</returns>
+        public static IList<Marca> ObtenerMarcasPorFechaRenovacion(Marca marca, DateTime[] fechas)
+        {
+            IList<Marca> retorno;
+
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                ComandoBase<IList<Marca>> comando = FabricaComandosMarca.ObtenerComandoObtenerMarcasPorFechaRenovacion(marca, fechas);
+                comando.Ejecutar();
+                retorno = comando.Receptor.ObjetoAlmacenado;
+
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Saliendo del Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (ApplicationException ex)
+            {
+                logger.Error(ex.Message);
+                throw ex;
+            }
+
+            return retorno;
+        }
+
+        /// <summary>
         /// Método que consulta una marca con todas sus dependencias
         /// </summary>
         /// <returns>marca completo</returns>

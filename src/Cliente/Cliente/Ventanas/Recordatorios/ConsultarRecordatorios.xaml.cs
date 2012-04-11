@@ -105,8 +105,10 @@ namespace Trascend.Bolet.Cliente.Ventanas.Recordatorios
         {
             if (opcion == 0)
                 MessageBox.Show(mensaje, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-            else
+            else if (opcion == 1)
                 MessageBox.Show(mensaje, "Advertencia", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            else
+                MessageBox.Show(mensaje, "Operación Exitosa", MessageBoxButton.OK, MessageBoxImage.Information);
         }
   
         public string TotalHits
@@ -184,6 +186,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Recordatorios
         {            
             this._chkEmailPorEnviar.IsEnabled = value;         
             this._chkFaxPorEnviar.IsEnabled = value;
+            this._chkTodos.IsChecked = value;
         }
 
         private void GestionarCheckedChecksFiltro(bool value)

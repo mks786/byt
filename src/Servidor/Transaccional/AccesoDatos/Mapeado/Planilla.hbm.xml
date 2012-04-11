@@ -372,5 +372,54 @@
     {  begin ? :=Pck_General.PID(:s); end; }
 
   </sql-query>
+  
+  <!-- Procedimientos PCK_MYP_RENOVACIONES-->
+
+  <!--Solicitud-->
+  <sql-query name="PCK_MYP_RENOVACIONESP1">
+    
+
+    <query-param name="usr" type="string" />
+    <query-param name="way" type="int" />
+    <query-param name="cod" type="int" />
+
+    begin PCK_MYP_RENOVACIONES.P1(:usr, :way, :cod); end;
+
+  </sql-query>
+
+  <!--Solicitud(van)-->
+  <sql-query name="PCK_MYP_RENOVACIONESP2">
+
+    <query-param name="usr" type="string" />
+    <query-param name="way" type="int" />
+    <query-param name="cod" type="int" />
+
+    begin PCK_MYP_RENOVACIONES.P2(:usr, :way, :cod); end;
+
+  </sql-query>
+
+  <!--Carpeta-->
+  <sql-query name="PCK_MYP_RENOVACIONESP3">
+
+    <query-param name="usr" type="string" />
+    <query-param name="way" type="int" />
+    <query-param name="cod" type="int" />
+
+    begin PCK_MYP_RENOVACIONES.P3(:usr, :way, :cod); end;
+
+  </sql-query>
+
+  <!--Anexo-->
+  <sql-query name="PCK_MYP_RENOVACIONESP4">
+
+    <query-param name="usr" type="string" />
+    <query-param name="way" type="int" />
+    <query-param name="cod" type="int" />
+
+    begin PCK_MYP_RENOVACIONES.P4(:usr, :way, :cod); end;
+
+  </sql-query>
+  
+  <!-- Fin procedimientos PCK_MYP_RENOVACIONES-->
 
 </hibernate-mapping>

@@ -726,4 +726,10 @@
   <data name="AlertaMarcaTerceroSinSituacion" xml:space="preserve">
     <value>La Marca a tercero Requiere una Situacion</value>
   </data>
+  <data name="ErrorGenerandoInformacionRecordatorio" xml:space="preserve">
+    <value>Error generando el archivo {0}</value>
+  </data>
+  <data name="ExitoGenerandoInformacionRecordatorio" xml:space="preserve">
+    <value>El archivo {0} se ha generado con éxito</value>
+  </data>
 </root>
