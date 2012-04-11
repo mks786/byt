@@ -488,6 +488,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
 
+            _filtroValido = 2;
+
             if (((Boletin)this._ventana.BoletinConcesion).Id != int.MinValue)
             {
                 marcaAuxiliar.BoletinConcesion = ((Boletin)this._ventana.BoletinConcesion);
@@ -636,7 +638,6 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                                 if (!this._ventana.TYREstaSeleccionado)
 
                                     retorno = false;
-
 
             #region trace
             if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))

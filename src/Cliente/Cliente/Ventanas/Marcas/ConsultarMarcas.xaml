@@ -107,11 +107,11 @@
                                 <TextBlock Text="{x:Static recurso:Etiquetas.lblSolicitud}"/>
                             </Label>
                             <custom:ByTTextBox Name="_txtSolicitud" Width="75" MaxLength="40" SoloNumero="True" Filtro="True" 
-                                       GotFocus="_btnConsultarFocus" GotKeyboardFocus="_btnConsultarFocus"/>
+                                       GotFocus="_btnConsultarFocus" GotKeyboardFocus="_btnConsultarFocus" Text="{Binding Path=CodigoInscripcion}"/>
 
                             <DatePicker Name="_dpkFecha" Width="75" Focusable="False" BorderBrush="{x:Null}" SelectedDateChanged="_dpkFecha_SelectedDateChanged">
                                 <DatePicker.SelectedDate>
-                                    <Binding Path="Fecha" UpdateSourceTrigger="PropertyChanged"/>
+                                    <Binding Path="FechaInscripcion" UpdateSourceTrigger="PropertyChanged"/>
                                 </DatePicker.SelectedDate>
                             </DatePicker>
                         </WrapPanel>
@@ -325,7 +325,7 @@
                             <Label Name="_lblDistingue">
                                 <TextBlock Text="{x:Static recurso:Etiquetas.lblDistingue}"/>
                             </Label>
-                            <custom:ByTTextBox Name="_txtDistingue" Width="150" MaxLength="40" SoloNumero="True" Filtro="True" 
+                            <custom:ByTTextBox Name="_txtDistingue" Width="150" MaxLength="40" Filtro="True" 
                                        GotFocus="_btnConsultarFocus" GotKeyboardFocus="_btnConsultarFocus" Text="{Binding Path=Distingue}"/>
                         </WrapPanel>
                         <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,180,0">

@@ -556,9 +556,6 @@
     <Compile Include="Ventanas\Recordatorios\ConsultarRecordatorios.xaml.cs">
       <DependentUpon>ConsultarRecordatorios.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Ventanas\Remitentes\Renovaciones\ConsultarRenovaciones.xaml.cs">
-      <DependentUpon>ConsultarRenovaciones.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Ventanas\EntradasAlternas\AgregarEntradaAlterna.xaml.cs">
       <DependentUpon>AgregarEntradaAlterna.xaml</DependentUpon>
     </Compile>
@@ -685,7 +682,10 @@
     <Compile Include="Ventanas\Poderes\GestionarPoderesXAgentes.xaml.cs">
       <DependentUpon>GestionarPoderesXAgentes.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Ventanas\Remitentes\Renovaciones\GestionarRenovacion.xaml.cs">
+    <Compile Include="Ventanas\Renovaciones\ConsultarRenovaciones.xaml.cs">
+      <DependentUpon>ConsultarRenovaciones.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Renovaciones\GestionarRenovacion.xaml.cs">
       <DependentUpon>GestionarRenovacion.xaml</DependentUpon>
     </Compile>
     <Compile Include="Ventanas\Resumenes\AgregarResumen.xaml.cs">
@@ -1063,10 +1063,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Ventanas\Remitentes\Renovaciones\ConsultarRenovaciones.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="Ventanas\EntradasAlternas\AgregarEntradaAlterna.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -1219,7 +1215,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Ventanas\Remitentes\Renovaciones\GestionarRenovacion.xaml">
+    <Page Include="Ventanas\Renovaciones\ConsultarRenovaciones.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\Renovaciones\GestionarRenovacion.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
