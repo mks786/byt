@@ -4,7 +4,7 @@ using System.Collections.Generic;
 namespace Trascend.Bolet.ObjetosComunes.Entidades
 {
     [Serializable]
-    public class Licencia
+    public class LicenciaPatente
     {
         #region Atributos
 
@@ -38,7 +38,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         private Interesado _interesadoLicenciante;
         private Poder _poderLicenciatario;
         private Poder _poderLicenciante;
-        private Marca _marca;
+        private Patente _patente;
         private DateTime? _fechaPublicacion;
         private DateTime? _fecha;
 
@@ -50,13 +50,13 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         /// <summary>
         /// Constructor predeterminado
         /// </summary>
-        public Licencia() { }
+        public LicenciaPatente() { }
 
         /// <summary>
         /// Constructor que inicializa el Id de la Agente
         /// </summary>
         /// <param name="id">Id de la Agente</param>
-        public Licencia(int id)
+        public LicenciaPatente(int id)
         {
             this._id = id;
         }
@@ -273,12 +273,12 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         }
 
         /// <summary>
-        /// Propiedad que asigna u obtiene el campo Marca de la Licencia
+        /// Propiedad que asigna u obtiene el campo Patente de la Licencia
         /// </summary>
-        public virtual Marca Marca
+        public virtual Patente Patente
         {
-            get { return _marca; }
-            set { _marca = value;}
+            get { return _patente; }
+            set { _patente = value; }
         }
 
         /// <summary>

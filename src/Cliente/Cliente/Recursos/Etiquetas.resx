@@ -2231,4 +2231,10 @@ de Gracia</value>
   <data name="titleConsultarRecordatorios" xml:space="preserve">
     <value>Consultar Recordatorios de Marcas</value>
   </data>
+  <data name="lblPatente" xml:space="preserve">
+    <value>Patente:</value>
+  </data>
+  <data name="lsvPatente" xml:space="preserve">
+    <value>Patente</value>
+  </data>
 </root>

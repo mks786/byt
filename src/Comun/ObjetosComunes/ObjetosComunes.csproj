@@ -124,6 +124,12 @@
     <Compile Include="Entidades\CambioDeDomicilio.cs" />
     <Compile Include="Entidades\CambioPeticionario.cs" />
     <Compile Include="Entidades\CambioDeNombre.cs" />
+    <Compile Include="Entidades\CambioDeDomicilioPatente.cs" />
+    <Compile Include="Entidades\CambioDeNombrePatente.cs" />
+    <Compile Include="Entidades\CambioPeticionarioPatente.cs" />
+    <Compile Include="Entidades\CesionPatente.cs" />
+    <Compile Include="Entidades\FusionPatente.cs" />
+    <Compile Include="Entidades\LicenciaPatente.cs" />
     <Compile Include="Entidades\Inventor.cs" />
     <Compile Include="Entidades\Patente.cs" />
     <Compile Include="Entidades\MarcaBaseTercero.cs" />
