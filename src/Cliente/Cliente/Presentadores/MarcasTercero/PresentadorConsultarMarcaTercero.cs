@@ -491,7 +491,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
         /// <summary>
         /// Metodo que valida si los campos necesarios para crear una MarcaTercero no esten Vacios
         /// </summary>
-        public bool ValidarCampos() 
+        public bool ValidarCampos(MarcaTercero MarcaTerceroValidar) 
         {
             bool bandera = false;
             #region trace
@@ -499,13 +499,13 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
                 logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
 
-            if ((this._ventana.AsociadoSolicitud != null) && null != ((Asociado)this._ventana.AsociadoSolicitud).Id)
+            if ((MarcaTerceroValidar.Asociado != null) &&(MarcaTerceroValidar.Asociado.Id !=0))
             {
-                if ((this._ventana.InteresadoSolicitud != null) && null!=((Interesado)this._ventana.InteresadoSolicitud).Id)
+                if ((MarcaTerceroValidar.Interesado != null) && (MarcaTerceroValidar.Interesado.Id != 0))
                 {
-                    if ((this._ventana.Situacion ==null)&&((Servicio)this._ventana.Situacion).Descripcion != null)
+                    if ((MarcaTerceroValidar.Servicio !=null))
                     {
-                        if (((MarcaTercero)this._ventana.MarcaTercero).Descripcion != "")
+                        if (MarcaTerceroValidar.Descripcion != "")
                         {
                             bandera = true;
                         }
@@ -534,7 +534,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
             #endregion
 
            // return bandera;
-            return true;
+            return bandera;
         }
 
         /// <summary>
@@ -560,9 +560,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
                 //Modifica los datos de la marcaTercero
                 else
                 {
-                    if (ValidarCampos())
+                    MarcaTercero marcaTercero = CargarMarcaTerceroDeLaPantalla();
+
+                    if (ValidarCampos(marcaTercero))
                     {
-                        MarcaTercero marcaTercero = CargarMarcaTerceroDeLaPantalla();
 
                         bool exitoso = this._marcaTerceroServicios.InsertarOModificar(marcaTercero, UsuarioLogeado.Hash);
 
