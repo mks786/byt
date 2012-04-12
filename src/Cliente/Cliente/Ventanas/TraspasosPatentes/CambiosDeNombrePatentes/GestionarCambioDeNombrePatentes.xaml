@@ -59,7 +59,7 @@
                 <Separator Margin="5,5,0,0"/>
                 <WrapPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="8"  Orientation="Horizontal" 
                            Margin="0,5,0,0">
-                    <Grid Width="640" DataContext="{Binding}" Name="_gridDatosMarca">
+                    <Grid Width="640" DataContext="{Binding}" Name="_gridDatosPatente">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="*"/>
@@ -77,38 +77,38 @@
                         </Grid.RowDefinitions>
 
                         <Label Grid.Column="0" Grid.Row="0">
-                            <TextBlock Text="{x:Static recurso:Etiquetas.lblMarca}"/>
+                            <TextBlock Text="{x:Static recurso:Etiquetas.lblPatente}"/>
                         </Label>
-                        <TextBox Name="_txtNombreMarca" MaxLength="40"  Text="" IsEnabled="False" IsReadOnly="True"
+                        <TextBox Name="_txtNombrePatente" MaxLength="40"  Text="" IsEnabled="False" IsReadOnly="True"
                              VerticalContentAlignment="Center" Margin="0,0,0,0" Grid.ColumnSpan="6" Grid.Column="1"
-                             Grid.Row="0" MouseDoubleClick="_txtNombreMarca_MouseDoubleClick" BorderBrush="LightGreen"/>
+                             Grid.Row="0" MouseDoubleClick="_txtNombrePatente_MouseDoubleClick" BorderBrush="LightGreen"/>
 
-                        <!--Datos de carga de Marca-->
-                        <Label Name="_lblIdMarca" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Center" Visibility="Collapsed">
+                        <!--Datos de carga de Patente-->
+                        <Label Name="_lblIdPatente" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Center" Visibility="Collapsed">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblId}"/>
                         </Label>
 
-                        <custom:ByTTextBox IsEnabled="False"  Grid.Column="1" Grid.Row="0" Name="_txtIdMarcaFiltrar" VerticalAlignment="Center" SoloNumero="True" 
-                         MaxLength="255" Grid.ColumnSpan="2" Visibility="Collapsed" GotFocus="_txtMarcaFiltrar_GotFocus" GotKeyboardFocus="_txtMarcaFiltrar_GotFocus" 
+                        <custom:ByTTextBox IsEnabled="False"  Grid.Column="1" Grid.Row="0" Name="_txtIdPatenteFiltrar" VerticalAlignment="Center" SoloNumero="True" 
+                         MaxLength="255" Grid.ColumnSpan="2" Visibility="Collapsed" GotFocus="_txtPatenteFiltrar_GotFocus" GotKeyboardFocus="_txtPatenteFiltrar_GotFocus" 
                          ></custom:ByTTextBox>
 
-                        <Label Name="_lblNombreMarca" Grid.Column="3" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Center" Visibility="Collapsed">
+                        <Label Name="_lblNombrePatente" Grid.Column="3" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Center" Visibility="Collapsed">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblNombre}"/>
                         </Label>
-                        <custom:ByTTextBox   IsEnabled="False"  Grid.Column="4" Grid.Row="0" Name="_txtNombreMarcaFiltrar" VerticalAlignment="Center"  Grid.ColumnSpan="2"
-                         MaxLength="255" Visibility="Collapsed" GotFocus="_txtMarcaFiltrar_GotFocus" GotKeyboardFocus="_txtMarcaFiltrar_GotFocus" ></custom:ByTTextBox>
+                        <custom:ByTTextBox   IsEnabled="False"  Grid.Column="4" Grid.Row="0" Name="_txtNombrePatenteFiltrar" VerticalAlignment="Center"  Grid.ColumnSpan="2"
+                         MaxLength="255" Visibility="Collapsed" GotFocus="_txtPatenteFiltrar_GotFocus" GotKeyboardFocus="_txtPatenteFiltrar_GotFocus" ></custom:ByTTextBox>
 
-                        <Button IsEnabled="False" Name="_btnConsultarMarca" Width="65" IsDefault="False" Grid.Row="0" Grid.Column="6" Height="25" 
+                        <Button IsEnabled="False" Name="_btnConsultarPatente" Width="65" IsDefault="False" Grid.Row="0" Grid.Column="6" Height="25" 
                                 HorizontalAlignment="Right" Click="_btnConsultar" Visibility="Collapsed">
                             <TextBlock Text="{x:Static recurso:Etiquetas.btnConsultar}"/>
                         </Button>
-                        <ListView Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="7" Grid.RowSpan="2" Name="_lstMarcas" ItemsSource="{Binding}" 
-                      SelectionMode="Single" MouseDoubleClick="_lstMarcas_MouseDoubleClick"
+                        <ListView Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="7" Grid.RowSpan="2" Name="_lstPatentes" ItemsSource="{Binding}" 
+                      SelectionMode="Single" MouseDoubleClick="_lstPatentes_MouseDoubleClick"
                       Style="{DynamicResource EstiloListView}" Visibility="Collapsed" Height="150"  VerticalAlignment="Top">
                             <ListView.View>
                                 <GridView>
                                     <GridViewColumn Width="80">
-                                        <GridViewColumnHeader Click="_OrdenarMarcas_Click" Tag="Id" Content="{x:Static recurso:Etiquetas.lsvId}"/>
+                                        <GridViewColumnHeader Click="_OrdenarPatentes_Click" Tag="Id" Content="{x:Static recurso:Etiquetas.lsvId}"/>
                                         <GridViewColumn.CellTemplate>
                                             <DataTemplate>
                                                 <TextBlock>
@@ -120,18 +120,18 @@
                                         </GridViewColumn.CellTemplate>
                                     </GridViewColumn>
                                     <GridViewColumn DisplayMemberBinding="{Binding Path=Descripcion}" Width="300">
-                                        <GridViewColumnHeader Click="_OrdenarMarcas_Click" Tag="Nombre" Content="{x:Static recurso:Etiquetas.lsvNombre}"/>
+                                        <GridViewColumnHeader Click="_OrdenarPatentes_Click" Tag="Nombre" Content="{x:Static recurso:Etiquetas.lsvNombre}"/>
                                     </GridViewColumn>
                                 </GridView>
                             </ListView.View>
                         </ListView>
-                        <!--Fin de Datos de carga de Marca-->
+                        <!--Fin de Datos de carga de Patente-->
 
-                        <!--Datos de la Marca-->
+                        <!--Datos de la Patente-->
 
-                        <CheckBox IsEnabled="False" Grid.Column="0" Grid.Row="1" Content="{x:Static recurso:Etiquetas.chkEtiqueta2}" 
+                        <!--<CheckBox IsEnabled="False" Grid.Column="0" Grid.Row="1" Content="{x:Static recurso:Etiquetas.chkEtiqueta2}" 
                                   Height="16" HorizontalAlignment="Left" Margin="5,0,0,0" Name="_chkEtiqueta"
-                                  VerticalAlignment="Center" IsChecked="{Binding Path=BEtiqueta}"/>
+                                  VerticalAlignment="Center" IsChecked="{Binding Path=BEtiqueta}"/>-->
 
                         <!--Campo-->
                         <Label Name="_lblNoInscripcion" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Center" >
@@ -181,7 +181,7 @@
                          MaxLength="255" Text="{Binding Path=Asociado.Nombre}" ></custom:ByTTextBox>
                         <!--Fin Campo-->
 
-                        <!--Fin datos de la Marca-->
+                        <!--Fin datos de la Patente-->
                     </Grid>
                 </WrapPanel>
                 <Separator Margin="5,5,0,0"/>

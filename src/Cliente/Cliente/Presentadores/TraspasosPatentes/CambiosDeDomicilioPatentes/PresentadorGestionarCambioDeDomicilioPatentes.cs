@@ -12,7 +12,7 @@ using NLog;
 using Trascend.Bolet.Cliente.Ayuda;
 using Trascend.Bolet.Cliente.Contratos.TraspasosPatentes.CambiosDeDomicilioPatentes;
 using Trascend.Bolet.Cliente.Ventanas.Principales;
-using Trascend.Bolet.Cliente.Ventanas.Marcas;
+//using Trascend.Bolet.Cliente.Ventanas.Patentes;
 using Trascend.Bolet.ObjetosComunes.ContratosServicios;
 using Trascend.Bolet.ObjetosComunes.Entidades;
 using Trascend.Bolet.Cliente.Ventanas.Auditorias;
@@ -27,7 +27,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CambiosDeDomici
         private bool _agregar = true;
         private IGestionarCambioDeDomicilioPatentes _ventana;
 
-        private IMarcaServicios _marcaServicios;
+        private IPatenteServicios _patenteServicios;
         private IAnaquaServicios _anaquaServicios;
         private IAsociadoServicios _asociadoServicios;
         private IAgenteServicios _agenteServicios;
@@ -45,13 +45,13 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CambiosDeDomici
         private IOperacionServicios _operacionServicios;
         private IBusquedaServicios _busquedaServicios;
         private IStatusWebServicios _statusWebServicios;
-        private ICambioDeDomicilioServicios _cambioDeDomicilioServicios;
+        private ICambioDeDomicilioPatenteServicios _cambioDeDomicilioPatenteServicios;
 
         private IList<Asociado> _asociados;
         private IList<Interesado> _interesados;
         private IList<Corresponsal> _corresponsales;
         private IList<Auditoria> _auditorias;
-        private IList<Marca> _marcas;
+        private IList<Patente> _patentes;
         private IList<Interesado> _interesadosAnterior;
         private IList<Interesado> _interesadosActual;
         private IList<Agente> _agentesApoderados;
@@ -74,16 +74,16 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CambiosDeDomici
 
                 if (cambioDeDomicilio != null)
                 {
-                    this._ventana.CambioDeDomicilio = cambioDeDomicilio;
+                    this._ventana.CambioDeDomicilioPatente = cambioDeDomicilio;
                     _agregar = false;
                 }
                 else
                 {
-                    CambioDeDomicilio cambioDeDomicilioAgregar = new CambioDeDomicilio();
-                    this._ventana.CambioDeDomicilio = cambioDeDomicilioAgregar;
+                    CambioDeDomicilioPatente cambioDeDomicilioAgregar = new CambioDeDomicilioPatente();
+                    this._ventana.CambioDeDomicilioPatente = cambioDeDomicilioAgregar;
 
-                    ((CambioDeDomicilio)this._ventana.CambioDeDomicilio).FechaDomicilio = DateTime.Now;
-                    this._ventana.Marca = null;
+                    ((CambioDeDomicilioPatente)this._ventana.CambioDeDomicilioPatente).FechaDomicilio = DateTime.Now;
+                    this._ventana.Patente = null;
                     this._ventana.Poder = null;
                     this._ventana.InteresadoAnterior = null;
                     this._ventana.InteresadoActual = null;
@@ -99,8 +99,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CambiosDeDomici
 
                 #region Servicios
 
-                this._marcaServicios = (IMarcaServicios)Activator.GetObject(typeof(IMarcaServicios),
-                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["MarcaServicios"]);
+                this._patenteServicios = (IPatenteServicios)Activator.GetObject(typeof(IPatenteServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["PatenteServicios"]);
                 this._asociadoServicios = (IAsociadoServicios)Activator.GetObject(typeof(IAsociadoServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["AsociadoServicios"]);
                 this._agenteServicios = (IAgenteServicios)Activator.GetObject(typeof(IAgenteServicios),
@@ -135,8 +135,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CambiosDeDomici
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["BusquedaServicios"]);
                 this._statusWebServicios = (IStatusWebServicios)Activator.GetObject(typeof(IStatusWebServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["StatusWebServicios"]);
-                this._cambioDeDomicilioServicios = (ICambioDeDomicilioServicios)Activator.GetObject(typeof(ICambioDeDomicilioServicios),
-                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["CambioDeDomicilioServicios"]);
+                this._cambioDeDomicilioPatenteServicios = (ICambioDeDomicilioPatenteServicios)Activator.GetObject(typeof(ICambioDeDomicilioPatenteServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["CambioDeDomicilioPatenteServicios"]);
 
                 #endregion
             }
@@ -175,16 +175,16 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CambiosDeDomici
 
                 if (_agregar == false)
                 {
-                    CambioDeDomicilio cambioDeDomicilio = (CambioDeDomicilio)this._ventana.CambioDeDomicilio;
+                    CambioDeDomicilioPatente cambioDeDomicilio = (CambioDeDomicilioPatente)this._ventana.CambioDeDomicilioPatente;
 
-                    if (((CambioDeDomicilio)cambioDeDomicilio).Marca != null)
-                        this._ventana.Marca = this._marcaServicios.ConsultarMarcaConTodo(((CambioDeDomicilio)cambioDeDomicilio).Marca);
+                    if (((CambioDeDomicilioPatente)cambioDeDomicilio).Patente != null)
+                        this._ventana.Patente = this._patenteServicios.ConsultarPatenteConTodo(((CambioDeDomicilioPatente)cambioDeDomicilio).Patente);
 
-                    this._ventana.NombreMarca = ((Marca)this._ventana.Marca).Descripcion;
-                    this._ventana.AgenteApoderado = ((CambioDeDomicilio)cambioDeDomicilio).Agente;
+                    this._ventana.NombrePatente = ((Patente)this._ventana.Patente).Descripcion;
+                    this._ventana.AgenteApoderado = ((CambioDeDomicilioPatente)cambioDeDomicilio).Agente;
                     this._ventana.Poder = cambioDeDomicilio.Poder;
 
-                    CargarMarca();
+                    CargarPatente();
 
                     CargarInteresado("Anterior");
 
@@ -194,14 +194,14 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CambiosDeDomici
 
                     CargarPoder();
 
-                    LlenarListasPoderes((CambioDeDomicilio)this._ventana.CambioDeDomicilio);
+                    LlenarListasPoderes((CambioDeDomicilioPatente)this._ventana.CambioDeDomicilioPatente);
 
                     ValidarInteresado();
 
                 }
                 else
                 {
-                    CargarMarca();
+                    CargarPatente();
 
                     CargarInteresado("Anterior");
 
@@ -240,9 +240,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CambiosDeDomici
 
                 this._interesadosAnterior.Add(primerInteresado);
 
-                if (((CambioDeDomicilio)this._ventana.CambioDeDomicilio).InteresadoAnterior != null)
+                if (((CambioDeDomicilioPatente)this._ventana.CambioDeDomicilioPatente).InteresadoAnterior != null)
                 {
-                    this._ventana.InteresadoAnterior = this._interesadoServicios.ConsultarInteresadoConTodo(((CambioDeDomicilio)this._ventana.CambioDeDomicilio).InteresadoAnterior);
+                    this._ventana.InteresadoAnterior = this._interesadoServicios.ConsultarInteresadoConTodo(((CambioDeDomicilioPatente)this._ventana.CambioDeDomicilioPatente).InteresadoAnterior);
                     this._ventana.NombreInteresadoAnterior = ((Interesado)this._ventana.InteresadoAnterior).Nombre;
 
                     if ((Interesado)this._ventana.InteresadoAnterior != null)
@@ -266,9 +266,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CambiosDeDomici
 
                 this._interesadosActual.Add(primerInteresado);
 
-                if (((CambioDeDomicilio)this._ventana.CambioDeDomicilio).InteresadoActual != null)
+                if (((CambioDeDomicilioPatente)this._ventana.CambioDeDomicilioPatente).InteresadoActual != null)
                 {
-                    this._ventana.InteresadoActual = this._interesadoServicios.ConsultarInteresadoConTodo(((CambioDeDomicilio)this._ventana.CambioDeDomicilio).InteresadoActual);
+                    this._ventana.InteresadoActual = this._interesadoServicios.ConsultarInteresadoConTodo(((CambioDeDomicilioPatente)this._ventana.CambioDeDomicilioPatente).InteresadoActual);
                     this._ventana.NombreInteresadoActual = ((Interesado)this._ventana.InteresadoActual).Nombre;
 
                     if ((Interesado)this._ventana.InteresadoActual != null)
@@ -288,18 +288,18 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CambiosDeDomici
             }
         }
 
-        public void IrConsultarMarcas()
+        //public void IrConsultarPatentes()
+        //{
+        //    this.Navegar(new ConsultarPatentes());
+        //}
+
+        public CambioDeDomicilioPatente CargarCambioDeDomicilioDeLaPantalla()
         {
-            this.Navegar(new ConsultarMarcas());
-        }
 
-        public CambioDeDomicilio CargarCambioDeDomicilioDeLaPantalla()
-        {
+            CambioDeDomicilioPatente cambioDeDomicilio = (CambioDeDomicilioPatente)this._ventana.CambioDeDomicilioPatente;          
 
-            CambioDeDomicilio cambioDeDomicilio = (CambioDeDomicilio)this._ventana.CambioDeDomicilio;          
-
-            if (null != this._ventana.Marca)
-                cambioDeDomicilio.Marca = ((Marca)this._ventana.Marca).Id != int.MinValue ? (Marca)this._ventana.Marca : null;
+            if (null != this._ventana.Patente)
+                cambioDeDomicilio.Patente = ((Patente)this._ventana.Patente).Id != int.MinValue ? (Patente)this._ventana.Patente : null;
 
             if (null != this._ventana.InteresadoAnterior)
                 cambioDeDomicilio.InteresadoAnterior = ((Interesado)this._ventana.InteresadoAnterior).Id != int.MinValue ? (Interesado)this._ventana.InteresadoAnterior : null;
@@ -347,9 +347,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CambiosDeDomici
                 //Modifica o inserta los datos del Cambio de Domicilio
                 else if (this._ventana.TextoBotonModificar == Recursos.Etiquetas.btnAceptar)
                 {
-                    CambioDeDomicilio cambioDeDomicilio = CargarCambioDeDomicilioDeLaPantalla();
+                    CambioDeDomicilioPatente cambioDeDomicilio = CargarCambioDeDomicilioDeLaPantalla();
 
-                    bool exitoso = this._cambioDeDomicilioServicios.InsertarOModificar(cambioDeDomicilio, UsuarioLogeado.Hash);
+                    bool exitoso = this._cambioDeDomicilioPatenteServicios.InsertarOModificar(cambioDeDomicilio, UsuarioLogeado.Hash);
 
                     if ((exitoso) && (this._agregar == false))
                         this.Navegar(Recursos.MensajesConElUsuario.CambioDeDomicilioModificado, false);
@@ -402,7 +402,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CambiosDeDomici
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-                if (this._cambioDeDomicilioServicios.Eliminar((CambioDeDomicilio)this._ventana.CambioDeDomicilio, UsuarioLogeado.Hash))
+                if (this._cambioDeDomicilioPatenteServicios.Eliminar((CambioDeDomicilioPatente)this._ventana.CambioDeDomicilioPatente, UsuarioLogeado.Hash))
                 {
                     _paginaPrincipal.MensajeUsuario = Recursos.MensajesConElUsuario.CambioDeDomicilioEliminado;
                     this.Navegar(_paginaPrincipal);
@@ -620,29 +620,29 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CambiosDeDomici
             this._ventana.AgenteApoderadoFiltrado = primerAgente;               
         }
 
-        #region Marcas
+        #region Patentes
 
-        private void CargarMarca()
+        private void CargarPatente()
         {
-            this._marcas = new List<Marca>();
-            Marca primeraMarca = new Marca(int.MinValue);
-            this._marcas.Add(primeraMarca);
+            this._patentes = new List<Patente>();
+            Patente primeraPatente = new Patente(int.MinValue);
+            this._patentes.Add(primeraPatente);
 
-            if ((Marca)this._ventana.Marca != null)
+            if ((Patente)this._ventana.Patente != null)
             {
-                this._marcas.Add((Marca)this._ventana.Marca);
-                this._ventana.MarcasFiltradas = this._marcas;
-                this._ventana.MarcaFiltrada = (Marca)this._ventana.Marca;
+                this._patentes.Add((Patente)this._ventana.Patente);
+                this._ventana.PatentesFiltrados = this._patentes;
+                this._ventana.PatenteFiltrado = (Patente)this._ventana.Patente;
             }
             else
             {
-                this._ventana.MarcasFiltradas = this._marcas;
-                this._ventana.MarcaFiltrada = primeraMarca;
+                this._ventana.PatentesFiltrados = this._patentes;
+                this._ventana.PatenteFiltrado = primeraPatente;
             }                           
                  
         }
 
-        public void ConsultarMarcas()
+        public void ConsultarPatentes()
         {
  
             Mouse.OverrideCursor = Cursors.Wait;
@@ -654,30 +654,30 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CambiosDeDomici
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-                Marca primeraMarca = new Marca(int.MinValue);
+                Patente primeraPatente = new Patente(int.MinValue);
 
                
-                Marca marca = new Marca();
-                IList<Marca> marcasFiltradas;
-                marca.Descripcion = this._ventana.NombreMarcaFiltrar.ToUpper();
-                marca.Id = this._ventana.IdMarcaFiltrar.Equals("") ? 0 : int.Parse(this._ventana.IdMarcaFiltrar);
+                Patente marca = new Patente();
+                IList<Patente> marcasFiltradas;
+                marca.Descripcion = this._ventana.NombrePatenteFiltrar.ToUpper();
+                marca.Id = this._ventana.IdPatenteFiltrar.Equals("") ? 0 : int.Parse(this._ventana.IdPatenteFiltrar);
 
                 if ((!marca.Descripcion.Equals("")) || (marca.Id != 0))
-                    marcasFiltradas = this._marcaServicios.ObtenerMarcasFiltro(marca);
+                    marcasFiltradas = this._patenteServicios.ObtenerPatentesFiltro(marca);
                 else
-                    marcasFiltradas = new List<Marca>();
+                    marcasFiltradas = new List<Patente>();
 
-                if (marcasFiltradas.ToList<Marca>().Count != 0)
+                if (marcasFiltradas.ToList<Patente>().Count != 0)
                 {
-                    marcasFiltradas.Insert(0, primeraMarca);
-                    this._ventana.MarcasFiltradas = marcasFiltradas.ToList<Marca>();
-                    this._ventana.MarcaFiltrada = primeraMarca;
+                    marcasFiltradas.Insert(0, primeraPatente);
+                    this._ventana.PatentesFiltrados = marcasFiltradas.ToList<Patente>();
+                    this._ventana.PatenteFiltrado = primeraPatente;
                 }
                 else
                 {
-                    marcasFiltradas.Insert(0, primeraMarca);
-                    this._ventana.MarcasFiltradas = this._marcas;
-                    this._ventana.MarcaFiltrada = primeraMarca;
+                    marcasFiltradas.Insert(0, primeraPatente);
+                    this._ventana.PatentesFiltrados = this._patentes;
+                    this._ventana.PatenteFiltrado = primeraPatente;
                     this._ventana.Mensaje(Recursos.MensajesConElUsuario.NoHayResultados, 1);
                 }
 
@@ -714,7 +714,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CambiosDeDomici
             }
         }        
 
-        public bool CambiarMarca()
+        public bool CambiarPatente()
         {
             Mouse.OverrideCursor = Cursors.Wait;
 
@@ -728,12 +728,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CambiosDeDomici
                 #endregion
 
 
-                if (this._ventana.MarcaFiltrada != null)
+                if (this._ventana.PatenteFiltrado != null)
                 {
-                    this._ventana.Marca = this._ventana.MarcaFiltrada;
-                    this._ventana.NombreMarca = ((Marca)this._ventana.MarcaFiltrada).Descripcion;
-                    this._marcas.RemoveAt(0);
-                    this._marcas.Add((Marca)this._ventana.MarcaFiltrada);
+                    this._ventana.Patente = this._ventana.PatenteFiltrado;
+                    this._ventana.NombrePatente = ((Patente)this._ventana.PatenteFiltrado).Descripcion;
+                    this._patentes.RemoveAt(0);
+                    this._patentes.Add((Patente)this._ventana.PatenteFiltrado);
                     retorno = true;
                 }
 
@@ -1405,7 +1405,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CambiosDeDomici
             this._poderes = new List<Poder>();
             this._poderes.Add(primerPoder);
 
-            if (((CambioDeDomicilio)this._ventana.CambioDeDomicilio).Poder != null)
+            if (((CambioDeDomicilioPatente)this._ventana.CambioDeDomicilioPatente).Poder != null)
             {
                 this._poderes.Add((Poder)this._ventana.Poder);
                 this._ventana.PoderesFiltrados = this._poderes;
@@ -1586,7 +1586,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CambiosDeDomici
             return retorno;
         }        
 
-        public void LlenarListasPoderes(CambioDeDomicilio cambioDeDomicilio)
+        public void LlenarListasPoderes(CambioDeDomicilioPatente cambioDeDomicilio)
         {
             if (cambioDeDomicilio.InteresadoActual != null)
                 this._poderesInteresadoActual = this._poderServicios.ConsultarPoderesPorInteresado(cambioDeDomicilio.InteresadoActual);
@@ -1702,12 +1702,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CambiosDeDomici
 
         private void ImprimirPlanillaVienen()
         {
-            if (ValidarMarcaAntesDeImprimirCarpeta())
+            if (ValidarPatenteAntesDeImprimirCarpeta())
             {
                 string paqueteProcedimiento = "PCK_MYP_MDOMICILIOS";
                 string procedimiento = "P5";
                 ParametroProcedimiento parametro =
-                    new ParametroProcedimiento(((CambioDeDomicilio)this._ventana.CambioDeDomicilio).Id, UsuarioLogeado, 1, paqueteProcedimiento, procedimiento);
+                    new ParametroProcedimiento(((CambioDeDomicilioPatente)this._ventana.CambioDeDomicilioPatente).Id, UsuarioLogeado, 1, paqueteProcedimiento, procedimiento);
 
                 this.LlamarProcedimientoDeBaseDeDatos(parametro, Recursos.Etiquetas.btnPlanillaVienen);
             }
@@ -1715,12 +1715,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CambiosDeDomici
 
         private void ImprimirPlanillaVan()
         {
-            if (ValidarMarcaAntesDeImprimirCarpeta())
+            if (ValidarPatenteAntesDeImprimirCarpeta())
             {
                 string paqueteProcedimiento = "PCK_MYP_MDOMICILIOS";
                 string procedimiento = "P4";
                 ParametroProcedimiento parametro =
-                    new ParametroProcedimiento(((CambioDeDomicilio)this._ventana.CambioDeDomicilio).Id, UsuarioLogeado, 1, paqueteProcedimiento, procedimiento);
+                    new ParametroProcedimiento(((CambioDeDomicilioPatente)this._ventana.CambioDeDomicilioPatente).Id, UsuarioLogeado, 1, paqueteProcedimiento, procedimiento);
 
                 this.LlamarProcedimientoDeBaseDeDatos(parametro, Recursos.Etiquetas.btnPlanillaVan);
             }
@@ -1728,71 +1728,71 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CambiosDeDomici
 
         private void ImprimirCarpeta()
         {
-            if (ValidarMarcaAntesDeImprimirCarpeta())
+            if (ValidarPatenteAntesDeImprimirCarpeta())
             {
                 string paqueteProcedimiento = "PCK_MYP_MDOMICILIOS";
                 string procedimiento = "P3";
                 ParametroProcedimiento parametro =
-                    new ParametroProcedimiento(((CambioDeDomicilio)this._ventana.CambioDeDomicilio).Id, UsuarioLogeado, 1, paqueteProcedimiento, procedimiento);
+                    new ParametroProcedimiento(((CambioDeDomicilioPatente)this._ventana.CambioDeDomicilioPatente).Id, UsuarioLogeado, 1, paqueteProcedimiento, procedimiento);
 
                 this.LlamarProcedimientoDeBaseDeDatos(parametro, Recursos.Etiquetas.btnCarpeta);
             }
         }
 
-        private bool ValidarMarcaAntesDeImprimirCarpeta()
+        private bool ValidarPatenteAntesDeImprimirCarpeta()
         {
             return true;
         }
 
         private void ImprimirAnexo()
         {
-            if (ValidarMarcaAntesDeImprimirCarpeta())
+            if (ValidarPatenteAntesDeImprimirCarpeta())
             {
                 string paqueteProcedimiento = "PCK_MYP_MDOMICILIOS";
                 string procedimiento = "P2";
                 ParametroProcedimiento parametro =
-                    new ParametroProcedimiento(((CambioDeDomicilio)this._ventana.CambioDeDomicilio).Id, UsuarioLogeado, 1, paqueteProcedimiento, procedimiento);
+                    new ParametroProcedimiento(((CambioDeDomicilioPatente)this._ventana.CambioDeDomicilioPatente).Id, UsuarioLogeado, 1, paqueteProcedimiento, procedimiento);
 
                 this.LlamarProcedimientoDeBaseDeDatos(parametro, Recursos.Etiquetas.btnAnexo);
             }
         }
 
-        private bool ValidarMarcaAntesDeImprimirAnexo()
+        private bool ValidarPatenteAntesDeImprimirAnexo()
         {
             return true;
         }
 
         private void ImprimirPlanilla()
         {
-            if (ValidarMarcaAntesDeImprimirCarpeta())
+            if (ValidarPatenteAntesDeImprimirCarpeta())
             {
                 string paqueteProcedimiento = "PCK_MYP_MDOMICILIOS";
                 string procedimiento = "P1";
                 ParametroProcedimiento parametro =
-                    new ParametroProcedimiento(((CambioDeDomicilio)this._ventana.CambioDeDomicilio).Id, UsuarioLogeado, 1, paqueteProcedimiento, procedimiento);
+                    new ParametroProcedimiento(((CambioDeDomicilioPatente)this._ventana.CambioDeDomicilioPatente).Id, UsuarioLogeado, 1, paqueteProcedimiento, procedimiento);
 
                 this.LlamarProcedimientoDeBaseDeDatos(parametro, Recursos.Etiquetas.btnPlanilla);
             }
         }
 
-        private bool ValidarMarcaAntesDeImprimirPlanilla()
+        private bool ValidarPatenteAntesDeImprimirPlanilla()
         {
             return true;
         }
         private void ImprimirVanDir()
         {
-            if (ValidarMarcaAntesDeImprimirCarpeta())
+            if (ValidarPatenteAntesDeImprimirCarpeta())
             {
                 string paqueteProcedimiento = "PCK_MYP_MDOMICILIOS";
                 string procedimiento = "P6";
                 ParametroProcedimiento parametro =
-                    new ParametroProcedimiento(((CambioDeDomicilio)this._ventana.CambioDeDomicilio).Id, UsuarioLogeado, 1, paqueteProcedimiento, procedimiento);
+                    new ParametroProcedimiento(((CambioDeDomicilioPatente)this._ventana.CambioDeDomicilioPatente).Id, UsuarioLogeado, 1, paqueteProcedimiento, procedimiento);
 
                 this.LlamarProcedimientoDeBaseDeDatos(parametro, Recursos.Etiquetas.btnPlanilla);
             }
         }
 
-        private bool ValidarMarcaAntesDeImprimirVanDir()
+        private bool ValidarPatenteAntesDeImprimirVanDir()
         {
             return true;
         }

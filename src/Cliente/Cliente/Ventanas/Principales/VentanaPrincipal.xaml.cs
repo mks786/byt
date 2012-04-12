@@ -590,22 +590,22 @@ namespace Trascend.Bolet.Cliente.Ventanas.Principales
 
         private void _menuItemCambiosDeNombrePatentesConsultar_Click(object sender, RoutedEventArgs e)
         {
-            this._presentador.AgregarCambioDeDomicilioPatentes();
+            this._presentador.ConsultarCambiosDeNombrePatentes();
         }
 
         private void _menuItemCambiosNombrePatentesAgregar_Click(object sender, RoutedEventArgs e)
         {
-            this._presentador.AgregarCambioDeDomicilioPatentes();
+            this._presentador.AgregarCambioDeNombrePatentes();
         }
 
         private void _menuItemCambiosPeticionarioPatentesConsultar_Click(object sender, RoutedEventArgs e)
         {
-            this._presentador.AgregarCambioDeDomicilioPatentes();
+            this._presentador.ConsultarCambioPeticionarioPatentes();
         }
 
         private void _menuItemCambiosPeticionarioPatentesAgregar_Click(object sender, RoutedEventArgs e)
         {
-            this._presentador.AgregarCambioDeDomicilioPatentes();
+            this._presentador.AgregarCambioPeticionarioPatentes();
         }
 
         private void _menuItemLicenciasPatentesConsultar_Click(object sender, RoutedEventArgs e)

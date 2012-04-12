@@ -2,22 +2,22 @@
 using System.Windows.Controls;
 using System.Windows.Input;
 using Trascend.Bolet.Cliente.Ayuda;
-using Trascend.Bolet.Cliente.Contratos.TraspasosPatentes.CambiosDeDomicilioPatentes;
-using Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CambiosDeDomicilioPatentes;
+using Trascend.Bolet.Cliente.Contratos.TraspasosPatentes.CambiosDePeticionarioPatentes;
+using Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CambiosDePeticionarioPatentes;
 
-namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.CambiosDeDomicilioPatentes
+namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.CambiosPeticionarioPatentes
 {
     /// <summary>
-    /// Interaction logic for CambiosDeDomicilio.xaml
+    /// Interaction logic for ConsultarTodosPoder.xaml
     /// </summary>
-    public partial class ConsultarCambiosDeDomicilioPatentes : Page, IConsultarCambiosDeDomicilioPatentes
+    public partial class ConsultarCambiosPeticionarioPatentes : Page, IConsultarCambiosDePeticionarioPatentes
     {
         private GridViewColumnHeader _CurSortCol = null;
         private SortAdorner _CurAdorner = null;
-        private PresentadorConsultarCambiosDeDomicilioPatentes _presentador;
+        private PresentadorConsultarCambiosDePeticionarioPatentes _presentador;
         private bool _cargada;
 
-        #region IConsultarCambiosDeDomicilioPatentes
+        #region IConsultarCambiosDePeticionario
 
         public object Resultados
         {
@@ -35,7 +35,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.CambiosDeDomicilioPa
             set { this._txtPatenteNombre.Text = value; }
         }
 
-        public object CambioDeDomicilioSeleccionada
+        public object CambioPeticionarioSeleccionada
         {
             get { return this._lstResultados.SelectedItem; }
         }
@@ -49,7 +49,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.CambiosDeDomicilioPa
         {
             get { return this._txtNombrePatenteFiltrar.Text; }
         }
-
+     
         public string Fecha
         {
             get { return this._dpkFecha.SelectedDate.ToString(); }
@@ -66,6 +66,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.CambiosDeDomicilioPa
             get { return this._lstPatentes.SelectedItem; }
             set { this._lstPatentes.SelectedItem = value; }
         }
+
         public bool EstaCargada
         {
             get { return this._cargada; }
@@ -94,7 +95,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.CambiosDeDomicilioPa
             get { return this._lstResultados; }
             set { this._lstResultados = value; }
         }
-
+   
+   
         public void Mensaje(string mensaje, int opcion)
         {
             if (opcion == 0)
@@ -113,11 +115,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.CambiosDeDomicilioPa
         /// <summary>
         /// Constructor predeterminado
         /// </summary>
-        public ConsultarCambiosDeDomicilioPatentes()
+        public ConsultarCambiosPeticionarioPatentes()
         {
             InitializeComponent();
             this._cargada = false;
-            this._presentador = new PresentadorConsultarCambiosDeDomicilioPatentes(this);
+            this._presentador = new PresentadorConsultarCambiosDePeticionarioPatentes(this);
         }
 
         private void _btnCancelar_Click(object sender, RoutedEventArgs e)
@@ -135,7 +137,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.CambiosDeDomicilioPa
 
         private void _lstResultados_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            this._presentador.IrConsultarCambioDeDomicilioPatentes();
+            this._presentador.IrConsultarCambioPeticionario();
         }
 
         private void _Ordenar_Click(object sender, RoutedEventArgs e)
@@ -154,6 +156,39 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.CambiosDeDomicilioPa
                 this._presentador.ActualizarTitulo();
         }
 
+        private void _btnConsultarPatente_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.BuscarPatente();
+        }
+
+        //private void _btnConsultarAsociado_Click(object sender, RoutedEventArgs e)
+        //{
+        //    this._presentador.BuscarAsociado();
+        //}
+
+        //private void _btnConsultarInteresado_Click(object sender, RoutedEventArgs e)
+        //{
+        //    this._presentador.BuscarInteresado();
+        //}
+
+        private void _btnConsultarPatenteFocus(object sender, RoutedEventArgs e)
+        {
+            this._btnConsultar.IsDefault = false;
+            this._btnConsultarPatente.IsDefault = true;          
+        }
+
+        private void _btnConsultarInteresadoFocus(object sender, RoutedEventArgs e)
+        {
+            this._btnConsultar.IsDefault = false;
+            this._btnConsultarPatente.IsDefault = false;            
+        }
+
+        private void _btnConsultarFocus(object sender, RoutedEventArgs e)
+        {
+            this._btnConsultar.IsDefault = true;
+            this._btnConsultarPatente.IsDefault = false;            
+        }
+
         /// <summary>
         /// Método que se encarga de posicionar el cursor en los campos del filto
         /// </summary>
@@ -164,19 +199,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.CambiosDeDomicilioPa
             {
                 todosCamposVacios = false;
                 this._txtId.Focus();
-            }
-
-            //if (!this._txtDescripcion.Text.Equals(""))
-            //{
-            //    todosCamposVacios = false;
-            //    this._txtDescripcion.Focus();
-            //}
-
-            //if (!this._txtFichas.Text.Equals(""))
-            //{
-            //    todosCamposVacios = false;
-            //    this._txtFichas.Focus();
-            //}
+            }           
 
             if (!this._dpkFecha.Text.Equals(""))
             {
@@ -187,59 +210,44 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.CambiosDeDomicilioPa
             if (todosCamposVacios)
                 this._txtId.Focus();
         }
-
-        private void _btnConsultarPatente_Click(object sender, RoutedEventArgs e)
+        
+        private void _dpkFecha_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
         {
-            this._presentador.BuscarPatente();
+
         }
 
-        private void _btnConsultarPatenteFocus(object sender, RoutedEventArgs e)
+        private void _btnTransferir_Click(object sender, RoutedEventArgs e)
         {
-            this._btnConsultar.IsDefault = false;
-            this._btnConsultarPatente.IsDefault = true;
-            //this._btnConsultarInteresado.IsDefault = false;
-        }
 
-        private void _btnConsultarFocus(object sender, RoutedEventArgs e)
-        {
-            this._btnConsultar.IsDefault = true;
-            this._btnConsultarPatente.IsDefault = false;
-            //this._btnConsultarInteresado.IsDefault = false;
         }
 
         private void _txtPatenteNombre_GotFocus(object sender, RoutedEventArgs e)
         {
-            GestionarVisibilidadDatosDePatente(Visibility.Collapsed);
-            GestionarVisibilidadFiltroPatente(Visibility.Visible);
+            this._txtPatenteNombre.Visibility = Visibility.Collapsed;
+
+            this._txtIdPatenteFiltrar.Visibility = Visibility.Visible;
+            this._txtNombrePatenteFiltrar.Visibility = Visibility.Visible;
+            this._btnConsultarPatente.Visibility = Visibility.Visible;
+            this._lstPatentes.Visibility = Visibility.Visible;
+            this._lblCodigo.Visibility = Visibility.Visible;
+            this._lblNombre.Visibility = Visibility.Visible;
         }
 
         private void _lstPatentes_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             if (this._presentador.ElegirPatente())
             {
-                GestionarVisibilidadDatosDePatente(Visibility.Visible);
-                GestionarVisibilidadFiltroPatente(Visibility.Collapsed);
+                this._txtPatenteNombre.Visibility = Visibility.Visible;
+
+                this._txtIdPatenteFiltrar.Visibility = Visibility.Collapsed;
+                this._txtNombrePatenteFiltrar.Visibility = Visibility.Collapsed;
+                this._btnConsultarPatente.Visibility = Visibility.Collapsed;
+                this._lstPatentes.Visibility = Visibility.Collapsed;
+                this._lblCodigo.Visibility = Visibility.Collapsed;
+                this._lblNombre.Visibility = Visibility.Collapsed;
             }
         }
 
-        private void GestionarVisibilidadFiltroPatente(object value)
-        {
-            this._txtIdPatenteFiltrar.Visibility = (System.Windows.Visibility)value;
-            this._txtNombrePatenteFiltrar.Visibility = (System.Windows.Visibility)value;
-            this._btnConsultarPatente.Visibility = (System.Windows.Visibility)value;
-            this._lstPatentes.Visibility = (System.Windows.Visibility)value;
-            this._lblCodigo.Visibility = (System.Windows.Visibility)value;
-            this._lblNombre.Visibility = (System.Windows.Visibility)value;
-        }
-
-        private void GestionarVisibilidadDatosDePatente(object value)
-        {
-            this._txtPatenteNombre.Visibility = (System.Windows.Visibility)value;
-        }
-
-        private void _dpkFecha_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
+     
     }
 }

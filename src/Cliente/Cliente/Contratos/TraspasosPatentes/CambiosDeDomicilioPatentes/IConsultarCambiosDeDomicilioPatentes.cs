@@ -7,19 +7,19 @@ namespace Trascend.Bolet.Cliente.Contratos.TraspasosPatentes.CambiosDeDomicilioP
     {
         string Id { get; }
 
-        string NombreMarca { set; }
+        string NombrePatente { set; }
 
         object CambioDeDomicilioSeleccionada { get; }
 
         object Resultados { get; set; }
 
-        string IdMarcaFiltrar { get; }
+        string IdPatenteFiltrar { get; }
 
-        string NombreMarcaFiltrar { get; }
+        string NombrePatenteFiltrar { get; }
 
-        object Marcas { get; set; }
+        object Patentes { get; set; }
 
-        object Marca { get; set; }
+        object Patente { get; set; }
 
         //string IdInteresadoFiltrar { get; }
 

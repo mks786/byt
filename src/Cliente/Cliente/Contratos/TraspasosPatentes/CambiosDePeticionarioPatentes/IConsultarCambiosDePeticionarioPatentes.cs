@@ -1,15 +1,16 @@
 ﻿using System.Windows.Controls;
 using Trascend.Bolet.Cliente.Ayuda;
 
-namespace Trascend.Bolet.Cliente.Contratos.TraspasosPatentes.CambiosDeNombrePatentes
+namespace Trascend.Bolet.Cliente.Contratos.TraspasosPatentes.CambiosDePeticionarioPatentes
 {
-    interface IConsultarCambiosDeNombrePatentes : IPaginaBase
+    interface IConsultarCambiosDePeticionarioPatentes : IPaginaBase
     {
+        
         string Id { get; }
 
         string NombrePatente { set; }
 
-        object CambioDeNombreSeleccionada { get; }
+        object CambioPeticionarioSeleccionada { get; }
 
         object Resultados { get; set; }
 
@@ -19,19 +20,7 @@ namespace Trascend.Bolet.Cliente.Contratos.TraspasosPatentes.CambiosDeNombrePate
 
         object Patentes { get; set; }
 
-        object Patente { get; set; }
-
-        //string IdInteresadoFiltrar { get; }
-
-        //string NombreInteresadoFiltrar { get; }
-
-        //object Interesados { get; set; }
-
-        //object Interesado { get; set; }
-
-        //string DescripcionFiltrar { get; }
-
-        //string FichasFiltrar { get; }
+        object Patente { get; set; }    
 
         string Fecha { get; }
 
@@ -44,5 +33,6 @@ namespace Trascend.Bolet.Cliente.Contratos.TraspasosPatentes.CambiosDeNombrePate
         void Mensaje(string mensaje, int opcion);
 
         string TotalHits { set; }
+        
     }
 }

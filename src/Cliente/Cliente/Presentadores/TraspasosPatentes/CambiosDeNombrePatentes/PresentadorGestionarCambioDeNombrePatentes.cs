@@ -12,7 +12,7 @@ using NLog;
 using Trascend.Bolet.Cliente.Ayuda;
 using Trascend.Bolet.Cliente.Contratos.TraspasosPatentes.CambiosDeNombrePatentes;
 using Trascend.Bolet.Cliente.Ventanas.Principales;
-using Trascend.Bolet.Cliente.Ventanas.Marcas;
+//using Trascend.Bolet.Cliente.Ventanas.Patentes;
 using Trascend.Bolet.ObjetosComunes.ContratosServicios;
 using Trascend.Bolet.ObjetosComunes.Entidades;
 using Trascend.Bolet.Cliente.Ventanas.Auditorias;
@@ -27,7 +27,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CambiosDeNombre
         private bool _agregar = true;
         private IGestionarCambioDeNombrePatentes _ventana;
 
-        private IMarcaServicios _marcaServicios;
+        private IPatenteServicios _marcaServicios;
         private IAnaquaServicios _anaquaServicios;
         private IAsociadoServicios _asociadoServicios;
         private IAgenteServicios _agenteServicios;
@@ -45,13 +45,13 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CambiosDeNombre
         private IOperacionServicios _operacionServicios;
         private IBusquedaServicios _busquedaServicios;
         private IStatusWebServicios _statusWebServicios;
-        private ICambioDeNombreServicios _cambioDeNombreServicios;
+        private ICambioDeNombrePatenteServicios _cambioDeNombrePatenteServicios;
 
         private IList<Asociado> _asociados;
         private IList<Interesado> _interesados;
         private IList<Corresponsal> _corresponsales;
         private IList<Auditoria> _auditorias;
-        private IList<Marca> _marcas;
+        private IList<Patente> _marcas;
         private IList<Interesado> _interesadosActual;
         private IList<Interesado> _interesadosAnterior;
         private IList<Agente> _agentesApoderados;
@@ -65,24 +65,24 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CambiosDeNombre
         /// Constructor Predeterminado
         /// </summary>
         /// <param name="ventana">página que satisface el contrato</param>
-        public PresentadorGestionarCambioDeNombrePatentes(IGestionarCambioDeNombrePatentes ventana, object CambioDeNombre)
+        public PresentadorGestionarCambioDeNombrePatentes(IGestionarCambioDeNombrePatentes ventana, object CambioDeNombrePatente)
         {
             try
             {
                 this._ventana = ventana;                
 
-                if (CambioDeNombre != null)
+                if (CambioDeNombrePatente != null)
                 {
-                    this._ventana.CambioDeNombre = CambioDeNombre;
+                    this._ventana.CambioDeNombrePatente = CambioDeNombrePatente;
                     _agregar = false;
                 }
                 else
                 {
-                    CambioDeNombre cambioNombreAgregar = new CambioDeNombre();
-                    this._ventana.CambioDeNombre = cambioNombreAgregar;
+                    CambioDeNombrePatente cambioNombreAgregar = new CambioDeNombrePatente();
+                    this._ventana.CambioDeNombrePatente = cambioNombreAgregar;
 
-                    ((CambioDeNombre)this._ventana.CambioDeNombre).Fecha= DateTime.Now;
-                    this._ventana.Marca = null;
+                    ((CambioDeNombrePatente)this._ventana.CambioDeNombrePatente).Fecha= DateTime.Now;
+                    this._ventana.Patente = null;
                     this._ventana.Poder = null;
                     this._ventana.InteresadoAnterior = null;
                     this._ventana.InteresadoActual = null;
@@ -98,8 +98,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CambiosDeNombre
 
                 #region Servicios
 
-                this._marcaServicios = (IMarcaServicios)Activator.GetObject(typeof(IMarcaServicios),
-                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["MarcaServicios"]);
+                this._marcaServicios = (IPatenteServicios)Activator.GetObject(typeof(IPatenteServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["PatenteServicios"]);
                 this._asociadoServicios = (IAsociadoServicios)Activator.GetObject(typeof(IAsociadoServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["AsociadoServicios"]);
                 this._agenteServicios = (IAgenteServicios)Activator.GetObject(typeof(IAgenteServicios),
@@ -134,7 +134,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CambiosDeNombre
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["BusquedaServicios"]);
                 this._statusWebServicios = (IStatusWebServicios)Activator.GetObject(typeof(IStatusWebServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["StatusWebServicios"]);
-                this._cambioDeNombreServicios = (ICambioDeNombreServicios)Activator.GetObject(typeof(ICambioDeNombreServicios),
+                this._cambioDeNombrePatenteServicios = (ICambioDeNombrePatenteServicios)Activator.GetObject(typeof(ICambioDeNombrePatenteServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["CambioDeNombreServicios"]);
 
                 #endregion
@@ -174,17 +174,17 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CambiosDeNombre
 
                 if (_agregar == false)
                 {
-                    CambioDeNombre CambioDeNombre = (CambioDeNombre)this._ventana.CambioDeNombre;
+                    CambioDeNombrePatente CambioDeNombrePatente = (CambioDeNombrePatente)this._ventana.CambioDeNombrePatente;
 
-                    if (((CambioDeNombre)CambioDeNombre).Marca != null)
-                        this._ventana.Marca = this._marcaServicios.ConsultarMarcaConTodo(((CambioDeNombre)CambioDeNombre).Marca);
+                    if (((CambioDeNombrePatente)CambioDeNombrePatente).Patente != null)
+                        this._ventana.Patente = this._marcaServicios.ConsultarPatenteConTodo(((CambioDeNombrePatente)CambioDeNombrePatente).Patente);
 
-                    this._ventana.NombreMarca = ((Marca)this._ventana.Marca).Descripcion;
-                    this._ventana.AgenteApoderado = ((CambioDeNombre)CambioDeNombre).Agente;
-                    this._ventana.Poder = CambioDeNombre.Poder;
+                    this._ventana.NombrePatente = ((Patente)this._ventana.Patente).Descripcion;
+                    this._ventana.AgenteApoderado = ((CambioDeNombrePatente)CambioDeNombrePatente).Agente;
+                    this._ventana.Poder = CambioDeNombrePatente.Poder;
 
 
-                    CargarMarca();
+                    CargarPatente();
 
                     CargarInteresado("Anterior");
 
@@ -194,14 +194,14 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CambiosDeNombre
 
                     CargarPoder();
 
-                    LlenarListasPoderes((CambioDeNombre)this._ventana.CambioDeNombre);
+                    LlenarListasPoderes((CambioDeNombrePatente)this._ventana.CambioDeNombrePatente);
 
                     ValidarInteresado();
 
                 }
                 else
                 {
-                    CargarMarca();
+                    CargarPatente();
 
                     CargarInteresado("Anterior");
 
@@ -240,9 +240,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CambiosDeNombre
 
                 this._interesadosAnterior.Add(primerInteresado);
 
-                if (((CambioDeNombre)this._ventana.CambioDeNombre).InteresadoAnterior != null)
+                if (((CambioDeNombrePatente)this._ventana.CambioDeNombrePatente).InteresadoAnterior != null)
                 {
-                    this._ventana.InteresadoAnterior = this._interesadoServicios.ConsultarInteresadoConTodo(((CambioDeNombre)this._ventana.CambioDeNombre).InteresadoAnterior);
+                    this._ventana.InteresadoAnterior = this._interesadoServicios.ConsultarInteresadoConTodo(((CambioDeNombrePatente)this._ventana.CambioDeNombrePatente).InteresadoAnterior);
                     this._ventana.NombreInteresadoAnterior = ((Interesado)this._ventana.InteresadoAnterior).Nombre;
 
                     if ((Interesado)this._ventana.InteresadoAnterior != null)
@@ -266,9 +266,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CambiosDeNombre
 
                 this._interesadosActual.Add(primerInteresado);
 
-                if (((CambioDeNombre)this._ventana.CambioDeNombre).InteresadoActual != null)
+                if (((CambioDeNombrePatente)this._ventana.CambioDeNombrePatente).InteresadoActual != null)
                 {
-                    this._ventana.InteresadoActual = this._interesadoServicios.ConsultarInteresadoConTodo(((CambioDeNombre)this._ventana.CambioDeNombre).InteresadoActual);
+                    this._ventana.InteresadoActual = this._interesadoServicios.ConsultarInteresadoConTodo(((CambioDeNombrePatente)this._ventana.CambioDeNombrePatente).InteresadoActual);
                     this._ventana.NombreInteresadoActual = ((Interesado)this._ventana.InteresadoActual).Nombre;
 
                     if ((Interesado)this._ventana.InteresadoActual != null)
@@ -288,18 +288,18 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CambiosDeNombre
             }
         }                       
 
-        public void IrConsultarMarcas()
+        //public void IrConsultarPatentes()
+        //{
+        //    this.Navegar(new ConsultarPatentes());
+        //}
+
+        public CambioDeNombrePatente CargarCambioDeNombreDeLaPantalla()
         {
-            this.Navegar(new ConsultarMarcas());
-        }
 
-        public CambioDeNombre CargarCambioDeNombreDeLaPantalla()
-        {
+            CambioDeNombrePatente cambioDeNombre = (CambioDeNombrePatente)this._ventana.CambioDeNombrePatente;            
 
-            CambioDeNombre cambioDeNombre = (CambioDeNombre)this._ventana.CambioDeNombre;            
-
-            if (null != this._ventana.Marca)
-                cambioDeNombre.Marca = ((Marca)this._ventana.Marca).Id != int.MinValue ? (Marca)this._ventana.Marca : null;
+            if (null != this._ventana.Patente)
+                cambioDeNombre.Patente = ((Patente)this._ventana.Patente).Id != int.MinValue ? (Patente)this._ventana.Patente : null;
 
             if (null != this._ventana.InteresadoAnterior)
                 cambioDeNombre.InteresadoAnterior = ((Interesado)this._ventana.InteresadoAnterior).Id != int.MinValue ? (Interesado)this._ventana.InteresadoAnterior : null;
@@ -312,8 +312,6 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CambiosDeNombre
 
             if (null != this._ventana.Poder)
                 cambioDeNombre.Poder = ((Poder)this._ventana.Poder).Id != int.MinValue ? (Poder)this._ventana.Poder : null;
-
-            (cambioDeNombre.Marca).BEtiqueta = ((CambioDeNombre)this._ventana.CambioDeNombre).Marca.BEtiqueta;
 
             return cambioDeNombre;
         }
@@ -349,9 +347,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CambiosDeNombre
                 //Modifica los datos del Cambio De Nombre
                 else if (this._ventana.TextoBotonModificar == Recursos.Etiquetas.btnAceptar)
                 {
-                    CambioDeNombre cambioDeNombre = CargarCambioDeNombreDeLaPantalla();                   
+                    CambioDeNombrePatente cambioDeNombre = CargarCambioDeNombreDeLaPantalla();                   
 
-                    bool exitoso = this._cambioDeNombreServicios.InsertarOModificar(cambioDeNombre, UsuarioLogeado.Hash);
+                    bool exitoso = this._cambioDeNombrePatenteServicios.InsertarOModificar(cambioDeNombre, UsuarioLogeado.Hash);
 
                     if ((exitoso) && (this._agregar == false))
                         this.Navegar(Recursos.MensajesConElUsuario.CambioDeNombreModificado, false);
@@ -404,7 +402,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CambiosDeNombre
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-                if (this._cambioDeNombreServicios.Eliminar((CambioDeNombre)this._ventana.CambioDeNombre, UsuarioLogeado.Hash))
+                if (this._cambioDeNombrePatenteServicios.Eliminar((CambioDeNombrePatente)this._ventana.CambioDeNombrePatente, UsuarioLogeado.Hash))
                 {
                     _paginaPrincipal.MensajeUsuario = Recursos.MensajesConElUsuario.CambioDeNombreEliminado;
                     this.Navegar(_paginaPrincipal);
@@ -618,28 +616,28 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CambiosDeNombre
             this._ventana.AgenteApoderadoFiltrado = primerAgente;
         }
 
-        #region Marcas
+        #region Patentes
 
-        private void CargarMarca()
+        private void CargarPatente()
         {
-            this._marcas = new List<Marca>();
-            Marca primeraMarca = new Marca(int.MinValue);
-            this._marcas.Add(primeraMarca);
+            this._marcas = new List<Patente>();
+            Patente primeraPatente = new Patente(int.MinValue);
+            this._marcas.Add(primeraPatente);
 
-            if ((Marca)this._ventana.Marca != null)
+            if ((Patente)this._ventana.Patente != null)
             {
-                this._marcas.Add((Marca)this._ventana.Marca);
-                this._ventana.MarcasFiltradas = this._marcas;
-                this._ventana.MarcaFiltrada = (Marca)this._ventana.Marca;
+                this._marcas.Add((Patente)this._ventana.Patente);
+                this._ventana.PatentesFiltradas = this._marcas;
+                this._ventana.PatenteFiltrada = (Patente)this._ventana.Patente;
             }
             else
             {
-                this._ventana.MarcasFiltradas = this._marcas;
-                this._ventana.MarcaFiltrada = primeraMarca;
+                this._ventana.PatentesFiltradas = this._marcas;
+                this._ventana.PatenteFiltrada = primeraPatente;
             }
         }
 
-        public void ConsultarMarcas()
+        public void ConsultarPatentes()
         {
             Mouse.OverrideCursor = Cursors.Wait;
 
@@ -650,30 +648,30 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CambiosDeNombre
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-                Marca primeraMarca = new Marca(int.MinValue);
+                Patente primeraPatente = new Patente(int.MinValue);
 
                 
-                Marca marca = new Marca();
-                IList<Marca> marcasFiltradas;
-                marca.Descripcion = this._ventana.NombreMarcaFiltrar.ToUpper();
-                marca.Id = this._ventana.IdMarcaFiltrar.Equals("") ? 0 : int.Parse(this._ventana.IdMarcaFiltrar);
+                Patente marca = new Patente();
+                IList<Patente> marcasFiltradas;
+                marca.Descripcion = this._ventana.NombrePatenteFiltrar.ToUpper();
+                marca.Id = this._ventana.IdPatenteFiltrar.Equals("") ? 0 : int.Parse(this._ventana.IdPatenteFiltrar);
 
                 if ((!marca.Descripcion.Equals("")) || (marca.Id != 0))
-                    marcasFiltradas = this._marcaServicios.ObtenerMarcasFiltro(marca);
+                    marcasFiltradas = this._marcaServicios.ObtenerPatentesFiltro(marca);
                 else
-                    marcasFiltradas = new List<Marca>();
+                    marcasFiltradas = new List<Patente>();
 
-                if (marcasFiltradas.ToList<Marca>().Count != 0)
+                if (marcasFiltradas.ToList<Patente>().Count != 0)
                 {
-                    marcasFiltradas.Insert(0, primeraMarca);
-                    this._ventana.MarcasFiltradas = marcasFiltradas.ToList<Marca>();
-                    this._ventana.MarcaFiltrada = primeraMarca;
+                    marcasFiltradas.Insert(0, primeraPatente);
+                    this._ventana.PatentesFiltradas = marcasFiltradas.ToList<Patente>();
+                    this._ventana.PatenteFiltrada = primeraPatente;
                 }
                 else
                 {
-                    marcasFiltradas.Insert(0, primeraMarca);
-                    this._ventana.MarcasFiltradas = this._marcas;
-                    this._ventana.MarcaFiltrada = primeraMarca;
+                    marcasFiltradas.Insert(0, primeraPatente);
+                    this._ventana.PatentesFiltradas = this._marcas;
+                    this._ventana.PatenteFiltrada = primeraPatente;
                     this._ventana.Mensaje(Recursos.MensajesConElUsuario.NoHayResultados, 1);
                 }
                 
@@ -708,7 +706,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CambiosDeNombre
             }
         }        
 
-        public bool CambiarMarca()
+        public bool CambiarPatente()
         {
             Mouse.OverrideCursor = Cursors.Wait;
 
@@ -722,12 +720,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CambiosDeNombre
                 #endregion
 
 
-                if (this._ventana.MarcaFiltrada != null)
+                if (this._ventana.PatenteFiltrada != null)
                 {
-                    this._ventana.Marca = this._ventana.MarcaFiltrada;
-                    this._ventana.NombreMarca = ((Marca)this._ventana.MarcaFiltrada).Descripcion;
+                    this._ventana.Patente = this._ventana.PatenteFiltrada;
+                    this._ventana.NombrePatente = ((Patente)this._ventana.PatenteFiltrada).Descripcion;
                     this._marcas.RemoveAt(0);
-                    this._marcas.Add((Marca)this._ventana.MarcaFiltrada);
+                    this._marcas.Add((Patente)this._ventana.PatenteFiltrada);
                     retorno = true;
                 }
 
@@ -1399,7 +1397,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CambiosDeNombre
             this._poderes = new List<Poder>();
             this._poderes.Add(primerPoder);
 
-            if (((CambioDeNombre)this._ventana.CambioDeNombre).Poder != null)
+            if (((CambioDeNombrePatente)this._ventana.CambioDeNombrePatente).Poder != null)
             {
                 this._poderes.Add((Poder)this._ventana.Poder);
                 this._ventana.PoderesFiltrados = this._poderes;
@@ -1578,7 +1576,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CambiosDeNombre
             return retorno;
         }        
 
-        public void LlenarListasPoderes(CambioDeNombre cambioDeNombre)
+        public void LlenarListasPoderes(CambioDeNombrePatente cambioDeNombre)
         {
             if (cambioDeNombre.InteresadoActual != null)
                 this._poderesInteresadoActual = this._poderServicios.ConsultarPoderesPorInteresado(cambioDeNombre.InteresadoActual);
@@ -1687,12 +1685,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CambiosDeNombre
 
         private void ImprimirPlanillaVienen()
         {
-            if (ValidarMarcaAntesDeImprimirCarpeta())
+            if (ValidarPatenteAntesDeImprimirCarpeta())
             {
                 string paqueteProcedimiento = "PCK_MYP_MNOMBRES";
                 string procedimiento = "P5";
                 ParametroProcedimiento parametro =
-                    new ParametroProcedimiento(((CambioDeNombre)this._ventana.CambioDeNombre).Id, UsuarioLogeado, 1, paqueteProcedimiento, procedimiento);
+                    new ParametroProcedimiento(((CambioDeNombrePatente)this._ventana.CambioDeNombrePatente).Id, UsuarioLogeado, 1, paqueteProcedimiento, procedimiento);
 
                 this.LlamarProcedimientoDeBaseDeDatos(parametro, Recursos.Etiquetas.btnPlanillaVienen);
             }
@@ -1700,12 +1698,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CambiosDeNombre
 
         private void ImprimirPlanillaVan()
         {
-            if (ValidarMarcaAntesDeImprimirCarpeta())
+            if (ValidarPatenteAntesDeImprimirCarpeta())
             {
                 string paqueteProcedimiento = "PCK_MYP_MNOMBRES";
                 string procedimiento = "P4";
                 ParametroProcedimiento parametro =
-                    new ParametroProcedimiento(((CambioDeNombre)this._ventana.CambioDeNombre).Id, UsuarioLogeado, 1, paqueteProcedimiento, procedimiento);
+                    new ParametroProcedimiento(((CambioDeNombrePatente)this._ventana.CambioDeNombrePatente).Id, UsuarioLogeado, 1, paqueteProcedimiento, procedimiento);
 
                 this.LlamarProcedimientoDeBaseDeDatos(parametro, Recursos.Etiquetas.btnPlanillaVan);
             }
@@ -1713,54 +1711,54 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CambiosDeNombre
 
         private void ImprimirCarpeta()
         {
-            if (ValidarMarcaAntesDeImprimirCarpeta())
+            if (ValidarPatenteAntesDeImprimirCarpeta())
             {
                 string paqueteProcedimiento = "PCK_MYP_MNOMBRES";
                 string procedimiento = "P4";
                 ParametroProcedimiento parametro =
-                    new ParametroProcedimiento(((CambioDeNombre)this._ventana.CambioDeNombre).Id, UsuarioLogeado, 1, paqueteProcedimiento, procedimiento);
+                    new ParametroProcedimiento(((CambioDeNombrePatente)this._ventana.CambioDeNombrePatente).Id, UsuarioLogeado, 1, paqueteProcedimiento, procedimiento);
 
                 this.LlamarProcedimientoDeBaseDeDatos(parametro, Recursos.Etiquetas.btnCarpeta);
             }
         }
 
-        private bool ValidarMarcaAntesDeImprimirCarpeta()
+        private bool ValidarPatenteAntesDeImprimirCarpeta()
         {
             return true;
         }
 
         private void ImprimirAnexo()
         {
-            if (ValidarMarcaAntesDeImprimirCarpeta())
+            if (ValidarPatenteAntesDeImprimirCarpeta())
             {
                 string paqueteProcedimiento = "PCK_MYP_MNOMBRES";
                 string procedimiento = "P2";
                 ParametroProcedimiento parametro =
-                    new ParametroProcedimiento(((CambioDeNombre)this._ventana.CambioDeNombre).Id, UsuarioLogeado, 1, paqueteProcedimiento, procedimiento);
+                    new ParametroProcedimiento(((CambioDeNombrePatente)this._ventana.CambioDeNombrePatente).Id, UsuarioLogeado, 1, paqueteProcedimiento, procedimiento);
 
                 this.LlamarProcedimientoDeBaseDeDatos(parametro, Recursos.Etiquetas.btnAnexo);
             }
         }
 
-        private bool ValidarMarcaAntesDeImprimirAnexo()
+        private bool ValidarPatenteAntesDeImprimirAnexo()
         {
             return true;
         }
 
         private void ImprimirPlanilla()
         {
-            if (ValidarMarcaAntesDeImprimirCarpeta())
+            if (ValidarPatenteAntesDeImprimirCarpeta())
             {
                 string paqueteProcedimiento = "PCK_MYP_RENOVACIONES";
                 string procedimiento = "P1";
                 ParametroProcedimiento parametro =
-                    new ParametroProcedimiento(((CambioDeNombre)this._ventana.CambioDeNombre).Id, UsuarioLogeado, 1, paqueteProcedimiento, procedimiento);
+                    new ParametroProcedimiento(((CambioDeNombrePatente)this._ventana.CambioDeNombrePatente).Id, UsuarioLogeado, 1, paqueteProcedimiento, procedimiento);
 
                 this.LlamarProcedimientoDeBaseDeDatos(parametro, Recursos.Etiquetas.btnPlanilla);
             }
         }
 
-        private bool ValidarMarcaAntesDeImprimirPlanilla()
+        private bool ValidarPatenteAntesDeImprimirPlanilla()
         {
             return true;
         }

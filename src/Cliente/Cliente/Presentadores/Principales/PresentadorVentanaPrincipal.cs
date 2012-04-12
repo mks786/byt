@@ -49,8 +49,8 @@ using Trascend.Bolet.Cliente.Ventanas.Traspasos.CambiosDeDomicilio;
 using Trascend.Bolet.Cliente.Ventanas.Traspasos.CambiosDeNombre;
 using Trascend.Bolet.Cliente.Ventanas.Traspasos.CambiosPeticionario;
 using Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.CambiosDeDomicilioPatentes;
-//using Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.CambiosDeNombrePatentes;
-//using Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.CambiosPeticionarioPatentes;
+using Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.CambiosDeNombrePatentes;
+using Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.CambiosPeticionarioPatentes;
 using Trascend.Bolet.Cliente.Ventanas.Renovaciones;
 using Trascend.Bolet.Cliente.Ventanas.EscritosMarca;
 using Trascend.Bolet.Cliente.Ventanas.Logines;
@@ -889,7 +889,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
         /// </summary>
         public void ConsultarCambiosDeNombrePatentes()
         {
-            //this._ventana.Contenedor.Navigate(new ConsultarCambiosDeNombrePatentes());
+            this._ventana.Contenedor.Navigate(new ConsultarCambiosDeNombrePatentes());
         }
 
         /// <summary>
@@ -897,15 +897,15 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
         /// </summary>
         public void AgregarCambioDeNombrePatentes()
         {
-            //this._ventana.Contenedor.Navigate(new GestionarCambioDeNombrePatentes(null));
+            this._ventana.Contenedor.Navigate(new GestionarCambioDeNombrePatentes(null));
         }
 
         /// <summary>
         /// Método que coloca la página "CambiosDeDomicilioPatentes" en el Frame principal
         /// </summary>
-        public void ConsultarCambiosDePeticionarioPatentes()
+        public void ConsultarCambioPeticionarioPatentes()
         {
-            //this._ventana.Contenedor.Navigate(new ConsultarCambiosPeticionarioPatentes());
+            this._ventana.Contenedor.Navigate(new ConsultarCambiosPeticionarioPatentes());
         }
 
         /// <summary>
@@ -913,7 +913,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
         /// </summary>
         public void AgregarCambioPeticionarioPatentes()
         {
-            //this._ventana.Contenedor.Navigate(new GestionarCambioPeticionarioPatentes(null));
+            this._ventana.Contenedor.Navigate(new GestionarCambioPeticionarioPatentes(null));
         }
 
         /// <summary>

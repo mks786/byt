@@ -43,6 +43,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ContratosServicios\ICambioDeDomicilioPatenteServicios.cs" />
+    <Compile Include="ContratosServicios\ICambioDeNombrePatenteServicios.cs" />
+    <Compile Include="ContratosServicios\ICambioPeticionarioPatenteServicios.cs" />
     <Compile Include="ContratosServicios\IFusionPatenteServicios.cs" />
     <Compile Include="ContratosServicios\ICesionPatenteServicios.cs" />
     <Compile Include="ContratosServicios\ILicenciaPatenteServicios.cs" />

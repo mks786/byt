@@ -30,23 +30,23 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.CambiosDeNombrePaten
             get { return this._txtId.Text; }
         }
 
-        public string NombreMarca
+        public string NombrePatente
         {
-            set { this._txtMarcaNombre.Text = value; }
+            set { this._txtPatenteNombre.Text = value; }
         }
         public object CambioDeNombreSeleccionada
         {
             get { return this._lstResultados.SelectedItem; }
         }
 
-        public string IdMarcaFiltrar
+        public string IdPatenteFiltrar
         {
-            get { return this._txtIdMarcaFiltrar.Text; }
+            get { return this._txtIdPatenteFiltrar.Text; }
         }
 
-        public string NombreMarcaFiltrar
+        public string NombrePatenteFiltrar
         {
-            get { return this._txtNombreMarcaFiltrar.Text; }
+            get { return this._txtNombrePatenteFiltrar.Text; }
         }
 
         public string Fecha
@@ -54,16 +54,16 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.CambiosDeNombrePaten
             get { return this._dpkFecha.SelectedDate.ToString(); }
         }
 
-        public object Marcas
+        public object Patentes
         {
-            get { return this._lstMarcas.DataContext; }
-            set { this._lstMarcas.DataContext = value; }
+            get { return this._lstPatentes.DataContext; }
+            set { this._lstPatentes.DataContext = value; }
         }
 
-        public object Marca
+        public object Patente
         {
-            get { return this._lstMarcas.SelectedItem; }
-            set { this._lstMarcas.SelectedItem = value; }
+            get { return this._lstPatentes.SelectedItem; }
+            set { this._lstPatentes.SelectedItem = value; }
         }
         public bool EstaCargada
         {
@@ -153,22 +153,22 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.CambiosDeNombrePaten
                 this._presentador.ActualizarTitulo();
         }
 
-        private void _btnConsultarMarca_Click(object sender, RoutedEventArgs e)
+        private void _btnConsultarPatente_Click(object sender, RoutedEventArgs e)
         {
-            this._presentador.BuscarMarca();
+            this._presentador.BuscarPatente();
         }
 
-        private void _btnConsultarMarcaFocus(object sender, RoutedEventArgs e)
+        private void _btnConsultarPatenteFocus(object sender, RoutedEventArgs e)
         {
             this._btnConsultar.IsDefault = false;
-            this._btnConsultarMarca.IsDefault = true;
+            this._btnConsultarPatente.IsDefault = true;
             //this._btnConsultarInteresado.IsDefault = false;
         }
 
         private void _btnConsultarFocus(object sender, RoutedEventArgs e)
         {
             this._btnConsultar.IsDefault = true;
-            this._btnConsultarMarca.IsDefault = false;
+            this._btnConsultarPatente.IsDefault = false;
             //this._btnConsultarInteresado.IsDefault = false;
         }
 
@@ -211,34 +211,34 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.CambiosDeNombrePaten
 
         }
 
-        private void _txtMarcaNombre_GotFocus(object sender, RoutedEventArgs e)
+        private void _txtPatenteNombre_GotFocus(object sender, RoutedEventArgs e)
         {
-            GestionarVisibilidadDatosDeMarca(Visibility.Collapsed);
-            GestionarVisibilidadFiltroMarca(Visibility.Visible);
+            GestionarVisibilidadDatosDePatente(Visibility.Collapsed);
+            GestionarVisibilidadFiltroPatente(Visibility.Visible);
         }
 
-        private void _lstMarcas_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        private void _lstPatentes_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            if (this._presentador.ElegirMarca())
+            if (this._presentador.ElegirPatente())
             {
-                GestionarVisibilidadDatosDeMarca(Visibility.Visible);
-                GestionarVisibilidadFiltroMarca(Visibility.Collapsed);
+                GestionarVisibilidadDatosDePatente(Visibility.Visible);
+                GestionarVisibilidadFiltroPatente(Visibility.Collapsed);
             }
         }
 
-        private void GestionarVisibilidadFiltroMarca(object value)
+        private void GestionarVisibilidadFiltroPatente(object value)
         {
-            this._txtIdMarcaFiltrar.Visibility = (System.Windows.Visibility)value;
-            this._txtNombreMarcaFiltrar.Visibility = (System.Windows.Visibility)value;
-            this._btnConsultarMarca.Visibility = (System.Windows.Visibility)value;
-            this._lstMarcas.Visibility = (System.Windows.Visibility)value;
+            this._txtIdPatenteFiltrar.Visibility = (System.Windows.Visibility)value;
+            this._txtNombrePatenteFiltrar.Visibility = (System.Windows.Visibility)value;
+            this._btnConsultarPatente.Visibility = (System.Windows.Visibility)value;
+            this._lstPatentes.Visibility = (System.Windows.Visibility)value;
             this._lblCodigo.Visibility = (System.Windows.Visibility)value;
             this._lblNombre.Visibility = (System.Windows.Visibility)value;
         }
 
-        private void GestionarVisibilidadDatosDeMarca(object value)
+        private void GestionarVisibilidadDatosDePatente(object value)
         {
-            this._txtMarcaNombre.Visibility = (System.Windows.Visibility)value;
+            this._txtPatenteNombre.Visibility = (System.Windows.Visibility)value;
         }
     }
 }

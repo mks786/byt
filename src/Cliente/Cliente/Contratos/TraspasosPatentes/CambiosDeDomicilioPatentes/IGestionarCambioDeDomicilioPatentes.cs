@@ -5,7 +5,7 @@ namespace Trascend.Bolet.Cliente.Contratos.TraspasosPatentes.CambiosDeDomicilioP
 {
     interface IGestionarCambioDeDomicilioPatentes : IPaginaBase
     {
-        object CambioDeDomicilio { get; set; }        
+        object CambioDeDomicilioPatente { get; set; }        
 
         string IdAsociadoFiltrar { get; }
 
@@ -15,19 +15,19 @@ namespace Trascend.Bolet.Cliente.Contratos.TraspasosPatentes.CambiosDeDomicilioP
 
         string NombreAgenteFiltrar { get; }
 
-        #region Marcas
+        #region Patentes
 
-        string NombreMarca { set; }
+        string NombrePatente { set; }
 
-        object Marca { get; set; }
+        object Patente { get; set; }
 
-        string IdMarcaFiltrar { get; }
+        string IdPatenteFiltrar { get; }
 
-        string NombreMarcaFiltrar { get; }
+        string NombrePatenteFiltrar { get; }
 
-        object MarcasFiltradas { get; set; }
+        object PatentesFiltrados { get; set; }
 
-        object MarcaFiltrada { get; set; }
+        object PatenteFiltrado { get; set; }
 
         #endregion
 
