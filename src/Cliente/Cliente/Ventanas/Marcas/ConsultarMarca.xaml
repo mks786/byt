@@ -329,7 +329,6 @@
                                 </ListView.View>
                             </ListView>
                         </Grid>
-
                         <Label Grid.Column="8" Grid.Row="4" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblCartaOrden}"/>
                         </Label>
@@ -337,6 +336,8 @@
                               ItemsSource="{Binding}" DisplayMemberPath="Descripcion" SelectedIndex="0">
                         </ComboBox>
 
+                        <Separator Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="12" Margin="10,0,10,20" VerticalAlignment="Top" />
+                        
                         <Label Grid.Column="0" Grid.Row="5" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblLocalidad}"/>
                         </Label>
