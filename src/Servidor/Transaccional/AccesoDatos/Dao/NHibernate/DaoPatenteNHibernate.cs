@@ -102,7 +102,7 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
 
         public Patente ObtenerPatenteConTodo(Patente Patente)
         {
-            //Patente retorno;
+            Patente retorno;
             try
             {
                 #region trace
@@ -110,8 +110,8 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
                     logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-                //IQuery query = Session.CreateQuery(string.Format(Recursos.ConsultasHQL.ObtenerPatenteConTodo, Patente.Id));
-                //retorno = query.UniqueResult<Patente>();
+                IQuery query = Session.CreateQuery(string.Format(Recursos.ConsultasHQL.ObtenerPatenteConTodo, Patente.Id));
+                retorno = query.UniqueResult<Patente>();
 
                 #region trace
                 if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))

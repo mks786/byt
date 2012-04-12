@@ -97,6 +97,15 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Select c from CambioDeDomicilioPatente c left join fetch c.Patente as patente left join fetch c.InteresadoActual as interesadoActual left join fetch c.InteresadoAnterior as interesadoAnterior left join fetch c.Agente as agente  left join fetch c.Poder as poder where .
+        /// </summary>
+        public static string CabeceraObtenerCambioDeDomicilioPatente {
+            get {
+                return ResourceManager.GetString("CabeceraObtenerCambioDeDomicilioPatente", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Select c from CambioDeNombre c left join fetch c.Marca as marca left join fetch c.InteresadoActual as interesadoActual left join fetch c.InteresadoAnterior as interesadoAnterior left join fetch c.Agente as agente left join fetch c.Poder as poder where .
         /// </summary>
         public static string CabeceraObtenerCambioDeNombre {
@@ -142,7 +151,7 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Select c from Cesion c left join fetch c.Patente as patente left join fetch c.Cedente as cedente left join fetch c.AgenteCedente as agenteCed left join fetch c.AgenteCesionario as agenteCes left join fetch c.PoderCedente as PoderCed  left join fetch c.PoderCesionario as PoderCes left join fetch c.Cedente as interesadoCed left join fetch c.Cesionario as interesadoCes left join fetch c.BoletinPublicacion as boletin where .
+        ///   Busca una cadena traducida similar a Select c from Cesion c left join fetch c.Patente as patente left join fetch c.Cedente as cedente left join fetch c.AgenteCedente as agenteCed left join fetch c.AgenteCesionario as agenteCes left join fetch c.PoderCedente as PoderCed  left join fetch c.PoderCesionario as PoderCes left join fetch c.Cedente as interesadoCed left join fetch c.Cesionario as interesadoCes left join fetch c.BoletinPublicacion as boletin where .
         /// </summary>
         public static string CabeceraObtenerCesionPatente {
             get {
@@ -151,7 +160,6 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Select f from Fusion f left join fetch f.Marca as marca left join fetch f.InteresadoEntre as interesadoEntre left join fetch f.InteresadoSobreviviente as interesadoSobreviviente left join fetch f.Agente as agente left join fetch f.Poder as poder where .
         ///   Busca una cadena traducida similar a Select f from Fusion f left join fetch f.Marca as marca left join fetch f.InteresadoEntre as interesadoEntre left join fetch f.InteresadoSobreviviente as interesadoSobreviviente left join fetch f.Agente as agente left join fetch f.Poder as poder where .
         /// </summary>
         public static string CabeceraObtenerFusion {
@@ -161,8 +169,7 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Select i from Interesado i left outer join i.Pais as pais where .
-        ///   Looks up a localized string similar to Select f from FusionPatente f left join fetch f.Patente as patente left join fetch f.InteresadoEntre as interesadoEntre left join fetch f.InteresadoSobreviviente as interesadoSobreviviente left join fetch f.Agente as agente left join fetch f.Poder as poder where .
+        ///   Busca una cadena traducida similar a Select f from FusionPatente f left join fetch f.Patente as patente left join fetch f.InteresadoEntre as interesadoEntre left join fetch f.InteresadoSobreviviente as interesadoSobreviviente left join fetch f.Agente as agente left join fetch f.Poder as poder where .
         /// </summary>
         public static string CabeceraObtenerFusionPatente {
             get {
@@ -171,7 +178,7 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Select i from Interesado i left outer join i.Pais as pais where .
+        ///   Busca una cadena traducida similar a Select i from Interesado i left outer join i.Pais as pais where .
         /// </summary>
         public static string CabeceraObtenerInteresado {
             get {
@@ -189,8 +196,7 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Select m from Marca m left join fetch m.Asociado as asociado left join fetch m.Corresponsal as corresponsal left join fetch m.Interesado as interesado left join fetch asociado.Pais as pais left join fetch asociado.Idioma as pais left join fetch m.BoletinConcesion as boletinC left join fetch m.BoletinPublicacion as boletinP left join fetch m.Nacional as nacional left join fetch m.Internacional as internacional where .
-        ///   Looks up a localized string similar to Select l from LicenciaPatente l left join fetch l.Patente as patente left join fetch l.AgenteLicenciatario as Alicentario left join fetch l.AgenteLicenciante as Alice left join fetch l.Asociado as asosia left join fetch l.Boletin as boletin left join fetch l.InteresadoLicenciatario as InterLicen left join fetch l.InteresadoLicenciante left join fetch l.PoderLicenciatario as Plicentario left join fetch l.PoderLicenciante as Plicenciant Where .
+        ///   Busca una cadena traducida similar a Select l from LicenciaPatente l left join fetch l.Patente as patente left join fetch l.AgenteLicenciatario as Alicentario left join fetch l.AgenteLicenciante as Alice left join fetch l.Asociado as asosia left join fetch l.Boletin as boletin left join fetch l.InteresadoLicenciatario as InterLicen left join fetch l.InteresadoLicenciante left join fetch l.PoderLicenciatario as Plicentario left join fetch l.PoderLicenciante as Plicenciant Where .
         /// </summary>
         public static string CabeceraObtenerLicenciaPatente {
             get {
@@ -199,7 +205,7 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Select m from Marca m left join fetch m.Asociado as asociado left join fetch m.Corresponsal as corresponsal left join fetch m.Interesado as interesado left join fetch asociado.Pais as pais left join fetch asociado.Idioma as pais left join fetch m.BoletinConcesion as boletinC left join fetch m.BoletinPublicacion as boletinP left join fetch m.Nacional as nacional left join fetch m.Internacional as internacional where .
+        ///   Busca una cadena traducida similar a Select m from Marca m left join fetch m.Asociado as asociado left join fetch m.Corresponsal as corresponsal left join fetch m.Interesado as interesado left join fetch asociado.Pais as pais left join fetch asociado.Idioma as pais left join fetch m.BoletinConcesion as boletinC left join fetch m.BoletinPublicacion as boletinP left join fetch m.Nacional as nacional left join fetch m.Internacional as internacional where .
         /// </summary>
         public static string CabeceraObtenerMarca {
             get {
@@ -316,6 +322,33 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a c.FechaPublicacion between &apos;{0}&apos; and &apos;{1}&apos;.
+        /// </summary>
+        public static string FiltroObtenerCambioDeDomicilioPatenteFecha {
+            get {
+                return ResourceManager.GetString("FiltroObtenerCambioDeDomicilioPatenteFecha", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a c.Id = {0}.
+        /// </summary>
+        public static string FiltroObtenerCambioDeDomicilioPatenteId {
+            get {
+                return ResourceManager.GetString("FiltroObtenerCambioDeDomicilioPatenteId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a patente.Id = {0}.
+        /// </summary>
+        public static string FiltroObtenerCambioDeDomicilioPatenteIdPatente {
+            get {
+                return ResourceManager.GetString("FiltroObtenerCambioDeDomicilioPatenteIdPatente", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a c.Id = {0}.
         /// </summary>
         public static string FiltroObtenerCambioDeNombreId {
@@ -424,8 +457,7 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a c.FechaCesion between &apos;{0}&apos; and &apos;{1}&apos;.
-        ///   Looks up a localized string similar to patente.Id = {0}.
+        ///   Busca una cadena traducida similar a patente.Id = {0}.
         /// </summary>
         public static string FiltroObtenerCesiondPatente {
             get {
@@ -434,7 +466,7 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to c.FechaCesion between &apos;{0}&apos; and &apos;{1}&apos;.
+        ///   Busca una cadena traducida similar a c.FechaCesion between &apos;{0}&apos; and &apos;{1}&apos;.
         /// </summary>
         public static string FiltroObtenerCesionFecha {
             get {
@@ -488,8 +520,7 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a i.Id = {0}.
-        ///   Looks up a localized string similar to patente.Id = {0}.
+        ///   Busca una cadena traducida similar a patente.Id = {0}.
         /// </summary>
         public static string FiltroObtenerFusionIdPatente {
             get {
@@ -498,7 +529,7 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to i.Id = {0}.
+        ///   Busca una cadena traducida similar a i.Id = {0}.
         /// </summary>
         public static string FiltroObtenerInteresadoId {
             get {
@@ -543,8 +574,7 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a m.Id = {0}.
-        ///   Looks up a localized string similar to patente.Id = {0}.
+        ///   Busca una cadena traducida similar a patente.Id = {0}.
         /// </summary>
         public static string FiltroObtenerLicenciaIdPatente {
             get {
@@ -553,7 +583,7 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to m.Id = {0}.
+        ///   Busca una cadena traducida similar a m.Id = {0}.
         /// </summary>
         public static string FiltroObtenerMarcaBaseTerceroId {
             get {
@@ -1035,6 +1065,15 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         public static string ObtenerOperacionesPorMarcasYServicio {
             get {
                 return ResourceManager.GetString("ObtenerOperacionesPorMarcasYServicio", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Select p from Patente p left join fetch p.Asociado as asociado left join fetch p.Servicio as servicio where p.Id = &apos;{0}&apos; order by p.Id.
+        /// </summary>
+        public static string ObtenerPatenteConTodo {
+            get {
+                return ResourceManager.GetString("ObtenerPatenteConTodo", resourceCulture);
             }
         }
         

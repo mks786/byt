@@ -349,7 +349,7 @@
   </data>
   <data name="CabeceraObtenerCambioDeDomicilio" xml:space="preserve">
     <value>Select c from CambioDeDomicilio c left join fetch c.Marca as marca left join fetch c.InteresadoActual as interesadoActual left join fetch c.InteresadoAnterior as interesadoAnterior left join fetch c.Agente as agente  left join fetch c.Poder as poder where </value>
-    <comment>Cabecera del query para el filtro de fusion</comment>
+    <comment>Cabecera del query para el filtro de Cambio de domicilio</comment>
   </data>
   <data name="FiltroObtenerCambioDeDomicilioId" xml:space="preserve">
     <value>c.Id = {0}</value>
@@ -357,7 +357,7 @@
   </data>
   <data name="FiltroObtenerCambioDeDomicilioIdMarca" xml:space="preserve">
     <value>marca.Id = {0}</value>
-    <comment>Filtro por Asociado</comment>
+    <comment>Filtro por marca</comment>
   </data>
   <data name="CabeceraObtenerCambioDeNombre" xml:space="preserve">
     <value>Select c from CambioDeNombre c left join fetch c.Marca as marca left join fetch c.InteresadoActual as interesadoActual left join fetch c.InteresadoAnterior as interesadoAnterior left join fetch c.Agente as agente left join fetch c.Poder as poder where </value>
@@ -566,5 +566,24 @@
   <data name="FiltroObtenerCesiondPatente" xml:space="preserve">
     <value>patente.Id = {0}</value>
     <comment>obtener filtro por id de patente</comment>
+  </data>
+  <data name="CabeceraObtenerCambioDeDomicilioPatente" xml:space="preserve">
+    <value>Select c from CambioDeDomicilioPatente c left join fetch c.Patente as patente left join fetch c.InteresadoActual as interesadoActual left join fetch c.InteresadoAnterior as interesadoAnterior left join fetch c.Agente as agente  left join fetch c.Poder as poder where </value>
+    <comment>Cabecera del query para el filtro de cambio de domicilio</comment>
+  </data>
+  <data name="FiltroObtenerCambioDeDomicilioPatenteFecha" xml:space="preserve">
+    <value>c.FechaPublicacion between '{0}' and '{1}'</value>
+    <comment>filtro por fecha</comment>
+  </data>
+  <data name="FiltroObtenerCambioDeDomicilioPatenteId" xml:space="preserve">
+    <value>c.Id = {0}</value>
+    <comment>Filtro por Id</comment>
+  </data>
+  <data name="FiltroObtenerCambioDeDomicilioPatenteIdPatente" xml:space="preserve">
+    <value>patente.Id = {0}</value>
+    <comment>Filtro por Patente</comment>
+  </data>
+  <data name="ObtenerPatenteConTodo" xml:space="preserve">
+    <value>Select p from Patente p left join fetch p.Asociado as asociado left join fetch p.Servicio as servicio where p.Id = '{0}' order by p.Id</value>
   </data>
 </root>
