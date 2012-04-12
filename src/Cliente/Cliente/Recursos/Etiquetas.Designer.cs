@@ -5114,6 +5114,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Agregar Cesion de Patente.
+        /// </summary>
+        public static string titleAgregarCesionPatente {
+            get {
+                return ResourceManager.GetString("titleAgregarCesionPatente", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Agregar Contacto.
         /// </summary>
         public static string titleAgregarContacto {
@@ -5177,6 +5186,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Agregar Fusion de Patente.
+        /// </summary>
+        public static string titleAgregarFusionPatente {
+            get {
+                return ResourceManager.GetString("titleAgregarFusionPatente", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Agregar Interesado.
         /// </summary>
         public static string titleAgregarInteresado {
@@ -5209,6 +5227,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string titleAgregarLicencia {
             get {
                 return ResourceManager.GetString("titleAgregarLicencia", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Agregar Licencia de Patente.
+        /// </summary>
+        public static string titleAgregarLicenciaPatente {
+            get {
+                return ResourceManager.GetString("titleAgregarLicenciaPatente", resourceCulture);
             }
         }
         
@@ -5519,6 +5546,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Consultar Cesion de Patente.
+        /// </summary>
+        public static string titleConsultarCesionPatente {
+            get {
+                return ResourceManager.GetString("titleConsultarCesionPatente", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Consultar Contacto.
         /// </summary>
         public static string titleConsultarContacto {
@@ -5618,6 +5654,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Consultar Fusion de Patente.
+        /// </summary>
+        public static string titleConsultarFusionPatente {
+            get {
+                return ResourceManager.GetString("titleConsultarFusionPatente", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Consultar Interesado.
         /// </summary>
         public static string titleConsultarInteresado {
@@ -5668,6 +5713,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string titleConsultarLicencia {
             get {
                 return ResourceManager.GetString("titleConsultarLicencia", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Consultar Licencia de Patente.
+        /// </summary>
+        public static string titleConsultarLicenciaPatente {
+            get {
+                return ResourceManager.GetString("titleConsultarLicenciaPatente", resourceCulture);
             }
         }
         
@@ -6239,11 +6293,29 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Gestionar Cesion de Patente.
+        /// </summary>
+        public static string titleGestionarCesionPatente {
+            get {
+                return ResourceManager.GetString("titleGestionarCesionPatente", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Gestionar Fusión  de Marcas.
         /// </summary>
         public static string titleGestionarFusion {
             get {
                 return ResourceManager.GetString("titleGestionarFusion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Gestionar Fusion de Patente.
+        /// </summary>
+        public static string titleGestionarFusionPatente {
+            get {
+                return ResourceManager.GetString("titleGestionarFusionPatente", resourceCulture);
             }
         }
         
@@ -6262,6 +6334,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string titleGestionarLicencia {
             get {
                 return ResourceManager.GetString("titleGestionarLicencia", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Gestionar Licencia de Patente.
+        /// </summary>
+        public static string titleGestionarLicenciaPatente {
+            get {
+                return ResourceManager.GetString("titleGestionarLicenciaPatente", resourceCulture);
             }
         }
         

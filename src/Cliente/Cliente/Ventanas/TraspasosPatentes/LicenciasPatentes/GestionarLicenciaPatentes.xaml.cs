@@ -85,20 +85,20 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.LicenciasPatentes
             get { return this._txtNombreApoderadoLicencianteFiltrar.Text; }
         }
 
-        public string IdMarcaFiltrar
+        public string IdPatenteFiltrar
         {
-            get { return this._txtIdMarcaFiltrar.Text; }
+            get { return this._txtIdPatenteFiltrar.Text; }
         }
 
-        public string NombreMarcaFiltrar
+        public string NombrePatenteFiltrar
         {
-            get { return this._txtNombreMarcaFiltrar.Text; }
+            get { return this._txtNombrePatenteFiltrar.Text; }
         }
 
-        public object Marca
+        public object Patente
         {
-            get { return this._gridDatosMarca.DataContext; }
-            set { this._gridDatosMarca.DataContext = value; }
+            get { return this._gridDatosPatente.DataContext; }
+            set { this._gridDatosPatente.DataContext = value; }
         }
 
         public object InteresadoLicenciante
@@ -138,10 +138,10 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.LicenciasPatentes
             set { this._gridDatosPoderLicenciatario.DataContext = value; }
         }  
 
-        public object MarcasFiltradas
+        public object PatentesFiltradas
         {
-            get { return this._lstMarcas.DataContext; }
-            set { this._lstMarcas.DataContext = value; }
+            get { return this._lstPatentes.DataContext; }
+            set { this._lstPatentes.DataContext = value; }
         }
 
         public object LicenciantesFiltrados
@@ -180,16 +180,16 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.LicenciasPatentes
             set { this._lstPoderesLicenciatario.DataContext = value; }
         }
          
-        public object Licencia
+        public object LicenciaPatente
         {
             get { return this._gridDatos.DataContext; }
             set { this._gridDatos.DataContext = value; }
         }
         
-        public object MarcaFiltrada
+        public object PatenteFiltrada
         {
-            get { return this._lstMarcas.SelectedItem; }
-            set { this._lstMarcas.SelectedItem = value; }
+            get { return this._lstPatentes.SelectedItem; }
+            set { this._lstPatentes.SelectedItem = value; }
         }
 
         public object LicencianteFiltrado
@@ -248,15 +248,15 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.LicenciasPatentes
                 this._txtClaseNacional.IsEnabled = value;
                 this._txtExpediente.IsEnabled = value;
                 this._txtIdLicencia.IsEnabled = value;
-                this._txtIdMarcaFiltrar.IsEnabled = value;
-                this._txtNombreMarca.IsEnabled = value;
-                this._txtNombreMarcaFiltrar.IsEnabled = value;
+                this._txtIdPatenteFiltrar.IsEnabled = value;
+                this._txtNombrePatente.IsEnabled = value;
+                this._txtNombrePatenteFiltrar.IsEnabled = value;
                 this._txtNumInscripcion.IsEnabled = value;
                 this._txtNumRegistro.IsEnabled = value;
                 this._chkEtiqueta.IsEnabled = value;
                 this._txtTipo.IsEnabled = value;
                 this._txtUbicacion.IsEnabled = value;                                
-                this._btnConsultarMarca.IsEnabled = value;
+                this._btnConsultarPatente.IsEnabled = value;
                 
                 this._txtNombreLicenciante.IsEnabled = value;
                 this._txtPaisLicenciante.IsEnabled = value;
@@ -302,9 +302,9 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.LicenciasPatentes
             }
         }
 
-        public string NombreMarca
+        public string NombrePatente
         {
-            set { this._txtNombreMarca.Text = value; }
+            set { this._txtNombrePatente.Text = value; }
         }
 
         public string NombreLicenciante
@@ -405,11 +405,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.LicenciasPatentes
 
         #endregion
 
-        public GestionarLicenciaPatentes(object Licencia)
+        public GestionarLicenciaPatentes(object LicenciaPatente)
         {
             InitializeComponent();
             this._cargada = false;
-            this._presentador = new PresentadorGestionarLicenciaPatentes(this, Licencia);
+            this._presentador = new PresentadorGestionarLicenciaPatentes(this, LicenciaPatente);
 
         }
 
@@ -442,7 +442,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.LicenciasPatentes
         private void _btnEliminar_Click(object sender, RoutedEventArgs e)
         {
             if (MessageBoxResult.Yes == MessageBox.Show(Recursos.MensajesConElUsuario.ConfirmacionEliminarLicencia,
-                "Eliminar Licencia", MessageBoxButton.YesNo, MessageBoxImage.Question))
+                "Eliminar LicenciaPatente", MessageBoxButton.YesNo, MessageBoxImage.Question))
             {
                 this._presentador.Eliminar();
             }
@@ -459,8 +459,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.LicenciasPatentes
 
         private void _btnConsultar(object sender, RoutedEventArgs e)
         {           
-            if (((Button)sender).Name.Equals("_btnConsultarMarca"))
-                this._presentador.ConsultarMarcas();
+            if (((Button)sender).Name.Equals("_btnConsultarPatente"))
+                this._presentador.ConsultarPatentes();
             else if (((Button)sender).Name.Equals("_btnConsultarLicenciante"))
                 this._presentador.ConsultarLicenciantes();  
             else if (((Button)sender).Name.Equals("_btnConsultarApoderadoLicenciante"))
@@ -556,25 +556,25 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.LicenciasPatentes
             }
         }
 
-        #region Marca
+        #region Patente
 
-        private void _lstMarcas_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        private void _lstPatentes_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            if (this._presentador.CambiarMarca())
+            if (this._presentador.CambiarPatente())
             {
-                GestionarVisibilidadDatosDeMarca(Visibility.Visible);
-                GestionarVisibilidadFiltroMarca(Visibility.Collapsed);
+                GestionarVisibilidadDatosDePatente(Visibility.Visible);
+                GestionarVisibilidadFiltroPatente(Visibility.Collapsed);
             }
         }
 
-        private void _OrdenarMarcas_Click(object sender, RoutedEventArgs e)
+        private void _OrdenarPatentes_Click(object sender, RoutedEventArgs e)
         {
-            this._presentador.OrdenarColumna(sender as GridViewColumnHeader, this._lstMarcas);
+            this._presentador.OrdenarColumna(sender as GridViewColumnHeader, this._lstPatentes);
         }
 
-        private void _txtNombreMarca_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        private void _txtNombrePatente_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            GestionarVisibilidadDatosDeMarca(Visibility.Collapsed);
+            GestionarVisibilidadDatosDePatente(Visibility.Collapsed);
 
             GestionarVisibilidadFiltroLicenciante(Visibility.Collapsed);
 
@@ -588,7 +588,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.LicenciasPatentes
 
             GestionarVisibilidadFiltroPoderLicenciatario(Visibility.Collapsed);
 
-            GestionarVisibilidadFiltroMarca(Visibility.Visible);
+            GestionarVisibilidadFiltroPatente(Visibility.Visible);
 
             GestionarVisibilidadDatosDeLicenciante(Visibility.Visible);
 
@@ -603,9 +603,9 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.LicenciasPatentes
             GestionarVisibilidadDatosDePoderLicenciante(Visibility.Visible);
         }
 
-        private void GestionarVisibilidadDatosDeMarca(object value)
+        private void GestionarVisibilidadDatosDePatente(object value)
         {
-            this._txtNombreMarca.Visibility = (System.Windows.Visibility)value;
+            this._txtNombrePatente.Visibility = (System.Windows.Visibility)value;
             this._chkEtiqueta.Visibility = (System.Windows.Visibility)value;
             this._lblNoInscripcion.Visibility = (System.Windows.Visibility)value;
             this._txtNumInscripcion.Visibility = (System.Windows.Visibility)value;
@@ -621,19 +621,19 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.LicenciasPatentes
             this._txtAsociado.Visibility = (System.Windows.Visibility)value;
         }
 
-        private void GestionarVisibilidadFiltroMarca(object value)
+        private void GestionarVisibilidadFiltroPatente(object value)
         {
-            this._lblNombreMarca.Visibility = (System.Windows.Visibility)value;
-            this._txtNombreMarcaFiltrar.Visibility = (System.Windows.Visibility)value;
-            this._lblIdMarca.Visibility = (System.Windows.Visibility)value;
-            this._txtIdMarcaFiltrar.Visibility = (System.Windows.Visibility)value;
-            this._lstMarcas.Visibility = (System.Windows.Visibility)value;
-            this._btnConsultarMarca.Visibility = (System.Windows.Visibility)value;
+            this._lblNombrePatente.Visibility = (System.Windows.Visibility)value;
+            this._txtNombrePatenteFiltrar.Visibility = (System.Windows.Visibility)value;
+            this._lblIdPatente.Visibility = (System.Windows.Visibility)value;
+            this._txtIdPatenteFiltrar.Visibility = (System.Windows.Visibility)value;
+            this._lstPatentes.Visibility = (System.Windows.Visibility)value;
+            this._btnConsultarPatente.Visibility = (System.Windows.Visibility)value;
         }
 
-        private void _txtMarcaFiltrar_GotFocus(object sender, RoutedEventArgs e)
+        private void _txtPatenteFiltrar_GotFocus(object sender, RoutedEventArgs e)
         {
-            this._btnConsultarMarca.IsDefault = true;
+            this._btnConsultarPatente.IsDefault = true;
             this._btnModificar.IsDefault = false;
         }      
 
@@ -728,11 +728,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.LicenciasPatentes
 
             GestionarVisibilidadFiltroPoderLicenciatario(Visibility.Collapsed);
 
-            GestionarVisibilidadFiltroMarca(Visibility.Collapsed);
+            GestionarVisibilidadFiltroPatente(Visibility.Collapsed);
 
             GestionarVisibilidadFiltroLicenciante(Visibility.Visible);
 
-            GestionarVisibilidadDatosDeMarca(Visibility.Visible);
+            GestionarVisibilidadDatosDePatente(Visibility.Visible);
 
             GestionarVisibilidadDatosDeLicenciatario(Visibility.Visible);
 
@@ -757,13 +757,13 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.LicenciasPatentes
 
             GestionarVisibilidadFiltroPoderLicenciatario(Visibility.Collapsed);
 
-            GestionarVisibilidadFiltroMarca(Visibility.Collapsed);
+            GestionarVisibilidadFiltroPatente(Visibility.Collapsed);
 
             GestionarVisibilidadFiltroLicenciante(Visibility.Collapsed);
 
             GestionarVisibilidadFiltroApoderadoLicenciante(Visibility.Visible);
 
-            GestionarVisibilidadDatosDeMarca(Visibility.Visible);
+            GestionarVisibilidadDatosDePatente(Visibility.Visible);
 
             GestionarVisibilidadDatosDeLicenciante(Visibility.Visible);
 
@@ -786,7 +786,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.LicenciasPatentes
 
             GestionarVisibilidadFiltroPoderLicenciatario(Visibility.Collapsed);
 
-            GestionarVisibilidadFiltroMarca(Visibility.Collapsed);
+            GestionarVisibilidadFiltroPatente(Visibility.Collapsed);
 
             GestionarVisibilidadFiltroLicenciante(Visibility.Collapsed);
 
@@ -794,7 +794,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.LicenciasPatentes
 
             GestionarVisibilidadFiltroPoderLicenciante(Visibility.Visible);
 
-            GestionarVisibilidadDatosDeMarca(Visibility.Visible);
+            GestionarVisibilidadDatosDePatente(Visibility.Visible);
 
             GestionarVisibilidadDatosDeLicenciante(Visibility.Visible);
 
@@ -965,7 +965,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.LicenciasPatentes
 
             GestionarVisibilidadFiltroPoderLicenciatario(Visibility.Collapsed);
 
-            GestionarVisibilidadFiltroMarca(Visibility.Collapsed);
+            GestionarVisibilidadFiltroPatente(Visibility.Collapsed);
 
             GestionarVisibilidadFiltroLicenciante(Visibility.Collapsed);
 
@@ -975,7 +975,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.LicenciasPatentes
 
             GestionarVisibilidadFiltroLicenciatario(Visibility.Visible);
 
-            GestionarVisibilidadDatosDeMarca(Visibility.Visible);
+            GestionarVisibilidadDatosDePatente(Visibility.Visible);
 
             GestionarVisibilidadDatosDeLicenciante(Visibility.Visible);
 
@@ -992,7 +992,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.LicenciasPatentes
         {
             GestionarVisibilidadDatosDeApoderadoLicenciatario(Visibility.Collapsed);
 
-            GestionarVisibilidadFiltroMarca(Visibility.Collapsed);
+            GestionarVisibilidadFiltroPatente(Visibility.Collapsed);
 
             GestionarVisibilidadFiltroLicenciatario(Visibility.Collapsed);
 
@@ -1006,7 +1006,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.LicenciasPatentes
 
             GestionarVisibilidadFiltroApoderadoLicenciatario(Visibility.Visible);
 
-            GestionarVisibilidadDatosDeMarca(Visibility.Visible);
+            GestionarVisibilidadDatosDePatente(Visibility.Visible);
 
             GestionarVisibilidadDatosDeLicenciante(Visibility.Visible);
 
@@ -1023,7 +1023,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.LicenciasPatentes
         {
             GestionarVisibilidadDatosDePoderLicenciatario(Visibility.Collapsed);
 
-            GestionarVisibilidadFiltroMarca(Visibility.Collapsed);
+            GestionarVisibilidadFiltroPatente(Visibility.Collapsed);
 
             GestionarVisibilidadFiltroLicenciante(Visibility.Collapsed);
 
@@ -1037,7 +1037,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.LicenciasPatentes
 
             GestionarVisibilidadFiltroPoderLicenciatario(Visibility.Visible);
 
-            GestionarVisibilidadDatosDeMarca(Visibility.Visible);
+            GestionarVisibilidadDatosDePatente(Visibility.Visible);
 
             GestionarVisibilidadDatosDeLicenciante(Visibility.Visible);
 

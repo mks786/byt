@@ -2237,4 +2237,31 @@ de Gracia</value>
   <data name="lsvPatente" xml:space="preserve">
     <value>Patente</value>
   </data>
+  <data name="titleAgregarCesionPatente" xml:space="preserve">
+    <value>Agregar Cesion de Patente</value>
+  </data>
+  <data name="titleAgregarFusionPatente" xml:space="preserve">
+    <value>Agregar Fusion de Patente</value>
+  </data>
+  <data name="titleAgregarLicenciaPatente" xml:space="preserve">
+    <value>Agregar Licencia de Patente</value>
+  </data>
+  <data name="titleConsultarCesionPatente" xml:space="preserve">
+    <value>Consultar Cesion de Patente</value>
+  </data>
+  <data name="titleConsultarFusionPatente" xml:space="preserve">
+    <value>Consultar Fusion de Patente</value>
+  </data>
+  <data name="titleConsultarLicenciaPatente" xml:space="preserve">
+    <value>Consultar Licencia de Patente</value>
+  </data>
+  <data name="titleGestionarCesionPatente" xml:space="preserve">
+    <value>Gestionar Cesion de Patente</value>
+  </data>
+  <data name="titleGestionarFusionPatente" xml:space="preserve">
+    <value>Gestionar Fusion de Patente</value>
+  </data>
+  <data name="titleGestionarLicenciaPatente" xml:space="preserve">
+    <value>Gestionar Licencia de Patente</value>
+  </data>
 </root>

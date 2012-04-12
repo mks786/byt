@@ -10,33 +10,33 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using NLog;
 using Trascend.Bolet.Cliente.Ayuda;
-using Trascend.Bolet.Cliente.Contratos.TraspasosPatentes.LicenciasPatentes;
-//using Trascend.Bolet.Cliente.Ventanas.Marcas;
+using Trascend.Bolet.Cliente.Contratos.TraspasosPatentes.CesionesPatentes;
+using Trascend.Bolet.Cliente.Ventanas.Marcas;
 using Trascend.Bolet.Cliente.Ventanas.Principales;
-using Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.LicenciasPatentes;
+using Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.CesionesPatentes;
 using Trascend.Bolet.ObjetosComunes.ContratosServicios;
 using Trascend.Bolet.ObjetosComunes.Entidades;
 
-namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.LicenciasPatentes
+namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CesionesPatentes
 {
-    class PresentadorConsultarLicenciasPatentes : PresentadorBase
+    class PresentadorConsultarCesionesPatentes : PresentadorBase
     {
         private static PaginaPrincipal _paginaPrincipal = PaginaPrincipal.ObtenerInstancia;
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
-        private IConsultarLicenciasPatentes _ventana;
+        private IConsultarCesionesPatentes _ventana;
         private IPatenteServicios _marcaServicios;
         private IAsociadoServicios _asociadoServicios;
         private IInteresadoServicios _interesadoServicios;
-        private IList<Patente> _patentes;
-        private IList<LicenciaPatente> _licencias;
-        private ILicenciaPatenteServicios _licenciaServicios;
+        private IList<Patente> _marcas;
+        private IList<CesionPatente> _cesiones;
+        private ICesionPatenteServicios _cesionServicios;
         
         /// <summary>
         /// Constructor Predeterminado
         /// </summary>
         /// <param name="ventana">página que satisface el contrato</param>
-        public PresentadorConsultarLicenciasPatentes(IConsultarLicenciasPatentes ventana)
+        public PresentadorConsultarCesionesPatentes(IConsultarCesionesPatentes ventana)
         {
             try
             {
@@ -47,8 +47,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.LicenciasPatent
                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["AsociadoServicios"]);
                 this._interesadoServicios = (IInteresadoServicios)Activator.GetObject(typeof(IInteresadoServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["InteresadoServicios"]);
-                this._licenciaServicios = (ILicenciaPatenteServicios)Activator.GetObject(typeof(ILicenciaPatenteServicios),
-                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["LicenciaPatenteServicios"]);
+                this._cesionServicios = (ICesionPatenteServicios)Activator.GetObject(typeof(ICesionPatenteServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["CesionPatenteServicios"]);
             }
             catch (Exception ex)
             {
@@ -59,8 +59,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.LicenciasPatent
 
         public void ActualizarTitulo()
         {
-            this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleConsultarLicenciaPatente,
-                Recursos.Ids.ConsultarLicencia);
+            this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleConsultarCesionPatente,
+                Recursos.Ids.ConsultarCesiones);
         }
 
         /// <summary>
@@ -79,8 +79,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.LicenciasPatent
 
                 ActualizarTitulo();
 
-                //this._patentes = this._marcaServicios.ConsultarTodos();
-                //this._ventana.Resultados = this._patentes;
+                //this._marcas = this._marcaServicios.ConsultarTodos();
+                //this._ventana.Resultados = this._marcas;
          
                 this._ventana.TotalHits = "0";
                 this._ventana.FocoPredeterminado();
@@ -133,17 +133,17 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.LicenciasPatent
                 int filtroValido = 0;//Variable utilizada para limitar a que el filtro se ejecute solo cuando 
                 //dos filtros sean utilizados
 
-                LicenciaPatente LicenciaAuxiliar = new LicenciaPatente();
+                CesionPatente CesionAuxiliar = new CesionPatente();
 
                 if (!this._ventana.Id.Equals(""))
-                {
-                    LicenciaAuxiliar.Id = int.Parse(this._ventana.Id);
+                {                    
+                    CesionAuxiliar.Id = int.Parse(this._ventana.Id);
                     filtroValido = 2;
                 }
 
                 if ((null != this._ventana.Patente) && (((Patente)this._ventana.Patente).Id != int.MinValue))
                 {
-                    LicenciaAuxiliar.Patente = (Patente)this._ventana.Patente;
+                    CesionAuxiliar.Patente = (Patente)this._ventana.Patente;
                     filtroValido = 2;
                 }
 
@@ -175,18 +175,18 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.LicenciasPatent
 
                 if (!this._ventana.Fecha.Equals(""))
                 {
-                    DateTime fechaLicencia = DateTime.Parse(this._ventana.Fecha);
+                    DateTime fechaCesion = DateTime.Parse(this._ventana.Fecha);
                     filtroValido = 2;
-                    LicenciaAuxiliar.Fecha = fechaLicencia;
+                    CesionAuxiliar.FechaCesion = fechaCesion;
                 }
 
                 if (filtroValido >= 2)
                 {
-                  this._licencias = this._licenciaServicios.ObtenerLicenciaFiltro(LicenciaAuxiliar);
+                    this._cesiones = this._cesionServicios.ObtenerCesionFiltro(CesionAuxiliar);
 
-                    this._ventana.Resultados = this._licencias;
-                    this._ventana.TotalHits = _licencias.Count.ToString();
-                    if (this._licencias.Count == 0)
+                    this._ventana.Resultados = this._cesiones;
+                    this._ventana.TotalHits = _cesiones.Count.ToString();
+                    if (this._cesiones.Count == 0)
                         this._ventana.Mensaje(Recursos.MensajesConElUsuario.NoHayResultados, 1);
                 }
                 else
@@ -209,18 +209,18 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.LicenciasPatent
         }
 
         /// <summary>
-        /// Método que invoca una nueva página "ConsultarLicencia" y la instancia con el objeto seleccionado
+        /// Método que invoca una nueva página "ConsultarCesion" y la instancia con el objeto seleccionado
         /// </summary>
-        public void IrConsultarLicencia()
+        public void IrConsultarCesion()
         {
             #region trace
             if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
                 logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
 
-            if (this._ventana.LicenciaSeleccionada != null)
+            if (this._ventana.CesionSeleccionada != null)
             {
-                this.Navegar(new GestionarLicenciaPatentes(this._ventana.LicenciaSeleccionada));
+                this.Navegar(new GestionarCesionPatentes(this._ventana.CesionSeleccionada));
             }
 
             #region trace
@@ -314,60 +314,39 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.LicenciasPatent
         //}
 
         /// <summary>
-        /// Método que obtiene todas las marcas registradas
+        /// Método que busca las marcas registradas
         /// </summary>
         public void BuscarPatente()
         {
-            #region trace
-            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
-                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
-            #endregion
-
             Mouse.OverrideCursor = Cursors.Wait;
-            Patente Patente = new Patente();
+            Patente marca = new Patente();
             IEnumerable<Patente> marcasFiltradas;
-            Patente.Descripcion = this._ventana.NombrePatenteFiltrar.ToUpper();
-            Patente.Id = this._ventana.IdPatenteFiltrar.Equals("") ? 0 : int.Parse(this._ventana.IdPatenteFiltrar);
-            if ((!Patente.Descripcion.Equals("")) || (Patente.Id != 0))
-                marcasFiltradas = this._marcaServicios.ObtenerPatentesFiltro(Patente);
+            marca.Descripcion = this._ventana.NombrePatenteFiltrar.ToUpper();
+            marca.Id = this._ventana.IdPatenteFiltrar.Equals("") ? 0 : int.Parse(this._ventana.IdPatenteFiltrar);
+            if ((!marca.Descripcion.Equals("")) || (marca.Id != 0))
+                marcasFiltradas = this._marcaServicios.ObtenerPatentesFiltro(marca);
             else
                 marcasFiltradas = new List<Patente>();
 
             if (marcasFiltradas.ToList<Patente>().Count != 0)
                 this._ventana.Patentes = marcasFiltradas.ToList<Patente>();
             else
-                this._ventana.Patentes = this._patentes;
+                this._ventana.Patentes = this._marcas;
 
             Mouse.OverrideCursor = null;
-
-            #region trace
-            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
-                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
-            #endregion
         }
 
         /// <summary>
-        /// Método que retorna la Patente seleccionada
+        /// Método que permite seleccionar marcas
         /// </summary>
         public bool ElegirPatente()
         {
-
-            #region trace
-            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
-                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
-            #endregion
-
             bool retorno = false;
             if (this._ventana.Patente != null)
             {
                 retorno = true;
                 this._ventana.NombrePatente = ((Patente)this._ventana.Patente).Descripcion;
             }
-
-            #region trace
-            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
-                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
-            #endregion
 
             return retorno;
         }

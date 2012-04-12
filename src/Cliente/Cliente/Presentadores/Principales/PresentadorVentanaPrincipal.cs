@@ -38,9 +38,9 @@ using Trascend.Bolet.Cliente.Ventanas.Marcas;
 using Trascend.Bolet.Cliente.Ventanas.Traspasos.Fusiones;
 using Trascend.Bolet.Cliente.Ventanas.Traspasos.Cesiones;
 using Trascend.Bolet.Cliente.Ventanas.Traspasos.Licencias;
-//using Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.FusionesPatentes;
-//using Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.CesionesPatentes;
-//using Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.LicenciasPatentes;
+using Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.FusionesPatentes;
+using Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.CesionesPatentes;
+using Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.LicenciasPatentes;
 using Trascend.Bolet.Cliente.Ventanas.EstadosMarca;
 using Trascend.Bolet.Cliente.Ventanas.TiposBase;
 using Trascend.Bolet.Cliente.Ventanas.MarcasTercero;
@@ -841,7 +841,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
         /// </summary>
         public void ConsultarCesionesPatentes()
         {
-            //this._ventana.Contenedor.Navigate(new ConsultarCesionesPatentes());
+            this._ventana.Contenedor.Navigate(new ConsultarCesionesPatentes());
         }
 
         /// <summary>
@@ -849,7 +849,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
         /// </summary>
         public void AgregarCesionPatentes()
         {
-            //this._ventana.Contenedor.Navigate(new GestionarCesionPatentes(null));
+            this._ventana.Contenedor.Navigate(new GestionarCesionPatentes(null));
         }
 
         /// <summary>
@@ -857,7 +857,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
         /// </summary>
         public void ConsultarFusionesPatentes()
         {
-            //this._ventana.Contenedor.Navigate(new ConsultarFusionesPatentes());
+            this._ventana.Contenedor.Navigate(new ConsultarFusionesPatentes());
         }
 
         /// <summary>
@@ -865,7 +865,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
         /// </summary>
         public void AgregarFusionPatentes()
         {
-            //this._ventana.Contenedor.Navigate(new GestionarFusionPatentes(null));
+            this._ventana.Contenedor.Navigate(new GestionarFusionPatentes(null));
         }
 
         /// <summary>
@@ -921,7 +921,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
         /// </summary>
         public void IrConsultarLicenciasPatentes()
         {
-            //this._ventana.Contenedor.Navigate(new ConsultarLicenciasPatentes());
+            this._ventana.Contenedor.Navigate(new ConsultarLicenciasPatentes());
         }
 
         /// <summary>
@@ -929,7 +929,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
         /// </summary>
         public void AgregarLicenciaPatentes()
         {
-            //this._ventana.Contenedor.Navigate(new GestionarLicenciaPatentes(null));
+            this._ventana.Contenedor.Navigate(new GestionarLicenciaPatentes(null));
         }
 
 

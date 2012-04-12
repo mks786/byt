@@ -560,22 +560,22 @@ namespace Trascend.Bolet.Cliente.Ventanas.Principales
 
         private void _menuItemCesionesPatentesConsultar_Click(object sender, RoutedEventArgs e)
         {
-            this._presentador.AgregarCambioDeDomicilioPatentes();
+            this._presentador.ConsultarCesionesPatentes();
         }
 
         private void _menuItemCesionPatentesAgregar_Click(object sender, RoutedEventArgs e)
         {
-            this._presentador.AgregarCambioDeDomicilioPatentes();
+            this._presentador.AgregarCesionPatentes();
         }
 
         private void _menuItemFusionesPatentesConsultar_Click(object sender, RoutedEventArgs e)
         {
-            this._presentador.AgregarCambioDeDomicilioPatentes();
+            this._presentador.ConsultarFusionesPatentes();
         }
 
         private void _menuItemFusionPatentesAgregar_Click(object sender, RoutedEventArgs e)
         {
-            this._presentador.AgregarCambioDeDomicilioPatentes();
+            this._presentador.AgregarFusionPatentes();
         }
 
         private void _menuItemCambiosDeDomicilioPatentesConsultar_Click(object sender, RoutedEventArgs e)
@@ -610,12 +610,12 @@ namespace Trascend.Bolet.Cliente.Ventanas.Principales
 
         private void _menuItemLicenciasPatentesConsultar_Click(object sender, RoutedEventArgs e)
         {
-            this._presentador.AgregarCambioDeDomicilioPatentes();
+            this._presentador.IrConsultarLicenciasPatentes();
         }
 
         private void _menuItemLicenciaPatentesAgregar_Click(object sender, RoutedEventArgs e)
         {
-            this._presentador.AgregarCambioDeDomicilioPatentes();
+            this._presentador.AgregarLicenciaPatentes();
         }
 
         #endregion

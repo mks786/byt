@@ -5,17 +5,17 @@ namespace Trascend.Bolet.Cliente.Contratos.TraspasosPatentes.LicenciasPatentes
 {
     interface IGestionarLicenciaPatentes : IPaginaBase
     {
-        object Licencia { get; set; }               
+        object LicenciaPatente { get; set; }               
         
-        //ListView Marcas
+        //ListView Patentes
 
-        string IdMarcaFiltrar { get; }
+        string IdPatenteFiltrar { get; }
 
-        string NombreMarcaFiltrar { get; }
+        string NombrePatenteFiltrar { get; }
 
-        object MarcasFiltradas { get; set; }
+        object PatentesFiltradas { get; set; }
 
-        object MarcaFiltrada { get; set; }
+        object PatenteFiltrada { get; set; }
 
         //-----------
         
@@ -103,7 +103,7 @@ namespace Trascend.Bolet.Cliente.Contratos.TraspasosPatentes.LicenciasPatentes
 
         string TextoBotonRegresar { get; set; }
 
-        string NombreMarca { set; }
+        string NombrePatente { set; }
 
         string NombreLicenciante { set; }
 
@@ -121,7 +121,7 @@ namespace Trascend.Bolet.Cliente.Contratos.TraspasosPatentes.LicenciasPatentes
 
         string NacionalidadLicenciatario { set; }        
 
-        object Marca { get; set; }
+        object Patente { get; set; }
 
         object InteresadoLicenciante { get; set; }
 
