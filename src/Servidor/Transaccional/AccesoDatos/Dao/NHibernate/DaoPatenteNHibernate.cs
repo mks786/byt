@@ -128,8 +128,7 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
                 Session.Close();
             }
 
-            //return retorno;
-            return null;
+            return retorno;
         }
 
     }
