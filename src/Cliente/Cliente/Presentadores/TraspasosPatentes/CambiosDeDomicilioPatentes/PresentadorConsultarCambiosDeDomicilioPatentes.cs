@@ -25,7 +25,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CambiosDeDomici
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
         private IConsultarCambiosDeDomicilioPatentes _ventana;
-        private IPatenteServicios _interesadosServicios;
+        private IPatenteServicios _patenteServicios;
         private IAsociadoServicios _asociadoServicios;
         private IInteresadoServicios _interesadoServicios;
         private ICambioDeDomicilioPatenteServicios _cambioDeDomicilioPatenteServicios;
@@ -43,14 +43,15 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CambiosDeDomici
             try
             {
                 this._ventana = ventana;
-                this._interesadosServicios = (IPatenteServicios)Activator.GetObject(typeof(IPatenteServicios),
+
+                this._patenteServicios = (IPatenteServicios)Activator.GetObject(typeof(IPatenteServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["PatenteServicios"]);
                 this._asociadoServicios = (IAsociadoServicios)Activator.GetObject(typeof(IAsociadoServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["AsociadoServicios"]);
                 this._interesadoServicios = (IInteresadoServicios)Activator.GetObject(typeof(IInteresadoServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["InteresadoServicios"]);
                 this._cambioDeDomicilioPatenteServicios = (ICambioDeDomicilioPatenteServicios)Activator.GetObject(typeof(ICambioDeDomicilioPatenteServicios),
-                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["CambioDeDomicilioServicios"]);
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["CambioDeDomicilioPatenteServicios"]);
             }
             catch (Exception ex)
             {
@@ -61,7 +62,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CambiosDeDomici
 
         public void ActualizarTitulo()
         {
-            this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleConsultarCambiosDeDomicilio,
+            this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleConsultarCambiosDeDomicilioPatente,
                 Recursos.Ids.ConsultarCambiosDeDomicilio);
         }
 
@@ -192,7 +193,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CambiosDeDomici
 
                 if (filtroValido >= 2)
                 {
-                    this._cambiosDeDomicilio = this._cambioDeDomicilioPatenteServicios.ObtenerCambioDeDomicilioFiltro(CambioDeDomicilioAuxiliar);
+                    this._cambiosDeDomicilio = this._cambioDeDomicilioPatenteServicios.ObtenerCambioDeDomicilioPatenteFiltro(CambioDeDomicilioAuxiliar);
 
                     this._ventana.Resultados = this._cambiosDeDomicilio;
                     this._ventana.TotalHits = _cambiosDeDomicilio.Count.ToString();
@@ -283,17 +284,17 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CambiosDeDomici
                 #endregion
 
                 Mouse.OverrideCursor = Cursors.Wait;
-                Patente _interesados = new Patente();
-                IEnumerable<Patente> _interesadossFiltradas;
-                _interesados.Descripcion = this._ventana.NombrePatenteFiltrar.ToUpper();
-                _interesados.Id = this._ventana.IdPatenteFiltrar.Equals("") ? 0 : int.Parse(this._ventana.IdPatenteFiltrar);
-                if ((!_interesados.Descripcion.Equals("")) || (_interesados.Id != 0))
-                    _interesadossFiltradas = this._interesadosServicios.ObtenerPatentesFiltro(_interesados);
+                Patente patentes = new Patente();
+                IEnumerable<Patente> patentesFiltrados;
+                patentes.Descripcion = this._ventana.NombrePatenteFiltrar.ToUpper();
+                patentes.Id = this._ventana.IdPatenteFiltrar.Equals("") ? 0 : int.Parse(this._ventana.IdPatenteFiltrar);
+                if ((!patentes.Descripcion.Equals("")) || (patentes.Id != 0))
+                    patentesFiltrados = this._patenteServicios.ObtenerPatentesFiltro(patentes);
                 else
-                    _interesadossFiltradas = new List<Patente>();
+                    patentesFiltrados = new List<Patente>();
 
-                if (_interesadossFiltradas.ToList<Patente>().Count != 0)
-                    this._ventana.Patentes = _interesadossFiltradas.ToList<Patente>();
+                if (patentesFiltrados.ToList<Patente>().Count != 0)
+                    this._ventana.Patentes = patentesFiltrados.ToList<Patente>();
                 else
                     this._ventana.Patentes = this._patentes;
 

@@ -8,17 +8,17 @@ using Trascend.Bolet.ObjetosComunes.Entidades;
 
 namespace Trascend.Bolet.LogicaNegocio.Controladores
 {
-    public class ControladorCambioDeDomicilio : ControladorBase
+    public class ControladorCambioDeDomicilioPatente : ControladorBase
     {
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
         /// <summary>
-        /// Método que devuelve todos los CambioDeDomicilio del sistema
+        /// Método que devuelve todos los CambioDeDomicilioPatente del sistema
         /// </summary>
         /// <returns></returns>
-        public static IList<CambioDeDomicilio> ConsultarTodos()
+        public static IList<CambioDeDomicilioPatente> ConsultarTodos()
         {
-            IList<CambioDeDomicilio> retorno;
+            IList<CambioDeDomicilioPatente> retorno;
             try
             {
                 #region trace
@@ -26,7 +26,7 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
                     logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-                ComandoBase<IList<CambioDeDomicilio>> comando = FabricaComandosCambioDeDomicilio.ObtenerComandoConsultarTodos();
+                ComandoBase<IList<CambioDeDomicilioPatente>> comando = FabricaComandosCambioDeDomicilioPatente.ObtenerComandoConsultarTodos();
                 comando.Ejecutar();
                 retorno = comando.Receptor.ObjetoAlmacenado;
 
@@ -44,12 +44,12 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
         }
 
         /// <summary>
-        /// Método que modifica un los datos de un CambioDeDomicilio
+        /// Método que modifica un los datos de un CambioDeDomicilioPatente
         /// </summary>
-        /// <param name="cambioDeDomicilio">CambioDeDomicilio a modificar</param>
-        /// <param name="hash">Hash del CambioDeDomicilio que va a realizar la operacion</param>
+        /// <param name="cambioDeDomicilio">CambioDeDomicilioPatente a modificar</param>
+        /// <param name="hash">Hash del CambioDeDomicilioPatente que va a realizar la operacion</param>
         /// <returns>True si la modificación fue exitosa, en caso contrario False</returns>
-        public static bool InsertarOModificar(CambioDeDomicilio cambioDeDomicilio, int hash)
+        public static bool InsertarOModificar(CambioDeDomicilioPatente cambioDeDomicilio, int hash)
         {
             bool exitoso = false;
 
@@ -83,13 +83,13 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
                     operacion.Id = contadorOperacion.ProximoValor++;
                     operacion.Fecha = System.DateTime.Now;
                     operacion.Aplicada = 'M';
-                    operacion.CodigoAplicada = cambioDeDomicilio.Marca.Id;
+                    operacion.CodigoAplicada = cambioDeDomicilio.Patente.Id;
                     operacion.Interno = cambioDeDomicilio.Id;
                     operacion.Servicio = new Servicio("CD");
 
                     ComandoBase<bool> comandoOperacion = FabricaComandosOperacion.ObtenerComandoInsertarOModificar(operacion);
 
-                    ComandoBase<bool> comando = FabricaComandosCambioDeDomicilio.ObtenerComandoInsertarOModificar(cambioDeDomicilio);
+                    ComandoBase<bool> comando = FabricaComandosCambioDeDomicilioPatente.ObtenerComandoInsertarOModificar(cambioDeDomicilio);
                     comando.Ejecutar();
                     comandoOperacion.Ejecutar();
 
@@ -103,7 +103,7 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
                 }
                 else
                 {
-                    ComandoBase<bool> comando = FabricaComandosCambioDeDomicilio.ObtenerComandoInsertarOModificar(cambioDeDomicilio);
+                    ComandoBase<bool> comando = FabricaComandosCambioDeDomicilioPatente.ObtenerComandoInsertarOModificar(cambioDeDomicilio);
                     comando.Ejecutar();
                     exitoso = comando.Receptor.ObjetoAlmacenado;
 
@@ -124,13 +124,13 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
         }
 
         /// <summary>
-        /// Método que consulta un CambioDeDomicilio por su Id
+        /// Método que consulta un CambioDeDomicilioPatente por su Id
         /// </summary>
-        /// <param name="cambioDeDomicilio">CambioDeDomicilio con el Id del CambioDeDomicilio buscado</param>
-        /// <returns>El CambioDeDomicilio solicitado</returns>
-        public static CambioDeDomicilio ConsultarPorId(CambioDeDomicilio cambioDeDomicilio)
+        /// <param name="cambioDeDomicilio">CambioDeDomicilioPatente con el Id del CambioDeDomicilioPatente buscado</param>
+        /// <returns>El CambioDeDomicilioPatente solicitado</returns>
+        public static CambioDeDomicilioPatente ConsultarPorId(CambioDeDomicilioPatente cambioDeDomicilio)
         {
-            CambioDeDomicilio retorno;
+            CambioDeDomicilioPatente retorno;
 
             try
             {
@@ -139,7 +139,7 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
                     logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-                ComandoBase<CambioDeDomicilio> comando = FabricaComandosCambioDeDomicilio.ObtenerComandoConsultarPorID(cambioDeDomicilio);
+                ComandoBase<CambioDeDomicilioPatente> comando = FabricaComandosCambioDeDomicilioPatente.ObtenerComandoConsultarPorID(cambioDeDomicilio);
                 comando.Ejecutar();
                 retorno = comando.Receptor.ObjetoAlmacenado;
 
@@ -157,12 +157,12 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
         }
 
         /// <summary>
-        /// Método que elimina un CambioDeDomicilio
+        /// Método que elimina un CambioDeDomicilioPatente
         /// </summary>
-        /// <param name="cambioDeDomicilio">CambioDeDomicilio a eliminar</param>
-        /// <param name="hash">Hash del CambioDeDomicilio que va a realizar la operacion</param>
+        /// <param name="cambioDeDomicilio">CambioDeDomicilioPatente a eliminar</param>
+        /// <param name="hash">Hash del CambioDeDomicilioPatente que va a realizar la operacion</param>
         /// <returns>True si la eliminacion fue exitosa, en caso contrario False</returns>
-        public static bool Eliminar(CambioDeDomicilio cambioDeDomicilio, int hash)
+        public static bool Eliminar(CambioDeDomicilioPatente cambioDeDomicilio, int hash)
         {
             bool exitoso = false;
             try
@@ -172,7 +172,7 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
                     logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-                ComandoBase<bool> comando = FabricaComandosCambioDeDomicilio.ObtenerComandoEliminarCambioDeDomicilio(cambioDeDomicilio);
+                ComandoBase<bool> comando = FabricaComandosCambioDeDomicilioPatente.ObtenerComandoEliminarCambioDeDomicilio(cambioDeDomicilio);
                 comando.Ejecutar();
                 exitoso = true;
 
@@ -192,11 +192,11 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
 
 
         /// <summary>
-        /// Verifica si el CambioDeDomicilio existe
+        /// Verifica si el CambioDeDomicilioPatente existe
         /// </summary>
-        /// <param name="cambioDeDomicilio">CambioDeDomicilio a verificar</param>
+        /// <param name="cambioDeDomicilio">CambioDeDomicilioPatente a verificar</param>
         /// <returns>True de existir, false en caso conrario</returns>
-        public static bool VerificarExistencia(CambioDeDomicilio cambioDeDomicilio)
+        public static bool VerificarExistencia(CambioDeDomicilioPatente cambioDeDomicilio)
         {
             bool existe = false;
             try
@@ -206,7 +206,7 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
                     logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-                ComandoBase<bool> comando = FabricaComandosCambioDeDomicilio.ObtenerComandoVerificarExistenciaCambioDeDomicilio(cambioDeDomicilio);
+                ComandoBase<bool> comando = FabricaComandosCambioDeDomicilioPatente.ObtenerComandoVerificarExistenciaCambioDeDomicilio(cambioDeDomicilio);
                 comando.Ejecutar();
                 existe = comando.Receptor.ObjetoAlmacenado;
 
@@ -228,11 +228,11 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
         /// <summary>
         /// Consulta los Fusion que cumplan con los filtros establecidos en el objeto enviado
         /// </summary>
-        /// <param name="CambioDeDomicilio">Fusion a consultar</param>
+        /// <param name="CambioDeDomicilioPatente">Fusion a consultar</param>
         /// <returns>Lista de Fusion que cumplen con el filtro</returns>
-        public static IList<CambioDeDomicilio> ConsultarCambioDeDomicilioFiltro(CambioDeDomicilio cambioDeDomicilio)
+        public static IList<CambioDeDomicilioPatente> ConsultarCambioDeDomicilioPatenteFiltro(CambioDeDomicilioPatente cambioDeDomicilio)
         {
-            IList<CambioDeDomicilio> retorno;
+            IList<CambioDeDomicilioPatente> retorno;
 
             try
             {
@@ -241,7 +241,7 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
                     logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-                ComandoBase<IList<CambioDeDomicilio>> comando = FabricaComandosCambioDeDomicilio.ObtenerComandoConsultarCambiosDeDomicilioPatenteFiltro(cambioDeDomicilio);
+                ComandoBase<IList<CambioDeDomicilioPatente>> comando = FabricaComandosCambioDeDomicilioPatente.ObtenerComandoConsultarCambiosDeDomicilioPatenteFiltro(cambioDeDomicilio);
                 comando.Ejecutar();
                 retorno = comando.Receptor.ObjetoAlmacenado;
 

@@ -59,7 +59,7 @@ namespace Trascend.Bolet.Comandos.Fabrica
         /// </summary>
         /// <param name="fusion">Fusion a consultar</param>
         /// <returns>Lista de fusiones que cumplan con el filtro</returns>
-        public static ComandoBase<IList<CambioDeDomicilio>> ObtenerComandoConsultarCambiosDeDomicilioFiltro(CambioDeDomicilio cambioDeDomicilio)
+        public static ComandoBase<IList<CambioDeDomicilio>> ObtenerComandoConsultarCambiosDeDomicilioPatenteFiltro(CambioDeDomicilio cambioDeDomicilio)
         {
             return new ComandoConsultarCambiosDeDomicilioFiltro(cambioDeDomicilio);
         }

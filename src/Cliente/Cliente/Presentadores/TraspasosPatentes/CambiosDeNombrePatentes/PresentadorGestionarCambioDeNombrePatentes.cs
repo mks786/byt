@@ -135,7 +135,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CambiosDeNombre
                 this._statusWebServicios = (IStatusWebServicios)Activator.GetObject(typeof(IStatusWebServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["StatusWebServicios"]);
                 this._cambioDeNombrePatenteServicios = (ICambioDeNombrePatenteServicios)Activator.GetObject(typeof(ICambioDeNombrePatenteServicios),
-                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["CambioDeNombreServicios"]);
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["CambioDeNombrePatenteServicios"]);
 
                 #endregion
             }
@@ -149,10 +149,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CambiosDeNombre
         public void ActualizarTitulo()
         {
             if (_agregar == true)
-                this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleAgregarCambioDeNombre,
+                this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleAgregarCambioDeNombrePatente,
                 Recursos.Ids.GestionarCambioDeNombre);
             else
-                this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleGestionarCambiosDeNombre,
+                this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleGestionarCambiosDeNombrePatente,
                 Recursos.Ids.GestionarCambioDeNombre);
         }
 

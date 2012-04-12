@@ -520,6 +520,30 @@
     <value>m.Nacional.Id = {0}</value>
     <comment>Filtro por Id de clase nacional</comment>
   </data>
+  <data name="CabeceraObtenerPatente" xml:space="preserve">
+    <value>Select p from Patente p left join fetch p.Asociado as asociado left join fetch p.Interesado as interesado left join fetch asociado.Pais as pais left join fetch asociado.Idioma as pais left join fetch p.BoletinConcesion as boletinC left join fetch p.BoletinPublicacion as boletinP where </value>
+    <comment>Cabecera del query para el filtro de Patentes</comment>
+  </data>
+  <data name="FiltroObtenerPatenteDescripcion" xml:space="preserve">
+    <value>upper(p.Descripcion) like '%{0}%'</value>
+    <comment>Filtro por Descripción de Patente</comment>
+  </data>
+  <data name="FiltroObtenerPatenteFecha" xml:space="preserve">
+    <value>p.FechaPublicacion between '{0}' and '{1}'</value>
+    <comment>Filro por fecha Publicación</comment>
+  </data>
+  <data name="FiltroObtenerPatenteId" xml:space="preserve">
+    <value>p.Id = {0}</value>
+    <comment>Filtro por Id</comment>
+  </data>
+  <data name="FiltroObtenerPatenteIdAsociado" xml:space="preserve">
+    <value>asociado.Id ={0}</value>
+    <comment>Filtro por Asociado</comment>
+  </data>
+  <data name="FiltroObtenerPatenteIdInteresado" xml:space="preserve">
+    <value>interesado.Id = {0}</value>
+    <comment>Filtro por Interesado</comment>
+  </data>
   <data name="CabeceraObtenerLicenciaPatente" xml:space="preserve">
     <value>Select l from LicenciaPatente l left join fetch l.Patente as patente left join fetch l.AgenteLicenciatario as Alicentario left join fetch l.AgenteLicenciante as Alice left join fetch l.Asociado as asosia left join fetch l.Boletin as boletin left join fetch l.InteresadoLicenciatario as InterLicen left join fetch l.InteresadoLicenciante left join fetch l.PoderLicenciatario as Plicentario left join fetch l.PoderLicenciante as Plicenciant Where </value>
     <comment>Cabecera para armar el objeto de LicenciaPatente</comment>

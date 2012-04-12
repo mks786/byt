@@ -150,10 +150,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CambiosDeDomici
         public void ActualizarTitulo()
         {
             if (_agregar == true)
-                this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleAgregarCambioDeDomicilio,
+                this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleAgregarCambioDeDomicilioPatente,
                 Recursos.Ids.GestionarCambioDeDomicilio);
             else
-                this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleGestionarCambioDeDomicilio,
+                this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleGestionarCambioDeDomicilioPatente,
                 Recursos.Ids.GestionarCambioDeDomicilio);
         }
 

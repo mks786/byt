@@ -2264,4 +2264,31 @@ de Gracia</value>
   <data name="titleGestionarLicenciaPatente" xml:space="preserve">
     <value>Gestionar Licencia de Patente</value>
   </data>
+  <data name="titleAgregarCambioDeDomicilioPatente" xml:space="preserve">
+    <value>Agregar Cambio de Domicilio de Patente</value>
+  </data>
+  <data name="titleAgregarCambioDeNombrePatente" xml:space="preserve">
+    <value>Agregar Cambio de Nombre de Patente</value>
+  </data>
+  <data name="titleAgregarCambioPeticionarioPatente" xml:space="preserve">
+    <value>Agregar Cambio de Peticionario de Patente</value>
+  </data>
+  <data name="titleConsultarCambioPeticionariosPatente" xml:space="preserve">
+    <value>Consultar Cambios de Peticionario de Patente</value>
+  </data>
+  <data name="titleConsultarCambiosDeDomicilioPatente" xml:space="preserve">
+    <value>Consultar Cambios de Domicilio de Patente</value>
+  </data>
+  <data name="titleConsultarCambiosDeNombrePatente" xml:space="preserve">
+    <value>Consultar Cambios de Nombre de Patente</value>
+  </data>
+  <data name="titleGestionarCambioDeDomicilioPatente" xml:space="preserve">
+    <value>Gestionar Cambio de Domicilio de Patente</value>
+  </data>
+  <data name="titleGestionarCambioPeticionarioPatente" xml:space="preserve">
+    <value>Gestionar Cambio de Peticionario de Patente</value>
+  </data>
+  <data name="titleGestionarCambiosDeNombrePatente" xml:space="preserve">
+    <value>Gestionar Cambio de Nombre de Patente</value>
+  </data>
 </root>

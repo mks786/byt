@@ -59,7 +59,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CambiosDePetici
 
         public void ActualizarTitulo()
         {
-            this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleConsultarCambioPeticionarios,
+            this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleConsultarCambioPeticionariosPatente,
                 Recursos.Ids.ConsultarCambioPeticionarios);
         }
 

@@ -587,7 +587,6 @@ namespace Trascend.Bolet.AccesoDatos.Fabrica
         {
             return new DaoCambioPeticionarioNHibernate();
         }
-       
 
         /// <summary>
         /// Método que devuelve el DaoCambioNombre
@@ -596,6 +595,33 @@ namespace Trascend.Bolet.AccesoDatos.Fabrica
         public override IDaoCambioDeNombre ObtenerDaoCambioDeNombre()
         {
             return new DaoCambioDeNombreNHibernate();
+        }
+
+        /// <summary>
+        /// Método que devuelve el DaoCambioDeDomicilioPatente
+        /// </summary>
+        /// <returns>IDaoCambioDeDomicilioPatente</returns>
+        public override IDaoCambioDeDomicilioPatente ObtenerDaoCambioDeDomicilioPatente()
+        {
+            return new DaoCambioDeDomicilioPatenteNHibernate();
+        }
+
+        /// <summary>
+        /// Método que devuelve el DaoCambioNombrePatente
+        /// </summary>
+        /// <returns>IDaoCambioNombrePatente</returns>
+        public override IDaoCambioDeNombrePatente ObtenerDaoCambioDeNombrePatente()
+        {
+            return new DaoCambioDeNombrePatenteNHibernate();
+        }
+
+        /// <summary>
+        /// Método que devuelve el DaoCambioPeticionarioPatente
+        /// </summary>
+        /// <returns>IDaoCambioPeticionarioPatente</returns>
+        public override IDaoCambioPeticionarioPatente ObtenerDaoCambioPeticionarioPatente()
+        {
+            return new DaoCambioPeticionarioPatenteNHibernate();
         }
 
         /// <summary>

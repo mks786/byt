@@ -107,6 +107,9 @@
     <Compile Include="Controladores\ControladorRenovacion.cs" />
     <Compile Include="Controladores\ControladorMarcaBaseTercero.cs" />
     <Compile Include="Controladores\ControladorPatente.cs" />
+    <Compile Include="Controladores\ControladorCambioDeDomicilioPatente.cs" />
+    <Compile Include="Controladores\ControladorCambioDeNombrePatente.cs" />
+    <Compile Include="Controladores\ControladorCambioPeticionarioPatente.cs" />
     <Compile Include="Controladores\ControladorCesionPatente.cs" />
     <Compile Include="Controladores\ControladorFusionPatente.cs" />
     <Compile Include="Controladores\ControladorLicenciaPatente.cs" />

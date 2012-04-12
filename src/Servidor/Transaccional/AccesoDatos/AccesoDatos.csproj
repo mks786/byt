@@ -61,6 +61,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Contrato\IDaoCambioDeDomicilioPatente.cs" />
+    <Compile Include="Contrato\IDaoCambioDeNombrePatente.cs" />
+    <Compile Include="Contrato\IDaoCambioPeticionarioPatente.cs" />
     <Compile Include="Contrato\IDaoCesionPatente.cs" />
     <Compile Include="Contrato\IDaoFusionPatente.cs" />
     <Compile Include="Contrato\IDaoLicenciaPatente.cs" />
@@ -133,6 +136,9 @@
     <Compile Include="Contrato\IDaoBase.cs" />
     <Compile Include="Contrato\IDaoUsuario.cs" />
     <Compile Include="Contrato\IFabricaDaoBase.cs" />
+    <Compile Include="Dao\NHibernate\DaoCambioPeticionarioPatenteNHibernate.cs" />
+    <Compile Include="Dao\NHibernate\DaoCambioDeNombrePatenteNHibernate.cs" />
+    <Compile Include="Dao\NHibernate\DaoCambioDeDomicilioPatenteNHibernate.cs" />
     <Compile Include="Dao\NHibernate\DaoCesionPatenteNHibernate.cs" />
     <Compile Include="Dao\NHibernate\DaoFusionPatenteNHibernate.cs" />
     <Compile Include="Dao\NHibernate\DaoLicenciaPatenteNHibernate.cs" />

@@ -406,6 +406,24 @@ namespace Trascend.Bolet.AccesoDatos.Fabrica
         public abstract IDaoCambioDeNombre ObtenerDaoCambioDeNombre();
 
         /// <summary>
+        /// Método que devuelve el DaoCambioDeDomicilioPatente del manejador que se esté utilizando
+        /// </summary>
+        /// <returns>IDaoCambioDeDomicilioPatente</returns>
+        public abstract IDaoCambioDeDomicilioPatente ObtenerDaoCambioDeDomicilioPatente();
+
+        /// <summary>
+        /// Método que devuelve el DaoCambioNombrePatente del manejador que se esté utilizando
+        /// </summary>
+        /// <returns>IDaoCambioNombrePatente</returns>
+        public abstract IDaoCambioDeNombrePatente ObtenerDaoCambioDeNombrePatente();
+
+        /// <summary>
+        /// Método que devuelve el DaoCambioPeticionarioPatente del manejador que se esté utilizando
+        /// </summary>
+        /// <returns>IDaoCambioPeticionarioPatente</returns>
+        public abstract IDaoCambioPeticionarioPatente ObtenerDaoCambioPeticionarioPatente();
+
+        /// <summary>
         /// Método que devuelve el DaoLicencia del manejador que se esté utilizando
         /// </summary>
         /// <returns>IDaoLicencia</returns>

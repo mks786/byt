@@ -61,7 +61,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CambiosDeNombre
 
         public void ActualizarTitulo()
         {
-            this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleConsultarCambiosDeNombre,
+            this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleConsultarCambiosDeNombrePatente,
                 Recursos.Ids.ConsultarCambiosDeNombre);
         }
 
@@ -192,7 +192,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CambiosDeNombre
 
                 if (filtroValido >= 2)
                 {
-                    this._cambiosDeNombre = this._cambioDeNombrePatenteServicios.ObtenerCambioDeNombreFiltro(CambioDeNombreAuxiliar);
+                    this._cambiosDeNombre = this._cambioDeNombrePatenteServicios.ObtenerCambioDeNombrePatenteFiltro(CambioDeNombreAuxiliar);
 
                     this._ventana.Resultados = this._cambiosDeNombre;
                     this._ventana.TotalHits = _cambiosDeNombre.Count.ToString();

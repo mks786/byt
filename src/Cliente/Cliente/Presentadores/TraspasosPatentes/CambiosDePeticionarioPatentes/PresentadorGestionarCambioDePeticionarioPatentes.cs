@@ -151,10 +151,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CambiosDePetici
         public void ActualizarTitulo()
         {
             if (_agregar == true)
-                this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleAgregarCambioPeticionario,
+                this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleAgregarCambioPeticionarioPatente,
                 Recursos.Ids.GestionarCambioPeticionario);
             else
-                this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleGestionarCambioPeticionario,
+                this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleGestionarCambioPeticionarioPatente,
                 Recursos.Ids.GestionarCambioPeticionario);
         }
 
