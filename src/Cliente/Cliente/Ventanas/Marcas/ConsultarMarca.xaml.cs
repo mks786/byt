@@ -81,6 +81,18 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             set { this._cbxAgente.SelectedItem = value; }
         }
 
+        public object TiposClaseNacional
+        {
+            get { return this._cbxTipoClaseNacional.DataContext; }
+            set { this._cbxTipoClaseNacional.DataContext = value; }
+        }
+
+        public object TipoClaseNacional
+        {
+            get { return this._cbxTipoClaseNacional.SelectedItem; }
+            set { this._cbxTipoClaseNacional.SelectedItem = value; }
+        }
+
         public object BoletinesOrdenPublicacion
         {
             get { return this._cbxOrdenPublicacion.DataContext; }
@@ -254,7 +266,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
                 this._txtCodigoRegistro.IsEnabled = value;
                 this._txtCodIntlDatos.IsEnabled = value;
                 this._txtComentarioDatos.IsEnabled = value;
-                this._txtConflictoDatos.IsEnabled = value;
+                //this._txtConflictoDatos.IsEnabled = value;
+                //this._btnConflictoDatos.IsEnabled = value;
                 this._txtIdCorresponsalDatos.IsEnabled = value;
                 this._txtCorresponsalDatos.IsEnabled = value;
                 this._txtIdCorresponsalSolicitud.IsEnabled = value;
@@ -298,13 +311,13 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
                 this._txtReferenciaDatos.IsEnabled = value;
                 this._txtSaldoPorVencer.IsEnabled = value;
                 this._txtSaldoVencido.IsEnabled = value;
-                this._txtTipoClaseNacional.IsEnabled = value;
                 this._txtTotalDeuda.IsEnabled = value;
 
                 #endregion
 
                 #region ComboBoxs
 
+                this._cbxTipoClaseNacional.IsEnabled = value;
                 this._cbxAgente.IsEnabled = value;
                 this._cbxAsociadoInteresadoDatos.IsEnabled = value;
                 this._cbxAsocInt.IsEnabled = value;
@@ -312,7 +325,6 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
                 this._cbxBoletinPublicacion.IsEnabled = value;
                 this._cbxCartaOrden.IsEnabled = value;
                 this._cbxCondiciones.IsEnabled = value;
-                this._cbxConflicto.IsEnabled = value;
                 this._cbxDetalleDatos.IsEnabled = value;
                 this._cbxEstadoDatos.IsEnabled = value;
                 this._cbxIdiomaDatos.IsEnabled = value;
@@ -342,8 +354,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
                 this._chkInstruccionesRenovacion.IsEnabled = value;
                 this._chkRenovacionTramitente.IsEnabled = value;
                 this._chkConflicto.IsEnabled = value;
-                this._chkEtiquetaSolicitud.IsEnabled = value;
-                this._chkEtiquetaDatos.IsEnabled = value;
+                //this._chkEtiquetaSolicitud.IsEnabled = value;
+                //this._chkEtiquetaDatos.IsEnabled = value;
                 this._chkOtraInf.IsEnabled = value;
                 this._chkPoder.IsEnabled = value;
                 this._chkPoderYPrioridad.IsEnabled = value;
@@ -411,6 +423,10 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
                 this._btnRevisarWeb.IsEnabled = value;
                 this._btnSaldo.IsEnabled = value;
                 this._btnVerDocDatos.IsEnabled = value;
+                this._btnConflictoSolicitud.IsEnabled = value;
+                this._btnConflictoDatos.IsEnabled = value;
+                this._btnEtiqueta.IsEnabled = value;
+                this._btnEtiquetaSolicitud.IsEnabled = value;
 
                 #endregion
 
@@ -791,6 +807,12 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
         {
             get { return _CurAdorner; }
             set { _CurAdorner = value; }
+        }
+
+        public void PintarEtiqueta()
+        {
+            this._btnEtiquetaSolicitud.Background = Brushes.LightGreen;
+            this._btnEtiqueta.Background = Brushes.LightGreen;
         }
 
         #endregion
@@ -1434,6 +1456,16 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
         private void _btnCertificados_Click(object sender, RoutedEventArgs e)
         {
             this._presentador.Certificado();
+        }
+
+        private void _cbxTipoClaseNacional_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void _btnEtiqueta_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.MostrarEtiqueta();
         }
 
     }

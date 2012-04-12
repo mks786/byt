@@ -425,12 +425,16 @@
                         <custom:ByTTextBox  MaxLength="255" Grid.Column="5" Grid.Row="10" Name="_txtClaseNacional" VerticalAlignment="Center" 
                          Grid.ColumnSpan="1"  Text="{Binding Path=Nacional.Id}" SoloNumero="True"></custom:ByTTextBox>
 
+
                         <Label Grid.Column="6" Grid.Row="10" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblTipoClasNac}"/>
                         </Label>
-                        <custom:ByTTextBox  MaxLength="255" Grid.Column="7" Grid.Row="10" Name="_txtTipoClaseNacional" VerticalAlignment="Center" 
-                         Grid.ColumnSpan="1" Text="{Binding Path=TipoCnac}"></custom:ByTTextBox>
+                        <!--<custom:ByTTextBox  MaxLength="255" Grid.Column="7" Grid.Row="10" Name="_txtTipoClaseNacional" VerticalAlignment="Center" 
+                         Grid.ColumnSpan="1" Text="{Binding Path=TipoCnac}"></custom:ByTTextBox>-->
 
+                        <ComboBox Grid.Column="7" Grid.Row="10" Grid.ColumnSpan="1" Name="_cbxTipoClaseNacional" Height="20" 
+                              ItemsSource="{Binding}" DisplayMemberPath="Descripcion" SelectedIndex="0" SelectionChanged="_cbxTipoClaseNacional_SelectionChanged">
+                        </ComboBox>
                         <Label Grid.Column="8" Grid.Row="10" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblReclasif}"/>
                         </Label>

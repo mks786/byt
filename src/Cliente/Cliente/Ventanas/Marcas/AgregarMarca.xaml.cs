@@ -306,6 +306,18 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             set { this._cbxTipoReproduccion.DataContext = value; }
         }
 
+        public object TiposClaseNacional
+        {
+            get { return this._cbxTipoClaseNacional.DataContext; }
+            set { this._cbxTipoClaseNacional.DataContext = value; }
+        }
+
+        public object TipoClaseNacional
+        {
+            get { return this._cbxTipoClaseNacional.SelectedItem; }
+            set { this._cbxTipoClaseNacional.SelectedItem = value; }
+        }
+
         public object PoderSolicitud
         {
             get { return this._lstPoderesSolicitud.SelectedItem; }
@@ -493,7 +505,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
         {
             this._txtClaseInternacionalSolicitud.Text = this._txtClaseInternacionalSolicitud.Text.Equals("0") ? "" : this._txtClaseInternacionalSolicitud.Text;
             this._txtClaseInternacionalDatos.Text = this._txtClaseInternacionalDatos.Text.Equals("0") ? "" : this._txtClaseInternacionalDatos.Text;
-            this._txtClaseNacional.Text = this._txtClaseNacional.Text.Equals("0") ? "" : this._txtClaseNacional.Text;
+            //this._txtClaseNacional.Text = this._txtClaseNacional.Text.Equals("0") ? "" : this._txtClaseNacional.Text;
             this._txtClaseNacionalDatos.Text = this._txtClaseNacionalDatos.Text.Equals("0") ? "" : this._txtClaseNacionalDatos.Text;
         }
 
@@ -1075,5 +1087,10 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
         }
 
         #endregion       
+
+        private void _cbxTipoClaseNacional_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }

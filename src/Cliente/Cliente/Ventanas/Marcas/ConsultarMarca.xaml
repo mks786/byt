@@ -398,9 +398,8 @@
                         <Label Grid.Column="0" Grid.Row="9" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblEtiqueta}"/>
                         </Label>
-                        <CheckBox IsEnabled="False"  Name="_chkEtiquetaSolicitud" Grid.Column="1" Grid.Row="9" VerticalAlignment="Center"
-                         HorizontalAlignment="Center" IsChecked="{Binding Path=BEtiqueta}">
-                        </CheckBox>
+                        <Button IsEnabled="False" Name="_btnEtiquetaSolicitud" HorizontalAlignment="Center" Grid.Column="1" Grid.ColumnSpan="1" Grid.Row="9" VerticalAlignment="Center" 
+                            Height="25" Width="90" Click="_btnEtiqueta_Click">Etiqueta</Button>
                         <custom:ByTTextBox IsEnabled="False" MaxLength="2000" Grid.Column="2" Grid.Row="9" Name="_txtEtiqueta" VerticalAlignment="Center" 
                          Grid.ColumnSpan="6" Text="{Binding Path=EtiquetaDescripcion}"></custom:ByTTextBox>
 
@@ -424,8 +423,12 @@
                         <Label Grid.Column="6" Grid.Row="10" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblTipoClasNac}"/>
                         </Label>
-                        <custom:ByTTextBox IsEnabled="False" MaxLength="255" Grid.Column="7" Grid.Row="10" Name="_txtTipoClaseNacional" VerticalAlignment="Center" 
-                         Grid.ColumnSpan="1" Text="{Binding Path=TipoCnac}"></custom:ByTTextBox>
+                        <!--<custom:ByTTextBox IsEnabled="False" MaxLength="255" Grid.Column="7" Grid.Row="10" Name="_txtTipoClaseNacional" VerticalAlignment="Center" 
+                         Grid.ColumnSpan="1" Text="{Binding Path=TipoCnac}"></custom:ByTTextBox>-->
+
+                        <ComboBox IsEnabled="False" Grid.Column="7" Grid.Row="10" Grid.ColumnSpan="1" Name="_cbxTipoClaseNacional" Height="20" 
+                              ItemsSource="{Binding}" DisplayMemberPath="Descripcion" SelectedIndex="0" SelectionChanged="_cbxTipoClaseNacional_SelectionChanged">
+                        </ComboBox>
 
                         <Label Grid.Column="8" Grid.Row="10" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblReclasif}"/>
@@ -453,12 +456,16 @@
                         <custom:ByTTextBox IsEnabled="False" MaxLength="255" Grid.Column="1" Grid.Row="12" Name="_txtOtrosImp" VerticalAlignment="Center" 
                          Grid.ColumnSpan="8" Text="{Binding Path=Observacion}"></custom:ByTTextBox>
 
-                        <Label Grid.Column="9" Grid.Row="12" VerticalAlignment="Center" HorizontalContentAlignment="Right">
+                        <!--<Label Grid.Column="9" Grid.Row="12" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblConflicto}"/>
                         </Label>
                         <ComboBox IsEnabled="False" Grid.Column="10" Grid.Row="12"  Name="_cbxConflicto" Height="20" Grid.ColumnSpan="2"
                               ItemsSource="{Binding}" DisplayMemberPath="Nombre" SelectedIndex="0">
-                        </ComboBox>
+                        </ComboBox>-->
+
+
+                        <Button IsEnabled="False" Name="_btnConflictoSolicitud" HorizontalAlignment="Right" Grid.Column="10" Grid.Row="12" VerticalAlignment="Center" Grid.ColumnSpan="2"
+                            Height="25" Width="90">Conflicto</Button>
 
                         <Label Grid.Column="0" Grid.Row="13" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblNumInscripcion}"/>
@@ -1142,9 +1149,11 @@
                         <Label Grid.Column="0" Grid.Row="11" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblEtiqueta}"/>
                         </Label>
-                        <CheckBox IsEnabled="False" Margin="3" Grid.Column="1" Grid.ColumnSpan="1" Grid.Row="11" Height="16" VerticalAlignment="Center" 
-                              Name="_chkEtiquetaDatos" IsChecked="{Binding Path=BEtiqueta}"/>
-                        <custom:ByTTextBox IsEnabled="False" Grid.Column="1" Grid.Row="11" Grid.ColumnSpan="11" Margin="25,0,3,0" Name="_txtEtiquetaDatos" VerticalAlignment="Center"  
+                        <!--<CheckBox IsEnabled="False" Margin="3" Grid.Column="1" Grid.ColumnSpan="1" Grid.Row="11" Height="16" VerticalAlignment="Center" 
+                              Name="_chkEtiquetaDatos" IsChecked="{Binding Path=BEtiqueta}"/>-->
+                        <Button IsEnabled="False" Name="_btnEtiqueta" HorizontalAlignment="Center" Grid.Column="1" Grid.ColumnSpan="1" Grid.Row="11" VerticalAlignment="Center" 
+                            Height="25" Width="90" Click="_btnEtiqueta_Click">Etiqueta</Button>
+                        <custom:ByTTextBox IsEnabled="False" Grid.Column="2" Grid.Row="11" Grid.ColumnSpan="10" Margin="3" Name="_txtEtiquetaDatos" VerticalAlignment="Center"  
                           Text="{Binding Path=Etiqueta}"></custom:ByTTextBox>
                         <!--Fin Séptima Fila-->
 
@@ -1197,11 +1206,14 @@
                         </Label>
                         <custom:ByTTextBox IsEnabled="False" Grid.Column="1" Grid.Row="14" Grid.ColumnSpan="8" Margin="3" Name="_txtComentarioDatos" VerticalAlignment="Center"  
                           Text="{Binding Path=Observacion}"></custom:ByTTextBox>
-                        <Label Grid.Column="9" Grid.Row="14" VerticalAlignment="Center" HorizontalContentAlignment="Right">
+                        <!--<Label Grid.Column="9" Grid.Row="14" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblConflicto}"/>
                         </Label>
                         <custom:ByTTextBox IsEnabled="False" Grid.Column="10" Grid.Row="14" Grid.ColumnSpan="2" Margin="3" Name="_txtConflictoDatos" VerticalAlignment="Center"  
-                          Text=""></custom:ByTTextBox>
+                          Text=""></custom:ByTTextBox>-->
+
+                        <Button IsEnabled="False" Name="_btnConflictoDatos" HorizontalAlignment="Center" Grid.Column="9" Grid.Row="14" VerticalAlignment="Center" Grid.ColumnSpan="2"
+                            Height="25" Width="90">Conflicto</Button>
                         <!--Fin Décima Fila-->
 
                         <!--Nuevo-->

@@ -296,6 +296,14 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 tipoReproducciones.Insert(0, primerTipoReproduccion);
                 this._ventana.TipoReproducciones = tipoReproducciones;
 
+                IList<ListaDatosDominio> tipoClasesNacional = this._listaDatosDominioServicios.
+                    ConsultarListaDatosDominioPorParametro(new ListaDatosDominio(Recursos.Etiquetas.cbiCategoriaTipoClaseNacional));
+                ListaDatosDominio primerTipoClase = new ListaDatosDominio();
+                primerTipoClase.Id = "NGN";
+                tipoClasesNacional.Insert(0, primerTipoClase);
+                this._ventana.TiposClaseNacional = tipoClasesNacional;
+                //this._ventana.TipoClaseNacional = this.BuscarClaseNacional(tipoClasesNacional, marca.TipoCnac);
+
                 if (_esMarcaDuplicada)
                     CargarDatosDeMarcaDuplicada();
 
@@ -367,6 +375,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
 
                 if (null != this._ventana.TipoReproduccion)
                     marca.TipoRps = ((ListaDatosDominio)this._ventana.TipoReproduccion).Id[0];
+
+                if (null != this._ventana.TipoClaseNacional)
+                    marca.TipoCnac = !((ListaDatosDominio)this._ventana.TipoClaseNacional).Id.Equals("NGN") ? ((ListaDatosDominio)this._ventana.TipoClaseNacional).Id : null;
 
                 if (null != this._ventana.TipoMarcaDatos)
                     marca.Tipo = !((ListaDatosDominio)this._ventana.TipoMarcaDatos).Id.Equals("NGN") ? ((ListaDatosDominio)this._ventana.TipoMarcaDatos).Id : null;

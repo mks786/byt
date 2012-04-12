@@ -1626,5 +1626,30 @@ namespace Trascend.Bolet.Cliente.Presentadores
             logger.Debug("Resultado del comando de consola '" + accion + "': " + result);
             #endregion
         }
+
+
+
+        /// <summary>
+        /// Método que busca Tipo de Clase Nacional dentro de una lista de tipo de clases nacionales
+        /// </summary>
+        /// <param name="estados">Lista de Tipos de clases nacionales</param>
+        /// <param name="estadoBuscado">clase nacional a buscar</param>
+        /// <returns>clase nacional dentro de la lista</returns>
+        public ListaDatosDominio BuscarClaseNacional(IList<ListaDatosDominio> tiposClaseNacional, string tipoClaseNacionalBuscado)
+        {
+            ListaDatosDominio retorno = null;
+
+            if (tipoClaseNacionalBuscado != null)
+                foreach (ListaDatosDominio tipoReproduccion in tiposClaseNacional)
+                {
+                    if (tipoReproduccion.Id.Equals(tipoClaseNacionalBuscado))
+                    {
+                        retorno = tipoReproduccion;
+                        break;
+                    }
+                }
+
+            return retorno;
+        }
     }
 }

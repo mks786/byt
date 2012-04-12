@@ -152,7 +152,7 @@
     <value>Viudo(a)</value>
   </data>
   <data name="dpkText" xml:space="preserve">
-    <value>Seleccionar una fecha</value>
+    <value> </value>
   </data>
   <data name="lblAnexo" xml:space="preserve">
     <value>Anexo:</value>
@@ -1320,7 +1320,7 @@ Cuenta solo digital:</value>
     <value>Otro:</value>
   </data>
   <data name="lblOtrosImp" xml:space="preserve">
-    <value>Otros Imp:</value>
+    <value>Otros:</value>
   </data>
   <data name="lblPoder" xml:space="preserve">
     <value>Poder:</value>
@@ -2263,6 +2263,9 @@ de Gracia</value>
   </data>
   <data name="titleGestionarLicenciaPatente" xml:space="preserve">
     <value>Gestionar Licencia de Patente</value>
+  </data>
+  <data name="cbiCategoriaTipoClaseNacional" xml:space="preserve">
+    <value>TIPO_CLASE_NACIONAL</value>
   </data>
   <data name="titleAgregarCambioDeDomicilioPatente" xml:space="preserve">
     <value>Agregar Cambio de Domicilio de Patente</value>

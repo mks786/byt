@@ -148,6 +148,10 @@ namespace Trascend.Bolet.Cliente.Contratos.Marcas
 
         object StatusWebs { get; set; }
 
+        object TiposClaseNacional { get; set; }
+
+        object TipoClaseNacional { get; set; }
+
         void Mensaje(string mensaje);
 
         string TextoBotonModificar { get; set; }
@@ -179,6 +183,8 @@ namespace Trascend.Bolet.Cliente.Contratos.Marcas
         void PintarAuditoria();
 
         void BorrarCeros();
+
+        void PintarEtiqueta();
 
         bool MensajeAlerta(string mensaje);
 

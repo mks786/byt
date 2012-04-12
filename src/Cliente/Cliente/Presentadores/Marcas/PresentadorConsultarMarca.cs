@@ -274,6 +274,19 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 this._ventana.TipoReproducciones = tipoReproducciones;
                 this._ventana.TipoReproduccion = this.BuscarTipoReproduccion(tipoReproducciones, marca.Tipo);
 
+                IList<ListaDatosDominio> tipoClasesNacional = this._listaDatosDominioServicios.
+                    ConsultarListaDatosDominioPorParametro(new ListaDatosDominio(Recursos.Etiquetas.cbiCategoriaTipoClaseNacional));
+                ListaDatosDominio primerTipoClase = new ListaDatosDominio();
+                primerTipoClase.Id = "NGN";
+                tipoClasesNacional.Insert(0, primerTipoClase);
+                this._ventana.TiposClaseNacional = tipoClasesNacional;
+                this._ventana.TipoClaseNacional = this.BuscarClaseNacional(tipoClasesNacional, marca.TipoCnac);
+
+                if (marca.BEtiqueta)
+                {
+                    this._ventana.PintarEtiqueta();
+                }
+
                 Auditoria auditoria = new Auditoria();
                 auditoria.Fk = ((Marca)this._ventana.Marca).Id;
                 auditoria.Tabla = "MYP_MARCAS";
@@ -382,6 +395,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
 
             if (null != this._ventana.Sector)
                 marca.Sector = !((ListaDatosDominio)this._ventana.Sector).Id.Equals("NGN") ? ((ListaDatosDominio)this._ventana.Sector).Id : null;
+
+            if (null != this._ventana.TipoClaseNacional)
+                marca.TipoCnac = !((ListaDatosDominio)this._ventana.TipoClaseNacional).Id.Equals("NGN") ? ((ListaDatosDominio)this._ventana.TipoClaseNacional).Id : null;
 
             if (null != this._ventana.TipoReproduccion)
                 marca.TipoRps = ((ListaDatosDominio)this._ventana.TipoReproduccion).Id[0];
@@ -762,7 +778,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                     this._ventana.AsociadoDatos = (Asociado)this._ventana.AsociadoSolicitud;
                     this._ventana.NombreAsociadoDatos = ((Asociado)this._ventana.AsociadoSolicitud).Nombre;
                     this._ventana.IdAsociadoDatos = ((Asociado)this._ventana.AsociadoSolicitud).Id.ToString();
-                    
+
                 }
 
                 #region trace
@@ -1166,7 +1182,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                     this._ventana.DescripcionCorresponsalDatos = ((Corresponsal)this._ventana.CorresponsalDatos).Descripcion;
                     this._ventana.IdCorresponsalDatos = ((Corresponsal)this._ventana.CorresponsalDatos).Id.ToString();
                     this._ventana.CorresponsalSolicitud = (Corresponsal)this._ventana.CorresponsalDatos;
-                    
+
                     this._ventana.DescripcionCorresponsalSolicitud = ((Corresponsal)this._ventana.CorresponsalDatos).Descripcion;
                     this._ventana.IdCorresponsalSolicitud = ((Corresponsal)this._ventana.CorresponsalDatos).Id.ToString();
                 }
@@ -1800,6 +1816,16 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
 
             this._ventana.DistingueSolicitud = internacionalAux.Descripcion;
             this._ventana.DistingueDatos = internacionalAux.Descripcion;
+        }
+
+        public void MostrarEtiqueta()
+        {
+            Marca marcaAux = ((Marca)this._ventana.Marca);
+            if (((Marca)this._ventana.Marca).BEtiqueta)
+            {
+                EtiquetaMarca detalleEtiqueta = new EtiquetaMarca(ConfigurationManager.AppSettings["RutaImagenesDeMarcas"] + marcaAux.Id + ".jpg", marcaAux.Descripcion);
+                detalleEtiqueta.ShowDialog();
+            }
         }
     }
 }

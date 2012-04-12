@@ -846,6 +846,16 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to TIPO_CLASE_NACIONAL.
+        /// </summary>
+        public static string cbiCategoriaTipoClaseNacional {
+            get {
+                return ResourceManager.GetString("cbiCategoriaTipoClaseNacional", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ESCRITOTIPODISTINGUE.
         ///   Busca una cadena traducida similar a ESCRITOTIPODISTINGUE.
         /// </summary>
         public static string cbiCategoriaTipoDistingue {
@@ -1324,6 +1334,7 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to  .
         ///   Busca una cadena traducida similar a Seleccionar una fecha.
         /// </summary>
         public static string dpkText {
@@ -2765,6 +2776,7 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Otros:.
         ///   Busca una cadena traducida similar a Otros Imp:.
         /// </summary>
         public static string lblOtrosImp {

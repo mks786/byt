@@ -99,6 +99,10 @@ namespace Trascend.Bolet.Cliente.Contratos.Marcas
 
         object Agente { get; set; }
 
+        object TiposClaseNacional { get; set; }
+
+        object TipoClaseNacional { get; set; }
+
         object BoletinesOrdenPublicacion { get; set; }
 
         object BoletinOrdenPublicacion { get; set; }
