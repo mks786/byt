@@ -520,4 +520,27 @@
     <value>m.Nacional.Id = {0}</value>
     <comment>Filtro por Id de clase nacional</comment>
   </data>
+  <data name="CabeceraObtenerLicenciaPatente" xml:space="preserve">
+    <value>Select l from LicenciaPatente l left join fetch l.Patente as patente left join fetch l.AgenteLicenciatario as Alicentario left join fetch l.AgenteLicenciante as Alice left join fetch l.Asociado as asosia left join fetch l.Boletin as boletin left join fetch l.InteresadoLicenciatario as InterLicen left join fetch l.InteresadoLicenciante left join fetch l.PoderLicenciatario as Plicentario left join fetch l.PoderLicenciante as Plicenciant Where </value>
+    <comment>Cabecera para armar el objeto de LicenciaPatente</comment>
+  </data>
+  <data name="FiltroObtenerLicenciaIdPatente" xml:space="preserve">
+    <value>patente.Id = {0}</value>
+    <comment>Filtra por una licencia por patente</comment>
+  </data>
+  <data name="CabeceraObtenerFusionPatente" xml:space="preserve">
+    <value>Select f from FusionPatente f left join fetch f.Patente as patente left join fetch f.InteresadoEntre as interesadoEntre left join fetch f.InteresadoSobreviviente as interesadoSobreviviente left join fetch f.Agente as agente left join fetch f.Poder as poder where </value>
+  </data>
+  <data name="FiltroObtenerFusionIdPatente" xml:space="preserve">
+    <value>patente.Id = {0}</value>
+    <comment>Filtro de Fusion por id de patente</comment>
+  </data>
+  <data name="CabeceraObtenerCesionPatente" xml:space="preserve">
+    <value>Select c from Cesion c left join fetch c.Patente as patente left join fetch c.Cedente as cedente left join fetch c.AgenteCedente as agenteCed left join fetch c.AgenteCesionario as agenteCes left join fetch c.PoderCedente as PoderCed  left join fetch c.PoderCesionario as PoderCes left join fetch c.Cedente as interesadoCed left join fetch c.Cesionario as interesadoCes left join fetch c.BoletinPublicacion as boletin where </value>
+    <comment>Cabecera de CesionPatente</comment>
+  </data>
+  <data name="FiltroObtenerCesiondPatente" xml:space="preserve">
+    <value>patente.Id = {0}</value>
+    <comment>obtener filtro por id de patente</comment>
+  </data>
 </root>

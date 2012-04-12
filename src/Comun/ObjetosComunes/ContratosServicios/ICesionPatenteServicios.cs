@@ -6,6 +6,6 @@ namespace Trascend.Bolet.ObjetosComunes.ContratosServicios
 {
     public interface ICesionPatenteServicios : IServicioBase<CesionPatente>
     {
-        IList<CesionPatente> ObtenerCesionFiltro(CesionPatente CesionAuxiliar);
+        IList<CesionPatente> ObtenerCesionPatenteFiltro(CesionPatente CesionAuxiliar);
     }
 }

@@ -182,7 +182,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CesionesPatente
 
                 if (filtroValido >= 2)
                 {
-                    this._cesiones = this._cesionServicios.ObtenerCesionFiltro(CesionAuxiliar);
+                    this._cesiones = this._cesionServicios.ObtenerCesionPatenteFiltro(CesionAuxiliar);
 
                     this._ventana.Resultados = this._cesiones;
                     this._ventana.TotalHits = _cesiones.Count.ToString();

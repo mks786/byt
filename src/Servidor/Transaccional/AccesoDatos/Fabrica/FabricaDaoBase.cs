@@ -360,6 +360,7 @@ namespace Trascend.Bolet.AccesoDatos.Fabrica
         /// </summary>
         /// <returns>IDaoStatusWeb</returns>
         public abstract IDaoStatusWeb ObtenerDaoStatusWeb();
+
         /// <summary>
         /// Método que devuelve el DaoFusion del manejador que se esté utilizando
         /// </summary>
@@ -367,10 +368,24 @@ namespace Trascend.Bolet.AccesoDatos.Fabrica
         public abstract IDaoFusion ObtenerDaoFusion();
 
         /// <summary>
+        /// Método que devuelve el DaoFusionPatente del manejador que se esté utilizando
+        /// </summary>
+        /// <returns>IDaoFusionPatente</returns>
+        public abstract IDaoFusionPatente ObtenerDaoFusionPatente();
+
+        /// <summary>
         /// Método que devuelve el DaoCesion del manejador que se esté utilizando
         /// </summary>
         /// <returns>IDaoCesion</returns>
+        /// 
         public abstract IDaoCesion ObtenerDaoCesion();
+
+        /// <summary>
+        /// Método que devuelve el DaoCesionPatente del manejador que se esté utilizando
+        /// </summary>
+        /// <returns>IDaoCesionPatente</returns>
+        /// 
+        public abstract IDaoCesionPatente ObtenerDaoCesionPatente();
 
         /// <summary>
         /// Método que devuelve el DaoCambioDeDomicilio del manejador que se esté utilizando
@@ -395,6 +410,12 @@ namespace Trascend.Bolet.AccesoDatos.Fabrica
         /// </summary>
         /// <returns>IDaoLicencia</returns>
         public abstract IDaoLicencia ObtenerDaoLicencia();
+
+        /// <summary>
+        /// Método que devuelve el DaoLicenciaPatente del manejador que se esté utilizando
+        /// </summary>
+        /// <returns>IDaoLicenciaPatente</returns>
+        public abstract IDaoLicenciaPatente ObtenerDaoLicenciaPatente();
 
         /// <summary>
         /// Método que devuelve el DaoMarcaTercero del manejador que se esté utilizando

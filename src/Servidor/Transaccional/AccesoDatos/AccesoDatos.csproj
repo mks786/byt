@@ -61,6 +61,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Contrato\IDaoCesionPatente.cs" />
+    <Compile Include="Contrato\IDaoFusionPatente.cs" />
+    <Compile Include="Contrato\IDaoLicenciaPatente.cs" />
     <Compile Include="Contrato\IDaoPatente.cs" />
     <Compile Include="Contrato\IDaoMarcaBaseTercero.cs" />
     <Compile Include="Contrato\IDaoEstadoMarca.cs" />
@@ -130,6 +133,9 @@
     <Compile Include="Contrato\IDaoBase.cs" />
     <Compile Include="Contrato\IDaoUsuario.cs" />
     <Compile Include="Contrato\IFabricaDaoBase.cs" />
+    <Compile Include="Dao\NHibernate\DaoCesionPatenteNHibernate.cs" />
+    <Compile Include="Dao\NHibernate\DaoFusionPatenteNHibernate.cs" />
+    <Compile Include="Dao\NHibernate\DaoLicenciaPatenteNHibernate.cs" />
     <Compile Include="Dao\NHibernate\DaoPatenteNHibernate.cs" />
     <Compile Include="Dao\NHibernate\DaoMarcaBaseTerceroNHibernate.cs" />
     <Compile Include="Dao\NHibernate\DaoEstadoMarcaNHibernate.cs" />
@@ -226,6 +232,7 @@
     <EmbeddedResource Include="Recursos\ConsultasHQL.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>ConsultasHQL.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Recursos\Errores.resx">
       <Generator>ResXFileCodeGenerator</Generator>

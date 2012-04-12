@@ -6,6 +6,6 @@ namespace Trascend.Bolet.ObjetosComunes.ContratosServicios
 {
     public interface IFusionPatenteServicios : IServicioBase<FusionPatente>
     {
-        IList<FusionPatente> ObtenerFusionFiltro(FusionPatente Fusion);
+        IList<FusionPatente> ObtenerFusionPatenteFiltro(FusionPatente FusionPatente);
     }
 }

@@ -544,12 +544,30 @@ namespace Trascend.Bolet.AccesoDatos.Fabrica
         }
 
         /// <summary>
+        /// Método que devuelve el DaoCesionPatente
+        /// </summary>
+        /// <returns>IDaoCesionPatente</returns>
+        public override IDaoCesionPatente ObtenerDaoCesionPatente()
+        {
+            return new DaoCesionPatenteNHibernate();
+        }
+
+        /// <summary>
         /// Método que devuelve el DaoFusion
         /// </summary>
         /// <returns>IDaoFusion</returns>
         public override IDaoFusion ObtenerDaoFusion()
         {
             return new DaoFusionNHibernate();
+        }
+
+        /// <summary>
+        /// Método que devuelve el DaoFusionPatente
+        /// </summary>
+        /// <returns>IDaoFusionPatente</returns>
+        public override IDaoFusionPatente ObtenerDaoFusionPatente()
+        {
+            return new DaoFusionPatenteNHibernate();
         }
 
         /// <summary>
@@ -589,6 +607,14 @@ namespace Trascend.Bolet.AccesoDatos.Fabrica
             return new DaoLicenciaNHibernate();
         }
 
+        /// <summary>
+        /// Método que devuelve el DaoLicenciaPatente
+        /// </summary>
+        /// <returns>IDaoLicenciaPatente</returns>
+        public override IDaoLicenciaPatente ObtenerDaoLicenciaPatente()
+        {
+            return new DaoLicenciaPatenteNHibernate();
+        }
         /// <summary>
         /// Método que devuelve el DaoMarcaTercero
         /// </summary>

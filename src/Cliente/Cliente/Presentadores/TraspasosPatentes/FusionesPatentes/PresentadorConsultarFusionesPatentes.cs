@@ -192,7 +192,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.FusionesPatente
 
                 if (filtroValido >= 2)
                 {
-                    this._fusiones = this._fusionServicios.ObtenerFusionFiltro(FusionAuxiliar);
+                    this._fusiones = this._fusionServicios.ObtenerFusionPatenteFiltro(FusionAuxiliar);
 
                     this._ventana.Resultados = this._fusiones;
                     this._ventana.TotalHits = _fusiones.Count.ToString();

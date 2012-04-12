@@ -142,11 +142,29 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Select c from Cesion c left join fetch c.Patente as patente left join fetch c.Cedente as cedente left join fetch c.AgenteCedente as agenteCed left join fetch c.AgenteCesionario as agenteCes left join fetch c.PoderCedente as PoderCed  left join fetch c.PoderCesionario as PoderCes left join fetch c.Cedente as interesadoCed left join fetch c.Cesionario as interesadoCes left join fetch c.BoletinPublicacion as boletin where .
+        /// </summary>
+        public static string CabeceraObtenerCesionPatente {
+            get {
+                return ResourceManager.GetString("CabeceraObtenerCesionPatente", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select f from Fusion f left join fetch f.Marca as marca left join fetch f.InteresadoEntre as interesadoEntre left join fetch f.InteresadoSobreviviente as interesadoSobreviviente left join fetch f.Agente as agente left join fetch f.Poder as poder where .
         /// </summary>
         public static string CabeceraObtenerFusion {
             get {
                 return ResourceManager.GetString("CabeceraObtenerFusion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select f from FusionPatente f left join fetch f.Patente as patente left join fetch f.InteresadoEntre as interesadoEntre left join fetch f.InteresadoSobreviviente as interesadoSobreviviente left join fetch f.Agente as agente left join fetch f.Poder as poder where .
+        /// </summary>
+        public static string CabeceraObtenerFusionPatente {
+            get {
+                return ResourceManager.GetString("CabeceraObtenerFusionPatente", resourceCulture);
             }
         }
         
@@ -165,6 +183,15 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         public static string CabeceraObtenerLicencia {
             get {
                 return ResourceManager.GetString("CabeceraObtenerLicencia", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select l from LicenciaPatente l left join fetch l.Patente as patente left join fetch l.AgenteLicenciatario as Alicentario left join fetch l.AgenteLicenciante as Alice left join fetch l.Asociado as asosia left join fetch l.Boletin as boletin left join fetch l.InteresadoLicenciatario as InterLicen left join fetch l.InteresadoLicenciante left join fetch l.PoderLicenciatario as Plicentario left join fetch l.PoderLicenciante as Plicenciant Where .
+        /// </summary>
+        public static string CabeceraObtenerLicenciaPatente {
+            get {
+                return ResourceManager.GetString("CabeceraObtenerLicenciaPatente", resourceCulture);
             }
         }
         
@@ -385,6 +412,15 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to patente.Id = {0}.
+        /// </summary>
+        public static string FiltroObtenerCesiondPatente {
+            get {
+                return ResourceManager.GetString("FiltroObtenerCesiondPatente", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to c.FechaCesion between &apos;{0}&apos; and &apos;{1}&apos;.
         /// </summary>
         public static string FiltroObtenerCesionFecha {
@@ -439,6 +475,15 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to patente.Id = {0}.
+        /// </summary>
+        public static string FiltroObtenerFusionIdPatente {
+            get {
+                return ResourceManager.GetString("FiltroObtenerFusionIdPatente", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to i.Id = {0}.
         /// </summary>
         public static string FiltroObtenerInteresadoId {
@@ -480,6 +525,15 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         public static string FiltroObtenerLicenciaIdMarca {
             get {
                 return ResourceManager.GetString("FiltroObtenerLicenciaIdMarca", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to patente.Id = {0}.
+        /// </summary>
+        public static string FiltroObtenerLicenciaIdPatente {
+            get {
+                return ResourceManager.GetString("FiltroObtenerLicenciaIdPatente", resourceCulture);
             }
         }
         
