@@ -54,6 +54,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         private string _omision;
         private string _operacion;
         private InfoAdicional _infoAdicional;
+        private IList<Inventor> _inventores;
 
         #endregion
 
@@ -513,6 +514,12 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         {
             get { return _infoAdicional; }
             set { _infoAdicional = value; }
+        }
+
+        public virtual IList<Inventor> Inventores
+        {
+            get { return _inventores; }
+            set { _inventores = value; }
         }
         #endregion
     }

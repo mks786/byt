@@ -38,7 +38,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         public Contacto() { }
 
         /// <summary>
-        /// Constructor que inicializa el Id del Contacto
+        /// Constructor que inicializa el Id del Inventor
         /// </summary>
         /// <param name="id">Id del Agente</param>
         public Contacto(int id)

@@ -732,4 +732,7 @@
   <data name="ExitoGenerandoInformacionRecordatorio" xml:space="preserve">
     <value>El archivo {0} se ha generado con éxito</value>
   </data>
+  <data name="ConfirmacionEliminarInventor" xml:space="preserve">
+    <value>¿Está seguro que desea eliminar el inventor?</value>
+  </data>
 </root>
