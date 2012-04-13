@@ -266,8 +266,8 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         /// </summary>
         public virtual Patente Patente
         {
-            get { return Patente; }
-            set { Patente = value; }
+            get { return _patente; }
+            set { _patente = value; }
         }
 
         /// <summary>

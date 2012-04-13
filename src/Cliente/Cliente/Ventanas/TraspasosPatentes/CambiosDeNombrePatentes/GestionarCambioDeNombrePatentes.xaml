@@ -44,10 +44,6 @@
                     </Label>
                     <TextBox Name="_txtIdCambioDeNombre" Width="150" MaxLength="40"  Text="{Binding Path=Id}" IsEnabled="False" IsReadOnly="True"/>
                     <Label>
-                        <TextBlock Text="{x:Static recurso:Etiquetas.lblExpediente}"/>
-                    </Label>
-                    <TextBox Name="_txtExpediente" Width="150" MaxLength="40"  Text="{Binding Path=Expediente}" IsEnabled="False"/>
-                    <Label>
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblFecha}"/>
                     </Label>
                     <DatePicker IsEnabled="False" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Left"  Name="_dpkFechaCambioDeNombre" Width="180" Focusable="False" BorderBrush="{x:Null}">
@@ -156,31 +152,7 @@
                         <custom:ByTTextBox IsReadOnly="True"   IsEnabled="False"  Grid.Column="6" Grid.Row="1" Name="_txtNumRegistro" VerticalAlignment="Center"  Grid.ColumnSpan="1"
                          MaxLength="255"  Text="{Binding Path=CodigoRegistro}"></custom:ByTTextBox>
                         <!--Fin Campo-->
-
-                        <!--Campo-->
-                        <Label Name="_lblClaseInternacional" Grid.Column="0" Grid.Row="2" HorizontalAlignment="Right" VerticalAlignment="Center" >
-                            <TextBlock Text="{x:Static recurso:Etiquetas.lblClaseInt}"/>
-                        </Label>
-                        <custom:ByTTextBox IsReadOnly="True"   IsEnabled="False"  Grid.Column="1" Grid.Row="2" Name="_txtClaseInternacional" VerticalAlignment="Center"  Grid.ColumnSpan="1"
-                         MaxLength="255" Text="{Binding Path=Internacional.Id}" DobleClickDespliegaLista="True"></custom:ByTTextBox>
-                        <!--Fin Campo-->
-
-                        <!--Campo-->
-                        <Label Name="_lblClaseNacional" Grid.Column="2" Grid.Row="2" HorizontalAlignment="Right" VerticalAlignment="Center" >
-                            <TextBlock Text="{x:Static recurso:Etiquetas.lblClaseNac}"/>
-                        </Label>
-                        <custom:ByTTextBox IsReadOnly="True"   IsEnabled="False"  Grid.Column="3" Grid.Row="2" Name="_txtClaseNacional" VerticalAlignment="Center"  Grid.ColumnSpan="1"
-                         MaxLength="255" Text="{Binding Path=Nacional.Id}" ></custom:ByTTextBox>
-                        <!--Fin Campo-->
-
-                        <!--Campo-->
-                        <Label Name="_lblAsociado" Grid.Column="4" Grid.Row="2" HorizontalAlignment="Right" VerticalAlignment="Center" >
-                            <TextBlock Text="{x:Static recurso:Etiquetas.lblAsociado}"/>
-                        </Label>
-                        <custom:ByTTextBox IsReadOnly="True"   IsEnabled="False"  Grid.Column="5" Grid.Row="2" Name="_txtAsociado" VerticalAlignment="Center"  Grid.ColumnSpan="2"
-                         MaxLength="255" Text="{Binding Path=Asociado.Nombre}" ></custom:ByTTextBox>
-                        <!--Fin Campo-->
-
+                        
                         <!--Fin datos de la Patente-->
                     </Grid>
                 </WrapPanel>
@@ -556,6 +528,60 @@
                     </Grid>
                 </WrapPanel>
                 <!--Fin de Poder-->
+
+                <Separator Margin="5,5,0,0"/>
+
+
+                <WrapPanel Grid.Row="3">
+                    <Grid Width="640">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+
+                        <!--Campo-->
+                        <Label Name="_lblOtros" Margin="0,5,0,0" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center">
+                            <TextBlock Text="{x:Static recurso:Etiquetas.lblOtros}"/>
+                        </Label>
+                        <custom:ByTTextBox  IsEnabled="False"  Grid.Column="1" Grid.ColumnSpan="5" Grid.Row="0" Name="_txtOtros" VerticalAlignment="Center" MaxLength="255"  
+                                        Text="{Binding Path=OtrosS1}"></custom:ByTTextBox>
+                        <!--Fin Campo-->
+
+                        <!--Campo-->
+                        <Label Name="_lblComentario" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center">
+                            <TextBlock Text="{x:Static recurso:Etiquetas.lblComentario}"/>
+                        </Label>
+                        <custom:ByTTextBox  IsEnabled="False"  Grid.Column="1" Grid.ColumnSpan="5" Grid.Row="1" Name="_txtComentario" VerticalAlignment="Center" MaxLength="255"  
+                                        Text="{Binding Path=Comentario}" ></custom:ByTTextBox>
+                        <!--Fin Campo-->
+
+                        <!--Campo-->
+                        <Label Name="_lblObservacion" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center">
+                            <TextBlock Text="{x:Static recurso:Etiquetas.lblObservacion}"/>
+                        </Label>
+                        <custom:ByTTextBox  IsEnabled="False"  Grid.Column="1" Grid.ColumnSpan="5" Grid.Row="2" Name="_txtObservacion" VerticalAlignment="Center" MaxLength="255"  
+                                        Text="{Binding Path=Observacion}"></custom:ByTTextBox>
+                        <!--Fin Campo-->
+
+                        <CheckBox IsEnabled="False" Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="3" Content="{x:Static recurso:Etiquetas.chkAsientoEnLibro}" 
+                                          Height="35" HorizontalAlignment="Left" Margin="8,5,0,0" Name="_chkAsientoEnLibro"
+                                          VerticalAlignment="Center" IsChecked="{Binding Path=BAsientoEnLibro}"/>
+                    </Grid>
+                </WrapPanel>
+                
                 <WrapPanel>
                     <Grid Width="640">
                         <Grid.ColumnDefinitions>
@@ -585,12 +611,7 @@
                     Click="_btnAnexo_Click">
                             <TextBlock Name="_txbAnexo" Text="{x:Static recurso:Etiquetas.btnAnexo}"/>
                         </Button>
-
-                        <Button Name="_btnCarpeta" Grid.Row="0" Grid.Column="2" VerticalAlignment="Bottom" Height="25" Width="90"
-                    Click="_btnCarpeta_Click">
-                            <TextBlock Name="_txbCarpeta" Text="{x:Static recurso:Etiquetas.btnCarpeta}"/>
-                        </Button>
-
+                        
                         <Button Name="_btnPlanillaVan" Grid.Row="0" Grid.Column="4" VerticalAlignment="Bottom" Height="25" Width="90"
                     Click="_btnPlanillaVan_Click">
                             <TextBlock Name="_txbPlanillaVan" Text="{x:Static recurso:Etiquetas.btnPlanillaVan}"/>

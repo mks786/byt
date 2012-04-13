@@ -25,7 +25,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CambiosDePetici
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
         private IConsultarCambiosDePeticionarioPatentes _ventana;
-        private IPatenteServicios _marcaServicios;
+        private IPatenteServicios _patenteServicios;
         private IAsociadoServicios _asociadoServicios;
         private IInteresadoServicios _interesadoServicios;
         private IList<Patente> _marcas;
@@ -41,7 +41,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CambiosDePetici
             try
             {
                 this._ventana = ventana;
-                this._marcaServicios = (IPatenteServicios)Activator.GetObject(typeof(IPatenteServicios),
+                this._patenteServicios = (IPatenteServicios)Activator.GetObject(typeof(IPatenteServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["PatenteServicios"]);
                 this._asociadoServicios = (IAsociadoServicios)Activator.GetObject(typeof(IAsociadoServicios),
                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["AsociadoServicios"]);
@@ -60,7 +60,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CambiosDePetici
         public void ActualizarTitulo()
         {
             this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleConsultarCambioPeticionariosPatente,
-                Recursos.Ids.ConsultarCambioPeticionarios);
+                Recursos.Ids.ConsultarCambioPeticionariosPatente);
         }
 
         /// <summary>
@@ -79,7 +79,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CambiosDePetici
 
                 ActualizarTitulo();
 
-                //this._marcas = this._marcaServicios.ConsultarTodos();
+                //this._marcas = this._patenteServicios.ConsultarTodos();
                 //this._ventana.Resultados = this._marcas;
          
                 this._ventana.TotalHits = "0";
@@ -321,7 +321,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CambiosDePetici
             marca.Descripcion = this._ventana.NombrePatenteFiltrar.ToUpper();
             marca.Id = this._ventana.IdPatenteFiltrar.Equals("") ? 0 : int.Parse(this._ventana.IdPatenteFiltrar);
             if ((!marca.Descripcion.Equals("")) || (marca.Id != 0))
-                marcasFiltradas = this._marcaServicios.ObtenerPatentesFiltro(marca);
+                marcasFiltradas = this._patenteServicios.ObtenerPatentesFiltro(marca);
             else
                 marcasFiltradas = new List<Patente>();
 

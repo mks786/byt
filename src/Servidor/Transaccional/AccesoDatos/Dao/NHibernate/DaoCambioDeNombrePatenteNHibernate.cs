@@ -14,7 +14,7 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
 
         public IList<CambioDeNombrePatente> ObtenerCambiosDeNombrePatenteFiltro(CambioDeNombrePatente cambioDeNombre)
         {
-            IList<CambioDeNombrePatente> CambioDeNombres = null;
+            IList<CambioDeNombrePatente> CambioDeNombre = null;
 
             try
             {
@@ -25,18 +25,18 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
 
                 bool variosFiltros = false;
                 string filtro = "";
-                string cabecera = string.Format(Recursos.ConsultasHQL.CabeceraObtenerCambioDeNombre);
+                string cabecera = string.Format(Recursos.ConsultasHQL.CabeceraObtenerCambioDeNombrePatente);
                 
                 if ((null != cambioDeNombre) && (cambioDeNombre.Id != 0))
                 {
-                    filtro = string.Format(Recursos.ConsultasHQL.FiltroObtenerCambioDeNombreId, cambioDeNombre.Id);
+                    filtro = string.Format(Recursos.ConsultasHQL.FiltroObtenerCambioDeNombrePatenteId, cambioDeNombre.Id);
                     variosFiltros = true;
                 }
                 if ((null != cambioDeNombre.Patente) && (!cambioDeNombre.Patente.Id.Equals("")))
                 {
                     if (variosFiltros)
                         filtro += " and ";
-                    filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerCambioDeNombreIdMarca, cambioDeNombre.Patente.Id);
+                    filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerCambioDeNombrePatenetIdPatente, cambioDeNombre.Patente.Id);
                     variosFiltros = true;
                 }
                 //if ((null != cambioDeDomicilio.Interesado) && (!cambioDeDomicilio.Interesado.Id.Equals("")))
@@ -58,16 +58,17 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
                 //        filtro += " and ";
                 //    filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerMarcaDescripcion, cambioDeDomicilio.Descripcion);
                 //}
-                //if ((null != cambioDeDomicilio.Fecha) && (!cambioDeDomicilio.Fecha.Equals(DateTime.MinValue)))
-                //{
-                //    if (variosFiltros)
-                //        filtro += " and ";
-                //    string fecha = String.Format("{0:dd/MM/yy}", cambioDeDomicilio.Fecha);
-                //    string fecha2 = String.Format("{0:dd/MM/yy}", cambioDeDomicilio.Fecha.Value.AddDays(1));
-                //    filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerCambioDeDomicilioFecha, fecha, fecha2);
-                //}C:\Users\Shachuel\Desktop\Bolet\trunk\src\Servidor\Transaccional\AccesoDatos\Mapeado\ContadorAsignacion.hbm.xml
+
+                if ((null != cambioDeNombre.Fecha) && (!cambioDeNombre.Fecha.Equals(DateTime.MinValue)))
+                {
+                    if (variosFiltros)
+                        filtro += " and ";
+                    string fecha = String.Format("{0:dd/MM/yy}", cambioDeNombre.Fecha);
+                    string fecha2 = String.Format("{0:dd/MM/yy}", cambioDeNombre.Fecha.Value.AddDays(1));
+                    filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerCambioDeNombrePatenteFecha, fecha, fecha2);
+                }
                 IQuery query = Session.CreateQuery(cabecera + filtro);
-                CambioDeNombres = query.List<CambioDeNombrePatente>();
+                CambioDeNombre = query.List<CambioDeNombrePatente>();
 
                 #region trace
                 if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
@@ -83,7 +84,7 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
             {
                 Session.Close();
             }
-            return CambioDeNombres;
+            return CambioDeNombre;
         }
 
     }

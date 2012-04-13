@@ -422,4 +422,95 @@
   
   <!-- Fin procedimientos PCK_MYP_RENOVACIONES-->
 
+  <!-- Procedimientos Traspasos Patentes-->
+  
+  <!--Procedimientos Cambio de Domicilio Patente-->
+  
+  <sql-query name="PCK_MYP_PDOMICILIOSP1">
+
+    <query-param name="usr" type="string" />
+    <query-param name="way" type="int" />
+    <query-param name="cod" type="int" />
+
+    begin PCK_MYP_PDOMICILIOS.P1(:usr, :way, :cod); end;
+
+  </sql-query>
+
+  <sql-query name="PCK_MYP_PDOMICILIOSP2">
+
+    <query-param name="usr" type="string" />
+    <query-param name="way" type="int" />
+    <query-param name="cod" type="int" />
+
+    begin PCK_MYP_PDOMICILIOS.P2(:usr, :way, :cod); end;
+
+  </sql-query>
+
+  <sql-query name="PCK_MYP_PDOMICILIOSP3">
+
+    <query-param name="usr" type="string" />
+    <query-param name="way" type="int" />
+    <query-param name="cod" type="int" />
+
+    begin PCK_MYP_PDOMICILIOS.P3(:usr, :way, :cod); end;
+
+  </sql-query>
+
+  <sql-query name="PCK_MYP_PDOMICILIOSP4">
+
+    <query-param name="usr" type="string" />
+    <query-param name="way" type="int" />
+    <query-param name="cod" type="int" />
+
+    begin PCK_MYP_PDOMICILIOS.P4(:usr, :way, :cod); end;
+
+  </sql-query>
+
+  <!--Fin Procedimientos Cambio de Domicilio Patente-->
+  
+  <!--Procedimientos Cambio de Nombre Patente-->
+
+  <sql-query name="PCK_MYP_PNOMBRESP1">
+
+    <query-param name="usr" type="string" />
+    <query-param name="way" type="int" />
+    <query-param name="cod" type="int" />
+
+    begin PCK_MYP_PNOMBRES.P1(:usr, :way, :cod); end;
+
+  </sql-query>
+
+  <sql-query name="PCK_MYP_PNOMBRESP2">
+
+    <query-param name="usr" type="string" />
+    <query-param name="way" type="int" />
+    <query-param name="cod" type="int" />
+
+    begin PCK_MYP_PNOMBRES.P2(:usr, :way, :cod); end;
+
+  </sql-query>
+
+  <sql-query name="PCK_MYP_PNOMBRESP3">
+
+    <query-param name="usr" type="string" />
+    <query-param name="way" type="int" />
+    <query-param name="cod" type="int" />
+
+    begin PCK_MYP_PNOMBRES.P3(:usr, :way, :cod); end;
+
+  </sql-query>
+
+  <sql-query name="PCK_MYP_PNOMBRESP4">
+
+    <query-param name="usr" type="string" />
+    <query-param name="way" type="int" />
+    <query-param name="cod" type="int" />
+
+    begin PCK_MYP_PNOMBRES.P4(:usr, :way, :cod); end;
+
+  </sql-query>
+  
+  <!--Fin Procedimientos Cambio de nombre Patente-->
+  
+  <!-- Fin Procedimientos Traspasos Patentes-->
 </hibernate-mapping>

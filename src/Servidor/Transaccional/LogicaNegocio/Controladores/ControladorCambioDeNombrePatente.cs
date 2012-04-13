@@ -65,7 +65,7 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
                     ComandoBase<bool> comandoCambioNombreContador = null;
                     ComandoBase<bool> comandoOperacionContador = null;
 
-                    ComandoBase<Contador> comandoContadorCambioNombreProximoValor = FabricaComandosContador.ObtenerComandoConsultarPorId("MYP_MNOMBRES");
+                    ComandoBase<Contador> comandoContadorCambioNombreProximoValor = FabricaComandosContador.ObtenerComandoConsultarPorId("MYP_PNOMBRES");
                     comandoContadorCambioNombreProximoValor.Ejecutar();
                     Contador contadorCambioNombre = comandoContadorCambioNombreProximoValor.Receptor.ObjetoAlmacenado;
 
@@ -82,7 +82,7 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
                     comandoOperacionContador = FabricaComandosContador.ObtenerComandoInsertarOModificar(contadorOperacion);
                     operacion.Id = contadorOperacion.ProximoValor++;
                     operacion.Fecha = System.DateTime.Now;
-                    operacion.Aplicada = 'M';
+                    operacion.Aplicada = 'P';
                     operacion.CodigoAplicada = cambioNombre.Patente.Id;
                     operacion.Interno = cambioNombre.Id;
                     operacion.Servicio = new Servicio("CN");

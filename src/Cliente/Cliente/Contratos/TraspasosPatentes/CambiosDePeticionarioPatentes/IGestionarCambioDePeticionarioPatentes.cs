@@ -135,10 +135,6 @@ namespace Trascend.Bolet.Cliente.Contratos.TraspasosPatentes.CambiosDePeticionar
 
         object PoderActual { get; set; }
 
-        object Boletines { get; set; }
-
-        object Boletin { get; set; }
-
         GridViewColumnHeader CurSortCol { get; set; }
 
         SortAdorner CurAdorner { get; set; }

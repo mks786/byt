@@ -136,10 +136,9 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.CambiosDeNombrePaten
         {
             set
             {
-                this._txtAsociado.IsEnabled = value;
-                this._txtClaseInternacional.IsEnabled = value;
-                this._txtClaseNacional.IsEnabled = value;
-                this._txtExpediente.IsEnabled = value;
+                this._txtOtros.IsEnabled = value;
+                this._txtObservacion.IsEnabled = value;
+                this._txtComentario.IsEnabled = value;
                 this._txtIdCambioDeNombre.IsEnabled = value;
                 this._txtIdPatenteFiltrar.IsEnabled = value;
                 this._txtNombrePatente.IsEnabled = value;
@@ -349,7 +348,6 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.CambiosDeNombrePaten
             this._dpkFechaCambioDeNombre.IsEnabled = false;
 
             this._btnAnexo.Visibility = System.Windows.Visibility.Collapsed;
-            this._btnCarpeta.Visibility = System.Windows.Visibility.Collapsed;
             this._btnPlanilla.Visibility = System.Windows.Visibility.Collapsed;
             this._btnPlanillaVan.Visibility = System.Windows.Visibility.Collapsed;
             this._btnPlanillaVienen.Visibility = System.Windows.Visibility.Collapsed;            
@@ -393,11 +391,6 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.CambiosDeNombrePaten
         }
 
         private void _btnAnexo_Click(object sender, RoutedEventArgs e)
-        {
-            this._presentador.IrImprimir(((Button)sender).Name);
-        }
-
-        private void _btnCarpeta_Click(object sender, RoutedEventArgs e)
         {
             this._presentador.IrImprimir(((Button)sender).Name);
         }
@@ -489,12 +482,6 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.CambiosDeNombrePaten
             this._txtNumRegistro.Visibility = (System.Windows.Visibility)value;
             this._lblTipo.Visibility = (System.Windows.Visibility)value;
             this._txtTipo.Visibility = (System.Windows.Visibility)value;
-            this._lblClaseNacional.Visibility = (System.Windows.Visibility)value;
-            this._txtClaseNacional.Visibility = (System.Windows.Visibility)value;
-            this._lblClaseInternacional.Visibility = (System.Windows.Visibility)value;
-            this._txtClaseInternacional.Visibility = (System.Windows.Visibility)value;
-            this._lblAsociado.Visibility = (System.Windows.Visibility)value;
-            this._txtAsociado.Visibility = (System.Windows.Visibility)value;
         }
 
         private void _txtPatenteFiltrar_GotFocus(object sender, RoutedEventArgs e)

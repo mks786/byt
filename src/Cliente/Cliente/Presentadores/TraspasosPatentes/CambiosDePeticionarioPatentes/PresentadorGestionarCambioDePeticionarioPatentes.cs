@@ -91,7 +91,6 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CambiosDePetici
                     this._ventana.InteresadoActual = null;
                     this._ventana.ApoderadoAnterior = null;
                     this._ventana.ApoderadoActual = null;
-                    this._ventana.Boletin = null;
 
                     CambiarAModificar();
 
@@ -190,10 +189,6 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CambiosDePetici
                     this._ventana.PoderAnterior = cesion.PoderAnterior;
                     this._ventana.PoderActual = cesion.PoderActual;
 
-                    CargaBoletines();
-
-                    this._ventana.Boletin = this.BuscarBoletin((IList<Boletin>)this._ventana.Boletines, cesion.BoletinPublicacion);
-
                     CargarPatente();
 
                     CargarInteresado("Anterior");
@@ -230,8 +225,6 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CambiosDePetici
                     CargarApoderado("Actual");
 
                     CargarPoder("Actual");
-
-                    CargaBoletines();
                 }
 
                 this._ventana.FocoPredeterminado();
@@ -250,15 +243,6 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CambiosDePetici
             {
                 Mouse.OverrideCursor = null;
             }
-        }
-
-        private void CargaBoletines()
-        {
-            Boletin primerBoletin = new Boletin(int.MinValue);
-            IList<Boletin> boletines = this._boletinServicios.ConsultarTodos();
-            boletines.Insert(0, primerBoletin);
-            this._ventana.Boletines = boletines;
-
         }
 
         private void CargarInteresado(string tipo)
@@ -427,9 +411,6 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CambiosDePetici
             if (null != this._ventana.PoderAnterior)
                 cambioPeticionario.PoderAnterior = ((Poder)this._ventana.PoderAnterior).Id != int.MinValue ? (Poder)this._ventana.PoderAnterior : null;
 
-            if (null != this._ventana.Boletin)
-                cambioPeticionario.BoletinPublicacion = ((Boletin)this._ventana.Boletin).Id != int.MinValue ? (Boletin)this._ventana.Boletin : null;
-       
             return cambioPeticionario;
         }
 

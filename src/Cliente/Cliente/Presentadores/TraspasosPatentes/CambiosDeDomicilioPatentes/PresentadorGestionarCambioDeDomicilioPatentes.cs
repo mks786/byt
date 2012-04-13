@@ -1676,19 +1676,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CambiosDeDomici
                     case "_btnAnexo":
                         ImprimirAnexo();
                         break;
-                    case "_btnCarpeta":
-                        ImprimirCarpeta();
-                        break;
                     case "_btnPlanillaVan":
                         ImprimirPlanillaVan();
                         break;
                     case "_btnPlanillaVienen":
                         ImprimirPlanillaVienen();
                         break;
-                    case "_btnVanDir":
-                        ImprimirVanDir();
-                        break;
-                        
 
                     default:
                         break;
@@ -1700,12 +1693,25 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CambiosDeDomici
             }
         }
 
+        private void ImprimirPlanilla()
+        {
+            if (ValidarPatenteAntesDeImprimirPlanilla())
+            {
+                string paqueteProcedimiento = "PCK_MYP_PDOMICILIOS";
+                string procedimiento = "P1";
+                ParametroProcedimiento parametro =
+                    new ParametroProcedimiento(((CambioDeDomicilioPatente)this._ventana.CambioDeDomicilioPatente).Id, UsuarioLogeado, 1, paqueteProcedimiento, procedimiento);
+
+                this.LlamarProcedimientoDeBaseDeDatos(parametro, Recursos.Etiquetas.btnPlanilla);
+            }
+        }
+
         private void ImprimirPlanillaVienen()
         {
-            if (ValidarPatenteAntesDeImprimirCarpeta())
+            if (ValidarPatenteAntesDeImprimirPlanillaVienen())
             {
-                string paqueteProcedimiento = "PCK_MYP_MDOMICILIOS";
-                string procedimiento = "P5";
+                string paqueteProcedimiento = "PCK_MYP_PDOMICILIOS";
+                string procedimiento = "P4";
                 ParametroProcedimiento parametro =
                     new ParametroProcedimiento(((CambioDeDomicilioPatente)this._ventana.CambioDeDomicilioPatente).Id, UsuarioLogeado, 1, paqueteProcedimiento, procedimiento);
 
@@ -1715,10 +1721,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CambiosDeDomici
 
         private void ImprimirPlanillaVan()
         {
-            if (ValidarPatenteAntesDeImprimirCarpeta())
+            if (ValidarPatenteAntesDeImprimirPlanillaVan())
             {
-                string paqueteProcedimiento = "PCK_MYP_MDOMICILIOS";
-                string procedimiento = "P4";
+                string paqueteProcedimiento = "PCK_MYP_PDOMICILIOS";
+                string procedimiento = "P3";
                 ParametroProcedimiento parametro =
                     new ParametroProcedimiento(((CambioDeDomicilioPatente)this._ventana.CambioDeDomicilioPatente).Id, UsuarioLogeado, 1, paqueteProcedimiento, procedimiento);
 
@@ -1726,29 +1732,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CambiosDeDomici
             }
         }
 
-        private void ImprimirCarpeta()
-        {
-            if (ValidarPatenteAntesDeImprimirCarpeta())
-            {
-                string paqueteProcedimiento = "PCK_MYP_MDOMICILIOS";
-                string procedimiento = "P3";
-                ParametroProcedimiento parametro =
-                    new ParametroProcedimiento(((CambioDeDomicilioPatente)this._ventana.CambioDeDomicilioPatente).Id, UsuarioLogeado, 1, paqueteProcedimiento, procedimiento);
-
-                this.LlamarProcedimientoDeBaseDeDatos(parametro, Recursos.Etiquetas.btnCarpeta);
-            }
-        }
-
-        private bool ValidarPatenteAntesDeImprimirCarpeta()
-        {
-            return true;
-        }
-
         private void ImprimirAnexo()
         {
-            if (ValidarPatenteAntesDeImprimirCarpeta())
+            if (ValidarPatenteAntesDeImprimirAnexo())
             {
-                string paqueteProcedimiento = "PCK_MYP_MDOMICILIOS";
+                string paqueteProcedimiento = "PCK_MYP_PDOMICILIOS";
                 string procedimiento = "P2";
                 ParametroProcedimiento parametro =
                     new ParametroProcedimiento(((CambioDeDomicilioPatente)this._ventana.CambioDeDomicilioPatente).Id, UsuarioLogeado, 1, paqueteProcedimiento, procedimiento);
@@ -1757,47 +1745,24 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CambiosDeDomici
             }
         }
 
-        private bool ValidarPatenteAntesDeImprimirAnexo()
-        {
-            return true;
-        }
-
-        private void ImprimirPlanilla()
-        {
-            if (ValidarPatenteAntesDeImprimirCarpeta())
-            {
-                string paqueteProcedimiento = "PCK_MYP_MDOMICILIOS";
-                string procedimiento = "P1";
-                ParametroProcedimiento parametro =
-                    new ParametroProcedimiento(((CambioDeDomicilioPatente)this._ventana.CambioDeDomicilioPatente).Id, UsuarioLogeado, 1, paqueteProcedimiento, procedimiento);
-
-                this.LlamarProcedimientoDeBaseDeDatos(parametro, Recursos.Etiquetas.btnPlanilla);
-            }
-        }
-
         private bool ValidarPatenteAntesDeImprimirPlanilla()
         {
             return true;
         }
-        private void ImprimirVanDir()
-        {
-            if (ValidarPatenteAntesDeImprimirCarpeta())
-            {
-                string paqueteProcedimiento = "PCK_MYP_MDOMICILIOS";
-                string procedimiento = "P6";
-                ParametroProcedimiento parametro =
-                    new ParametroProcedimiento(((CambioDeDomicilioPatente)this._ventana.CambioDeDomicilioPatente).Id, UsuarioLogeado, 1, paqueteProcedimiento, procedimiento);
 
-                this.LlamarProcedimientoDeBaseDeDatos(parametro, Recursos.Etiquetas.btnPlanilla);
-            }
-        }
-
-        private bool ValidarPatenteAntesDeImprimirVanDir()
+        private bool ValidarPatenteAntesDeImprimirPlanillaVan()
         {
             return true;
         }
 
-        
+        private bool ValidarPatenteAntesDeImprimirPlanillaVienen()
+        {
+            return true;
+        }
 
+        private bool ValidarPatenteAntesDeImprimirAnexo()
+        {
+            return true;
+        }
     }
 }

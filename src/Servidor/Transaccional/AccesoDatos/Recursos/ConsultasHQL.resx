@@ -586,4 +586,36 @@
   <data name="ObtenerPatenteConTodo" xml:space="preserve">
     <value>Select p from Patente p left join fetch p.Asociado as asociado left join fetch p.Servicio as servicio where p.Id = '{0}' order by p.Id</value>
   </data>
+  <data name="CabeceraObtenerCambioDeNombrePatente" xml:space="preserve">
+    <value>Select c from CambioDeNombrePatente c left join fetch c.Patente as patente left join fetch c.InteresadoActual as interesadoActual left join fetch c.InteresadoAnterior as interesadoAnterior left join fetch c.Agente as agente left join fetch c.Poder as poder where </value>
+    <comment>Cabecera del filtro para Cambio De Nombre Patente</comment>
+  </data>
+  <data name="FiltroObtenerCambioDeNombrePatenetIdPatente" xml:space="preserve">
+    <value>patente.Id = {0}</value>
+    <comment>Filtro por patente</comment>
+  </data>
+  <data name="FiltroObtenerCambioDeNombrePatenteFecha" xml:space="preserve">
+    <value>c.Fecha between '{0}' and '{1}'</value>
+    <comment>Filtro por Fecha</comment>
+  </data>
+  <data name="FiltroObtenerCambioDeNombrePatenteId" xml:space="preserve">
+    <value>c.Id = {0}</value>
+    <comment>Filtro por Id</comment>
+  </data>
+  <data name="CabeceraObtenerCambioPeticionarioPatente" xml:space="preserve">
+    <value>Select c from CambioPeticionarioPatente c left join fetch c.Patente as patente left join fetch c.InteresadoAnterior as anterior left join fetch c.AgenteAnterior as agenteAnt left join fetch c.AgenteActual as agenteAct left join fetch c.PoderAnterior as PoderAnt  left join fetch c.PoderActual as PoderAct left join fetch c.InteresadoAnterior as interesadoAnt left join fetch c.InteresadoActual as interesadoAct left join fetch c.BoletinPublicacion as boletin where </value>
+    <comment>Cabecera del query para el filtro de peticionario patente</comment>
+  </data>
+  <data name="FiltroObtenerCambioPeticionarioPatenteFecha" xml:space="preserve">
+    <value>c.Fecha between '{0}' and '{1}'</value>
+    <comment>filtro por fecha</comment>
+  </data>
+  <data name="FiltroObtenerCambioPeticionarioPatenteId" xml:space="preserve">
+    <value>c.Id = {0}</value>
+    <comment>filtro por Id</comment>
+  </data>
+  <data name="FiltroObtenerCambioPeticionarioPatenteIdPatente" xml:space="preserve">
+    <value>patente.Id = {0}</value>
+    <comment>filtro por patente</comment>
+  </data>
 </root>

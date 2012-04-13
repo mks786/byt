@@ -1669,7 +1669,7 @@ libro</value>
     <value>Gestionar Cambio de Nombre de Marcas</value>
   </data>
   <data name="titleConsultarCambioPeticionarios" xml:space="preserve">
-    <value>Consultar Cambios de Peticionarios de Marca</value>
+    <value>Consultar Cambios de Peticionario de Marcas</value>
   </data>
   <data name="titleGestionarCambioPeticionario" xml:space="preserve">
     <value>Gestionar Cambio de Peticionario de Marcas</value>
@@ -2277,13 +2277,13 @@ de Gracia</value>
     <value>Agregar Cambio de Peticionario de Patente</value>
   </data>
   <data name="titleConsultarCambioPeticionariosPatente" xml:space="preserve">
-    <value>Consultar Cambios de Peticionario de Patente</value>
+    <value>Consultar Cambios de Peticionario de Patentes</value>
   </data>
   <data name="titleConsultarCambiosDeDomicilioPatente" xml:space="preserve">
-    <value>Consultar Cambios de Domicilio de Patente</value>
+    <value>Consultar Cambios de Domicilio de Patentes</value>
   </data>
   <data name="titleConsultarCambiosDeNombrePatente" xml:space="preserve">
-    <value>Consultar Cambios de Nombre de Patente</value>
+    <value>Consultar Cambios de Nombre de Patentes</value>
   </data>
   <data name="titleGestionarCambioDeDomicilioPatente" xml:space="preserve">
     <value>Gestionar Cambio de Domicilio de Patente</value>

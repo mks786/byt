@@ -242,19 +242,13 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.CambiosPeticionarioP
         {
             set
             {
-                this._txtAsociado.IsEnabled = value;
-                this._txtClaseInternacional.IsEnabled = value;
-                this._txtClaseNacional.IsEnabled = value;
-                this._txtExpediente.IsEnabled = value;
                 this._txtIdCambioPeticionario.IsEnabled = value;
                 this._txtIdPatenteFiltrar.IsEnabled = value;
                 this._txtNombrePatente.IsEnabled = value;
                 this._txtNombrePatenteFiltrar.IsEnabled = value;
                 this._txtNumInscripcion.IsEnabled = value;
                 this._txtNumRegistro.IsEnabled = value;
-                this._chkEtiqueta.IsEnabled = value;
                 this._txtTipo.IsEnabled = value;
-                this._txtUbicacion.IsEnabled = value;                                
                 this._btnConsultarPatente.IsEnabled = value;
                 this._dpkFechaCambioPeticionario.IsEnabled = value;
                 
@@ -268,11 +262,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.CambiosPeticionarioP
                 this._txtIdApoderadoAnteriorFiltrar.IsEnabled = value;                                
                 this._txtIdPoderAnterior.IsEnabled = value;                
                 this._txtIdPoderAnteriorFiltrar.IsEnabled = value;
-                this._txtAnexoPoderAnterior.IsEnabled = value;
-                this._txtBoletinPoderAnterior.IsEnabled = value;
-                this._txtFacultadPoderAnterior.IsEnabled = value;
+                //this._txtAnexoPoderAnterior.IsEnabled = value;
+                //this._txtBoletinPoderAnterior.IsEnabled = value;
+                //this._txtFacultadPoderAnterior.IsEnabled = value;
                 this._txtNumPoderAnterior.IsEnabled = value;
-                this._txtFechaPoderAnterior.IsEnabled = value;
+                //this._txtFechaPoderAnterior.IsEnabled = value;
 
                 this._txtNombreActual.IsEnabled = value;
                 this._txtIdActualFiltrar.IsEnabled = value;
@@ -292,15 +286,10 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.CambiosPeticionarioP
                 this._txtNacionalidadActual.IsEnabled = value;
 
                 this._txtObservacionCambioPeticionario.IsEnabled = value;                
-                this._txtReferenciaCambioPeticionario.IsEnabled = value;
-                this._txtAnexoCambioPeticionario.IsEnabled = value;
                 this._txtComentarioCambioPeticionario.IsEnabled = value;
                 this._txtObservacionCambioPeticionario.IsEnabled = value;                
-                this._txtReferenciaCambioPeticionario.IsEnabled = value;                                                
-                this._txtAnexoCambioPeticionario.IsEnabled = value;                              
                 this._txtComentarioCambioPeticionario.IsEnabled = value;
                 this._chkAsientoEnLibro.IsEnabled = value;
-                this._cbxBoletin.IsEnabled = value;
             }
         }
 
@@ -328,18 +317,6 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.CambiosPeticionarioP
         {
             get { return this._txtIdPoderAnterior.Text; }
             set { this._txtIdPoderAnterior.Text = value; }
-        }
-
-        public object Boletines
-        {
-            get { return this._cbxBoletin.DataContext; }
-            set { this._cbxBoletin.DataContext = value; }
-        }
-
-        public object Boletin
-        {
-            get { return this._cbxBoletin.SelectedItem; }
-            set { this._cbxBoletin.SelectedItem = value; }
         }
 
         public string IdPoderActual
@@ -602,19 +579,12 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.CambiosPeticionarioP
         private void GestionarVisibilidadDatosDePatente(object value)
         {
             this._txtNombrePatente.Visibility = (System.Windows.Visibility)value;
-            this._chkEtiqueta.Visibility = (System.Windows.Visibility)value;
             this._lblNoInscripcion.Visibility = (System.Windows.Visibility)value;
             this._txtNumInscripcion.Visibility = (System.Windows.Visibility)value;
             this._lblNoRegistro.Visibility = (System.Windows.Visibility)value;
             this._txtNumRegistro.Visibility = (System.Windows.Visibility)value;
             this._lblTipo.Visibility = (System.Windows.Visibility)value;
             this._txtTipo.Visibility = (System.Windows.Visibility)value;
-            this._lblClaseNacional.Visibility = (System.Windows.Visibility)value;
-            this._txtClaseNacional.Visibility = (System.Windows.Visibility)value;
-            this._lblClaseInternacional.Visibility = (System.Windows.Visibility)value;
-            this._txtClaseInternacional.Visibility = (System.Windows.Visibility)value;
-            this._lblAsociado.Visibility = (System.Windows.Visibility)value;
-            this._txtAsociado.Visibility = (System.Windows.Visibility)value;
         }
 
         private void GestionarVisibilidadFiltroPatente(object value)
@@ -866,15 +836,15 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.CambiosPeticionarioP
             this._lblIdPoderAnterior.Visibility = (System.Windows.Visibility)value;
             this._txtIdPoderAnterior.Visibility = (System.Windows.Visibility)value;
             this._lblFomentoAnterior.Visibility = (System.Windows.Visibility)value;
-            this._lblFechaPoderAnterior.Visibility = (System.Windows.Visibility)value;
-            this._lblBoletinPoderAnterior.Visibility = (System.Windows.Visibility)value;
-            this._lblAnexoPoderAnterior.Visibility = (System.Windows.Visibility)value;
-            this._lblFacultadPoderAnterior.Visibility = (System.Windows.Visibility)value;
+            //this._lblFechaPoderAnterior.Visibility = (System.Windows.Visibility)value;
+            //this._lblBoletinPoderAnterior.Visibility = (System.Windows.Visibility)value;
+            //this._lblAnexoPoderAnterior.Visibility = (System.Windows.Visibility)value;
+            //this._lblFacultadPoderAnterior.Visibility = (System.Windows.Visibility)value;
             this._txtNumPoderAnterior.Visibility = (System.Windows.Visibility)value;
-            this._txtFechaPoderAnterior.Visibility = (System.Windows.Visibility)value;
-            this._txtBoletinPoderAnterior.Visibility = (System.Windows.Visibility)value;
-            this._txtAnexoPoderAnterior.Visibility = (System.Windows.Visibility)value;
-            this._txtFacultadPoderAnterior.Visibility = (System.Windows.Visibility)value;
+            //this._txtFechaPoderAnterior.Visibility = (System.Windows.Visibility)value;
+            //this._txtBoletinPoderAnterior.Visibility = (System.Windows.Visibility)value;
+            //this._txtAnexoPoderAnterior.Visibility = (System.Windows.Visibility)value;
+            //this._txtFacultadPoderAnterior.Visibility = (System.Windows.Visibility)value;
         }
 
         private void GestionarVisibilidadFiltroPoderAnterior(object value)

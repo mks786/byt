@@ -1751,7 +1751,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeNombre
         {
             if (ValidarMarcaAntesDeImprimirCarpeta())
             {
-                string paqueteProcedimiento = "PCK_MYP_RENOVACIONES";
+                string paqueteProcedimiento = "PCK_MYP_PNOMBRES";
                 string procedimiento = "P1";
                 ParametroProcedimiento parametro =
                     new ParametroProcedimiento(((CambioDeNombre)this._ventana.CambioDeNombre).Id, UsuarioLogeado, 1, paqueteProcedimiento, procedimiento);

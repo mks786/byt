@@ -63,7 +63,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CambiosDeDomici
         public void ActualizarTitulo()
         {
             this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleConsultarCambiosDeDomicilioPatente,
-                Recursos.Ids.ConsultarCambiosDeDomicilio);
+                Recursos.Ids.ConsultarCambiosDeDomicilioPatente);
         }
 
         /// <summary>

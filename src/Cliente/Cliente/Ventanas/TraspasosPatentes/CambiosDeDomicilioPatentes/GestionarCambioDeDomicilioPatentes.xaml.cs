@@ -136,10 +136,9 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.CambiosDeDomicilioPa
         {
             set
             {
-                this._txtAsociado.IsEnabled = value;
-                this._txtClaseInternacional.IsEnabled = value;
-                this._txtClaseNacional.IsEnabled = value;
-                this._txtExpediente.IsEnabled = value;
+                this._txtComentario.IsEnabled = value;
+                this._txtObservacion.IsEnabled = value;
+                this._txtOtros.IsEnabled = value;
                 this._txtIdCambioDeDomicilio.IsEnabled = value;
                 this._txtIdPatenteFiltrar.IsEnabled = value;
                 this._txtNombrePatente.IsEnabled = value;
@@ -348,11 +347,10 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.CambiosDeDomicilioPa
             this._txtIdCambioDeDomicilio.Visibility = System.Windows.Visibility.Collapsed;
             this._dpkFechaDomicilio.IsEnabled = false;
             this._btnAnexo.Visibility = System.Windows.Visibility.Collapsed;
-            this._btnCarpeta.Visibility = System.Windows.Visibility.Collapsed;
             this._btnPlanilla.Visibility = System.Windows.Visibility.Collapsed;
             this._btnPlanillaVan.Visibility = System.Windows.Visibility.Collapsed;
             this._btnPlanillaVienen.Visibility = System.Windows.Visibility.Collapsed;
-            this._btnVanDir.Visibility = System.Windows.Visibility.Collapsed;            
+            this._chkAsientoEnLibro.IsEnabled = true;
         }
 
         private void _btnModificar_Click(object sender, RoutedEventArgs e)
@@ -377,11 +375,6 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.CambiosDeDomicilioPa
             }
         }
 
-        private void _btnVanDir_Click(object sender, RoutedEventArgs e)
-        {
-            this._presentador.IrImprimir(((Button)sender).Name);
-        }
-
         private void _btnPlanilla_Click(object sender, RoutedEventArgs e)
         {
             this._presentador.IrImprimir(((Button)sender).Name);
@@ -402,11 +395,6 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.CambiosDeDomicilioPa
             this._presentador.IrImprimir(((Button)sender).Name);
         }
 
-        private void _btnCarpeta_Click(object sender, RoutedEventArgs e)
-        {
-            this._presentador.IrImprimir(((Button)sender).Name);
-        }
-        
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
             if (!EstaCargada)
@@ -490,12 +478,12 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.CambiosDeDomicilioPa
             this._txtNumRegistro.Visibility = (System.Windows.Visibility)value;
             this._lblTipo.Visibility = (System.Windows.Visibility)value;
             this._txtTipo.Visibility = (System.Windows.Visibility)value;
-            this._lblClaseNacional.Visibility = (System.Windows.Visibility)value;
-            this._txtClaseNacional.Visibility = (System.Windows.Visibility)value;
-            this._lblClaseInternacional.Visibility = (System.Windows.Visibility)value;
-            this._txtClaseInternacional.Visibility = (System.Windows.Visibility)value;
-            this._lblAsociado.Visibility = (System.Windows.Visibility)value;
-            this._txtAsociado.Visibility = (System.Windows.Visibility)value;
+            //this._lblClaseNacional.Visibility = (System.Windows.Visibility)value;
+            //this._txtClaseNacional.Visibility = (System.Windows.Visibility)value;
+            //this._lblClaseInternacional.Visibility = (System.Windows.Visibility)value;
+            //this._txtClaseInternacional.Visibility = (System.Windows.Visibility)value;
+            //this._lblAsociado.Visibility = (System.Windows.Visibility)value;
+            //this._txtAsociado.Visibility = (System.Windows.Visibility)value;
         }
 
         private void _txtPatenteFiltrar_GotFocus(object sender, RoutedEventArgs e)

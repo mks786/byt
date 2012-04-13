@@ -24,17 +24,17 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
 
                 bool variosFiltros = false;
                 string filtro = "";
-                string cabecera = string.Format(Recursos.ConsultasHQL.CabeceraObtenerCambioPeticionario);
+                string cabecera = string.Format(Recursos.ConsultasHQL.CabeceraObtenerCambioPeticionarioPatente);
                 if ((null != cambioPeticionario) && (cambioPeticionario.Id != 0))
                 {
-                    filtro = string.Format(Recursos.ConsultasHQL.FiltroObtenerCambioPeticionarioId, cambioPeticionario.Id);
+                    filtro = string.Format(Recursos.ConsultasHQL.FiltroObtenerCambioPeticionarioPatenteId, cambioPeticionario.Id);
                     variosFiltros = true;
                 }
                 if ((null != cambioPeticionario.Patente) && (!cambioPeticionario.Patente.Id.Equals("")))
                 {
                     if (variosFiltros)
                         filtro += " and ";
-                    filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerCambioPeticionarioIdMarca, cambioPeticionario.Patente.Id);
+                    filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerCambioPeticionarioPatenteIdPatente, cambioPeticionario.Patente.Id);
                     variosFiltros = true;
                 }
                 //if ((null != fusion.Interesado) && (!fusion.Interesado.Id.Equals("")))
@@ -62,7 +62,7 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
                         filtro += " and ";
                     string fecha = String.Format("{0:dd/MM/yy}", cambioPeticionario.FechaPeticionario);
                     string fecha2 = String.Format("{0:dd/MM/yy}", cambioPeticionario.FechaPeticionario.Value.AddDays(1));
-                    filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerCambioPeticionarioFecha, fecha, fecha2);
+                    filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerCambioPeticionarioPatenteFecha, fecha, fecha2);
                 }
                 IQuery query = Session.CreateQuery(cabecera + filtro);
                 CambioPeticionarios = query.List<CambioPeticionarioPatente>();

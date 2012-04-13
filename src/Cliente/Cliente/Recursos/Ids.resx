@@ -645,4 +645,13 @@
   <data name="ConsultarRecordatorios" xml:space="preserve">
     <value>ConsultarRecordatorio</value>
   </data>
+  <data name="ConsultarCambiosDeDomicilioPatente" xml:space="preserve">
+    <value>MYPPDOMM</value>
+  </data>
+  <data name="ConsultarCambiosDeNombrePatente" xml:space="preserve">
+    <value>MYPPNOMM</value>
+  </data>
+  <data name="ConsultarCambioPeticionariosPatente" xml:space="preserve">
+    <value>MYPPPETM</value>
+  </data>
 </root>

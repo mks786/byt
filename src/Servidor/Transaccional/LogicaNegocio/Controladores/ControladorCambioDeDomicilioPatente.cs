@@ -65,7 +65,7 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
                     ComandoBase<bool> comandoCambioDeDomicilioContador = null;
                     ComandoBase<bool> comandoOperacionContador = null;
 
-                    ComandoBase<Contador> comandoContadorCambioDeDomicilioProximoValor = FabricaComandosContador.ObtenerComandoConsultarPorId("MYP_MDOMICILIOS");
+                    ComandoBase<Contador> comandoContadorCambioDeDomicilioProximoValor = FabricaComandosContador.ObtenerComandoConsultarPorId("MYP_PDOMICILIOS");
                     comandoContadorCambioDeDomicilioProximoValor.Ejecutar();
                     Contador contadorCambioDeDomicilio = comandoContadorCambioDeDomicilioProximoValor.Receptor.ObjetoAlmacenado;
 
@@ -82,7 +82,7 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
                     comandoOperacionContador = FabricaComandosContador.ObtenerComandoInsertarOModificar(contadorOperacion);
                     operacion.Id = contadorOperacion.ProximoValor++;
                     operacion.Fecha = System.DateTime.Now;
-                    operacion.Aplicada = 'M';
+                    operacion.Aplicada = 'P';
                     operacion.CodigoAplicada = cambioDeDomicilio.Patente.Id;
                     operacion.Interno = cambioDeDomicilio.Id;
                     operacion.Servicio = new Servicio("CD");
