@@ -113,6 +113,7 @@
     <Compile Include="Controladores\ControladorCesionPatente.cs" />
     <Compile Include="Controladores\ControladorFusionPatente.cs" />
     <Compile Include="Controladores\ControladorLicenciaPatente.cs" />
+    <Compile Include="Controladores\ControladorInventor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

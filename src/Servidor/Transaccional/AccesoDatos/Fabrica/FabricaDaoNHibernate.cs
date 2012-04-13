@@ -684,5 +684,14 @@ namespace Trascend.Bolet.AccesoDatos.Fabrica
         {
             return new DaoPatenteNHibernate();
         }
+
+        /// <summary>
+        /// Método que devuelve el DaoInventor
+        /// </summary>
+        /// <returns>IDaoInventor</returns>
+        public override IDaoInventor ObtenerDaoInventor()
+        {
+            return new DaoInventorNHibernate();
+        }
     }
 }

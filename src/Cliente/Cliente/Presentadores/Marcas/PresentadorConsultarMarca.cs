@@ -18,6 +18,7 @@ using Trascend.Bolet.ObjetosComunes.Entidades;
 using Trascend.Bolet.Cliente.Ventanas.Auditorias;
 using Trascend.Bolet.ControlesByT.Ventanas;
 using System.Text;
+using System.IO;
 
 namespace Trascend.Bolet.Cliente.Presentadores.Marcas
 {
@@ -252,8 +253,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 this._ventana.NombreAsociadoDatos = marca.Asociado != null ? marca.Asociado.Nombre : "";
                 this._ventana.NombreAsociadoSolicitud = marca.Asociado != null ? marca.Asociado.Nombre : "";
 
-                this._ventana.DescripcionCorresponsalSolicitud = marca.Corresponsal != null ? marca.Corresponsal.Descripcion : "";
-                this._ventana.DescripcionCorresponsalDatos = marca.Corresponsal != null ? marca.Corresponsal.Descripcion : "";
+                this._ventana.DescripcionCorresponsalSolicitud = marca.Corresponsal.GetType().Equals(typeof(Corresponsal)) ? marca.Corresponsal.Descripcion : "";
+                this._ventana.DescripcionCorresponsalDatos = marca.Corresponsal.GetType().Equals(typeof(Corresponsal)) ? marca.Corresponsal.Descripcion : "";
 
                 this._ventana.NumPoderDatos = marca.Poder != null ? marca.Poder.NumPoder : "";
                 this._ventana.NumPoderSolicitud = marca.Poder != null ? marca.Poder.NumPoder : "";
@@ -282,9 +283,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 this._ventana.TiposClaseNacional = tipoClasesNacional;
                 this._ventana.TipoClaseNacional = this.BuscarClaseNacional(tipoClasesNacional, marca.TipoCnac);
 
-                if (marca.BEtiqueta)
+
+                if (File.Exists(ConfigurationManager.AppSettings["RutaImagenesDeMarcas"] + marca.Id + ".jpg"))
                 {
+                    marca.BEtiqueta = true;
                     this._ventana.PintarEtiqueta();
+
                 }
 
                 Auditoria auditoria = new Auditoria();
@@ -1823,8 +1827,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             Marca marcaAux = ((Marca)this._ventana.Marca);
             if (((Marca)this._ventana.Marca).BEtiqueta)
             {
-                EtiquetaMarca detalleEtiqueta = new EtiquetaMarca(ConfigurationManager.AppSettings["RutaImagenesDeMarcas"] + marcaAux.Id + ".jpg", marcaAux.Descripcion);
-                detalleEtiqueta.ShowDialog();
+                    EtiquetaMarca detalleEtiqueta = new EtiquetaMarca(ConfigurationManager.AppSettings["RutaImagenesDeMarcas"] + marcaAux.Id + ".jpg", marcaAux.Descripcion);
+                    detalleEtiqueta.ShowDialog();
+
             }
         }
     }

@@ -595,6 +595,9 @@
                         <GridViewColumn DisplayMemberBinding="{Binding Path=Id}" Width="120">
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="Id" Content="{x:Static recurso:Etiquetas.lsvId}"/>
                         </GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=CodigoInscripcion}" Width="120">
+                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="CodigoInscripcion" Content="{x:Static recurso:Etiquetas.lsvSolicitud}"/>
+                        </GridViewColumn>
                         <GridViewColumn DisplayMemberBinding="{Binding Path=Descripcion}" Width="150">
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="Descripcion" Content="{x:Static recurso:Etiquetas.lsvDescripcion}"/>
                         </GridViewColumn>
@@ -606,6 +609,12 @@
                         </GridViewColumn>
                         <GridViewColumn DisplayMemberBinding="{Binding Path=FechaPublicacion}" Width="150">
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="FechaPublicacion" Content="{x:Static recurso:Etiquetas.lsvFecha}"/>
+                        </GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Nacional.Id}" Width="150">
+                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="Nacional.Id" Content="{x:Static recurso:Etiquetas.lsvClaseNacional}"/>
+                        </GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Internacional.Id}" Width="150">
+                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="Internacional.Id" Content="{x:Static recurso:Etiquetas.lsvClaseInternacional}"/>
                         </GridViewColumn>
                     </GridView>
                 </ListView.View>

@@ -2294,4 +2294,13 @@ de Gracia</value>
   <data name="titleGestionarCambiosDeNombrePatente" xml:space="preserve">
     <value>Gestionar Cambio de Nombre de Patente</value>
   </data>
+  <data name="lsvClaseInternacional" xml:space="preserve">
+    <value>Clase Internacional</value>
+  </data>
+  <data name="lsvClaseNacional" xml:space="preserve">
+    <value>Clase Nacional</value>
+  </data>
+  <data name="lsvSolicitud" xml:space="preserve">
+    <value>Solicitud</value>
+  </data>
 </root>

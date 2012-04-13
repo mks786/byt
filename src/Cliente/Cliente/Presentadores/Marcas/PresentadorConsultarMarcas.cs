@@ -266,6 +266,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                             MarcaAuxiliar.Interesado = interesadoAuxiliar;
                         }
 
+                        MarcaAuxiliar.Nacional = marca.Nacional;
+                        MarcaAuxiliar.Internacional = marca.Internacional;
+                        MarcaAuxiliar.CodigoInscripcion = marca.CodigoInscripcion;
+
                         MarcaAuxiliar.FechaPublicacion = marca.FechaPublicacion != null ? marca.FechaPublicacion : null;
 
                         marcasDesinfladas.Add(MarcaAuxiliar);

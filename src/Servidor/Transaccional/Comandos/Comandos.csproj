@@ -336,10 +336,15 @@
     <Compile Include="Comandos\ComandosCesionPatente\ComandoEliminarCesionPatente.cs" />
     <Compile Include="Comandos\ComandosCesionPatente\ComandoInsertarOModificarCesionPatente.cs" />
     <Compile Include="Comandos\ComandosCesionPatente\ComandoVerificarExistenciaCesionPatente.cs" />
+    <Compile Include="Comandos\ComandosInventor\ComandoConsultarTodosInventores.cs" />
+    <Compile Include="Comandos\ComandosInventor\ComandoEliminarInventor.cs" />
+    <Compile Include="Comandos\ComandosInventor\ComandoInsertarOModificarInventor.cs" />
+    <Compile Include="Comandos\ComandosInventor\ComandoVerificarExistenciaInventor.cs" />
     <Compile Include="Comandos\Receptor.cs" />
     <Compile Include="Comandos\ComandosUsuario\ComandoConsultarTodosUsuarios.cs" />
     <Compile Include="Comandos\ComandosUsuario\ComandoConsultarUsuarioPorID.cs" />
     <Compile Include="Comandos\ComandosUsuario\ComandoInsertarOModificarUsuario.cs" />
+    <Compile Include="Fabrica\FabricaComandosInventor.cs" />
     <Compile Include="Fabrica\FabricaComandosCambioPeticionarioPatente.cs" />
     <Compile Include="Fabrica\FabricaComandosCambioDeNombrePatente.cs" />
     <Compile Include="Fabrica\FabricaComandosCambioDeDomicilioPatente.cs" />
