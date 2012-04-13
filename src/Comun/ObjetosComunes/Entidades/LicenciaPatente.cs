@@ -13,6 +13,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         private char _otrosC1;
         private char _otrosC2;
         private char _otrosC3;
+        private char _otrosC4;
         private char _documento;
         private char _solvencia;
         private char _timbre;
@@ -26,6 +27,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         private string _otrosS1;
         private string _otrosS2;
         private string _otrosS3;
+        private string _otrosS4;
         private string _ubicacion;
         private string _comentario;
         private string _observacion;
@@ -108,6 +110,15 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         {
             get { return _otrosC3; }
             set { _otrosC3 = value; }
+        }
+
+        /// <summary>
+        /// Propiedad que asigna u obtiene el campo OtrosC1 de la Licencia
+        /// </summary>
+        public virtual char OtrosC4
+        {
+            get { return _otrosC4; }
+            set { _otrosC4 = value; }
         }
 
         /// <summary>
@@ -218,6 +229,14 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
             set { _otrosS3 = value; }
         }
 
+        /// <summary>
+        /// Propiedad que asigna u obtiene el campo OtrosS4 de la Licencia
+        /// </summary>
+        public virtual string OtrosS4
+        {
+            get { return _otrosS4; }
+            set { _otrosS4 = value; }
+        }
         /// <summary>
         /// Propiedad que asigna u obtiene el campo Ubicacion de la Licencia
         /// </summary>

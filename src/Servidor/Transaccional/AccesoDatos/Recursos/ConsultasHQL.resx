@@ -545,7 +545,7 @@
     <comment>Filtro por Interesado</comment>
   </data>
   <data name="CabeceraObtenerLicenciaPatente" xml:space="preserve">
-    <value>Select l from LicenciaPatente l left join fetch l.Patente as patente left join fetch l.AgenteLicenciatario as Alicentario left join fetch l.AgenteLicenciante as Alice left join fetch l.Asociado as asosia left join fetch l.Boletin as boletin left join fetch l.InteresadoLicenciatario as InterLicen left join fetch l.InteresadoLicenciante left join fetch l.PoderLicenciatario as Plicentario left join fetch l.PoderLicenciante as Plicenciant Where </value>
+    <value>Select l from LicenciaPatente l left join fetch l.Patente as patente left join fetch l.AgenteLicenciatario as Alicentario left join fetch l.AgenteLicenciante as Alice left join fetch l.Asociado as asosia left join fetch l.Boletin as boletin left join fetch l.InteresadoLicenciatario as InterLicen left join fetch l.InteresadoLicenciante left join fetch l.PoderLicenciatario as Plicentario left join fetch l.PoderLicenciante as Plicenciant  where </value>
     <comment>Cabecera para armar el objeto de LicenciaPatente</comment>
   </data>
   <data name="FiltroObtenerLicenciaIdPatente" xml:space="preserve">
