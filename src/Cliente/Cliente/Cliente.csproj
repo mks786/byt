@@ -108,6 +108,9 @@
     <Compile Include="Contratos\Anexos\IConsultarAnexo.cs" />
     <Compile Include="Contratos\Anexos\IConsultarAnexos.cs" />
     <Compile Include="Contratos\CartasOuts\IConsultarCartasOuts.cs" />
+    <Compile Include="Contratos\EscritosPatente\IContestacionAOposicion.cs" />
+    <Compile Include="Contratos\EscritosPatente\IReconsideracionPrioridadExtinguida.cs" />
+    <Compile Include="Contratos\EscritosPatente\IPagoDeAnualidad.cs" />
     <Compile Include="Contratos\EscritosPatente\INumeracionDePoder.cs" />
     <Compile Include="Contratos\EscritosPatente\IExamenDePatentabilidad.cs" />
     <Compile Include="Contratos\Inventores\IAgregarInventor.cs" />
@@ -276,7 +279,10 @@
     <Compile Include="Presentadores\Contactos\PresentadorAgregarContacto.cs" />
     <Compile Include="Presentadores\Contactos\PresentadorConsultarContacto.cs" />
     <Compile Include="Presentadores\CartasOuts\PresentadorConsultarCartasOuts.cs" />
+    <Compile Include="Presentadores\EscritosPatente\PresentadorContestacionAOposicion.cs" />
     <Compile Include="Presentadores\EscritosPatente\PresentadorNumeracionDePoder.cs" />
+    <Compile Include="Presentadores\EscritosPatente\PresentadorReconsideracionPrioridadExtinguida.cs" />
+    <Compile Include="Presentadores\EscritosPatente\PresentadorPagoDeAnualidad.cs" />
     <Compile Include="Presentadores\EscritosPatente\PresentadorExamenDePatentabilidad.cs" />
     <Compile Include="Presentadores\Inventores\PresentadorAgregarInventor.cs" />
     <Compile Include="Presentadores\Inventores\PresentadorConsultarInventor.cs" />
@@ -504,8 +510,17 @@
     <Compile Include="Ventanas\Anexos\ConsultarAnexos.xaml.cs">
       <DependentUpon>ConsultarAnexos.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Ventanas\EscritosPatente\ContestacionAOposicion.xaml.cs">
+      <DependentUpon>ContestacionAOposicion.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Ventanas\EscritosPatente\NumeracionDePoder.xaml.cs">
       <DependentUpon>NumeracionDePoder.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\EscritosPatente\ReconsideracionPrioridadExtinguida.xaml.cs">
+      <DependentUpon>ReconsideracionPrioridadExtinguida.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\EscritosPatente\PagoDeAnualidad.xaml.cs">
+      <DependentUpon>PagoDeAnualidad.xaml</DependentUpon>
     </Compile>
     <Compile Include="Ventanas\EscritosPatente\ExamenDePatentabilidad.xaml.cs">
       <DependentUpon>ExamenDePatentabilidad.xaml</DependentUpon>
@@ -1024,7 +1039,19 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Ventanas\EscritosPatente\ContestacionAOposicion.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Ventanas\EscritosPatente\NumeracionDePoder.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\EscritosPatente\ReconsideracionPrioridadExtinguida.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\EscritosPatente\PagoDeAnualidad.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

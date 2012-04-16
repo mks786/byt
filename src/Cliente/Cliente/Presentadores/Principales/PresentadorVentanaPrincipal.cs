@@ -813,7 +813,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
                     //this._ventana.Contenedor.Navigate(new NumeracionDePoderPorInteresado());
                     break;
                 case "_menuItemProrrogaDeContestacionAOposicion":
-                    //this._ventana.Contenedor.Navigate(new PrioridadExtranjera());
+                  //  this._ventana.Contenedor.Navigate(new ContestacionAOposicion());
                     break;
                 case "_menuItemOficioDeFondo":
                     //this._ventana.Contenedor.Navigate(new ReingresoDeClasificacion());
@@ -828,13 +828,13 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
                     //this._ventana.Contenedor.Navigate(new ReingresoDeNombreDeMarca());
                     break;
                 case "_menuItemPagoAnualidadPatente":
-                    //this._ventana.Contenedor.Navigate(new ReingresoDePoderDistingueConSinClasificacion());
+                    this._ventana.Contenedor.Navigate(new PagoDeAnualidad());
                     break;
                 case "_menuItemReconsideracionPrioridadExtinguida":
-                    //this._ventana.Contenedor.Navigate(new ReingresoDePoderPresentado());
+                    this._ventana.Contenedor.Navigate(new ReconsideracionPrioridadExtinguida());
                     break;
                 case "_menuItemContestacionAOposicion":
-                    //this._ventana.Contenedor.Navigate(new ReingresoDePoderYReclasificacion());
+                    this._ventana.Contenedor.Navigate(new ContestacionAOposicion());
                     break;
                 case "_menuItemCorreccionErrorDePublicacionEnPrensa":
                     //this._ventana.Contenedor.Navigate(new ReingresoDePoderYPrioridad());

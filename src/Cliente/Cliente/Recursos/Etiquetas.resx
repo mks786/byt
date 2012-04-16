@@ -2315,6 +2315,45 @@ de Gracia</value>
   <data name="titleEscritoExamenDePatentabilidad" xml:space="preserve">
     <value>Escrito Examen de Patentabilidad</value>
   </data>
+  <data name="titleEscritoContestacionAOposicion" xml:space="preserve">
+    <value>Escrito De Contestacion A Oposicion</value>
+  </data>
+  <data name="titleEscritoCorreccionErrorDePublicacionEnPrensa" xml:space="preserve">
+    <value>Escrito De Correccion Error De Publicacion En Prensa</value>
+  </data>
+  <data name="titleEscritoPagoDeAnualidad" xml:space="preserve">
+    <value>Escrito De Pago De Anualidad</value>
+  </data>
+  <data name="titleEscritoReconsideracionDePerencion" xml:space="preserve">
+    <value>Escrito De Reconsideracion De Perencion</value>
+  </data>
+  <data name="titleEscritoReconsideracionPrioridadExtinguida" xml:space="preserve">
+    <value>Escrito De Reconsideracion Prioridad Extinguida</value>
+  </data>
+  <data name="titleEscritoReconsideracionPerimidaVariante" xml:space="preserve">
+    <value>Escrito de Reconsideración Perimida Variante</value>
+  </data>
+  <data name="lblCirculacionNacional" xml:space="preserve">
+    <value>Diario de Circulacion Nacional:</value>
+  </data>
+  <data name="lblDomiciliadoEn" xml:space="preserve">
+    <value>Domiciliado en:</value>
+  </data>
+  <data name="lblErrorPrimeraPublicacion" xml:space="preserve">
+    <value>Error Primera Publicacion:</value>
+  </data>
+  <data name="lblErrorSegundaPublicacion" xml:space="preserve">
+    <value>Error Segunda Publicacion:</value>
+  </data>
+  <data name="lblErrorTerceraPublicacion" xml:space="preserve">
+    <value>Error Tercera Publicacion:</value>
+  </data>
+  <data name="lblFechaEscrito" xml:space="preserve">
+    <value>Escrito de Fecha:</value>
+  </data>
+  <data name="lblOponente" xml:space="preserve">
+    <value>Oponente:</value>
+  </data>
   <data name="titleEscritoNumeracionDePoder" xml:space="preserve">
     <value>Escrito Numeración de Poder</value>
   </data>
