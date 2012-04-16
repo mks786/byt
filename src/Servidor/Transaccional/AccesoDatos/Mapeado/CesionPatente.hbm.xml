@@ -9,11 +9,8 @@
     <property name="OtrosC1" column="IOTROS1" type="char"/>
     <property name="OtrosC2" column="IOTROS2" type="char"/>
     <property name="OtrosC3" column="IOTROS3" type="char"/>
-    <property name="Semejanteno" column="ISEMEJANTENO" type="char"/>
-    <property name="Semejantesi" column="ISEMEJANTESI" type="char"/>
     <property name="Cesion1" column="ICESION" type="char"/>
     <property name="Poder" column="IPODER" type="char"/>
-    <property name="Rif" column="IRIF" type="char"/>
     <property name="Acta" column="IACTA" type="char"/>
     <property name="Timbre" column="ITIMBRE" type="char"/>
     <property name="Certificada" column="ICERTIFICADA" type="string"/>

@@ -560,7 +560,7 @@
     <comment>Filtro de Fusion por id de patente</comment>
   </data>
   <data name="CabeceraObtenerCesionPatente" xml:space="preserve">
-    <value>Select c from Cesion c left join fetch c.Patente as patente left join fetch c.Cedente as cedente left join fetch c.AgenteCedente as agenteCed left join fetch c.AgenteCesionario as agenteCes left join fetch c.PoderCedente as PoderCed  left join fetch c.PoderCesionario as PoderCes left join fetch c.Cedente as interesadoCed left join fetch c.Cesionario as interesadoCes left join fetch c.BoletinPublicacion as boletin where </value>
+    <value>Select c from CesionPatente c left join fetch c.Patente as patente left join fetch c.Cedente as cedente left join fetch c.AgenteCedente as agenteCed left join fetch c.AgenteCesionario as agenteCes left join fetch c.PoderCedente as PoderCed  left join fetch c.PoderCesionario as PoderCes left join fetch c.Cedente as interesadoCed left join fetch c.Cesionario as interesadoCes left join fetch c.BoletinPublicacion as boletin where </value>
     <comment>Cabecera de CesionPatente</comment>
   </data>
   <data name="FiltroObtenerCesiondPatente" xml:space="preserve">
