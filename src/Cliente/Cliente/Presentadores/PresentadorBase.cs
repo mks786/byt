@@ -23,6 +23,7 @@ namespace Trascend.Bolet.Cliente.Presentadores
 
         private IPlanillaServicios _planillaServicios;
         private IMarcaServicios _marcaServicios;
+        private IPatenteServicios _patenteServicios;
         private IAgenteServicios _agenteServicios;
         private IInteresadoServicios _interesadoServicios;
         private IPoderServicios _poderServicios;
@@ -37,6 +38,8 @@ namespace Trascend.Bolet.Cliente.Presentadores
                 ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["AgenteServicios"]);
             this._marcaServicios = (IMarcaServicios)Activator.GetObject(typeof(IMarcaServicios),
                 ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["MarcaServicios"]);
+            this._patenteServicios = (IPatenteServicios)Activator.GetObject(typeof(IPatenteServicios),
+                ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["PatenteServicios"]);
             this._interesadoServicios = (IInteresadoServicios)Activator.GetObject(typeof(IInteresadoServicios),
                 ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["InteresadoServicios"]);
             this._poderServicios = (IPoderServicios)Activator.GetObject(typeof(IPoderServicios),
@@ -1435,6 +1438,29 @@ namespace Trascend.Bolet.Cliente.Presentadores
         /// <summary>
         /// Método que arma el string en el formato necesario para llamar a los .BAT de los escritos
         /// </summary>
+        /// <param name="listaPatentes">Lista de Patentes a traducir</param>
+        /// <returns>el string en el formato correcto</returns>
+        public string ArmarStringParametroPatentes(IList<Patente> listaPatentes)
+        {
+            string retorno = "";
+
+            try
+            {
+                foreach (Patente Patente in listaPatentes)
+                {
+                    retorno = retorno + Patente.Id + "_";
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException();
+            }
+            return retorno.Substring(0, retorno.Length - 1);
+        }
+
+        /// <summary>
+        /// Método que arma el string en el formato necesario para llamar a los .BAT de los escritos
+        /// </summary>
         /// <param name="listaInteresados">Lista de interesados a traducir</param>
         /// <returns>el string en el formato correcto</returns>
         public string ArmarStringParametroInteresados(IList<Interesado> listaInteresados)
@@ -1479,6 +1505,75 @@ namespace Trascend.Bolet.Cliente.Presentadores
                     if (marcaAux.Poder != null)
                     {
                         IList<Agente> agentes = this._agenteServicios.ObtenerAgentesDeUnPoder(marcaAux.Poder);
+
+                        foreach (Agente agenteEnPoder in agentes)
+                        {
+                            if (agenteEnPoder.Id == agente.Id)
+                                validador = true;
+                        }
+                        retorno = retorno && validador;
+                    }
+                    else
+                        return false;
+                }
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+            }
+            catch (ApplicationException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(ex.Message, true);
+            }
+            catch (RemotingException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorRemoting, true);
+            }
+            catch (SocketException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorConexionServidor, true);
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
+            }
+            finally
+            {
+                Mouse.OverrideCursor = null;
+            }
+            return retorno;
+        }
+
+        /// <summary>
+        /// Método que valida que un agente este en el poder de la lista de Patentes
+        /// </summary>
+        /// <param name="agente">Agente a buscar</param>
+        /// <param name="Patentes">Patentes con poder</param>
+        /// <returns>true en caso de que las Patentes posean a ese agente como apoderado, false en caso contrario</returns>
+        public bool ValidarAgenteApoderadoDePatentes(Agente agente, IList<Patente> Patentes)
+        {
+            bool retorno = true;
+
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                foreach (Patente Patente in Patentes)
+                {
+                    bool validador = false;
+                    Patente PatenteAux = this._patenteServicios.ConsultarPatenteConTodo(Patente);
+                    if (PatenteAux.Poder != null)
+                    {
+                        IList<Agente> agentes = this._agenteServicios.ObtenerAgentesDeUnPoder(PatenteAux.Poder);
 
                         foreach (Agente agenteEnPoder in agentes)
                         {

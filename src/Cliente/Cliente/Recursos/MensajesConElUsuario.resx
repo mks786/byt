@@ -694,7 +694,7 @@
     <value>Disculpe el escrito no posee Numeral definido</value>
   </data>
   <data name="AlertaEscritoSinResolucion" xml:space="preserve">
-    <value>Disculpe el Escrito debe tener al menos un Resolución</value>
+    <value>Disculpe el Escrito debe tener al menos una Resolución</value>
   </data>
   <data name="AlertaEscritoSinBusqueda" xml:space="preserve">
     <value>Disuclpe El Escrito No Tiene Ninguna Busqueda Seleccionada</value>
@@ -734,5 +734,14 @@
   </data>
   <data name="ConfirmacionEliminarInventor" xml:space="preserve">
     <value>¿Está seguro que desea eliminar el inventor?</value>
+  </data>
+  <data name="AlertaAgenteNoApareceEnPoderDePatente" xml:space="preserve">
+    <value>Disculpe el Agente {0} no aparece en el Poder de alguna de los Patentes seleccionados</value>
+  </data>
+  <data name="AlertaEscritoSinPatentes" xml:space="preserve">
+    <value>Disculpe el Escrito debe tener al menos una Resolución</value>
+  </data>
+  <data name="ConfirmacionGenerarEscritoPatente" xml:space="preserve">
+    <value>¿Está seguro que desea genera el escrito para las {0} patentes?</value>
   </data>
 </root>

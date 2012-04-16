@@ -53,6 +53,7 @@ using Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.CambiosDeNombrePatentes;
 using Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.CambiosPeticionarioPatentes;
 using Trascend.Bolet.Cliente.Ventanas.Renovaciones;
 using Trascend.Bolet.Cliente.Ventanas.EscritosMarca;
+using Trascend.Bolet.Cliente.Ventanas.EscritosPatente;
 using Trascend.Bolet.Cliente.Ventanas.Logines;
 using System.Diagnostics;
 using System.Collections.Generic;
@@ -771,8 +772,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
         {
             switch (nombreBoton)
             {
-                case "_menuItemConsignacionDeJuramentoYPoder":
-                    //this._ventana.Contenedor.Navigate(new CopiaCertificada());
+                case "_menuItemEscritosConsignacionDeJuramentoYPoder":
+                    //this._ventana.Contenedor.Navigate(new ExamenDePatentabilidad());
                     break;
                 case "_menuItemConsignacionDeJuramento":
                     //this._ventana.Contenedor.Navigate(new CorreccionErrorMaterial());
@@ -792,8 +793,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
                 case "_menuItemConsignacionDePrioridadExtranjera":
                     //this._ventana.Contenedor.Navigate(new CambioDeTramitante());
                     break;
-                case "_menuItemExamenDePatentibilidad":
-                    //this._ventana.Contenedor.Navigate(new DeDesistimiento());
+                case "_menuItemExamenDePatentabilidad":
+                    this._ventana.Contenedor.Navigate(new ExamenDePatentabilidad());
                     break;
                 case "_menuItemNumeracionDePoderPorPatente":
                     //this._ventana.Contenedor.Navigate(new LimitacionDelDistingue());

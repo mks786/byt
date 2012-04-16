@@ -2189,8 +2189,8 @@ de Gracia</value>
   <data name="menuItemEscritosCorreccionVoluntaria" xml:space="preserve">
     <value>Corrección Voluntaria</value>
   </data>
-  <data name="menuItemEscritosExamenDePatentibilidad" xml:space="preserve">
-    <value>Examen de Patentibilidad</value>
+  <data name="menuItemEscritosExamenDePatentabilidad" xml:space="preserve">
+    <value>Examen de Patentabilidad</value>
   </data>
   <data name="menuItemEscritosOficioDeFondo" xml:space="preserve">
     <value>Oficio de Fondo</value>
@@ -2302,5 +2302,14 @@ de Gracia</value>
   </data>
   <data name="lsvSolicitud" xml:space="preserve">
     <value>Solicitud</value>
+  </data>
+  <data name="lblFechaDePresentacionDeEscrito" xml:space="preserve">
+    <value>Fecha de presentación de Escrito:</value>
+  </data>
+  <data name="lblPatentesAgregadasAlEscrito" xml:space="preserve">
+    <value>Patentes agregadas al escrito:</value>
+  </data>
+  <data name="titleEscritoExamenDePatentabilidad" xml:space="preserve">
+    <value>Escrito Examen de Patentabilidad</value>
   </data>
 </root>

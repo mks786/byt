@@ -108,6 +108,7 @@
     <Compile Include="Contratos\Anexos\IConsultarAnexo.cs" />
     <Compile Include="Contratos\Anexos\IConsultarAnexos.cs" />
     <Compile Include="Contratos\CartasOuts\IConsultarCartasOuts.cs" />
+    <Compile Include="Contratos\EscritosPatente\IExamenDePatentabilidad.cs" />
     <Compile Include="Contratos\Inventores\IAgregarInventor.cs" />
     <Compile Include="Contratos\Inventores\IConsultarInventor.cs" />
     <Compile Include="Contratos\Patentes\IListaInventores.cs" />
@@ -274,6 +275,7 @@
     <Compile Include="Presentadores\Contactos\PresentadorAgregarContacto.cs" />
     <Compile Include="Presentadores\Contactos\PresentadorConsultarContacto.cs" />
     <Compile Include="Presentadores\CartasOuts\PresentadorConsultarCartasOuts.cs" />
+    <Compile Include="Presentadores\EscritosPatente\PresentadorExamenDePatentabilidad.cs" />
     <Compile Include="Presentadores\Inventores\PresentadorAgregarInventor.cs" />
     <Compile Include="Presentadores\Inventores\PresentadorConsultarInventor.cs" />
     <Compile Include="Presentadores\Patentes\PresentadorListaInventores.cs" />
@@ -499,6 +501,9 @@
     </Compile>
     <Compile Include="Ventanas\Anexos\ConsultarAnexos.xaml.cs">
       <DependentUpon>ConsultarAnexos.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\EscritosPatente\ExamenDePatentabilidad.xaml.cs">
+      <DependentUpon>ExamenDePatentabilidad.xaml</DependentUpon>
     </Compile>
     <Compile Include="Ventanas\Inventores\AgregarInventor.xaml.cs">
       <DependentUpon>AgregarInventor.xaml</DependentUpon>
@@ -1011,6 +1016,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Ventanas\Cartas\ConsultarCartas.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\EscritosPatente\ExamenDePatentabilidad.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -1659,9 +1668,7 @@
   <ItemGroup>
     <Resource Include="images\logoBoletI.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Ventanas\EscritosPatente\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
