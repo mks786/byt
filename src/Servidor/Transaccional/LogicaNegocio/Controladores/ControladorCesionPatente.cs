@@ -65,7 +65,7 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
                     ComandoBase<bool> comandoCesionPatenteContador = null;
                     ComandoBase<bool> comandoOperacionContador = null;
 
-                    ComandoBase<Contador> comandoContadorCesionPatenteProximoValor = FabricaComandosContador.ObtenerComandoConsultarPorId("MYP_MCESIONES");
+                    ComandoBase<Contador> comandoContadorCesionPatenteProximoValor = FabricaComandosContador.ObtenerComandoConsultarPorId("MYP_PCESIONES");
                     comandoContadorCesionPatenteProximoValor.Ejecutar();
                     Contador contadorCesionPatente = comandoContadorCesionPatenteProximoValor.Receptor.ObjetoAlmacenado;
 

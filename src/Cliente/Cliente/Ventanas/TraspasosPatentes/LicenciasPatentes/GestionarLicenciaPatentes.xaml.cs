@@ -419,11 +419,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.LicenciasPatentes
             this._lblIdLicencia.Visibility = System.Windows.Visibility.Collapsed;
             this._txtIdLicencia.Visibility = System.Windows.Visibility.Collapsed;
             this._dpkFechaLicencia.IsEnabled = false;
-            this._btnAnexo.Visibility = System.Windows.Visibility.Collapsed;
-            this._btnCarpeta.Visibility = System.Windows.Visibility.Collapsed;
-            this._btnPlanilla.Visibility = System.Windows.Visibility.Collapsed;
-            this._btnPlanillaVan.Visibility = System.Windows.Visibility.Collapsed;
-            this._btnPlanillaVienen.Visibility = System.Windows.Visibility.Collapsed;
+            //this._btnAnexo.Visibility = System.Windows.Visibility.Collapsed;
+            //this._btnCarpeta.Visibility = System.Windows.Visibility.Collapsed;
+            //this._btnPlanilla.Visibility = System.Windows.Visibility.Collapsed;
+            //this._btnPlanillaVan.Visibility = System.Windows.Visibility.Collapsed;
+            //this._btnPlanillaVienen.Visibility = System.Windows.Visibility.Collapsed;
         }
 
         private void _btnModificar_Click(object sender, RoutedEventArgs e)
@@ -475,30 +475,30 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.LicenciasPatentes
                 this._presentador.ConsultarPoderesLicenciatario();            
         }       
         
-        private void _btnPlanillaVienen_Click(object sender, RoutedEventArgs e)
-        {
-            this._presentador.IrImprimir(((Button)sender).Name);
-        }
+        //private void _btnPlanillaVienen_Click(object sender, RoutedEventArgs e)
+        //{
+        //    this._presentador.IrImprimir(((Button)sender).Name);
+        //}
 
-        private void _btnPlanillaVan_Click(object sender, RoutedEventArgs e)
-        {
-            this._presentador.IrImprimir(((Button)sender).Name);
-        }
+        //private void _btnPlanillaVan_Click(object sender, RoutedEventArgs e)
+        //{
+        //    this._presentador.IrImprimir(((Button)sender).Name);
+        //}
 
-        private void _btnPlanilla_Click(object sender, RoutedEventArgs e)
-        {
-            this._presentador.IrImprimir(((Button)sender).Name); 
-        }
+        //private void _btnPlanilla_Click(object sender, RoutedEventArgs e)
+        //{
+        //    this._presentador.IrImprimir(((Button)sender).Name); 
+        //}
 
-        private void _btnCarpeta_Click(object sender, RoutedEventArgs e)
-        {
-            this._presentador.IrImprimir(((Button)sender).Name);
-        }
+        //private void _btnCarpeta_Click(object sender, RoutedEventArgs e)
+        //{
+        //    this._presentador.IrImprimir(((Button)sender).Name);
+        //}
 
-        private void _btnAnexo_Click(object sender, RoutedEventArgs e)
-        {
-            this._presentador.IrImprimir(((Button)sender).Name);
-        }
+        //private void _btnAnexo_Click(object sender, RoutedEventArgs e)
+        //{
+        //    this._presentador.IrImprimir(((Button)sender).Name);
+        //}
 
         public void ConvertirEnteroMinimoABlanco(string tipo)
         {

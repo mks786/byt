@@ -65,7 +65,7 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
                     ComandoBase<bool> comandoLicenciaContador = null;
                     ComandoBase<bool> comandoOperacionContador = null;
 
-                    ComandoBase<Contador> comandoContadorLicenciaProximoValor = FabricaComandosContador.ObtenerComandoConsultarPorId("MYP_MLICENCIAS");
+                    ComandoBase<Contador> comandoContadorLicenciaProximoValor = FabricaComandosContador.ObtenerComandoConsultarPorId("MYP_PLICENCIAS");
                     comandoContadorLicenciaProximoValor.Ejecutar();
                     Contador contadorLicencia = comandoContadorLicenciaProximoValor.Receptor.ObjetoAlmacenado;
 

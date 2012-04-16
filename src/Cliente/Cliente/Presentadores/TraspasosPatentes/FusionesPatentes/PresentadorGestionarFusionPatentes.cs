@@ -1924,9 +1924,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.FusionesPatente
                     case "_btnAnexo":
                         ImprimirAnexo();
                         break;
-                    case "_btnCarpeta":
-                        ImprimirCarpeta();
-                        break;
+                    //case "_btnCarpeta":
+                    //    ImprimirCarpeta();
+                    //    break;
                     default:
                         break;
                 }
@@ -1938,22 +1938,22 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.FusionesPatente
             }
         }
 
-        private void ImprimirCarpeta()
-        {
-            if (ValidarPatenteAntesDeImprimirCarpeta())
-            {
-                string paqueteProcedimiento = "PCK_MYP_MFUSIONES";
-                string procedimiento = "P4";
-                ParametroProcedimiento parametro =
-                    new ParametroProcedimiento(((FusionPatente)this._ventana.FusionPatente).Id, UsuarioLogeado, 1, paqueteProcedimiento, procedimiento);
+        //private void ImprimirCarpeta()
+        //{
+        //    if (ValidarPatenteAntesDeImprimirCarpeta())
+        //    {
+        //        string paqueteProcedimiento = "PCK_MYP_PFUSIONES";
+        //        string procedimiento = "P4";
+        //        ParametroProcedimiento parametro =
+        //            new ParametroProcedimiento(((FusionPatente)this._ventana.FusionPatente).Id, UsuarioLogeado, 1, paqueteProcedimiento, procedimiento);
 
-                //Planilla planilla = this._planillaServicios.ImprimirProcedimiento(parametro);
-                //if (planilla != null)
-                //{
-                this.LlamarProcedimientoDeBaseDeDatos(parametro, Recursos.Etiquetas.btnCarpeta);
-                //}
-            }
-        }
+        //        //Planilla planilla = this._planillaServicios.ImprimirProcedimiento(parametro);
+        //        //if (planilla != null)
+        //        //{
+        //        this.LlamarProcedimientoDeBaseDeDatos(parametro, Recursos.Etiquetas.btnCarpeta);
+        //        //}
+        //    }
+        //}
 
         private bool ValidarPatenteAntesDeImprimirCarpeta()
         {
@@ -1964,7 +1964,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.FusionesPatente
         {
             if (ValidarPatenteAntesDeImprimirCarpeta())
             {
-                string paqueteProcedimiento = "PCK_MYP_MFUSIONES";
+                string paqueteProcedimiento = "PCK_MYP_PFUSIONES";
                 string procedimiento = "P2";
                 ParametroProcedimiento parametro =
                     new ParametroProcedimiento(((FusionPatente)this._ventana.FusionPatente).Id, UsuarioLogeado, 1, paqueteProcedimiento, procedimiento);
@@ -1986,7 +1986,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.FusionesPatente
         {
             if (ValidarPatenteAntesDeImprimirCarpeta())
             {
-                string paqueteProcedimiento = "PCK_MYP_MFUSIONES";
+                string paqueteProcedimiento = "PCK_MYP_PFUSIONES";
                 string procedimiento = "P1";
                 ParametroProcedimiento parametro =
                     new ParametroProcedimiento(((FusionPatente)this._ventana.FusionPatente).Id, UsuarioLogeado, 1, paqueteProcedimiento, procedimiento);

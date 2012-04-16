@@ -938,32 +938,6 @@
                             <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
 
-
-                        <Button Name="_btnPlanilla" Grid.Row="0" Grid.Column="0"  VerticalAlignment="Bottom" Height="25" Width="90"
-                    Click="_btnPlanilla_Click">
-                            <TextBlock Name="_txbPlanilla" Text="{x:Static recurso:Etiquetas.btnPlanilla}"/>
-                        </Button>
-
-                        <Button Name="_btnAnexo" Grid.Row="0" Grid.Column="1" VerticalAlignment="Bottom" Height="25" Width="90"
-                    Click="_btnAnexo_Click">
-                            <TextBlock Name="_txbAnexo" Text="{x:Static recurso:Etiquetas.btnAnexo}"/>
-                        </Button>
-
-                        <Button Name="_btnCarpeta" Grid.Row="0" Grid.Column="2" VerticalAlignment="Bottom" Height="25" Width="90"
-                    Click="_btnCarpeta_Click">
-                            <TextBlock Name="_txbCarpeta" Text="{x:Static recurso:Etiquetas.btnCarpeta}"/>
-                        </Button>
-
-                        <Button Name="_btnPlanillaVan" Grid.Row="0" Grid.Column="4" VerticalAlignment="Bottom" Height="25" Width="90"
-                    Click="_btnPlanillaVan_Click">
-                            <TextBlock Name="_txbPlanillaVan" Text="{x:Static recurso:Etiquetas.btnPlanillaVan}"/>
-                        </Button>
-
-                        <Button Name="_btnPlanillaVienen" Grid.Row="0" Grid.Column="5" VerticalAlignment="Bottom" Height="25" Width="90"
-                    Click="_btnPlanillaVienen_Click">
-                            <TextBlock Name="_txbPlanillaVienen" Text="{x:Static recurso:Etiquetas.btnPlanillaVienen}"/>
-                        </Button>
-
                     </Grid>
                 </WrapPanel>
 

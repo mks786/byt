@@ -419,7 +419,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.CesionesPatentes
             this._txtIdCesion.Visibility = System.Windows.Visibility.Collapsed;
             this._dpkFechaCesion.IsEnabled = false;
             this._btnAnexo.Visibility = System.Windows.Visibility.Collapsed;
-            this._btnCarpeta.Visibility = System.Windows.Visibility.Collapsed;
+            //this._btnCarpeta.Visibility = System.Windows.Visibility.Collapsed;
             this._btnPlanilla.Visibility = System.Windows.Visibility.Collapsed;
             this._btnPlanillaVan.Visibility = System.Windows.Visibility.Collapsed;
             this._btnPlanillaVienen.Visibility = System.Windows.Visibility.Collapsed;            

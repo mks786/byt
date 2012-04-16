@@ -2386,9 +2386,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CesionesPatente
                     case "_btnAnexo":
                         ImprimirAnexo();
                         break;
-                    case "_btnCarpeta":
-                        ImprimirCarpeta();
-                        break;
+                    //case "_btnCarpeta":
+                    //    ImprimirCarpeta();
+                    //    break;
                     case "_btnPlanillaVan":
                         ImprimirPlanillaVan();
                         break;
@@ -2410,8 +2410,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CesionesPatente
         {
             if (ValidarPatenteAntesDeImprimirCarpeta())
             {
-                string paqueteProcedimiento = "PCK_MYP_MCESIONES";
-                string procedimiento = "P5";
+                string paqueteProcedimiento = "PCK_MYP_PCESIONES";
+                string procedimiento = "P4";
                 ParametroProcedimiento parametro =
                     new ParametroProcedimiento(((CesionPatente)this._ventana.CesionPatente).Id, UsuarioLogeado, 1, paqueteProcedimiento, procedimiento);
 
@@ -2423,8 +2423,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CesionesPatente
         {
             if (ValidarPatenteAntesDeImprimirCarpeta())
             {
-                string paqueteProcedimiento = "PCK_MYP_MCESIONES";
-                string procedimiento = "P4";
+                string paqueteProcedimiento = "PCK_MYP_PCESIONES";
+                string procedimiento = "P3";
                 ParametroProcedimiento parametro =
                     new ParametroProcedimiento(((CesionPatente)this._ventana.CesionPatente).Id, UsuarioLogeado, 1, paqueteProcedimiento, procedimiento);
 
@@ -2432,18 +2432,18 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CesionesPatente
             }
         }
 
-        private void ImprimirCarpeta()
-        {
-            if (ValidarPatenteAntesDeImprimirCarpeta())
-            {
-                string paqueteProcedimiento = "PCK_MYP_MCESIONES";
-                string procedimiento = "P3";
-                ParametroProcedimiento parametro =
-                    new ParametroProcedimiento(((CesionPatente)this._ventana.CesionPatente).Id, UsuarioLogeado, 1, paqueteProcedimiento, procedimiento);
+        //private void ImprimirCarpeta()
+        //{
+        //    if (ValidarPatenteAntesDeImprimirCarpeta())
+        //    {
+        //        string paqueteProcedimiento = "PCK_MYP_PCESIONES";
+        //        string procedimiento = "P3";
+        //        ParametroProcedimiento parametro =
+        //            new ParametroProcedimiento(((CesionPatente)this._ventana.CesionPatente).Id, UsuarioLogeado, 1, paqueteProcedimiento, procedimiento);
 
-                this.LlamarProcedimientoDeBaseDeDatos(parametro, Recursos.Etiquetas.btnCarpeta);
-            }
-        }
+        //        this.LlamarProcedimientoDeBaseDeDatos(parametro, Recursos.Etiquetas.btnCarpeta);
+        //    }
+        //}
 
         private bool ValidarPatenteAntesDeImprimirCarpeta()
         {
@@ -2454,7 +2454,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CesionesPatente
         {
             if (ValidarPatenteAntesDeImprimirCarpeta())
             {
-                string paqueteProcedimiento = "PCK_MYP_MCESIONES";
+                string paqueteProcedimiento = "PCK_MYP_PCESIONES";
                 string procedimiento = "P2";
                 ParametroProcedimiento parametro =
                     new ParametroProcedimiento(((CesionPatente)this._ventana.CesionPatente).Id, UsuarioLogeado, 1, paqueteProcedimiento, procedimiento);
@@ -2472,7 +2472,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CesionesPatente
         {
             if (ValidarPatenteAntesDeImprimirCarpeta())
             {
-                string paqueteProcedimiento = "PCK_MYP_MCESIONES";
+                string paqueteProcedimiento = "PCK_MYP_PCESIONES";
                 string procedimiento = "P1";
                 ParametroProcedimiento parametro =
                     new ParametroProcedimiento(((CesionPatente)this._ventana.CesionPatente).Id, UsuarioLogeado, 1, paqueteProcedimiento, procedimiento);

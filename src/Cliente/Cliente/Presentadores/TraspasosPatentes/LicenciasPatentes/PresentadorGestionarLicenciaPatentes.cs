@@ -2528,116 +2528,116 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.LicenciasPatent
         #endregion        
 
         
-        public void IrImprimir(string nombreBoton)
-        {
-            try
-            {
-                switch (nombreBoton)
-                {
-                    case "_btnPlanilla":
-                        ImprimirPlanilla();
-                        break;
-                    case "_btnAnexo":
-                        ImprimirAnexo();
-                        break;
-                    case "_btnCarpeta":
-                        ImprimirCarpeta();
-                        break;
-                    case "_btnPlanillaVan":
-                        ImprimirPlanillaVan();
-                        break;
-                    case "_btnPlanillaVienen":
-                        ImprimirPlanillaVienen();
-                        break;
-                    default:
-                        break;
-                }
-            }
-            catch (ApplicationException ex)
-            {
-                logger.Error(ex.Message);
-                this.Navegar(Recursos.MensajesConElUsuario.ExcepcionPaquetes, true);
-            }
-        }
+        //public void IrImprimir(string nombreBoton)
+        //{
+        //    try
+        //    {
+        //        switch (nombreBoton)
+        //        {
+        //            case "_btnPlanilla":
+        //                ImprimirPlanilla();
+        //                break;
+        //            case "_btnAnexo":
+        //                ImprimirAnexo();
+        //                break;
+        //            case "_btnCarpeta":
+        //                ImprimirCarpeta();
+        //                break;
+        //            case "_btnPlanillaVan":
+        //                ImprimirPlanillaVan();
+        //                break;
+        //            case "_btnPlanillaVienen":
+        //                ImprimirPlanillaVienen();
+        //                break;
+        //            default:
+        //                break;
+        //        }
+        //    }
+        //    catch (ApplicationException ex)
+        //    {
+        //        logger.Error(ex.Message);
+        //        this.Navegar(Recursos.MensajesConElUsuario.ExcepcionPaquetes, true);
+        //    }
+        //}
 
-        private void ImprimirPlanillaVienen()
-        {
-            if (ValidarPatenteAntesDeImprimirCarpeta())
-            {
-                string paqueteProcedimiento = "PCK_MYP_MLICENCIAS";
-                string procedimiento = "P5";
-                ParametroProcedimiento parametro =
-                    new ParametroProcedimiento(((LicenciaPatente)this._ventana.LicenciaPatente).Id, UsuarioLogeado, 1, paqueteProcedimiento, procedimiento);
+        //private void ImprimirPlanillaVienen()
+        //{
+        //    if (ValidarPatenteAntesDeImprimirCarpeta())
+        //    {
+        //        string paqueteProcedimiento = "PCK_MYP_MLICENCIAS";
+        //        string procedimiento = "P5";
+        //        ParametroProcedimiento parametro =
+        //            new ParametroProcedimiento(((LicenciaPatente)this._ventana.LicenciaPatente).Id, UsuarioLogeado, 1, paqueteProcedimiento, procedimiento);
 
-                this.LlamarProcedimientoDeBaseDeDatos(parametro, Recursos.Etiquetas.btnPlanillaVienen);
-            }
-        }
+        //        this.LlamarProcedimientoDeBaseDeDatos(parametro, Recursos.Etiquetas.btnPlanillaVienen);
+        //    }
+        //}
 
-        private void ImprimirPlanillaVan()
-        {
-            if (ValidarPatenteAntesDeImprimirCarpeta())
-            {
-                string paqueteProcedimiento = "PCK_MYP_MLICENCIAS";
-                string procedimiento = "P4";
-                ParametroProcedimiento parametro =
-                    new ParametroProcedimiento(((LicenciaPatente)this._ventana.LicenciaPatente).Id, UsuarioLogeado, 1, paqueteProcedimiento, procedimiento);
+        //private void ImprimirPlanillaVan()
+        //{
+        //    if (ValidarPatenteAntesDeImprimirCarpeta())
+        //    {
+        //        string paqueteProcedimiento = "PCK_MYP_MLICENCIAS";
+        //        string procedimiento = "P4";
+        //        ParametroProcedimiento parametro =
+        //            new ParametroProcedimiento(((LicenciaPatente)this._ventana.LicenciaPatente).Id, UsuarioLogeado, 1, paqueteProcedimiento, procedimiento);
 
-                this.LlamarProcedimientoDeBaseDeDatos(parametro, Recursos.Etiquetas.btnPlanillaVan);
-            }
-        }
+        //        this.LlamarProcedimientoDeBaseDeDatos(parametro, Recursos.Etiquetas.btnPlanillaVan);
+        //    }
+        //}
 
-        private void ImprimirCarpeta()
-        {
-            if (ValidarPatenteAntesDeImprimirCarpeta())
-            {
-                string paqueteProcedimiento = "PCK_MYP_MLICENCIAS";
-                string procedimiento = "P3";
-                ParametroProcedimiento parametro =
-                    new ParametroProcedimiento(((LicenciaPatente)this._ventana.LicenciaPatente).Id, UsuarioLogeado, 1, paqueteProcedimiento, procedimiento);
+        //private void ImprimirCarpeta()
+        //{
+        //    if (ValidarPatenteAntesDeImprimirCarpeta())
+        //    {
+        //        string paqueteProcedimiento = "PCK_MYP_MLICENCIAS";
+        //        string procedimiento = "P3";
+        //        ParametroProcedimiento parametro =
+        //            new ParametroProcedimiento(((LicenciaPatente)this._ventana.LicenciaPatente).Id, UsuarioLogeado, 1, paqueteProcedimiento, procedimiento);
 
-                this.LlamarProcedimientoDeBaseDeDatos(parametro, Recursos.Etiquetas.btnCarpeta);
-            }
-        }
+        //        this.LlamarProcedimientoDeBaseDeDatos(parametro, Recursos.Etiquetas.btnCarpeta);
+        //    }
+        //}
 
-        private bool ValidarPatenteAntesDeImprimirCarpeta()
-        {
-            return true;
-        }
+        //private bool ValidarPatenteAntesDeImprimirCarpeta()
+        //{
+        //    return true;
+        //}
 
-        private void ImprimirAnexo()
-        {
-            if (ValidarPatenteAntesDeImprimirCarpeta())
-            {
-                string paqueteProcedimiento = "PCK_MYP_MLICENCIAS";
-                string procedimiento = "P2";
-                ParametroProcedimiento parametro =
-                    new ParametroProcedimiento(((LicenciaPatente)this._ventana.LicenciaPatente).Id, UsuarioLogeado, 1, paqueteProcedimiento, procedimiento);
+        //private void ImprimirAnexo()
+        //{
+        //    if (ValidarPatenteAntesDeImprimirCarpeta())
+        //    {
+        //        string paqueteProcedimiento = "PCK_MYP_MLICENCIAS";
+        //        string procedimiento = "P2";
+        //        ParametroProcedimiento parametro =
+        //            new ParametroProcedimiento(((LicenciaPatente)this._ventana.LicenciaPatente).Id, UsuarioLogeado, 1, paqueteProcedimiento, procedimiento);
 
-                this.LlamarProcedimientoDeBaseDeDatos(parametro, Recursos.Etiquetas.btnAnexo);
-            }
-        }
+        //        this.LlamarProcedimientoDeBaseDeDatos(parametro, Recursos.Etiquetas.btnAnexo);
+        //    }
+        //}
 
-        private bool ValidarPatenteAntesDeImprimirAnexo()
-        {
-            return true;
-        }
+        //private bool ValidarPatenteAntesDeImprimirAnexo()
+        //{
+        //    return true;
+        //}
 
-        private void ImprimirPlanilla()
-        {
-            if (ValidarPatenteAntesDeImprimirCarpeta())
-            {
-                string paqueteProcedimiento = "PCK_MYP_MLICENCIAS";
-                string procedimiento = "P1";
-                ParametroProcedimiento parametro =
-                    new ParametroProcedimiento(((LicenciaPatente)this._ventana.LicenciaPatente).Id, UsuarioLogeado, 1, paqueteProcedimiento, procedimiento);
+        //private void ImprimirPlanilla()
+        //{
+        //    if (ValidarPatenteAntesDeImprimirCarpeta())
+        //    {
+        //        string paqueteProcedimiento = "PCK_MYP_MLICENCIAS";
+        //        string procedimiento = "P1";
+        //        ParametroProcedimiento parametro =
+        //            new ParametroProcedimiento(((LicenciaPatente)this._ventana.LicenciaPatente).Id, UsuarioLogeado, 1, paqueteProcedimiento, procedimiento);
 
-                this.LlamarProcedimientoDeBaseDeDatos(parametro, Recursos.Etiquetas.btnPlanilla);
-            }
-        }
+        //        this.LlamarProcedimientoDeBaseDeDatos(parametro, Recursos.Etiquetas.btnPlanilla);
+        //    }
+        //}
 
-        private bool ValidarPatenteAntesDeImprimirPlanilla()
-        {
-            return true;
-        }
+        //private bool ValidarPatenteAntesDeImprimirPlanilla()
+        //{
+        //    return true;
+        //}
     }
 }

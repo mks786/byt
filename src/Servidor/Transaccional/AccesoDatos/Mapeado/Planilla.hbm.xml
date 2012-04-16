@@ -509,7 +509,72 @@
     begin PCK_MYP_PNOMBRES.P4(:usr, :way, :cod); end;
 
   </sql-query>
-  
+
+  <!--Procedimientos PCK_MYP_PCESIONES-->
+
+  <sql-query name="PCK_MYP_PCESIONESP1">
+
+    <query-param name="usr" type="string" />
+    <query-param name="way" type="int" />
+    <query-param name="cod" type="int" />
+
+    begin PCK_MYP_PCESIONES.P1(:usr, :way, :cod); end;
+
+  </sql-query>
+
+  <sql-query name="PCK_MYP_PCESIONESP2">
+
+    <query-param name="usr" type="string" />
+    <query-param name="way" type="int" />
+    <query-param name="cod" type="int" />
+
+    begin PCK_MYP_PCESIONES.P3(:usr, :way, :cod); end;
+
+  </sql-query>
+
+  <sql-query name="PCK_MYP_PCESIONESP3">
+
+    <query-param name="usr" type="string" />
+    <query-param name="way" type="int" />
+    <query-param name="cod" type="int" />
+
+    begin PCK_MYP_PCESIONES.P3(:usr, :way, :cod); end;
+
+  </sql-query>
+
+  <sql-query name="PCK_MYP_PCESIONESP4">
+
+    <query-param name="usr" type="string" />
+    <query-param name="way" type="int" />
+    <query-param name="cod" type="int" />
+
+    begin PCK_MYP_PCESIONES.P4(:usr, :way, :cod); end;
+
+  </sql-query>
+  <!--Fin Procedimientos PCK_MYP_PCESIONES-->
+
+  <!--Procedimientos PCK_MYP_PFUSIONES-->
+
+  <sql-query name="PCK_MYP_PFUSIONESP1">
+
+    <query-param name="usr" type="string" />
+    <query-param name="way" type="int" />
+    <query-param name="cod" type="int" />
+
+    begin PCK_MYP_PFUSIONES.P1(:usr, :way, :cod); end;
+
+  </sql-query>
+
+  <sql-query name="PCK_MYP_PFUSIONESP2">
+
+    <query-param name="usr" type="string" />
+    <query-param name="way" type="int" />
+    <query-param name="cod" type="int" />
+
+    begin PCK_MYP_PFUSIONES.P2(:usr, :way, :cod); end;
+
+  </sql-query>
+  <!--FIn Procedimientos PCK_MYP_PFUSIONES-->
   <!--Fin Procedimientos Cambio de nombre Patente-->
   
   <!-- Fin Procedimientos Traspasos Patentes-->
