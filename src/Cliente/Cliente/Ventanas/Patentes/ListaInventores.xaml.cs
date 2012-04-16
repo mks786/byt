@@ -13,7 +13,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
     /// </summary>
     public partial class ListaInventores : Page, IListaInventores
     {
-        
+
         private GridViewColumnHeader _CurSortCol = null;
         private SortAdorner _CurAdorner = null;
         private PresentadorListaInventores _presentador;
@@ -72,9 +72,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
         public ListaInventores(object patente)
         {
             InitializeComponent();
-            this._cargada= false;
+            this._cargada = false;
             this._presentador = new PresentadorListaInventores(this, patente);
-
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)

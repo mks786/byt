@@ -38,94 +38,34 @@
                     <Label>
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblNombre}"/>
                     </Label>
-                    <TextBox Name="_txtNombre" Width="150" MaxLength="30"  Text="{Binding Path=Nombre}" IsEnabled="False"/>
+                    <TextBox Name="_txtNombre" Width="150" MaxLength="30"  Text="{Binding Path=InventorPatente}" IsEnabled="False"/>
                 </WrapPanel>
                 <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
                     <Label>
-                        <TextBlock Text="{x:Static recurso:Etiquetas.lblDepartamento}"/>
+                        <TextBlock Text="{x:Static recurso:Etiquetas.lblPais}"/>
                     </Label>
-                    <ComboBox Name="_cbxDepartamento" Width="150" SelectedIndex="0" IsEnabled="False">
-                        <ComboBoxItem>
-                            <TextBlock Text="{x:Static recurso:Etiquetas.cbiNinguno}" Tag="NGN"/>
-                        </ComboBoxItem>
-                        <ComboBoxItem>
-                            <TextBlock Text="{x:Static recurso:Etiquetas.cbiLegal}" Tag="LEG"/>
-                        </ComboBoxItem>
-                        <ComboBoxItem>
-                            <TextBlock Text="{x:Static recurso:Etiquetas.cbiMarcas}" Tag="MAR"/>
-                        </ComboBoxItem>
-                        <ComboBoxItem>
-                            <TextBlock Text="{x:Static recurso:Etiquetas.cbiPatentes}" Tag="PAT"/>
-                        </ComboBoxItem>
-                        <ComboBoxItem>
-                            <TextBlock Text="{x:Static recurso:Etiquetas.cbiAdministracion}" Tag="ADM"/>
-                        </ComboBoxItem>
+
+                    <ComboBox IsEnabled="False" Grid.Column="2" Grid.Row="3" Grid.ColumnSpan="1"  Name="_cbxPais" Height="20" 
+                              ItemsSource="{Binding}" DisplayMemberPath="NombreEspanol" SelectedIndex="0" Width="150">
                     </ComboBox>
 
                 </WrapPanel>
                 <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
                     <Label>
-                        <TextBlock Text="{x:Static recurso:Etiquetas.lblTelefono}"/>
+                        <TextBlock Text="{x:Static recurso:Etiquetas.lblNacionalidad}"/>
                     </Label>
-                    <TextBox Name="_txtTelefono" Width="150" MaxLength="30"  Text="{Binding Path=Telefono}" IsEnabled="False"/>
-                </WrapPanel>
-                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
-                    <Label>
-                        <TextBlock Text="{x:Static recurso:Etiquetas.lblFax}"/>
-                    </Label>
-                    <TextBox Name="_txtFax" Width="150" MaxLength="255"  Text="{Binding Path=Fax}" IsEnabled="False"/>
-                </WrapPanel>
-                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
-                    <Label>
-                        <TextBlock Text="{x:Static recurso:Etiquetas.lblEmail}"/>
-                    </Label>
-                    <TextBox Name="_txtEmail" Width="150" MaxLength="255"  Text="{Binding Path=Email}" IsEnabled="False"/>
-                </WrapPanel>
-                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
-                    <Label>
-                        <TextBlock Text="{x:Static recurso:Etiquetas.lblUso}"/>
-                    </Label>
-                    <ComboBox Name="_cbxUso" Width="150" SelectedIndex="0" IsEnabled="False">
-                        <ComboBoxItem>
-                            <TextBlock Text="{x:Static recurso:Etiquetas.cbiNinguno}" Tag="NGN"/>
-                        </ComboBoxItem>
-                        <ComboBoxItem>
-                            <TextBlock Text="{x:Static recurso:Etiquetas.cbiSoloAdministracion}" Tag="A"/>
-                        </ComboBoxItem>
-                        <ComboBoxItem>
-                            <TextBlock Text="{x:Static recurso:Etiquetas.cbiSoloEstadoDeCuenta}" Tag="EDO"/>
-                        </ComboBoxItem>
-                        <ComboBoxItem>
-                            <TextBlock Text="{x:Static recurso:Etiquetas.cbiSoloMarca}" Tag="M"/>
-                        </ComboBoxItem>
-                        <ComboBoxItem>
-                            <TextBlock Text="{x:Static recurso:Etiquetas.cbiSoloPatente}" Tag="P"/>
-                        </ComboBoxItem>
-                        <ComboBoxItem>
-                            <TextBlock Text="{x:Static recurso:Etiquetas.cbiAdministracionYMarcas}" Tag="AM"/>
-                        </ComboBoxItem>
-                        <ComboBoxItem>
-                            <TextBlock Text="{x:Static recurso:Etiquetas.cbiAdministracionYPatentes}" Tag="AP"/>
-                        </ComboBoxItem>
-                        <ComboBoxItem>
-                            <TextBlock Text="{x:Static recurso:Etiquetas.cbiMarcasYPatentes}" Tag="MP"/>
-                        </ComboBoxItem>
-                        <ComboBoxItem>
-                            <TextBlock Text="{x:Static recurso:Etiquetas.cbiAdministracionMarcasPatentes}" Tag="AMP"/>
-                        </ComboBoxItem>
+
+                    <ComboBox IsEnabled="False" Grid.Column="2" Grid.Row="3" Grid.ColumnSpan="1"  Name="_cbxNacionalidad" Height="20" 
+                              ItemsSource="{Binding}" DisplayMemberPath="Nacionalidad" SelectedIndex="0" Width="150">
                     </ComboBox>
+
                 </WrapPanel>
                 <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
                     <Label>
-                        <TextBlock Text="{x:Static recurso:Etiquetas.lblCargo}"/>
+                        <TextBlock Text="{x:Static recurso:Etiquetas.lblDomicilio}"/>
                     </Label>
-                    <TextBox Name="_txtCargo" Width="150" MaxLength="255"  Text="{Binding Path=Cargo}" IsEnabled="False"/>
-                </WrapPanel>
-                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
-                    <Label>
-                        <TextBlock Text="{x:Static recurso:Etiquetas.lblCorrespondencia}"/>
-                    </Label>
-                    <TextBox Name="_txtCorrespondencia" Width="150" MaxLength="255" IsEnabled="False"/>
+                    <TextBox Name="_txtDomicilio" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" AcceptsReturn="True" Width="150" MaxLength="30" 
+                             Text="{Binding Path=Domicilio}" IsEnabled="False" Height="100"/>
                 </WrapPanel>
                 <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0"></WrapPanel>
             </StackPanel>

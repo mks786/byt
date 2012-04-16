@@ -30,15 +30,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Inventores
         public bool HabilitarCampos
         {
             set 
-            { 
+            {
                 this._txtNombre.IsEnabled = value;
-                this._txtTelefono.IsEnabled = value;
-                this._txtFax.IsEnabled = value;
-                this._txtCargo.IsEnabled = value;
-                this._txtCorrespondencia.IsEnabled = value;
-                this._cbxDepartamento.IsEnabled = value;
-                this._txtEmail.IsEnabled = value;
-                this._cbxUso.IsEnabled = value;
+                this._cbxNacionalidad.IsEnabled = value;
+                this._cbxPais.IsEnabled = value;
+                this._txtDomicilio.IsEnabled = value;
             }
         }
 
@@ -54,55 +50,30 @@ namespace Trascend.Bolet.Cliente.Ventanas.Inventores
             set{this._gridDatos.DataContext = value;}
         }
 
-        public string getDepartamento
+
+        public object Paises
         {
-            get
-            {
-                if (!string.Equals("",this._cbxDepartamento.Text)) 
-                {
-                    return ((string)this._cbxDepartamento.Text);
-                }
-                return "";
-            }
+            get { return this._cbxPais.DataContext; }
+            set { this._cbxPais.DataContext = value; }
         }
 
-         public string setDepartamento
+        public object Pais
         {
-            set
-            {
-                this._cbxDepartamento.Text = value ; 
-            }
+            get { return this._cbxPais.SelectedItem; }
+            set { this._cbxPais.SelectedItem = value; }
         }
 
-         public string setFuncion
-         {
-             set
-             {
-                 this._cbxUso.Text = value;
-             }
-         }
+        public object Nacionalidades
+        {
+            get { return this._cbxNacionalidad.DataContext; }
+            set { this._cbxNacionalidad.DataContext = value; }
+        }
 
-         public string getFuncion
-         {
-             get
-             {
-                 if (!string.Equals("", this._cbxUso.Text))
-                 {
-                     return ((string)this._cbxUso.Text);
-                 }
-                 return "";
-             }
-         }
-
-         public string getCorrespondencia
-         {
-             get { return this._txtCorrespondencia.Text; }
-         }
-
-         public string setCorrespondencia
-         {
-             set { this._txtCorrespondencia.Text = value; }
-         }
+        public object Nacionalidad
+        {
+            get { return this._cbxNacionalidad.SelectedItem; }
+            set { this._cbxNacionalidad.SelectedItem = value; }
+        }
 
          public void mensaje(string mensaje)
          {

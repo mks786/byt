@@ -14,7 +14,7 @@
     <property name="Domicilio" column="XDOMICILIO" type="string"/>
 
     <many-to-one name="Nacionalidad" class="Pais">
-      <column name="CPAIS"/>
+      <column name="CNACIONALIDAD"/>
     </many-to-one>
 
     <many-to-one name="Pais" class="Pais">

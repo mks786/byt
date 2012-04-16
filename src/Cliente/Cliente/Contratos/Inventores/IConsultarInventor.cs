@@ -10,17 +10,13 @@ namespace Trascend.Bolet.Cliente.Contratos.Inventores
 
         object Inventor { get; set; }
 
-        string getDepartamento { get; }
+        object Paises { get; set; }
 
-        string setDepartamento { set; }
+        object Pais { get; set; }
 
-        string setFuncion { set; }
+        object Nacionalidades { get; set; }
 
-        string getFuncion { get; }
-
-        string getCorrespondencia { get; }
-
-        string setCorrespondencia { set; }
+        object Nacionalidad { get; set; }
         
         void mensaje(string mensaje);
     }
