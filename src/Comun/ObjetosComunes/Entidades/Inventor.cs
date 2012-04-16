@@ -9,6 +9,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         #region Atributos
 
         private int _id;
+        private Pais _pais;
         private Pais _nacionalidad;
         private Patente _patente;
         private string _domicilio;
@@ -75,7 +76,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         /// <summary>
         /// Propiedad que asigna u obtiene la Patente de un Inventor
         /// </summary>
-        public Patente Patente
+        public virtual Patente Patente
         {
             get { return _patente; }
             set { _patente = value; }
@@ -97,6 +98,16 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         {
             get { return _inventorPatente; }
             set { _inventorPatente = value; }
+        }
+
+
+        /// <summary>
+        /// Propiedad que asigna u obtiene el Pais de un Inventor
+        /// </summary>
+        public virtual Pais Pais
+        {
+            get { return _pais; }
+            set { _pais = value; }
         }
 
         #endregion

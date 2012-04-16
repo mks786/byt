@@ -55,5 +55,10 @@ namespace Trascend.Bolet.Comandos.Fabrica
         {
             return new ComandoVerificarExistenciaInventor(anexo);
         }
+
+        public static ComandoBase<IList<Inventor>> ObtenerComandoConsultarInventoresPorPatente(Patente patente)
+        {
+            return new ComandoConsultarInventoresPorPatente(patente);
+        }
     }
 }

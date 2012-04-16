@@ -666,5 +666,10 @@ namespace Trascend.Bolet.Cliente.Ventanas.Principales
 
         #endregion
 
+        private void _menuItemInventores_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.IrConsultarInventores();
+        }
+
     }
 }

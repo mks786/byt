@@ -584,7 +584,7 @@
     <comment>Filtro por Patente</comment>
   </data>
   <data name="ObtenerPatenteConTodo" xml:space="preserve">
-    <value>Select p from Patente p left join fetch p.Asociado as asociado left join fetch p.Servicio as servicio where p.Id = '{0}' order by p.Id</value>
+    <value>Select p from Patente p left join fetch p.Asociado as asociado left join fetch p.Servicio as servicio left join fetch p.Inventores as inventores where p.Id = '{0}' order by p.Id</value>
   </data>
   <data name="CabeceraObtenerCambioDeNombrePatente" xml:space="preserve">
     <value>Select c from CambioDeNombrePatente c left join fetch c.Patente as patente left join fetch c.InteresadoActual as interesadoActual left join fetch c.InteresadoAnterior as interesadoAnterior left join fetch c.Agente as agente left join fetch c.Poder as poder where </value>
@@ -617,5 +617,9 @@
   <data name="FiltroObtenerCambioPeticionarioPatenteIdPatente" xml:space="preserve">
     <value>patente.Id = {0}</value>
     <comment>filtro por patente</comment>
+  </data>
+  <data name="ObtenerInventoresPorPatente" xml:space="preserve">
+    <value>Select i from Inventor i where i.Patente.id = '{0}'</value>
+    <comment>Selecciona todos los inventores de uina patente</comment>
   </data>
 </root>

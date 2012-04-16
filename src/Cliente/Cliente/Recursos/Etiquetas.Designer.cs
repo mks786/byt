@@ -846,7 +846,7 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a TIPO_CLASE_NACIONAL.
+        ///   Looks up a localized string similar to TIPO_CLASE_NACIONAL.
         /// </summary>
         public static string cbiCategoriaTipoClaseNacional {
             get {
@@ -855,6 +855,7 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ESCRITOTIPODISTINGUE.
         ///   Busca una cadena traducida similar a ESCRITOTIPODISTINGUE.
         /// </summary>
         public static string cbiCategoriaTipoDistingue {
@@ -1333,7 +1334,6 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a  .
         /// </summary>
         public static string dpkText {
             get {
@@ -2783,7 +2783,6 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Otros:.
         /// </summary>
         public static string lblOtrosImp {
             get {
@@ -4836,6 +4835,16 @@ namespace Trascend.Bolet.Cliente.Recursos {
         
         /// <summary>
         ///   Busca una cadena traducida similar a Licencias.
+        ///   Looks up a localized string similar to Inventores.
+        /// </summary>
+        public static string menuItemInventores {
+            get {
+                return ResourceManager.GetString("menuItemInventores", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Licencias.
         /// </summary>
         public static string menuItemLicencias {
             get {
@@ -5555,6 +5564,7 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Consultar Cambios de Peticionario de Marcas.
         ///   Busca una cadena traducida similar a Consultar Cambios de Peticionario de Marcas.
         /// </summary>
         public static string titleConsultarCambioPeticionarios {
@@ -5564,6 +5574,7 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Consultar Cambios de Peticionario de Patentes.
         ///   Busca una cadena traducida similar a Consultar Cambios de Peticionario de Patentes.
         /// </summary>
         public static string titleConsultarCambioPeticionariosPatente {
@@ -5582,6 +5593,7 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Consultar Cambios de Domicilio de Patentes.
         ///   Busca una cadena traducida similar a Consultar Cambios de Domicilio de Patentes.
         /// </summary>
         public static string titleConsultarCambiosDeDomicilioPatente {
@@ -5600,6 +5612,7 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Consultar Cambios de Nombre de Patentes.
         ///   Busca una cadena traducida similar a Consultar Cambios de Nombre de Patentes.
         /// </summary>
         public static string titleConsultarCambiosDeNombrePatente {

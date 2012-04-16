@@ -169,6 +169,7 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Select c from Cesion c left join fetch c.Patente as patente left join fetch c.Cedente as cedente left join fetch c.AgenteCedente as agenteCed left join fetch c.AgenteCesionario as agenteCes left join fetch c.PoderCedente as PoderCed  left join fetch c.PoderCesionario as PoderCes left join fetch c.Cedente as interesadoCed left join fetch c.Cesionario as interesadoCes left join fetch c.BoletinPublicacion as boletin where .
         ///   Looks up a localized string similar to Select c from CesionPatente c left join fetch c.Patente as patente left join fetch c.Cedente as cedente left join fetch c.AgenteCedente as agenteCed left join fetch c.AgenteCesionario as agenteCes left join fetch c.PoderCedente as PoderCed  left join fetch c.PoderCesionario as PoderCes left join fetch c.Cedente as interesadoCed left join fetch c.Cesionario as interesadoCes left join fetch c.BoletinPublicacion as boletin where .
         /// </summary>
         public static string CabeceraObtenerCesionPatente {
@@ -1069,6 +1070,16 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Select i from Inventor i where i.Patente.id = &apos;{0}&apos;.
+        ///   Looks up a localized string similar to Select l from ListaDatosDominio l where l.Filtro = &apos;{0}&apos;.
+        /// </summary>
+        public static string ObtenerInventoresPorPatente {
+            get {
+                return ResourceManager.GetString("ObtenerInventoresPorPatente", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select l from ListaDatosDominio l where l.Filtro = &apos;{0}&apos;.
         /// </summary>
         public static string ObtenerListaDatosDominioPorParametro {
@@ -1141,6 +1152,7 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Select p from Patente p left join fetch p.Asociado as asociado left join fetch p.Servicio as servicio left join fetch p.Inventores as inventores where p.Id = &apos;{0}&apos; order by p.Id.
         ///   Looks up a localized string similar to Select p from Patente p left join fetch p.Asociado as asociado left join fetch p.Servicio as servicio where p.Id = &apos;{0}&apos; order by p.Id.
         /// </summary>
         public static string ObtenerPatenteConTodo {

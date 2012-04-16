@@ -104,6 +104,7 @@
     <Compile Include="Comandos\ComandosInteresado\ComandoEliminarInteresado.cs" />
     <Compile Include="Comandos\ComandosInteresado\ComandoInsertarOModificarInteresado.cs" />
     <Compile Include="Comandos\ComandosInternacional\ComandoConsultarPorId.cs" />
+    <Compile Include="Comandos\ComandosInventor\ComandoConsultarInventoresPorPatente.cs" />
     <Compile Include="Comandos\ComandosLicencia\ComandoConsultarLicenciasFiltro.cs" />
     <Compile Include="Comandos\ComandosMarcaBaseTercero\ComandoConsultarMarcasBaseTerceroFiltro.cs" />
     <Compile Include="Comandos\ComandosMarcaBaseTercero\ComandoConsultarTodosMarcaBaseTerceros.cs" />

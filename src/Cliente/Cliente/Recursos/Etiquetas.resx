@@ -2303,6 +2303,9 @@ de Gracia</value>
   <data name="lsvSolicitud" xml:space="preserve">
     <value>Solicitud</value>
   </data>
+  <data name="menuItemInventores" xml:space="preserve">
+    <value>Inventores</value>
+  </data>
   <data name="lblFechaDePresentacionDeEscrito" xml:space="preserve">
     <value>Fecha de presentación de Escrito:</value>
   </data>

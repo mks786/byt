@@ -37,7 +37,7 @@
     <property name="Observacion1" column="XOBSERVACION1" type="string"/>
     <property name="Ime" column="IME" type="char"/>
     <property name="Resumen" column="XRESUMEN" type="string"/>
-    <property name="Omision" column="XOMISION" type="string"/>    
+    <property name="Omision" column="XOMISION" type="string"/>
 
     <many-to-one name="Agente" class="Agente">
       <column name="CAGENTE"/>
@@ -53,8 +53,8 @@
 
     <many-to-one name="BoletinPublicacion" class="Boletin">
       <column name="CBOLETIN_PUBLICACION"/>
-    </many-to-one>    
-    
+    </many-to-one>
+
     <many-to-one name="Interesado" class="Interesado">
       <column name="CINTERESADO"/>
     </many-to-one>
@@ -77,11 +77,16 @@
 
     <many-to-one name="TipoEstado" class="StatusWeb">
       <column name="CTESTADO"/>
-    </many-to-one>    
+    </many-to-one>
+
+    <bag name="Inventores" table="MYP_INVENTORES" inverse="true" generic="true">
+      <key column="CINVENTOR"/>
+      <composite-element class="Inventor">
+        <many-to-one name="Patente" class="Patente" column="CPATENTE"/>
+      </composite-element>
+    </bag>
 
   </class>
-
-
 </hibernate-mapping>
 
 

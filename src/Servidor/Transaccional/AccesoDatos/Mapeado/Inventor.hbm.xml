@@ -4,12 +4,12 @@
                    namespace="Trascend.Bolet.ObjetosComunes.Entidades">
 
   <class name="Inventor" table="MYP_INVENTORES">
-    
+
     <composite-id>
-      <key-property name="Id" column="CINVENTOR" type="string"/>
+      <key-property name="Id" column="CINVENTOR" type="int"/>
       <key-many-to-one name="Patente" column="CPATENTE" class="Patente"/>
     </composite-id>
-    
+
     <property name="InventorPatente" column="XINVENTOR" type="string"/>
     <property name="Domicilio" column="XDOMICILIO" type="string"/>
 
@@ -20,7 +20,7 @@
     <many-to-one name="Pais" class="Pais">
       <column name="CPAIS"/>
     </many-to-one>
-    
+
   </class>
 </hibernate-mapping>
 

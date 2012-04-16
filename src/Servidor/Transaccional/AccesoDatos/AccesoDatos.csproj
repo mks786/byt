@@ -589,7 +589,7 @@
     <EmbeddedResource Include="Mapeado\CambioPeticionarioPatente.hbm.xml">
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <Content Include="Mapeado\Inventor.hbm.xml" />
+    <EmbeddedResource Include="Mapeado\Inventor.hbm.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

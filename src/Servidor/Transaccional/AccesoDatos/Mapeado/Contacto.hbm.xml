@@ -8,9 +8,7 @@
       <key-property name="Id" column="CNUMERO"/>
       <key-many-to-one name="Asociado" column="CASOCIADO" class="Asociado"/>
     </composite-id>
-
-
-
+    
     <property name="Cargo" type="String" column="XCARGO"/>
     <property name="Nombre" type="String" column="XCONTACTO"/>
     <property name="Departamento" type="String" column="XDEPARTAMENTO"/>

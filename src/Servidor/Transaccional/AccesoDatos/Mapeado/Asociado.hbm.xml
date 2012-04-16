@@ -70,7 +70,7 @@
     </bag>
 
     <bag name="Contactos" table="FAC_CONTACTOS" inverse="true" generic="true">
-      <key column="NSECUEN"/>
+      <key column="CNUMERO"/>
       <composite-element class="Contacto">
         <many-to-one name="Asociado" class="Asociado" column="CASOCIADO"/>
       </composite-element>

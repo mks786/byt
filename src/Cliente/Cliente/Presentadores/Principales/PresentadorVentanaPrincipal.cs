@@ -55,6 +55,7 @@ using Trascend.Bolet.Cliente.Ventanas.Renovaciones;
 using Trascend.Bolet.Cliente.Ventanas.EscritosMarca;
 using Trascend.Bolet.Cliente.Ventanas.EscritosPatente;
 using Trascend.Bolet.Cliente.Ventanas.Logines;
+using Trascend.Bolet.Cliente.Ventanas.Patentes;
 using System.Diagnostics;
 using System.Collections.Generic;
 
@@ -557,6 +558,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
         public void ConsultarMarcaATerceros()
         {
             this._ventana.Contenedor.Navigate(new ConsultarMarcasTercero());
+        }
+
+        public void IrConsultarInventores()
+        {
+            Patente patente = new Patente(9607);
+            this._ventana.Contenedor.Navigate(new ListaInventores(patente));
         }
 
         /// <summary>

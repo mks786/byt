@@ -26,6 +26,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
         private static PaginaPrincipal _paginaPrincipal = PaginaPrincipal.ObtenerInstancia;
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
+        private IPatenteServicios _patenteServicios;
+        private IInventorServicios _inventorServicios;
+
         /// <summary>
         /// Constructor Predeterminado
         /// </summary>
@@ -39,6 +42,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
 
             this._ventana = ventana;
             this._patente = (Patente)patente;
+
+            this._patenteServicios = (IPatenteServicios)Activator.GetObject(typeof(IPatenteServicios),
+                ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["PatenteServicios"]);
+            this._inventorServicios = (IInventorServicios)Activator.GetObject(typeof(IInventorServicios),
+                ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["InventorServicios"]);
 
             #region trace
             if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -62,8 +70,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
 
                 //this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleListaInventores,
                 //    Recursos.Ids.Inventor);
-
-                this._ventana.Inventores = ((Patente)this._patente).Inventores;
+                this._patente = this._patenteServicios.ConsultarPatenteConTodo(_patente);
+                this._ventana.Inventores = this._inventorServicios.ConsultarInventoresPorPatente((Patente)this._patente);
                 this._ventana.TotalHits = ((Patente)this._patente).Inventores.Count.ToString();
                 this._ventana.FocoPredeterminado();
 

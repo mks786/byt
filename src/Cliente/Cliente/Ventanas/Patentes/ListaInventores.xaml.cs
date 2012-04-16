@@ -69,11 +69,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
 
         #endregion
 
-        public ListaInventores(object asociado)
+        public ListaInventores(object patente)
         {
             InitializeComponent();
             this._cargada= false;
-            this._presentador = new PresentadorListaInventores(this, asociado);
+            this._presentador = new PresentadorListaInventores(this, patente);
 
         }
 
