@@ -148,7 +148,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.CambiosDeNombrePaten
                 this._txtTipo.IsEnabled = value;
                 this._btnConsultarPatente.IsEnabled = value;
                 this._dpkFechaCambioDeNombre.IsEnabled = value;
-                //this._chkEtiqueta.IsEnabled = value;
+                this._chkAsientoEnLibro.IsEnabled = value;
 
                 this._btnConsultarInteresadoAnterior.IsEnabled = value;
                 this._txtNombreInteresadoAnterior.IsEnabled = value;

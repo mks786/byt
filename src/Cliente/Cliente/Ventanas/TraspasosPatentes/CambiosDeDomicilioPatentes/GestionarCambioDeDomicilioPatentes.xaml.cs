@@ -148,7 +148,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.CambiosDeDomicilioPa
                 this._txtTipo.IsEnabled = value;
                 this._btnConsultarPatente.IsEnabled = value;
                 this._dpkFechaDomicilio.IsEnabled = value;
-                //this._chkEtiqueta.IsEnabled = value;
+                this._chkAsientoEnLibro.IsEnabled = value;
 
                 _btnConsultarInteresadoAnterior.IsEnabled = value;
                 _txtNombreInteresadoAnterior.IsEnabled = value;

@@ -584,7 +584,7 @@
 
                         <CheckBox IsEnabled="False" Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="3" Content="{x:Static recurso:Etiquetas.chkAsientoEnLibro}" 
                                           Height="35" HorizontalAlignment="Left" Margin="8,5,0,0" Name="_chkAsientoEnLibro"
-                                          VerticalAlignment="Center" IsChecked="{Binding Path=BAsientoEnLibro}"/>
+                                          VerticalAlignment="Center" IsChecked="{Binding Path=BActa}"/>
                     </Grid>
                 </WrapPanel>
                 
