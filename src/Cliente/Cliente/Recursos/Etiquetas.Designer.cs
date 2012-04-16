@@ -6239,6 +6239,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Escrito Numeración de Poder.
+        /// </summary>
+        public static string titleEscritoNumeracionDePoder {
+            get {
+                return ResourceManager.GetString("titleEscritoNumeracionDePoder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Escrito Numeración de Poder por Interesado.
         /// </summary>
         public static string titleEscritoNumeracionDePoderPorInteresado {

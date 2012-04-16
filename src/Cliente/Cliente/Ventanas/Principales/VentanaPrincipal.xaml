@@ -139,7 +139,7 @@
                     <MenuItem Name="_menuItemOficioDeJuramento" Header="{x:Static resx:Etiquetas.menuItemEscritosOficioDeJuramento}" Click="_menuItemEscritosPatente_Click"/>
                     <MenuItem Name="_menuItemOficioDePoder" Header="{x:Static resx:Etiquetas.menuItemEscritosOficioDePoder}" Click="_menuItemEscritosPatente_Click"/>
                     <MenuItem Name="_menuItemConsignacionDePrioridadExtranjera" Header="{x:Static resx:Etiquetas.menuItemEscritosConsignacionDePrioridadExtranjera}" Click="_menuItemEscritosPatente_Click"/>
-                    <MenuItem Name="_menuItemExamenDePatentabilidad" Header="{x:Static resx:Etiquetas.menuItemEscritosExamenDePatentabilidad}" Click="_menuItemEscritoExamenDePatentabilidad_Click"/>
+                    <MenuItem Name="_menuItemExamenDePatentabilidad" Header="{x:Static resx:Etiquetas.menuItemEscritosExamenDePatentabilidad}" Click="_menuItemEscritosPatente_Click"/>
                     <MenuItem Name="_menuItemNumeracionDePoderPorPatente" Header="{x:Static resx:Etiquetas.menuItemEscritosNumeracionDePoderPorPatente}" Click="_menuItemEscritosPatente_Click"/>
                     <MenuItem Name="_menuItemProrrogaDeFondo" Header="{x:Static resx:Etiquetas.menuItemEscritosProrrogaDeFondo}" Click="_menuItemEscritosPatente_Click"/>
                     <MenuItem Name="_menuItemProrrogaDeForma" Header="{x:Static resx:Etiquetas.menuItemEscritosProrrogaDeForma}" Click="_menuItemEscritosPatente_Click"/>

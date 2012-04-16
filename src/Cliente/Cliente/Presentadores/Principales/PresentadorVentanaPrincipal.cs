@@ -797,7 +797,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
                     this._ventana.Contenedor.Navigate(new ExamenDePatentabilidad());
                     break;
                 case "_menuItemNumeracionDePoderPorPatente":
-                    //this._ventana.Contenedor.Navigate(new LimitacionDelDistingue());
+                    this._ventana.Contenedor.Navigate(new NumeracionDePoder());
                     break;
                 case "_menuItemProrrogaDeFondo":
                     //this._ventana.Contenedor.Navigate(new NumeracionDePoderPorMarca());

@@ -627,12 +627,6 @@ namespace Trascend.Bolet.Cliente.Ventanas.Principales
             this._presentador.IrEscritoPatentes(((MenuItem)sender).Name);
         }
 
-        private void _menuItemEscritoExamenDePatentabilidad_Click(object sender, RoutedEventArgs e)
-        {
-            this._presentador.IrEscritoPatentes(((MenuItem)sender).Name);
-        }
-        
-
         #endregion
 
         #endregion

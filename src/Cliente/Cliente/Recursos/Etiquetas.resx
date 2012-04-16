@@ -2312,4 +2312,7 @@ de Gracia</value>
   <data name="titleEscritoExamenDePatentabilidad" xml:space="preserve">
     <value>Escrito Examen de Patentabilidad</value>
   </data>
+  <data name="titleEscritoNumeracionDePoder" xml:space="preserve">
+    <value>Escrito Numeración de Poder</value>
+  </data>
 </root>
