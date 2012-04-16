@@ -807,13 +807,13 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
                     this._ventana.Contenedor.Navigate(new NumeracionDePoder());
                     break;
                 case "_menuItemProrrogaDeFondo":
-                    //this._ventana.Contenedor.Navigate(new NumeracionDePoderPorMarca());
+                    this._ventana.Contenedor.Navigate(new ProrrogaDeFondo());
                     break;
                 case "_menuItemProrrogaDeForma":
-                    //this._ventana.Contenedor.Navigate(new NumeracionDePoderPorInteresado());
+                    this._ventana.Contenedor.Navigate(new ProrrogaDeForma());
                     break;
                 case "_menuItemProrrogaDeContestacionAOposicion":
-                  //  this._ventana.Contenedor.Navigate(new ContestacionAOposicion());
+                    this._ventana.Contenedor.Navigate(new ProrrogaDeContestacionDeOposicion());
                     break;
                 case "_menuItemOficioDeFondo":
                     //this._ventana.Contenedor.Navigate(new ReingresoDeClasificacion());
