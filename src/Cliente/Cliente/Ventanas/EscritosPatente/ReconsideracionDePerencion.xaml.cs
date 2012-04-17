@@ -9,15 +9,15 @@ namespace Trascend.Bolet.Cliente.Ventanas.EscritosPatente
     /// <summary>
     /// Interaction logic for ExamenDePatentabilidad.xaml
     /// </summary>
-    public partial class ReconsideracionPrioridadExtinguida : Page, IReconsideracionPrioridadExtinguida
+    public partial class ReconsideracionDePerencion : Page, IReconsideracionDePerencion
     {
-        private PresentadorReconsideracionPrioridadExtinguida _presentador;
+        private PresentadorReconsideracionDePerencion _presentador;
         private bool _cargada;
 
         private GridViewColumnHeader _CurSortCol = null;
         private SortAdorner _CurAdorner = null;
 
-        #region IRecpnsideracionPrioridadExtinguida
+        #region IReconsideracionDePerencion
 
         public bool EstaCargada
         {
@@ -70,6 +70,18 @@ namespace Trascend.Bolet.Cliente.Ventanas.EscritosPatente
             set { this._cbxResolucion.SelectedItem = value; }
         }
 
+        public object Resoluciones2
+        {
+            get { return this._cbxResolucion2.DataContext; }
+            set { this._cbxResolucion2.DataContext = value; }
+        }
+
+        public object Resolucion2
+        {
+            get { return this._cbxResolucion2.SelectedItem; }
+            set { this._cbxResolucion2.SelectedItem = value; }
+        }
+
         public object Boletines
         {
             get { return this._cbxBoletin.DataContext; }
@@ -82,10 +94,39 @@ namespace Trascend.Bolet.Cliente.Ventanas.EscritosPatente
             set { this._cbxBoletin.SelectedItem = value; }
         }
 
+        public object CantidadesBoletines
+        {
+            get { return this._cbxCantidadBoletines.DataContext; }
+            set { this._cbxCantidadBoletines.DataContext = value; }
+        }
+
+        public object CantidadBoletinSelecionado
+        {
+            get { return this._cbxCantidadBoletines.SelectedItem; }
+            set { this._cbxCantidadBoletines.SelectedItem = value; }
+        }
+
+         public object Boletines2
+        {
+            get { return this._cbxBoletin2.DataContext; }
+            set { this._cbxBoletin2.DataContext = value; }
+        }
+
+        public object Boletin2
+        {
+            get { return this._cbxBoletin2.SelectedItem; }
+            set { this._cbxBoletin2.SelectedItem = value; }
+        }
+
         public object Agente
         {
             get { return this._gridDatosAgente.DataContext; }
             set { this._gridDatosAgente.DataContext = value; }
+        }
+
+        public string stringCantidadBoletines
+        {
+            set { this._txtCantidadBoletines.Text = value; }
         }
 
         public string NombreAgente
@@ -155,7 +196,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.EscritosPatente
             get { return this._dpkFecha.SelectedDate.ToString(); }
         }
 
-        public string EscritoDeFecha
+        public string FechaDeAviso
         {
             get { return this._dpkFecha1.SelectedDate.ToString(); }
         }
@@ -192,11 +233,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.EscritosPatente
 
         #endregion
 
-        public ReconsideracionPrioridadExtinguida()
+        public ReconsideracionDePerencion()
         {
             InitializeComponent();
             this._cargada = false;
-            this._presentador = new PresentadorReconsideracionPrioridadExtinguida(this);
+            this._presentador = new PresentadorReconsideracionDePerencion(this);
         }
 
         private void _btnCancelar_Click(object sender, RoutedEventArgs e)
@@ -366,8 +407,18 @@ namespace Trascend.Bolet.Cliente.Ventanas.EscritosPatente
             this._presentador.ActualizarResoluciones();
         }
 
+        private void _cbxBoletin2_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            this._presentador.ActualizarResoluciones2();
+        }
 
         public void ActualizarResoluciones()
+        {
+            throw new System.NotImplementedException();
+        }
+
+
+        public void ActualizarResoluciones2()
         {
             throw new System.NotImplementedException();
         }

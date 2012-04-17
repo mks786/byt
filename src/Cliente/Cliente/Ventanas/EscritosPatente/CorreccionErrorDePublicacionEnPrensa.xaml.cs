@@ -9,15 +9,15 @@ namespace Trascend.Bolet.Cliente.Ventanas.EscritosPatente
     /// <summary>
     /// Interaction logic for ExamenDePatentabilidad.xaml
     /// </summary>
-    public partial class ReconsideracionPrioridadExtinguida : Page, IReconsideracionPrioridadExtinguida
+    public partial class CorreccionErrorDePublicacionEnPrensa : Page, ICorreccionErrorDePublicacionEnPrensa
     {
-        private PresentadorReconsideracionPrioridadExtinguida _presentador;
+        private PresentadorCorreccionErrorDePublicacionEnPrensa _presentador;
         private bool _cargada;
 
         private GridViewColumnHeader _CurSortCol = null;
         private SortAdorner _CurAdorner = null;
 
-        #region IRecpnsideracionPrioridadExtinguida
+        #region CorreccionErrorDePublicacionEnPrensa
 
         public bool EstaCargada
         {
@@ -150,14 +150,52 @@ namespace Trascend.Bolet.Cliente.Ventanas.EscritosPatente
             set { this._lstPatentesAgregadas.SelectedItem = value; }
         }
 
-        public string Fecha
+        public object CirculacionesNacionales
         {
-            get { return this._dpkFecha.SelectedDate.ToString(); }
+            get { return this._cbxCirculacionNacional.DataContext; }
+            set { this._cbxCirculacionNacional.DataContext = value; }
         }
 
-        public string EscritoDeFecha
+        public object CirculacionNacional
         {
-            get { return this._dpkFecha1.SelectedDate.ToString(); }
+            get { return this._cbxCirculacionNacional.SelectedItem; }
+            set { this._cbxCirculacionNacional.SelectedItem = value; }
+        }
+
+        public object ErrorPrimeras
+        {
+            get { return this._cbxEprimeraPub.DataContext; }
+            set { this._cbxEprimeraPub.DataContext = value; }
+        }
+
+        public object PrimerError
+        {
+            get { return this._cbxEprimeraPub.SelectedItem; }
+            set { this._cbxEprimeraPub.SelectedItem = value; }
+        }
+
+        public object ErrorSegundas
+        {
+            get { return this._cbxEsegundaPub.DataContext; }
+            set { this._cbxEsegundaPub.DataContext = value; }
+        }
+
+        public object SegundoError
+        {
+            get { return this._cbxEsegundaPub.SelectedItem; }
+            set { this._cbxEsegundaPub.SelectedItem = value; }
+        }
+
+        public object ErrorTerceros
+        {
+            get { return this._cbxEterceraPub.DataContext; }
+            set { this._cbxEterceraPub.DataContext = value; }
+        }
+
+        public object TercerError
+        {
+            get { return this._cbxEterceraPub.SelectedItem; }
+            set { this._cbxEterceraPub.SelectedItem = value; }
         }
 
         public string BotonModificar
@@ -192,11 +230,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.EscritosPatente
 
         #endregion
 
-        public ReconsideracionPrioridadExtinguida()
+        public CorreccionErrorDePublicacionEnPrensa()
         {
             InitializeComponent();
             this._cargada = false;
-            this._presentador = new PresentadorReconsideracionPrioridadExtinguida(this);
+            this._presentador = new PresentadorCorreccionErrorDePublicacionEnPrensa(this);
         }
 
         private void _btnCancelar_Click(object sender, RoutedEventArgs e)

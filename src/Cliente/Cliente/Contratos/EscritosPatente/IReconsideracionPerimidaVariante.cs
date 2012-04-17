@@ -3,7 +3,7 @@ using System.Windows.Controls;
 using Trascend.Bolet.Cliente.Ayuda;
 namespace Trascend.Bolet.Cliente.Contratos.EscritosPatente
 {
-    interface IReconsideracionPrioridadExtinguida : IPaginaBase
+    interface IReconsideracionPerimidaVariante : IPaginaBase
     {
         object Escrito { get; set; }
 
@@ -53,6 +53,10 @@ namespace Trascend.Bolet.Cliente.Contratos.EscritosPatente
 
         object Boletin { get; set; }
 
+        object Boletines2 { get; set; }
+
+        object Boletin2 { get; set; }
+
 
         #endregion
 
@@ -62,13 +66,23 @@ namespace Trascend.Bolet.Cliente.Contratos.EscritosPatente
 
         object Resolucion { get; set; }
 
+        object Resoluciones2 { get; set; }
+
+        object Resolucion2 { get; set; }
+
         void ActualizarResoluciones();
+
+        void ActualizarResoluciones2();
 
         #endregion
 
+        object Modalidades { get; set; }
+
+        object Modalidad { get; set; }
+
         string Fecha { get; }
 
-        string EscritoDeFecha { get; }
+        string FechaDeAviso { get; }
 
         void MensajeAlerta(string mensaje);
 

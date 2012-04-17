@@ -16,13 +16,14 @@ using System.Collections.Generic;
 
 namespace Trascend.Bolet.Cliente.Presentadores.EscritosPatente
 {
-    class PresentadorContestacionAOposicion : PresentadorBase
+    class PresentadorReconsideracionDePerencion : PresentadorBase
     {
-        private IContestacionAOposicion _ventana;
+        private IReconsideracionDePerencion _ventana;
 
         private IAgenteServicios _agenteServicios;
         private IPatenteServicios _marcaServicios;
         private IBoletinServicios _boletinServicios;
+        private IListaDatosValoresServicios _listaDatosValoresServicios;
 
         private static PaginaPrincipal _paginaPrincipal = PaginaPrincipal.ObtenerInstancia;
         private static Logger logger = LogManager.GetCurrentClassLogger();
@@ -34,11 +35,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosPatente
         private IList<Patente> _marcas;
         private IList<Patente> _marcasAgregadas = new List<Patente>();
 
+
         /// <summary>
         /// Constructor predeterminado
         /// </summary>
         /// <param name="ventana">Página que satisface el contrato</param>
-        public PresentadorContestacionAOposicion(IContestacionAOposicion ventana)
+        public PresentadorReconsideracionDePerencion(IReconsideracionDePerencion ventana)
         {
             try
             {
@@ -50,6 +52,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosPatente
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["PatenteServicios"]);
                 this._boletinServicios = (IBoletinServicios)Activator.GetObject(typeof(IBoletinServicios),
                      ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["BoletinServicios"]);
+                this._listaDatosValoresServicios = (IListaDatosValoresServicios)Activator.GetObject(typeof(IListaDatosValoresServicios),
+                       ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["ListaDatosValoresServicios"]);
+
 
             }
             catch (Exception ex)
@@ -68,7 +73,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosPatente
             {
                 Mouse.OverrideCursor = Cursors.Wait;
 
-                this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleEscritoContestacionAOposicion,
+                this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleEscritoReconsideracionDePerencion,
                     "");
                 CargarAgente();
                 CargarPatente();
@@ -209,6 +214,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosPatente
             IList<Boletin> boletines = this._boletinServicios.ConsultarTodos();
             boletines.Insert(0, primerBoletin);
             this._ventana.Boletines = boletines;
+            this._ventana.Boletines2 = boletines;
 
             #region trace
             if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -237,6 +243,34 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosPatente
             {
                 this._ventana.Resoluciones = null;
                 this._ventana.Resolucion = null;
+            }
+
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+        }
+
+        /// <summary>
+        /// Método que se encarga de actualizar la lista de resoluciones
+        /// </summary>
+        public void ActualizarResoluciones2()
+        {
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+            if (((Boletin)this._ventana.Boletin2).Id != int.MinValue)
+            {
+                IList<Resolucion> resoluciones = this._boletinServicios.ConsultarResolucionesDeBoletin((Boletin)this._ventana.Boletin2);
+                this._ventana.Resoluciones2 = resoluciones;
+                this._ventana.Resolucion2 = resoluciones[0];
+            }
+            else
+            {
+                this._ventana.Resoluciones2 = null;
+                this._ventana.Resolucion2 = null;
             }
 
             #region trace

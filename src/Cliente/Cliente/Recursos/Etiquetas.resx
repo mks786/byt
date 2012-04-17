@@ -2357,4 +2357,19 @@ de Gracia</value>
   <data name="titleEscritoNumeracionDePoder" xml:space="preserve">
     <value>Escrito Numeración de Poder</value>
   </data>
+  <data name="lblBoletinPerencion" xml:space="preserve">
+    <value>Boletin De Perencion:</value>
+  </data>
+  <data name="lblBoletinPublicacionPrensa" xml:space="preserve">
+    <value>Boletin De Publicacion en Prensa:</value>
+  </data>
+  <data name="lblCantidadBoletines" xml:space="preserve">
+    <value>Cantidad De Boletines:</value>
+  </data>
+  <data name="lblFechaAvisoOficial" xml:space="preserve">
+    <value>Fecha de Aviso Oficial:</value>
+  </data>
+  <data name="lblModalidad" xml:space="preserve">
+    <value>Modalidad:</value>
+  </data>
 </root>

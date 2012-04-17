@@ -3,7 +3,7 @@ using System.Windows.Controls;
 using Trascend.Bolet.Cliente.Ayuda;
 namespace Trascend.Bolet.Cliente.Contratos.EscritosPatente
 {
-    interface IReconsideracionPrioridadExtinguida : IPaginaBase
+    interface ICorreccionErrorDePublicacionEnPrensa : IPaginaBase
     {
         object Escrito { get; set; }
 
@@ -66,9 +66,21 @@ namespace Trascend.Bolet.Cliente.Contratos.EscritosPatente
 
         #endregion
 
-        string Fecha { get; }
+        object ErrorPrimeras { get; set; }
 
-        string EscritoDeFecha { get; }
+        object PrimerError { get; set; }
+
+        object ErrorSegundas { get; set; }
+
+        object SegundoError { get; set; }
+
+        object ErrorTerceros { get; set; }
+
+        object TercerError { get; set; }
+
+        object CirculacionesNacionales { get; set; }
+
+        object CirculacionNacional { get; set; }
 
         void MensajeAlerta(string mensaje);
 

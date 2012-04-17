@@ -16,13 +16,14 @@ using System.Collections.Generic;
 
 namespace Trascend.Bolet.Cliente.Presentadores.EscritosPatente
 {
-    class PresentadorContestacionAOposicion : PresentadorBase
+    class PresentadorCorreccionErrorDePublicacionEnPrensa : PresentadorBase
     {
-        private IContestacionAOposicion _ventana;
+        private ICorreccionErrorDePublicacionEnPrensa _ventana;
 
         private IAgenteServicios _agenteServicios;
         private IPatenteServicios _marcaServicios;
         private IBoletinServicios _boletinServicios;
+        private IListaDatosValoresServicios _listaDatosValoresServicios;
 
         private static PaginaPrincipal _paginaPrincipal = PaginaPrincipal.ObtenerInstancia;
         private static Logger logger = LogManager.GetCurrentClassLogger();
@@ -38,7 +39,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosPatente
         /// Constructor predeterminado
         /// </summary>
         /// <param name="ventana">Página que satisface el contrato</param>
-        public PresentadorContestacionAOposicion(IContestacionAOposicion ventana)
+        public PresentadorCorreccionErrorDePublicacionEnPrensa(ICorreccionErrorDePublicacionEnPrensa ventana)
         {
             try
             {
@@ -50,6 +51,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosPatente
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["PatenteServicios"]);
                 this._boletinServicios = (IBoletinServicios)Activator.GetObject(typeof(IBoletinServicios),
                      ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["BoletinServicios"]);
+                                this._listaDatosValoresServicios = (IListaDatosValoresServicios)Activator.GetObject(typeof(IListaDatosValoresServicios),
+                      ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["ListaDatosValoresServicios"]);
 
             }
             catch (Exception ex)
@@ -68,7 +71,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosPatente
             {
                 Mouse.OverrideCursor = Cursors.Wait;
 
-                this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleEscritoContestacionAOposicion,
+                this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleEscritoCorreccionErrorDePublicacionEnPrensa,
                     "");
                 CargarAgente();
                 CargarPatente();
@@ -117,8 +120,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosPatente
                 {
                     string parametroPatentes = ArmarStringParametroPatentes(this._marcasAgregadas);
                     this.EjecutarArchivoBAT(ConfigurationManager.AppSettings["RutaBatEscrito"].ToString()
-                        + "\\" + ConfigurationManager.AppSettings["EscritoExamenDePatentabilidad"].ToString(),
-                        this._ventana.Fecha+ " " + ((Agente)this._ventana.AgenteFiltrado).Id + " " + parametroPatentes);
+                        + "\\" + ConfigurationManager.AppSettings["EscritoExamenDePatentabilidad"].ToString(),(
+                        (Agente)this._ventana.AgenteFiltrado).Id + " " + parametroPatentes);
                 }
 
                 #region trace
@@ -246,6 +249,32 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosPatente
         }
 #endregion
 
+                /// <summary>
+        /// Método que carga los numerales, poderes, etiquetas, reclasificaciones y resolucion en los combobox
+        /// </summary>
+        private void CargaCombo()
+        {
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+            IList<ListaDatosValores> numerales =
+                this._listaDatosValoresServicios.ConsultarListaDatosValoresPorParametro(new ListaDatosValores(Recursos.Etiquetas.cbiCategoriaNumerales));
+            this._ventana.CirculacionesNacionales = numerales;
+
+            IList<ListaDatosValores> errores =
+            this._listaDatosValoresServicios.ConsultarListaDatosValoresPorParametro(new ListaDatosValores(Recursos.Etiquetas.cbiCategoriaTipoPoder));
+            this._ventana.ErrorPrimeras = errores;
+            this._ventana.ErrorSegundas = errores;
+            this._ventana.ErrorTerceros = errores;
+
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+        }
 
         /// <summary>
         /// Método que ordena una columna

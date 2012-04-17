@@ -856,8 +856,6 @@ namespace Trascend.Bolet.Cliente.Recursos {
         
         /// <summary>
         ///   Looks up a localized string similar to ESCRITOTIPODISTINGUE.
-        ///   Looks up a localized string similar to ESCRITOTIPODISTINGUE.
-        ///   Busca una cadena traducida similar a ESCRITOTIPODISTINGUE.
         /// </summary>
         public static string cbiCategoriaTipoDistingue {
             get {
@@ -1542,6 +1540,24 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Boletin De Perencion:.
+        /// </summary>
+        public static string lblBoletinPerencion {
+            get {
+                return ResourceManager.GetString("lblBoletinPerencion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Boletin De Publicacion en Prensa:.
+        /// </summary>
+        public static string lblBoletinPublicacionPrensa {
+            get {
+                return ResourceManager.GetString("lblBoletinPublicacionPrensa", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Bol. Publicación:.
         /// </summary>
         public static string lblBolPublicacion {
@@ -1592,6 +1608,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string lblCambio {
             get {
                 return ResourceManager.GetString("lblCambio", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cantidad De Boletines:.
+        /// </summary>
+        public static string lblCantidadBoletines {
+            get {
+                return ResourceManager.GetString("lblCantidadBoletines", resourceCulture);
             }
         }
         
@@ -2218,6 +2243,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Fecha de Aviso Oficial:.
+        /// </summary>
+        public static string lblFechaAvisoOficial {
+            get {
+                return ResourceManager.GetString("lblFechaAvisoOficial", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Fecha:.
         /// </summary>
         public static string lblFechaBoletin {
@@ -2628,6 +2662,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string lblMixto {
             get {
                 return ResourceManager.GetString("lblMixto", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Modalidad:.
+        /// </summary>
+        public static string lblModalidad {
+            get {
+                return ResourceManager.GetString("lblModalidad", resourceCulture);
             }
         }
         
@@ -4900,7 +4943,6 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Licencias.
         ///   Looks up a localized string similar to Inventores.
         /// </summary>
         public static string menuItemInventores {
@@ -5631,8 +5673,6 @@ namespace Trascend.Bolet.Cliente.Recursos {
         
         /// <summary>
         ///   Looks up a localized string similar to Consultar Cambios de Peticionario de Marcas.
-        ///   Looks up a localized string similar to Consultar Cambios de Peticionario de Marcas.
-        ///   Busca una cadena traducida similar a Consultar Cambios de Peticionario de Marcas.
         /// </summary>
         public static string titleConsultarCambioPeticionarios {
             get {
@@ -5642,8 +5682,6 @@ namespace Trascend.Bolet.Cliente.Recursos {
         
         /// <summary>
         ///   Looks up a localized string similar to Consultar Cambios de Peticionario de Patentes.
-        ///   Looks up a localized string similar to Consultar Cambios de Peticionario de Patentes.
-        ///   Busca una cadena traducida similar a Consultar Cambios de Peticionario de Patentes.
         /// </summary>
         public static string titleConsultarCambioPeticionariosPatente {
             get {
@@ -5662,8 +5700,6 @@ namespace Trascend.Bolet.Cliente.Recursos {
         
         /// <summary>
         ///   Looks up a localized string similar to Consultar Cambios de Domicilio de Patentes.
-        ///   Looks up a localized string similar to Consultar Cambios de Domicilio de Patentes.
-        ///   Busca una cadena traducida similar a Consultar Cambios de Domicilio de Patentes.
         /// </summary>
         public static string titleConsultarCambiosDeDomicilioPatente {
             get {
@@ -5682,8 +5718,6 @@ namespace Trascend.Bolet.Cliente.Recursos {
         
         /// <summary>
         ///   Looks up a localized string similar to Consultar Cambios de Nombre de Patentes.
-        ///   Looks up a localized string similar to Consultar Cambios de Nombre de Patentes.
-        ///   Busca una cadena traducida similar a Consultar Cambios de Nombre de Patentes.
         /// </summary>
         public static string titleConsultarCambiosDeNombrePatente {
             get {
@@ -6340,8 +6374,7 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Escrito Numeración de Poder por Interesado.
-        ///   Busca una cadena traducida similar a Escrito Numeración de Poder.
+        ///   Looks up a localized string similar to Escrito Numeración de Poder.
         /// </summary>
         public static string titleEscritoNumeracionDePoder {
             get {
@@ -6350,7 +6383,7 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Escrito Numeración de Poder por Interesado.
+        ///   Looks up a localized string similar to Escrito Numeración de Poder por Interesado.
         /// </summary>
         public static string titleEscritoNumeracionDePoderPorInteresado {
             get {
