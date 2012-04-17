@@ -3,7 +3,7 @@ using System.Windows.Controls;
 using Trascend.Bolet.Cliente.Ayuda;
 namespace Trascend.Bolet.Cliente.Contratos.EscritosPatente
 {
-    interface IConsignacionDeJuramentoYPoder : IPaginaBase
+    interface ICorreccionVoluntaria : IPaginaBase
     {
         object Escrito { get; set; }
 
@@ -44,6 +44,14 @@ namespace Trascend.Bolet.Cliente.Contratos.EscritosPatente
         object PatentesAgregadas { get; set; }
 
         object PatenteAgregada { get; set; }
+
+        #endregion
+
+        #region Tipo Corrección Voluntaria
+
+        object TiposCorreccionVoluntaria { get; set; }
+
+        object TipoCorreccionVoluntaria { get; set; }
 
         #endregion
 

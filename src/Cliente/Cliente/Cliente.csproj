@@ -108,13 +108,18 @@
     <Compile Include="Contratos\Anexos\IConsultarAnexo.cs" />
     <Compile Include="Contratos\Anexos\IConsultarAnexos.cs" />
     <Compile Include="Contratos\CartasOuts\IConsultarCartasOuts.cs" />
+    <Compile Include="Contratos\EscritosPatente\IConsignacionDePoder.cs" />
+    <Compile Include="Contratos\EscritosPatente\IConsignacionDeJuramento.cs" />
+    <Compile Include="Contratos\EscritosPatente\IConsignacionDeJuramentoYPoder.cs" />
+    <Compile Include="Contratos\EscritosPatente\ICorreccionVoluntaria.cs" />
+    <Compile Include="Contratos\EscritosPatente\IOficioDeFondo.cs" />
     <Compile Include="Contratos\EscritosPatente\IReconsideracionPerimidaVariante.cs" />
     <Compile Include="Contratos\EscritosPatente\IReconsideracionDePerencion.cs" />
     <Compile Include="Contratos\EscritosPatente\ICorreccionErrorDePublicacionEnPrensa.cs" />
     <Compile Include="Contratos\EscritosPatente\IProrrogaDeContestacionDeOposicion.cs" />
     <Compile Include="Contratos\EscritosPatente\IProrrogaDeForma.cs" />
     <Compile Include="Contratos\EscritosPatente\IProrrogaDeFondo.cs" />
-    <Compile Include="Contratos\EscritosPatente\IContestacionAOposicion.cs" />
+    <Compile Include="Contratos\EscritosPatente\IContestacionDeOposicion.cs" />
     <Compile Include="Contratos\EscritosPatente\IReconsideracionPrioridadExtinguida.cs" />
     <Compile Include="Contratos\EscritosPatente\IPagoDeAnualidad.cs" />
     <Compile Include="Contratos\EscritosPatente\INumeracionDePoder.cs" />
@@ -285,6 +290,11 @@
     <Compile Include="Presentadores\Contactos\PresentadorAgregarContacto.cs" />
     <Compile Include="Presentadores\Contactos\PresentadorConsultarContacto.cs" />
     <Compile Include="Presentadores\CartasOuts\PresentadorConsultarCartasOuts.cs" />
+    <Compile Include="Presentadores\EscritosPatente\PresentadorConsignacionDePoder.cs" />
+    <Compile Include="Presentadores\EscritosPatente\PresentadorConsignacionDeJuramento.cs" />
+    <Compile Include="Presentadores\EscritosPatente\PresentadorConsignacionDeJuramentoYPoder.cs" />
+    <Compile Include="Presentadores\EscritosPatente\PresentadorCorreccionVoluntaria.cs" />
+    <Compile Include="Presentadores\EscritosPatente\PresentadorOficioDeFondo.cs" />
     <Compile Include="Presentadores\EscritosPatente\PresentadorReconsideracionPerimidaVariante.cs" />
     <Compile Include="Presentadores\EscritosPatente\PresentadorReconsideracionDePerencion.cs" />
     <Compile Include="Presentadores\EscritosPatente\PresentadorCorreccionErrorDePublicacionEnPrensa.cs" />
@@ -524,6 +534,21 @@
     </Compile>
     <Compile Include="Ventanas\EscritosPatente\ContestacionAOposicion.xaml.cs">
       <DependentUpon>ContestacionAOposicion.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\EscritosPatente\ConsignacionDeJuramentoYPoder.xaml.cs">
+      <DependentUpon>ConsignacionDeJuramentoYPoder.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\EscritosPatente\ConsignacionDeJuramento.xaml.cs">
+      <DependentUpon>ConsignacionDeJuramento.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\EscritosPatente\ConsignacionDePoder.xaml.cs">
+      <DependentUpon>ConsignacionDePoder.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\EscritosPatente\CorreccionVoluntaria.xaml.cs">
+      <DependentUpon>CorreccionVoluntaria.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\EscritosPatente\OficioDeFondo.xaml.cs">
+      <DependentUpon>OficioDeFondo.xaml</DependentUpon>
     </Compile>
     <Compile Include="Ventanas\EscritosPatente\ReconsideracionPerimidaVariante.xaml.cs">
       <DependentUpon>ReconsideracionPerimidaVariante.xaml</DependentUpon>
@@ -1070,6 +1095,26 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Ventanas\EscritosPatente\ContestacionAOposicion.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\EscritosPatente\ConsignacionDeJuramentoYPoder.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\EscritosPatente\ConsignacionDeJuramento.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\EscritosPatente\ConsignacionDePoder.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\EscritosPatente\CorreccionVoluntaria.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\EscritosPatente\OficioDeFondo.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

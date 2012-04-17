@@ -68,7 +68,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosPatente
             {
                 Mouse.OverrideCursor = Cursors.Wait;
 
-                this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleEscritoReconsideracionPrioridadExtinguida,
+                this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleEscritoProrrogaDeContestacionDeOposicion,
                     "");
                 CargarAgente();
                 CargarPatente();
@@ -117,8 +117,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosPatente
                 {
                     string parametroPatentes = ArmarStringParametroPatentes(this._marcasAgregadas);
                     this.EjecutarArchivoBAT(ConfigurationManager.AppSettings["RutaBatEscrito"].ToString()
-                        + "\\" + ConfigurationManager.AppSettings["EscritoProrrogaDeFondo"].ToString(),
-                        this._ventana.Fecha + " " + ((Agente)this._ventana.AgenteFiltrado).Id + " " + parametroPatentes);
+                        + "\\" + ConfigurationManager.AppSettings["EscritoProrrogaDeContestacionDeOposicion"].ToString(),
+                        ((Boletin)this._ventana.Boletin).Id + " " + this._ventana.Fecha + " " + 
+                        ((Agente)this._ventana.AgenteFiltrado).Id + " " + parametroPatentes);
                 }
 
                 #region trace
@@ -165,14 +166,21 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosPatente
             {
                 if (this._marcasAgregadas.Count != 0)
                 {
-                    if (this.ValidarAgenteApoderadoDePatentes((Agente)this._ventana.AgenteFiltrado, this._marcasAgregadas))
+                    if (((Boletin)this._ventana.Boletin != null) && (((Boletin)this._ventana.Boletin).Id != int.MinValue))
                     {
-                        retorno = true;
+                        if (this.ValidarAgenteApoderadoDePatentes((Agente)this._ventana.AgenteFiltrado, this._marcasAgregadas))
+                        {
+                            retorno = true;
+                        }
+                        else
+                        {
+                            this._ventana.MensajeAlerta(string.Format(Recursos.MensajesConElUsuario.AlertaAgenteNoApareceEnPoderDePatente,
+                                ((Agente)this._ventana.AgenteFiltrado).Nombre));
+                        }
                     }
                     else
                     {
-                        this._ventana.MensajeAlerta(string.Format(Recursos.MensajesConElUsuario.AlertaAgenteNoApareceEnPoderDePatente,
-                            ((Agente)this._ventana.AgenteFiltrado).Nombre));
+                        this._ventana.MensajeAlerta(string.Format(Recursos.MensajesConElUsuario.AlertaEscritoSinBoletin));
                     }
                 }
                 else

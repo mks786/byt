@@ -2357,6 +2357,36 @@ de Gracia</value>
   <data name="titleEscritoNumeracionDePoder" xml:space="preserve">
     <value>Escrito Numeración de Poder</value>
   </data>
+  <data name="titleEscritoProrrogaDeContestacionDeOposicion" xml:space="preserve">
+    <value>Escrito Prórroga de Contestación de Oposición</value>
+  </data>
+  <data name="titleEscritoProrrogaDeFondo" xml:space="preserve">
+    <value>Escrito Prórroga de Fondo</value>
+  </data>
+  <data name="titleEscritoProrrogaDeForma" xml:space="preserve">
+    <value>Escrito Prórroga de Forma</value>
+  </data>
+  <data name="titleEscritoOficioDeFondo" xml:space="preserve">
+    <value>Escrito Oficio de Fondo</value>
+  </data>
+  <data name="lblTipoCorreccionVoluntaria" xml:space="preserve">
+    <value>Tipo Corrección Voluntaria:</value>
+  </data>
+  <data name="cbiTiposCorreccionVoluntaria" xml:space="preserve">
+    <value>ESCRITOTIPOCORRECCIONVOLUNTARIA</value>
+  </data>
+  <data name="titleEscritoCorreccionVoluntaria" xml:space="preserve">
+    <value>Escrito Corrección Voluntaria</value>
+  </data>
+  <data name="titleEscritoConsignacionDeJuramentoYPoder" xml:space="preserve">
+    <value>Escrito Consignación de Juramento y Poder</value>
+  </data>
+  <data name="titleEscritoConsignacionDeJuramento" xml:space="preserve">
+    <value>Escrito Consignación de Juramento</value>
+  </data>
+  <data name="titleEscritoConsignacionDePoder" xml:space="preserve">
+    <value>Escrito Consignación de Poder</value>
+  </data>
   <data name="lblBoletinPerencion" xml:space="preserve">
     <value>Boletin De Perencion:</value>
   </data>

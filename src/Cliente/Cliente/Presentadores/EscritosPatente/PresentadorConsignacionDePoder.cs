@@ -16,13 +16,12 @@ using System.Collections.Generic;
 
 namespace Trascend.Bolet.Cliente.Presentadores.EscritosPatente
 {
-    class PresentadorProrrogaDeFondo : PresentadorBase
+    class PresentadorConsignacionDePoder : PresentadorBase
     {
-        private IProrrogaDeFondo _ventana;
+        private IConsignacionDePoder _ventana;
 
         private IAgenteServicios _agenteServicios;
         private IPatenteServicios _marcaServicios;
-        private IBoletinServicios _boletinServicios;
 
         private static PaginaPrincipal _paginaPrincipal = PaginaPrincipal.ObtenerInstancia;
         private static Logger logger = LogManager.GetCurrentClassLogger();
@@ -38,7 +37,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosPatente
         /// Constructor predeterminado
         /// </summary>
         /// <param name="ventana">Página que satisface el contrato</param>
-        public PresentadorProrrogaDeFondo(IProrrogaDeFondo ventana)
+        public PresentadorConsignacionDePoder(IConsignacionDePoder ventana)
         {
             try
             {
@@ -48,9 +47,6 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosPatente
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["AgenteServicios"]);
                 this._marcaServicios = (IPatenteServicios)Activator.GetObject(typeof(IPatenteServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["PatenteServicios"]);
-                this._boletinServicios = (IBoletinServicios)Activator.GetObject(typeof(IBoletinServicios),
-                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["BoletinServicios"]);
-
             }
             catch (Exception ex)
             {
@@ -68,11 +64,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosPatente
             {
                 Mouse.OverrideCursor = Cursors.Wait;
 
-                this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleEscritoProrrogaDeFondo,
+                this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleEscritoConsignacionDePoder,
                     "");
                 CargarAgente();
                 CargarPatente();
-                CargaBoletines();
                 this._ventana.FocoPredeterminado();
             }
             catch (ApplicationException ex)
@@ -117,9 +112,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosPatente
                 {
                     string parametroPatentes = ArmarStringParametroPatentes(this._marcasAgregadas);
                     this.EjecutarArchivoBAT(ConfigurationManager.AppSettings["RutaBatEscrito"].ToString()
-                        + "\\" + ConfigurationManager.AppSettings["EscritoProrrogaDeFondo"].ToString(),
-                        ((Boletin)this._ventana.Boletin).Id + " " + this._ventana.Fecha + " " + 
-                        ((Agente)this._ventana.AgenteFiltrado).Id + " " + parametroPatentes);
+                        + "\\" + ConfigurationManager.AppSettings["EscritoConsignacionDePoder"].ToString(),
+                        this._ventana.Fecha + " " + ((Agente)this._ventana.AgenteFiltrado).Id + " " + parametroPatentes);
                 }
 
                 #region trace
@@ -166,7 +160,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosPatente
             {
                 if (this._marcasAgregadas.Count != 0)
                 {
-                    if (((Boletin)this._ventana.Boletin != null) && (((Boletin)this._ventana.Boletin).Id != int.MinValue))
+                    if (this._ventana.Fecha != null)
                     {
                         if (this.ValidarAgenteApoderadoDePatentes((Agente)this._ventana.AgenteFiltrado, this._marcasAgregadas))
                         {
@@ -180,7 +174,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosPatente
                     }
                     else
                     {
-                        this._ventana.MensajeAlerta(string.Format(Recursos.MensajesConElUsuario.AlertaEscritoSinBoletin));
+                        this._ventana.MensajeAlerta(string.Format(Recursos.MensajesConElUsuario.AlertaEscritoSinFecha,
+                            ((Agente)this._ventana.AgenteFiltrado).Nombre));
                     }
                 }
                 else
@@ -200,33 +195,6 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosPatente
 
             return retorno;
         }
-
-        #region Boletin y Resolucion
-
-        /// <summary>
-        /// Método que carga los boletines registrados
-        /// </summary>
-        private void CargaBoletines()
-        {
-            #region trace
-            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
-                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
-            #endregion
-
-            Boletin primerBoletin = new Boletin(int.MinValue);
-            IList<Boletin> boletines = this._boletinServicios.ConsultarTodos();
-            boletines.Insert(0, primerBoletin);
-            this._ventana.Boletines = boletines;
-
-            #region trace
-            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
-                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
-            #endregion
-
-        }
-
-        #endregion
-
 
         /// <summary>
         /// Método que ordena una columna

@@ -16,9 +16,9 @@ using System.Collections.Generic;
 
 namespace Trascend.Bolet.Cliente.Presentadores.EscritosPatente
 {
-    class PresentadorProrrogaDeFondo : PresentadorBase
+    class PresentadorOficioDeFondo : PresentadorBase
     {
-        private IProrrogaDeFondo _ventana;
+        private IOficioDeFondo _ventana;
 
         private IAgenteServicios _agenteServicios;
         private IPatenteServicios _marcaServicios;
@@ -38,7 +38,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosPatente
         /// Constructor predeterminado
         /// </summary>
         /// <param name="ventana">Página que satisface el contrato</param>
-        public PresentadorProrrogaDeFondo(IProrrogaDeFondo ventana)
+        public PresentadorOficioDeFondo(IOficioDeFondo ventana)
         {
             try
             {
@@ -68,7 +68,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosPatente
             {
                 Mouse.OverrideCursor = Cursors.Wait;
 
-                this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleEscritoProrrogaDeFondo,
+                this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleEscritoOficioDeFondo,
                     "");
                 CargarAgente();
                 CargarPatente();
@@ -117,8 +117,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosPatente
                 {
                     string parametroPatentes = ArmarStringParametroPatentes(this._marcasAgregadas);
                     this.EjecutarArchivoBAT(ConfigurationManager.AppSettings["RutaBatEscrito"].ToString()
-                        + "\\" + ConfigurationManager.AppSettings["EscritoProrrogaDeFondo"].ToString(),
-                        ((Boletin)this._ventana.Boletin).Id + " " + this._ventana.Fecha + " " + 
+                        + "\\" + ConfigurationManager.AppSettings["EscritoOficioDeFondo"].ToString(),
+                        ((Boletin)this._ventana.Boletin).Id + " " + ((Resolucion)this._ventana.Resolucion).Id
+                        + " " + this._ventana.Fecha + " " + ((Resolucion)this._ventana.Resolucion).FechaResolucion + " " +
                         ((Agente)this._ventana.AgenteFiltrado).Id + " " + parametroPatentes);
                 }
 
@@ -168,14 +169,21 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosPatente
                 {
                     if (((Boletin)this._ventana.Boletin != null) && (((Boletin)this._ventana.Boletin).Id != int.MinValue))
                     {
-                        if (this.ValidarAgenteApoderadoDePatentes((Agente)this._ventana.AgenteFiltrado, this._marcasAgregadas))
+                        if (this._ventana.Resolucion != null)
                         {
-                            retorno = true;
+                            if (this.ValidarAgenteApoderadoDePatentes((Agente)this._ventana.AgenteFiltrado, this._marcasAgregadas))
+                            {
+                                retorno = true;
+                            }
+                            else
+                            {
+                                this._ventana.MensajeAlerta(string.Format(Recursos.MensajesConElUsuario.AlertaAgenteNoApareceEnPoderDePatente,
+                                    ((Agente)this._ventana.AgenteFiltrado).Nombre));
+                            }
                         }
                         else
                         {
-                            this._ventana.MensajeAlerta(string.Format(Recursos.MensajesConElUsuario.AlertaAgenteNoApareceEnPoderDePatente,
-                                ((Agente)this._ventana.AgenteFiltrado).Nombre));
+                            this._ventana.MensajeAlerta(string.Format(Recursos.MensajesConElUsuario.AlertaEscritoSinResolucion));
                         }
                     }
                     else
@@ -223,6 +231,43 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosPatente
                 logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
 
+        }
+
+        /// <summary>
+        /// Método que se encarga en actualizar las resoluciones
+        /// </summary>
+        public void ActualizarResoluciones()
+        {
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+            if (((Boletin)this._ventana.Boletin).Id != int.MinValue)
+            {
+                IList<Resolucion> resoluciones = this._boletinServicios.ConsultarResolucionesDeBoletin((Boletin)this._ventana.Boletin);
+
+                if (resoluciones.Count != 0)
+                {
+                    this._ventana.Resoluciones = resoluciones;
+                    this._ventana.Resolucion = resoluciones[0];
+                }
+                else
+                {
+                    this._ventana.Resoluciones = null;
+                    this._ventana.Resolucion = null;
+                }
+            }
+            else
+            {
+                this._ventana.Resoluciones = null;
+                this._ventana.Resolucion = null;
+            }
+
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
         }
 
         #endregion

@@ -3,7 +3,7 @@ using System.Windows.Controls;
 using Trascend.Bolet.Cliente.Ayuda;
 namespace Trascend.Bolet.Cliente.Contratos.EscritosPatente
 {
-    interface IConsignacionDeJuramentoYPoder : IPaginaBase
+    interface IConsignacionDeJuramento : IPaginaBase
     {
         object Escrito { get; set; }
 

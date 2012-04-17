@@ -744,4 +744,7 @@
   <data name="ConfirmacionGenerarEscritoPatente" xml:space="preserve">
     <value>¿Está seguro que desea genera el escrito para las {0} patentes?</value>
   </data>
+  <data name="AlertaEscritoSinTipoCorreccionVoluntaria" xml:space="preserve">
+    <value>Disculpe el escrito no tiene tipo de corrección voluntaria</value>
+  </data>
 </root>

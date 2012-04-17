@@ -779,14 +779,14 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
         {
             switch (nombreBoton)
             {
-                case "_menuItemEscritosConsignacionDeJuramentoYPoder":
-                    //this._ventana.Contenedor.Navigate(new ExamenDePatentabilidad());
+                case "_menuItemConsignacionDeJuramentoYPoder":
+                    this._ventana.Contenedor.Navigate(new ConsignacionDeJuramentoYPoder());
                     break;
                 case "_menuItemConsignacionDeJuramento":
-                    //this._ventana.Contenedor.Navigate(new CorreccionErrorMaterial());
+                    this._ventana.Contenedor.Navigate(new ConsignacionDeJuramento());
                     break;
                 case "_menuItemConsignacionDePoder":
-                    //this._ventana.Contenedor.Navigate(new CorreccionErrorMaterialDistingue());
+                    this._ventana.Contenedor.Navigate(new ConsignacionDePoder());
                     break;
                 case "_menuItemOficioDeJuramentoYPoderSinConsignar":
                     //this._ventana.Contenedor.Navigate(new CertificadoDeOrigen());
@@ -816,10 +816,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
                     this._ventana.Contenedor.Navigate(new ProrrogaDeContestacionDeOposicion());
                     break;
                 case "_menuItemOficioDeFondo":
-                    //this._ventana.Contenedor.Navigate(new ReingresoDeClasificacion());
+                    this._ventana.Contenedor.Navigate(new OficioDeFondo());
                     break;
                 case "_menuItemCorreccionVoluntaria":
-                    //this._ventana.Contenedor.Navigate(new ReingresoDeDistingue());
+                    this._ventana.Contenedor.Navigate(new CorreccionVoluntaria());
                     break;
                 case "_menuItemReconsideracionPerencion":
                     this._ventana.Contenedor.Navigate(new ReconsideracionDePerencion());

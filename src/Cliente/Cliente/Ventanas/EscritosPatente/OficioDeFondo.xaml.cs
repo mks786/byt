@@ -1,23 +1,23 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
-using Trascend.Bolet.Cliente.Contratos.EscritosMarca;
-using Trascend.Bolet.Cliente.Presentadores.EscritosMarca;
+using Trascend.Bolet.Cliente.Contratos.EscritosPatente;
+using Trascend.Bolet.Cliente.Presentadores.EscritosPatente;
 using Trascend.Bolet.Cliente.Ayuda;
 
-namespace Trascend.Bolet.Cliente.Ventanas.EscritosMarca
+namespace Trascend.Bolet.Cliente.Ventanas.EscritosPatente
 {
     /// <summary>
-    /// Interaction logic for ConsultarUsuario.xaml
+    /// Interaction logic for OficioDeFondo.xaml
     /// </summary>
-    public partial class ReingresoDePoderYReclasificacion : Page, IReingresoDePoderYReclasificacion
+    public partial class OficioDeFondo : Page, IOficioDeFondo
     {
-        private PresentadorReingresoDePoderYReclasificacion _presentador;
+        private PresentadorOficioDeFondo _presentador;
         private bool _cargada;
 
         private GridViewColumnHeader _CurSortCol = null;
         private SortAdorner _CurAdorner = null;
 
-        #region IReingresoDePoderYReclasificacion
+        #region IRecpnsideracionPrioridadExtinguida
 
         public bool EstaCargada
         {
@@ -58,12 +58,6 @@ namespace Trascend.Bolet.Cliente.Ventanas.EscritosMarca
             get { return this._txtNombreAgenteFiltrar.Text; }
         }
 
-        public object Agente
-        {
-            get { return this._gridDatosAgente.DataContext; }
-            set { this._gridDatosAgente.DataContext = value; }
-        }
-
         public object Boletines
         {
             get { return this._cbxBoletin.DataContext; }
@@ -88,54 +82,14 @@ namespace Trascend.Bolet.Cliente.Ventanas.EscritosMarca
             set { this._cbxResolucion.SelectedItem = value; }
         }
 
-        public object TipoDePoderes
+        public object Agente
         {
-            get { return this._cbxTipoPoder.DataContext; }
-            set { this._cbxTipoPoder.DataContext = value; }
+            get { return this._gridDatosAgente.DataContext; }
+            set { this._gridDatosAgente.DataContext = value; }
         }
 
-        public object TipoDePoder
-        {
-            get { return this._cbxTipoPoder.SelectedItem; }
-            set { this._cbxTipoPoder.SelectedItem = value; }
-        }
-
-        public object TipoDeEtiquetas
-        {
-            get { return this._cbxTipoEtiqueta.DataContext; }
-            set { this._cbxTipoEtiqueta.DataContext = value; }
-        }
-
-        public object TipoDeEtiqueta
-        {
-            get { return this._cbxTipoEtiqueta.SelectedItem; }
-            set { this._cbxTipoEtiqueta.SelectedItem = value; }
-        }
-
-        public object Reclasificaciones
-        {
-            get { return this._cbxReclasificacion.DataContext; }
-            set { this._cbxReclasificacion.DataContext = value; }
-        }
-
-        public object Reclasificacion
-        {
-            get { return this._cbxReclasificacion.SelectedItem; }
-            set { this._cbxReclasificacion.SelectedItem = value; }
-        }
-        public object CantidadNumerales
-        {
-            get { return this._cbxNumerales.DataContext; }
-            set { this._cbxNumerales.DataContext = value; }
-        }
-
-        public object CantidadNumeralSelec
-        {
-            get { return this._cbxNumerales.SelectedItem; }
-            set { this._cbxNumerales.SelectedItem = value; }
-        }
         public string NombreAgente
-        {
+        {            
             set { this._txtNombreAgente.Text = value; }
         }
 
@@ -151,49 +105,54 @@ namespace Trascend.Bolet.Cliente.Ventanas.EscritosMarca
             set { this._lstAgentes.SelectedItem = value; }
         }
 
-        public string IdMarcaFiltrar
+        public string IdPatenteFiltrar
         {
-            get { return this._txtIdMarcaFiltrar.Text; }
+            get { return this._txtIdPatenteFiltrar.Text; }
         }
 
-        public string NombreMarcaFiltrar
+        public string NombrePatenteFiltrar
         {
-            get { return this._txtNombreMarcaFiltrar.Text; }
+            get { return this._txtNombrePatenteFiltrar.Text; }
         }
 
-        public object Marca
+        public object Patente
         {
-            get { return this._gridDatosMarca.DataContext; }
-            set { this._gridDatosMarca.DataContext = value; }
+            get { return this._gridDatosPatente.DataContext; }
+            set { this._gridDatosPatente.DataContext = value; }
         }
 
-        public string NombreMarca
+        public string NombrePatente
         {
-            set { this._txtNombreMarca.Text = value; }
+            set { this._txtNombrePatente.Text = value; }
         }
 
-        public object MarcasFiltrados
+        public object PatentesFiltrados
         {
-            get { return this._lstMarcas.DataContext; }
-            set { this._lstMarcas.DataContext = value; }
+            get { return this._lstPatentes.DataContext; }
+            set { this._lstPatentes.DataContext = value; }
         }
 
-        public object MarcaFiltrado
+        public object PatenteFiltrado
         {
-            get { return this._lstMarcas.SelectedItem; }
-            set { this._lstMarcas.SelectedItem = value; }
+            get { return this._lstPatentes.SelectedItem; }
+            set { this._lstPatentes.SelectedItem = value; }
         }
 
-        public object MarcasAgregadas
+        public object PatentesAgregadas
         {
-            get { return this._lstMarcasAgregadas.DataContext; }
-            set { this._lstMarcasAgregadas.DataContext = value; }
+            get { return this._lstPatentesAgregadas.DataContext; }
+            set { this._lstPatentesAgregadas.DataContext = value; }
         }
 
-        public object MarcaAgregada
+        public object PatenteAgregada
         {
-            get { return this._lstMarcasAgregadas.SelectedItem; }
-            set { this._lstMarcasAgregadas.SelectedItem = value; }
+            get { return this._lstPatentesAgregadas.SelectedItem; }
+            set { this._lstPatentesAgregadas.SelectedItem = value; }
+        }
+
+        public string Fecha
+        {
+            get { return this._dpkFecha.SelectedDate.ToString(); }
         }
 
         public string BotonModificar
@@ -201,13 +160,6 @@ namespace Trascend.Bolet.Cliente.Ventanas.EscritosMarca
             get { return this._txbAceptar.Text; }
             set { this._txbAceptar.Text = value; }
         }
-
-        public string Numerales
-        {
-            get { return this._txtNumerales.Text; }
-            set { this._txtNumerales.Text = value; }
-        }
-
 
         public bool HabilitarCampos
         {
@@ -218,14 +170,12 @@ namespace Trascend.Bolet.Cliente.Ventanas.EscritosMarca
                 this._txtIdAgenteFiltrar.IsEnabled = value;
                 this._btnConsultarAgente.IsEnabled = value;
 
-                this._txtNombreMarca.IsEnabled = value;
-                this._txtNombreMarcaFiltrar.IsEnabled = value;
-                this._txtIdMarcaFiltrar.IsEnabled = value;
-                this._btnConsultarMarca.IsEnabled = value;
+                this._txtNombrePatente.IsEnabled = value;
+                this._txtNombrePatenteFiltrar.IsEnabled = value;
+                this._txtIdPatenteFiltrar.IsEnabled = value;
+                this._btnConsultarPatente.IsEnabled = value;
                 this._btnMas.IsEnabled = value;
                 this._btnMenos.IsEnabled = value;
-                this._cbxBoletin.IsEnabled = value;
-                this._txtNumerales.IsEnabled = value;
             }
         }
 
@@ -237,11 +187,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.EscritosMarca
 
         #endregion
 
-        public ReingresoDePoderYReclasificacion()
+        public OficioDeFondo()
         {
             InitializeComponent();
             this._cargada = false;
-            this._presentador = new PresentadorReingresoDePoderYReclasificacion(this);
+            this._presentador = new PresentadorOficioDeFondo(this);
         }
 
         private void _btnCancelar_Click(object sender, RoutedEventArgs e)
@@ -251,8 +201,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.EscritosMarca
 
         private void _btnAceptar_Click(object sender, RoutedEventArgs e)
         {
-            if (MessageBoxResult.Yes == MessageBox.Show(string.Format(Recursos.MensajesConElUsuario.ConfirmacionGenerarEscrito,
-                this._lstMarcasAgregadas.Items.Count),
+            if (MessageBoxResult.Yes == MessageBox.Show(string.Format(Recursos.MensajesConElUsuario.ConfirmacionGenerarEscritoPatente,
+                this._lstPatentesAgregadas.Items.Count),
                 "Generar Escrito", MessageBoxButton.YesNo, MessageBoxImage.Question))
                 this._presentador.Aceptar();
         }
@@ -269,7 +219,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.EscritosMarca
         private void _txtNombreAgente_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             MostrarFiltroAgente(true);
-            MostrarFiltroMarca(false);
+            MostrarFiltroPatente(false);
 
             this._btnConsultarAgente.IsDefault = true;
             this._btnAceptar.IsDefault = false;
@@ -329,79 +279,79 @@ namespace Trascend.Bolet.Cliente.Ventanas.EscritosMarca
 
         }
 
-        private void _txtNombreMarca_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        private void _txtNombrePatente_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            MostrarFiltroMarca(true);
+            MostrarFiltroPatente(true);
             MostrarFiltroAgente(false);
 
-            this._btnConsultarMarca.IsDefault = true;
+            this._btnConsultarPatente.IsDefault = true;
             this._btnAceptar.IsDefault = false;
         }
 
-        private void _lstMarcas_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        private void _lstPatentes_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            if (this._presentador.CambiarMarca())
+            if (this._presentador.CambiarPatente())
             {
                 _btnMas_Click(sender, e);
-                this._btnConsultarMarca.IsDefault = false;
+                this._btnConsultarPatente.IsDefault = false;
                 this._btnAceptar.IsDefault = true;
             }
         }
 
-        private void _OrdenarMarcas_Click(object sender, RoutedEventArgs e)
+        private void _OrdenarPatentes_Click(object sender, RoutedEventArgs e)
         {
-            this._presentador.OrdenarColumna(sender as GridViewColumnHeader, this._lstMarcas);
+            this._presentador.OrdenarColumna(sender as GridViewColumnHeader, this._lstPatentes);
         }
 
-        private void _btnConsultarMarca_Click(object sender, RoutedEventArgs e)
+        private void _btnConsultarPatente_Click(object sender, RoutedEventArgs e)
         {
-            this._presentador.ConsultarMarca();
+            this._presentador.ConsultarPatente();
         }
 
-        private void _txtMarcaFiltrar_GotFocus(object sender, RoutedEventArgs e)
+        private void _txtPatenteFiltrar_GotFocus(object sender, RoutedEventArgs e)
         {
-            this._btnConsultarMarca.IsDefault = true;
+            this._btnConsultarPatente.IsDefault = true;
             this._btnAceptar.IsDefault = false;
         }
 
-        private void MostrarFiltroMarca(bool filtroVisible)
+        private void MostrarFiltroPatente(bool filtroVisible)
         {
             if (filtroVisible)
             {
-                this._txtIdMarcaFiltrar.Visibility = System.Windows.Visibility.Visible;
-                this._txtNombreMarcaFiltrar.Visibility = System.Windows.Visibility.Visible;
-                this._btnConsultarMarca.Visibility = System.Windows.Visibility.Visible;
-                this._lstMarcas.Visibility = System.Windows.Visibility.Visible;
-                this._lblIdMarcaFiltrar.Visibility = System.Windows.Visibility.Visible;
-                this._lblNombreMarcaFiltrar.Visibility = System.Windows.Visibility.Visible;
+                this._txtIdPatenteFiltrar.Visibility = System.Windows.Visibility.Visible;
+                this._txtNombrePatenteFiltrar.Visibility = System.Windows.Visibility.Visible;
+                this._btnConsultarPatente.Visibility = System.Windows.Visibility.Visible;
+                this._lstPatentes.Visibility = System.Windows.Visibility.Visible;
+                this._lblIdPatenteFiltrar.Visibility = System.Windows.Visibility.Visible;
+                this._lblNombrePatenteFiltrar.Visibility = System.Windows.Visibility.Visible;
 
-                this._txtNombreMarca.Visibility = System.Windows.Visibility.Collapsed;
+                this._txtNombrePatente.Visibility = System.Windows.Visibility.Collapsed;
             }
             else
             {
-                this._txtIdMarcaFiltrar.Visibility = System.Windows.Visibility.Collapsed;
-                this._txtNombreMarcaFiltrar.Visibility = System.Windows.Visibility.Collapsed;
-                this._btnConsultarMarca.Visibility = System.Windows.Visibility.Collapsed;
-                this._lstMarcas.Visibility = System.Windows.Visibility.Collapsed;
-                this._lblIdMarcaFiltrar.Visibility = System.Windows.Visibility.Collapsed;
-                this._lblNombreMarcaFiltrar.Visibility = System.Windows.Visibility.Collapsed;
+                this._txtIdPatenteFiltrar.Visibility = System.Windows.Visibility.Collapsed;
+                this._txtNombrePatenteFiltrar.Visibility = System.Windows.Visibility.Collapsed;
+                this._btnConsultarPatente.Visibility = System.Windows.Visibility.Collapsed;
+                this._lstPatentes.Visibility = System.Windows.Visibility.Collapsed;
+                this._lblIdPatenteFiltrar.Visibility = System.Windows.Visibility.Collapsed;
+                this._lblNombrePatenteFiltrar.Visibility = System.Windows.Visibility.Collapsed;
 
-                this._txtNombreMarca.Visibility = System.Windows.Visibility.Visible;
+                this._txtNombrePatente.Visibility = System.Windows.Visibility.Visible;
             }
 
         }
 
         private void _btnMas_Click(object sender, RoutedEventArgs e)
         {
-            this._presentador.AgregarMarca();
+            this._presentador.AgregarPatente();
         }
 
         private void _btnMenos_Click(object sender, RoutedEventArgs e)
         {
-            this._presentador.EliminarMarca();
+            this._presentador.EliminarPatente();
         }
 
-        private void _lstMarcasAgregadas_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        private void _lstPatentesAgregadas_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             _btnMenos_Click(sender, e);
         }
@@ -410,6 +360,5 @@ namespace Trascend.Bolet.Cliente.Ventanas.EscritosMarca
         {
             this._presentador.ActualizarResoluciones();
         }
-
     }
 }

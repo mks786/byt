@@ -3,7 +3,7 @@ using System.Windows.Controls;
 using Trascend.Bolet.Cliente.Ayuda;
 namespace Trascend.Bolet.Cliente.Contratos.EscritosPatente
 {
-    interface IConsignacionDeJuramentoYPoder : IPaginaBase
+    interface IContestacionAOposicion : IPaginaBase
     {
         object Escrito { get; set; }
 
@@ -47,7 +47,30 @@ namespace Trascend.Bolet.Cliente.Contratos.EscritosPatente
 
         #endregion
 
+        #region Boletin
+
+        object Boletines { get; set; }
+
+        object Boletin { get; set; }
+
+
+        #endregion
+
+        #region Resolucion
+
+        object Resoluciones { get; set; }
+
+        object Resolucion { get; set; }
+
+        void ActualizarResoluciones();
+
+        #endregion
+
         string Fecha { get; }
+
+        string Oponente { set; }
+
+        string Domiciliado { set; }
 
         void MensajeAlerta(string mensaje);
 

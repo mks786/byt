@@ -81,8 +81,6 @@ namespace Trascend.Bolet.Cliente.Contratos.EscritosMarca
 
         object Resolucion { get; set; }
 
-        void ActualizarResoluciones();
-
         #endregion
 
         void MensajeAlerta(string mensaje);

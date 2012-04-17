@@ -241,6 +241,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Disculpe el escrito no tiene tipo de corrección voluntaria.
+        /// </summary>
+        internal static string AlertaEscritoSinTipoCorreccionVoluntaria {
+            get {
+                return ResourceManager.GetString("AlertaEscritoSinTipoCorreccionVoluntaria", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a La Marca a tercero Requiere un Asociado.
         /// </summary>
         internal static string AlertaMarcaTerceroSinAsociado {
