@@ -120,7 +120,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosPatente
                 {
                     string parametroPatentes = ArmarStringParametroPatentes(this._marcasAgregadas);
                     this.EjecutarArchivoBAT(ConfigurationManager.AppSettings["RutaBatEscrito"].ToString()
-                        + "\\" + ConfigurationManager.AppSettings["EscritoExamenDePatentabilidad"].ToString(),(
+                        + "\\" + ConfigurationManager.AppSettings["EscritoCorreccionDePublicacionEnPrensa"].ToString(),(
                         (Agente)this._ventana.AgenteFiltrado).Id + " " + parametroPatentes);
                 }
 

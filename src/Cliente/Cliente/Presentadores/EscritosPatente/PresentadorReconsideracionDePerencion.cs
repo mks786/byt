@@ -122,8 +122,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosPatente
                 {
                     string parametroPatentes = ArmarStringParametroPatentes(this._marcasAgregadas);
                     this.EjecutarArchivoBAT(ConfigurationManager.AppSettings["RutaBatEscrito"].ToString()
-                        + "\\" + ConfigurationManager.AppSettings["EscritoExamenDePatentabilidad"].ToString(),
-                        this._ventana.Fecha+ " " + ((Agente)this._ventana.AgenteFiltrado).Id + " " + parametroPatentes);
+                        + "\\" + ConfigurationManager.AppSettings["EscritoReconsideracionDePerencion"].ToString(),
+                        this._ventana.Fecha+ " " + ((Agente)this._ventana.AgenteFiltrado).Id
+                        + " " + ((Boletin)this._ventana.Boletin).Id + " " + ((Resolucion)this._ventana.Resolucion).Id
+                        + " " + ((Boletin)this._ventana.Boletin2).Id + " " + ((Resolucion)this._ventana.Resolucion2).Id
+                        + " " + parametroPatentes);
                 }
 
                 #region trace
