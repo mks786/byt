@@ -108,6 +108,10 @@
     <Compile Include="Contratos\Anexos\IConsultarAnexo.cs" />
     <Compile Include="Contratos\Anexos\IConsultarAnexos.cs" />
     <Compile Include="Contratos\CartasOuts\IConsultarCartasOuts.cs" />
+    <Compile Include="Contratos\EscritosPatente\IOficioDeJuramento.cs" />
+    <Compile Include="Contratos\EscritosPatente\IConsignacionDePrioridadExtranjera.cs" />
+    <Compile Include="Contratos\EscritosPatente\IOficioDePoder.cs" />
+    <Compile Include="Contratos\EscritosPatente\IOficioDeJuramentoYPoder.cs" />
     <Compile Include="Contratos\EscritosPatente\IConsignacionDePoder.cs" />
     <Compile Include="Contratos\EscritosPatente\IConsignacionDeJuramento.cs" />
     <Compile Include="Contratos\EscritosPatente\IConsignacionDeJuramentoYPoder.cs" />
@@ -290,6 +294,10 @@
     <Compile Include="Presentadores\Contactos\PresentadorAgregarContacto.cs" />
     <Compile Include="Presentadores\Contactos\PresentadorConsultarContacto.cs" />
     <Compile Include="Presentadores\CartasOuts\PresentadorConsultarCartasOuts.cs" />
+    <Compile Include="Presentadores\EscritosPatente\PresentadorOficioDeJuramento.cs" />
+    <Compile Include="Presentadores\EscritosPatente\PresentadorConsignacionDePrioridadExtranjera.cs" />
+    <Compile Include="Presentadores\EscritosPatente\PresentadorOficioDePoder.cs" />
+    <Compile Include="Presentadores\EscritosPatente\PresentadorOficioDeJuramentoYPoder.cs" />
     <Compile Include="Presentadores\EscritosPatente\PresentadorConsignacionDePoder.cs" />
     <Compile Include="Presentadores\EscritosPatente\PresentadorConsignacionDeJuramento.cs" />
     <Compile Include="Presentadores\EscritosPatente\PresentadorConsignacionDeJuramentoYPoder.cs" />
@@ -543,6 +551,18 @@
     </Compile>
     <Compile Include="Ventanas\EscritosPatente\ConsignacionDePoder.xaml.cs">
       <DependentUpon>ConsignacionDePoder.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\EscritosPatente\ConsignacionDePrioridadExtranjera.xaml.cs">
+      <DependentUpon>ConsignacionDePrioridadExtranjera.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\EscritosPatente\OficioDeJuramento.xaml.cs">
+      <DependentUpon>OficioDeJuramento.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\EscritosPatente\OficioDePoder.xaml.cs">
+      <DependentUpon>OficioDePoder.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\EscritosPatente\OficioDeJuramentoYPoder.xaml.cs">
+      <DependentUpon>OficioDeJuramentoYPoder.xaml</DependentUpon>
     </Compile>
     <Compile Include="Ventanas\EscritosPatente\CorreccionVoluntaria.xaml.cs">
       <DependentUpon>CorreccionVoluntaria.xaml</DependentUpon>
@@ -1107,6 +1127,22 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Ventanas\EscritosPatente\ConsignacionDePoder.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\EscritosPatente\ConsignacionDePrioridadExtranjera.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\EscritosPatente\OficioDeJuramento.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\EscritosPatente\OficioDePoder.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\EscritosPatente\OficioDeJuramentoYPoder.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

@@ -2402,4 +2402,25 @@ de Gracia</value>
   <data name="lblModalidad" xml:space="preserve">
     <value>Modalidad:</value>
   </data>
+  <data name="titleEscritoConsignacionDePrioridadExtranjera" xml:space="preserve">
+    <value>Escrito De Consignación de Prioridad Extranjera</value>
+  </data>
+  <data name="titleEscritoOficioDeJuramento" xml:space="preserve">
+    <value>Escrito Oficio de Juramento</value>
+  </data>
+  <data name="titleEscritoOficioDeJuramentoYPoder" xml:space="preserve">
+    <value>Escrito Oficio de Juramento y Poder</value>
+  </data>
+  <data name="titleEscritoOficioDePoder" xml:space="preserve">
+    <value>Escrito Oficio de Poder</value>
+  </data>
+  <data name="cbiCategoriaTipoPoderPatente" xml:space="preserve">
+    <value>ESCRITOTIPOPODERPATENTE</value>
+  </data>
+  <data name="cbiConsignacionDePrioridadExtranjera" xml:space="preserve">
+    <value>ESCRITOTIPOESCRITOPATENTE</value>
+  </data>
+  <data name="lblTipoEscrito" xml:space="preserve">
+    <value>Tipo de Escrito:</value>
+  </data>
 </root>

@@ -855,11 +855,7 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ESCRITOTIPODISTINGUE.
-        ///   Looks up a localized string similar to ESCRITOTIPODISTINGUE.
         ///   Busca una cadena traducida similar a ESCRITOTIPODISTINGUE.
-        ///   Busca una cadena traducida similar a ESCRITOTIPODISTINGUE.
-        ///   Looks up a localized string similar to ESCRITOTIPODISTINGUE.
         /// </summary>
         public static string cbiCategoriaTipoDistingue {
             get {
@@ -895,6 +891,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a ESCRITOTIPOPODERPATENTE.
+        /// </summary>
+        public static string cbiCategoriaTipoPoderPatente {
+            get {
+                return ResourceManager.GetString("cbiCategoriaTipoPoderPatente", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a ESCRITOTIPOPRIORIDAD.
         /// </summary>
         public static string cbiCategoriaTipoPrioridad {
@@ -909,6 +914,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string cbiCateroriaMarcaTercero {
             get {
                 return ResourceManager.GetString("cbiCateroriaMarcaTercero", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a ESCRITOTIPOESCRITOPATENTE.
+        /// </summary>
+        public static string cbiConsignacionDePrioridadExtranjera {
+            get {
+                return ResourceManager.GetString("cbiConsignacionDePrioridadExtranjera", resourceCulture);
             }
         }
         
@@ -1553,8 +1567,7 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Bol. Publicación:.
-        ///   Looks up a localized string similar to Boletin De Perencion:.
+        ///   Busca una cadena traducida similar a Boletin De Perencion:.
         /// </summary>
         public static string lblBoletinPerencion {
             get {
@@ -1563,7 +1576,7 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Boletin De Publicacion en Prensa:.
+        ///   Busca una cadena traducida similar a Boletin De Publicacion en Prensa:.
         /// </summary>
         public static string lblBoletinPublicacionPrensa {
             get {
@@ -1572,7 +1585,7 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Bol. Publicación:.
+        ///   Busca una cadena traducida similar a Bol. Publicación:.
         /// </summary>
         public static string lblBolPublicacion {
             get {
@@ -1626,8 +1639,7 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Cantidad De Numerales:.
-        ///   Looks up a localized string similar to Cantidad De Boletines:.
+        ///   Busca una cadena traducida similar a Cantidad De Boletines:.
         /// </summary>
         public static string lblCantidadBoletines {
             get {
@@ -1636,7 +1648,7 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Cantidad De Numerales:.
+        ///   Busca una cadena traducida similar a Cantidad De Numerales:.
         /// </summary>
         public static string lblCantidadNumerales {
             get {
@@ -2258,8 +2270,7 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Fecha:.
-        ///   Looks up a localized string similar to Fecha de Aviso Oficial:.
+        ///   Busca una cadena traducida similar a Fecha de Aviso Oficial:.
         /// </summary>
         public static string lblFechaAvisoOficial {
             get {
@@ -2268,7 +2279,7 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Fecha:.
+        ///   Busca una cadena traducida similar a Fecha:.
         /// </summary>
         public static string lblFechaBoletin {
             get {
@@ -2682,8 +2693,7 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Modificado:.
-        ///   Looks up a localized string similar to Modalidad:.
+        ///   Busca una cadena traducida similar a Modalidad:.
         /// </summary>
         public static string lblModalidad {
             get {
@@ -2692,7 +2702,7 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Modificado:.
+        ///   Busca una cadena traducida similar a Modificado:.
         /// </summary>
         public static string lblModificado {
             get {
@@ -3480,6 +3490,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string lblTipoError {
             get {
                 return ResourceManager.GetString("lblTipoError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Tipo de Escrito:.
+        /// </summary>
+        public static string lblTipoEscrito {
+            get {
+                return ResourceManager.GetString("lblTipoEscrito", resourceCulture);
             }
         }
         
@@ -4970,7 +4989,6 @@ namespace Trascend.Bolet.Cliente.Recursos {
         
         /// <summary>
         ///   Busca una cadena traducida similar a Inventores.
-        ///   Looks up a localized string similar to Inventores.
         /// </summary>
         public static string menuItemInventores {
             get {
@@ -5700,7 +5718,6 @@ namespace Trascend.Bolet.Cliente.Recursos {
         
         /// <summary>
         ///   Busca una cadena traducida similar a Consultar Cambios de Peticionario de Marcas.
-        ///   Looks up a localized string similar to Consultar Cambios de Peticionario de Marcas.
         /// </summary>
         public static string titleConsultarCambioPeticionarios {
             get {
@@ -5710,7 +5727,6 @@ namespace Trascend.Bolet.Cliente.Recursos {
         
         /// <summary>
         ///   Busca una cadena traducida similar a Consultar Cambios de Peticionario de Patentes.
-        ///   Looks up a localized string similar to Consultar Cambios de Peticionario de Patentes.
         /// </summary>
         public static string titleConsultarCambioPeticionariosPatente {
             get {
@@ -5729,7 +5745,6 @@ namespace Trascend.Bolet.Cliente.Recursos {
         
         /// <summary>
         ///   Busca una cadena traducida similar a Consultar Cambios de Domicilio de Patentes.
-        ///   Looks up a localized string similar to Consultar Cambios de Domicilio de Patentes.
         /// </summary>
         public static string titleConsultarCambiosDeDomicilioPatente {
             get {
@@ -5748,7 +5763,6 @@ namespace Trascend.Bolet.Cliente.Recursos {
         
         /// <summary>
         ///   Busca una cadena traducida similar a Consultar Cambios de Nombre de Patentes.
-        ///   Looks up a localized string similar to Consultar Cambios de Nombre de Patentes.
         /// </summary>
         public static string titleConsultarCambiosDeNombrePatente {
             get {
@@ -6333,6 +6347,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Escrito De Consignación de Prioridad Extranjera.
+        /// </summary>
+        public static string titleEscritoConsignacionDePrioridadExtranjera {
+            get {
+                return ResourceManager.GetString("titleEscritoConsignacionDePrioridadExtranjera", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Escrito De Contestacion A Oposicion.
         /// </summary>
         public static string titleEscritoContestacionAOposicion {
@@ -6442,7 +6465,6 @@ namespace Trascend.Bolet.Cliente.Recursos {
         
         /// <summary>
         ///   Busca una cadena traducida similar a Escrito Numeración de Poder.
-        ///   Looks up a localized string similar to Escrito Numeración de Poder.
         /// </summary>
         public static string titleEscritoNumeracionDePoder {
             get {
@@ -6451,7 +6473,7 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Escrito Numeración de Poder por Interesado.
+        ///   Busca una cadena traducida similar a Escrito Numeración de Poder por Interesado.
         /// </summary>
         public static string titleEscritoNumeracionDePoderPorInteresado {
             get {
@@ -6474,6 +6496,33 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string titleEscritoOficioDeFondo {
             get {
                 return ResourceManager.GetString("titleEscritoOficioDeFondo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Escrito Oficio de Juramento.
+        /// </summary>
+        public static string titleEscritoOficioDeJuramento {
+            get {
+                return ResourceManager.GetString("titleEscritoOficioDeJuramento", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Escrito Oficio de Juramento y Poder.
+        /// </summary>
+        public static string titleEscritoOficioDeJuramentoYPoder {
+            get {
+                return ResourceManager.GetString("titleEscritoOficioDeJuramentoYPoder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Escrito Oficio de Poder.
+        /// </summary>
+        public static string titleEscritoOficioDePoder {
+            get {
+                return ResourceManager.GetString("titleEscritoOficioDePoder", resourceCulture);
             }
         }
         

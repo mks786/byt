@@ -789,16 +789,16 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
                     this._ventana.Contenedor.Navigate(new ConsignacionDePoder());
                     break;
                 case "_menuItemOficioDeJuramentoYPoderSinConsignar":
-                    //this._ventana.Contenedor.Navigate(new CertificadoDeOrigen());
+                    this._ventana.Contenedor.Navigate(new OficioDeJuramentoYPoder());
                     break;
                 case "_menuItemOficioDeJuramento":
-                    //this._ventana.Contenedor.Navigate(new ContinuacionDeTramite());
+                    this._ventana.Contenedor.Navigate(new OficioDeJuramento());
                     break;
                 case "_menuItemOficioDePoder":
-                    //this._ventana.Contenedor.Navigate(new CorreccionDelDistingue());
+                    this._ventana.Contenedor.Navigate(new OficioDePoder());
                     break;
                 case "_menuItemConsignacionDePrioridadExtranjera":
-                    //this._ventana.Contenedor.Navigate(new CambioDeTramitante());
+                    this._ventana.Contenedor.Navigate(new ConsignacionDePrioridadExtranjera());
                     break;
                 case "_menuItemExamenDePatentabilidad":
                     this._ventana.Contenedor.Navigate(new ExamenDePatentabilidad());
