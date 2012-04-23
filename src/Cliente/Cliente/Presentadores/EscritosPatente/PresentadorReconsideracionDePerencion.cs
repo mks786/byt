@@ -78,6 +78,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosPatente
                 CargarAgente();
                 CargarPatente();
                 CargaBoletines();
+                CargaCombo();
                 this._ventana.FocoPredeterminado();
             }
             catch (ApplicationException ex)
@@ -199,6 +200,28 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosPatente
             #endregion
 
             return retorno;
+        }
+
+        /// <summary>
+        /// Método que carga los modalidades en los combobox
+        /// </summary>
+        private void CargaCombo()
+        {
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+            IList<ListaDatosValores> boletines =
+                this._listaDatosValoresServicios.ConsultarListaDatosValoresPorParametro(new ListaDatosValores(Recursos.Etiquetas.cbiCategoriaNumerales));
+            this._ventana.CantidadesBoletines = boletines;
+
+
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
         }
 
         #region Boletin y Resolucion

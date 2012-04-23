@@ -76,6 +76,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosPatente
                 CargarAgente();
                 CargarPatente();
                 CargaBoletines();
+                CargaCombo();
                 this._ventana.FocoPredeterminado();
             }
             catch (ApplicationException ex)
@@ -250,7 +251,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosPatente
 #endregion
 
                 /// <summary>
-        /// Método que carga los numerales, poderes, etiquetas, reclasificaciones y resolucion en los combobox
+        /// Método que carga los circulacion y errores en los combobox
         /// </summary>
         private void CargaCombo()
         {
@@ -259,12 +260,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosPatente
                 logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
 
-            IList<ListaDatosValores> numerales =
-                this._listaDatosValoresServicios.ConsultarListaDatosValoresPorParametro(new ListaDatosValores(Recursos.Etiquetas.cbiCategoriaNumerales));
-            this._ventana.CirculacionesNacionales = numerales;
+            IList<ListaDatosValores> circulacion =
+                this._listaDatosValoresServicios.ConsultarListaDatosValoresPorParametro(new ListaDatosValores(Recursos.Etiquetas.cbiCategoriaCirculacionNacional));
+            this._ventana.CirculacionesNacionales = circulacion;
 
             IList<ListaDatosValores> errores =
-            this._listaDatosValoresServicios.ConsultarListaDatosValoresPorParametro(new ListaDatosValores(Recursos.Etiquetas.cbiCategoriaTipoPoder));
+            this._listaDatosValoresServicios.ConsultarListaDatosValoresPorParametro(new ListaDatosValores(Recursos.Etiquetas.cbiCategoriaErrorEscritos));
             this._ventana.ErrorPrimeras = errores;
             this._ventana.ErrorSegundas = errores;
             this._ventana.ErrorTerceros = errores;

@@ -2402,6 +2402,15 @@ de Gracia</value>
   <data name="lblModalidad" xml:space="preserve">
     <value>Modalidad:</value>
   </data>
+  <data name="cbiCategoriaCirculacionNacional" xml:space="preserve">
+    <value>ESCRITOCIRCULACIONNACIONAL</value>
+  </data>
+  <data name="cbiCategoriaErrorEscritos" xml:space="preserve">
+    <value>ESCRITOERROR</value>
+  </data>
+  <data name="cbiCategoriaModalidades" xml:space="preserve">
+    <value>ESCRITOMODALIDAD</value>
+  </data>
   <data name="titleEscritoConsignacionDePrioridadExtranjera" xml:space="preserve">
     <value>Escrito De Consignación de Prioridad Extranjera</value>
   </data>
