@@ -156,10 +156,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.LicenciasPatent
         {            
             if (_agregar == true)
                 this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleAgregarLicenciaPatente,
-                Recursos.Ids.GestionarLicencias);
+                Recursos.Ids.GestionarLicenciaPatente);
             else
                 this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleGestionarLicenciaPatente,
-                Recursos.Ids.GestionarLicencias);
+                Recursos.Ids.GestionarLicenciaPatente);
         }
 
         /// <summary>

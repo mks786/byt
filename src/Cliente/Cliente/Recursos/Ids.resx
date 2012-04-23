@@ -654,4 +654,22 @@
   <data name="ConsultarCambioPeticionariosPatente" xml:space="preserve">
     <value>MYPPPETM</value>
   </data>
+  <data name="ConsultarCesionPatente" xml:space="preserve">
+    <value>MYPPCESM</value>
+  </data>
+  <data name="ConsultarFusionPatente" xml:space="preserve">
+    <value>MYPPFUSM</value>
+  </data>
+  <data name="ConsultarLicenciaPatente" xml:space="preserve">
+    <value>MYPPLICM</value>
+  </data>
+  <data name="GestionarCesionPatente" xml:space="preserve">
+    <value>MYPPCESM</value>
+  </data>
+  <data name="GestionarFusionPatente" xml:space="preserve">
+    <value>MYPPFUSM</value>
+  </data>
+  <data name="GestionarLicenciaPatente" xml:space="preserve">
+    <value>MYPPLICM</value>
+  </data>
 </root>

@@ -153,10 +153,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CesionesPatente
         {
             if (_agregar == true)
                 this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleAgregarCesionPatente,
-                Recursos.Ids.GestionarCesion);
+                Recursos.Ids.GestionarCesionPatente);
             else
                 this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleGestionarCesionPatente,
-                Recursos.Ids.GestionarCesion);
+                Recursos.Ids.GestionarCesionPatente);
         }
 
         /// <summary>

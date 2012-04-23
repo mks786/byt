@@ -62,7 +62,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.FusionesPatente
         public void ActualizarTitulo()
         {
             this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleConsultarFusionPatente,
-                Recursos.Ids.ConsultarFusiones);
+                Recursos.Ids.ConsultarFusionPatente);
         }
 
         /// <summary>

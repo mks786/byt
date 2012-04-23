@@ -155,10 +155,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.FusionesPatente
 
             if (_agregar == true)
                 this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleAgregarFusionPatente,
-                Recursos.Ids.GestionarFusion);
+                Recursos.Ids.GestionarFusionPatente);
             else
                 this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleGestionarFusionPatente,
-                Recursos.Ids.GestionarFusion);
+                Recursos.Ids.GestionarFusionPatente);
         }
 
         /// <summary>

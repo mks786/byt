@@ -60,7 +60,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CesionesPatente
         public void ActualizarTitulo()
         {
             this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleConsultarCesionPatente,
-                Recursos.Ids.ConsultarCesiones);
+                Recursos.Ids.ConsultarCesionPatente);
         }
 
         /// <summary>
