@@ -391,7 +391,7 @@
                 <TextBlock Text="{x:Static recurso:Etiquetas.btnAgregarSimbolo}"></TextBlock>
             </Button>
             <Button IsEnabled="True" Grid.Column="1" Grid.Row="4" Name="_btnMenos" VerticalAlignment="Top" 
-                    Width="25" HorizontalAlignment="Left" Margin="2,22,0,2" 
+                    Width="25" HorizontalAlignment="Left" Margin="2,142,0,2" 
                     Click="_btnMenos_Click">
                 <TextBlock Text="{x:Static recurso:Etiquetas.btnEliminarSimbolo}"></TextBlock>
             </Button>

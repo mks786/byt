@@ -68,9 +68,9 @@ namespace Trascend.Bolet.Cliente.Contratos.EscritosPatente
 
         string Fecha { get; }
 
-        string Oponente { set; }
+        string Oponente { get; set; }
 
-        string Domiciliado { set; }
+        string Domiciliado { get; set; }
 
         void MensajeAlerta(string mensaje);
 

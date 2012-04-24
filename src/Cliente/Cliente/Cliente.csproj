@@ -108,6 +108,7 @@
     <Compile Include="Contratos\Anexos\IConsultarAnexo.cs" />
     <Compile Include="Contratos\Anexos\IConsultarAnexos.cs" />
     <Compile Include="Contratos\CartasOuts\IConsultarCartasOuts.cs" />
+    <Compile Include="Contratos\EscritosPatente\IContestacionAOposicion.cs" />
     <Compile Include="Contratos\EscritosPatente\IOficioDeJuramento.cs" />
     <Compile Include="Contratos\EscritosPatente\IConsignacionDePrioridadExtranjera.cs" />
     <Compile Include="Contratos\EscritosPatente\IOficioDePoder.cs" />
@@ -123,7 +124,6 @@
     <Compile Include="Contratos\EscritosPatente\IProrrogaDeContestacionDeOposicion.cs" />
     <Compile Include="Contratos\EscritosPatente\IProrrogaDeForma.cs" />
     <Compile Include="Contratos\EscritosPatente\IProrrogaDeFondo.cs" />
-    <Compile Include="Contratos\EscritosPatente\IContestacionDeOposicion.cs" />
     <Compile Include="Contratos\EscritosPatente\IReconsideracionPrioridadExtinguida.cs" />
     <Compile Include="Contratos\EscritosPatente\IPagoDeAnualidad.cs" />
     <Compile Include="Contratos\EscritosPatente\INumeracionDePoder.cs" />

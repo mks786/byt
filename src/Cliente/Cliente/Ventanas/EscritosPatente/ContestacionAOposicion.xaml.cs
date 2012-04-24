@@ -107,11 +107,13 @@ namespace Trascend.Bolet.Cliente.Ventanas.EscritosPatente
 
          public string Oponente
         {
+            get { return this._txtOponente.Text; }
             set { this._txtOponente.Text = value; }
         }
 
          public string Domiciliado
         {
+            get { return this._txtDomiciliado.Text; }
             set { this._txtDomiciliado.Text = value; }
         }
 
