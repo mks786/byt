@@ -2432,4 +2432,13 @@ de Gracia</value>
   <data name="lblTipoEscrito" xml:space="preserve">
     <value>Tipo de Escrito:</value>
   </data>
+  <data name="titleConsultarAbandonosPatente" xml:space="preserve">
+    <value>Consultar Abandonos de Patentes</value>
+  </data>
+  <data name="titleAgregarAbandonoPatente" xml:space="preserve">
+    <value>Agregar Abandono de Patentes</value>
+  </data>
+  <data name="titleGestionarAbandonoPatente" xml:space="preserve">
+    <value>Gestionar Abandono de Patente</value>
+  </data>
 </root>

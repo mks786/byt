@@ -672,4 +672,10 @@
   <data name="GestionarLicenciaPatente" xml:space="preserve">
     <value>MYPPLICM</value>
   </data>
+  <data name="ConsultarAbandonosPatente" xml:space="preserve">
+    <value>MYPPABAM</value>
+  </data>
+  <data name="GestionarAbandonoPatente" xml:space="preserve">
+    <value>MYPPABAM</value>
+  </data>
 </root>

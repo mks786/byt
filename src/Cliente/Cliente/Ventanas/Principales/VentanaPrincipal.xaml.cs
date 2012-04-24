@@ -503,12 +503,12 @@ namespace Trascend.Bolet.Cliente.Ventanas.Principales
 
         private void _menuItemAbandonoPatenteConsultarPatente_Click(object sender, RoutedEventArgs e)
         {
-
+            this._presentador.ConsultarAbandonosPatente();
         }
 
         private void _menuItemAbandonoPatenteGestionarPatente_Click(object sender, RoutedEventArgs e)
         {
-
+            this._presentador.GestionarAbandonoPatente();
         }
 
         private void _menuItemCopiaCertificadaPatentePatente_Click(object sender, RoutedEventArgs e)

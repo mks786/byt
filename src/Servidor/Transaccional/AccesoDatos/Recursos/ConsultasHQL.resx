@@ -622,4 +622,8 @@
     <value>Select i from Inventor i where i.Patente.id = '{0}'</value>
     <comment>Selecciona todos los inventores de uina patente</comment>
   </data>
+  <data name="FiltroObtenerOperacionIdPatente" xml:space="preserve">
+    <value>o.CodigoAplicada = {0}</value>
+    <comment>Filtro por Patente</comment>
+  </data>
 </root>

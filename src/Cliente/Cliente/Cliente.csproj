@@ -108,6 +108,8 @@
     <Compile Include="Contratos\Anexos\IConsultarAnexo.cs" />
     <Compile Include="Contratos\Anexos\IConsultarAnexos.cs" />
     <Compile Include="Contratos\CartasOuts\IConsultarCartasOuts.cs" />
+    <Compile Include="Contratos\AbandonosPatente\IConsultarAbandonosPatente.cs" />
+    <Compile Include="Contratos\AbandonosPatente\IGestionarAbandonoPatente.cs" />
     <Compile Include="Contratos\EscritosPatente\IContestacionAOposicion.cs" />
     <Compile Include="Contratos\EscritosPatente\IOficioDeJuramento.cs" />
     <Compile Include="Contratos\EscritosPatente\IConsignacionDePrioridadExtranjera.cs" />
@@ -294,6 +296,8 @@
     <Compile Include="Presentadores\Contactos\PresentadorAgregarContacto.cs" />
     <Compile Include="Presentadores\Contactos\PresentadorConsultarContacto.cs" />
     <Compile Include="Presentadores\CartasOuts\PresentadorConsultarCartasOuts.cs" />
+    <Compile Include="Presentadores\AbandonosPatente\PresentadorConsultarAbandonosPatente.cs" />
+    <Compile Include="Presentadores\AbandonosPatente\PresentadorGestionarAbandonoPatente.cs" />
     <Compile Include="Presentadores\EscritosPatente\PresentadorOficioDeJuramento.cs" />
     <Compile Include="Presentadores\EscritosPatente\PresentadorConsignacionDePrioridadExtranjera.cs" />
     <Compile Include="Presentadores\EscritosPatente\PresentadorOficioDePoder.cs" />
@@ -539,6 +543,12 @@
     </Compile>
     <Compile Include="Ventanas\Anexos\ConsultarAnexos.xaml.cs">
       <DependentUpon>ConsultarAnexos.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\AbandonosPatente\ConsultarAbondonosPatente.xaml.cs">
+      <DependentUpon>ConsultarAbondonosPatente.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\AbandonosPatente\GestionarAbandonoPatente.xaml.cs">
+      <DependentUpon>GestionarAbandonoPatente.xaml</DependentUpon>
     </Compile>
     <Compile Include="Ventanas\EscritosPatente\ContestacionAOposicion.xaml.cs">
       <DependentUpon>ContestacionAOposicion.xaml</DependentUpon>
@@ -1111,6 +1121,14 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Ventanas\Cartas\ConsultarCartas.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\AbandonosPatente\ConsultarAbondonosPatente.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\AbandonosPatente\GestionarAbandonoPatente.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

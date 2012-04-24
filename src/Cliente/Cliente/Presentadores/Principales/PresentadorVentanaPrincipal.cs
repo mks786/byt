@@ -7,6 +7,7 @@ using System.Windows.Input;
 using NLog;
 using Trascend.Bolet.Cliente.Contratos.Principales;
 using Trascend.Bolet.Cliente.Ventanas.Abandonos;
+using Trascend.Bolet.Cliente.Ventanas.AbandonosPatente;
 using Trascend.Bolet.Cliente.Ventanas.Agentes;
 using Trascend.Bolet.Cliente.Ventanas.Anexos;
 using Trascend.Bolet.Cliente.Ventanas.Categorias;
@@ -560,6 +561,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
             this._ventana.Contenedor.Navigate(new ConsultarMarcasTercero());
         }
 
+        /// <summary>
+        /// Método que coloca la página "Consultar Inventores" en el frame principal
+        /// </summary>
         public void IrConsultarInventores()
         {
             Patente patente = new Patente(9607);
@@ -940,6 +944,20 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
             this._ventana.Contenedor.Navigate(new GestionarLicenciaPatentes(null));
         }
 
+        /// <summary>
+        /// Método que coloca la página "Consultar Abandonos Patente" en el Frame principal
+        /// </summary>
+        public void ConsultarAbandonosPatente()
+        {
+            this._ventana.Contenedor.Navigate(new ConsultarAbandonosPatente());
+        }
+        /// <summary>
+        /// Método que coloca la página "Gestionar Abandono Patente" en el Frame principal
+        /// </summary>
+        public void GestionarAbandonoPatente()
+        {
+            this._ventana.Contenedor.Navigate(new GestionarAbandonoPatente(null));
+        }
 
         #endregion
 

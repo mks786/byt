@@ -10,23 +10,23 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using NLog;
 using Trascend.Bolet.Cliente.Ayuda;
-using Trascend.Bolet.Cliente.Contratos.Abandonos;
-using Trascend.Bolet.Cliente.Ventanas.Marcas;
+using Trascend.Bolet.Cliente.Contratos.AbandonosPatente;
+using Trascend.Bolet.Cliente.Ventanas.Patentes;
 using Trascend.Bolet.Cliente.Ventanas.Principales;
-using Trascend.Bolet.Cliente.Ventanas.Abandonos;
+using Trascend.Bolet.Cliente.Ventanas.AbandonosPatente;
 using Trascend.Bolet.ObjetosComunes.ContratosServicios;
 using Trascend.Bolet.ObjetosComunes.Entidades;
 
-namespace Trascend.Bolet.Cliente.Presentadores.Abandonos
+namespace Trascend.Bolet.Cliente.Presentadores.AbandonosPatente
 {
-    class PresentadorConsultarAbandonos : PresentadorBase
+    class PresentadorConsultarAbandonosPatente : PresentadorBase
     {
         private static PaginaPrincipal _paginaPrincipal = PaginaPrincipal.ObtenerInstancia;
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
-        private IConsultarAbandonos _ventana;
-        private IMarcaServicios _marcaServicios;        
-        private IList<Marca> _marcas;
+        private IConsultarAbandonosPatente _ventana;
+        private IPatenteServicios _patenteServicios;        
+        private IList<Patente> _patentes;
         private IList<Operacion> _abandonos;
         private IOperacionServicios _operacionServicios;
         
@@ -34,13 +34,13 @@ namespace Trascend.Bolet.Cliente.Presentadores.Abandonos
         /// Constructor Predeterminado
         /// </summary>
         /// <param name="ventana">página que satisface el contrato</param>
-        public PresentadorConsultarAbandonos(IConsultarAbandonos ventana)
+        public PresentadorConsultarAbandonosPatente(IConsultarAbandonosPatente ventana)
         {
             try
             {
                 this._ventana = ventana;
-                this._marcaServicios = (IMarcaServicios)Activator.GetObject(typeof(IMarcaServicios),
-                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["MarcaServicios"]);
+                this._patenteServicios = (IPatenteServicios)Activator.GetObject(typeof(IPatenteServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["PatenteServicios"]);
                 this._operacionServicios = (IOperacionServicios)Activator.GetObject(typeof(IOperacionServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["OperacionServicios"]);
             }
@@ -53,8 +53,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Abandonos
 
         public void ActualizarTitulo()
         {
-            this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleConsultarAbandonosPatente,
-                Recursos.Ids.ConsultarAbandonosPatente);
+            this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleConsultarAbandonos,
+                Recursos.Ids.ConsultarAbandonos);
         }
 
         /// <summary>
@@ -135,9 +135,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Abandonos
                     filtroValido = 2;
                 }
 
-                if ((null != this._ventana.Marca) && (((Marca)this._ventana.Marca).Id != int.MinValue))
+                if ((null != this._ventana.Patente) && (((Patente)this._ventana.Patente).Id != int.MinValue))
                 {
-                    operacionAuxiliar.Marca = (Marca)this._ventana.Marca;
+                    operacionAuxiliar.Patente = (Patente)this._ventana.Patente;
                     filtroValido = 2;
                 }
 
@@ -148,7 +148,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Abandonos
                     operacionAuxiliar.Fecha = fechaCesion;
                 }
 
-                operacionAuxiliar.Aplicada = 'M';
+                operacionAuxiliar.Aplicada = 'P';
 
                 Servicio servicioAuxiliar = new Servicio();
                 servicioAuxiliar.Id = "AB";
@@ -157,8 +157,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Abandonos
 
                 if (filtroValido >= 2)
                 {
-                    Marca marcaAuxiliar = new Marca();
-                    marcaAuxiliar.Id = operacionAuxiliar.CodigoAplicada;
+                    Patente patenteAuxiliar = new Patente();
+                    patenteAuxiliar.Id = operacionAuxiliar.CodigoAplicada;
 
                     this._abandonos = this._operacionServicios.ObtenerOperacionFiltro(operacionAuxiliar);                   
                     
@@ -198,7 +198,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Abandonos
 
             if (this._ventana.AbandonoSeleccionado != null)
             {
-                this.Navegar(new GestionarAbandono(this._ventana.AbandonoSeleccionado));
+                this.Navegar(new GestionarAbandonoPatente(this._ventana.AbandonoSeleccionado));
             }
 
             #region trace
@@ -242,38 +242,40 @@ namespace Trascend.Bolet.Cliente.Presentadores.Abandonos
         }       
 
         /// <summary>
-        /// Método que busca las marcas registradas
+        /// Método que busca las patentes registradas
         /// </summary>
-        public void BuscarMarca()
+        public void BuscarPatente()
         {
             Mouse.OverrideCursor = Cursors.Wait;
-            Marca marca = new Marca();
-            IEnumerable<Marca> marcasFiltradas;
-            marca.Descripcion = this._ventana.NombreMarcaFiltrar.ToUpper();
-            marca.Id = this._ventana.IdMarcaFiltrar.Equals("") ? 0 : int.Parse(this._ventana.IdMarcaFiltrar);
-            if ((!marca.Descripcion.Equals("")) || (marca.Id != 0))
-                marcasFiltradas = this._marcaServicios.ObtenerMarcasFiltro(marca);
+            Patente patente = new Patente();
+            IEnumerable<Patente> patentesFiltradas;
+            patente.Descripcion = this._ventana.NombrePatenteFiltrar.ToUpper();
+            
+            patente.Id = this._ventana.IdPatenteFiltrar.Equals("") ? 0 : int.Parse(this._ventana.IdPatenteFiltrar);
+            
+            if ((!patente.Descripcion.Equals("")) || (patente.Id != 0))
+                patentesFiltradas = this._patenteServicios.ObtenerPatentesFiltro(patente);
             else
-                marcasFiltradas = new List<Marca>();
+                patentesFiltradas = new List<Patente>();
 
-            if (marcasFiltradas.ToList<Marca>().Count != 0)
-                this._ventana.Marcas = marcasFiltradas.ToList<Marca>();
+            if (patentesFiltradas.ToList<Patente>().Count != 0)
+                this._ventana.Patentes = patentesFiltradas.ToList<Patente>();
             else
-                this._ventana.Marcas = this._marcas;
+                this._ventana.Patentes = this._patentes;
 
             Mouse.OverrideCursor = null;
         }
 
         /// <summary>
-        /// Método que permite seleccionar marcas
+        /// Método que permite seleccionar patente
         /// </summary>
-        public bool ElegirMarca()
+        public bool ElegirPatente()
         {
             bool retorno = false;
-            if (this._ventana.Marca != null)
+            if (this._ventana.Patente != null)
             {
                 retorno = true;
-                this._ventana.NombreMarca = ((Marca)this._ventana.Marca).Descripcion;
+                this._ventana.NombrePatente = ((Patente)this._ventana.Patente).Descripcion;
             }
 
             return retorno;

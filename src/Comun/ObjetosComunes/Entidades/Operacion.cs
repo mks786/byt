@@ -19,6 +19,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         private Interesado _interesado;
         private Boletin _boletin;
         private Marca _marca;
+        private Patente _patente;
 
         #endregion
 
@@ -164,6 +165,15 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         {
             get { return _marca; }
             set { _marca = value; }
+        }
+
+        /// <summary>
+        /// Propiedad que asigna u obtiene la Patente
+        /// </summary>
+        public virtual Patente Patente
+        {
+            get { return _patente; }
+            set { _patente = value; }
         }
 
         #endregion

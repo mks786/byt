@@ -124,6 +124,14 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
                     variosFiltros = true;
                 }
 
+                if ((null != operacion.Patente) && (!operacion.Patente.Id.Equals("")))
+                {
+                    if (variosFiltros)
+                        filtro += " and ";
+                    filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerOperacionIdPatente, operacion.Patente.Id);
+                    variosFiltros = true;
+                }
+
                 if ((null != operacion.Fecha) && (!operacion.Fecha.Equals(DateTime.MinValue)))
                 {
                     if (variosFiltros)

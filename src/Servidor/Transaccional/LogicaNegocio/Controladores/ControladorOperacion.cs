@@ -263,6 +263,7 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
                 retorno = comando.Receptor.ObjetoAlmacenado;
 
                 ComandoBase<Marca> comandoConsultarMarca = null;
+                ComandoBase<Patente> comandoConsultarPatente = null;
 
                 foreach (Operacion operacionConMyP in retorno)
                 {
@@ -272,6 +273,13 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
                         comandoConsultarMarca.Ejecutar();
                         operacionConMyP.Marca = comandoConsultarMarca.Receptor.ObjetoAlmacenado;
                     }
+                    else if (operacion.Aplicada.Equals('P'))
+                    {
+                        comandoConsultarPatente = FabricaComandosPatente.ObtenerComandoConsultarPorId(operacionConMyP.CodigoAplicada);
+                        comandoConsultarPatente.Ejecutar();
+                        operacionConMyP.Patente = comandoConsultarPatente.Receptor.ObjetoAlmacenado;
+                    }
+
                 }
 
                 #region trace
