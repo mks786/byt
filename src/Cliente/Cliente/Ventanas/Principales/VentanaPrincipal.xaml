@@ -120,12 +120,9 @@
                     <MenuItem Name="_menuItemPatentesConsultar" Header="{x:Static resx:Etiquetas.menuItemConsultar}" Click="_menuItemPatentesConsultar_Click"/>
                     <MenuItem Name="_menuItemPatentesAgregar" Header="{x:Static resx:Etiquetas.menuItemAgregar}" Click="_menuItemPatentesAgregar_Click"/>
                 </MenuItem>
-                <MenuItem Name="_menuItemRenovacionesPatentes" Visibility="Collapsed" Header="{x:Static resx:Etiquetas.menuItemRenovaciones}">
-                    <MenuItem Name="_menuItemRenovacionPatente" Header="{x:Static resx:Etiquetas.menuItemRenovacion}" >
-                        <MenuItem Name="_menuItemRenovacionesConsultarPatente" Header="{x:Static resx:Etiquetas.menuItemConsultar}" Click="_menuItemRenovacionesConsultarPatente_Click"/>
-                        <MenuItem Name="_menuItemRenovacionesAgregarPatente" Header="{x:Static resx:Etiquetas.menuItemAgregar}" Click="_menuItemRenovacionesAgregarPatente_Click"/>
-                    </MenuItem>
-                    <MenuItem Name="_menuItemRecordatorioPatente" Header="{x:Static resx:Etiquetas.menuItemRecordatorios}" Click="_menuItemRecordatorio_Click"/>
+                <MenuItem Name="_menuItemAnualidadesPatentes" Visibility="Collapsed" Header="{x:Static resx:Etiquetas.menuItemAnualidades}">
+                        <MenuItem Name="_menuItemRenovacionesConsultarPatente" Header="{x:Static resx:Etiquetas.menuItemConsultar}" Click="_menuItemAnualidadesConsultarPatente_Click"/>
+                    <MenuItem Name="_menuItemRenovacionesAgregarPatente" Header="{x:Static resx:Etiquetas.menuItemAgregar}" Click="_menuItemAnualidadesAgregarPatente_Click"/>       
                 </MenuItem>
                 <MenuItem Name="_menuItemAbandonoPatente" Visibility="Collapsed" Header="{x:Static resx:Etiquetas.menuItemAbandono}">
                     <MenuItem Name="_menuItemAbandonoPatenteConsultarPatente" Header="{x:Static resx:Etiquetas.menuItemConsultar}" Click="_menuItemAbandonoPatenteConsultarPatente_Click"/>

@@ -2432,6 +2432,9 @@ de Gracia</value>
   <data name="lblTipoEscrito" xml:space="preserve">
     <value>Tipo de Escrito:</value>
   </data>
+  <data name="menuItemAnualidades" xml:space="preserve">
+    <value>Anualidades</value>
+  </data>
   <data name="titleConsultarAbandonosPatente" xml:space="preserve">
     <value>Consultar Abandonos de Patentes</value>
   </data>

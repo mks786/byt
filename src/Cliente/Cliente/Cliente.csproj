@@ -92,6 +92,7 @@
     <Compile Include="Contratos\Agentes\IAgregarAgente.cs" />
     <Compile Include="Contratos\Agentes\IConsultarAgente.cs" />
     <Compile Include="Contratos\Agentes\IConsultarAgentes.cs" />
+    <Compile Include="Contratos\Anualidades\IGestionarAnualidades.cs" />
     <Compile Include="Contratos\Asociados\IListaDatosTransferencia.cs" />
     <Compile Include="Contratos\Asociados\IListaContactos.cs" />
     <Compile Include="Contratos\Asociados\IListaJustificaciones.cs" />
@@ -283,6 +284,7 @@
     <Compile Include="Presentadores\Anexos\PresentadorConsultarAnexos.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Presentadores\Anualidades\PresentadorGestionarAnualidades.cs" />
     <Compile Include="Presentadores\Asociados\PresentadorListaDatosTransferencia.cs" />
     <Compile Include="Presentadores\Asociados\PresentadorListaContactos.cs" />
     <Compile Include="Presentadores\Asociados\PresentadorListaJustificaciones.cs" />
@@ -501,6 +503,9 @@
     </Compile>
     <Compile Include="Ventanas\Anexos\AgregarAnexo.xaml.cs">
       <DependentUpon>AgregarAnexo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Anualidades\GestionarAnualidades.xaml.cs">
+      <DependentUpon>GestionarAnualidades.xaml</DependentUpon>
     </Compile>
     <Compile Include="Ventanas\Asociados\AgregarAsociado.xaml.cs">
       <DependentUpon>AgregarAsociado.xaml</DependentUpon>
@@ -1049,6 +1054,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Ventanas\Anexos\AgregarAnexo.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\Anualidades\GestionarAnualidades.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

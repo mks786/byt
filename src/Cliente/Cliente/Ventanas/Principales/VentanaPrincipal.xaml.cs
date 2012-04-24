@@ -491,14 +491,14 @@ namespace Trascend.Bolet.Cliente.Ventanas.Principales
 
         }
 
-        private void _menuItemRenovacionesConsultarPatente_Click(object sender, RoutedEventArgs e)
+        private void _menuItemAnualidadesConsultarPatente_Click(object sender, RoutedEventArgs e)
         {
-
+            this._presentador.ConsultarAnualidades();
         }
 
-        private void _menuItemRenovacionesAgregarPatente_Click(object sender, RoutedEventArgs e)
+        private void _menuItemAnualidadesAgregarPatente_Click(object sender, RoutedEventArgs e)
         {
-
+            this._presentador.GestionarAnualidades();
         }
 
         private void _menuItemAbandonoPatenteConsultarPatente_Click(object sender, RoutedEventArgs e)
@@ -670,6 +670,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Principales
         {
             this._presentador.IrConsultarInventores();
         }
+
 
     }
 }

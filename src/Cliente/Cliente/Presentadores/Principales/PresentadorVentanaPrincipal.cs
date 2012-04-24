@@ -57,6 +57,7 @@ using Trascend.Bolet.Cliente.Ventanas.EscritosMarca;
 using Trascend.Bolet.Cliente.Ventanas.EscritosPatente;
 using Trascend.Bolet.Cliente.Ventanas.Logines;
 using Trascend.Bolet.Cliente.Ventanas.Patentes;
+using Trascend.Bolet.Cliente.Ventanas.Anualidades;
 using System.Diagnostics;
 using System.Collections.Generic;
 
@@ -945,6 +946,13 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
         }
 
         /// <summary>
+        /// Método que coloca la página "ConsultarAnualidades" en el Frame principal
+        /// </summary>
+        public void ConsultarAnualidades()
+        {
+          //  this._ventana.Contenedor.Navigate(new ConsultarAnualidades());
+        }
+        /// <summary>
         /// Método que coloca la página "Consultar Abandonos Patente" en el Frame principal
         /// </summary>
         public void ConsultarAbandonosPatente()
@@ -957,6 +965,14 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
         public void GestionarAbandonoPatente()
         {
             this._ventana.Contenedor.Navigate(new GestionarAbandonoPatente(null));
+        }
+
+        /// <summary>
+        /// Método que coloca la página "ConsultarAnualidades" en el Frame principal
+        /// </summary>
+        public void GestionarAnualidades()
+        {
+              this._ventana.Contenedor.Navigate(new GestionarAnualidades(null));
         }
 
         #endregion
@@ -1222,7 +1238,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
                                     if (objeto.Id.Equals(Recursos.Ids.Marca))
                                         itemNivel2.Visibility = System.Windows.Visibility.Visible;
                                     break;
-                                case "_menuItemRenovacionesPatentes":
+                                case "_menuItemAnualidadesPatentes":
                                     if (objeto.Id.Equals(Recursos.Ids.Marca))
                                         itemNivel2.Visibility = System.Windows.Visibility.Visible;
                                     break;

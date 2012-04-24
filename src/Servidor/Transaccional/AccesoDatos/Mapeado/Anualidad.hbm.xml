@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+                   assembly="Trascend.Bolet.ObjetosComunes"
+                   namespace="Trascend.Bolet.ObjetosComunes.Entidades"
+                   auto-import="true">
+
+  <class name="Anualidad" table="MYP_ANUALIDADES">
+    <id name="Id" column="CANUALIDAD" type="int"/>
+    <property name="FechaAnualidad" column="FANUALIDAD" type="DateTime"/>
+    <property name="QAnualidad" column="QANUALIDAD" type="int"/>
+    <property name="Situacion" column="ISITUACION" type="string"/>
+    <property name="Voucher" column="CVOUCHER" type="string"/>
+    <property name="FechaVoucher" column="FVOUCHER" type="DateTime"/>
+    <property name="Recibo" column="CRECIBO" type="string"/>
+    <property name="Factura" column="CFACTURA" type="int"/>
+    <property name="IFactura" column="IFACTURA" type="int"/>
+
+    <many-to-one name="Asociado" class="Asociado">
+      <column name="CASOCIADO"/>
+    </many-to-one>
+
+    <many-to-one name="Patente" class="Patente">
+      <column name="CPATENTE"/>
+    </many-to-one>
+
+
+  </class>
+</hibernate-mapping>
+
+
