@@ -22,7 +22,7 @@
         </Style>
     </Page.Resources>
 
-    <Grid>
+    <Grid VerticalAlignment="Top">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="20"/>
             <ColumnDefinition Width="*"/>
@@ -31,7 +31,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="50"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="40"/>
+            <RowDefinition Height="*"/>
             <RowDefinition Height="10"/>
         </Grid.RowDefinitions>
 
@@ -135,6 +135,7 @@
                         <!--Fin datos de la Patente-->
                     </Grid>
                 </WrapPanel>
+   
                 <Separator Margin="5,5,0,0"/>
                 
 

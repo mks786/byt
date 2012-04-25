@@ -2444,4 +2444,10 @@ de Gracia</value>
   <data name="titleGestionarAbandonoPatente" xml:space="preserve">
     <value>Gestionar Abandono de Patente</value>
   </data>
+  <data name="titleAgregarAnualidad" xml:space="preserve">
+    <value>Agregar Anualidad</value>
+  </data>
+  <data name="titleGestionarAnualidad" xml:space="preserve">
+    <value>Gestionar Anualidad</value>
+  </data>
 </root>

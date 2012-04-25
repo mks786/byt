@@ -55,6 +55,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         private string _operacion;
         private InfoAdicional _infoAdicional;
         private IList<Inventor> _inventores;
+        private IList<Anualidad> _anualidades;
 
         #endregion
 
@@ -521,6 +522,13 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
             get { return _inventores; }
             set { _inventores = value; }
         }
+
+        public virtual IList<Anualidad> Anualidades
+        {
+            get { return _anualidades; }
+            set { _anualidades = value; }
+        }
+
         #endregion
     }
 }

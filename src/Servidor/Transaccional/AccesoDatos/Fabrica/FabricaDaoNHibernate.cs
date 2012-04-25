@@ -693,5 +693,14 @@ namespace Trascend.Bolet.AccesoDatos.Fabrica
         {
             return new DaoInventorNHibernate();
         }
+
+        /// <summary>
+        /// Método que devuelve el DaoAnualidad
+        /// </summary>
+        /// <returns>IDaoAnualidad</returns>
+        public override IDaoAnualidad ObtenerDaoAnualidad()
+        {
+            return new DaoAnualidadNHibernate();
+        }
     }
 }

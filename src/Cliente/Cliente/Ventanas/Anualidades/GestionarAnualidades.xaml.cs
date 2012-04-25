@@ -25,7 +25,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Anualidades
             set { this._cargada = value; }
         }
 
-        public object FusionPatente
+        public object Patente
         {
             get
             {
@@ -47,11 +47,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Anualidades
             get { return this._txtNombrePatenteFiltrar.Text; }
         }
 
-        public object Patente
-        {
-            get { return this._gridDatosPatente.DataContext; }
-            set { this._gridDatosPatente.DataContext = value; }
-        }
+        //public object Patente
+        //{
+        //    get { return this._gridDatosPatente.DataContext; }
+        //    set { this._gridDatosPatente.DataContext = value; }
+        //}
 
         public string Region
         {
@@ -119,6 +119,46 @@ namespace Trascend.Bolet.Cliente.Ventanas.Anualidades
             get { return _CurAdorner; }
             set { _CurAdorner = value; }
         }
+
+        #region Asociados
+        //public string IdAsociadoSolicitudFiltrar
+        //{
+        //    get { return this._txtIdAsociadoSolicitudFiltrar.Text; }
+        //}
+
+        //public string IdAsociadoSolicitud
+        //{
+        //    set { this._txtIdAsociadoSolicitud.Text = value; }
+        //}
+
+        //public string NombreAsociadoSolicitudFiltrar
+        //{
+        //    get { return this._txtNombreAsociadoSolicitud.Text; }
+        //}
+
+        //public string NombreAsociadoDatosFiltrar
+        //{
+        //    get { return this._txtNombreAsociadoSolicitud.Text; }
+        //}
+
+        //public string NombreAsociadoSolicitud
+        //{
+        //    get { return this._txtAsociadoSolicitud.Text; }
+        //    set { this._txtAsociadoSolicitud.Text = value; }
+        //}
+
+        //public object AsociadosSolicitud
+        //{
+        //    get { return this._lstAsociadosSolicitud.DataContext; }
+        //    set { this._lstAsociadosSolicitud.DataContext = value; }
+        //}
+
+        //public object AsociadoSolicitud
+        //{
+        //    get { return this._lstAsociadosSolicitud.SelectedItem; }
+        //    set { this._lstAsociadosSolicitud.SelectedItem = value; }
+        //}
+        #endregion
 
         public void Mensaje(string mensaje, int opcion)
         {

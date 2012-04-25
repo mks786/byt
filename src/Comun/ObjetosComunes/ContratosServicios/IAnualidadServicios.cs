@@ -6,8 +6,8 @@ namespace Trascend.Bolet.ObjetosComunes.ContratosServicios
 {
     public interface IAnualidadServicios : IServicioBase<Anualidad>
     {
-        IList<Anualidad> ObtenerPatentesFiltro(Anualidad Anualidad);
+        IList<Anualidad> ObtenerAnualidadesFiltro(Anualidad Anualidad);
 
-        Anualidad ConsultarPatenteConTodo(Anualidad Anualidad);
+        Anualidad ConsultarAnualidadConTodo(Anualidad Anualidad);
     }
 }

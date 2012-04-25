@@ -53,6 +53,7 @@
     <Compile Include="Comandos\ComandosAnexo\ComandoEliminarAnexo.cs" />
     <Compile Include="Comandos\ComandosAnexo\ComandoInsertarOModificarAnexo.cs" />
     <Compile Include="Comandos\ComandosAnexo\ComandoVerificarExistenciaAnexo.cs" />
+    <Compile Include="Comandos\ComandosAnualidad\ComandoConsultarAnualidadesFiltro.cs" />
     <Compile Include="Comandos\ComandosAsignacion\ComandoConsultarAsignacionesPorCarta.cs" />
     <Compile Include="Comandos\ComandosAsociado\ComandoConsultarAsociadoConTodo.cs" />
     <Compile Include="Comandos\ComandosAsociado\ComandoConsultarAsociadosFiltro.cs" />
@@ -341,10 +342,14 @@
     <Compile Include="Comandos\ComandosInventor\ComandoEliminarInventor.cs" />
     <Compile Include="Comandos\ComandosInventor\ComandoInsertarOModificarInventor.cs" />
     <Compile Include="Comandos\ComandosInventor\ComandoVerificarExistenciaInventor.cs" />
+    <Compile Include="Comandos\ComandosAnualidad\ComandoConsultarTodasAnualidades.cs" />
+    <Compile Include="Comandos\ComandosAnualidad\ComandoEliminarAnualidad.cs" />
+    <Compile Include="Comandos\ComandosAnualidad\ComandoInsertarOModificarAnualidad.cs" />
     <Compile Include="Comandos\Receptor.cs" />
     <Compile Include="Comandos\ComandosUsuario\ComandoConsultarTodosUsuarios.cs" />
     <Compile Include="Comandos\ComandosUsuario\ComandoConsultarUsuarioPorID.cs" />
     <Compile Include="Comandos\ComandosUsuario\ComandoInsertarOModificarUsuario.cs" />
+    <Compile Include="Fabrica\FabricaComandosAnualidad.cs" />
     <Compile Include="Fabrica\FabricaComandosInventor.cs" />
     <Compile Include="Fabrica\FabricaComandosCambioPeticionarioPatente.cs" />
     <Compile Include="Fabrica\FabricaComandosCambioDeNombrePatente.cs" />

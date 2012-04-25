@@ -45,8 +45,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Anualidades
         private IOperacionServicios _operacionServicios;
         private IBusquedaServicios _busquedaServicios;
         private IStatusWebServicios _statusWebServicios;
-        private IFusionPatenteServicios _fusionesServicios;
+        private IPatenteServicios _patenteesServicios;
         private IPlanillaServicios _planillaServicios;
+        private IAnualidadServicios _anualidadServicios;
 
         private IList<Asociado> _asociados;
         private IList<Interesado> _interesados;
@@ -67,24 +68,22 @@ namespace Trascend.Bolet.Cliente.Presentadores.Anualidades
         /// Constructor Predeterminado
         /// </summary>
         /// <param name="ventana">página que satisface el contrato</param>
-        public PresentadorGestionarAnualidades(IGestionarAnualidades ventana, object fusion)
+        public PresentadorGestionarAnualidades(IGestionarAnualidades ventana, object patente)
         {
             try
             {
                 this._ventana = ventana;
 
-                if (fusion != null)
+                if (patente != null)
                 {
-                    this._ventana.FusionPatente = fusion;
+                    this._ventana.Patente = patente;
                     _agregar = false;
                 }
                 else
                 {
-                    FusionPatente fusionAgregar = new FusionPatente();
-                    this._ventana.FusionPatente = fusionAgregar;
+                    Patente patenteAgregar = new Patente();
+                    this._ventana.Patente = patenteAgregar;
 
-                    ((FusionPatente)this._ventana.FusionPatente).Fecha = DateTime.Now;
-                    this._ventana.Patente = null;
 
                     CambiarAModificar();
 
@@ -131,10 +130,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.Anualidades
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["BusquedaServicios"]);
                 this._statusWebServicios = (IStatusWebServicios)Activator.GetObject(typeof(IStatusWebServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["StatusWebServicios"]);
-                this._fusionesServicios = (IFusionPatenteServicios)Activator.GetObject(typeof(IFusionPatenteServicios),
-                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["FusionPatenteServicios"]);
+                this._patenteesServicios = (IPatenteServicios)Activator.GetObject(typeof(IPatenteServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["PatenteServicios"]);
                 this._planillaServicios = (IPlanillaServicios)Activator.GetObject(typeof(IPlanillaServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["PlanillaServicios"]);
+                this._anualidadServicios = (IAnualidadServicios)Activator.GetObject(typeof(IAnualidadServicios),
+                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["AnualidadServicios"]);
 
 
                 #endregion
@@ -150,10 +151,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Anualidades
         {
 
             if (_agregar == true)
-                this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleAgregarFusionPatente,
+                this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleAgregarAnualidad,
                 Recursos.Ids.GestionarFusionPatente);
             else
-                this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleGestionarFusionPatente,
+                this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleGestionarAnualidad,
                 Recursos.Ids.GestionarFusionPatente);
         }
 
@@ -176,10 +177,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Anualidades
                 if (_agregar == false)
                 {
 
-                    FusionPatente fusion = (FusionPatente)this._ventana.FusionPatente;
-
-                    if (((FusionPatente)fusion).Patente != null)
-                        this._ventana.Patente = this._marcaServicios.ConsultarPatenteConTodo(((FusionPatente)fusion).Patente);
+                    Patente patente = (Patente)this._ventana.Patente;
 
                     this._ventana.NombrePatente = ((Patente)this._ventana.Patente).Descripcion;
 
@@ -250,21 +248,20 @@ namespace Trascend.Bolet.Cliente.Presentadores.Anualidades
         }
 
         /// <summary>
-        /// Método que dependiendo del estado de la pagina carga una fusion seleccionada
+        /// Método que dependiendo del estado de la pagina carga una patente seleccionada
         /// o una nueva
         /// </summary>
-        public FusionPatente CargarFusionDeLaPantalla()
+        public Patente CargarFusionDeLaPantalla()
         {
             #region trace
             if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
                 logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
 
-            FusionPatente fusion = (FusionPatente)this._ventana.FusionPatente;
-
-            if (null != this._ventana.PatenteFiltrada)
-                fusion.Patente = ((Patente)this._ventana.PatenteFiltrada).Id != int.MinValue ? (Patente)this._ventana.Patente : null;
-
+            Patente patente = (Patente)this._ventana.Patente;
+            Anualidad aux = new Anualidad();
+            aux.Id = patente.Id;
+            patente.Anualidades = this._anualidadServicios.ObtenerAnualidadesFiltro(aux);
             
             #region Comentado
             //marca.Operacion = "MODIFY";
@@ -319,7 +316,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Anualidades
                 logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
 
-            return fusion;
+            return patente;
         }
 
         /// <summary>
@@ -352,12 +349,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.Anualidades
                     this._ventana.TextoBotonModificar = Recursos.Etiquetas.btnAceptar;
                 }
 
-                //Modifica los datos de la fusion
+                //Modifica los datos de la patente
                 else if (this._ventana.TextoBotonModificar == Recursos.Etiquetas.btnAceptar)
                 {
-                    FusionPatente fusion = CargarFusionDeLaPantalla();
+                    Patente patente = CargarFusionDeLaPantalla();
 
-                    bool exitoso = this._fusionesServicios.InsertarOModificar(fusion, UsuarioLogeado.Hash);
+                    bool exitoso = this._patenteesServicios.InsertarOModificar(patente, UsuarioLogeado.Hash);
 
                     if ((exitoso) && (this._agregar == false))
                         this.Navegar(Recursos.MensajesConElUsuario.FusionModificada, false);
@@ -397,7 +394,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Anualidades
         }
 
         /// <summary>
-        /// Metodo que se encarga de eliminar una FusionPatente
+        /// Metodo que se encarga de eliminar una Patente
         /// </summary>
         public void Eliminar()
         {
@@ -410,7 +407,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Anualidades
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-                if (this._fusionesServicios.Eliminar((FusionPatente)this._ventana.FusionPatente, UsuarioLogeado.Hash))
+                if (this._patenteesServicios.Eliminar((Patente)this._ventana.Patente, UsuarioLogeado.Hash))
                 {
                     _paginaPrincipal.MensajeUsuario = Recursos.MensajesConElUsuario.FusionEliminada;
                     this.Navegar(_paginaPrincipal);
@@ -689,7 +686,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Anualidades
         //        string paqueteProcedimiento = "PCK_MYP_PFUSIONES";
         //        string procedimiento = "P4";
         //        ParametroProcedimiento parametro =
-        //            new ParametroProcedimiento(((FusionPatente)this._ventana.FusionPatente).Id, UsuarioLogeado, 1, paqueteProcedimiento, procedimiento);
+        //            new ParametroProcedimiento(((Patente)this._ventana.Patente).Id, UsuarioLogeado, 1, paqueteProcedimiento, procedimiento);
 
         //        //Planilla planilla = this._planillaServicios.ImprimirProcedimiento(parametro);
         //        //if (planilla != null)
@@ -711,7 +708,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Anualidades
                 string paqueteProcedimiento = "PCK_MYP_PFUSIONES";
                 string procedimiento = "P2";
                 ParametroProcedimiento parametro =
-                    new ParametroProcedimiento(((FusionPatente)this._ventana.FusionPatente).Id, UsuarioLogeado, 1, paqueteProcedimiento, procedimiento);
+                    new ParametroProcedimiento(((Patente)this._ventana.Patente).Id, UsuarioLogeado, 1, paqueteProcedimiento, procedimiento);
 
                 //Planilla planilla = this._planillaServicios.ImprimirProcedimiento(parametro);
                 //if (planilla != null)
@@ -733,7 +730,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Anualidades
                 string paqueteProcedimiento = "PCK_MYP_PFUSIONES";
                 string procedimiento = "P1";
                 ParametroProcedimiento parametro =
-                    new ParametroProcedimiento(((FusionPatente)this._ventana.FusionPatente).Id, UsuarioLogeado, 1, paqueteProcedimiento, procedimiento);
+                    new ParametroProcedimiento(((Patente)this._ventana.Patente).Id, UsuarioLogeado, 1, paqueteProcedimiento, procedimiento);
 
                 //Planilla planilla = this._planillaServicios.ImprimirProcedimiento(parametro);
                 //if (planilla != null)

@@ -521,7 +521,7 @@
     <comment>Filtro por Id de clase nacional</comment>
   </data>
   <data name="CabeceraObtenerPatente" xml:space="preserve">
-    <value>Select p from Patente p left join fetch p.Asociado as asociado left join fetch p.Interesado as interesado left join fetch asociado.Pais as pais left join fetch asociado.Idioma as pais left join fetch p.BoletinConcesion as boletinC left join fetch p.BoletinPublicacion as boletinP where </value>
+    <value>Select p from Patente p left join fetch p.Asociado as asociado left join fetch p.Interesado as interesado left join fetch asociado.Pais as pais left join fetch asociado.Idioma as pais left join fetch p.BoletinConcesion as boletinC left join fetch p.BoletinPublicacion as boletinP left join fetch p.Anualidades as anualidades where </value>
     <comment>Cabecera del query para el filtro de Patentes</comment>
   </data>
   <data name="FiltroObtenerPatenteDescripcion" xml:space="preserve">
@@ -625,5 +625,17 @@
   <data name="FiltroObtenerOperacionIdPatente" xml:space="preserve">
     <value>o.CodigoAplicada = {0}</value>
     <comment>Filtro por Patente</comment>
+  </data>
+  <data name="CabeceraObtenerAnualidad" xml:space="preserve">
+    <value>Select a from Anualidad a left join fetch a.Patente as patente left join fetch a.Asociado as asociado where </value>
+    <comment>Crea la cabecera de anualidades</comment>
+  </data>
+  <data name="FiltroObtenerAnualidadId" xml:space="preserve">
+    <value>patente.Id = {0}</value>
+    <comment>Filtra la anualidad por id</comment>
+  </data>
+  <data name="ObtenerAnualidadConTodo" xml:space="preserve">
+    <value>Select a from Anualidad a left join fetch a.Patente as patente left join fetch a.Asociado as asociado where patente.Id = {0}</value>
+    <comment>consulta todas las pantentes con el id determinado</comment>
   </data>
 </root>

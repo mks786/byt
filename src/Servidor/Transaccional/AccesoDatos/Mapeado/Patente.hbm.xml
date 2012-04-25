@@ -86,6 +86,13 @@
       </composite-element>
     </bag>
 
+    <bag name="Anualidades" table="MYP_ANUALIDADES" inverse="true" generic="true">
+      <key column="CANUALIDAD"/>
+      <composite-element class="Anualidad">
+        <many-to-one name="Patente" class="Patente" column="CPATENTE"/>
+      </composite-element>
+    </bag>
+    
   </class>
 </hibernate-mapping>
 

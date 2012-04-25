@@ -412,6 +412,11 @@ namespace Trascend.Bolet.AccesoDatos.Fabrica
         public abstract IDaoCambioDeDomicilioPatente ObtenerDaoCambioDeDomicilioPatente();
 
         /// <summary>
+        /// Método que devuelve el DaoAnualidad del manejador que se esté utilizando
+        /// </summary>
+        /// <returns>IDaoAnualidad</returns>
+        public abstract IDaoAnualidad ObtenerDaoAnualidad();
+        /// <summary>
         /// Método que devuelve el DaoCambioNombrePatente del manejador que se esté utilizando
         /// </summary>
         /// <returns>IDaoCambioNombrePatente</returns>
