@@ -950,7 +950,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
         /// </summary>
         public void ConsultarAnualidades()
         {
-          //  this._ventana.Contenedor.Navigate(new ConsultarAnualidades());
+            this._ventana.Contenedor.Navigate(new ConsultarAnualidades());
         }
         /// <summary>
         /// Método que coloca la página "Consultar Abandonos Patente" en el Frame principal

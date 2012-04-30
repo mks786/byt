@@ -13,7 +13,7 @@
     <property name="FechaVoucher" column="FVOUCHER" type="DateTime"/>
     <property name="Recibo" column="CRECIBO" type="string"/>
     <property name="Factura" column="CFACTURA" type="int"/>
-    <property name="IFactura" column="IFACTURA" type="int"/>
+    <property name="IFactura" column="IFACTURA" type="string"/>
 
     <many-to-one name="Asociado" class="Asociado">
       <column name="CASOCIADO"/>

@@ -638,4 +638,8 @@
     <value>Select a from Anualidad a left join fetch a.Patente as patente left join fetch a.Asociado as asociado where patente.Id = {0}</value>
     <comment>consulta todas las pantentes con el id determinado</comment>
   </data>
+  <data name="CabeceraObtenerAnualidadPorIdPatente" xml:space="preserve">
+    <value>Select a from Anualidad a left join fetch a.Patente as patente left join fetch a.Asociado as asociado where patente.Id = {0}</value>
+    <comment>Se obtiene la anualidad de una patente</comment>
+  </data>
 </root>

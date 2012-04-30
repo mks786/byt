@@ -24,19 +24,68 @@ namespace Trascend.Bolet.Cliente.Contratos.Anualidades
         #endregion
 
         #region Asociados
-        //string IdAsociadoSolicitudFiltrar { get; }
 
-        //string IdAsociadoSolicitud { set; }
+        string IdAsociadoSolicitudFiltrar { get; }
 
-        //string NombreAsociadoSolicitudFiltrar { get; }
+        string IdAsociadoSolicitud { set; }
 
-        //string NombreAsociadoSolicitud { get; set; }
+        string NombreAsociadoSolicitudFiltrar { get; }
 
-        //object AsociadosSolicitud { get; set; }
+        string NombreAsociadoSolicitud { get; set; }
 
-        //object AsociadoSolicitud { get; set; }
+        object AsociadosSolicitud { get; set; }
+
+        object AsociadoSolicitud { get; set; }
+
+        bool AsociadosEstanCargados { get; set; }
+
         #endregion
 
+        #region Interesados
+
+        bool InteresadosEstanCargados { get; set; }
+
+        string NombreInteresadoSolicitud { get; set; }
+
+        string IdInteresadoSolicitudFiltrar { get; }
+
+        object InteresadosSolicitud { get; set; }
+
+        object InteresadoSolicitud { get; set; }
+
+        string NombreInteresadoSolicitudFiltrar { get; }
+
+        #endregion
+
+        #region Boletines y situacion
+
+        object BoletinesPublicacion { get; set; }
+
+        object BoletinPublicacion { get; set; }
+
+        object BoletinesConcesion { get; set; }
+
+        object BoletinConcesion { get; set; }
+
+        object Situaciones { get; set; }
+
+        object Situacion { get; set; }
+
+        #endregion
+
+        #region Anualidad
+
+        void AgregarAnualidad();
+
+        void CargarAnualidad();
+
+        void DeshabilitarAnualidad();
+
+        object Anualidades { get; set; }
+
+        object Anualidad { get; set; }
+
+        #endregion
         bool HabilitarCampos { set; }
 
         string Region { get; set; }

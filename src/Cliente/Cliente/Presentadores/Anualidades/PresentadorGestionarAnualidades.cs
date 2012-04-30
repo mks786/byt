@@ -53,10 +53,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Anualidades
         private IList<Interesado> _interesados;
         private IList<Corresponsal> _corresponsales;
         private IList<Auditoria> _auditorias;
-        private IList<Patente> _marcas;
+        private IList<Patente> _patentes;
         private IList<Interesado> _interesadosEntre;
         private IList<Interesado> _interesadosSobreviviente;
         private IList<Agente> _agentesApoderados;
+        private IList<Anualidad> _anualidades;
 
         private IList<Poder> _poderes;
         private IList<Poder> _poderesApoderado;
@@ -180,9 +181,13 @@ namespace Trascend.Bolet.Cliente.Presentadores.Anualidades
                     Patente patente = (Patente)this._ventana.Patente;
 
                     this._ventana.NombrePatente = ((Patente)this._ventana.Patente).Descripcion;
+                    this._ventana.NombreAsociadoSolicitud = patente.Asociado.Nombre;
+                    this._ventana.NombreInteresadoSolicitud = patente.Interesado.Nombre;
+                    this._ventana.Anualidades = patente.Anualidades;
 
 
                     CargarPatente();
+                    CargaComboBox();
 
 
                     this._ventana.FocoPredeterminado();
@@ -191,6 +196,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Anualidades
                 else
                 {
                     CargarPatente();
+                    CargaComboBox();
 
                 }
 
@@ -225,21 +231,23 @@ namespace Trascend.Bolet.Cliente.Presentadores.Anualidades
                 logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
 
-            this._marcas = new List<Patente>();
+            this._patentes = new List<Patente>();
             Patente primeraPatente = new Patente(int.MinValue);
-            this._marcas.Add(primeraPatente);
+            this._patentes.Add(primeraPatente);
 
             if ((Patente)this._ventana.Patente != null)
             {
-                this._marcas.Add((Patente)this._ventana.Patente);
-                this._ventana.PatentesFiltradas = this._marcas;
+                this._patentes.Add((Patente)this._ventana.Patente);
+                this._ventana.PatentesFiltradas = this._patentes;
                 this._ventana.PatenteFiltrada = (Patente)this._ventana.Patente;
             }
             else
             {
-                this._ventana.PatentesFiltradas = this._marcas;
+                this._ventana.PatentesFiltradas = this._patentes;
                 this._ventana.PatenteFiltrada = primeraPatente;
             }
+  
+
             #region trace
             if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
                 logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
@@ -271,11 +279,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Anualidades
             //if (null != this._ventana.AsociadoSolicitud)
             //    marca.Asociado = ((Asociado)this._ventana.AsociadoSolicitud).Id != int.MinValue ? (Asociado)this._ventana.AsociadoSolicitud : null;
 
-            //if (null != this._ventana.BoletinConcesion)
-            //    marca.BoletinConcesion = ((Boletin)this._ventana.BoletinConcesion).Id != int.MinValue ? (Boletin)this._ventana.BoletinConcesion : null;
+            if (null != this._ventana.BoletinConcesion)
+                patente.BoletinConcesion = ((Boletin)this._ventana.BoletinConcesion).Id != int.MinValue ? (Boletin)this._ventana.BoletinConcesion : null;
 
-            //if (null != this._ventana.BoletinPublicacion)
-            //    marca.BoletinPublicacion = ((Boletin)this._ventana.BoletinPublicacion).Id != int.MinValue ? (Boletin)this._ventana.BoletinPublicacion : null;
+            if (null != this._ventana.BoletinPublicacion)
+                patente.BoletinPublicacion = ((Boletin)this._ventana.BoletinPublicacion).Id != int.MinValue ? (Boletin)this._ventana.BoletinPublicacion : null;
 
             //if (null != this._ventana.InteresadoSolicitud)
             //    marca.Interesado = !((Interesado)this._ventana.InteresadoSolicitud).Id.Equals("NGN") ? ((Interesado)this._ventana.InteresadoSolicitud) : null;
@@ -556,7 +564,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Anualidades
                 else
                 {
                     marcasFiltradas.Insert(0, new Patente(int.MinValue));
-                    this._ventana.PatentesFiltradas = this._marcas;
+                    this._ventana.PatentesFiltradas = this._patentes;
                     this._ventana.Mensaje(Recursos.MensajesConElUsuario.NoHayResultados, 1);
                 }
 
@@ -612,8 +620,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Anualidades
                 {
                     this._ventana.Patente = this._ventana.PatenteFiltrada;
                     this._ventana.NombrePatente = ((Patente)this._ventana.PatenteFiltrada).Descripcion;
-                    this._marcas.RemoveAt(0);
-                    this._marcas.Add((Patente)this._ventana.PatenteFiltrada);
+                    this._patentes.RemoveAt(0);
+                    this._patentes.Add((Patente)this._ventana.PatenteFiltrada);
                     retorno = true;
                 }
 
@@ -653,6 +661,379 @@ namespace Trascend.Bolet.Cliente.Presentadores.Anualidades
 
         #endregion
 
+
+        #region Asociados
+
+        public void CambiarAsociadoSolicitud()
+        {
+            try
+            {
+                if ((Asociado)this._ventana.AsociadoSolicitud != null)
+                {
+                    Asociado asociado = this._asociadoServicios.ConsultarAsociadoConTodo((Asociado)this._ventana.AsociadoSolicitud);
+                    this._ventana.NombreAsociadoSolicitud = ((Asociado)this._ventana.AsociadoSolicitud).Nombre;
+                    //this._ventana.AsociadoDatos = (Asociado)this._ventana.AsociadoSolicitud;
+                    //this._ventana.NombreAsociadoDatos = ((Asociado)this._ventana.AsociadoSolicitud).Nombre;
+                }
+            }
+            catch (ApplicationException e)
+            {
+                this._ventana.NombreAsociadoSolicitud = "";
+                //this._ventana.NombreAsociadoDatos = "";
+            }
+        }
+
+        public void BuscarAsociado(int filtrarEn)
+        {
+            IEnumerable<Asociado> asociadosFiltrados = this._asociados;
+
+            if (filtrarEn == 0)
+            {
+
+                if (!string.IsNullOrEmpty(this._ventana.IdAsociadoSolicitudFiltrar))
+                {
+                    asociadosFiltrados = from p in asociadosFiltrados
+                                         where p.Id == int.Parse(this._ventana.IdAsociadoSolicitudFiltrar)
+                                         select p;
+                }
+
+                if (!string.IsNullOrEmpty(this._ventana.NombreAsociadoSolicitudFiltrar))
+                {
+                    asociadosFiltrados = from p in asociadosFiltrados
+                                         where p.Nombre != null &&
+                                         p.Nombre.ToLower().Contains(this._ventana.NombreAsociadoSolicitudFiltrar.ToLower())
+                                         select p;
+                }
+            }
+            //else
+            //{
+
+            //    if (!string.IsNullOrEmpty(this._ventana.IdAsociadoDatosFiltrar))
+            //    {
+            //        asociadosFiltrados = from p in asociadosFiltrados
+            //                             where p.Id == int.Parse(this._ventana.IdAsociadoDatosFiltrar)
+            //                             select p;
+            //    }
+
+            //    if (!string.IsNullOrEmpty(this._ventana.NombreAsociadoDatosFiltrar))
+            //    {
+            //        asociadosFiltrados = from p in asociadosFiltrados
+            //                             where p.Nombre != null &&
+            //                             p.Nombre.ToLower().Contains(this._ventana.NombreAsociadoDatosFiltrar.ToLower())
+            //                             select p;
+            //    }
+            //}
+
+            // filtrarEn = 0 significa en el listview de la pestaña solicitud
+            // filtrarEn = 1 significa en el listview de la pestaña Datos 
+            if (filtrarEn == 0)
+            {
+                if (asociadosFiltrados.ToList<Asociado>().Count != 0)
+                    this._ventana.AsociadosSolicitud = asociadosFiltrados.ToList<Asociado>();
+                else
+                    this._ventana.AsociadosSolicitud = this._asociados;
+            }
+            //else
+            //{
+            //    if (asociadosFiltrados.ToList<Asociado>().Count != 0)
+            //        this._ventana.AsociadosDatos = asociadosFiltrados.ToList<Asociado>();
+            //    else
+            //        this._ventana.AsociadosDatos = this._asociados;
+            //}
+        }
+
+        public void CargarAsociados()
+        {
+            Mouse.OverrideCursor = Cursors.Wait;
+
+            Patente patente = (Patente)this._ventana.Patente;
+            IList<Asociado> asociados = this._asociadoServicios.ConsultarTodos();
+            Asociado primerAsociado = new Asociado();
+            primerAsociado.Id = int.MinValue;
+            asociados.Insert(0, primerAsociado);
+            this._ventana.AsociadosSolicitud = asociados;
+            //this._ventana.AsociadosDatos = asociados;
+            this._ventana.AsociadoSolicitud = this.BuscarAsociado(asociados, patente.Asociado);
+            //this._ventana.AsociadoDatos = this.BuscarAsociado(asociados, marcaTercero.Asociado);
+            //this._ventana.NombreAsociadoDatos = ((MarcaTercero)this._ventana.MarcaTercero).Asociado.Nombre;
+            if (((Patente)this._ventana.Patente).Asociado !=null)
+                this._ventana.NombreAsociadoSolicitud = ((Patente)this._ventana.Patente).Asociado.Nombre;
+            this._asociados = asociados;
+            this._ventana.AsociadosEstanCargados = true;
+
+            Mouse.OverrideCursor = null;
+        }
+
+
+        #endregion
+
+        #region Interesados
+
+        public void CambiarInteresadoSolicitud()
+        {
+            try
+            {
+                if ((Interesado)this._ventana.InteresadoSolicitud != null)
+                {
+                    Interesado interesadoAux = this._interesadoServicios.ConsultarInteresadoConTodo((Interesado)this._ventana.InteresadoSolicitud);
+                    this._ventana.NombreInteresadoSolicitud = ((Interesado)this._ventana.InteresadoSolicitud).Nombre;
+                    //this._ventana.InteresadoDatos = (Interesado)this._ventana.InteresadoSolicitud;
+                    //this._ventana.NombreInteresadoDatos = ((Interesado)this._ventana.InteresadoSolicitud).Nombre;
+
+                }
+            }
+            catch (ApplicationException e)
+            {
+                this._ventana.NombreInteresadoSolicitud = "";
+                //this._ventana.NombreInteresadoDatos = "";
+            }
+        }
+
+        public void BuscarInteresado(int filtrarEn)
+        {
+            IEnumerable<Interesado> interesadosFiltrados = this._interesados;
+
+            if (filtrarEn == 0)
+            {
+                if (!string.IsNullOrEmpty(this._ventana.IdInteresadoSolicitudFiltrar))
+                {
+                    interesadosFiltrados = from p in interesadosFiltrados
+                                           where p.Id == int.Parse(this._ventana.IdInteresadoSolicitudFiltrar)
+                                           select p;
+                }
+
+                if (!string.IsNullOrEmpty(this._ventana.NombreInteresadoSolicitudFiltrar))
+                {
+                    interesadosFiltrados = from p in interesadosFiltrados
+                                           where p.Nombre != null &&
+                                           p.Nombre.ToLower().Contains(this._ventana.NombreInteresadoSolicitudFiltrar.ToLower())
+                                           select p;
+                }
+            }
+            //else
+            //{
+            //    if (!string.IsNullOrEmpty(this._ventana.IdInteresadoDatosFiltrar))
+            //    {
+            //        interesadosFiltrados = from p in interesadosFiltrados
+            //                               where p.Id == int.Parse(this._ventana.IdInteresadoDatosFiltrar)
+            //                               select p;
+            //    }
+
+            //    if (!string.IsNullOrEmpty(this._ventana.NombreInteresadoDatosFiltrar))
+            //    {
+            //        interesadosFiltrados = from p in interesadosFiltrados
+            //                               where p.Nombre != null &&
+            //                               p.Nombre.ToLower().Contains(this._ventana.NombreInteresadoDatosFiltrar.ToLower())
+            //                               select p;
+            //    }
+            //}
+
+            // filtrarEn = 0 significa en el listview de la pestaña solicitud
+            // filtrarEn = 1 significa en el listview de la pestaña Datos 
+            if (filtrarEn == 0)
+            {
+                if (interesadosFiltrados.ToList<Interesado>().Count != 0)
+                    this._ventana.InteresadosSolicitud = interesadosFiltrados.ToList<Interesado>();
+                else
+                    this._ventana.InteresadosSolicitud = this._interesados;
+            }
+            //else
+            //{
+            //    if (interesadosFiltrados.ToList<Interesado>().Count != 0)
+            //        this._ventana.InteresadosDatos = interesadosFiltrados.ToList<Interesado>();
+            //    else
+            //        this._ventana.InteresadosDatos = this._interesados;
+            //}
+        }
+
+        public void CargarInteresados()
+        {
+            Mouse.OverrideCursor = Cursors.Wait;
+            Patente patente = (Patente)this._ventana.Patente;
+
+            IList<Interesado> interesados = this._interesadoServicios.ConsultarTodos();
+            Interesado primerInteresado = new Interesado();
+            primerInteresado.Id = int.MinValue;
+            interesados.Insert(0, primerInteresado);
+            //this._ventana.InteresadosDatos = interesados;
+            this._ventana.InteresadosSolicitud = interesados;
+            ((Patente)this._ventana.Patente).Interesado = this.BuscarInteresado(interesados, patente.Interesado);
+            Interesado interesado = this.BuscarInteresado(interesados, patente.Interesado);
+            this._ventana.InteresadoSolicitud = interesado;
+            //this._ventana.InteresadoDatos = interesado;
+            //interesado = this._interesadoServicios.ConsultarInteresadoConTodo(interesado);
+            //this._ventana.NombreInteresadoDatos = ((MarcaTercero)this._ventana.MarcaTercero).Interesado.Nombre;
+            if (((Patente)this._ventana.Patente).Interesado!=null)
+                 this._ventana.NombreInteresadoSolicitud = ((Patente)this._ventana.Patente).Interesado.Nombre;
+            this._interesados = interesados;
+
+            this._ventana.InteresadosEstanCargados = true;
+
+            Mouse.OverrideCursor = null;
+        }
+
+
+
+        #endregion
+
+        #region Boletines y situacion
+
+        /// <summary>
+        /// Método que carga los combobox con la data
+        /// </summary>
+        /// <returns></returns>
+        public void CargaComboBox()
+        {
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+            Patente patente = (Patente)this._ventana.Patente;
+            EstadoMarca estadoMarca = new EstadoMarca();
+            TipoBase tipoBase = new TipoBase();
+
+            IList<Boletin> boletines = this._boletinServicios.ConsultarTodos();
+            Boletin primerBoletin = new Boletin();
+            primerBoletin.Id = int.MinValue;
+            boletines.Insert(0, primerBoletin);
+            this._ventana.BoletinesPublicacion = boletines;
+            this._ventana.BoletinesConcesion = boletines;
+            if (!_agregar)
+            {
+                this._ventana.BoletinConcesion = this.BuscarBoletin(boletines, patente.BoletinConcesion);
+                this._ventana.BoletinPublicacion = this.BuscarBoletin(boletines, patente.BoletinPublicacion);
+            }
+
+
+            IList<Servicio> servicios = this._servicioServicios.ConsultarTodos();
+            Servicio primerServicio = new Servicio();
+            primerServicio.Id = "NGN";
+            servicios.Insert(0, primerServicio);
+            this._ventana.Situaciones = servicios;
+            if (!_agregar)
+                this._ventana.Situacion = this.BuscarServicio(servicios, patente.Servicio);
+
+
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+        }
+
+        #endregion
+
+        #region Anualidad
+
+        /// <summary>
+        /// Método que carga lista de Anualidad
+        /// </summary>
+        /// <returns>true si se realizó correctamente</returns>
+        public bool CargarAnualidad()
+        {
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+            bool retorno = false;
+            Patente patente = (Patente)this._ventana.Patente;
+            if ((null != patente.Anualidades) && (patente.Anualidades.Count != 0))
+            {
+                this._ventana.Anualidades = null;
+                this._ventana.Anualidades = patente.Anualidades;
+                retorno = true;
+                
+            }
+
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+            return retorno;
+        }
+
+        /// Método que carga lista de Anualidad
+        /// </summary>
+        /// <returns>true si se realizó correctamente</returns>
+        public bool AgregarAnualidad()
+        {
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+            IList<Anualidad> anulidades;
+            bool retorno = false;
+
+                if (null == ((Patente)this._ventana.Patente).Anualidades)
+                    anulidades = new List<Anualidad>();
+                else
+                    anulidades = ((Patente)this._ventana.Patente).Anualidades;
+
+                Anualidad aux = new Anualidad();
+                Patente patente = new Patente();
+                patente.Id = ((Patente)this._ventana.Patente).Id;
+                anulidades.Add(aux);
+                ((Patente)this._ventana.Patente).Anualidades = anulidades;
+                this._ventana.Anualidades = anulidades.ToList<Anualidad>();
+                // this._patentesBaseTercero.Remove((MarcaBaseTercero)this._ventana.MarcaTercero);
+                // ((MarcaTercero)this._ventana.MarcaTercero).MarcasBaseTercero = this._patentesBaseTercero.ToList<MarcaBaseTercero>();
+                retorno = true;
+            
+
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+            return retorno;
+        }
+
+        /// <summary>
+        /// Metodo que deshabilita los Anulidadaes
+        /// </summary>
+        /// <returns>retorno true si se deshabilitó</returns>
+        public bool DeshabilitarAnualidad()
+        {
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+            IList<Anualidad> anualidades;
+            bool respuesta = false;
+
+            if (null != ((Anualidad)this._ventana.Anualidad))
+            {
+                if (null == ((Patente)this._ventana.Patente).Anualidades)
+                    anualidades = new List<Anualidad>();
+                else
+                    anualidades = ((Patente)this._ventana.Patente).Anualidades;
+
+                anualidades.Remove((Anualidad)this._ventana.Anualidad);
+                ((Patente)this._ventana.Patente).Anualidades = anualidades;
+                //   this._patentesBaseTercero.Add((MarcaBaseTercero)this._ventana.MarcaByt);
+                this._ventana.Anualidades = anualidades.ToList<Anualidad>();
+                //    ((MarcaTercero)this._ventana.MarcaTercero).MarcasBaseTercero = this._patentesBaseTercero.ToList<MarcaBaseTercero>();
+
+                if (anualidades.Count == 0)
+                    respuesta = true;
+
+            }
+
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+            return respuesta;
+        }
+
+
+        #endregion
         public void IrImprimir(string nombreBoton)
         {
             try

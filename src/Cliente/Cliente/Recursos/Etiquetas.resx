@@ -2450,4 +2450,7 @@ de Gracia</value>
   <data name="titleGestionarAnualidad" xml:space="preserve">
     <value>Gestionar Anualidad</value>
   </data>
+  <data name="titleConsultarAnualidades" xml:space="preserve">
+    <value>Consultar Anualidad</value>
+  </data>
 </root>

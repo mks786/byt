@@ -83,6 +83,16 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
                 IQuery query = Session.CreateQuery(cabecera + filtro);
                 Patentes = query.List<Patente>();
 
+                //Busca la lista de Anualidad por cada marcaTercero
+                foreach (Patente aux in Patentes)
+                {
+          
+                    string CabeceraBase = string.Format(Recursos.ConsultasHQL.CabeceraObtenerAnualidadPorIdPatente,aux.Id);
+                    IQuery query2 = Session.CreateQuery(CabeceraBase);
+                    aux.Anualidades = query2.List<Anualidad>();
+
+                }
+
                 #region trace
                 if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
                     logger.Debug("Saliendo del Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
