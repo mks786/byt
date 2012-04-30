@@ -483,12 +483,12 @@ namespace Trascend.Bolet.Cliente.Ventanas.Principales
 
         private void _menuItemPatentesConsultar_Click(object sender, RoutedEventArgs e)
         {
-
+            this._presentador.ConsultarPatentes();
         }
 
         private void _menuItemPatentesAgregar_Click(object sender, RoutedEventArgs e)
         {
-
+            this._presentador.AgregarPatente();
         }
 
         private void _menuItemAnualidadesConsultarPatente_Click(object sender, RoutedEventArgs e)

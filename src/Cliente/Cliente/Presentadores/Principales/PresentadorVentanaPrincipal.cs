@@ -850,6 +850,22 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
         }
 
         /// <summary>
+        /// Método que coloca la página "Patentes" en el Frame principal
+        /// </summary>
+        public void ConsultarPatentes()
+        {
+            this._ventana.Contenedor.Navigate(new ConsultarPatentes());
+        }
+
+        /// <summary>
+        /// Método que coloca la página "Patentes" en el Frame principal
+        /// </summary>
+        public void AgregarPatente()
+        {
+            //this._ventana.Contenedor.Navigate(new AgregarPatentes());
+        }
+
+        /// <summary>
         /// Método que coloca la página "CesionesPatentes" en el Frame principal
         /// </summary>
         public void ConsultarCesionesPatentes()

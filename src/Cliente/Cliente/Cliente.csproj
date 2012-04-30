@@ -134,6 +134,8 @@
     <Compile Include="Contratos\EscritosPatente\IExamenDePatentabilidad.cs" />
     <Compile Include="Contratos\Inventores\IAgregarInventor.cs" />
     <Compile Include="Contratos\Inventores\IConsultarInventor.cs" />
+    <Compile Include="Contratos\Patentes\IGestionarPatente.cs" />
+    <Compile Include="Contratos\Patentes\IConsultarPatentes.cs" />
     <Compile Include="Contratos\Patentes\IListaInventores.cs" />
     <Compile Include="Contratos\TraspasosPatentes\CambiosDeDomicilioPatentes\IConsultarCambiosDeDomicilioPatentes.cs" />
     <Compile Include="Contratos\TraspasosPatentes\CambiosDeDomicilioPatentes\IGestionarCambioDeDomicilioPatentes.cs" />
@@ -324,6 +326,8 @@
     <Compile Include="Presentadores\EscritosPatente\PresentadorExamenDePatentabilidad.cs" />
     <Compile Include="Presentadores\Inventores\PresentadorAgregarInventor.cs" />
     <Compile Include="Presentadores\Inventores\PresentadorConsultarInventor.cs" />
+    <Compile Include="Presentadores\Patentes\PresentadorGestionarPatente.cs" />
+    <Compile Include="Presentadores\Patentes\PresentadorConsultarPatentes.cs" />
     <Compile Include="Presentadores\Patentes\PresentadorListaInventores.cs" />
     <Compile Include="Presentadores\TraspasosPatentes\CambiosDeDomicilioPatentes\PresentadorConsultarCambiosDeDomicilioPatentes.cs" />
     <Compile Include="Presentadores\TraspasosPatentes\CambiosDeDomicilioPatentes\PresentadorGestionarCambioDeDomicilioPatentes.cs" />
@@ -700,6 +704,12 @@
     </Compile>
     <Compile Include="Ventanas\MarcasTercero\ConsultarMarcasTercero.xaml.cs">
       <DependentUpon>ConsultarMarcasTercero.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Patentes\GestionarPatente.xaml.cs">
+      <DependentUpon>GestionarPatente.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Patentes\ConsultarPatentes.xaml.cs">
+      <DependentUpon>ConsultarPatentes.xaml</DependentUpon>
     </Compile>
     <Compile Include="Ventanas\Patentes\ListaInventores.xaml.cs">
       <DependentUpon>ListaInventores.xaml</DependentUpon>
@@ -1335,6 +1345,14 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Ventanas\MarcasTercero\ConsultarMarcasTercero.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\Patentes\GestionarPatente.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\Patentes\ConsultarPatentes.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

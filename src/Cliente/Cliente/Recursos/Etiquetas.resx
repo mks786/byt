@@ -2450,7 +2450,40 @@ de Gracia</value>
   <data name="titleGestionarAnualidad" xml:space="preserve">
     <value>Gestionar Anualidad</value>
   </data>
+  <data name="lblTipoPatente" xml:space="preserve">
+    <value>Tipo</value>
+  </data>
   <data name="titleConsultarAnualidades" xml:space="preserve">
     <value>Consultar Anualidad</value>
+  </data>
+  <data name="btnCasoEspecial" xml:space="preserve">
+    <value>Caso Especial...</value>
+  </data>
+  <data name="btnDiseno" xml:space="preserve">
+    <value>Diseño</value>
+  </data>
+  <data name="btnDocumentos" xml:space="preserve">
+    <value>Documentos...</value>
+  </data>
+  <data name="btnInventores" xml:space="preserve">
+    <value>Inventores</value>
+  </data>
+  <data name="chkMemoriaTraducidaSolicitud" xml:space="preserve">
+    <value>Memoria Traducida en B&amp;T</value>
+  </data>
+  <data name="lblCaso" xml:space="preserve">
+    <value>Caso:</value>
+  </data>
+  <data name="lblInscripcion" xml:space="preserve">
+    <value>Inscripción:</value>
+  </data>
+  <data name="lblOmision" xml:space="preserve">
+    <value>Omisión:</value>
+  </data>
+  <data name="lblOrden" xml:space="preserve">
+    <value>Orden:</value>
+  </data>
+  <data name="lblPresentacion" xml:space="preserve">
+    <value>Presentación:</value>
   </data>
 </root>
