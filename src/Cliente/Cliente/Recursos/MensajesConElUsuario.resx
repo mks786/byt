@@ -747,4 +747,7 @@
   <data name="AlertaEscritoSinTipoCorreccionVoluntaria" xml:space="preserve">
     <value>Disculpe el escrito no tiene tipo de corrección voluntaria</value>
   </data>
+  <data name="PatenteModificada" xml:space="preserve">
+    <value>Patente modificada con éxito</value>
+  </data>
 </root>

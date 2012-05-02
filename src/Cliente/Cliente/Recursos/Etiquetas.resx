@@ -2486,4 +2486,10 @@ de Gracia</value>
   <data name="lblPresentacion" xml:space="preserve">
     <value>Presentación:</value>
   </data>
+  <data name="cbiPresentacionPatente" xml:space="preserve">
+    <value>PRESENTACION</value>
+  </data>
+  <data name="cbiTipoPatente" xml:space="preserve">
+    <value>PATENTE</value>
+  </data>
 </root>

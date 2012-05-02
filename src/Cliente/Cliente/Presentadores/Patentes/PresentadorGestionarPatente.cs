@@ -152,27 +152,31 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
 
                 patente.InfoAdicional = this._infoAdicionalServicios.ConsultarPorId(infoAdicional);
                 
-                IList<ListaDatosDominio> tiposMarcas = this._listaDatosDominioServicios.
-                    ConsultarListaDatosDominioPorParametro(new ListaDatosDominio(Recursos.Etiquetas.cbiCategoriaMarca));
-                ListaDatosDominio primerTipoMarca = new ListaDatosDominio();
-                primerTipoMarca.Id = "NGN";
-                tiposMarcas.Insert(0, primerTipoMarca);
-                this._ventana.TipoPatentesSolicitud = tiposMarcas;
+                IList<ListaDatosDominio> tipoPatente = this._listaDatosDominioServicios.
+                    ConsultarListaDatosDominioPorParametro(new ListaDatosDominio(Recursos.Etiquetas.cbiTipoPatente));
+                ListaDatosDominio primerTipoPatente = new ListaDatosDominio();
+                primerTipoPatente.Id = "NGN";
+                tipoPatente.Insert(0, primerTipoPatente);
+                this._ventana.TiposPatenteSolicitud = tipoPatente;
+                this._ventana.TipoPatenteSolicitud = this.BuscarTipoPatente(patente.Tipo, tipoPatente);
+
+                IList<ListaDatosDominio> presentacionPatente = this._listaDatosDominioServicios.
+                    ConsultarListaDatosDominioPorParametro(new ListaDatosDominio(Recursos.Etiquetas.cbiPresentacionPatente));
+                ListaDatosDominio primeraPresentacionPatente = new ListaDatosDominio();
+                primeraPresentacionPatente.Id = "NGN";
+                presentacionPatente.Insert(0, primeraPresentacionPatente);
+                this._ventana.PresentacionesPatenteSolicitud = presentacionPatente;
+                this._ventana.PresentacionPatenteSolicitud = this.BuscarPresentacionPatente(patente.Presentacion, presentacionPatente);
                 
-
-                IList<Agente> agentes = this._agenteServicios.ConsultarTodos();
-                Agente primerAgente = new Agente();
-                primerAgente.Id = "NGN";
-                agentes.Insert(0, primerAgente);
-                this._ventana.Agentes = agentes;
-                this._ventana.Agente = this.BuscarAgente(agentes, patente.Agente);
-
                 IList<Pais> paises = this._paisServicios.ConsultarTodos();
                 Pais primerPais = new Pais();
                 primerPais.Id = int.MinValue;
                 paises.Insert(0, primerPais);
                 this._ventana.PaisesSolicitud = paises;
                 this._ventana.PaisSolicitud = this.BuscarPais(paises, patente.Pais);
+
+                //this._ventana.NumPoderDatos = patente.Poder != null ? patente.Poder.NumPoder : "";
+                this._ventana.NumPoderSolicitud = patente.Poder != null ? patente.Poder.NumPoder : "";
 
                 //IList<StatusWeb> statusWebs = this._statusWebServicios.ConsultarTodos();
                 //StatusWeb primerStatus = new StatusWeb();
@@ -265,7 +269,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                 //this._auditorias = this._patenteServicios.AuditoriaPorFkyTabla(auditoria);
 
                 if (null != patente.InfoAdicional && !string.IsNullOrEmpty(patente.InfoAdicional.Id))
-                    this._ventana.PintarInfoAdicional();
+                    this._ventana.PintarInfoAdicionalSolicitud();
 
                 this._ventana.FocoPredeterminado();
 
@@ -307,7 +311,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
         /// Método que guardar los datos de la ventana y los almacena en las variables
         /// </summary>
         /// <returns></returns>
-        public Patente CargarMarcaDeLaPantalla()
+        public Patente CargarPatenteDeLaPantalla()
         {
             #region trace
             if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -318,8 +322,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
 
             patente.Operacion = "MODIFY";
 
-            if (null != this._ventana.Agente)
-                patente.Agente = !((Agente)this._ventana.Agente).Id.Equals("NGN") ? (Agente)this._ventana.Agente : null;
+            if (null != this._ventana.AgenteSolicitudFiltrar)
+                patente.Agente = !((Agente)this._ventana.AgenteSolicitudFiltrar).Id.Equals("NGN") ? (Agente)this._ventana.AgenteSolicitudFiltrar : null;
 
             if (null != this._ventana.AsociadoSolicitud)
                 patente.Asociado = ((Asociado)this._ventana.AsociadoSolicitud).Id != int.MinValue ? (Asociado)this._ventana.AsociadoSolicitud : null;
@@ -328,7 +332,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                 patente.Interesado = !((Interesado)this._ventana.InteresadoSolicitud).Id.Equals("NGN") ? ((Interesado)this._ventana.InteresadoSolicitud) : null;
 
             if (null != this._ventana.PoderSolicitud)
-                patente.Poder = !((Poder)this._ventana.PoderSolicitud).Id.Equals("NGN") ? ((Poder)this._ventana.PoderSolicitud) : null;
+                patente.Poder = !((Poder)this._ventana.PoderSolicitudFiltrar).Id.Equals("NGN") ? ((Poder)this._ventana.PoderSolicitudFiltrar) : null;
 
             if (null != this._ventana.PaisSolicitud)
                 patente.Pais = ((Pais)this._ventana.PaisSolicitud).Id != int.MinValue ? ((Pais)this._ventana.PaisSolicitud) : null;
@@ -384,12 +388,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                 //Modifica los datos del Pais
                 else
                 {
-                    Patente patente = CargarMarcaDeLaPantalla();
+                    Patente patente = CargarPatenteDeLaPantalla();
 
                     bool exitoso = this._patenteServicios.InsertarOModificar(patente, UsuarioLogeado.Hash);
 
                     if (exitoso)
-                        this.Navegar(Recursos.MensajesConElUsuario.MarcaModificada, false);
+                        this.Navegar(Recursos.MensajesConElUsuario.PatenteModificada, false);
                 }
 
                 #region trace
@@ -431,7 +435,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-                //if (this._anexoServicios.Eliminar((Anexo)this._ventana.Anexo, UsuarioLogeado.Hash))
+                //if (this._patenteServicios.Eliminar((Patente)this._ventana.Patente, UsuarioLogeado.Hash))
                 //{
                 //    _paginaPrincipal.MensajeUsuario = Recursos.MensajesConElUsuario.PaisEliminado;
                 //    this.Navegar(_paginaPrincipal);
@@ -553,6 +557,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                 logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
         }
+
+        #region Solicitud
 
         #region Metodos de los filtros de asociados
 
@@ -939,11 +945,77 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-                if ((Poder)this._ventana.PoderSolicitud != null)
+                if ((Poder)this._ventana.PoderSolicitudFiltrar != null)
                 {
-                    this._ventana.NumPoderSolicitud = ((Poder)this._ventana.PoderSolicitud).NumPoder;
+                    this._ventana.NumPoderSolicitud = ((Poder)this._ventana.PoderSolicitudFiltrar).NumPoder;
+                    this._ventana.PoderSolicitud = ((Poder)this._ventana.PoderSolicitudFiltrar).Id.ToString();
                     //this._ventana.PoderDatos = (Poder)this._ventana.PoderSolicitud;
                     //this._ventana.NumPoderDatos = ((Poder)this._ventana.PoderSolicitud).NumPoder;
+                }
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (ApplicationException e)
+            {
+                this._ventana.NumPoderSolicitud = "";
+                //this._ventana.NumPoderDatos = "";
+            }
+        }
+
+
+        /// <summary>
+        /// Método que cambia Agente solicitud
+        /// </summary>
+        public void CambiarAgenteSolicitud()
+        {
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                if ((Agente)this._ventana.AgenteSolicitudFiltrar != null)
+                {
+                    this._ventana.IdAgenteSolicitud = ((Agente)this._ventana.AgenteSolicitudFiltrar).Id;
+                    this._ventana.AgenteSolicitud = ((Agente)this._ventana.AgenteSolicitudFiltrar).Nombre;
+                    //this._ventana.IdAgenteDatos = ((Agente)this._ventana.AgenteDatosFiltrar).Id;
+                    //this._ventana.AgenteDatos = ((Agente)this._ventana.AgenteDatosFiltrar).Nombre;
+                }
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (ApplicationException e)
+            {
+                this._ventana.NumPoderSolicitud = "";
+                //this._ventana.NumPoderDatos = "";
+            }
+        }
+
+        /// <summary>
+        /// Método que cambia Agente Datos
+        /// </summary>
+        public void CambiarAgenteDatos()
+        {
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                if ((Agente)this._ventana.AgenteSolicitudFiltrar != null)
+                {
+                    this._ventana.IdAgenteSolicitud = ((Agente)this._ventana.AgenteSolicitudFiltrar).Id;
+                    this._ventana.AgenteSolicitud = ((Agente)this._ventana.AgenteSolicitudFiltrar).Nombre;
+                    //this._ventana.IdAgenteDatos = ((Agente)this._ventana.AgenteDatosFiltrar).Id;
+                    //this._ventana.AgenteDatos = ((Agente)this._ventana.AgenteDatosFiltrar).Nombre;
                 }
 
                 #region trace
@@ -990,6 +1062,40 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
         }
 
         /// <summary>
+        /// Método que carga los agentes
+        /// </summary>
+        public void CargarAgentes()
+        {
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+            Mouse.OverrideCursor = Cursors.Wait;
+
+
+            Patente patente = (Patente)this._ventana.Patente;
+            IList<Agente> agentes = this._agenteServicios.ConsultarTodos();
+            Agente primerAgente = new Agente();
+            primerAgente.Id = string.Empty;
+            agentes.Insert(0, primerAgente);
+            this._ventana.AgentesSolicitudFiltrar = agentes;
+            this._ventana.AgenteSolicitudFiltrar = this.BuscarAgente(agentes, patente.Agente);
+
+            //this._ventana.AgentesDatos = agentes;
+            //this._ventana.AgenteDatos = this.BuscarAgente(agentes, patente.Agente);
+
+            this._ventana.PoderesEstanCargados = true;
+
+            Mouse.OverrideCursor = null;
+
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+        }
+
+        /// <summary>
         /// Método que carga los poderes
         /// </summary>
         public void CargarPoderes()
@@ -1007,9 +1113,13 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
             poder.Id = int.MinValue;
             poderes.Insert(0, poder);
             //this._ventana.PoderesDatos = poderes;
-            this._ventana.PoderesSolicitud = poderes;
+            this._ventana.PoderesSolicitudFiltrar = poderes;
+
+            poder = this.BuscarPoder(poderes, patente.Poder);
+            this._ventana.PoderSolicitud = poder.Id.ToString();
+            this._ventana.NumPoderSolicitud = poder.NumPoder;
+
             //this._ventana.PoderDatos = this.BuscarPoder(poderes, patente.Poder);
-            this._ventana.PoderSolicitud = this.BuscarPoder(poderes, patente.Poder);
 
             this._ventana.PoderesEstanCargados = true;
 
@@ -1022,6 +1132,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
         }
 
         #endregion
+
+        #endregion
+
+  
+        
 
         /// <summary>
         ///Método que realiza el llamado al explorador para abrir el cartel de la patente

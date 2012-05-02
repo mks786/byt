@@ -1107,6 +1107,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a PRESENTACION.
+        /// </summary>
+        public static string cbiPresentacionPatente {
+            get {
+                return ResourceManager.GetString("cbiPresentacionPatente", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Proveedor.
         /// </summary>
         public static string cbiProveedor {
@@ -1220,6 +1229,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string cbiTipoDetalleDistingue {
             get {
                 return ResourceManager.GetString("cbiTipoDetalleDistingue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a PATENTE.
+        /// </summary>
+        public static string cbiTipoPatente {
+            get {
+                return ResourceManager.GetString("cbiTipoPatente", resourceCulture);
             }
         }
         

@@ -8,6 +8,8 @@ namespace Trascend.Bolet.Cliente.Contratos.Patentes
     {
         object Patente { get; set; }
 
+        #region Solicitud
+
         string IdAsociadoSolicitudFiltrar { get; }
 
         string IdAsociadoSolicitud { get;  set; }
@@ -26,6 +28,12 @@ namespace Trascend.Bolet.Cliente.Contratos.Patentes
 
         string NumPoderSolicitud { get; set; }
 
+        string PoderSolicitud { get; set; }
+
+        object PoderesSolicitudFiltrar { get; set; }
+        
+        object PoderSolicitudFiltrar { get; set; }
+
         object AsociadosSolicitud { get; set; }
 
         object AsociadoSolicitud { get; set; }
@@ -38,13 +46,13 @@ namespace Trascend.Bolet.Cliente.Contratos.Patentes
 
         string InteresadoEstadoSolicitud { get; set; }
 
-        object PoderesSolicitud { get; set; }
+        string IdAgenteSolicitud { get; set; }
 
-        object PoderSolicitud { get; set; }
+        string AgenteSolicitud { get; set; }
 
-        object Agentes { get; set; }
+        object AgentesSolicitudFiltrar { get; set; }
 
-        object Agente { get; set; }
+        object AgenteSolicitudFiltrar { get; set; }
 
         object PaisesSolicitud { get; set; }
 
@@ -52,7 +60,85 @@ namespace Trascend.Bolet.Cliente.Contratos.Patentes
 
         object TipoPatenteSolicitud { get; set; }
 
-        object TipoPatentesSolicitud { get; set; }
+        object TiposPatenteSolicitud { get; set; }
+
+        object PresentacionesPatenteSolicitud { get; set; }
+
+        object PresentacionPatenteSolicitud { get; set; }
+
+        void PintarDocumentosSolicitud();
+
+        void PintarCasoEspecialSolicitud();
+
+        void PintarDisenoSolicitud();
+
+        void PintarDisenoReporteSolicitud();
+
+        void PintarInventoresSolicitud();
+
+        void PintarInfoAdicionalSolicitud();
+
+        void PintarImprimirEdoDeCuenta();
+
+        void PintarSaldos();
+
+        #endregion
+
+        #region Datos
+
+        string IdAsociadoDatosFiltrar { get; }
+
+        string IdAsociadoDatos { get; set; }
+
+        string NombreAsociadoDatosFiltrar { get; }
+
+        string NombreAsociadoDatos { get; set; }
+
+        string IdInteresadoDatosFiltrar { get; }
+
+        string IdInteresadoDatos { set; }
+
+        string NombreInteresadoDatosFiltrar { get; }
+
+        string NombreInteresadoDatos { get; set; }
+
+        string NumPoderDatos { get; set; }
+
+        string PoderDatos { get; set; }
+
+        object PoderesDatosFiltrar { get; set; }
+
+        object PoderDatosFiltrar { get; set; }
+
+        object AsociadosDatos { get; set; }
+
+        object AsociadoDatos { get; set; }
+
+        object InteresadosDatos { get; set; }
+
+        object InteresadoDatos { get; set; }
+
+        string InteresadoPaisDatos { get; set; }
+
+        string InteresadoEstadoDatos { get; set; }
+
+        object PaisesDatos { get; set; }
+
+        object PaisDatos { get; set; }
+
+        object TipoPatenteDatos { get; set; }
+
+        object TiposPatenteDatos { get; set; }
+
+        object PresentacionesPatenteDatos { get; set; }
+
+        object PresentacionPatenteDatos { get; set; }
+
+        void PintarDisenoDatos();
+
+        void PintarInventoresDatos();
+
+        #endregion
 
         void Mensaje(string mensaje);
 
@@ -68,21 +154,9 @@ namespace Trascend.Bolet.Cliente.Contratos.Patentes
 
         bool PoderesEstanCargados { get; set; }
 
-        void PintarDocumentosSolicitud();
+        bool AgentesEstanCargados { get; set; }
 
-        void PintarCasoEspecialSolicitud();
-
-        void PintarDisenoSolicitud();
-
-        void PintarDisenoReporteSolicitud();
-
-        void PintarInventoresSolicitud();
-
-        void PintarInfoAdicional();
-
-        void PintarImprimirEdoDeCuenta();
-
-        void PintarSaldos();
+        
 
         bool MensajeAlerta(string mensaje);
 

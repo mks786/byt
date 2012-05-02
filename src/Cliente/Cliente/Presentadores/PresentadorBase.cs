@@ -396,6 +396,42 @@ namespace Trascend.Bolet.Cliente.Presentadores
         }
 
         /// <summary>
+        /// Busca la presentacion de patente correspondiente a la inicial que se le esté pasando
+        /// </summary>
+        /// <param name="presentacionBuscado">Inicial de la presentacion de patente</param>
+        /// <returns>La presentación de patente correspondiente</returns>
+        public ListaDatosDominio BuscarPresentacionPatente(char presentacionBuscado, IList<ListaDatosDominio> tipoPresentaciones)
+        {
+            ListaDatosDominio retorno = new ListaDatosDominio();
+
+            foreach (ListaDatosDominio dato in tipoPresentaciones)
+            {
+                if (dato.Id[0] == presentacionBuscado)
+                    retorno = dato;
+            }
+
+            return retorno;
+        }
+
+        /// <summary>
+        /// Busca el tipo de patente correspondiente a la inicial que se le esté pasando
+        /// </summary>
+        /// <param name="tipoBuscado">Inicial del tipo de patente</param>
+        /// <returns>el tipo de patente correspondiente</returns>
+        public ListaDatosDominio BuscarTipoPatente(string tipoBuscado, IList<ListaDatosDominio> tiposPatente)
+        {
+            ListaDatosDominio retorno = new ListaDatosDominio();
+
+            foreach (ListaDatosDominio dato in tiposPatente)
+            {
+                if (dato.Id.Equals(tipoBuscado))
+                    retorno = dato;
+            }
+
+            return retorno;
+        }
+
+        /// <summary>
         /// Busca el tipode persona correspondiente a la inicial que se le esté pasando
         /// </summary>
         /// <param name="tipoPersona">Inicial del tipo de persona</param>

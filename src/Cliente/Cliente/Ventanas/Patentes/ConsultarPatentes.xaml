@@ -121,11 +121,11 @@
                         <GridViewColumn DisplayMemberBinding="{Binding Path=Id}" Width="120">
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="Id" Content="{x:Static recurso:Etiquetas.lsvId}"/>
                         </GridViewColumn>
-                        <GridViewColumn DisplayMemberBinding="{Binding Path=Descripcion}" Width="150">
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Descripcion}" Width="350">
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="Descripcion" Content="{x:Static recurso:Etiquetas.lsvPatente}"/>
                         </GridViewColumn>
-                        <GridViewColumn DisplayMemberBinding="{Binding Path=FechaRegistro}" Width="150">
-                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="FechaRegistro" Content="{x:Static recurso:Etiquetas.lsvFecha}"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=FechaInscripcion}" Width="180">
+                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="FechaPublicacion" Content="{x:Static recurso:Etiquetas.lsvFecha}"/>
                         </GridViewColumn>                        
                     </GridView>
                 </ListView.View>

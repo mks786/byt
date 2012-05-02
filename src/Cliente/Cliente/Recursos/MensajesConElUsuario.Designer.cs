@@ -1690,6 +1690,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Patente modificada con éxito.
+        /// </summary>
+        internal static string PatenteModificada {
+            get {
+                return ResourceManager.GetString("PatenteModificada", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Poder eliminado con éxito.
         /// </summary>
         internal static string PoderEliminado {
