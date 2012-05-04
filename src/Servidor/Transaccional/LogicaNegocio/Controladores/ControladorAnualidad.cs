@@ -20,7 +20,7 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
         /// <param name="anualidad">Anualidad a insertar o modificar</param>
         /// <param name="hash">Hash del usuario que realiza la operacion</param>
         /// <returns>True: si la modificación fue exitosa; false: en caso contrario</returns>
-        public static bool InsertarOModificar(Anualidad anualidad, int hash)
+        public static bool InsertarOModificar(Patente patente, int hash)
         {
             bool exitoso = false;
             try
@@ -29,7 +29,15 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
                 if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
                     logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
-                
+
+                if (patente.Anualidades.Count() != 0)
+                {
+                    IList<Anualidad> anualidades = patente.Anualidades;
+
+                    ComandoBase<bool> comando = FabricaComandosAnualidad.ObtenerComandoInsertarOModificar(anualidades[0]);
+                    comando.Ejecutar();
+                    exitoso = comando.Receptor.ObjetoAlmacenado;
+                }
               
 
                 #region trace

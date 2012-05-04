@@ -11,5 +11,7 @@ namespace Trascend.Bolet.ObjetosComunes.ContratosServicios
         IList<Auditoria> AuditoriaPorFkyTabla(Auditoria auditoria);
 
         Patente ConsultarPatenteConTodo(Patente Patente);
+
+        bool InsertarOModificarAnualidad(Patente Patente, int hash);
     }
 }

@@ -12,7 +12,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         private DateTime? _fechaAnualidad;
         private int _qAnualidad;
         private string _situacion;
-        private int _voucher;
+        private string _voucher;
         private DateTime? _fechaVoucher;
         private Asociado _asociado;  
         private Patente _patente;  
@@ -67,7 +67,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         /// <summary>
         /// Propiedad que asigna u obtiene el Voucher
         /// </summary>
-        public virtual int Voucher
+        public virtual string Voucher
         {
             get { return this._voucher; }
             set { this._voucher = value; }

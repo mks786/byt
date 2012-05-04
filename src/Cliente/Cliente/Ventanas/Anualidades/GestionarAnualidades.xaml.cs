@@ -73,24 +73,37 @@ namespace Trascend.Bolet.Cliente.Ventanas.Anualidades
             set
             {
                 
-           this._txtIdPatenteFiltrar.IsEnabled = value;
-                this._txtNombrePatente.IsEnabled = value;
-                this._txtNombrePatenteFiltrar.IsEnabled = value;
-                this._btnConsultarPatente.IsEnabled = value;
-                this._txtAsociadoSolicitud.IsEnabled = value;
-                this._txtIdAsociadoSolicitud.IsEnabled = value;
-                this._txtNombreAsociadoSolicitud.IsEnabled = value;
-                this._btnConsultarAsociadoSolicitud.IsEnabled = value;
-                this._btnConsultarInteresadoSolicitud.IsEnabled = value;
-                this._txtNombreInteresadoSolicitud.IsEnabled = value;
-                this._txtIdInteresadoSolicitud.IsEnabled = value;
-                this._txtInteresadoSolicitud.IsEnabled = value;
-                this._cbxBoletinConcesion.IsEnabled = value;
-                this._cbxBoletinPublicacion.IsEnabled = value;
-                this._txtCodigoInscripcion.IsEnabled = value;
-                this._txtFechaInscripcion.IsEnabled = value;
-                this._cbxSituacion.IsEnabled = value;
+           //this._txtIdPatenteFiltrar.IsEnabled = value;
+           //     this._txtNombrePatente.IsEnabled = value;
+           //     this._txtNombrePatenteFiltrar.IsEnabled = value;
+           //     this._btnConsultarPatente.IsEnabled = value;
+           //     this._txtAsociadoSolicitud.IsEnabled = value;
+           //     this._txtIdAsociadoSolicitud.IsEnabled = value;
+           //     this._txtNombreAsociadoSolicitud.IsEnabled = value;
+           //     this._btnConsultarAsociadoSolicitud.IsEnabled = value;
+           //     this._btnConsultarInteresadoSolicitud.IsEnabled = value;
+           //     this._txtNombreInteresadoSolicitud.IsEnabled = value;
+           //     this._txtIdInteresadoSolicitud.IsEnabled = value;
+           //     this._txtInteresadoSolicitud.IsEnabled = value;
+           //     this._cbxBoletinConcesion.IsEnabled = value;
+           //     this._cbxBoletinPublicacion.IsEnabled = value;
+           //     this._txtCodigoInscripcion.IsEnabled = value;
+           //     this._txtFechaInscripcion.IsEnabled = value;
+           //     this._cbxSituacion.IsEnabled = value;
+           //     this._txtReferencia.IsEnabled = value;
+           //     this._txtCodigoRegistro.IsEnabled = value;
+           //     this._txtFechaRegistro.IsEnabled = value;
+           //     this._dpkFecha.IsEnabled = value;
+                this._dpkFechaAnualidad.IsEnabled = value;
+                this._dpkFechaVoucher.IsEnabled = value;
+                this._dpkFechaFactura.IsEnabled = value;
+                this._txtFactura.IsEnabled = value;
+                this._txtRecibo.IsEnabled = value;
+                this._txtVoucher.IsEnabled = value;
+                this._cbxISituacion.IsEnabled = value;
                 this._lstAnualidades.IsEnabled = value;
+                this._btnMas.IsEnabled = value;
+                this._btnMenos.IsEnabled = value;
 
             }
         }
@@ -123,6 +136,26 @@ namespace Trascend.Bolet.Cliente.Ventanas.Anualidades
             get { return this._txbRegresar.Text; }
             set { this._txbRegresar.Text = value; }
         }
+
+        public string Referencia
+        {
+            get { return this._txtReferencia.Text; }
+            set { this._txtReferencia.Text = value; }
+        }
+
+        public string RegistroCodigo
+        {
+            get { return this._txtCodigoRegistro.Text; }
+            set { this._txtCodigoRegistro.Text = value; }
+        }
+
+        public string RegistroFecha
+        {
+            get { return this._txtFechaRegistro.Text; }
+            set { this._txtFechaRegistro.Text = value; }
+        }
+
+
 
         public GridViewColumnHeader CurSortCol
         {
@@ -285,6 +318,53 @@ namespace Trascend.Bolet.Cliente.Ventanas.Anualidades
             set { this._lstAnualidades.DataContext = value; }
         }
 
+        public string FechaAnualidad
+        {
+            get { return this._dpkFechaAnualidad.Text; }
+            set { this._dpkFechaAnualidad.Text = value; }
+        }
+
+        public string Recibo
+        {
+            get { return this._txtRecibo.Text; }
+            set { this._txtRecibo.Text = value; }
+        }
+
+        public string FechaFactura
+        {
+            get { return this._dpkFechaFactura.Text; }
+            set { this._dpkFechaFactura.Text = value; }
+        }
+
+        public string Factura
+        {
+            get { return this._txtFactura.Text; }
+            set { this._txtFactura.Text = value; }
+        }
+
+        public object ISituaciones
+        {
+            get { return this._cbxISituacion.DataContext; }
+            set { this._cbxISituacion.DataContext = value; }
+        }
+
+        public object ISituacion
+        {
+            get { return this._cbxISituacion.SelectedItem; }
+            set { this._cbxISituacion.SelectedItem = value; }
+        }
+
+        public string FechaVoucher
+        {
+            get { return this._dpkFechaVoucher.Text; }
+            set { this._dpkFechaVoucher.Text = value; }
+        }
+
+        public string Voucher
+        {
+            get { return this._txtVoucher.Text; }
+            set { this._txtVoucher.Text = value; }
+        }
 
         #endregion
         public void Mensaje(string mensaje, int opcion)
@@ -364,6 +444,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.Anualidades
             if (!EstaCargada)
             {
                 this._presentador.CargarPagina();
+                if (this._presentador.CargarAnualidad())
+                    this._lstAnualidades.Visibility = System.Windows.Visibility.Visible;
                 EstaCargada = true;
             }
         }
@@ -558,23 +640,33 @@ namespace Trascend.Bolet.Cliente.Ventanas.Anualidades
 
         #region Anualidades
 
-        // private void _btnMas_Click(object sender, RoutedEventArgs e)
-        //{
+        private void _btnMas_Click(object sender, RoutedEventArgs e)
+        {
 
-        //    if ((this._presentador.AgregarAnualidad()) && (this._lstAnualidades.Visibility == System.Windows.Visibility.Collapsed))
-        //        this._lstAnualidades.Visibility = System.Windows.Visibility.Visible;
+            if ((this._presentador.AgregarAnualidad()) && (this._lstAnualidades.Visibility == System.Windows.Visibility.Collapsed))
+                this._lstAnualidades.Visibility = System.Windows.Visibility.Visible;
+            this._gridCamposAnualidad.Visibility = System.Windows.Visibility.Collapsed;
 
-        //}
+        }
 
-        // private void _btnMenos_Click(object sender, RoutedEventArgs e)
-        // {
-        //     if (this._presentador.DeshabilitarAnualidad())
-        //     {
-        //         this._lstAnualidades.Visibility = System.Windows.Visibility.Collapsed;
-        //     }
-        // }
+        private void _btnMenos_Click(object sender, RoutedEventArgs e)
+        {
+            if (this._presentador.DeshabilitarAnualidad())
+            {
+                this._lstAnualidades.Visibility = System.Windows.Visibility.Collapsed;
+            }
+        }
+
+        private void _lstAnualidades_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            this._gridCamposAnualidad.Visibility = System.Windows.Visibility.Visible;
+            this._presentador.CargarAnualidadSeleccionada();
+
+
+        }
 
         #endregion
+
         public void FocoPredeterminado()
         {
             this._txtIdPatenteFiltrar.Focus();
@@ -587,7 +679,6 @@ namespace Trascend.Bolet.Cliente.Ventanas.Anualidades
 
         }
 
-
         public void AgregarAnualidad()
         {
             throw new System.NotImplementedException();
@@ -599,6 +690,13 @@ namespace Trascend.Bolet.Cliente.Ventanas.Anualidades
         }
 
         public void DeshabilitarAnualidad()
+        {
+            throw new System.NotImplementedException();
+        }
+
+
+
+        public void CargarAnualidadSeleccionada()
         {
             throw new System.NotImplementedException();
         }

@@ -5,6 +5,8 @@
                    auto-import="true">
 
   <class name="Anualidad" table="MYP_ANUALIDADES">
+    
+
     <id name="Id" column="CANUALIDAD" type="int"/>
     <property name="FechaAnualidad" column="FANUALIDAD" type="DateTime"/>
     <property name="QAnualidad" column="QANUALIDAD" type="int"/>

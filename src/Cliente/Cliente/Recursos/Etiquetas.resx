@@ -2456,6 +2456,24 @@ de Gracia</value>
   <data name="titleConsultarAnualidades" xml:space="preserve">
     <value>Consultar Anualidad</value>
   </data>
+  <data name="lsvFactura" xml:space="preserve">
+    <value>Factura</value>
+  </data>
+  <data name="lsvFechaAnualidad" xml:space="preserve">
+    <value>Fecha Anualidad</value>
+  </data>
+  <data name="lsvFechaVoucher" xml:space="preserve">
+    <value>Fecha Voucher</value>
+  </data>
+  <data name="lsvRecibo" xml:space="preserve">
+    <value>Recibo</value>
+  </data>
+  <data name="lsvSituacion" xml:space="preserve">
+    <value>Situacion</value>
+  </data>
+  <data name="lsvVoucher" xml:space="preserve">
+    <value>Voucher</value>
+  </data>
   <data name="btnCasoEspecial" xml:space="preserve">
     <value>Caso Especial...</value>
   </data>
@@ -2485,6 +2503,33 @@ de Gracia</value>
   </data>
   <data name="lblPresentacion" xml:space="preserve">
     <value>Presentación:</value>
+  </data>
+  <data name="lblFactura" xml:space="preserve">
+    <value>Factura:</value>
+  </data>
+  <data name="lblFechaAnualidad" xml:space="preserve">
+    <value>Fecha Anualidad:</value>
+  </data>
+  <data name="lblFechaFactura" xml:space="preserve">
+    <value>Fecha Factura:</value>
+  </data>
+  <data name="lblFechaVoucher" xml:space="preserve">
+    <value>Fecha Voucher:</value>
+  </data>
+  <data name="lblRecibo" xml:space="preserve">
+    <value>Recibo:</value>
+  </data>
+  <data name="lblVoucher" xml:space="preserve">
+    <value>Voucher:</value>
+  </data>
+  <data name="lsvFechaVencimiento" xml:space="preserve">
+    <value>Fecha Vencimiento</value>
+  </data>
+  <data name="titleAnualidadCampos" xml:space="preserve">
+    <value>Campos de Anualidad</value>
+  </data>
+  <data name="lsvFechaFactura" xml:space="preserve">
+    <value>Fecha Factura</value>
   </data>
   <data name="cbiPresentacionPatente" xml:space="preserve">
     <value>PRESENTACION</value>

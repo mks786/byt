@@ -79,13 +79,38 @@ namespace Trascend.Bolet.Cliente.Contratos.Anualidades
 
         void CargarAnualidad();
 
+        void CargarAnualidadSeleccionada();
+
         void DeshabilitarAnualidad();
 
         object Anualidades { get; set; }
 
         object Anualidad { get; set; }
 
+        string Referencia { get; set; }
+
+        string RegistroCodigo { get; set; }
+
+        string RegistroFecha { get; set; }
+
+        string Recibo { get; set; }
+
+        string FechaAnualidad { get; set; }
+
+        string Voucher { get; set; }
+
+        string FechaVoucher { get; set; }
+
+        string Factura { get; set; }
+
+        object ISituaciones { get; set; }
+
+        object ISituacion { get; set; }
+
+        string FechaFactura { get; set; }
+
         #endregion
+
         bool HabilitarCampos { set; }
 
         string Region { get; set; }

@@ -51,14 +51,14 @@ namespace Trascend.Bolet.Servicios.Implementacion
         /// <param name="anualidad">Anualidad que se va a insertar o modificar</param>
         /// <param name="hash">Hash del usuario que esta realiando la operacion</param>
         /// <returns>True: si la inserción o modificación fue exitosa; False: en caso contrario</returns>
-        public bool InsertarOModificar(Anualidad anualidad, int hash)
+        public bool InsertarOModificar(Patente patente, int hash)
         {
             #region trace
             if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
                 logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
 
-            bool exitoso = ControladorAnualidad.InsertarOModificar(anualidad, hash);
+            bool exitoso = ControladorAnualidad.InsertarOModificar(patente, hash);
 
             #region trace
             if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
@@ -125,12 +125,14 @@ namespace Trascend.Bolet.Servicios.Implementacion
 
             anualidades = ControladorAnualidad.ConsultarAnualidadesFiltro(anualidad);
 
-            return anualidades;
-
             #region trace
             if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
                 logger.Debug("Saliendo del Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
+
+            return anualidades;
+
+
         }
 
         //public IList<Auditoria> AuditoriaPorFkyTabla(Auditoria auditoria)
@@ -186,6 +188,14 @@ namespace Trascend.Bolet.Servicios.Implementacion
 
 
         public bool VerificarExistencia(Anualidad entidad)
+        {
+            throw new NotImplementedException();
+        }
+
+
+
+
+        public bool InsertarOModificar(Anualidad entidad, int hash)
         {
             throw new NotImplementedException();
         }

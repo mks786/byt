@@ -86,10 +86,11 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
                 //Busca la lista de Anualidad por cada marcaTercero
                 foreach (Patente aux in Patentes)
                 {
-          
+                   
                     string CabeceraBase = string.Format(Recursos.ConsultasHQL.CabeceraObtenerAnualidadPorIdPatente,aux.Id);
                     IQuery query2 = Session.CreateQuery(CabeceraBase);
                     aux.Anualidades = query2.List<Anualidad>();
+                     
 
                 }
 
