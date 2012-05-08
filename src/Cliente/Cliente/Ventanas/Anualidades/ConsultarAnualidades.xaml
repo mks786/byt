@@ -233,20 +233,14 @@
                         <GridViewColumn DisplayMemberBinding="{Binding Path=Id}" Width="80">
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="Id" Content="{x:Static recurso:Etiquetas.lsvId}"/>
                         </GridViewColumn>
-                        <GridViewColumn DisplayMemberBinding="{Binding Path=Anexo}" Width="80">
-                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="Anexo" Content="{x:Static recurso:Etiquetas.lsvAnexo}"/>
-                        </GridViewColumn>
-                        <GridViewColumn DisplayMemberBinding="{Binding Path=Descripcion}" Width="150">
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Descripcion}" Width="190">
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="Descripcion" Content="{x:Static recurso:Etiquetas.lsvDescripcion}"/>
                         </GridViewColumn>
                         <GridViewColumn DisplayMemberBinding="{Binding Path=Asociado.Nombre}" Width="150">
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="Asociado.Nombre" Content="{x:Static recurso:Etiquetas.lsvAsociado}"/>
                         </GridViewColumn>
-                        <GridViewColumn DisplayMemberBinding="{Binding Path=Interesado.Nombre}" Width="150">
-                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="Interesado.Nombre" Content="{x:Static recurso:Etiquetas.lsvInteresado}"/>
-                        </GridViewColumn>
-                        <GridViewColumn DisplayMemberBinding="{Binding Path=FechaPublicacion}" Width="150">
-                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="FechaPublicacion" Content="{x:Static recurso:Etiquetas.lsvFecha}"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=FechaPublicacion}" Width="110">
+                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="FechaAnualidad" Content="{x:Static recurso:Etiquetas.lsvFecha}"/>
                         </GridViewColumn>
                     </GridView>
                 </ListView.View>

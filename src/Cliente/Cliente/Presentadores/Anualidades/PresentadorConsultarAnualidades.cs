@@ -60,7 +60,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Anualidades
         public void ActualizarTitulo()
         {
             this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleConsultarAnualidades,
-                Recursos.Ids.ConsultarMarcasTercero);
+                Recursos.Ids.ConsultarAnualidad);
         }
 
         /// <summary>

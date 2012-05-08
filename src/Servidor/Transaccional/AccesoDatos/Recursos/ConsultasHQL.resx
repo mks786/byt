@@ -645,4 +645,7 @@
   <data name="ObtenerOperacionesPorPatentes" xml:space="preserve">
     <value>Select o from Operacion o where o.CodigoAplicada = {0} and o.Aplicada = 'P'</value>
   </data>
+  <data name="ObtenerMaxAnualidad" xml:space="preserve">
+    <value>select max(a.Id) from Anualidad a</value>
+  </data>
 </root>

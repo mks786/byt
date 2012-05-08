@@ -678,4 +678,10 @@
   <data name="GestionarAbandonoPatente" xml:space="preserve">
     <value>MYPPABAM</value>
   </data>
+  <data name="ConsultarAnualidad" xml:space="preserve">
+    <value>MYPPANUM</value>
+  </data>
+  <data name="GestionarAnualidad" xml:space="preserve">
+    <value>MYPPANUM</value>
+  </data>
 </root>

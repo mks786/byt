@@ -750,4 +750,13 @@
   <data name="PatenteModificada" xml:space="preserve">
     <value>Patente modificada con éxito</value>
   </data>
+  <data name="AnualidadEliminada" xml:space="preserve">
+    <value>Anualidad Eliminada Con Exito</value>
+  </data>
+  <data name="AnualidadInsertada" xml:space="preserve">
+    <value>Anualdiad Insertada Con Exito</value>
+  </data>
+  <data name="AnualidadModificada" xml:space="preserve">
+    <value>Anualidad Modificada Con Exito</value>
+  </data>
 </root>

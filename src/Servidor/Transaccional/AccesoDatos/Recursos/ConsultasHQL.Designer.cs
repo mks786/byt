@@ -277,8 +277,7 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Select p from Patente p left join fetch p.Asociado as asociado left join fetch p.Interesado as interesado left join fetch asociado.Pais as pais left join fetch asociado.Idioma as pais left join fetch p.BoletinConcesion as boletinC left join fetch p.BoletinPublicacion as boletinP left join fetch p.Anualidades as anualidades left join fetch p.Agente as agente where .
-        ///   Busca una cadena traducida similar a Select p from Patente p left join fetch p.Asociado as asociado left join fetch p.Interesado as interesado left join fetch asociado.Pais as pais left join fetch asociado.Idioma as pais left join fetch p.BoletinConcesion as boletinC left join fetch p.BoletinPublicacion as boletinP left join fetch p.BoletinOrdenPublicacion as boletinO left join fetch p.Anualidades as anualidades left join fetch p.Agente as agente left join fetch p.TipoEstado as tipoEstado where .
+        ///   Looks up a localized string similar to Select p from Patente p left join fetch p.Asociado as asociado left join fetch p.Interesado as interesado left join fetch asociado.Pais as pais left join fetch asociado.Idioma as pais left join fetch p.BoletinConcesion as boletinC left join fetch p.BoletinPublicacion as boletinP left join fetch p.BoletinOrdenPublicacion as boletinO left join fetch p.Anualidades as anualidades left join fetch p.Agente as agente left join fetch p.TipoEstado as tipoEstado where .
         /// </summary>
         public static string CabeceraObtenerPatente {
             get {
@@ -1205,8 +1204,7 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Select p from Patente p left join fetch p.Asociado as asociado left join fetch p.Servicio as servicio left join fetch p.Inventores as inventores where p.Id = &apos;{0}&apos; order by p.Id.
-        ///   Busca una cadena traducida similar a Select o from Operacion o where o.CodigoAplicada = {0} and o.Aplicada = &apos;P&apos;.
+        ///   Looks up a localized string similar to Select o from Operacion o where o.CodigoAplicada = {0} and o.Aplicada = &apos;P&apos;.
         /// </summary>
         public static string ObtenerOperacionesPorPatentes {
             get {
@@ -1215,7 +1213,7 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Select p from Patente p left join fetch p.Asociado as asociado left join fetch p.Servicio as servicio left join fetch p.Inventores as inventores where p.Id = &apos;{0}&apos; order by p.Id.
+        ///   Looks up a localized string similar to Select p from Patente p left join fetch p.Asociado as asociado left join fetch p.Servicio as servicio left join fetch p.Inventores as inventores where p.Id = &apos;{0}&apos; order by p.Id.
         /// </summary>
         public static string ObtenerPatenteConTodo {
             get {

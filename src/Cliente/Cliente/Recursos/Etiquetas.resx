@@ -2454,7 +2454,7 @@ de Gracia</value>
     <value>Tipo</value>
   </data>
   <data name="titleConsultarAnualidades" xml:space="preserve">
-    <value>Consultar Anualidad</value>
+    <value>Consultar Anualidades de una Patente</value>
   </data>
   <data name="lsvFactura" xml:space="preserve">
     <value>Factura</value>

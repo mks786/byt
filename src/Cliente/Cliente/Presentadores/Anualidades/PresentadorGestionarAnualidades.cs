@@ -154,10 +154,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Anualidades
 
             if (_agregar == true)
                 this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleAgregarAnualidad,
-                Recursos.Ids.GestionarFusionPatente);
+                Recursos.Ids.GestionarAnualidad);
             else
                 this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleGestionarAnualidad,
-                Recursos.Ids.GestionarFusionPatente);
+                Recursos.Ids.GestionarAnualidad);
         }
 
         /// <summary>
@@ -365,15 +365,14 @@ namespace Trascend.Bolet.Cliente.Presentadores.Anualidades
                 else if (this._ventana.TextoBotonModificar == Recursos.Etiquetas.btnAceptar)
                 {
                     Patente patente = CargarFusionDeLaPantalla();
-                    IList<Anualidad> anualidades = patente.Anualidades;
 
 
                     bool exitoso = this._patenteesServicios.InsertarOModificarAnualidad(patente, UsuarioLogeado.Hash);
 
                     if ((exitoso) && (this._agregar == false))
-                        this.Navegar(Recursos.MensajesConElUsuario.FusionModificada, false);
+                        this.Navegar(Recursos.MensajesConElUsuario.AnualidadModificada, false);
                     else if ((exitoso) && (this._agregar == true))
-                        this.Navegar(Recursos.MensajesConElUsuario.FusionInsertada, false);
+                        this.Navegar(Recursos.MensajesConElUsuario.AnualidadInsertada, false);
                 }
 
                 #region trace
@@ -423,7 +422,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Anualidades
 
                 if (this._patenteesServicios.Eliminar((Patente)this._ventana.Patente, UsuarioLogeado.Hash))
                 {
-                    _paginaPrincipal.MensajeUsuario = Recursos.MensajesConElUsuario.FusionEliminada;
+                    _paginaPrincipal.MensajeUsuario = Recursos.MensajesConElUsuario.AnualidadEliminada;
                     this.Navegar(_paginaPrincipal);
                 }
 
@@ -1068,7 +1067,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Anualidades
             IList<Anualidad> anualidades;
             bool respuesta = false;
 
-            if (null != ((Anualidad)this._ventana.Anualidad))
+            if ((null != ((Anualidad)this._ventana.Anualidad)) && (((Anualidad)this._ventana.Anualidad).Id != 0))
             {
                 if (null == ((Patente)this._ventana.Patente).Anualidades)
                     anualidades = new List<Anualidad>();
