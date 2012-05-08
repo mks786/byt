@@ -647,5 +647,6 @@
   </data>
   <data name="ObtenerMaxAnualidad" xml:space="preserve">
     <value>select max(a.Id) from Anualidad a</value>
+    <comment>Obtiene el maximo Id Insertado en BD</comment>
   </data>
 </root>
