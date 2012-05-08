@@ -102,8 +102,6 @@ namespace Trascend.Bolet.Cliente.Contratos.Patentes
 
         string NombreInteresadoDatos { get; set; }
 
-        string NumPoderDatos { get; set; }
-
         string PoderDatos { get; set; }
 
         object PoderesDatosFiltrar { get; set; }
@@ -133,6 +131,26 @@ namespace Trascend.Bolet.Cliente.Contratos.Patentes
         object PresentacionesPatenteDatos { get; set; }
 
         object PresentacionPatenteDatos { get; set; }
+
+        object StatusesWebDatos { get; set; }
+
+        object StatusWebDatos { get; set; }
+
+        object BoletinesOrdenPublicacionDatos { get; set; }
+
+        object BoletinOrdenPublicacionDatos { get; set; }
+
+        object BoletinesPublicacionDatos { get; set; }
+
+        object BoletinPublicacionDatos { get; set; }
+
+        object BoletinesConcesionDatos { get; set; }
+
+        object BoletinConcesionDatos { get; set; }
+
+        object SituacionesDatos { get; set; }
+
+        object SituacionDatos { get; set; }
 
         void PintarDisenoDatos();
 

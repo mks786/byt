@@ -85,7 +85,7 @@
                     <TextBlock Text="{x:Static recurso:Etiquetas.lblRecordatorio}"/>
                 </Label>
                 <ComboBox Name="_cbxRecordatorio" Width="150" Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="4" ItemsSource="{Binding}" Height="25" 
-                                  DisplayMemberPath="Descripcion" IsEnabled="True" SelectionChanged="_cbxRecordatorio_SelectionChanged  ">
+                                  DisplayMemberPath="Descripcion" IsEnabled="True" SelectionChanged="_cbxRecordatorio_SelectionChanged">
                 </ComboBox>
                 <Label Name="_lblAno" VerticalAlignment="Center" Grid.Row="5" Grid.Column="0" HorizontalAlignment="Right">
                     <TextBlock Text="{x:Static recurso:Etiquetas.lblAno}" Margin="5,5,0,0"/>

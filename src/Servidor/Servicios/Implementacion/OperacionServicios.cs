@@ -107,6 +107,23 @@ namespace Trascend.Bolet.Servicios.Implementacion
             return operaciones;
         }
 
+        public IList<Operacion> ConsultarOperacionesPorPatente(Patente patente)
+        {
+            #region trace
+            if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+            IList<Operacion> operaciones = ControladorOperacion.ConsultarOperacionesPorPatente(patente);
+
+            #region trace
+            if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+            return operaciones;
+        }
+
         /// <summary>
         /// Servicio que consulta una serie de operaciones por el id de la marca y el tipo de la infobol
         /// </summary>

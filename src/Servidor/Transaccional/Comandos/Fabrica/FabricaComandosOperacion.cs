@@ -76,6 +76,16 @@ namespace Trascend.Bolet.Comandos.Fabrica
         }
 
         /// <summary>
+        /// Metodo que devuelve el comando para consultar todos los Operaciones de una Patente
+        /// </summary>
+        /// <param name="patente"></param>
+        /// <returns></returns>
+        public static ComandoBase<IList<Operacion>> ObtenerComandoConsultarOperacionesPorPatente(Patente patente)
+        {
+            return new ComandoConsultarOperacionesPorPatente(patente);
+        }
+
+        /// <summary>
         /// Metodo que devuelve el comando para consultar todos los Operaciones de una marca y un servicio
         /// </summary>
         /// <param name="operacion"></param>

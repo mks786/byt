@@ -7,6 +7,8 @@ namespace Trascend.Bolet.AccesoDatos.Contrato
     {
         IList<Operacion> ObtenerOperacionesPorMarca(Marca marca);
 
+        IList<Operacion> ObtenerOperacionesPorPatente(Patente patente);
+
         IList<Operacion> ObtenerOperacionesPorMarcaYServicio(Operacion operacion);
 
         IList<Operacion> ObtenerOperacionesFiltro(Operacion operacion);

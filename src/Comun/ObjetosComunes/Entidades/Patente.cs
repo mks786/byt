@@ -45,7 +45,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         private char _dibujo;
         private char _iTipoEstado;
         private Boletin _boletinOrdenPublicacion;
-        private TipoEstado _tipoEstado;
+        private StatusWeb _tipoEstado;
         private DateTime? _fechaBase;
         private DateTime? _fechaTermino;
         private string _observacion1;
@@ -56,6 +56,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         private InfoAdicional _infoAdicional;
         private IList<Inventor> _inventores;
         private IList<Anualidad> _anualidades;
+        private IList<Operacion> _operaciones;
 
         #endregion
 
@@ -245,6 +246,27 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         }
 
         /// <summary>
+        /// Propiedad que asigna u obtiene el Check de Rev
+        /// </summary>
+        public virtual bool BRev
+        {
+            get
+            {
+                if (this.Rev.ToString().ToUpper().Equals("T"))
+                    return true;
+                else
+                    return false;
+            }
+            set
+            {
+                if (value)
+                    this.Rev = 'T';
+                else
+                    this.Rev = 'F';
+            }
+        }
+
+        /// <summary>
         /// Propiedad que asigna u obtiene el Agente
         /// </summary>
         public virtual Agente Agente
@@ -383,6 +405,27 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         }
 
         /// <summary>
+        /// Propiedad que asigna u obtiene el Check de Ime
+        /// </summary>
+        public virtual bool BIme
+        {
+            get
+            {
+                if (this.Ime.ToString().ToUpper().Equals("T"))
+                    return true;
+                else
+                    return false;
+            }
+            set
+            {
+                if (value)
+                    this.Ime = 'T';
+                else
+                    this.Ime = 'F';
+            }
+        }
+
+        /// <summary>
         /// Propiedad que asigna u obtiene la observacion1
         /// </summary>
         public virtual string Observacion1
@@ -412,7 +455,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         /// <summary>
         /// Propiedad que asigna u obtiene el tipo estado
         /// </summary>
-        public virtual TipoEstado TipoEstado
+        public virtual StatusWeb TipoEstado
         {
             get { return _tipoEstado; }
             set { _tipoEstado = value; }
@@ -527,6 +570,15 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         {
             get { return _anualidades; }
             set { _anualidades = value; }
+        }
+
+        /// <summary>
+        /// Propiedad que asigna u obtiene la lista de Operaciones
+        /// </summary>
+        public virtual IList<Operacion> Operaciones
+        {
+            get { return _operaciones; }
+            set { _operaciones = value; }
         }
 
         #endregion

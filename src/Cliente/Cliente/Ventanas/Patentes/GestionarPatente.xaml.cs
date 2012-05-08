@@ -254,12 +254,6 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
             set { this._txtPoderDatos.Text = value; }
         }
 
-        public string NumPoderDatos
-        {
-            get { return this._txtFomentoDatos.Text; }
-            set { this._txtFomentoDatos.Text = value; }
-        }
-
         public object PoderesDatosFiltrar
         {
             get { return this._lstPoderesDatos.DataContext; }
@@ -306,6 +300,66 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
         {
             get { return this._cbxPresentacionDatos.SelectedItem; }
             set { this._cbxPresentacionDatos.SelectedItem = value; }
+        }
+
+        public object StatusesWebDatos
+        {
+            get { return this._cbxEstatusWebDatos.DataContext; }
+            set { this._cbxEstatusWebDatos.DataContext = value; }
+        }
+
+        public object StatusWebDatos
+        {
+            get { return this._cbxEstatusWebDatos.SelectedItem; }
+            set { this._cbxEstatusWebDatos.SelectedItem = value; }
+        }
+
+        public object BoletinesOrdenPublicacionDatos
+        {
+            get { return this._cbxOrdenPublicacionDatos.DataContext; }
+            set { this._cbxOrdenPublicacionDatos.DataContext = value; }
+        }
+
+        public object BoletinOrdenPublicacionDatos
+        {
+            get { return this._cbxOrdenPublicacionDatos.SelectedItem; }
+            set { this._cbxOrdenPublicacionDatos.SelectedItem = value; }
+        }
+
+        public object BoletinesPublicacionDatos
+        {
+            get { return this._cbxBoletinPublicacionDatos.DataContext; }
+            set { this._cbxBoletinPublicacionDatos.DataContext = value; }
+        }
+
+        public object BoletinPublicacionDatos
+        {
+            get { return this._cbxBoletinPublicacionDatos.SelectedItem; }
+            set { this._cbxBoletinPublicacionDatos.SelectedItem = value; }
+        }
+
+        public object BoletinesConcesionDatos
+        {
+            get { return this._cbxBoletinConcesionDatos.DataContext; }
+            set { this._cbxBoletinConcesionDatos.DataContext = value; }
+        }
+
+        public object BoletinConcesionDatos
+        {
+            get { return this._cbxBoletinConcesionDatos.SelectedItem; }
+            set { this._cbxBoletinConcesionDatos.SelectedItem = value; }
+        }
+
+        public object SituacionesDatos
+        {
+            get { return this._cbxSituacionDatos.DataContext; }
+            set { this._cbxSituacionDatos.DataContext = value; }
+        }
+
+        public object SituacionDatos
+        {
+            get { return this._cbxSituacionDatos.SelectedItem; }
+            set { this._cbxSituacionDatos.SelectedItem = value; }
         }
 
         public string IdAsociadoDatosFiltrar
@@ -481,6 +535,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
             {
                 #region TextBoxs
 
+                //Solicitud
                 this._txtAsociadoSolicitud.IsEnabled = value;
                 this._txtDescripcionSolicitud.IsEnabled = value;
                 this._txtIdAsociadoSolicitud.IsEnabled = value;
@@ -501,35 +556,85 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
                 this._txtOmisionSolicitud.IsEnabled = value;
                 this._txtObservacion1Solicitud.IsEnabled = value;
                 this._txtInscripcionSolicitud.IsEnabled = value;
-                
                 this._txtFomentoSolicitud.IsEnabled = value;
                 this._txtAgenteSolicitud.IsEnabled = value;
                 this._txtIdAgenteSolicitud.IsEnabled = value;
                 this._txtResumenSolicitud.IsEnabled = value;
                 this._txtObservacionSolicitud.IsEnabled = value;
                 this._txtOrdenSolicitud.IsEnabled = value;
+
+
+                //Datos
+
+                this._txtAsociadoDatos.IsEnabled = value;
+                this._txtDescripcionDatos.IsEnabled = value;
+                this._txtIdAsociadoDatos.IsEnabled = value;
+                this._txtIdInteresadoDatos.IsEnabled = value;
+                this._txtIdDatos.IsEnabled = value;
+                this._txtInteresadoDatos.IsEnabled = value;
+                this._txtNombreAsociadoDatos.IsEnabled = value;
+                this._txtNombreInteresadoDatos.IsEnabled = value;
+                this._txtPoderDatos.IsEnabled = value;
+                this._txtCasoDatos.IsEnabled = value;
+                this._txtPaisDatos.IsEnabled = value;
+                this._txtEstadoDatos.IsEnabled = value;
+                this._txtCasoDatos.IsEnabled = value;
+                this._txtPrioridadDatos.IsEnabled = value;
+                this._txtResumenDatos.IsEnabled = value;
+                this._txtOrdenDatos.IsEnabled = value;
+                this._txtAbandonoDatos.IsEnabled = value;
+                this._txtAnualidadDatos.IsEnabled = value;
+                
+                this._txtComentarioDatos.IsEnabled = value;
+                this._txtFechaRenovacionDatos.IsEnabled = value;
+                this._txtCodigoRegistroDatos.IsEnabled = value;
+                this._txtCodigoInscripcionDatos.IsEnabled = value;
+                this._txtUbicacionDatos.IsEnabled = value;
+                this._txtExpedienteDatos.IsEnabled = value;
                 
                 #endregion
                 
                 #region Datepicker
 
+                //Solicitud
                 this._dpkFechaInscripcionSolicitud.IsEnabled = value;
                 this._dpkFechaPrioridadSolicitud.IsEnabled = value;
                 this._dpkFechaOrdenSolicitud.IsEnabled = value;
+
+                //Datos
+                this._dpkFechaPrioridadDatos.IsEnabled = value;
+                this._dpkFechaOrdenDatos.IsEnabled = value;
+                this._dpkFechaPublicacionDatos.IsEnabled = value;
+                this._dpkFechaBaseDatos.IsEnabled = value;
+                this._dpkFechaRegistroDatos.IsEnabled = value;
+                this._dpkFechaInscripcionDatos.IsEnabled = value;
 
                 #endregion
 
                 #region ComboBoxs
 
+                //Solicitud
                 this._cbxPresentacionSolicitud.IsEnabled = value;
                 this._cbxTipoSolicitud.IsEnabled = value;
                 this._cbxPaisSolicitud.IsEnabled = value;
+
+                //Datos
+                this._cbxPresentacionDatos.IsEnabled = value;
+                this._cbxTipoDatos.IsEnabled = value;
+                this._cbxPaisDatos.IsEnabled = value;
+                this._cbxDetalleDatos.IsEnabled = value;
+                this._cbxSituacionDatos.IsEnabled = value;
+                this._cbxEstatusWebDatos.IsEnabled = value;
+                this._cbxBoletinConcesionDatos.IsEnabled = value;
+                this._cbxBoletinPublicacionDatos.IsEnabled = value;
+                this._cbxOrdenPublicacionDatos.IsEnabled = value;
 
                 #endregion
 
                 #region CheckBox
 
                 this._chkMemoriaTraducidaSolicitud.IsEnabled = value;
+                this._chkRevisadoWeb.IsEnabled = value;
 
                 #endregion
 
@@ -537,6 +642,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
 
                 this._btnAceptar.IsEnabled = value;
                 this._btnCancelar.IsEnabled = value;
+
+                //Solicitud
                 this._btnConsultarAsociadoSolicitud.IsEnabled = value;
                 this._btnConsultarInteresadoSolicitud.IsEnabled = value;
                 this._btnInfoAdicionalSolicitud.IsEnabled = value;
@@ -549,6 +656,25 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
                 this._btnDisenoReporteSolicitud.IsEnabled = value;
                 this._btnInventoresSolicitud.IsEnabled = value;
                 this._btnImprimirEdoDeCuentaSolicitud.IsEnabled = value;
+
+                //Datos
+                this._btnDisenoDatos.IsEnabled = value;
+                this._btnInventoresDatos.IsEnabled = value;
+                this._btnNoSolicitudDatos.IsEnabled = value;
+                this._btnNoRegistroDatos.IsEnabled = value;
+                this._btnOperacionDatos.IsEnabled = value;
+                this._btnAuditoriaDatos.IsEnabled = value;
+                this._btnVerSolicitudDatos.IsEnabled = value;
+                this._btnInfoBolDatos.IsEnabled = value;
+                this._btnFechasDatos.IsEnabled = value;
+                this._btnVerTituloDatos.IsEnabled = value;
+                this._btnVerSolicitudDatos.IsEnabled = value;
+                this._btnVerMemoriaDatos.IsEnabled = value;
+                this._btnVerExpedienteDatos.IsEnabled = value;
+                this._btnArchivoDatos.IsEnabled = value;
+                this._btnFacturacionDatos.IsEnabled = value;
+                this._btnCertificadoDatos.IsEnabled = value;
+                this._btnCertificadoDatos.IsEnabled = value;
 
                 #endregion
 
@@ -751,21 +877,6 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
             this._txtPoderDatos.Visibility = System.Windows.Visibility.Visible;
         }
 
-        private void MostrarLstAgenteDatos()
-        {
-            this._txtAgenteDatos.Visibility = System.Windows.Visibility.Collapsed;
-            this._lstAgentesDatos.Visibility = System.Windows.Visibility.Visible;
-            this._lstAgentesDatos.IsEnabled = true;
-        }
-
-        private void OcultarLstAgenteDatos()
-        {
-            this._presentador.CambiarAgenteDatos();
-
-            this._lstAgentesDatos.Visibility = System.Windows.Visibility.Collapsed;
-            this._txtAgenteDatos.Visibility = System.Windows.Visibility.Visible;
-        }
-
         #endregion
 
         #region Eventos generales
@@ -931,6 +1042,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
             this._cbxPresentacionDatos.SelectedItem = ((ComboBox)sender).SelectedItem;
         }
 
+        private void _cbxPaisSolicitud_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            this._cbxPaisDatos.SelectedItem = ((ComboBox)sender).SelectedItem;
+        }
+
         private void _btnInventoresSolicitud_Click(object sender, RoutedEventArgs e)
         {
 
@@ -991,7 +1107,6 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
 
             OcultarLstInteresadoDatos();
             OcultarLstPoderDatos();
-            OcultarLstAgenteDatos();
 
             this._btnAceptar.IsDefault = false;
             this._btnConsultarAsociadoDatos.IsDefault = true;
@@ -1018,11 +1133,6 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
             this._presentador.BuscarAsociado(0);
         }
 
-        private void _OrdenarAgenteDatos_Click(object sender, RoutedEventArgs e)
-        {
-            this._presentador.OrdenarColumna(sender as GridViewColumnHeader, this._lstAgentesDatos);
-        }
-
         private void _txtInteresadoDatos_MouseDoubleClick(object sender, RoutedEventArgs e)
         {
             if (!this._interesadosCargados)
@@ -1032,7 +1142,6 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
 
             OcultarLstAsociadoDatos();
             OcultarLstPoderDatos();
-            OcultarLstAgenteDatos();
 
             this._btnAceptar.IsDefault = false;
             this._btnConsultarInteresadoDatos.IsDefault = true;
@@ -1059,11 +1168,6 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
             this._presentador.OrdenarColumna(sender as GridViewColumnHeader, this._lstInteresadosDatos);
         }
 
-        private void _btnInventoresDatos_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
         private void _txtPoderDatos_MouseDoubleClick(object sender, RoutedEventArgs e)
         {
             if (!this._poderesCargados)
@@ -1071,7 +1175,6 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
 
             OcultarLstAsociadoDatos();
             OcultarLstInteresadoDatos();
-            OcultarLstAgenteDatos();
 
             MostrarLstPoderDatos();
         }
@@ -1079,7 +1182,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
         private void _lstPoderesDatos_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             OcultarLstPoderDatos();
-            //ocultarLstPoderDatos();
+            
         }
 
         private void _OrdenarPoderDatos_Click(object sender, RoutedEventArgs e)
@@ -1089,27 +1192,35 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
 
         private void _cbxTipoPatenteDatos_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            //this._cbxTipoPatenteDatos.SelectedItem = ((ComboBox)sender).SelectedItem;
+            this._cbxTipoSolicitud.SelectedItem = ((ComboBox)sender).SelectedItem;
         }
 
-        private void _txtAgenteDatos_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        private void _cbxPaisDatos_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (!this._agentesCargados)
-                this._presentador.CargarAgentes();
-
-            OcultarLstAsociadoDatos();
-            OcultarLstInteresadoDatos();
-            OcultarLstPoderDatos();
-
-            MostrarLstAgenteDatos();
+            this._cbxPaisSolicitud.SelectedItem = ((ComboBox)sender).SelectedItem;
         }
 
-        private void _lstAgentesDatos_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        private void _cbxPresentacionDatos_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            OcultarLstAgenteDatos();
+            this._cbxPresentacionSolicitud.SelectedItem = ((ComboBox)sender).SelectedItem;
         }
 
         private void _btnConsultarAgenteDatos_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void _btnOperacionesDatos_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.IrOperaciones();
+        }
+
+        private void _btnAuditoriaDatos_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void _btnInfoBolDatos_Click(object sender, RoutedEventArgs e)
         {
 
         }
@@ -1119,8 +1230,62 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
 
         }
 
+        private void _btnInventoresDatos_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void _btnFechasDatos_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void _btnVerSolicitudDatos_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void _btnVerTituloDatos_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void _btnVerMemoriaDatos_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void _btnVerExpedienteDatos_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void _btnArchivoDatos_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void _btnFacturacionDatos_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        //private void _btnVerMemoriaDatos_Click(object sender, RoutedEventArgs e)
+        //{
+
+        //}
+
+        private void _btnCertificadoDatos_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void _btnIrExplorador_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.IrSAPI();
+        }
+
         #endregion
 
-        
     }
 }

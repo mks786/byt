@@ -45,6 +45,39 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
             return Operaciones;
         }
 
+        public IList<Operacion> ObtenerOperacionesPorPatente(Patente patente)
+        {
+            IList<Operacion> Operaciones;
+
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                IQuery query = Session.CreateQuery(string.Format(Recursos.ConsultasHQL.ObtenerOperacionesPorPatentes, patente.Id));
+                Operaciones = query.List<Operacion>();
+
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Saliendo del Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                throw new ApplicationException(Recursos.Errores.ExConsultarTodos);
+            }
+            finally
+            {
+                Session.Close();
+            }
+
+            return Operaciones;
+        }
+
         public IList<Operacion> ObtenerOperacionesPorMarcaYServicio(Operacion operacion)
         {
             IList<Operacion> Operaciones;

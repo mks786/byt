@@ -122,6 +122,7 @@
     <Compile Include="Comandos\ComandosMarca\ComandoConsultarMarcaPorId.cs" />
     <Compile Include="Comandos\ComandosMarca\ComandoConsultarMarcasPorFechaRenovacion.cs" />
     <Compile Include="Comandos\ComandosOperacion\ComandoConsultarOperacionesFiltro.cs" />
+    <Compile Include="Comandos\ComandosOperacion\ComandoConsultarOperacionesPorPatente.cs" />
     <Compile Include="Comandos\ComandosPlanilla\ComandoEjecutarProcedimiento.cs" />
     <Compile Include="Comandos\ComandosOperacion\ComandoConsultarOperacionesPorMarcaYServicio.cs" />
     <Compile Include="Comandos\ComandosPlanilla\ComandoConsultarPlanillaPorUsuario.cs" />

@@ -8,6 +8,8 @@ namespace Trascend.Bolet.ObjetosComunes.ContratosServicios
     {
         IList<Operacion> ConsultarOperacionesPorMarca(Marca marca);
 
+        IList<Operacion> ConsultarOperacionesPorPatente(Patente patente);
+
         IList<Operacion> ObtenerOperacionPorMarcaYServicio(Operacion operacion);
 
         IList<Operacion> ObtenerOperacionFiltro(Operacion operacionAuxiliar);

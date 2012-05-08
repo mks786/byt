@@ -2537,4 +2537,37 @@ de Gracia</value>
   <data name="cbiTipoPatente" xml:space="preserve">
     <value>PATENTE</value>
   </data>
+  <data name="btnFechas" xml:space="preserve">
+    <value>Fechas</value>
+  </data>
+  <data name="btnVerSolicitud" xml:space="preserve">
+    <value>Ver Solicitud</value>
+  </data>
+  <data name="btnVerTitulo" xml:space="preserve">
+    <value>Ver Titulo</value>
+  </data>
+  <data name="lblAnualidad" xml:space="preserve">
+    <value>Anualidad:</value>
+  </data>
+  <data name="lblFechaBase" xml:space="preserve">
+    <value>Fecha Base:</value>
+  </data>
+  <data name="btnArchivo" xml:space="preserve">
+    <value>Archivo</value>
+  </data>
+  <data name="btnCertificado" xml:space="preserve">
+    <value>Certificado</value>
+  </data>
+  <data name="btnVerMemoria" xml:space="preserve">
+    <value>Ver Memoria</value>
+  </data>
+  <data name="chkRevisadoWeb" xml:space="preserve">
+    <value>Revisado para Web</value>
+  </data>
+  <data name="lblFechaPublicacion" xml:space="preserve">
+    <value>Fecha Publicación:</value>
+  </data>
+  <data name="titleGestionarPatente" xml:space="preserve">
+    <value>Gestionar Patente</value>
+  </data>
 </root>
