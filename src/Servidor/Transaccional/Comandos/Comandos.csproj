@@ -54,6 +54,7 @@
     <Compile Include="Comandos\ComandosAnexo\ComandoInsertarOModificarAnexo.cs" />
     <Compile Include="Comandos\ComandosAnexo\ComandoVerificarExistenciaAnexo.cs" />
     <Compile Include="Comandos\ComandosAnualidad\ComandoConsultarAnualidadesFiltro.cs" />
+    <Compile Include="Comandos\ComandosAnualidad\ComandoConsultarUltimoIdAnualidad.cs" />
     <Compile Include="Comandos\ComandosAsignacion\ComandoConsultarAsignacionesPorCarta.cs" />
     <Compile Include="Comandos\ComandosAsociado\ComandoConsultarAsociadoConTodo.cs" />
     <Compile Include="Comandos\ComandosAsociado\ComandoConsultarAsociadosFiltro.cs" />

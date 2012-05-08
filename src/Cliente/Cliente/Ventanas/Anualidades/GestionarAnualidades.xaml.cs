@@ -96,14 +96,14 @@ namespace Trascend.Bolet.Cliente.Ventanas.Anualidades
            //     this._dpkFecha.IsEnabled = value;
                 this._dpkFechaAnualidad.IsEnabled = value;
                 this._dpkFechaVoucher.IsEnabled = value;
-                this._dpkFechaFactura.IsEnabled = value;
-                this._txtFactura.IsEnabled = value;
                 this._txtRecibo.IsEnabled = value;
+                this._txtId.IsEnabled = value;
                 this._txtVoucher.IsEnabled = value;
                 this._cbxISituacion.IsEnabled = value;
                 this._lstAnualidades.IsEnabled = value;
                 this._btnMas.IsEnabled = value;
                 this._btnMenos.IsEnabled = value;
+                this._chkFactura.IsEnabled = value;
 
             }
         }
@@ -330,6 +330,12 @@ namespace Trascend.Bolet.Cliente.Ventanas.Anualidades
             set { this._txtRecibo.Text = value; }
         }
 
+        public string Id
+        {
+            get { return this._txtId.Text; }
+            set { this._txtId.Text = value; }
+        }
+
         public string FechaFactura
         {
             get { return this._dpkFechaFactura.Text; }
@@ -366,6 +372,10 @@ namespace Trascend.Bolet.Cliente.Ventanas.Anualidades
             set { this._txtVoucher.Text = value; }
         }
 
+        public CheckBox ChkFactura
+        {
+            get { return this._chkFactura; }
+        }
         #endregion
         public void Mensaje(string mensaje, int opcion)
         {
@@ -665,6 +675,19 @@ namespace Trascend.Bolet.Cliente.Ventanas.Anualidades
 
         }
 
+        private void _chkFactura_Click(object sender, RoutedEventArgs e)
+        {
+            if ((bool)this._chkFactura.IsChecked)
+            {
+                this._dpkFechaFactura.IsEnabled = true;
+                this._txtFactura.IsEnabled = true;
+            }
+            else {
+                this._dpkFechaFactura.IsEnabled = false;
+                this._txtFactura.IsEnabled = false;
+            }
+
+        }
         #endregion
 
         public void FocoPredeterminado()
@@ -700,5 +723,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Anualidades
         {
             throw new System.NotImplementedException();
         }
+
+
     }
 }

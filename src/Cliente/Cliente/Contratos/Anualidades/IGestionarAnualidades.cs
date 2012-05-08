@@ -95,6 +95,8 @@ namespace Trascend.Bolet.Cliente.Contratos.Anualidades
 
         string Recibo { get; set; }
 
+        string Id { get; set; }
+
         string FechaAnualidad { get; set; }
 
         string Voucher { get; set; }
@@ -108,6 +110,8 @@ namespace Trascend.Bolet.Cliente.Contratos.Anualidades
         object ISituacion { get; set; }
 
         string FechaFactura { get; set; }
+
+        CheckBox ChkFactura { get; }
 
         #endregion
 

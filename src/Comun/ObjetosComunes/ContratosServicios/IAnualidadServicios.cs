@@ -8,6 +8,8 @@ namespace Trascend.Bolet.ObjetosComunes.ContratosServicios
     {
         IList<Anualidad> ObtenerAnualidadesFiltro(Anualidad Anualidad);
 
+        int ConsultarUltimoIdAnualidad();
+
         Anualidad ConsultarAnualidadConTodo(Anualidad Anualidad);
     }
 }

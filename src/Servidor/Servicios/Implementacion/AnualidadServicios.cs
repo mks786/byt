@@ -135,6 +135,31 @@ namespace Trascend.Bolet.Servicios.Implementacion
 
         }
 
+        /// <summary>
+        /// Servicio que consulta el ultimo id  por uno o mas parametros
+        /// </summary>
+        /// <param name="anualidad">Anualidad que contiene los parametros de la consulta</param>
+        /// <returns>ultimo id de anualidad</returns>
+        public int ConsultarUltimoIdAnualidad()
+        {
+            #region trace
+            if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+            int anualidades;
+
+            anualidades = ControladorAnualidad.ConsultarUltimoIdAnualidad();
+
+            #region trace
+            if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                logger.Debug("Saliendo del Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+            return anualidades;
+
+
+        }
         //public IList<Auditoria> AuditoriaPorFkyTabla(Auditoria auditoria)
         //{
         //    #region trace

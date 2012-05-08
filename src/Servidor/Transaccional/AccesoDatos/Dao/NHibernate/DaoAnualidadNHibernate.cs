@@ -94,6 +94,17 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
             return Anualidads;
         }
 
+        public int ObtenerMaxIdAnualidad()
+        {
+            int idConsultado;
+            string consulta = string.Format(Recursos.ConsultasHQL.ObtenerMaxAnualidad);
+            IQuery query = Session.CreateQuery(consulta);
+            idConsultado = query.UniqueResult<int>();
+
+
+            return idConsultado;
+        }
+
         public Anualidad ObtenerAnualidadConTodo(Anualidad Anualidad)
         {
             Anualidad retorno;

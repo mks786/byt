@@ -87,6 +87,7 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
             return exitoso;
         }
 
+        
         /// <summary>
         /// Método que consulta la lista de todos las Anualidads
         /// </summary>
@@ -103,6 +104,40 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
                 #endregion
 
                 ComandoBase<IList<Anualidad>> comando = FabricaComandosAnualidad.ObtenerComandoConsultarTodos();
+                comando.Ejecutar();
+                retorno = comando.Receptor.ObjetoAlmacenado;
+
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Saliendo del Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (ApplicationException ex)
+            {
+                logger.Error(ex.Message);
+                throw ex;
+            }
+
+            return retorno;
+        }
+
+
+        /// <summary>
+        /// Método que consulta la lista de todos las Anualidads
+        /// </summary>
+        /// <returns>Lista con todos las Anualidads</returns>
+        public static int ConsultarUltimoIdAnualidad()
+        {
+            int retorno;
+
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                ComandoBase<int> comando = FabricaComandosAnualidad.obtenerUltimoIdAnualidad();
                 comando.Ejecutar();
                 retorno = comando.Receptor.ObjetoAlmacenado;
 

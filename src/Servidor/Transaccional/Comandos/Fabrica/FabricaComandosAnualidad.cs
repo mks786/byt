@@ -41,6 +41,11 @@ namespace Trascend.Bolet.Comandos.Fabrica
             return new ComandoConsultarAnualidadesFiltro(anualidad);
         }
 
+        public static ComandoBase<int> obtenerUltimoIdAnualidad()
+        {
+            return new ComandoConsultarUltimoIdAnualidad();
+        }
+
         #region Sin utilizar
         ///// <summary>
         ///// Método que devuelve el Comando verificar existencia
