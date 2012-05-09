@@ -521,7 +521,7 @@
     <comment>Filtro por Id de clase nacional</comment>
   </data>
   <data name="CabeceraObtenerPatente" xml:space="preserve">
-    <value>Select p from Patente p left join fetch p.Asociado as asociado left join fetch p.Interesado as interesado left join fetch asociado.Pais as pais left join fetch asociado.Idioma as pais left join fetch p.BoletinConcesion as boletinC left join fetch p.BoletinPublicacion as boletinP left join fetch p.BoletinOrdenPublicacion as boletinO left join fetch p.Anualidades as anualidades left join fetch p.Agente as agente left join fetch p.TipoEstado as tipoEstado where </value>
+    <value>Select p from Patente p left join fetch p.Asociado as asociado left join fetch p.Interesado as interesado left join fetch asociado.Pais as pais left join fetch asociado.Idioma as pais left join fetch p.BoletinConcesion as boletinC left join fetch p.BoletinPublicacion as boletinP left join fetch p.BoletinOrdenPublicacion as boletinO left join fetch p.Anualidades as anualidades left join fetch p.Agente as agente left join fetch p.TipoEstado as tipoEstado left join fetch p.StatusWeb as statusWeb where </value>
     <comment>Cabecera del query para el filtro de Patentes</comment>
   </data>
   <data name="FiltroObtenerPatenteDescripcion" xml:space="preserve">
@@ -648,5 +648,9 @@
   <data name="ObtenerMaxAnualidad" xml:space="preserve">
     <value>select max(a.Id) from Anualidad a</value>
     <comment>Obtiene el maximo Id Insertado en BD</comment>
+  </data>
+  <data name="ObtenerInfoBolesPorPatente" xml:space="preserve">
+    <value>Select i from InfoBolPatente i left outer join fetch i.TipoInfobol where i.Patente.Id = '{0}'</value>
+    <comment>Obtener todos los infoboles de una patente</comment>
   </data>
 </root>

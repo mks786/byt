@@ -103,6 +103,7 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
 
 
             return idConsultado;
+            return 0;
         }
 
         public Anualidad ObtenerAnualidadConTodo(Anualidad Anualidad)

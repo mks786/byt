@@ -347,10 +347,17 @@
     <Compile Include="Comandos\ComandosAnualidad\ComandoConsultarTodasAnualidades.cs" />
     <Compile Include="Comandos\ComandosAnualidad\ComandoEliminarAnualidad.cs" />
     <Compile Include="Comandos\ComandosAnualidad\ComandoInsertarOModificarAnualidad.cs" />
+    <Compile Include="Comandos\ComandosInfoBolPatente\ComandoConsultarInfoBolesPorPatente.cs" />
+    <Compile Include="Comandos\ComandosInfoBolPatente\ComandoConsultarInfoBolPorID.cs" />
+    <Compile Include="Comandos\ComandosInfoBolPatente\ComandoConsultarTodasInfoBoles.cs" />
+    <Compile Include="Comandos\ComandosInfoBolPatente\ComandoEliminarInfoBol.cs" />
+    <Compile Include="Comandos\ComandosInfoBolPatente\ComandoInsertarOModificarInfoBol.cs" />
+    <Compile Include="Comandos\ComandosInfoBolPatente\ComandoVerificarExistenciaInfoBol.cs" />
     <Compile Include="Comandos\Receptor.cs" />
     <Compile Include="Comandos\ComandosUsuario\ComandoConsultarTodosUsuarios.cs" />
     <Compile Include="Comandos\ComandosUsuario\ComandoConsultarUsuarioPorID.cs" />
     <Compile Include="Comandos\ComandosUsuario\ComandoInsertarOModificarUsuario.cs" />
+    <Compile Include="Fabrica\FabricaComandosInfoBolPatente.cs" />
     <Compile Include="Fabrica\FabricaComandosAnualidad.cs" />
     <Compile Include="Fabrica\FabricaComandosInventor.cs" />
     <Compile Include="Fabrica\FabricaComandosCambioPeticionarioPatente.cs" />

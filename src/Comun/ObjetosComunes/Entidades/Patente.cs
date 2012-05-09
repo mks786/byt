@@ -43,9 +43,9 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         private char _juramento;
         private char _cesion;
         private char _dibujo;
-        private char _iTipoEstado;
+        private TipoEstado _tipoEstado;
         private Boletin _boletinOrdenPublicacion;
-        private StatusWeb _tipoEstado;
+        private StatusWeb _statusWeb;
         private DateTime? _fechaBase;
         private DateTime? _fechaTermino;
         private string _observacion1;
@@ -57,6 +57,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         private IList<Inventor> _inventores;
         private IList<Anualidad> _anualidades;
         private IList<Operacion> _operaciones;
+        private IList<InfoBolPatente> _infoBoles;
 
         #endregion
 
@@ -453,12 +454,21 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         }
 
         /// <summary>
-        /// Propiedad que asigna u obtiene el tipo estado
+        /// Propiedad que asigna u obtiene el Tipo del Estado
         /// </summary>
-        public virtual StatusWeb TipoEstado
+        public virtual TipoEstado TipoEstado
         {
             get { return _tipoEstado; }
             set { _tipoEstado = value; }
+        }
+
+        /// <summary>
+        /// Propiedad que asigna u obtiene el StatusWeb
+        /// </summary>
+        public virtual StatusWeb StatusWeb
+        {
+            get { return _statusWeb; }
+            set { _statusWeb = value; }
         }
 
         /// <summary>
@@ -468,15 +478,6 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         {
             get { return _boletinOrdenPublicacion; }
             set { _boletinOrdenPublicacion = value; }
-        }
-
-        /// <summary>
-        /// Propiedad que asigna u obtiene el tipoestado
-        /// </summary>
-        public virtual char ITipoEstado
-        {
-            get { return _iTipoEstado; }
-            set { _iTipoEstado = value; }
         }
 
         /// <summary>
@@ -579,6 +580,15 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         {
             get { return _operaciones; }
             set { _operaciones = value; }
+        }
+
+        /// <summary>
+        /// Propiedad que asigna u obtiene la lista de infoboles
+        /// </summary>
+        public virtual IList<InfoBolPatente> InfoBoles
+        {
+            get { return _infoBoles; }
+            set { _infoBoles = value; }
         }
 
         #endregion

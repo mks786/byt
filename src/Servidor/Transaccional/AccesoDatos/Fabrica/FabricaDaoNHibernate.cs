@@ -508,6 +508,15 @@ namespace Trascend.Bolet.AccesoDatos.Fabrica
         }
 
         /// <summary>
+        /// Método que devuelve el DaoInfoBolPatente
+        /// </summary>
+        /// <returns>IDaoInfoBolPatente</returns>
+        public override IDaoInfoBolPatente ObtenerDaoInfoBolPatente()
+        {
+            return new DaoInfoBolPatenteNHibernate();
+        }
+
+        /// <summary>
         /// Método que devuelve el DaoBusqueda
         /// </summary>
         /// <returns>IDaoBusqueda</returns>

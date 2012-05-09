@@ -39,17 +39,18 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
         private IServicioServicios _servicioServicios;
         private ITipoEstadoServicios _tipoEstadoServicios;
         private IInfoAdicionalServicios _infoAdicionalServicios;
-        private IInfoBolServicios _infoBolServicios;
+        private IInfoBolPatenteServicios _infoBolServicios;
         private IOperacionServicios _operacionServicios;
         private IBusquedaServicios _busquedaServicios;
         private IPlanillaServicios _planillaServicios;
         private IInternacionalServicios _internacionalServicios;
         private IStatusWebServicios _statusWebServicios;
         private IBoletinServicios _boletinServicios;
+        private IInventorServicios _inventorServicios;
 
         private IList<Asociado> _asociados;
         private IList<Interesado> _interesados;
-        private IList<Corresponsal> _corresponsales;
+        private IList<Inventor> _inventores;
         private IList<Auditoria> _auditorias;
 
         /// <summary>
@@ -71,7 +72,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                 this._ventana.Patente = patente;
 
                 this._patenteServicios = (IPatenteServicios)Activator.GetObject(typeof(IMarcaServicios),
-                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["MarcaServicios"]);
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["PatenteServicios"]);
                 this._asociadoServicios = (IAsociadoServicios)Activator.GetObject(typeof(IAsociadoServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["AsociadoServicios"]);
                 this._agenteServicios = (IAgenteServicios)Activator.GetObject(typeof(IAgenteServicios),
@@ -90,8 +91,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["TipoEstadoServicios"]);
                 this._infoAdicionalServicios = (IInfoAdicionalServicios)Activator.GetObject(typeof(IInfoAdicionalServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["InfoAdicionalServicios"]);
-                this._infoBolServicios = (IInfoBolServicios)Activator.GetObject(typeof(IInfoBolServicios),
-                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["InfoBolServicios"]);
+                this._infoBolServicios = (IInfoBolPatenteServicios)Activator.GetObject(typeof(IInfoBolPatenteServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["InfoBolPatenteServicios"]);
                 this._operacionServicios = (IOperacionServicios)Activator.GetObject(typeof(IOperacionServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["OperacionServicios"]);
                 this._busquedaServicios = (IBusquedaServicios)Activator.GetObject(typeof(IBusquedaServicios),
@@ -104,6 +105,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["StatusWebServicios"]);
                 this._boletinServicios = (IBoletinServicios)Activator.GetObject(typeof(IBoletinServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["BoletinServicios"]);
+                this._inventorServicios = (IInventorServicios)Activator.GetObject(typeof(IInventorServicios),
+                ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["InventorServicios"]);
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -194,7 +197,6 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                 this._ventana.PoderDatosFiltrar = patente.Poder;
                 this._ventana.PoderSolicitudFiltrar = patente.Poder;
 
-                //this._ventana.NumPoderDatos = patente.Poder != null ? patente.Poder.NumPoder : "";
                 this._ventana.NumPoderSolicitud = patente.Poder != null ? patente.Poder.NumPoder : "";
 
                 IList<StatusWeb> statusWebs = this._statusWebServicios.ConsultarTodos();
@@ -202,7 +204,15 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                 primerStatus.Id = "NGN";
                 statusWebs.Insert(0, primerStatus);
                 this._ventana.StatusesWebDatos = statusWebs;
-                this._ventana.StatusWebDatos = this.BuscarStatusWeb(statusWebs, patente.TipoEstado);
+                this._ventana.StatusWebDatos = this.BuscarStatusWeb(statusWebs, patente.StatusWeb);
+
+                IList<TipoEstado> tipoEstados = this._tipoEstadoServicios.ConsultarTodos();
+                TipoEstado primerDetalle = new TipoEstado();
+                primerDetalle.Id = "NGN";
+                tipoEstados.Insert(0, primerDetalle);
+                this._ventana.DetallesDatos = tipoEstados;
+                this._ventana.DetalleDatos = BuscarDetalle((IList<TipoEstado>)this._ventana.DetallesDatos, patente.TipoEstado);
+                
 
                 //IList<Condicion> condiciones = this._condicionServicios.ConsultarTodos();
                 //Condicion primeraCondicion = new Condicion();
@@ -283,13 +293,28 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
 
                 //}
 
+                _inventores = this._inventorServicios.ConsultarInventoresPorPatente(patente);
+                patente.InfoBoles = this._infoBolServicios.ConsultarInfoBolesPorPatente(patente);
+
                 Auditoria auditoria = new Auditoria();
                 auditoria.Fk = ((Patente)this._ventana.Patente).Id;
                 auditoria.Tabla = "MYP_PATENTES";
-                //this._auditorias = this._patenteServicios.AuditoriaPorFkyTabla(auditoria);
+                this._auditorias = this._patenteServicios.AuditoriaPorFkyTabla(auditoria);
 
                 if (null != patente.InfoAdicional && !string.IsNullOrEmpty(patente.InfoAdicional.Id))
                     this._ventana.PintarInfoAdicionalSolicitud();
+
+                if (null != patente.InfoBoles && patente.InfoBoles.Count > 0)
+                    this._ventana.PintarInfoBolDatos();
+
+                if ((null != this._inventores) && (this._inventores.Count > 0))
+                {
+                    this._ventana.PintarInventoresDatos();
+                    this._ventana.PintarInventoresSolicitud();
+                }
+
+                if ((null != this._auditorias) && (this._auditorias.Count > 0))
+                    this._ventana.PintarAuditoriaDatos();
 
                 this._ventana.FocoPredeterminado();
 
@@ -370,7 +395,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                 patente.Servicio = !((Servicio)this._ventana.SituacionDatos).Id.Equals("NGN") ? ((Servicio)this._ventana.SituacionDatos) : null;
 
             if (null != this._ventana.StatusWebDatos)
-                patente.TipoEstado = ((StatusWeb)this._ventana.StatusWebDatos).Id.Equals("NGN") ? ((StatusWeb)this._ventana.StatusWebDatos) : null;
+                patente.StatusWeb = !((StatusWeb)this._ventana.StatusWebDatos).Id.Equals("NGN") ? ((StatusWeb)this._ventana.StatusWebDatos) : null;
+
+            if (null != this._ventana.DetalleDatos)
+                patente.TipoEstado = !((TipoEstado)this._ventana.DetalleDatos).Id.Equals("NGN") ? ((TipoEstado)this._ventana.DetalleDatos) : null;
 
             return patente;
 
@@ -533,6 +561,86 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
             #endregion
 
             this.Navegar(new ListaOperaciones(CargarPatenteDeLaPantalla()));
+
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+        }
+
+        /// <summary>
+        /// Método que se encarga de mostrar la ventana de InfoBoles
+        /// </summary>
+        public void IrInfoBoles()
+        {
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+            this.Navegar(new ListaInfoBoles(CargarPatenteDeLaPantalla()));
+
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+        }
+
+        /// <summary>
+        /// Método que se encarga de mostrar la ventana con la lista de Auditorías
+        /// </summary>
+        public void Auditoria()
+        {
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+
+                this.Navegar(new ListaAuditorias(_auditorias));
+
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (ApplicationException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(ex.Message, true);
+            }
+            catch (RemotingException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorRemoting, true);
+            }
+            catch (SocketException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorConexionServidor, true);
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
+            }
+        }
+
+
+        /// <summary>
+        /// Método que se encarga de mostrar la ventana de los inventores de la Patente
+        /// </summary>
+        public void Inventores()
+        {
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+            this.Navegar(new ListaInventores(CargarPatenteDeLaPantalla()));
 
             #region trace
             if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))

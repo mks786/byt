@@ -476,5 +476,11 @@ namespace Trascend.Bolet.AccesoDatos.Fabrica
         /// <returns>IDaoInventor</returns>
         public abstract IDaoInventor ObtenerDaoInventor();
 
+
+        /// <summary>
+        /// Método que devuelve el DaoInfoBolPatente del manejador que se esté utilizando
+        /// </summary>
+        /// <returns>IDaoInfoBolPatente</returns>
+        public abstract IDaoInfoBolPatente ObtenerDaoInfoBolPatente();
     }
 }

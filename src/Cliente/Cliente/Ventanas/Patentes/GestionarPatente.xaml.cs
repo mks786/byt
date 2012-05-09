@@ -362,6 +362,18 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
             set { this._cbxSituacionDatos.SelectedItem = value; }
         }
 
+        public object DetallesDatos
+        {
+            get { return this._cbxDetalleDatos.DataContext; }
+            set { this._cbxDetalleDatos.DataContext = value; }
+        }
+
+        public object DetalleDatos
+        {
+            get { return this._cbxDetalleDatos.SelectedItem; }
+            set { this._cbxDetalleDatos.SelectedItem = value; }
+        }
+
         public string IdAsociadoDatosFiltrar
         {
             get { return this._txtIdAsociadoDatosFiltrar.Text; }
@@ -454,9 +466,19 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
             this._btnInventoresDatos.Background = Brushes.LightGreen;
         }
 
+        public void PintarInfoBolDatos()
+        {
+            this._btnInfoBolDatos.Background = Brushes.LightGreen;
+        }
+
         public void PintarDisenoDatos()
         {
             this._btnDisenoDatos.Background = Brushes.LightGreen;
+        }
+
+        public void PintarAuditoriaDatos()
+        {
+            this._btnAuditoriaDatos.Background = Brushes.LightGreen;
         }
 
         #endregion
@@ -1049,7 +1071,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
 
         private void _btnInventoresSolicitud_Click(object sender, RoutedEventArgs e)
         {
-
+            this._presentador.Inventores();
         }
 
         private void _btnImprimirEdoCuentaSolicitud_Click(object sender, RoutedEventArgs e)
@@ -1217,12 +1239,12 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
 
         private void _btnAuditoriaDatos_Click(object sender, RoutedEventArgs e)
         {
-
+            this._presentador.Auditoria();
         }
 
         private void _btnInfoBolDatos_Click(object sender, RoutedEventArgs e)
         {
-
+            this._presentador.IrInfoBoles();   
         }
 
         private void _btnDisenoDatos_Click(object sender, RoutedEventArgs e)
@@ -1232,7 +1254,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
 
         private void _btnInventoresDatos_Click(object sender, RoutedEventArgs e)
         {
-
+            this._presentador.Inventores();
         }
 
         private void _btnFechasDatos_Click(object sender, RoutedEventArgs e)

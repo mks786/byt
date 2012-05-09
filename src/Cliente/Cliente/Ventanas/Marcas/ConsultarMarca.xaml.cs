@@ -720,6 +720,18 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             set { this._cbxEstadoDatos.DataContext = value; }
         }
 
+        public object DetalleDatos
+        {
+            get { return this._cbxDetalleDatos.SelectedItem; }
+            set { this._cbxDetalleDatos.SelectedItem = value; }
+        }
+
+        public object DetallesDatos
+        {
+            get { return this._cbxDetalleDatos.DataContext; }
+            set { this._cbxDetalleDatos.DataContext = value; }
+        }
+
         public object TipoReproduccion
         {
             get { return this._cbxTipoReproduccion.SelectedItem; }

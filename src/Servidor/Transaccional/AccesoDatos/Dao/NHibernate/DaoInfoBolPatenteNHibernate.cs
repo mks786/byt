@@ -8,13 +8,13 @@ using System.Collections.Generic;
 
 namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
 {
-    public class DaoInfoBolNHibernate : DaoBaseNHibernate<InfoBol, int>, IDaoInfoBol
+    public class DaoInfoBolPatenteNHibernate : DaoBaseNHibernate<InfoBolPatente, int>, IDaoInfoBolPatente
     {
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
-        public IList<InfoBol> ObtenerInfoBolesPorMarca(Marca marca)
+        public IList<InfoBolPatente> ObtenerInfoBolesPorPatente(Patente patente)
         {
-            IList<InfoBol> InfoBoles;
+            IList<InfoBolPatente> InfoBoles;
 
             try
             {
@@ -23,8 +23,8 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
                     logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-                IQuery query = Session.CreateQuery(string.Format(Recursos.ConsultasHQL.ObtenerInfoBolesPorMarcas, marca.Id));
-                InfoBoles = query.List<InfoBol>();
+                IQuery query = Session.CreateQuery(string.Format(Recursos.ConsultasHQL.ObtenerInfoBolesPorPatente, patente.Id));
+                InfoBoles = query.List<InfoBolPatente>();
 
                 #region trace
                 if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))

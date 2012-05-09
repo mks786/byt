@@ -136,6 +136,10 @@ namespace Trascend.Bolet.Cliente.Contratos.Patentes
 
         object StatusWebDatos { get; set; }
 
+        object DetallesDatos { get; set; }
+
+        object DetalleDatos { get; set; }
+
         object BoletinesOrdenPublicacionDatos { get; set; }
 
         object BoletinOrdenPublicacionDatos { get; set; }
@@ -155,6 +159,10 @@ namespace Trascend.Bolet.Cliente.Contratos.Patentes
         void PintarDisenoDatos();
 
         void PintarInventoresDatos();
+
+        void PintarInfoBolDatos();
+
+        void PintarAuditoriaDatos();
 
         #endregion
 

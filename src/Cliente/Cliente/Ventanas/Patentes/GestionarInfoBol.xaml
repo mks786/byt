@@ -1,0 +1,117 @@
+﻿<Page x:Class="Trascend.Bolet.Cliente.Ventanas.Patentes.GestionarInfoBol"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      mc:Ignorable="d" 
+      xmlns:reglas="clr-namespace:Trascend.Bolet.Cliente.Validaciones"
+      d:DesignHeight="550" d:DesignWidth="800"
+      xmlns:recurso="clr-namespace:Trascend.Bolet.Cliente.Recursos"
+      xmlns:conv="clr-namespace:Trascend.Bolet.Cliente.Transformadores"
+	Title="{x:Static recurso:Etiquetas.titleAgregarAgente}" Loaded="Page_Loaded">
+    <Page.Resources>
+        <conv:DosValresAUno x:Key="convertirADosValores"></conv:DosValresAUno>
+        <Style TargetType="{x:Type DatePickerTextBox}">
+            <Setter Property="Text" Value="{x:Static recurso:Etiquetas.dpkText}" />
+        </Style>
+    </Page.Resources>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="200"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="10"/>
+        </Grid.RowDefinitions>
+
+        <GroupBox Grid.Column="1" Grid.Row="1">
+            <StackPanel Name="_gridDatos"  VerticalAlignment="Center"  HorizontalAlignment="Center"
+                        DataContext="{Binding}">
+                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
+                    <Label>
+                        <TextBlock Text="{x:Static recurso:Etiquetas.lblTipo}"/>
+                    </Label>
+                    <ComboBox Name="_cbxTipo" HorizontalAlignment="Left" Width="350" Height="20" IsEnabled="False"
+                              ItemsSource="{Binding}" DisplayMemberPath="Descripcion" SelectedIndex="0" SelectionChanged="_cbxTipo_SelectionChanged"/>
+                </WrapPanel>
+                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
+                    <Label>
+                        <TextBlock Text="{x:Static recurso:Etiquetas.lblBoletin}"/>
+                    </Label>
+                    <ComboBox Name="_cbxBoletin" Width="350" ItemsSource="{Binding}" IsEnabled="False" SelectedIndex="0">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock>
+                                <TextBlock.Text>
+                                    <MultiBinding Converter="{StaticResource convertirADosValores}">
+                                        <Binding Path="Id" />
+                                        <Binding Path="FechaBoletin" />
+                                    </MultiBinding>
+                                </TextBlock.Text>
+                                </TextBlock>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+                </WrapPanel>
+                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
+                    <Label>
+                        <TextBlock Text="{x:Static recurso:Etiquetas.lblTomo}"/>
+                    </Label>
+                    <ComboBox Name="_cbxTomo" HorizontalAlignment="Left" Width="350" Height="20" IsEnabled="False"
+                              ItemsSource="{Binding}" DisplayMemberPath="Descripcion" SelectedIndex="0"/>
+                </WrapPanel>
+                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
+                    <Label>
+                        <TextBlock Text="{x:Static recurso:Etiquetas.lblResolucion}"/>
+                    </Label>
+                    <TextBox IsEnabled="False" Width="350" MaxLength="2000" Name="_txtResolucion" VerticalAlignment="Center" 
+                         Grid.ColumnSpan="3" Text="{Binding Path=Resolucion}"/>
+                </WrapPanel>
+                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
+                    <Label>
+                        <TextBlock Text="{x:Static recurso:Etiquetas.lblPagina}"/>
+                    </Label>
+                    <TextBox IsEnabled="False" Width="350" MaxLength="2000" Name="_txtPagina" VerticalAlignment="Center" Text="{Binding Path=Pagina}"/>
+                </WrapPanel>
+                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
+                    <Label>
+                        <TextBlock Text="{x:Static recurso:Etiquetas.lblFecha}"/>
+                    </Label>
+                    <DatePicker IsEnabled="False"  Name="_dpkFecha" Width="350" Focusable="False" BorderBrush="{x:Null}">
+                        <DatePicker.SelectedDate>
+                            <Binding Path="Fecha" UpdateSourceTrigger="PropertyChanged"/>
+                        </DatePicker.SelectedDate>
+                    </DatePicker>
+                </WrapPanel>
+                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
+                    <Label>
+                        <TextBlock Text="{x:Static recurso:Etiquetas.lblComentario}"/>
+                    </Label>
+                    <TextBox IsEnabled="False" Width="350" MaxLength="2000" Name="_txtComentario" VerticalAlignment="Center" Text="{Binding Path=Comentario}"/>
+                </WrapPanel>
+                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
+                    <Label>
+                        <TextBlock Name="_txtMensaje" Text="" Foreground="Green" />
+                    </Label>
+                </WrapPanel>
+            </StackPanel>
+        </GroupBox>
+
+        <WrapPanel Grid.Row="2" Grid.ColumnSpan="3" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="5" Orientation="Horizontal">
+            <Button Name="_btnAceptar"  VerticalAlignment="Bottom" Height="25" Width="90" 
+                    Click="_btnAceptar_Click" IsDefault="True">
+                <TextBlock Name="_txbAceptar" Text="{x:Static recurso:Etiquetas.btnModificar}"/>
+            </Button>
+            <Button Name="_btnEliminar" VerticalAlignment="Bottom" Height="25" Width="90"
+                    Click="_btnEliminar_Click">
+                <TextBlock Name="_txbEliminar" Text="{x:Static recurso:Etiquetas.btnEliminar}"/>
+            </Button>
+            <Button Name="_btnCancelar" VerticalAlignment="Bottom" Height="25" Width="90" Click="_btnCancelar_Click">Cancelar</Button>
+        </WrapPanel>
+    </Grid>
+</Page>

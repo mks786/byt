@@ -976,7 +976,7 @@ namespace Trascend.Bolet.Cliente.Presentadores
                 {
                     if (detalle.Id.Equals(tipoEstadoBuscado.Id))
                     {
-                        retorno = tipoEstadoBuscado;
+                        retorno = detalle;
                         break;
                     }
                 }

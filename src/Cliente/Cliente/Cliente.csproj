@@ -135,8 +135,10 @@
     <Compile Include="Contratos\Inventores\IAgregarInventor.cs" />
     <Compile Include="Contratos\Inventores\IConsultarInventor.cs" />
     <Compile Include="Contratos\Patentes\IGestionarInfoAdicional.cs" />
+    <Compile Include="Contratos\Patentes\IGestionarInfoBol.cs" />
     <Compile Include="Contratos\Patentes\IGestionarPatente.cs" />
     <Compile Include="Contratos\Patentes\IConsultarPatentes.cs" />
+    <Compile Include="Contratos\Patentes\IListaInfoBoles.cs" />
     <Compile Include="Contratos\Patentes\IListaInventores.cs" />
     <Compile Include="Contratos\Patentes\IListaOperaciones.cs" />
     <Compile Include="Contratos\TraspasosPatentes\CambiosDeDomicilioPatentes\IConsultarCambiosDeDomicilioPatentes.cs" />
@@ -329,8 +331,10 @@
     <Compile Include="Presentadores\Inventores\PresentadorAgregarInventor.cs" />
     <Compile Include="Presentadores\Inventores\PresentadorConsultarInventor.cs" />
     <Compile Include="Presentadores\Patentes\PresentadorGestionarInfoAdicional.cs" />
+    <Compile Include="Presentadores\Patentes\PresentadorGestionarInfoBol.cs" />
     <Compile Include="Presentadores\Patentes\PresentadorGestionarPatente.cs" />
     <Compile Include="Presentadores\Patentes\PresentadorConsultarPatentes.cs" />
+    <Compile Include="Presentadores\Patentes\PresentadorListaInfoBoles.cs" />
     <Compile Include="Presentadores\Patentes\PresentadorListaInventores.cs" />
     <Compile Include="Presentadores\Patentes\PresentadorListaOperaciones.cs" />
     <Compile Include="Presentadores\TraspasosPatentes\CambiosDeDomicilioPatentes\PresentadorConsultarCambiosDeDomicilioPatentes.cs" />
@@ -712,11 +716,17 @@
     <Compile Include="Ventanas\Patentes\GestionarInfoAdicional.xaml.cs">
       <DependentUpon>GestionarInfoAdicional.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Ventanas\Patentes\GestionarInfoBol.xaml.cs">
+      <DependentUpon>GestionarInfoBol.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Ventanas\Patentes\GestionarPatente.xaml.cs">
       <DependentUpon>GestionarPatente.xaml</DependentUpon>
     </Compile>
     <Compile Include="Ventanas\Patentes\ConsultarPatentes.xaml.cs">
       <DependentUpon>ConsultarPatentes.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Patentes\ListaInfoBoles.xaml.cs">
+      <DependentUpon>ListaInfoBoles.xaml</DependentUpon>
     </Compile>
     <Compile Include="Ventanas\Patentes\ListaInventores.xaml.cs">
       <DependentUpon>ListaInventores.xaml</DependentUpon>
@@ -1362,11 +1372,19 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Ventanas\Patentes\GestionarInfoBol.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Ventanas\Patentes\GestionarPatente.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Ventanas\Patentes\ConsultarPatentes.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\Patentes\ListaInfoBoles.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

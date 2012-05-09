@@ -31,7 +31,6 @@
     <property name="Juramento" column="IJURAMENTO" type="char"/>
     <property name="Cesion" column="ICESION" type="char"/>
     <property name="Dibujo" column="IDIBUJO" type="char"/>
-    <property name="ITipoEstado" column="TESTADO" type="char"/>
     <property name="FechaBase" column="FBASE" type="DateTime"/>
     <property name="FechaTermino" column="FTERMINO" type="DateTime"/>
     <property name="Observacion1" column="XOBSERVACION1" type="string"/>
@@ -75,8 +74,12 @@
       <column name="CBOLETIN_ORDENPUB"/>
     </many-to-one>
 
-    <many-to-one name="TipoEstado" class="StatusWeb">
+    <many-to-one name="StatusWeb" class="StatusWeb">
       <column name="CTESTADO"/>
+    </many-to-one>
+
+    <many-to-one name="TipoEstado" class="TipoEstado">
+      <column name="TESTADO"/>
     </many-to-one>
 
     <bag name="Inventores" table="MYP_INVENTORES" inverse="true" generic="true">

@@ -63,6 +63,7 @@
     <Compile Include="Implementacion\CambioPeticionarioPatenteServicios.cs" />
     <Compile Include="Implementacion\CesionPatenteServicios.cs" />
     <Compile Include="Implementacion\AnualidadServicios.cs" />
+    <Compile Include="Implementacion\InfoBolPatenteServicios.cs" />
     <Compile Include="Implementacion\InventorServicios.cs" />
     <Compile Include="Implementacion\FusionPatenteServicios.cs" />
     <Compile Include="Implementacion\LicenciaPatenteServicios.cs" />
