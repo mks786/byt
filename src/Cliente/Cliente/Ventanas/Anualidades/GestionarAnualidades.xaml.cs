@@ -97,12 +97,12 @@ namespace Trascend.Bolet.Cliente.Ventanas.Anualidades
                 this._dpkFechaAnualidad.IsEnabled = value;
                 this._dpkFechaVoucher.IsEnabled = value;
                 this._txtRecibo.IsEnabled = value;
-                this._txtId.IsEnabled = value;
                 this._txtVoucher.IsEnabled = value;
                 this._cbxISituacion.IsEnabled = value;
                 this._lstAnualidades.IsEnabled = value;
                 this._btnMas.IsEnabled = value;
                 this._btnMenos.IsEnabled = value;
+                this._btnNuevaAnualidad.IsEnabled = value;
                 this._btnModificarSeleccionado.IsEnabled = value;
                 this._chkFactura.IsEnabled = value;
 
@@ -329,12 +329,6 @@ namespace Trascend.Bolet.Cliente.Ventanas.Anualidades
         {
             get { return this._txtRecibo.Text; }
             set { this._txtRecibo.Text = value; }
-        }
-
-        public string Id
-        {
-            get { return this._txtId.Text; }
-            set { this._txtId.Text = value; }
         }
 
         public string FechaFactura
@@ -674,10 +668,17 @@ namespace Trascend.Bolet.Cliente.Ventanas.Anualidades
             
         }
 
+
+        private void _btnNuevaAnualidad_Click(object sender, RoutedEventArgs e)
+        {
+            this._gridCamposAnualidad.Visibility = System.Windows.Visibility.Visible;
+            this._presentador.CargarAnualidadSeleccionada(true);
+        }
+
         private void _lstAnualidades_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             this._gridCamposAnualidad.Visibility = System.Windows.Visibility.Visible;
-            this._presentador.CargarAnualidadSeleccionada();
+            this._presentador.CargarAnualidadSeleccionada(false);
 
         }
 
@@ -727,6 +728,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Anualidades
         {
             throw new System.NotImplementedException();
         }
+
 
 
 

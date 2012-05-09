@@ -512,6 +512,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Nueva Anualidad.
+        /// </summary>
+        public static string btnNuevaAnualidad {
+            get {
+                return ResourceManager.GetString("btnNuevaAnualidad", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Nueva Búsqueda.
         /// </summary>
         public static string btnNuevaBusqueda {

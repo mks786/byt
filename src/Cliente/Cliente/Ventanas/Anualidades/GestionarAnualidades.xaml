@@ -38,7 +38,7 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="25"/>
+            <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="210"/>
             <RowDefinition Height="40"/>
@@ -382,10 +382,15 @@
                         </DatePicker.SelectedDate>
                     </DatePicker>
 
+                    <Separator Grid.Row="4" Grid.ColumnSpan="7" Margin="5,5,0,0"/>
+                    
+                    <Button IsEnabled="False" Grid.Column="0" Grid.Row="5" Name="_btnNuevaAnualidad"  HorizontalAlignment="Left" Click="_btnNuevaAnualidad_Click">
+                        <TextBlock Text="{x:Static recurso:Etiquetas.btnNuevaAnualidad}"></TextBlock>
+                    </Button>
                 </Grid>
 
                 <!--Final Modulo de Boletin-->
-                <Separator Margin="5,5,0,0"/>
+                
 
                 <!--Modulo de Campos De Anualidad-->
 
@@ -411,21 +416,15 @@
                     </Label>
 
                     <Label Grid.Column="0" Grid.Row="1" VerticalAlignment="Center" HorizontalContentAlignment="Right">
-                        <TextBlock Text="{x:Static recurso:Etiquetas.lblId}"/>
-                    </Label>
-                    <custom:ByTTextBox IsEnabled="False" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="1" Name="_txtId" VerticalAlignment="Center"  
-                          Text="{Binding Path=Id}" SoloNumero="True"></custom:ByTTextBox>
-
-                    <Label Grid.Column="2" Grid.Row="1" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblRecibo}"/>
                     </Label>
-                    <custom:ByTTextBox IsEnabled="False" Grid.Column="3" Grid.Row="1" Grid.ColumnSpan="1" Name="_txtRecibo" VerticalAlignment="Center"  
+                    <custom:ByTTextBox IsEnabled="False" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="1" Name="_txtRecibo" VerticalAlignment="Center"  
                           Text="{Binding Path=Recibo}" SoloNumero="True"></custom:ByTTextBox>
 
-                    <Label Grid.Column="4" Grid.Row="1" VerticalAlignment="Center" HorizontalContentAlignment="Right">
+                    <Label Grid.Column="2" Grid.Row="1" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblFechaAnualidad}"/>
                     </Label>
-                    <DatePicker IsEnabled="False" Grid.Column="5" Grid.Row="1" HorizontalAlignment="Left"  Name="_dpkFechaAnualidad" Focusable="False" BorderBrush="{x:Null}" >
+                    <DatePicker IsEnabled="False" Grid.Column="3" Grid.Row="1" HorizontalAlignment="Left"  Name="_dpkFechaAnualidad" Focusable="False" BorderBrush="{x:Null}" >
                         <DatePicker.SelectedDate>
                             <Binding Path="FechaAnualidad" UpdateSourceTrigger="PropertyChanged"/>
                         </DatePicker.SelectedDate>

@@ -272,15 +272,18 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
 
                     Anualidad anualidad = new Anualidad();
                     anualidad.Id = patente.Id;
-                    IList<Anualidad> AnualidadesModificadas = new List<Anualidad>();
                     ComandoBase<IList<Anualidad>> anualidadBase = FabricaComandosAnualidad.ObtenerComandoConsultarAnualidadesFiltro(anualidad);
                     anualidadBase.Ejecutar();
                     IList<Anualidad> anualidadesEnBase = anualidadBase.Receptor.ObjetoAlmacenado;
+                    ComandoBase<int> UltimoIdAnualidad = FabricaComandosAnualidad.obtenerUltimoIdAnualidad();
+                    UltimoIdAnualidad.Ejecutar();
+                    int contador = UltimoIdAnualidad.Receptor.ObjetoAlmacenado;
+                    bool bandera3 = true;
 
-                if (patente.Anualidades.Count() != 0)
-                {
+                    if (patente.Anualidades.Count() != 0)
+                     {
                     IList<Anualidad> anualidades = patente.Anualidades;
-                    anualidades.RemoveAt(0);
+                    
 
                                 //Recorre las anualidades obtenidas del presentador
                                 foreach (Anualidad anualidad1 in patente.Anualidades)
@@ -288,36 +291,39 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
                                     bool bandera = false;
                                     if (anualidad1.Id ==0)
                                     {
-                                        //Falta asignar el id
+                                        contador++;
+                                        anualidad1.Id = contador;
                                         bandera =true;
                                     }
-                                   
 
-
+                                    if (bandera3)
+                                    {
                                         // Recorre las marcaBase que tiene guardad en base de datos
                                         foreach (Anualidad AnualidadEnBd in anualidadesEnBase)
                                         {
-                                         bool bandera2 = false;
+                                            bool bandera2 = false;
 
-                                              //Se recorre y compara lo que se encuentra en la base de datos
+                                            //Se recorre y compara lo que se encuentra en la base de datos
                                             //con lo que se selecciono para saber si hay que eliminar algun registro
-                                             foreach (Anualidad anualidad2 in patente.Anualidades)
-                                             {
-                                                  if (anualidad2.Id == AnualidadEnBd.Id)
-                                                      bandera2 = true;
-                                            
-                                             }
-                                          //si Bandera2 no cambia a true es por que no fue seleccionado o fue eliminado
-                                          //de la lista en el rpesentador una marcabase
-                                           if (!bandera2)
-                                             {
-                                                 ComandoBase<bool> comando2 = FabricaComandosAnualidad.ObtenerComandoEliminarObjeto(AnualidadEnBd);
-                                                 comando2.Ejecutar();
-                                             }
+                                            foreach (Anualidad anualidad2 in patente.Anualidades)
+                                            {
+                                                if (anualidad2.Id == AnualidadEnBd.Id)
+                                                    bandera2 = true;
 
-                                            
+                                            }
+                                            //si Bandera2 no cambia a true es por que no fue seleccionado o fue eliminado
+                                            //de la lista en el rpesentador una marcabase
+                                            if (!bandera2)
+                                            {
+                                                    ComandoBase<bool> comando2 =
+                                                    FabricaComandosAnualidad.ObtenerComandoEliminarObjeto(AnualidadEnBd);
+                                                    comando2.Ejecutar();
+                                            }
+
+
                                         }
-                                        AnualidadesModificadas.Add(anualidad1);
+                                        bandera3 = false;
+                                    }
                                     
                           
                                       ComandoBase<bool> comando = FabricaComandosAnualidad.ObtenerComandoInsertarOModificar(anualidad1);
@@ -333,7 +339,19 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
                             
 
                     }
-                
+                    else
+                    {
+                        // Borra todos los registros de la bd
+                        foreach (Anualidad AnualidadEnBd in anualidadesEnBase)
+                        {
+                           
+                                ComandoBase<bool> comando2 =
+                                FabricaComandosAnualidad.ObtenerComandoEliminarObjeto(AnualidadEnBd);
+                                comando2.Ejecutar();
+                           
+                        }
+                    }
+
 
             }
             catch (ApplicationException ex)

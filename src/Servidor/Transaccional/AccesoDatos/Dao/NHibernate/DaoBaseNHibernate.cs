@@ -196,11 +196,6 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
             return exitoso;
         }
 
-        /// <summary>
-        /// Método que elimina una entidad
-        /// </summary>
-        /// <param name="entidad">Entidad a eliminar</param>
-        /// <returns>True si fue éxitoso la eliminación, en caso contrario False</returns>
         public bool Eliminar(T entidad)
         {
             bool exitoso;

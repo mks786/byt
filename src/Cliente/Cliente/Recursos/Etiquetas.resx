@@ -2570,4 +2570,7 @@ de Gracia</value>
   <data name="titleGestionarPatente" xml:space="preserve">
     <value>Gestionar Patente</value>
   </data>
+  <data name="btnNuevaAnualidad" xml:space="preserve">
+    <value>Nueva Anualidad</value>
+  </data>
 </root>

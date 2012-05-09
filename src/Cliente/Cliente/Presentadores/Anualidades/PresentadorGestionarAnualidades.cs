@@ -890,11 +890,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Anualidades
 
             bool retorno = false;
             Patente patente = (Patente)this._ventana.Patente;
-            Anualidad anualidad = new Anualidad();
-            anualidad.Recibo = "NUEVO";
+
             if ((null != patente.Anualidades) && (patente.Anualidades.Count != 0))
             {
-                patente.Anualidades.Insert(0,anualidad);
                 this._ventana.Anualidades = null;
                 this._ventana.Anualidades = patente.Anualidades;
                 retorno = true;
@@ -920,7 +918,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Anualidades
             #endregion
 
             IList<Anualidad> anulidades;
-            int conta = -1;
+            int conta = 0;
 
             bool retorno = false;
 
@@ -940,9 +938,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Anualidades
                     if (this._ventana.FechaVoucher != "")
                         aux.FechaVoucher = DateTime.Parse(this._ventana.FechaVoucher);
                     if (this._ventana.ISituacion != null)
-                        aux.Situacion = ((Servicio)this._ventana.ISituacion).Descripcion;
+                        aux.Situacion = ((Servicio)this._ventana.ISituacion).Id;
                     if (this._ventana.Factura != "")
                         aux.Factura = int.Parse(this._ventana.Factura);
+                    aux.IFactura = "T";
                     aux.Patente = ((Patente)this._ventana.Patente);
                     anulidades.Add(aux);
                 
@@ -989,7 +988,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Anualidades
                 {
                     if ((aux1.Id == anuSelect.Id))
                     {
-                        if (this._ventana.Id != "")
+                        
                             anulidades[contador].Id = anuSelect.Id;
                         if (this._ventana.Recibo != "")
                             anulidades[contador].Recibo = this._ventana.Recibo;
@@ -1039,7 +1038,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Anualidades
             IList<Anualidad> anualidades;
             bool respuesta = false;
 
-            if ((null != ((Anualidad)this._ventana.Anualidad)) && (((Anualidad)this._ventana.Anualidad).Id != 0))
+            if ((null != ((Anualidad)this._ventana.Anualidad)))
             {
                 if (null == ((Patente)this._ventana.Patente).Anualidades)
                     anualidades = new List<Anualidad>();
@@ -1067,25 +1066,33 @@ namespace Trascend.Bolet.Cliente.Presentadores.Anualidades
         /// <summary>
         /// Método que carga la anualdiad seleccionada
         /// <returns>true si se realizó correctamente</returns>
-        public void CargarAnualidadSeleccionada()
+        public void CargarAnualidadSeleccionada(bool nuevo)
         {
             #region trace
             if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
                 logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
-
-           Anualidad anuSelect = ((Anualidad)this._ventana.Anualidad);
-
-            this._ventana.Id = (anuSelect.Id).ToString();
-            this._ventana.Recibo = anuSelect.Recibo;
-            this._ventana.FechaAnualidad = anuSelect.FechaAnualidad.ToString();
-            this._ventana.FechaVoucher = anuSelect.FechaVoucher.ToString();
-            this._ventana.ISituacion= anuSelect.Situacion;
-            this._ventana.Voucher = anuSelect.Voucher;
-            this._ventana.Factura = anuSelect.Factura.ToString();
-
-            if (anuSelect.Id == 0)
+            if (!nuevo)
+            {
+                Anualidad anuSelect = ((Anualidad) this._ventana.Anualidad);
+                this._ventana.Recibo = anuSelect.Recibo;
+                this._ventana.FechaAnualidad = anuSelect.FechaAnualidad.ToString();
+                this._ventana.FechaVoucher = anuSelect.FechaVoucher.ToString();
+                this._ventana.ISituacion = anuSelect.Situacion;
+                this._ventana.Voucher = anuSelect.Voucher;
+                this._ventana.Factura = anuSelect.Factura.ToString();
+            }
+            else
+            { 
                 this._ventana.Recibo = "";
+                this._ventana.FechaAnualidad = "";
+                this._ventana.FechaVoucher = "";
+                this._ventana.ISituacion = "";
+                this._ventana.Voucher = "";
+                this._ventana.Factura = "";
+            }
+
+
 
             #region trace
             if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
