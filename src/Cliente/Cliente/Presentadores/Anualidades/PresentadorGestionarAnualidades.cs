@@ -52,18 +52,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Anualidades
 
         private IList<Asociado> _asociados;
         private IList<Interesado> _interesados;
-        private IList<Corresponsal> _corresponsales;
-        private IList<Auditoria> _auditorias;
         private IList<Patente> _patentes;
-        private IList<Interesado> _interesadosEntre;
-        private IList<Interesado> _interesadosSobreviviente;
-        private IList<Agente> _agentesApoderados;
-        private IList<Anualidad> _anualidades;
 
-        private IList<Poder> _poderes;
-        private IList<Poder> _poderesApoderado;
-        private IList<Poder> _poderesSobreviviente;
-        private IList<Poder> _poderesInterseccion;
 
 
         /// <summary>
@@ -263,7 +253,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Anualidades
         /// Método que dependiendo del estado de la pagina carga una patente seleccionada
         /// o una nueva
         /// </summary>
-        public Patente CargarFusionDeLaPantalla()
+        public Patente CargarPatenteDeLaPantalla()
         {
             #region trace
             if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -271,9 +261,6 @@ namespace Trascend.Bolet.Cliente.Presentadores.Anualidades
             #endregion
 
             Patente patente = (Patente)this._ventana.Patente;
-            //Anualidad aux = new Anualidad();
-            //aux.Id = patente.Id;
-            //patente.Anualidades = this._anualidadServicios.ObtenerAnualidadesFiltro(aux);
 
             if (null != this._ventana.BoletinConcesion)
                 patente.BoletinConcesion = ((Boletin)this._ventana.BoletinConcesion).Id != int.MinValue ? (Boletin)this._ventana.BoletinConcesion : null;
@@ -364,7 +351,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Anualidades
                 //Modifica los datos de la patente
                 else if (this._ventana.TextoBotonModificar == Recursos.Etiquetas.btnAceptar)
                 {
-                    Patente patente = CargarFusionDeLaPantalla();
+                    Patente patente = CargarPatenteDeLaPantalla();
 
 
                     bool exitoso = this._patenteesServicios.InsertarOModificarAnualidad(patente, UsuarioLogeado.Hash);
@@ -457,48 +444,6 @@ namespace Trascend.Bolet.Cliente.Presentadores.Anualidades
             }
         }
 
-        /// <summary>
-        /// Metodo que nos muestra la lista de auditorias
-        /// </summary>
-        public void Auditoria()
-        {
-            try
-            {
-                #region trace
-                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
-                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
-                #endregion
-
-
-                this.Navegar(new ListaAuditorias(_auditorias));
-
-
-                #region trace
-                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
-                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
-                #endregion
-            }
-            catch (ApplicationException ex)
-            {
-                logger.Error(ex.Message);
-                this.Navegar(ex.Message, true);
-            }
-            catch (RemotingException ex)
-            {
-                logger.Error(ex.Message);
-                this.Navegar(Recursos.MensajesConElUsuario.ErrorRemoting, true);
-            }
-            catch (SocketException ex)
-            {
-                logger.Error(ex.Message);
-                this.Navegar(Recursos.MensajesConElUsuario.ErrorConexionServidor, true);
-            }
-            catch (Exception ex)
-            {
-                logger.Error(ex.Message);
-                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
-            }
-        }
 
         /// <summary>
         /// Método que ordena una columna
@@ -975,8 +920,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Anualidades
             #endregion
 
             IList<Anualidad> anulidades;
-            Anualidad anuSelect = ((Anualidad)this._ventana.Anualidad);
-            int conta = 0;
+            int conta = -1;
 
             bool retorno = false;
 
@@ -985,13 +929,6 @@ namespace Trascend.Bolet.Cliente.Presentadores.Anualidades
                 else
                     anulidades = ((Patente)this._ventana.Patente).Anualidades;
 
-                if ((anuSelect == null) || (anuSelect.Id == 0))
-                {
-                    if (this._idAnualidad == 0)
-                        conta = this._anualidadServicios.ConsultarUltimoIdAnualidad();
-                    else
-                        conta = this._idAnualidad;
-                    conta++;
                     this._idAnualidad = conta;
                     Anualidad aux = new Anualidad();
                     aux.Asociado = ((Patente)this._ventana.Patente).Asociado;
@@ -1006,36 +943,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Anualidades
                         aux.Situacion = ((Servicio)this._ventana.ISituacion).Descripcion;
                     if (this._ventana.Factura != "")
                         aux.Factura = int.Parse(this._ventana.Factura);
+                    aux.Patente = ((Patente)this._ventana.Patente);
                     anulidades.Add(aux);
-                }
-                else
-                {
-
-                    int contador = 0;
-
-                    foreach (Anualidad aux1 in anulidades)
-                    {
-                        if ((aux1.Id == anuSelect.Id) && (aux1.Id != 0))
-                        {
-                            if (this._ventana.Id != "")
-                                anulidades[contador].Id = conta;
-                            if (this._ventana.Recibo != "")
-                                anulidades[contador].Recibo = this._ventana.Recibo;
-                            if (this._ventana.FechaAnualidad!="")
-                                anulidades[contador].FechaAnualidad = DateTime.Parse(this._ventana.FechaAnualidad);
-                            if (this._ventana.FechaVoucher != "")
-                               anulidades[contador].FechaVoucher = DateTime.Parse(this._ventana.FechaVoucher);
-                            if (this._ventana.Voucher != "")
-                                anulidades[contador].Voucher = this._ventana.Voucher;
-                            if (this._ventana.Factura != "")    
-                                anulidades[contador].Factura = int.Parse(this._ventana.Factura);
-                            
-
-
-                        }
-                        contador++;
-                    }
-                }
                 
                 
                 ((Patente)this._ventana.Patente).Anualidades = anulidades;
@@ -1044,6 +953,69 @@ namespace Trascend.Bolet.Cliente.Presentadores.Anualidades
                 // ((MarcaTercero)this._ventana.MarcaTercero).MarcasBaseTercero = this._patentesBaseTercero.ToList<MarcaBaseTercero>();
                 retorno = true;
             
+
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+            return retorno;
+        }
+
+        /// Método que Modifica lista de Anualidad
+        /// </summary>
+        /// <returns>true si se realizó correctamente</returns>
+        public bool ModificarAnualidad()
+        {
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+            IList<Anualidad> anulidades;
+            Anualidad anuSelect = ((Anualidad)this._ventana.Anualidad);
+           
+
+            bool retorno = false;
+
+            if (null == ((Patente)this._ventana.Patente).Anualidades)
+                anulidades = new List<Anualidad>();
+            else
+                anulidades = ((Patente)this._ventana.Patente).Anualidades;
+
+                int contador = 0;
+
+                foreach (Anualidad aux1 in anulidades)
+                {
+                    if ((aux1.Id == anuSelect.Id))
+                    {
+                        if (this._ventana.Id != "")
+                            anulidades[contador].Id = anuSelect.Id;
+                        if (this._ventana.Recibo != "")
+                            anulidades[contador].Recibo = this._ventana.Recibo;
+                        if (this._ventana.FechaAnualidad != "")
+                            anulidades[contador].FechaAnualidad = DateTime.Parse(this._ventana.FechaAnualidad);
+                        if (this._ventana.FechaVoucher != "")
+                            anulidades[contador].FechaVoucher = DateTime.Parse(this._ventana.FechaVoucher);
+                        if (this._ventana.Voucher != "")
+                            anulidades[contador].Voucher = this._ventana.Voucher;
+                        if (this._ventana.Factura != "")
+                            anulidades[contador].Factura = int.Parse(this._ventana.Factura);
+
+
+
+                    }
+                    contador++;
+                }
+            
+
+
+            ((Patente)this._ventana.Patente).Anualidades = anulidades;
+            this._ventana.Anualidades = anulidades.ToList<Anualidad>();
+            // this._patentesBaseTercero.Remove((MarcaBaseTercero)this._ventana.MarcaTercero);
+            // ((MarcaTercero)this._ventana.MarcaTercero).MarcasBaseTercero = this._patentesBaseTercero.ToList<MarcaBaseTercero>();
+            retorno = true;
+
 
             #region trace
             if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))

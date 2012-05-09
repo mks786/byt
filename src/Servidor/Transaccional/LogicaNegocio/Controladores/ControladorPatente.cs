@@ -280,6 +280,7 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
                 if (patente.Anualidades.Count() != 0)
                 {
                     IList<Anualidad> anualidades = patente.Anualidades;
+                    anualidades.RemoveAt(0);
 
                                 //Recorre las anualidades obtenidas del presentador
                                 foreach (Anualidad anualidad1 in patente.Anualidades)

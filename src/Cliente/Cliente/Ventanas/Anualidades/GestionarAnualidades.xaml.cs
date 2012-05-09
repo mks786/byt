@@ -103,6 +103,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Anualidades
                 this._lstAnualidades.IsEnabled = value;
                 this._btnMas.IsEnabled = value;
                 this._btnMenos.IsEnabled = value;
+                this._btnModificarSeleccionado.IsEnabled = value;
                 this._chkFactura.IsEnabled = value;
 
             }
@@ -667,11 +668,16 @@ namespace Trascend.Bolet.Cliente.Ventanas.Anualidades
             }
         }
 
+        private void _btnModificarSeleccionado_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.ModificarAnualidad();
+            
+        }
+
         private void _lstAnualidades_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             this._gridCamposAnualidad.Visibility = System.Windows.Visibility.Visible;
             this._presentador.CargarAnualidadSeleccionada();
-
 
         }
 
@@ -717,12 +723,12 @@ namespace Trascend.Bolet.Cliente.Ventanas.Anualidades
             throw new System.NotImplementedException();
         }
 
-
-
         public void CargarAnualidadSeleccionada()
         {
             throw new System.NotImplementedException();
         }
+
+
 
 
     }
