@@ -8,6 +8,8 @@ namespace Trascend.Bolet.ObjetosComunes.ContratosServicios
     {
         IList<Patente> ObtenerPatentesFiltro(Patente Patente);
 
+        IList<Fecha> ObtenerFechasPatente(Patente Patente);
+
         IList<Auditoria> AuditoriaPorFkyTabla(Auditoria auditoria);
 
         Patente ConsultarPatenteConTodo(Patente Patente);

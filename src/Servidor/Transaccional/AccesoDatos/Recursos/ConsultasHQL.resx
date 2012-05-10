@@ -653,4 +653,8 @@
     <value>Select i from InfoBolPatente i left outer join fetch i.TipoInfobol where i.Patente.Id = '{0}'</value>
     <comment>Obtener todos los infoboles de una patente</comment>
   </data>
+  <data name="ObtenerFechaPatente" xml:space="preserve">
+    <value>Select f from Fecha where f.Id = {0}</value>
+    <comment>Selecciona las fechas de una patente</comment>
+  </data>
 </root>

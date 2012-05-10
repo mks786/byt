@@ -374,6 +374,18 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
             set { this._cbxDetalleDatos.SelectedItem = value; }
         }
 
+        public string AbandonoDatos
+        {
+            get { return this._txtAbandonoDatos.Text; }
+            set { this._txtAbandonoDatos.Text = value; }
+        }
+
+        public string AnualidadDatos
+        {
+            get { return this._txtAnualidadDatos.Text; }
+            set { this._txtAnualidadDatos.Text = value; }
+        }
+
         public string IdAsociadoDatosFiltrar
         {
             get { return this._txtIdAsociadoDatosFiltrar.Text; }
@@ -551,6 +563,12 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
             set { this._txbAceptar.Text = value; }
         }
 
+        public string TextoBotonRegresar
+        {
+            get { return this._txbCancelar.Text; }
+            set { this._txbCancelar.Text = value; }
+        }
+
         public bool HabilitarCampos
         {
             set
@@ -671,7 +689,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
                 this._btnInfoAdicionalSolicitud.IsEnabled = value;
                 this._btnSaldosSolicitud.IsEnabled = value;
                 this._btnDisenoSolicitud.IsEnabled = value;
-                this._btnDisenoReporteSolicitud.IsEnabled = value;
+                //this._btnDisenoReporteSolicitud.IsEnabled = value;
                 this._btnDocumentosSolicitud.IsEnabled = value;
                 this._btnInfoAdicionalSolicitud.IsEnabled = value;
                 this._btnCasoEspecialSolicitud.IsEnabled = value;
@@ -693,7 +711,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
                 this._btnVerSolicitudDatos.IsEnabled = value;
                 this._btnVerMemoriaDatos.IsEnabled = value;
                 this._btnVerExpedienteDatos.IsEnabled = value;
-                this._btnArchivoDatos.IsEnabled = value;
+                //this._btnArchivoDatos.IsEnabled = value;
                 this._btnFacturacionDatos.IsEnabled = value;
                 this._btnCertificadoDatos.IsEnabled = value;
                 this._btnCertificadoDatos.IsEnabled = value;
@@ -920,6 +938,57 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
         private void _btnCancelar_Click(object sender, RoutedEventArgs e)
         {
             this._presentador.IrConsultarPatentes();
+        }
+
+        public void ActivarControlesAlAgregar()
+        {
+
+            #region Solicitud
+
+            this._btnDisenoSolicitud.Visibility = System.Windows.Visibility.Collapsed;
+            this._btnDocumentosSolicitud.Visibility = System.Windows.Visibility.Collapsed;
+            this._btnCasoEspecialSolicitud.Visibility = System.Windows.Visibility.Collapsed;
+            this._btnInventoresSolicitud.Visibility = System.Windows.Visibility.Collapsed;
+            this._btnInfoAdicionalSolicitud.Visibility = System.Windows.Visibility.Collapsed;
+
+            this._txtIdSolicitud.Visibility = System.Windows.Visibility.Collapsed;
+            this._txtIdDatos.Visibility = System.Windows.Visibility.Collapsed;
+
+            #endregion
+
+            #region Datos
+
+            this._btnDisenoDatos.Visibility = System.Windows.Visibility.Collapsed;
+            this._btnOperacionDatos.Visibility = System.Windows.Visibility.Collapsed;
+            this._btnAuditoriaDatos.Visibility = System.Windows.Visibility.Collapsed;
+            this._btnInventoresDatos.Visibility = System.Windows.Visibility.Collapsed;
+            this._btnVerSolicitudDatos.Visibility = System.Windows.Visibility.Collapsed;
+            this._btnInfoBolDatos.Visibility = System.Windows.Visibility.Collapsed;
+            this._btnFechasDatos.Visibility = System.Windows.Visibility.Collapsed;
+            this._btnVerTituloDatos.Visibility = System.Windows.Visibility.Collapsed;
+            this._btnVerMemoriaDatos.Visibility = System.Windows.Visibility.Collapsed;
+            this._btnVerExpedienteDatos.Visibility = System.Windows.Visibility.Collapsed;
+            this._btnFacturacionDatos.Visibility = System.Windows.Visibility.Collapsed;
+            this._btnVerMemoriaRutaDatos.Visibility = System.Windows.Visibility.Collapsed;
+            this._btnCertificadoDatos.Visibility = System.Windows.Visibility.Collapsed;
+
+            this._lblAnualidad.Visibility = System.Windows.Visibility.Collapsed;
+            this._txtAnualidadDatos.Visibility = System.Windows.Visibility.Collapsed;
+
+            this._lblAbandono.Visibility = System.Windows.Visibility.Collapsed;
+            this._txtAbandonoDatos.Visibility = System.Windows.Visibility.Collapsed;
+
+            this._txtFechaRenovacionDatos.Visibility = System.Windows.Visibility.Collapsed;
+            this._lblFechaRenovacionDatos.Visibility = System.Windows.Visibility.Collapsed;
+
+            this._spdrBotones.Visibility = System.Windows.Visibility.Collapsed;
+
+
+            this._txtDescripcionSolicitud.IsReadOnly = false;
+            this._txtDescripcionDatos.IsReadOnly = false;
+
+            #endregion
+
         }
 
         #endregion
@@ -1259,27 +1328,32 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
 
         private void _btnFechasDatos_Click(object sender, RoutedEventArgs e)
         {
-
+            this._presentador.VerFechas();
         }
 
         private void _btnVerSolicitudDatos_Click(object sender, RoutedEventArgs e)
         {
-
+            this._presentador.VerSolicitud();
         }
 
         private void _btnVerTituloDatos_Click(object sender, RoutedEventArgs e)
         {
-
+            this._presentador.VerTitulo();
         }
 
         private void _btnVerMemoriaDatos_Click(object sender, RoutedEventArgs e)
         {
+            this._presentador.VerMemoria();
+        }
 
+        private void _btnVerMemoriaRutaDatos_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.VerMemoriaRuta();
         }
 
         private void _btnVerExpedienteDatos_Click(object sender, RoutedEventArgs e)
         {
-
+            this._presentador.VerExpediente();
         }
 
         private void _btnArchivoDatos_Click(object sender, RoutedEventArgs e)

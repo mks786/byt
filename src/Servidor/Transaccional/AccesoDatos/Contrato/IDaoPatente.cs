@@ -7,6 +7,8 @@ namespace Trascend.Bolet.AccesoDatos.Contrato
     {
         IList<Patente> ObtenerPatentesFiltro(Patente Patente);
 
+        IList<Fecha> ObtenerFechasPatente(Patente Patente);
+
         Patente ObtenerPatenteConTodo(Patente Patente);
 
     }

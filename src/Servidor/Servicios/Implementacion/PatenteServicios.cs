@@ -135,6 +135,32 @@ namespace Trascend.Bolet.Servicios.Implementacion
 
         }
 
+        /// <summary>
+        /// Servicio que consulta una serie de fechas por Patente
+        /// </summary>
+        /// <param name="patente">Patente que contiene los parametros de la consulta</param>
+        /// <returns>Lista de fechas de una patente</returns>
+        public IList<Fecha> ObtenerFechasPatente(Patente patente)
+        {
+            #region trace
+            if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+            IList<Fecha> fechas;
+
+            fechas = ControladorPatente.ConsultarFechasPatente(patente);
+
+
+            #region trace
+            if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                logger.Debug("Saliendo del Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+            return fechas;
+
+        }
+
         public IList<Auditoria> AuditoriaPorFkyTabla(Auditoria auditoria)
         {
             #region trace

@@ -2570,7 +2570,16 @@ de Gracia</value>
   <data name="titleGestionarPatente" xml:space="preserve">
     <value>Gestionar Patente</value>
   </data>
+  <data name="titleAgregarPatente" xml:space="preserve">
+    <value>Agregar Patente</value>
+  </data>
   <data name="btnNuevaAnualidad" xml:space="preserve">
     <value>Nueva Anualidad</value>
+  </data>
+  <data name="titleListaFechasPatente" xml:space="preserve">
+    <value>Fechas de Patente</value>
+  </data>
+  <data name="titleListaInventoresPatente" xml:space="preserve">
+    <value>Lista de Inventores de Patentes</value>
   </data>
 </root>

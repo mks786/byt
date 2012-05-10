@@ -1069,6 +1069,15 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Select f from Fecha where f.Id = {0}.
+        /// </summary>
+        public static string ObtenerFechaPatente {
+            get {
+                return ResourceManager.GetString("ObtenerFechaPatente", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Select i from InfoAdicinal i where i.Id = &apos;{0}&apos;.
         /// </summary>
         public static string ObtenerInfoAdicinalPorId {

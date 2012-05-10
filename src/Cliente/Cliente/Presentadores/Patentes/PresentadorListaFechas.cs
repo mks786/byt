@@ -19,9 +19,9 @@ using Trascend.Bolet.Cliente.Ayuda;
 
 namespace Trascend.Bolet.Cliente.Presentadores.Patentes
 {
-    class PresentadorListaInventores : PresentadorBase
+    class PresentadorListaFechas : PresentadorBase
     {
-        private IListaInventores _ventana;
+        private IListaFechas _ventana;
         private Patente _patente;
         private static PaginaPrincipal _paginaPrincipal = PaginaPrincipal.ObtenerInstancia;
         private static Logger logger = LogManager.GetCurrentClassLogger();
@@ -33,7 +33,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
         /// Constructor Predeterminado
         /// </summary>
         /// <param name="ventana">página que satisface el contrato</param>
-        public PresentadorListaInventores(IListaInventores ventana, object patente)
+        public PresentadorListaFechas(IListaFechas ventana, object patente)
         {
             #region trace
             if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -68,10 +68,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-                this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleListaInventoresPatente,
-                    Recursos.Ids.Inventor);
+                this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleListaFechasPatente,
+                    Recursos.Ids.FechasPatente);
                 this._patente = this._patenteServicios.ConsultarPatenteConTodo(_patente);
-                this._ventana.Inventores = this._inventorServicios.ConsultarInventoresPorPatente((Patente)this._patente);
+                this._ventana.Fechas = this._inventorServicios.ConsultarInventoresPorPatente((Patente)this._patente);
                 this._ventana.TotalHits = ((Patente)this._patente).Inventores.Count.ToString();
                 this._ventana.FocoPredeterminado();
 
@@ -92,19 +92,19 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
         }
 
         /// <summary>
-        /// Método que invoca una nueva página "Consultar Justificación" y la instancia con el objeto seleccionado
+        /// Método que invoca una nueva página "Consultar Fecha" y la instancia con el objeto seleccionado
         /// </summary>
-        public void IrConsultarInventor()
+        public void IrConsultarFecha()
         {
             #region trace
             if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
                 logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
 
-            if (this._ventana.InventorSeleccionado != null)
+            if (this._ventana.FechaSeleccionado != null)
             {
-                ((Inventor)this._ventana.InventorSeleccionado).Patente = this._patente;
-                this.Navegar(new ConsultarInventor(this._ventana.InventorSeleccionado));
+                ((Inventor)this._ventana.FechaSeleccionado).Patente = this._patente;
+                this.Navegar(new ConsultarInventor(this._ventana.FechaSeleccionado));
             }
             #region trace
             if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -147,9 +147,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
         }
 
         /// <summary>
-        /// Metodo que invoca una ventana de Agregar contacto de un Patente
+        /// Metodo que invoca una ventana de Agregar fecha a una Patente
         /// </summary>
-        public void IrAgregarInventor()
+        public void IrAgregarFecha()
         {
             #region trace
             if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))

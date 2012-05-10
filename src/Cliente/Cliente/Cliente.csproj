@@ -134,6 +134,7 @@
     <Compile Include="Contratos\EscritosPatente\IExamenDePatentabilidad.cs" />
     <Compile Include="Contratos\Inventores\IAgregarInventor.cs" />
     <Compile Include="Contratos\Inventores\IConsultarInventor.cs" />
+    <Compile Include="Contratos\Patentes\IListaFechas.cs" />
     <Compile Include="Contratos\Patentes\IGestionarInfoAdicional.cs" />
     <Compile Include="Contratos\Patentes\IGestionarInfoBol.cs" />
     <Compile Include="Contratos\Patentes\IGestionarPatente.cs" />
@@ -330,6 +331,7 @@
     <Compile Include="Presentadores\EscritosPatente\PresentadorExamenDePatentabilidad.cs" />
     <Compile Include="Presentadores\Inventores\PresentadorAgregarInventor.cs" />
     <Compile Include="Presentadores\Inventores\PresentadorConsultarInventor.cs" />
+    <Compile Include="Presentadores\Patentes\PresentadorListaFechas.cs" />
     <Compile Include="Presentadores\Patentes\PresentadorGestionarInfoAdicional.cs" />
     <Compile Include="Presentadores\Patentes\PresentadorGestionarInfoBol.cs" />
     <Compile Include="Presentadores\Patentes\PresentadorGestionarPatente.cs" />
@@ -712,6 +714,9 @@
     </Compile>
     <Compile Include="Ventanas\MarcasTercero\ConsultarMarcasTercero.xaml.cs">
       <DependentUpon>ConsultarMarcasTercero.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Patentes\ListaFechas.xaml.cs">
+      <DependentUpon>ListaFechas.xaml</DependentUpon>
     </Compile>
     <Compile Include="Ventanas\Patentes\GestionarInfoAdicional.xaml.cs">
       <DependentUpon>GestionarInfoAdicional.xaml</DependentUpon>
@@ -1365,6 +1370,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Ventanas\MarcasTercero\ConsultarMarcasTercero.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\Patentes\ListaFechas.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

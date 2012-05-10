@@ -138,6 +138,7 @@
     <Compile Include="Entidades\CambioPeticionarioPatente.cs" />
     <Compile Include="Entidades\CesionPatente.cs" />
     <Compile Include="Entidades\Anualidad.cs" />
+    <Compile Include="Entidades\Fecha.cs" />
     <Compile Include="Entidades\InfoBolPatente.cs" />
     <Compile Include="Entidades\FusionPatente.cs" />
     <Compile Include="Entidades\LicenciaPatente.cs" />

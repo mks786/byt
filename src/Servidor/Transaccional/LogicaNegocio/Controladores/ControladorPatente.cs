@@ -35,7 +35,7 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
                 // si es una insercion
                 if (patente.Operacion.Equals("CREATE"))
                 {
-                    ComandoBase<Contador> comandoContadorInteresadoProximoValor = FabricaComandosContador.ObtenerComandoConsultarPorId("MYP_MARCAS");
+                    ComandoBase<Contador> comandoContadorInteresadoProximoValor = FabricaComandosContador.ObtenerComandoConsultarPorId("MYP_PATENTES");
                     comandoContadorInteresadoProximoValor.Ejecutar();
                     Contador contador = comandoContadorInteresadoProximoValor.Receptor.ObjetoAlmacenado;
                     patente.Id = contador.ProximoValor++;
@@ -56,7 +56,7 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
                 auditoria.Usuario = ObtenerUsuarioPorHash(hash).Id;
                 auditoria.Fecha = System.DateTime.Now;
                 auditoria.Operacion = patente.Operacion;
-                auditoria.Tabla = "MYP_MARCAS";
+                auditoria.Tabla = "MYP_PATENTES";
                 auditoria.Fk = patente.Id;
 
                 ComandoBase<bool> comando = FabricaComandosPatente.ObtenerComandoInsertarOModificar(patente);
@@ -138,6 +138,39 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
                 #endregion
 
                 ComandoBase<IList<Patente>> comando = FabricaComandosPatente.ObtenerComandoConsultarTodos();
+                comando.Ejecutar();
+                retorno = comando.Receptor.ObjetoAlmacenado;
+
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Saliendo del Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (ApplicationException ex)
+            {
+                logger.Error(ex.Message);
+                throw ex;
+            }
+
+            return retorno;
+        }
+
+        /// <summary>
+        /// Método que consulta la lista de todos las fechas de Patentes
+        /// </summary>
+        /// <returns>Lista con todos las fechas</returns>
+        public static IList<Fecha> ConsultarFechasPatente(Patente patente)
+        {
+            IList<Fecha> retorno;
+
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                ComandoBase<IList<Fecha>> comando = FabricaComandosPatente.ObtenerComandoConsultarFechasPatente(patente);
                 comando.Ejecutar();
                 retorno = comando.Receptor.ObjetoAlmacenado;
 

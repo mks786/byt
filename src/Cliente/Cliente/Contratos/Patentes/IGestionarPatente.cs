@@ -140,6 +140,10 @@ namespace Trascend.Bolet.Cliente.Contratos.Patentes
 
         object DetalleDatos { get; set; }
 
+        string AbandonoDatos { get; set; }
+        
+        string AnualidadDatos { get; set; }
+
         object BoletinesOrdenPublicacionDatos { get; set; }
 
         object BoletinOrdenPublicacionDatos { get; set; }
@@ -168,8 +172,6 @@ namespace Trascend.Bolet.Cliente.Contratos.Patentes
 
         void Mensaje(string mensaje);
 
-        string TextoBotonModificar { get; set; }
-
         bool HabilitarCampos { set; }
 
         bool AsociadosEstanCargados { get; set; }
@@ -182,7 +184,9 @@ namespace Trascend.Bolet.Cliente.Contratos.Patentes
 
         bool AgentesEstanCargados { get; set; }
 
-        
+        string TextoBotonModificar { get; set; }
+
+        string TextoBotonRegresar { get; set; }
 
         bool MensajeAlerta(string mensaje);
 
@@ -192,5 +196,6 @@ namespace Trascend.Bolet.Cliente.Contratos.Patentes
 
         SortAdorner CurAdorner { get; set; }
 
+        void ActivarControlesAlAgregar();
     }
 }

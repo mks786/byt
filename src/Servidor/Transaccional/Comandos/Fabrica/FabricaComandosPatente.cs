@@ -65,5 +65,15 @@ namespace Trascend.Bolet.Comandos.Fabrica
         {
             return new ComandoConsultarPatentePorId(id);
         }
+
+        /// <summary>
+        /// Método que devuelve las fechas de una patente
+        /// </summary>
+        /// <param name="patente"></param>
+        /// <returns>ComandoConsultarFechasPatente</returns>
+        public static ComandoBase<IList<Fecha>> ObtenerComandoConsultarFechasPatente(Patente patente)
+        {
+            return new ComandoConsultarFechasPatente(patente);
+        }
     }
 }

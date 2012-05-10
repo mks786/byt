@@ -95,7 +95,7 @@
         <many-to-one name="Patente" class="Patente" column="CPATENTE"/>
       </composite-element>
     </bag>
-    
+
   </class>
 </hibernate-mapping>
 

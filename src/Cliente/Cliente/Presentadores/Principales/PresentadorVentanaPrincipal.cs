@@ -862,7 +862,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
         /// </summary>
         public void AgregarPatente()
         {
-            //this._ventana.Contenedor.Navigate(new AgregarPatentes());
+            this._ventana.Contenedor.Navigate(new GestionarPatente(null));
         }
 
         /// <summary>

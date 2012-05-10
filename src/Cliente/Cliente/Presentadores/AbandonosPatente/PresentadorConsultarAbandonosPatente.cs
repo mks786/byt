@@ -160,7 +160,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.AbandonosPatente
                     Patente patenteAuxiliar = new Patente();
                     patenteAuxiliar.Id = operacionAuxiliar.CodigoAplicada;
 
-                    this._abandonos = this._operacionServicios.ObtenerOperacionFiltro(operacionAuxiliar);                   
+                    this._abandonos = this._operacionServicios.ObtenerOperacionFiltro(operacionAuxiliar);
                     
                     this._ventana.Resultados = this._abandonos;
                     this._ventana.TotalHits = _abandonos.Count.ToString();

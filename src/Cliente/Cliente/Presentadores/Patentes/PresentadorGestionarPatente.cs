@@ -52,6 +52,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
         private IList<Interesado> _interesados;
         private IList<Inventor> _inventores;
         private IList<Auditoria> _auditorias;
+        private IList<Operacion> _abandonos;
+        private IList<Anualidad> _anualidades;
+
+        private bool _agregar;
 
         /// <summary>
         /// Constructor Predeterminado
@@ -67,6 +71,22 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                 #endregion
 
                 this._ventana = ventana;
+
+                if (patente != null)
+                {
+                    this._ventana.Patente = patente;
+                    this._agregar = false;
+                }
+                else
+                {
+
+                    this.CambiarAModificar();
+
+                    this._ventana.TextoBotonRegresar = Recursos.Etiquetas.btnCancelar;
+                    this._agregar = true;
+
+                    this._ventana.ActivarControlesAlAgregar();
+                }
 
                 
                 this._ventana.Patente = patente;
@@ -107,6 +127,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["BoletinServicios"]);
                 this._inventorServicios = (IInventorServicios)Activator.GetObject(typeof(IInventorServicios),
                 ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["InventorServicios"]);
+                this._operacionServicios = (IOperacionServicios)Activator.GetObject(typeof(IOperacionServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["OperacionServicios"]);
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -130,8 +152,16 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                 logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
 
-            this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleGestionarPatente,
-                Recursos.Ids.ConsultarMarcas);
+            if (this._agregar == false)
+            {
+                this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleGestionarPatente,
+                    Recursos.Ids.GestionarPatentes);
+            }
+            else
+            {
+                this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleAgregarPatente,
+                    Recursos.Ids.AgregarPatentes);
+            }
 
             #region trace
             if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -153,168 +183,139 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-                this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleConsultarMarca, "");
+                ActualizarTitulo();
 
-                Patente patente = (Patente)this._ventana.Patente;
-
-                InfoAdicional infoAdicional = new InfoAdicional("P." + patente.Id);
-
-                patente.InfoAdicional = this._infoAdicionalServicios.ConsultarPorId(infoAdicional);
-                patente.Operaciones = this._operacionServicios.ConsultarOperacionesPorPatente(patente);
-                
-                IList<ListaDatosDominio> tipoPatente = this._listaDatosDominioServicios.
-                    ConsultarListaDatosDominioPorParametro(new ListaDatosDominio(Recursos.Etiquetas.cbiTipoPatente));
-                ListaDatosDominio primerTipoPatente = new ListaDatosDominio();
-                primerTipoPatente.Id = "NGN";
-                tipoPatente.Insert(0, primerTipoPatente);
-                this._ventana.TiposPatenteSolicitud = tipoPatente;
-                this._ventana.TipoPatenteSolicitud = this.BuscarTipoPatente(patente.Tipo, tipoPatente);
-
-                this._ventana.TiposPatenteDatos = tipoPatente;
-                this._ventana.TipoPatenteDatos = this.BuscarTipoPatente(patente.Tipo, tipoPatente);
-
-                IList<ListaDatosDominio> presentacionPatente = this._listaDatosDominioServicios.
-                    ConsultarListaDatosDominioPorParametro(new ListaDatosDominio(Recursos.Etiquetas.cbiPresentacionPatente));
-                ListaDatosDominio primeraPresentacionPatente = new ListaDatosDominio();
-                primeraPresentacionPatente.Id = "NGN";
-                presentacionPatente.Insert(0, primeraPresentacionPatente);
-                this._ventana.PresentacionesPatenteSolicitud = presentacionPatente;
-                this._ventana.PresentacionPatenteSolicitud = this.BuscarPresentacionPatente(patente.Presentacion, presentacionPatente);
-                
-                this._ventana.PresentacionesPatenteDatos = presentacionPatente;
-                this._ventana.PresentacionPatenteDatos = this.BuscarPresentacionPatente(patente.Presentacion, presentacionPatente);
-                
-                IList<Pais> paises = this._paisServicios.ConsultarTodos();
-                Pais primerPais = new Pais();
-                primerPais.Id = int.MinValue;
-                paises.Insert(0, primerPais);
-                this._ventana.PaisesSolicitud = paises;
-                this._ventana.PaisSolicitud = this.BuscarPais(paises, patente.Pais);
-                
-                this._ventana.PaisesDatos = paises;
-                this._ventana.PaisDatos = this.BuscarPais(paises, patente.Pais);
-
-                this._ventana.PoderDatosFiltrar = patente.Poder;
-                this._ventana.PoderSolicitudFiltrar = patente.Poder;
-
-                this._ventana.NumPoderSolicitud = patente.Poder != null ? patente.Poder.NumPoder : "";
-
-                IList<StatusWeb> statusWebs = this._statusWebServicios.ConsultarTodos();
-                StatusWeb primerStatus = new StatusWeb();
-                primerStatus.Id = "NGN";
-                statusWebs.Insert(0, primerStatus);
-                this._ventana.StatusesWebDatos = statusWebs;
-                this._ventana.StatusWebDatos = this.BuscarStatusWeb(statusWebs, patente.StatusWeb);
-
-                IList<TipoEstado> tipoEstados = this._tipoEstadoServicios.ConsultarTodos();
-                TipoEstado primerDetalle = new TipoEstado();
-                primerDetalle.Id = "NGN";
-                tipoEstados.Insert(0, primerDetalle);
-                this._ventana.DetallesDatos = tipoEstados;
-                this._ventana.DetalleDatos = BuscarDetalle((IList<TipoEstado>)this._ventana.DetallesDatos, patente.TipoEstado);
-                
-
-                //IList<Condicion> condiciones = this._condicionServicios.ConsultarTodos();
-                //Condicion primeraCondicion = new Condicion();
-                //primeraCondicion.Id = int.MinValue;
-                //condiciones.Insert(0, primeraCondicion);
-                //this._ventana.Condiciones = condiciones;
-
-                //IList<TipoEstado> tipoEstados = this._tipoEstadoServicios.ConsultarTodos();
-                //TipoEstado primerDetalle = new TipoEstado();
-                //primerDetalle.Id = "NGN";
-                //tipoEstados.Insert(0, primerDetalle);
-                //this._ventana.Detalles = tipoEstados;
-
-                IList<Servicio> servicios = this._servicioServicios.ConsultarTodos();
-                Servicio primerServicio = new Servicio();
-                primerServicio.Id = "NGN";
-                servicios.Insert(0, primerServicio);
-                this._ventana.SituacionesDatos = servicios;
-                this._ventana.SituacionDatos = this.BuscarServicio(servicios, patente.Servicio);
-
-
-                IList<Boletin> boletines = this._boletinServicios.ConsultarTodos();
-                Boletin primerBoletin = new Boletin();
-                primerBoletin.Id = int.MinValue;
-                boletines.Insert(0, primerBoletin);
-                this._ventana.BoletinesOrdenPublicacionDatos = boletines;
-                this._ventana.BoletinesPublicacionDatos = boletines;
-                this._ventana.BoletinesConcesionDatos = boletines;
-                this._ventana.BoletinConcesionDatos = this.BuscarBoletin(boletines, patente.BoletinConcesion);
-                this._ventana.BoletinPublicacionDatos = this.BuscarBoletin(boletines, patente.BoletinPublicacion);
-                this._ventana.BoletinOrdenPublicacionDatos = this.BuscarBoletin(boletines, patente.BoletinOrdenPublicacion);
-
-                //Interesado interesado = (this._interesadoServicios.ConsultarInteresadoConTodo(patente.Interesado));
-                //this._ventana.NombreInteresadoDatos = interesado.Nombre;
-                //this._ventana.NombreInteresadoSolicitud = interesado.Nombre;
-                //this._ventana.InteresadoPaisSolicitud = interesado.Pais.NombreEspanol;
-                //this._ventana.InteresadoCiudadSolicitud = interesado.Ciudad;
-                ////this._ventana.InteresadoSolicitud = patente.Interesado;
-
-                //this._ventana.NombreAsociadoDatos = patente.Asociado != null ? patente.Asociado.Nombre : "";
-                //this._ventana.NombreAsociadoSolicitud = patente.Asociado != null ? patente.Asociado.Nombre : "";
-
-                //this._ventana.DescripcionCorresponsalSolicitud = patente.Corresponsal.GetType().Equals(typeof(Corresponsal)) ? patente.Corresponsal.Descripcion : "";
-                //this._ventana.DescripcionCorresponsalDatos = patente.Corresponsal.GetType().Equals(typeof(Corresponsal)) ? patente.Corresponsal.Descripcion : "";
-
-                //this._ventana.NumPoderDatos = patente.Poder != null ? patente.Poder.NumPoder : "";
-                //this._ventana.NumPoderSolicitud = patente.Poder != null ? patente.Poder.NumPoder : "";
-
-                //IList<ListaDatosDominio> sectores = this._listaDatosDominioServicios.
-                //    ConsultarListaDatosDominioPorParametro(new ListaDatosDominio(Recursos.Etiquetas.cbiSector));
-                //ListaDatosDominio primerSector = new ListaDatosDominio();
-                //primerSector.Id = "NGN";
-                //sectores.Insert(0, primerSector);
-                //this._ventana.Sectores = sectores;
-                //this._ventana.Sector = this.BuscarSector(sectores, patente.Sector);
-
-                //IList<ListaDatosDominio> tipoReproducciones = this._listaDatosDominioServicios.
-                //    ConsultarListaDatosDominioPorParametro(new ListaDatosDominio(Recursos.Etiquetas.cbiTipoReproduccion));
-                //ListaDatosDominio primerTipoReproduccion = new ListaDatosDominio();
-                //primerTipoReproduccion.Id = "NGN";
-                //tipoReproducciones.Insert(0, primerTipoReproduccion);
-                //this._ventana.TipoReproducciones = tipoReproducciones;
-                //this._ventana.TipoReproduccion = this.BuscarTipoReproduccion(tipoReproducciones, patente.Tipo);
-
-                //IList<ListaDatosDominio> tipoClasesNacional = this._listaDatosDominioServicios.
-                //    ConsultarListaDatosDominioPorParametro(new ListaDatosDominio(Recursos.Etiquetas.cbiCategoriaTipoClaseNacional));
-                //ListaDatosDominio primerTipoClase = new ListaDatosDominio();
-                //primerTipoClase.Id = "NGN";
-                //tipoClasesNacional.Insert(0, primerTipoClase);
-                //this._ventana.TiposClaseNacional = tipoClasesNacional;
-                //this._ventana.TipoClaseNacional = this.BuscarClaseNacional(tipoClasesNacional, patente.TipoCnac);
-
-
-                //if (File.Exists(ConfigurationManager.AppSettings["RutaImagenesDeMarcas"] + patente.Id + ".jpg"))
-                //{
-                //    patente.BEtiqueta = true;
-                //    this._ventana.PintarEtiqueta();
-
-                //}
-
-                _inventores = this._inventorServicios.ConsultarInventoresPorPatente(patente);
-                patente.InfoBoles = this._infoBolServicios.ConsultarInfoBolesPorPatente(patente);
-
-                Auditoria auditoria = new Auditoria();
-                auditoria.Fk = ((Patente)this._ventana.Patente).Id;
-                auditoria.Tabla = "MYP_PATENTES";
-                this._auditorias = this._patenteServicios.AuditoriaPorFkyTabla(auditoria);
-
-                if (null != patente.InfoAdicional && !string.IsNullOrEmpty(patente.InfoAdicional.Id))
-                    this._ventana.PintarInfoAdicionalSolicitud();
-
-                if (null != patente.InfoBoles && patente.InfoBoles.Count > 0)
-                    this._ventana.PintarInfoBolDatos();
-
-                if ((null != this._inventores) && (this._inventores.Count > 0))
+                if (this._agregar == false)
                 {
-                    this._ventana.PintarInventoresDatos();
-                    this._ventana.PintarInventoresSolicitud();
-                }
+                    Patente patente = (Patente)this._ventana.Patente;
 
-                if ((null != this._auditorias) && (this._auditorias.Count > 0))
-                    this._ventana.PintarAuditoriaDatos();
+                    InfoAdicional infoAdicional = new InfoAdicional("P." + patente.Id);
+
+                    patente.InfoAdicional = this._infoAdicionalServicios.ConsultarPorId(infoAdicional);
+                    patente.Operaciones = this._operacionServicios.ConsultarOperacionesPorPatente(patente);
+
+                    IList<ListaDatosDominio> tipoPatente = this._listaDatosDominioServicios.
+                        ConsultarListaDatosDominioPorParametro(new ListaDatosDominio(Recursos.Etiquetas.cbiTipoPatente));
+                    ListaDatosDominio primerTipoPatente = new ListaDatosDominio();
+                    primerTipoPatente.Id = "NGN";
+                    tipoPatente.Insert(0, primerTipoPatente);
+                    this._ventana.TiposPatenteSolicitud = tipoPatente;
+                    this._ventana.TipoPatenteSolicitud = this.BuscarTipoPatente(patente.Tipo, tipoPatente);
+
+                    this._ventana.TiposPatenteDatos = tipoPatente;
+                    this._ventana.TipoPatenteDatos = this.BuscarTipoPatente(patente.Tipo, tipoPatente);
+
+                    IList<ListaDatosDominio> presentacionPatente = this._listaDatosDominioServicios.
+                        ConsultarListaDatosDominioPorParametro(new ListaDatosDominio(Recursos.Etiquetas.cbiPresentacionPatente));
+                    ListaDatosDominio primeraPresentacionPatente = new ListaDatosDominio();
+                    primeraPresentacionPatente.Id = "NGN";
+                    presentacionPatente.Insert(0, primeraPresentacionPatente);
+                    this._ventana.PresentacionesPatenteSolicitud = presentacionPatente;
+                    this._ventana.PresentacionPatenteSolicitud = this.BuscarPresentacionPatente(patente.Presentacion, presentacionPatente);
+
+                    this._ventana.PresentacionesPatenteDatos = presentacionPatente;
+                    this._ventana.PresentacionPatenteDatos = this.BuscarPresentacionPatente(patente.Presentacion, presentacionPatente);
+
+                    IList<Pais> paises = this._paisServicios.ConsultarTodos();
+                    Pais primerPais = new Pais();
+                    primerPais.Id = int.MinValue;
+                    paises.Insert(0, primerPais);
+                    this._ventana.PaisesSolicitud = paises;
+                    this._ventana.PaisSolicitud = this.BuscarPais(paises, patente.Pais);
+
+                    this._ventana.PaisesDatos = paises;
+                    this._ventana.PaisDatos = this.BuscarPais(paises, patente.Pais);
+
+                    this._ventana.PoderDatosFiltrar = patente.Poder;
+                    this._ventana.PoderSolicitudFiltrar = patente.Poder;
+
+                    this._ventana.NumPoderSolicitud = patente.Poder != null ? patente.Poder.NumPoder : "";
+
+                    IList<StatusWeb> statusWebs = this._statusWebServicios.ConsultarTodos();
+                    StatusWeb primerStatus = new StatusWeb();
+                    primerStatus.Id = "NGN";
+                    statusWebs.Insert(0, primerStatus);
+                    this._ventana.StatusesWebDatos = statusWebs;
+                    this._ventana.StatusWebDatos = this.BuscarStatusWeb(statusWebs, patente.StatusWeb);
+
+                    IList<TipoEstado> tipoEstados = this._tipoEstadoServicios.ConsultarTodos();
+                    TipoEstado primerDetalle = new TipoEstado();
+                    primerDetalle.Id = "NGN";
+                    tipoEstados.Insert(0, primerDetalle);
+                    this._ventana.DetallesDatos = tipoEstados;
+                    this._ventana.DetalleDatos = BuscarDetalle((IList<TipoEstado>)this._ventana.DetallesDatos, patente.TipoEstado);
+
+
+                    IList<Servicio> servicios = this._servicioServicios.ConsultarTodos();
+                    Servicio primerServicio = new Servicio();
+                    primerServicio.Id = "NGN";
+                    servicios.Insert(0, primerServicio);
+                    this._ventana.SituacionesDatos = servicios;
+                    this._ventana.SituacionDatos = this.BuscarServicio(servicios, patente.Servicio);
+
+
+                    IList<Boletin> boletines = this._boletinServicios.ConsultarTodos();
+                    Boletin primerBoletin = new Boletin();
+                    primerBoletin.Id = int.MinValue;
+                    boletines.Insert(0, primerBoletin);
+                    this._ventana.BoletinesOrdenPublicacionDatos = boletines;
+                    this._ventana.BoletinesPublicacionDatos = boletines;
+                    this._ventana.BoletinesConcesionDatos = boletines;
+                    this._ventana.BoletinConcesionDatos = this.BuscarBoletin(boletines, patente.BoletinConcesion);
+                    this._ventana.BoletinPublicacionDatos = this.BuscarBoletin(boletines, patente.BoletinPublicacion);
+                    this._ventana.BoletinOrdenPublicacionDatos = this.BuscarBoletin(boletines, patente.BoletinOrdenPublicacion);
+
+                    //if (File.Exists(ConfigurationManager.AppSettings["RutaImagenesDeMarcas"] + patente.Id + ".jpg"))
+                    //{
+                    //    patente.BEtiqueta = true;
+                    //    this._ventana.PintarEtiqueta();
+
+                    //}
+
+                    this._abandonos = this._operacionServicios.ConsultarOperacionesPorPatente(patente);
+                    this._ventana.AbandonoDatos = this._abandonos != null ? this._abandonos[0].Descripcion + " - "
+                                                    + ((DateTime)this._abandonos[0].Fecha).ToShortDateString() : "";
+
+                    this._anualidades = this._patenteServicios.ObtenerPatentesFiltro(patente).Last().Anualidades;
+
+                    if ((null != this._anualidades) && (this._anualidades[0].QAnualidad != null) && (this._anualidades[0].FechaAnualidad != null))
+                        this._ventana.AnualidadDatos = this._anualidades[0].QAnualidad + 1 + " - "
+                                                        + ((DateTime)this._anualidades[0].FechaAnualidad).AddYears(1).ToShortDateString();
+
+
+                    _inventores = this._inventorServicios.ConsultarInventoresPorPatente(patente);
+                    patente.InfoBoles = this._infoBolServicios.ConsultarInfoBolesPorPatente(patente);
+
+                    Auditoria auditoria = new Auditoria();
+                    auditoria.Fk = ((Patente)this._ventana.Patente).Id;
+                    auditoria.Tabla = "MYP_PATENTES";
+                    this._auditorias = this._patenteServicios.AuditoriaPorFkyTabla(auditoria);
+
+                    if (null != patente.InfoAdicional && !string.IsNullOrEmpty(patente.InfoAdicional.Id))
+                        this._ventana.PintarInfoAdicionalSolicitud();
+
+                    if (null != patente.InfoBoles && patente.InfoBoles.Count > 0)
+                        this._ventana.PintarInfoBolDatos();
+
+                    if ((null != this._inventores) && (this._inventores.Count > 0))
+                    {
+                        this._ventana.PintarInventoresDatos();
+                        this._ventana.PintarInventoresSolicitud();
+                    }
+
+                    if ((null != this._auditorias) && (this._auditorias.Count > 0))
+                        this._ventana.PintarAuditoriaDatos();
+                }
+                else
+                {
+                    this.CargarTipos();
+                    this.CargarPresentaciones();
+                    this.CargarPaises();
+                    this.CargarSituaciones();
+                    this.CargarDetalles();
+                    this.CargarStatusWeb();
+                    this.CargarBoletines();
+                }
 
                 this._ventana.FocoPredeterminado();
 
@@ -332,6 +333,67 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
             {
                 Mouse.OverrideCursor = null;
             }
+        }
+
+        private void CargarBoletines()
+        {
+            IList<Boletin> boletines = this._boletinServicios.ConsultarTodos();
+            Boletin primerBoletin = new Boletin();
+            primerBoletin.Id = int.MinValue;
+            boletines.Insert(0, primerBoletin);
+            this._ventana.BoletinesOrdenPublicacionDatos = boletines;
+            this._ventana.BoletinesPublicacionDatos = boletines;
+            this._ventana.BoletinesConcesionDatos = boletines;
+        }
+
+        private void CargarStatusWeb()
+        {
+            IList<StatusWeb> statusWebs = this._statusWebServicios.ConsultarTodos();
+            StatusWeb primerStatus = new StatusWeb();
+            primerStatus.Id = "NGN";
+            statusWebs.Insert(0, primerStatus);
+            this._ventana.StatusesWebDatos = statusWebs;
+        }
+
+        private void CargarDetalles()
+        {
+            IList<TipoEstado> tipoEstados = this._tipoEstadoServicios.ConsultarTodos();
+            TipoEstado primerDetalle = new TipoEstado();
+            primerDetalle.Id = "NGN";
+            tipoEstados.Insert(0, primerDetalle);
+            this._ventana.DetallesDatos = tipoEstados;
+        }
+
+        private void CargarSituaciones()
+        {
+            IList<Servicio> servicios = this._servicioServicios.ConsultarTodos();
+            Servicio primerServicio = new Servicio();
+            primerServicio.Id = "NGN";
+            servicios.Insert(0, primerServicio);
+            this._ventana.SituacionesDatos = servicios;
+        }
+
+        private void CargarPresentaciones()
+        {
+            IList<ListaDatosDominio> presentacionPatente = this._listaDatosDominioServicios.
+               ConsultarListaDatosDominioPorParametro(new ListaDatosDominio(Recursos.Etiquetas.cbiPresentacionPatente));
+            ListaDatosDominio primeraPresentacionPatente = new ListaDatosDominio();
+            primeraPresentacionPatente.Id = "NGN";
+            presentacionPatente.Insert(0, primeraPresentacionPatente);
+            this._ventana.PresentacionesPatenteSolicitud = presentacionPatente;
+            this._ventana.PresentacionesPatenteDatos = presentacionPatente;
+            
+        }
+
+        private void CargarTipos()
+        {
+            IList<ListaDatosDominio> tipoPatente = this._listaDatosDominioServicios.
+                        ConsultarListaDatosDominioPorParametro(new ListaDatosDominio(Recursos.Etiquetas.cbiTipoPatente));
+            ListaDatosDominio primerTipoPatente = new ListaDatosDominio();
+            primerTipoPatente.Id = "NGN";
+            tipoPatente.Insert(0, primerTipoPatente);
+            this._ventana.TiposPatenteSolicitud = tipoPatente;
+            this._ventana.TiposPatenteDatos = tipoPatente;
         }
 
         /// <summary>
@@ -629,6 +691,13 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
             }
         }
 
+        /// <summary>
+        /// Método que se encarga de mostrar la ventana de las fechas de la Patente
+        /// </summary>
+        public void VerFechas()
+        {
+            
+        }
 
         /// <summary>
         /// Método que se encarga de mostrar la ventana de los inventores de la Patente
@@ -646,6 +715,58 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
             if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
                 logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
+        }
+
+        /// <summary>
+        /// Método que se encarga de llamar a las memoria en el servidor
+        /// </summary>
+        public void VerMemoriaRuta()
+        {
+            //this.EjecutarArchivoBAT(ConfigurationManager.AppSettings["RutaBatEscrito"].ToString()
+            //            + "\\" + ConfigurationManager.AppSettings["EscritoConsignacionDeJuramento"].ToString(),
+            //            this._ventana.Fecha + " " + ((Agente)this._ventana.AgenteFiltrado).Id + " " + parametroPatentes);
+        }
+
+        /// <summary>
+        /// Método que se encarga de mostrar la ventana de las memorias de la Patente
+        /// </summary>
+        public void VerMemoria()
+        {
+            
+        }
+
+        /// <summary>
+        /// Método que se encarga de llamar a las memoria en el servidor
+        /// </summary>
+        public void VerExpediente()
+        {
+
+        }
+
+        /// <summary>
+        /// Método que se encarga de llamar a los titulos en el servidor
+        /// </summary>
+        public void VerTitulo()
+        {
+
+        }
+
+        /// <summary>
+        /// Método que se encarga de llamar a las solicitudes en el servidor
+        /// </summary>
+        public void VerSolicitud()
+        {
+
+        }
+
+        public void CargarPaises()
+        {
+            IList<Pais> paises = this._paisServicios.ConsultarTodos();
+            Pais primerPais = new Pais();
+            primerPais.Id = int.MinValue;
+            paises.Insert(0, primerPais);
+            this._ventana.PaisesSolicitud = paises;
+            this._ventana.PaisesDatos = paises;
         }
 
         /// <summary>
@@ -857,7 +978,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
 
             Mouse.OverrideCursor = Cursors.Wait;
 
-            Patente patente = (Patente)this._ventana.Patente;
+            Patente patente = null != this._ventana.Patente ? (Patente)this._ventana.Patente : new Patente();
             IList<Asociado> asociados = this._asociadoServicios.ConsultarTodos();
             Asociado primerAsociado = new Asociado();
             primerAsociado.Id = int.MinValue;
@@ -866,8 +987,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
             this._ventana.AsociadosDatos = asociados;
             this._ventana.AsociadoSolicitud = this.BuscarAsociado(asociados, patente.Asociado);
             this._ventana.AsociadoDatos = this.BuscarAsociado(asociados, patente.Asociado);
-            this._ventana.NombreAsociadoDatos = ((Patente)this._ventana.Patente).Asociado.Nombre;
-            this._ventana.NombreAsociadoSolicitud = ((Patente)this._ventana.Patente).Asociado.Nombre;
+            this._ventana.NombreAsociadoDatos =  null != this._ventana.Patente ? ((Patente)this._ventana.Patente).Asociado.Nombre : "";
+            this._ventana.NombreAsociadoSolicitud = null != this._ventana.Patente ? ((Patente)this._ventana.Patente).Asociado.Nombre : "";
             this._asociados = asociados;
             this._ventana.AsociadosEstanCargados = true;
 
@@ -1041,24 +1162,30 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
             #endregion
 
             Mouse.OverrideCursor = Cursors.Wait;
-            Patente patente = (Patente)this._ventana.Patente;
 
+            Patente patente = null != this._ventana.Patente ? (Patente)this._ventana.Patente : new Patente();
             IList<Interesado> interesados = this._interesadoServicios.ConsultarTodos();
             Interesado primerInteresado = new Interesado();
             primerInteresado.Id = int.MinValue;
             interesados.Insert(0, primerInteresado);
             this._ventana.InteresadosDatos = interesados;
             this._ventana.InteresadosSolicitud = interesados;
-            ((Patente)this._ventana.Patente).Interesado = this.BuscarInteresado(interesados, patente.Interesado);
-            Interesado interesado = this.BuscarInteresado(interesados, patente.Interesado);
-            this._ventana.InteresadoSolicitud = interesado;
-            this._ventana.InteresadoDatos = interesado;
-            interesado = this._interesadoServicios.ConsultarInteresadoConTodo(interesado);
-            this._ventana.InteresadoPaisSolicitud = interesado.Pais.NombreEspanol;
-            this._ventana.InteresadoEstadoSolicitud = interesado.Ciudad;
-            this._ventana.NombreInteresadoDatos = ((Patente)this._ventana.Patente).Interesado.Nombre;
-            this._ventana.NombreInteresadoSolicitud = ((Patente)this._ventana.Patente).Interesado.Nombre;
             this._interesados = interesados;
+
+            if (this._agregar == false)
+            {
+                ((Patente)this._ventana.Patente).Interesado = this.BuscarInteresado(interesados, patente.Interesado);
+
+                Interesado interesado = this.BuscarInteresado(interesados, patente.Interesado);
+                this._ventana.InteresadoSolicitud = interesado;
+                this._ventana.InteresadoDatos = interesado;
+                interesado = this._interesadoServicios.ConsultarInteresadoConTodo(interesado);
+                this._ventana.InteresadoPaisSolicitud = interesado.Pais.NombreEspanol;
+                this._ventana.InteresadoEstadoSolicitud = interesado.Ciudad;
+                this._ventana.NombreInteresadoDatos = null != this._ventana.Patente ? ((Patente)this._ventana.Patente).Interesado.Nombre : "";
+                this._ventana.NombreInteresadoSolicitud = null != this._ventana.Patente ? ((Patente)this._ventana.Patente).Interesado.Nombre : "";
+
+            }
 
             this._ventana.InteresadosEstanCargados = true;
 
@@ -1090,7 +1217,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                 {
                     this._ventana.NumPoderSolicitud = ((Poder)this._ventana.PoderSolicitudFiltrar).NumPoder;
                     this._ventana.PoderSolicitud = ((Poder)this._ventana.PoderSolicitudFiltrar).Id.ToString();
-                    this._ventana.PoderDatos = this._ventana.PoderSolicitud;
+                    this._ventana.PoderDatos = ((Poder)this._ventana.PoderSolicitudFiltrar).Id.ToString();
                 }
 
                 #region trace
@@ -1213,7 +1340,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
             Mouse.OverrideCursor = Cursors.Wait;
 
 
-            Patente patente = (Patente)this._ventana.Patente;
+            Patente patente = null != this._ventana.Patente ? (Patente)this._ventana.Patente : new Patente();
             IList<Agente> agentes = this._agenteServicios.ConsultarTodos();
             Agente primerAgente = new Agente();
             primerAgente.Id = string.Empty;
@@ -1246,7 +1373,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
 
             Mouse.OverrideCursor = Cursors.Wait;
 
-            Patente patente = (Patente)this._ventana.Patente;
+            Patente patente = null != this._ventana.Patente ? (Patente)this._ventana.Patente : new Patente();
             IList<Poder> poderes = this._poderServicios.ConsultarTodos();
             Poder poder = new Poder();
             poder.Id = int.MinValue;
@@ -1254,12 +1381,16 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
             this._ventana.PoderesDatosFiltrar = poderes;
             this._ventana.PoderesSolicitudFiltrar = poderes;
 
-            poder = this.BuscarPoder(poderes, patente.Poder);
-            this._ventana.PoderSolicitud = poder != null ? poder.Id.ToString() : "";
-            //this._ventana.PoderSolicitud = poder.Id.ToString();
-            this._ventana.NumPoderSolicitud = poder != null ? poder.NumPoder : "";
+            if (this._agregar == false)
+            {
+                poder = this.BuscarPoder(poderes, patente.Poder);
+                this._ventana.PoderSolicitud = poder != null ? poder.Id.ToString() : "";
+                //this._ventana.PoderSolicitud = poder.Id.ToString();
+                this._ventana.NumPoderSolicitud = poder != null ? poder.NumPoder : "";
 
-            this._ventana.PoderDatos = poder != null ? poder.Id.ToString() : "";
+                this._ventana.PoderDatos = poder != null ? poder.Id.ToString() : "";
+
+            }
 
             this._ventana.PoderesEstanCargados = true;
 
@@ -1367,5 +1498,6 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
 
         //    }
         //}
+
     }
 }

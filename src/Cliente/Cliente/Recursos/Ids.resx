@@ -684,4 +684,16 @@
   <data name="GestionarAnualidad" xml:space="preserve">
     <value>MYPPANUM</value>
   </data>
+  <data name="AgregarPatentes" xml:space="preserve">
+    <value>MYP_PATENTE</value>
+  </data>
+  <data name="GestionarPatentes" xml:space="preserve">
+    <value>MYP_PATENTE</value>
+  </data>
+  <data name="Inventor" xml:space="preserve">
+    <value>MYP_INVENTOR</value>
+  </data>
+  <data name="FechasPatente" xml:space="preserve">
+    <value>MYP_PFECHAS</value>
+  </data>
 </root>
