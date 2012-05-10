@@ -90,7 +90,6 @@ namespace Trascend.Bolet.Cliente.Presentadores.Anualidades
                 Interesado primerInteresado = new Interesado();
                 primerInteresado.Id = int.MinValue;
                 interesados.Insert(0, primerInteresado);
-                this._ventana.Interesados = interesados;
                 this._interesados = interesados;
 
                 this._ventana.TotalHits = "0";
@@ -156,12 +155,6 @@ namespace Trascend.Bolet.Cliente.Presentadores.Anualidades
                 if ((null != this._ventana.Asociado) && (((Asociado)this._ventana.Asociado).Id != int.MinValue))
                 {
                     PatenteAuxiliar.Asociado = (Asociado)this._ventana.Asociado;
-                    filtroValido = 2;
-                }
-
-                if ((null != this._ventana.Interesado) && (((Interesado)this._ventana.Interesado).Id != int.MinValue))
-                {
-                    PatenteAuxiliar.Interesado = (Interesado)this._ventana.Interesado;
                     filtroValido = 2;
                 }
 
@@ -371,43 +364,6 @@ namespace Trascend.Bolet.Cliente.Presentadores.Anualidades
         //}
 
         /// <summary>
-        /// Método que se encarga de buscar el interesado definido en el filtro
-        /// </summary>
-        public void BuscarInteresado()
-        {
-            #region trace
-            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
-                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
-            #endregion
-
-            Interesado interesadoABuscar = new Interesado();
-
-            interesadoABuscar.Id = !this._ventana.IdInteresadoFiltrar.Equals("") ?
-                                   int.Parse(this._ventana.IdInteresadoFiltrar) : 0;
-
-            interesadoABuscar.Nombre = !this._ventana.NombreInteresadoFiltrar.Equals("") ?
-                                       this._ventana.NombreInteresadoFiltrar.ToUpper() : "";
-
-            if ((interesadoABuscar.Id != 0) || !(interesadoABuscar.Nombre.Equals("")))
-            {
-                IList<Interesado> interesados = this._interesadoServicios.ObtenerInteresadosFiltro(interesadoABuscar);
-                interesados.Insert(0,new Interesado(int.MinValue));
-                this._ventana.Interesados = interesados;
-            }
-            else
-            {
-                this._ventana.Interesados = this._interesados;
-                this._ventana.Mensaje(Recursos.MensajesConElUsuario.NoHayResultados, 1);
-            }
-
-            #region trace
-            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
-                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
-            #endregion
-
-        }
-
-        /// <summary>
         /// Método que se encarga de buscar el asociado definido en el filtro
         /// </summary>
         public void BuscarAsociado()
@@ -449,34 +405,6 @@ namespace Trascend.Bolet.Cliente.Presentadores.Anualidades
         }
 
         /// <summary>
-        /// Metodo que cambia el texto del interesado en la interfaz
-        /// </summary>
-        /// <returns>true en caso de que el interesado haya sido valido, false en caso contrario</returns>
-        public bool CambiarInteresado()
-        {
-            #region trace
-            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
-                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
-            #endregion
-
-            bool retorno = false;
-
-            if (this._ventana.Interesado != null)
-            {
-                this._ventana.InteresadoFiltro = ((Interesado)this._ventana.Interesado).Nombre;
-                retorno = true;
-            }
-
-            #region trace
-            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
-                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
-            #endregion
-
-            return retorno;
-
-        }
-
-        /// <summary>
         /// Metodo que cambia el texto del Asociado en la interfaz
         /// </summary>
         /// <returns>true en caso de que el Asociado haya sido valido, false en caso contrario</returns>
@@ -507,18 +435,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.Anualidades
         {
             this._ventana.Id = null;
             this._ventana.DescripcionFiltrar = null;
-            this._ventana.FichasFiltrar = null;
             this._ventana.Fecha = null;
 
             this._ventana.Asociados = null;
             this._ventana.IdAsociadoFiltrar = null;
             this._ventana.NombreAsociadoFiltrar = null;
             this._ventana.AsociadoFiltro = null;
-
-            this._ventana.Interesados = null; 
-            this._ventana.IdInteresadoFiltrar = null;
-            this._ventana.NombreInteresadoFiltrar = null;
-            this._ventana.InteresadoFiltro = null;
 
             this._ventana.AnualidadSeleccionada = null;
 

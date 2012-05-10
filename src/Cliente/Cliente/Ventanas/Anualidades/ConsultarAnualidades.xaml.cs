@@ -49,11 +49,6 @@ namespace Trascend.Bolet.Cliente.Ventanas.Anualidades
             set { this._txtNombreAsociado.Text = value; }
         }
 
-        public string FichasFiltrar
-        {
-            get { return this._txtFichas.Text; }
-            set { this._txtFichas.Text = value; }
-        }
 
         public string DescripcionFiltrar
         {
@@ -108,29 +103,6 @@ namespace Trascend.Bolet.Cliente.Ventanas.Anualidades
             set { this._lstAsociados.SelectedItem = value; }
         }
 
-        public string IdInteresadoFiltrar
-        {
-            get { return this._txtIdInteresado.Text; }
-            set { this._txtIdInteresado.Text = value; }
-        }
-
-        public string NombreInteresadoFiltrar
-        {
-            get { return this._txtNombreInteresado.Text; }
-            set { this._txtNombreInteresado.Text = value; }
-        }
-
-        public object Interesados
-        {
-            get { return this._lstInteresados.DataContext; }
-            set { this._lstInteresados.DataContext = value; }
-        }
-
-        public object Interesado
-        {
-            get { return this._lstInteresados.SelectedItem; }
-            set { this._lstInteresados.SelectedItem = value; }
-        }
 
         public void Mensaje(string mensaje, int opcion)
         {
@@ -145,10 +117,6 @@ namespace Trascend.Bolet.Cliente.Ventanas.Anualidades
             set { this._txtAsociado.Text = value; }
         }
 
-        public string InteresadoFiltro
-        {
-            set { this._txtInteresado.Text = value; }
-        }
 
         public string TotalHits
         {
@@ -206,30 +174,22 @@ namespace Trascend.Bolet.Cliente.Ventanas.Anualidades
             this._presentador.BuscarAsociado();
         }
 
-        private void _btnConsultarInteresado_Click(object sender, RoutedEventArgs e)
-        {
-            this._presentador.BuscarInteresado();
-        }
-
         private void _btnConsultarAsociadoFocus(object sender, RoutedEventArgs e)
         {
             this._btnConsultar.IsDefault = false;
             this._btnConsultarAsociado.IsDefault = true;
-            this._btnConsultarInteresado.IsDefault = false;
         }
 
         private void _btnConsultarInteresadoFocus(object sender, RoutedEventArgs e)
         {
             this._btnConsultar.IsDefault = false;
             this._btnConsultarAsociado.IsDefault = false;
-            this._btnConsultarInteresado.IsDefault = true;
         }
 
         private void _btnConsultarFocus(object sender, RoutedEventArgs e)
         {
             this._btnConsultar.IsDefault = true;
             this._btnConsultarAsociado.IsDefault = false;
-            this._btnConsultarInteresado.IsDefault = false;
         }
 
         /// <summary>
@@ -250,11 +210,6 @@ namespace Trascend.Bolet.Cliente.Ventanas.Anualidades
                 this._txtDescripcion.Focus();
             }
 
-            if (!this._txtFichas.Text.Equals(""))
-            {
-                todosCamposVacios = false;
-                this._txtFichas.Focus();
-            }
 
             if (!this._dpkFecha.Text.Equals(""))
             {
@@ -279,14 +234,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.Anualidades
         private void _txtAsociado_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             GestionarVisibilidadFiltroAsociado(true);
-            GestionarVisibilidadFiltroInteresado(false);
         }
 
-        private void _txtInteresado_MouseDoubleClick(object sender, MouseButtonEventArgs e)
-        {
-            GestionarVisibilidadFiltroAsociado(false);
-            GestionarVisibilidadFiltroInteresado(true);
-        }
 
         private void GestionarVisibilidadFiltroAsociado(bool visibilidad)
         {
@@ -314,32 +263,6 @@ namespace Trascend.Bolet.Cliente.Ventanas.Anualidades
             }
         }
 
-        private void GestionarVisibilidadFiltroInteresado(bool visibilidad)
-        {
-            if (visibilidad)
-            {
-                this._txtInteresado.Visibility = Visibility.Collapsed;
-
-                this._txtIdInteresado.Visibility = Visibility.Visible;
-                this._txtNombreInteresado.Visibility = Visibility.Visible;
-                this._lblIdInteresado.Visibility = Visibility.Visible;
-                this._lblNombreInteresado.Visibility = Visibility.Visible;
-                this._lstInteresados.Visibility = Visibility.Visible;
-                this._btnConsultarInteresado.Visibility = Visibility.Visible;
-
-            }
-            else
-            {
-                this._txtInteresado.Visibility = Visibility.Visible;
-
-                this._txtIdInteresado.Visibility = Visibility.Collapsed;
-                this._txtNombreInteresado.Visibility = Visibility.Collapsed;
-                this._lblIdInteresado.Visibility = Visibility.Collapsed;
-                this._lblNombreInteresado.Visibility = Visibility.Collapsed;
-                this._lstInteresados.Visibility = Visibility.Collapsed;
-                this._btnConsultarInteresado.Visibility = Visibility.Collapsed;
-            }
-        }
 
         private void _lstAsociados_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
@@ -347,11 +270,6 @@ namespace Trascend.Bolet.Cliente.Ventanas.Anualidades
                 GestionarVisibilidadFiltroAsociado(false);
         }
 
-        private void _lstInteresados_MouseDoubleClick(object sender, MouseButtonEventArgs e)
-        {
-            if (this._presentador.CambiarInteresado())
-                GestionarVisibilidadFiltroInteresado(false);
-        }
 
         private void _btnLimpiarCampos_Click(object sender, RoutedEventArgs e)
         {

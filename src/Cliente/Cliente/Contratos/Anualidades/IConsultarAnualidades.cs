@@ -19,17 +19,7 @@ namespace Trascend.Bolet.Cliente.Contratos.Anualidades
 
         object Asociado { get; set; }
 
-        string IdInteresadoFiltrar { get; set; }
-
-        string NombreInteresadoFiltrar { get; set; }
-
-        object Interesados { get; set; }
-
-        object Interesado { get; set; }
-
         string DescripcionFiltrar { get; set; }
-
-        string FichasFiltrar { get; set; }
 
         string Fecha { get; set; }
 
@@ -42,8 +32,6 @@ namespace Trascend.Bolet.Cliente.Contratos.Anualidades
         void Mensaje(string mensaje, int opcion);
 
         string AsociadoFiltro { set; }
-
-        string InteresadoFiltro { set; }
 
         string TotalHits { set; }
     }

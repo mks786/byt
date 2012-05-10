@@ -660,6 +660,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.Anualidades
             {
                 this._lstAnualidades.Visibility = System.Windows.Visibility.Collapsed;
             }
+            _presentador.CargarAnualidadSeleccionada(true);
+            _gridCamposAnualidad.Visibility = System.Windows.Visibility.Collapsed;
         }
 
         private void _btnModificarSeleccionado_Click(object sender, RoutedEventArgs e)

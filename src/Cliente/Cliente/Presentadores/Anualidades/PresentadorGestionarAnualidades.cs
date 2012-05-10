@@ -865,7 +865,6 @@ namespace Trascend.Bolet.Cliente.Presentadores.Anualidades
             if (!_agregar)
                 this._ventana.Situacion = this.BuscarServicio(servicios, patente.Servicio);
 
-
             #region trace
             if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
                 logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
@@ -1072,22 +1071,30 @@ namespace Trascend.Bolet.Cliente.Presentadores.Anualidades
             if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
                 logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
+            IList<Servicio> servicios = this._servicioServicios.ConsultarTodos();
+            _ventana.ISituaciones = servicios;
+            Servicio serv = new Servicio();
+            Servicio servi2;
+            
+            
             if (!nuevo)
             {
                 Anualidad anuSelect = ((Anualidad) this._ventana.Anualidad);
+                serv.Id = anuSelect.Situacion;
                 this._ventana.Recibo = anuSelect.Recibo;
                 this._ventana.FechaAnualidad = anuSelect.FechaAnualidad.ToString();
                 this._ventana.FechaVoucher = anuSelect.FechaVoucher.ToString();
-                this._ventana.ISituacion = anuSelect.Situacion;
+                this._ventana.ISituacion = BuscarServicio(servicios, serv);
                 this._ventana.Voucher = anuSelect.Voucher;
                 this._ventana.Factura = anuSelect.Factura.ToString();
             }
             else
-            { 
+            {
+                serv.Id = "MGM";
                 this._ventana.Recibo = "";
                 this._ventana.FechaAnualidad = "";
                 this._ventana.FechaVoucher = "";
-                this._ventana.ISituacion = "";
+                this._ventana.ISituacion = this.BuscarServicio(servicios, serv);
                 this._ventana.Voucher = "";
                 this._ventana.Factura = "";
             }

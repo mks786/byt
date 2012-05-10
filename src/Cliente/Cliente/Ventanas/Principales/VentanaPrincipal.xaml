@@ -121,8 +121,7 @@
                     <MenuItem Name="_menuItemPatentesAgregar" Header="{x:Static resx:Etiquetas.menuItemAgregar}" Click="_menuItemPatentesAgregar_Click"/>
                 </MenuItem>
                 <MenuItem Name="_menuItemAnualidadesPatentes" Visibility="Collapsed" Header="{x:Static resx:Etiquetas.menuItemAnualidades}">
-                        <MenuItem Name="_menuItemRenovacionesConsultarPatente" Header="{x:Static resx:Etiquetas.menuItemConsultar}" Click="_menuItemAnualidadesConsultarPatente_Click"/>
-                    <MenuItem Name="_menuItemRenovacionesAgregarPatente" Header="{x:Static resx:Etiquetas.menuItemAgregar}" Click="_menuItemAnualidadesAgregarPatente_Click"/>       
+                        <MenuItem Name="_menuItemRenovacionesConsultarPatente" Header="{x:Static resx:Etiquetas.menuItemConsultar}" Click="_menuItemAnualidadesConsultarPatente_Click"/>  
                 </MenuItem>
                 <MenuItem Name="_menuItemAbandonoPatente" Visibility="Collapsed" Header="{x:Static resx:Etiquetas.menuItemAbandono}">
                     <MenuItem Name="_menuItemAbandonoPatenteConsultarPatente" Header="{x:Static resx:Etiquetas.menuItemConsultar}" Click="_menuItemAbandonoPatenteConsultarPatente_Click"/>
