@@ -50,7 +50,6 @@ namespace Trascend.Bolet.Cliente.Ventanas.Inventores
             set{this._gridDatos.DataContext = value;}
         }
 
-
         public object Paises
         {
             get { return this._cbxPais.DataContext; }

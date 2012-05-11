@@ -72,8 +72,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Inventores
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-                //this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleConsultarInventor,
-                //    Recursos.Ids.ConsultarInventor);
+                this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleConsultarInventor,"");
 
                 IList<Pais> paises = this._paisServicios.ConsultarTodos();
                 paises.Insert(0, new Pais(int.MinValue));
@@ -169,45 +168,45 @@ namespace Trascend.Bolet.Cliente.Presentadores.Inventores
         /// </summary>
         public void Eliminar()
         {
-            //try
-            //{
-            //    #region trace
-            //    if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
-            //        logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
-            //    #endregion
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
 
-            //    if (this._contactoServicios.Eliminar((Inventor)this._ventana.Inventor, UsuarioLogeado.Hash))
-            //    {
-            //        Patente asociado = ((Inventor)this._ventana.Inventor).Patente;
-            //        asociado.Inventores.Remove((Inventor)this._ventana.Inventor);
-            //        this.Navegar(new ListaInventores(asociado));
-            //    }
+                if (this._inventorServicios.Eliminar((Inventor)this._ventana.Inventor, UsuarioLogeado.Hash))
+                {
+                    Patente patente = ((Inventor)this._ventana.Inventor).Patente;
+                    patente.Inventores.Remove((Inventor)this._ventana.Inventor);
+                    this.Navegar(new ListaInventores(patente));
+                }
 
-            //    #region trace
-            //    if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
-            //        logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
-            //    #endregion
-            //}
-            //catch (ApplicationException ex)
-            //{
-            //    logger.Error(ex.Message);
-            //    this.Navegar(ex.Message, true);
-            //}
-            //catch (RemotingException ex)
-            //{
-            //    logger.Error(ex.Message);
-            //    this.Navegar(Recursos.MensajesConElUsuario.ErrorRemoting, true);
-            //}
-            //catch (SocketException ex)
-            //{
-            //    logger.Error(ex.Message);
-            //    this.Navegar(Recursos.MensajesConElUsuario.ErrorConexionServidor, true);
-            //}
-            //catch (Exception ex)
-            //{
-            //    logger.Error(ex.Message);
-            //    this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
-            //}
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (ApplicationException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(ex.Message, true);
+            }
+            catch (RemotingException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorRemoting, true);
+            }
+            catch (SocketException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorConexionServidor, true);
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
+            }
         }
 
 

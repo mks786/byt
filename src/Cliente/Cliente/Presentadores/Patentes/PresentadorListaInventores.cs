@@ -71,7 +71,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                 this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleListaInventoresPatente,
                     Recursos.Ids.Inventor);
                 this._patente = this._patenteServicios.ConsultarPatenteConTodo(_patente);
-                this._ventana.Inventores = this._inventorServicios.ConsultarInventoresPorPatente((Patente)this._patente);
+                IList<Inventor> inventores = this._inventorServicios.ConsultarInventoresPorPatente((Patente)this._patente);
+                this._ventana.Inventores = inventores;
+                this._patente.Inventores = inventores;
                 this._ventana.TotalHits = ((Patente)this._patente).Inventores.Count.ToString();
                 this._ventana.FocoPredeterminado();
 

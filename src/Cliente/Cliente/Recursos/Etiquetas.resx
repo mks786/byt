@@ -2357,6 +2357,15 @@ de Gracia</value>
   <data name="titleEscritoNumeracionDePoder" xml:space="preserve">
     <value>Escrito Numeración de Poder</value>
   </data>
+  <data name="btnNuevoInventor" xml:space="preserve">
+    <value>Nuevo Inventor</value>
+  </data>
+  <data name="titleAgregarInventor" xml:space="preserve">
+    <value>Agregar Inventor</value>
+  </data>
+  <data name="titleConsultarInventor" xml:space="preserve">
+    <value>Consultar Inventor</value>
+  </data>
   <data name="titleEscritoProrrogaDeContestacionDeOposicion" xml:space="preserve">
     <value>Escrito Prórroga de Contestación de Oposición</value>
   </data>

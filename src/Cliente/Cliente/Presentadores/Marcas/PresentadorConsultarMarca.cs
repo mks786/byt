@@ -284,7 +284,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 this._ventana.TipoClaseNacional = this.BuscarClaseNacional(tipoClasesNacional, marca.TipoCnac);
 
 
-                if (File.Exists(ConfigurationManager.AppSettings["RutaImagenesDeMarcas"] + marca.Id + ".jpg"))
+                if (File.Exists(ConfigurationManager.AppSettings["RutaImagenesDeMarcas"] + marca.Id + ".BMP"))
                 {
                     marca.BEtiqueta = true;
                     this._ventana.PintarEtiqueta();
@@ -1827,7 +1827,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             Marca marcaAux = ((Marca)this._ventana.Marca);
             if (((Marca)this._ventana.Marca).BEtiqueta)
             {
-                    EtiquetaMarca detalleEtiqueta = new EtiquetaMarca(ConfigurationManager.AppSettings["RutaImagenesDeMarcas"] + marcaAux.Id + ".jpg", marcaAux.Descripcion);
+                    EtiquetaMarca detalleEtiqueta = new EtiquetaMarca(ConfigurationManager.AppSettings["RutaImagenesDeMarcas"] + marcaAux.Id + ".BMP", marcaAux.Descripcion);
                     detalleEtiqueta.ShowDialog();
 
             }

@@ -241,6 +241,8 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to La Marca a tercero Requiere un Asociado.
+        ///   Busca una cadena traducida similar a Disculpe el escrito no tiene tipo de corrección voluntaria.
         ///   Looks up a localized string similar to Disculpe el escrito no tiene tipo de corrección voluntaria.
         /// </summary>
         internal static string AlertaEscritoSinTipoCorreccionVoluntaria {
@@ -304,6 +306,7 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Asociado eliminado con éxito.
         ///   Looks up a localized string similar to Anualidad Eliminada Con Exito.
         /// </summary>
         internal static string AnualidadEliminada {
@@ -1717,7 +1720,9 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Poder eliminado con éxito.
         ///   Looks up a localized string similar to Patente modificada con éxito.
+        ///   Busca una cadena traducida similar a Patente modificada con éxito.
         /// </summary>
         internal static string PatenteModificada {
             get {

@@ -16,10 +16,10 @@ namespace Trascend.Bolet.Cliente.Ventanas.Inventores
 
         #region IAgregarInventor
 
-        public void borrarId()
-        {
-            this._txtNumero.Text = string.Empty;
-        }
+        //public void borrarId()
+        //{
+        //    this._txtId.Text = string.Empty;
+        //}
 
         public object Inventor
         {
@@ -27,54 +27,28 @@ namespace Trascend.Bolet.Cliente.Ventanas.Inventores
             set{this._gridDatos.DataContext = value;}
         }
 
-        public string getDepartamento
+        public object Paises
         {
-            get
-            {
-                if (!string.Equals("", this._cbxDepartamento.Text))
-                {
-                    return ((string)this._cbxDepartamento.Text);
-                }
-                return "";
-            }
+            get { return this._cbxPais.DataContext; }
+            set { this._cbxPais.DataContext = value; }
         }
 
-        public string setDepartamento
+        public object Pais
         {
-            set
-            {
-                this._cbxDepartamento.Text = value;
-            }
+            get { return this._cbxPais.SelectedItem; }
+            set { this._cbxPais.SelectedItem = value; }
         }
 
-        public string setFuncion
+        public object Nacionalidades
         {
-            set
-            {
-                this._cbxUso.Text = value;
-            }
+            get { return this._cbxNacionalidad.DataContext; }
+            set { this._cbxNacionalidad.DataContext = value; }
         }
 
-        public string getFuncion
+        public object Nacionalidad
         {
-            get
-            {
-                if (!string.Equals("", this._cbxUso.Text))
-                {
-                    return ((string)this._cbxUso.Text);
-                }
-                return "";
-            }
-        }
-
-        public string getCorrespondencia
-        {
-            get { return this._txtCorrespondencia.Text; }
-        }
-
-        public string setCorrespondencia
-        {
-            set { this._txtCorrespondencia.Text = value; }
+            get { return this._cbxNacionalidad.SelectedItem; }
+            set { this._cbxNacionalidad.SelectedItem = value; }
         }
 
         public bool EstaCargada
@@ -85,7 +59,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Inventores
 
         public void FocoPredeterminado()
         {
-            this._txtNumero.Focus();
+            this._txtNombre.Focus();
         }
 
         public void mensaje(string mensaje)
@@ -95,11 +69,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Inventores
 
         #endregion
 
-        public AgregarInventor(object asociado)
+        public AgregarInventor(object inventor)
         {
             InitializeComponent();
             this._cargada = false;
-            this._presentador = new PresentadorAgregarInventor(this, asociado);
+            this._presentador = new PresentadorAgregarInventor(this, inventor);
             
         }
 
@@ -110,8 +84,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.Inventores
 
         private void _btnEliminar_Click(object sender, RoutedEventArgs e)
         {
-            if (MessageBoxResult.Yes == MessageBox.Show(Recursos.MensajesConElUsuario.ConfirmacionEliminarAgente,
-                "Eliminar Agente", MessageBoxButton.YesNo, MessageBoxImage.Question))
+            if (MessageBoxResult.Yes == MessageBox.Show(Recursos.MensajesConElUsuario.ConfirmacionEliminarInventor,
+                "Eliminar Inventor", MessageBoxButton.YesNo, MessageBoxImage.Question))
             {
                 //this._presentador.Eliminar();
             }

@@ -8,38 +8,43 @@ using Trascend.Bolet.Cliente.Contratos.Inventores;
 using Trascend.Bolet.Cliente.Ventanas.Patentes;
 using Trascend.Bolet.ObjetosComunes.ContratosServicios;
 using Trascend.Bolet.ObjetosComunes.Entidades;
+using System.Collections.Generic;
 
 namespace Trascend.Bolet.Cliente.Presentadores.Inventores
 {
     class PresentadorAgregarInventor : PresentadorBase
     {
         private IAgregarInventor _ventana;
-        private IInventorServicios _contactoServicios;
+
         private IPatenteServicios _marcaServicios;
         private ICartaServicios _cartaServicios;
-        private Patente _marca;
+        private IInventorServicios _inventorServicios;
+        private IPaisServicios _paisServicios;
+
+        private Patente _patente;
+
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
         /// <summary>
         /// Constructor predeterminado
         /// </summary>
         /// <param name="ventana">Página que satisface el contrato</param>
-        public PresentadorAgregarInventor(IAgregarInventor ventana, object asociado)
+        public PresentadorAgregarInventor(IAgregarInventor ventana, object patente)
         {
             try
             {
-                //this._ventana = ventana;
-                //this._marca = (Patente)asociado;
-                //this._ventana.Inventor = new Inventor();
-                ////((Inventor)this._ventana.Inventor).Carta = this._carta;
-                //((Inventor)this._ventana.Inventor).Patente = this._marca;
+                this._ventana = ventana;
+                this._patente = (Patente)patente;
+                this._ventana.Inventor = new Inventor();
 
-                this._contactoServicios = (IInventorServicios)Activator.GetObject(typeof(IInventorServicios),
-                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["InventorServicios"]);
+                this._inventorServicios = (IInventorServicios)Activator.GetObject(typeof(IInventorServicios),
+                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["InventorServicios"]);
                 this._marcaServicios = (IPatenteServicios)Activator.GetObject(typeof(IPatenteServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["PatenteServicios"]);
                 this._cartaServicios = (ICartaServicios)Activator.GetObject(typeof(ICartaServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["CartaServicios"]);
+                this._paisServicios = (IPaisServicios)Activator.GetObject(typeof(IPaisServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["PaisServicios"]);
             }
             catch (Exception ex)
             {
@@ -62,10 +67,23 @@ namespace Trascend.Bolet.Cliente.Presentadores.Inventores
 
                 Mouse.OverrideCursor = Cursors.Wait;
 
-                //this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleAgregarInventor,
-                //        Recursos.Ids.Inventor);
-                //    this._ventana.borrarId();
-                //    this._ventana.FocoPredeterminado();
+                this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleAgregarInventor,
+                        "");
+                this._ventana.Paises = null;
+                this._ventana.Nacionalidades = null;
+                //this._ventana.borrarId();
+
+                IList<Pais> paises = this._paisServicios.ConsultarTodos();
+                paises.Insert(0, new Pais(int.MinValue));
+                this._ventana.Paises = paises;
+                //this._ventana.Pais = this.BuscarPais(paises, this._inventor.Pais);
+
+                IList<Pais> nacionalidades = this._paisServicios.ConsultarTodos();
+                nacionalidades.Insert(0, new Pais(int.MinValue));
+                this._ventana.Nacionalidades = nacionalidades;
+                //this._ventana.Nacionalidad = this.BuscarPais(nacionalidades, this._inventor.Nacionalidad);
+
+                this._ventana.FocoPredeterminado();
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -103,71 +121,70 @@ namespace Trascend.Bolet.Cliente.Presentadores.Inventores
         /// </summary>
         public void Aceptar()
         {
-            //try
-            //{
-            //    #region trace
-            //    if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
-            //        logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
-            //    #endregion
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
 
-            //    bool exitoso = false;
-            //    Inventor contacto = (Inventor)this._ventana.Inventor;
-            //    contacto.Departamento = this.transformarDepartamento(this._ventana.getDepartamento);
-            //    contacto.Funcion = this.transformarFuncion(this._ventana.getFuncion);
+                bool exitoso = false;
 
-            //    if (!string.IsNullOrEmpty(this._ventana.getCorrespondencia))
-            //    {
-            //        Carta carta = new Carta();
-            //        carta.Id = int.Parse(this._ventana.getCorrespondencia);
+                Inventor inventor = (Inventor)this._ventana.Inventor;
+                //inventor.Pais = new Pais();
+                //inventor.Nacionalidad = new Pais();
 
-            //        if (this._cartaServicios.VerificarExistencia(carta))
-            //        {
-            //            contacto.Carta = carta;
-            //            exitoso = this._contactoServicios.InsertarOModificar(contacto, UsuarioLogeado.Hash);
-            //        }
-            //        else
-            //        {
-            //            this._ventana.mensaje(Recursos.MensajesConElUsuario.ErrorCorrespondenciaNoEncontrada);
-            //        }
-            //    }
-            //    else
-            //    {
-            //        contacto.Carta = null;
-            //        exitoso = this._contactoServicios.InsertarOModificar(contacto, UsuarioLogeado.Hash);
-            //    }
+                if (true)
+                {
+                    inventor.Pais = ((Pais)this._ventana.Pais).Id.Equals(int.MinValue) ? null : (Pais)this._ventana.Pais;
+                    inventor.Nacionalidad = ((Pais)this._ventana.Nacionalidad).Id.Equals(int.MinValue) ? null : (Pais)this._ventana.Nacionalidad;
+                    inventor.Patente = this._patente;
 
-            //    if (exitoso)
-            //    {
-            //        this._marca.Inventores.Insert(0, contacto);
-            //        this.Navegar(new ListaInventores(this._marca));
-            //    }
+                    inventor.Id = IdMayorDeInventorPorPatente();
+                    exitoso = this._inventorServicios.InsertarOModificar(inventor, UsuarioLogeado.Hash);
 
-            //    #region trace
-            //    if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
-            //        logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
-            //    #endregion
+                    if (exitoso)
+                        this.Navegar(new ListaInventores(((Inventor)this._ventana.Inventor).Patente));
+                }
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
 
-            //}
-            //catch (ApplicationException ex)
-            //{
-            //    logger.Error(ex.Message);
-            //    this.Navegar(ex.Message, true);
-            //}
-            //catch (RemotingException ex)
-            //{
-            //    logger.Error(ex.Message);
-            //    this.Navegar(Recursos.MensajesConElUsuario.ErrorRemoting, true);
-            //}
-            //catch (SocketException ex)
-            //{
-            //    logger.Error(ex.Message);
-            //    this.Navegar(Recursos.MensajesConElUsuario.ErrorConexionServidor, true);
-            //}
-            //catch (Exception ex)
-            //{
-            //    logger.Error(ex.Message);
-            //    this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
-            //}
+            }
+            catch (ApplicationException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(ex.Message, true);
+            }
+            catch (RemotingException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorRemoting, true);
+            }
+            catch (SocketException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorConexionServidor, true);
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
+            }
+        }
+
+        private int IdMayorDeInventorPorPatente()
+        {
+            int retorno = 1;
+            foreach (Inventor inventor in this._patente.Inventores)
+            {
+                if (inventor.Id > retorno)
+                    retorno = inventor.Id;
+            }
+            retorno++;
+
+            return retorno;
         }
     }
 }

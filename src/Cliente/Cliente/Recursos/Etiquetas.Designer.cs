@@ -557,7 +557,19 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Nuevo Inventor.
+        /// </summary>
+        public static string btnNuevoInventor {
+            get {
+                return ResourceManager.GetString("btnNuevoInventor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nueva Justificación.
         ///   Busca una cadena traducida similar a Nueva Justificación.
+        ///   Busca una cadena traducida similar a Nueva Justificación.
+        ///   Looks up a localized string similar to Nueva Justificación.
         /// </summary>
         public static string btnNuevoJustificacion {
             get {
@@ -5852,7 +5864,19 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Agregar Inventor.
         ///   Busca una cadena traducida similar a AgregarJustificación.
+        ///   Looks up a localized string similar to AgregarJustificación.
+        ///   Busca una cadena traducida similar a AgregarJustificación.
+        /// </summary>
+        public static string titleAgregarInventor {
+            get {
+                return ResourceManager.GetString("titleAgregarInventor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AgregarJustificación.
         /// </summary>
         public static string titleAgregarJustificacion {
             get {
@@ -6401,7 +6425,19 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Consultar Inventor.
         ///   Busca una cadena traducida similar a Consultar Justificación.
+        ///   Looks up a localized string similar to Consultar Justificación.
+        ///   Busca una cadena traducida similar a Consultar Justificación.
+        /// </summary>
+        public static string titleConsultarInventor {
+            get {
+                return ResourceManager.GetString("titleConsultarInventor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Consultar Justificación.
         /// </summary>
         public static string titleConsultarJustificacion {
             get {
