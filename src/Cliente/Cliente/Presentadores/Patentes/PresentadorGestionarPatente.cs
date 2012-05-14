@@ -696,7 +696,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
         /// </summary>
         public void VerFechas()
         {
-            
+            this.Navegar(new ListaFechas(CargarPatenteDeLaPantalla()));
         }
 
         /// <summary>

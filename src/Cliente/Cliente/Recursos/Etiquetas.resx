@@ -2591,4 +2591,10 @@ de Gracia</value>
   <data name="titleListaInventoresPatente" xml:space="preserve">
     <value>Lista de Inventores de Patentes</value>
   </data>
+  <data name="lblTimeStamp" xml:space="preserve">
+    <value>TimeStamp</value>
+  </data>
+  <data name="lsvCorrespondencia" xml:space="preserve">
+    <value>Correspondencia</value>
+  </data>
 </root>

@@ -354,10 +354,13 @@
     <Compile Include="Comandos\ComandosInfoBolPatente\ComandoEliminarInfoBol.cs" />
     <Compile Include="Comandos\ComandosInfoBolPatente\ComandoInsertarOModificarInfoBol.cs" />
     <Compile Include="Comandos\ComandosInfoBolPatente\ComandoVerificarExistenciaInfoBol.cs" />
+    <Compile Include="Comandos\ComandosFecha\ComandoEliminarInventor.cs" />
+    <Compile Include="Comandos\ComandosFecha\ComandoInsertarOModificarFecha.cs" />
     <Compile Include="Comandos\Receptor.cs" />
     <Compile Include="Comandos\ComandosUsuario\ComandoConsultarTodosUsuarios.cs" />
     <Compile Include="Comandos\ComandosUsuario\ComandoConsultarUsuarioPorID.cs" />
     <Compile Include="Comandos\ComandosUsuario\ComandoInsertarOModificarUsuario.cs" />
+    <Compile Include="Fabrica\FabricaComandosFecha.cs" />
     <Compile Include="Fabrica\FabricaComandosInfoBolPatente.cs" />
     <Compile Include="Fabrica\FabricaComandosAnualidad.cs" />
     <Compile Include="Fabrica\FabricaComandosInventor.cs" />

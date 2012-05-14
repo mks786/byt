@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ContratosServicios\IFechaServicios.cs" />
     <Compile Include="ContratosServicios\IInfoBolPatenteServicios.cs" />
     <Compile Include="ContratosServicios\IAnualidadServicios.cs" />
     <Compile Include="ContratosServicios\IInventorServicios.cs" />

@@ -140,7 +140,7 @@ namespace Trascend.Bolet.Servicios.Implementacion
         /// </summary>
         /// <param name="patente">Patente que contiene los parametros de la consulta</param>
         /// <returns>Lista de fechas de una patente</returns>
-        public IList<Fecha> ObtenerFechasPatente(Patente patente)
+        public IList<Fecha> ConsultarFechasPorPatente(Patente patente)
         {
             #region trace
             if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))

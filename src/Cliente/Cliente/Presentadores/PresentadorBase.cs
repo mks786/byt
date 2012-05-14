@@ -1024,6 +1024,52 @@ namespace Trascend.Bolet.Cliente.Presentadores
         }
 
         /// <summary>
+        /// Método que busca una carta dentro de una lista de Cartas
+        /// </summary>
+        /// <param name="cartas">Lista de cartas</param>
+        /// <param name="cartaBuscada">carta a buscar</param>
+        /// <returns>carta dentro de la lista</returns>
+        public Carta BuscarCarta(IList<Carta> cartas, Carta cartaBuscado)
+        {
+            Carta retorno = null;
+
+            if (cartaBuscado != null)
+                foreach (Carta carta in cartas)
+                {
+                    if (carta.Id.Equals(cartaBuscado.Id))
+                    {
+                        retorno = carta;
+                        break;
+                    }
+                }
+
+            return retorno;
+        }
+
+        /// <summary>
+        /// Método que busca una tipofecha dentro de una lista de tipofecha
+        /// </summary>
+        /// <param name="tiposfecha">Lista de tipo de fechas</param>
+        /// <param name="tipoFecha">tipofecha a buscar</param>
+        /// <returns>tipofecha dentro de la lista</returns>
+        public TipoFecha BuscarTipoFecha(IList<TipoFecha> tiposFecha, string tipoFechaBuscado)
+        {
+            TipoFecha retorno = null;
+
+            if (tipoFechaBuscado != null)
+                foreach (TipoFecha tipoFecha in tiposFecha)
+                {
+                    if (tipoFecha.Id.Equals(tipoFechaBuscado))
+                    {
+                        retorno = tipoFecha;
+                        break;
+                    }
+                }
+
+            return retorno;
+        }
+
+        /// <summary>
         /// Método que busca un Sector dentro de una lista de Sectores
         /// </summary>
         /// <param name="estados">Lista de Sectores</param>

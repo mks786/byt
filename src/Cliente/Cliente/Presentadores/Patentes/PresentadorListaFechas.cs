@@ -10,6 +10,7 @@ using Trascend.Bolet.ObjetosComunes.ContratosServicios;
 using Trascend.Bolet.ObjetosComunes.Entidades;
 using Trascend.Bolet.Cliente.Ventanas.Patentes;
 using Trascend.Bolet.Cliente.Ventanas.Inventores;
+using Trascend.Bolet.Cliente.Ventanas.FechasPatente;
 using Trascend.Bolet.Cliente.Ventanas.Justificaciones;
 using System.Collections.Generic;
 using System.Windows.Controls;
@@ -28,6 +29,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
 
         private IPatenteServicios _patenteServicios;
         private IInventorServicios _inventorServicios;
+        private ICartaServicios _cartaServicios;
 
         /// <summary>
         /// Constructor Predeterminado
@@ -47,6 +49,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                 ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["PatenteServicios"]);
             this._inventorServicios = (IInventorServicios)Activator.GetObject(typeof(IInventorServicios),
                 ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["InventorServicios"]);
+            this._cartaServicios = (ICartaServicios)Activator.GetObject(typeof(ICartaServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["CartaServicios"]);
 
             #region trace
             if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -70,9 +74,17 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
 
                 this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleListaFechasPatente,
                     Recursos.Ids.FechasPatente);
-                this._patente = this._patenteServicios.ConsultarPatenteConTodo(_patente);
-                this._ventana.Fechas = this._inventorServicios.ConsultarInventoresPorPatente((Patente)this._patente);
-                this._ventana.TotalHits = ((Patente)this._patente).Inventores.Count.ToString();
+                this._ventana.Fechas = this._patenteServicios.ConsultarFechasPorPatente((Patente)this._patente);
+
+                Carta cartaAux = new Carta(((Fecha)this._ventana.FechaSeleccionado).Id);
+
+                Carta carta = this._cartaServicios.ConsultarPorId(cartaAux);
+                
+                //cartas.Insert(0, new Carta(int.MinValue));
+                
+                //this._ventana.Correspondencia = this.BuscarCarta((IList<Carta>)this._ventana.Correspondencias, cartaAux);
+
+                this._ventana.TotalHits = ((IList<Fecha>)this._ventana.Fechas).Count.ToString();
                 this._ventana.FocoPredeterminado();
 
                 #region trace
@@ -103,8 +115,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
 
             if (this._ventana.FechaSeleccionado != null)
             {
-                ((Inventor)this._ventana.FechaSeleccionado).Patente = this._patente;
-                this.Navegar(new ConsultarInventor(this._ventana.FechaSeleccionado));
+                ((Fecha)this._ventana.FechaSeleccionado).Id = this._patente.Id;
+                this.Navegar(new ConsultarFecha(this._ventana.FechaSeleccionado));
             }
             #region trace
             if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))

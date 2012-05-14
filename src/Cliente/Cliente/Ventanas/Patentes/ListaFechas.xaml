@@ -8,8 +8,8 @@
       xmlns:recurso="clr-namespace:Trascend.Bolet.Cliente.Recursos" Loaded="Page_Loaded">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="140"/>
-            <ColumnDefinition Width="630"/>
+            <ColumnDefinition Width="290"/>
+            <ColumnDefinition Width="830"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
@@ -36,14 +36,14 @@
                       Style="{DynamicResource EstiloListView}">
                 <ListView.View>
                     <GridView>
-                        <GridViewColumn DisplayMemberBinding="{Binding Path=Fecha}" Width="110">
-                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="Fecha" Content="{x:Static recurso:Etiquetas.lsvFecha}"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=FechaRegistro}" Width="110">
+                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="FechaRegistro" Content="{x:Static recurso:Etiquetas.lsvFecha}"/>
                         </GridViewColumn>
                         <GridViewColumn DisplayMemberBinding="{Binding Path=Tipo}" Width="150">
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="Tipo" Content="{x:Static recurso:Etiquetas.lsvTipo}"/>
                         </GridViewColumn>
-                        <GridViewColumn DisplayMemberBinding="{Binding Path=Correspondendia}" Width="240">
-                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="Correspondencia" Content="{x:Static recurso:Etiquetas.lsvDomicilio}"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Correspondencia}" Width="240">
+                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="Descripcion" Content="{x:Static recurso:Etiquetas.lsvCorrespondencia}"/>
                         </GridViewColumn>
                         <GridViewColumn DisplayMemberBinding="{Binding Path=Comentario}" Width="240">
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="Comentario" Content="{x:Static recurso:Etiquetas.lsvDomicilio}"/>

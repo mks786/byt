@@ -704,6 +704,15 @@ namespace Trascend.Bolet.AccesoDatos.Fabrica
         }
 
         /// <summary>
+        /// Método que devuelve el DaoFecha
+        /// </summary>
+        /// <returns>IDaoFecha</returns>
+        public override IDaoFecha ObtenerDaoFecha()
+        {
+            return new DaoFechaNHibernate();
+        }
+
+        /// <summary>
         /// Método que devuelve el DaoAnualidad
         /// </summary>
         /// <returns>IDaoAnualidad</returns>

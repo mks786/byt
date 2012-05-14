@@ -1069,7 +1069,7 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Select f from Fecha where f.Id = {0}.
+        ///   Busca una cadena traducida similar a Select f from Fecha f where f.Id = {0}.
         /// </summary>
         public static string ObtenerFechaPatente {
             get {

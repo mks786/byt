@@ -132,5 +132,7 @@ namespace Trascend.Bolet.AccesoDatos.Contrato
          IDaoPatente ObtenerDaoPatente();
 
          IDaoInventor ObtenerDaoInventor();
+
+         IDaoFecha ObtenerDaoFecha();
     }
 }
