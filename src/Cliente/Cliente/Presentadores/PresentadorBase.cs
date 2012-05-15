@@ -1052,7 +1052,7 @@ namespace Trascend.Bolet.Cliente.Presentadores
         /// <param name="tiposfecha">Lista de tipo de fechas</param>
         /// <param name="tipoFecha">tipofecha a buscar</param>
         /// <returns>tipofecha dentro de la lista</returns>
-        public TipoFecha BuscarTipoFecha(IList<TipoFecha> tiposFecha, string tipoFechaBuscado)
+        public TipoFecha BuscarTipoFecha(IList<TipoFecha> tiposFecha, TipoFecha tipoFechaBuscado)
         {
             TipoFecha retorno = null;
 

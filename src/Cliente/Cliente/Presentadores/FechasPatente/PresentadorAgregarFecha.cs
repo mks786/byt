@@ -71,9 +71,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.FechasPatente
                 this._ventana.Tipos = null;
                 this._ventana.Correspondencias = null;
 
-                Carta cartaAux = new Carta(this._fecha.Correspondencia);
-
-                IList<Carta> cartas = this._cartaServicios.ObtenerCartasFiltro(cartaAux);
+                IList<Carta> cartas = this._cartaServicios.ObtenerCartasFiltro((Carta)this._fecha.Correspondencia);
                 cartas.Insert(0, new Carta(int.MinValue));
                 this._ventana.Correspondencias = cartas;
 
@@ -133,8 +131,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.FechasPatente
 
                 if (true)
                 {
-                    fecha.Tipo = this._ventana.Tipo.ToString() == null ? null : this._ventana.Tipo.ToString();
-                    fecha.Correspondencia = int.Parse(this._ventana.Correspondencia.ToString()) == (int.MinValue) ? 0 : int.Parse(this._ventana.Correspondencia.ToString());
+                    fecha.Tipo = this._ventana.Tipo == null ? null : (TipoFecha)this._ventana.Tipo;
+                    fecha.Correspondencia = this._ventana.Correspondencia == null ? null : (Carta)this._ventana.Correspondencia;
                     fecha.Id = this._fecha.Id;
 
                     exitoso = this._fechaServicios.InsertarOModificar(fecha, UsuarioLogeado.Hash);

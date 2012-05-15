@@ -71,17 +71,15 @@ namespace Trascend.Bolet.Cliente.Presentadores.FechasPatente
 
                 this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleConsultarInventor,"");
 
-                Carta cartaAux = new Carta(this._fecha.Correspondencia);
-
                 IList<Carta> cartas = this._cartaServicios.ConsultarTodos();
                 cartas.Insert(0, new Carta(int.MinValue));
                 this._ventana.Correspondencias = cartas;
-                this._ventana.Correspondencia = this.BuscarCarta((IList<Carta>)this._ventana.Correspondencias, cartaAux);
+                this._ventana.Correspondencia = this.BuscarCarta((IList<Carta>)this._ventana.Correspondencias, (Carta)this._fecha.Correspondencia);
 
                 IList<TipoFecha> tiposFecha = this._tipoFechaServicios.ConsultarTodos();
                 tiposFecha.Insert(0, new TipoFecha(""));
                 this._ventana.Tipos = tiposFecha;
-                this._ventana.Tipo = this.BuscarTipoFecha((IList<TipoFecha>)this._ventana.Tipos, this._fecha.Tipo);
+                this._ventana.Tipo = this.BuscarTipoFecha((IList<TipoFecha>)this._ventana.Tipos, (TipoFecha)this._fecha.Tipo);
 
                 this._ventana.FocoPredeterminado();
 
@@ -126,8 +124,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.FechasPatente
                     bool exitoso = false;
                     Fecha fecha = (Fecha)this._ventana.FechaPatente;
 
-                    fecha.Tipo = this._ventana.Tipo == null ? null : this._ventana.Tipo.ToString();
-                    fecha.Correspondencia = int.Parse(this._ventana.Correspondencia.ToString()).Equals(int.MinValue) ? 0 : int.Parse(this._ventana.Correspondencia.ToString());
+                    fecha.Tipo = this._ventana.Tipo == null ? null : (TipoFecha)this._ventana.Tipo;
+                    fecha.Correspondencia = this._ventana.Correspondencia == null ? null : (Carta)this._ventana.Correspondencia;
 
                     exitoso = this._fechaServicios.InsertarOModificar(fecha, UsuarioLogeado.Hash);
                     

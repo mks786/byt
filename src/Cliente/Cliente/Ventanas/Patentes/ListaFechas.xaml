@@ -39,10 +39,10 @@
                         <GridViewColumn DisplayMemberBinding="{Binding Path=FechaRegistro}" Width="110">
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="FechaRegistro" Content="{x:Static recurso:Etiquetas.lsvFecha}"/>
                         </GridViewColumn>
-                        <GridViewColumn DisplayMemberBinding="{Binding Path=Tipo}" Width="150">
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Tipo.Descripcion}" Width="150">
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="Tipo" Content="{x:Static recurso:Etiquetas.lsvTipo}"/>
                         </GridViewColumn>
-                        <GridViewColumn DisplayMemberBinding="{Binding Path=Correspondencia}" Width="240">
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Correspondencia.Resumen.Descripcion}" Width="240">
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="Descripcion" Content="{x:Static recurso:Etiquetas.lsvCorrespondencia}"/>
                         </GridViewColumn>
                         <GridViewColumn DisplayMemberBinding="{Binding Path=Comentario}" Width="240">

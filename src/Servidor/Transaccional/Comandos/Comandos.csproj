@@ -82,6 +82,7 @@
     <Compile Include="Comandos\ComandosCartaOut\ComandoInsertarOModificarCartaOut.cs" />
     <Compile Include="Comandos\ComandosCartaOut\ComandoTransferirPlantilla.cs" />
     <Compile Include="Comandos\ComandosCarta\ComandoConsultarCartasFiltro.cs" />
+    <Compile Include="Comandos\ComandosCarta\ComandoConsultarTodasCarta.cs" />
     <Compile Include="Comandos\ComandosCarta\ComandoEliminarCarta.cs" />
     <Compile Include="Comandos\ComandosCarta\ComandoInsertarOModificarCarta.cs" />
     <Compile Include="Comandos\ComandosCesion\ComandoConsultarCesionesFiltro.cs" />

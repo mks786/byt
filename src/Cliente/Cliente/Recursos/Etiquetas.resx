@@ -2597,4 +2597,7 @@ de Gracia</value>
   <data name="lsvCorrespondencia" xml:space="preserve">
     <value>Correspondencia</value>
   </data>
+  <data name="titleConsultarPatente" xml:space="preserve">
+    <value>Consultar Patentes</value>
+  </data>
 </root>

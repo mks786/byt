@@ -9,10 +9,10 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         #region Atributos
 
         private int _id;
-        private string _tipo;
+        private TipoFecha _tipo;
         private string _comentario;
         private string _usuario;
-        private int _correspondencia;
+        private Carta _correspondencia;
         private DateTime _fecha;
         private DateTime _timeStamp;
         #endregion
@@ -68,7 +68,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         /// <summary>
         /// Propiedad que asigna u obtiene la tipo de una Fecha
         /// </summary>
-        public virtual string Tipo
+        public virtual TipoFecha Tipo
         {
             get { return _tipo; }
             set { _tipo = value; }
@@ -95,7 +95,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         /// <summary>
         /// Propiedad que asigna u obtiene la correspondencia de una Fecha
         /// </summary>
-        public virtual int Correspondencia
+        public virtual Carta Correspondencia
         {
             get { return _correspondencia; }
             set { _correspondencia = value; }

@@ -654,7 +654,7 @@
     <comment>Obtener todos los infoboles de una patente</comment>
   </data>
   <data name="ObtenerFechaPatente" xml:space="preserve">
-    <value>Select f from Fecha f where f.Id = {0}</value>
+    <value>Select f from Fecha f left outer join fetch f.Tipo as tipoFecha left outer join fetch f.Correspondencia as carta left outer join fetch carta.Resumen as resumen where f.Id = {0}</value>
     <comment>Selecciona las fechas de una patente</comment>
   </data>
 </root>

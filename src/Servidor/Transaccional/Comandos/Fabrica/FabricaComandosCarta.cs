@@ -34,7 +34,7 @@ namespace Trascend.Bolet.Comandos.Fabrica
         /// <returns>Lista con todos los cartas</returns>
         public static ComandoBase<IList<Carta>> ObtenerComandoConsultarTodos()
         {
-            throw new NotImplementedException();
+            return new ComandoConsultarTodasCarta();
         }
 
         /// <summary>

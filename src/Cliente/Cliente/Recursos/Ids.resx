@@ -696,4 +696,7 @@
   <data name="FechasPatente" xml:space="preserve">
     <value>MYP_PFECHAS</value>
   </data>
+  <data name="ConsultarPatente" xml:space="preserve">
+    <value>MYP_PATENTE</value>
+  </data>
 </root>

@@ -7,15 +7,18 @@
 
     <composite-id>
       <key-property name="Id" column="CPATENTE" type="int"/>
-      <key-property name="Tipo" column="TIPO" type="string"/>
+      <key-many-to-one name="Tipo" column="TIPO" class="TipoFecha"/>
     </composite-id>
 
     <property name="FechaRegistro" column="FECHA" type="DateTime"/>
     <property name="TimeStamp" column="TIMESTAMP" type="DateTime"/>
-    <property name="Correspondencia" column="CORRESPONDENCIA" type="int"/>
     <property name="Comentario" column="COMENTARIO" type="string"/>
     <property name="Usuario" column="USUARIO" type="string"/>
 
+    <many-to-one name="Correspondencia" class="Carta">
+      <column name="CORRESPONDENCIA"/>
+    </many-to-one>
+    
   </class>
 </hibernate-mapping>
 

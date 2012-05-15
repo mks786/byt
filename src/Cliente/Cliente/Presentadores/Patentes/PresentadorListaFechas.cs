@@ -76,14 +76,6 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                     Recursos.Ids.FechasPatente);
                 this._ventana.Fechas = this._patenteServicios.ConsultarFechasPorPatente((Patente)this._patente);
 
-                Carta cartaAux = new Carta(((Fecha)this._ventana.FechaSeleccionado).Id);
-
-                Carta carta = this._cartaServicios.ConsultarPorId(cartaAux);
-                
-                //cartas.Insert(0, new Carta(int.MinValue));
-                
-                //this._ventana.Correspondencia = this.BuscarCarta((IList<Carta>)this._ventana.Correspondencias, cartaAux);
-
                 this._ventana.TotalHits = ((IList<Fecha>)this._ventana.Fechas).Count.ToString();
                 this._ventana.FocoPredeterminado();
 

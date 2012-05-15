@@ -6590,6 +6590,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Consultar Patentes.
+        /// </summary>
+        public static string titleConsultarPatente {
+            get {
+                return ResourceManager.GetString("titleConsultarPatente", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Consultar Poder.
         /// </summary>
         public static string titleConsultarPoder {
