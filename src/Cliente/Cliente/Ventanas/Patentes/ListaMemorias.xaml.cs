@@ -54,6 +54,35 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
             set { this._txtId.Text = value; }
         }
 
+        public object TipoMensaje
+        {
+            get { return this._cbxTipo.SelectedItem; }
+            set { this._cbxTipo.SelectedItem = value; }
+        }
+
+        public object TiposMensajes
+        {
+            get { return this._cbxTipo.DataContext; }
+            set { this._cbxTipo.DataContext = value; }
+        }
+
+        public object FormatoDocumento
+        {
+            get { return this._cbxTipoFinal.SelectedItem; }
+            set { this._cbxTipoFinal.SelectedItem = value; }
+        }
+
+        public object FormatosDocumentos
+        {
+            get { return this._cbxTipoFinal.DataContext; }
+            set { this._cbxTipoFinal.DataContext = value; }
+        }
+
+        public string IdMemoria
+        {
+            get { return this._txtId.Text; }
+        }
+
 
         public GridViewColumnHeader CurSortCol
         {
@@ -67,10 +96,10 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
             set { _CurAdorner = value; }
         }
 
-        public ListView ListaResultados
+        public object ListaResultados
         {
-            get { return this._lstResultados; }
-            set { this._lstResultados = value; }
+            get { return this._lstResultados.DataContext; }
+            set { this._lstResultados.DataContext = value; }
         }
 
         public string TotalHits
@@ -130,12 +159,6 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
             {
                 todosCamposVacios = false;
                 this._txtId.Focus();
-            }
-
-            if (!this._txtDescripcion.Text.Equals(""))
-            {
-                todosCamposVacios = false;
-                this._txtDescripcion.Focus();
             }
 
             if (todosCamposVacios)

@@ -43,9 +43,20 @@
                 </WrapPanel>
                 <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
                     <Label>
-                        <TextBlock Text="{x:Static recurso:Etiquetas.lblDescripcion}"/>
+                        <TextBlock Text="{x:Static recurso:Etiquetas.lblTipo}"/>
                     </Label>
-                    <TextBox Name="_txtDescripcion" Width="150" MaxLength="50"  Text="{Binding Path=Descripcion}"/>
+                    <ComboBox Name="_cbxTipo" Width="150" SelectedIndex="0"
+                              ItemsSource="{Binding}" DisplayMemberPath="Descripcion">
+
+                    </ComboBox>
+                </WrapPanel>
+                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
+                    <Label>
+                        <TextBlock Text="{x:Static recurso:Etiquetas.lblTipo}"/>
+                    </Label>
+                    <ComboBox Name="_cbxTipoFinal" Width="150" SelectedIndex="0"
+                              ItemsSource="{Binding}" DisplayMemberPath="Descripcion">
+                    </ComboBox>
                 </WrapPanel>
                 
                 <Separator Margin="0,5,0,5"/>
