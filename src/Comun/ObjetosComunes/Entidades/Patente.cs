@@ -8,7 +8,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
     {
         #region Atributos
 
-        private int _id;        
+        private int _id;
         private string _descripcion;
         private string _tipo;
         private DateTime? _fechaPrioridad;
@@ -22,14 +22,14 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         private string _iPoder;
         private string _fascimiles;
         private char _traduccion;
-        private string _codigoExpediente;        
+        private string _codigoExpediente;
         private string _ubicacion;
         private string _observacion;
         private char _rev;
         private Agente _agente;
         private Asociado _asociado;
         private Boletin _boletinConcesion;
-        private Boletin _boletinPublicacion;        
+        private Boletin _boletinPublicacion;
         private Interesado _interesado;
         private Pais _pais;
         private Servicio _servicio;
@@ -595,7 +595,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         /// <summary>
         /// Propiedad que asigna u obtiene la memoria
         /// </summary>
-        public virtual IList<Memoria> Memoria
+        public virtual IList<Memoria> Memorias
         {
             get { return _memorias; }
             set { _memorias = value; }
