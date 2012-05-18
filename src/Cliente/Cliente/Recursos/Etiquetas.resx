@@ -2639,4 +2639,7 @@ de Gracia</value>
   <data name="btnNuevaMemoria" xml:space="preserve">
     <value>Nueva Memoria</value>
   </data>
+  <data name="lblRevParaWeb" xml:space="preserve">
+    <value>Rev Para Web:</value>
+  </data>
 </root>

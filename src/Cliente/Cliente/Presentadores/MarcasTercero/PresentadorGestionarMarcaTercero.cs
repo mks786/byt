@@ -375,7 +375,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
             boletines.Insert(0, primerBoletin);
             this._ventana.BoletinesOrdenPublicacion = boletines;
             this._ventana.BoletinesPublicacion = boletines;
-            this._ventana.BoletinConcesion = boletines;
+            this._ventana.BoletinesConcesion = boletines;
             if (!_agregar)
             {
                 this._ventana.BoletinConcesion = this.BuscarBoletin(boletines, marcaTercero.BoletinConcesion);

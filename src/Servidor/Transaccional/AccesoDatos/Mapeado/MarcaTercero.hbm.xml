@@ -57,7 +57,7 @@
     <property name="Observacion" column="XOBSERVACION" type="string"/>
     <property name="Distingue" column="XDISTINGUE" type="string"/>
     <property name="NumeroCondiciones" column="NCONDI" type="int"/>
-    <property name="Numero" column="NUMERO" type="int"/>
+    <property name="Numero" column="NNUMERO" type="int"/>
     <property name="Rev" column="IREV" type="char"/>
     <property name="EstadoT" column="TESTADO" type="string"/>
     <property name="CasoT" column="TCASO" type="string"/>

@@ -88,6 +88,8 @@
                         <RowDefinition Height="25"/>
                         <RowDefinition Height="25"/>
                         <RowDefinition Height="25"/>
+                        <RowDefinition Height="25"/>
+                        <RowDefinition Height="25"/>
                     </Grid.RowDefinitions>
                     <!--Fila 2 ddel grid-->
                     <Label Grid.Column="0" Grid.Row="2" VerticalAlignment="Center" HorizontalContentAlignment="Right">
@@ -101,7 +103,7 @@
                     </Label>
                     <DatePicker IsEnabled="False" Grid.Column="5" Grid.Row="2" Grid.ColumnSpan="2"  Name="_dpkFechaPublicacion" Focusable="False" BorderBrush="{x:Null}" >
                         <DatePicker.SelectedDate>
-                            <Binding Path="FechaInscripcion" UpdateSourceTrigger="PropertyChanged"/>
+                            <Binding Path="FechaPublicacion" UpdateSourceTrigger="PropertyChanged"/>
                         </DatePicker.SelectedDate>
                     </DatePicker>
 
@@ -517,7 +519,7 @@
                     <Separator Grid.Column="0" Grid.Row="17" Grid.ColumnSpan="7" Margin="10 0" VerticalAlignment="Center" />
                     <!--Modulo de Boletin-->
 
-                    <Grid Grid.Row="17" Grid.Column="1" Grid.RowSpan="6" Grid.ColumnSpan="3" >
+                    <Grid Grid.Row="17" Grid.Column="1" Grid.RowSpan="8" Grid.ColumnSpan="3" >
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="*"/>
@@ -525,6 +527,9 @@
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="30"/>
+                            <RowDefinition Height="25"/>
+                            <RowDefinition Height="25"/>
+                            <RowDefinition Height="25"/>
                             <RowDefinition Height="25"/>
                             <RowDefinition Height="25"/>
                             <RowDefinition Height="25"/>
@@ -607,12 +612,21 @@
                           Text=""></custom:ByTTextBox>
                         <custom:ByTTextBox IsEnabled="False" Grid.Column="2" Grid.Row="4" Grid.ColumnSpan="1" Margin="3" Name="_txtFechaRegistro" VerticalAlignment="Center"  
                           Text=""></custom:ByTTextBox>
-                        <Label Grid.Column="1" Grid.Row="5" VerticalAlignment="Center" HorizontalContentAlignment="Right">
+                        <Label Grid.Column="0" Grid.Row="5" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblRenovarAntesDe}"/>
                         </Label>
 
-                        <custom:ByTTextBox IsEnabled="False" Grid.Column="1" Grid.Row="5" Grid.ColumnSpan="2" Margin="3" Name="_txtFechaRenovacion" VerticalAlignment="Center"  
-                          Text=""></custom:ByTTextBox>
+                        <DatePicker IsEnabled="False" Grid.Column="1" Grid.Row="5" Grid.ColumnSpan="2"  Name="_dpkFechaRenovacion" Focusable="False" BorderBrush="{x:Null}" >
+                            <DatePicker.SelectedDate>
+                                <Binding Path="FechaRenovacion" UpdateSourceTrigger="PropertyChanged"/>
+                            </DatePicker.SelectedDate>
+                        </DatePicker>
+                        <Label Grid.Column="0" Grid.Row="6" VerticalAlignment="Center" HorizontalContentAlignment="Right">
+                            <TextBlock Text="{x:Static recurso:Etiquetas.lblRevParaWeb}"/>
+                        </Label>
+                        <CheckBox IsEnabled="False"  Name="_chkRevWeb" Grid.Column="1" Grid.Row="6" VerticalAlignment="Center" HorizontalContentAlignment="Left"
+                         HorizontalAlignment="Center" IsChecked="False" Click="_chkRevWeb_Click">
+                        </CheckBox>
                     </Grid>
 
                     <!--Final Modulo de Boletin-->

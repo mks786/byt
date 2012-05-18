@@ -360,7 +360,6 @@ namespace Trascend.Bolet.Cliente.Ventanas.MarcasTercero
                 //this._txtExptyr.IsEnabled = value;
                 this._txtFechaInscripcion.IsEnabled = value;
                 this._txtFechaRegistro.IsEnabled = value;
-                this._txtFechaRenovacion.IsEnabled = value;
                 //this._txtIdAsociadoDatos.IsEnabled = value;
                 this._txtIdAsociadoSolicitud.IsEnabled = value;
                 //this._txtIdDatos.IsEnabled = value;
@@ -425,6 +424,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.MarcasTercero
                 #region CheckBox
 
                 this._chkByt.IsEnabled = value;
+                this._chkRevWeb.IsEnabled = value;
                 //this._checkBoxInstruccionesRenovacion.IsEnabled = value;
                 //this._checkBoxRenovacionTramitente.IsEnabled = value;
                 //this._chkConflicto.IsEnabled = value;
@@ -504,6 +504,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.MarcasTercero
 
                 
                 this._dpkFechaPublicacion.IsEnabled = value;
+                this._dpkFechaRenovacion.IsEnabled = value;
                 //this._dpkFechaRequeridaConflicto.IsEnabled = value;
                 //this._dpkFechaRequeridaOtraInf.IsEnabled = value;
                 //this._dpkFechaRequeridaPoder.IsEnabled = value;
@@ -1572,6 +1573,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.MarcasTercero
         public void LimpiarMarcasByt()
         {
             throw new NotImplementedException();
+        }
+
+        private void _chkRevWeb_Click(object sender, RoutedEventArgs e)
+        {
+
         }
 
 
