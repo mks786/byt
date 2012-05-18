@@ -295,6 +295,16 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                     auditoria.Tabla = "MYP_PATENTES";
                     this._auditorias = this._patenteServicios.AuditoriaPorFkyTabla(auditoria);
 
+                    ((Patente)this._ventana.Patente).Memorias = this._memoriaServicios.ConsultarMemoriasPorPatente(((Patente)this._ventana.Patente));
+
+                    patente.Fechas = this._patenteServicios.ConsultarFechasPorPatente(((Patente)this._ventana.Patente));
+                    
+                    if (null != patente.Fechas && patente.Fechas.Count != 0)
+                        this._ventana.PintarFechasDatos();
+
+                    if (null != patente.Memorias && patente.Memorias.Count != 0)
+                        this._ventana.PintarMemoriaDatos();
+
                     if (null != patente.InfoAdicional && !string.IsNullOrEmpty(patente.InfoAdicional.Id))
                         this._ventana.PintarInfoAdicionalSolicitud();
 
@@ -727,9 +737,55 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
         /// </summary>
         public void VerMemoriaRuta()
         {
-            //this.EjecutarArchivoBAT(ConfigurationManager.AppSettings["RutaBatEscrito"].ToString()
-            //            + "\\" + ConfigurationManager.AppSettings["EscritoConsignacionDeJuramento"].ToString(),
-            //            this._ventana.Fecha + " " + ((Agente)this._ventana.AgenteFiltrado).Id + " " + parametroPatentes);
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                string rutaArchivo = ConfigurationManager.AppSettings["RutaMemoriaPatente"];
+
+                string nombreArchivo = ConfigurationManager.AppSettings["NombreMemoriaPatente"] + ((Patente)this._ventana.Patente).Id;
+
+                string[] archivos = Directory.GetFiles(rutaArchivo, nombreArchivo+".*");
+                
+                if (archivos.Length > 0)
+                {
+                    this.AbrirArchivoPorConsola(archivos[0], "Abriendo Archivo de Memoria de la Patente: " + ((Patente)this._ventana.Patente).Id);
+                }
+                else { this._ventana.ArchivoNoEncontrado(); }
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (ApplicationException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(ex.Message, true);
+            }
+            catch (RemotingException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorRemoting, true);
+            }
+            catch (SocketException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorConexionServidor, true);
+            }
+            catch (FileNotFoundException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(String.Format(Recursos.MensajesConElUsuario.ErrorArchivoMemoriaNoEncontrado, "Memoria"), true);
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
+            }
         }
 
         /// <summary>
@@ -746,7 +802,54 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
         /// </summary>
         public void VerExpediente()
         {
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+                string rutaArchivo = ConfigurationManager.AppSettings["RutaExpedientePatente"];
 
+                string nombreArchivo = ConfigurationManager.AppSettings["NombreExpedientePatente"] + ((Patente)this._ventana.Patente).Id;
+
+                string[] archivos = Directory.GetFiles(rutaArchivo, nombreArchivo + ".*");
+
+                if (archivos.Length > 0)
+                {
+                    this.AbrirArchivoPorConsola(archivos[0], "Abriendo Archivo de Expediente de la Patente: " + ((Patente)this._ventana.Patente).Id);
+                }
+                else { this._ventana.ArchivoNoEncontrado(); }
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (ApplicationException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(ex.Message, true);
+            }
+            catch (RemotingException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorRemoting, true);
+            }
+            catch (SocketException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorConexionServidor, true);
+            }
+            catch (FileNotFoundException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(String.Format(Recursos.MensajesConElUsuario.ErrorArchivoMemoriaNoEncontrado, "Memoria"), true);
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
+            }
         }
 
         /// <summary>
@@ -754,6 +857,54 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
         /// </summary>
         public void VerTitulo()
         {
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+                string rutaArchivo = ConfigurationManager.AppSettings["RutaTituloPatente"];
+
+                string nombreArchivo = ConfigurationManager.AppSettings["NombreTituloPatente"] + ((Patente)this._ventana.Patente).Id;
+
+                string[] archivos = Directory.GetFiles(rutaArchivo, nombreArchivo + ".*");
+
+                if (archivos.Length > 0)
+                {
+                    this.AbrirArchivoPorConsola(archivos[0], "Abriendo Archivo de Memoria de la Patente: " + ((Patente)this._ventana.Patente).Id);
+                }
+                else { this._ventana.ArchivoNoEncontrado(); }
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (ApplicationException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(ex.Message, true);
+            }
+            catch (RemotingException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorRemoting, true);
+            }
+            catch (SocketException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorConexionServidor, true);
+            }
+            catch (FileNotFoundException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(String.Format(Recursos.MensajesConElUsuario.ErrorArchivoMemoriaNoEncontrado, "Memoria"), true);
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
+            }
 
         }
 
@@ -762,7 +913,54 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
         /// </summary>
         public void VerSolicitud()
         {
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+                string rutaArchivo = ConfigurationManager.AppSettings["RutaSolicitudPatente"];
 
+                string nombreArchivo = ConfigurationManager.AppSettings["NombreSolicitudPatente"] + ((Patente)this._ventana.Patente).Id;
+
+                string[] archivos = Directory.GetFiles(rutaArchivo, nombreArchivo + ".*");
+
+                if (archivos.Length > 0)
+                {
+                    this.AbrirArchivoPorConsola(archivos[0], "Abriendo Archivo de Memoria de la Patente: " + ((Patente)this._ventana.Patente).Id);
+                }
+                else { this._ventana.ArchivoNoEncontrado(); }
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (ApplicationException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(ex.Message, true);
+            }
+            catch (RemotingException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorRemoting, true);
+            }
+            catch (SocketException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorConexionServidor, true);
+            }
+            catch (FileNotFoundException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(String.Format(Recursos.MensajesConElUsuario.ErrorArchivoMemoriaNoEncontrado, "Memoria"), true);
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
+            }
         }
 
         public void CargarPaises()

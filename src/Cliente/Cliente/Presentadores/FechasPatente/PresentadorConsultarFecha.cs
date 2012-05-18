@@ -68,7 +68,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.FechasPatente
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-                this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleConsultarInventor,"");
+                this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleConsultarFecha,"");
 
                 IList<TipoFecha> tiposFecha = this._tipoFechaServicios.ConsultarTodos();
                 tiposFecha.Insert(0, new TipoFecha(""));
@@ -116,13 +116,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.FechasPatente
                 else
                 {
                     bool exitoso = false;
-                    Fecha fecha = (Fecha)this._ventana.FechaPatente;
 
-                    fecha.Tipo = this._ventana.Tipo == null ? null : (TipoFecha)this._ventana.Tipo;
+                    Fecha fecha = this.CargarFecha();
 
                     exitoso = this._fechaServicios.InsertarOModificar(fecha, UsuarioLogeado.Hash);
 
-                    Patente patenteAux = new Patente(fecha.Id);
+                    Patente patenteAux = new Patente(fecha.Patente.Id);
 
                     if (exitoso)
                         this.Navegar(new ListaFechas(patenteAux));
@@ -169,7 +168,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.FechasPatente
 
                 if (this._fechaServicios.Eliminar((Fecha)this._ventana.FechaPatente, UsuarioLogeado.Hash))
                 {
-                    Patente patente = new Patente(this._fecha.Id);
+                    Patente patente = new Patente(this._fecha.Patente.Id);
                     this.Navegar(new ListaFechas(patente));
                 }
 
@@ -200,6 +199,29 @@ namespace Trascend.Bolet.Cliente.Presentadores.FechasPatente
             }
         }
 
+        public Fecha CargarFecha()
+        {
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
 
+            Fecha fecha = new Fecha();
+
+            fecha.Tipo = this._ventana.Tipo == null ? null : (TipoFecha)this._ventana.Tipo;
+            fecha.TimeStamp = this._ventana.TimeStamp != null ? Convert.ToDateTime(this._ventana.TimeStamp) : DateTime.MinValue;
+            fecha.Usuario = UsuarioLogeado.Iniciales;
+            fecha.Comentario = this._ventana.Comentario != null ? this._ventana.Comentario : "";
+            fecha.FechaRegistro = Convert.ToDateTime(this._fecha.FechaRegistro);
+            fecha.Correspondencia = new Carta(int.Parse(this._ventana.Correspondencia));
+            fecha.Patente = this._fecha.Patente;
+
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+            return fecha;
+        }
     }
 }

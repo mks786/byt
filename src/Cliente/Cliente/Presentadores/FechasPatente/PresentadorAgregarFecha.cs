@@ -33,8 +33,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.FechasPatente
             try
             {
                 this._ventana = ventana;
-                this._fecha = new Fecha(((Patente)patente).Id);
-                this._fecha.Id = ((Patente)patente).Id;
+                this._fecha = new Fecha();
+                this._fecha.Patente = (Patente)patente;
                 this._ventana.FechaRegistro = DateTime.Now.ToShortDateString().ToString();
 
                 this._patenteServicios = (IPatenteServicios)Activator.GetObject(typeof(IPatenteServicios),
@@ -67,7 +67,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.FechasPatente
 
                 Mouse.OverrideCursor = Cursors.Wait;
 
-                this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleAgregarInventor,
+                this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleAgregarFecha,
                         "");
                 this._ventana.Tipos = null;
                 
@@ -131,9 +131,13 @@ namespace Trascend.Bolet.Cliente.Presentadores.FechasPatente
                     {
                         exitoso = this._fechaServicios.InsertarOModificar(fecha, UsuarioLogeado.Hash);
 
-                        Patente patenteAux = new Patente(this._fecha.Id);
+                        Patente patenteAux = new Patente(this._fecha.Patente.Id);
                         if (exitoso)
                             this.Navegar(new ListaFechas(patenteAux));
+                    }
+                    else
+                    {
+                        this._ventana.mensaje(Recursos.MensajesConElUsuario.ErrorCorrespondenciaNoEncontrada);
                     }
                 }
                 #region trace
@@ -173,9 +177,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.FechasPatente
 
             bool retorno = false;
 
-            Carta carta = this._cartaServicios.ConsultarPorId(new Carta(int.Parse(this._ventana.Correspondencia)));
+            IList<Carta> carta = this._cartaServicios.ObtenerCartasFiltro(new Carta(int.Parse(this._ventana.Correspondencia)));
 
-            retorno = carta != null ? true : false;
+            retorno = carta.Count != 0 ? true : false;
 
             #region trace
             if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -185,6 +189,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.FechasPatente
             return retorno;
         }
 
+        /// <summary>
+        /// Método que busca los valores en la ventana y los almacena en una variable
+        /// </summary>
+        /// <returns>Fecha Cargada</returns>
         public Fecha CargarFecha()
         {
             #region trace
@@ -195,12 +203,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.FechasPatente
             Fecha fecha = new Fecha();
 
             fecha.Tipo = this._ventana.Tipo == null ? null : (TipoFecha)this._ventana.Tipo;
-            fecha.Id = this._fecha.Id;
             fecha.TimeStamp = this._ventana.TimeStamp != null ? Convert.ToDateTime(this._ventana.TimeStamp) : DateTime.MinValue;
             fecha.Usuario = UsuarioLogeado.Iniciales;
             fecha.Comentario = this._ventana.Comentario != null ? this._ventana.Comentario : "";
             fecha.FechaRegistro = Convert.ToDateTime(this._ventana.FechaRegistro);
             fecha.Correspondencia = new Carta(int.Parse(this._ventana.Correspondencia));
+            fecha.Patente = this._fecha.Patente;
 
             #region trace
             if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))

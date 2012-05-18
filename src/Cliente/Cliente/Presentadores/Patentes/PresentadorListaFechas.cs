@@ -74,7 +74,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
 
                 this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleListaFechasPatente,
                     Recursos.Ids.FechasPatente);
-                this._ventana.Fechas = this._patenteServicios.ConsultarFechasPorPatente((Patente)this._patente);
+
+                IList<Fecha> fechas = this._patenteServicios.ConsultarFechasPorPatente((Patente)this._patente);
+                
+                this._patente.Fechas = fechas;
+                this._ventana.Fechas = this._patente.Fechas;
 
                 this._ventana.TotalHits = ((IList<Fecha>)this._ventana.Fechas).Count.ToString();
                 this._ventana.FocoPredeterminado();
@@ -107,7 +111,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
 
             if (this._ventana.FechaSeleccionado != null)
             {
-                ((Fecha)this._ventana.FechaSeleccionado).Id = this._patente.Id;
+                ((Fecha)this._ventana.FechaSeleccionado).Patente = this._patente;
                 this.Navegar(new ConsultarFecha(this._ventana.FechaSeleccionado));
             }
             #region trace

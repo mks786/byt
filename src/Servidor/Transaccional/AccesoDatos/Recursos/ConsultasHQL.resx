@@ -584,7 +584,7 @@
     <comment>Filtro por Patente</comment>
   </data>
   <data name="ObtenerPatenteConTodo" xml:space="preserve">
-    <value>Select p from Patente p left join fetch p.Asociado as asociado left join fetch p.Servicio as servicio left join fetch p.Inventores as inventores left join fetch p.Memoria as memoria where p.Id = '{0}' order by p.Id</value>
+    <value>Select p from Patente p left join fetch p.Asociado as asociado left join fetch p.Servicio as servicio left join fetch p.Inventores as inventores where p.Id = {0} order by p.Id</value>
   </data>
   <data name="CabeceraObtenerCambioDeNombrePatente" xml:space="preserve">
     <value>Select c from CambioDeNombrePatente c left join fetch c.Patente as patente left join fetch c.InteresadoActual as interesadoActual left join fetch c.InteresadoAnterior as interesadoAnterior left join fetch c.Agente as agente left join fetch c.Poder as poder where </value>
@@ -654,7 +654,7 @@
     <comment>Obtener todos los infoboles de una patente</comment>
   </data>
   <data name="ObtenerFechaPatente" xml:space="preserve">
-    <value>Select f from Fecha f left outer join fetch f.Tipo as tipoFecha left outer join fetch f.Correspondencia as carta left outer join fetch carta.Resumen as resumen where f.Id = {0}</value>
+    <value>Select f from Fecha f left outer join fetch f.Tipo as tipoFecha left outer join fetch f.Correspondencia as carta left outer join fetch carta.Resumen as resumen where f.Patente.Id = {0}</value>
     <comment>Selecciona las fechas de una patente</comment>
   </data>
   <data name="ObtenerMemoriasPorPatente" xml:space="preserve">

@@ -493,6 +493,16 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
             this._btnAuditoriaDatos.Background = Brushes.LightGreen;
         }
 
+        public void PintarMemoriaDatos()
+        {
+            this._btnVerMemoriaDatos.Background = Brushes.LightGreen;
+        }
+
+        public void PintarFechasDatos()
+        {
+            this._btnFechasDatos.Background = Brushes.LightGreen;
+        }
+
         #endregion
 
         public bool AsociadosEstanCargados
@@ -710,6 +720,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
                 this._btnVerTituloDatos.IsEnabled = value;
                 this._btnVerSolicitudDatos.IsEnabled = value;
                 this._btnVerMemoriaDatos.IsEnabled = value;
+                this._btnVerMemoriaRutaDatos.IsEnabled = value;
                 this._btnVerExpedienteDatos.IsEnabled = value;
                 //this._btnArchivoDatos.IsEnabled = value;
                 this._btnFacturacionDatos.IsEnabled = value;

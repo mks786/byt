@@ -89,6 +89,13 @@
       </composite-element>
     </bag>
 
+    <bag name="Fechas" table="MYP_PFECHAS" inverse="true" generic="true">
+      <key column="TIPO"/>
+      <composite-element class="Fecha">
+        <many-to-one name="Patente" class="Patente" column="CPATENTE"/>
+      </composite-element>
+    </bag>
+
     <bag name="Anualidades" table="MYP_ANUALIDADES" inverse="true" generic="true">
       <key column="CANUALIDAD"/>
       <composite-element class="Anualidad">

@@ -168,6 +168,10 @@ namespace Trascend.Bolet.Cliente.Contratos.Patentes
 
         void PintarAuditoriaDatos();
 
+        void PintarMemoriaDatos();
+
+        void PintarFechasDatos();
+
         #endregion
 
         void Mensaje(string mensaje);

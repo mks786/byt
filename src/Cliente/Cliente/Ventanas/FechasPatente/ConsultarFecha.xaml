@@ -35,55 +35,64 @@
         <GroupBox Grid.Column="1" Grid.Row="1">
             <StackPanel Name="_gridDatos"  VerticalAlignment="Center"  HorizontalAlignment="Center"
                         DataContext="{Binding}">
-                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0" Grid.Row="0" Grid.ColumnSpan="3">
-                    <Label>
-                        <TextBlock Text="{x:Static recurso:Etiquetas.lblFecha}"/>
-                    </Label>
-                    <TextBox Name="_txtFecha" Width="150" MaxLength="30"  Text="{Binding Path=FechaRegistro}" IsEnabled="False"/>
-                </WrapPanel>
-                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0" Grid.Row="1" Grid.ColumnSpan="3">
-                    <Label>
-                        <TextBlock Text="{x:Static recurso:Etiquetas.lblTipo}"/>
-                    </Label>
-
-                    <ComboBox IsEnabled="False" Grid.Column="2" Grid.Row="3" Grid.ColumnSpan="1"  Name="_cbxTipo" Height="20" 
-                              ItemsSource="{Binding}" DisplayMemberPath="Descripcion" SelectedIndex="0" Width="150">
-                    </ComboBox>
-
-                </WrapPanel>
-                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0" Grid.Row="2" Grid.ColumnSpan="3">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="65"/>
+                        <ColumnDefinition Width="140"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
                     
-                    <Label>
-                        <TextBlock Text="{x:Static recurso:Etiquetas.lblCorrespondencia}"/>
-                    </Label>
+                   
+                        <Label Grid.Column="0" HorizontalAlignment="Right">
+                            <TextBlock Text="{x:Static recurso:Etiquetas.lblFecha}"/>
+                        </Label>
+                        <TextBox Name="_txtFecha" Width="140" MaxLength="30" Grid.Column="1" Grid.ColumnSpan="2"
+                                 Text="{Binding Path=FechaRegistro}" IsEnabled="False" HorizontalAlignment="Left"/>
                     
-                    <custom:ByTTextBox  IsEnabled="True" Width="150"  Grid.Column="0" Grid.Row="3" Name="_txtCorrespondencia" VerticalAlignment="Center" MaxLength="255" 
-                                            Grid.ColumnSpan="2" Text="{Binding Path=Correspondencia.Resumen.Descripcion}"></custom:ByTTextBox>
+                        <Label Grid.Column="0" Grid.Row="1" HorizontalAlignment="Right" Margin="0,5,0,0">
+                            <TextBlock Text="{x:Static recurso:Etiquetas.lblTipo}"/>
+                        </Label>
+                        <ComboBox IsEnabled="False" Grid.Column="1" Grid.Row="1" Name="_cbxTipo" Height="20" Grid.ColumnSpan="2" Margin="0,5,0,0"
+                              ItemsSource="{Binding}" DisplayMemberPath="Descripcion" SelectedIndex="0" HorizontalAlignment="Left" Width="165">
+                        </ComboBox>
 
-                </WrapPanel>
+                   
+                        <Label Grid.Row="2" Grid.Column="0" HorizontalAlignment="Right" Grid.ColumnSpan="1">
+                            <TextBlock Text="{x:Static recurso:Etiquetas.lblCorrespondencia}"/>
+                        </Label>
+                        <custom:ByTTextBox SoloNumero="True" IsEnabled="False"  Width="60" Grid.Column="1" Grid.Row="2" Name="_txtIdCorrespondencia" VerticalAlignment="Center" 
+                                            Text="{Binding Path=Correspondencia.Id}" HorizontalAlignment="Left" Margin="0,5,0,0"></custom:ByTTextBox>
 
-                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0" Grid.Row="3" Grid.ColumnSpan="3">
+                        <custom:ByTTextBox  IsEnabled="False" IsReadOnly="True" Width="100"  Grid.Column="2" Grid.Row="2" Name="_txtCorrespondencia" VerticalAlignment="Center" MaxLength="255" 
+                                            Text="{Binding Path=Correspondencia.Resumen.Descripcion}" HorizontalAlignment="Left" Margin="0,5,0,0"></custom:ByTTextBox>
 
-                    <Label>
-                        <TextBlock Text="{x:Static recurso:Etiquetas.lblTimeStamp}"/>
-                    </Label>
-                    <DatePicker HorizontalAlignment="Left" Name="_dpkTimeStamp" Grid.Row="3" Grid.Column="1" Width="150" Focusable="False" BorderBrush="{x:Null}">
-                        <DatePicker.SelectedDate>
-                            <Binding Path="TimeStamp" UpdateSourceTrigger="PropertyChanged"/>
-                        </DatePicker.SelectedDate>
-                    </DatePicker>
+                        <Label Grid.Row="3" Grid.Column="0" HorizontalAlignment="Right" Margin="0,5,0,0">
+                            <TextBlock Text="{x:Static recurso:Etiquetas.lblTimeStamp}"/>
+                        </Label>
+                        <DatePicker HorizontalAlignment="Left" Name="_dpkTimeStamp" Grid.Row="3" Grid.Column="1" Width="160" Focusable="False" 
+                                    BorderBrush="{x:Null}" Grid.ColumnSpan="2" Margin="0,5,0,0">
+                            <DatePicker.SelectedDate>
+                                <Binding Path="TimeStamp" UpdateSourceTrigger="PropertyChanged"/>
+                            </DatePicker.SelectedDate>
+                        </DatePicker>
 
-                </WrapPanel>
-
-                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0" Grid.Row="4" Grid.ColumnSpan="3">
-                    <Label Grid.Row="1" Grid.Column="0">
-                        <TextBlock Text="{x:Static recurso:Etiquetas.lblComentario}"/>
-                    </Label>
-                    <TextBox Name="_txtComentario" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" AcceptsReturn="True" Width="150" MaxLength="30" 
-                             Text="{Binding Path=Comentario}" IsEnabled="False" Height="100" Grid.Row="1" Grid.Column="1"/>
                     
-                </WrapPanel>
-                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0"></WrapPanel>
+                        <Label Grid.Row="4" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center">
+                            <TextBlock Text="{x:Static recurso:Etiquetas.lblComentario}"/>
+                        </Label>
+                    <TextBox Name="_txtComentario" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" AcceptsReturn="True" Width="165" MaxLength="30" Margin="0,5,0,0"
+                             Text="{Binding Path=Comentario}" IsEnabled="False" Height="100" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" HorizontalAlignment="Left"/>
+
+                    
+                    <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0" Grid.Column="2"></WrapPanel>
+                </Grid>
             </StackPanel>
         </GroupBox>
 

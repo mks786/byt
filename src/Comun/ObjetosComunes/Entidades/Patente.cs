@@ -55,6 +55,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         private string _operacion;
         private InfoAdicional _infoAdicional;
         private IList<Inventor> _inventores;
+        private IList<Fecha> _fechas;
         private IList<Anualidad> _anualidades;
         private IList<Operacion> _operaciones;
         private IList<InfoBolPatente> _infoBoles;
@@ -566,6 +567,12 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         {
             get { return _inventores; }
             set { _inventores = value; }
+        }
+
+        public virtual IList<Fecha> Fechas
+        {
+            get { return _fechas; }
+            set { _fechas = value; }
         }
 
         public virtual IList<Anualidad> Anualidades

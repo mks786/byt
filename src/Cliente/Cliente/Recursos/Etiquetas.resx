@@ -2639,6 +2639,12 @@ de Gracia</value>
   <data name="btnNuevaMemoria" xml:space="preserve">
     <value>Nueva Memoria</value>
   </data>
+  <data name="titleAgregarFecha" xml:space="preserve">
+    <value>Agregar Fecha de Patente</value>
+  </data>
+  <data name="titleConsultarFecha" xml:space="preserve">
+    <value>Consultar Fecha de Patente</value>
+  </data>
   <data name="lblRevParaWeb" xml:space="preserve">
     <value>Rev Para Web:</value>
   </data>

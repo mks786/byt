@@ -6,8 +6,8 @@
   <class name="Fecha" table="MYP_PFECHAS">
 
     <composite-id>
-      <key-property name="Id" column="CPATENTE" type="int"/>
       <key-many-to-one name="Tipo" column="TIPO" class="TipoFecha"/>
+      <key-many-to-one name="Patente" column="CPATENTE" class="Patente"/>
     </composite-id>
 
     <property name="FechaRegistro" column="FECHA" type="DateTime"/>

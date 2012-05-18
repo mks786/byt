@@ -33,6 +33,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.FechasPatente
             {
                 this._txtFecha.IsEnabled = value;
                 this._txtCorrespondencia.IsEnabled = value;
+                this._txtIdCorrespondencia.IsEnabled = value;
                 //this._cbxTipo.IsEnabled = value;
                 this._txtComentario.IsEnabled = value;
             }
@@ -64,8 +65,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.FechasPatente
 
         public string Correspondencia
         {
-            get { return this._txtCorrespondencia.Text; }
-            set { this._txtCorrespondencia.Text = value; }
+            get { return this._txtIdCorrespondencia.Text; }
+            set { this._txtIdCorrespondencia.Text = value; }
         }
 
         public string Comentario

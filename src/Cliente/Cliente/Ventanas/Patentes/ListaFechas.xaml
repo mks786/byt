@@ -31,9 +31,9 @@
             </StackPanel>
         </GroupBox>
         <GroupBox Grid.Column="1" Grid.Row="0"  Margin="5">
-            <ListView Name="_lstResultados" ItemsSource="{Binding}" SelectionMode="Single"
-                      MouseDoubleClick="_lstResultados_MouseDoubleClick"
-                      Style="{DynamicResource EstiloListView}">
+            <ListView Name="_lstResultados" ItemsSource="{Binding}" 
+                    MouseDoubleClick="_lstResultados_MouseDoubleClick" SelectionMode="Single"
+                    Style="{DynamicResource EstiloListView}">
                 <ListView.View>
                     <GridView>
                         <GridViewColumn DisplayMemberBinding="{Binding Path=FechaRegistro}" Width="110">

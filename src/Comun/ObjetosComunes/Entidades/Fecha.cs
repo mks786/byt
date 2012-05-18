@@ -8,13 +8,13 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
     {
         #region Atributos
 
-        private int _id;
         private TipoFecha _tipo;
         private string _comentario;
         private string _usuario;
         private Carta _correspondencia;
         private DateTime _fecha;
         private DateTime _timeStamp;
+        private Patente _patente;
         #endregion
 
         #region Constructores
@@ -28,15 +28,15 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         /// Constructor que inicializa el id del Concepto
         /// </summary>
         /// <param name="id">Id del Concepto</param>
-        public Fecha(int id)
+        public Fecha(string id)
         {
-            this._id = id;
+            this.Tipo.Id = id;
         }
 
 
         public override bool Equals(object obj)
         {
-            if (this.Id == ((Fecha)obj).Id)
+            if (this.Id == ((Fecha)obj).Id && (this.Patente.Id == ((Fecha)obj).Patente.Id))
                 return true;
             return false;
         }
@@ -59,10 +59,10 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         /// <summary>
         /// Propiedad que asigna u obtiene el Id de una Fecha
         /// </summary>
-        public virtual int Id
+        public virtual string Id
         {
-            get { return _id; }
-            set { _id = value; }
+            get { return _tipo.Id; }
+            set { _tipo.Id = value; }
         }
 
         /// <summary>
@@ -118,6 +118,15 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         {
             get { return _timeStamp; }
             set { _timeStamp = value; }
+        }
+        
+        /// <summary>
+        /// Propiedad que asigna u obtiene la Patente de un Inventor
+        /// </summary>
+        public virtual Patente Patente
+        {
+            get { return _patente; }
+            set { _patente = value; }
         }
 
         #endregion
