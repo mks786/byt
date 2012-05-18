@@ -45,6 +45,7 @@
     <property name="Traduccion" column="ITRADUCCION" type="char"/>
     <property name="Fichas" column="IFICHAS" type="string"/>
     <property name="Registro" column="IREGISTRO" type="char"/>
+    <property name="Letra" column="XLETRA" type="string"/>
     <property name="Acta" column="IACTA" type="char"/>
     <property name="CodigoExpediente" column="CEXPEDIENTE" type="string"/>
     <property name="Ubicacion" column="XUBICACION" type="string"/>
@@ -56,6 +57,7 @@
     <property name="Observacion" column="XOBSERVACION" type="string"/>
     <property name="Distingue" column="XDISTINGUE" type="string"/>
     <property name="NumeroCondiciones" column="NCONDI" type="int"/>
+    <property name="Numero" column="NUMERO" type="int"/>
     <property name="Rev" column="IREV" type="char"/>
     <property name="EstadoT" column="TESTADO" type="string"/>
     <property name="CasoT" column="TCASO" type="string"/>

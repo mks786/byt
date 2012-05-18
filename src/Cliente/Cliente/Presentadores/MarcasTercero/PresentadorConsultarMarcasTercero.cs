@@ -283,7 +283,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
                 }
 
 
-                this.Navegar(new ConsultarMarcaTercero(marcaTerceroParaNavegar));
+                this.Navegar(new GestionarMarcaTercero(marcaTerceroParaNavegar));
             }
 
             #region trace

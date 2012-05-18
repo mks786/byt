@@ -576,7 +576,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
         /// </summary>
         public void GestionarMarcaATercero()
         {
-            this._ventana.Contenedor.Navigate(new ConsultarMarcaTercero(null));
+            this._ventana.Contenedor.Navigate(new GestionarMarcaTercero(null));
         }
 
         /// <summary>

@@ -2612,6 +2612,15 @@ de Gracia</value>
   <data name="titleConsultarPatente" xml:space="preserve">
     <value>Consultar Patentes</value>
   </data>
+  <data name="lblGuion" xml:space="preserve">
+    <value>-</value>
+  </data>
+  <data name="lblSecuencia" xml:space="preserve">
+    <value>Secuencia:</value>
+  </data>
+  <data name="lblTipoDeCaso" xml:space="preserve">
+    <value>Tipo de Caso:</value>
+  </data>
   <data name="btnAgregarFecha" xml:space="preserve">
     <value>Agregar Fecha</value>
   </data>

@@ -47,6 +47,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         private string _comentarioEsp;
         private string _comentarioIng;
         private int _numeroCondiciones;
+        private int _numero;
         private string _sector;
         private char _tipoRps;
         private string _tipoCnac;
@@ -54,6 +55,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         private char _rev;
         private string _codigoTipoEstado;
         private string _codigoBus;
+        private string _letra;
         private char _ter;
         private Corresponsal _corresponsal;
         private Agente _agente;
@@ -461,6 +463,15 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         }
 
         /// <summary>
+        /// Propiedad que asigna u obtiene la Letra
+        /// </summary>
+        public virtual string Letra
+        {
+            get { return _letra; }
+            set { _letra = value; }
+        }
+
+        /// <summary>
         /// Propiedad que asigna u obtiene el Observacion
         /// </summary>
         public virtual string Observacion
@@ -485,6 +496,15 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         {
             get { return _numeroCondiciones; }
             set { _numeroCondiciones = value; }
+        }
+
+        /// <summary>
+        /// Propiedad que asigna u obtiene el Numero
+        /// </summary>
+        public virtual int Numero
+        {
+            get { return _numero; }
+            set { _numero = value; }
         }
 
         /// <summary>

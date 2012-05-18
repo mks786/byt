@@ -173,7 +173,7 @@
     <Compile Include="Contratos\EscritosMarca\IDeDesisitimiento.cs" />
     <Compile Include="Contratos\EscritosMarca\ICambioDeTramitante.cs" />
     <Compile Include="Contratos\EscritosMarca\ILimitacionDelDistingue.cs" />
-    <Compile Include="Contratos\MarcasTercero\IConsultarMarcaTercero.cs" />
+    <Compile Include="Contratos\MarcasTercero\IGestionarMarcaTercero.cs" />
     <Compile Include="Contratos\MarcasTercero\IConsultarMarcasTercero.cs" />
     <Compile Include="Contratos\Recordatorios\IConsultarRecordatorios.cs" />
     <Compile Include="Contratos\Renovaciones\IConsultarRenovaciones.cs" />
@@ -376,7 +376,7 @@
     <Compile Include="Presentadores\EscritosMarca\PresentadorDeDesistimiento.cs" />
     <Compile Include="Presentadores\EscritosMarca\PresentadorCambioDeTramitante.cs" />
     <Compile Include="Presentadores\EscritosMarca\PresentadorLimitacionDelDistingue.cs" />
-    <Compile Include="Presentadores\MarcasTercero\PresentadorConsultarMarcaTercero.cs" />
+    <Compile Include="Presentadores\MarcasTercero\PresentadorGestionarMarcaTercero.cs" />
     <Compile Include="Presentadores\MarcasTercero\PresentadorConsultarMarcasTercero.cs" />
     <Compile Include="Presentadores\Recordatorios\PresentadorConsultarRecordatorios.cs" />
     <Compile Include="Presentadores\Renovaciones\PresentadorConsultarRenovaciones.cs" />
@@ -736,8 +736,8 @@
     <Compile Include="Ventanas\EscritosMarca\LimitacionDelDistingue.xaml.cs">
       <DependentUpon>LimitacionDelDistingue.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Ventanas\MarcasTercero\ConsultarMarcaTercero.xaml.cs">
-      <DependentUpon>ConsultarMarcaTercero.xaml</DependentUpon>
+    <Compile Include="Ventanas\MarcasTercero\GestionarMarcaTercero.xaml.cs">
+      <DependentUpon>GestionarMarcaTercero.xaml</DependentUpon>
     </Compile>
     <Compile Include="Ventanas\MarcasTercero\ConsultarMarcasTercero.xaml.cs">
       <DependentUpon>ConsultarMarcasTercero.xaml</DependentUpon>
@@ -1412,7 +1412,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Ventanas\MarcasTercero\ConsultarMarcaTercero.xaml">
+    <Page Include="Ventanas\MarcasTercero\GestionarMarcaTercero.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
