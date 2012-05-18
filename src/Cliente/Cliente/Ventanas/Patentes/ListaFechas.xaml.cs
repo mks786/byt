@@ -9,7 +9,7 @@ using Trascend.Bolet.Cliente.Presentadores.Patentes;
 namespace Trascend.Bolet.Cliente.Ventanas.Patentes
 {
     /// <summary>
-    /// Interaction logic for ListaAuditorias.xaml
+    /// Interaction logic for ListaFechas.xaml
     /// </summary>
     public partial class ListaFechas : Page, IListaFechas
     {

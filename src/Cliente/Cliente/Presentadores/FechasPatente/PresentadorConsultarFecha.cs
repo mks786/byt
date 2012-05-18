@@ -38,7 +38,6 @@ namespace Trascend.Bolet.Cliente.Presentadores.FechasPatente
                 this._fecha = (Fecha)fecha;
                 this._ventana.FechaPatente = this._fecha;
                 this._ventana.Tipos = null;
-                this._ventana.Correspondencias = null;
 
                 this._cartaServicios = (ICartaServicios)Activator.GetObject(typeof(ICartaServicios),
                      ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["CartaServicios"]);
@@ -71,15 +70,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.FechasPatente
 
                 this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleConsultarInventor,"");
 
-                IList<Carta> cartas = this._cartaServicios.ConsultarTodos();
-                cartas.Insert(0, new Carta(int.MinValue));
-                this._ventana.Correspondencias = cartas;
-                this._ventana.Correspondencia = this.BuscarCarta((IList<Carta>)this._ventana.Correspondencias, (Carta)this._fecha.Correspondencia);
-
                 IList<TipoFecha> tiposFecha = this._tipoFechaServicios.ConsultarTodos();
                 tiposFecha.Insert(0, new TipoFecha(""));
                 this._ventana.Tipos = tiposFecha;
-                this._ventana.Tipo = this.BuscarTipoFecha((IList<TipoFecha>)this._ventana.Tipos, (TipoFecha)this._fecha.Tipo);
+                this._ventana.Tipo = this.BuscarTipoFecha(tiposFecha, (TipoFecha)this._fecha.Tipo);
 
                 this._ventana.FocoPredeterminado();
 
@@ -125,12 +119,13 @@ namespace Trascend.Bolet.Cliente.Presentadores.FechasPatente
                     Fecha fecha = (Fecha)this._ventana.FechaPatente;
 
                     fecha.Tipo = this._ventana.Tipo == null ? null : (TipoFecha)this._ventana.Tipo;
-                    fecha.Correspondencia = this._ventana.Correspondencia == null ? null : (Carta)this._ventana.Correspondencia;
 
                     exitoso = this._fechaServicios.InsertarOModificar(fecha, UsuarioLogeado.Hash);
-                    
+
+                    Patente patenteAux = new Patente(fecha.Id);
+
                     if (exitoso)
-                        this.Navegar(new ListaFechas(this._fecha));
+                        this.Navegar(new ListaFechas(patenteAux));
                 }
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -175,7 +170,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.FechasPatente
                 if (this._fechaServicios.Eliminar((Fecha)this._ventana.FechaPatente, UsuarioLogeado.Hash))
                 {
                     Patente patente = new Patente(this._fecha.Id);
-                    this.Navegar(new ListaInventores(patente));
+                    this.Navegar(new ListaFechas(patente));
                 }
 
                 #region trace

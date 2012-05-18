@@ -32,8 +32,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.FechasPatente
             set 
             {
                 this._txtFecha.IsEnabled = value;
-                this._cbxCorrespondencia.IsEnabled = value;
-                this._cbxTipo.IsEnabled = value;
+                this._txtCorrespondencia.IsEnabled = value;
+                //this._cbxTipo.IsEnabled = value;
                 this._txtComentario.IsEnabled = value;
             }
         }
@@ -62,16 +62,10 @@ namespace Trascend.Bolet.Cliente.Ventanas.FechasPatente
             set { this._cbxTipo.SelectedItem = value; }
         }
 
-        public object Correspondencias
+        public string Correspondencia
         {
-            get { return this._cbxCorrespondencia.DataContext; }
-            set { this._cbxCorrespondencia.DataContext = value; }
-        }
-
-        public object Correspondencia
-        {
-            get { return this._cbxCorrespondencia.SelectedItem; }
-            set { this._cbxCorrespondencia.SelectedItem = value; }
+            get { return this._txtCorrespondencia.Text; }
+            set { this._txtCorrespondencia.Text = value; }
         }
 
         public string Comentario

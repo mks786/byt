@@ -1059,7 +1059,7 @@ namespace Trascend.Bolet.Cliente.Presentadores
             if (tipoFechaBuscado != null)
                 foreach (TipoFecha tipoFecha in tiposFecha)
                 {
-                    if (tipoFecha.Id.Equals(tipoFechaBuscado))
+                    if (tipoFecha.Id.Equals(tipoFechaBuscado.Id))
                     {
                         retorno = tipoFecha;
                         break;

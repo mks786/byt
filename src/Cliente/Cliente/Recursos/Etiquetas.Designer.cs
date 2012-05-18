@@ -79,6 +79,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Agregar Fecha.
+        /// </summary>
+        public static string btnAgregarFecha {
+            get {
+                return ResourceManager.GetString("btnAgregarFecha", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a +.
         /// </summary>
         public static string btnAgregarSimbolo {
@@ -3656,7 +3665,7 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a TimeStamp.
+        ///   Busca una cadena traducida similar a TimeStamp:.
         /// </summary>
         public static string lblTimeStamp {
             get {

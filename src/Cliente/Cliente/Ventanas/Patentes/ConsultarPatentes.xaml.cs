@@ -119,6 +119,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
             this._btnConsultar.Focus();
             this._presentador.Consultar();
             this._dpkFecha.Text = string.Empty;
+            validarCamposVacios();
         }
 
         private void _lstResultados_MouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -175,6 +176,34 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
         public void LimpiarCampos()
         {
             
+        }
+
+        /// <summary>
+        /// Método que se encarga de posicionar el cursor en los campos del filto
+        /// </summary>
+        private void validarCamposVacios()
+        {
+            bool todosCamposVacios = true;
+            if (!this._txtId.Text.Equals(""))
+            {
+                todosCamposVacios = false;
+                this._txtId.Focus();
+            }
+
+            if (!this._txtNombre.Text.Equals(""))
+            {
+                todosCamposVacios = false;
+                this._txtNombre.Focus();
+            }
+
+            if (!this._dpkFecha.Text.Equals(""))
+            {
+                todosCamposVacios = false;
+                this._dpkFecha.Focus();
+            }
+
+            if (todosCamposVacios)
+                this._txtId.Focus();
         }
 
     }

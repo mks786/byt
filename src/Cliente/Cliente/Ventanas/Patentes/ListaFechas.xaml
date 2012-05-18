@@ -31,22 +31,22 @@
             </StackPanel>
         </GroupBox>
         <GroupBox Grid.Column="1" Grid.Row="0"  Margin="5">
-            <ListView Name="_lstResultados" ItemsSource="{Binding}" 
-                      MouseDoubleClick="_lstResultados_MouseDoubleClick" SelectionMode="Single"
+            <ListView Name="_lstResultados" ItemsSource="{Binding}" SelectionMode="Single"
+                      MouseDoubleClick="_lstResultados_MouseDoubleClick"
                       Style="{DynamicResource EstiloListView}">
                 <ListView.View>
                     <GridView>
                         <GridViewColumn DisplayMemberBinding="{Binding Path=FechaRegistro}" Width="110">
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="FechaRegistro" Content="{x:Static recurso:Etiquetas.lsvFecha}"/>
                         </GridViewColumn>
-                        <GridViewColumn DisplayMemberBinding="{Binding Path=Tipo.Descripcion}" Width="150">
-                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="Tipo" Content="{x:Static recurso:Etiquetas.lsvTipo}"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Tipo.Descripcion}" Width="170">
+                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="Tipo.Descripcion" Content="{x:Static recurso:Etiquetas.lsvTipo}"/>
                         </GridViewColumn>
                         <GridViewColumn DisplayMemberBinding="{Binding Path=Correspondencia.Resumen.Descripcion}" Width="240">
-                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="Descripcion" Content="{x:Static recurso:Etiquetas.lsvCorrespondencia}"/>
+                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="Correspondencia.Resumen.Descripcion" Content="{x:Static recurso:Etiquetas.lsvCorrespondencia}"/>
                         </GridViewColumn>
                         <GridViewColumn DisplayMemberBinding="{Binding Path=Comentario}" Width="240">
-                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="Comentario" Content="{x:Static recurso:Etiquetas.lsvDomicilio}"/>
+                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="Comentario" Content="{x:Static recurso:Etiquetas.lsvComentario}"/>
                         </GridViewColumn>
                     </GridView>
                 </ListView.View>
@@ -57,7 +57,7 @@
         <GroupBox Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="1" BorderBrush="{x:Null}">
             <WrapPanel Grid.Row="2" Grid.ColumnSpan="3" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="5" Orientation="Horizontal">
                 <Button Name="_btnAgregar" VerticalAlignment="Bottom" Height="25" Width="110" Click="_btnAgregar_Click">
-                    <TextBlock Text="{x:Static recurso:Etiquetas.btnNuevoContacto}"/>
+                    <TextBlock Text="{x:Static recurso:Etiquetas.btnAgregarFecha}"/>
                 </Button>
                 <Button Name="_btnRegresar" VerticalAlignment="Bottom" Height="25" Width="110" Click="_btnRegresar_Click">
                     <TextBlock Text="{x:Static recurso:Etiquetas.btnRegresar}"/>

@@ -2,6 +2,7 @@
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:custom="clr-namespace:Trascend.Bolet.ControlesByT;assembly=ControlesByT"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       mc:Ignorable="d" 
       d:DesignHeight="550" d:DesignWidth="800"
@@ -34,13 +35,13 @@
         <GroupBox Grid.Column="1" Grid.Row="1">
             <StackPanel Name="_gridDatos"  VerticalAlignment="Center"  HorizontalAlignment="Center"
                         DataContext="{Binding}">
-                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
+                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0" Grid.Row="0" Grid.ColumnSpan="3">
                     <Label>
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblFecha}"/>
                     </Label>
                     <TextBox Name="_txtFecha" Width="150" MaxLength="30"  Text="{Binding Path=FechaRegistro}" IsEnabled="False"/>
                 </WrapPanel>
-                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
+                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0" Grid.Row="1" Grid.ColumnSpan="3">
                     <Label>
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblTipo}"/>
                     </Label>
@@ -50,18 +51,18 @@
                     </ComboBox>
 
                 </WrapPanel>
-                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
+                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0" Grid.Row="2" Grid.ColumnSpan="3">
+                    
                     <Label>
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblCorrespondencia}"/>
                     </Label>
-
-                    <ComboBox IsEnabled="False" Grid.Column="2" Grid.Row="3" Grid.ColumnSpan="1"  Name="_cbxCorrespondencia" Height="20" 
-                              ItemsSource="{Binding}" DisplayMemberPath="Descripcion" SelectedIndex="0" Width="150">
-                    </ComboBox>
+                    
+                    <custom:ByTTextBox  IsEnabled="True" Width="150"  Grid.Column="0" Grid.Row="3" Name="_txtCorrespondencia" VerticalAlignment="Center" MaxLength="255" 
+                                            Grid.ColumnSpan="2" Text="{Binding Path=Correspondencia.Resumen.Descripcion}"></custom:ByTTextBox>
 
                 </WrapPanel>
 
-                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
+                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0" Grid.Row="3" Grid.ColumnSpan="3">
 
                     <Label>
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblTimeStamp}"/>
@@ -74,7 +75,7 @@
 
                 </WrapPanel>
 
-                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
+                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0" Grid.Row="4" Grid.ColumnSpan="3">
                     <Label Grid.Row="1" Grid.Column="0">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblComentario}"/>
                     </Label>

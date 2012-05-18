@@ -16,7 +16,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.FechasPatente
     {
         private IAgregarFecha _ventana;
 
-        private IPatenteServicios _marcaServicios;
+        private IPatenteServicios _patenteServicios;
         private ICartaServicios _cartaServicios;
         private ITipoFechaServicios _tipoFechaServicios;
         private IFechaServicios _fechaServicios;
@@ -28,15 +28,16 @@ namespace Trascend.Bolet.Cliente.Presentadores.FechasPatente
         /// Constructor predeterminado
         /// </summary>
         /// <param name="ventana">Página que satisface el contrato</param>
-        public PresentadorAgregarFecha(IAgregarFecha ventana, object fecha)
+        public PresentadorAgregarFecha(IAgregarFecha ventana, object patente)
         {
             try
             {
                 this._ventana = ventana;
-                this._fecha = (Fecha)fecha;
-                this._ventana.FechaPatente = new Inventor();
+                this._fecha = new Fecha(((Patente)patente).Id);
+                this._fecha.Id = ((Patente)patente).Id;
+                this._ventana.FechaRegistro = DateTime.Now.ToShortDateString().ToString();
 
-                this._marcaServicios = (IPatenteServicios)Activator.GetObject(typeof(IPatenteServicios),
+                this._patenteServicios = (IPatenteServicios)Activator.GetObject(typeof(IPatenteServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["PatenteServicios"]);
                 this._cartaServicios = (ICartaServicios)Activator.GetObject(typeof(ICartaServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["CartaServicios"]);
@@ -69,16 +70,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.FechasPatente
                 this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleAgregarInventor,
                         "");
                 this._ventana.Tipos = null;
-                this._ventana.Correspondencias = null;
-
-                IList<Carta> cartas = this._cartaServicios.ObtenerCartasFiltro((Carta)this._fecha.Correspondencia);
-                cartas.Insert(0, new Carta(int.MinValue));
-                this._ventana.Correspondencias = cartas;
-
+                
                 IList<TipoFecha> tiposFecha = this._tipoFechaServicios.ConsultarTodos();
                 tiposFecha.Insert(0, new TipoFecha(""));
                 this._ventana.Tipos = tiposFecha;
-
 
                 this._ventana.FocoPredeterminado();
 
@@ -127,18 +122,19 @@ namespace Trascend.Bolet.Cliente.Presentadores.FechasPatente
 
                 bool exitoso = false;
 
-                Fecha fecha = (Fecha)this._ventana.FechaPatente;
-
                 if (true)
                 {
-                    fecha.Tipo = this._ventana.Tipo == null ? null : (TipoFecha)this._ventana.Tipo;
-                    fecha.Correspondencia = this._ventana.Correspondencia == null ? null : (Carta)this._ventana.Correspondencia;
-                    fecha.Id = this._fecha.Id;
 
-                    exitoso = this._fechaServicios.InsertarOModificar(fecha, UsuarioLogeado.Hash);
+                    Fecha fecha = this.CargarFecha();
 
-                    if (exitoso)
-                        this.Navegar(new ListaFechas(this._fecha));
+                    if (this.VerificarCorresponsal())
+                    {
+                        exitoso = this._fechaServicios.InsertarOModificar(fecha, UsuarioLogeado.Hash);
+
+                        Patente patenteAux = new Patente(this._fecha.Id);
+                        if (exitoso)
+                            this.Navegar(new ListaFechas(patenteAux));
+                    }
                 }
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -166,6 +162,52 @@ namespace Trascend.Bolet.Cliente.Presentadores.FechasPatente
                 logger.Error(ex.Message);
                 this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
             }
+        }
+
+        public bool VerificarCorresponsal()
+        {
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+            bool retorno = false;
+
+            Carta carta = this._cartaServicios.ConsultarPorId(new Carta(int.Parse(this._ventana.Correspondencia)));
+
+            retorno = carta != null ? true : false;
+
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+            return retorno;
+        }
+
+        public Fecha CargarFecha()
+        {
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+            Fecha fecha = new Fecha();
+
+            fecha.Tipo = this._ventana.Tipo == null ? null : (TipoFecha)this._ventana.Tipo;
+            fecha.Id = this._fecha.Id;
+            fecha.TimeStamp = this._ventana.TimeStamp != null ? Convert.ToDateTime(this._ventana.TimeStamp) : DateTime.MinValue;
+            fecha.Usuario = UsuarioLogeado.Iniciales;
+            fecha.Comentario = this._ventana.Comentario != null ? this._ventana.Comentario : "";
+            fecha.FechaRegistro = Convert.ToDateTime(this._ventana.FechaRegistro);
+            fecha.Correspondencia = new Carta(int.Parse(this._ventana.Correspondencia));
+
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+            return fecha;
         }
     }
 }

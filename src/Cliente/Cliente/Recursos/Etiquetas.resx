@@ -2592,12 +2592,15 @@ de Gracia</value>
     <value>Lista de Inventores de Patentes</value>
   </data>
   <data name="lblTimeStamp" xml:space="preserve">
-    <value>TimeStamp</value>
+    <value>TimeStamp:</value>
   </data>
   <data name="lsvCorrespondencia" xml:space="preserve">
     <value>Correspondencia</value>
   </data>
   <data name="titleConsultarPatente" xml:space="preserve">
     <value>Consultar Patentes</value>
+  </data>
+  <data name="btnAgregarFecha" xml:space="preserve">
+    <value>Agregar Fecha</value>
   </data>
 </root>

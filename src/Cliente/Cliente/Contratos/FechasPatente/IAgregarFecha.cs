@@ -6,13 +6,13 @@ namespace Trascend.Bolet.Cliente.Contratos.FechasPatente
     {
         object FechaPatente { get; set; }
 
+        string FechaRegistro { get; set; }
+
         object Tipos { get; set; }
 
         object Tipo { get; set; }
 
-        object Correspondencia { get; set; }
-
-        object Correspondencias { get; set; }
+        string Correspondencia { get; set; }
 
         string Comentario { get; set; }
 

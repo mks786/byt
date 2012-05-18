@@ -27,6 +27,12 @@ namespace Trascend.Bolet.Cliente.Ventanas.FechasPatente
             set{this._gridDatos.DataContext = value;}
         }
 
+        public string FechaRegistro
+        {
+            get { return this._txtFecha.Text; }
+            set { this._txtFecha.Text = value; }
+        }
+
         public object Tipos
         {
             get { return this._cbxTipo.DataContext; }
@@ -39,16 +45,10 @@ namespace Trascend.Bolet.Cliente.Ventanas.FechasPatente
             set { this._cbxTipo.SelectedItem = value; }
         }
 
-        public object Correspondencias
+        public string Correspondencia
         {
-            get { return this._cbxCorrespondencia.DataContext; }
-            set { this._cbxCorrespondencia.DataContext = value; }
-        }
-
-        public object Correspondencia
-        {
-            get { return this._cbxCorrespondencia.SelectedItem; }
-            set { this._cbxCorrespondencia.SelectedItem = value; }
+            get { return this._txtCorrespondencia.Text; }
+            set { this._txtCorrespondencia.Text = value; }
         }
 
         public string Comentario
@@ -81,11 +81,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.FechasPatente
 
         #endregion
 
-        public AgregarFecha(object fecha)
+        public AgregarFecha(object patente)
         {
             InitializeComponent();
             this._cargada = false;
-            this._presentador = new PresentadorAgregarFecha(this, fecha);
+            this._presentador = new PresentadorAgregarFecha(this, patente);
             
         }
 
