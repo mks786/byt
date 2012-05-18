@@ -80,7 +80,7 @@ namespace Trascend.Bolet.Cliente.Contratos.EscritosPatente
 
         object CantidadBoletinSelecionado { get; set; }
 
-        string stringCantidadBoletines { set; }
+        string CantidadBoletines { get; set; }
 
         string Fecha { get; }
 

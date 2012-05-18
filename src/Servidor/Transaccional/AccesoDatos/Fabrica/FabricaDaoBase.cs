@@ -482,10 +482,17 @@ namespace Trascend.Bolet.AccesoDatos.Fabrica
         /// <returns>IDaoInfoBolPatente</returns>
         public abstract IDaoInfoBolPatente ObtenerDaoInfoBolPatente();
 
+
+        /// <summary>
+        /// Método que devuelve el DaoMemoria del manejador que se esté utilizando
+        /// </summary>
+        /// <returns>IDaoMemoria</returns>
+
         /// <summary>
         /// Método que devuelve el DaoFecha del manejador que se esté utilizando
         /// </summary>
         /// <returns>IDaoFecha</returns>
         public abstract IDaoFecha ObtenerDaoFecha();
+        public abstract IDaoMemoria ObtenerDaoMemoria();
     }
 }

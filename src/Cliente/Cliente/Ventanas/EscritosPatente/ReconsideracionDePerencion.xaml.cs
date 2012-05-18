@@ -124,8 +124,9 @@ namespace Trascend.Bolet.Cliente.Ventanas.EscritosPatente
             set { this._gridDatosAgente.DataContext = value; }
         }
 
-        public string stringCantidadBoletines
+        public string CantidadBoletines
         {
+            get { return this._txtCantidadBoletines.Text; }
             set { this._txtCantidadBoletines.Text = value; }
         }
 

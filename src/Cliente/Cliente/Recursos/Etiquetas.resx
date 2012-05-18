@@ -2591,6 +2591,18 @@ de Gracia</value>
   <data name="titleListaInventoresPatente" xml:space="preserve">
     <value>Lista de Inventores de Patentes</value>
   </data>
+  <data name="titleAgregarMemoria" xml:space="preserve">
+    <value>Agregar Memoria</value>
+  </data>
+  <data name="titleConsultarMemoria" xml:space="preserve">
+    <value>Consultar Memoria</value>
+  </data>
+  <data name="titleConsultarMemorias" xml:space="preserve">
+    <value>Consultar Memorias</value>
+  </data>
+  <data name="titleListaMemorias" xml:space="preserve">
+    <value>Memorias de una Patente</value>
+  </data>
   <data name="lblTimeStamp" xml:space="preserve">
     <value>TimeStamp:</value>
   </data>
@@ -2602,5 +2614,20 @@ de Gracia</value>
   </data>
   <data name="btnAgregarFecha" xml:space="preserve">
     <value>Agregar Fecha</value>
+  </data>
+  <data name="lblRuta" xml:space="preserve">
+    <value>Ruta:</value>
+  </data>
+  <data name="lsvRuta" xml:space="preserve">
+    <value>Ruta</value>
+  </data>
+  <data name="cbiCategoriaFormatoDoc" xml:space="preserve">
+    <value>FORMATODOCMEMORIA</value>
+  </data>
+  <data name="cbiCategoriaTipoMensaje" xml:space="preserve">
+    <value>TIPOMENSAJEMEMORIA</value>
+  </data>
+  <data name="btnNuevaMemoria" xml:space="preserve">
+    <value>Nueva Memoria</value>
   </data>
 </root>

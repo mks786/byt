@@ -759,4 +759,19 @@
   <data name="AnualidadModificada" xml:space="preserve">
     <value>Anualidad Modificada Con Exito</value>
   </data>
+  <data name="MemoriaEliminado" xml:space="preserve">
+    <value>Memoria eliminada con éxito</value>
+  </data>
+  <data name="MemoriaInsertado" xml:space="preserve">
+    <value>Memoria insertada con éxito</value>
+  </data>
+  <data name="MemoriaModificado" xml:space="preserve">
+    <value>Memoria modificada con éxito</value>
+  </data>
+  <data name="ErrorMemoriaRepetida" xml:space="preserve">
+    <value>Disculpe, el Id de la Memoria está repetido</value>
+  </data>
+  <data name="ErrorArchivoMemoriaNoEncontrado" xml:space="preserve">
+    <value>Disculpe el archivo de la memoria no fue encontrado</value>
+  </data>
 </root>

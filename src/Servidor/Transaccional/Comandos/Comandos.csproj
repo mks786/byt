@@ -123,6 +123,7 @@
     <Compile Include="Comandos\ComandosMarca\ComandoConsultarMarcasFiltro.cs" />
     <Compile Include="Comandos\ComandosMarca\ComandoConsultarMarcaPorId.cs" />
     <Compile Include="Comandos\ComandosMarca\ComandoConsultarMarcasPorFechaRenovacion.cs" />
+    <Compile Include="Comandos\ComandosMemoria\ComandoVerificarExistenciaMemoria.cs" />
     <Compile Include="Comandos\ComandosOperacion\ComandoConsultarOperacionesFiltro.cs" />
     <Compile Include="Comandos\ComandosOperacion\ComandoConsultarOperacionesPorPatente.cs" />
     <Compile Include="Comandos\ComandosPatente\ComandoConsultarFechasPatente.cs" />
@@ -355,12 +356,16 @@
     <Compile Include="Comandos\ComandosInfoBolPatente\ComandoEliminarInfoBol.cs" />
     <Compile Include="Comandos\ComandosInfoBolPatente\ComandoInsertarOModificarInfoBol.cs" />
     <Compile Include="Comandos\ComandosInfoBolPatente\ComandoVerificarExistenciaInfoBol.cs" />
+    <Compile Include="Comandos\ComandosMemoria\ComandoConsultarMemoriasPorPatente.cs" />
+    <Compile Include="Comandos\ComandosMemoria\ComandoEliminarMemoria.cs" />
+    <Compile Include="Comandos\ComandosMemoria\ComandoInsertarOModificarMemoria.cs" />
     <Compile Include="Comandos\ComandosFecha\ComandoEliminarInventor.cs" />
     <Compile Include="Comandos\ComandosFecha\ComandoInsertarOModificarFecha.cs" />
     <Compile Include="Comandos\Receptor.cs" />
     <Compile Include="Comandos\ComandosUsuario\ComandoConsultarTodosUsuarios.cs" />
     <Compile Include="Comandos\ComandosUsuario\ComandoConsultarUsuarioPorID.cs" />
     <Compile Include="Comandos\ComandosUsuario\ComandoInsertarOModificarUsuario.cs" />
+    <Compile Include="Fabrica\FabricaComandosMemoria.cs" />
     <Compile Include="Fabrica\FabricaComandosFecha.cs" />
     <Compile Include="Fabrica\FabricaComandosInfoBolPatente.cs" />
     <Compile Include="Fabrica\FabricaComandosAnualidad.cs" />

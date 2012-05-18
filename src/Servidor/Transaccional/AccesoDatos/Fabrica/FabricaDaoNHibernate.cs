@@ -720,5 +720,14 @@ namespace Trascend.Bolet.AccesoDatos.Fabrica
         {
             return new DaoAnualidadNHibernate();
         }
+
+        /// <summary>
+        /// Método que devuelve el DaoMemoria
+        /// </summary>
+        /// <returns>IDaoMemoria</returns>
+        public override IDaoMemoria ObtenerDaoMemoria()
+        {
+            return new DaoMemoriaNHibernate();
+        }
     }
 }

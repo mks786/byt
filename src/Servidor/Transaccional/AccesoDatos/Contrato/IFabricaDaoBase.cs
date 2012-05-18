@@ -133,6 +133,8 @@ namespace Trascend.Bolet.AccesoDatos.Contrato
 
          IDaoInventor ObtenerDaoInventor();
 
+         IDaoMemoria ObtenerDaoMemoria();
+
          IDaoFecha ObtenerDaoFecha();
     }
 }

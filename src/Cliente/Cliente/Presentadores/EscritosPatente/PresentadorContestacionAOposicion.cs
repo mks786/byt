@@ -21,7 +21,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosPatente
         private IContestacionAOposicion _ventana;
 
         private IAgenteServicios _agenteServicios;
-        private IPatenteServicios _marcaServicios;
+        private IPatenteServicios _patenteservicios;
         private IBoletinServicios _boletinServicios;
 
         private static PaginaPrincipal _paginaPrincipal = PaginaPrincipal.ObtenerInstancia;
@@ -31,8 +31,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosPatente
         Patente primerPatente = new Patente(int.MinValue);
 
         private IList<Agente> _Agentes;
-        private IList<Patente> _marcas;
-        private IList<Patente> _marcasAgregadas = new List<Patente>();
+        private IList<Patente> _patentes;
+        private IList<Patente> _patentesAgregadas = new List<Patente>();
 
         /// <summary>
         /// Constructor predeterminado
@@ -46,7 +46,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosPatente
                 //this._ventana.Escrito = new Pais();
                 this._agenteServicios = (IAgenteServicios)Activator.GetObject(typeof(IAgenteServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["AgenteServicios"]);
-                this._marcaServicios = (IPatenteServicios)Activator.GetObject(typeof(IPatenteServicios),
+                this._patenteservicios = (IPatenteServicios)Activator.GetObject(typeof(IPatenteServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["PatenteServicios"]);
                 this._boletinServicios = (IBoletinServicios)Activator.GetObject(typeof(IBoletinServicios),
                      ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["BoletinServicios"]);
@@ -115,7 +115,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosPatente
 
                 if (ValidarEscrito())
                 {
-                    string parametroPatentes = ArmarStringParametroPatentes(this._marcasAgregadas);
+                    string parametroPatentes = ArmarStringParametroPatentes(this._patentesAgregadas);
                     this.EjecutarArchivoBAT(ConfigurationManager.AppSettings["RutaBatEscrito"].ToString()
                         + "\\" + ConfigurationManager.AppSettings["EscritoContestacionAOposicion"].ToString(),
                         ((Agente)this._ventana.AgenteFiltrado).Id + " " + ((Resolucion)this._ventana.Resolucion).Id + " " +
@@ -165,9 +165,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosPatente
 
             if ((this._ventana.AgenteFiltrado != null) && null != ((Agente)this._ventana.AgenteFiltrado).Id)
             {
-                if (this._marcasAgregadas.Count != 0)
+                if (this._patentesAgregadas.Count != 0)
                 {
-                    if (this.ValidarAgenteApoderadoDePatentes((Agente)this._ventana.AgenteFiltrado, this._marcasAgregadas))
+                    if (this.ValidarAgenteApoderadoDePatentes((Agente)this._ventana.AgenteFiltrado, this._patentesAgregadas))
                     {
                         retorno = true;
                     }
@@ -456,7 +456,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosPatente
                     if (((Patente)this._ventana.PatenteFiltrado).Id != int.MinValue)
                     {
                         this._ventana.Patente =
-                            this._marcaServicios.ConsultarPatenteConTodo((Patente)this._ventana.PatenteFiltrado);                        
+                            this._patenteservicios.ConsultarPatenteConTodo((Patente)this._ventana.PatenteFiltrado);                        
                     }
                     this._ventana.NombrePatente = ((Patente)this._ventana.PatenteFiltrado).Descripcion;
                     retorno = true;
@@ -506,11 +506,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosPatente
                 logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
 
-            this._marcas = new List<Patente>();
+            this._patentes = new List<Patente>();
 
-            this._marcas.Add(this.primerPatente);
+            this._patentes.Add(this.primerPatente);
             this._ventana.Patente = this.primerPatente;
-            this._ventana.PatentesFiltrados = this._marcas;
+            this._ventana.PatentesFiltrados = this._patentes;
             this._ventana.PatenteFiltrado = this.primerPatente;
 
             #region trace
@@ -542,9 +542,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosPatente
                     PatenteConsulta.Descripcion = !this._ventana.NombrePatenteFiltrar.Equals("") ?
                         this._ventana.NombrePatenteFiltrar.ToUpper() : string.Empty;
 
-                    this._marcas = this._marcaServicios.ObtenerPatentesFiltro(PatenteConsulta);
-                    this._marcas.Insert(0, this.primerPatente);
-                    this._ventana.PatentesFiltrados = this._marcas;
+                    this._patentes = this._patenteservicios.ObtenerPatentesFiltro(PatenteConsulta);
+                    this._patentes.Insert(0, this.primerPatente);
+                    this._ventana.PatentesFiltrados = this._patentes;
                 }
 
                 #region trace
@@ -593,15 +593,15 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosPatente
 
                 if ((this._ventana.PatenteFiltrado != null) && (((Patente)this._ventana.PatenteFiltrado).Id != int.MinValue))
                 {
-                    this._marcasAgregadas.Insert(0, (Patente)this._ventana.PatenteFiltrado);
-                    this._marcas.Remove((Patente)this._ventana.PatenteFiltrado);
+                    this._patentesAgregadas.Insert(0, (Patente)this._ventana.PatenteFiltrado);
+                    this._patentes.Remove((Patente)this._ventana.PatenteFiltrado);
                 }
 
                 this._ventana.PatentesAgregadas = null;
-                this._ventana.PatentesAgregadas = this._marcasAgregadas;
+                this._ventana.PatentesAgregadas = this._patentesAgregadas;
 
                 this._ventana.PatentesFiltrados = null;
-                this._ventana.PatentesFiltrados = this._marcas;
+                this._ventana.PatentesFiltrados = this._patentes;
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -650,15 +650,15 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosPatente
 
                 if (this._ventana.PatenteAgregada != null)
                 {
-                    this._marcasAgregadas.Remove((Patente)this._ventana.PatenteAgregada);
-                    this._marcas.Insert(0, (Patente)this._ventana.PatenteAgregada);
+                    this._patentesAgregadas.Remove((Patente)this._ventana.PatenteAgregada);
+                    this._patentes.Insert(0, (Patente)this._ventana.PatenteAgregada);
                 }
 
                 this._ventana.PatentesAgregadas = null;
-                this._ventana.PatentesAgregadas = this._marcasAgregadas;
+                this._ventana.PatentesAgregadas = this._patentesAgregadas;
 
                 this._ventana.PatentesFiltrados = null;
-                this._ventana.PatentesFiltrados = this._marcas;
+                this._ventana.PatentesFiltrados = this._patentes;
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))

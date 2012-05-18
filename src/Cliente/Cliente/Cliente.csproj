@@ -112,8 +112,11 @@
     <Compile Include="Contratos\CartasOuts\IConsultarCartasOuts.cs" />
     <Compile Include="Contratos\AbandonosPatente\IConsultarAbandonosPatente.cs" />
     <Compile Include="Contratos\AbandonosPatente\IGestionarAbandonoPatente.cs" />
+    <Compile Include="Contratos\Memorias\IAgregarMemoria.cs" />
+    <Compile Include="Contratos\Memorias\IConsultarMemoria.cs" />
     <Compile Include="Contratos\FechasPatente\IAgregarFecha.cs" />
     <Compile Include="Contratos\FechasPatente\IConsultarFecha.cs" />
+    <Compile Include="Contratos\Memorias\IConsultarMemorias.cs" />
     <Compile Include="Contratos\EscritosPatente\IContestacionAOposicion.cs" />
     <Compile Include="Contratos\EscritosPatente\IOficioDeJuramento.cs" />
     <Compile Include="Contratos\EscritosPatente\IConsignacionDePrioridadExtranjera.cs" />
@@ -136,6 +139,7 @@
     <Compile Include="Contratos\EscritosPatente\IExamenDePatentabilidad.cs" />
     <Compile Include="Contratos\Inventores\IAgregarInventor.cs" />
     <Compile Include="Contratos\Inventores\IConsultarInventor.cs" />
+    <Compile Include="Contratos\Memorias\IListaMemorias.cs" />
     <Compile Include="Contratos\Patentes\IListaFechas.cs" />
     <Compile Include="Contratos\Patentes\IGestionarInfoAdicional.cs" />
     <Compile Include="Contratos\Patentes\IGestionarInfoBol.cs" />
@@ -335,6 +339,9 @@
     <Compile Include="Presentadores\EscritosPatente\PresentadorExamenDePatentabilidad.cs" />
     <Compile Include="Presentadores\Inventores\PresentadorAgregarInventor.cs" />
     <Compile Include="Presentadores\Inventores\PresentadorConsultarInventor.cs" />
+    <Compile Include="Presentadores\Memorias\PresentadorAgregarMemoria.cs" />
+    <Compile Include="Presentadores\Memorias\PresentadorConsultarMemoria.cs" />
+    <Compile Include="Presentadores\Memorias\PresentadorConsultarMemorias.cs" />
     <Compile Include="Presentadores\Patentes\PresentadorListaFechas.cs" />
     <Compile Include="Presentadores\Patentes\PresentadorGestionarInfoAdicional.cs" />
     <Compile Include="Presentadores\Patentes\PresentadorGestionarInfoBol.cs" />
@@ -342,6 +349,7 @@
     <Compile Include="Presentadores\Patentes\PresentadorConsultarPatentes.cs" />
     <Compile Include="Presentadores\Patentes\PresentadorListaInfoBoles.cs" />
     <Compile Include="Presentadores\Patentes\PresentadorListaInventores.cs" />
+    <Compile Include="Presentadores\Patentes\PresentadorListaMemorias.cs" />
     <Compile Include="Presentadores\Patentes\PresentadorListaOperaciones.cs" />
     <Compile Include="Presentadores\TraspasosPatentes\CambiosDeDomicilioPatentes\PresentadorConsultarCambiosDeDomicilioPatentes.cs" />
     <Compile Include="Presentadores\TraspasosPatentes\CambiosDeDomicilioPatentes\PresentadorGestionarCambioDeDomicilioPatentes.cs" />
@@ -578,11 +586,20 @@
     <Compile Include="Ventanas\AbandonosPatente\GestionarAbandonoPatente.xaml.cs">
       <DependentUpon>GestionarAbandonoPatente.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Ventanas\Memorias\AgregarMemoria.xaml.cs">
+      <DependentUpon>AgregarMemoria.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Memorias\ConsultarMemoria.xaml.cs">
+      <DependentUpon>ConsultarMemoria.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Ventanas\FechasPatente\AgregarFecha.xaml.cs">
       <DependentUpon>AgregarFecha.xaml</DependentUpon>
     </Compile>
     <Compile Include="Ventanas\FechasPatente\ConsultarFecha.xaml.cs">
       <DependentUpon>ConsultarFecha.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Patentes\ListaMemorias.xaml.cs">
+      <DependentUpon>ListaMemorias.xaml</DependentUpon>
     </Compile>
     <Compile Include="Ventanas\EscritosPatente\ContestacionAOposicion.xaml.cs">
       <DependentUpon>ContestacionAOposicion.xaml</DependentUpon>
@@ -1195,11 +1212,23 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Ventanas\Memorias\AgregarMemoria.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\Memorias\ConsultarMemoria.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Ventanas\FechasPatente\AgregarFecha.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Ventanas\FechasPatente\ConsultarFecha.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\Patentes\ListaMemorias.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

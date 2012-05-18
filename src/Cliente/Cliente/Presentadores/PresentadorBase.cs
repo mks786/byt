@@ -44,7 +44,7 @@ namespace Trascend.Bolet.Cliente.Presentadores
                 ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["InteresadoServicios"]);
             this._poderServicios = (IPoderServicios)Activator.GetObject(typeof(IPoderServicios),
                 ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["PoderServicios"]);
-            
+
         }
 
         /// <summary>
@@ -293,6 +293,28 @@ namespace Trascend.Bolet.Cliente.Presentadores
         /// <param name="sexo">Inicial del sexo (género)</param>
         /// <returns>El sexo (género) correspondiente</returns>
         public ListaDatosValores BuscarSexo(IList<ListaDatosValores> listasDatosValores, ListaDatosValores listaDatosValorBuscado)
+        {
+            ListaDatosValores retorno = null;
+
+            if (listaDatosValorBuscado != null)
+                foreach (ListaDatosValores listaDatosValores in listasDatosValores)
+                {
+                    if (listaDatosValores.Valor == listaDatosValorBuscado.Valor)
+                    {
+                        retorno = listaDatosValores;
+                        break;
+                    }
+                }
+
+            return retorno;
+        }
+
+        /// <summary>
+        /// Busca la el formato documento correspondiente a la inicial que se le esté pasando
+        /// </summary>
+        /// <param name="formatoDoc">Formato</param>
+        /// <returns>Formato encontrado</returns>
+        public ListaDatosValores BuscarFormatoDoc(IList<ListaDatosValores> listasDatosValores, ListaDatosValores listaDatosValorBuscado)
         {
             ListaDatosValores retorno = null;
 
@@ -1271,7 +1293,7 @@ namespace Trascend.Bolet.Cliente.Presentadores
         /// <summary>
         /// Método que verifica el formato
         /// </summary>
-        public bool verificarFormato(string formato, string tracking)
+        public bool VerificarFormato(string formato, string tracking)
         {
             bool trackingCorrecto = true;
             if (formato.Length == tracking.Length)
@@ -1720,9 +1742,9 @@ namespace Trascend.Bolet.Cliente.Presentadores
 
                 foreach (Interesado interesado in interesados)
                 {
-                   
-                    
-                    bool validador = false;                    
+
+
+                    bool validador = false;
                     Interesado interesadosAux = this._interesadoServicios.ConsultarInteresadoConTodo(interesado);
 
                     interesadosAux.Poderes = this._poderServicios.ConsultarPoderesPorInteresado(interesado);
@@ -1742,7 +1764,7 @@ namespace Trascend.Bolet.Cliente.Presentadores
                                 }
                                 retorno = retorno && validador;
                             }
-                        }                                        
+                        }
                     else
                         return false;
                 }
@@ -1786,22 +1808,48 @@ namespace Trascend.Bolet.Cliente.Presentadores
         /// <param name="comando">Comando que se quiere ejecutar en consola</param>
         public void EjecutarComandoDeConsola(string comando, string accion)
         {
-            System.Diagnostics.ProcessStartInfo procStartInfo = new System.Diagnostics.ProcessStartInfo("cmd", comando);
+            try
+            {
+                System.Diagnostics.ProcessStartInfo procStartInfo = new System.Diagnostics.ProcessStartInfo("cmd", comando);
 
-            procStartInfo.RedirectStandardOutput = true;
-            procStartInfo.UseShellExecute = false;
-            // Do not create the black window.
-            procStartInfo.CreateNoWindow = true;
-            // Now we create a process, assign its ProcessStartInfo and start it
-            System.Diagnostics.Process proc = new System.Diagnostics.Process();
-            proc.StartInfo = procStartInfo;
-            proc.Start();
-            // Get the output into a string
-            string result = proc.StandardOutput.ReadToEnd();
+                procStartInfo.RedirectStandardOutput = true;
+                procStartInfo.UseShellExecute = false;
+                // Do not create the black window.
+                procStartInfo.CreateNoWindow = true;
+                // Now we create a process, assign its ProcessStartInfo and start it
+                System.Diagnostics.Process proc = new System.Diagnostics.Process();
+                proc.StartInfo = procStartInfo;
+                proc.Start();
+                // Get the output into a string
+                string result = proc.StandardOutput.ReadToEnd();
 
-            #region Debug
-            logger.Debug("Resultado del comando de consola '" + accion + "': " + result);
-            #endregion
+                #region Debug
+                logger.Debug("Resultado del comando de consola '" + accion + "': " + result);
+                #endregion
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Comando que abre a traves de la consola un archivo
+        /// </summary>
+        /// <param name="rutaArchivo">ruta del archivo</param>
+        /// <param name="accion">acción a realizar para el Log</param>
+        public void AbrirArchivoPorConsola(string rutaArchivo, string accion)
+        {
+            try
+            {
+                Process.Start(rutaArchivo);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
 
 
@@ -1828,5 +1876,37 @@ namespace Trascend.Bolet.Cliente.Presentadores
 
             return retorno;
         }
+
+        /// <summary>
+        /// Método que devuelve la extension de un archivo
+        /// </summary>
+        /// <param name="extensionDeArchivo">terminacion de archivo</param>
+        /// <returns>Extension de archivo</returns>
+        public string ExtensionDelArchivo(string extensionDeArchivo)
+        {
+            string retorno = "";
+
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+            if (extensionDeArchivo.Equals(".txt"))
+                    retorno = "text/plain";
+            else if (extensionDeArchivo.Equals(".doc"))
+                    retorno = "application/ms-word";
+            else if (extensionDeArchivo.Equals(".zip"))
+                retorno = "application/zip";
+            else if (extensionDeArchivo.Equals(".pdf"))
+                retorno = "application/pdf";
+
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+            return retorno;
+        }
+
     }
 }

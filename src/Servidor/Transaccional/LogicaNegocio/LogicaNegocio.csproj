@@ -116,6 +116,7 @@
     <Compile Include="Controladores\ControladorInventor.cs" />
     <Compile Include="Controladores\ControladorAnualidad.cs" />
     <Compile Include="Controladores\ControladorInfoBolPatente.cs" />
+    <Compile Include="Controladores\ControladorMemoria.cs" />
     <Compile Include="Controladores\ControladorFecha.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

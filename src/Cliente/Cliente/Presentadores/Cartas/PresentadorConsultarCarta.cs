@@ -427,13 +427,13 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
                     if (null != (((Medio)this._ventana.Medio).Formato) &&
                        (!String.IsNullOrEmpty(((Carta)this._ventana.Carta).Tracking)))
 
-                        tracking = this.verificarFormato(((Medio)this._ventana.Medio).Formato, ((Carta)this._ventana.Carta).Tracking);
+                        tracking = this.VerificarFormato(((Medio)this._ventana.Medio).Formato, ((Carta)this._ventana.Carta).Tracking);
 
                     if (null != (((Medio)this._ventana.MedioTrackingConfirmacion)) &&
                        (null != (((Medio)this._ventana.MedioTrackingConfirmacion).Formato)) &&
                        (!String.IsNullOrEmpty(((Carta)this._ventana.Carta).AnexoTracking)))
 
-                        tracking = this.verificarFormato(((Medio)this._ventana.MedioTrackingConfirmacion).Formato, ((Carta)this._ventana.Carta).AnexoTracking);
+                        tracking = this.VerificarFormato(((Medio)this._ventana.MedioTrackingConfirmacion).Formato, ((Carta)this._ventana.Carta).AnexoTracking);
 
                     if (tracking)
                     {

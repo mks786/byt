@@ -13,6 +13,7 @@ using Trascend.Bolet.Cliente.Ayuda;
 using Trascend.Bolet.Cliente.Contratos.Patentes;
 using Trascend.Bolet.Cliente.Ventanas.Principales;
 using Trascend.Bolet.Cliente.Ventanas.Patentes;
+using Trascend.Bolet.Cliente.Ventanas.Memorias;
 using Trascend.Bolet.ObjetosComunes.ContratosServicios;
 using Trascend.Bolet.ObjetosComunes.Entidades;
 using Trascend.Bolet.Cliente.Ventanas.Auditorias;
@@ -47,6 +48,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
         private IStatusWebServicios _statusWebServicios;
         private IBoletinServicios _boletinServicios;
         private IInventorServicios _inventorServicios;
+        private IMemoriaServicios _memoriaServicios;
 
         private IList<Asociado> _asociados;
         private IList<Interesado> _interesados;
@@ -88,10 +90,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                     this._ventana.ActivarControlesAlAgregar();
                 }
 
-                
+
                 this._ventana.Patente = patente;
 
-                this._patenteServicios = (IPatenteServicios)Activator.GetObject(typeof(IMarcaServicios),
+                this._patenteServicios = (IPatenteServicios)Activator.GetObject(typeof(IPatenteServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["PatenteServicios"]);
                 this._asociadoServicios = (IAsociadoServicios)Activator.GetObject(typeof(IAsociadoServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["AsociadoServicios"]);
@@ -129,6 +131,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                 ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["InventorServicios"]);
                 this._operacionServicios = (IOperacionServicios)Activator.GetObject(typeof(IOperacionServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["OperacionServicios"]);
+                this._memoriaServicios = (IMemoriaServicios)Activator.GetObject(typeof(IMemoriaServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["MemoriaServicios"]);
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -382,7 +386,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
             presentacionPatente.Insert(0, primeraPresentacionPatente);
             this._ventana.PresentacionesPatenteSolicitud = presentacionPatente;
             this._ventana.PresentacionesPatenteDatos = presentacionPatente;
-            
+
         }
 
         private void CargarTipos()
@@ -696,6 +700,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
         /// </summary>
         public void VerFechas()
         {
+
             this.Navegar(new ListaFechas(CargarPatenteDeLaPantalla()));
         }
 
@@ -732,7 +737,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
         /// </summary>
         public void VerMemoria()
         {
-            
+            //this.Navegar(new ConsultarMemoria(this._memoriaServicios.ConsultarMemoriasPorPatente((Patente)this._ventana.Patente)));
+            this.Navegar(new ListaMemorias(this._ventana.Patente));
         }
 
         /// <summary>
@@ -955,7 +961,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
             else
             {
                 if (asociadosFiltrados.ToList<Asociado>().Count != 0)
-                   this._ventana.AsociadosDatos = asociadosFiltrados.ToList<Asociado>();
+                    this._ventana.AsociadosDatos = asociadosFiltrados.ToList<Asociado>();
                 else
                     this._ventana.AsociadosDatos = this._asociados;
             }
@@ -987,7 +993,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
             this._ventana.AsociadosDatos = asociados;
             this._ventana.AsociadoSolicitud = this.BuscarAsociado(asociados, patente.Asociado);
             this._ventana.AsociadoDatos = this.BuscarAsociado(asociados, patente.Asociado);
-            this._ventana.NombreAsociadoDatos =  null != this._ventana.Patente ? ((Patente)this._ventana.Patente).Asociado.Nombre : "";
+            this._ventana.NombreAsociadoDatos = null != this._ventana.Patente ? ((Patente)this._ventana.Patente).Asociado.Nombre : "";
             this._ventana.NombreAsociadoSolicitud = null != this._ventana.Patente ? ((Patente)this._ventana.Patente).Asociado.Nombre : "";
             this._asociados = asociados;
             this._ventana.AsociadosEstanCargados = true;
@@ -1429,7 +1435,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                 this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
             }
         }
-        
+
 
         /// <summary>
         ///Método que realiza el llamado al explorador para abrir el cartel de la patente

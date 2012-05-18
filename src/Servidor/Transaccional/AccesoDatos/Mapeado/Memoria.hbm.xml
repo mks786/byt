@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+                   assembly="Trascend.Bolet.ObjetosComunes"
+                   namespace="Trascend.Bolet.ObjetosComunes.Entidades">
+
+  <class name="Memoria" table="MYP_MEMORIA_MOD">
+
+
+    <composite-id>
+      <key-property name="Id" column="CODIGO" type="int"/>
+      <key-property name="Fecha" column="FECHA_M" type="DateTime"/>
+      <key-many-to-one name="Patente" column="CPATENTE" class="Patente"/>
+    </composite-id>
+    
+    <property name="Ruta" column="XRUTA" type="string"/>
+    <property name="TipoDocumento" column="TIPODOC" type="char"/>
+    <property name="TipoMensaje" column="CTIPOMEN" type="int"/>
+  </class>
+
+</hibernate-mapping>
+
+

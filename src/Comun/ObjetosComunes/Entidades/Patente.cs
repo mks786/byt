@@ -58,6 +58,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         private IList<Anualidad> _anualidades;
         private IList<Operacion> _operaciones;
         private IList<InfoBolPatente> _infoBoles;
+        private IList<Memoria> _memorias;
 
         #endregion
 
@@ -589,6 +590,15 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         {
             get { return _infoBoles; }
             set { _infoBoles = value; }
+        }
+
+        /// <summary>
+        /// Propiedad que asigna u obtiene la memoria
+        /// </summary>
+        public virtual IList<Memoria> Memoria
+        {
+            get { return _memorias; }
+            set { _memorias = value; }
         }
 
         #endregion
