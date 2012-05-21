@@ -29,6 +29,8 @@ namespace Trascend.Bolet.Cliente.Contratos.Abandonos
 
         string NombreInteresado { set; }
 
+        string IdInteresado { set; }
+
         string IdInteresadoFiltrar { get; }
 
         string NombreInteresadoFiltrar { get; }
@@ -76,5 +78,11 @@ namespace Trascend.Bolet.Cliente.Contratos.Abandonos
         void Mensaje(string mensaje, int opcion);
       
         void ActivarControlesAlAgregar();
+
+        void PintarMarca();
+
+        void PintarAsociado();
+
+        void PintarInteresado();
     }
 }

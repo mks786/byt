@@ -1069,7 +1069,7 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Select f from Fecha f left outer join fetch f.Tipo as tipoFecha left outer join fetch f.Correspondencia as carta left outer join fetch carta.Resumen as resumen where f.Patente.Id = {0}.
+        ///   Busca una cadena traducida similar a Select f from Fecha f left outer join fetch f.Tipo as tipoFecha left outer join fetch f.Correspondencia as carta left outer join fetch carta.Resumen as resumen left outer join fetch f.Patente as patente where f.Patente.Id = {0}.
         /// </summary>
         public static string ObtenerFechaPatente {
             get {

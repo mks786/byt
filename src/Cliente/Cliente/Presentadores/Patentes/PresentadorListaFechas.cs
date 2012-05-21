@@ -75,9 +75,17 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                 this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleListaFechasPatente,
                     Recursos.Ids.FechasPatente);
 
+                this._patente = this._patenteServicios.ConsultarPatenteConTodo(_patente);
                 IList<Fecha> fechas = this._patenteServicios.ConsultarFechasPorPatente((Patente)this._patente);
                 
+                foreach (Fecha fecha in fechas)
+                {
+                    fecha.Patente = this._patente;
+                }
+
+                this._ventana.Fechas = fechas;
                 this._patente.Fechas = fechas;
+
                 this._ventana.Fechas = this._patente.Fechas;
 
                 this._ventana.TotalHits = ((IList<Fecha>)this._ventana.Fechas).Count.ToString();

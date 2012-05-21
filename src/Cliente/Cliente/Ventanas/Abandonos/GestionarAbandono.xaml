@@ -42,7 +42,7 @@
                     <Label>
                         <TextBlock Name="_lblIdOperacion" Text="{x:Static recurso:Etiquetas.lblId}"/>
                     </Label>
-                    <TextBox Name="_txtIdOperacion" Width="150" MaxLength="40"  Text="{Binding Path=Id}" IsEnabled="False" IsReadOnly="True"/>
+                    <TextBox Name="_txtIdOperacion" Width="150" MaxLength="40"  Text="{Binding Path=Id}" IsEnabled="False" IsReadOnly="True" Margin="0,0,5,0"/>
 
                     <TextBox Name="_txtAplicada" Width="150" MaxLength="40"  Text="{Binding Path=Aplicada}" IsEnabled="False" IsReadOnly="True"/>
                     <Label>
@@ -78,9 +78,14 @@
                         <Label Grid.Column="0" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Center">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblMarca}"/>
                         </Label>
-                        <TextBox Name="_txtNombreMarca" MaxLength="40"  Text="" IsEnabled="False" IsReadOnly="True"
-                             VerticalContentAlignment="Center" Margin="0,0,0,0" Grid.ColumnSpan="6" Grid.Column="1"                               
-                             Grid.Row="0" MouseDoubleClick="_txtNombreMarca_MouseDoubleClick" BorderBrush="LightGreen"/>
+
+                        <TextBox Name="_txtIdMarca" MaxLength="40"  Text="{Binding Path=Id}" IsEnabled="False" IsReadOnly="True"
+                             VerticalContentAlignment="Center" MouseDoubleClick="_txtNombreMarca_MouseDoubleClick" Margin="0,0,5,0" Grid.ColumnSpan="1" Grid.Column="1"
+                             Grid.Row="0"/>
+
+                        <TextBox Name="_txtNombreMarca" MaxLength="40"  Text="{Binding Path=Descripcion}" IsEnabled="False" IsReadOnly="True"
+                             VerticalContentAlignment="Center" MouseDoubleClick="_txtNombreMarca_MouseDoubleClick" Margin="0,0,0,0" Grid.ColumnSpan="5" Grid.Column="2"                               
+                             Grid.Row="0"/>
                      
                         <!--Datos de carga de Marca-->
                         <Label Name="_lblIdMarca" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Center" Visibility="Collapsed">
@@ -152,9 +157,14 @@
                         <Label Grid.Column="0" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Center">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblAsociado}"/>
                         </Label>
-                        <TextBox Name="_txtNombreAsociado" MaxLength="40"  Text="" IsEnabled="False" IsReadOnly="True"
-                             VerticalContentAlignment="Center" Margin="0,0,0,0" Grid.ColumnSpan="6" Grid.Column="1"                               
-                             Grid.Row="0" MouseDoubleClick="_txtNombreAsociado_MouseDoubleClick" BorderBrush="LightGreen"/>
+
+                        <TextBox Name="_txtIdAsociado" MaxLength="40"  Text="{Binding Path=Asociado.Id}" IsEnabled="False" IsReadOnly="True"
+                             VerticalContentAlignment="Center" MouseDoubleClick="_txtNombreAsociado_MouseDoubleClick" Margin="0,0,5,0" Grid.ColumnSpan="1" Grid.Column="1"
+                             Grid.Row="0"/>
+
+                        <TextBox Name="_txtNombreAsociado" MaxLength="40"  Text="{Binding Path=Asociado.Nombre}" IsEnabled="False" IsReadOnly="True"
+                             VerticalContentAlignment="Center" MouseDoubleClick="_txtNombreAsociado_MouseDoubleClick" Margin="0,0,0,0" Grid.ColumnSpan="5" Grid.Column="2"
+                             Grid.Row="0"/>
                         
                         <Label Name="_lblIdAsociado" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Center" Visibility="Collapsed">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblId}"/>
@@ -226,9 +236,14 @@
                         <Label Grid.Column="0" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Center">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblInteresado}"/>
                         </Label>
+
+                        <TextBox Name="_txtIdInteresado" MaxLength="40"  Text="{Binding Path=Id}" IsEnabled="False" IsReadOnly="True"
+                             VerticalContentAlignment="Center" MouseDoubleClick="_txtInteresado_MouseDoubleClick" Margin="0,0,5,0" Grid.ColumnSpan="1" Grid.Column="1"                               
+                             Grid.Row="1"/>
+
                         <TextBox Name="_txtNombreInteresado" MaxLength="40"  Text="{Binding Path=Nombre}" IsEnabled="False" IsReadOnly="True"
-                             VerticalContentAlignment="Center" Margin="0,0,0,0" Grid.ColumnSpan="2" Grid.Column="1"                               
-                             Grid.Row="1" MouseDoubleClick="_txtInteresado_MouseDoubleClick" BorderBrush="LightGreen"/>                                            
+                             VerticalContentAlignment="Center" MouseDoubleClick="_txtInteresado_MouseDoubleClick" Margin="0,0,5,0" Grid.ColumnSpan="2" Grid.Column="2"                               
+                             Grid.Row="1"/>                                            
 
                         <Label Name="_lblIdInteresado" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Center" Visibility="Collapsed">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblId}"/>
@@ -248,11 +263,11 @@
                         </Button>
 
                         <TextBox Name="_txtPaisInteresado" MaxLength="40"  Text="{Binding Path=Ciudad}" IsEnabled="False" IsReadOnly="True"
-                             VerticalContentAlignment="Center" Margin="5,0,0,0" Grid.ColumnSpan="2" Grid.Column="3"                               
+                             VerticalContentAlignment="Center" Margin="0,0,5,0" Grid.ColumnSpan="2" Grid.Column="4"                               
                              Grid.Row="1"/>
 
                         <TextBox Name="_txtCiudadInteresado" MaxLength="40"  Text="{Binding Path=Estado}" IsEnabled="False" IsReadOnly="True"
-                             VerticalContentAlignment="Center" Margin="5,0,0,0" Grid.ColumnSpan="2" Grid.Column="5"                               
+                             VerticalContentAlignment="Center" Margin="0,0,0,0" Grid.ColumnSpan="2" Grid.Column="7"                               
                              Grid.Row="1"/>
                                                 
                         <ListView Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="7" Grid.RowSpan="2" Name="_lstInteresados" ItemsSource="{Binding}" 
@@ -362,7 +377,7 @@
                         <custom:ByTTextBox Grid.Column="1" Grid.Row="1" Name="_txtDescripcionOperacion" VerticalAlignment="Center"                          
                                            Text="{Binding Path=Descripcion}" Grid.ColumnSpan="7" Margin="0,5,0,0" IsEnabled="False"  
                                            MaxLength="250" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" AcceptsReturn="True" 
-                                           Height="75" SpellCheck.IsEnabled="True"></custom:ByTTextBox>
+                                           Height="75" SpellCheck.IsEnabled="True" IsReadOnly="True"></custom:ByTTextBox>
                     </Grid>
                 </WrapPanel>                                                                
             </StackPanel>

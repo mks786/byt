@@ -40,10 +40,10 @@
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="FechaRegistro" Content="{x:Static recurso:Etiquetas.lsvFecha}"/>
                         </GridViewColumn>
                         <GridViewColumn DisplayMemberBinding="{Binding Path=Tipo.Descripcion}" Width="170">
-                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="Tipo.Descripcion" Content="{x:Static recurso:Etiquetas.lsvTipo}"/>
+                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="Descripcion" Content="{x:Static recurso:Etiquetas.lsvTipo}"/>
                         </GridViewColumn>
                         <GridViewColumn DisplayMemberBinding="{Binding Path=Correspondencia.Resumen.Descripcion}" Width="240">
-                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="Correspondencia.Resumen.Descripcion" Content="{x:Static recurso:Etiquetas.lsvCorrespondencia}"/>
+                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="Descripcion" Content="{x:Static recurso:Etiquetas.lsvCorrespondencia}"/>
                         </GridViewColumn>
                         <GridViewColumn DisplayMemberBinding="{Binding Path=Comentario}" Width="240">
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="Comentario" Content="{x:Static recurso:Etiquetas.lsvComentario}"/>

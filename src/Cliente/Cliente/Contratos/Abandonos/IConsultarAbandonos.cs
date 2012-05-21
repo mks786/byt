@@ -5,23 +5,25 @@ namespace Trascend.Bolet.Cliente.Contratos.Abandonos
 {
     interface IConsultarAbandonos : IPaginaBase
     {
-        string Id { get; }
+        string Id { get; set; }
 
         string NombreMarca { set; }
 
-        object AbandonoSeleccionado { get; }
+        string IdMarca { set; }
+
+        object AbandonoSeleccionado { get; set; }
 
         object Resultados { get; set; }
 
-        string IdMarcaFiltrar { get; }
+        string IdMarcaFiltrar { get; set; }
 
-        string NombreMarcaFiltrar { get; }
+        string NombreMarcaFiltrar { get; set; }
 
         object Marcas { get; set; }
 
-        object Marca { get; set; }      
+        object Marca { get; set; }
 
-        string Fecha { get; }
+        string Fecha { get; set; }
 
         GridViewColumnHeader CurSortCol { get; set; }
 

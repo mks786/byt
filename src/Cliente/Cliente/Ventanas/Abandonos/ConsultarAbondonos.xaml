@@ -51,7 +51,90 @@
                 <StackPanel Name="_splFiltro" DataContext="{Binding}" VerticalAlignment="Center">
 
                 <Separator Margin="0,0,0,5"/>
-               
+
+                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,14,0">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="320"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        
+                        <Grid Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="250"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <Label VerticalAlignment="Center" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Left">
+                                <TextBlock Text="{x:Static recurso:Etiquetas.lblMarca}"/>
+                            </Label>
+
+                            <custom:ByTTextBox BorderBrush="LightGreen" Name="_txtIdMarca" Width="70" MaxLength="15" Grid.Row="0" Grid.Column="1" 
+                                               Height="25" HorizontalAlignment="Left" MouseDoubleClick="_txtMarca_MouseDoubleClick" IsReadOnly="True"/>
+
+                            <custom:ByTTextBox BorderBrush="LightGreen" Name="_txtMarca" Width="150" MaxLength="15" Grid.Row="0" Grid.Column="2" Margin="5,0,0,0" 
+                                               Height="25" HorizontalAlignment="Left" MouseDoubleClick="_txtMarca_MouseDoubleClick" IsReadOnly="True"/>
+
+
+                        </Grid>
+
+                        <Label Name="_lblIdMarca" Visibility="Collapsed"  VerticalAlignment="Center" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Right">
+                            <TextBlock Text="{x:Static recurso:Etiquetas.lblId}"/>
+                        </Label>
+                        
+                        <custom:ByTTextBox Visibility="Collapsed" Name="_txtIdMarcaFiltrar" Text="" Width="150" MaxLength="15" Grid.Row="1" Grid.Column="1" Height="25" HorizontalAlignment="Left"
+                                 GotFocus="_btnConsultarMarcaFocus" GotKeyboardFocus="_btnConsultarMarcaFocus" SoloNumero="True" Filtro="True" Margin="0,3" />
+
+                        <Label Name="_lblNombreMarca" Visibility="Collapsed"  VerticalAlignment="Center" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Right">
+                            <TextBlock Text="{x:Static recurso:Etiquetas.lblNombre}"/>
+                        </Label>
+
+                        <TextBox Visibility="Collapsed"  Name="_txtNombreMarcaFiltrar" Text="" Width="150" MaxLength="255" Grid.Row="2" Grid.Column="1" Height="25" HorizontalAlignment="Left"
+                                 GotFocus="_btnConsultarMarcaFocus" GotKeyboardFocus="_btnConsultarMarcaFocus" Margin="0,3" />
+
+                        <Button Visibility="Collapsed"  Name="_btnConsultarMarca" Width="100" IsDefault="False" Grid.Row="2" Grid.Column="1" Height="25" HorizontalAlignment="Right" 
+                                Click="_btnConsultarMarca_Click">
+                            <TextBlock Text="{x:Static recurso:Etiquetas.btnConsultar}"/>
+                        </Button>
+                        <!--Path=Id, Converter={StaticResource convertir}-->
+                        <ListView Visibility="Collapsed"  Height="198" Name="_lstMarcas" ItemsSource="{Binding}" 
+                      SelectionMode="Single" MouseDoubleClick="_lstMarcas_MouseDoubleClick"
+                      Style="{DynamicResource EstiloListView}" Grid.Row="3" Grid.ColumnSpan="2">
+                            <ListView.View>
+                                <GridView>
+                                    <GridViewColumn Width="45">
+                                        <GridViewColumnHeader Click="_Ordenar_Click" Tag="Id" Content="{x:Static recurso:Etiquetas.lsvId}"/>
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBlock>
+                                                <TextBlock.Text>
+                                                    <Binding Path="Id" Converter="{StaticResource convertir}"/>
+                                                </TextBlock.Text>
+                                                </TextBlock>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                    <GridViewColumn DisplayMemberBinding="{Binding Path=Descripcion}" Width="250">
+                                        <GridViewColumnHeader Click="_Ordenar_Click" Tag="Descripcion" Content="{x:Static recurso:Etiquetas.lsvNombre}"/>
+                                    </GridViewColumn>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                    </Grid>
+                </WrapPanel>
                 <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,180,0">
                     <Label>
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblAbandono}"/>
@@ -60,7 +143,7 @@
                              GotFocus="_btnConsultarFocus" GotKeyboardFocus="_btnConsultarFocus"/>                    
                 </WrapPanel>
                 <WrapPanel Margin="40,0,0,0" Orientation="Horizontal" HorizontalAlignment="Left">
-                    <Label>
+                    <Label HorizontalAlignment="Right">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblFecha}"/>
                     </Label>
                     <DatePicker Name="_dpkFecha" Width="150" Focusable="False" BorderBrush="{x:Null}" 
@@ -70,73 +153,6 @@
                         </DatePicker.SelectedDate>
                     </DatePicker>
                 </WrapPanel>
-                    
-
-                    <Separator Margin="0,5,0,5"/>
-                    <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,14,0">
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto"/>
-                                <ColumnDefinition Width="316"/>
-                            </Grid.ColumnDefinitions>
-
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
-                            </Grid.RowDefinitions>
-                            <Label VerticalAlignment="Center" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Left">
-                                <TextBlock Text="{x:Static recurso:Etiquetas.lblMarca}"/>
-                            </Label>
-                            
-                            <Label Name="_lblIdMarca" Visibility="Collapsed"  VerticalAlignment="Center" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Right">
-                                <TextBlock Text="{x:Static recurso:Etiquetas.lblId}"/>
-                            </Label>
-                            
-                            <custom:ByTTextBox BorderBrush="LightGreen" Name="_txtMarca" Width="150" MaxLength="15" Grid.Row="0" Grid.Column="1" 
-                                               Height="25" HorizontalAlignment="Left" MouseDoubleClick="_txtMarca_MouseDoubleClick" IsReadOnly="True"/>
-                            
-                            <custom:ByTTextBox Visibility="Collapsed" Name="_txtIdMarcaFiltrar" Text="" Width="150" MaxLength="15" Grid.Row="1" Grid.Column="1" Height="25" HorizontalAlignment="Left"
-                                 GotFocus="_btnConsultarMarcaFocus" GotKeyboardFocus="_btnConsultarMarcaFocus" SoloNumero="True" Filtro="True" Margin="0,3" />
-
-                            <Label Name="_lblNombreMarca" Visibility="Collapsed"  VerticalAlignment="Center" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Right">
-                                <TextBlock Text="{x:Static recurso:Etiquetas.lblNombre}"/>
-                            </Label>
-                            
-                            <TextBox Visibility="Collapsed"  Name="_txtNombreMarcaFiltrar" Text="" Width="150" MaxLength="255" Grid.Row="2" Grid.Column="1" Height="25" HorizontalAlignment="Left"
-                                 GotFocus="_btnConsultarMarcaFocus" GotKeyboardFocus="_btnConsultarMarcaFocus" Margin="0,3" />
-
-                            <Button Visibility="Collapsed"  Name="_btnConsultarMarca" Width="100" IsDefault="False" Grid.Row="2" Grid.Column="1" Height="25" HorizontalAlignment="Right" Click="_btnConsultarMarca_Click">
-                                <TextBlock Text="{x:Static recurso:Etiquetas.btnConsultar}"/>
-                            </Button>
-                            <!--Path=Id, Converter={StaticResource convertir}-->
-                            <ListView Visibility="Collapsed"  Height="198" Name="_lstMarcas" ItemsSource="{Binding}" 
-                      SelectionMode="Single" MouseDoubleClick="_lstMarcas_MouseDoubleClick"
-                      Style="{DynamicResource EstiloListView}" Grid.Row="3" Grid.ColumnSpan="2">
-                                <ListView.View>
-                                    <GridView>
-                                        <GridViewColumn Width="45">
-                                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="Id" Content="{x:Static recurso:Etiquetas.lsvId}"/>
-                                            <GridViewColumn.CellTemplate>
-                                                <DataTemplate>
-                                                    <TextBlock>
-                                                <TextBlock.Text>
-                                                    <Binding Path="Id" Converter="{StaticResource convertir}"/>
-                                                </TextBlock.Text>
-                                                    </TextBlock>
-                                                </DataTemplate>
-                                            </GridViewColumn.CellTemplate>
-                                        </GridViewColumn>
-                                        <GridViewColumn DisplayMemberBinding="{Binding Path=Descripcion}" Width="250">
-                                        <GridViewColumnHeader Click="_Ordenar_Click" Tag="Descripcion" Content="{x:Static recurso:Etiquetas.lsvNombre}"/>
-                                        </GridViewColumn>
-                                    </GridView>
-                                </ListView.View>
-                            </ListView>
-                        </Grid>
-                    </WrapPanel>
-                   
 
                     <Separator Margin="0,5,0,5"/>
                     <Button Name="_btnConsultar" Width="100" IsDefault="True" Click="_btnConsultar_Click">
@@ -184,6 +200,9 @@
             </DataGrid>-->
         </GroupBox>
 
+        <Button Name="_btnLimpiarCampos" Grid.Column="1" Grid.Row="7" Margin="5" Width="100" HorizontalAlignment="Left" Click="_btnLimpiarCampos_Click">
+            <TextBlock Text="{x:Static recurso:Etiquetas.btnLimpiarCampos}"/>
+        </Button>
         <!--Botones Aceptar|Cancelar-->
         <GroupBox Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="1" BorderBrush="{x:Null}">
             <StackPanel HorizontalAlignment="Right" VerticalAlignment="Bottom" Orientation="Horizontal">

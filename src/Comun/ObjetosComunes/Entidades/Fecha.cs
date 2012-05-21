@@ -36,7 +36,12 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
 
         public override bool Equals(object obj)
         {
-            if (this.Id == ((Fecha)obj).Id && (this.Patente.Id == ((Fecha)obj).Patente.Id))
+            if (obj == null)
+                return false;
+            var t = obj as Fecha;
+            if (t == null)
+                return false;
+            if ((Tipo.Id == (t.Tipo.Id)) && (Patente.Id == (t.Patente.Id)))
                 return true;
             return false;
         }

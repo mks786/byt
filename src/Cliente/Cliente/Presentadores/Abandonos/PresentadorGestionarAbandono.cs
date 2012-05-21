@@ -24,7 +24,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Abandonos
         private static PaginaPrincipal _paginaPrincipal = PaginaPrincipal.ObtenerInstancia;
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
-        private bool _agregar = true;
+        public bool _agregar = true;
         private IGestionarAbandono _ventana;
 
         private IMarcaServicios _marcaServicios;        
@@ -176,7 +176,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.Abandonos
                 Mouse.OverrideCursor = null;
             }
         }
-       
+
+        public bool EsAgregar()
+        {
+            return _agregar;
+        }
+
         /// <summary>
         /// Método que carga la ventana de Consultar Abandonos
         /// </summary>
@@ -557,7 +562,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Abandonos
             }
             else
             {
-                this._ventana.Interesado = primerInteresado;
+                if (primerInteresado.Id != int.MinValue)
+                    this._ventana.Interesado = primerInteresado;
+                else
+                    this._ventana.IdInteresado = "";
+                
                 this._ventana.InteresadosFiltrados = this._interesados;
                 this._ventana.InteresadoFiltrado = primerInteresado;
 

@@ -28,11 +28,13 @@ namespace Trascend.Bolet.Cliente.Ventanas.Abandonos
         public string Id
         {
             get { return this._txtId.Text; }
+            set { this._txtId.Text = value; }
         }
 
         public object AbandonoSeleccionado
         {
             get { return this._lstResultados.SelectedItem; }
+            set { this._lstResultados.SelectedItem = value; }
         }
 
         public bool EstaCargada
@@ -79,6 +81,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Abandonos
         public string IdMarcaFiltrar
         {
             get { return this._txtIdMarcaFiltrar.Text; }
+            set { this._txtIdMarcaFiltrar.Text = value; }
         }
 
         public string Fecha
@@ -90,11 +93,17 @@ namespace Trascend.Bolet.Cliente.Ventanas.Abandonos
         public string NombreMarcaFiltrar
         {
             get { return this._txtNombreMarcaFiltrar.Text; }
+            set { this._txtNombreMarcaFiltrar.Text = value; }
         }
 
         public string NombreMarca
         {
             set { this._txtMarca.Text = value; }
+        }
+
+        public string IdMarca
+        {
+            set { this._txtIdMarca.Text = value; }
         }
 
         public void Mensaje(string mensaje, int opcion)
@@ -210,6 +219,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Abandonos
             if (visibilidad)
             {
                 this._txtMarca.Visibility = Visibility.Collapsed;
+                this._txtIdMarca.Visibility = Visibility.Collapsed;
 
                 this._txtIdMarcaFiltrar.Visibility = Visibility.Visible;
                 this._txtNombreMarcaFiltrar.Visibility = Visibility.Visible;
@@ -221,6 +231,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Abandonos
             else
             {
                 this._txtMarca.Visibility = Visibility.Visible;
+                this._txtIdMarca.Visibility = Visibility.Visible;
 
                 this._txtIdMarcaFiltrar.Visibility = Visibility.Collapsed;
                 this._txtNombreMarcaFiltrar.Visibility = Visibility.Collapsed;
@@ -235,7 +246,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Abandonos
         {
             if (this._presentador.ElegirMarca())
                 GestionarVisibilidadFiltroMarca(false);
-        }       
-        
+        }
+
+        private void _btnLimpiarCampos_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.LimpiarCampos();
+        } 
     }
 }

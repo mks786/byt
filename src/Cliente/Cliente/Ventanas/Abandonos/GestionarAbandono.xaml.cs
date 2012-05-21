@@ -3,6 +3,7 @@ using System.Windows.Controls;
 using Trascend.Bolet.Cliente.Contratos.Abandonos;
 using Trascend.Bolet.Cliente.Presentadores.Abandonos;
 using Trascend.Bolet.Cliente.Ayuda;
+using System.Windows.Media;
 
 namespace Trascend.Bolet.Cliente.Ventanas.Abandonos
 {
@@ -84,6 +85,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Abandonos
         public string NombreInteresado
         {
             set { this._txtNombreInteresado.Text = value; }
+        }
+
+        public string IdInteresado
+        {
+            set { this._txtIdInteresado.Text = value; }
         }
 
         public string IdInteresadoFiltrar
@@ -175,35 +181,53 @@ namespace Trascend.Bolet.Cliente.Ventanas.Abandonos
             set
             {
                 this._txtIdOperacion.IsEnabled = value;
-                this._txtAplicada.IsEnabled = value;               
-                //this._dpkFechaOperacion.IsEnabled = value; 
-
-
+                this._txtAplicada.IsEnabled = value;
+                
                 this._txtNombreMarca.IsEnabled = value;
+                this._txtIdMarca.IsEnabled = value;
                 this._txtIdMarcaFiltrar.IsEnabled = value;
                 this._txtNombreMarcaFiltrar.IsEnabled = value;
                 this._btnConsultarMarca.IsEnabled = value;
 
                 this._txtNombreAsociado.IsEnabled = value;
+                this._txtIdAsociado.IsEnabled = value;
                 this._txtIdAsociadoFiltrar.IsEnabled = value;
                 this._txtNombreAsociadoFiltrar.IsEnabled = value;
                 this._btnConsultarAsociado.IsEnabled = value;
 
                 this._txtNombreInteresado.IsEnabled = value;
+                this._txtIdInteresado.IsEnabled = value;
                 this._txtNombreInteresadoFiltrar.IsEnabled = value;
                 this._txtIdInteresadoFiltrar.IsEnabled = value;
                 this._txtPaisInteresado.IsEnabled = value;
                 this._txtCiudadInteresado.IsEnabled = value;
                 this._btnConsultarInteresado.IsEnabled = value;
 
-                //this._cbxBoletin.IsEnabled = value;
-
                 this._txtDescripcionServicio.IsEnabled = value;
 
                 this._txtDescripcionOperacion.IsEnabled = value;                
             }
         }
-                     
+
+        public void PintarMarca()
+        {
+            this._txtNombreMarca.BorderBrush = new SolidColorBrush(Colors.LightGreen);
+            this._txtIdMarca.BorderBrush = new SolidColorBrush(Colors.LightGreen);
+        }
+
+        public void PintarInteresado()
+        {
+            this._txtNombreInteresado.BorderBrush = new SolidColorBrush(Colors.LightGreen);
+            this._txtIdInteresado.BorderBrush = new SolidColorBrush(Colors.LightGreen);
+        }
+
+        public void PintarAsociado()
+        {
+            this._txtNombreAsociado.BorderBrush = new SolidColorBrush(Colors.LightGreen);
+            this._txtIdAsociado.BorderBrush = new SolidColorBrush(Colors.LightGreen);
+        }
+
+
         public string TextoBotonRegresar
         {
             get { return this._txbRegresar.Text; }
@@ -251,6 +275,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.Abandonos
             this._cbxBoletin.IsEnabled = true;
             this._lblTipoServicio.Visibility = System.Windows.Visibility.Collapsed;
             this._txtDescripcionServicio.Visibility = System.Windows.Visibility.Collapsed;
+
+            this._txtDescripcionOperacion.IsReadOnly = false;
         }
 
         private void _btnAceptar_Click(object sender, RoutedEventArgs e)
@@ -280,6 +306,14 @@ namespace Trascend.Bolet.Cliente.Ventanas.Abandonos
             if (!EstaCargada)
             {
                 this._presentador.CargarPagina();
+
+                if (this._presentador._agregar == true)
+                {
+                    PintarAsociado();
+                    PintarInteresado();
+                    PintarMarca();
+                }
+
                 EstaCargada = true;
             }
         }
@@ -315,19 +349,22 @@ namespace Trascend.Bolet.Cliente.Ventanas.Abandonos
 
         private void _txtNombreMarca_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            GestionarVisibilidadDatosDeMarca(Visibility.Collapsed);
-            GestionarVisibilidadFiltroMarca(Visibility.Visible);
+            if (this._presentador._agregar == true)
+            {
+                GestionarVisibilidadDatosDeMarca(Visibility.Collapsed);
+                GestionarVisibilidadFiltroMarca(Visibility.Visible);
 
-            //escondo el filtro de interesado
-            GestionarVisibilidadDatosDeInteresado(Visibility.Visible);
-            GestionarVisibilidadFiltroInteresado(Visibility.Collapsed);
+                //escondo el filtro de interesado
+                GestionarVisibilidadDatosDeInteresado(Visibility.Visible);
+                GestionarVisibilidadFiltroInteresado(Visibility.Collapsed);
 
-            //escondo el filtro de Asociado
-            GestionarVisibilidadDatosDeAsociado(Visibility.Visible);
-            GestionarVisibilidadFiltroAsociado(Visibility.Collapsed);
-
-            this._btnConsultarMarca.IsDefault = false;
-            this._btnAceptar.IsDefault = true;
+                //escondo el filtro de Asociado
+                GestionarVisibilidadDatosDeAsociado(Visibility.Visible);
+                GestionarVisibilidadFiltroAsociado(Visibility.Collapsed);
+            
+                this._btnConsultarMarca.IsDefault = false;
+                this._btnAceptar.IsDefault = true;
+            }
         }
 
         private void GestionarVisibilidadFiltroMarca(object value)
@@ -342,7 +379,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.Abandonos
 
         private void GestionarVisibilidadDatosDeMarca(object value)
         {
-            this._txtNombreMarca.Visibility = (System.Windows.Visibility)value;            
+            this._txtNombreMarca.Visibility = (System.Windows.Visibility)value;
+            this._txtIdMarca.Visibility = (System.Windows.Visibility)value;
         }
 
         private void _txtMarcaFiltrar_GotFocus(object sender, RoutedEventArgs e)
@@ -371,20 +409,23 @@ namespace Trascend.Bolet.Cliente.Ventanas.Abandonos
 
         private void _txtInteresado_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            GestionarVisibilidadDatosDeInteresado(Visibility.Collapsed);
+            if (this._presentador.EsAgregar() == true)
+            {
+                GestionarVisibilidadDatosDeInteresado(Visibility.Collapsed);
 
-            GestionarVisibilidadFiltroInteresado(Visibility.Visible);
+                GestionarVisibilidadFiltroInteresado(Visibility.Visible);
 
-            //escondo el filtro de interesado Marca
-            GestionarVisibilidadDatosDeMarca(Visibility.Visible);
-            GestionarVisibilidadFiltroMarca(Visibility.Collapsed);
+                //escondo el filtro de interesado Marca
+                GestionarVisibilidadDatosDeMarca(Visibility.Visible);
+                GestionarVisibilidadFiltroMarca(Visibility.Collapsed);
 
-            //escondo el filtro de Asociado
-            GestionarVisibilidadDatosDeAsociado(Visibility.Visible);
-            GestionarVisibilidadFiltroAsociado(Visibility.Collapsed);
-           
-            this._btnConsultarInteresado.IsDefault = true;
-            this._btnAceptar.IsDefault = false;
+                //escondo el filtro de Asociado
+                GestionarVisibilidadDatosDeAsociado(Visibility.Visible);
+                GestionarVisibilidadFiltroAsociado(Visibility.Collapsed);
+
+                this._btnConsultarInteresado.IsDefault = true;
+                this._btnAceptar.IsDefault = false;
+            }
         }
 
         private void GestionarVisibilidadFiltroInteresado(object value)
@@ -400,6 +441,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Abandonos
         private void GestionarVisibilidadDatosDeInteresado(object value)
         {
             this._txtNombreInteresado.Visibility = (System.Windows.Visibility)value;
+            this._txtIdInteresado.Visibility = (System.Windows.Visibility)value;
             this._txtPaisInteresado.Visibility = (System.Windows.Visibility)value;
             this._txtCiudadInteresado.Visibility = (System.Windows.Visibility)value;
         }
@@ -435,20 +477,23 @@ namespace Trascend.Bolet.Cliente.Ventanas.Abandonos
 
         private void _txtNombreAsociado_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            GestionarVisibilidadDatosDeAsociado(Visibility.Collapsed);
+            if (this._presentador.EsAgregar() == true)
+            {
+                GestionarVisibilidadDatosDeAsociado(Visibility.Collapsed);
 
-            GestionarVisibilidadFiltroAsociado(Visibility.Visible);
+                GestionarVisibilidadFiltroAsociado(Visibility.Visible);
 
-            //escondo el filtro de Marca
-            GestionarVisibilidadDatosDeMarca(Visibility.Visible);
-            GestionarVisibilidadFiltroMarca(Visibility.Collapsed);
+                //escondo el filtro de Marca
+                GestionarVisibilidadDatosDeMarca(Visibility.Visible);
+                GestionarVisibilidadFiltroMarca(Visibility.Collapsed);
 
-            //escondo el filtro de interesado
-            GestionarVisibilidadDatosDeInteresado(Visibility.Visible);
-            GestionarVisibilidadFiltroInteresado(Visibility.Collapsed);
+                //escondo el filtro de interesado
+                GestionarVisibilidadDatosDeInteresado(Visibility.Visible);
+                GestionarVisibilidadFiltroInteresado(Visibility.Collapsed);
 
-            this._btnConsultarAsociado.IsDefault = true;
-            this._btnAceptar.IsDefault = false;
+                this._btnConsultarAsociado.IsDefault = true;
+                this._btnAceptar.IsDefault = false;
+            }
         }
 
         private void GestionarVisibilidadFiltroAsociado(object value)
@@ -463,7 +508,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.Abandonos
 
         private void GestionarVisibilidadDatosDeAsociado(object value)
         {
-            this._txtNombreAsociado.Visibility = (System.Windows.Visibility)value;          
+            this._txtNombreAsociado.Visibility = (System.Windows.Visibility)value;
+            this._txtIdAsociado.Visibility = (System.Windows.Visibility)value;
         }
 
         public void GestionarBotonConsultarAsociado(bool value)

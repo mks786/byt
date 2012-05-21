@@ -141,7 +141,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Abandonos
                     filtroValido = 2;
                 }
 
-                if (!this._ventana.Fecha.Equals(""))
+                if ((null != this._ventana.Fecha) && (!this._ventana.Fecha.Equals("")))
                 {
                     DateTime fechaCesion = DateTime.Parse(this._ventana.Fecha);
                     filtroValido = 2;
@@ -274,9 +274,39 @@ namespace Trascend.Bolet.Cliente.Presentadores.Abandonos
             {
                 retorno = true;
                 this._ventana.NombreMarca = ((Marca)this._ventana.Marca).Descripcion;
+                this._ventana.IdMarca = ((Marca)this._ventana.Marca).Id.ToString();
             }
 
             return retorno;
         }
+
+        /// <summary>
+        /// Método que limpia los campos de búsqueda
+        /// </summary>
+        public void LimpiarCampos()
+        {
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+            this._ventana.Id = null;
+            this._ventana.IdMarca = null;
+            this._ventana.Fecha = null;
+            this._ventana.AbandonoSeleccionado = null;
+            this._ventana.IdMarcaFiltrar = null;
+            this._ventana.Marca = null;
+            this._ventana.Marcas = null;
+            this._ventana.NombreMarca = null;
+            this._ventana.NombreMarcaFiltrar = null;
+            this._ventana.Resultados = null;
+            this._ventana.TotalHits = "0";
+
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+        }
     }
+
 }
