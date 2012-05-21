@@ -18,6 +18,10 @@ namespace Trascend.Bolet.Cliente.Contratos.MarcasTercero
 
         object TipoCbx { get; set; }
 
+        object TipoDeCaso { get; set; }
+
+        object TiposDeCasos { get; set; }
+
         object MarcasFiltradas { get; set; }
 
         object MarcaFiltrada { get; set; }
@@ -27,6 +31,16 @@ namespace Trascend.Bolet.Cliente.Contratos.MarcasTercero
         string IdMarcaFiltrar { get; }
 
         string NombreMarca { set; get; }
+
+        string FechaRenovacion { set; get; }
+
+        string FechaPublicacion { set; get; }
+
+        string Caso { set; get; }
+
+        string Letra { set; get; }
+
+        string Numero { set; get; }
 
         string Anexo { set; get; }
 

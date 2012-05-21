@@ -209,6 +209,13 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
                     //this._ventana.TipoMarcaTerceroDatos = tiposMarcaTerceros;
                     //this._ventana.TipoMarcaTerceroSolicitud = tiposMarcaTerceros;
                     //this._ventana.TipoMarcaTerceroDatos = this.BuscarTipoMarca(tiposMarcaTerceros, marcaTercero.Tipo);
+                    this._ventana.Letra = marcaTercero.Letra;
+                    this._ventana.Numero = marcaTercero.Numero.ToString();
+                    this._ventana.TipoDeCaso = marcaTercero.CasoT;
+                    this._ventana.Caso = marcaTercero.CasoT;
+                    this._ventana.FechaPublicacion = marcaTercero.FechaPublicacion.ToString();
+                    this._ventana.FechaRenovacion = marcaTercero.FechaRenovacion.ToString();
+
 
                     CargaComboBox();
 

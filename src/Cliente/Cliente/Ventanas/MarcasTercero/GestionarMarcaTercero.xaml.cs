@@ -178,6 +178,12 @@ namespace Trascend.Bolet.Cliente.Ventanas.MarcasTercero
             //set { this._chkByt = value; }
         }
 
+        public CheckBox RevWeb
+        {
+            get { return this._chkRevWeb; }
+            //set { this._chkByt = value; }
+        }
+
         public string IdInternacionalByt
         {
             get { return this._txtClaseInternacionalByt.Text; }
@@ -188,6 +194,27 @@ namespace Trascend.Bolet.Cliente.Ventanas.MarcasTercero
         {
             get { return this._txtClaseNacionalByt.Text; }
             set { this._txtClaseNacionalByt.Text = value; }
+        }
+
+
+        public string Caso
+        {
+            get { return this._txtCaso.Text; }
+            set { this._txtCaso.Text = value; }
+        }
+
+
+        public string Letra
+        {
+            get { return this._txtLetra.Text; }
+            set { this._txtLetra.Text = value; }
+        }
+
+
+        public string Numero
+        {
+            get { return this._txtNumero.Text; }
+            set { this._txtNumero.Text = value; }
         }
 
         public object EstadoMarcaSolicitud
@@ -556,6 +583,18 @@ namespace Trascend.Bolet.Cliente.Ventanas.MarcasTercero
             set { this._txtAsociadoSolicitud.Text = value; }
         }
 
+        public string FechaPublicacion
+        {
+            get { return this._dpkFechaPublicacion.Text; }
+            set { this._dpkFechaPublicacion.Text = value; }
+        }
+
+        public string FechaRenovacion
+        {
+            get { return this._dpkFechaRenovacion.Text; }
+            set { this._dpkFechaRenovacion.Text = value; }
+        }
+
         //public string NombreAsociadoDatos
         //{
         //    get { return this._txtAsociadoDatos.Text; }
@@ -749,6 +788,18 @@ namespace Trascend.Bolet.Cliente.Ventanas.MarcasTercero
         {
             get { return this._poderesCargados; }
             set { this._poderesCargados = value; }
+        }
+
+        public object TipoDeCaso
+        {
+            get { return this._cbxTipoDeCaso.SelectedItem; }
+            set { this._cbxTipoDeCaso.SelectedItem = value; }
+        }
+
+        public object TiposDeCasos
+        {
+            get { return this._cbxTipoDeCaso.DataContext; }
+            set { this._cbxTipoDeCaso.DataContext = value; }
         }
 
         //public object Sector
