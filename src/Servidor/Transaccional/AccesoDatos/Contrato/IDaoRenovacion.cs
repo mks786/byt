@@ -6,5 +6,7 @@ namespace Trascend.Bolet.AccesoDatos.Contrato
     public interface IDaoRenovacion : IDaoBase<Renovacion, int>
     {
         IList<Renovacion> ObtenerRenovacionesFiltro(Renovacion renovacion);
+
+        int ObtenerUltimaRenovacion(Renovacion renovacion);
     }
 }

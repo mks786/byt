@@ -47,9 +47,49 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
                     string fecha2 = String.Format("{0:dd/MM/yy}", renovacion.Fecha.Value.AddDays(1));
                     filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerRenovacionFecha, fecha, fecha2);
                 }
+                filtro += " ORDER BY r.Fecha DESC";
                 IQuery query = Session.CreateQuery(cabecera + filtro);
 
                 renovaciones = query.List<Renovacion>();
+
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Saliendo del Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                throw new ApplicationException(Recursos.Errores.ExConsultarTodos);
+            }
+            finally
+            {
+                Session.Close();
+            }
+
+            return renovaciones;
+        }
+
+        public int ObtenerUltimaRenovacion(Renovacion renovacion)
+        {
+            int renovaciones;
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                bool variosFiltros = false;
+                string filtro = "";
+                string cabecera = string.Format(Recursos.ConsultasHQL.ObtenerUltimaRenovacion,renovacion.Marca.Id);
+
+
+                
+                IQuery query = Session.CreateQuery(cabecera + filtro);
+
+                renovaciones = query.UniqueResult<int>();
 
                 #region trace
                 if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))

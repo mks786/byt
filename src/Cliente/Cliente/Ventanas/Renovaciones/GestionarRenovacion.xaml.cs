@@ -77,6 +77,12 @@ namespace Trascend.Bolet.Cliente.Ventanas.Renovaciones
             get { return this._txtNombreMarcaFiltrar.Text; }
         }
 
+        public DatePicker FechaRenovacion
+        {
+            get { return this._dpkFechaRenovacion; }
+            set { _dpkFechaRenovacion = value; }
+    }
+
         public object Marca
         {
             get { return this._gridDatosMarca.DataContext; }
@@ -115,22 +121,23 @@ namespace Trascend.Bolet.Cliente.Ventanas.Renovaciones
         {
             set
             {
-                this._txtAsociado.IsEnabled = value;
-                this._txtClaseInternacional.IsEnabled = value;
-                this._txtClaseNacional.IsEnabled = value;
-                this._txtIdRenovacion.IsEnabled = value;
+              //  this._txtAsociado.IsEnabled = value;
+               // this._txtClaseInternacional.IsEnabled = value;
+                //this._txtClaseNacional.IsEnabled = value;
+                //this._txtTipo.IsEnabled = value;
+                //this._chkEtiqueta.IsEnabled = value;
+                // this._txtEtiquetaDescripcion.IsEnabled = value;
+                //this._txtNumRegistro.IsEnabled = value;
+               // this._txtIdRenovacion.IsEnabled = value;
                 this._txtIdMarcaFiltrar.IsEnabled = value;
                 this._txtNombreMarca.IsEnabled = value;
                 this._txtNombreMarcaFiltrar.IsEnabled = value;
-                this._txtNumRegistro.IsEnabled = value;
-                this._txtTipo.IsEnabled = value;
                 this._btnConsultarMarca.IsEnabled = value;
                 this._dpkFechaRenovacion.IsEnabled = value;
-                //this._chkEtiqueta.IsEnabled = value;
-                this._txtFechaProximaRenovacionMarca.IsEnabled = value;
-                this._txtFechaRegistro.IsEnabled = value;
-                this._txtEtiquetaDescripcion.IsEnabled = value;
-                this._txtEstatus.IsEnabled = value;
+
+               // this._txtFechaProximaRenovacionMarca.IsEnabled = value;
+               // this._txtFechaRegistro.IsEnabled = value;
+               // this._txtEstatus.IsEnabled = value;
 
                 this._txtNombreInteresado.IsEnabled = value;
                 this._txtNombreInteresadoFiltrar.IsEnabled = value;
@@ -322,8 +329,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.Renovaciones
             this._btnEliminar.Visibility = System.Windows.Visibility.Collapsed;
             this._lblIdRenovacion.Visibility = System.Windows.Visibility.Collapsed;
             this._txtIdRenovacion.Visibility = System.Windows.Visibility.Collapsed;
-            this._dpkFechaRenovacion.IsEnabled = false;
-            this._cbxTipoR.IsEnabled = true;
+            this._dpkFechaRenovacion.IsEnabled = true;
+            this._cbxTipoR.IsEnabled = false;
             this._chkAsientoEnLibro.IsEnabled = true;
             this._btnCarpeta.Visibility = System.Windows.Visibility.Collapsed;
             this._btnSolicitud.Visibility = System.Windows.Visibility.Collapsed;
@@ -346,8 +353,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.Renovaciones
 
         private void _btnEliminar_Click(object sender, RoutedEventArgs e)
         {
-            if (MessageBoxResult.Yes == MessageBox.Show(Recursos.MensajesConElUsuario.ConfirmacionEliminarCambioDeDomicilio,
-                "Eliminar Cambio de domicilio", MessageBoxButton.YesNo, MessageBoxImage.Question))
+            if (MessageBoxResult.Yes == MessageBox.Show(Recursos.MensajesConElUsuario.ConfirmacionEliminarRenovacion,
+                "Eliminar Renovacion", MessageBoxButton.YesNo, MessageBoxImage.Question))
             {
                 this._presentador.Eliminar();
             }
@@ -731,6 +738,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Renovaciones
         }
 
         #endregion
+
+        private void _dpkFechaRenovacion_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            this._presentador.ActualizarFechaProxima();
+        }
 
     }
 }

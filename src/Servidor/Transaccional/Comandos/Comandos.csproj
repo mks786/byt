@@ -135,6 +135,7 @@
     <Compile Include="Comandos\ComandosPoder\ComandoConsultarPoderesPorAgente.cs" />
     <Compile Include="Comandos\ComandosRenovacion\ComandoConsultarRenovacionesFiltro.cs" />
     <Compile Include="Comandos\ComandosRenovacion\ComandoVerificarExistenciaRenovacion.cs" />
+    <Compile Include="Comandos\ComandosRenovacion\ComandoConsultarUltimaRenovacion.cs" />
     <Compile Include="Comandos\ComandosResumen\ComandoVerificarExistenciaResumen.cs" />
     <Compile Include="Comandos\ComandosCarta\ComandoVerificarExistenciaCarta.cs" />
     <Compile Include="Comandos\ComandosConcepto\ComandoConsultarTodosConceptos.cs" />

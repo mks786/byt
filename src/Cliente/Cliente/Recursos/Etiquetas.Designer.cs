@@ -3611,6 +3611,16 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to SAPI:.
+        ///   Looks up a localized string similar to Sector:.
+        /// </summary>
+        public static string lblSapi {
+            get {
+                return ResourceManager.GetString("lblSapi", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Sector:.
         /// </summary>
         public static string lblSector {
@@ -4093,6 +4103,16 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string lblY {
             get {
                 return ResourceManager.GetString("lblY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Agentes.
+        ///   Looks up a localized string similar to Anexo.
+        /// </summary>
+        public static string lsvAgentes {
+            get {
+                return ResourceManager.GetString("lsvAgentes", resourceCulture);
             }
         }
         
@@ -4664,6 +4684,7 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Region.
         ///   Looks up a localized string similar to Recordatorio.
         /// </summary>
         public static string lsvRecordatorio {
@@ -4705,6 +4726,16 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string lsvRuta {
             get {
                 return ResourceManager.GetString("lsvRuta", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SAPI.
+        ///   Looks up a localized string similar to Seguimiento.
+        /// </summary>
+        public static string lsvSapi {
+            get {
+                return ResourceManager.GetString("lsvSapi", resourceCulture);
             }
         }
         

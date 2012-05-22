@@ -153,19 +153,22 @@ namespace Trascend.Bolet.Cliente.Presentadores.Renovaciones
                     this._ventana.Agente = ((Renovacion)renovacion).Agente;
                     this._ventana.Poder = renovacion.Poder;
 
+
                     CargarMarca();                  
 
                     CargarInteresado();
 
                     CargarAgente();
 
-                    CargarPoder();                    
+                    CargarPoder();
 
-                    CargarTipoRenovacion();                   
+                    
+                                      
 
                 }
                 else
                 {
+
                     CargarMarca();
 
                     CargarInteresado();
@@ -174,7 +177,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Renovaciones
 
                     CargarPoder();
 
-                    CargarTipoRenovacion();
+                    ActualizarFechaProxima();
+
                 }
 
                 this._ventana.FocoPredeterminado();
@@ -198,16 +202,16 @@ namespace Trascend.Bolet.Cliente.Presentadores.Renovaciones
         /// <summary>
         /// Método que carga los datos iniciales de TipoRenovación a mostrar en la página
         /// </summary>
-        private void CargarTipoRenovacion()
+        private void CargarTipoRenovacion(ListaDatosValores TipoRenovacion)
         {
 
 
             ListaDatosValores filtro = new ListaDatosValores(Recursos.Etiquetas.cbiTipoRenovacion);
             IList<ListaDatosValores> listaTipoRenovacion = 
                 this._listaDatosValoresServicios.ConsultarListaDatosValoresPorParametro(filtro);
-            filtro.Valor = ((Renovacion)this._ventana.Renovacion).TipoR.ToString();
+         //   filtro.Valor = ((Renovacion)this._ventana.Renovacion).TipoR.ToString();
             this._ventana.TiposRenovaciones = listaTipoRenovacion;
-            this._ventana.TipoRenovacion = this.BuscarTipoRenovacion(listaTipoRenovacion, filtro);
+            this._ventana.TipoRenovacion = this.BuscarTipoRenovacion(listaTipoRenovacion, TipoRenovacion);
 
             //ListaDatosValores tipoRenovacion = new ListaDatosValores();
             //tipoRenovacion.Id = ((Renovacion)this._ventana.Renovacion).TipoRenovacion.Id;
@@ -260,8 +264,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Renovaciones
         {
             this._ventana.Otros = "";
             
-            if (((Renovacion)this._ventana.Renovacion).Marca != null)
-                this._ventana.Otros = ((Renovacion)this._ventana.Renovacion).Marca.Fichas;
+            if (this._ventana.Marca != null)
+                this._ventana.Otros = ((Marca)this._ventana.Marca).Fichas;
         }
 
         /// <summary>
@@ -349,11 +353,27 @@ namespace Trascend.Bolet.Cliente.Presentadores.Renovaciones
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-                if (this._renovacionServicios.Eliminar((Renovacion)this._ventana.Renovacion, UsuarioLogeado.Hash))
+                Renovacion renovacion = CargarRenovacionDeLaPantalla();
+                int UltimaReno = this._renovacionServicios.ConsultarUltimaRenovacion(renovacion);
+                bool marcaExitoso = false;
+                if (renovacion.Id == UltimaReno)
                 {
-                    _paginaPrincipal.MensajeUsuario = Recursos.MensajesConElUsuario.RenovacionEliminada;
-                    this.Navegar(_paginaPrincipal);
+                    if (this._renovacionServicios.Eliminar((Renovacion) this._ventana.Renovacion, UsuarioLogeado.Hash))
+                    {
+                        Marca marcaAuxiliar = new Marca();
+                        marcaAuxiliar = ((Renovacion)this._ventana.Renovacion).Marca;
+                        int tiempoConfiguracion = int.Parse(ConfigurationManager.AppSettings["PeriodoRenovacion"].ToString());
+                        marcaAuxiliar.FechaRenovacion = ((Renovacion)this._ventana.Renovacion).FechaProxima.Value.AddYears(-tiempoConfiguracion);
+                        marcaAuxiliar.Operacion = "MODIFY";
+                        marcaAuxiliar.Recordatorio = 0;
+
+                        marcaExitoso = this._marcaServicios.InsertarOModificar(marcaAuxiliar, UsuarioLogeado.Hash);
+                        _paginaPrincipal.MensajeUsuario = Recursos.MensajesConElUsuario.RenovacionEliminada;
+                        this.Navegar(_paginaPrincipal);
+                    }
                 }
+                else
+                this._ventana.Mensaje(Recursos.MensajesConElUsuario.UltimaRenovacion, 1);
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -557,8 +577,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Renovaciones
             {
                 this._ventana.MarcasFiltradas = this._marcas;
                 this._ventana.MarcaFiltrada = primeraMarca;
-            }                           
-                 
+            }
+
         }
 
         /// <summary>
@@ -664,7 +684,39 @@ namespace Trascend.Bolet.Cliente.Presentadores.Renovaciones
                     int tiempoConfiguracion = int.Parse(ConfigurationManager.AppSettings["PeriodoRenovacion"].ToString());
                     this._ventana.ProximaRenovacion = ((Renovacion)this._ventana.Renovacion).Fecha.Value.AddYears(tiempoConfiguracion).ToString();
                     retorno = true;
+
+                    ListaDatosValores TipoDeRenovacion = new ListaDatosValores();
+                    if (((Marca)this._ventana.MarcaFiltrada).Ter == 'T')
+                    {
+                        TipoDeRenovacion.Valor = "T";
+                        ((Marca)this._ventana.MarcaFiltrada).Ter = 'T';
+                    }
+                    else
+                    {
+                        TipoDeRenovacion.Valor = "I";
+                        ((Marca)this._ventana.MarcaFiltrada).Ter = 'I';
+                    }
+
+
+                    CargarTipoRenovacion(TipoDeRenovacion);
+                    if (((Marca)this._ventana.MarcaFiltrada).Interesado != null)
+                    {
+                        this._ventana.Interesado = ((Marca) this._ventana.MarcaFiltrada).Interesado;
+                        this._ventana.NombreInteresado = ((Interesado) this._ventana.Interesado).Nombre;
+                    }
+                    if (((Marca)this._ventana.MarcaFiltrada).Agente != null)
+                    {
+                        this._ventana.Agente = ((Marca) this._ventana.MarcaFiltrada).Agente;
+                        this._ventana.NombreAgente = ((Agente) this._ventana.Agente).Nombre;
+                    }
+                    if (((Marca)this._ventana.MarcaFiltrada).Poder != null)
+                    {
+                        this._ventana.Poder = ((Marca) this._ventana.MarcaFiltrada).Poder;
+                        this._ventana.IdPoder = ((Poder) this._ventana.Poder).Id.ToString();
+                    }
+
                 }
+
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -1325,6 +1377,15 @@ namespace Trascend.Bolet.Cliente.Presentadores.Renovaciones
 
                 if (poderesFiltrados.ToList<Poder>().Count != 0)
                 {
+                    foreach (Poder aux in poderesFiltrados)
+                    {
+                        IList<Agente> ListaAgentes = this._agenteServicios.ObtenerAgentesDeUnPoder(aux);
+                        foreach (Agente agente in ListaAgentes)
+                        {
+                            aux.MostrarAgentes += agente.Id+"-"+ agente.Nombre+"\n";
+                        }
+
+                    }
                     poderesFiltrados.Insert(0, pimerPoder);
                     this._ventana.PoderesFiltrados = poderesFiltrados;
                     this._ventana.PoderFiltrado = pimerPoder;
@@ -1642,6 +1703,15 @@ namespace Trascend.Bolet.Cliente.Presentadores.Renovaciones
         private bool ValidarMarcaAntesDeImprimirCarpeta()
         {
             return true;
+        }
+
+
+
+        internal void ActualizarFechaProxima()
+        {
+            int tiempoConfiguracion = int.Parse(ConfigurationManager.AppSettings["PeriodoRenovacion"].ToString());
+            this._ventana.ProximaRenovacion = ((Renovacion)this._ventana.Renovacion).Fecha.Value.AddYears(tiempoConfiguracion).ToString();
+
         }
     }
 }

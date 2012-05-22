@@ -5,17 +5,17 @@ namespace Trascend.Bolet.Cliente.Contratos.Renovaciones
 {
     interface IConsultarRenovaciones : IPaginaBase
     {
-        string Id { get; }       
+        string Id { get; set; }       
 
         object RenovacionSeleccionada { get; }
 
-        object Resultados { get; set; }        
+        object Resultados { get; set; }
 
-        string IdMarcaFiltrar { get; }
+        string IdMarcaFiltrar { get; set; }
 
         string FechaFiltrar { get; set; }
 
-        string NombreMarcaFiltrar { get; }
+        string NombreMarcaFiltrar { get; set; }
 
         object Marcas { get; set; }
 

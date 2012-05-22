@@ -355,6 +355,38 @@ namespace Trascend.Bolet.Cliente.Presentadores.Renovaciones
         }
 
         /// <summary>
+        /// Método que limpia los campos de búsqueda
+        /// </summary>
+        public void LimpiarCampos()
+        {
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+            this._ventana.TotalHits = "0";
+            this._ventana.Resultados = null;
+            this._ventana.Marca = false;
+            this._ventana.Marcas = null;
+            this._ventana.MarcaFiltrada = "";
+            this._ventana.Id = "";
+            this._ventana.FechaFiltrar = "";
+            this._ventana.IdMarcaFiltrar = "";
+            this._ventana.NombreMarcaFiltrar = "";
+
+
+
+
+
+
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+        }
+
+
+        /// <summary>
         /// Metodo que cambia el texto de la Marca en la interfaz
         /// </summary>
         /// <returns>true en caso de que la Marca haya sido valido, false en caso contrario</returns>

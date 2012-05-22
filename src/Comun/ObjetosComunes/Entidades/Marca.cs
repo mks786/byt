@@ -253,6 +253,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
             set { _acta = value; }
         }
 
+
         /// <summary>
         /// Propiedad que asigna u obtiene el CodigoExpediente
         /// </summary>

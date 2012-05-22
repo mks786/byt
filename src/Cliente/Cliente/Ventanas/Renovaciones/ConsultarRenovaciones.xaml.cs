@@ -28,6 +28,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Renovaciones
         public string Id
         {
             get { return this._txtId.Text; }
+            set { this._txtId.Text = value; }
         }
 
         public object RenovacionSeleccionada
@@ -79,6 +80,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Renovaciones
         public string IdMarcaFiltrar
         {
             get { return this._txtIdMarcaFiltrar.Text; }
+            set { this._txtIdMarcaFiltrar.Text = value; }
         }
 
         public string FechaFiltrar
@@ -90,6 +92,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Renovaciones
         public string NombreMarcaFiltrar
         {
             get { return this._txtNombreMarcaFiltrar.Text; }
+            set { this._txtNombreMarcaFiltrar.Text = value; }
         }        
 
         public void Mensaje(string mensaje, int opcion)
@@ -144,6 +147,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Renovaciones
         {
             this._presentador.OrdenarColumna(sender as GridViewColumnHeader);
         }
+
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
@@ -230,6 +234,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Renovaciones
         {
             if (this._presentador.CambiarMarca())
                 GestionarVisibilidadFiltroMarca(false);
+        }
+
+        private void _btnLimpiarCampos_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.LimpiarCampos();
         }       
         
     }

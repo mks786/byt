@@ -457,7 +457,7 @@
     <value>¿Seguro que desea eliminar la categoría?</value>
   </data>
   <data name="ErrorFiltroIncompleto" xml:space="preserve">
-    <value>Disculpe debe llenar dos o mas filtros para la consulta</value>
+    <value>Disculpe debe llenar al menos 1 filtro para la consulta</value>
   </data>
   <data name="ConfirmacionEliminarEntradaAlterna" xml:space="preserve">
     <value>¿Seguro que desea eliminar la entrada alterna?</value>
@@ -773,5 +773,11 @@
   </data>
   <data name="ErrorArchivoMemoriaNoEncontrado" xml:space="preserve">
     <value>Disculpe el archivo de la memoria no fue encontrado</value>
+  </data>
+  <data name="ConfirmacionEliminarRenovacion" xml:space="preserve">
+    <value>¿Seguro que desea eliminar esta Renovacion?</value>
+  </data>
+  <data name="UltimaRenovacion" xml:space="preserve">
+    <value>Esta Renovacion no puede ser Eliminada</value>
   </data>
 </root>

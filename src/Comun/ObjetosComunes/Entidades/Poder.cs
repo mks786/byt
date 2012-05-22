@@ -19,6 +19,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         private string _anexo;
         private string _observaciones;
         private string _operacion;
+        private string _mostrarAgentes;
         private IList<Agente> _agentes;
 
         #endregion
@@ -95,6 +96,15 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         {
             get { return this._facultad; }
             set { this._facultad = value; }
+        }
+
+                /// <summary>
+        /// Propiedad que asigna todos los agentes en unstring
+        /// </summary>
+        public virtual string MostrarAgentes
+        {
+            get { return this._mostrarAgentes; }
+            set { this._mostrarAgentes = value; }
         }
 
         /// <summary>

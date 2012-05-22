@@ -79,6 +79,7 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Select a from Anualidad a left join fetch a.Patente as patente left join fetch a.Asociado as asociado where .
         ///   Looks up a localized string similar to Select distinct(a) from Agente a where .
         /// </summary>
         public static string CabeceraObtenerAgenteVacio {
@@ -1078,6 +1079,7 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Select f from Fecha f left outer join fetch f.Tipo as tipoFecha left outer join fetch f.Correspondencia as carta left outer join fetch carta.Resumen as resumen left outer join fetch f.Patente as patente where f.Patente.Id = {0}.
         ///   Looks up a localized string similar to Select f from Fecha f left outer join fetch f.Tipo as tipoFecha left outer join fetch f.Correspondencia as carta left outer join fetch carta.Resumen as resumen where f.Patente.Id = {0}.
         ///   Busca una cadena traducida similar a Select f from Fecha f left outer join fetch f.Tipo as tipoFecha left outer join fetch f.Correspondencia as carta left outer join fetch carta.Resumen as resumen left outer join fetch f.Patente as patente where f.Patente.Id = {0}.
         /// </summary>
@@ -1300,6 +1302,16 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         public static string ObtenerTodosMarcaBaseTerceroPorId {
             get {
                 return ResourceManager.GetString("ObtenerTodosMarcaBaseTerceroPorId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to select max(r.Id) from Renovacion r where r.Marca= &apos;{0}&apos;.
+        ///   Looks up a localized string similar to Select u from Usuario u left join fetch u.Rol as rol left join fetch rol.Objetos where u.Id = &apos;{0}&apos; and u.Password = &apos;{1}&apos;.
+        /// </summary>
+        public static string ObtenerUltimaRenovacion {
+            get {
+                return ResourceManager.GetString("ObtenerUltimaRenovacion", resourceCulture);
             }
         }
         

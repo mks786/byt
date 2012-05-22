@@ -73,6 +73,8 @@ namespace Trascend.Bolet.Cliente.Contratos.Renovaciones
 
         object PoderFiltrado { get; set; }
 
+        DatePicker FechaRenovacion { get; set; }
+
         #endregion
 
         bool HabilitarCampos { set; }

@@ -7,5 +7,7 @@ namespace Trascend.Bolet.ObjetosComunes.ContratosServicios
     public interface IRenovacionServicios : IServicioBase<Renovacion>
     {
         IList<Renovacion> ObtenerRenovacionFiltro(Renovacion renovacion);
+
+        int ConsultarUltimaRenovacion(Renovacion renovacion);
     }
 }

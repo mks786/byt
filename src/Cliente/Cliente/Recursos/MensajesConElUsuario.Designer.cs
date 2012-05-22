@@ -826,6 +826,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ¿Seguro que desea eliminar esta Renovacion?.
+        /// </summary>
+        internal static string ConfirmacionEliminarRenovacion {
+            get {
+                return ResourceManager.GetString("ConfirmacionEliminarRenovacion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ¿Seguro que desea eliminar la resolución?.
         /// </summary>
         internal static string ConfirmacionEliminarResolucion {
@@ -1105,7 +1114,7 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Disculpe debe llenar dos o mas filtros para la consulta.
+        ///   Looks up a localized string similar to Disculpe debe llenar al menos 1 filtro para la consulta.
         /// </summary>
         internal static string ErrorFiltroIncompleto {
             get {
@@ -2001,6 +2010,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         internal static string TipoInfobolModificado {
             get {
                 return ResourceManager.GetString("TipoInfobolModificado", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Esta Renovacion no puede ser Eliminada.
+        /// </summary>
+        internal static string UltimaRenovacion {
+            get {
+                return ResourceManager.GetString("UltimaRenovacion", resourceCulture);
             }
         }
         

@@ -2648,6 +2648,15 @@ de Gracia</value>
   <data name="lblRevParaWeb" xml:space="preserve">
     <value>Rev Para Web:</value>
   </data>
+  <data name="lblSapi" xml:space="preserve">
+    <value>SAPI:</value>
+  </data>
+  <data name="lsvSapi" xml:space="preserve">
+    <value>SAPI</value>
+  </data>
+  <data name="lsvAgentes" xml:space="preserve">
+    <value>Agentes</value>
+  </data>
   <data name="lsvRecordatorio" xml:space="preserve">
     <value>Recordatorio</value>
   </data>

@@ -661,6 +661,10 @@
     <value>Select m from Memoria m where m.Patente.Id = '{0}'</value>
     <comment>Selecciona todas los poderes que posee un interesado</comment>
   </data>
+  <data name="ObtenerUltimaRenovacion" xml:space="preserve">
+    <value>select max(r.Id) from Renovacion r where r.Marca= '{0}'</value>
+    <comment>Consulta la ultima renovacion de una marca</comment>
+  </data>
   <data name="CabeceraObtenerAgenteVacio" xml:space="preserve">
     <value>Select distinct(a) from Agente a where </value>
     <comment>Cabecera del query para el filtro de agentes</comment>

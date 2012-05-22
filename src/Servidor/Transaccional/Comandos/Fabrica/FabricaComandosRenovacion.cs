@@ -49,6 +49,15 @@ namespace Trascend.Bolet.Comandos.Fabrica
         }
 
         /// <summary>
+        /// Método que devuelve el Comando para consultar la ultima renovacion de una marca
+        /// </summary>
+        /// <returns></returns>
+        public static ComandoBase<int> ObtenerComandoConsultarUltimaRenovacion(Renovacion renovacion)
+        {
+            return new ComandoConsultarUltimaRenovacion(renovacion);
+        }
+
+        /// <summary>
         /// Método que devuelve el Comando verificar existencia
         /// </summary>
         /// <param name="renovacion">renovacion a verificar</param>

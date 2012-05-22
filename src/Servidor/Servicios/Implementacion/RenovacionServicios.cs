@@ -39,6 +39,22 @@ namespace Trascend.Bolet.Servicios.Implementacion
             throw new NotImplementedException();
         }
 
+         public int ConsultarUltimaRenovacion(Renovacion entidad)
+        {
+            #region trace
+            if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+            int renovacion = ControladorRenovacion.ConsultarUltimaRenovacion(entidad);
+
+            #region trace
+            if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                logger.Debug("Saliendo del Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+            return renovacion;
+        }
         public bool InsertarOModificar(Renovacion renovacion, int hash)
         {
             #region trace
@@ -114,5 +130,7 @@ namespace Trascend.Bolet.Servicios.Implementacion
                 logger.Debug("Saliendo del Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
         }
+
+
     }
 }

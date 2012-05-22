@@ -155,6 +155,39 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
         }
 
         /// <summary>
+        /// Método que consulta una Renovacion por su Id
+        /// </summary>
+        /// <param name="renovacion">Renovacion con el Id de la Renovacion buscada</param>
+        /// <returns>La Renovacion solicitada</returns>
+        public static int ConsultarUltimaRenovacion(Renovacion renovacion)
+        {
+            int retorno;
+
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                ComandoBase<int> comando = FabricaComandosRenovacion.ObtenerComandoConsultarUltimaRenovacion(renovacion);
+                comando.Ejecutar();
+                retorno = comando.Receptor.ObjetoAlmacenado;
+
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Saliendo del Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (ApplicationException ex)
+            {
+                logger.Error(ex.Message);
+                throw ex;
+            }
+            return retorno;
+        }
+
+        /// <summary>
         /// Método que elimina una Renovacion
         /// </summary>
         /// <param name="renovacion">Renovacion a eliminar</param>
@@ -169,6 +202,8 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
                 if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
                     logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
+
+            
 
                 ComandoBase<bool> comando = FabricaComandosRenovacion.ObtenerComandoEliminarRenovacion(renovacion);
                 comando.Ejecutar();
