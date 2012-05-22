@@ -142,12 +142,12 @@
                         </Grid>
                     </WrapPanel>
                    
-                                    </GridViewColumn>
+                                    <!--</GridViewColumn>
                                 </GridView>
                             </ListView.View>
                         </ListView>
-                    </Grid>
-                </WrapPanel>
+                    </Grid>-->
+                <!--</WrapPanel>-->
                 <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,180,0">
                     <Label>
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblAbandono}"/>
