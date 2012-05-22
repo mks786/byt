@@ -323,7 +323,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
                 this._cbxAsocInt.IsEnabled = value;
                 this._cbxBoletinConcesion.IsEnabled = value;
                 this._cbxBoletinPublicacion.IsEnabled = value;
-                this._cbxCartaOrden.IsEnabled = value;
+                //this._cbxCartaOrden.IsEnabled = value;
                 this._cbxCondiciones.IsEnabled = value;
                 this._cbxDetalleDatos.IsEnabled = value;
                 this._cbxEstadoDatos.IsEnabled = value;
@@ -1204,6 +1204,43 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             }
         }
 
+        private void _btnConsultarCarta_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.BuscarCarta(0);
+        }
+
+        private void _txtIdCartaOrden_MouseDoubleClick(object sender, RoutedEventArgs e)
+        {
+            if (!this._corresponsalesCargados)
+            {
+                this._presentador.CargarCorresponsales();
+            }
+
+            ocultarLstInteresadoSolicutud();
+            ocultarLstAsociadoSolicitud();
+            ocultarLstPoderSolicutud();
+
+            this._btnAceptar.IsDefault = false;
+            this._btnConsultarCorresponsalSolicitud.IsDefault = true;
+
+            mostrarLstCorresponsalSolicutud();
+        }
+
+        private void _lstCartas_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            this._presentador.CambiarCorresponsalSolicitud();
+            ocultarLstCorresponsalSolicutud();
+            ocultarLstCorresponsalDatos();
+
+            this._btnConsultarCorresponsalSolicitud.IsDefault = false;
+            this._btnAceptar.IsDefault = true;
+        }
+
+        private void _OrdenarCartas_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.OrdenarColumna(sender as GridViewColumnHeader, this._lstCartas);
+        }
+
         private void _btnIrReclasificarSolicitud_Click(object sender, RoutedEventArgs e)
         {
 
@@ -1479,6 +1516,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
         {
             this._presentador.MostrarEtiqueta();
         }
+
 
     }
 }

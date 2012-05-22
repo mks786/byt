@@ -1251,7 +1251,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDePeticionario
                 apoderadoAnterior.Id = this._ventana.IdApoderadoAnteriorFiltrar.ToUpper();
 
                 if ((!apoderadoAnterior.Nombre.Equals("")) || (!apoderadoAnterior.Id.Equals("")))
-                    agentesAnteriorFiltrados = this._agenteServicios.ObtenerAgentesFiltro(apoderadoAnterior);
+                    agentesAnteriorFiltrados = this._agenteServicios.ObtenerAgentesSinPoderesFiltro(apoderadoAnterior);
                 else
                     agentesAnteriorFiltrados = new List<Agente>();
 
@@ -1847,7 +1847,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDePeticionario
                 apoderadoActual.Id = this._ventana.IdApoderadoActualFiltrar.ToUpper();
 
                 if ((!apoderadoActual.Nombre.Equals("")) || (!apoderadoActual.Id.Equals("")))
-                    agentesActualFiltrados = this._agenteServicios.ObtenerAgentesFiltro(apoderadoActual);
+                    agentesActualFiltrados = this._agenteServicios.ObtenerAgentesSinPoderesFiltro(apoderadoActual);
                 else
                     agentesActualFiltrados = new List<Agente>();
 

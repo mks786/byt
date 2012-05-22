@@ -2648,4 +2648,7 @@ de Gracia</value>
   <data name="lblRevParaWeb" xml:space="preserve">
     <value>Rev Para Web:</value>
   </data>
+  <data name="lsvRecordatorio" xml:space="preserve">
+    <value>Recordatorio</value>
+  </data>
 </root>

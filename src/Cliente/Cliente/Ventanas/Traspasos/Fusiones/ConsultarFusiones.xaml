@@ -108,7 +108,7 @@
                             <!--Path=Id, Converter={StaticResource convertir}-->
                             <ListView Visibility="Collapsed" Height="198" Name="_lstMarcas" ItemsSource="{Binding}" 
                       SelectionMode="Single" Style="{DynamicResource EstiloListView}" Grid.Row="3" Grid.ColumnSpan="2"
-                                      MouseDoubleClick="_lstMarcas_MouseDoubleClick">
+                                      MouseDoubleClick="_lstMarcas_MouseDoubleClick" Width="396">
                                 <ListView.View>
                                     <GridView>
                                         <GridViewColumn Width="45">
@@ -125,6 +125,12 @@
                                         </GridViewColumn>
                                         <GridViewColumn DisplayMemberBinding="{Binding Path=Descripcion}" Width="250">
                                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="Descripcion" Content="{x:Static recurso:Etiquetas.lsvNombre}"/>
+                                        </GridViewColumn>
+                                        <GridViewColumn DisplayMemberBinding="{Binding Path=Nacional.Id}" Width="100">
+                                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="Nacional.Id" Content="{x:Static recurso:Etiquetas.lsvClaseNacional}"/>
+                                        </GridViewColumn>
+                                        <GridViewColumn DisplayMemberBinding="{Binding Path=Internacional.Id}" Width="100">
+                                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="Internacional.Id" Content="{x:Static recurso:Etiquetas.lsvClaseInternacional}"/>
                                         </GridViewColumn>
                                     </GridView>
                                 </ListView.View>

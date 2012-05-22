@@ -661,4 +661,8 @@
     <value>Select m from Memoria m where m.Patente.Id = '{0}'</value>
     <comment>Selecciona todas los poderes que posee un interesado</comment>
   </data>
+  <data name="CabeceraObtenerAgenteVacio" xml:space="preserve">
+    <value>Select distinct(a) from Agente a where </value>
+    <comment>Cabecera del query para el filtro de agentes</comment>
+  </data>
 </root>

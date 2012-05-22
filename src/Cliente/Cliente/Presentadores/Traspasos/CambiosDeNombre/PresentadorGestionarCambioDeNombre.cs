@@ -1215,7 +1215,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeNombre
                 apoderadoInteresado.Id = this._ventana.IdAgenteFiltrar.ToUpper();
 
                 if ((!apoderadoInteresado.Nombre.Equals("")) || (!apoderadoInteresado.Id.Equals("")))
-                    agentesInteresadoFiltrados = this._agenteServicios.ObtenerAgentesFiltro(apoderadoInteresado);
+                    agentesInteresadoFiltrados = this._agenteServicios.ObtenerAgentesSinPoderesFiltro(apoderadoInteresado);
                 else
                     agentesInteresadoFiltrados = new List<Agente>();
 

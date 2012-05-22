@@ -329,12 +329,77 @@
                                 </ListView.View>
                             </ListView>
                         </Grid>
+
                         <Label Grid.Column="8" Grid.Row="4" VerticalAlignment="Center" HorizontalContentAlignment="Right">
+                            <TextBlock Text="{x:Static recurso:Etiquetas.lblCorresponsal}"/>
+                        </Label>
+                        <Grid Grid.Column="9" Grid.Row="4" Grid.ColumnSpan="1">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+
+                            <custom:ByTTextBox IsReadOnly="True" Grid.Column="0" Grid.Row="1" Name="_txtIdCartaOrden" VerticalAlignment="Center"
+                         MaxLength="255" Margin="0,0,5,0" IsEnabled="False" MouseDoubleClick="_txtIdCartaOrden_MouseDoubleClick" Text="{Binding Path=Corresponsal.Id}"></custom:ByTTextBox>
+
+                            <Label Name="_lblIdCarta" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Center" Visibility="Collapsed">
+                                <TextBlock Text="{x:Static recurso:Etiquetas.lblId}"/>
+                            </Label>
+                            <custom:ByTTextBox    Grid.Column="1" Grid.Row="0" Name="_txtIdCarta" VerticalAlignment="Center" 
+                         MaxLength="255" Grid.ColumnSpan="2" Visibility="Collapsed"  ></custom:ByTTextBox>
+
+                            <Label Name="_lblDescripcionCarta" Grid.Column="3" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Center" Visibility="Collapsed">
+                                <TextBlock Text="{x:Static recurso:Etiquetas.lblDescripcion}"/>
+                            </Label>
+                            <custom:ByTTextBox    Grid.Column="4" Grid.Row="0" Name="_txtDescripcionCarta" VerticalAlignment="Center"  Grid.ColumnSpan="2"
+                         MaxLength="255" Visibility="Collapsed"></custom:ByTTextBox>
+
+                            <Button Name="_btnConsultarCarta" Width="65" IsDefault="False" Grid.Row="0" Grid.Column="7" Height="25" HorizontalAlignment="Right" 
+                                Click="_btnConsultarCarta_Click" Visibility="Collapsed">
+                                <TextBlock Text="{x:Static recurso:Etiquetas.btnConsultar}"/>
+                            </Button>
+                            <ListView Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="7" Grid.RowSpan="2" Name="_lstCartas" ItemsSource="{Binding}" 
+                      SelectionMode="Single" MouseDoubleClick="_lstCartas_MouseDoubleClick"
+                      Style="{DynamicResource EstiloListView}" Visibility="Collapsed" Height="150"  VerticalAlignment="Top">
+                                <ListView.View>
+                                    <GridView>
+                                        <GridViewColumn Width="45">
+                                            <GridViewColumnHeader Click="_OrdenarCartas_Click" Tag="Id" Content="{x:Static recurso:Etiquetas.lsvId}"/>
+                                            <GridViewColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <TextBlock>
+                                                    <TextBlock.Text>
+                                                        <Binding Path="Id" Converter="{StaticResource convertir}"/>
+                                                    </TextBlock.Text>
+                                                    </TextBlock>
+                                                </DataTemplate>
+                                            </GridViewColumn.CellTemplate>
+                                        </GridViewColumn>
+                                        <GridViewColumn DisplayMemberBinding="{Binding Path=Descripcion}" Width="300">
+                                            <GridViewColumnHeader Click="_OrdenarCartas_Click" Tag="Descripcion" Content="{x:Static recurso:Etiquetas.lsvNombre}"/>
+                                        </GridViewColumn>
+                                    </GridView>
+                                </ListView.View>
+                            </ListView>
+                        </Grid>
+
+                        <!--<Label Grid.Column="8" Grid.Row="4" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblCartaOrden}"/>
                         </Label>
                         <ComboBox IsEnabled="False" Grid.Column="9" Grid.Row="4" Grid.ColumnSpan="3" Name="_cbxCartaOrden" Height="20" 
                               ItemsSource="{Binding}" DisplayMemberPath="Descripcion" SelectedIndex="0">
-                        </ComboBox>
+                        </ComboBox>-->
 
                         <Separator Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="12" Margin="10,0,10,20" VerticalAlignment="Top" />
                         
@@ -1254,7 +1319,7 @@
                         <Separator Margin="10 0" Grid.Column="0" Grid.Row="16" Grid.ColumnSpan="12" VerticalAlignment="Center"/>
 
                         <!--Undécima Fila-->
-                        <Grid Grid.Row="16" Grid.Column="1" Grid.RowSpan="6" Grid.ColumnSpan="3" >
+                        <Grid Grid.Row="16" Grid.Column="1" Grid.RowSpan="7" Grid.ColumnSpan="3" >
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"/>
                                 <ColumnDefinition Width="*"/>
@@ -1262,6 +1327,7 @@
                             </Grid.ColumnDefinitions>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="30"/>
+                                <RowDefinition Height="25"/>
                                 <RowDefinition Height="25"/>
                                 <RowDefinition Height="25"/>
                                 <RowDefinition Height="25"/>
@@ -1344,12 +1410,12 @@
                           Text=""></custom:ByTTextBox>
                             <custom:ByTTextBox IsEnabled="False" Grid.Column="2" Grid.Row="4" Grid.ColumnSpan="1" Margin="3" Name="_txtFechaRegistro" VerticalAlignment="Center"  
                           Text=""></custom:ByTTextBox>
-                            <Label Grid.Column="1" Grid.Row="5" VerticalAlignment="Center" HorizontalContentAlignment="Right">
+                            <Label Grid.Column="0" Grid.Row="5" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                                 <TextBlock Text="{x:Static recurso:Etiquetas.lblRenovarAntesDe}"/>
                             </Label>
 
-                            <custom:ByTTextBox IsEnabled="False" Grid.Column="1" Grid.Row="5" Grid.ColumnSpan="2" Margin="3" Name="_txtFechaRenovacion" VerticalAlignment="Center"  
-                          Text=""></custom:ByTTextBox>
+                            <custom:ByTTextBox IsReadOnly="True" Grid.Column="1" Grid.Row="5" Grid.ColumnSpan="1" Margin="3" Name="_txtFechaRenovacion" VerticalAlignment="Center"  
+                          Text="{Binding Path=FechaRenovacion}"></custom:ByTTextBox>
                         </Grid>
                         <Label Grid.Column="6" Grid.Row="17" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblSituacion}"/>

@@ -689,11 +689,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Cesiones
 
                 if (this._presentador.VerificarCambioAgente("Cedente"))
                 {
-                    this._btnConsultarPoderCedente.IsEnabled = false;                    
+                    this._btnConsultarPoderCedente.IsEnabled = false;
                 }
                 else
                 {
-                    this._btnConsultarPoderCedente.IsEnabled = true;                    
+                    this._btnConsultarPoderCedente.IsEnabled = true;
                 }
             }
         }

@@ -1319,7 +1319,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Cesiones
                 apoderadoCedente.Id = this._ventana.IdApoderadoCedenteFiltrar.ToUpper();
 
                 if ((!apoderadoCedente.Nombre.Equals("")) || (!apoderadoCedente.Id.Equals("")))
-                    agentesCedenteFiltrados = this._agenteServicios.ObtenerAgentesFiltro(apoderadoCedente);
+                {
+                    agentesCedenteFiltrados = this._agenteServicios.ObtenerAgentesSinPoderesFiltro(apoderadoCedente);
+                }
                 else
                     agentesCedenteFiltrados = new List<Agente>();
 
@@ -1931,7 +1933,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Cesiones
                 apoderadoCesionario.Id = this._ventana.IdApoderadoCesionarioFiltrar.ToUpper();
 
                 if ((!apoderadoCesionario.Nombre.Equals("")) || (!apoderadoCesionario.Id.Equals("")))
-                    agentesCesionarioFiltrados = this._agenteServicios.ObtenerAgentesFiltro(apoderadoCesionario);
+                    agentesCesionarioFiltrados = this._agenteServicios.ObtenerAgentesSinPoderesFiltro(apoderadoCesionario);
                 else
                     agentesCesionarioFiltrados = new List<Agente>();
 

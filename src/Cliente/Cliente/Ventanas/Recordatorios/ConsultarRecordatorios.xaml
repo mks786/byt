@@ -67,7 +67,7 @@
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>                    
+                    <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
@@ -103,7 +103,7 @@
                     <TextBlock Text="{x:Static recurso:Etiquetas.lblDesde}" Margin="5,5,0,0"/>
                 </Label>
                 <DatePicker Name="_dpkFechaDesde" Width="150" Focusable="False" BorderBrush="{x:Null}" Grid.Row="7"
-                            Grid.Column="1" Grid.ColumnSpan="3" Margin="0,5,0,0">                    
+                            Grid.Column="1" Grid.ColumnSpan="3" Margin="0,5,0,0">
                 </DatePicker>
 
                 <Label VerticalAlignment="Center" HorizontalContentAlignment="Right" Grid.Row="8" Grid.Column="0">
@@ -123,7 +123,7 @@
 
                 <CheckBox IsEnabled="True" Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="11" Content="{x:Static recurso:Etiquetas.chkFaxPorEnviar}" 
                                   Height="16" HorizontalAlignment="Left" Margin="5,15,0,0" Name="_chkFaxPorEnviar"
-                                  VerticalAlignment="Center"/>                
+                                  VerticalAlignment="Center"/>
             </Grid>
         </WrapPanel>
 
@@ -140,8 +140,8 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
-                </Grid.RowDefinitions>                
-                <Button Name="_btnConsultar" Width="100" Click="_btnConsultar_Click" Grid.Row="1" Grid.Column="0">
+                </Grid.RowDefinitions>
+                <Button Name="_btnConsultar" Width="100" Click="_btnConsultar_Click" Grid.Row="1" Grid.Column="0" IsDefault="True">
                     <TextBlock Text="{x:Static recurso:Etiquetas.btnConsultar}"/>
                 </Button>
                
@@ -157,7 +157,7 @@
                       Style="{DynamicResource EstiloListView}">
                 <ListView.View>
                     <GridView>
-                        <GridViewColumn DisplayMemberBinding="{Binding Path=Asociado.Id}" Width="70">                            
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Asociado.Id}" Width="70">
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="Id" Content="{x:Static recurso:Etiquetas.lsvId}"/>
                         </GridViewColumn>
                         <GridViewColumn DisplayMemberBinding="{Binding Path=Asociado.Nombre}" Width="150">
@@ -184,8 +184,20 @@
                         <GridViewColumn DisplayMemberBinding="{Binding Path=Interesado.Nombre}" Width="150">
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="Interesado.Nombre" Content="{x:Static recurso:Etiquetas.lsvInteresado}"/>
                         </GridViewColumn>
-                        <GridViewColumn DisplayMemberBinding="{Binding Path=FechaRenovacion}" Width="145">
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Recordatorio}" Width="150">
+                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="Recordatorio" Content="{x:Static recurso:Etiquetas.lsvRecordatorio}"/>
+                        </GridViewColumn>
+                        <GridViewColumn Width="150">
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="FechaRenovacion" Content="{x:Static recurso:Etiquetas.lsvFechaRenovacion}"/>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock>
+                                        <TextBlock.Text>
+                                            <Binding Path="FechaRenovacion" StringFormat="{}{0:dd/MM/yyyy}"/>
+                                        </TextBlock.Text>
+                                    </TextBlock>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
                         </GridViewColumn>
                     </GridView>
                 </ListView.View>
@@ -213,7 +225,7 @@
                 </Button>
                 <Button Name="_btnCancelar" Width="100" Click="_btnCancelar_Click">
                     <TextBlock Text="{x:Static recurso:Etiquetas.btnCancelar}"/>
-                </Button>                
+                </Button>
             </StackPanel>
         </GroupBox>
 

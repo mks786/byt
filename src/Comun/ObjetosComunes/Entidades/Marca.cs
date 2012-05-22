@@ -60,6 +60,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         private string _operacion;
         private Anaqua _anaqua;
         private InfoAdicional _infoAdicional;
+        private Carta _carta;
         private IList<InfoBol> _infoBoles;
         private IList<Operacion> _operaciones;
         private IList<Busqueda> _busquedas;
@@ -620,6 +621,15 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         {
             get { return _infoAdicional; }
             set { _infoAdicional = value; }
+        }
+
+        /// <summary>
+        /// Propiedad que asigna u obtiene la carta de una marca
+        /// </summary>
+        public virtual Carta Carta
+        {
+            get { return _carta; }
+            set { _carta = value; }
         }
 
         /// <summary>

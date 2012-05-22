@@ -1835,5 +1835,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
 
             }
         }
+
+        internal void BuscarCarta(int p)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

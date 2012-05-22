@@ -1468,7 +1468,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.LicenciasPatent
                 apoderadoLicenciante.Id = this._ventana.IdApoderadoLicencianteFiltrar.ToUpper();
 
                 if ((!apoderadoLicenciante.Nombre.Equals("")) || (!apoderadoLicenciante.Id.Equals("")))
-                    agentesLicencianteFiltrados = this._agenteServicios.ObtenerAgentesFiltro(apoderadoLicenciante);
+                    agentesLicencianteFiltrados = this._agenteServicios.ObtenerAgentesSinPoderesFiltro(apoderadoLicenciante);
                 else
                     agentesLicencianteFiltrados = new List<Agente>();
 
@@ -2086,7 +2086,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.LicenciasPatent
                 apoderadoLicenciatario.Id = this._ventana.IdApoderadoLicenciatarioFiltrar.ToUpper();
 
                 if ((!apoderadoLicenciatario.Nombre.Equals("")) || (!apoderadoLicenciatario.Id.Equals("")))
-                    agentesLicenciatarioFiltrados = this._agenteServicios.ObtenerAgentesFiltro(apoderadoLicenciatario);
+                    agentesLicenciatarioFiltrados = this._agenteServicios.ObtenerAgentesSinPoderesFiltro(apoderadoLicenciatario);
                 else
                     agentesLicenciatarioFiltrados = new List<Agente>();
 
