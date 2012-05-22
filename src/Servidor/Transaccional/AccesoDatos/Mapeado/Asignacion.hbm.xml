@@ -7,7 +7,7 @@
     <id name="Id" column="CODIGO" />
 
     <property name="Iniciales" column="RESPONSABLE" type="string"/>
-    
+
     <many-to-one name="Carta" class="Carta" lazy="false">
       <column name="ENTRADA"/>
     </many-to-one>

@@ -1566,7 +1566,7 @@ Cuenta solo digital:</value>
     <value>Fusiones</value>
   </data>
   <data name="menuItemLicencias" xml:space="preserve">
-    <value>Licencias</value>
+    <value>Licencias de Uso</value>
   </data>
   <data name="lblExpediente" xml:space="preserve">
     <value>Expediente:</value>
@@ -2659,5 +2659,14 @@ de Gracia</value>
   </data>
   <data name="lsvRecordatorio" xml:space="preserve">
     <value>Recordatorio</value>
+  </data>
+  <data name="lsvCodigoRegistro" xml:space="preserve">
+    <value>Código Registro</value>
+  </data>
+  <data name="lblCodigoFomento" xml:space="preserve">
+    <value>CFomento</value>
+  </data>
+  <data name="btnVolverAMarca" xml:space="preserve">
+    <value>Volver a Marca</value>
   </data>
 </root>

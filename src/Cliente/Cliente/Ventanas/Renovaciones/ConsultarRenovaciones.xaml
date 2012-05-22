@@ -215,6 +215,9 @@
         </Button>
         <GroupBox Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="1" BorderBrush="{x:Null}">
             <StackPanel HorizontalAlignment="Right" VerticalAlignment="Bottom" Orientation="Horizontal">
+                <Button Visibility="Hidden" Name="_btnVolverMarca" Width="100" Click="_btnVolverMarca_Click">
+                    <TextBlock Text="{x:Static recurso:Etiquetas.btnVolverAMarca}"/>
+                </Button>
                 <Button Name="_btnCancelar" Width="100" Click="_btnCancelar_Click">
                     <TextBlock Text="{x:Static recurso:Etiquetas.btnCancelar}"/>
                 </Button>

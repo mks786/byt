@@ -837,6 +837,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Volver a Marca.
+        /// </summary>
+        public static string btnVolverAMarca {
+            get {
+                return ResourceManager.GetString("btnVolverAMarca", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Administración.
         /// </summary>
         public static string cbiAdministracion {
@@ -2013,6 +2022,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string lblCodigoDestinatario {
             get {
                 return ResourceManager.GetString("lblCodigoDestinatario", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to CFomento.
+        /// </summary>
+        public static string lblCodigoFomento {
+            get {
+                return ResourceManager.GetString("lblCodigoFomento", resourceCulture);
             }
         }
         
@@ -4216,6 +4234,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Código Registro.
+        /// </summary>
+        public static string lsvCodigoRegistro {
+            get {
+                return ResourceManager.GetString("lsvCodigoRegistro", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to CodRes.
         /// </summary>
         public static string lsvCodRes {
@@ -5532,7 +5559,7 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Licencias.
+        ///   Looks up a localized string similar to Licencias de Uso.
         /// </summary>
         public static string menuItemLicencias {
             get {

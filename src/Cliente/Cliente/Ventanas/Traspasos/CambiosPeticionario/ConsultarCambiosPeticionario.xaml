@@ -171,9 +171,24 @@
                         <GridViewColumn DisplayMemberBinding="{Binding Path=Marca.Descripcion}" Width="150">
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="Marca.Descripcion" Content="{x:Static recurso:Etiquetas.lsvMarca}"/>
                         </GridViewColumn>
-                        <GridViewColumn DisplayMemberBinding="{Binding Path=FechaPeticionario}" Width="150">
-                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="FechaCesion" Content="{x:Static recurso:Etiquetas.lsvFecha}"/>
-                        </GridViewColumn>                        
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Marca.CodigoRegistro}" Width="150">
+                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="Marca.CodigoRegistro" Content="{x:Static recurso:Etiquetas.lsvCodigoRegistro}"/>
+                        </GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Marca.Interesado.Nombre}" Width="150">
+                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="Marca.Interesado.Nombre" Content="{x:Static recurso:Etiquetas.lsvInteresado}"/>
+                        </GridViewColumn>
+                        <GridViewColumn Width="150">
+                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="FechaPeticionario" Content="{x:Static recurso:Etiquetas.lsvFechaImpresion}"/>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock>
+                                        <TextBlock.Text>
+                                            <Binding Path="FechaPeticionario" StringFormat="{}{0:dd/MM/yyyy}"/>
+                                        </TextBlock.Text>
+                                    </TextBlock>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
                     </GridView>
                 </ListView.View>
             </ListView>

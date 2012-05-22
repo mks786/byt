@@ -13,6 +13,7 @@ using Trascend.Bolet.Cliente.Ayuda;
 using Trascend.Bolet.Cliente.Contratos.Renovaciones;
 using Trascend.Bolet.Cliente.Ventanas.Principales;
 using Trascend.Bolet.Cliente.Ventanas.Renovaciones;
+using Trascend.Bolet.Cliente.Ventanas.Marcas;
 using Trascend.Bolet.ObjetosComunes.ContratosServicios;
 using Trascend.Bolet.ObjetosComunes.Entidades;
 
@@ -25,9 +26,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.Renovaciones
 
         private IConsultarRenovaciones _ventana;
         private IMarcaServicios _marcaServicios;
-        private IRenovacionServicios _renovacionServicios;    
+        private IRenovacionServicios _renovacionServicios;
         private IList<Marca> _marcas;
-        private IList<Renovacion> _renovaciones;        
+        private IList<Renovacion> _renovaciones;
+
+        private Marca _marcaAFiltrar;
+        private bool _filtrando = false;
 
         /// <summary>
         /// Constructor Predeterminado
@@ -41,13 +45,25 @@ namespace Trascend.Bolet.Cliente.Presentadores.Renovaciones
                 this._marcaServicios = (IMarcaServicios)Activator.GetObject(typeof(IMarcaServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["MarcaServicios"]);
                 this._renovacionServicios = (IRenovacionServicios)Activator.GetObject(typeof(IRenovacionServicios),
-                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["RenovacionServicios"]);                
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["RenovacionServicios"]);
             }
             catch (Exception ex)
             {
                 logger.Error(ex.Message);
                 this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
             }
+        }
+        /// <summary>
+        /// Constructor que recibe una marca para realizar el filtrado directamente
+        /// </summary>
+        /// <param name="ventana">página que satisface el contrato</param>
+        /// <param name="marca">marca para filtrar</param>
+        public PresentadorConsultarRenovaciones(IConsultarRenovaciones ventana, object marca)
+            : this(ventana)
+        {
+            this._marcaAFiltrar = (Marca)marca;
+            _filtrando = true;
+            this._ventana.MostrarBotonVolverAMarca();
         }
 
         public void ActualizarTitulo()
@@ -72,14 +88,26 @@ namespace Trascend.Bolet.Cliente.Presentadores.Renovaciones
 
                 ActualizarTitulo();
 
-                IList<Marca> marcas = new List<Marca>();
-                Marca primeraMarca = new Marca();
-                primeraMarca.Id = int.MinValue;
-                marcas.Insert(0, primeraMarca);
-                this._ventana.Marcas = marcas;
-                this._marcas = marcas;
+                if (!this._filtrando)
+                {
+                    IList<Marca> marcas = new List<Marca>();
+                    Marca primeraMarca = new Marca();
+                    primeraMarca.Id = int.MinValue;
+                    marcas.Insert(0, primeraMarca);
+                    this._ventana.Marcas = marcas;
+                    this._marcas = marcas;
 
-                this._ventana.TotalHits = "0";
+                    this._ventana.TotalHits = "0";
+                }
+                else
+                {
+                    IList<Marca> marcas = new List<Marca>();
+                    marcas.Add(_marcaAFiltrar);
+                    this._ventana.Marcas = marcas;
+                    this._ventana.Marca = this._marcaAFiltrar;
+                    this._marcas = marcas;
+                    this.ConsultarMarca(_marcaAFiltrar);
+                }
                 this._ventana.FocoPredeterminado();
 
                 #region trace
@@ -126,7 +154,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Renovaciones
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-                Mouse.OverrideCursor = Cursors.Wait;                
+                Mouse.OverrideCursor = Cursors.Wait;
                 int filtroValido = 0;
 
                 Renovacion RenovacionAuxiliar = new Renovacion();
@@ -148,7 +176,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Renovaciones
                 {
                     RenovacionAuxiliar.Marca = (Marca)this._ventana.Marca;
                     filtroValido = 2;
-                }                             
+                }
 
                 if (filtroValido >= 2)
                 {
@@ -160,7 +188,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Renovaciones
                     {
                         RenovacionAuxiliar = new Renovacion(renovacion.Id);
                         Marca marcaAuxiliar = new Marca();
-                        Interesado interesadoAuxiliar = new Interesado();                        
+                        Interesado interesadoAuxiliar = new Interesado();
 
                         if ((renovacion.Marca != null) && (!string.IsNullOrEmpty(renovacion.Marca.Descripcion)))
                         {
@@ -278,7 +306,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Renovaciones
                 logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
         }
-     
+
         /// <summary>
         /// Método que se encarga de buscar la renovacion definido en el filtro
         /// </summary>
@@ -355,6 +383,30 @@ namespace Trascend.Bolet.Cliente.Presentadores.Renovaciones
         }
 
         /// <summary>
+        /// Método que se encarga de buscar la Marca definida en el filtro
+        /// </summary>
+        public void BuscarMarca(Marca marca)
+        {
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+            Mouse.OverrideCursor = Cursors.Wait;
+
+            IList<Marca> marcas = this._marcaServicios.ObtenerMarcasFiltro(marca);
+            marcas.Insert(0, new Marca(int.MinValue));
+            this._ventana.Marcas = marcas;
+
+            Mouse.OverrideCursor = null;
+
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+        }
+
+        /// <summary>
         /// Método que limpia los campos de búsqueda
         /// </summary>
         public void LimpiarCampos()
@@ -411,6 +463,82 @@ namespace Trascend.Bolet.Cliente.Presentadores.Renovaciones
             #endregion
 
             return retorno;
+        }
+
+        /// <summary>
+        /// Metodo que cambia el texto de la Marca en la interfaz
+        /// </summary>
+        /// <returns>true en caso de que la Marca haya sido valido, false en caso contrario</returns>
+        private void ConsultarMarca(Marca marca)
+        {
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                Mouse.OverrideCursor = Cursors.Wait;
+
+                Renovacion RenovacionAuxiliar = new Renovacion();
+                RenovacionAuxiliar.Marca = marca;
+                    this._renovaciones = this._renovacionServicios.ObtenerRenovacionFiltro(RenovacionAuxiliar);
+
+                    IList<Renovacion> renovacionesDesinfladas = new List<Renovacion>();
+
+                    foreach (var renovacion in this._renovaciones)
+                    {
+                        RenovacionAuxiliar = new Renovacion(renovacion.Id);
+                        Marca marcaAuxiliar = new Marca();
+                        Interesado interesadoAuxiliar = new Interesado();
+
+                        if ((renovacion.Marca != null) && (!string.IsNullOrEmpty(renovacion.Marca.Descripcion)))
+                        {
+                            marcaAuxiliar.Descripcion = renovacion.Marca.Descripcion;
+                            RenovacionAuxiliar.Marca = marcaAuxiliar;
+                        }
+
+                        if ((renovacion.Interesado != null) && (!string.IsNullOrEmpty(renovacion.Interesado.Nombre)))
+                        {
+                            interesadoAuxiliar.Nombre = renovacion.Interesado.Nombre;
+                            RenovacionAuxiliar.Interesado = interesadoAuxiliar;
+                        }
+
+                        RenovacionAuxiliar.Fecha = renovacion.Fecha != null ? renovacion.Fecha : null;
+
+                        RenovacionAuxiliar.FechaProxima = renovacion.FechaProxima != null ? renovacion.FechaProxima : null;
+
+                        renovacionesDesinfladas.Add(RenovacionAuxiliar);
+
+                    }
+
+                    this._ventana.Resultados = renovacionesDesinfladas;
+                    this._ventana.TotalHits = renovacionesDesinfladas.Count.ToString();
+                    if (renovacionesDesinfladas.Count == 0)
+                    {
+                        this._ventana.Mensaje(Recursos.MensajesConElUsuario.NoHayResultados, 1);
+                        this._ventana.FechaFiltrar = "";
+                    }
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
+            }
+            finally
+            {
+                Mouse.OverrideCursor = null;
+            }
+        }
+
+        public void VolverAMarca()
+        {
+            this.Navegar(new ConsultarMarca(this._marcaAFiltrar));
         }
     }
 }

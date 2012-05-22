@@ -108,6 +108,21 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
                     exitoso = comando.Receptor.ObjetoAlmacenado;
                 }
 
+                if (exitoso)
+                {
+                    ComandoBase<Marca> comandoObtenerMarca = FabricaComandosMarca.ObtenerComandoConsultarMarcaConTodo(fusion.Marca);
+                    comandoObtenerMarca.Ejecutar();
+                    Marca marcaModificar = comandoObtenerMarca.Receptor.ObjetoAlmacenado;
+
+                    marcaModificar.Interesado = fusion.InteresadoSobreviviente;
+                    marcaModificar.Poder = fusion.Poder;
+
+                    ComandoBase<bool> comandoMarca = FabricaComandosMarca.ObtenerComandoInsertarOModificar(fusion.Marca);
+                    comandoMarca.Ejecutar();
+                    exitoso = exitoso && comandoMarca.Receptor.ObjetoAlmacenado;
+                }
+
+
                 #region trace
                 if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
                     logger.Debug("Saliendo del Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);

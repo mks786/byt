@@ -1517,6 +1517,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             this._presentador.MostrarEtiqueta();
         }
 
+        private void _btnRenovacion_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.IrRenovacionDeMarca();
+        }
+
 
     }
 }

@@ -21,7 +21,9 @@ namespace Trascend.Bolet.Cliente.Contratos.Renovaciones
 
         object Marca { get; set; }
 
-        string MarcaFiltrada { get; set; }       
+        string MarcaFiltrada { get; set; }
+
+        void MostrarBotonVolverAMarca();
 
         GridViewColumnHeader CurSortCol { get; set; }
 

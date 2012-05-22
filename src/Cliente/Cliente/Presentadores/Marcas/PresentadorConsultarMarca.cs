@@ -13,6 +13,7 @@ using Trascend.Bolet.Cliente.Ayuda;
 using Trascend.Bolet.Cliente.Contratos.Marcas;
 using Trascend.Bolet.Cliente.Ventanas.Principales;
 using Trascend.Bolet.Cliente.Ventanas.Marcas;
+using Trascend.Bolet.Cliente.Ventanas.Renovaciones;
 using Trascend.Bolet.ObjetosComunes.ContratosServicios;
 using Trascend.Bolet.ObjetosComunes.Entidades;
 using Trascend.Bolet.Cliente.Ventanas.Auditorias;
@@ -286,6 +287,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 this._ventana.TiposClaseNacional = tipoClasesNacional;
                 this._ventana.TipoClaseNacional = this.BuscarClaseNacional(tipoClasesNacional, marca.TipoCnac);
 
+                //string prueba = ConfigurationManager.AppSettings["RutaImagenesDeMarcas"] + marca.Id + ".BMP";
 
                 if (File.Exists(ConfigurationManager.AppSettings["RutaImagenesDeMarcas"] + marca.Id + ".BMP"))
                 {
@@ -1836,9 +1838,14 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             }
         }
 
-        internal void BuscarCarta(int p)
+        public void BuscarCarta(int p)
         {
             throw new NotImplementedException();
+        }
+
+        public void IrRenovacionDeMarca()
+        {
+            this.Navegar(new ConsultarRenovaciones(this._ventana.Marca));
         }
     }
 }

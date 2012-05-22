@@ -25,7 +25,7 @@ namespace Trascend.Bolet.Comandos.Comandos.ComandosPais
                 #endregion
 
                 IDaoPais dao = FabricaDaoBase.ObtenerFabricaDao().ObtenerDaoPais();
-                this.Receptor = new Receptor<IList<Pais>>(dao.ObtenerTodos());
+                this.Receptor = new Receptor<IList<Pais>>(dao.ObtenerTodos("NombreEspanol","Asc"));
 
                 #region trace
                 if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))

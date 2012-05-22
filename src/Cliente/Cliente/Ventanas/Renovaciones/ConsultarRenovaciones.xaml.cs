@@ -95,6 +95,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Renovaciones
             set { this._txtNombreMarcaFiltrar.Text = value; }
         }        
 
+        public void MostrarBotonVolverAMarca()
+        {
+            this._btnVolverMarca.Visibility = Visibility.Visible;
+        }
+
         public void Mensaje(string mensaje, int opcion)
         {
             if (opcion == 0)
@@ -106,7 +111,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Renovaciones
         public string MarcaFiltrada
         {
             get { return this._txtMarca.Text; }
-            set { this._txtMarca.Text = value; }           
+            set { this._txtMarca.Text = value; }
         }
 
         public string TotalHits
@@ -124,6 +129,13 @@ namespace Trascend.Bolet.Cliente.Ventanas.Renovaciones
             InitializeComponent();
             this._cargada = false;
             this._presentador = new PresentadorConsultarRenovaciones(this);
+        }
+        /// <summary>
+        /// Constructor para cargar las ventanas de una Marca
+        /// </summary>
+        public ConsultarRenovaciones(object marca) :this()
+        {
+            this._presentador = new PresentadorConsultarRenovaciones(this,marca);
         }
 
         private void _btnCancelar_Click(object sender, RoutedEventArgs e)
@@ -235,6 +247,12 @@ namespace Trascend.Bolet.Cliente.Ventanas.Renovaciones
             if (this._presentador.CambiarMarca())
                 GestionarVisibilidadFiltroMarca(false);
         }
+
+        private void _btnVolverMarca_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.VolverAMarca();
+        }
+
 
         private void _btnLimpiarCampos_Click(object sender, RoutedEventArgs e)
         {

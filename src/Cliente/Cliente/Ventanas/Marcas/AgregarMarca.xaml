@@ -534,7 +534,7 @@
                         </Grid>
 
                         <Label Grid.Column="10" Grid.Row="13" VerticalAlignment="Center" HorizontalContentAlignment="Right">
-                            <TextBlock Text="{x:Static recurso:Etiquetas.lblNumSapi}"/>
+                            <TextBlock Text="{x:Static recurso:Etiquetas.lblCodigoFomento}"/>
                         </Label>
                         <custom:ByTTextBox  MaxLength="255" Grid.Column="11" Grid.Row="13" Name="_txtNumSapi" VerticalAlignment="Center"></custom:ByTTextBox>
 
