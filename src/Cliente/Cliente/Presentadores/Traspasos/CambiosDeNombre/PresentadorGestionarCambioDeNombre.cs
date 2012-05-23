@@ -180,7 +180,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeNombre
                         this._ventana.Marca = this._marcaServicios.ConsultarMarcaConTodo(((CambioDeNombre)CambioDeNombre).Marca);
 
                     this._ventana.NombreMarca = ((Marca)this._ventana.Marca).Descripcion;
+                    this._ventana.IdMarca = ((Marca)this._ventana.Marca).Id.ToString();
+
                     this._ventana.AgenteApoderado = ((CambioDeNombre)CambioDeNombre).Agente;
+                    this._ventana.IdAgenteApoderado = this._ventana.AgenteApoderado != null ? ((Agente)this._ventana.AgenteApoderado).Id : "";
                     this._ventana.Poder = CambioDeNombre.Poder;
 
 
@@ -198,6 +201,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeNombre
 
                     ValidarInteresado();
 
+                    CargaBoletines();
+
+                    this._ventana.Boletin = this.BuscarBoletin((IList<Boletin>)this._ventana.Boletines, CambioDeNombre.Boletin);
+
                 }
                 else
                 {
@@ -210,6 +217,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeNombre
                     CargarApoderado();
 
                     CargarPoder();
+
+                    CargaBoletines();
                 }
 
                 this._ventana.FocoPredeterminado();
@@ -230,6 +239,15 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeNombre
             }
         }
 
+        private void CargaBoletines()
+        {
+            Boletin primerBoletin = new Boletin(int.MinValue);
+            IList<Boletin> boletines = this._boletinServicios.ConsultarTodos();
+            boletines.Insert(0, primerBoletin);
+            this._ventana.Boletines = boletines;
+
+        }
+
         private void CargarInteresado(string tipo)
         {
             Interesado primerInteresado = new Interesado(int.MinValue);
@@ -244,6 +262,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeNombre
                 {
                     this._ventana.InteresadoAnterior = this._interesadoServicios.ConsultarInteresadoConTodo(((CambioDeNombre)this._ventana.CambioDeNombre).InteresadoAnterior);
                     this._ventana.NombreInteresadoAnterior = ((Interesado)this._ventana.InteresadoAnterior).Nombre;
+                    this._ventana.IdInteresadoAnterior = ((Interesado)this._ventana.InteresadoAnterior).Id.ToString();
 
                     if ((Interesado)this._ventana.InteresadoAnterior != null)
                     {
@@ -270,6 +289,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeNombre
                 {
                     this._ventana.InteresadoActual = this._interesadoServicios.ConsultarInteresadoConTodo(((CambioDeNombre)this._ventana.CambioDeNombre).InteresadoActual);
                     this._ventana.NombreInteresadoActual = ((Interesado)this._ventana.InteresadoActual).Nombre;
+                    this._ventana.IdInteresadoActual = ((Interesado)this._ventana.InteresadoActual).Id.ToString();
 
                     if ((Interesado)this._ventana.InteresadoActual != null)
                     {
@@ -312,6 +332,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeNombre
 
             if (null != this._ventana.Poder)
                 cambioDeNombre.Poder = ((Poder)this._ventana.Poder).Id != int.MinValue ? (Poder)this._ventana.Poder : null;
+
+            if (null != this._ventana.Boletin)
+                cambioDeNombre.Boletin = ((Boletin)this._ventana.Boletin).Id != int.MinValue ? (Boletin)this._ventana.Boletin : null;
 
             (cambioDeNombre.Marca).BEtiqueta = ((CambioDeNombre)this._ventana.CambioDeNombre).Marca.BEtiqueta;
 
@@ -726,10 +749,13 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeNombre
                 {
                     this._ventana.Marca = this._ventana.MarcaFiltrada;
                     this._ventana.NombreMarca = ((Marca)this._ventana.MarcaFiltrada).Descripcion;
+                    this._ventana.IdMarca = ((Marca)this._ventana.MarcaFiltrada).Id.ToString();
                     this._marcas.RemoveAt(0);
                     this._marcas.Add((Marca)this._ventana.MarcaFiltrada);
                     retorno = true;
                 }
+
+                this._ventana.ConvertirEnteroMinimoABlanco();
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -856,10 +882,13 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeNombre
                     this._ventana.InteresadoAnterior =
                         this._interesadoServicios.ConsultarInteresadoConTodo((Interesado)this._ventana.InteresadoAnteriorFiltrado);
                     this._ventana.NombreInteresadoAnterior = ((Interesado)this._ventana.InteresadoAnteriorFiltrado).Nombre;
+                    this._ventana.IdInteresadoAnterior = ((Interesado)this._ventana.InteresadoAnteriorFiltrado).Id.ToString();
                     this._interesadosAnterior.RemoveAt(0);
                     this._interesadosAnterior.Add((Interesado)this._ventana.InteresadoAnteriorFiltrado);
                     retorno = true;
                 }
+
+                this._ventana.ConvertirEnteroMinimoABlanco();
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -1057,6 +1086,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeNombre
                         {
                             this._ventana.InteresadoActual = this._interesadoServicios.ConsultarInteresadoConTodo((Interesado)this._ventana.InteresadoActualFiltrado);
                             this._ventana.NombreInteresadoActual = ((Interesado)this._ventana.InteresadoActual).Nombre;
+                            this._ventana.IdInteresadoActual = ((Interesado)this._ventana.InteresadoActual).Id.ToString();
                             retorno = true;
                         }
                         else
@@ -1069,6 +1099,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeNombre
                             {
                                 this._ventana.InteresadoActual = this._ventana.InteresadoActualFiltrado;
                                 this._ventana.NombreInteresadoActual = ((Interesado)this._ventana.InteresadoActualFiltrado).Nombre;
+                                this._ventana.IdInteresadoActual = ((Interesado)this._ventana.InteresadoActualFiltrado).Id.ToString();
                                 retorno = true;
                             }
                             else if (!this.ValidarListaDePoderes(this._poderesInteresadoActual, this._poderesApoderado))
@@ -1092,6 +1123,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeNombre
                             this._poderesInteresadoActual = this._poderServicios.ConsultarPoderesPorInteresado(((Interesado)_ventana.InteresadoActualFiltrado));
                             this._ventana.InteresadoActual = this._interesadoServicios.ConsultarInteresadoConTodo((Interesado)this._ventana.InteresadoActualFiltrado);
                             this._ventana.NombreInteresadoActual = ((Interesado)this._ventana.InteresadoActual).Nombre;
+                            this._ventana.IdInteresadoActual = ((Interesado)this._ventana.InteresadoActual).Id.ToString();
                             retorno = true;
                         }
                         else
@@ -1100,6 +1132,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeNombre
                             this._poderesInteresadoActual = this._poderServicios.ConsultarPoderesPorInteresado(((Interesado)_ventana.InteresadoActualFiltrado));
                             this._ventana.InteresadoActual = this._interesadoServicios.ConsultarInteresadoConTodo((Interesado)this._ventana.InteresadoActualFiltrado);
                             this._ventana.NombreInteresadoActual = ((Interesado)this._ventana.InteresadoActual).Nombre;
+                            this._ventana.IdInteresadoActual = ((Interesado)this._ventana.InteresadoActual).Id.ToString();
                             retorno = true;
                         }
                     }
@@ -1109,6 +1142,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeNombre
                 {
                     this._ventana.InteresadoActual = this._ventana.InteresadoActualFiltrado;
                     this._ventana.NombreInteresadoActual = ((Interesado)this._ventana.InteresadoActual).Nombre;
+                    this._ventana.IdInteresadoActual = ((Interesado)this._ventana.InteresadoActual).Id.ToString();
                     retorno = true;
                 }
 
@@ -1285,6 +1319,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeNombre
                         {
                             this._ventana.AgenteApoderado = this._ventana.AgenteApoderadoFiltrado;
                             this._ventana.NombreAgenteApoderado = ((Agente)this._ventana.AgenteApoderadoFiltrado).Nombre;
+                            this._ventana.IdAgenteApoderado = ((Agente)this._ventana.AgenteApoderadoFiltrado).Id.ToString();
                             retorno = true;
                         }
                         else
@@ -1297,6 +1332,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeNombre
                             {
                                 this._ventana.AgenteApoderado = this._ventana.AgenteApoderadoFiltrado;
                                 this._ventana.NombreAgenteApoderado = ((Agente)this._ventana.AgenteApoderadoFiltrado).Nombre;
+                                this._ventana.IdAgenteApoderado = ((Agente)this._ventana.AgenteApoderadoFiltrado).Id.ToString();
                                 retorno = true;
                             }
                             else if (!this.ValidarListaDePoderes(this._poderesInteresadoActual, this._poderesApoderado))
@@ -1312,6 +1348,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeNombre
                         {
                             this._ventana.AgenteApoderado = this._ventana.AgenteApoderadoFiltrado;
                             this._ventana.NombreAgenteApoderado = ((Agente)this._ventana.AgenteApoderadoFiltrado).Nombre;
+                            this._ventana.IdAgenteApoderado = ((Agente)this._ventana.AgenteApoderadoFiltrado).Id.ToString();
                             retorno = true;
                         }
                         else
@@ -1319,6 +1356,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeNombre
                             this._poderesApoderado = this._poderServicios.ConsultarPoderesPorAgente(((Agente)_ventana.AgenteApoderadoFiltrado));
                             this._ventana.AgenteApoderado = this._ventana.AgenteApoderadoFiltrado;
                             this._ventana.NombreAgenteApoderado = ((Agente)this._ventana.AgenteApoderadoFiltrado).Nombre;
+                            this._ventana.IdAgenteApoderado = ((Agente)this._ventana.AgenteApoderadoFiltrado).Id.ToString();
                             retorno = true;
                         }
                     }
@@ -1327,6 +1365,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeNombre
                 {
                     this._ventana.AgenteApoderado = this._ventana.AgenteApoderadoFiltrado;
                     this._ventana.NombreAgenteApoderado = ((Agente)this._ventana.AgenteApoderadoFiltrado).Nombre;
+                    this._ventana.IdAgenteApoderado = ((Agente)this._ventana.AgenteApoderadoFiltrado).Id.ToString();
                     retorno = true;
                 }
 
