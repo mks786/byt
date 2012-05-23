@@ -2981,6 +2981,25 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Marca a Tercero:.
+        /// </summary>
+        public static string lblMarcaTercero {
+            get {
+                return ResourceManager.GetString("lblMarcaTercero", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Marca Tercero Base:.
+        /// </summary>
+        public static string lblMarcaTerceroBase {
+            get {
+                return ResourceManager.GetString("lblMarcaTerceroBase", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Medio:.
         ///   Busca una cadena traducida similar a Medio:.
         /// </summary>
         public static string lblMedio {

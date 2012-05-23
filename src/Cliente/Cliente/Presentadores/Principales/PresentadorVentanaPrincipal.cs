@@ -555,11 +555,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
         }
 
         /// <summary>
-        /// Método que coloca la página "Gestionar MarcaTercero" en el Frame principal
+        /// Método que coloca la página "Consultar MarcaTercero" en el Frame principal
         /// </summary>
         public void ConsultarMarcaATerceros()
         {
-            this._ventana.Contenedor.Navigate(new ConsultarMarcasTercero());
+            //this._ventana.Contenedor.Navigate(new ConsultarMarcasTercero());
+            this._ventana.Contenedor.Navigate(new ConsultaMarcasTercero());
         }
 
         /// <summary>

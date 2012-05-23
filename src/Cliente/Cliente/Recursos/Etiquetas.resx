@@ -2669,6 +2669,12 @@ de Gracia</value>
   <data name="btnVolverAMarca" xml:space="preserve">
     <value>Volver a Marca</value>
   </data>
+  <data name="lblMarcaTercero" xml:space="preserve">
+    <value>Marca a Tercero:</value>
+  </data>
+  <data name="lblMarcaTerceroBase" xml:space="preserve">
+    <value>Marca Tercero Base:</value>
+  </data>
   <data name="titleInfoAdicionalMarca" xml:space="preserve">
     <value>Info Adicional de Marca</value>
   </data>

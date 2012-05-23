@@ -112,6 +112,7 @@
     <Compile Include="Contratos\CartasOuts\IConsultarCartasOuts.cs" />
     <Compile Include="Contratos\AbandonosPatente\IConsultarAbandonosPatente.cs" />
     <Compile Include="Contratos\AbandonosPatente\IGestionarAbandonoPatente.cs" />
+    <Compile Include="Contratos\MarcasTercero\IConsultaMarcasTercero.cs" />
     <Compile Include="Contratos\Memorias\IAgregarMemoria.cs" />
     <Compile Include="Contratos\Memorias\IConsultarMemoria.cs" />
     <Compile Include="Contratos\FechasPatente\IAgregarFecha.cs" />
@@ -174,7 +175,6 @@
     <Compile Include="Contratos\EscritosMarca\ICambioDeTramitante.cs" />
     <Compile Include="Contratos\EscritosMarca\ILimitacionDelDistingue.cs" />
     <Compile Include="Contratos\MarcasTercero\IGestionarMarcaTercero.cs" />
-    <Compile Include="Contratos\MarcasTercero\IConsultarMarcasTercero.cs" />
     <Compile Include="Contratos\Recordatorios\IConsultarRecordatorios.cs" />
     <Compile Include="Contratos\Renovaciones\IConsultarRenovaciones.cs" />
     <Compile Include="Contratos\EntradasAlternas\IAgregarEntradaAlterna.cs" />
@@ -339,6 +339,7 @@
     <Compile Include="Presentadores\EscritosPatente\PresentadorExamenDePatentabilidad.cs" />
     <Compile Include="Presentadores\Inventores\PresentadorAgregarInventor.cs" />
     <Compile Include="Presentadores\Inventores\PresentadorConsultarInventor.cs" />
+    <Compile Include="Presentadores\MarcasTercero\PresentadorConsultaMarcasTercero.cs" />
     <Compile Include="Presentadores\Memorias\PresentadorAgregarMemoria.cs" />
     <Compile Include="Presentadores\Memorias\PresentadorConsultarMemoria.cs" />
     <Compile Include="Presentadores\Memorias\PresentadorConsultarMemorias.cs" />
@@ -377,7 +378,6 @@
     <Compile Include="Presentadores\EscritosMarca\PresentadorCambioDeTramitante.cs" />
     <Compile Include="Presentadores\EscritosMarca\PresentadorLimitacionDelDistingue.cs" />
     <Compile Include="Presentadores\MarcasTercero\PresentadorGestionarMarcaTercero.cs" />
-    <Compile Include="Presentadores\MarcasTercero\PresentadorConsultarMarcasTercero.cs" />
     <Compile Include="Presentadores\Recordatorios\PresentadorConsultarRecordatorios.cs" />
     <Compile Include="Presentadores\Renovaciones\PresentadorConsultarRenovaciones.cs" />
     <Compile Include="Presentadores\EntradasAlternas\PresentadorAgregarEntradaAlterna.cs" />
@@ -586,6 +586,9 @@
     <Compile Include="Ventanas\AbandonosPatente\GestionarAbandonoPatente.xaml.cs">
       <DependentUpon>GestionarAbandonoPatente.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Ventanas\MarcasTercero\ConsultaMarcasTercero.xaml.cs">
+      <DependentUpon>ConsultaMarcasTercero.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Ventanas\Memorias\AgregarMemoria.xaml.cs">
       <DependentUpon>AgregarMemoria.xaml</DependentUpon>
     </Compile>
@@ -738,9 +741,6 @@
     </Compile>
     <Compile Include="Ventanas\MarcasTercero\GestionarMarcaTercero.xaml.cs">
       <DependentUpon>GestionarMarcaTercero.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Ventanas\MarcasTercero\ConsultarMarcasTercero.xaml.cs">
-      <DependentUpon>ConsultarMarcasTercero.xaml</DependentUpon>
     </Compile>
     <Compile Include="Ventanas\Patentes\ListaFechas.xaml.cs">
       <DependentUpon>ListaFechas.xaml</DependentUpon>
@@ -1212,6 +1212,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Ventanas\MarcasTercero\ConsultaMarcasTercero.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Ventanas\Memorias\AgregarMemoria.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -1413,10 +1417,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Ventanas\MarcasTercero\GestionarMarcaTercero.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Ventanas\MarcasTercero\ConsultarMarcasTercero.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
