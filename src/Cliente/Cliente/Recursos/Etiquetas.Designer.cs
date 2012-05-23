@@ -3629,6 +3629,7 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to SAPI:.
         ///   Busca una cadena traducida similar a SAPI:.
         /// </summary>
         public static string lblSapi {
@@ -4124,6 +4125,7 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Agentes.
         ///   Busca una cadena traducida similar a Agentes.
         /// </summary>
         public static string lsvAgentes {
@@ -4718,6 +4720,7 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Recordatorio.
         ///   Busca una cadena traducida similar a Recordatorio.
         /// </summary>
         public static string lsvRecordatorio {
@@ -4772,6 +4775,7 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to SAPI.
         ///   Busca una cadena traducida similar a SAPI.
         /// </summary>
         public static string lsvSapi {
@@ -7589,7 +7593,17 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Info Adicional de Marca.
         ///   Busca una cadena traducida similar a Lista de Auditorias.
+        /// </summary>
+        public static string titleInfoAdicionalMarca {
+            get {
+                return ResourceManager.GetString("titleInfoAdicionalMarca", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Lista de Auditorias.
         /// </summary>
         public static string titleListaAuditorias {
             get {

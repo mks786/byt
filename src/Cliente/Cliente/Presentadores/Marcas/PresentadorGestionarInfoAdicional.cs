@@ -75,8 +75,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 #endregion
 
                 //cambiar titulo
-                this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleAgregarAgente,
-                    Recursos.Ids.AgregarAgente);
+                this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleInfoAdicionalMarca,
+                    "");
 
                 if (this._nuevaInfoAdicional)
                 {

@@ -34,13 +34,6 @@
                         DataContext="{Binding}">
                 <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
                     <Label>
-                        <TextBlock Text="{x:Static recurso:Etiquetas.lblTipo}"/>
-                    </Label>
-                    <ComboBox Name="_cbxTipo" HorizontalAlignment="Left" Width="350" Height="20" IsEnabled="False"
-                              ItemsSource="{Binding}" DisplayMemberPath="Descripcion" SelectedIndex="0" SelectionChanged="_cbxTipo_SelectionChanged"/>
-                </WrapPanel>
-                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
-                    <Label>
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblBoletin}"/>
                     </Label>
                     <ComboBox Name="_cbxBoletin" Width="350" ItemsSource="{Binding}" IsEnabled="False" SelectedIndex="0">
@@ -57,6 +50,33 @@
                             </DataTemplate>
                         </ComboBox.ItemTemplate>
                     </ComboBox>
+                </WrapPanel>
+                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
+                    <Label>
+                        <TextBlock Text="{x:Static recurso:Etiquetas.lblTomo}"/>
+                    </Label>
+                    <ComboBox Name="_cbxTomo" HorizontalAlignment="Left" Width="350" Height="20" IsEnabled="False"
+                              ItemsSource="{Binding}" DisplayMemberPath="Descripcion" SelectedIndex="0"/>
+                </WrapPanel>
+                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
+                    <Label>
+                        <TextBlock Text="{x:Static recurso:Etiquetas.lblPagina}"/>
+                    </Label>
+                    <TextBox IsEnabled="False" Width="350" MaxLength="2000" Name="_txtPagina" VerticalAlignment="Center" Text="{Binding Path=Pagina}"/>
+                </WrapPanel>
+                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
+                    <Label>
+                        <TextBlock Text="{x:Static recurso:Etiquetas.lblTipo}"/>
+                    </Label>
+                    <ComboBox Name="_cbxTipo" HorizontalAlignment="Left" Width="350" Height="20" IsEnabled="False"
+                              ItemsSource="{Binding}" DisplayMemberPath="Descripcion" SelectedIndex="0" SelectionChanged="_cbxTipo_SelectionChanged"/>
+                </WrapPanel>
+                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
+                    <Label>
+                        <TextBlock Text="{x:Static recurso:Etiquetas.lblResolucion}"/>
+                    </Label>
+                    <TextBox IsEnabled="False" Width="350" MaxLength="2000" Name="_txtResolucion" VerticalAlignment="Center" 
+                         Grid.ColumnSpan="3" Text="{Binding Path=Resolucion}"/>
                 </WrapPanel>
                 <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
                     <Label>
@@ -107,26 +127,6 @@
                             </ListView.View>
                         </ListView>
                     </Grid>
-                </WrapPanel>
-                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
-                    <Label>
-                        <TextBlock Text="{x:Static recurso:Etiquetas.lblTomo}"/>
-                    </Label>
-                    <ComboBox Name="_cbxTomo" HorizontalAlignment="Left" Width="350" Height="20" IsEnabled="False"
-                              ItemsSource="{Binding}" DisplayMemberPath="Descripcion" SelectedIndex="0"/>
-                </WrapPanel>
-                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
-                    <Label>
-                        <TextBlock Text="{x:Static recurso:Etiquetas.lblResolucion}"/>
-                    </Label>
-                    <TextBox IsEnabled="False" Width="350" MaxLength="2000" Name="_txtResolucion" VerticalAlignment="Center" 
-                         Grid.ColumnSpan="3" Text="{Binding Path=Resolucion}"/>
-                </WrapPanel>
-                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
-                    <Label>
-                        <TextBlock Text="{x:Static recurso:Etiquetas.lblPagina}"/>
-                    </Label>
-                    <TextBox IsEnabled="False" Width="350" MaxLength="2000" Name="_txtPagina" VerticalAlignment="Center" Text="{Binding Path=Pagina}"/>
                 </WrapPanel>
                 <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
                     <Label>

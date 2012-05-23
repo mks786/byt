@@ -50,6 +50,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
         private IStatusWebServicios _statusWebServicios;
         private IPlanillaServicios _planillaServicios;
         private IInternacionalServicios _internacionalServicios;
+        private IRenovacionServicios _renovacionServicios;
 
         private IList<Asociado> _asociados;
         private IList<Interesado> _interesados;
@@ -123,6 +124,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["PlanillaServicios"]);
                 this._internacionalServicios = (IInternacionalServicios)Activator.GetObject(typeof(IInternacionalServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["InternacionalServicios"]);
+                this._renovacionServicios = (IRenovacionServicios)Activator.GetObject(typeof(IRenovacionServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["RenovacionServicios"]);
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -302,6 +305,13 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 auditoria.Fk = ((Marca)this._ventana.Marca).Id;
                 auditoria.Tabla = "MYP_MARCAS";
                 this._auditorias = this._marcaServicios.AuditoriaPorFkyTabla(auditoria);
+                
+                Renovacion renovacion = new Renovacion();
+                renovacion.Marca = marca;
+                IList<Renovacion> renovaciones = this._renovacionServicios.ObtenerRenovacionFiltro(renovacion);
+
+                if (renovaciones.Count > 0)
+                    this._ventana.PintarRenovacion();
 
                 if (null != marca.InfoAdicional && !string.IsNullOrEmpty(marca.InfoAdicional.Id))
                     this._ventana.PintarInfoAdicional();

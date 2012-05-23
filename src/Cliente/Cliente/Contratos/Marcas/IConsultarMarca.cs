@@ -183,6 +183,8 @@ namespace Trascend.Bolet.Cliente.Contratos.Marcas
 
         void PintarAuditoria();
 
+        void PintarRenovacion();
+
         void BorrarCeros();
 
         void PintarEtiqueta();
