@@ -183,14 +183,14 @@
                     <MenuItem Name="_menuItemPatentesATercerosConsultarPatente" Header="{x:Static resx:Etiquetas.menuItemConsultar}" Click="_menuItemPatentesATercerosConsultarPatente_Click"/>
                     <MenuItem Name="_menuItemPatentesATercerosGestionarPatente" Header="{x:Static resx:Etiquetas.menuItemAgregar}" Click="_menuItemPatentesATercerosGestionarPatente_Click"/>
                 </MenuItem>-->
-                <MenuItem Name="_menuItemEstadosPatente" Visibility="Collapsed" Header="{x:Static resx:Etiquetas.menuItemEstados}">
+                <!--<MenuItem Name="_menuItemEstadosPatente" Visibility="Collapsed" Header="{x:Static resx:Etiquetas.menuItemEstados}">
                     <MenuItem Name="_menuItemEstadosPatentesConsultarPatente" Header="{x:Static resx:Etiquetas.menuItemConsultar}" Click="_menuItemEstadosPatentesConsultarPatente_Click"/>
                     <MenuItem Name="_menuItemEstadosPatenteAgregarPatente" Header="{x:Static resx:Etiquetas.menuItemAgregar}" Click="_menuItemEstadosPatenteAgregarPatente_Click"/>
                 </MenuItem>
                 <MenuItem Name="_menuItemTipoBasePatente" Visibility="Collapsed" Header="{x:Static resx:Etiquetas.menuItemTipoBase}">
                     <MenuItem Name="_menuItemTipoBaseConsultarPatente" Header="{x:Static resx:Etiquetas.menuItemConsultar}" Click="_menuItemTipoBaseConsultarPatente_Click"/>
                     <MenuItem Name="_menuItemTipoBaseGestionarPatente" Header="{x:Static resx:Etiquetas.menuItemAgregar}" Click="_menuItemTipoBaseGestionarPatente_Click"/>
-                </MenuItem>
+                </MenuItem>-->
             </MenuItem>
             <MenuItem Name="_menuItemCorrespondencia" Header="{x:Static resx:Etiquetas.menuItemCorrespondencia}">
                 <MenuItem Name="_menuItemAnexo" Visibility="Collapsed" Header="{x:Static resx:Etiquetas.menuItemAnexo}">

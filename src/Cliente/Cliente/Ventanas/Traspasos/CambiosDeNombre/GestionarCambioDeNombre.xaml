@@ -502,7 +502,7 @@
                                         </GridViewColumn.CellTemplate>
                                     </GridViewColumn>
                                     <GridViewColumn DisplayMemberBinding="{Binding Path=NumPoder}" Width="300">
-                                        <GridViewColumnHeader Click="_OrdenarPoderes_Click" Tag="Fomento" Content="{x:Static recurso:Etiquetas.lsvFomento}"/>
+                                        <GridViewColumnHeader Click="_OrdenarPoderes_Click" Tag="Fomento" Content="{x:Static recurso:Etiquetas.lsvSapi}"/>
                                     </GridViewColumn>
                                 </GridView>
                             </ListView.View>

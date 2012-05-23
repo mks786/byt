@@ -776,6 +776,13 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             this._btnAuditoria.Background = Brushes.LightGreen;
         }
 
+        public void PintarAsociado(int color)
+        {
+
+            this._txtAsociadoDatos.Background = Brushes.LightGreen;
+            this._txtAsociadoSolicitud.Background = Brushes.LightGreen;
+        }
+
         public void BorrarCeros()
         {
             this._txtClaseInternacional.Text = this._txtClaseInternacional.Text.Equals("0") ? "" : this._txtClaseInternacional.Text;

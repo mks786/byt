@@ -1,6 +1,7 @@
 ﻿using System.Windows.Controls;
 using Trascend.Bolet.Cliente.Ayuda;
 using System;
+using System.Windows.Media;
 
 namespace Trascend.Bolet.Cliente.Contratos.Marcas
 {
@@ -185,6 +186,8 @@ namespace Trascend.Bolet.Cliente.Contratos.Marcas
         void BorrarCeros();
 
         void PintarEtiqueta();
+
+        void PintarAsociado(int numero);
 
         bool MensajeAlerta(string mensaje);
 

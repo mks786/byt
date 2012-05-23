@@ -2669,4 +2669,10 @@ de Gracia</value>
   <data name="btnVolverAMarca" xml:space="preserve">
     <value>Volver a Marca</value>
   </data>
+  <data name="lsvCodigoAsociado" xml:space="preserve">
+    <value>Código Asociado</value>
+  </data>
+  <data name="lsvReferencia" xml:space="preserve">
+    <value>Referencia</value>
+  </data>
 </root>
