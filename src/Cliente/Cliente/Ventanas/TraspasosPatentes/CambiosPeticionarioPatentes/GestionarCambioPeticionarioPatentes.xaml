@@ -391,7 +391,7 @@
                         </custom:ByTTextBox>
 
                         <Label Name="_lblFomentoAnterior" Grid.Row="0" Grid.Column="3" HorizontalAlignment="Right" VerticalAlignment="Center">
-                            <TextBlock Text="{x:Static recurso:Etiquetas.lblFomento}"/>
+                            <TextBlock Text="{x:Static recurso:Etiquetas.lblSapi}"/>
                         </Label>
                         <custom:ByTTextBox  IsEnabled="False"  Grid.Column="4" Grid.ColumnSpan="2" Grid.Row="0" Name="_txtNumPoderAnterior" 
                                             VerticalAlignment="Center" MaxLength="255" Text="{Binding Path=NumPoder}" 
@@ -415,7 +415,7 @@
                                         </GridViewColumn.CellTemplate>
                                     </GridViewColumn>
                                     <GridViewColumn DisplayMemberBinding="{Binding Path=NumPoder}" Width="300">
-                                        <GridViewColumnHeader Click="_OrdenarPoderesAnterior_Click" Tag="Fomento" Content="{x:Static recurso:Etiquetas.lsvFomento}"/>
+                                        <GridViewColumnHeader Click="_OrdenarPoderesAnterior_Click" Tag="Fomento" Content="{x:Static recurso:Etiquetas.lsvSapi}"/>
                                     </GridViewColumn>
                                 </GridView>
                             </ListView.View>
