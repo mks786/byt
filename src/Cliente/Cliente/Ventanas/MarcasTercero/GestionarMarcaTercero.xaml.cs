@@ -35,32 +35,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.MarcasTercero
             set { this._gridDatos.DataContext = value; }
         }
 
-        //public string NumPoderDatos
-        //{
-        //    get { return this._txtPoderDatos.Text; }
-        //    set { this._txtPoderDatos.Text = value; }
-        //}
-
-
-
         public object MarcasFiltradas
         {
             get { return this._lstMarcas.DataContext; }
             set { this._lstMarcas.DataContext = value; }
         }
-        //public object PoderesDatos
-        //{
-        //    get { return this._lstPoderesDatos.DataContext; }
-        //    set { this._lstPoderesDatos.DataContext = value; }
-        //}
-
-        //public object PoderDatos
-        //{
-        //    get { return this._lstPoderesDatos.SelectedItem; }
-        //    set { this._lstPoderesDatos.SelectedItem = value; }
-        //}
-
-
 
         public object TipoCbx
         {
@@ -154,18 +133,6 @@ namespace Trascend.Bolet.Cliente.Ventanas.MarcasTercero
             set { this._lstMarcas.SelectedItem = value; }
         }
 
-        //public object Condicion
-        //{
-        //    get { return this._cbxCondiciones.SelectedItem; }
-        //    set { this._cbxCondiciones.SelectedItem = value; }
-        //}
-
-        //public object Condiciones
-        //{
-        //    get { return this._cbxCondiciones.DataContext; }
-        //    set { this._cbxCondiciones.DataContext = value; }
-        //}
-
         public object PaisSolicitud
         {
             get { return this._cbxPaisPrioridad.SelectedItem; }
@@ -188,6 +155,18 @@ namespace Trascend.Bolet.Cliente.Ventanas.MarcasTercero
         {
             get { return this._txtClaseInternacionalByt.Text; }
             set { this._txtClaseInternacionalByt.Text = value; }
+        }
+
+        public string CNacional
+        {
+            get { return this._txtCNaci.Text; }
+            set { this._txtCNaci.Text = value; }
+        }
+
+        public string CInternacional
+        {
+            get { return this._txtCInter.Text; }
+            set { this._txtCInter.Text = value; }
         }
 
         public string IdNacionalByt
@@ -215,12 +194,6 @@ namespace Trascend.Bolet.Cliente.Ventanas.MarcasTercero
         {
             get { return this._txtNumero.Text; }
             set { this._txtNumero.Text = value; }
-        }
-
-        public object EstadoMarcaSolicitud
-        {
-            get { return this._cbxEstadoMarca.SelectedItem; }
-            set { this._cbxEstadoMarca.SelectedItem = value; }
         }
 
         public object TipoBaseSolicitud
@@ -257,42 +230,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.MarcasTercero
             set { this._cbxPaisPrioridad.DataContext = value; }
         }
 
-        public object EstadosMarcaSolicitud
-        {
-            get { return this._cbxEstadoMarca.DataContext; }
-            set { this._cbxEstadoMarca.DataContext = value; }
-        }
-
         public object TiposBaseSolicitud
         {
             get { return this._cbxTipoBase.DataContext; }
             set { this._cbxTipoBase.DataContext = value; }
         }
-
-        //public object TipoMarcasTerceroSolicitud
-        //{
-        //    get { return this._cbxTipoMarcaTerceroSolicitud.DataContext; }
-        //    set { this._cbxTipoMarcaTerceroSolicitud.DataContext = value; }
-        //}
-
-        //public object TipoMarcaTerceroSolicitud
-        //{
-        //    get { return this._cbxTipoMarcaTerceroSolicitud.SelectedItem; }
-        //    set { this._cbxTipoMarcaTerceroSolicitud.SelectedItem = value; }
-        //}
-
-        //public object TipoMarcasTerceroDatos
-        //{
-        //    get { return this._cbxTipoMarcaTerceroDatos.DataContext; }
-        //    set { this._cbxTipoMarcaTerceroDatos.DataContext = value; }
-        //}
-
-        //public object TipoMarcaTerceroDatos
-        //{
-        //    get { return this._cbxTipoMarcaTerceroDatos.SelectedItem; }
-        //    set { this._cbxTipoMarcaTerceroDatos.SelectedItem = value; }
-        //}
-
 
         public bool MensajeAlerta(string mensaje)
         {
@@ -322,12 +264,6 @@ namespace Trascend.Bolet.Cliente.Ventanas.MarcasTercero
             set { this._txbAceptar.Text = value; }
         }
 
-        //public string IdInternacional
-        //{
-        //    get { return this._txtClaseInternacional.Text; }
-        //    set { this._txtClaseInternacional.Text = value; }
-        //}
-
         public string ComentarioClienteEspanol
         {
             get { return this._txtComencliEsp.Text; }
@@ -352,96 +288,48 @@ namespace Trascend.Bolet.Cliente.Ventanas.MarcasTercero
             {
                 #region TextBoxs
 
-                //this._txtAsociadoDatos.IsEnabled = value;
+                this._txtCNaci.IsEnabled = value;
+                this._txtCInter.IsEnabled = value;
                 this._txtAsociadoSolicitud.IsEnabled = value;
-                //this._txtBusqueda.IsEnabled = value;
-                //this._txtClaseInternacional.IsEnabled = value;
-                //this._txtClaseInternacionalDatos.IsEnabled = value;
-              //  this._txtClaseNacional.IsEnabled = value;
-                //this._txtClaseNacionalDatos.IsEnabled = value;
+
                 this._txtNombreMarca.IsEnabled = value;
                 this._txtNombreMarcaFiltrar.IsEnabled = value;
                 this._txtIdMarcaFiltrar.IsEnabled = value;
                 this._btnConsultarMarca.IsEnabled = value;
                 this._txtCodigoInscripcion.IsEnabled = value;
-               // this._txtCodigoPrioridad.IsEnabled = value;
                 this._txtCodigoRegistro.IsEnabled = value;
                 this._txtComencliEsp.IsEnabled = value;
                 this._txtComencliIng.IsEnabled = value;
                 this._txtClaseInternacionalByt.IsEnabled = value;
                 this._txtClaseNacionalByt.IsEnabled = value;
-               // this._txtAnexo.IsEnabled = value; m
-                //this._txtCodIntlDatos.IsEnabled = value;
-                //this._txtComentarioDatos.IsEnabled = value;
-                //this._txtConflictoDatos.IsEnabled = value;
-                //this._txtCorresponsalDatos.IsEnabled = value;
-                //this._txtCorresponsalSolicitud.IsEnabled = value;
-                //this._txtCorresponsalDatos.IsEnabled = value;
-                //this._txtDescripcionDatos.IsEnabled = value;
                 this._txtDescripcionSolicitud.IsEnabled = value;
                 this._txtDistingue.IsEnabled = value;
-                //this._txtDistingueDatos.IsEnabled = value;
-                //this._txtDistingueInglesDatos.IsEnabled = value;
                 this._txtEtiqueta.IsEnabled = value;
-                //this._txtEtiquetaDatos.IsEnabled = value;
-                //this._txtExptyr.IsEnabled = value;
                 this._txtFechaInscripcion.IsEnabled = value;
                 this._txtFechaRegistro.IsEnabled = value;
-                //this._txtIdAsociadoDatos.IsEnabled = value;
                 this._txtIdAsociadoSolicitud.IsEnabled = value;
-                //this._txtIdDatos.IsEnabled = value;
-                //this._txtIdInteresadoDatos.IsEnabled = value;
                 this._txtIdInteresadoSolicitud.IsEnabled = value;
-                //this._txtIdSolicitud.IsEnabled = value;
-                //this._txtInteresadoDatos.IsEnabled = value;
                 this._txtInteresadoSolicitud.IsEnabled = value;
-                //this._txtLocalidadDatos.IsEnabled = value;
-                //this._txtNombreAsociadoDatos.IsEnabled = value;
                 this._txtNombreAsociadoSolicitud.IsEnabled = value;
-                //this._txtNombreInteresadoDatos.IsEnabled = value;
                 this._txtNombreInteresadoSolicitud.IsEnabled = value;
-                //this._txtNumIntlDatos.IsEnabled = value;
                 this._txtOtrosImp.IsEnabled = value;
                 this._txtCaso.IsEnabled = value;
                 this._txtLetra.IsEnabled = value;
                 this._txtNumero.IsEnabled = value;
-                //this._txtPoderDatos.IsEnabled = value;
-                //this._txtPrimeraReferenciaDatos.IsEnabled = value;
-                //this._txtReclasificacionDatos.IsEnabled = value;
-                //this._txtReferenciaDatos.IsEnabled = value;
-                //this._txtSaldoPorVencer.IsEnabled = value;
-                //this._txtSaldoVencido.IsEnabled = value;
-               // this._txtTipoClaseNacional.IsEnabled = value;
-                //this._txtTotalDeuda.IsEnabled = value;
 
                 #endregion
 
                 #region ComboBoxs
 
-                //this._cbxAsociadoInteresadoDatos.IsEnabled = value;
                 this._cbxBoletinConcesion.IsEnabled = value;
                 this._cbxBoletinPublicacion.IsEnabled = value;
                 this._cbxTipo.IsEnabled = value;
-                //this._cbxCondiciones.IsEnabled = value;
                 this._cbxEstado.IsEnabled = value;
-                //this._cbxEstadoDatos.IsEnabled = value;
-                //this._cbxIdiomaDatos.IsEnabled = value;
-                //this._cbxMarcaTerceroOrigen.IsEnabled = value;
                 this._cbxOrdenPublicacion.IsEnabled = value;
-                //this._cbxPaisDatos.IsEnabled = value;
                 this._cbxPaisPrioridad.IsEnabled = value;
-                //this._cbxSector.IsEnabled = value;
                 this._cbxSituacion.IsEnabled = value;
                 this._cbxTipoBase.IsEnabled = value;
-                this._cbxEstadoMarca.IsEnabled = value;
                 this._cbxTipoDeCaso.IsEnabled = value;
-                //this._cbxTipoMarcaTerceroSolicitud.IsEnabled = value;
-                //this._cbxTipoMarcaTerceroDatos.IsEnabled = value;
-                //this._cbxTipoReproduccion.IsEnabled = value;
-                //this._chkFacturacionDatos.IsEnabled = value;
-                //this._chkDescuentoDatos.IsEnabled = value;
-                //this._chkCorrespondenciaDatos.IsEnabled = value;
-
                 this._cbxBoletinConcesion.IsEnabled = value;
                 this._cbxBoletinPublicacion.IsEnabled = value;
                 this._cbxOrdenPublicacion.IsEnabled = value;
@@ -452,75 +340,21 @@ namespace Trascend.Bolet.Cliente.Ventanas.MarcasTercero
 
                 this._chkByt.IsEnabled = value;
                 this._chkRevWeb.IsEnabled = value;
-                //this._checkBoxInstruccionesRenovacion.IsEnabled = value;
-                //this._checkBoxRenovacionTramitente.IsEnabled = value;
-                //this._chkConflicto.IsEnabled = value;
                 this._chkEtiquetaSolicitud.IsEnabled = value;
-                //this._chkEtiquetaDatos.IsEnabled = value;
-                //this._chkOtraInf.IsEnabled = value;
-                //this._chkPoder.IsEnabled = value;
-                //this._chkPoderYPrioridad.IsEnabled = value;
-                //this._chkPrioridad.IsEnabled = value;
-                //this._chkReclasificacionNacional.IsEnabled = value;
-                //this._chkOtroDatos.IsEnabled = value;
-
                 #endregion
 
                 #region Botones
 
                 this._btnAceptar.IsEnabled = value;
-                //this._btnAnaqua.IsEnabled = value;
-                //this._btnAnexoFM02.IsEnabled = value;
-                //this._btnAuditoria.IsEnabled = value;
                 this._btnBusquedaDatos.IsEnabled = value;
-                //this._btnBusquedaSolicitud.IsEnabled = value;
                 this._btnCancelar.IsEnabled = value;
-                //this._btnCarpeta.IsEnabled = value;
                 this._btnCertificados.IsEnabled = value;
-                //this._btnConflicto.IsEnabled = value;
-                //this._btnConflictoELI.IsEnabled = value;
-                //this._btnConflictoINC.IsEnabled = value;
-                //this._btnConsultarAsociadoDatos.IsEnabled = value;
                 this._btnConsultarAsociadoSolicitud.IsEnabled = value;
-                //this._btnConsultarInteresadoDatos.IsEnabled = value;
                 this._btnConsultarInteresadoSolicitud.IsEnabled = value;
-                //this._btnDuplicar.IsEnabled = value;
-                //this._btnEnviarRecordatorios.IsEnabled = value;
-                //this._btnFacturacionDatos.IsEnabled = value;
-                //this._btnFM02.IsEnabled = value;
-                //this._btnFM02Venen.IsEnabled = value;
-                //this._btnGenCartel.IsEnabled = value;
-            //    this._btnImprimirEdoCuenta.IsEnabled = value;
                 this._btnInfoAdicional.IsEnabled = value;
-                //this._btnInfoAdicionalSolicitud.IsEnabled = value;
                 this._btnInfobol.IsEnabled = value;
-                //this._btnIntRenovacion.IsEnabled = value;
-                //this._btnLAnexoFM02.IsEnabled = value;
-                //this._btnLFM02.IsEnabled = value;
-                //this._btnLFM02Venen.IsEnabled = value;
-                //this._btnLista.IsEnabled = value;
                 this._btnNoRegistro.IsEnabled = value;
                 this._btnNoSolicitud.IsEnabled = value;
-                //this._btnOperacionesDatos.IsEnabled = value;
-                //this._btnOtraInf.IsEnabled = value;
-                //this._btnOtraInfELI.IsEnabled = value;
-                //this._btnOtraInfINC.IsEnabled = value;
-                //this._btnPoder.IsEnabled = value;
-                //this._btnPoderELI.IsEnabled = value;
-                //this._btnPoderINC.IsEnabled = value;
-                //this._btnPoderYPrioridad.IsEnabled = value;
-                //this._btnPoderYPrioridadELI.IsEnabled = value;
-                //this._btnPoderYPrioridadINC.IsEnabled = value;
-                //this._btnPrioridad.IsEnabled = value;
-                //this._btnPrioridadELI.IsEnabled = value;
-                //this._btnPrioridadINC.IsEnabled = value;
-                //this._btnReclasificacionNacional.IsEnabled = value;
-                //this._btnReclasificacionNacionalELI.IsEnabled = value;
-                //this._btnReclasificacionNacionalINC.IsEnabled = value;
-                //this._btnRenovacion.IsEnabled = value;
-                //this._btnRevisarWeb.IsEnabled = value;
-                //this._btnSaldo.IsEnabled = value;
-                //this._btnVerDocDatos.IsEnabled = value;
                 this._lstMarcasB.IsEnabled = value;
                 this._btnMas.IsEnabled = value;
                 this._btnMenos.IsEnabled = value;
@@ -532,12 +366,6 @@ namespace Trascend.Bolet.Cliente.Ventanas.MarcasTercero
                 
                 this._dpkFechaPublicacion.IsEnabled = value;
                 this._dpkFechaRenovacion.IsEnabled = value;
-                //this._dpkFechaRequeridaConflicto.IsEnabled = value;
-                //this._dpkFechaRequeridaOtraInf.IsEnabled = value;
-                //this._dpkFechaRequeridaPoder.IsEnabled = value;
-                //this._dpkFechaRequeridaPoderYPrioridad.IsEnabled = value;
-                //this._dpkFechaRequeridaPrioridad.IsEnabled = value;
-                //this._dpkFechaRequeridaReclasificacionNacional.IsEnabled = value;
 
                 #endregion
             }
@@ -1218,42 +1046,6 @@ namespace Trascend.Bolet.Cliente.Ventanas.MarcasTercero
             this._presentador.OrdenarColumna(sender as GridViewColumnHeader, this._lstInteresadosSolicitud);
         }
 
-        //private void _btnConsultarCorresponsalSolicitud_Click(object sender, RoutedEventArgs e)
-        //{
-        //    this._presentador.BuscarCorresponsal(0);
-        //}
-
-        //private void _txtCorresponsalSolicitud_GotFocus(object sender, RoutedEventArgs e)
-        //{
-        //    if (!this._corresponsalesCargados)
-        //    {
-        //        this._presentador.CargarCorresponsales();
-        //    }
-
-        //    ocultarLstInteresadoSolicutud();
-        //    ocultarLstAsociadoSolicitud();
-        //    ocultarLstPoderSolicutud();
-
-        //    this._btnAceptar.IsDefault = false;
-        //    this._btnConsultarCorresponsalSolicitud.IsDefault = true;
-
-        //    mostrarLstCorresponsalSolicutud();
-        //}
-
-        //private void _lstCorresponsalesSolicitud_MouseDoubleClick(object sender, MouseButtonEventArgs e)
-        //{
-        //    this._presentador.CambiarCorresponsalSolicitud();
-        //    ocultarLstCorresponsalSolicutud();
-        //    //ocultarLstCorresponsalDatos();
-
-        //    this._btnConsultarCorresponsalSolicitud.IsDefault = false;
-        //    this._btnAceptar.IsDefault = true;
-        //}
-
-        //private void _OrdenarCorresponsalSolicitud_Click(object sender, RoutedEventArgs e)
-        //{
-        //    this._presentador.OrdenarColumna(sender as GridViewColumnHeader, this._lstCorresponsalesSolicitud);
-        //}
 
         private void _btnClaseCompletaSolicitud_Click(object sender, RoutedEventArgs e)
         {
@@ -1576,7 +1368,10 @@ namespace Trascend.Bolet.Cliente.Ventanas.MarcasTercero
         {
             if ((bool)!this._chkByt.IsChecked)
             {
+
                 GestionarVisibilidadDatosDeMarca(Visibility.Visible);
+                this._txtClaseInternacionalByt.IsEnabled = false;
+                this._txtClaseNacionalByt.IsEnabled = false;
 
                 GestionarVisibilidadFiltroMarca(Visibility.Collapsed);
                 this._txtClaseInternacionalByt.IsEnabled = true;
@@ -1590,6 +1385,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.MarcasTercero
 
             if ((this._presentador.AgregarMarcaByt()) && (this._lstMarcasB.Visibility == System.Windows.Visibility.Collapsed))
                 this._lstMarcasB.Visibility = System.Windows.Visibility.Visible;
+            this._presentador.LimpiarMarcasByt();
 
         }
 

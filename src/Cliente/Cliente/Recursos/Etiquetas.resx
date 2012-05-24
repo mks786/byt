@@ -2684,4 +2684,25 @@ de Gracia</value>
   <data name="lsvReferencia" xml:space="preserve">
     <value>Referencia</value>
   </data>
+  <data name="lsvFechaPresentacion" xml:space="preserve">
+    <value>Fecha De Presentacion</value>
+  </data>
+  <data name="lsvNombreMarca" xml:space="preserve">
+    <value>Nombre de Marca</value>
+  </data>
+  <data name="lblCInter" xml:space="preserve">
+    <value>C. Internacional</value>
+  </data>
+  <data name="lblCNaci" xml:space="preserve">
+    <value>C. Nacional</value>
+  </data>
+  <data name="lsvInternacional" xml:space="preserve">
+    <value>Internacional</value>
+  </data>
+  <data name="lsvNacional" xml:space="preserve">
+    <value>Nacional</value>
+  </data>
+  <data name="lsvTipoDeBase" xml:space="preserve">
+    <value>Tipo de Base</value>
+  </data>
 </root>

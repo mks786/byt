@@ -235,7 +235,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
 
                     foreach (var marca in this._marcas)
                     {
-                        MarcaTerceroAuxiliar = new MarcaTercero(marca.Id);
+                        MarcaTerceroAuxiliar = new MarcaTercero(marca.Id.ToUpper());
                         MarcaTerceroAuxiliar.Anexo = marca.Anexo;
                         Asociado asociadoAuxiliar = new Asociado();
                         Interesado interesadoAuxiliar = new Interesado();
@@ -504,7 +504,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
                 if (!this._ventana.Id.Equals(""))
                 {
                     _filtroValido = 2;
-                    marcaAuxiliar.Id = this._ventana.Id;
+                    marcaAuxiliar.Id = this._ventana.Id.ToUpper();
+        
                 }
 
                 if ((null != this._ventana.Asociado) && (((Asociado)this._ventana.Asociado).Id != int.MinValue))

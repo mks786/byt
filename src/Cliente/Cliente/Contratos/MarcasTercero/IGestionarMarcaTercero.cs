@@ -42,6 +42,10 @@ namespace Trascend.Bolet.Cliente.Contratos.MarcasTercero
 
         string Numero { set; get; }
 
+        string CNacional { set; get; }
+
+        string CInternacional { set; get; }
+
         string Anexo { set; get; }
 
         //string IdAsociadoDatosFiltrar { get; }
@@ -136,29 +140,15 @@ namespace Trascend.Bolet.Cliente.Contratos.MarcasTercero
 
         object Estados { get; set; }
 
-        //object Condiciones { get; set; }
-
-        //object Condicion { get; set; }
-
-        object EstadoMarcaSolicitud { get; set; }
-
         object TipoBaseSolicitud { get; set; }
 
         object PaisesSolicitud { get; set; }
-
-        object EstadosMarcaSolicitud { get; set; }
 
         object TiposBaseSolicitud { get; set; }
 
         object PaisSolicitud { get; set; }
 
-        //object StatusWeb { get; set; }
-
-        //object StatusWebs { get; set; }
-
         string TextoBotonModificar { get; set; }
-
-        //string IdInternacional { get; set; }
 
         string IdInternacionalByt { get; set; }
 

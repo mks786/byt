@@ -222,18 +222,6 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
                     this._ventana.ComentarioClienteEspanol = marcaTercero.ComentarioEsp;
                     this._ventana.ComentarioClienteIngles = marcaTercero.ComentarioIng;
                     this._ventana.Anexo = marcaTercero.Anexo.ToString();
-                    //IList<StatusWeb> statusWebs = this._statusWebServicios.ConsultarTodos();
-                    //StatusWeb primerStatus = new StatusWeb();
-                    //primerStatus.Id = "NGN";
-                    //statusWebs.Insert(0, primerStatus);
-                    //this._ventana.StatusWebs = statusWebs;
-                    //this._ventana.StatusWeb = this.BuscarStatusWeb(statusWebs, marcaTercero.StatusWeb);
-
-                    //IList<Condicion> condiciones = this._condicionServicios.ConsultarTodos();
-                    //Condicion primeraCondicion = new Condicion();
-                    //primeraCondicion.Id = int.MinValue;
-                    //condiciones.Insert(0, primeraCondicion);
-                    //this._ventana.Condiciones = condiciones;
 
                     Interesado interesado = (this._interesadoServicios.ConsultarInteresadoConTodo(marcaTercero.Interesado));
                     //this._ventana.NombreInteresadoDatos = interesado.Nombre;
@@ -241,6 +229,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
                     this._ventana.InteresadoPaisSolicitud = interesado.Pais.NombreEspanol;
                     this._ventana.InteresadoCiudadSolicitud = interesado.Ciudad;
                     this._ventana.TipoCbx = marcaTercero.Tipo;
+                    this._ventana.CInternacional = ((Internacional)marcaTercero.Internacional).Id.ToString();
+                    this._ventana.CNacional = ((Nacional)marcaTercero.Nacional).Id.ToString();
+                    
                     //this._ventana.InteresadoSolicitud = marcaTercero.Interesado;
 
                     //this._ventana.NombreAsociadoDatos = marcaTercero.Asociado != null ? marcaTercero.Asociado.Nombre : "";
@@ -345,18 +336,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
             if (!_agregar)
                  this._ventana.PaisSolicitud = this.BuscarPais(paises, marcaTercero.Pais);
 
-            IList<EstadoMarca> EstadosMarca = this._estadoMarcaServicios.ConsultarTodos();
-            EstadoMarca primerEstadoMarca = new EstadoMarca();
-            primerEstadoMarca.Id = "A";
-            EstadosMarca.Insert(0, primerEstadoMarca);
-            this._ventana.EstadosMarcaSolicitud = EstadosMarca;
-            if (!_agregar)
-                  this._ventana.EstadoMarcaSolicitud = this.BuscarEstadoMarca(EstadosMarca, estadoMarca);
-
-
             IList<TipoBase> TipoBase = this._tipoBaseServicios.ConsultarTodos();
             TipoBase primerTipoBase = new TipoBase();
-            primerEstadoMarca.Id = "A";
+            primerTipoBase.Id = "A";
             TipoBase.Insert(0, primerTipoBase);
             this._ventana.TiposBaseSolicitud = TipoBase;
             if (!_agregar)
@@ -836,6 +818,37 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
         }
 
         /// <summary>
+        /// Método que carga lista de MarcasByt
+        /// </summary>
+        /// <returns>true si se realizó correctamente</returns>
+        public void LimpiarMarcasByt()
+        {
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+            IList<Pais> paises = this._paisServicios.ConsultarTodos();
+            Pais primerPais = new Pais();
+            primerPais.Id = int.MinValue;
+            IList<TipoBase> TipoBase = this._tipoBaseServicios.ConsultarTodos();
+            TipoBase primerTipoBase = new TipoBase();
+            primerTipoBase.Id = "A";
+            this._ventana.IdNacionalByt = "";
+            this._ventana.IdInternacionalByt = "";
+            this._ventana.PaisesSolicitud = BuscarPais(paises,primerPais);
+            this._ventana.TiposBaseSolicitud = BuscarTipoBase(TipoBase,primerTipoBase);
+
+            CargaComboBox();
+
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+            
+        }
+
+        /// <summary>
         /// Método que limpia lista de anexos de carta
         /// </summary>
         /// <param name="carta"></param>
@@ -896,13 +909,16 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
                 marcaT.Anexo = ((MarcaTercero)this._ventana.MarcaTercero).Anexo;
                 aux.MarcaTercero = marcaT;
                 aux.Pais = ((Pais)this._ventana.PaisSolicitud);
-                aux.TipoDeBase = ((TipoBase)this._ventana.TipoBaseSolicitud);
                  if ((bool)this._ventana.Byt.IsChecked)
                      { 
                         aux.Marca = ((Marca)this._ventana.MarcaFiltrada);
-                        aux.NombreMarca = ((Marca)this._ventana.MarcaFiltrada).Descripcion; 
-                        aux.Internacional = ((Marca)aux.Marca).Internacional;
-                        aux.Nacional = ((Marca)aux.Marca).Nacional;
+                        aux.NombreMarca = ((Marca)this._ventana.MarcaFiltrada).Descripcion;
+                        Internacional inter = new Internacional();
+                        inter.Id = Int32.Parse(this._ventana.IdInternacionalByt);
+                        Nacional nacio = new Nacional();
+                        nacio.Id = Int32.Parse(this._ventana.IdNacionalByt);
+                        aux.Internacional = inter;
+                        aux.Nacional = nacio;
                         if (null != this._ventana.TipoBaseSolicitud)
                             aux.TipoDeBase = ((TipoBase)this._ventana.TipoBaseSolicitud).Id != null ? ((TipoBase)this._ventana.TipoBaseSolicitud) : null;
                         aux.NombreTipoBase = ((TipoBase)this._ventana.TipoBaseSolicitud).Descripcion;
@@ -916,14 +932,13 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
                         nueva.Descripcion = NombreDeMarca;
                         aux.Marca = nueva;
                         aux.NombreMarca = NombreDeMarca;
-                        if (null!= aux.Marca.Internacional)
-                             aux.Marca.Internacional.Id = Int32.Parse(this._ventana.IdInternacionalByt);
-                        if (null!=aux.Marca.Nacional)
-                            aux.Marca.Nacional.Id = Int32.Parse(this._ventana.IdNacionalByt);
                         aux.Internacional.Id = Int32.Parse(this._ventana.IdInternacionalByt);
-                        aux.Nacional.Id = Int32.Parse(this._ventana.IdInternacionalByt);
-                        aux.Tipo = ((TipoBase)this._ventana.TipoBaseSolicitud).Descripcion;
-                        aux.TipoDeBase = null;
+                        aux.Nacional.Id = Int32.Parse(this._ventana.IdNacionalByt);
+                        if (null != aux.TipoDeBase)
+                        {
+                            aux.NombreTipoBase = ((TipoBase) this._ventana.TipoBaseSolicitud).Descripcion;
+                            aux.TipoDeBase = ((TipoBase) this._ventana.TipoBaseSolicitud);
+                        }
                      }
 
                 marcasBaseTercero.Add(aux);
