@@ -669,4 +669,8 @@
     <value>Select distinct(a) from Agente a where </value>
     <comment>Cabecera del query para el filtro de agentes</comment>
   </data>
+  <data name="CabeceraObtenerAnualidadesPorPatente" xml:space="preserve">
+    <value>Select a from Anualidad a left join fetch a.Patente as patente left join fetch a.Asociado as asociado where patente.Id = {0}</value>
+    <comment>Selecciona todas las anualidades de una patente</comment>
+  </data>
 </root>

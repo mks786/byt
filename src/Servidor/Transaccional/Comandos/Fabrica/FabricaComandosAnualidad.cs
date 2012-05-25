@@ -41,6 +41,11 @@ namespace Trascend.Bolet.Comandos.Fabrica
             return new ComandoConsultarAnualidadesFiltro(anualidad);
         }
 
+        public static ComandoBase<IList<Anualidad>> ObtenerComandoConsultarAnualidadesPorPatente(Patente patente)
+        {
+            return new ComandoConsultarAnualidadesPorPatente(patente);
+        }
+
         public static ComandoBase<int> obtenerUltimoIdAnualidad()
         {
             return new ComandoConsultarUltimoIdAnualidad();

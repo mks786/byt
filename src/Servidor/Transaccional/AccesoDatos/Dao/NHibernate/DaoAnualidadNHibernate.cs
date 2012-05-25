@@ -94,6 +94,42 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
             return Anualidads;
         }
 
+        public IList<Anualidad> ObtenerAnualidadesPorPatente(int idpatente)
+        {
+            IList<Anualidad> Anualidads = null;
+            bool variosFiltros = false;
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                string filtro = "";
+                string cabecera = string.Format(Recursos.ConsultasHQL.CabeceraObtenerAnualidadesPorPatente,idpatente);
+
+
+                IQuery query = Session.CreateQuery(cabecera + filtro);
+                Anualidads = query.List<Anualidad>();
+
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Saliendo del Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                throw new ApplicationException(Recursos.Errores.ExConsultarTodos);
+            }
+            finally
+            {
+                Session.Close();
+            }
+            return Anualidads;
+        }
+
+
         public int ObtenerMaxIdAnualidad()
         {
             int idConsultado = 0;

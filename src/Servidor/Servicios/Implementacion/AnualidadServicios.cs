@@ -250,9 +250,24 @@ namespace Trascend.Bolet.Servicios.Implementacion
         }
 
 
-        public IList<Anualidad> ConsultarAnualidadesPorPatente(Patente Patente)
+        public IList<Anualidad> ConsultarAnualidadesPorPatente(Patente patente)
         {
-            throw new NotImplementedException();
+            #region trace
+            if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+            IList<Anualidad> anualidades;
+
+            anualidades = ControladorAnualidad.ConsultarAnualidadesPorPatente(patente);
+
+            #region trace
+            if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                logger.Debug("Saliendo del Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+            return anualidades;
+
         }
     }
 }

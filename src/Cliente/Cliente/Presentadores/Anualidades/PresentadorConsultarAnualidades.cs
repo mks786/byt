@@ -24,7 +24,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Anualidades
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
         private IConsultarAnualidades _ventana;
-        private IPatenteServicios _anualidadServicios;
+        private IAnualidadServicios _anualidadServicios;
         private IAsociadoServicios _asociadoServicios;
         private IInteresadoServicios _interesadoServicios;
         private IPatenteServicios _patenteServicios;
@@ -41,8 +41,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Anualidades
             try
             {
                 this._ventana = ventana;
-                this._anualidadServicios = (IPatenteServicios)Activator.GetObject(typeof(IPatenteServicios),
-                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["PatenteServicios"]);
+                this._anualidadServicios = (IAnualidadServicios)Activator.GetObject(typeof(IAnualidadServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["AnualidadServicios"]);
                 this._asociadoServicios = (IAsociadoServicios)Activator.GetObject(typeof(IAsociadoServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["AsociadoServicios"]);
                 this._interesadoServicios = (IInteresadoServicios)Activator.GetObject(typeof(IInteresadoServicios),
@@ -255,22 +255,28 @@ namespace Trascend.Bolet.Cliente.Presentadores.Anualidades
 
             if (this._ventana.AnualidadSeleccionada != null)
             {
-                Patente anualidadParaNavegar = null;
-                bool encontrada = false;
-                int cont = 0;
-                while (!encontrada)
-                {
-                    Patente anualidad = this._patentes[cont];
-                    if (anualidad.Id == ((Patente)this._ventana.AnualidadSeleccionada).Id) 
-                    {
-                        anualidadParaNavegar = anualidad;
-                        encontrada = true;
-                    }
-                    cont++;
-                }
+                //Patente anualidadParaNavegar = null;
+                //bool encontrada = false;
+                //int cont = 0;
+                //while (!encontrada)
+                //{
+                //    Patente anualidad = this._patentes[cont];
+                //    if (anualidad.Id == ((Patente)this._ventana.AnualidadSeleccionada).Id) 
+                //    {
+                //        anualidadParaNavegar = anualidad;
+                //        encontrada = true;
+                //    }
+                //    cont++;
+                //}
 
 
-                this.Navegar(new GestionarAnualidades(anualidadParaNavegar));
+                ((Patente)this._ventana.AnualidadSeleccionada).Anualidades =
+                        this._anualidadServicios.ConsultarAnualidadesPorPatente((Patente)this._ventana.AnualidadSeleccionada);
+                this.Navegar(new GestionarAnualidades(this._ventana.AnualidadSeleccionada));
+                
+
+
+              
             }
 
             #region trace

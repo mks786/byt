@@ -99,6 +99,15 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         /// <summary>
         ///   Looks up a localized string similar to Select a from Anualidad a left join fetch a.Patente as patente left join fetch a.Asociado as asociado where patente.Id = {0}.
         /// </summary>
+        public static string CabeceraObtenerAnualidadesPorPatente {
+            get {
+                return ResourceManager.GetString("CabeceraObtenerAnualidadesPorPatente", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select a from Anualidad a left join fetch a.Patente as patente left join fetch a.Asociado as asociado where patente.Id = {0}.
+        /// </summary>
         public static string CabeceraObtenerAnualidadPorIdPatente {
             get {
                 return ResourceManager.GetString("CabeceraObtenerAnualidadPorIdPatente", resourceCulture);

@@ -28,6 +28,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
         private IPatenteServicios _patenteServicios;
         private IAsociadoServicios _asociadoServicios;
         private IInteresadoServicios _interesadoServicios;
+        private IAnualidadServicios _anualidadServicios;
         private IList<Patente> _patentes;
         private IList<CesionPatente> _cesiones;
         private ICesionPatenteServicios _cesionServicios;
@@ -49,6 +50,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["InteresadoServicios"]);
                 this._cesionServicios = (ICesionPatenteServicios)Activator.GetObject(typeof(ICesionPatenteServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["CesionPatenteServicios"]);
+                this._anualidadServicios = (IAnualidadServicios)Activator.GetObject(typeof(IAnualidadServicios),
+                  ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["AnualidadServicios"]);
             }
             catch (Exception ex)
             {
@@ -220,6 +223,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
 
             if (this._ventana.Patente != null)
             {
+                ((Patente) this._ventana.Patente).Anualidades =
+                    this._anualidadServicios.ConsultarAnualidadesPorPatente((Patente) this._ventana.Patente);
                 this.Navegar(new GestionarPatente(this._ventana.Patente));
             }
 

@@ -7,6 +7,8 @@ namespace Trascend.Bolet.AccesoDatos.Contrato
     {
         IList<Anualidad> ObtenerAnualidadesFiltro(int idAnualidad);
 
+        IList<Anualidad> ObtenerAnualidadesPorPatente(int idAnualidad);
+
         int ObtenerMaxIdAnualidad();
 
         Anualidad ObtenerAnualidadConTodo(Anualidad Anualidad);
