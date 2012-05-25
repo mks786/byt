@@ -109,6 +109,7 @@ namespace Trascend.Bolet.Cliente.Presentadores
                 _ventanaPrincipal.Contenedor.GoBack();
             else
                 this.Navegar();
+
         }
 
         /// <summary>

@@ -224,5 +224,11 @@ namespace Trascend.Bolet.Servicios.Implementacion
         {
             throw new NotImplementedException();
         }
+
+
+        public IList<Anualidad> ConsultarAnualidadesPorPatente(Patente Patente)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -20,7 +20,7 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
         /// <param name="patente">Patente a insertar o modificar</param>
         /// <param name="hash">Hash del usuario que realiza la operacion</param>
         /// <returns>True: si la modificación fue exitosa; false: en caso contrario</returns>
-        public static bool InsertarOModificar(Patente patente, int hash)
+        public static bool InsertarOModificar(ref Patente patente, int hash)
         {
             bool exitoso = false;
             try
@@ -361,7 +361,7 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
                           
                                       ComandoBase<bool> comando = FabricaComandosAnualidad.ObtenerComandoInsertarOModificar(anualidad1);
                                       comando.Ejecutar();
-                                      exitoso = comando.Receptor.ObjetoAlmacenado;         
+                                      exitoso = comando.Receptor.ObjetoAlmacenado;
                                       if ((bandera)&&(exitoso))
                                        {
                                            //ComandoBase<bool> comandoSec = FabricaComandosContadorFac.ObtenerComandoInsertarOModificar(contadorSecuencia);

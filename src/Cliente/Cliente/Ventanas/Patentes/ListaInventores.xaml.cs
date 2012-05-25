@@ -92,7 +92,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
 
         private void _btnRegresar_Click(object sender, RoutedEventArgs e)
         {
-            this._presentador.Regresar();
+            this._presentador.IrConsultarPatente();
         }
 
         private void _btnAgregar_Click(object sender, RoutedEventArgs e)

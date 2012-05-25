@@ -87,11 +87,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                     this._ventana.TextoBotonRegresar = Recursos.Etiquetas.btnCancelar;
                     this._agregar = true;
 
+                    this._ventana.Patente = new Patente();
                     this._ventana.ActivarControlesAlAgregar();
                 }
 
 
-                this._ventana.Patente = patente;
 
                 this._patenteServicios = (IPatenteServicios)Activator.GetObject(typeof(IPatenteServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["PatenteServicios"]);
@@ -277,14 +277,14 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                     //}
 
                     this._abandonos = this._operacionServicios.ConsultarOperacionesPorPatente(patente);
-                    this._ventana.AbandonoDatos = this._abandonos != null ? this._abandonos[0].Descripcion + " - "
+                    this._ventana.AbandonoDatos = this._abandonos.Count > 0 ? this._abandonos[0].Descripcion + " - "
                                                     + ((DateTime)this._abandonos[0].Fecha).ToShortDateString() : "";
 
-                    this._anualidades = this._patenteServicios.ObtenerPatentesFiltro(patente).Last().Anualidades;
+                    this._anualidades = this._patenteServicios.ConsultarPatenteConTodo(patente).Anualidades;
 
-                    if ((null != this._anualidades) && (this._anualidades[0].QAnualidad != null) && (this._anualidades[0].FechaAnualidad != null))
-                        this._ventana.AnualidadDatos = this._anualidades[0].QAnualidad + 1 + " - "
-                                                        + ((DateTime)this._anualidades[0].FechaAnualidad).AddYears(1).ToShortDateString();
+                    if (this._anualidades.Count > 0)
+                        this._ventana.AnualidadDatos = this._anualidades[this._anualidades.Count - 1].QAnualidad + 1 + " - "
+                                                        + ((DateTime)this._anualidades[this._anualidades.Count - 1].FechaAnualidad).AddYears(1).ToShortDateString();
 
 
                     _inventores = this._inventorServicios.ConsultarInventoresPorPatente(patente);
@@ -517,6 +517,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
+                int? exitosoEntero = null;
+                bool exitoso = false;
+
                 //Habilitar campos
                 if (this._ventana.TextoBotonModificar == Recursos.Etiquetas.btnModificar)
                 {
@@ -529,10 +532,21 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                 {
                     Patente patente = CargarPatenteDeLaPantalla();
 
-                    bool exitoso = this._patenteServicios.InsertarOModificar(patente, UsuarioLogeado.Hash);
+                    if (_agregar)
+                    {
+                        exitosoEntero = this._patenteServicios.InsertarOModificarPatente(patente, UsuarioLogeado.Hash);
+                        patente.Id = (int)exitosoEntero;
+                    }
+                    else
+                    {
+                        exitoso = this._patenteServicios.InsertarOModificar(patente, UsuarioLogeado.Hash);
+                    }
 
-                    if (exitoso)
+                    if ((!exitosoEntero.Equals(null)) || (exitoso))
+                    {
+
                         this.Navegar(new GestionarPatente(patente));
+                    }
                 }
 
                 #region trace
@@ -1191,8 +1205,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
             this._ventana.AsociadosDatos = asociados;
             this._ventana.AsociadoSolicitud = this.BuscarAsociado(asociados, patente.Asociado);
             this._ventana.AsociadoDatos = this.BuscarAsociado(asociados, patente.Asociado);
-            this._ventana.NombreAsociadoDatos = null != this._ventana.Patente ? ((Patente)this._ventana.Patente).Asociado.Nombre : "";
-            this._ventana.NombreAsociadoSolicitud = null != this._ventana.Patente ? ((Patente)this._ventana.Patente).Asociado.Nombre : "";
+            this._ventana.NombreAsociadoDatos = null != ((Patente)this._ventana.Patente).Asociado ? ((Patente)this._ventana.Patente).Asociado.Nombre : "";
+            this._ventana.NombreAsociadoSolicitud = null != ((Patente)this._ventana.Patente).Asociado ? ((Patente)this._ventana.Patente).Asociado.Nombre : "";
             this._asociados = asociados;
             this._ventana.AsociadosEstanCargados = true;
 
@@ -1379,16 +1393,17 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
             if (this._agregar == false)
             {
                 ((Patente)this._ventana.Patente).Interesado = this.BuscarInteresado(interesados, patente.Interesado);
-
-                Interesado interesado = this.BuscarInteresado(interesados, patente.Interesado);
-                this._ventana.InteresadoSolicitud = interesado;
-                this._ventana.InteresadoDatos = interesado;
-                interesado = this._interesadoServicios.ConsultarInteresadoConTodo(interesado);
-                this._ventana.InteresadoPaisSolicitud = interesado.Pais.NombreEspanol;
-                this._ventana.InteresadoEstadoSolicitud = interesado.Ciudad;
-                this._ventana.NombreInteresadoDatos = null != this._ventana.Patente ? ((Patente)this._ventana.Patente).Interesado.Nombre : "";
-                this._ventana.NombreInteresadoSolicitud = null != this._ventana.Patente ? ((Patente)this._ventana.Patente).Interesado.Nombre : "";
-
+                if (null != ((Patente)this._ventana.Patente).Interesado)
+                {
+                    Interesado interesado = this.BuscarInteresado(interesados, patente.Interesado);
+                    this._ventana.InteresadoSolicitud = interesado;
+                    this._ventana.InteresadoDatos = interesado;
+                    interesado = this._interesadoServicios.ConsultarInteresadoConTodo(interesado);
+                    this._ventana.InteresadoPaisSolicitud = interesado.Pais.NombreEspanol;
+                    this._ventana.InteresadoEstadoSolicitud = interesado.Ciudad;
+                }
+                this._ventana.NombreInteresadoDatos = null != ((Patente)this._ventana.Patente).Interesado ? ((Patente)this._ventana.Patente).Interesado.Nombre : "";
+                this._ventana.NombreInteresadoSolicitud = null != ((Patente)this._ventana.Patente).Interesado ? ((Patente)this._ventana.Patente).Interesado.Nombre : "";
             }
 
             this._ventana.InteresadosEstanCargados = true;

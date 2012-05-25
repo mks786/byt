@@ -14,5 +14,7 @@ namespace Trascend.Bolet.ObjetosComunes.ContratosServicios
         IList<Auditoria> AuditoriaPorFkyTabla(Auditoria auditoria);
 
         Marca ConsultarMarcaConTodo(Marca marca);
+
+        int? InsertarOModificarMarca(Marca marca, int hash);
     }
 }

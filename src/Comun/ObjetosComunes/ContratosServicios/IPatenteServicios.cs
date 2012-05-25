@@ -15,5 +15,7 @@ namespace Trascend.Bolet.ObjetosComunes.ContratosServicios
         Patente ConsultarPatenteConTodo(Patente Patente);
 
         bool InsertarOModificarAnualidad(Patente Patente, int hash);
+
+        int? InsertarOModificarPatente(Patente Patente, int hash);
     }
 }

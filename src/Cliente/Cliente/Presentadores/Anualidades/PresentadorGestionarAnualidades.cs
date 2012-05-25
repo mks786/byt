@@ -46,7 +46,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Anualidades
         private IOperacionServicios _operacionServicios;
         private IBusquedaServicios _busquedaServicios;
         private IStatusWebServicios _statusWebServicios;
-        private IPatenteServicios _patenteesServicios;
+        private IPatenteServicios _patentesServicios;
         private IPlanillaServicios _planillaServicios;
         private IAnualidadServicios _anualidadServicios;
 
@@ -122,7 +122,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Anualidades
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["BusquedaServicios"]);
                 this._statusWebServicios = (IStatusWebServicios)Activator.GetObject(typeof(IStatusWebServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["StatusWebServicios"]);
-                this._patenteesServicios = (IPatenteServicios)Activator.GetObject(typeof(IPatenteServicios),
+                this._patentesServicios = (IPatenteServicios)Activator.GetObject(typeof(IPatenteServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["PatenteServicios"]);
                 this._planillaServicios = (IPlanillaServicios)Activator.GetObject(typeof(IPlanillaServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["PlanillaServicios"]);
@@ -354,7 +354,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Anualidades
                     Patente patente = CargarPatenteDeLaPantalla();
 
 
-                    bool exitoso = this._patenteesServicios.InsertarOModificarAnualidad(patente, UsuarioLogeado.Hash);
+                    bool exitoso = this._patentesServicios.InsertarOModificarAnualidad(patente, UsuarioLogeado.Hash);
 
                     if ((exitoso) && (this._agregar == false))
                         this.Navegar(Recursos.MensajesConElUsuario.AnualidadModificada, false);
@@ -407,7 +407,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Anualidades
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-                if (this._patenteesServicios.Eliminar((Patente)this._ventana.Patente, UsuarioLogeado.Hash))
+                if (this._patentesServicios.Eliminar((Patente)this._ventana.Patente, UsuarioLogeado.Hash))
                 {
                     _paginaPrincipal.MensajeUsuario = Recursos.MensajesConElUsuario.AnualidadEliminada;
                     this.Navegar(_paginaPrincipal);

@@ -58,7 +58,7 @@ namespace Trascend.Bolet.Servicios.Implementacion
                 logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
 
-            bool exitoso = ControladorMarca.InsertarOModificar(marca, hash);
+            bool exitoso = ControladorMarca.InsertarOModificar(ref marca, hash);
 
             #region trace
             if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
@@ -175,7 +175,6 @@ namespace Trascend.Bolet.Servicios.Implementacion
             return auditorias;
         }
 
-
         public Marca ConsultarMarcaConTodo(Marca marca)
         {
             Marca retorno;
@@ -202,5 +201,26 @@ namespace Trascend.Bolet.Servicios.Implementacion
             return retorno;
         }
 
+
+        public int? InsertarOModificarMarca(Marca marca, int hash)
+        {
+            #region trace
+            if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+            bool exitoso = ControladorMarca.InsertarOModificar(ref marca, hash);
+
+            #region trace
+            if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                logger.Debug("Saliendo del Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+            if (exitoso)
+                return marca.Id;
+            else
+                return null;
+
+        }
     }
 }

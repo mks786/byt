@@ -388,10 +388,13 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 if (string.IsNullOrEmpty(this._ventana.IdNacional))
                     marca.Nacional = null;
 
-                bool exitoso = this._marcaServicios.InsertarOModificar(marca, UsuarioLogeado.Hash);
+                int? exitoso = this._marcaServicios.InsertarOModificarMarca(marca, UsuarioLogeado.Hash);
 
-                if (exitoso)
+                if (!exitoso.Equals(null))
+                {
+                    marca.Id = (int)exitoso;
                     this.Navegar(new ConsultarMarca(marca));
+                }
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))

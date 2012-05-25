@@ -11,5 +11,7 @@ namespace Trascend.Bolet.ObjetosComunes.ContratosServicios
         int ConsultarUltimoIdAnualidad();
 
         Anualidad ConsultarAnualidadConTodo(Anualidad Anualidad);
+
+        IList<Anualidad> ConsultarAnualidadesPorPatente(Patente Patente);
     }
 }
