@@ -184,6 +184,122 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
             return retorno;
         }
 
+        /// <summary>
+        /// Método que inserta o modifica una Anualidad
+        /// </summary>
+        /// <param name="anualidad">Anualidad a insertar o modificar</param>
+        /// <param name="hash">Hash del usuario que realiza la operacion</param>
+        /// <returns>True: si la modificación fue exitosa; false: en caso contrario</returns>
+        public static bool InsertarOModificarAnualidad(Patente patente, int hash)
+        {
+            bool exitoso = false;
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                Anualidad anualidad = new Anualidad();
+                anualidad.Id = patente.Id;
+                ComandoBase<IList<Anualidad>> anualidadBase = FabricaComandosAnualidad.ObtenerComandoConsultarAnualidadesFiltro(anualidad);
+                anualidadBase.Ejecutar();
+                IList<Anualidad> anualidadesEnBase = anualidadBase.Receptor.ObjetoAlmacenado;
+                ComandoBase<int> UltimoIdAnualidad = FabricaComandosAnualidad.obtenerUltimoIdAnualidad();
+                UltimoIdAnualidad.Ejecutar();
+                int contador = UltimoIdAnualidad.Receptor.ObjetoAlmacenado;
+                bool bandera3 = true;
+
+                if (patente.Anualidades.Count() != 0)
+                {
+                    IList<Anualidad> anualidades = patente.Anualidades;
+
+
+                    //Recorre las anualidades obtenidas del presentador
+                    foreach (Anualidad anualidad1 in patente.Anualidades)
+                    {
+                        bool bandera = false;
+                        if (anualidad1.Id == 0)
+                        {
+                            contador++;
+                            anualidad1.Id = contador;
+                            bandera = true;
+                        }
+
+                        if (bandera3)
+                        {
+                            // Recorre las marcaBase que tiene guardad en base de datos
+                            foreach (Anualidad AnualidadEnBd in anualidadesEnBase)
+                            {
+                                bool bandera2 = false;
+
+                                //Se recorre y compara lo que se encuentra en la base de datos
+                                //con lo que se selecciono para saber si hay que eliminar algun registro
+                                foreach (Anualidad anualidad2 in patente.Anualidades)
+                                {
+                                    if (anualidad2.Id == AnualidadEnBd.Id)
+                                        bandera2 = true;
+
+                                }
+                                //si Bandera2 no cambia a true es por que no fue seleccionado o fue eliminado
+                                //de la lista en el rpesentador una marcabase
+                                if (!bandera2)
+                                {
+                                    ComandoBase<bool> comando2 =
+                                    FabricaComandosAnualidad.ObtenerComandoEliminarObjeto(AnualidadEnBd);
+                                    comando2.Ejecutar();
+                                }
+
+
+                            }
+                            bandera3 = false;
+                        }
+
+
+                        ComandoBase<bool> comando = FabricaComandosAnualidad.ObtenerComandoInsertarOModificar(anualidad1);
+                        comando.Ejecutar();
+                        exitoso = comando.Receptor.ObjetoAlmacenado;
+                        if ((bandera) && (exitoso))
+                        {
+                            //ComandoBase<bool> comandoSec = FabricaComandosContadorFac.ObtenerComandoInsertarOModificar(contadorSecuencia);
+                            //comandoSec.Ejecutar();
+                        }
+                    }
+
+
+
+                }
+                else
+                {
+                    // Borra todos los registros de la bd
+                    foreach (Anualidad AnualidadEnBd in anualidadesEnBase)
+                    {
+
+                        ComandoBase<bool> comando2 =
+                        FabricaComandosAnualidad.ObtenerComandoEliminarObjeto(AnualidadEnBd);
+                        comando2.Ejecutar();
+
+                    }
+                }
+
+
+            }
+            catch (ApplicationException ex)
+            {
+                logger.Error(ex.Message);
+                throw ex;
+            }
+
+            #region trace
+            if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                logger.Debug("Saliendo del Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+            return exitoso;
+        }
+
+
+
+
         #region sin utilizar
 
         ///// <summary>

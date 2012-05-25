@@ -205,31 +205,6 @@ namespace Trascend.Bolet.Servicios.Implementacion
             return retorno;
         }
 
-        public bool InsertarOModificarAnualidad(Patente patente, int hash)
-        {
-            #region trace
-            if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
-                logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
-            #endregion
-
-            bool retorno;
-            try
-            {
-                retorno = ControladorPatente.InsertarOModificarAnualidad(patente, hash);
-
-
-                #region trace
-                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
-                    logger.Debug("Saliendo del Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
-                #endregion
-            }
-            catch (ApplicationException ex)
-            {
-                throw ex;
-            }
-
-            return retorno;
-        }
 
 
         public int? InsertarOModificarPatente(Patente Patente, int hash)

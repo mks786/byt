@@ -81,7 +81,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Anualidades
 
                     this._ventana.TextoBotonRegresar = Recursos.Etiquetas.btnCancelar;
 
-                    this._ventana.ActivarControlesAlAgregar();
+                   
                 }
 
                 #region Servicios
@@ -354,7 +354,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Anualidades
                     Patente patente = CargarPatenteDeLaPantalla();
 
 
-                    bool exitoso = this._patentesServicios.InsertarOModificarAnualidad(patente, UsuarioLogeado.Hash);
+                    bool exitoso = this._anualidadServicios.InsertarOModificarAnualidad(patente, UsuarioLogeado.Hash);
 
                     if ((exitoso) && (this._agregar == false))
                         this.Navegar(Recursos.MensajesConElUsuario.AnualidadModificada, false);
@@ -392,58 +392,6 @@ namespace Trascend.Bolet.Cliente.Presentadores.Anualidades
                 Mouse.OverrideCursor = null;
             }
         }
-
-        /// <summary>
-        /// Metodo que se encarga de eliminar una Patente
-        /// </summary>
-        public void Eliminar()
-        {
-            Mouse.OverrideCursor = Cursors.Wait;
-
-            try
-            {
-                #region trace
-                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
-                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
-                #endregion
-
-                if (this._patentesServicios.Eliminar((Patente)this._ventana.Patente, UsuarioLogeado.Hash))
-                {
-                    _paginaPrincipal.MensajeUsuario = Recursos.MensajesConElUsuario.AnualidadEliminada;
-                    this.Navegar(_paginaPrincipal);
-                }
-
-                #region trace
-                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
-                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
-                #endregion
-            }
-            catch (ApplicationException ex)
-            {
-                logger.Error(ex.Message);
-                this.Navegar(ex.Message, true);
-            }
-            catch (RemotingException ex)
-            {
-                logger.Error(ex.Message);
-                this.Navegar(Recursos.MensajesConElUsuario.ErrorRemoting, true);
-            }
-            catch (SocketException ex)
-            {
-                logger.Error(ex.Message);
-                this.Navegar(Recursos.MensajesConElUsuario.ErrorConexionServidor, true);
-            }
-            catch (Exception ex)
-            {
-                logger.Error(ex.Message);
-                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
-            }
-            finally
-            {
-                Mouse.OverrideCursor = null;
-            }
-        }
-
 
         /// <summary>
         /// Método que ordena una columna

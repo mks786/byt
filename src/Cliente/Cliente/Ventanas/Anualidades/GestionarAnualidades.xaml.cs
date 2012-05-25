@@ -391,12 +391,6 @@ namespace Trascend.Bolet.Cliente.Ventanas.Anualidades
             this._presentador = new PresentadorGestionarAnualidades(this, fusion);
         }
 
-        public void ActivarControlesAlAgregar()
-        {
-            this._btnEliminar.Visibility = System.Windows.Visibility.Collapsed;
-            //this._btnCarpeta.Visibility = System.Windows.Visibility.Collapsed;          
-        }
-
         private void _btnModificar_Click(object sender, RoutedEventArgs e)
         {
             this._presentador.Modificar();
@@ -410,14 +404,6 @@ namespace Trascend.Bolet.Cliente.Ventanas.Anualidades
                 this._presentador.Cancelar();
         }
 
-        private void _btnEliminar_Click(object sender, RoutedEventArgs e)
-        {
-            if (MessageBoxResult.Yes == MessageBox.Show(Recursos.MensajesConElUsuario.ConfirmacionEliminarFusion,
-                "Eliminar FusionPatente", MessageBoxButton.YesNo, MessageBoxImage.Question))
-            {
-                this._presentador.Eliminar();
-            }
-        }
 
         private void _btnPlanilla_Click(object sender, RoutedEventArgs e)
         {

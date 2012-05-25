@@ -282,17 +282,17 @@
                         <Label Grid.Column="2" Grid.Row="6" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblFecha}"/>
                         </Label>
-                        <DatePicker IsEnabled="False" Grid.Column="3" Grid.Row="6" Name="_dpkFechaPrioridadSolicitud" 
+                        <DatePicker IsEnabled="False" Grid.Column="3" Grid.Row="6" Name="_dpkFechaPrioridadSolicitud" Grid.ColumnSpan="2"
                                     Focusable="False" BorderBrush="{x:Null}" VerticalAlignment="Center" Margin="0,0,5,0">
                             <DatePicker.SelectedDate>
                                 <Binding Path="FechaPrioridad" UpdateSourceTrigger="PropertyChanged"/>
                             </DatePicker.SelectedDate>
                         </DatePicker>
 
-                        <Label Grid.Column="4" Grid.Row="6" VerticalAlignment="Center" HorizontalContentAlignment="Right">
+                        <Label Grid.Column="5" Grid.Row="6" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblPais}"/>
                         </Label>
-                        <ComboBox IsEnabled="False" Grid.Column="5" Grid.ColumnSpan="2" Grid.Row="6" Name="_cbxPaisSolicitud" Height="20" 
+                        <ComboBox IsEnabled="False" Grid.Column="6" Grid.ColumnSpan="3" Grid.Row="6" Name="_cbxPaisSolicitud" Height="20" 
                               ItemsSource="{Binding}" DisplayMemberPath="NombreEspanol" SelectedIndex="0" SelectionChanged="_cbxPaisSolicitud_SelectionChanged">
                         </ComboBox>
                         <!--Fin Quinta Fila-->
@@ -310,17 +310,17 @@
                         <Label Grid.Column="2" Grid.Row="7" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblFecha}"/>
                         </Label>
-                        <DatePicker IsEnabled="False" Grid.Column="3" Grid.Row="7" Name="_dpkFechaOrdenSolicitud" 
+                        <DatePicker IsEnabled="False" Grid.Column="3" Grid.Row="7" Name="_dpkFechaOrdenSolicitud" Grid.ColumnSpan="2"
                                     Focusable="False" BorderBrush="{x:Null}" VerticalAlignment="Center" Margin="0,0,5,0">
                             <DatePicker.SelectedDate>
                                 <Binding Path="FechaOrden" UpdateSourceTrigger="PropertyChanged"/>
                             </DatePicker.SelectedDate>
                         </DatePicker>
                         
-                        <Label Grid.Column="4" Grid.Row="7" VerticalAlignment="Center" HorizontalContentAlignment="Right">
+                        <Label Grid.Column="5" Grid.Row="7" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblTipo}"/>
                         </Label>
-                        <ComboBox IsEnabled="False" Grid.Column="5" Grid.ColumnSpan="2" Grid.Row="7" Name="_cbxTipoSolicitud" Height="20" 
+                        <ComboBox IsEnabled="False" Grid.Column="6" Grid.ColumnSpan="2" Grid.Row="7" Name="_cbxTipoSolicitud" Height="20" 
                               ItemsSource="{Binding}" DisplayMemberPath="Descripcion" SelectedIndex="0" SelectionChanged="_cbxTipoPatenteSolicitud_SelectionChanged">
                         </ComboBox>
                         <!--Fin Sexta Fila-->
@@ -1032,13 +1032,6 @@
                                 </DatePicker.SelectedDate>
                             </DatePicker>
                             
-                            <Label Grid.Column="1" Grid.Row="6" Grid.ColumnSpan="2" VerticalAlignment="Center" HorizontalContentAlignment="center" Name="_lblFechaRenovacionDatos">
-                                <TextBlock Text="{x:Static recurso:Etiquetas.lblRenovarAntesDe}"/>
-                            </Label>
-
-                            <custom:ByTTextBox IsEnabled="False" Grid.Column="1" Grid.Row="7" Grid.ColumnSpan="2" Margin="3" Name="_txtFechaRenovacionDatos" VerticalAlignment="Center"  
-                          Text="{Binding Path=FechaTermino}"></custom:ByTTextBox>
-
                         </Grid>
                         
                         <Grid Grid.Column="6" Grid.Row="13" Grid.ColumnSpan="6">
@@ -1069,7 +1062,18 @@
                                 <TextBlock Text="{x:Static recurso:Etiquetas.lblSituacion}"/>
                             </Label>
                             <ComboBox IsEnabled="False" Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="3" Name="_cbxSituacionDatos" Height="20" 
-                              ItemsSource="{Binding}" DisplayMemberPath="Descripcion" SelectedIndex="0">
+                                  ItemsSource="{Binding}" SelectedIndex="0">
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock>
+                                <TextBlock.Text>
+                                   
+                                        <Binding Path="Descripcion" />
+                                   
+                                </TextBlock.Text>
+                                        </TextBlock>
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
                             </ComboBox>
 
                             <Label Grid.Column="0" Grid.Row="1" VerticalAlignment="Center" HorizontalContentAlignment="Right">

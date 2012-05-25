@@ -12,6 +12,8 @@ namespace Trascend.Bolet.ObjetosComunes.ContratosServicios
 
         Anualidad ConsultarAnualidadConTodo(Anualidad Anualidad);
 
+        bool InsertarOModificarAnualidad(Patente Patente, int hash);
+
         IList<Anualidad> ConsultarAnualidadesPorPatente(Patente Patente);
     }
 }

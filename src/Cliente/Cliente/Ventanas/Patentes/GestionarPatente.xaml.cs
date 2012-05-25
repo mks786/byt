@@ -636,7 +636,6 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
                 this._txtAnualidadDatos.IsEnabled = value;
                 
                 this._txtComentarioDatos.IsEnabled = value;
-                this._txtFechaRenovacionDatos.IsEnabled = value;
                 this._txtCodigoRegistroDatos.IsEnabled = value;
                 this._txtCodigoInscripcionDatos.IsEnabled = value;
                 this._txtUbicacionDatos.IsEnabled = value;
@@ -988,9 +987,6 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
 
             this._lblAbandono.Visibility = System.Windows.Visibility.Collapsed;
             this._txtAbandonoDatos.Visibility = System.Windows.Visibility.Collapsed;
-
-            this._txtFechaRenovacionDatos.Visibility = System.Windows.Visibility.Collapsed;
-            this._lblFechaRenovacionDatos.Visibility = System.Windows.Visibility.Collapsed;
 
             this._spdrBotones.Visibility = System.Windows.Visibility.Collapsed;
 

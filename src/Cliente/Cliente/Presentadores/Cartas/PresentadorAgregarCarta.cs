@@ -129,6 +129,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
                 resumenes.Insert(0, primeraResumen);
                 this._ventana.Resumenes = resumenes;
 
+
                 this._responsables = this._usuarioServicios.ConsultarTodos();
                 Usuario primerResponsable = new Usuario();
                 primerResponsable.Id = "NGN";
@@ -260,7 +261,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
                 Asociado asociado = this._asociadoServicios.ConsultarAsociadoConTodo((Asociado)this._ventana.Asociado);
                 asociado.Contactos = this._contactoServicios.ConsultarContactosPorAsociado(asociado);
                 this._ventana.NombreAsociado = ((Asociado)this._ventana.Asociado).Nombre;
-                this._ventana.Personas = asociado.Contactos;
+                if (asociado.Contactos.Count!=0)
+                     this._ventana.Personas = asociado.Contactos;
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))

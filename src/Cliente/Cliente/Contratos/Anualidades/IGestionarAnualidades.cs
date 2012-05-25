@@ -127,8 +127,6 @@ namespace Trascend.Bolet.Cliente.Contratos.Anualidades
 
         void Mensaje(string mensaje, int opcion);
 
-        void ActivarControlesAlAgregar();
-
       //  bool AsociadosEstanCargados { get; set; }
     }
 }
