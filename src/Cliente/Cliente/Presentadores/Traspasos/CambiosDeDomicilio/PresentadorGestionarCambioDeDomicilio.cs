@@ -12,6 +12,7 @@ using NLog;
 using Trascend.Bolet.Cliente.Ayuda;
 using Trascend.Bolet.Cliente.Contratos.Traspasos.CambiosDeDomicilio;
 using Trascend.Bolet.Cliente.Ventanas.Principales;
+using Trascend.Bolet.Cliente.Ventanas.Traspasos.CambiosDeDomicilio;
 using Trascend.Bolet.Cliente.Ventanas.Marcas;
 using Trascend.Bolet.ObjetosComunes.ContratosServicios;
 using Trascend.Bolet.ObjetosComunes.Entidades;
@@ -352,9 +353,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeDomicilio
                     bool exitoso = this._cambioDeDomicilioServicios.InsertarOModificar(cambioDeDomicilio, UsuarioLogeado.Hash);
 
                     if ((exitoso) && (this._agregar == false))
-                        this.Navegar(Recursos.MensajesConElUsuario.CambioDeDomicilioModificado, false);
+                        this.Navegar(new GestionarCambioDeDomicilio(cambioDeDomicilio));
                     else if ((exitoso) && (this._agregar == true))
-                        this.Navegar(Recursos.MensajesConElUsuario.CambioDeDomicilioInsertado, false);
+                        this.Navegar(new GestionarCambioDeDomicilio(cambioDeDomicilio));
+                    else
+                        this.Navegar(Recursos.MensajesConElUsuario.ErrorAlGenerarTraspaso, true);
+
                 }
 
                 #region trace

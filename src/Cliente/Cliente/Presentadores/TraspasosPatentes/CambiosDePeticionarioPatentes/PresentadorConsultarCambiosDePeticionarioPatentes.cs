@@ -28,7 +28,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CambiosDePetici
         private IPatenteServicios _patenteServicios;
         private IAsociadoServicios _asociadoServicios;
         private IInteresadoServicios _interesadoServicios;
-        private IList<Patente> _marcas;
+        private IList<Patente> _patentes;
         private IList<CambioPeticionarioPatente> _cambiosDePeticionario;
         private ICambioPeticionarioPatenteServicios _cambiosDePeticionarioPatenteServicios;
         
@@ -79,8 +79,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CambiosDePetici
 
                 ActualizarTitulo();
 
-                //this._marcas = this._patenteServicios.ConsultarTodos();
-                //this._ventana.Resultados = this._marcas;
+                //this._patentes = this._patenteServicios.ConsultarTodos();
+                //this._ventana.Resultados = this._patentes;
          
                 this._ventana.TotalHits = "0";
                 this._ventana.FocoPredeterminado();
@@ -316,19 +316,19 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CambiosDePetici
         public void BuscarPatente()
         {
             Mouse.OverrideCursor = Cursors.Wait;
-            Patente marca = new Patente();
-            IEnumerable<Patente> marcasFiltradas;
-            marca.Descripcion = this._ventana.NombrePatenteFiltrar.ToUpper();
-            marca.Id = this._ventana.IdPatenteFiltrar.Equals("") ? 0 : int.Parse(this._ventana.IdPatenteFiltrar);
-            if ((!marca.Descripcion.Equals("")) || (marca.Id != 0))
-                marcasFiltradas = this._patenteServicios.ObtenerPatentesFiltro(marca);
+            Patente patente = new Patente();
+            IEnumerable<Patente> patentesFiltradas;
+            patente.Descripcion = this._ventana.NombrePatenteFiltrar.ToUpper();
+            patente.Id = this._ventana.IdPatenteFiltrar.Equals("") ? 0 : int.Parse(this._ventana.IdPatenteFiltrar);
+            if ((!patente.Descripcion.Equals("")) || (patente.Id != 0))
+                patentesFiltradas = this._patenteServicios.ObtenerPatentesFiltro(patente);
             else
-                marcasFiltradas = new List<Patente>();
+                patentesFiltradas = new List<Patente>();
 
-            if (marcasFiltradas.ToList<Patente>().Count != 0)
-                this._ventana.Patentes = marcasFiltradas.ToList<Patente>();
+            if (patentesFiltradas.ToList<Patente>().Count != 0)
+                this._ventana.Patentes = patentesFiltradas.ToList<Patente>();
             else
-                this._ventana.Patentes = this._marcas;
+                this._ventana.Patentes = this._patentes;
 
             Mouse.OverrideCursor = null;
         }

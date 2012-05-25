@@ -780,4 +780,7 @@
   <data name="UltimaRenovacion" xml:space="preserve">
     <value>Esta Renovacion no puede ser Eliminada</value>
   </data>
+  <data name="ErrorAlGenerarTraspaso" xml:space="preserve">
+    <value>Disculpe, ha ocurrido un error al generar el traspaso</value>
+  </data>
 </root>

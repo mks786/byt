@@ -11,6 +11,7 @@ using System.Windows.Input;
 using NLog;
 using Trascend.Bolet.Cliente.Ayuda;
 using Trascend.Bolet.Cliente.Contratos.Traspasos.CambiosDeNombre;
+using Trascend.Bolet.Cliente.Ventanas.Traspasos.CambiosDeNombre;
 using Trascend.Bolet.Cliente.Ventanas.Principales;
 using Trascend.Bolet.Cliente.Ventanas.Marcas;
 using Trascend.Bolet.ObjetosComunes.ContratosServicios;
@@ -377,9 +378,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeNombre
                     bool exitoso = this._cambioDeNombreServicios.InsertarOModificar(cambioDeNombre, UsuarioLogeado.Hash);
 
                     if ((exitoso) && (this._agregar == false))
-                        this.Navegar(Recursos.MensajesConElUsuario.CambioDeNombreModificado, false);
+                        this.Navegar(new GestionarCambioDeNombre(cambioDeNombre));
                     else if ((exitoso) && (this._agregar == true))
-                        this.Navegar(Recursos.MensajesConElUsuario.CambioDeNombreInsertado, false);
+                        this.Navegar(new GestionarCambioDeNombre(cambioDeNombre));
+                    else
+                        this.Navegar(Recursos.MensajesConElUsuario.ErrorAlGenerarTraspaso, true);
                 }
 
                 #region trace

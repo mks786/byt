@@ -82,10 +82,11 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
 
                     comandoOperacionContador = FabricaComandosContador.ObtenerComandoInsertarOModificar(contadorOperacion);
                     operacion.Id = contadorOperacion.ProximoValor++;
-                    operacion.Fecha = System.DateTime.Now;
+                    operacion.Fecha = DateTime.Parse(DateTime.Now.ToString("dd/mm/yyyy"));
                     operacion.Aplicada = 'P';
                     operacion.CodigoAplicada = cambioPeticionario.Patente.Id;
                     operacion.Interno = cambioPeticionario.Id;
+                    operacion.Interesado = cambioPeticionario.InteresadoActual;
                     operacion.Servicio = new Servicio("CT");
 
                     ComandoBase<bool> comandoOperacion = FabricaComandosOperacion.ObtenerComandoInsertarOModificar(operacion);

@@ -25,13 +25,13 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.FusionesPatente
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
         private IConsultarFusionesPatentes _ventana;
-        private IPatenteServicios _marcaServicios;
+        private IPatenteServicios _patenteServicios;
         private IAsociadoServicios _asociadoServicios;
         private IInteresadoServicios _interesadoServicios;
         private IFusionPatenteServicios _fusionServicios;
 
         private IList<FusionPatente> _fusiones;
-        private IList<Patente> _marcas;
+        private IList<Patente> _patentes;
         private IList<Interesado> _interesados;
 
         /// <summary>
@@ -43,7 +43,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.FusionesPatente
             try
             {
                 this._ventana = ventana;
-                this._marcaServicios = (IPatenteServicios)Activator.GetObject(typeof(IPatenteServicios),
+                this._patenteServicios = (IPatenteServicios)Activator.GetObject(typeof(IPatenteServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["PatenteServicios"]);
                 this._asociadoServicios = (IAsociadoServicios)Activator.GetObject(typeof(IAsociadoServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["AsociadoServicios"]);
@@ -84,12 +84,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.FusionesPatente
                 //this._fusiones = this._fusionServicios.ConsultarTodos();
                 //this._ventana.Resultados = this._fusiones;
 
-                //IList<Patente> marcas = this._marcaServicios.ConsultarTodos();
+                //IList<Patente> patentes = this._patenteServicios.ConsultarTodos();
                 //Patente primerPatente = new Patente();
                 //primerPatente.Id = int.MinValue;
-                //marcas.Insert(0, primerPatente);
-                //this._ventana.Patentes = marcas;
-                //this._marcas = marcas;
+                //patentes.Insert(0, primerPatente);
+                //this._ventana.Patentes = patentes;
+                //this._patentes = patentes;
 
                 //IList<Interesado> interesados = this._interesadoServicios.ConsultarTodos();
                 //Interesado primerInteresado = new Interesado();
@@ -286,19 +286,19 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.FusionesPatente
                 #endregion
 
                 Mouse.OverrideCursor = Cursors.Wait;
-                Patente marca = new Patente();
-                IEnumerable<Patente> marcasFiltradas;
-                marca.Descripcion = this._ventana.NombrePatenteFiltrar.ToUpper();
-                marca.Id = this._ventana.IdPatenteFiltrar.Equals("") ? 0 : int.Parse(this._ventana.IdPatenteFiltrar);
-                if ((!marca.Descripcion.Equals("")) || (marca.Id != 0))
-                    marcasFiltradas = this._marcaServicios.ObtenerPatentesFiltro(marca);
+                Patente patente = new Patente();
+                IEnumerable<Patente> patentesFiltradas;
+                patente.Descripcion = this._ventana.NombrePatenteFiltrar.ToUpper();
+                patente.Id = this._ventana.IdPatenteFiltrar.Equals("") ? 0 : int.Parse(this._ventana.IdPatenteFiltrar);
+                if ((!patente.Descripcion.Equals("")) || (patente.Id != 0))
+                    patentesFiltradas = this._patenteServicios.ObtenerPatentesFiltro(patente);
                 else
-                    marcasFiltradas = new List<Patente>();
+                    patentesFiltradas = new List<Patente>();
 
-                if (marcasFiltradas.ToList<Patente>().Count != 0)
-                    this._ventana.Patentes = marcasFiltradas.ToList<Patente>();
+                if (patentesFiltradas.ToList<Patente>().Count != 0)
+                    this._ventana.Patentes = patentesFiltradas.ToList<Patente>();
                 else
-                    this._ventana.Patentes = this._marcas;
+                    this._ventana.Patentes = this._patentes;
 
                 Mouse.OverrideCursor = null;
 
@@ -330,7 +330,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.FusionesPatente
         }
 
         /// <summary>
-        /// Método que permite seleccionar marca
+        /// Método que permite seleccionar patente
         /// </summary>
         public bool ElegirPatente()
         {

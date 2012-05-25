@@ -28,7 +28,7 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
                
                     ComandoBase<IList<Licencia>> comando = FabricaComandosLicencia.ObtenerComandoConsultarTodos();
                     comando.Ejecutar();
-                    retorno = comando.Receptor.ObjetoAlmacenado;                
+                    retorno = comando.Receptor.ObjetoAlmacenado;
 
                 #region trace
                 if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
@@ -81,7 +81,7 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
 
                     comandoOperacionContador = FabricaComandosContador.ObtenerComandoInsertarOModificar(contadorOperacion);
                     operacion.Id = contadorOperacion.ProximoValor++;
-                    operacion.Fecha = System.DateTime.Now;
+                    operacion.Fecha = DateTime.Parse(DateTime.Now.ToString("dd/mm/yyyy"));
                     operacion.Aplicada = 'M';
                     operacion.CodigoAplicada = licencia.Marca.Id;
                     operacion.Interno = licencia.Id;

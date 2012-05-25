@@ -16,6 +16,7 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
         {
             IList<Patente> Patentes = null;
             bool variosFiltros = false;
+            int[] consultaGrid; ;
             try
             {
                 #region trace
@@ -30,6 +31,13 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
                 {
                     filtro = string.Format(Recursos.ConsultasHQL.FiltroObtenerPatenteId, Patente.Id);
                     variosFiltros = true;
+                }
+
+                if (!string.IsNullOrEmpty(Patente.Descripcion))
+                {
+                    if (variosFiltros)
+                        filtro += " and ";
+                    filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerPatenteDescripcion, Patente.Descripcion);
                 }
 
                 if ((null != Patente.Asociado) && (!Patente.Asociado.Id.Equals("")))
@@ -55,13 +63,6 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
                 //    filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerPatenteFichas, Patente.Fichas);
                 //}
 
-                if (!string.IsNullOrEmpty(Patente.Descripcion))
-                {
-                    if (variosFiltros)
-                        filtro += " and ";
-                    filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerPatenteDescripcion, Patente.Descripcion);
-                }
-
                 if ((null != Patente.FechaPublicacion) && (!Patente.FechaPublicacion.Equals(DateTime.MinValue)))
                 {
                     if (variosFiltros)
@@ -83,7 +84,7 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
                 IQuery query = Session.CreateQuery(cabecera + filtro);
                 Patentes = query.List<Patente>();
 
-                //Busca la lista de Anualidad por cada marcaTercero
+                //Busca la lista de Anualidad por cada Patente
                 foreach (Patente aux in Patentes)
                 {
 

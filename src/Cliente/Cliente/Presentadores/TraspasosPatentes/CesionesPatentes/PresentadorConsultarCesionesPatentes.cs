@@ -25,10 +25,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CesionesPatente
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
         private IConsultarCesionesPatentes _ventana;
-        private IPatenteServicios _marcaServicios;
+        private IPatenteServicios _patenteServicios;
         private IAsociadoServicios _asociadoServicios;
         private IInteresadoServicios _interesadoServicios;
-        private IList<Patente> _marcas;
+        private IList<Patente> _patentes;
         private IList<CesionPatente> _cesiones;
         private ICesionPatenteServicios _cesionServicios;
         
@@ -41,7 +41,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CesionesPatente
             try
             {
                 this._ventana = ventana;
-                this._marcaServicios = (IPatenteServicios)Activator.GetObject(typeof(IPatenteServicios),
+                this._patenteServicios = (IPatenteServicios)Activator.GetObject(typeof(IPatenteServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["PatenteServicios"]);
                 this._asociadoServicios = (IAsociadoServicios)Activator.GetObject(typeof(IAsociadoServicios),
                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["AsociadoServicios"]);
@@ -79,8 +79,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CesionesPatente
 
                 ActualizarTitulo();
 
-                //this._marcas = this._marcaServicios.ConsultarTodos();
-                //this._ventana.Resultados = this._marcas;
+                //this._patentes = this._patenteServicios.ConsultarTodos();
+                //this._ventana.Resultados = this._patentes;
          
                 this._ventana.TotalHits = "0";
                 this._ventana.FocoPredeterminado();
@@ -314,30 +314,30 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CesionesPatente
         //}
 
         /// <summary>
-        /// Método que busca las marcas registradas
+        /// Método que busca las patentes registradas
         /// </summary>
         public void BuscarPatente()
         {
             Mouse.OverrideCursor = Cursors.Wait;
-            Patente marca = new Patente();
-            IEnumerable<Patente> marcasFiltradas;
-            marca.Descripcion = this._ventana.NombrePatenteFiltrar.ToUpper();
-            marca.Id = this._ventana.IdPatenteFiltrar.Equals("") ? 0 : int.Parse(this._ventana.IdPatenteFiltrar);
-            if ((!marca.Descripcion.Equals("")) || (marca.Id != 0))
-                marcasFiltradas = this._marcaServicios.ObtenerPatentesFiltro(marca);
+            Patente patente = new Patente();
+            IEnumerable<Patente> patentesFiltradas;
+            patente.Descripcion = this._ventana.NombrePatenteFiltrar.ToUpper();
+            patente.Id = this._ventana.IdPatenteFiltrar.Equals("") ? 0 : int.Parse(this._ventana.IdPatenteFiltrar);
+            if ((!patente.Descripcion.Equals("")) || (patente.Id != 0))
+                patentesFiltradas = this._patenteServicios.ObtenerPatentesFiltro(patente);
             else
-                marcasFiltradas = new List<Patente>();
+                patentesFiltradas = new List<Patente>();
 
-            if (marcasFiltradas.ToList<Patente>().Count != 0)
-                this._ventana.Patentes = marcasFiltradas.ToList<Patente>();
+            if (patentesFiltradas.ToList<Patente>().Count != 0)
+                this._ventana.Patentes = patentesFiltradas.ToList<Patente>();
             else
-                this._ventana.Patentes = this._marcas;
+                this._ventana.Patentes = this._patentes;
 
             Mouse.OverrideCursor = null;
         }
 
         /// <summary>
-        /// Método que permite seleccionar marcas
+        /// Método que permite seleccionar patentes
         /// </summary>
         public bool ElegirPatente()
         {

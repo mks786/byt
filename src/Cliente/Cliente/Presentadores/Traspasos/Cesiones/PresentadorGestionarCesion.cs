@@ -11,6 +11,7 @@ using System.Windows.Input;
 using NLog;
 using Trascend.Bolet.Cliente.Ayuda;
 using Trascend.Bolet.Cliente.Contratos.Traspasos.Cesiones;
+using Trascend.Bolet.Cliente.Ventanas.Traspasos.Cesiones;
 using Trascend.Bolet.Cliente.Ventanas.Principales;
 using Trascend.Bolet.Cliente.Ventanas.Marcas;
 using Trascend.Bolet.ObjetosComunes.ContratosServicios;
@@ -489,9 +490,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Cesiones
                     bool exitoso = this._cesionServicios.InsertarOModificar(cesion, UsuarioLogeado.Hash);
 
                     if ((exitoso) && (this._agregar == false))
-                        this.Navegar(Recursos.MensajesConElUsuario.CesionModificada, false);
+                        this.Navegar(new GestionarCesion(cesion));
                     else if ((exitoso) && (this._agregar == true))
-                        this.Navegar(Recursos.MensajesConElUsuario.CesionInsertada, false);
+                        this.Navegar(new GestionarCesion(cesion));
+                    else
+                        this.Navegar(Recursos.MensajesConElUsuario.ErrorAlGenerarTraspaso, true);
                 }
 
                 #region trace

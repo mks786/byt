@@ -1015,6 +1015,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Disculpe, ha ocurrido un error al generar el traspaso.
+        /// </summary>
+        internal static string ErrorAlGenerarTraspaso {
+            get {
+                return ResourceManager.GetString("ErrorAlGenerarTraspaso", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Disculpe el archivo de la memoria no fue encontrado.
         /// </summary>
         internal static string ErrorArchivoMemoriaNoEncontrado {

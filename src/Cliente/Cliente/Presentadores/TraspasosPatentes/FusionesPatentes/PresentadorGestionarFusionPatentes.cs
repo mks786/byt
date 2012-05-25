@@ -12,6 +12,7 @@ using NLog;
 using Trascend.Bolet.Cliente.Ayuda;
 using Trascend.Bolet.Cliente.Contratos.TraspasosPatentes.FusionesPatentes;
 using Trascend.Bolet.Cliente.Ventanas.Principales;
+using Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.FusionesPatentes;
 using Trascend.Bolet.Cliente.Ventanas.Marcas;
 using Trascend.Bolet.ObjetosComunes.ContratosServicios;
 using Trascend.Bolet.ObjetosComunes.Entidades;
@@ -27,7 +28,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.FusionesPatente
         private bool _agregar = true;
         private IGestionarFusionPatentes _ventana;
 
-        private IPatenteServicios _marcaServicios;
+        private IPatenteServicios _patenteServicios;
         private IAnaquaServicios _anaquaServicios;
         private IAsociadoServicios _asociadoServicios;
         private IAgenteServicios _agenteServicios;
@@ -52,7 +53,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.FusionesPatente
         private IList<Interesado> _interesados;
         private IList<Corresponsal> _corresponsales;
         private IList<Auditoria> _auditorias;
-        private IList<Patente> _marcas;
+        private IList<Patente> _patentes;
         private IList<Interesado> _interesadosEntre;
         private IList<Interesado> _interesadosSobreviviente;
         private IList<Agente> _agentesApoderados;
@@ -99,7 +100,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.FusionesPatente
 
                 #region Servicios
 
-                this._marcaServicios = (IPatenteServicios)Activator.GetObject(typeof(IPatenteServicios),
+                this._patenteServicios = (IPatenteServicios)Activator.GetObject(typeof(IPatenteServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["PatenteServicios"]);
                 this._asociadoServicios = (IAsociadoServicios)Activator.GetObject(typeof(IAsociadoServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["AsociadoServicios"]);
@@ -183,7 +184,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.FusionesPatente
                     FusionPatente fusion = (FusionPatente)this._ventana.FusionPatente;
 
                     if (((FusionPatente)fusion).Patente != null)
-                        this._ventana.Patente = this._marcaServicios.ConsultarPatenteConTodo(((FusionPatente)fusion).Patente);
+                        this._ventana.Patente = this._patenteServicios.ConsultarPatenteConTodo(((FusionPatente)fusion).Patente);
 
                     this._ventana.NombrePatente = ((Patente)this._ventana.Patente).Descripcion;
                     this._ventana.AgenteApoderado = ((FusionPatente)fusion).Agente;
@@ -322,19 +323,19 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.FusionesPatente
                 logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
 
-            this._marcas = new List<Patente>();
+            this._patentes = new List<Patente>();
             Patente primeraPatente = new Patente(int.MinValue);
-            this._marcas.Add(primeraPatente);
+            this._patentes.Add(primeraPatente);
 
             if ((Patente)this._ventana.Patente != null)
             {
-                this._marcas.Add((Patente)this._ventana.Patente);
-                this._ventana.PatentesFiltradas = this._marcas;
+                this._patentes.Add((Patente)this._ventana.Patente);
+                this._ventana.PatentesFiltradas = this._patentes;
                 this._ventana.PatenteFiltrada = (Patente)this._ventana.Patente;
             }
             else
             {
-                this._ventana.PatentesFiltradas = this._marcas;
+                this._ventana.PatentesFiltradas = this._patentes;
                 this._ventana.PatenteFiltrada = primeraPatente;
             }
             #region trace
@@ -441,51 +442,51 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.FusionesPatente
                 fusion.Poder = ((Poder)this._ventana.PoderFiltrado).Id != int.MinValue ? (Poder)this._ventana.PoderFiltrado : null;
 
             #region Comentado
-            //marca.Operacion = "MODIFY";
+            //patente.Operacion = "MODIFY";
             //if (null != this._ventana.Agente)
-            //    marca.Agente = !((Agente)this._ventana.Agente).Id.Equals("NGN") ? (Agente)this._ventana.Agente : null;
+            //    patente.Agente = !((Agente)this._ventana.Agente).Id.Equals("NGN") ? (Agente)this._ventana.Agente : null;
 
             //if (null != this._ventana.AsociadoSolicitud)
-            //    marca.Asociado = ((Asociado)this._ventana.AsociadoSolicitud).Id != int.MinValue ? (Asociado)this._ventana.AsociadoSolicitud : null;
+            //    patente.Asociado = ((Asociado)this._ventana.AsociadoSolicitud).Id != int.MinValue ? (Asociado)this._ventana.AsociadoSolicitud : null;
 
             //if (null != this._ventana.BoletinConcesion)
-            //    marca.BoletinConcesion = ((Boletin)this._ventana.BoletinConcesion).Id != int.MinValue ? (Boletin)this._ventana.BoletinConcesion : null;
+            //    patente.BoletinConcesion = ((Boletin)this._ventana.BoletinConcesion).Id != int.MinValue ? (Boletin)this._ventana.BoletinConcesion : null;
 
             //if (null != this._ventana.BoletinPublicacion)
-            //    marca.BoletinPublicacion = ((Boletin)this._ventana.BoletinPublicacion).Id != int.MinValue ? (Boletin)this._ventana.BoletinPublicacion : null;
+            //    patente.BoletinPublicacion = ((Boletin)this._ventana.BoletinPublicacion).Id != int.MinValue ? (Boletin)this._ventana.BoletinPublicacion : null;
 
             //if (null != this._ventana.InteresadoSolicitud)
-            //    marca.Interesado = !((Interesado)this._ventana.InteresadoSolicitud).Id.Equals("NGN") ? ((Interesado)this._ventana.InteresadoSolicitud) : null;
+            //    patente.Interesado = !((Interesado)this._ventana.InteresadoSolicitud).Id.Equals("NGN") ? ((Interesado)this._ventana.InteresadoSolicitud) : null;
 
             //if (null != this._ventana.Servicio)
-            //    marca.Servicio = !((Servicio)this._ventana.Servicio).Id.Equals("NGN") ? ((Servicio)this._ventana.Servicio) : null;
+            //    patente.Servicio = !((Servicio)this._ventana.Servicio).Id.Equals("NGN") ? ((Servicio)this._ventana.Servicio) : null;
 
             //if (null != this._ventana.PoderSolicitud)
-            //    marca.Poder = !((Poder)this._ventana.PoderSolicitud).Id.Equals("NGN") ? ((Poder)this._ventana.PoderSolicitud) : null;
+            //    patente.Poder = !((Poder)this._ventana.PoderSolicitud).Id.Equals("NGN") ? ((Poder)this._ventana.PoderSolicitud) : null;
 
             //if (null != this._ventana.PaisSolicitud)
-            //    marca.Pais = ((Pais)this._ventana.PaisSolicitud).Id != int.MinValue ? ((Pais)this._ventana.PaisSolicitud) : null;
+            //    patente.Pais = ((Pais)this._ventana.PaisSolicitud).Id != int.MinValue ? ((Pais)this._ventana.PaisSolicitud) : null;
 
             //if (null != this._ventana.StatusWeb)
-            //    marca.StatusWeb = ((StatusWeb)this._ventana.StatusWeb).Id.Equals("NGN") ? ((StatusWeb)this._ventana.StatusWeb) : null;
+            //    patente.StatusWeb = ((StatusWeb)this._ventana.StatusWeb).Id.Equals("NGN") ? ((StatusWeb)this._ventana.StatusWeb) : null;
 
             //if (null != this._ventana.CorresponsalSolicitud)
-            //    marca.Corresponsal = ((Corresponsal)this._ventana.CorresponsalSolicitud).Id != int.MinValue ? ((Corresponsal)this._ventana.CorresponsalSolicitud) : null;
+            //    patente.Corresponsal = ((Corresponsal)this._ventana.CorresponsalSolicitud).Id != int.MinValue ? ((Corresponsal)this._ventana.CorresponsalSolicitud) : null;
 
             //if (null != this._ventana.Sector)
-            //    marca.Sector = !((ListaDatosDominio)this._ventana.Sector).Id.Equals("NGN") ? ((ListaDatosDominio)this._ventana.Sector).Id : null;
+            //    patente.Sector = !((ListaDatosDominio)this._ventana.Sector).Id.Equals("NGN") ? ((ListaDatosDominio)this._ventana.Sector).Id : null;
 
             //if (null != this._ventana.TipoReproduccion)
-            //    marca.TipoRps = ((ListaDatosDominio)this._ventana.TipoReproduccion).Id[0];
+            //    patente.TipoRps = ((ListaDatosDominio)this._ventana.TipoReproduccion).Id[0];
 
             //if (null != this._ventana.TipoPatenteDatos)
-            //    marca.Tipo = !((ListaDatosDominio)this._ventana.TipoPatenteDatos).Id.Equals("NGN") ? ((ListaDatosDominio)this._ventana.TipoPatenteDatos).Id : null;
+            //    patente.Tipo = !((ListaDatosDominio)this._ventana.TipoPatenteDatos).Id.Equals("NGN") ? ((ListaDatosDominio)this._ventana.TipoPatenteDatos).Id : null;
 
             //if(string.IsNullOrEmpty(this._ventana.IdInternacional))
-            //    marca.Internacional = null;
+            //    patente.Internacional = null;
 
             //if(string.IsNullOrEmpty(this._ventana.IdNacional))
-            //    marca.Nacional = null;
+            //    patente.Nacional = null;
             #endregion
 
             #region trace
@@ -534,9 +535,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.FusionesPatente
                     bool exitoso = this._fusionesServicios.InsertarOModificar(fusion, UsuarioLogeado.Hash);
 
                     if ((exitoso) && (this._agregar == false))
-                        this.Navegar(Recursos.MensajesConElUsuario.FusionModificada, false);
+                        this.Navegar(new GestionarFusionPatentes(fusion));
                     else if ((exitoso) && (this._agregar == true))
-                        this.Navegar(Recursos.MensajesConElUsuario.FusionInsertada, false);
+                        this.Navegar(new GestionarFusionPatentes(fusion));
+                    else
+                        this.Navegar(Recursos.MensajesConElUsuario.ErrorAlGenerarTraspaso, true);
                 }
 
                 #region trace
@@ -821,7 +824,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.FusionesPatente
         #region Patentes
 
         /// <summary>
-        /// Método Muestra las marcas consultadas
+        /// Método Muestra las patentes consultadas
         /// </summary>
         public void ConsultarPatentes()
         {
@@ -834,25 +837,25 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.FusionesPatente
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-                Patente marca = new Patente();
-                IList<Patente> marcasFiltradas;
-                marca.Descripcion = this._ventana.NombrePatenteFiltrar.ToUpper();
-                marca.Id = this._ventana.IdPatenteFiltrar.Equals("") ? 0 : int.Parse(this._ventana.IdPatenteFiltrar);
+                Patente patente = new Patente();
+                IList<Patente> patentesFiltradas;
+                patente.Descripcion = this._ventana.NombrePatenteFiltrar.ToUpper();
+                patente.Id = this._ventana.IdPatenteFiltrar.Equals("") ? 0 : int.Parse(this._ventana.IdPatenteFiltrar);
 
-                if ((!marca.Descripcion.Equals("")) || (marca.Id != 0))
-                    marcasFiltradas = this._marcaServicios.ObtenerPatentesFiltro(marca);
+                if ((!patente.Descripcion.Equals("")) || (patente.Id != 0))
+                    patentesFiltradas = this._patenteServicios.ObtenerPatentesFiltro(patente);
                 else
-                    marcasFiltradas = new List<Patente>();
+                    patentesFiltradas = new List<Patente>();
 
-                if (marcasFiltradas.ToList<Patente>().Count != 0)
+                if (patentesFiltradas.ToList<Patente>().Count != 0)
                 {
-                    marcasFiltradas.Insert(0, new Patente(int.MinValue));
-                    this._ventana.PatentesFiltradas = marcasFiltradas.ToList<Patente>();
+                    patentesFiltradas.Insert(0, new Patente(int.MinValue));
+                    this._ventana.PatentesFiltradas = patentesFiltradas.ToList<Patente>();
                 }
                 else
                 {
-                    marcasFiltradas.Insert(0, new Patente(int.MinValue));
-                    this._ventana.PatentesFiltradas = this._marcas;
+                    patentesFiltradas.Insert(0, new Patente(int.MinValue));
+                    this._ventana.PatentesFiltradas = this._patentes;
                     this._ventana.Mensaje(Recursos.MensajesConElUsuario.NoHayResultados, 1);
                 }
 
@@ -888,7 +891,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.FusionesPatente
         }
 
         /// <summary>
-        /// Método que cambia la marca
+        /// Método que cambia la patente
         /// </summary>
         public bool CambiarPatente()
         {
@@ -908,8 +911,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.FusionesPatente
                 {
                     this._ventana.Patente = this._ventana.PatenteFiltrada;
                     this._ventana.NombrePatente = ((Patente)this._ventana.PatenteFiltrada).Descripcion;
-                    this._marcas.RemoveAt(0);
-                    this._marcas.Add((Patente)this._ventana.PatenteFiltrada);
+                    this._patentes.RemoveAt(0);
+                    this._patentes.Add((Patente)this._ventana.PatenteFiltrada);
                     retorno = true;
                 }
 

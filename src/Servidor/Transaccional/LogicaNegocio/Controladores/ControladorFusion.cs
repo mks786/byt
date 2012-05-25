@@ -81,10 +81,11 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
 
                     comandoOperacionContador = FabricaComandosContador.ObtenerComandoInsertarOModificar(contadorOperacion);
                     operacion.Id = contadorOperacion.ProximoValor++;
-                    operacion.Fecha = System.DateTime.Now;
+                    operacion.Fecha = DateTime.Parse(DateTime.Now.ToShortDateString());
                     operacion.Aplicada = 'M';
                     operacion.CodigoAplicada = fusion.Marca.Id;
                     operacion.Interno = fusion.Id;
+                    operacion.Interesado = fusion.InteresadoSobreviviente;
                     operacion.Servicio = new Servicio("FU");
 
                     ComandoBase<bool> comandoOperacion = FabricaComandosOperacion.ObtenerComandoInsertarOModificar(operacion);
@@ -97,8 +98,22 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
 
                     if (exitoso)
                     {
-                        comandoFusionContador.Ejecutar();
-                        comandoOperacionContador.Ejecutar();
+                        //ComandoBase<Marca> comandoMarca = FabricaComandosMarca.ObtenerComandoConsultarMarcaConTodo(fusion.Marca);
+                        //comandoMarca.Ejecutar();
+                        //Marca marcaAEditar = comandoMarca.Receptor.ObjetoAlmacenado;
+                        //marcaAEditar.Interesado = fusion.InteresadoSobreviviente;
+                        //marcaAEditar.Poder = fusion.Poder;
+                        //marcaAEditar.Agente = fusion.Agente;
+
+                        //ComandoBase<bool> comandoInsertarMarca = FabricaComandosMarca.ObtenerComandoInsertarOModificar(marcaAEditar);
+                        //comandoInsertarMarca.Ejecutar();
+                        //exitoso = comandoInsertarMarca.Receptor.ObjetoAlmacenado;
+
+                        if (exitoso)
+                        {
+                            comandoFusionContador.Ejecutar();
+                            comandoOperacionContador.Ejecutar();
+                        }
                     }
                 }
                 else
