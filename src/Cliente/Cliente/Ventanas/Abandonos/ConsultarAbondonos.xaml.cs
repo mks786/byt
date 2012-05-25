@@ -103,6 +103,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Abandonos
 
         public string IdMarca
         {
+            get { return this._txtIdMarca.Text; }
             set { this._txtIdMarca.Text = value; }
         }
 
@@ -170,9 +171,17 @@ namespace Trascend.Bolet.Cliente.Ventanas.Abandonos
                 this._presentador.ActualizarTitulo();
         }
 
+        public void ConvertirEnteroMinimoABlanco()
+        {
+            if (!this.IdMarca.Equals(""))
+            {
+                if (int.Parse(this.IdMarca) == int.MinValue)
+                    this.IdMarca = "";
+            }
+        }
         private void _btnConsultarMarca_Click(object sender, RoutedEventArgs e)
         {
-            this._presentador.BuscarMarca();
+            this._presentador.ConsultarMarca();
         }          
 
         private void _btnConsultarFocus(object sender, RoutedEventArgs e)

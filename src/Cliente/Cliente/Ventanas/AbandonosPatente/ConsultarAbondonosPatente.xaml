@@ -74,46 +74,58 @@
 
                     <Separator Margin="0,5,0,5"/>
                     <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,14,0">
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto"/>
-                                <ColumnDefinition Width="316"/>
-                            </Grid.ColumnDefinitions>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="316"/>
+                        </Grid.ColumnDefinitions>
 
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
-                            </Grid.RowDefinitions>
-                            <Label VerticalAlignment="Center" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Left">
-                                <TextBlock Text="{x:Static recurso:Etiquetas.lblPatente}"/>
-                            </Label>
-                            
-                            <Label Name="_lblIdPatente" Visibility="Collapsed"  VerticalAlignment="Center" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Right">
-                                <TextBlock Text="{x:Static recurso:Etiquetas.lblId}"/>
-                            </Label>
-                            
-                            <custom:ByTTextBox BorderBrush="LightGreen" Name="_txtPatente" Width="150" MaxLength="15" Grid.Row="0" Grid.Column="1" 
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Label VerticalAlignment="Center" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Left">
+                            <TextBlock Text="{x:Static recurso:Etiquetas.lblPatente}"/>
+                        </Label>
+
+                        <Label Name="_lblIdPatente" Visibility="Collapsed"  VerticalAlignment="Center" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Right">
+                            <TextBlock Text="{x:Static recurso:Etiquetas.lblId}"/>
+                        </Label>
+
+                        <custom:ByTTextBox BorderBrush="LightGreen" Name="_txtPatente" Width="150" MaxLength="15" Grid.Row="0" Grid.Column="1" 
                                                Height="25" HorizontalAlignment="Left" MouseDoubleClick="_txtPatente_MouseDoubleClick" IsReadOnly="True"/>
-                            
-                            <custom:ByTTextBox Visibility="Collapsed" Name="_txtIdPatenteFiltrar" Text="" Width="150" MaxLength="15" Grid.Row="1" Grid.Column="1" Height="25" HorizontalAlignment="Left"
+
+                        <custom:ByTTextBox Visibility="Collapsed" Name="_txtIdPatenteFiltrar" Text="" Width="150" MaxLength="15" Grid.Row="1" Grid.Column="1" Height="25" HorizontalAlignment="Left"
                                  GotFocus="_btnConsultarPatenteFocus" GotKeyboardFocus="_btnConsultarPatenteFocus" SoloNumero="True" Filtro="True" Margin="0,3" />
 
-                            <Label Name="_lblNombrePatente" Visibility="Collapsed"  VerticalAlignment="Center" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Right">
-                                <TextBlock Text="{x:Static recurso:Etiquetas.lblNombre}"/>
-                            </Label>
-                            
-                            <TextBox Visibility="Collapsed"  Name="_txtNombrePatenteFiltrar" Text="" Width="150" MaxLength="255" Grid.Row="2" Grid.Column="1" Height="25" HorizontalAlignment="Left"
+                        <Label Name="_lblNombrePatente" Visibility="Collapsed"  VerticalAlignment="Center" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Right">
+                            <TextBlock Text="{x:Static recurso:Etiquetas.lblNombre}"/>
+                        </Label>
+
+                        <TextBox Visibility="Collapsed"  Name="_txtNombrePatenteFiltrar" Text="" Width="150" MaxLength="255" Grid.Row="2" Grid.Column="1" Height="25" HorizontalAlignment="Left"
                                  GotFocus="_btnConsultarPatenteFocus" GotKeyboardFocus="_btnConsultarPatenteFocus" Margin="0,3" />
 
-                            <Button Visibility="Collapsed"  Name="_btnConsultarPatente" Width="100" IsDefault="False" Grid.Row="2" Grid.Column="1" Height="25" HorizontalAlignment="Right" Click="_btnConsultarPatente_Click">
-                                <TextBlock Text="{x:Static recurso:Etiquetas.btnConsultar}"/>
-                            </Button>
-                            <!--Path=Id, Converter={StaticResource convertir}-->
-                            <ListView Visibility="Collapsed"  Height="198" Name="_lstPatentes" ItemsSource="{Binding}" 
+                        <Button Visibility="Collapsed"  Name="_btnConsultarPatente" Width="100" IsDefault="False" Grid.Row="2" Grid.Column="1" Height="25" HorizontalAlignment="Right" Click="_btnConsultarPatente_Click">
+                            <TextBlock Text="{x:Static recurso:Etiquetas.btnConsultar}"/>
+                        </Button>
+                        <!--Path=Id, Converter={StaticResource convertir}-->
+
+                    
+                    <Grid Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="410"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <ListView Visibility="Collapsed"  Height="198" Name="_lstPatentes" ItemsSource="{Binding}" 
                       SelectionMode="Single" MouseDoubleClick="_lstPatentes_MouseDoubleClick"
-                      Style="{DynamicResource EstiloListView}" Grid.Row="3" Grid.ColumnSpan="2">
+                      Style="{DynamicResource EstiloListView}" Grid.Row="0">
                                 <ListView.View>
                                     <GridView>
                                         <GridViewColumn Width="45">
@@ -128,14 +140,23 @@
                                                 </DataTemplate>
                                             </GridViewColumn.CellTemplate>
                                         </GridViewColumn>
-                                        <GridViewColumn DisplayMemberBinding="{Binding Path=Descripcion}" Width="250">
+                                        <GridViewColumn DisplayMemberBinding="{Binding Path=Descripcion}" Width="110">
                                         <GridViewColumnHeader Click="_Ordenar_Click" Tag="Descripcion" Content="{x:Static recurso:Etiquetas.lsvNombre}"/>
                                         </GridViewColumn>
-                                    </GridView>
+
+                                        <GridViewColumn DisplayMemberBinding="{Binding Path=Interesado.Nombre}" Width="110">
+                                        <GridViewColumnHeader Click="_Ordenar_Click" Tag="Interesado.Nombre" Content="{x:Static recurso:Etiquetas.lsvInteresado}"/>
+                                    </GridViewColumn>
+
+                                        <GridViewColumn DisplayMemberBinding="{Binding Path=Asociado.Nombre}" Width="100">
+                                        <GridViewColumnHeader Click="_Ordenar_Click" Tag="Asociado.Nombre" Content="{x:Static recurso:Etiquetas.lsvAsociado}"/>
+                                    </GridViewColumn>
+                                </GridView>
                                 </ListView.View>
                             </ListView>
                         </Grid>
-                    </WrapPanel>
+                    </Grid>
+                </WrapPanel>
                    
 
                     <Separator Margin="0,5,0,5"/>
@@ -160,15 +181,19 @@
                         <GridViewColumn DisplayMemberBinding="{Binding Path=Fecha}" Width="150">
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="Fecha" Content="{x:Static recurso:Etiquetas.lsvFechaOperacion}"/>
                         </GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Descripcion}" Width="150">
+                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="Descripcion" Content="{x:Static recurso:Etiquetas.lsvOperacion}"/>
+                        </GridViewColumn>
                         <GridViewColumn DisplayMemberBinding="{Binding Path=Patente.Descripcion}" Width="150">
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="Patente.Descripcion" Content="{x:Static recurso:Etiquetas.lsvPatente}"/>
                         </GridViewColumn>
                         <GridViewColumn DisplayMemberBinding="{Binding Path=Interesado.Nombre}" Width="150">
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="Interesado.Nombre" Content="{x:Static recurso:Etiquetas.lsvInteresado}"/>
                         </GridViewColumn>
-                        <GridViewColumn DisplayMemberBinding="{Binding Path=Descripcion}" Width="150">
-                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="Descripcion" Content="{x:Static recurso:Etiquetas.lsvOperacion}"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Asociado.Nombre}" Width="150">
+                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="Asociado.Nombre" Content="{x:Static recurso:Etiquetas.lsvAsociado}"/>
                         </GridViewColumn>
+
                     </GridView>
                 </ListView.View>
             </ListView>

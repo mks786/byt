@@ -87,7 +87,7 @@
                         <GridViewColumn DisplayMemberBinding="{Binding Path=Asunto}" Width="550">
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="Asunto" Content="{x:Static recurso:Etiquetas.lsvAsunto}"/>
                         </GridViewColumn>
-                        <GridViewColumn DisplayMemberBinding="{Binding Path=FechaIngreso}" Width="150">
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=FechaIngreso, StringFormat={}{0:dd/MM/yyyy}}" Width="150">
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="FechaIngreso" Content="{x:Static recurso:Etiquetas.lsvFechaIngreso}"/>
                         </GridViewColumn>
                     </GridView>

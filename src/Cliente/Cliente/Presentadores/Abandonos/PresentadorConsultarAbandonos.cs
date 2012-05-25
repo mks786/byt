@@ -53,8 +53,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Abandonos
 
         public void ActualizarTitulo()
         {
-            this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleConsultarAbandonosPatente,
-                Recursos.Ids.ConsultarAbandonosPatente);
+            this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleConsultarAbandonos,
+                Recursos.Ids.ConsultarAbandonos);
         }
 
         /// <summary>
@@ -72,6 +72,14 @@ namespace Trascend.Bolet.Cliente.Presentadores.Abandonos
                 #endregion
 
                 ActualizarTitulo();
+
+                IList<Marca> marcasAux = new List<Marca>();
+                Marca primeraMarca = new Marca(int.MinValue);
+                marcasAux.Add(primeraMarca);
+
+                this._ventana.Marcas = marcasAux;
+                this._ventana.Marca = this.BuscarMarca(marcasAux, primeraMarca);
+
 
                 //this._marcas = this._marcaServicios.ConsultarTodos();
                 //this._ventana.Resultados = this._marcas;
@@ -244,17 +252,19 @@ namespace Trascend.Bolet.Cliente.Presentadores.Abandonos
         /// <summary>
         /// Método que busca las marcas registradas
         /// </summary>
-        public void BuscarMarca()
+        public void ConsultarMarca()
         {
             Mouse.OverrideCursor = Cursors.Wait;
             Marca marca = new Marca();
-            IEnumerable<Marca> marcasFiltradas;
+            IList<Marca> marcasFiltradas;
             marca.Descripcion = this._ventana.NombreMarcaFiltrar.ToUpper();
             marca.Id = this._ventana.IdMarcaFiltrar.Equals("") ? 0 : int.Parse(this._ventana.IdMarcaFiltrar);
             if ((!marca.Descripcion.Equals("")) || (marca.Id != 0))
                 marcasFiltradas = this._marcaServicios.ObtenerMarcasFiltro(marca);
             else
                 marcasFiltradas = new List<Marca>();
+
+            marcasFiltradas.Insert(0, new Marca(int.MinValue));
 
             if (marcasFiltradas.ToList<Marca>().Count != 0)
                 this._ventana.Marcas = marcasFiltradas.ToList<Marca>();
@@ -275,6 +285,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Abandonos
                 retorno = true;
                 this._ventana.NombreMarca = ((Marca)this._ventana.Marca).Descripcion;
                 this._ventana.IdMarca = ((Marca)this._ventana.Marca).Id.ToString();
+
+                this._ventana.ConvertirEnteroMinimoABlanco();
             }
 
             return retorno;

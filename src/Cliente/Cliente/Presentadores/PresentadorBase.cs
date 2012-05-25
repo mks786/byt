@@ -1427,6 +1427,52 @@ namespace Trascend.Bolet.Cliente.Presentadores
         }
 
         /// <summary>
+        /// Método que busca una patente dentro de una lista de patentes
+        /// </summary>
+        /// <param name="patentes">Lista de patentes</param>
+        /// <param name="patenteBuscado">patente a buscar</param>
+        /// <returns>patente dentro de la lista</returns>
+        public Patente BuscarPatente(IList<Patente> patentes, Patente patenteBuscado)
+        {
+            Patente retorno = null;
+
+            if (patenteBuscado != null)
+                foreach (Patente patente in patentes)
+                {
+                    if (patente.Id.Equals(patenteBuscado.Id))
+                    {
+                        retorno = patente;
+                        break;
+                    }
+                }
+
+            return retorno;
+        }
+
+        /// <summary>
+        /// Método que busca una marca dentro de una lista de marcas
+        /// </summary>
+        /// <param name="marcas">Lista de patentes</param>
+        /// <param name="marcaBuscada">marca a buscar</param>
+        /// <returns>marca dentro de la lista</returns>
+        public Marca BuscarMarca(IList<Marca> marcas, Marca marcaBuscada)
+        {
+            Marca retorno = null;
+
+            if (marcaBuscada != null)
+                foreach (Marca marca in marcas)
+                {
+                    if (marca.Id.Equals(marcaBuscada.Id))
+                    {
+                        retorno = marca;
+                        break;
+                    }
+                }
+
+            return retorno;
+        }
+
+        /// <summary>
         /// Metodo que recibe el nombre del archivo .bat a ejecutar
         /// </summary>
         /// <param name="nombreArchivo">nombre del archivo a ejecutar</param>

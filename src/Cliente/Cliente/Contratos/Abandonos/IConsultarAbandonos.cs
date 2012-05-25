@@ -34,5 +34,7 @@ namespace Trascend.Bolet.Cliente.Contratos.Abandonos
         void Mensaje(string mensaje, int opcion);
 
         string TotalHits { set; }
+
+        void ConvertirEnteroMinimoABlanco();
     }
 }

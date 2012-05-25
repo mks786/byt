@@ -56,6 +56,7 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
                     filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerCartaOutFecha, fecha, fecha2);
                 }
 
+                filtro += " order by c.NRelacion";
                 IQuery query = Session.CreateQuery(cabecera + filtro);
                 cartas = query.List<CartaOut>();
 

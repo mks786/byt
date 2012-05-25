@@ -163,7 +163,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.AbandonosPatente
 
         private void _btnConsultarPatente_Click(object sender, RoutedEventArgs e)
         {
-            this._presentador.BuscarPatente();
+            this._presentador.ConsultarPatente();
         }          
 
         private void _btnConsultarFocus(object sender, RoutedEventArgs e)

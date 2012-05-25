@@ -53,8 +53,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.AbandonosPatente
 
         public void ActualizarTitulo()
         {
-            this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleConsultarAbandonos,
-                Recursos.Ids.ConsultarAbandonos);
+            this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleConsultarAbandonosPatente,
+                Recursos.Ids.ConsultarAbandonosPatente);
         }
 
         /// <summary>
@@ -73,9 +73,13 @@ namespace Trascend.Bolet.Cliente.Presentadores.AbandonosPatente
 
                 ActualizarTitulo();
 
-                //this._marcas = this._marcaServicios.ConsultarTodos();
-                //this._ventana.Resultados = this._marcas;
-         
+                IList<Patente> patentesAux = new List<Patente>();
+                Patente primerPatente = new Patente(int.MinValue);
+                patentesAux.Add(primerPatente);
+
+                this._ventana.Patentes = patentesAux;
+                this._ventana.Patente = this.BuscarPatente(patentesAux, primerPatente);
+
                 this._ventana.TotalHits = "0";
                 this._ventana.FocoPredeterminado();
 
@@ -244,11 +248,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.AbandonosPatente
         /// <summary>
         /// Método que busca las patentes registradas
         /// </summary>
-        public void BuscarPatente()
+        public void ConsultarPatente()
         {
             Mouse.OverrideCursor = Cursors.Wait;
             Patente patente = new Patente();
-            IEnumerable<Patente> patentesFiltradas;
+            IList<Patente> patentesFiltradas;
             patente.Descripcion = this._ventana.NombrePatenteFiltrar.ToUpper();
             
             patente.Id = this._ventana.IdPatenteFiltrar.Equals("") ? 0 : int.Parse(this._ventana.IdPatenteFiltrar);
@@ -257,6 +261,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.AbandonosPatente
                 patentesFiltradas = this._patenteServicios.ObtenerPatentesFiltro(patente);
             else
                 patentesFiltradas = new List<Patente>();
+
+            patentesFiltradas.Insert(0, new Patente(int.MinValue));
 
             if (patentesFiltradas.ToList<Patente>().Count != 0)
                 this._ventana.Patentes = patentesFiltradas.ToList<Patente>();
