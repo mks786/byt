@@ -298,7 +298,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                     ((Patente)this._ventana.Patente).Memorias = this._memoriaServicios.ConsultarMemoriasPorPatente(((Patente)this._ventana.Patente));
 
                     patente.Fechas = this._patenteServicios.ConsultarFechasPorPatente(((Patente)this._ventana.Patente));
-                    
+
                     if (null != patente.Fechas && patente.Fechas.Count != 0)
                         this._ventana.PintarFechasDatos();
 
@@ -440,8 +440,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
             #endregion
 
             Patente patente = (Patente)this._ventana.Patente;
-
-            patente.Operacion = "MODIFY";
+            if (_agregar) { patente.Operacion = "CREATE"; }
+            else { patente.Operacion = "MODIFY"; }
 
             if (null != this._ventana.AgenteSolicitudFiltrar)
                 patente.Agente = !((Agente)this._ventana.AgenteSolicitudFiltrar).Id.Equals("NGN") ? (Agente)this._ventana.AgenteSolicitudFiltrar : null;
@@ -532,7 +532,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                     bool exitoso = this._patenteServicios.InsertarOModificar(patente, UsuarioLogeado.Hash);
 
                     if (exitoso)
-                        this.Navegar(Recursos.MensajesConElUsuario.PatenteModificada, false);
+                        this.Navegar(new GestionarPatente(patente));
                 }
 
                 #region trace
@@ -748,8 +748,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
 
                 string nombreArchivo = ConfigurationManager.AppSettings["NombreMemoriaPatente"] + ((Patente)this._ventana.Patente).Id;
 
-                string[] archivos = Directory.GetFiles(rutaArchivo, nombreArchivo+".*");
-                
+                string[] archivos = Directory.GetFiles(rutaArchivo, nombreArchivo + ".*");
+
                 if (archivos.Length > 0)
                 {
                     this.AbrirArchivoPorConsola(archivos[0], "Abriendo Archivo de Memoria de la Patente: " + ((Patente)this._ventana.Patente).Id);

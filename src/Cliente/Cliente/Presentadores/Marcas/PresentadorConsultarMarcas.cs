@@ -119,7 +119,6 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
         public void CargarPagina()
         {
             Mouse.OverrideCursor = Cursors.Wait;
-
             try
             {
                 #region trace

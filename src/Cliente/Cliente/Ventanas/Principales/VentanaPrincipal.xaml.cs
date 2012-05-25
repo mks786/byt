@@ -15,6 +15,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Principales
     {
         private PresentadorVentanaPrincipal _presentador;
 
+
         #region Singleton
 
         private static VentanaPrincipal _ventanaPrincipal;
@@ -670,7 +671,5 @@ namespace Trascend.Bolet.Cliente.Ventanas.Principales
         {
             this._presentador.IrConsultarInventores();
         }
-
-
     }
 }

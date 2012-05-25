@@ -1026,7 +1026,7 @@ Cuenta solo digital:</value>
     <value>Transferir Plantilla</value>
   </data>
   <data name="menuItemCarta" xml:space="preserve">
-    <value>Carta</value>
+    <value>Clientes</value>
   </data>
   <data name="btnRemitente" xml:space="preserve">
     <value>Remitente</value>
@@ -2683,6 +2683,9 @@ de Gracia</value>
   </data>
   <data name="lsvReferencia" xml:space="preserve">
     <value>Referencia</value>
+  </data>
+  <data name="menuItemTablasCorrespondencia" xml:space="preserve">
+    <value>Tablas</value>
   </data>
   <data name="lsvFechaPresentacion" xml:space="preserve">
     <value>Fecha De Presentacion</value>

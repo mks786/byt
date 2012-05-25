@@ -19,6 +19,7 @@
             <RowDefinition Height="40"/>
             <RowDefinition Height="10"/>
         </Grid.RowDefinitions>
+        
         <Image Stretch="Uniform" Grid.Column="1" Grid.Row="1" Source="/Trascend.Bolet.Cliente;component/images/logoBoletI.png" />
         <Label Grid.Column="1" Grid.Row="2" VerticalAlignment="Bottom">
             <TextBlock Name="_txtMensajeError" Text="" Foreground="Red"/>
@@ -26,5 +27,6 @@
         <Label Grid.Column="1" Grid.Row="2" VerticalAlignment="Bottom">
             <TextBlock Name="_txtMensajeUsuario" Text="" Foreground="Green"/>
         </Label>
+        
     </Grid>
 </Page>

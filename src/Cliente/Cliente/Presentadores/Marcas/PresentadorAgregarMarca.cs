@@ -391,7 +391,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 bool exitoso = this._marcaServicios.InsertarOModificar(marca, UsuarioLogeado.Hash);
 
                 if (exitoso)
-                    this.Navegar(Recursos.MensajesConElUsuario.MarcaInsertada, false);
+                    this.Navegar(new ConsultarMarca(marca));
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))

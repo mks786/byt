@@ -496,7 +496,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
         /// </summary>
         public void Recordatorios()
         {
-            this._ventana.Contenedor.Navigate( new ConsultarRecordatorios());
+            this._ventana.Contenedor.Navigate(new ConsultarRecordatorios());
         }
 
         /// <summary>
@@ -989,7 +989,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
         /// </summary>
         public void GestionarAnualidades()
         {
-              this._ventana.Contenedor.Navigate(new GestionarAnualidades(null));
+            this._ventana.Contenedor.Navigate(new GestionarAnualidades(null));
         }
 
         #endregion
@@ -1052,7 +1052,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
                 {
                     if (proceso.Id != id)
                     {
-                        this.EjecutarComandoDeConsola("/c " + "Taskkill /PID " + proceso.Id + " /F","Cerrar sesiones restantes");
+                        this.EjecutarComandoDeConsola("/c " + "Taskkill /PID " + proceso.Id + " /F", "Cerrar sesiones restantes");
                     }
                 }
                 catch (Exception ex)
@@ -1077,6 +1077,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
                         ItemCollection menuNivel2 = itemNivel1.Items;
 
                         foreach (ItemsControl itemNivel2 in menuNivel2)
+                        {
                             switch (itemNivel2.Name)
                             {
                                 case "_menuItemAgente":
@@ -1151,20 +1152,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
                                     if (objeto.Id.Equals(Recursos.Ids.Marca))
                                         itemNivel2.Visibility = System.Windows.Visibility.Visible;
                                     break;
-                                case "_menuItemAnexo":
-                                    if (objeto.Id.Equals(Recursos.Ids.Anexo))
-                                        itemNivel2.Visibility = System.Windows.Visibility.Visible;
-                                    break;
                                 case "_menuItemAsociado":
                                     if (objeto.Id.Equals(Recursos.Ids.Asociado))
                                         itemNivel2.Visibility = System.Windows.Visibility.Visible;
                                     break;
                                 case "_menuItemBoletin":
                                     if (objeto.Id.Equals(Recursos.Ids.Boletin))
-                                        itemNivel2.Visibility = System.Windows.Visibility.Visible;
-                                    break;
-                                case "_menuItemCategoria":
-                                    if (objeto.Id.Equals(Recursos.Ids.Categoria))
                                         itemNivel2.Visibility = System.Windows.Visibility.Visible;
                                     break;
                                 case "_menuItemEntradaAlterna":
@@ -1195,10 +1188,6 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
                                     if (objeto.Id.Equals(Recursos.Ids.Marca))
                                         itemNivel2.Visibility = System.Windows.Visibility.Visible;
                                     break;
-                                case "_menuItemMedio":
-                                    if (objeto.Id.Equals(Recursos.Ids.Medio))
-                                        itemNivel2.Visibility = System.Windows.Visibility.Visible;
-                                    break;
                                 case "_menuItemNacional":
                                     if (objeto.Id.Equals(Recursos.Ids.Nacional))
                                         itemNivel2.Visibility = System.Windows.Visibility.Visible;
@@ -1215,16 +1204,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
                                     if (objeto.Id.Equals(Recursos.Ids.Poder))
                                         itemNivel2.Visibility = System.Windows.Visibility.Visible;
                                     break;
-                                case "_menuItemRemitente":
-                                    if (objeto.Id.Equals(Recursos.Ids.Remitente))
-                                        itemNivel2.Visibility = System.Windows.Visibility.Visible;
-                                    break;
                                 case "_menuItemResolucion":
                                     if (objeto.Id.Equals(Recursos.Ids.Resolucion))
-                                        itemNivel2.Visibility = System.Windows.Visibility.Visible;
-                                    break;
-                                case "_menuItemResumen":
-                                    if (objeto.Id.Equals(Recursos.Ids.Resumen))
                                         itemNivel2.Visibility = System.Windows.Visibility.Visible;
                                     break;
                                 case "_menuItemRol":
@@ -1283,7 +1264,39 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
                                     if (objeto.Id.Equals(Recursos.Ids.Marca))
                                         itemNivel2.Visibility = System.Windows.Visibility.Visible;
                                     break;
+                                case "_menuItemTablasCorrespondencia":
+                                    if (objeto.Id.Equals(Recursos.Ids.Marca))
+                                        itemNivel2.Visibility = System.Windows.Visibility.Visible;
+                                    break;
                             }
+
+                            ItemCollection menuNivel3 = itemNivel2.Items;
+                            foreach (ItemsControl itemNivel3 in menuNivel3)
+                                switch (itemNivel3.Name)
+                                {
+                                    case "_menuItemCategoria":
+                                        if (objeto.Id.Equals(Recursos.Ids.Categoria))
+                                            itemNivel3.Visibility = System.Windows.Visibility.Visible;
+                                        break;
+                                    case "_menuItemAnexo":
+                                        if (objeto.Id.Equals(Recursos.Ids.Anexo))
+                                            itemNivel3.Visibility = System.Windows.Visibility.Visible;
+                                        break;
+                                    case "_menuItemMedio":
+                                        if (objeto.Id.Equals(Recursos.Ids.Medio))
+                                            itemNivel3.Visibility = System.Windows.Visibility.Visible;
+                                        break;
+                                    case "_menuItemRemitente":
+                                        if (objeto.Id.Equals(Recursos.Ids.Remitente))
+                                            itemNivel3.Visibility = System.Windows.Visibility.Visible;
+                                        break;
+                                    case "_menuItemResumen":
+                                        if (objeto.Id.Equals(Recursos.Ids.Resumen))
+                                            itemNivel3.Visibility = System.Windows.Visibility.Visible;
+                                        break;
+
+                                }
+                        }
                     }
             }
         }

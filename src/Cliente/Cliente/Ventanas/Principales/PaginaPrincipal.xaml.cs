@@ -2,6 +2,7 @@
 using Trascend.Bolet.Cliente.Contratos.Principales;
 using System.Windows.Media;
 using Trascend.Bolet.Cliente.Presentadores.Principales;
+using System;
 
 namespace Trascend.Bolet.Cliente.Ventanas.Principales
 {

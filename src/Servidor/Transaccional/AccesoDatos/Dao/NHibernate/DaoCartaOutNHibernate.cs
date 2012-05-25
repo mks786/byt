@@ -108,7 +108,7 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
             }
             catch (Exception ex)
             {
-                transaccion.Rollback(); 
+                transaccion.Rollback();
                 logger.Error(ex.Message);
                 return false;
             }
