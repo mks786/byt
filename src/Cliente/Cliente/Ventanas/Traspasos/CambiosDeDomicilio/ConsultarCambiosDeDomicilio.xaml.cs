@@ -28,6 +28,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.CambiosDeDomicilio
         public string Id
         {
             get { return this._txtId.Text; }
+            set { this._txtId.Text = value; }
         }
 
         public string NombreMarca
@@ -38,21 +39,25 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.CambiosDeDomicilio
         public object CambioDeDomicilioSeleccionada
         {
             get { return this._lstResultados.SelectedItem; }
+            set { this._lstResultados.SelectedItem = value; }
         }
 
         public string IdMarcaFiltrar
         {
             get { return this._txtIdMarcaFiltrar.Text; }
+            set { this._txtIdMarcaFiltrar.Text = value; }
         }
 
         public string NombreMarcaFiltrar
         {
             get { return this._txtNombreMarcaFiltrar.Text; }
+            set { this._txtNombreMarcaFiltrar.Text = value;}
         }
 
         public string Fecha
         {
             get { return this._dpkFecha.SelectedDate.ToString(); }
+            set { this._dpkFecha.Text = value; }
         }
 
         public object Marcas
@@ -240,6 +245,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.CambiosDeDomicilio
         private void _dpkFecha_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
         {
 
+        }
+
+        private void _btnLimpiarCampos_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.LimpiarCampos();
         }
     }
 }

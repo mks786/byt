@@ -408,14 +408,14 @@
                                         </GridViewColumn.CellTemplate>
                                     </GridViewColumn>
                                     <GridViewColumn DisplayMemberBinding="{Binding Path=NumPoder}" Width="300">
-                                        <GridViewColumnHeader Click="_OrdenarPoderSolicitud_Click" Tag="NumPoder" Content="{x:Static recurso:Etiquetas.lsvNombre}"/>
+                                        <GridViewColumnHeader Click="_OrdenarPoderSolicitud_Click" Tag="NumPoder" Content="{x:Static recurso:Etiquetas.lsvSapi}"/>
                                     </GridViewColumn>
                                 </GridView>
                             </ListView.View>
                         </ListView>
 
                         <Label Grid.Column="5" Grid.Row="13" VerticalAlignment="Center" HorizontalContentAlignment="Right">
-                            <TextBlock Text="{x:Static recurso:Etiquetas.lblFomento}"/>
+                            <TextBlock Text="{x:Static recurso:Etiquetas.lblSapi}"/>
                         </Label>
                         <custom:ByTTextBox IsEnabled="False" MaxLength="255" Grid.Column="6" Grid.Row="13" Name="_txtFomentoSolicitud" VerticalAlignment="Center" 
                          Grid.ColumnSpan="2" IsReadOnly="True" Text="{Binding Path=Poder.NumPoder}"></custom:ByTTextBox>
@@ -1086,14 +1086,14 @@
                             <Label Grid.Column="0" Grid.Row="2" VerticalAlignment="Center" HorizontalContentAlignment="Right" Name="_lblAbandono">
                                 <TextBlock Text="{x:Static recurso:Etiquetas.lblAbandono}"/>
                             </Label>
-                            <custom:ByTTextBox IsEnabled="False" MaxLength="255" Grid.Column="1" Grid.Row="2" Name="_txtAbandonoDatos" 
+                            <custom:ByTTextBox IsEnabled="False" MaxLength="255" Grid.Column="1" Grid.Row="2" Name="_txtAbandonoDatos" IsReadOnly="True" 
                                                VerticalAlignment="Center" Grid.ColumnSpan="3" Text="">
                             </custom:ByTTextBox>
 
                             <Label Grid.Column="0" Grid.Row="3" VerticalAlignment="Center" HorizontalContentAlignment="Right" Name="_lblAnualidad">
                                 <TextBlock Text="{x:Static recurso:Etiquetas.lblAnualidad}"/>
                             </Label>
-                            <custom:ByTTextBox IsEnabled="False" MaxLength="255" Grid.Column="1" Grid.Row="3" Name="_txtAnualidadDatos" 
+                            <custom:ByTTextBox IsEnabled="False" MaxLength="255" Grid.Column="1" Grid.Row="3" Name="_txtAnualidadDatos" IsReadOnly="True" 
                                                VerticalAlignment="Center" Grid.ColumnSpan="3" Text="">
                             </custom:ByTTextBox>
                             

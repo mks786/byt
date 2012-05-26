@@ -423,7 +423,7 @@ namespace Trascend.Bolet.Cliente.Presentadores
         /// </summary>
         /// <param name="presentacionBuscado">Inicial de la presentacion de patente</param>
         /// <returns>La presentación de patente correspondiente</returns>
-        public ListaDatosDominio BuscarPresentacionPatente(char presentacionBuscado, IList<ListaDatosDominio> tipoPresentaciones)
+        public ListaDatosDominio BuscarPresentacionPatente(char? presentacionBuscado, IList<ListaDatosDominio> tipoPresentaciones)
         {
             ListaDatosDominio retorno = new ListaDatosDominio();
 

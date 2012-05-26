@@ -282,9 +282,20 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
 
                     this._anualidades = this._patenteServicios.ConsultarPatenteConTodo(patente).Anualidades;
 
+                    string anualidadAux = null;
+
                     if (this._anualidades.Count > 0)
-                        this._ventana.AnualidadDatos = this._anualidades[this._anualidades.Count - 1].QAnualidad + 1 + " - "
-                                                        + ((DateTime)this._anualidades[this._anualidades.Count - 1].FechaAnualidad).AddYears(1).ToShortDateString();
+                    {
+                        anualidadAux = (this._anualidades[this._anualidades.Count - 1].QAnualidad + 1).ToString();
+
+                        if (null != this._anualidades[this._anualidades.Count - 1].FechaAnualidad)
+                            anualidadAux += " - " + ((DateTime)this._anualidades[this._anualidades.Count - 1].FechaAnualidad).AddYears(1).ToShortDateString();
+                    }
+                        
+                        //this._ventana.AnualidadDatos = this._anualidades[this._anualidades.Count - 1].QAnualidad + 1 + " - "
+                        //                                + ((DateTime)this._anualidades[this._anualidades.Count - 1].FechaAnualidad).AddYears(1).ToShortDateString();
+                                    
+                    this._ventana.AnualidadDatos = anualidadAux;
 
 
                     _inventores = this._inventorServicios.ConsultarInventoresPorPatente(patente);
@@ -319,6 +330,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
 
                     if ((null != this._auditorias) && (this._auditorias.Count > 0))
                         this._ventana.PintarAuditoriaDatos();
+
+                    if (patente.Operaciones.Count > 0)
+                        this._ventana.PintarOperacionesDatos();
+                    
                 }
                 else
                 {
@@ -475,6 +490,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
 
             if (null != this._ventana.DetalleDatos)
                 patente.TipoEstado = !((TipoEstado)this._ventana.DetalleDatos).Id.Equals("NGN") ? ((TipoEstado)this._ventana.DetalleDatos) : null;
+
+            if (null != this._ventana.PresentacionPatenteDatos)
+                patente.Presentacion = !((ListaDatosDominio)this._ventana.PresentacionPatenteDatos).Id.Equals("NGN") ? ((ListaDatosDominio)this._ventana.PresentacionPatenteDatos).Id[0] : (char?) null;
+
+            if (null != this._ventana.TipoPatenteDatos)
+                patente.Tipo = !((ListaDatosDominio)this._ventana.TipoPatenteDatos).Id.Equals("NGN") ? ((ListaDatosDominio)this._ventana.TipoPatenteDatos).Id : null;
 
             return patente;
 

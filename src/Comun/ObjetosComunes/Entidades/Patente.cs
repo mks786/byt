@@ -38,7 +38,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         //private InfoAdicional _infoAdicional;
         private string _orden;
         private DateTime? _fechaOrden;
-        private char _presentacion;
+        private char? _presentacion;
         private char _copia;
         private char _juramento;
         private char _cesion;
@@ -521,7 +521,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         /// <summary>
         /// Propiedad que asigna u obtiene la presentacion
         /// </summary>
-        public virtual char Presentacion
+        public virtual char? Presentacion
         {
             get { return _presentacion; }
             set { _presentacion = value; }

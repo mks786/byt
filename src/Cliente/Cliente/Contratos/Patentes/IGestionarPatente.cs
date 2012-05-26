@@ -172,6 +172,8 @@ namespace Trascend.Bolet.Cliente.Contratos.Patentes
 
         void PintarFechasDatos();
 
+        void PintarOperacionesDatos();
+
         #endregion
 
         void Mensaje(string mensaje);

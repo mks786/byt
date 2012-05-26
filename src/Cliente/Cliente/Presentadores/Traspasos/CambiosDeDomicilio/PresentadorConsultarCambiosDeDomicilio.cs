@@ -81,6 +81,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeDomicilio
 
                 ActualizarTitulo();
 
+                this._ventana.Marca = null;
+                this._ventana.Marcas = null;
                 //this._fusiones = this._fusionServicios.ConsultarTodos();
                 //this._ventana.Resultados = this._fusiones;
 
@@ -336,6 +338,23 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeDomicilio
             }
 
             return retorno;
+        }
+
+        /// <summary>
+        /// Método que limpia los campos de búsqueda
+        /// </summary>
+        public void LimpiarCampos()
+        {
+            this._ventana.Id = null;
+            this._ventana.IdMarcaFiltrar = null;
+            this._ventana.NombreMarca = null;
+            this._ventana.Fecha = null;
+            this._ventana.CambioDeDomicilioSeleccionada = null;
+            this._ventana.Marca = null;
+            this._ventana.Marcas = null;
+
+            this._ventana.Resultados = this._cambiosDeDomicilio;
+            this._ventana.TotalHits = this._cambiosDeDomicilio.Count().ToString();
         }
     }
 }

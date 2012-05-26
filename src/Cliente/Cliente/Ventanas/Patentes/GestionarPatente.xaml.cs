@@ -235,7 +235,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
         {
             this._btnDocumentosSolicitud.Background = Brushes.LightGreen;
         }
-        
+
         public void PintarImprimirEdoDeCuenta()
         {
         }
@@ -501,6 +501,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
         public void PintarFechasDatos()
         {
             this._btnFechasDatos.Background = Brushes.LightGreen;
+        }
+
+        public void PintarOperacionesDatos()
+        {
+            this._btnOperacionDatos.Background = Brushes.LightGreen;
         }
 
         #endregion
