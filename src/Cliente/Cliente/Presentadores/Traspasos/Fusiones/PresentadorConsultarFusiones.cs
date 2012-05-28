@@ -352,5 +352,23 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
 
             return retorno;
         }
+
+        /// <summary>
+        /// Método que limpia los campos de búsqueda
+        /// </summary>
+        public void LimpiarCampos()
+        {
+            this._ventana.Id = null;
+            this._ventana.IdMarcaFiltrar = null;
+            this._ventana.NombreMarca = null;
+            this._ventana.NombreMarcaFiltrar = null;
+            this._ventana.Fecha = null;
+            this._ventana.FusionSeleccionada = null;
+            this._ventana.Marca = null;
+            this._ventana.Marcas = null;
+
+            this._ventana.Resultados = null;
+            this._ventana.TotalHits = "0";
+        }
     }
 }

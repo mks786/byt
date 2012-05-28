@@ -5,17 +5,17 @@ namespace Trascend.Bolet.Cliente.Contratos.Traspasos.Fusiones
 {
     interface IConsultarFusiones : IPaginaBase
     {
-        string Id { get; }
+        string Id { get; set; }
 
         string NombreMarca { set; }
 
-        object FusionSeleccionada { get; }
+        object FusionSeleccionada { get; set; }
 
         object Resultados { get; set; }
 
-        string IdMarcaFiltrar { get; }
+        string IdMarcaFiltrar { get; set; }
 
-        string NombreMarcaFiltrar { get; }
+        string NombreMarcaFiltrar { get; set; }
 
         object Marcas { get; set; }
 
@@ -33,7 +33,7 @@ namespace Trascend.Bolet.Cliente.Contratos.Traspasos.Fusiones
 
         //string FichasFiltrar { get; }
 
-        string Fecha { get; }
+        string Fecha { get; set; }
 
         GridViewColumnHeader CurSortCol { get; set; }
 

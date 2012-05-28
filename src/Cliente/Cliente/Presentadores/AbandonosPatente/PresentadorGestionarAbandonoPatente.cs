@@ -517,6 +517,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.AbandonosPatente
                         {
                             this._ventana.Interesado = new Interesado(int.MinValue);
                             this._ventana.InteresadosFiltrados = listaInteresadoAux;
+                            this._ventana.InteresadoFiltrado = this.BuscarInteresado((IList<Interesado>)this._ventana.InteresadosFiltrados, (Interesado)this._ventana.Interesado);
                         }
 
                         if (null != ((Patente)this._ventana.Patente).Asociado)
@@ -535,6 +536,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.AbandonosPatente
                         {
                             this._ventana.Asociado = new Asociado(int.MinValue);
                             this._ventana.AsociadosFiltrados = listaAsociadoAux;
+                            this._ventana.AsociadoFiltrado = this.BuscarAsociado((IList<Asociado>)this._ventana.AsociadosFiltrados, (Asociado)this._ventana.Asociado);
                         }
 
                     }
