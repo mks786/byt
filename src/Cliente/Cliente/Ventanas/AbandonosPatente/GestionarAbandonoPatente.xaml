@@ -152,7 +152,7 @@
                         <Label Grid.Column="0" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Center">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblAsociado}"/>
                         </Label>
-                        <TextBox Name="_txtNombreAsociado" MaxLength="40"  Text="" IsEnabled="False" IsReadOnly="True"
+                        <TextBox Name="_txtNombreAsociado" MaxLength="40"  Text="{Binding Path=Nombre}" IsEnabled="False" IsReadOnly="True"
                              VerticalContentAlignment="Center" Margin="0,0,0,0" Grid.ColumnSpan="6" Grid.Column="1"                               
                              Grid.Row="0" MouseDoubleClick="_txtNombreAsociado_MouseDoubleClick" BorderBrush="LightGreen"/>
                         

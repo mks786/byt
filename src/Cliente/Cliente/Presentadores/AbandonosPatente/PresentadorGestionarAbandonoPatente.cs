@@ -489,9 +489,58 @@ namespace Trascend.Bolet.Cliente.Presentadores.AbandonosPatente
                 {
                     this._ventana.Patente = this._ventana.PatenteFiltrada;
                     this._ventana.NombrePatente = ((Patente)this._ventana.PatenteFiltrada).Descripcion;
-                    this._patentes.RemoveAt(0);
-                    this._patentes.Add((Patente)this._ventana.PatenteFiltrada);
-                   
+
+                    IList<Asociado> listaAsociadoAux = new List<Asociado>();
+                    listaAsociadoAux.Add(new Asociado(int.MinValue));
+
+                    if (this._agregar == true)
+                    {
+                        IList<Interesado> listaInteresadoAux = new List<Interesado>();
+                        listaInteresadoAux.Add(new Interesado(int.MinValue));
+
+                        if (null != ((Patente)this._ventana.Patente).Interesado)
+                        {
+                            Interesado interesadoAux = new Interesado(((Patente)this._ventana.Patente).Interesado.Id);
+                            Interesado interesado = this._interesadoServicios.ConsultarInteresadoConTodo(interesadoAux);
+                            this._ventana.Interesado = interesado;
+                            this._interesados.Add(interesado);
+                            this._ventana.Interesado = interesado;
+
+                            
+                            
+                            listaInteresadoAux.Add(interesado);
+
+                            this._ventana.InteresadosFiltrados = listaInteresadoAux;
+                            this._ventana.InteresadoFiltrado = this.BuscarInteresado((IList<Interesado>)this._ventana.InteresadosFiltrados, interesado);
+                        }
+                        else
+                        {
+                            this._ventana.Interesado = new Interesado(int.MinValue);
+                            this._ventana.InteresadosFiltrados = listaInteresadoAux;
+                        }
+
+                        if (null != ((Patente)this._ventana.Patente).Asociado)
+                        {
+                            Asociado asociadoAux = new Asociado(((Patente)this._ventana.Patente).Asociado.Id);
+                            Asociado asociado = this._asociadoServicios.ConsultarAsociadoConTodo(asociadoAux);
+                            this._ventana.Asociado = asociado;
+
+
+                            listaAsociadoAux.Add(asociado);
+
+                            this._ventana.AsociadosFiltrados = listaAsociadoAux;
+                            this._ventana.AsociadoFiltrado = this.BuscarAsociado((IList<Asociado>)this._ventana.AsociadosFiltrados, asociado);
+                        }
+                        else
+                        {
+                            this._ventana.Asociado = new Asociado(int.MinValue);
+                            this._ventana.AsociadosFiltrados = listaAsociadoAux;
+                        }
+
+                    }
+                        this._patentes.RemoveAt(0);
+                        this._patentes.Add((Patente)this._ventana.PatenteFiltrada);
+
                     retorno = true;
                 }
 
