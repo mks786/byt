@@ -337,5 +337,23 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CambiosDeNombre
 
             return retorno;
         }
+
+        /// <summary>
+        /// Método que limpia los campos de búsqueda
+        /// </summary>
+        public void LimpiarCampos()
+        {
+            this._ventana.Id = null;
+            this._ventana.IdPatenteFiltrar = null;
+            this._ventana.NombrePatente = null;
+            this._ventana.NombrePatenteFiltrar = null;
+            this._ventana.Fecha = null;
+            this._ventana.CambioDeNombreSeleccionada = null;
+            this._ventana.Patente = null;
+            this._ventana.Patentes = null;
+
+            this._ventana.Resultados = null;
+            this._ventana.TotalHits = "0";
+        }
     }
 }

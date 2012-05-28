@@ -5,24 +5,24 @@ namespace Trascend.Bolet.Cliente.Contratos.TraspasosPatentes.CesionesPatentes
 {
     interface IConsultarCesionesPatentes : IPaginaBase
     {
-        
-        string Id { get; }
+
+        string Id { get; set; }
 
         string NombrePatente { set; }
 
-        object CesionSeleccionada { get; }
+        object CesionSeleccionada { get; set; }
 
         object Resultados { get; set; }
 
-        string IdPatenteFiltrar { get; }
+        string IdPatenteFiltrar { get; set; }
 
-        string NombrePatenteFiltrar { get; }
+        string NombrePatenteFiltrar { get; set; }
 
         object Patentes { get; set; }
 
-        object Patente { get; set; }    
+        object Patente { get; set; }
 
-        string Fecha { get; }
+        string Fecha { get; set; }
 
         GridViewColumnHeader CurSortCol { get; set; }
 

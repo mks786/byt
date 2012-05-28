@@ -5,17 +5,17 @@ namespace Trascend.Bolet.Cliente.Contratos.TraspasosPatentes.CambiosDeDomicilioP
 {
     interface IConsultarCambiosDeDomicilioPatentes : IPaginaBase
     {
-        string Id { get; }
+        string Id { get; set; }
 
         string NombrePatente { set; }
 
-        object CambioDeDomicilioSeleccionada { get; }
+        object CambioDeDomicilioSeleccionada { get; set; }
 
         object Resultados { get; set; }
 
-        string IdPatenteFiltrar { get; }
+        string IdPatenteFiltrar { get; set; }
 
-        string NombrePatenteFiltrar { get; }
+        string NombrePatenteFiltrar { get; set; }
 
         object Patentes { get; set; }
 
@@ -33,7 +33,7 @@ namespace Trascend.Bolet.Cliente.Contratos.TraspasosPatentes.CambiosDeDomicilioP
 
         //string FichasFiltrar { get; }
 
-        string Fecha { get; }
+        string Fecha { get; set; }
 
         GridViewColumnHeader CurSortCol { get; set; }
 

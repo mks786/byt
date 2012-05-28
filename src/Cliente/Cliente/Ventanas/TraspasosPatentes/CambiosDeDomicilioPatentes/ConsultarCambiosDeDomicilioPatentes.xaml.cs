@@ -28,6 +28,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.CambiosDeDomicilioPa
         public string Id
         {
             get { return this._txtId.Text; }
+            set { this._txtId.Text = value; }
         }
 
         public string NombrePatente
@@ -38,21 +39,25 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.CambiosDeDomicilioPa
         public object CambioDeDomicilioSeleccionada
         {
             get { return this._lstResultados.SelectedItem; }
+            set { this._lstResultados.SelectedItem = value; }
         }
 
         public string IdPatenteFiltrar
         {
             get { return this._txtIdPatenteFiltrar.Text; }
+            set { this._txtIdPatenteFiltrar.Text = value; }
         }
 
         public string NombrePatenteFiltrar
         {
             get { return this._txtNombrePatenteFiltrar.Text; }
+            set { this._txtNombrePatenteFiltrar.Text = value; }
         }
 
         public string Fecha
         {
             get { return this._dpkFecha.SelectedDate.ToString(); }
+            set { this._dpkFecha.Text = value; }
         }
 
         public object Patentes
@@ -240,6 +245,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.CambiosDeDomicilioPa
         private void _dpkFecha_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
         {
 
+        }
+
+        private void _btnLimpiarCampos_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.LimpiarCampos();
         }
     }
 }

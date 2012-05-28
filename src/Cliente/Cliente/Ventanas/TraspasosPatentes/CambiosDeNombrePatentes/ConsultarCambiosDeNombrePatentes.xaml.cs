@@ -28,6 +28,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.CambiosDeNombrePaten
         public string Id
         {
             get { return this._txtId.Text; }
+            set { this._txtId.Text = value; }
         }
 
         public string NombrePatente
@@ -37,21 +38,25 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.CambiosDeNombrePaten
         public object CambioDeNombreSeleccionada
         {
             get { return this._lstResultados.SelectedItem; }
+            set { this._lstResultados.SelectedItem = value; }
         }
 
         public string IdPatenteFiltrar
         {
             get { return this._txtIdPatenteFiltrar.Text; }
+            set { this._txtIdPatenteFiltrar.Text = value; }
         }
 
         public string NombrePatenteFiltrar
         {
             get { return this._txtNombrePatenteFiltrar.Text; }
+            set { this._txtNombrePatenteFiltrar.Text = value; }
         }
 
         public string Fecha
         {
             get { return this._dpkFecha.SelectedDate.ToString(); }
+            set { this._dpkFecha.Text = value; }
         }
 
         public object Patentes
@@ -239,6 +244,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.CambiosDeNombrePaten
         private void GestionarVisibilidadDatosDePatente(object value)
         {
             this._txtPatenteNombre.Visibility = (System.Windows.Visibility)value;
+        }
+
+        private void _btnLimpiarCampos_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.LimpiarCampos();
         }
     }
 }
