@@ -1395,6 +1395,29 @@ namespace Trascend.Bolet.Cliente.Presentadores
         }
 
         /// <summary>
+        /// Método que busca un ListaDominio dentro de una lista de ListaDominio
+        /// </summary>
+        /// <param name="servicios">Lista de ListaDominio</param>
+        /// <param name="boletinBuscado">ListaDominio a buscar</param>
+        /// <returns>ListaDominio dentro de la lista</returns>
+        public ListaDatosDominio BuscarListaDeDominio(IList<ListaDatosDominio> servicios, ListaDatosDominio servicioBuscado)
+        {
+            ListaDatosDominio retorno = null;
+
+            if (servicioBuscado != null)
+                foreach (ListaDatosDominio servicio in servicios)
+                {
+                    if (servicio.Id == servicioBuscado.Id)
+                    {
+                        retorno = servicio;
+                        break;
+                    }
+                }
+
+            return retorno;
+        }
+
+        /// <summary>
         /// Metodo que abre una ventana del explorador predeterminado a una URL determinada
         /// </summary>
         /// <param name="URL">URL dirigida</param>
