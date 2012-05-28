@@ -182,46 +182,46 @@ namespace Trascend.Bolet.Cliente.Presentadores.Anualidades
                     int comprobador = 0;
                     IList<Patente> patentesDesinfladas = new List<Patente>();
 
-                    foreach (var patente in this._patentes)
-                    {
-                        PatenteAuxiliar = new Patente(patente.Id);
-                        Asociado asociadoAuxiliar = new Asociado();
-                        Interesado interesadoAuxiliar = new Interesado();
+                    //foreach (var patente in this._patentes)
+                    //{
+                    //    PatenteAuxiliar = new Patente(patente.Id);
+                    //    Asociado asociadoAuxiliar = new Asociado();
+                    //    Interesado interesadoAuxiliar = new Interesado();
 
-                        PatenteAuxiliar.Descripcion = patente.Descripcion != null ? patente.Descripcion : "";
-                        if ((patente.Asociado != null) && (!string.IsNullOrEmpty(patente.Asociado.Nombre)))
-                        {
-                            asociadoAuxiliar.Nombre = patente.Asociado.Nombre;
-                            PatenteAuxiliar.Asociado = asociadoAuxiliar;
-                        }
+                    //    PatenteAuxiliar.Descripcion = patente.Descripcion != null ? patente.Descripcion : "";
+                    //    if ((null != patente.Asociado) && (!string.IsNullOrEmpty(patente.Asociado.Nombre)))
+                    //    {
+                    //        //asociadoAuxiliar.Nombre = patente.Asociado.Nombre;
+                    //        PatenteAuxiliar.Asociado = patente.Asociado;
+                    //    }
 
-                        if ((patente.Interesado != null) && (!string.IsNullOrEmpty(patente.Interesado.Nombre)))
-                        {
-                            interesadoAuxiliar.Nombre = patente.Interesado.Nombre;
-                            PatenteAuxiliar.Interesado = interesadoAuxiliar;
-                        }
+                    //    if ((null != patente.Interesado) && (!string.IsNullOrEmpty(patente.Interesado.Nombre)))
+                    //    {
+                    //        //interesadoAuxiliar.Nombre = patente.Interesado.Nombre;
+                    //        PatenteAuxiliar.Interesado = patente.Interesado;
+                    //    }
 
 
-                        PatenteAuxiliar.FechaPublicacion = patente.FechaPublicacion != null ? patente.FechaPublicacion : null;
-                        patentesDesinfladas.Add(PatenteAuxiliar);
-                        //Filtra las busquedas repetidas
-                        //if ((PatenteComparadora.Id == PatenteAuxiliar.Id) && (PatenteComparadora.Anexo == PatenteAuxiliar.Anexo))
-                        //{
-                        //    if (comprobador <= 0)
-                        //    {
-                        //        patentesDesinfladas.Add(PatenteAuxiliar);
-                        //        comprobador++;
-                        //    }
-                        //}
-                        //else
-                        //{
-                        //    patentesDesinfladas.Add(PatenteAuxiliar);
-                        //}
-                    }
+                    //    PatenteAuxiliar.FechaPublicacion = patente.FechaPublicacion != null ? patente.FechaPublicacion : null;
+                    //    patentesDesinfladas.Add(PatenteAuxiliar);
+                    //    Filtra las busquedas repetidas
+                    //    if ((PatenteComparadora.Id == PatenteAuxiliar.Id) && (PatenteComparadora.Anexo == PatenteAuxiliar.Anexo))
+                    //    {
+                    //        if (comprobador <= 0)
+                    //        {
+                    //            patentesDesinfladas.Add(PatenteAuxiliar);
+                    //            comprobador++;
+                    //        }
+                    //    }
+                    //    else
+                    //    {
+                    //        patentesDesinfladas.Add(PatenteAuxiliar);
+                    //    }
+                    //}
 
-                    this._ventana.Resultados = patentesDesinfladas;
-                    this._ventana.TotalHits = patentesDesinfladas.Count.ToString();
-                    if (patentesDesinfladas.Count == 0)
+                    this._ventana.Resultados = this._patentes;
+                    this._ventana.TotalHits = this._patentes.Count.ToString();
+                    if (this._patentes.Count == 0)
                         this._ventana.Mensaje(Recursos.MensajesConElUsuario.NoHayResultados, 1);
                 }
                 else
