@@ -108,7 +108,7 @@
                             <!--Path=Id, Converter={StaticResource convertir}-->
                             <ListView Visibility="Collapsed" Height="198" Name="_lstMarcas" ItemsSource="{Binding}" 
                       SelectionMode="Single" Style="{DynamicResource EstiloListView}" Grid.Row="3" Grid.ColumnSpan="2"
-                                      MouseDoubleClick="_lstMarcas_MouseDoubleClick" Width="396">>
+                                MouseDoubleClick="_lstMarcas_MouseDoubleClick" Width="396">
                                 <ListView.View>
                                     <GridView>
                                         <GridViewColumn Width="45">
