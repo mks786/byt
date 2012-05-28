@@ -1963,7 +1963,6 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Diario de Circulacion Nacional:.
         ///   Looks up a localized string similar to C. Internacional.
         /// </summary>
         public static string lblCInter {
@@ -2009,7 +2008,6 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Código:.
         ///   Looks up a localized string similar to C. Nacional.
         /// </summary>
         public static string lblCNaci {
@@ -3001,7 +2999,6 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Medio:.
         ///   Looks up a localized string similar to Marca a Tercero:.
         /// </summary>
         public static string lblMarcaTercero {
@@ -4523,7 +4520,6 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Fecha Proxima Renovación.
         ///   Looks up a localized string similar to Fecha De Presentacion.
         /// </summary>
         public static string lsvFechaPresentacion {
@@ -4641,7 +4637,6 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Marca.
         ///   Looks up a localized string similar to Internacional.
         /// </summary>
         public static string lsvInternacional {
@@ -4669,7 +4664,6 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Nacionalidad.
         ///   Looks up a localized string similar to Nacional.
         /// </summary>
         public static string lsvNacional {
@@ -4706,7 +4700,6 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Nº del Poder.
         ///   Looks up a localized string similar to Nombre de Marca.
         /// </summary>
         public static string lsvNombreMarca {
@@ -4824,6 +4817,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Registro.
+        /// </summary>
+        public static string lsvRegistro {
+            get {
+                return ResourceManager.GetString("lsvRegistro", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Relación.
         /// </summary>
         public static string lsvRelacion {
@@ -4914,7 +4916,6 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Usuario.
         ///   Looks up a localized string similar to Tipo de Base.
         /// </summary>
         public static string lsvTipoDeBase {
@@ -5069,7 +5070,6 @@ namespace Trascend.Bolet.Cliente.Recursos {
         
         /// <summary>
         ///   Looks up a localized string similar to Clientes.
-        ///   Looks up a localized string similar to Carta.
         /// </summary>
         public static string menuItemCarta {
             get {
@@ -5826,7 +5826,6 @@ namespace Trascend.Bolet.Cliente.Recursos {
         
         /// <summary>
         ///   Looks up a localized string similar to Tablas.
-        ///   Looks up a localized string similar to Tipo Base.
         /// </summary>
         public static string menuItemTablasCorrespondencia {
             get {

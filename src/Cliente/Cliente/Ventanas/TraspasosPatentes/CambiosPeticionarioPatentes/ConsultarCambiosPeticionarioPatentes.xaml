@@ -159,8 +159,11 @@
                       Style="{DynamicResource EstiloListView}">
                 <ListView.View>
                     <GridView>
-                        <GridViewColumn DisplayMemberBinding="{Binding Path=Id}" Width="120">
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Id}" Width="80">
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="Id" Content="{x:Static recurso:Etiquetas.lsvId}"/>
+                        </GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Registro}" Width="80">
+                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="Patente.CodigoRegistro" Content="{x:Static recurso:Etiquetas.lsvRegistro}"/>
                         </GridViewColumn>
                         <GridViewColumn DisplayMemberBinding="{Binding Path=Patente.Descripcion}" Width="300">
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="Patente.Descripcion" Content="{x:Static recurso:Etiquetas.lsvPatente}"/>

@@ -2708,4 +2708,7 @@ de Gracia</value>
   <data name="lsvTipoDeBase" xml:space="preserve">
     <value>Tipo de Base</value>
   </data>
+  <data name="lsvRegistro" xml:space="preserve">
+    <value>Registro</value>
+  </data>
 </root>
