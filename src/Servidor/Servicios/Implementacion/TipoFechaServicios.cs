@@ -12,6 +12,7 @@ namespace Trascend.Bolet.Servicios.Implementacion
     {
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
+
         /// <summary>
         /// Servicio que obtiene todos los tipoFechas
         /// </summary>
@@ -40,13 +41,20 @@ namespace Trascend.Bolet.Servicios.Implementacion
             return tipoFecha;
         }
 
+
+        /// <summary>
+        /// Servicio que consulta por Id un TipoFecha
+        /// </summary>
+        /// <param name="tipoFecha">TipoFecha a consultar</param>
+        /// <returns>Tipo fecha que cumple con el Id</returns>
         public TipoFecha ConsultarPorId(TipoFecha tipoFecha)
         {
             throw new NotImplementedException();
         }
 
+
         /// <summary>
-        /// Servicio que insertar o modifica un nacional
+        /// Servicio que insertar o modifica un TipoFecha
         /// </summary>
         /// <param name="tipoFecha">TipoFecha que se va a insertar o modificar</param>
         /// <param name="hash">Hash del usuario que esta realiando la operacion</param>
@@ -68,11 +76,20 @@ namespace Trascend.Bolet.Servicios.Implementacion
             return exitoso;
         }
 
+
         /// <summary>
-        /// Servicio que elimina un nacional
+        /// Servicio que elimina un TipoFecha
         /// </summary>
         /// <param name="tipoFecha">TipoFecha que se va a eliminar</param>
         /// <returns>True: si la eliminacion fue exitosa; False: en caso contrario</returns>
+        /// 
+
+        /// <summary>
+        /// Servicio que elimina un TipoFecha
+        /// </summary>
+        /// <param name="tipoFecha">TipoFecha que se va a eliminar</param>
+        /// <param name="hash">Hash del usuario que esta realiando la operacion</param>
+        /// <returns>true en caso de que la eliminación haya sido correcta, false en caso contrario</returns>
         public bool Eliminar(TipoFecha tipoFecha, int hash)
         {
             #region trace
@@ -91,7 +108,11 @@ namespace Trascend.Bolet.Servicios.Implementacion
         }
 
 
-
+        /// <summary>
+        /// Servicio que verifica la existencia de un TipoFecha
+        /// </summary>
+        /// <param name="tipoFecha">TipoFecha a verificar su existencia</param>
+        /// <returns>True en caso de existir, false en caso contrario</returns>
         public bool VerificarExistencia(TipoFecha tipoFecha)
         {
             #region trace

@@ -12,6 +12,7 @@ namespace Trascend.Bolet.Servicios.Implementacion
     {
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
+
         /// <summary>
         /// Servicio que obtiene todos los TiposBase
         /// </summary>
@@ -40,10 +41,17 @@ namespace Trascend.Bolet.Servicios.Implementacion
             return tipoBase;
         }
 
+
+        /// <summary>
+        /// Servicio que consultar por Id un TipoBase
+        /// </summary>
+        /// <param name="entidad">Entidad a buscar</param>
+        /// <returns>TipoBase que cumpla con el Id</returns>
         public TipoBase ConsultarPorId(TipoBase tipobase)
         {
             throw new NotImplementedException();
         }
+
 
         /// <summary>
         /// Servicio que insertar o modifica un tipoBase
@@ -68,6 +76,7 @@ namespace Trascend.Bolet.Servicios.Implementacion
             return exitoso;
         }
 
+
         /// <summary>
         /// Servicio que elimina un TipoBase
         /// </summary>
@@ -91,6 +100,12 @@ namespace Trascend.Bolet.Servicios.Implementacion
         }
 
 
+
+        /// <summary>
+        /// Servicio que verifica la existencia de un TipoBase
+        /// </summary>
+        /// <param name="tipoEstado">TipoBase a verificar</param>
+        /// <returns>true en caso de existir, false en caso contrario</returns>
         public bool VerificarExistencia(TipoBase tipoBase)
         {
             #region trace

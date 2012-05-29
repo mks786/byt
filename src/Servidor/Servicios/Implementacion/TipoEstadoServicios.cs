@@ -12,6 +12,7 @@ namespace Trascend.Bolet.Servicios.Implementacion
     {
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
+
         /// <summary>
         /// Método que obtiene todos los TipoEstados
         /// </summary>
@@ -34,10 +35,16 @@ namespace Trascend.Bolet.Servicios.Implementacion
         }
 
 
+        /// <summary>
+        /// Servicio que consultar por Id un TipoEstado
+        /// </summary>
+        /// <param name="entidad">Entidad a buscar</param>
+        /// <returns>TipoEstado que cumpla con el Id</returns>
         public TipoEstado ConsultarPorId(TipoEstado entidad)
         {
             throw new NotImplementedException();
         }
+
 
         /// <summary>
         /// Método que inserta o modifica un TipoEstado
@@ -61,6 +68,7 @@ namespace Trascend.Bolet.Servicios.Implementacion
 
             return exitoso;
         }
+
 
         /// <summary>
         /// Método que elimina un TipoEstado
@@ -86,6 +94,11 @@ namespace Trascend.Bolet.Servicios.Implementacion
         }
 
 
+        /// <summary>
+        /// Servicio que verifica la existencia de un TipoEstado
+        /// </summary>
+        /// <param name="tipoEstado">TipoEstado a verificar</param>
+        /// <returns>true en caso de existir, false en caso contrario</returns>
         public bool VerificarExistencia(TipoEstado tipoEstado)
         {
             #region trace

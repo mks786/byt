@@ -40,22 +40,48 @@ namespace Trascend.Bolet.Servicios.Implementacion
             return tipoCliente;
         }
 
+
+        /// <summary>
+        /// Servicio que consultar por Id un TipoCliente
+        /// </summary>
+        /// <param name="entidad">Entidad a buscar</param>
+        /// <returns>TipoCliente que cumpla con el Id</returns>
         public TipoCliente ConsultarPorId(TipoCliente tipoCliente)
         {
             throw new NotImplementedException();
         }
 
+
+        /// <summary>
+        /// Método que inserta o modifica un TipoCliente
+        /// </summary>
+        /// <param name="tipoEstado">TipoCliente a insertar o modificar</param>
+        /// <param name="hash">hash del usuario logerad</param>
+        /// <returns></returns>
         public bool InsertarOModificar(TipoCliente tipoCliente, int hash)
         {
             throw new NotImplementedException();
         }
 
+
+        /// <summary>
+        /// Método que elimina un TipoCliente
+        /// </summary>
+        /// <param name="tipoEstado">TipoCliente a eliminar</param>
+        /// <param name="hash">Hash del usuario logeado</param>
+        /// <returns></returns>
         public bool Eliminar(TipoCliente tipoCliente, int hash)
         {
             throw new NotImplementedException();
         }
 
 
+
+        /// <summary>
+        /// Servicio que verifica la existencia de un TipoCliente
+        /// </summary>
+        /// <param name="tipoEstado">TipoCliente a verificar</param>
+        /// <returns>true en caso de existir, false en caso contrario</returns>
         public bool VerificarExistencia(TipoCliente entidad)
         {
             throw new NotImplementedException();

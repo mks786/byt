@@ -13,9 +13,9 @@ namespace Trascend.Bolet.Servicios.Implementacion
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
         /// <summary>
-        /// Método que obtiene todos los Anexos
+        /// Método que obtiene todos los StatusWebs
         /// </summary>
-        /// <returns>Todos los Anexos</returns>
+        /// <returns>Todos los StatusWebs</returns>
         public IList<StatusWeb> ConsultarTodos()
         {
             #region trace
@@ -34,15 +34,21 @@ namespace Trascend.Bolet.Servicios.Implementacion
         }
 
 
+        /// <summary>
+        /// Servicio que consultar por Id un StatusWeb
+        /// </summary>
+        /// <param name="entidad">Entidad a buscar</param>
+        /// <returns>StatusWeb que cumpla con el Id</returns>
         public StatusWeb ConsultarPorId(StatusWeb entidad)
         {
             throw new NotImplementedException();
         }
 
+
         /// <summary>
-        /// Método que inserta o modifica un Anexo
+        /// Método que inserta o modifica un StatusWeb
         /// </summary>
-        /// <param name="status">Anexo a insertar o modificar</param>
+        /// <param name="status">StatusWeb a insertar o modificar</param>
         /// <param name="hash">hash del usuario loggeado</param>
         /// <returns></returns>
         public bool InsertarOModificar(StatusWeb status, int hash)
@@ -62,10 +68,11 @@ namespace Trascend.Bolet.Servicios.Implementacion
             return exitoso;
         }
 
+
         /// <summary>
-        /// Método que elimina un Anexo
+        /// Método que elimina un StatusWeb
         /// </summary>
-        /// <param name="status">Anexo a eliminar</param>
+        /// <param name="status">StatusWeb a eliminar</param>
         /// <param name="hash">Hash del usuario loggeado</param>
         /// <returns></returns>
         public bool Eliminar(StatusWeb status, int hash)
@@ -85,10 +92,11 @@ namespace Trascend.Bolet.Servicios.Implementacion
             return exitoso;
         }
 
+
         /// <summary>
-        /// Método que verifica si un anexo ya existe en el sistema
+        /// Método que verifica si un StatusWeb ya existe en el sistema
         /// </summary>
-        /// <param name="anexo">Anexo a buscar</param>
+        /// <param name="StatusWeb">StatusWeb a buscar</param>
         /// <returns>true si lo encontro, false en lo contrario</returns>
         public bool VerificarExistencia(StatusWeb status)
         {

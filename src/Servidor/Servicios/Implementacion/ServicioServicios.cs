@@ -34,10 +34,16 @@ namespace Trascend.Bolet.Servicios.Implementacion
         }
 
 
+        /// <summary>
+        /// Servicio que consultar por Id un Servicio
+        /// </summary>
+        /// <param name="entidad">Entidad a buscar</param>
+        /// <returns>Servicio que cumpla con el Id</returns>
         public Servicio ConsultarPorId(Servicio entidad)
         {
             throw new NotImplementedException();
         }
+
 
         /// <summary>
         /// Método que inserta o modifica un Servicio
@@ -61,6 +67,7 @@ namespace Trascend.Bolet.Servicios.Implementacion
 
             return exitoso;
         }
+
 
         /// <summary>
         /// Método que elimina un Servicio
@@ -86,6 +93,11 @@ namespace Trascend.Bolet.Servicios.Implementacion
         }
 
 
+        /// <summary>
+        /// Servicio que verifica la existencia de un Servicio
+        /// </summary>
+        /// <param name="tipoEstado">Servicio a verificar</param>
+        /// <returns>true en caso de existir, false en caso contrario</returns>
         public bool VerificarExistencia(Servicio servicio)
         {
             #region trace

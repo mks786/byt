@@ -13,9 +13,9 @@ namespace Trascend.Bolet.Servicios.Implementacion
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
         /// <summary>
-        /// Servicio que obtiene todos las etiquetas
+        /// Servicio que obtiene todos las Tarifas
         /// </summary>
-        /// <returns>Lista con todos las etiquetas</returns>
+        /// <returns>Lista con todos las Tarifas</returns>
         public IList<Tarifa> ConsultarTodos()
         {
             IList<Tarifa> tarifas;
@@ -40,22 +40,49 @@ namespace Trascend.Bolet.Servicios.Implementacion
             return tarifas;
         }
 
+
+
+        /// <summary>
+        /// Servicio que consultar por Id un Tarifa
+        /// </summary>
+        /// <param name="entidad">Entidad a buscar</param>
+        /// <returns>Tarifa que cumpla con el Id</returns>
         public Tarifa ConsultarPorId(Tarifa tarifa)
         {
             throw new NotImplementedException();
         }
 
+
+        /// <summary>
+        /// Método que inserta o modifica un Tarifa
+        /// </summary>
+        /// <param name="tipoEstado">Tarifa a insertar o modificar</param>
+        /// <param name="hash">hash del usuario logerad</param>
+        /// <returns></returns>
         public bool InsertarOModificar(Tarifa tarifa, int hash)
         {
             throw new NotImplementedException();
         }
 
+
+        /// <summary>
+        /// Método que elimina un tarifa
+        /// </summary>
+        /// <param name="tipoEstado">tarifa a eliminar</param>
+        /// <param name="hash">Hash del usuario logeado</param>
+        /// <returns></returns>
         public bool Eliminar(Tarifa tarifa, int hash)
         {
             throw new NotImplementedException();
         }
 
 
+
+        /// <summary>
+        /// Servicio que verifica la existencia de un Tarifa
+        /// </summary>
+        /// <param name="tipoEstado">Tarifa a verificar</param>
+        /// <returns>true en caso de existir, false en caso contrario</returns>
         public bool VerificarExistencia(Tarifa entidad)
         {
             throw new NotImplementedException();

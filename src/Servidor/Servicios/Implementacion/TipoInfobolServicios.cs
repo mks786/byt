@@ -12,6 +12,7 @@ namespace Trascend.Bolet.Servicios.Implementacion
     {
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
+
         /// <summary>
         /// Servicio que obtiene todos los tipoInfoboles
         /// </summary>
@@ -40,13 +41,20 @@ namespace Trascend.Bolet.Servicios.Implementacion
             return tipoInfobol;
         }
 
+
+        /// <summary>
+        /// Método que consulta un TipoInfobol por Id
+        /// </summary>
+        /// <param name="tipoInfobol">Tipo Infobol a consultar</param>
+        /// <returns>TipoInfobol devuelta</returns>
         public TipoInfobol ConsultarPorId(TipoInfobol tipoInfobol)
         {
             throw new NotImplementedException();
         }
 
+
         /// <summary>
-        /// Servicio que insertar o modifica un nacional
+        /// Servicio que insertar o modifica un TipoInfobol
         /// </summary>
         /// <param name="tipoInfobol">TipoInfobol que se va a insertar o modificar</param>
         /// <param name="hash">Hash del usuario que esta realiando la operacion</param>
@@ -68,8 +76,9 @@ namespace Trascend.Bolet.Servicios.Implementacion
             return exitoso;
         }
 
+
         /// <summary>
-        /// Servicio que elimina un nacional
+        /// Servicio que elimina un TipoInfobol
         /// </summary>
         /// <param name="tipoInfobol">TipoInfobol que se va a eliminar</param>
         /// <returns>True: si la eliminacion fue exitosa; False: en caso contrario</returns>
@@ -91,7 +100,11 @@ namespace Trascend.Bolet.Servicios.Implementacion
         }
 
 
-
+        /// <summary>
+        /// Servicio que verifica la existencia de un TipoInfobol
+        /// </summary>
+        /// <param name="tipoInfobol">Tipo Infobol a verificar</param>
+        /// <returns>true en caso de que exista, false en caso contrario</returns>
         public bool VerificarExistencia(TipoInfobol tipoInfobol)
         {
             #region trace

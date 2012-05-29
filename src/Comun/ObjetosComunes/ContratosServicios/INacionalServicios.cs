@@ -5,6 +5,6 @@ namespace Trascend.Bolet.ObjetosComunes.ContratosServicios
 {
     public interface INacionalServicios: IServicioBase<Nacional>
     {
-        
+
     }
 }
