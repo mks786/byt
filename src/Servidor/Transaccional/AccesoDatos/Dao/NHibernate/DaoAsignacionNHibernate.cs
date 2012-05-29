@@ -13,6 +13,11 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
 
+        /// <summary>
+        /// Obtiene todas las asignaciones que tiene una carta
+        /// </summary>
+        /// <param name="carta">La Carta</param>
+        /// <returns>Lista de Asignaciones</returns>
         public IList<Asignacion> ObtenerAsignacionesPorCarta(Carta carta)
         {
             IList<Asignacion> asignaciones = null;

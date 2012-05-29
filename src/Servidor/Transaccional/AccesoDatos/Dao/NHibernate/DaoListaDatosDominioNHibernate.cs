@@ -12,6 +12,12 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
     {
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
+
+        /// <summary>
+        /// Metodo que consulta las ListaDeDatosDeDominio dado unos parametros
+        /// </summary>
+        /// <param name="parametro">ListaDatosDominio conparametros</param>
+        /// <returns>Lista de ListaDatosDominio solicitados</returns>
         public IList<ListaDatosDominio> ObtenerListaDatosDominioPorParametro(ListaDatosDominio parametro)
         {
             IList<ListaDatosDominio> listaDatos = null;

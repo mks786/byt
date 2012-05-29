@@ -48,6 +48,11 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
             return retorno;
         }
 
+        /// <summary>
+        /// Metodo que obtiene el usuario solicitado por sus iniciales
+        /// </summary>
+        /// <param name="iniciales">String de iniciales</param>
+        /// <returns>El usuario con esas iniciales</returns>
         public Usuario ObtenerUsuarioPorIniciales(string iniciales) 
         {
             Usuario retorno = new Usuario();

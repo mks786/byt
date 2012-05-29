@@ -14,11 +14,12 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
     {
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
+
         /// <summary>
-        /// Método que autentica un usuario
+        /// Consulta un Asociado coon toda su informacion
         /// </summary>
-        /// <param name="asociado">usuario a autenticar</param>
-        /// <returns>Usuario autenticado</returns>
+        /// <param name="asociado">Asociado con parametros</param>
+        /// <returns>Asociado </returns>
         public Asociado ObtenerAsociadoConTodo(Asociado asociado)
         {
             Asociado retorno;
@@ -52,10 +53,10 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
 
 
         /// <summary>
-        /// Método que obtiene un asociado con uno o mas filtros
+        /// Consulta los asociados dado unos parametros determinados
         /// </summary>
-        /// <param name="asociado">filtros de asociado</param>
-        /// <returns>asociado filtrado</returns>
+        /// <param name="asociado">asociado con parametros</param>
+        /// <returns>lista de asociados</returns>
         public IList<Asociado> ObtenerAsociadosFiltro(Asociado asociado)
         {
 

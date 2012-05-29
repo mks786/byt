@@ -13,6 +13,11 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
 
+        /// <summary>
+        /// Metodo que Consulta los Contactos que tiene un Asociado
+        /// </summary>
+        /// <param name="asociado">Asociado</param>
+        /// <returns>Lista de Contactos del asociado solicitado</returns>
         public IList<Contacto> ObtenerContactosPorAsociado(Asociado asociado)
         {
             IList<Contacto> contactos;

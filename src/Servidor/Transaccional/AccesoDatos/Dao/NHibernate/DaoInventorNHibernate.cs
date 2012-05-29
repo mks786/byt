@@ -13,6 +13,11 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
 
+        /// <summary>
+        /// Metodo que Consulta los inventores dado una patente
+        /// </summary>
+        /// <param name="patente">patente</param>
+        /// <returns>Lista de inventoes que tiene una patente</returns>
         public IList<Inventor> ObtenerInventoresPorPatente(Patente patente)
         {
             IList<Inventor> inventores;

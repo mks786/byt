@@ -14,6 +14,11 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
 
+        /// <summary>
+        /// Metodo que consulta las ListaDatosValores dado unos parametros
+        /// </summary>
+        /// <param name="parametro">ListaDatosValores conparametros</param>
+        /// <returns>Lista de ListaDatosValores solicitados</returns>
         public IList<ListaDatosValores> ObtenerListaDatosValoresPorParametro(ListaDatosValores listaDatosValores)
         {
             IList<ListaDatosValores> listaDaosValores;

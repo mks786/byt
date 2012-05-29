@@ -13,6 +13,11 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
 
+        /// <summary>
+        /// Metodo que que consulta los datos de una anualidad dado el id
+        /// </summary>
+        /// <param name="idAnualidad">Id de la anualidad</param>
+        /// <returns>Anualidad</returns>
         public IList<Anualidad> ObtenerAnualidadesFiltro(int idAnualidad)
         {
             IList<Anualidad> Anualidads = null;
@@ -96,6 +101,11 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
         }
 
 
+        /// <summary>
+        /// Metodo que que consulta los datos de una anualidad dado el id
+        /// </summary>
+        /// <param name="idAnualidad">Id de la anualidad</param>
+        /// <returns>Anualidad</returns>
         public IList<Anualidad> ObtenerAnualidadesPorPatente(int idpatente)
         {
             IList<Anualidad> Anualidads = null;
@@ -132,6 +142,10 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
         }
 
 
+        /// <summary>
+        /// Metodo que obtiene el id de la ultima Anualidad inserata en la BD
+        /// </summary>
+        /// <returns>un numero Entero</returns>
         public int ObtenerMaxIdAnualidad()
         {
             int idConsultado = 0;
@@ -164,6 +178,11 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
         }
 
 
+        /// <summary>
+        /// Metodo que consulta una anualidad
+        /// </summary>
+        /// <param name="Anualidad">Anualidad</param>
+        /// <returns>Anualidad</returns>
         public Anualidad ObtenerAnualidadConTodo(Anualidad Anualidad)
         {
             Anualidad retorno;

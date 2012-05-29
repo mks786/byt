@@ -13,6 +13,11 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
 
+        /// <summary>
+        /// Metodo que consulta las fusionePatente dado unos parametros
+        /// </summary>
+        /// <param name="FusionPatente">FusionPatente con parametros</param>
+        /// <returns>Lista de FusionesPatente solicitados</returns>
         public IList<FusionPatente> ObtenerFusionesPatenteFiltro(FusionPatente fusion)
         {
             IList<FusionPatente> FusionPatentees = null;

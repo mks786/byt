@@ -13,6 +13,11 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
 
+        /// <summary>
+        /// Metodo que consulta las cesionesPatentes dado unos parametros
+        /// </summary>
+        /// <param name="cesion">cesionePatente con parametros</param>
+        /// <returns>Lista de cesionePatente con parametros solicitados</returns>
         public IList<CesionPatente> ObtenerCesionesPatenteFiltro(CesionPatente cesion)
         {
             IList<CesionPatente> CesionesPatente = null;

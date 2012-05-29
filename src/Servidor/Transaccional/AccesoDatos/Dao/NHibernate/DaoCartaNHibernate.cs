@@ -12,6 +12,12 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
     {
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
+
+        /// <summary>
+        /// Metodo que consulta las cartas dado unos parametros
+        /// </summary>
+        /// <param name="carta">Carta con parametros solicitados</param>
+        /// <returns>lista de cartas que cumplen los parametros</returns>
         public IList<Carta> ObtenerCartasFiltro(Carta carta)
         {
             IList<Carta> cartas = null;
@@ -72,11 +78,13 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
             return cartas;
         }
 
+
         /// <summary>
-        /// Método que inserta o modifica una entidad
+        /// Metodo que inserta una carta en la base de datos
         /// </summary>
-        /// <param name="carta">Entidad a modificar</param>
-        /// <returns>True si fue éxitoso la inserción o modificación, en caso contrario False</returns>
+        /// <param name="carta">parametro a insertar</param>
+        /// <param name="transaccion">objetoITransicion indica si se realizo el Commit</param>
+        /// <returns>Bool si se inserto correctamente, de lo contrario false</returns>
         public bool Insertar(Carta carta, ITransaction transaccion)
         {
             bool exitoso;

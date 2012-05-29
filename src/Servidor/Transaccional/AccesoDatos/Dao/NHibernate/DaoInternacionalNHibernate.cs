@@ -12,6 +12,11 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
 
+        /// <summary>
+        /// Metodo con el que se obtiene el objeto Internacional
+        /// </summary>
+        /// <param name="id">entero con el que se busca el objeto</param>
+        /// <returns>Objeto Internacional</returns>
         public Internacional ObtenerPorId(int id)
         {
             Internacional retorno;

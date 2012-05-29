@@ -12,11 +12,12 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
     {
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
+
         /// <summary>
-        /// 
+        /// Metodo que consulta las licencias dado unos parametros
         /// </summary>
-        /// <param name="licencia"></param>
-        /// <returns></returns>
+        /// <param name="licencia">lecencia con parametros</param>
+        /// <returns>Lista de Licencias con datos solicitados</returns>
         public IList<Licencia> ObtenerLicenciasFiltro(Licencia licencia)
         {
             IList<Licencia> Licencias = null;

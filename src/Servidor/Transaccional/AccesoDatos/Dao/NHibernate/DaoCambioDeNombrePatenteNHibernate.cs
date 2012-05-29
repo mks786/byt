@@ -12,6 +12,12 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
     {
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
+
+        /// <summary>
+        /// metodo que consulta los CambioDeNombrePatente dado unos parametros
+        /// </summary>
+        /// <param name="cambioDeNombre">CambioDeNombrePatente  con parametros</param>
+        /// <returns>Lista de CambioDeNombresPatente </returns>
         public IList<CambioDeNombrePatente> ObtenerCambiosDeNombrePatenteFiltro(CambioDeNombrePatente cambioDeNombre)
         {
             IList<CambioDeNombrePatente> CambioDeNombre = null;

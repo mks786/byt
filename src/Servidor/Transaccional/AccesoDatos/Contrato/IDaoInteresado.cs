@@ -7,18 +7,18 @@ namespace Trascend.Bolet.AccesoDatos.Contrato
     {
 
         /// <summary>
-        /// metodo que consulta todos los datos de un interesado
+        /// Método que autentica un usuario
         /// </summary>
-        /// <param name="interesado">Interesado con Parametros</param>
-        /// <returns>Interesado con toda la informacion</returns>
+        /// <param name="interesado">usuario a autenticar</param>
+        /// <returns>Usuario autenticado</returns>
         Interesado ObtenerInteresadoConTodo(Interesado interesado);
 
 
         /// <summary>
-        /// Metodo que consulta todos los interesados dado unos parametros
+        /// Método que obtiene un interesado con uno o mas filtros
         /// </summary>
-        /// <param name="interesado">Interesado con parametros</param>
-        /// <returns>Lista de Interesado solicitados</returns>
+        /// <param name="interesado">filtros de interesado</param>
+        /// <returns>interesado filtrado</returns>
         IList<Interesado> ObtenerInteresadosFiltro(Interesado interesado);
 
 

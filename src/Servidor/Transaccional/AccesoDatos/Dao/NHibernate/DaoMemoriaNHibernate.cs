@@ -12,6 +12,12 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
     {
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
+
+        /// <summary>
+        /// Metodo que obtiene las memorias de una patente
+        /// </summary>
+        /// <param name="patente">Patente solicitada</param>
+        /// <returns>Lista de Memorias  por una patente</returns>
         public IList<Memoria> ObtenerMemoriasPorPatente(Patente patente)
         {
 

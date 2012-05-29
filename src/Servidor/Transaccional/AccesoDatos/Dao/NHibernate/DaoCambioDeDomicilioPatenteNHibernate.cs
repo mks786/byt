@@ -13,6 +13,11 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
 
+        /// <summary>
+        /// Metodo que consulta los Cambios de Domicilios Patentes dado unos parametros
+        /// </summary>
+        /// <param name="cambioDeDomicilio">CambioDeDomicilioPatentes con parametros</param>
+        /// <returns>una lista de CambioDeDomicilioPatentes</returns>
         public IList<CambioDeDomicilioPatente> ObtenerCambiosDeDomicilioPatenteFiltro(CambioDeDomicilioPatente cambioDeDomicilio)
         {
             IList<CambioDeDomicilioPatente> CambioDeDomicilios = null;

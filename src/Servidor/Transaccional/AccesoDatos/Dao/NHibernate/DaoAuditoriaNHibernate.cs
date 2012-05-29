@@ -13,6 +13,11 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
 
+        /// <summary>
+        /// Consulta las Auditorias por cada FKyTabla
+        /// </summary>
+        /// <param name="auditoria">Auditoria con parametros</param>
+        /// <returns>lista de auditorias</returns>
         public IList<Auditoria> AuditoriaPorFkYTabla(Auditoria auditoria)
         {
             IList<Auditoria> retorno;

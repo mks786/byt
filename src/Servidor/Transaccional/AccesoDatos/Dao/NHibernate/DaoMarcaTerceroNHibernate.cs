@@ -13,6 +13,11 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
 
+        /// <summary>
+        /// Metodo que consulta las MarcaTercero dado unos parametros
+        /// </summary>
+        /// <param name="marcaTercero">MarcaTercero </param>
+        /// <returns>Todas las MarcaTercero solicitados</returns>
         public IList<MarcaTercero> ObtenerMarcaTerceroFiltro(MarcaTercero marcaTercero)
         {
             IList<MarcaTercero> MarcasTercero = null;
@@ -95,6 +100,11 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
         }
 
 
+        /// <summary>
+        /// Metodo que obtiene el ultimo id de una marca tercero
+        /// </summary>
+        /// <param name="maxId">id de la marcatercero</param>
+        /// <returns>El id a utilizar</returns>
         public string ObtenerMaxId(string maxId)
         {
             string idConsultado;
@@ -129,6 +139,11 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
         }
 
 
+        /// <summary>
+        /// Metodo queobtiene el ultimo anexo de la MarcaTercero
+        /// </summary>
+        /// <param name="maxAnexo">El ultimo Anexo</param>
+        /// <returns>El ultimo anexo de la marcatercero</returns>
         public int ObtenerMaxAnexo(string maxAnexo)
         {
             int idConsultado;

@@ -12,6 +12,12 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
     {
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
+
+        /// <summary>
+        /// metodo que consulta las busquedas que tiene una marca
+        /// </summary>
+        /// <param name="marca">Marca a consultar las busquedas</param>
+        /// <returns>Lista de busquedas de la marca solicitada</returns>
         public IList<Busqueda> ObtenerBusquedasPorMarca(Marca marca)
         {
             IList<Busqueda> busquedas;

@@ -13,6 +13,11 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
 
+        /// <summary>
+        /// Metodo que consulta todas las resoluciones que tiene un boletin
+        /// </summary>
+        /// <param name="id">id del boletin</param>
+        /// <returns>lista de resoluciones del boletin</returns>
         public IList<Resolucion> ObtenerResolucionesDeBoletin(int id)
         {
             IList<Resolucion> retorno = null;

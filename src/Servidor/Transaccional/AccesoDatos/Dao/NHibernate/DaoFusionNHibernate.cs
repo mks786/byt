@@ -12,6 +12,12 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
     {
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
+
+        /// <summary>
+        /// Metodo que consulta las fusiones dado unos parametros
+        /// </summary>
+        /// <param name="Fusion">Fusion con parametros</param>
+        /// <returns>Lista de Fusiones solicitados</returns>
         public IList<Fusion> ObtenerFusionesFiltro(Fusion fusion)
         {
             IList<Fusion> Fusiones = null;

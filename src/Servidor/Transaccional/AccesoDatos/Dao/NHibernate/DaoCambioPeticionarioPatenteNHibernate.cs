@@ -13,6 +13,11 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
 
+        /// <summary>
+        /// Metodo que Consulta los CambiosDePeticionarioPatente dado unos parametros
+        /// </summary>
+        /// <param name="cambioPeticionario">CambioDePeticionarioPatente con parametros</param>
+        /// <returns>Lista de CambioDePeticionariosPatente</returns>
         public IList<CambioPeticionarioPatente> ObtenerCambiosPeticionarioPatenteFiltro(CambioPeticionarioPatente cambioPeticionario)
         {
             IList<CambioPeticionarioPatente> CambioPeticionarios = null;

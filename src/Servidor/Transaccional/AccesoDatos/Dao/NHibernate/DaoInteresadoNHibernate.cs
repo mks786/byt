@@ -12,6 +12,7 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
     {
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
+
         /// <summary>
         /// Método que autentica un usuario
         /// </summary>
@@ -99,7 +100,11 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
         }
 
 
-
+        /// <summary>
+        /// Metodo que obtiene el interesado de un poder
+        /// </summary>
+        /// <param name="poder">Poder solicitado</param>
+        /// <returns>Interesado que tiene ese poder</returns>
         public Interesado ObtenerInteresadosDeUnPoder(Poder poder)
         {
             Interesado retorno;

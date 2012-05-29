@@ -12,6 +12,12 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
     {
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
+
+        /// <summary>
+        /// Metodo que consulta las operaciones por una marca
+        /// </summary>
+        /// <param name="marca">Marca</param>
+        /// <returns>Lista de operaciones solicitadas</returns>
         public IList<Operacion> ObtenerOperacionesPorMarca(Marca marca)
         {
             IList<Operacion> Operaciones;
@@ -45,6 +51,12 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
             return Operaciones;
         }
 
+
+        /// <summary>
+        /// Metodo que consulta las operaciones por una patente
+        /// </summary>
+        /// <param name="patente">Patente</param>
+        /// <returns>Lista de operaciones solicitadas</returns>
         public IList<Operacion> ObtenerOperacionesPorPatente(Patente patente)
         {
             IList<Operacion> Operaciones;
@@ -78,6 +90,12 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
             return Operaciones;
         }
 
+
+        /// <summary>
+        /// Metodo que obtiene las Marcas y servicios de esa operacion
+        /// </summary>
+        /// <param name="operacion">Operacion ha solicitar</param>
+        /// <returns>Lista de operaciones solicitadas</returns>
         public IList<Operacion> ObtenerOperacionesPorMarcaYServicio(Operacion operacion)
         {
             IList<Operacion> Operaciones;
@@ -111,6 +129,12 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
             return Operaciones;
         }
 
+
+        /// <summary>
+        /// Metodo que consulta las operaciones por parametros
+        /// </summary>
+        /// <param name="operacion">Operacion con parameteros</param>
+        /// <returns>Lista de operaciones solicitaos</returns>
         public IList<Operacion> ObtenerOperacionesFiltro(Operacion operacion)
         {
             IList<Operacion> operaciones = null;

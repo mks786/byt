@@ -13,6 +13,11 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
 
+        /// <summary>
+        /// Metodo que consulta las marcas dado unos parametros
+        /// </summary>
+        /// <param name="marca">marca con parametros</param>
+        /// <returns>Lista de marcas solicitadas</returns>
         public IList<Marca> ObtenerMarcasFiltro(Marca marca)
         {
             IList<Marca> Marcas = null;
@@ -133,6 +138,11 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
         }
 
 
+        /// <summary>
+        /// Metodo que Obtiene la marca con todos sus datos
+        /// </summary>
+        /// <param name="marca">marca</param>
+        /// <returns>Marca con toda su informacion</returns>
         public Marca ObtenerMarcaConTodo(Marca marca)
         {
             Marca retorno;
@@ -165,6 +175,12 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
         }
 
 
+        /// <summary>
+        /// Metodo que obtine las marcas dada una fecha de renovacion
+        /// </summary>
+        /// <param name="marca">marca con parametros</param>
+        /// <param name="fechas">fecha como parametro</param>
+        /// <returns>la lista de marcas con esa fecha de renovacion</returns>
         public IList<Marca> ObtenerMarcasPorFechaRenovacion(Marca marca, DateTime[] fechas)
         {
             IList<Marca> Marcas = null;

@@ -13,6 +13,11 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
 
+        /// <summary>
+        /// Metodo que consulta los DatosDeTransferencia de un Asociado
+        /// </summary>
+        /// <param name="asociado">Asociado</param>
+        /// <returns>Lista de DatosTranferencias del asociado solicitado</returns>
         public IList<DatosTransferencia> ObtenerDatosTransferenciaPorAsociado(Asociado asociado)
         {
             IList<DatosTransferencia> datosTransferencia;

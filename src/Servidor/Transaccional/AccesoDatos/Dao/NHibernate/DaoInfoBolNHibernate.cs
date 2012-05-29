@@ -13,6 +13,11 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
 
+        /// <summary>
+        /// Metodo que consulta todos los InfoBoles por marca
+        /// </summary>
+        /// <param name="marca">Marca</param>
+        /// <returns>Lista de Infoboles de la marca solicitada</returns>
         public IList<InfoBol> ObtenerInfoBolesPorMarca(Marca marca)
         {
             IList<InfoBol> InfoBoles;

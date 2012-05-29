@@ -12,6 +12,11 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
 
+        /// <summary>
+        /// Metodo que ejecuta el procedimiento
+        /// </summary>
+        /// <param name="parametro">Parametro a ejectura</param>
+        /// <returns>true si se ejecto, de lo contrario false</returns>
         public bool EjecutarProcedimiento(ParametroProcedimiento parametro)
         {
             bool retorno = true;
