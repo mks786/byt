@@ -463,6 +463,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
 
         public string IdAsociadoDatos
         {
+            get { return this._txtIdAsociadoDatos.Text; }
             set { this._txtIdAsociadoDatos.Text = value; }
         }
 
@@ -613,6 +614,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
 
         public string IdCorresponsalSolicitud
         {
+            get { return this._txtIdCorresponsalSolicitud.Text; }
             set { this._txtIdCorresponsalSolicitud.Text = value; }
         }
 
@@ -623,6 +625,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
 
         public string IdCorresponsalDatos
         {
+            get { return this._txtIdCorresponsalDatos.Text; }
             set { this._txtIdCorresponsalDatos.Text = value; }
         }
 
@@ -887,6 +890,46 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
         }
 
         #region Funciones
+
+        public void ConvertirEnterioMinimoABlanco()
+        {
+
+            //if ((null != this.PoderDatos) && (null != this.PoderSolicitud))
+            //{
+            //    if ((!this.PoderDatos.Equals("")) || (!this.PoderSolicitud.Equals("")))
+            //    {
+            //        if (((this.PoderDatos)) == int.MinValue) || (int.Parse(this.PoderSolicitud) == int.MinValue))
+            //        {
+            //            this.PoderDatos = "";
+            //            this.PoderSolicitud = "";
+            //        }
+            //    }
+            //}
+
+            if ((null != this.CorresponsalDatos) && (null != this.CorresponsalSolicitud))
+            {
+                if ((!this.IdCorresponsalDatos.Equals("")) || (!this.IdCorresponsalSolicitud.Equals("")))
+                {
+                    if ((int.Parse(this.IdCorresponsalDatos) == int.MinValue) || (int.Parse(this.IdCorresponsalSolicitud) == int.MinValue))
+                    {
+                        this.IdCorresponsalSolicitud = "";
+                        this.IdCorresponsalDatos = "";
+                    }
+                }
+            }
+
+            if ((null != this.AsociadoDatos) && (null != this.AsociadoSolicitud))
+            {
+                if ((!this.IdAsociadoDatos.Equals("")) || (!this.IdAsociadoSolicitud.Equals("")))
+                {
+                    if ((int.Parse(this.IdAsociadoDatos) == int.MinValue) || (int.Parse(this.IdAsociadoSolicitud) == int.MinValue))
+                    {
+                        this.IdAsociadoDatos = "";
+                        this.IdAsociadoSolicitud = "";
+                    }
+                }
+            }
+        }
 
         private void mostrarLstAsociadoSolicitud()
         {

@@ -4,6 +4,7 @@ using Trascend.Bolet.Cliente.Presentadores.Marcas;
 using System.Windows;
 using System.Windows.Input;
 using Trascend.Bolet.Cliente.Ayuda;
+using System.Windows.Media;
 
 namespace Trascend.Bolet.Cliente.Ventanas.Marcas
 {
@@ -61,6 +62,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
 
         public string IdAsociadoSolicitud
         {
+            get { return this._txtIdAsociadoSolicitud.Text; }
             set { this._txtIdAsociadoSolicitud.Text = value; }
         } 
 
@@ -71,6 +73,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
 
         public string IdAsociadoDatos
         {
+            get { return this._txtIdAsociadoDatos.Text; }
             set { this._txtIdAsociadoDatos.Text = value; }
         }
 
@@ -205,6 +208,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
 
         public string IdCorresponsalSolicitud
         {
+            get { return this._txtIdCorresponsalSolicitud.Text; }
             set { this._txtIdCorresponsalSolicitud.Text = value; }
         }
 
@@ -215,6 +219,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
 
         public string IdCorresponsalDatos
         {
+            get { return this._txtIdCorresponsalDatos.Text; }
             set { this._txtIdCorresponsalDatos.Text = value; }
         }
 
@@ -536,6 +541,74 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
         }
 
         #region funciones
+
+        public void PintarAsociado(string tipo)
+        {
+            SolidColorBrush color;
+
+            if (tipo.Equals("1"))
+            {
+                color = Brushes.LightGreen;
+            }
+            else if (tipo.Equals("2"))
+            {
+                color = Brushes.LightBlue;
+            }
+            else if (tipo.Equals("3"))
+            {
+                color = Brushes.LightYellow;
+            }
+            else if (tipo.Equals("4"))
+            {
+                color = Brushes.Red;
+            }
+            else color = Brushes.Transparent;
+
+            this._txtIdAsociadoDatos.Background = color;
+            this._txtIdAsociadoSolicitud.Background = color;
+            this._txtAsociadoDatos.Background = color;
+            this._txtAsociadoSolicitud.Background = color;
+        }
+
+        public void ConvertirEnterioMinimoABlanco()
+        {
+
+            //if ((null != this.PoderDatos) && (null != this.PoderSolicitud))
+            //{
+            //    if ((!this.PoderDatos.Equals("")) || (!this.PoderSolicitud.Equals("")))
+            //    {
+            //        if (((this.PoderDatos)) == int.MinValue) || (int.Parse(this.PoderSolicitud) == int.MinValue))
+            //        {
+            //            this.PoderDatos = "";
+            //            this.PoderSolicitud = "";
+            //        }
+            //    }
+            //}
+
+            if ((null != this.CorresponsalDatos) && (null != this.CorresponsalSolicitud))
+            {
+                if ((!this.IdCorresponsalDatos.Equals("")) || (!this.IdCorresponsalSolicitud.Equals("")))
+                {
+                    if ((int.Parse(this.IdCorresponsalDatos) == int.MinValue) || (int.Parse(this.IdCorresponsalSolicitud) == int.MinValue))
+                    {
+                        this.IdCorresponsalSolicitud = "";
+                        this.IdCorresponsalDatos = "";
+                    }
+                }
+            }
+
+            if ((null != this.AsociadoDatos) && (null != this.AsociadoSolicitud))
+            {
+                if ((!this.IdAsociadoDatos.Equals("")) || (!this.IdAsociadoSolicitud.Equals("")))
+                {
+                    if ((int.Parse(this.IdAsociadoDatos) == int.MinValue) || (int.Parse(this.IdAsociadoSolicitud) == int.MinValue))
+                    {
+                        this.IdAsociadoDatos = "";
+                        this.IdAsociadoSolicitud = "";
+                    }
+                }
+            }
+        }
 
         private void mostrarLstAsociadoSolicitud()
         {

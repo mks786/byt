@@ -802,7 +802,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                     this._ventana.NombreAsociadoDatos = ((Asociado)this._ventana.AsociadoSolicitud).Nombre;
                     this._ventana.IdAsociadoDatos = ((Asociado)this._ventana.AsociadoSolicitud).Id.ToString();
 
-                    this._ventana.PintarAsociado(asociado.TipoCliente.Id);
+                    if (asociado != null)
+                        this._ventana.PintarAsociado(asociado.TipoCliente.Id);
+                    else
+                        this._ventana.PintarAsociado("5");
+
+                    this._ventana.ConvertirEnterioMinimoABlanco();
                 }
 
                 #region trace
@@ -838,7 +843,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                     this._ventana.NombreAsociadoSolicitud = ((Asociado)this._ventana.AsociadoDatos).Nombre;
                     this._ventana.IdAsociadoSolicitud = ((Asociado)this._ventana.AsociadoDatos).Id.ToString();
 
-                    this._ventana.PintarAsociado(asociado.TipoCliente.Id);
+                    if (asociado != null)
+                        this._ventana.PintarAsociado(asociado.TipoCliente.Id);
+                    else
+                        this._ventana.PintarAsociado("5");
+
+                    this._ventana.ConvertirEnterioMinimoABlanco();
                 }
 
                 #region trace
@@ -986,6 +996,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                     this._ventana.IdInteresadoDatos = ((Interesado)this._ventana.InteresadoSolicitud).Id.ToString();
                     this._ventana.InteresadoPaisSolicitud = interesadoAux.Pais != null ? interesadoAux.Pais.NombreEspanol : "";
                     this._ventana.InteresadoCiudadSolicitud = interesadoAux.Ciudad != null ? interesadoAux.Ciudad : "";
+
+                    this._ventana.ConvertirEnterioMinimoABlanco();
                 }
 
                 #region trace
@@ -1024,6 +1036,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                     this._ventana.IdInteresadoSolicitud = ((Interesado)this._ventana.InteresadoDatos).Id.ToString();
                     this._ventana.InteresadoPaisSolicitud = interesadoAux.Pais != null ? interesadoAux.Pais.NombreEspanol : "";
                     this._ventana.InteresadoCiudadSolicitud = interesadoAux.Ciudad != null ? interesadoAux.Ciudad : "";
+
+                    this._ventana.ConvertirEnterioMinimoABlanco();
                 }
 
                 #region trace
@@ -1176,6 +1190,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                     this._ventana.CorresponsalDatos = (Corresponsal)this._ventana.CorresponsalSolicitud;
                     this._ventana.DescripcionCorresponsalDatos = ((Corresponsal)this._ventana.CorresponsalSolicitud).Descripcion;
                     this._ventana.IdCorresponsalDatos = ((Corresponsal)this._ventana.CorresponsalSolicitud).Id.ToString();
+
+                    this._ventana.ConvertirEnterioMinimoABlanco();
                 }
 
                 #region trace
@@ -1211,6 +1227,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
 
                     this._ventana.DescripcionCorresponsalSolicitud = ((Corresponsal)this._ventana.CorresponsalDatos).Descripcion;
                     this._ventana.IdCorresponsalSolicitud = ((Corresponsal)this._ventana.CorresponsalDatos).Id.ToString();
+
+                    this._ventana.ConvertirEnterioMinimoABlanco();
                 }
 
                 #region trace

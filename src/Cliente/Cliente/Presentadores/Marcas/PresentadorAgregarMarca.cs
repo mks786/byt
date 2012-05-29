@@ -505,6 +505,13 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                     this._ventana.AsociadoDatos = (Asociado)this._ventana.AsociadoSolicitud;
                     this._ventana.NombreAsociadoDatos = ((Asociado)this._ventana.AsociadoSolicitud).Nombre;
                     this._ventana.IdAsociadoDatos = ((Asociado)this._ventana.AsociadoSolicitud).Id.ToString();
+
+                    if (asociado != null)
+                        this._ventana.PintarAsociado(asociado.TipoCliente.Id);
+                    else
+                        this._ventana.PintarAsociado("5");
+
+                    this._ventana.ConvertirEnterioMinimoABlanco();
                 }
 
                 #region trace
@@ -540,6 +547,13 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                     this._ventana.AsociadoSolicitud = (Asociado)this._ventana.AsociadoDatos;
                     this._ventana.NombreAsociadoSolicitud = ((Asociado)this._ventana.AsociadoDatos).Nombre;
                     this._ventana.IdAsociadoSolicitud = ((Asociado)this._ventana.AsociadoDatos).Id.ToString();
+
+                    if (asociado != null)
+                        this._ventana.PintarAsociado(asociado.TipoCliente.Id);
+                    else
+                        this._ventana.PintarAsociado("5");
+
+                    this._ventana.ConvertirEnterioMinimoABlanco();
                 }
 
                 #region trace
@@ -867,6 +881,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                     this._ventana.CorresponsalDatos = (Corresponsal)this._ventana.CorresponsalSolicitud;
                     this._ventana.DescripcionCorresponsalDatos = ((Corresponsal)this._ventana.CorresponsalSolicitud).Descripcion;
                     this._ventana.IdCorresponsalDatos = ((Corresponsal)this._ventana.CorresponsalSolicitud).Id.ToString();
+
+                    this._ventana.ConvertirEnterioMinimoABlanco();
                 }
 
                 #region trace
@@ -898,6 +914,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
 
                     this._ventana.CorresponsalSolicitud = (Corresponsal)this._ventana.CorresponsalDatos;
                     this._ventana.DescripcionCorresponsalSolicitud = ((Corresponsal)this._ventana.CorresponsalDatos).Descripcion;
+
+                    this._ventana.ConvertirEnterioMinimoABlanco();
                 }
 
                 #region trace

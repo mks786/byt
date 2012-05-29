@@ -15,7 +15,7 @@ namespace Trascend.Bolet.Cliente.Contratos.Marcas
 
         string IdAsociadoDatosFiltrar { get; }
 
-        string IdAsociadoDatos { set; }
+        string IdAsociadoDatos { get; set; }
 
         string NombreAsociadoSolicitudFiltrar { get; }
 
@@ -47,11 +47,11 @@ namespace Trascend.Bolet.Cliente.Contratos.Marcas
 
         string IdCorresponsalSolicitudFiltrar { get; }
 
-        string IdCorresponsalSolicitud { set; }
+        string IdCorresponsalSolicitud { get; set; }
 
         string IdCorresponsalDatosFiltrar { get; }
 
-        string IdCorresponsalDatos { set; }
+        string IdCorresponsalDatos { get; set; }
 
         string DescripcionCorresponsalSolicitudFiltrar { get; }
 
@@ -202,6 +202,8 @@ namespace Trascend.Bolet.Cliente.Contratos.Marcas
         string DistingueSolicitud { set; }
 
         string DistingueDatos { set; }
+        
+        void ConvertirEnterioMinimoABlanco();
 
         GridViewColumnHeader CurSortCol { get; set; }
 
