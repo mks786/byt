@@ -5,6 +5,12 @@ namespace Trascend.Bolet.AccesoDatos.Contrato
 {
     public interface IDaoFusionPatente : IDaoBase<FusionPatente, int>
     {
+
+        /// <summary>
+        /// Metodo que consulta las fusionePatente dado unos parametros
+        /// </summary>
+        /// <param name="Fusion">FusionPatente con parametros</param>
+        /// <returns>Lista de FusionesPatente solicitados</returns>
         IList<FusionPatente> ObtenerFusionesPatenteFiltro(FusionPatente FusionPatente);
     }
 }

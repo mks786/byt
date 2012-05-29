@@ -5,6 +5,12 @@ namespace Trascend.Bolet.AccesoDatos.Contrato
 {
     public interface IDaoAsignacion : IDaoBase<Asignacion, int>
     {
+
+        /// <summary>
+        /// Obtiene todas las asignaciones que tiene una carta
+        /// </summary>
+        /// <param name="carta">La Carta</param>
+        /// <returns>Lista de Asignaciones</returns>
         IList<Asignacion> ObtenerAsignacionesPorCarta(Carta carta);
         
     }
