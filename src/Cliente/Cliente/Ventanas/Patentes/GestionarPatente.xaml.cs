@@ -164,6 +164,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
 
         public string IdInteresadoSolicitud
         {
+            get { return this._txtIdInteresadoDatos.Text; }
             set { this._txtIdInteresadoSolicitud.Text = value; }
         }
 
@@ -431,6 +432,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
 
         public string IdInteresadoDatos
         {
+            get { return this._txtIdInteresadoDatos.Text; }
             set { this._txtIdInteresadoDatos.Text = value; }
         }
 
@@ -819,7 +821,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
 
         private void OcultarLstInteresadoSolicitud()
         {
-            this._presentador.CambiarInteresadoSolicitud();
+            //this._presentador.CambiarInteresadoSolicitud();
             this._lstInteresadosSolicitud.Visibility = System.Windows.Visibility.Collapsed;
             this._btnConsultarInteresadoSolicitud.Visibility = System.Windows.Visibility.Collapsed;
             this._txtIdInteresadoSolicitudFiltrar.Visibility = System.Windows.Visibility.Collapsed;
@@ -839,7 +841,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
 
         private void OcultarLstPoderSolicitud()
         {
-            this._presentador.CambiarPoderSolicitud();
+            //this._presentador.CambiarPoderSolicitud();
             this._lstPoderesSolicitud.Visibility = System.Windows.Visibility.Collapsed;
             this._txtPoderSolicitud.Visibility = System.Windows.Visibility.Visible;
         }
@@ -853,7 +855,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
 
         private void OcultarLstAgenteSolicitud()
         {
-            this._presentador.CambiarAgenteSolicitud();
+            //this._presentador.CambiarAgenteSolicitud();
 
             this._lstAgentesSolicitud.Visibility = System.Windows.Visibility.Collapsed;
             this._txtAgenteSolicitud.Visibility = System.Windows.Visibility.Visible;
@@ -907,7 +909,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
 
         private void OcultarLstInteresadoDatos()
         {
-            this._presentador.CambiarInteresadoDatos();
+            //this._presentador.CambiarInteresadoDatos();
             this._lstInteresadosDatos.Visibility = System.Windows.Visibility.Collapsed;
             this._btnConsultarInteresadoDatos.Visibility = System.Windows.Visibility.Collapsed;
             this._txtIdInteresadoDatosFiltrar.Visibility = System.Windows.Visibility.Collapsed;
@@ -927,7 +929,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
 
         private void OcultarLstPoderDatos()
         {
-            this._presentador.CambiarPoderDatos();
+            //this._presentador.CambiarPoderDatos();
             this._lstPoderesDatos.Visibility = System.Windows.Visibility.Collapsed;
             this._txtPoderDatos.Visibility = System.Windows.Visibility.Visible;
         }
@@ -1001,6 +1003,46 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
 
             #endregion
 
+        }
+
+        public void ConvertirEnterioMinimoABlanco()
+        {
+
+            if ((null != this.PoderDatos) && (null != this.PoderSolicitud))
+            {
+                if ((!this.PoderDatos.Equals("")) || (!this.PoderSolicitud.Equals("")))
+                {
+                    if ((int.Parse(this.PoderDatos) == int.MinValue) || (int.Parse(this.PoderSolicitud) == int.MinValue))
+                    {
+                        this.PoderDatos = "";
+                        this.PoderSolicitud = "";
+                    }
+                }
+            }
+
+            if ((null != this.InteresadoDatos) && (null != this.InteresadoSolicitud))
+            {
+                if ((!this.IdInteresadoDatos.Equals("")) || (!this.IdInteresadoSolicitud.Equals("")))
+                {
+                    if ((int.Parse(this.IdInteresadoDatos) == int.MinValue) || (int.Parse(this.IdInteresadoSolicitud) == int.MinValue))
+                    {
+                        this.IdInteresadoSolicitud = "";
+                        this.IdInteresadoDatos = "";
+                    }
+                }
+            }
+
+            if ((null != this.AsociadoDatos) && (null != this.AsociadoSolicitud))
+            {
+                if ((!this.IdAsociadoDatos.Equals("")) || (!this.IdAsociadoSolicitud.Equals("")))
+                {
+                    if ((int.Parse(this.IdAsociadoDatos) == int.MinValue) || (int.Parse(this.IdAsociadoSolicitud) == int.MinValue))
+                    {
+                        this.IdAsociadoDatos = "";
+                        this.IdAsociadoSolicitud = "";
+                    }
+                }
+            }
         }
 
         #endregion
@@ -1094,6 +1136,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
 
         private void _lstPoderesSolicitud_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
+            this._presentador.CambiarPoderSolicitud();
             OcultarLstPoderSolicitud();
             //ocultarLstPoderDatos();
         }
@@ -1132,6 +1175,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
 
         private void _lstAgentesSolicitud_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
+            this._presentador.CambiarAgenteSolicitud();
             OcultarLstAgenteSolicitud();
         }
 
@@ -1284,6 +1328,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
 
         private void _lstPoderesDatos_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
+            this._presentador.CambiarPoderDatos();
             OcultarLstPoderDatos();
             
         }
@@ -1330,7 +1375,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
 
         private void _btnDisenoDatos_Click(object sender, RoutedEventArgs e)
         {
-
+            this._presentador.MostrarDiseno();
         }
 
         private void _btnInventoresDatos_Click(object sender, RoutedEventArgs e)

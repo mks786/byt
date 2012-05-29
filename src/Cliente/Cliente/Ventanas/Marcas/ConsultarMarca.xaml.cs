@@ -781,11 +781,32 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             this._btnRenovacion.Background = Brushes.LightGreen;
         }
 
-        public void PintarAsociado(int color)
+        public void PintarAsociado(string tipo)
         {
+            SolidColorBrush color;
 
-            this._txtAsociadoDatos.Background = Brushes.LightGreen;
-            this._txtAsociadoSolicitud.Background = Brushes.LightGreen;
+            if (tipo.Equals("1"))
+            {
+                color = Brushes.LightGreen;
+            }
+            else if (tipo.Equals("2"))
+            {
+                color = Brushes.LightBlue;
+            }
+            else if (tipo.Equals("3"))
+            {
+                color = Brushes.LightYellow;
+            }
+            else if (tipo.Equals("4"))
+            {
+                color = Brushes.Red;
+            }
+            else color = Brushes.Transparent;
+
+            this._txtIdAsociadoDatos.Background = color;
+            this._txtIdAsociadoSolicitud.Background = color;
+            this._txtAsociadoDatos.Background = color;
+            this._txtAsociadoSolicitud.Background = color;
         }
 
         public void BorrarCeros()

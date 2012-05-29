@@ -20,7 +20,7 @@ namespace Trascend.Bolet.Cliente.Contratos.Patentes
 
         string IdInteresadoSolicitudFiltrar { get; }
 
-        string IdInteresadoSolicitud { set; }
+        string IdInteresadoSolicitud { get; set; }
 
         string NombreInteresadoSolicitudFiltrar { get; }
 
@@ -96,7 +96,7 @@ namespace Trascend.Bolet.Cliente.Contratos.Patentes
 
         string IdInteresadoDatosFiltrar { get; }
 
-        string IdInteresadoDatos { set; }
+        string IdInteresadoDatos { get; set; }
 
         string NombreInteresadoDatosFiltrar { get; }
 
@@ -203,5 +203,7 @@ namespace Trascend.Bolet.Cliente.Contratos.Patentes
         SortAdorner CurAdorner { get; set; }
 
         void ActivarControlesAlAgregar();
+
+        void ConvertirEnterioMinimoABlanco();
     }
 }

@@ -492,6 +492,27 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         }
 
         /// <summary>
+        /// Propiedad que asigna u obtiene el Check de etiqueta
+        /// </summary>
+        public virtual bool BDibujo
+        {
+            get
+            {
+                if (this.Dibujo.ToString().ToUpper().Equals('T'))
+                    return true;
+                else
+                    return false;
+            }
+            set
+            {
+                if (value)
+                    this.Dibujo = 'T';
+                else
+                    this.Dibujo= 'F';
+            }
+        }
+
+        /// <summary>
         /// Propiedad que asigna u obtiene la cesion
         /// </summary>
         public virtual char Cesion

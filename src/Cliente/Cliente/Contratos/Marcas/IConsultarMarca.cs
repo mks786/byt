@@ -189,7 +189,7 @@ namespace Trascend.Bolet.Cliente.Contratos.Marcas
 
         void PintarEtiqueta();
 
-        void PintarAsociado(int numero);
+        void PintarAsociado(string tipo);
 
         bool MensajeAlerta(string mensaje);
 

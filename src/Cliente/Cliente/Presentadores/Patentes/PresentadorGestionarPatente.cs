@@ -1078,12 +1078,15 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                 if ((Asociado)this._ventana.AsociadoSolicitud != null)
                 {
                     Asociado asociado = this._asociadoServicios.ConsultarAsociadoConTodo((Asociado)this._ventana.AsociadoSolicitud);
+                    
                     this._ventana.NombreAsociadoSolicitud = ((Asociado)this._ventana.AsociadoSolicitud).Nombre;
                     this._ventana.IdAsociadoSolicitud = ((Asociado)this._ventana.AsociadoSolicitud).Id.ToString();
-                    //this._ventana.AsociadoDatos = (Asociado)this._ventana.AsociadoSolicitud;
-                    //this._ventana.NombreAsociadoDatos = ((Asociado)this._ventana.AsociadoSolicitud).Nombre;
-                    //this._ventana.IdAsociadoDatos = ((Asociado)this._ventana.AsociadoSolicitud).Id.ToString();
+                    
+                    this._ventana.AsociadoDatos = (Asociado)this._ventana.AsociadoSolicitud;
+                    this._ventana.NombreAsociadoDatos = ((Asociado)this._ventana.AsociadoSolicitud).Nombre;
+                    this._ventana.IdAsociadoDatos = ((Asociado)this._ventana.AsociadoSolicitud).Id.ToString();
 
+                    this._ventana.ConvertirEnterioMinimoABlanco();
                 }
 
                 #region trace
@@ -1118,6 +1121,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                     this._ventana.AsociadoSolicitud = (Asociado)this._ventana.AsociadoDatos;
                     this._ventana.NombreAsociadoSolicitud = ((Asociado)this._ventana.AsociadoDatos).Nombre;
                     this._ventana.IdAsociadoSolicitud = ((Asociado)this._ventana.AsociadoDatos).Id.ToString();
+
+                    this._ventana.ConvertirEnterioMinimoABlanco();
                 }
 
                 #region trace
@@ -1260,11 +1265,19 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                     Interesado interesadoAux = this._interesadoServicios.ConsultarInteresadoConTodo((Interesado)this._ventana.InteresadoSolicitud);
                     this._ventana.NombreInteresadoSolicitud = ((Interesado)this._ventana.InteresadoSolicitud).Nombre;
                     this._ventana.IdInteresadoSolicitud = ((Interesado)this._ventana.InteresadoSolicitud).Id.ToString();
-                    //this._ventana.InteresadoDatos = (Interesado)this._ventana.InteresadoSolicitud;
-                    //this._ventana.NombreInteresadoDatos = ((Interesado)this._ventana.InteresadoSolicitud).Nombre;
-                    //this._ventana.IdInteresadoDatos = ((Interesado)this._ventana.InteresadoSolicitud).Id.ToString();
-                    this._ventana.InteresadoPaisSolicitud = interesadoAux.Pais != null ? interesadoAux.Pais.NombreEspanol : "";
-                    this._ventana.InteresadoEstadoSolicitud = interesadoAux.Estado != null ? interesadoAux.Estado : "";
+                    this._ventana.InteresadoDatos = (Interesado)this._ventana.InteresadoSolicitud;
+                    this._ventana.NombreInteresadoDatos = ((Interesado)this._ventana.InteresadoSolicitud).Nombre;
+                    this._ventana.IdInteresadoDatos = ((Interesado)this._ventana.InteresadoSolicitud).Id.ToString();
+
+                    if (interesadoAux != null)
+                    {
+                        this._ventana.InteresadoPaisSolicitud = interesadoAux.Pais != null ? interesadoAux.Pais.NombreEspanol : "";
+                        this._ventana.InteresadoEstadoSolicitud = interesadoAux.Estado != null ? interesadoAux.Estado : "";
+                        this._ventana.InteresadoPaisDatos = interesadoAux.Pais != null ? interesadoAux.Pais.NombreEspanol : "";
+                        this._ventana.InteresadoEstadoDatos = interesadoAux.Estado != null ? interesadoAux.Estado : "";
+                    }
+
+                    this._ventana.ConvertirEnterioMinimoABlanco();
                 }
 
                 #region trace
@@ -1293,17 +1306,26 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-                //if ((Interesado)this._ventana.InteresadoDatos != null)
-                //{
-                //    Interesado interesadoAux = this._interesadoServicios.ConsultarInteresadoConTodo((Interesado)this._ventana.InteresadoSolicitud);
-                //    this._ventana.InteresadoDatos = this._interesadoServicios.ConsultarInteresadoConTodo((Interesado)this._ventana.InteresadoDatos);
-                //    this._ventana.NombreInteresadoDatos = ((Interesado)this._ventana.InteresadoDatos).Nombre;
-                //    this._ventana.InteresadoSolicitud = (Interesado)this._ventana.InteresadoDatos;
-                //    this._ventana.NombreInteresadoSolicitud = ((Interesado)this._ventana.InteresadoDatos).Nombre;
-                //    this._ventana.IdInteresadoSolicitud = ((Interesado)this._ventana.InteresadoDatos).Id.ToString();
-                //    this._ventana.InteresadoPaisSolicitud = interesadoAux.Pais != null ? interesadoAux.Pais.NombreEspanol : "";
-                //    this._ventana.InteresadoCiudadSolicitud = interesadoAux.Ciudad != null ? interesadoAux.Ciudad : "";
-                //}
+                if (((Interesado)this._ventana.InteresadoSolicitud != null) || ((Interesado)this._ventana.InteresadoDatos != null))
+                {
+                    Interesado interesadoAux = this._interesadoServicios.ConsultarInteresadoConTodo((Interesado)this._ventana.InteresadoDatos);
+                    
+                    this._ventana.NombreInteresadoSolicitud = ((Interesado)this._ventana.InteresadoDatos).Nombre;
+                    this._ventana.IdInteresadoSolicitud = ((Interesado)this._ventana.InteresadoDatos).Id.ToString();
+                    this._ventana.InteresadoDatos = (Interesado)this._ventana.InteresadoDatos;
+                    this._ventana.NombreInteresadoDatos = ((Interesado)this._ventana.InteresadoDatos).Nombre;
+                    this._ventana.IdInteresadoDatos = ((Interesado)this._ventana.InteresadoDatos).Id.ToString();
+
+                    if (interesadoAux != null)
+                    {
+                        this._ventana.InteresadoPaisSolicitud = interesadoAux.Pais != null ? interesadoAux.Pais.NombreEspanol : "";
+                        this._ventana.InteresadoEstadoSolicitud = interesadoAux.Estado != null ? interesadoAux.Estado : "";
+                        this._ventana.InteresadoPaisDatos = interesadoAux.Pais != null ? interesadoAux.Pais.NombreEspanol : "";
+                        this._ventana.InteresadoEstadoDatos = interesadoAux.Estado != null ? interesadoAux.Estado : "";
+                    }
+
+                    this._ventana.ConvertirEnterioMinimoABlanco();
+                }
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -1460,6 +1482,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                     this._ventana.PoderDatos = ((Poder)this._ventana.PoderSolicitudFiltrar).Id.ToString();
                 }
 
+                this._ventana.ConvertirEnterioMinimoABlanco();
+
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
                     logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
@@ -1548,12 +1572,14 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-                //if ((Poder)this._ventana.PoderDatos != null)
-                //{
-                //    this._ventana.NumPoderDatos = ((Poder)this._ventana.PoderDatos).NumPoder;
-                //    this._ventana.PoderSolicitud = (Poder)this._ventana.PoderDatos;
-                //    this._ventana.NumPoderSolicitud = ((Poder)this._ventana.PoderDatos).NumPoder;
-                //}
+                if (((Poder)this._ventana.PoderSolicitudFiltrar != null) || ((Poder)this._ventana.PoderDatosFiltrar != null))
+                {
+                    this._ventana.NumPoderSolicitud = ((Poder)this._ventana.PoderDatosFiltrar).NumPoder;
+                    this._ventana.PoderSolicitud = ((Poder)this._ventana.PoderDatosFiltrar).Id.ToString();
+                    this._ventana.PoderDatos = ((Poder)this._ventana.PoderDatosFiltrar).Id.ToString();
+                }
+
+                this._ventana.ConvertirEnterioMinimoABlanco();
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -1728,16 +1754,16 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
             }
         }
 
-        //public void MostrarEtiqueta()
-        //{
-        //    Patente marcaAux = ((Patente)this._ventana.Patente);
-        //    if (((Patente)this._ventana.Patente).BEtiqueta)
-        //    {
-        //            EtiquetaMarca detalleEtiqueta = new EtiquetaMarca(ConfigurationManager.AppSettings["RutaImagenesDeMarcas"] + marcaAux.Id + ".jpg", marcaAux.Descripcion);
-        //            detalleEtiqueta.ShowDialog();
+        public void MostrarDiseno()
+        {
+            //Patente patenteAux = ((Patente)this._ventana.Patente);
+            //if (((Patente)this._ventana.Patente).BDibujo)
+            //{
+            //    EtiquetaMarca detalleEtiqueta = new EtiquetaMarca(ConfigurationManager.AppSettings["RutaImagenesDeMarcas"] + patenteAux.Id + ".jpg", patenteAux.Descripcion);
+            //    detalleEtiqueta.ShowDialog();
 
-        //    }
-        //}
+            //}
+        }
 
     }
 }
