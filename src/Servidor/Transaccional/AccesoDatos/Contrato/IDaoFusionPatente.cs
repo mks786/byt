@@ -9,7 +9,7 @@ namespace Trascend.Bolet.AccesoDatos.Contrato
         /// <summary>
         /// Metodo que consulta las fusionePatente dado unos parametros
         /// </summary>
-        /// <param name="Fusion">FusionPatente con parametros</param>
+        /// <param name="FusionPatente">FusionPatente con parametros</param>
         /// <returns>Lista de FusionesPatente solicitados</returns>
         IList<FusionPatente> ObtenerFusionesPatenteFiltro(FusionPatente FusionPatente);
     }
