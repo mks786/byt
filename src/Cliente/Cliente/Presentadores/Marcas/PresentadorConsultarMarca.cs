@@ -802,6 +802,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                     this._ventana.NombreAsociadoDatos = ((Asociado)this._ventana.AsociadoSolicitud).Nombre;
                     this._ventana.IdAsociadoDatos = ((Asociado)this._ventana.AsociadoSolicitud).Id.ToString();
 
+                    this._ventana.PintarAsociado(asociado.TipoCliente.Id);
                 }
 
                 #region trace
@@ -836,6 +837,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                     this._ventana.AsociadoSolicitud = (Asociado)this._ventana.AsociadoDatos;
                     this._ventana.NombreAsociadoSolicitud = ((Asociado)this._ventana.AsociadoDatos).Nombre;
                     this._ventana.IdAsociadoSolicitud = ((Asociado)this._ventana.AsociadoDatos).Id.ToString();
+
+                    this._ventana.PintarAsociado(asociado.TipoCliente.Id);
                 }
 
                 #region trace
