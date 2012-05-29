@@ -12,6 +12,8 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
     {
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
+        /// <summary> Metodo que consulta los agentes con sus poderes </summary>
+        /// <returns>Lista de agente</returns>
         public IList<Agente> ObtenerAgentesYPoderes()
         {
             IList<Agente> agentes;
@@ -44,6 +46,12 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
             return agentes;
         }
 
+
+        /// <summary>
+        /// Metodo que Consulta los agentes dado unos parametros en especificos
+        /// </summary>
+        /// <param name="agente">Agente con Filtros</param>
+        /// <returns>Lista de Agentes</returns>
         public IList<Agente> ObtenerAgentesFiltro(Agente agente)
         {
             IList<Agente> agentes = null;
@@ -89,6 +97,12 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
             return agentes;
         }
 
+
+        /// <summary>
+        /// metodo que consulta todos los agentes que no tienen poder asignado
+        /// </summary>
+        /// <param name="agente">Agente con Filtro</param>
+        /// <returns>Lista de Agentes</returns>
         public IList<Agente> ObtenerAgentesSinPoderesFiltro(Agente agente)
         {
             IList<Agente> agentes = null;
@@ -132,6 +146,12 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
             return agentes;
         }
 
+
+        /// <summary>
+        /// Metodo que consulta los agentes de un poder
+        /// </summary>
+        /// <param name="poder">Poder solicitado</param>
+        /// <returns>Lista de Agentes</returns>
         public IList<Agente> ObtenerAgentesDeUnPoder(Poder poder)
         {
             IList<Agente> agentes;
@@ -167,6 +187,11 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
         }
 
 
+        /// <summary>
+        /// Metodo que regresa los Agentes que estan Vacios
+        /// </summary>
+        /// <param name="agente">Agente solicitado</param>
+        /// <returns>Lista de agentes</returns>
         public IList<Agente> ObtenerAgentesVacios(Agente agente)
         {
             IList<Agente> agentes = null;

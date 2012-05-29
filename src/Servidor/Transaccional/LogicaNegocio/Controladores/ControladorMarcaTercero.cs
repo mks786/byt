@@ -174,7 +174,7 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
                         }
                     }
 
-                    marcaTercero.Tipo = "MP";
+                   
                     marcaTercero.MarcasBaseTercero = new List<MarcaBaseTercero>();
 
                     ComandoBase<bool> comando = FabricaComandosMarcaTercero.ObtenerComandoInsertarOModificar(marcaTercero);
