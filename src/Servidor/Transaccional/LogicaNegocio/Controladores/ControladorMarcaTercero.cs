@@ -78,7 +78,6 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
                     contador = int.Parse(contadorStr) + 1;
                     marcaTercero.Id = idBuscado.Receptor.ObjetoAlmacenado.Substring(0, 2) + contador.ToString();
                     marcaTercero.Anexo = 1;
-                    marcaTercero.Tipo = "MP";
                     if ((id == "E") && (marcaTercero.Descripcion[1].ToString().ToUpper() == "T"))
                     {
 

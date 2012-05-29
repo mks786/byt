@@ -1260,6 +1260,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to SITUACION_ANUALIDAD.
+        /// </summary>
+        public static string cbiSituacionAnualidad {
+            get {
+                return ResourceManager.GetString("cbiSituacionAnualidad", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Sólo Administración.
         /// </summary>
         public static string cbiSoloAdministracion {
@@ -1310,6 +1319,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string cbiTipoBusqueda {
             get {
                 return ResourceManager.GetString("cbiTipoBusqueda", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TIPO_CLASE_NACIONAL.
+        /// </summary>
+        public static string cbiTipoClaseNacional {
+            get {
+                return ResourceManager.GetString("cbiTipoClaseNacional", resourceCulture);
             }
         }
         

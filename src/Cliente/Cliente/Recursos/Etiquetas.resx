@@ -2711,4 +2711,10 @@ de Gracia</value>
   <data name="lsvRegistro" xml:space="preserve">
     <value>Registro</value>
   </data>
+  <data name="cbiSituacionAnualidad" xml:space="preserve">
+    <value>SITUACION_ANUALIDAD</value>
+  </data>
+  <data name="cbiTipoClaseNacional" xml:space="preserve">
+    <value>TIPO_CLASE_NACIONAL</value>
+  </data>
 </root>

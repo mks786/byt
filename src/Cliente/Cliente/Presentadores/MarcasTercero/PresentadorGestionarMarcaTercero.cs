@@ -371,13 +371,17 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
                 this._ventana.BoletinPublicacion = this.BuscarBoletin(boletines, marcaTercero.BoletinPublicacion);
             }
 
-            IList<ListaDatosDominio> tiposMarcas = this._listaDatosDominioServicios.
-            ConsultarListaDatosDominioPorParametro(new ListaDatosDominio(Recursos.Etiquetas.cbiCategoriaMarca));
-            ListaDatosDominio primerTipoMarca = new ListaDatosDominio();
-            primerTipoMarca.Id = "NGN";
-            tiposMarcas.Insert(0, primerTipoMarca);
-            this._ventana.TiposCbx = tiposMarcas;
 
+
+            IList<ListaDatosDominio> tiposMarcas = this._listaDatosDominioServicios.
+            ConsultarListaDatosDominioPorParametro(new ListaDatosDominio(Recursos.Etiquetas.cbiTipoClaseNacional));
+            ListaDatosDominio TipoMarca = new ListaDatosDominio();
+            this._ventana.TiposDeCasos = tiposMarcas;
+            if (!_agregar)
+            {
+                TipoMarca.Id = marcaTercero.Tipo;
+                this._ventana.TipoDeCaso = this.BuscarListaDeDominio(tiposMarcas, TipoMarca);
+            }
             #region trace
             if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
                 logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
@@ -422,7 +426,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
 
             //if (null != this._ventana.TipoCbx)
             //    marcaTercero.Tipo = !((ListaDatosDominio)this._ventana.TipoCbx).Id.Equals("NGN") ? ((ListaDatosDominio)this._ventana.TipoCbx).Id : null;
-
+            marcaTercero.Tipo = ((ListaDatosDominio)this._ventana.TipoDeCaso).Id;
             marcaTercero.ComentarioEsp = this._ventana.ComentarioClienteEspanol;
             marcaTercero.ComentarioIng = this._ventana.ComentarioClienteIngles;
 
