@@ -12,6 +12,7 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
     {
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
+
         public IList<Marca> ObtenerMarcasFiltro(Marca marca)
         {
             IList<Marca> Marcas = null;
@@ -122,7 +123,7 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
             catch (Exception ex)
             {
                 logger.Error(ex.Message);
-                throw new ApplicationException(Recursos.Errores.ExConsultarTodos);
+                throw new ApplicationException(Recursos.Errores.exObtenerMarcasFiltro);
             }
             finally
             {
@@ -130,6 +131,7 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
             }
             return Marcas;
         }
+
 
         public Marca ObtenerMarcaConTodo(Marca marca)
         {
@@ -152,7 +154,7 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
             catch (Exception ex)
             {
                 logger.Error(ex.Message);
-                throw new ApplicationException(Recursos.Errores.ExConsultarTodosUsuariosPorUsuario);
+                throw new ApplicationException(Recursos.Errores.exObtenerMarcaConTodo);
             }
             finally
             {
@@ -161,6 +163,7 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
 
             return retorno;
         }
+
 
         public IList<Marca> ObtenerMarcasPorFechaRenovacion(Marca marca, DateTime[] fechas)
         {
@@ -204,7 +207,7 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
             catch (Exception ex)
             {
                 logger.Error(ex.Message);
-                throw new ApplicationException(Recursos.Errores.ExConsultarTodos);
+                throw new ApplicationException(Recursos.Errores.exObtenerMarcasPorFechaRenovacion);
             }
             finally
             {

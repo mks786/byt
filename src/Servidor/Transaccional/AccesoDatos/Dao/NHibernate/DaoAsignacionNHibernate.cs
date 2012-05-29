@@ -13,7 +13,6 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
 
-
         public IList<Asignacion> ObtenerAsignacionesPorCarta(Carta carta)
         {
             IList<Asignacion> asignaciones = null;
@@ -35,7 +34,7 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
             catch (Exception ex)
             {
                 logger.Error(ex.Message);
-                throw new ApplicationException(Recursos.Errores.ExConsultarTodos);
+                throw new ApplicationException(Recursos.Errores.exObtenerAsignacionesPorCarta);
             }
             finally
             {

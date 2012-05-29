@@ -12,6 +12,7 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
     {
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
+
         public IList<MarcaBaseTercero> ObtenerMarcaBaseTerceroFiltro(MarcaBaseTercero marcaBaseTercero)
         {
             IList<MarcaBaseTercero> MarcasTercero = null;
@@ -42,7 +43,7 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
             catch (Exception ex)
             {
                 logger.Error(ex.Message);
-                throw new ApplicationException(Recursos.Errores.ExConsultarTodos);
+                throw new ApplicationException(Recursos.Errores.exObtenerMarcaBaseTerceroFiltro);
             }
             finally
             {
@@ -55,13 +56,71 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
         public int ObtenerMaxSecuencia()
         {
             int idConsultado;
-            string consulta = string.Format(Recursos.ConsultasHQL.ObtenerMaxSecuenciaMarcaBaseTercero);
-            IQuery query = Session.CreateQuery(consulta);
-            idConsultado = query.UniqueResult<int>();
 
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                string consulta = string.Format(Recursos.ConsultasHQL.ObtenerMaxSecuenciaMarcaBaseTercero);
+                IQuery query = Session.CreateQuery(consulta);
+                idConsultado = query.UniqueResult<int>();
+
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                throw new ApplicationException(Recursos.Errores.exObtenerMaxSecuenciaMarcaBaseTercero);
+            }
+            finally
+            {
+                Session.Close();
+            }
 
             return idConsultado;
         }
+
+
+        public List<MarcaBaseTercero> ObtenerTodosPorId(MarcaBaseTercero marcaBaseTercero)
+        {
+
+            List<MarcaBaseTercero> MarcasBaseTercero = null;
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                string consulta = string.Format(Recursos.ConsultasHQL.ObtenerTodosMarcaBaseTerceroPorId, marcaBaseTercero.MarcaTercero.Id, marcaBaseTercero.MarcaTercero.Anexo);
+                IQuery query = Session.CreateQuery(consulta);
+                MarcasBaseTercero = (List<MarcaBaseTercero>)query.List<MarcaBaseTercero>();
+
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                throw new ApplicationException(Recursos.Errores.exObtenerTodosMarcaBaseTercero);
+            }
+            finally
+            {
+                Session.Close();
+            }
+            return MarcasBaseTercero;
+
+
+        }
+
 
         //public Marca ObtenerMarcaConTodo(Marca marca)
         //{
@@ -93,20 +152,5 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
 
         //    return retorno;
         //}
-
-
-
-        public List<MarcaBaseTercero> ObtenerTodosPorId(MarcaBaseTercero marcaBaseTercero)
-        {
-            
-                List<MarcaBaseTercero> MarcasBaseTercero = null;
-                string consulta = string.Format(Recursos.ConsultasHQL.ObtenerTodosMarcaBaseTerceroPorId,marcaBaseTercero.MarcaTercero.Id, marcaBaseTercero.MarcaTercero.Anexo);
-                IQuery query = Session.CreateQuery(consulta);
-                MarcasBaseTercero =(List<MarcaBaseTercero>)query.List<MarcaBaseTercero>();
-            
-                return MarcasBaseTercero;
-
-
-        }
     }
 }

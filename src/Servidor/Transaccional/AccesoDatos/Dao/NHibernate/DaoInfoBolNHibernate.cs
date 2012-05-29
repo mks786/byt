@@ -12,6 +12,7 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
     {
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
+
         public IList<InfoBol> ObtenerInfoBolesPorMarca(Marca marca)
         {
             IList<InfoBol> InfoBoles;
@@ -34,7 +35,7 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
             catch (Exception ex)
             {
                 logger.Error(ex.Message);
-                throw new ApplicationException(Recursos.Errores.ExConsultarTodos);
+                throw new ApplicationException(Recursos.Errores.exObtenerInfobolesPorMarca);
             }
             finally
             {

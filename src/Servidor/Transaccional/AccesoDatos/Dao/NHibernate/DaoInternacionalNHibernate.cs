@@ -11,6 +11,7 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
     {
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
+
         public Internacional ObtenerPorId(int id)
         {
             Internacional retorno;
@@ -33,7 +34,7 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
             catch (System.Exception ex)
             {
                 logger.Error(ex.Message);
-                throw new ApplicationException(Recursos.Errores.ExConsultarTodosUsuariosPorUsuario);
+                throw new ApplicationException(Recursos.Errores.exObtenerInternacionalPorId);
             }
             finally
             {

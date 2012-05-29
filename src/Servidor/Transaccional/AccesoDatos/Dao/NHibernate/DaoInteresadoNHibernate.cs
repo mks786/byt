@@ -38,7 +38,7 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
             catch (Exception ex)
             {
                 logger.Error(ex.Message);
-                throw new ApplicationException(Recursos.Errores.ExConsultarTodosUsuariosPorUsuario);
+                throw new ApplicationException(Recursos.Errores.exObtenerInteresadoConTodo);
             }
             finally
             {
@@ -47,6 +47,7 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
 
             return retorno;
         }
+
 
         /// <summary>
         /// Método que obtiene un interesado con uno o mas filtros
@@ -88,7 +89,7 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
             catch (Exception ex)
             {
                 logger.Error(ex.Message);
-                throw new ApplicationException(Recursos.Errores.ExConsultarTodos);
+                throw new ApplicationException(Recursos.Errores.exObtenerInteresadosFiltro);
             }
             finally
             {
@@ -96,6 +97,7 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
             }
             return interesados;
         }
+
 
 
         public Interesado ObtenerInteresadosDeUnPoder(Poder poder)
@@ -120,7 +122,7 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
             catch (Exception ex)
             {
                 logger.Error(ex.Message);
-                throw new ApplicationException(Recursos.Errores.ExConsultarTodosUsuariosPorUsuario);
+                throw new ApplicationException(Recursos.Errores.exObtenerInteresadosDeUnPoder);
             }
             finally
             {

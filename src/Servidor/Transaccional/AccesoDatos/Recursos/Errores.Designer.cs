@@ -61,6 +61,15 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Ocurrió un error consultando  la Auditoría.
+        /// </summary>
+        internal static string exAuditoriaPorFK {
+            get {
+                return ResourceManager.GetString("exAuditoriaPorFK", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Ocurrió un error consultando todos.
         /// </summary>
         internal static string ExConsultarTodos {
@@ -151,11 +160,380 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Ocurrió un error consultando los Agentes de un Poder.
+        /// </summary>
+        internal static string exObtenerAgentesDeUnPoder {
+            get {
+                return ResourceManager.GetString("exObtenerAgentesDeUnPoder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ocurrió un error consultando los Agentes por filtro.
+        /// </summary>
+        internal static string exObtenerAgentesFiltro {
+            get {
+                return ResourceManager.GetString("exObtenerAgentesFiltro", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ocurrió un error consultando los agente sin Poderes a través del filtro.
+        /// </summary>
+        internal static string exObtenerAgentesSinPoderesFiltro {
+            get {
+                return ResourceManager.GetString("exObtenerAgentesSinPoderesFiltro", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ocurrió un error consultando los agentes.
+        /// </summary>
+        internal static string exObtenerAgentesVacios {
+            get {
+                return ResourceManager.GetString("exObtenerAgentesVacios", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ocurrió un error consultando los Agentes con sus Poderes.
+        /// </summary>
+        internal static string exObtenerAgentesYPoderes {
+            get {
+                return ResourceManager.GetString("exObtenerAgentesYPoderes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ocurrió un error consultando la Anualidad con todo.
+        /// </summary>
+        internal static string exObtenerAnualidadConTodo {
+            get {
+                return ResourceManager.GetString("exObtenerAnualidadConTodo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ocurrió un error consultando las Anualidades por filtro.
+        /// </summary>
+        internal static string exObtenerAnualidadesFiltro {
+            get {
+                return ResourceManager.GetString("exObtenerAnualidadesFiltro", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ocurrió un error consultando las Anualidades por Patente.
+        /// </summary>
+        internal static string exObtenerAnualidadesPorPatente {
+            get {
+                return ResourceManager.GetString("exObtenerAnualidadesPorPatente", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ocurrió un error consultando las Asignaciones de una Carta.
+        /// </summary>
+        internal static string exObtenerAsignacionesPorCarta {
+            get {
+                return ResourceManager.GetString("exObtenerAsignacionesPorCarta", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ocurrió un error consultando el Asociado con Todo.
+        /// </summary>
+        internal static string exObtenerAsociadoConTodo {
+            get {
+                return ResourceManager.GetString("exObtenerAsociadoConTodo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ocurrió un error consultando los Asociados por filtro.
+        /// </summary>
+        internal static string exObtenerAsociadosFiltro {
+            get {
+                return ResourceManager.GetString("exObtenerAsociadosFiltro", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ocurrió un error consultando las búsquedas de una Marca.
+        /// </summary>
+        internal static string exObtenerBusquedasPorMarca {
+            get {
+                return ResourceManager.GetString("exObtenerBusquedasPorMarca", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ocurrió un error consultando los Cambios de Domicilio de una Marca.
+        /// </summary>
+        internal static string exObtenerCambioDeDomicilioMarca {
+            get {
+                return ResourceManager.GetString("exObtenerCambioDeDomicilioMarca", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ocurrió un error consultando los Cambios de Domicilio de una Patente.
+        /// </summary>
+        internal static string exObtenerCambioDeDomicilioPatente {
+            get {
+                return ResourceManager.GetString("exObtenerCambioDeDomicilioPatente", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ocurrió un error consultando los Cambios de Nombre de una Marca.
+        /// </summary>
+        internal static string exObtenerCambioDeNombreMarca {
+            get {
+                return ResourceManager.GetString("exObtenerCambioDeNombreMarca", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ocurrió un error consultando los Cambios de Nombre de una Patente.
+        /// </summary>
+        internal static string exObtenerCambioDeNombrePatente {
+            get {
+                return ResourceManager.GetString("exObtenerCambioDeNombrePatente", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ocurrió un error consultando los Cambios de Peticionarios de una Marca.
+        /// </summary>
+        internal static string exObtenerCambioPeticionarioMarca {
+            get {
+                return ResourceManager.GetString("exObtenerCambioPeticionarioMarca", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ocurrió un error consultando los Cambios de Peticionarios de una Patente.
+        /// </summary>
+        internal static string exObtenerCambioPeticionarioPatente {
+            get {
+                return ResourceManager.GetString("exObtenerCambioPeticionarioPatente", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ocurrió un error consultando las Cartas por filtro.
+        /// </summary>
+        internal static string exObtenerCarta {
+            get {
+                return ResourceManager.GetString("exObtenerCarta", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ocurrió un error consultando las Cartas Outs por filtro.
+        /// </summary>
+        internal static string exObtenerCartaOutFiltro {
+            get {
+                return ResourceManager.GetString("exObtenerCartaOutFiltro", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ocurrió un error consultando las Cesiones de una Marca.
+        /// </summary>
+        internal static string exObtenerCesionPorMarca {
+            get {
+                return ResourceManager.GetString("exObtenerCesionPorMarca", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ocurrió un error consultando las Cesiones de una Patente.
+        /// </summary>
+        internal static string exObtenerCesionPorPatente {
+            get {
+                return ResourceManager.GetString("exObtenerCesionPorPatente", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ocurrió un error consultando los Contactos de un Asociado.
+        /// </summary>
+        internal static string exObtenerContactosPorAsociado {
+            get {
+                return ResourceManager.GetString("exObtenerContactosPorAsociado", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ocurrió un error consultando los Datos de Transferencia de un Asociado.
+        /// </summary>
+        internal static string exObtenerDatosTransferenciaPorAsociado {
+            get {
+                return ResourceManager.GetString("exObtenerDatosTransferenciaPorAsociado", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Ocurrió un error consultando las Fechas de una Patente.
         /// </summary>
         internal static string ExObtenerFechasPatente {
             get {
                 return ResourceManager.GetString("ExObtenerFechasPatente", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ocurrió un error consultando las Fusiones de una Marca.
+        /// </summary>
+        internal static string exObtenerFusionPorMarca {
+            get {
+                return ResourceManager.GetString("exObtenerFusionPorMarca", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ocurrió un error consultando las Fusiones de una Patente.
+        /// </summary>
+        internal static string exObtenerFusionPorPatente {
+            get {
+                return ResourceManager.GetString("exObtenerFusionPorPatente", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ocurrió un error consultando las InfoBoles de una Marca.
+        /// </summary>
+        internal static string exObtenerInfobolesPorMarca {
+            get {
+                return ResourceManager.GetString("exObtenerInfobolesPorMarca", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ocurrió un error consultando las InfoBoles de una Patente.
+        /// </summary>
+        internal static string exObtenerInfobolesPorPatente {
+            get {
+                return ResourceManager.GetString("exObtenerInfobolesPorPatente", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ocurrió un error consultando el Interesado con todo.
+        /// </summary>
+        internal static string exObtenerInteresadoConTodo {
+            get {
+                return ResourceManager.GetString("exObtenerInteresadoConTodo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ocurrió un error consultando los interesados de un poder.
+        /// </summary>
+        internal static string exObtenerInteresadosDeUnPoder {
+            get {
+                return ResourceManager.GetString("exObtenerInteresadosDeUnPoder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ocurrió un error filtrando los Interesados.
+        /// </summary>
+        internal static string exObtenerInteresadosFiltro {
+            get {
+                return ResourceManager.GetString("exObtenerInteresadosFiltro", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ocurrió un error consultando  una Clase Internacional por Id.
+        /// </summary>
+        internal static string exObtenerInternacionalPorId {
+            get {
+                return ResourceManager.GetString("exObtenerInternacionalPorId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ocurrió un error consultando los Inventores de una Patente.
+        /// </summary>
+        internal static string exObtenerInventoresPorPatente {
+            get {
+                return ResourceManager.GetString("exObtenerInventoresPorPatente", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ocurrió un error consultando las Licencias de una Marca.
+        /// </summary>
+        internal static string exObtenerLicenciaMarca {
+            get {
+                return ResourceManager.GetString("exObtenerLicenciaMarca", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ocurrió un error consultando las Licencias de una Patente.
+        /// </summary>
+        internal static string exObtenerLicenciaPatente {
+            get {
+                return ResourceManager.GetString("exObtenerLicenciaPatente", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ocurrió un error consultando una de las listas de valores guardadas en CFG_DOMINIOS.
+        /// </summary>
+        internal static string exObtenerListaDatosDominio {
+            get {
+                return ResourceManager.GetString("exObtenerListaDatosDominio", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ocurrió un error consultando una de las listas de valores guardadas en LVALORES.
+        /// </summary>
+        internal static string exObtenerListaDatosValores {
+            get {
+                return ResourceManager.GetString("exObtenerListaDatosValores", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ocurrió un error filtrando las Marcas Base Terceros.
+        /// </summary>
+        internal static string exObtenerMarcaBaseTerceroFiltro {
+            get {
+                return ResourceManager.GetString("exObtenerMarcaBaseTerceroFiltro", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ocurrió un error consultando la Marca .
+        /// </summary>
+        internal static string exObtenerMarcaConTodo {
+            get {
+                return ResourceManager.GetString("exObtenerMarcaConTodo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ocurrió un error filtrando las Marcas.
+        /// </summary>
+        internal static string exObtenerMarcasFiltro {
+            get {
+                return ResourceManager.GetString("exObtenerMarcasFiltro", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ocurrió un error consultando las marcas en función de la fecha de Renovación.
+        /// </summary>
+        internal static string exObtenerMarcasPorFechaRenovacion {
+            get {
+                return ResourceManager.GetString("exObtenerMarcasPorFechaRenovacion", resourceCulture);
             }
         }
         
@@ -178,11 +556,29 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Ocurrió un error consultando la Anualidad mayor.
+        /// </summary>
+        internal static string exObtenerMaxAnualidad {
+            get {
+                return ResourceManager.GetString("exObtenerMaxAnualidad", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Ocurrió un error consultando el máximo Id de las Marcas Tercero.
         /// </summary>
         internal static string exObtenerMaxIdMarcaTercero {
             get {
                 return ResourceManager.GetString("exObtenerMaxIdMarcaTercero", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ocurrió un error obteniendo la máxima secuencia de las Marca Base Terceros.
+        /// </summary>
+        internal static string exObtenerMaxSecuenciaMarcaBaseTercero {
+            get {
+                return ResourceManager.GetString("exObtenerMaxSecuenciaMarcaBaseTercero", resourceCulture);
             }
         }
         
@@ -277,6 +673,24 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Ocurrió un error consultando las Resoluciones de un Boletín.
+        /// </summary>
+        internal static string exObtenerResolucionesDeBoletin {
+            get {
+                return ResourceManager.GetString("exObtenerResolucionesDeBoletin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ocurrió un error consultando todos los Marca Base Terceros por Id.
+        /// </summary>
+        internal static string exObtenerTodosMarcaBaseTercero {
+            get {
+                return ResourceManager.GetString("exObtenerTodosMarcaBaseTercero", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Ocurrió un error consultando la última Renovación.
         /// </summary>
         internal static string ExObtenerUltimaRenovacion {
@@ -291,6 +705,15 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         internal static string ExPatentesFiltro {
             get {
                 return ResourceManager.GetString("ExPatentesFiltro", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ocurrió un error Transfiriendo las Plantillas.
+        /// </summary>
+        internal static string exTransferirPlantilla {
+            get {
+                return ResourceManager.GetString("exTransferirPlantilla", resourceCulture);
             }
         }
     }

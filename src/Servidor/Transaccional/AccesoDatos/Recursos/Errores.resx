@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="exAuditoriaPorFK" xml:space="preserve">
+    <value>Ocurrió un error consultando  la Auditoría</value>
+  </data>
   <data name="ExConsultarTodos" xml:space="preserve">
     <value>Ocurrió un error consultando todos</value>
   </data>
@@ -147,8 +150,131 @@
   <data name="ExInsertarOModificar" xml:space="preserve">
     <value>Ocurrió un error insertando o modificando datos</value>
   </data>
+  <data name="exObtenerAgentesDeUnPoder" xml:space="preserve">
+    <value>Ocurrió un error consultando los Agentes de un Poder</value>
+  </data>
+  <data name="exObtenerAgentesFiltro" xml:space="preserve">
+    <value>Ocurrió un error consultando los Agentes por filtro</value>
+  </data>
+  <data name="exObtenerAgentesSinPoderesFiltro" xml:space="preserve">
+    <value>Ocurrió un error consultando los agente sin Poderes a través del filtro</value>
+  </data>
+  <data name="exObtenerAgentesVacios" xml:space="preserve">
+    <value>Ocurrió un error consultando los agentes</value>
+  </data>
+  <data name="exObtenerAgentesYPoderes" xml:space="preserve">
+    <value>Ocurrió un error consultando los Agentes con sus Poderes</value>
+  </data>
+  <data name="exObtenerAnualidadConTodo" xml:space="preserve">
+    <value>Ocurrió un error consultando la Anualidad con todo</value>
+  </data>
+  <data name="exObtenerAnualidadesFiltro" xml:space="preserve">
+    <value>Ocurrió un error consultando las Anualidades por filtro</value>
+  </data>
+  <data name="exObtenerAnualidadesPorPatente" xml:space="preserve">
+    <value>Ocurrió un error consultando las Anualidades por Patente</value>
+  </data>
+  <data name="exObtenerAsignacionesPorCarta" xml:space="preserve">
+    <value>Ocurrió un error consultando las Asignaciones de una Carta</value>
+  </data>
+  <data name="exObtenerAsociadoConTodo" xml:space="preserve">
+    <value>Ocurrió un error consultando el Asociado con Todo</value>
+  </data>
+  <data name="exObtenerAsociadosFiltro" xml:space="preserve">
+    <value>Ocurrió un error consultando los Asociados por filtro</value>
+  </data>
+  <data name="exObtenerBusquedasPorMarca" xml:space="preserve">
+    <value>Ocurrió un error consultando las búsquedas de una Marca</value>
+  </data>
+  <data name="exObtenerCambioDeDomicilioMarca" xml:space="preserve">
+    <value>Ocurrió un error consultando los Cambios de Domicilio de una Marca</value>
+  </data>
+  <data name="exObtenerCambioDeDomicilioPatente" xml:space="preserve">
+    <value>Ocurrió un error consultando los Cambios de Domicilio de una Patente</value>
+  </data>
+  <data name="exObtenerCambioDeNombreMarca" xml:space="preserve">
+    <value>Ocurrió un error consultando los Cambios de Nombre de una Marca</value>
+  </data>
+  <data name="exObtenerCambioDeNombrePatente" xml:space="preserve">
+    <value>Ocurrió un error consultando los Cambios de Nombre de una Patente</value>
+  </data>
+  <data name="exObtenerCambioPeticionarioMarca" xml:space="preserve">
+    <value>Ocurrió un error consultando los Cambios de Peticionarios de una Marca</value>
+  </data>
+  <data name="exObtenerCambioPeticionarioPatente" xml:space="preserve">
+    <value>Ocurrió un error consultando los Cambios de Peticionarios de una Patente</value>
+  </data>
+  <data name="exObtenerCarta" xml:space="preserve">
+    <value>Ocurrió un error consultando las Cartas por filtro</value>
+  </data>
+  <data name="exObtenerCartaOutFiltro" xml:space="preserve">
+    <value>Ocurrió un error consultando las Cartas Outs por filtro</value>
+  </data>
+  <data name="exObtenerCesionPorMarca" xml:space="preserve">
+    <value>Ocurrió un error consultando las Cesiones de una Marca</value>
+  </data>
+  <data name="exObtenerCesionPorPatente" xml:space="preserve">
+    <value>Ocurrió un error consultando las Cesiones de una Patente</value>
+  </data>
+  <data name="exObtenerContactosPorAsociado" xml:space="preserve">
+    <value>Ocurrió un error consultando los Contactos de un Asociado</value>
+  </data>
+  <data name="exObtenerDatosTransferenciaPorAsociado" xml:space="preserve">
+    <value>Ocurrió un error consultando los Datos de Transferencia de un Asociado</value>
+  </data>
   <data name="ExObtenerFechasPatente" xml:space="preserve">
     <value>Ocurrió un error consultando las Fechas de una Patente</value>
+  </data>
+  <data name="exObtenerFusionPorMarca" xml:space="preserve">
+    <value>Ocurrió un error consultando las Fusiones de una Marca</value>
+  </data>
+  <data name="exObtenerFusionPorPatente" xml:space="preserve">
+    <value>Ocurrió un error consultando las Fusiones de una Patente</value>
+  </data>
+  <data name="exObtenerInfobolesPorMarca" xml:space="preserve">
+    <value>Ocurrió un error consultando las InfoBoles de una Marca</value>
+  </data>
+  <data name="exObtenerInfobolesPorPatente" xml:space="preserve">
+    <value>Ocurrió un error consultando las InfoBoles de una Patente</value>
+  </data>
+  <data name="exObtenerInteresadoConTodo" xml:space="preserve">
+    <value>Ocurrió un error consultando el Interesado con todo</value>
+  </data>
+  <data name="exObtenerInteresadosDeUnPoder" xml:space="preserve">
+    <value>Ocurrió un error consultando los interesados de un poder</value>
+  </data>
+  <data name="exObtenerInteresadosFiltro" xml:space="preserve">
+    <value>Ocurrió un error filtrando los Interesados</value>
+  </data>
+  <data name="exObtenerInternacionalPorId" xml:space="preserve">
+    <value>Ocurrió un error consultando  una Clase Internacional por Id</value>
+  </data>
+  <data name="exObtenerInventoresPorPatente" xml:space="preserve">
+    <value>Ocurrió un error consultando los Inventores de una Patente</value>
+  </data>
+  <data name="exObtenerLicenciaMarca" xml:space="preserve">
+    <value>Ocurrió un error consultando las Licencias de una Marca</value>
+  </data>
+  <data name="exObtenerLicenciaPatente" xml:space="preserve">
+    <value>Ocurrió un error consultando las Licencias de una Patente</value>
+  </data>
+  <data name="exObtenerListaDatosDominio" xml:space="preserve">
+    <value>Ocurrió un error consultando una de las listas de valores guardadas en CFG_DOMINIOS</value>
+  </data>
+  <data name="exObtenerListaDatosValores" xml:space="preserve">
+    <value>Ocurrió un error consultando una de las listas de valores guardadas en LVALORES</value>
+  </data>
+  <data name="exObtenerMarcaBaseTerceroFiltro" xml:space="preserve">
+    <value>Ocurrió un error filtrando las Marcas Base Terceros</value>
+  </data>
+  <data name="exObtenerMarcaConTodo" xml:space="preserve">
+    <value>Ocurrió un error consultando la Marca </value>
+  </data>
+  <data name="exObtenerMarcasFiltro" xml:space="preserve">
+    <value>Ocurrió un error filtrando las Marcas</value>
+  </data>
+  <data name="exObtenerMarcasPorFechaRenovacion" xml:space="preserve">
+    <value>Ocurrió un error consultando las marcas en función de la fecha de Renovación</value>
   </data>
   <data name="exObtenerMarcaTerceroFiltro" xml:space="preserve">
     <value>Ocurrió un error consuntando las Marcas Tercero por filtro</value>
@@ -156,8 +282,14 @@
   <data name="exObtenerMaxAnexoMarcaTercero" xml:space="preserve">
     <value>Ocurrió un error consultando un Anexo de una Marca Tercero</value>
   </data>
+  <data name="exObtenerMaxAnualidad" xml:space="preserve">
+    <value>Ocurrió un error consultando la Anualidad mayor</value>
+  </data>
   <data name="exObtenerMaxIdMarcaTercero" xml:space="preserve">
     <value>Ocurrió un error consultando el máximo Id de las Marcas Tercero</value>
+  </data>
+  <data name="exObtenerMaxSecuenciaMarcaBaseTercero" xml:space="preserve">
+    <value>Ocurrió un error obteniendo la máxima secuencia de las Marca Base Terceros</value>
   </data>
   <data name="exObtenerMemoriasPorPatente" xml:space="preserve">
     <value>Ocurrió un error al consultar las Memorias de una Patente</value>
@@ -189,10 +321,19 @@
   <data name="ExObtenerPorId" xml:space="preserve">
     <value>Ocurrió un error consultando por id</value>
   </data>
+  <data name="exObtenerResolucionesDeBoletin" xml:space="preserve">
+    <value>Ocurrió un error consultando las Resoluciones de un Boletín</value>
+  </data>
+  <data name="exObtenerTodosMarcaBaseTercero" xml:space="preserve">
+    <value>Ocurrió un error consultando todos los Marca Base Terceros por Id</value>
+  </data>
   <data name="ExObtenerUltimaRenovacion" xml:space="preserve">
     <value>Ocurrió un error consultando la última Renovación</value>
   </data>
   <data name="ExPatentesFiltro" xml:space="preserve">
     <value>Ocurrió un error filtrando las Patentes</value>
+  </data>
+  <data name="exTransferirPlantilla" xml:space="preserve">
+    <value>Ocurrió un error Transfiriendo las Plantillas</value>
   </data>
 </root>

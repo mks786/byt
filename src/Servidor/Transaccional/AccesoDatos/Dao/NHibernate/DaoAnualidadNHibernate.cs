@@ -12,6 +12,7 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
     {
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
+
         public IList<Anualidad> ObtenerAnualidadesFiltro(int idAnualidad)
         {
             IList<Anualidad> Anualidads = null;
@@ -40,7 +41,7 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
                 //    variosFiltros = true;
                 //}
 
-        
+
 
                 //if (!string.IsNullOrEmpty(Anualidad.Fichas))
                 //{
@@ -85,7 +86,7 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
             catch (Exception ex)
             {
                 logger.Error(ex.Message);
-                throw new ApplicationException(Recursos.Errores.ExConsultarTodos);
+                throw new ApplicationException(Recursos.Errores.exObtenerAnualidadesFiltro);
             }
             finally
             {
@@ -93,6 +94,7 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
             }
             return Anualidads;
         }
+
 
         public IList<Anualidad> ObtenerAnualidadesPorPatente(int idpatente)
         {
@@ -106,7 +108,7 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
                 #endregion
 
                 string filtro = "";
-                string cabecera = string.Format(Recursos.ConsultasHQL.CabeceraObtenerAnualidadesPorPatente,idpatente);
+                string cabecera = string.Format(Recursos.ConsultasHQL.CabeceraObtenerAnualidadesPorPatente, idpatente);
 
 
                 IQuery query = Session.CreateQuery(cabecera + filtro);
@@ -120,7 +122,7 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
             catch (Exception ex)
             {
                 logger.Error(ex.Message);
-                throw new ApplicationException(Recursos.Errores.ExConsultarTodos);
+                throw new ApplicationException(Recursos.Errores.exObtenerAnualidadesPorPatente);
             }
             finally
             {
@@ -133,13 +135,34 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
         public int ObtenerMaxIdAnualidad()
         {
             int idConsultado = 0;
-            string consulta = string.Format(Recursos.ConsultasHQL.ObtenerMaxAnualidad);
-            IQuery query = Session.CreateQuery(consulta);
-            idConsultado = query.UniqueResult<int>();
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
 
+                string consulta = string.Format(Recursos.ConsultasHQL.ObtenerMaxAnualidad);
+                IQuery query = Session.CreateQuery(consulta);
+                idConsultado = query.UniqueResult<int>();
 
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Saliendo del Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                throw new ApplicationException(Recursos.Errores.exObtenerMaxAnualidad);
+            }
+            finally
+            {
+                Session.Close();
+            }
             return idConsultado;
         }
+
 
         public Anualidad ObtenerAnualidadConTodo(Anualidad Anualidad)
         {
@@ -162,7 +185,7 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
             catch (Exception ex)
             {
                 logger.Error(ex.Message);
-                throw new ApplicationException(Recursos.Errores.ExConsultarTodosUsuariosPorUsuario);
+                throw new ApplicationException(Recursos.Errores.exObtenerAnualidadConTodo);
             }
             finally
             {

@@ -13,6 +13,8 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
     {
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
+
+
         public IList<CartaOut> ObtenerCartasOutsFiltro(CartaOut carta)
         {
             IList<CartaOut> cartas = null;
@@ -68,7 +70,7 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
             catch (Exception ex)
             {
                 logger.Error(ex.Message);
-                throw new ApplicationException(Recursos.Errores.ExConsultarTodos);
+                throw new ApplicationException(Recursos.Errores.exObtenerCartaOutFiltro);
             }
             finally
             {
@@ -111,7 +113,7 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
             {
                 transaccion.Rollback();
                 logger.Error(ex.Message);
-                return false;
+                throw new ApplicationException(Recursos.Errores.exTransferirPlantilla);
             }
             finally { Session.Close(); }
 
