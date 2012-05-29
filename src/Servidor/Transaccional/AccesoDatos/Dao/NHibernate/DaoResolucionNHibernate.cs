@@ -11,6 +11,11 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
     {
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
+        /// <summary>
+        /// Método que verifica la existencia de una resolución
+        /// </summary>
+        /// <param name="resolucion">Resolucion a buscar</param>
+        /// <returns>true en caso de que exista, false en lo contrario</returns>
         public bool VerificarExistenciaResolucion(Resolucion resolucion)
         {
             bool existe = false;
@@ -24,7 +29,6 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
                 IQuery query = Session.CreateQuery(string.Format(Recursos.ConsultasHQL.VerificarExistenciaResolucion, resolucion.Id, resolucion.FechaResolucion.ToShortDateString(), resolucion.Boletin.Id));
                 Resolucion resolucionExistente = query.UniqueResult<Resolucion>();
 
-
                 if (resolucionExistente != null)
                     existe = true;
 
@@ -36,7 +40,7 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
             catch (Exception ex)
             {
                 logger.Error(ex.Message);
-                throw new ApplicationException(Recursos.Errores.ExConsultarTodosUsuariosPorUsuario);
+                throw new ApplicationException(Recursos.Errores.ExErrorVerificarExistenciaResolucion);
             }
             finally
             {

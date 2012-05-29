@@ -12,6 +12,11 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
     {
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
+        /// <summary>
+        /// Método que obtiene las patentes que cumplan con un filtro determinado
+        /// </summary>
+        /// <param name="Patente">Patente filtro</param>
+        /// <returns>Lista de patentes que cumplan con el filtro</returns>
         public IList<Patente> ObtenerPatentesFiltro(Patente Patente)
         {
             IList<Patente> Patentes = null;
@@ -103,7 +108,7 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
             catch (Exception ex)
             {
                 logger.Error(ex.Message);
-                throw new ApplicationException(Recursos.Errores.ExConsultarTodos);
+                throw new ApplicationException(Recursos.Errores.ExPatentesFiltro);
             }
             finally
             {
@@ -112,6 +117,11 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
             return Patentes;
         }
 
+        /// <summary>
+        /// Método que obtiene una patente con todos sus objetos
+        /// </summary>
+        /// <param name="Patente">Patente a consultar</param>
+        /// <returns>Patente con todos los objetos que la componen</returns>
         public Patente ObtenerPatenteConTodo(Patente Patente)
         {
             Patente retorno;
@@ -139,7 +149,7 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
             catch (Exception ex)
             {
                 logger.Error(ex.Message);
-                throw new ApplicationException(Recursos.Errores.ExConsultarTodosUsuariosPorUsuario);
+                throw new ApplicationException(Recursos.Errores.ExObtenerPatenteConTodo);
             }
             finally
             {
@@ -149,6 +159,11 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
             return retorno;
         }
 
+        /// <summary>
+        /// Método que obtiene las fechas de una patente
+        /// </summary>
+        /// <param name="Patente">Patente a consultarle las fechas</param>
+        /// <returns>Lista de fechas de la patente</returns>
         public IList<Fecha> ObtenerFechasPatente(Patente Patente)
         {
             IList<Fecha> retorno;
@@ -170,7 +185,7 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
             catch (Exception ex)
             {
                 logger.Error(ex.Message);
-                throw new ApplicationException(Recursos.Errores.ExConsultarTodosUsuariosPorUsuario);
+                throw new ApplicationException(Recursos.Errores.ExObtenerFechasPatente);
             }
             finally
             {

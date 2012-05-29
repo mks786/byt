@@ -12,6 +12,11 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
     {
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
+        /// <summary>
+        /// Método que consulta las Renovaciones dependiendo de un filtro
+        /// </summary>
+        /// <param name="renovacion">Renovación a filtrar</param>
+        /// <returns>Lista de renovaciones que cumplan con el filtro</returns>
         public IList<Renovacion> ObtenerRenovacionesFiltro(Renovacion renovacion)
         {
             IList<Renovacion> renovaciones = null;
@@ -61,7 +66,7 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
             catch (Exception ex)
             {
                 logger.Error(ex.Message);
-                throw new ApplicationException(Recursos.Errores.ExConsultarTodos);
+                throw new ApplicationException(Recursos.Errores.ExErrorFiltroRenovacion);
             }
             finally
             {
@@ -71,6 +76,11 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
             return renovaciones;
         }
 
+        /// <summary>
+        /// Método que obtiene la última renovacion
+        /// </summary>
+        /// <param name="renovacion">Renovacion perteneciente a una marca</param>
+        /// <returns>Id de la ultima renovación</returns>
         public int ObtenerUltimaRenovacion(Renovacion renovacion)
         {
             int renovaciones;
@@ -100,7 +110,7 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
             catch (Exception ex)
             {
                 logger.Error(ex.Message);
-                throw new ApplicationException(Recursos.Errores.ExConsultarTodos);
+                throw new ApplicationException(Recursos.Errores.ExObtenerUltimaRenovacion);
             }
             finally
             {

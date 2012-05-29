@@ -12,6 +12,11 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
     {
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
+        /// <summary>
+        /// Método que obtiene los poderes por un interesado
+        /// </summary>
+        /// <param name="interesado">Interesado a consultar los poderes</param>
+        /// <returns>Lista de poderes pertenecientes al interesado</returns>
         public IList<Poder> ObtenerPoderesPorInteresado(Interesado interesado)
         {
 
@@ -35,7 +40,7 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
             catch (Exception ex)
             {
                 logger.Error(ex.Message);
-                throw new ApplicationException(Recursos.Errores.ExConsultarTodos);
+                throw new ApplicationException(Recursos.Errores.ExObtenerPoderesPorInteresado);
             }
             finally
             {
@@ -45,6 +50,11 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
             return poderes;
         }
 
+        /// <summary>
+        /// Método que obtiene los Poderes por un Agente
+        /// </summary>
+        /// <param name="agente">Agente a consultar sus poderes</param>
+        /// <returns>Poderes del Agente</returns>
         public IList<Poder> ObtenerPoderesPorAgente(Agente agente)
         {
             IList<Poder> poderes;
@@ -71,7 +81,7 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
             catch (Exception ex)
             {
                 logger.Error(ex.Message);
-                throw new ApplicationException(Recursos.Errores.ExConsultarTodos);
+                throw new ApplicationException(Recursos.Errores.ExObtenerPoderesPorAgente);
             }
             finally
             {
@@ -124,7 +134,7 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
             catch (Exception ex)
             {
                 logger.Error(ex.Message);
-                throw new ApplicationException(Recursos.Errores.ExConsultarTodos);
+                throw new ApplicationException(Recursos.Errores.ExObtenerPoderesFiltro);
             }
             finally
             {

@@ -129,13 +129,46 @@
   <data name="ExConsultarTodosUsuariosPorUsuario" xml:space="preserve">
     <value>Ocurrió un error al consultar en base de datos los usuarios filtrando por un usuario</value>
   </data>
+  <data name="ExEjecutarProcedimientoBD" xml:space="preserve">
+    <value>Ocurrió un error ejecutando un procedimiento de Base de Datos</value>
+  </data>
   <data name="ExEliminando" xml:space="preserve">
     <value>Ocurrió un error eliminando</value>
+  </data>
+  <data name="ExErrorConsultandoObjetos" xml:space="preserve">
+    <value>Ocurrió un error consultando los Roles y Objetos</value>
+  </data>
+  <data name="ExErrorFiltroRenovacion" xml:space="preserve">
+    <value>Ocurrió un error filtrando las Renovaciones</value>
+  </data>
+  <data name="ExErrorVerificarExistenciaResolucion" xml:space="preserve">
+    <value>Ocurrió un error verificando la existencia de  una Resolución</value>
   </data>
   <data name="ExInsertarOModificar" xml:space="preserve">
     <value>Ocurrió un error insertando o modificando datos</value>
   </data>
+  <data name="ExObtenerFechasPatente" xml:space="preserve">
+    <value>Ocurrió un error consultando las Fechas de una Patente</value>
+  </data>
+  <data name="ExObtenerPatenteConTodo" xml:space="preserve">
+    <value>Ocurrió un error obteniendo una Patente con todo</value>
+  </data>
+  <data name="ExObtenerPoderesFiltro" xml:space="preserve">
+    <value>Ocurrió un error consultando los poderes a través del filtro</value>
+  </data>
+  <data name="ExObtenerPoderesPorAgente" xml:space="preserve">
+    <value>Ocurrió un error consultando los Poderes por Agente</value>
+  </data>
+  <data name="ExObtenerPoderesPorInteresado" xml:space="preserve">
+    <value>Ocurrió un error consultando los Poderes por Interesado</value>
+  </data>
   <data name="ExObtenerPorId" xml:space="preserve">
     <value>Ocurrió un error consultando por id</value>
+  </data>
+  <data name="ExObtenerUltimaRenovacion" xml:space="preserve">
+    <value>Ocurrió un error consultando la última Renovación</value>
+  </data>
+  <data name="ExPatentesFiltro" xml:space="preserve">
+    <value>Ocurrió un error filtrando las Patentes</value>
   </data>
 </root>

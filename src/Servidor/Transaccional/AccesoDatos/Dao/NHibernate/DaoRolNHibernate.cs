@@ -12,8 +12,11 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
     {
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
-
-        public IList<Rol> ObteneRolesYObjetos()
+        /// <summary>
+        /// Método que obtiene los roles y los objetos asociados por los mismos
+        /// </summary>
+        /// <returns>Lista de Roles con sus objetos</returns>
+        public IList<Rol> ObtenerRolesYObjetos()
         {
             IList<Rol> roles;
 
@@ -36,7 +39,7 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
             catch (Exception ex)
             {
                 logger.Error(ex.Message);
-                throw new ApplicationException(Recursos.Errores.ExConsultarTodos);
+                throw new ApplicationException(Recursos.Errores.ExErrorConsultandoObjetos);
             }
             finally
             {

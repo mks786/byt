@@ -5,6 +5,6 @@ namespace Trascend.Bolet.AccesoDatos.Contrato
 {
     public interface IDaoRol : IDaoBase<Rol, string>
     {
-        IList<Rol> ObteneRolesYObjetos();
+        IList<Rol> ObtenerRolesYObjetos();
     }
 }
