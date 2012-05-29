@@ -12,6 +12,7 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
     {
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
+
         public IList<MarcaTercero> ObtenerMarcaTerceroFiltro(MarcaTercero marcaTercero)
         {
             IList<MarcaTercero> MarcasTercero = null;
@@ -27,7 +28,7 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
                 string cabecera = string.Format(Recursos.ConsultasHQL.CabeceraObtenerMarcaTercero);
                 if ((null != marcaTercero) && (marcaTercero.Id != null))
                 {
-                    filtro = string.Format(Recursos.ConsultasHQL.FiltroObtenerMarcaTerceroId,marcaTercero.Id);
+                    filtro = string.Format(Recursos.ConsultasHQL.FiltroObtenerMarcaTerceroId, marcaTercero.Id);
                     variosFiltros = true;
                 }
                 if ((null != marcaTercero.Asociado) && (!marcaTercero.Asociado.Id.Equals("")))
@@ -72,7 +73,7 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
                 {
                     string CabeceraBase = string.Format(Recursos.ConsultasHQL.CabeceraObtenerMarcaBaseTercero, aux.Id, aux.Anexo);
                     IQuery query2 = Session.CreateQuery(CabeceraBase);
-                    aux.MarcasBaseTercero=query2.List<MarcaBaseTercero>();
+                    aux.MarcasBaseTercero = query2.List<MarcaBaseTercero>();
 
                 }
 
@@ -84,7 +85,7 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
             catch (Exception ex)
             {
                 logger.Error(ex.Message);
-                throw new ApplicationException(Recursos.Errores.ExConsultarTodos);
+                throw new ApplicationException(Recursos.Errores.exObtenerMarcaTerceroFiltro);
             }
             finally
             {
@@ -94,28 +95,73 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
         }
 
 
-
         public string ObtenerMaxId(string maxId)
         {
             string idConsultado;
-            string consulta = string.Format(Recursos.ConsultasHQL.ObtenerMaxIdMarcaTercero, maxId);
-            IQuery query = Session.CreateQuery(consulta);
-            idConsultado = query.UniqueResult<string>();
 
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                string consulta = string.Format(Recursos.ConsultasHQL.ObtenerMaxIdMarcaTercero, maxId);
+                IQuery query = Session.CreateQuery(consulta);
+                idConsultado = query.UniqueResult<string>();
+
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Saliendo del Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                throw new ApplicationException(Recursos.Errores.exObtenerMaxIdMarcaTercero);
+            }
+            finally
+            {
+                Session.Close();
+            }
 
             return idConsultado;
         }
+
 
         public int ObtenerMaxAnexo(string maxAnexo)
         {
             int idConsultado;
-            string consulta = string.Format(Recursos.ConsultasHQL.ObtenerMaxAnexoMarcaTercero, maxAnexo);
-            IQuery query = Session.CreateQuery(consulta);
-            idConsultado = query.UniqueResult<int>();
 
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                string consulta = string.Format(Recursos.ConsultasHQL.ObtenerMaxAnexoMarcaTercero, maxAnexo);
+                IQuery query = Session.CreateQuery(consulta);
+                idConsultado = query.UniqueResult<int>();
+
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Saliendo del Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                throw new ApplicationException(Recursos.Errores.exObtenerMaxAnexoMarcaTercero);
+            }
+            finally
+            {
+                Session.Close();
+            }
 
             return idConsultado;
         }
+
 
         //public Marca ObtenerMarcaConTodo(Marca marca)
         //{

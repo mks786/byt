@@ -150,6 +150,30 @@
   <data name="ExObtenerFechasPatente" xml:space="preserve">
     <value>Ocurrió un error consultando las Fechas de una Patente</value>
   </data>
+  <data name="exObtenerMarcaTerceroFiltro" xml:space="preserve">
+    <value>Ocurrió un error consuntando las Marcas Tercero por filtro</value>
+  </data>
+  <data name="exObtenerMaxAnexoMarcaTercero" xml:space="preserve">
+    <value>Ocurrió un error consultando un Anexo de una Marca Tercero</value>
+  </data>
+  <data name="exObtenerMaxIdMarcaTercero" xml:space="preserve">
+    <value>Ocurrió un error consultando el máximo Id de las Marcas Tercero</value>
+  </data>
+  <data name="exObtenerMemoriasPorPatente" xml:space="preserve">
+    <value>Ocurrió un error al consultar las Memorias de una Patente</value>
+  </data>
+  <data name="exObtenerOperacionesFiltro" xml:space="preserve">
+    <value>Ocurrió un error filtrando las patentes</value>
+  </data>
+  <data name="exObtenerOperacionesPorMarca" xml:space="preserve">
+    <value>Ocurrió un error consultando las Operaciones de una Marca</value>
+  </data>
+  <data name="exObtenerOperacionesPorMarcaYServicio" xml:space="preserve">
+    <value>Ocurrió un error consultando las Operaciones por marca y Servicio</value>
+  </data>
+  <data name="exObtenerOperacionesPorPatente" xml:space="preserve">
+    <value>Ocurrió un error consultando las Operaciones de una Patente</value>
+  </data>
   <data name="ExObtenerPatenteConTodo" xml:space="preserve">
     <value>Ocurrió un error obteniendo una Patente con todo</value>
   </data>

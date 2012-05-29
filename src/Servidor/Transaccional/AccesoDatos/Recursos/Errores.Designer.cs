@@ -160,6 +160,78 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Ocurrió un error consuntando las Marcas Tercero por filtro.
+        /// </summary>
+        internal static string exObtenerMarcaTerceroFiltro {
+            get {
+                return ResourceManager.GetString("exObtenerMarcaTerceroFiltro", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ocurrió un error consultando un Anexo de una Marca Tercero.
+        /// </summary>
+        internal static string exObtenerMaxAnexoMarcaTercero {
+            get {
+                return ResourceManager.GetString("exObtenerMaxAnexoMarcaTercero", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ocurrió un error consultando el máximo Id de las Marcas Tercero.
+        /// </summary>
+        internal static string exObtenerMaxIdMarcaTercero {
+            get {
+                return ResourceManager.GetString("exObtenerMaxIdMarcaTercero", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ocurrió un error al consultar las Memorias de una Patente.
+        /// </summary>
+        internal static string exObtenerMemoriasPorPatente {
+            get {
+                return ResourceManager.GetString("exObtenerMemoriasPorPatente", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ocurrió un error filtrando las patentes.
+        /// </summary>
+        internal static string exObtenerOperacionesFiltro {
+            get {
+                return ResourceManager.GetString("exObtenerOperacionesFiltro", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ocurrió un error consultando las Operaciones de una Marca.
+        /// </summary>
+        internal static string exObtenerOperacionesPorMarca {
+            get {
+                return ResourceManager.GetString("exObtenerOperacionesPorMarca", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ocurrió un error consultando las Operaciones por marca y Servicio.
+        /// </summary>
+        internal static string exObtenerOperacionesPorMarcaYServicio {
+            get {
+                return ResourceManager.GetString("exObtenerOperacionesPorMarcaYServicio", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ocurrió un error consultando las Operaciones de una Patente.
+        /// </summary>
+        internal static string exObtenerOperacionesPorPatente {
+            get {
+                return ResourceManager.GetString("exObtenerOperacionesPorPatente", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Ocurrió un error obteniendo una Patente con todo.
         /// </summary>
         internal static string ExObtenerPatenteConTodo {
