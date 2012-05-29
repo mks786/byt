@@ -495,7 +495,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Abandonos
                     this._ventana.NombreMarca = ((Marca)this._ventana.MarcaFiltrada).Descripcion;
                     this._marcas.RemoveAt(0);
                     this._marcas.Add((Marca)this._ventana.MarcaFiltrada);
-                   
+
+                    this._ventana.ConvertirEnteroMinimoABlanco();
+
                     retorno = true;
                 }
 
@@ -669,6 +671,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Abandonos
                     this._ventana.NombreInteresado = ((Interesado)this._ventana.InteresadoFiltrado).Nombre;
                     this._interesados.RemoveAt(0);
                     this._interesados.Add((Interesado)this._ventana.InteresadoFiltrado);
+
+                    this._ventana.ConvertirEnteroMinimoABlanco();
 
                     retorno = true;
                 }

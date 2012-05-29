@@ -807,7 +807,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                     else
                         this._ventana.PintarAsociado("5");
 
-                    this._ventana.ConvertirEnterioMinimoABlanco();
+                    this._ventana.ConvertirEnteroMinimoABlanco();
                 }
 
                 #region trace
@@ -848,7 +848,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                     else
                         this._ventana.PintarAsociado("5");
 
-                    this._ventana.ConvertirEnterioMinimoABlanco();
+                    this._ventana.ConvertirEnteroMinimoABlanco();
                 }
 
                 #region trace
@@ -997,7 +997,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                     this._ventana.InteresadoPaisSolicitud = interesadoAux.Pais != null ? interesadoAux.Pais.NombreEspanol : "";
                     this._ventana.InteresadoCiudadSolicitud = interesadoAux.Ciudad != null ? interesadoAux.Ciudad : "";
 
-                    this._ventana.ConvertirEnterioMinimoABlanco();
+                    this._ventana.ConvertirEnteroMinimoABlanco();
                 }
 
                 #region trace
@@ -1037,7 +1037,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                     this._ventana.InteresadoPaisSolicitud = interesadoAux.Pais != null ? interesadoAux.Pais.NombreEspanol : "";
                     this._ventana.InteresadoCiudadSolicitud = interesadoAux.Ciudad != null ? interesadoAux.Ciudad : "";
 
-                    this._ventana.ConvertirEnterioMinimoABlanco();
+                    this._ventana.ConvertirEnteroMinimoABlanco();
                 }
 
                 #region trace
@@ -1191,7 +1191,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                     this._ventana.DescripcionCorresponsalDatos = ((Corresponsal)this._ventana.CorresponsalSolicitud).Descripcion;
                     this._ventana.IdCorresponsalDatos = ((Corresponsal)this._ventana.CorresponsalSolicitud).Id.ToString();
 
-                    this._ventana.ConvertirEnterioMinimoABlanco();
+                    this._ventana.ConvertirEnteroMinimoABlanco();
                 }
 
                 #region trace
@@ -1228,7 +1228,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                     this._ventana.DescripcionCorresponsalSolicitud = ((Corresponsal)this._ventana.CorresponsalDatos).Descripcion;
                     this._ventana.IdCorresponsalSolicitud = ((Corresponsal)this._ventana.CorresponsalDatos).Id.ToString();
 
-                    this._ventana.ConvertirEnterioMinimoABlanco();
+                    this._ventana.ConvertirEnteroMinimoABlanco();
                 }
 
                 #region trace

@@ -1008,11 +1008,13 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
         public void ConvertirEnterioMinimoABlanco()
         {
 
-            if ((null != this.PoderDatos) && (null != this.PoderSolicitud))
+            #region Poder
+
+            if (null != this.PoderDatos)
             {
-                if ((!this.PoderDatos.Equals("")) || (!this.PoderSolicitud.Equals("")))
+                if (!this.PoderDatos.Equals(""))
                 {
-                    if ((int.Parse(this.PoderDatos) == int.MinValue) || (int.Parse(this.PoderSolicitud) == int.MinValue))
+                    if (int.Parse(this.PoderDatos) == int.MinValue)
                     {
                         this.PoderDatos = "";
                         this.PoderSolicitud = "";
@@ -1020,11 +1022,27 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
                 }
             }
 
-            if ((null != this.InteresadoDatos) && (null != this.InteresadoSolicitud))
+            if (null != this.PoderSolicitud)
             {
-                if ((!this.IdInteresadoDatos.Equals("")) || (!this.IdInteresadoSolicitud.Equals("")))
+                if (!this.PoderSolicitud.Equals(""))
                 {
-                    if ((int.Parse(this.IdInteresadoDatos) == int.MinValue) || (int.Parse(this.IdInteresadoSolicitud) == int.MinValue))
+                    if (int.Parse(this.PoderSolicitud) == int.MinValue)
+                    {
+                        this.PoderDatos = "";
+                        this.PoderSolicitud = "";
+                    }
+                }
+            }
+
+            #endregion
+
+            #region Interesado
+
+            if (null != this.InteresadoDatos)
+            {
+                if (!this.IdInteresadoDatos.Equals(""))
+                {
+                    if (int.Parse(this.IdInteresadoDatos) == int.MinValue)
                     {
                         this.IdInteresadoSolicitud = "";
                         this.IdInteresadoDatos = "";
@@ -1032,17 +1050,47 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
                 }
             }
 
-            if ((null != this.AsociadoDatos) && (null != this.AsociadoSolicitud))
+            if (null != this.InteresadoSolicitud)
             {
-                if ((!this.IdAsociadoDatos.Equals("")) || (!this.IdAsociadoSolicitud.Equals("")))
+                if (!this.IdInteresadoSolicitud.Equals(""))
                 {
-                    if ((int.Parse(this.IdAsociadoDatos) == int.MinValue) || (int.Parse(this.IdAsociadoSolicitud) == int.MinValue))
+                    if (int.Parse(this.IdInteresadoSolicitud) == int.MinValue)
+                    {
+                        this.IdInteresadoSolicitud = "";
+                        this.IdInteresadoDatos = "";
+                    }
+                }
+            }
+
+            #endregion
+
+            #region Asociado
+
+            if (null != this.AsociadoDatos)
+            {
+                if (!this.IdAsociadoDatos.Equals(""))
+                {
+                    if (int.Parse(this.IdAsociadoDatos) == int.MinValue)
                     {
                         this.IdAsociadoDatos = "";
                         this.IdAsociadoSolicitud = "";
                     }
                 }
             }
+
+            if (null != this.AsociadoSolicitud)
+            {
+                if (!this.IdAsociadoSolicitud.Equals(""))
+                {
+                    if (int.Parse(this.IdAsociadoSolicitud) == int.MinValue)
+                    {
+                        this.IdAsociadoDatos = "";
+                        this.IdAsociadoSolicitud = "";
+                    }
+                }
+            }
+
+            #endregion
         }
 
         #endregion

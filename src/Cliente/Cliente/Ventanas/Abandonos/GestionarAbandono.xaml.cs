@@ -89,6 +89,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Abandonos
 
         public string IdInteresado
         {
+            get { return this._txtIdInteresado.Text; }
             set { this._txtIdInteresado.Text = value; }
         }
 
@@ -125,6 +126,12 @@ namespace Trascend.Bolet.Cliente.Ventanas.Abandonos
             set { this._txtNombreMarca.Text = value; }
         }
 
+        public string IdMarca
+        {
+            get { return this._txtIdMarca.Text; }
+            set { this._txtIdMarca.Text = value; }
+        }
+        
         public string IdMarcaFiltrar
         {
             get { return this._txtIdMarcaFiltrar.Text; }
@@ -261,6 +268,33 @@ namespace Trascend.Bolet.Cliente.Ventanas.Abandonos
             InitializeComponent();
             this._cargada = false;
             this._presentador = new PresentadorGestionarAbandono(this, abandono);
+        }
+
+        public void ConvertirEnteroMinimoABlanco()
+        {
+            if (null != this.Marca)
+            {
+                if (!this.IdMarca.Equals(""))
+                {
+                    if (int.Parse(this.IdMarca) == int.MinValue)
+                    {
+                        this.IdMarca = "";
+                    }
+                }
+            }
+
+            if (null != this.Interesado)
+            {
+                if (!this.IdInteresado.Equals(""))
+                {
+                    if (int.Parse(this.IdInteresado) == int.MinValue)
+                    {
+                        this.IdInteresado = "";
+                    }
+                }
+            }
+
+        
         }
 
         public void ActivarControlesAlAgregar()

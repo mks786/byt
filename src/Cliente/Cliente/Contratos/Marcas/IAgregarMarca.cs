@@ -171,7 +171,7 @@ namespace Trascend.Bolet.Cliente.Contratos.Marcas
 
         void PintarAsociado(string tipo);
 
-        void ConvertirEnterioMinimoABlanco();
+        void ConvertirEnteroMinimoABlanco();
 
         GridViewColumnHeader CurSortCol { get; set; }
 

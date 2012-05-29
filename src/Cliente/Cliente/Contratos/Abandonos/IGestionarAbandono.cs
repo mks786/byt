@@ -13,6 +13,8 @@ namespace Trascend.Bolet.Cliente.Contratos.Abandonos
 
         object Marca { get; set; }
 
+        string IdMarca { get; set; }
+
         string IdMarcaFiltrar { get; }
 
         string NombreMarcaFiltrar { get; }
@@ -29,7 +31,7 @@ namespace Trascend.Bolet.Cliente.Contratos.Abandonos
 
         string NombreInteresado { set; }
 
-        string IdInteresado { set; }
+        string IdInteresado { get; set; }
 
         string IdInteresadoFiltrar { get; }
 
@@ -84,5 +86,7 @@ namespace Trascend.Bolet.Cliente.Contratos.Abandonos
         void PintarAsociado();
 
         void PintarInteresado();
+
+        void ConvertirEnteroMinimoABlanco();
     }
 }

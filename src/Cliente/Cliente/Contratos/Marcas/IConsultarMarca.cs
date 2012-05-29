@@ -203,7 +203,7 @@ namespace Trascend.Bolet.Cliente.Contratos.Marcas
 
         string DistingueDatos { set; }
         
-        void ConvertirEnterioMinimoABlanco();
+        void ConvertirEnteroMinimoABlanco();
 
         GridViewColumnHeader CurSortCol { get; set; }
 
