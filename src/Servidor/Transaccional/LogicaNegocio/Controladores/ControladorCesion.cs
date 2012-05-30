@@ -12,6 +12,7 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
     {
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
+
         /// <summary>
         /// Método que devuelve todos las Cesiones del sistema
         /// </summary>
@@ -42,6 +43,7 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
             }
             return retorno;
         }
+
 
         /// <summary>
         /// Método que modifica un los datos de una Cesion
@@ -123,6 +125,7 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
             return exitoso;
         }
 
+
         /// <summary>
         /// Método que consulta una Cesion por su Id
         /// </summary>
@@ -155,6 +158,7 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
             }
             return retorno;
         }
+
 
         /// <summary>
         /// Método que elimina una Cesion
@@ -223,6 +227,7 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
 
             return existe;
         }
+
 
         public static IList<Cesion> ConsultarCesionesFiltro(Cesion cesion)
         {

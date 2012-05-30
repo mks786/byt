@@ -6,6 +6,11 @@ namespace Trascend.Bolet.ObjetosComunes.ContratosServicios
 {
     public interface ICambioDeNombrePatenteServicios : IServicioBase<CambioDeNombrePatente>
     {
+        /// <summary>
+        /// Servicio que se encarga de consultar los CambioDeNombre segun el filtro
+        /// </summary>
+        /// <param name="CambioPeticionario">CambioDeNombre filtro</param>
+        /// <returns>CambioDeNombre que cumplen con el filtro</returns>
         IList<CambioDeNombrePatente> ObtenerCambioDeNombrePatenteFiltro(CambioDeNombrePatente cambioDeNombre);
     }
 }
