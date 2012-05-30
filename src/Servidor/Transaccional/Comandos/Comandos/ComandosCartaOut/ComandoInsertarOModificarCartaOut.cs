@@ -18,7 +18,7 @@ namespace Trascend.Bolet.Comandos.Comandos.ComandosCartaOut
         /// <summary>
         /// Constructor predeterminado
         /// </summary>
-        /// <param name="carta">Carta a insertar o modificar</param>
+        /// <param name="carta">CartaOut a insertar o modificar</param>
         public ComandoInsertarOModificarCartaOut(CartaOut carta)
         {
             this._carta = carta;

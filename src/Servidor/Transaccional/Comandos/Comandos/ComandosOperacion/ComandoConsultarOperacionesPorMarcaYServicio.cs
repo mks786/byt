@@ -13,6 +13,11 @@ namespace Trascend.Bolet.Comandos.Comandos.ComandosOperacion
         private static Logger logger = LogManager.GetCurrentClassLogger();
         private Operacion _operacion;
 
+
+        /// <summary>
+        /// Metoco Comando que consulta las operaciones por Marca y Servicioes
+        /// </summary>
+        /// <param name="operacion">Operacion a consultar sus marcas y servicios</param>
         public ComandoConsultarOperacionesPorMarcaYServicio(Operacion operacion)
         {
             this._operacion = operacion;

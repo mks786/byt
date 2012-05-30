@@ -18,7 +18,7 @@ namespace Trascend.Bolet.Comandos.Comandos.ComandosUsuario
         /// <summary>
         /// Constructor predeterminado
         /// </summary>
-        /// <param name="objeto">Objeto a eliminar</param>
+        /// <param name="usuario">usuario a eliminar</param>
         public ComandoEliminarUsuario(Usuario usuario)
         {
             this._usuario = usuario;

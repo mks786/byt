@@ -15,7 +15,7 @@ namespace Trascend.Bolet.Comandos.Comandos.ComandosCambioDeNombrePatente
         /// <summary>
         /// Constructor predeterminado
         /// </summary>
-        /// <param name="cambioNombre">CambioNombre a verificar</param>
+        /// <param name="cambioDeNombre">CambioNombrePatente a verificar</param>
         public ComandoVerificarExistenciaCambioDeNombrePatente(CambioDeNombrePatente cambioDeNombre)
         {
             this._cambioDeNombre = cambioDeNombre;

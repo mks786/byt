@@ -13,15 +13,15 @@ namespace Trascend.Bolet.Comandos.Comandos.ComandosInventor
     public class ComandoEliminarInventor : ComandoBase<bool>
     {
         private static Logger logger = LogManager.GetCurrentClassLogger();
-        private Inventor _anexo;
+        private Inventor _inventor;
 
         /// <summary>
         /// Constructor predeterminado
         /// </summary>
-        /// <param name="anexo">Pais a eliminar</param>
-        public ComandoEliminarInventor(Inventor anexo)
+        /// <param name="inventor">inventor a eliminar</param>
+        public ComandoEliminarInventor(Inventor inventor)
         {
-            this._anexo = anexo;
+            this._inventor = inventor;
         }
 
         /// <summary>
@@ -37,7 +37,7 @@ namespace Trascend.Bolet.Comandos.Comandos.ComandosInventor
                 #endregion
 
                 IDaoInventor dao = FabricaDaoBase.ObtenerFabricaDao().ObtenerDaoInventor();
-                this.Receptor = new Receptor<bool>(dao.Eliminar(this._anexo));
+                this.Receptor = new Receptor<bool>(dao.Eliminar(this._inventor));
 
                 #region trace
                 if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))

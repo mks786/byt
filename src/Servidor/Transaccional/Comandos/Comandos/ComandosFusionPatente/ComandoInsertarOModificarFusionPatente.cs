@@ -15,7 +15,7 @@ namespace Trascend.Bolet.Comandos.Comandos.ComandosFusionPatente
         /// <summary>
         /// Constructor predeterminado
         /// </summary>
-        /// <param name="usuario">Usuario a insertar o modificar</param>
+        /// <param name="fusion">fusion a insertar o modificar</param>
         public ComandoInsertarOModificarFusionPatente(FusionPatente fusion)
         {
             this._fusion = fusion;

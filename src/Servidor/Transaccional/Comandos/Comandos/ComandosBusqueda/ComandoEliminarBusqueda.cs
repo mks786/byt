@@ -18,7 +18,7 @@ namespace Trascend.Bolet.Comandos.Comandos.ComandosBusqueda
         /// <summary>
         /// Constructor predeterminado
         /// </summary>
-        /// <param name="objeto">Objeto a eliminar</param>
+        /// <param name="busqueda">busqueda a eliminar</param>
         public ComandoEliminarBusqueda(Busqueda busqueda)
         {
             this._busqueda = busqueda;

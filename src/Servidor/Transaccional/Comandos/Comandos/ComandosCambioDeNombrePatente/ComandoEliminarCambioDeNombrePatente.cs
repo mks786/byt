@@ -18,7 +18,7 @@ namespace Trascend.Bolet.Comandos.Comandos.ComandosCambioDeNombrePatente
         /// <summary>
         /// Constructor predeterminado
         /// </summary>
-        /// <param name="cambioNombre">CambioNombre a eliminar</param>
+        /// <param name="cambioDeNombre">CambioNombrePatente a eliminar</param>
         public ComandoEliminarCambioDeNombrePatente(CambioDeNombrePatente cambioDeNombre)
         {
             this._cambioDeNombre = cambioDeNombre;

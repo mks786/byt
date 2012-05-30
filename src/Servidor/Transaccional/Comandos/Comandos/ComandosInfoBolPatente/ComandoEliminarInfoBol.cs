@@ -18,7 +18,7 @@ namespace Trascend.Bolet.Comandos.Comandos.ComandosInfoBolPatente
         /// <summary>
         /// Constructor predeterminado
         /// </summary>
-        /// <param name="objeto">Objeto a eliminar</param>
+        /// <param name="objeto">InfoBolPatente a eliminar</param>
         public ComandoEliminarInfoBol(InfoBolPatente infoBol)
         {
             this._infoBol = infoBol;

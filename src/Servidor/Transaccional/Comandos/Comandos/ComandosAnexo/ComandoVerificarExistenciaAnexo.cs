@@ -15,7 +15,7 @@ namespace Trascend.Bolet.Comandos.Comandos.ComandosAnexo
         /// <summary>
         /// Constructor predeterminado
         /// </summary>
-        /// <param name="anexo">Anaqua a verificar</param>
+        /// <param name="anexo">anexo a verificar</param>
         public ComandoVerificarExistenciaAnexo(Anexo anexo)
         {
             this._anexo = anexo;

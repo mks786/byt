@@ -15,7 +15,7 @@ namespace Trascend.Bolet.Comandos.Comandos.ComandosJustificacion
         /// <summary>
         /// Constructor predeterminado
         /// </summary>
-        /// <param name="usuario">Justificacion a insertar o modificar</param>
+        /// <param name="justificacion">Justificacion a insertar o modificar</param>
         public ComandoInsertarOModificarJustificacion(Justificacion justificacion)
         {
             this._justificacion = justificacion;

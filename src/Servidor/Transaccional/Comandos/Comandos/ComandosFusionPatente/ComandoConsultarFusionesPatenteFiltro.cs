@@ -14,6 +14,10 @@ namespace Trascend.Bolet.Comandos.Comandos.ComandosFusionPatente
         private FusionPatente _fusion;
 
 
+        /// <summary>
+        /// Metodo comando que consulta las Fusiones de Patentes dado unos parametros
+        /// </summary>
+        /// <param name="fusion">FusionPatente con parametros a cosultar</param>
         public ComandoConsultarFusionesPatenteFiltro(FusionPatente fusion)
         {
             this._fusion = fusion;

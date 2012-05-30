@@ -15,7 +15,7 @@ namespace Trascend.Bolet.Comandos.Comandos.ComandosTipoBase
         /// <summary>
         /// Constructor predeterminado
         /// </summary>
-        /// <param name="estado">TipoBase a consultar</param>
+        /// <param name="tipoBase">TipoBase a consultar</param>
         public ComandoVerificarExistenciaTipoBase(TipoBase tipoBase)
         {
             this._tipoBase = tipoBase;

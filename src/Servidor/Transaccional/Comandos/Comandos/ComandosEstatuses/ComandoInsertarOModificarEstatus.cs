@@ -15,7 +15,7 @@ namespace Trascend.Bolet.Comandos.Comandos.ComandosEstatuses
         /// <summary>
         /// Constructor predeterminado
         /// </summary>
-        /// <param name="usuario">Usuario a insertar o modificar</param>
+        /// <param name="estatus">estatus a insertar o modificar</param>
         public ComandoInsertarOModificarEstatus(Estatus estatus)
         {
             this._estatus = estatus;

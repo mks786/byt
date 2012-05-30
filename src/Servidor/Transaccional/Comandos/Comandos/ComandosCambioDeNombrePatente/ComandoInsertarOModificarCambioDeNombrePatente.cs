@@ -15,7 +15,7 @@ namespace Trascend.Bolet.Comandos.Comandos.ComandosCambioDeNombrePatente
         /// <summary>
         /// Constructor predeterminado
         /// </summary>
-        /// <param name="usuario">Usuario a insertar o modificar</param>
+        /// <param name="cambioNombre">CambioNombrePatente a insertar o modificar</param>
         public ComandoInsertarOModificarCambioDeNombrePatente(CambioDeNombrePatente cambioNombre)
         {
             this._cambioNombre = cambioNombre;

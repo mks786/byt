@@ -15,7 +15,7 @@ namespace Trascend.Bolet.Comandos.Comandos.ComandosPlanilla
         /// <summary>
         /// Constructor predeterminado
         /// </summary>
-        /// <param name="marca">Marca a verificar</param>
+        /// <param name="parametro">ParametrosProcedimiento a Ejecutar</param>
         public ComandoEjecutarProcedimiento(ParametroProcedimiento parametro)
         {
             this._parametro = parametro;

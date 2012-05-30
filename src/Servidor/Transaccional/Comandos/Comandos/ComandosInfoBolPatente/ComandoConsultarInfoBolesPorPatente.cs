@@ -13,6 +13,11 @@ namespace Trascend.Bolet.Comandos.Comandos.ComandosInfoBolPatente
         private static Logger logger = LogManager.GetCurrentClassLogger();
         private Patente _patente;
 
+
+        /// <summary>
+        /// Metodo Comando que consulta los InfoBoles de una patente
+        /// </summary>
+        /// <param name="patente">Patente a consultar InfoBoles</param>
         public ComandoConsultarInfoBolesPorPatente(Patente patente)
         {
             this._patente = patente;

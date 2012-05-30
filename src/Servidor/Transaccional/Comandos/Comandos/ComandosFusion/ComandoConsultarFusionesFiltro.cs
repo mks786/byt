@@ -14,6 +14,10 @@ namespace Trascend.Bolet.Comandos.Comandos.ComandosFusion
         private Fusion _fusion;
 
 
+        /// <summary>
+        /// Metodo de comando que consulta las Fusiones dado unos parametros
+        /// </summary>
+        /// <param name="fusion">Fusion con Parametros a consultar</param>
         public ComandoConsultarFusionesFiltro(Fusion fusion)
         {
             this._fusion = fusion;

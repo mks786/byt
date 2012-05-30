@@ -15,7 +15,7 @@ namespace Trascend.Bolet.Comandos.Comandos.ComandosMemoria
         /// <summary>
         /// Constructor predeterminado
         /// </summary>
-        /// <param name="memoria">Usuario a insertar o modificar</param>
+        /// <param name="memoria">memoria a insertar o modificar</param>
         public ComandoInsertarOModificarMemoria(Memoria memoria)
         {
             this._memoria = memoria;

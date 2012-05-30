@@ -18,7 +18,7 @@ namespace Trascend.Bolet.Comandos.Comandos.ComandosAsignacion
         /// <summary>
         /// Constructor predeterminado
         /// </summary>
-        /// <param name="asignacion">Carta a insertar o modificar</param>
+        /// <param name="asignacion">asignacion a insertar o modificar</param>
         public ComandoInsertarOModificarAsignacion(Asignacion asignacion)
         {
             this._asignacion = asignacion;

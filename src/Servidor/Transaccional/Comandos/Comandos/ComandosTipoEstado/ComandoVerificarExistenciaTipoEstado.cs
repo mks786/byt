@@ -15,7 +15,7 @@ namespace Trascend.Bolet.Comandos.Comandos.ComandosTipoEstado
         /// <summary>
         /// Constructor predeterminado
         /// </summary>
-        /// <param name="pais">Pais a verificar</param>
+        /// <param name="tipoEstado">TipoEstado a verificar</param>
         public ComandoVerificarExistenciaTipoEstado(TipoEstado tipoEstado)
         {
             this._tipoEstado = tipoEstado;

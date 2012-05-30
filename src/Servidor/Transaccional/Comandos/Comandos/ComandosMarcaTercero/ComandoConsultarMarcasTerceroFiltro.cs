@@ -14,6 +14,11 @@ namespace Trascend.Bolet.Comandos.Comandos.ComandosMarcaTercero
         private MarcaTercero _marcaTercero;
 
 
+
+        /// <summary>
+        /// Metodo que Consulta las Marca a Tercero segun parametros
+        /// </summary>
+        /// <param name="marcaTercero">MarcaTercero con parametros a consultar</param>
         public ComandoConsultarMarcasTerceroFiltro(MarcaTercero marcaTercero)
         {
             this._marcaTercero = marcaTercero;

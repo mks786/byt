@@ -18,7 +18,7 @@ namespace Trascend.Bolet.Comandos.Comandos.ComandosPlanilla
         /// <summary>
         /// Constructor predeterminado
         /// </summary>
-        /// <param name="corresponsal">Corresponsal a eliminar</param>
+        /// <param name="planilla">Planilla a eliminar</param>
         public ComandoEliminarPlanilla(Planilla planilla)
         {
             this._planilla = planilla;

@@ -13,6 +13,11 @@ namespace Trascend.Bolet.Comandos.Comandos.ComandosListaDatosDominio
         private static Logger logger = LogManager.GetCurrentClassLogger();
         private ListaDatosDominio _parametro;
 
+
+        /// <summary>
+        /// Metodo Comando que consulta la ListaDeDatosDeDominio dado el parametros
+        /// </summary>
+        /// <param name="parametro">parametro de ListaDatosDominio</param>
         public ComandoConsultarListaDatosDominioPorParametro(ListaDatosDominio parametro)
         {
             this._parametro = parametro;

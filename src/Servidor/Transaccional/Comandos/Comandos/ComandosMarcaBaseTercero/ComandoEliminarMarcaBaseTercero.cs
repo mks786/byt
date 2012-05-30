@@ -16,9 +16,9 @@ namespace Trascend.Bolet.Comandos.Comandos.ComandosMarcaBaseTercero
         private MarcaBaseTercero _marcaBaseTercero;
 
         /// <summary>
-        /// Constructor predeterminado
+        /// Metodo que Elimina Marca Tercero
         /// </summary>
-        /// <param name="anexo">Pais a eliminar</param>
+        /// <param name="marcaBaseTercero">marcaBaseTercero a eliminar</param>
         public ComandoEliminarMarcaBaseTercero(MarcaBaseTercero marcaBaseTercero)
         {
             this._marcaBaseTercero = marcaBaseTercero;

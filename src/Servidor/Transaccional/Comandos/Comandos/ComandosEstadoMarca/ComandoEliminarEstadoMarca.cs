@@ -18,7 +18,7 @@ namespace Trascend.Bolet.Comandos.Comandos.ComandosEstadoMarca
         /// <summary>
         /// Constructor predeterminado
         /// </summary>
-        /// <param name="anexo">Pais a eliminar</param>
+        /// <param name="estadoMarca">estadoMarca a eliminar</param>
         public ComandoEliminarEstadoMarca(EstadoMarca estadoMarca)
         {
             this._estadoMarca = estadoMarca;

@@ -13,6 +13,11 @@ namespace Trascend.Bolet.Comandos.Comandos.ComandosContacto
         private static Logger logger = LogManager.GetCurrentClassLogger();
         private Asociado _asociado;
 
+
+        /// <summary>
+        /// Metodo Comando que Consulta los Contactos dado un asociado
+        /// </summary>
+        /// <param name="asociado">Asociado a buscar Contactos</param>
         public ComandoConsultarContactosPorAsociado(Asociado asociado)
         {
             this._asociado = asociado;

@@ -14,6 +14,10 @@ namespace Trascend.Bolet.Comandos.Comandos.ComandosAnualidad
         private Anualidad _anualidad;
 
 
+        /// <summary>
+        /// Metodo que consulta las anualidades dado unos parametros
+        /// </summary>
+        /// <param name="anualidad">Anualidad con parametros a consultar</param>
         public ComandoConsultarAnualidadesFiltro(Anualidad anualidad)
         {
             this._anualidad = anualidad;

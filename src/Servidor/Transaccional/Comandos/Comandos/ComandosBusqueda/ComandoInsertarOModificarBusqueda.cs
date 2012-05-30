@@ -15,7 +15,7 @@ namespace Trascend.Bolet.Comandos.Comandos.ComandosBusqueda
         /// <summary>
         /// Constructor predeterminado
         /// </summary>
-        /// <param name="_busqueda">Busqueda a insertar o modificar</param>
+        /// <param name="_busqueda">Busqueda a _busqueda o modificar</param>
         public ComandoInsertarOModificarBusqueda(Busqueda _busqueda)
         {
             this._busqueda = _busqueda;

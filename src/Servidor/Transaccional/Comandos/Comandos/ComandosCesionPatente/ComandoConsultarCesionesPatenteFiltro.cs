@@ -14,6 +14,10 @@ namespace Trascend.Bolet.Comandos.Comandos.ComandosCesionPatente
         private CesionPatente _cesion;
 
 
+        /// <summary>
+        /// Metodo Comando que consulta las CesionesDePatentes dado unos parametros
+        /// </summary>
+        /// <param name="cesion">Cesion con parametros a consultar</param>
         public ComandoConsultarCesionesPatenteFiltro(CesionPatente cesion)
         {
             this._cesion = cesion;

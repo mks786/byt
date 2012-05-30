@@ -13,6 +13,11 @@ namespace Trascend.Bolet.Comandos.Comandos.ComandosInfoBol
         private static Logger logger = LogManager.GetCurrentClassLogger();
         private Marca _marca;
 
+
+        /// <summary>
+        /// Metodo Comando que consulta los InfoBoles de una marca
+        /// </summary>
+        /// <param name="marca">Marca a consultar InfoBoles</param>
         public ComandoConsultarInfoBolesPorMarca(Marca marca)
         {
             this._marca = marca;

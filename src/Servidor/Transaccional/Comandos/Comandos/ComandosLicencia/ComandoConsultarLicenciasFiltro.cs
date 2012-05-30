@@ -14,6 +14,11 @@ namespace Trascend.Bolet.Comandos.Comandos.ComandosLicencia
         private Licencia _licencia;
 
 
+
+        /// <summary>
+        /// Metodo Comando que Consulta las Licencias dado unos parametros
+        /// </summary>
+        /// <param name="licencia">Licencia con parametros a consultar</param>
         public ComandoConsultarLicenciasFiltro(Licencia licencia)
         {
             this._licencia = licencia;

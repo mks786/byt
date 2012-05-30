@@ -15,7 +15,7 @@ namespace Trascend.Bolet.Comandos.Comandos.ComandosRol
         /// <summary>
         /// Constructor predeterminado
         /// </summary>
-        /// <param name="objeto">Objeto a eliminar</param>
+        /// <param name="rol">rol a eliminar</param>
         public ComandoElimarRol(Rol rol)
         {
             this._rol = rol;

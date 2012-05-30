@@ -15,10 +15,9 @@ namespace Trascend.Bolet.Comandos.Comandos.ComandosMarcaBaseTercero
         private static Logger logger = LogManager.GetCurrentClassLogger();
         private string _secuencia;
 
-        /// <summary>
-        /// Constructor predeterminado
-        /// </summary>
-        /// <param name="contador"></param>
+    /// <summary>
+    /// Metodo que regresa la ultima secuencia de una MarcaBaseTercero
+    /// </summary>
         public ComandoConsultarMaxSecuencia()
         {
            

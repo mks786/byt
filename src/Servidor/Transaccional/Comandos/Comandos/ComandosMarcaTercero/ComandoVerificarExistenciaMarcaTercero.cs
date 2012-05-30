@@ -10,15 +10,15 @@ namespace Trascend.Bolet.Comandos.Comandos.ComandosMarcaTercero
     public class ComandoVerificarExistenciaMarcaTercero : ComandoBase<bool>
     {
         private static Logger logger = LogManager.GetCurrentClassLogger();
-        private MarcaTercero _anexo;
+        private MarcaTercero _marcaTercero;
 
         /// <summary>
         /// Constructor predeterminado
         /// </summary>
-        /// <param name="anexo">Anaqua a verificar</param>
-        public ComandoVerificarExistenciaMarcaTercero(MarcaTercero anexo)
+        /// <param name="marcaTercero">marcaTercero a verificar</param>
+        public ComandoVerificarExistenciaMarcaTercero(MarcaTercero marcaTercero)
         {
-            this._anexo = anexo;
+            this._marcaTercero = marcaTercero;
         }
 
         /// <summary>
@@ -34,7 +34,7 @@ namespace Trascend.Bolet.Comandos.Comandos.ComandosMarcaTercero
                 #endregion
 
                 IDaoMarcaTercero dao = FabricaDaoBase.ObtenerFabricaDao().ObtenerDaoMarcaTercero();
-            // OJO!!!!DESCOMENTAR    this.Receptor = new Receptor<bool>(dao.VerificarExistencia(this._anexo.Id));
+            // OJO!!!!DESCOMENTAR    this.Receptor = new Receptor<bool>(dao.VerificarExistencia(this._marcaTercero.Id));
 
                 #region trace
                 if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))

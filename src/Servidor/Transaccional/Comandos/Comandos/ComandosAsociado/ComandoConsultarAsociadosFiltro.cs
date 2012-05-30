@@ -14,6 +14,10 @@ namespace Trascend.Bolet.Comandos.Comandos.ComandosAsociado
         private Asociado _Asociado;
 
 
+        /// <summary>
+        /// Metodo que consulta a los asociados dado unos parametros
+        /// </summary>
+        /// <param name="Asociado">Asociado con parametros a consultar</param>
         public ComandoConsultarAsociadosFiltro(Asociado Asociado)
         {
             this._Asociado = Asociado;

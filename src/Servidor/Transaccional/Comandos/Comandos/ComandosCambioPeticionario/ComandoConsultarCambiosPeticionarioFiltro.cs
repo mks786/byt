@@ -14,6 +14,10 @@ namespace Trascend.Bolet.Comandos.Comandos.ComandosCambioPeticionario
         private CambioPeticionario _cambioPeticionario;
 
 
+        /// <summary>
+        /// Metodo Comando que Consulta los CambioDePeticionar dado unos parametros
+        /// </summary>
+        /// <param name="cambioPeticionario">Cambio Peticionario a consultar</param>
         public ComandoConsultarCambiosPeticionarioFiltro(CambioPeticionario cambioPeticionario)
         {
             this._cambioPeticionario = cambioPeticionario;

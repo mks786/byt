@@ -15,7 +15,7 @@ namespace Trascend.Bolet.Comandos.Comandos.ComandosCambioPeticionarioPatente
         /// <summary>
         /// Constructor predeterminado
         /// </summary>
-        /// <param name="cambioDeDomicilio">CambioDeDomicilio a verificar</param>
+        /// <param name="cambioPeticionario">CambioDePeticionarioPatente a verificar</param>
         public ComandoVerificarExistenciaCambioPeticionarioPatente(CambioPeticionarioPatente cambioPeticionario)
         {
             this._cambioPeticionario = cambioPeticionario;

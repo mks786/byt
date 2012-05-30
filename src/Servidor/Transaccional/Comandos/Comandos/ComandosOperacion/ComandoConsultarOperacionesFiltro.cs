@@ -14,6 +14,11 @@ namespace Trascend.Bolet.Comandos.Comandos.ComandosOperacion
         private Operacion _operacion;
 
 
+
+        /// <summary>
+        /// Metodo Comando que Consulta las Operaciones dado unos parametros
+        /// </summary>
+        /// <param name="operacion">Operacion con parametros a consultar</param>
         public ComandoConsultarOperacionesFiltro(Operacion operacion)
         {
             this._operacion = operacion;

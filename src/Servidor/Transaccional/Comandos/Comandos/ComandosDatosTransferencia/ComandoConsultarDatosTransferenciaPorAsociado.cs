@@ -13,6 +13,11 @@ namespace Trascend.Bolet.Comandos.Comandos.ComandosDatosTransferencia
         private static Logger logger = LogManager.GetCurrentClassLogger();
         private Asociado _asociado;
 
+
+        /// <summary>
+        /// Metodo Comando que Consulta los Datos de transferencia por un Asociado
+        /// </summary>
+        /// <param name="asociado">Asociado a consultar los Datos Transferencia</param>
         public ComandoConsultarDatosTransferenciaPorAsociado(Asociado asociado)
         {
             this._asociado = asociado;

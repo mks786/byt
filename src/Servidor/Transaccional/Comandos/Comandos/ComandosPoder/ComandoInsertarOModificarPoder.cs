@@ -15,7 +15,7 @@ namespace Trascend.Bolet.Comandos.Comandos.ComandosPoder
         /// <summary>
         /// Constructor predeterminado
         /// </summary>
-        /// <param name="usuario">Usuario a insertar o modificar</param>
+        /// <param name="poder">poder a insertar o modificar</param>
         public ComandoInsertarOModificarPoder(Poder poder)
         {
             this._poder = poder;

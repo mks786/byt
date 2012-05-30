@@ -14,6 +14,10 @@ namespace Trascend.Bolet.Comandos.Comandos.ComandosCambioDeDomicilio
         private CambioDeDomicilio _cambioDeDomicilio;
 
 
+        /// <summary>
+        /// Metodo Comando que consulta los Cambios De Domicilio dado unos parametros
+        /// </summary>
+        /// <param name="cambioDeDomicilio">Cambio de Domicilio a consultar</param>
         public ComandoConsultarCambiosDeDomicilioFiltro(CambioDeDomicilio cambioDeDomicilio)
         {
             this._cambioDeDomicilio = cambioDeDomicilio;

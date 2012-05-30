@@ -14,6 +14,10 @@ namespace Trascend.Bolet.Comandos.Comandos.ComandosMarca
         private Marca _marca;
 
 
+        /// <summary>
+        /// metodo Comando Que Consulta las Marcas dado unos parametros
+        /// </summary>
+        /// <param name="marca">Marca con parametros a consultar</param>
         public ComandoConsultarMarcasFiltro(Marca marca)
         {
             this._marca = marca;

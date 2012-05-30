@@ -10,15 +10,15 @@ namespace Trascend.Bolet.Comandos.Comandos.ComandosInventor
     public class ComandoInsertarOModificarInventor : ComandoBase<bool>
     {
         private static Logger logger = LogManager.GetCurrentClassLogger();
-        Inventor _anexo;
+        Inventor _inventor;
 
         /// <summary>
         /// Constructor predeterminado
         /// </summary>
-        /// <param name="usuario">Usuario a insertar o modificar</param>
-        public ComandoInsertarOModificarInventor(Inventor anexo)
+        /// <param name="inventor">inventor a insertar o modificar</param>
+        public ComandoInsertarOModificarInventor(Inventor inventor)
         {
-            this._anexo = anexo;
+            this._inventor = inventor;
         }
 
         /// <summary>
@@ -34,7 +34,7 @@ namespace Trascend.Bolet.Comandos.Comandos.ComandosInventor
                 #endregion
 
                 IDaoInventor dao = FabricaDaoBase.ObtenerFabricaDao().ObtenerDaoInventor();
-                this.Receptor = new Receptor<bool>(dao.InsertarOModificar(this._anexo));
+                this.Receptor = new Receptor<bool>(dao.InsertarOModificar(this._inventor));
 
                 #region trace
                 if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))

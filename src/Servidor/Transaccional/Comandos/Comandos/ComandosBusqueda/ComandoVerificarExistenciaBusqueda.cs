@@ -15,7 +15,7 @@ namespace Trascend.Bolet.Comandos.Comandos.ComandosBusqueda
         /// <summary>
         /// Constructor predeterminado
         /// </summary>
-        /// <param name="busqueda">InfoBol a verificar</param>
+        /// <param name="busqueda">busqueda a verificar</param>
         public ComandoVerificarExistenciaBusqueda(Busqueda busqueda)
         {
             this._busqueda = busqueda;

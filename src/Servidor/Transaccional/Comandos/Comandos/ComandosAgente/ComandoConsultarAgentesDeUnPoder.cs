@@ -13,6 +13,10 @@ namespace Trascend.Bolet.Comandos.Comandos.ComandosAgente
         private static Logger logger = LogManager.GetCurrentClassLogger();
         private Poder _poder;
 
+        /// <summary>
+        /// Metodo del Comando que consulta los Agentes pertenecientes a un poder
+        /// </summary>
+        /// <param name="poder">Poder que comparte con los agentes</param>
         public ComandoConsultarAgentesDeUnPoder(Poder poder)
         {
             this._poder = poder;

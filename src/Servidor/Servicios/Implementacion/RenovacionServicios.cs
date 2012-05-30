@@ -39,7 +39,7 @@ namespace Trascend.Bolet.Servicios.Implementacion
             throw new NotImplementedException();
         }
 
-         public int ConsultarUltimaRenovacion(Renovacion entidad)
+        public int ConsultarUltimaRenovacion(Renovacion entidad)
         {
             #region trace
             if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
@@ -55,6 +55,8 @@ namespace Trascend.Bolet.Servicios.Implementacion
 
             return renovacion;
         }
+
+
         public bool InsertarOModificar(Renovacion renovacion, int hash)
         {
             #region trace

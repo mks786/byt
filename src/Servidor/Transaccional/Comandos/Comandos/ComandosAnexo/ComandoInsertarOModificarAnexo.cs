@@ -15,7 +15,7 @@ namespace Trascend.Bolet.Comandos.Comandos.ComandosAnexo
         /// <summary>
         /// Constructor predeterminado
         /// </summary>
-        /// <param name="usuario">Usuario a insertar o modificar</param>
+        /// <param name="anexo">anexo a insertar o modificar</param>
         public ComandoInsertarOModificarAnexo(Anexo anexo)
         {
             this._anexo = anexo;

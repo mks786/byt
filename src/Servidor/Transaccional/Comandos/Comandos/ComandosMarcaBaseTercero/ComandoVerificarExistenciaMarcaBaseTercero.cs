@@ -15,7 +15,7 @@ namespace Trascend.Bolet.Comandos.Comandos.ComandosMarcaBaseTercero
         /// <summary>
         /// Constructor predeterminado
         /// </summary>
-        /// <param name="marcaBaseTercero">Anaqua a verificar</param>
+        /// <param name="marcaBaseTercero">marcaBaseTercero a verificar</param>
         public ComandoVerificarExistenciaMarcaBaseTercero(MarcaBaseTercero marcaBaseTercero)
         {
             this._marcaBaseTercero = marcaBaseTercero;

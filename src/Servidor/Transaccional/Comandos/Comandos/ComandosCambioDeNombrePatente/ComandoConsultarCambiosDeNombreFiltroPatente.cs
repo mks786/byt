@@ -14,6 +14,10 @@ namespace Trascend.Bolet.Comandos.Comandos.ComandosCambioDeNombrePatente
         private CambioDeNombrePatente _cambioDeNombre;
 
 
+        /// <summary>
+        /// Metodo Comando que Consulta los CambioDeNombreDePatentes dado unos parametros
+        /// </summary>
+        /// <param name="cambioDeNombre">CambioDeNombrePatente a consultar</param>
         public ComandoConsultarCambiosDeNombreFiltroPatente(CambioDeNombrePatente cambioDeNombre)
         {
             this._cambioDeNombre = cambioDeNombre;

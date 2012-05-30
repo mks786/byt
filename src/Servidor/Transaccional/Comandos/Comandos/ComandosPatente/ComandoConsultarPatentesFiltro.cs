@@ -14,6 +14,10 @@ namespace Trascend.Bolet.Comandos.Comandos.ComandosPatente
         private Patente _patente;
 
 
+        /// <summary>
+        /// Metodo Comando que consulta las patentes dado unos parametros
+        /// </summary>
+        /// <param name="patente">Patente con parametros a consultar</param>
         public ComandoConsultarPatentesFiltro(Patente patente)
         {
             this._patente = patente;

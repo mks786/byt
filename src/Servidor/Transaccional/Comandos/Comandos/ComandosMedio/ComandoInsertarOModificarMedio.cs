@@ -15,7 +15,7 @@ namespace Trascend.Bolet.Comandos.Comandos.ComandosMedio
         /// <summary>
         /// Constructor predeterminado
         /// </summary>
-        /// <param name="usuario">Medio a insertar o modificar</param>
+        /// <param name="medio">Medio a insertar o modificar</param>
         public ComandoInsertarOModificarMedio(Medio medio)
         {
             this._medio = medio;

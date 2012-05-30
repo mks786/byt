@@ -18,7 +18,7 @@ namespace Trascend.Bolet.Comandos.Comandos.ComandosAnexo
         /// <summary>
         /// Constructor predeterminado
         /// </summary>
-        /// <param name="anexo">Pais a eliminar</param>
+        /// <param name="anexo">anexo a eliminar</param>
         public ComandoEliminarAnexo(Anexo anexo)
         {
             this._anexo = anexo;

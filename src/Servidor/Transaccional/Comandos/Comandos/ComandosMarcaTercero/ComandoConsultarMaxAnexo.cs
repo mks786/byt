@@ -16,9 +16,9 @@ namespace Trascend.Bolet.Comandos.Comandos.ComandosMarcaTercero
         private string _anexo;
 
         /// <summary>
-        /// Constructor predeterminado
+        /// Metodo que consulta el ultimoAnexo de la marcaTercero
         /// </summary>
-        /// <param name="contador"></param>
+        /// <param name=")"></param>
         public ComandoConsultarMaxAnexo(string id)
         {
             this._anexo = id;

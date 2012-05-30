@@ -15,6 +15,11 @@ namespace Trascend.Bolet.Comandos.Comandos.ComandosAuditoria
         private static Logger logger = LogManager.GetCurrentClassLogger();
         private Auditoria _auditoria;
 
+
+        /// <summary>
+        /// Metodo Comando que consulta la tabla de una Auditoria
+        /// </summary>
+        /// <param name="auditoria">Tabla Auditoria a consultar</param>
         public ComandoAuditoriaPorFkyTabla(Auditoria auditoria)
         {
             this._auditoria = auditoria;

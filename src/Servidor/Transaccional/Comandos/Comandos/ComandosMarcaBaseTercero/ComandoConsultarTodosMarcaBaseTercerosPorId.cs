@@ -14,9 +14,10 @@ namespace Trascend.Bolet.Comandos.Comandos.ComandosMarcaBaseTercero
         private MarcaBaseTercero _marcaBaseTercero;
 
         /// <summary>
-        /// Constructor predeterminado
+        /// Metodo que consulta las marcaBaseTercero segun IdMarca y Anexo
         /// </summary>
-        /// <param name="marca">Marca a eliminar</param>
+        /// <param name="idMarcaTercero">Marca a eliminar</param>
+        ///  <param name="idAnexo">idAnexo a eliminar</param>
         public ComandoConsultarTodosMarcaBaseTerceroPorId(string idMarcaTercero,int idAnexo)
         {
             _marcaBaseTercero = new MarcaBaseTercero();

@@ -15,7 +15,7 @@ namespace Trascend.Bolet.Comandos.Comandos.ComandosCambioDeNombre
         /// <summary>
         /// Constructor predeterminado
         /// </summary>
-        /// <param name="usuario">Usuario a insertar o modificar</param>
+        /// <param name="cambioNombre">cambioNombre a insertar o modificar</param>
         public ComandoInsertarOModificarCambioDeNombre(CambioDeNombre cambioNombre)
         {
             this._cambioNombre = cambioNombre;

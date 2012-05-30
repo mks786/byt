@@ -15,7 +15,7 @@ namespace Trascend.Bolet.Comandos.Comandos.ComandosPlanilla
         /// <summary>
         /// Constructor predeterminado
         /// </summary>
-        /// <param name="marca">Marca a verificar</param>
+        /// <param name="usuario">usuario a verificar</param>
         public ComandoConsultarPlanillaPorUsuario(Usuario usuario)
         {
             this._usuario = usuario;

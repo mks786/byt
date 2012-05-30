@@ -18,7 +18,7 @@ namespace Trascend.Bolet.Comandos.Comandos.ComandosInfoAdicional
         /// <summary>
         /// Constructor predeterminado
         /// </summary>
-        /// <param name="objeto">Objeto a eliminar</param>
+        /// <param name="infoAdicional">infoAdicional a eliminar</param>
         public ComandoEliminarInfoAdicional(InfoAdicional infoAdicional)
         {
             this._infoAdicional = infoAdicional;

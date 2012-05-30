@@ -15,7 +15,7 @@ namespace Trascend.Bolet.Comandos.Comandos.ComandosEstadoMarca
         /// <summary>
         /// Constructor predeterminado
         /// </summary>
-        /// <param name="anexo">Anaqua a verificar</param>
+        /// <param name="estadoMarca">estadoMarca a verificar</param>
         public ComandoVerificarExistenciaEstadoMarca(EstadoMarca estadoMarca)
         {
             this._estadoMarca = estadoMarca;

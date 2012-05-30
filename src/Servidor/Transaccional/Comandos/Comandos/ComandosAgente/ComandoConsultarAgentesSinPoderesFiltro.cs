@@ -14,6 +14,10 @@ namespace Trascend.Bolet.Comandos.Comandos.ComandosAgente
         private Agente _agente;
 
 
+        /// <summary>
+        /// Metodo Comando que Consulta todoos los agentes sin poderes dado unos parametros
+        /// </summary>
+        /// <param name="agente">agente con parametros a consultar</param>
         public ComandoConsultarAgentesSinPoderesFiltro(Agente agente)
         {
             this._agente = agente;

@@ -13,6 +13,11 @@ namespace Trascend.Bolet.Comandos.Comandos.ComandosInventor
         private static Logger logger = LogManager.GetCurrentClassLogger();
         private Patente _patente;
 
+
+        /// <summary>
+        /// metodo Comando que consulta los inventores de una patente
+        /// </summary>
+        /// <param name="patente">Patente a consultar inventores</param>
         public ComandoConsultarInventoresPorPatente(Patente patente)
         {
             this._patente = patente;

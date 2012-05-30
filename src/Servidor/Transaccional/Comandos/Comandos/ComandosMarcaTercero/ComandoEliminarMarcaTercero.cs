@@ -13,15 +13,15 @@ namespace Trascend.Bolet.Comandos.Comandos.ComandosMarcaTercero
     public class ComandoEliminarMarcaTercero : ComandoBase<bool>
     {
         private static Logger logger = LogManager.GetCurrentClassLogger();
-        private MarcaTercero _anexo;
+        private MarcaTercero _marcaTercero;
 
         /// <summary>
         /// Constructor predeterminado
         /// </summary>
-        /// <param name="anexo">Pais a eliminar</param>
-        public ComandoEliminarMarcaTercero(MarcaTercero anexo)
+        /// <param name="marcaTercero">marcaTercero a eliminar</param>
+        public ComandoEliminarMarcaTercero(MarcaTercero marcaTercero)
         {
-            this._anexo = anexo;
+            this._marcaTercero = marcaTercero;
         }
 
         /// <summary>
@@ -37,7 +37,7 @@ namespace Trascend.Bolet.Comandos.Comandos.ComandosMarcaTercero
                 #endregion
 
                 IDaoMarcaTercero dao = FabricaDaoBase.ObtenerFabricaDao().ObtenerDaoMarcaTercero();
-                this.Receptor = new Receptor<bool>(dao.Eliminar(this._anexo));
+                this.Receptor = new Receptor<bool>(dao.Eliminar(this._marcaTercero));
 
                 #region trace
                 if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))

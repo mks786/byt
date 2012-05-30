@@ -18,7 +18,7 @@ namespace Trascend.Bolet.Comandos.Comandos.ComandosAsignacion
         /// <summary>
         /// Constructor predeterminado
         /// </summary>
-        /// <param name="asignacion">Carta a insertar o modificar</param>
+        /// <param name="carta">Carta a insertar o modificar</param>
         public ComandoConsultarAsignacionesPorCarta(Carta carta)
         {
             this._carta = carta;

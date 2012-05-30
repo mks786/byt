@@ -18,7 +18,7 @@ namespace Trascend.Bolet.Comandos.Comandos.ComandosContacto
         /// <summary>
         /// Constructor predeterminado
         /// </summary>
-        /// <param name="agente">Contacto a eliminar</param>
+        /// <param name="contacto">Contacto a eliminar</param>
         public ComandoEliminarContacto(Contacto contacto)
         {
             this._contacto = contacto;

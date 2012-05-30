@@ -18,7 +18,7 @@ namespace Trascend.Bolet.Comandos.Comandos.ComandosAnaqua
         /// <summary>
         /// Constructor predeterminado
         /// </summary>
-        /// <param name="anaqua">Pais a eliminar</param>
+        /// <param name="anaqua">anaqua a eliminar</param>
         public ComandoEliminarAnaqua(Anaqua anaqua)
         {
             this._anaqua = anaqua;

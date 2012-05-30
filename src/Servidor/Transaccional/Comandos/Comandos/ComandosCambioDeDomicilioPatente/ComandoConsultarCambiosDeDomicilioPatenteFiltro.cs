@@ -13,7 +13,11 @@ namespace Trascend.Bolet.Comandos.Comandos.ComandosCambioDeDomicilioPatente
         private static Logger logger = LogManager.GetCurrentClassLogger();
         private CambioDeDomicilioPatente _cambioDeDomicilio;
 
-
+        
+        /// <summary>
+        /// Metodo Comando que consulta los CambiosDeDomicilioPatentes por parametros definidos
+        /// </summary>
+        /// <param name="cambioDeDomicilio">CambioDeDomicilioPatente a consultar</param>
         public ComandoConsultarCambiosDeDomicilioPatenteFiltro(CambioDeDomicilioPatente cambioDeDomicilio)
         {
             this._cambioDeDomicilio = cambioDeDomicilio;

@@ -18,7 +18,7 @@ namespace Trascend.Bolet.Comandos.Comandos.ComandosContador
         /// <summary>
         /// Constructor predeterminado
         /// </summary>
-        /// <param name="contador"></param>
+        /// <param name="id">Id de contador</param>
         public ComandoConsultarPorIdContador(string id)
         {
             this._id = id;

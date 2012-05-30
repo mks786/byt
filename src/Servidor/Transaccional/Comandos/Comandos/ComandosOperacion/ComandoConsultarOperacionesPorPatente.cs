@@ -13,6 +13,11 @@ namespace Trascend.Bolet.Comandos.Comandos.ComandosOperacion
         private static Logger logger = LogManager.GetCurrentClassLogger();
         private Patente _patente;
 
+
+        /// <summary>
+        /// Metodo Comando a Consultar las operaciones por patente
+        /// </summary>
+        /// <param name="patente">Patente a consultar las operaciones</param>
         public ComandoConsultarOperacionesPorPatente(Patente patente)
         {
             this._patente = patente;

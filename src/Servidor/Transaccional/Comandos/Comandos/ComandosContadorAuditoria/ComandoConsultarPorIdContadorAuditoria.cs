@@ -18,7 +18,7 @@ namespace Trascend.Bolet.Comandos.Comandos.ComandosContadorAuditoria
         /// <summary>
         /// Constructor predeterminado
         /// </summary>
-        /// <param name="contador"></param>
+        /// <param name="id"></param>
         public ComandoConsultarPorIdContadorAuditoria(string id)
         {
             this._id = id;

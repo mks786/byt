@@ -14,6 +14,10 @@ namespace Trascend.Bolet.Comandos.Comandos.ComandosPatente
         private Patente _patente;
 
 
+        /// <summary>
+        /// Metoco Comando que Consulta las Fechas de Patentes
+        /// </summary>
+        /// <param name="patente">Patente a consultar fechas</param>
         public ComandoConsultarFechasPatente(Patente patente)
         {
             this._patente = patente;

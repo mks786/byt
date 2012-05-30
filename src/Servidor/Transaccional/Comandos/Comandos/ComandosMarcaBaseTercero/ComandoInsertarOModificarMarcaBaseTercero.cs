@@ -13,9 +13,9 @@ namespace Trascend.Bolet.Comandos.Comandos.ComandosMarcaBaseTercero
         MarcaBaseTercero _marcaBaseTercero;
 
         /// <summary>
-        /// Constructor predeterminado
+        /// Metodo que Inserta o Modifica una marca a tercero
         /// </summary>
-        /// <param name="usuario">Usuario a insertar o modificar</param>
+        /// <param name="marcaBaseTercero">marcaBaseTercero a insertar o modificar</param>
         public ComandoInsertarOModificarMarcaBaseTercero(MarcaBaseTercero marcaBaseTercero)
         {
             this._marcaBaseTercero = marcaBaseTercero;

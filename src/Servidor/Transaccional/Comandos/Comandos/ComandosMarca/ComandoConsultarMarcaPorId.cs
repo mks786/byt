@@ -18,7 +18,7 @@ namespace Trascend.Bolet.Comandos.Comandos.ComandosMarca
         /// <summary>
         /// Constructor predeterminado
         /// </summary>
-        /// <param name="marca">Marca a eliminar</param>
+        /// <param name="id">Marca a eliminar</param>
         public ComandoConsultarMarcaPorId(int id)
         {
             _marca = new Marca();

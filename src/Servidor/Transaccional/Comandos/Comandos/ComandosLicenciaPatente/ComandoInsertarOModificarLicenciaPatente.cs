@@ -15,7 +15,7 @@ namespace Trascend.Bolet.Comandos.Comandos.ComandosLicenciaPatente
         /// <summary>
         /// Constructor predeterminado
         /// </summary>
-        /// <param name="usuario">Usuario a insertar o modificar</param>
+        /// <param name="licencia">LicenciaPatente a insertar o modificar</param>
         public ComandoInsertarOModificarLicenciaPatente(LicenciaPatente licencia)
         {
             this._licencia = licencia;

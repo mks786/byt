@@ -16,7 +16,7 @@ namespace Trascend.Bolet.Comandos.Comandos.ComandosMemoria
         /// <summary>
         /// Constructor predeterminado
         /// </summary>
-        /// <param name="patente">Interesado para el filtrado</param>
+        /// <param name="patente">Interesado para el filtrado por patente</param>
         public ComandoConsultarMemoriasPorPatente(Patente patente)
         {
             this._patente = patente;

@@ -18,7 +18,7 @@ namespace Trascend.Bolet.Comandos.Comandos.ComandosOperacion
         /// <summary>
         /// Constructor predeterminado
         /// </summary>
-        /// <param name="objeto">Objeto a eliminar</param>
+        /// <param name="operacion">operacion a eliminar</param>
         public ComandoEliminarOperacion(Operacion operacion)
         {
             this._operacion = operacion;

@@ -13,6 +13,11 @@ namespace Trascend.Bolet.Comandos.Comandos.ComandosBusqueda
         private static Logger logger = LogManager.GetCurrentClassLogger();
         private Marca _marca;
 
+
+        /// <summary>
+        /// Metodo Comando que Consulta las busquedas pertenecientes a una marca
+        /// </summary>
+        /// <param name="marca">Marca a consultar sus busquedas</param>
         public ComandoConsultarBusquedasPorMarca(Marca marca)
         {
             this._marca = marca;

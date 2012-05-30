@@ -10,15 +10,15 @@ namespace Trascend.Bolet.Comandos.Comandos.ComandosInventor
     public class ComandoVerificarExistenciaInventor : ComandoBase<bool>
     {
         private static Logger logger = LogManager.GetCurrentClassLogger();
-        private Inventor _anexo;
+        private Inventor _inventor;
 
         /// <summary>
         /// Constructor predeterminado
         /// </summary>
-        /// <param name="anexo">Anaqua a verificar</param>
-        public ComandoVerificarExistenciaInventor(Inventor anexo)
+        /// <param name="inventor">inventor a verificar</param>
+        public ComandoVerificarExistenciaInventor(Inventor inventor)
         {
-            this._anexo = anexo;
+            this._inventor = inventor;
         }
 
         /// <summary>
@@ -34,7 +34,7 @@ namespace Trascend.Bolet.Comandos.Comandos.ComandosInventor
                 #endregion
 
                 IDaoInventor dao = FabricaDaoBase.ObtenerFabricaDao().ObtenerDaoInventor();
-                this.Receptor = new Receptor<bool>(dao.VerificarExistencia(this._anexo.Id));
+                this.Receptor = new Receptor<bool>(dao.VerificarExistencia(this._inventor.Id));
 
                 #region trace
                 if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))

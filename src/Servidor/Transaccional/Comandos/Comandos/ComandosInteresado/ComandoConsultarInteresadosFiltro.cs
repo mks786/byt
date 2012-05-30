@@ -14,6 +14,11 @@ namespace Trascend.Bolet.Comandos.Comandos.ComandosInteresado
         private Interesado _interesado;
 
 
+
+        /// <summary>
+        /// Metodo Comando Consula los Interesado dado unos parametros
+        /// </summary>
+        /// <param name="interesado">Interesado con parametros a consultar</param>
         public ComandoConsultarInteresadosFiltro(Interesado interesado)
         {
             this._interesado = interesado;

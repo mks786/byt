@@ -15,7 +15,7 @@ namespace Trascend.Bolet.Comandos.Comandos.ComandosEstadoMarca
         /// <summary>
         /// Constructor predeterminado
         /// </summary>
-        /// <param name="usuario">Usuario a insertar o modificar</param>
+        /// <param name="estadoMarca">estadoMarca a insertar o modificar</param>
         public ComandoInsertarOModificarEstadoMarca(EstadoMarca estadoMarca)
         {
             this._estadoMarca = estadoMarca;

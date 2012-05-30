@@ -14,6 +14,11 @@ namespace Trascend.Bolet.Comandos.Comandos.ComandosAnualidad
         private Patente _patente;
 
 
+
+        /// <summary>
+        /// Metodo que consulta las anualidades de una patente
+        /// </summary>
+        /// <param name="patente">patente a consultar anualidades</param>
         public ComandoConsultarAnualidadesPorPatente(Patente patente)
         {
             this._patente = patente;

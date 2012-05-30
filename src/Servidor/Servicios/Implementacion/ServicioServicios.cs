@@ -96,7 +96,7 @@ namespace Trascend.Bolet.Servicios.Implementacion
         /// <summary>
         /// Servicio que verifica la existencia de un Servicio
         /// </summary>
-        /// <param name="tipoEstado">Servicio a verificar</param>
+        /// <param name="servicio">Servicio a verificar</param>
         /// <returns>true en caso de existir, false en caso contrario</returns>
         public bool VerificarExistencia(Servicio servicio)
         {

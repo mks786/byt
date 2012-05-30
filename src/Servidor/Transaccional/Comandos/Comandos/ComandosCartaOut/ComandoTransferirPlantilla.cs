@@ -15,6 +15,11 @@ namespace Trascend.Bolet.Comandos.Comandos.ComandosCartaOut
         private IList<CartaOut> _cartasOut;
 
 
+        /// <summary>
+        /// Metodo Comando que Transfiere una platilla dado las cartas y cartasout
+        /// </summary>
+        /// <param name="cartas">Lista de cartas</param>
+        /// <param name="cartasOut">Lista de CartasOuts</param>
         public ComandoTransferirPlantilla(IList<Carta> cartas,IList<CartaOut> cartasOut)
         {
             this._cartas = cartas;

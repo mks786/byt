@@ -14,9 +14,9 @@ namespace Trascend.Bolet.Comandos.Comandos.ComandosPoder
         private Interesado _interesado;
 
         /// <summary>
-        /// Constructor predeterminado
+        /// Metodo Comando que consulta los poderes de un interesado
         /// </summary>
-        /// <param name="interesado">Interesado para el filtrado</param>
+        /// <param name="interesado">Interesado para consultar</param>
         public ComandoConsultarPoderesPorInteresado(Interesado interesado)
         {
             this._interesado = interesado;

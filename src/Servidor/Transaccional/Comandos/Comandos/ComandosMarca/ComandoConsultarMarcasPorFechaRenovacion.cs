@@ -15,6 +15,11 @@ namespace Trascend.Bolet.Comandos.Comandos.ComandosMarca
         private DateTime[] _fechas;
 
 
+        /// <summary>
+        /// Metodo Comando que consulta las marcas segun su fecha de Renovacion
+        /// </summary>
+        /// <param name="marca">Marca con parametros</param>
+        /// <param name="fechas">Fecha a buscar</param>
         public ComandoConsultarMarcasPorFechaRenovacion(Marca marca, DateTime[] fechas)
         {
             this._marca = marca;

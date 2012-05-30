@@ -15,7 +15,7 @@ namespace Trascend.Bolet.Comandos.Comandos.ComandosAnaqua
         /// <summary>
         /// Constructor predeterminado
         /// </summary>
-        /// <param name="usuario">Usuario a insertar o modificar</param>
+        /// <param name="anaqua">anaqua a insertar o modificar</param>
         public ComandoInsertarOModificarAnaqua(Anaqua anaqua)
         {
             this._anaqua = anaqua;

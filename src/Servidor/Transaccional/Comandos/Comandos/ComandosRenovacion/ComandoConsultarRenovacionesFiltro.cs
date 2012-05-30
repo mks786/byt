@@ -14,6 +14,10 @@ namespace Trascend.Bolet.Comandos.Comandos.ComandosRenovacion
         private Renovacion _renovacion;
 
 
+        /// <summary>
+        /// Metodo Comando que consulta las renovaciones dado unos parametros
+        /// </summary>
+        /// <param name="renovacion">Renovacion con parametros para consultar</param>
         public ComandoConsultarRenovacionesFiltro(Renovacion renovacion)
         {
             this._renovacion = renovacion;

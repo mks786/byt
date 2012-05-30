@@ -18,7 +18,7 @@ namespace Trascend.Bolet.Comandos.Comandos.ComandosPatente
         /// <summary>
         /// Constructor predeterminado
         /// </summary>
-        /// <param name="Patente">Patente a eliminar</param>
+        /// <param name="id">Patente a eliminar</param>
         public ComandoConsultarPatentePorId(int id)
         {
             _patente = new Patente();

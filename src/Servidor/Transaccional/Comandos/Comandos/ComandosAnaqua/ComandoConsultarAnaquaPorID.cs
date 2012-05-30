@@ -12,7 +12,7 @@ namespace Trascend.Bolet.Comandos.Comandos.ComandosAnaqua
         /// <summary>
         /// Constructor predeterminado
         /// </summary>
-        /// <param name="anaqua">InfoAdicional a consultar</param>
+        /// <param name="anaqua">anaqua a consultar</param>
         public ComandoConsultarAnaquaPorID(Anaqua anaqua)
         {
             this._anaqua = anaqua;

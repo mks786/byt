@@ -15,7 +15,7 @@ namespace Trascend.Bolet.Comandos.Comandos.ComandosStatusWeb
         /// <summary>
         /// Constructor predeterminado
         /// </summary>
-        /// <param name="usuario">Usuario a insertar o modificar</param>
+        /// <param name="status">StatusWeb a insertar o modificar</param>
         public ComandoInsertarOModificarStatusWeb(StatusWeb status)
         {
             this._status = status;

@@ -18,7 +18,7 @@ namespace Trascend.Bolet.Comandos.Comandos.ComandosBoletin
         /// <summary>
         /// Constructor predeterminado
         /// </summary>
-        /// <param name="estado">Boletin a insertar o modificar</param>
+        /// <param name="estado">estado a insertar o modificar</param>
         public ComandoInsertarOModificarBoletin(Boletin estado)
         {
             this._boletin = estado;

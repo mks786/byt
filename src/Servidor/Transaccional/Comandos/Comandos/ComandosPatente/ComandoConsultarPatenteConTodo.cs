@@ -16,7 +16,7 @@ namespace Trascend.Bolet.Comandos.Comandos.ComandosPatente
         /// <summary>
         /// Constructor predeterminado
         /// </summary>
-        /// <param name="Patente">Asociado a consultar</param>
+        /// <param name="Patente">Patente a consultar</param>
         public ComandoConsultarPatenteConTodo(Patente Patente)
         {
             this._Patente = Patente;

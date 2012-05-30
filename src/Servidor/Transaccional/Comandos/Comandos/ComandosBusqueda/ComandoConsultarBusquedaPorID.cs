@@ -12,7 +12,7 @@ namespace Trascend.Bolet.Comandos.Comandos.ComandosBusqueda
         /// <summary>
         /// Constructor predeterminado
         /// </summary>
-        /// <param name="busqueda">InfoBol a consultar</param>
+        /// <param name="busqueda">busqueda a consultar</param>
         public ComandoConsultarBusquedaPorID(Busqueda busqueda)
         {
             this._busqueda = busqueda;

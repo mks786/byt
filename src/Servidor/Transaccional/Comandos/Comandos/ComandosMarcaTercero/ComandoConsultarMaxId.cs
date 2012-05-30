@@ -18,7 +18,7 @@ namespace Trascend.Bolet.Comandos.Comandos.ComandosMarcaTercero
         /// <summary>
         /// Constructor predeterminado
         /// </summary>
-        /// <param name="contador"></param>
+        /// <param name="id"></param>
         public ComandoConsultarMaxId(string id)
         {
             this._id = id;

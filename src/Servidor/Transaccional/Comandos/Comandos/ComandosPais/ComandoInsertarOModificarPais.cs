@@ -15,7 +15,7 @@ namespace Trascend.Bolet.Comandos.Comandos.ComandosPais
         /// <summary>
         /// Constructor predeterminado
         /// </summary>
-        /// <param name="usuario">Usuario a insertar o modificar</param>
+        /// <param name="pais">pais a insertar o modificar</param>
         public ComandoInsertarOModificarPais(Pais pais)
         {
             this._pais = pais;

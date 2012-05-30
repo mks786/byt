@@ -13,7 +13,10 @@ namespace Trascend.Bolet.Comandos.Comandos.ComandosAgente
         private static Logger logger = LogManager.GetCurrentClassLogger();
         private Agente _agente;
 
-
+        /// <summary>
+        /// Metodo de Comnaod que consulta los agentes dado unos parametros
+        /// </summary>
+        /// <param name="agente">Agente con parametros a consultar</param>
         public ComandoConsultarAgentesFiltro(Agente agente)
         {
             this._agente = agente;

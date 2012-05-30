@@ -14,6 +14,10 @@ namespace Trascend.Bolet.Comandos.Comandos.ComandosCarta
         private Carta _carta;
 
 
+        /// <summary>
+        /// Metodo Comando que consulta las Cartas dado unos parametros
+        /// </summary>
+        /// <param name="carta">Carta con parametros a consultar</param>
         public ComandoConsultarCartasFiltro(Carta carta)
         {
             this._carta = carta;

@@ -14,6 +14,11 @@ namespace Trascend.Bolet.Comandos.Comandos.ComandosCartaOut
         private CartaOut _carta;
 
 
+
+        /// <summary>
+        /// Metodo Comando que consulta las CartasOut dado unos parametros
+        /// </summary>
+        /// <param name="carta">CartasOuts con parametros a consultar</param>
         public ComandoConsultarCartasOutsFiltro(CartaOut carta)
         {
             this._carta = carta;

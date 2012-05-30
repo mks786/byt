@@ -18,7 +18,7 @@ namespace Trascend.Bolet.Comandos.Comandos.ComandosPlanilla
         /// <summary>
         /// Constructor predeterminado
         /// </summary>
-        /// <param name="contador"></param>
+        /// <param name="id"></param>
         public ComandoConsultarPlanillaPorId(int id)
         {
             this._id = id;

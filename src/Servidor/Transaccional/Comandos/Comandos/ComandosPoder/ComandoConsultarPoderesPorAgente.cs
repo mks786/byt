@@ -14,9 +14,9 @@ namespace Trascend.Bolet.Comandos.Comandos.ComandosPoder
         private Agente _agente;
 
         /// <summary>
-        /// Constructor predeterminado
+        /// Metodo Comando que consulta los poderes de un agente
         /// </summary>
-        /// <param name="interesado">Interesado para el filtrado</param>
+        /// <param name="agente">Interesado para el filtrado</param>
         public ComandoConsultarPoderesPorAgente(Agente agente)
         {
             this._agente = agente;

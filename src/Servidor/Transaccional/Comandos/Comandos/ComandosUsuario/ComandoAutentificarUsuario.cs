@@ -15,6 +15,11 @@ namespace Trascend.Bolet.Comandos.Comandos.ComandosUsuario
         private static Logger logger = LogManager.GetCurrentClassLogger();
         private Usuario _usuario;
 
+
+        /// <summary>
+        /// Metodo Comando que Autentifica al usuario
+        /// </summary>
+        /// <param name="usuario">Usuario a autentificar</param>
         public ComandoAutentificarUsuario(Usuario usuario)
         {
             this._usuario = usuario;
