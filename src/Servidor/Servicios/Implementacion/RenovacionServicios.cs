@@ -12,10 +12,11 @@ namespace Trascend.Bolet.Servicios.Implementacion
     {
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
+
         /// <summary>
-        /// Método que obtiene todos los renovacion
+        /// Servicio que consulta todos los elementos de una entidad
         /// </summary>
-        /// <returns>Todas las renovaciones</returns>
+        /// <returns>Lista de Entidades</returns>
         public IList<Renovacion> ConsultarTodos()
         {
             #region trace
@@ -34,11 +35,22 @@ namespace Trascend.Bolet.Servicios.Implementacion
         }
 
 
+        /// <summary>
+        /// Servicio que consulta una entidad por su Id
+        /// </summary>
+        /// <param name="entidad"></param>
+        /// <returns></returns>
         public Renovacion ConsultarPorId(Renovacion entidad)
         {
             throw new NotImplementedException();
         }
 
+
+        /// <summary>
+        /// Servicio que consulta la ultima renovacion de una marca
+        /// </summary>
+        /// <param name="renovacion">Renovacion a consultar</param>
+        /// <returns>Id de la ultima renovacion de la marca</returns>
         public int ConsultarUltimaRenovacion(Renovacion entidad)
         {
             #region trace
@@ -57,6 +69,12 @@ namespace Trascend.Bolet.Servicios.Implementacion
         }
 
 
+        /// <summary>
+        /// Servicio que inserta o modifica a una Entidad
+        /// </summary>
+        /// <param name="entidad">Entidad a insertar</param>
+        /// <param name="hash">Hash del usuario que inserta</param>
+        /// <returns>true en caso de ser exitoso, false en caso contrario</returns>
         public bool InsertarOModificar(Renovacion renovacion, int hash)
         {
             #region trace
@@ -74,6 +92,13 @@ namespace Trascend.Bolet.Servicios.Implementacion
             return exitoso;
         }
 
+
+        /// <summary>
+        /// Servicio que elimina a una entidad
+        /// </summary>
+        /// <param name="entidad">Entidad a eliminar</param>
+        /// <param name="hash">hash del usuario que realiza la acción</param>
+        /// <returns>true en caso de ser exitoso, false en caso contrario</returns>
         public bool Eliminar(Renovacion renovacion, int hash)
         {
             #region trace
@@ -92,6 +117,11 @@ namespace Trascend.Bolet.Servicios.Implementacion
         }
 
 
+        /// <summary>
+        /// Servicio que verifica la existencia de una Entidad
+        /// </summary>
+        /// <param name="entidad">Entidad a verificar existencia</param>
+        /// <returns>True en caso de ser exitoso, false en caso contrario</returns>
         public bool VerificarExistencia(Renovacion renovacion)
         {
             #region trace
@@ -109,11 +139,12 @@ namespace Trascend.Bolet.Servicios.Implementacion
             return exitoso;
         }
 
+
         /// <summary>
-        /// Servicio que consulta una serie de Renovacion por uno o mas parametros
+        /// Servicio que obtiene una lista de renovaciones que cumplan ciertos parametros
         /// </summary>
-        /// <param name="renovacion">Renovacion que contiene los parametros de la consulta</param>
-        /// <returns>renovaciones filtradas</returns>
+        /// <param name="renovacion">Renovacion a filtrar</param>
+        /// <returns>Lista de renovaciones que cumplan con los parametros especificados</returns>
         public IList<Renovacion> ObtenerRenovacionFiltro(Renovacion renovacion)
         {
             #region trace

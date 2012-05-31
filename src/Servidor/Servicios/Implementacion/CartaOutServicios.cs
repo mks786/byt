@@ -12,10 +12,11 @@ namespace Trascend.Bolet.Servicios.Implementacion
     {
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
+
         /// <summary>
-        /// Servicio que obtiene todos los boletines
+        /// Servicio que consulta todos los elementos de una entidad
         /// </summary>
-        /// <returns>Lista con todos los boletines</returns>
+        /// <returns>Lista de Entidades</returns>
         public IList<CartaOut> ConsultarTodos()
         {
             IList<CartaOut> cartaOut;
@@ -40,47 +41,58 @@ namespace Trascend.Bolet.Servicios.Implementacion
             return cartaOut;
         }
 
+
+        /// <summary>
+        /// Servicio que consulta una entidad por su Id
+        /// </summary>
+        /// <param name="entidad"></param>
+        /// <returns></returns>
         public CartaOut ConsultarPorId(CartaOut carta)
         {
             throw new NotImplementedException();
         }
 
+
         /// <summary>
-        /// Servicio que insertar o modifica un nacional
+        /// Servicio que inserta o modifica a una Entidad
         /// </summary>
-        /// <param name="carta">Boletin que se va a insertar o modificar</param>
-        /// <param name="hash">Hash del usuario que esta realiando la operacion</param>
-        /// <returns>True: si la inserción o modificación fue exitosa; False: en caso contrario</returns>
+        /// <param name="entidad">Entidad a insertar</param>
+        /// <param name="hash">Hash del usuario que inserta</param>
+        /// <returns>true en caso de ser exitoso, false en caso contrario</returns>
         public bool InsertarOModificar(CartaOut carta, int hash)
         {
             throw new NotImplementedException();
         }
 
+
         /// <summary>
-        /// Servicio que elimina un nacional
+        /// Servicio que elimina a una entidad
         /// </summary>
-        /// <param name="carta">Boletin que se va a eliminar</param>
-        /// <returns>True: si la eliminacion fue exitosa; False: en caso contrario</returns>
+        /// <param name="entidad">Entidad a eliminar</param>
+        /// <param name="hash">hash del usuario que realiza la acción</param>
+        /// <returns>true en caso de ser exitoso, false en caso contrario</returns>
         public bool Eliminar(CartaOut carta, int hash)
         {
             throw new NotImplementedException();
         }
 
+
         /// <summary>
-        /// Servicio que elimina un nacional
+        /// Servicio que verifica la existencia de una Entidad
         /// </summary>
-        /// <param name="carta">Boletin que se va a eliminar</param>
-        /// <returns>True: si la eliminacion fue exitosa; False: en caso contrario</returns>
+        /// <param name="entidad">Entidad a verificar existencia</param>
+        /// <returns>True en caso de ser exitoso, false en caso contrario</returns>
         public bool VerificarExistencia(CartaOut carta)
         {
             throw new NotImplementedException();
         }
 
+
         /// <summary>
-        /// Servicio que consulta una serie de cartas por uno o mas parametros
+        /// Servicio que se encarga de consultar las cartaOuts segun el filtro
         /// </summary>
-        /// <param name="carta">Carta que contiene los parametros de la consulta</param>
-        /// <returns>Lista de cartas filtradas</returns>
+        /// <param name="carta">CartaOut a buscar</param>
+        /// <returns>Lista de Cartas Out que cumplan con el filtro</returns>
         public IList<CartaOut> ObtenerCartasOutsFiltro(CartaOut carta)
         {
             #region trace
@@ -101,6 +113,11 @@ namespace Trascend.Bolet.Servicios.Implementacion
         }
 
 
+        /// <summary>
+        /// Servicio que se encarga de realizar la transferencia de plantilla de una tabla (COR_MAIL_OUT) a otra (ENTRADA)
+        /// </summary>
+        /// <param name="cartas">Cartas a transferir</param>
+        /// <returns>true en caso de ser exitoso, false en caso contrario</returns>
         public bool TransferirPlantilla(IList<CartaOut> cartas)
         {
             try

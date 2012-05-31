@@ -12,10 +12,11 @@ namespace Trascend.Bolet.Servicios.Implementacion
     {
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
+
         /// <summary>
-        /// Servicio que obtiene todos los Marcaes
+        /// Servicio que consulta todos los elementos de una entidad
         /// </summary>
-        /// <returns>Lista con todos los Marcaes</returns>
+        /// <returns>Lista de Entidades</returns>
         public IList<Marca> ConsultarTodos()
         {
             IList<Marca> marcas;
@@ -40,17 +41,23 @@ namespace Trascend.Bolet.Servicios.Implementacion
             return marcas;
         }
 
+        /// <summary>
+        /// Servicio que consulta una entidad por su Id
+        /// </summary>
+        /// <param name="entidad"></param>
+        /// <returns></returns>
         public Marca ConsultarPorId(Marca marca)
         {
             throw new NotImplementedException();
         }
 
+
         /// <summary>
-        /// Servicio que insertar o modifica una Marca
+        /// Servicio que inserta o modifica a una Entidad
         /// </summary>
-        /// <param name="marca">Marca que se va a insertar o modificar</param>
-        /// <param name="hash">Hash del usuario que esta realiando la operacion</param>
-        /// <returns>True: si la inserción o modificación fue exitosa; False: en caso contrario</returns>
+        /// <param name="entidad">Entidad a insertar</param>
+        /// <param name="hash">Hash del usuario que inserta</param>
+        /// <returns>true en caso de ser exitoso, false en caso contrario</returns>
         public bool InsertarOModificar(Marca marca, int hash)
         {
             #region trace
@@ -68,11 +75,13 @@ namespace Trascend.Bolet.Servicios.Implementacion
             return exitoso;
         }
 
+
         /// <summary>
-        /// Servicio que elimina una Marca
+        /// Servicio que elimina a una entidad
         /// </summary>
-        /// <param name="marca">Marca que se va a eliminar</param>
-        /// <returns>True: si la eliminacion fue exitosa; False: en caso contrario</returns>
+        /// <param name="entidad">Entidad a eliminar</param>
+        /// <param name="hash">hash del usuario que realiza la acción</param>
+        /// <returns>true en caso de ser exitoso, false en caso contrario</returns>
         public bool Eliminar(Marca marca, int hash)
         {
             #region trace
@@ -91,7 +100,11 @@ namespace Trascend.Bolet.Servicios.Implementacion
         }
 
 
-
+        /// <summary>
+        /// Servicio que verifica la existencia de una Entidad
+        /// </summary>
+        /// <param name="entidad">Entidad a verificar existencia</param>
+        /// <returns>True en caso de ser exitoso, false en caso contrario</returns>
         public bool VerificarExistencia(Marca marca)
         {
             #region trace
@@ -109,11 +122,12 @@ namespace Trascend.Bolet.Servicios.Implementacion
             return exitoso;
         }
 
+
         /// <summary>
-        /// Servicio que consulta una serie de Marcas por uno o mas parametros
+        /// Servicio que se encarga de buscar marcas que cumplan con un filtro
         /// </summary>
-        /// <param name="marca">Marca que contiene los parametros de la consulta</param>
-        /// <returns>Lista de cartas filtradas</returns>
+        /// <param name="Marca">marca modelo para filtrar</param>
+        /// <returns>Lista de marcas que cumplan con el filtro</returns>
         public IList<Marca> ObtenerMarcasFiltro(Marca marca)
         {
             #region trace
@@ -133,12 +147,13 @@ namespace Trascend.Bolet.Servicios.Implementacion
             #endregion
         }
 
+
         /// <summary>
-        /// Servicio que consulta una serie de Marcas por recordatorio o entre fechas usando fechaRenovacion
+        /// Servicio que se encarga de obtener las fechas de renovacion de una marca
         /// </summary>
-        /// <param name="marca">Marca que contiene el NRecordatorio</param>
-        /// <param name="fechas">Arreglo que contiene [0]FechaInicio y [1]FechaFin</param>
-        /// <returns>Lista de marcas filtradas</returns>
+        /// <param name="Marca">Marca a buscar</param>
+        /// <param name="fechas">fechas de renovacion de la marca</param>
+        /// <returns>Lista de marcas por fecha de renovacion</returns>
         public IList<Marca> ObtenerMarcasPorFechaRenovacion(Marca marca, DateTime[] fechas)
         {
             #region trace
@@ -158,6 +173,12 @@ namespace Trascend.Bolet.Servicios.Implementacion
             #endregion
         }
 
+
+        /// <summary>
+        /// Servicio que se encarga de consultar la auditoria de Marcas
+        /// </summary>
+        /// <param name="auditoria">Auditoria a consultar</param>
+        /// <returns>Lista de auditoria de la marca</returns>
         public IList<Auditoria> AuditoriaPorFkyTabla(Auditoria auditoria)
         {
             #region trace
@@ -175,6 +196,12 @@ namespace Trascend.Bolet.Servicios.Implementacion
             return auditorias;
         }
 
+
+        /// <summary>
+        /// Servicio que se encarga de consultar una marca con todos sus objetos
+        /// </summary>
+        /// <param name="marca">Marca a consultar</param>
+        /// <returns>Marca con todos los objetos</returns>
         public Marca ConsultarMarcaConTodo(Marca marca)
         {
             Marca retorno;
@@ -202,6 +229,12 @@ namespace Trascend.Bolet.Servicios.Implementacion
         }
 
 
+        /// <summary>
+        /// Servicio que se encarga de insertar la marca
+        /// </summary>
+        /// <param name="marca">Marca a insertar</param>
+        /// <param name="hash">hash del usuario que ejecuta la insercion</param>
+        /// <returns>Id de la Marca insertada</returns>
         public int? InsertarOModificarMarca(Marca marca, int hash)
         {
             #region trace

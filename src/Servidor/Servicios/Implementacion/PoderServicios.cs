@@ -12,10 +12,11 @@ namespace Trascend.Bolet.Servicios.Implementacion
     {
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
+
         /// <summary>
-        /// Método que obtiene todos los poderes
+        /// Servicio que consulta todos los elementos de una entidad
         /// </summary>
-        /// <returns>Todos los poderes</returns>
+        /// <returns>Lista de Entidades</returns>
         public IList<Poder> ConsultarTodos()
         {
             #region trace
@@ -34,11 +35,23 @@ namespace Trascend.Bolet.Servicios.Implementacion
         }
 
 
+        /// <summary>
+        /// Servicio que consulta una entidad por su Id
+        /// </summary>
+        /// <param name="entidad"></param>
+        /// <returns></returns>
         public Poder ConsultarPorId(Poder entidad)
         {
             throw new NotImplementedException();
         }
 
+
+        /// <summary>
+        /// Servicio que inserta o modifica a una Entidad
+        /// </summary>
+        /// <param name="entidad">Entidad a insertar</param>
+        /// <param name="hash">Hash del usuario que inserta</param>
+        /// <returns>true en caso de ser exitoso, false en caso contrario</returns>
         public bool InsertarOModificar(Poder poder, int hash)
         {
             #region trace
@@ -56,11 +69,13 @@ namespace Trascend.Bolet.Servicios.Implementacion
             return exitoso;
         }
 
+
         /// <summary>
-        /// Servicio que elimina un poder
+        /// Servicio que elimina a una entidad
         /// </summary>
-        /// <param name="poder">Poder que se va a eliminar</param>
-        /// <returns>True: si la eliminacion fue exitosa; False: en caso contrario</returns>
+        /// <param name="entidad">Entidad a eliminar</param>
+        /// <param name="hash">hash del usuario que realiza la acción</param>
+        /// <returns>true en caso de ser exitoso, false en caso contrario</returns>
         public bool Eliminar(Poder poder, int hash)
         {
             #region trace
@@ -78,11 +93,12 @@ namespace Trascend.Bolet.Servicios.Implementacion
             return exitoso;
         }
 
+
         /// <summary>
-        /// Método que consulta la lista de auiditorias de una tabla
+        /// Servicio que consulta las auditorias de un Poder
         /// </summary>
-        /// <param name="auditoria">Auditoria a filtrar</param>
-        /// <returns>Lista de auditorias</returns>
+        /// <param name="auditoria">Auditoria a consultar</param>
+        /// <returns>Lista de Auditorias del Poder</returns>
         public IList<Auditoria> AuditoriaPorFkyTabla(Auditoria auditoria)
         {
             #region trace
@@ -101,6 +117,11 @@ namespace Trascend.Bolet.Servicios.Implementacion
         }
 
 
+        /// <summary>
+        /// Servicio que consulta los poderes pertenecientes a un Interesado
+        /// </summary>
+        /// <param name="interesado">Interesado a consultar sus poderes</param>
+        /// <returns>Lista de poderes del interesado</returns>
         public IList<Poder> ConsultarPoderesPorInteresado(Interesado interesado)
         {
             #region trace
@@ -118,6 +139,12 @@ namespace Trascend.Bolet.Servicios.Implementacion
             return poderes;
         }
 
+
+        /// <summary>
+        /// Servicio que consulta los poderes de un agente
+        /// </summary>
+        /// <param name="agente">Agente a consultar sus poderes</param>
+        /// <returns>Lista de poderes del Agente</returns>
         public IList<Poder> ConsultarPoderesPorAgente(Agente agente)
         {
             #region trace
@@ -136,16 +163,22 @@ namespace Trascend.Bolet.Servicios.Implementacion
         }
 
 
+        /// <summary>
+        /// Servicio que verifica la existencia de una Entidad
+        /// </summary>
+        /// <param name="entidad">Entidad a verificar existencia</param>
+        /// <returns>True en caso de ser exitoso, false en caso contrario</returns>
         public bool VerificarExistencia(Poder entidad)
         {
             throw new NotImplementedException();
         }
 
+
         /// <summary>
-        /// Servicio que consulta una serie de Poderes por uno o mas parametros
+        /// Servicio que obtiene los poderes basados en un filtro
         /// </summary>
-        /// <param name="poder">Poder que contiene los parametros de la consulta</param>
-        /// <returns>Lista de poderes filtrados</returns>
+        /// <param name="poder">Poder a filtrar</param>
+        /// <returns>Lista de poderes que cumpla con el filtro</returns>
         public IList<Poder> ObtenerPoderesFiltro(Poder poder)
         {
             #region trace

@@ -12,10 +12,11 @@ namespace Trascend.Bolet.Servicios.Implementacion
     {
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
+
         /// <summary>
-        /// Método que obtiene todos los cesion
+        /// Servicio que consulta todos los elementos de una entidad
         /// </summary>
-        /// <returns>Todos los cesion</returns>
+        /// <returns>Lista de Entidades</returns>
         public IList<Cesion> ConsultarTodos()
         {
             #region trace
@@ -34,11 +35,23 @@ namespace Trascend.Bolet.Servicios.Implementacion
         }
 
 
+        /// <summary>
+        /// Servicio que consulta una entidad por su Id
+        /// </summary>
+        /// <param name="entidad"></param>
+        /// <returns></returns>
         public Cesion ConsultarPorId(Cesion entidad)
         {
             throw new NotImplementedException();
         }
 
+
+        /// <summary>
+        /// Servicio que inserta o modifica a una Entidad
+        /// </summary>
+        /// <param name="entidad">Entidad a insertar</param>
+        /// <param name="hash">Hash del usuario que inserta</param>
+        /// <returns>true en caso de ser exitoso, false en caso contrario</returns>
         public bool InsertarOModificar(Cesion cesion, int hash)
         {
             #region trace
@@ -56,6 +69,13 @@ namespace Trascend.Bolet.Servicios.Implementacion
             return exitoso;
         }
 
+
+        /// <summary>
+        /// Servicio que elimina a una entidad
+        /// </summary>
+        /// <param name="entidad">Entidad a eliminar</param>
+        /// <param name="hash">hash del usuario que realiza la acción</param>
+        /// <returns>true en caso de ser exitoso, false en caso contrario</returns>
         public bool Eliminar(Cesion cesion,int hash)
         {
             #region trace
@@ -74,6 +94,11 @@ namespace Trascend.Bolet.Servicios.Implementacion
         }
 
 
+        /// <summary>
+        /// Servicio que verifica la existencia de una Entidad
+        /// </summary>
+        /// <param name="entidad">Entidad a verificar existencia</param>
+        /// <returns>True en caso de ser exitoso, false en caso contrario</returns>
         public bool VerificarExistencia(Cesion cesion)
         {
             #region trace
@@ -91,11 +116,12 @@ namespace Trascend.Bolet.Servicios.Implementacion
             return exitoso;
         }
 
+
         /// <summary>
-        /// Servicio que consulta una serie de Cesion por uno o mas parametros
+        /// Servicio que se encarga de obtener las cesiones segun el filtro
         /// </summary>
-        /// <param name="cesion">Cesion que contiene los parametros de la consulta</param>
-        /// <returns>cesion filtradas</returns>
+        /// <param name="CesionAuxiliar">cesión filtro</param>
+        /// <returns>Lista de cesiones</returns>
         public IList<Cesion> ObtenerCesionFiltro(Cesion cesion)
         {
             #region trace

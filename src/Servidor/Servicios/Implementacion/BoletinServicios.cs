@@ -12,10 +12,11 @@ namespace Trascend.Bolet.Servicios.Implementacion
     {
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
+
         /// <summary>
-        /// Servicio que obtiene todos los boletines
+        /// Servicio que consulta todos los elementos de una entidad
         /// </summary>
-        /// <returns>Lista con todos los boletines</returns>
+        /// <returns>Lista de Entidades</returns>
         public IList<Boletin> ConsultarTodos()
         {
             IList<Boletin> boletines;
@@ -40,17 +41,24 @@ namespace Trascend.Bolet.Servicios.Implementacion
             return boletines;
         }
 
+
+        /// <summary>
+        /// Servicio que consulta una entidad por su Id
+        /// </summary>
+        /// <param name="entidad"></param>
+        /// <returns></returns>
         public Boletin ConsultarPorId(Boletin boletin)
         {
             throw new NotImplementedException();
         }
 
+
         /// <summary>
-        /// Servicio que insertar o modifica un nacional
+        /// Servicio que inserta o modifica a una Entidad
         /// </summary>
-        /// <param name="boletin">Boletin que se va a insertar o modificar</param>
-        /// <param name="hash">Hash del usuario que esta realiando la operacion</param>
-        /// <returns>True: si la inserción o modificación fue exitosa; False: en caso contrario</returns>
+        /// <param name="entidad">Entidad a insertar</param>
+        /// <param name="hash">Hash del usuario que inserta</param>
+        /// <returns>true en caso de ser exitoso, false en caso contrario</returns>
         public bool InsertarOModificar(Boletin boletin, int hash)
         {
             #region trace
@@ -68,11 +76,13 @@ namespace Trascend.Bolet.Servicios.Implementacion
             return exitoso;
         }
 
+
         /// <summary>
-        /// Servicio que elimina un nacional
+        /// Servicio que elimina a una entidad
         /// </summary>
-        /// <param name="boletin">Boletin que se va a eliminar</param>
-        /// <returns>True: si la eliminacion fue exitosa; False: en caso contrario</returns>
+        /// <param name="entidad">Entidad a eliminar</param>
+        /// <param name="hash">hash del usuario que realiza la acción</param>
+        /// <returns>true en caso de ser exitoso, false en caso contrario</returns>
         public bool Eliminar(Boletin boletin, int hash)
         {
             #region trace
@@ -90,6 +100,12 @@ namespace Trascend.Bolet.Servicios.Implementacion
             return exitoso;
         }
 
+
+        /// <summary>
+        /// Servicio que verifica la existencia de una Entidad
+        /// </summary>
+        /// <param name="entidad">Entidad a verificar existencia</param>
+        /// <returns>True en caso de ser exitoso, false en caso contrario</returns>
         public bool VerificarExistencia(Boletin boletin)
         {
             #region trace
@@ -107,11 +123,12 @@ namespace Trascend.Bolet.Servicios.Implementacion
             return exitoso;
         }
 
+
         /// <summary>
-        /// Método que consulta las resoluciones de un boletín
+        /// Servicio que se encarga de consultar las resoluciones pertenecientes aun boletin
         /// </summary>
-        /// <param name="boletin">Boletín a filtrar</param>
-        /// <returns>Lista de resoluciones filtrados</returns>
+        /// <param name="boletin">Boletin a consultar las resoluciones</param>
+        /// <returns>Lista de Resoluciones del boletin</returns>
         public IList<Resolucion> ConsultarResolucionesDeBoletin(Boletin boletin)
         {
             #region trace

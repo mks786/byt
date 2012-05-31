@@ -10,12 +10,13 @@ namespace Trascend.Bolet.Servicios.Implementacion
 {
     public class RolServicios : MarshalByRefObject, IRolServicios
     {
-        private static Logger logger = LogManager.GetCurrentClassLogger(); 
+        private static Logger logger = LogManager.GetCurrentClassLogger();
+
 
         /// <summary>
-        /// Método que obtiene todos los Roles.
+        /// Servicio que consulta todos los elementos de una entidad
         /// </summary>
-        /// <returns>Todos los roles</returns>
+        /// <returns>Lista de Entidades</returns>
         public IList<Rol> ConsultarTodos()
         {
             #region trace
@@ -33,17 +34,24 @@ namespace Trascend.Bolet.Servicios.Implementacion
             return roles;
         }
 
+
+        /// <summary>
+        /// Servicio que consulta una entidad por su Id
+        /// </summary>
+        /// <param name="entidad"></param>
+        /// <returns></returns>
         public Rol ConsultarPorId(Rol rol)
         {
             throw new NotImplementedException();
         }
 
+
         /// <summary>
-        /// Servicio que insertar o modifica un rol
+        /// Servicio que inserta o modifica a una Entidad
         /// </summary>
-        /// <param name="rol">Rol que se va a insertar o modificar</param>
-        /// <param name="hash">Hash de usuario que esta realizando la operacion</param>
-        /// <returns>True: si la inserción o modificación fue exitosa; False: en caso contrario</returns>
+        /// <param name="entidad">Entidad a insertar</param>
+        /// <param name="hash">Hash del usuario que inserta</param>
+        /// <returns>true en caso de ser exitoso, false en caso contrario</returns>
         public bool InsertarOModificar(Rol rol, int hash)
         {
             #region trace
@@ -62,12 +70,13 @@ namespace Trascend.Bolet.Servicios.Implementacion
 
         }
 
+
         /// <summary>
-        /// Servicio que elimina un rol
+        /// Servicio que elimina a una entidad
         /// </summary>
-        /// <param name="rol">Rol que se va a eliminar</param>
-        /// <param name="hash">Hash de usuario que esta realizando la operacion</param>
-        /// <returns>True: si la eliminacion fue exitosa; False: en caso contrario</returns>
+        /// <param name="entidad">Entidad a eliminar</param>
+        /// <param name="hash">hash del usuario que realiza la acción</param>
+        /// <returns>true en caso de ser exitoso, false en caso contrario</returns>
         public bool Eliminar(Rol rol, int hash)
         {
             #region trace
@@ -85,6 +94,11 @@ namespace Trascend.Bolet.Servicios.Implementacion
             return exitoso;
         }
 
+
+        /// <summary>
+        /// Servicio que consulta los roles y objetos relacionados con los mismos
+        /// </summary>
+        /// <returns>Lista de Roles</returns>
         public IList<Rol> ConsultarRolesYObjetos()
         {
             #region trace
@@ -103,6 +117,11 @@ namespace Trascend.Bolet.Servicios.Implementacion
         }
 
 
+        /// <summary>
+        /// Servicio que verifica la existencia de una Entidad
+        /// </summary>
+        /// <param name="entidad">Entidad a verificar existencia</param>
+        /// <returns>True en caso de ser exitoso, false en caso contrario</returns>
         public bool VerificarExistencia(Rol rol)
         {
             #region trace

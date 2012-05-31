@@ -12,10 +12,7 @@ namespace Trascend.Bolet.Servicios.Implementacion
     {
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
-        /// <summary>
-        /// Método que obtiene todos los MarcaBaseTerceros
-        /// </summary>
-        /// <returns>Todos los MarcaBaseTerceros</returns>
+     
         public IList<MarcaBaseTercero> ConsultarTodos()
         {
             #region trace
@@ -33,18 +30,22 @@ namespace Trascend.Bolet.Servicios.Implementacion
             return marcaBaseTerceros;
         }
 
-
+        /// <summary>
+        /// Servicio que consulta una entidad por su Id
+        /// </summary>
+        /// <param name="entidad"></param>
+        /// <returns></returns>
         public MarcaBaseTercero ConsultarPorId(MarcaBaseTercero marcaBaseTercero)
         {
             throw new NotImplementedException();
         }
 
         /// <summary>
-        /// Método que inserta o modifica un MarcaBaseTercero
+        /// Servicio que inserta o modifica a una Entidad
         /// </summary>
-        /// <param name="marcaBaseTercero">MarcaBaseTercero a insertar o modificar</param>
-        /// <param name="hash">hash del usuario loggeado</param>
-        /// <returns></returns>
+        /// <param name="entidad">Entidad a insertar</param>
+        /// <param name="hash">Hash del usuario que inserta</param>
+        /// <returns>true en caso de ser exitoso, false en caso contrario</returns>
         public bool InsertarOModificar(MarcaBaseTercero marcaBaseTercero, int hash)
         {
             #region trace
@@ -63,11 +64,11 @@ namespace Trascend.Bolet.Servicios.Implementacion
         }
 
         /// <summary>
-        /// Método que elimina un MarcaBaseTercero
+        /// Servicio que elimina a una entidad
         /// </summary>
-        /// <param name="marcaBaseTercero">MarcaBaseTercero a eliminar</param>
-        /// <param name="hash">Hash del usuario loggeado</param>
-        /// <returns></returns>
+        /// <param name="entidad">Entidad a eliminar</param>
+        /// <param name="hash">hash del usuario que realiza la acción</param>
+        /// <returns>true en caso de ser exitoso, false en caso contrario</returns>
         public bool Eliminar(MarcaBaseTercero marcaBaseTercero, int hash)
         {
             #region trace
@@ -86,10 +87,10 @@ namespace Trascend.Bolet.Servicios.Implementacion
         }
 
         /// <summary>
-        /// Método que verifica si un marcaBaseTercero ya existe en el sistema
+        /// Servicio que verifica la existencia de una Entidad
         /// </summary>
-        /// <param name="marcaBaseTercero">MarcaBaseTercero a buscar</param>
-        /// <returns>true si lo encontro, false en lo contrario</returns>
+        /// <param name="entidad">Entidad a verificar existencia</param>
+        /// <returns>True en caso de ser exitoso, false en caso contrario</returns>
         public bool VerificarExistencia(MarcaBaseTercero marcaBaseTercero)
         {
             #region trace
@@ -107,6 +108,12 @@ namespace Trascend.Bolet.Servicios.Implementacion
             return exitoso;
         }
 
+
+        /// <summary>
+        /// Servicio que se encarga de obtener las Marcas Base Tercero segun un filtro
+        /// </summary>
+        /// <param name="marcaBaseTercero">Marca base tercero a filtrar</param>
+        /// <returns>Lista de Marca Base Tercero</returns>
         IList<MarcaBaseTercero> IMarcaBaseTerceroServicios.ObtenerMarcaBaseTerceroFiltro(MarcaBaseTercero MarcaBaseTercero)
         {
             IList<MarcaBaseTercero> marcas;
@@ -116,22 +123,34 @@ namespace Trascend.Bolet.Servicios.Implementacion
             return marcas;
         }
 
+
+        /// <summary>
+        /// Servicio que consulta todos los elementos de una entidad
+        /// </summary>
+        /// <returns>Lista de Entidades</returns>
         IList<MarcaBaseTercero> IServicioBase<MarcaBaseTercero>.ConsultarTodos()
         {
             throw new NotImplementedException();
         }
 
+
+        /// <summary>
+        /// Servicio que consulta una entidad por su Id
+        /// </summary>
+        /// <param name="entidad"></param>
+        /// <returns></returns>
         MarcaBaseTercero IServicioBase<MarcaBaseTercero>.ConsultarPorId(MarcaBaseTercero entidad)
         {
             throw new NotImplementedException();
         }
 
+
         /// <summary>
-        /// Servicio que insertar o modifica una Marca Tercera
+        /// Servicio que inserta o modifica a una Entidad
         /// </summary>
-        /// <param name="marca">Marca que se va a insertar o modificar</param>
-        /// <param name="hash">Hash del usuario que esta realiando la operacion</param>
-        /// <returns>True: si la inserción o modificación fue exitosa; False: en caso contrario</returns>
+        /// <param name="entidad">Entidad a insertar</param>
+        /// <param name="hash">Hash del usuario que inserta</param>
+        /// <returns>true en caso de ser exitoso, false en caso contrario</returns>
         bool IServicioBase<MarcaBaseTercero>.InsertarOModificar(MarcaBaseTercero entidad, int hash)
         {
             #region trace
@@ -148,11 +167,13 @@ namespace Trascend.Bolet.Servicios.Implementacion
             #endregion
         }
 
+
         /// <summary>
-        /// Servicio que elimina una Marca
+        /// Servicio que elimina a una entidad
         /// </summary>
-        /// <param name="marca">Marca que se va a eliminar</param>
-        /// <returns>True: si la eliminacion fue exitosa; False: en caso contrario</returns>
+        /// <param name="entidad">Entidad a eliminar</param>
+        /// <param name="hash">hash del usuario que realiza la acción</param>
+        /// <returns>true en caso de ser exitoso, false en caso contrario</returns>
         bool IServicioBase<MarcaBaseTercero>.Eliminar(MarcaBaseTercero entidad, int hash)
         {
             #region trace
@@ -169,17 +190,34 @@ namespace Trascend.Bolet.Servicios.Implementacion
             #endregion
         }
 
+
+        /// <summary>
+        /// Servicio que verifica la existencia de una Entidad
+        /// </summary>
+        /// <param name="entidad">Entidad a verificar existencia</param>
+        /// <returns>True en caso de ser exitoso, false en caso contrario</returns>
         bool IServicioBase<MarcaBaseTercero>.VerificarExistencia(MarcaBaseTercero entidad)
         {
             throw new NotImplementedException();
         }
 
 
+        /// <summary>
+        /// Servicio que se encarga de obtener la Auditoria de la Marca Base Tercero
+        /// </summary>
+        /// <param name="auditoria">Auditoria a buscar</param>
+        /// <returns>Lista de auditorias de la Marca Base Tercero</returns>
         IList<Auditoria> IMarcaBaseTerceroServicios.AuditoriaPorFkyTabla(Auditoria auditoria)
         {
             throw new NotImplementedException();
         }
 
+
+        /// <summary>
+        /// Servicio que se encarga de consultar la Marca Base Tercero con todos sus objetos relacionados
+        /// </summary>
+        /// <param name="marcaTercero">Marca Base Tercero a consultar</param>
+        /// <returns>Marca Base Tercero con sus objetos</returns>
         MarcaBaseTercero IMarcaBaseTerceroServicios.ConsultarMarcaConTodo(MarcaBaseTercero marcaBaseTercero)
         {
             throw new NotImplementedException();

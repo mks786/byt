@@ -12,10 +12,11 @@ namespace Trascend.Bolet.Servicios.Implementacion
     {
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
+
         /// <summary>
-        /// Método que obtiene todos los CambioDeDomicilio
+        /// Servicio que consulta todos los elementos de una entidad
         /// </summary>
-        /// <returns>Todos los CambioDeDomicilio</returns>
+        /// <returns>Lista de Entidades</returns>
         public IList<CambioDeDomicilio> ConsultarTodos()
         {
             #region trace
@@ -34,11 +35,23 @@ namespace Trascend.Bolet.Servicios.Implementacion
         }
 
 
+        /// <summary>
+        /// Servicio que consulta una entidad por su Id
+        /// </summary>
+        /// <param name="entidad"></param>
+        /// <returns></returns>
         public CambioDeDomicilio ConsultarPorId(CambioDeDomicilio entidad)
         {
             throw new NotImplementedException();
         }
 
+
+        /// <summary>
+        /// Servicio que inserta o modifica a una Entidad
+        /// </summary>
+        /// <param name="entidad">Entidad a insertar</param>
+        /// <param name="hash">Hash del usuario que inserta</param>
+        /// <returns>true en caso de ser exitoso, false en caso contrario</returns>
         public bool InsertarOModificar(CambioDeDomicilio cambioDeDomicilio, int hash)
         {
             #region trace
@@ -56,6 +69,13 @@ namespace Trascend.Bolet.Servicios.Implementacion
             return exitoso;
         }
 
+
+        /// <summary>
+        /// Servicio que elimina a una entidad
+        /// </summary>
+        /// <param name="entidad">Entidad a eliminar</param>
+        /// <param name="hash">hash del usuario que realiza la acción</param>
+        /// <returns>true en caso de ser exitoso, false en caso contrario</returns>
         public bool Eliminar(CambioDeDomicilio cambioDeDomicilio,int hash)
         {
             #region trace
@@ -73,11 +93,12 @@ namespace Trascend.Bolet.Servicios.Implementacion
             return exitoso;
         }
 
+
         /// <summary>
-        /// Servicio que verifica la existencia de un CambioDeDomicilio
+        /// Servicio que verifica la existencia de una Entidad
         /// </summary>
-        /// <param name="cambioDeDomicilio">CambioDeDomicilio a verificar</param>
-        /// <returns>true en caso de existir, false en lo contrario</returns>
+        /// <param name="entidad">Entidad a verificar existencia</param>
+        /// <returns>True en caso de ser exitoso, false en caso contrario</returns>
         public bool VerificarExistencia(CambioDeDomicilio cambioDeDomicilio)
         {
             #region trace
@@ -97,10 +118,10 @@ namespace Trascend.Bolet.Servicios.Implementacion
 
 
         /// <summary>
-        /// Servicio que consulta una serie de Marcas por uno o mas parametros
+        /// Servicio que se encarga de consultar los CambioDeDomicilio segun el filtro
         /// </summary>
-        /// <param name="marca">Marca que contiene los parametros de la consulta</param>
-        /// <returns>Lista de cartas filtradas</returns>
+        /// <param name="CambioPeticionario">CambioDeDomicilio filtro</param>
+        /// <returns>CambioDeDomicilio que cumplen con el filtro</returns>
         public IList<CambioDeDomicilio> ObtenerCambioDeDomicilioFiltro(CambioDeDomicilio cambioDeDomicilio)
         {
             #region trace

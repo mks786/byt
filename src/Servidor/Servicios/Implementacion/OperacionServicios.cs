@@ -12,10 +12,11 @@ namespace Trascend.Bolet.Servicios.Implementacion
     {
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
+
         /// <summary>
-        /// Método que obtiene todos los Operacions
+        /// Servicio que consulta todos los elementos de una entidad
         /// </summary>
-        /// <returns>Todos los Operacions</returns>
+        /// <returns>Lista de Entidades</returns>
         public IList<Operacion> ConsultarTodos()
         {
             #region trace
@@ -34,11 +35,23 @@ namespace Trascend.Bolet.Servicios.Implementacion
         }
 
 
+        /// <summary>
+        /// Servicio que consulta una entidad por su Id
+        /// </summary>
+        /// <param name="entidad"></param>
+        /// <returns></returns>
         public Operacion ConsultarPorId(Operacion entidad)
         {
             return ControladorOperacion.ConsultarPorId(entidad);
         }
 
+
+        /// <summary>
+        /// Servicio que inserta o modifica a una Entidad
+        /// </summary>
+        /// <param name="entidad">Entidad a insertar</param>
+        /// <param name="hash">Hash del usuario que inserta</param>
+        /// <returns>true en caso de ser exitoso, false en caso contrario</returns>
         public bool InsertarOModificar(Operacion entidad, int hash)
         {
             #region trace
@@ -56,6 +69,13 @@ namespace Trascend.Bolet.Servicios.Implementacion
             return exitoso;
         }
 
+
+        /// <summary>
+        /// Servicio que elimina a una entidad
+        /// </summary>
+        /// <param name="entidad">Entidad a eliminar</param>
+        /// <param name="hash">hash del usuario que realiza la acción</param>
+        /// <returns>true en caso de ser exitoso, false en caso contrario</returns>
         public bool Eliminar(Operacion entidad,int hash)
         {
             #region trace
@@ -72,7 +92,13 @@ namespace Trascend.Bolet.Servicios.Implementacion
 
             return exitoso;
         }
-        
+
+
+        /// <summary>
+        /// Servicio que verifica la existencia de una Entidad
+        /// </summary>
+        /// <param name="entidad">Entidad a verificar existencia</param>
+        /// <returns>True en caso de ser exitoso, false en caso contrario</returns>
         public bool VerificarExistencia(Operacion entidad)
         {
             #region trace
@@ -90,6 +116,12 @@ namespace Trascend.Bolet.Servicios.Implementacion
             return exitoso;
         }
 
+
+        /// <summary>
+        /// Servicio que consulta las operaciones por marca
+        /// </summary>
+        /// <param name="marca">Marca a consultarle las operaciones</param>
+        /// <returns>Lista de operaciones de la marca</returns>
         public IList<Operacion> ConsultarOperacionesPorMarca(Marca marca)
         {            
             #region trace
@@ -107,6 +139,12 @@ namespace Trascend.Bolet.Servicios.Implementacion
             return operaciones;
         }
 
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="patente"></param>
+        /// <returns></returns>
         public IList<Operacion> ConsultarOperacionesPorPatente(Patente patente)
         {
             #region trace
@@ -124,11 +162,12 @@ namespace Trascend.Bolet.Servicios.Implementacion
             return operaciones;
         }
 
+
         /// <summary>
-        /// Servicio que consulta una serie de operaciones por el id de la marca y el tipo de la infobol
+        /// Servicio que obtiene las operaciones por marca y servicio
         /// </summary>
-        /// <param name="operacion">Operacion que contiene los parametros de la consulta</param>
-        /// <returns>Lista de operaciones filtradas</returns>
+        /// <param name="operacion">operacion a consultar</param>
+        /// <returns>Lista de Operaciones</returns>
         public IList<Operacion> ObtenerOperacionPorMarcaYServicio(Operacion operacion)
         {
             #region trace
@@ -148,11 +187,12 @@ namespace Trascend.Bolet.Servicios.Implementacion
             #endregion
         }
 
+
         /// <summary>
-        /// Servicio que consulta una serie de Operaciones por uno o mas parametros
+        /// Servicio que consulta las operaciones basadas en una operacion filtro
         /// </summary>
-        /// <param name="operacion">Operacion que contiene los parametros de la consulta</param>
-        /// <returns>operaciones filtradas</returns>
+        /// <param name="operacionAuxiliar">operacion filtro</param>
+        /// <returns>Lista de operaciones que cumplan con el filtro</returns>
         public IList<Operacion> ObtenerOperacionFiltro(Operacion operacion)
         {
             #region trace

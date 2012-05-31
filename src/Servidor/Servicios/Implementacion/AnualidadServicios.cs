@@ -12,10 +12,11 @@ namespace Trascend.Bolet.Servicios.Implementacion
     {
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
+
         /// <summary>
-        /// Servicio que obtiene todos los Anualidades
+        /// Servicio que consulta todos los elementos de una entidad
         /// </summary>
-        /// <returns>Lista con todos los Anualidades</returns>
+        /// <returns>Lista de Entidades</returns>
         public IList<Anualidad> ConsultarTodos()
         {
             IList<Anualidad> anualidades;
@@ -40,6 +41,12 @@ namespace Trascend.Bolet.Servicios.Implementacion
             return anualidades;
         }
 
+
+        /// <summary>
+        /// Servicio que consulta una entidad por su Id
+        /// </summary>
+        /// <param name="entidad"></param>
+        /// <returns></returns>
         public Anualidad ConsultarPorId(Anualidad anualidad)
         {
             throw new NotImplementedException();
@@ -48,7 +55,7 @@ namespace Trascend.Bolet.Servicios.Implementacion
         /// <summary>
         /// Servicio que insertar o modifica una Anualidad
         /// </summary>
-        /// <param name="anualidad">Anualidad que se va a insertar o modificar</param>
+        /// <param name="patente">Anualidad que se va a insertar o modificar</param>
         /// <param name="hash">Hash del usuario que esta realiando la operacion</param>
         /// <returns>True: si la inserción o modificación fue exitosa; False: en caso contrario</returns>
         public bool InsertarOModificar(Patente patente, int hash)
@@ -68,11 +75,13 @@ namespace Trascend.Bolet.Servicios.Implementacion
             return exitoso;
         }
 
+
         /// <summary>
-        /// Servicio que elimina una Anualidad
+        /// Servicio que elimina a una entidad
         /// </summary>
-        /// <param name="anualidad">Anualidad que se va a eliminar</param>
-        /// <returns>True: si la eliminacion fue exitosa; False: en caso contrario</returns>
+        /// <param name="anualidad">Entidad a eliminar</param>
+        /// <param name="hash">hash del usuario que realiza la acción</param>
+        /// <returns>true en caso de ser exitoso, false en caso contrario</returns>
         public bool Eliminar(Anualidad anualidad, int hash)
         {
             #region trace
@@ -90,7 +99,14 @@ namespace Trascend.Bolet.Servicios.Implementacion
             return exitoso;
         }
 
-                public bool InsertarOModificarAnualidad(Patente patente, int hash)
+
+        /// <summary>
+        /// Servicio que se encarga de insertar una nueva anualidad
+        /// </summary>
+        /// <param name="Patente">Patente a insertar con sus anualidades</param>
+        /// <param name="hash">hash del usuario</param>
+        /// <returns>true en caso de ser exitoso, false en caso contrario</returns>
+        public bool InsertarOModificarAnualidad(Patente patente, int hash)
         {
             #region trace
             if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
@@ -116,6 +132,7 @@ namespace Trascend.Bolet.Servicios.Implementacion
             return retorno;
         }
 
+
         //public bool VerificarExistencia(Anualidad anualidad)
         //{
         //    #region trace
@@ -133,11 +150,12 @@ namespace Trascend.Bolet.Servicios.Implementacion
         //    return exitoso;
         //}
 
+
         /// <summary>
-        /// Servicio que consulta una serie de Anualidads por uno o mas parametros
+        /// Servicio que se encarga de consultar las anualidades basadas en el filtro
         /// </summary>
-        /// <param name="anualidad">Anualidad que contiene los parametros de la consulta</param>
-        /// <returns>Lista de cartas filtradas</returns>
+        /// <param name="Anualidad">Anualidad filtro</param>
+        /// <returns>Lista de anualidades que cumplen con el filtro</returns>
         public IList<Anualidad> ObtenerAnualidadesFiltro(Anualidad anualidad)
         {
             #region trace
@@ -159,11 +177,11 @@ namespace Trascend.Bolet.Servicios.Implementacion
 
         }
 
+
         /// <summary>
-        /// Servicio que consulta el ultimo id  por uno o mas parametros
+        /// Servicio que se encarga de consultar el ultimo ID de las anualidades
         /// </summary>
-        /// <param name="anualidad">Anualidad que contiene los parametros de la consulta</param>
-        /// <returns>ultimo id de anualidad</returns>
+        /// <returns>Ultimo Id de las anualidades</returns>
         public int ConsultarUltimoIdAnualidad()
         {
             #region trace
@@ -184,6 +202,8 @@ namespace Trascend.Bolet.Servicios.Implementacion
 
 
         }
+
+
         //public IList<Auditoria> AuditoriaPorFkyTabla(Auditoria auditoria)
         //{
         //    #region trace

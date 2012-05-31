@@ -35,10 +35,16 @@ namespace Trascend.Bolet.Servicios.Implementacion
         }
 
 
+        /// <summary>
+        /// Servicio que consulta una entidad por su Id
+        /// </summary>
+        /// <param name="entidad"></param>
+        /// <returns></returns>
         public Usuario ConsultarPorId(Usuario usuario)
         {
             throw new NotImplementedException();
         }
+
 
         /// <summary>
         /// Servicio que insertar o modifica un usuario
@@ -62,6 +68,7 @@ namespace Trascend.Bolet.Servicios.Implementacion
             return exitoso;
         }
 
+
         /// <summary>
         /// Servicio que autentica un usuario
         /// </summary>
@@ -84,6 +91,7 @@ namespace Trascend.Bolet.Servicios.Implementacion
             return usuarioAutenticado;
         }
 
+
         /// <summary>
         /// Método que cierra la sesión del cliente.
         /// </summary>
@@ -92,6 +100,7 @@ namespace Trascend.Bolet.Servicios.Implementacion
         {
             ControladorUsuario.CerrarSesion(hash);
         }
+
 
         /// <summary>
         /// Servicio que elimina un usuario
@@ -117,6 +126,11 @@ namespace Trascend.Bolet.Servicios.Implementacion
         }
 
 
+        /// <summary>
+        /// Servicio que verifica la existencia de una Entidad
+        /// </summary>
+        /// <param name="entidad">Entidad a verificar existencia</param>
+        /// <returns>True en caso de ser exitoso, false en caso contrario</returns>
         public bool VerificarExistencia(Usuario usuario)
         {
             #region trace

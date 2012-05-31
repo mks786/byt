@@ -12,10 +12,11 @@ namespace Trascend.Bolet.Servicios.Implementacion
     {
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
+
         /// <summary>
-        /// Servicio que obtiene todos los boletines
+        /// Servicio que consulta todos los elementos de una entidad
         /// </summary>
-        /// <returns>Lista con todos los boletines</returns>
+        /// <returns>Lista de Entidades</returns>
         public IList<Carta> ConsultarTodos()
         {
             IList<Carta> carta;
@@ -39,6 +40,8 @@ namespace Trascend.Bolet.Servicios.Implementacion
             }
             return carta;
         }
+
+
         //IList<Carta> carta;
         //try
         //{
@@ -61,17 +64,23 @@ namespace Trascend.Bolet.Servicios.Implementacion
         //return carta;
 
 
+        /// <summary>
+        /// Servicio que consulta una entidad por su Id
+        /// </summary>
+        /// <param name="entidad"></param>
+        /// <returns></returns>
         public Carta ConsultarPorId(Carta carta)
         {
             throw new NotImplementedException();
         }
 
+
         /// <summary>
-        /// Servicio que insertar o modifica un nacional
+        /// Servicio que inserta o modifica a una Entidad
         /// </summary>
-        /// <param name="carta">Boletin que se va a insertar o modificar</param>
-        /// <param name="hash">Hash del usuario que esta realiando la operacion</param>
-        /// <returns>True: si la inserción o modificación fue exitosa; False: en caso contrario</returns>
+        /// <param name="entidad">Entidad a insertar</param>
+        /// <param name="hash">Hash del usuario que inserta</param>
+        /// <returns>true en caso de ser exitoso, false en caso contrario</returns>
         public bool InsertarOModificar(Carta carta, int hash)
         {
             #region trace
@@ -89,11 +98,13 @@ namespace Trascend.Bolet.Servicios.Implementacion
             return exitoso;
         }
 
+
         /// <summary>
-        /// Servicio que elimina un nacional
+        /// Servicio que elimina a una entidad
         /// </summary>
-        /// <param name="carta">Boletin que se va a eliminar</param>
-        /// <returns>True: si la eliminacion fue exitosa; False: en caso contrario</returns>
+        /// <param name="entidad">Entidad a eliminar</param>
+        /// <param name="hash">hash del usuario que realiza la acción</param>
+        /// <returns>true en caso de ser exitoso, false en caso contrario</returns>
         public bool Eliminar(Carta carta, int hash)
         {
             #region trace
@@ -111,11 +122,12 @@ namespace Trascend.Bolet.Servicios.Implementacion
             return exitoso;
         }
 
+
         /// <summary>
-        /// Servicio que elimina un nacional
+        /// Servicio que verifica la existencia de una Entidad
         /// </summary>
-        /// <param name="carta">Boletin que se va a eliminar</param>
-        /// <returns>True: si la eliminacion fue exitosa; False: en caso contrario</returns>
+        /// <param name="entidad">Entidad a verificar existencia</param>
+        /// <returns>True en caso de ser exitoso, false en caso contrario</returns>
         public bool VerificarExistencia(Carta carta)
         {
             #region trace
@@ -133,11 +145,12 @@ namespace Trascend.Bolet.Servicios.Implementacion
             return exitoso;
         }
 
+
         /// <summary>
-        /// Servicio que consulta una serie de cartas por uno o mas parametros
+        /// Servicio que se encarga de consultar las cartas segun el filtro
         /// </summary>
-        /// <param name="carta">Carta que contiene los parametros de la consulta</param>
-        /// <returns>Lista de cartas filtradas</returns>
+        /// <param name="carta">carta filtro</param>
+        /// <returns>Lista de cartas que cumplen con el filtro</returns>
         public IList<Carta> ObtenerCartasFiltro(Carta carta)
         {
             #region trace
@@ -157,6 +170,12 @@ namespace Trascend.Bolet.Servicios.Implementacion
             #endregion
         }
 
+
+        /// <summary>
+        /// Servicio que se encarga de realizar la auditoria de una carta
+        /// </summary>
+        /// <param name="auditoria">Auditoria a consultar</param>
+        /// <returns>Lista de auditorias de la carta</returns>
         public IList<Auditoria> AuditoriaPorFkyTabla(Auditoria auditoria)
         {
             #region trace

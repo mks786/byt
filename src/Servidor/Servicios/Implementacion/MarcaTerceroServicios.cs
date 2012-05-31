@@ -39,6 +39,7 @@ namespace Trascend.Bolet.Servicios.Implementacion
             throw new NotImplementedException();
         }
 
+
         /// <summary>
         /// Método que inserta o modifica un MarcaTercero
         /// </summary>
@@ -61,6 +62,7 @@ namespace Trascend.Bolet.Servicios.Implementacion
 
             return exitoso;
         }
+
 
         /// <summary>
         /// Método que elimina un MarcaTercero
@@ -85,6 +87,7 @@ namespace Trascend.Bolet.Servicios.Implementacion
             return exitoso;
         }
 
+
         /// <summary>
         /// Método que verifica si un marcaTercero ya existe en el sistema
         /// </summary>
@@ -107,6 +110,12 @@ namespace Trascend.Bolet.Servicios.Implementacion
             return exitoso;
         }
 
+
+        /// <summary>
+        /// Servicio que se encarga de obtener la Marca Tercero basada en un filtro
+        /// </summary>
+        /// <param name="marcaTercero">Marca tercero filtro</param>
+        /// <returns>Lista de marcas tercero que cumplan con el filtro</returns>
         IList<MarcaTercero> IMarcaTerceroServicios.ObtenerMarcaTerceroFiltro(MarcaTercero MarcaTercero)
         {
             IList<MarcaTercero> marcas;
@@ -116,15 +125,27 @@ namespace Trascend.Bolet.Servicios.Implementacion
             return marcas;
         }
 
+
+        /// <summary>
+        /// Servicio que consulta todos los elementos de una entidad
+        /// </summary>
+        /// <returns>Lista de Entidades</returns>
         IList<MarcaTercero> IServicioBase<MarcaTercero>.ConsultarTodos()
         {
             throw new NotImplementedException();
         }
 
+
+        /// <summary>
+        /// Servicio que consulta una entidad por su Id
+        /// </summary>
+        /// <param name="entidad"></param>
+        /// <returns></returns>
         MarcaTercero IServicioBase<MarcaTercero>.ConsultarPorId(MarcaTercero entidad)
         {
             throw new NotImplementedException();
         }
+
 
         /// <summary>
         /// Servicio que insertar o modifica una Marca Tercera
@@ -149,6 +170,7 @@ namespace Trascend.Bolet.Servicios.Implementacion
             return exitoso;
         }
 
+
         /// <summary>
         /// Servicio que elimina una Marca
         /// </summary>
@@ -170,17 +192,34 @@ namespace Trascend.Bolet.Servicios.Implementacion
             #endregion
         }
 
+
+        /// <summary>
+        /// Servicio que verifica la existencia de una Entidad
+        /// </summary>
+        /// <param name="entidad">Entidad a verificar existencia</param>
+        /// <returns>True en caso de ser exitoso, false en caso contrario</returns>
         bool IServicioBase<MarcaTercero>.VerificarExistencia(MarcaTercero entidad)
         {
             throw new NotImplementedException();
         }
 
 
+        /// <summary>
+        /// Servicio encargado de consultar la auditoria de Marca Tercero
+        /// </summary>
+        /// <param name="auditoria">Auditoria a consultar</param>
+        /// <returns>Lista de Auditorias</returns>
         IList<Auditoria> IMarcaTerceroServicios.AuditoriaPorFkyTabla(Auditoria auditoria)
         {
             throw new NotImplementedException();
         }
 
+
+        /// <summary>
+        /// Servicio encargado de consultar una marca tercero con todos sus objetos
+        /// </summary>
+        /// <param name="marcaTercero">Marca Tercero a consultar</param>
+        /// <returns>Marca tercero consultada con todos los objetos</returns>
         MarcaTercero IMarcaTerceroServicios.ConsultarMarcaConTodo(MarcaTercero marcaTercero)
         {
             throw new NotImplementedException();

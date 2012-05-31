@@ -12,10 +12,11 @@ namespace Trascend.Bolet.Servicios.Implementacion
     {
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
+
         /// <summary>
-        /// Método que obtiene todos los agentes
+        /// Servicio que consulta todos los elementos de una entidad
         /// </summary>
-        /// <returns>Todos los agentes</returns>
+        /// <returns>Lista de Entidades</returns>
         public IList<Agente> ConsultarTodos()
         {
             #region trace
@@ -34,11 +35,23 @@ namespace Trascend.Bolet.Servicios.Implementacion
         }
 
 
+        /// <summary>
+        /// Servicio que consulta una entidad por su Id
+        /// </summary>
+        /// <param name="entidad"></param>
+        /// <returns></returns>
         public Agente ConsultarPorId(Agente entidad)
         {
             throw new NotImplementedException();
         }
 
+
+        /// <summary>
+        /// Servicio que inserta o modifica a una Entidad
+        /// </summary>
+        /// <param name="entidad">Entidad a insertar</param>
+        /// <param name="hash">Hash del usuario que inserta</param>
+        /// <returns>true en caso de ser exitoso, false en caso contrario</returns>
         public bool InsertarOModificar(Agente agente, int hash)
         {
             #region trace
@@ -56,6 +69,13 @@ namespace Trascend.Bolet.Servicios.Implementacion
             return exitoso;
         }
 
+
+        /// <summary>
+        /// Servicio que elimina a una entidad
+        /// </summary>
+        /// <param name="entidad">Entidad a eliminar</param>
+        /// <param name="hash">hash del usuario que realiza la acción</param>
+        /// <returns>true en caso de ser exitoso, false en caso contrario</returns>
         public bool Eliminar(Agente agente,int hash)
         {
             #region trace
@@ -73,6 +93,11 @@ namespace Trascend.Bolet.Servicios.Implementacion
             return exitoso;
         }
 
+
+        /// <summary>
+        /// Servicio que se encarga de consultar los Agentes con sus poderes
+        /// </summary>
+        /// <returns>Lista de agentes con sus poderes</returns>
         public IList<Agente> ConsultarAgentesYPoderes()
         {
             #region trace
@@ -90,6 +115,12 @@ namespace Trascend.Bolet.Servicios.Implementacion
             return agentes;
         }
 
+
+        /// <summary>
+        /// Servicio que verifica la existencia de una Entidad
+        /// </summary>
+        /// <param name="entidad">Entidad a verificar existencia</param>
+        /// <returns>True en caso de ser exitoso, false en caso contrario</returns>
         public bool VerificarExistencia(Agente agente)
         {
             #region trace
@@ -107,11 +138,12 @@ namespace Trascend.Bolet.Servicios.Implementacion
             return exitoso;
         }
 
+
         /// <summary>
-        /// Servicio que consulta una serie de Agentes por uno o mas parametros
+        /// Servicio que se encarga de consultar los agentes basados en un filtro
         /// </summary>
-        /// <param name="Agente">Agente que contiene los parametros de la consulta</param>
-        /// <returns>Lista de cartas filtradas</returns>
+        /// <param name="agente">Agente filtro</param>
+        /// <returns>Lista de agentes que cumplen con el filtro</returns>
         public IList<Agente> ObtenerAgentesFiltro(Agente agente)
         {
             #region trace
@@ -131,11 +163,12 @@ namespace Trascend.Bolet.Servicios.Implementacion
             #endregion
         }
 
+
         /// <summary>
-        /// Servicio que consulta los Agentes que pertenecen a un poder
+        /// Servicio que se encarga de consultar los agentes pertenecientes a un poder 
         /// </summary>
-        /// <param name="agente"></param>
-        /// <returns></returns>
+        /// <param name="poder">Poder a consultar los agentes </param>
+        /// <returns>Agentes que pertenecen al poder</returns>
         public IList<Agente> ObtenerAgentesDeUnPoder(Poder poder)
         {
             #region trace
@@ -155,10 +188,10 @@ namespace Trascend.Bolet.Servicios.Implementacion
 
 
         /// <summary>
-        /// Servicio que consulta una serie de Agentes por uno o mas parametros
+        /// Servicio que se encarga de consultar los agentes sin sus poderes (método mas rápido) basados en un filtro
         /// </summary>
-        /// <param name="Agente">Agente que contiene los parametros de la consulta</param>
-        /// <returns>Lista de Agentes</returns>
+        /// <param name="agente">Agent filtro</param>
+        /// <returns>Lista de agentes que cumplen con el filtro</returns>
         public IList<Agente> ObtenerAgentesSinPoderesFiltro(Agente agente)
         {
             #region trace

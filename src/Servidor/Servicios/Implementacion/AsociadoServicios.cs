@@ -12,10 +12,11 @@ namespace Trascend.Bolet.Servicios.Implementacion
     {
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
+
         /// <summary>
-        /// Servicio que obtiene todos los asociados
+        /// Servicio que consulta todos los elementos de una entidad
         /// </summary>
-        /// <returns>Lista con todos los Asociados</returns>
+        /// <returns>Lista de Entidades</returns>
         public IList<Asociado> ConsultarTodos()
         {
             IList<Asociado> asociado;
@@ -40,17 +41,24 @@ namespace Trascend.Bolet.Servicios.Implementacion
             return asociado;
         }
 
+
+        /// <summary>
+        /// Servicio que consulta una entidad por su Id
+        /// </summary>
+        /// <param name="entidad"></param>
+        /// <returns></returns>
         public Asociado ConsultarPorId(Asociado asociado)
         {
             throw new NotImplementedException();
         }
 
+
         /// <summary>
-        /// Servicio que insertar o modifica un Asociado
+        /// Servicio que inserta o modifica a una Entidad
         /// </summary>
-        /// <param name="asociado">Asociado que se va a insertar o modificar</param>
-        /// <param name="hash">Hash del usuario que esta realiando la operacion</param>
-        /// <returns>True: si la inserción o modificación fue exitosa; False: en caso contrario</returns>
+        /// <param name="entidad">Entidad a insertar</param>
+        /// <param name="hash">Hash del usuario que inserta</param>
+        /// <returns>true en caso de ser exitoso, false en caso contrario</returns>
         public bool InsertarOModificar(Asociado asociado, int hash)
         {
             #region trace
@@ -68,11 +76,13 @@ namespace Trascend.Bolet.Servicios.Implementacion
             return exitoso;
         }
 
+
         /// <summary>
-        /// Servicio que elimina un Asociado
+        /// Servicio que elimina a una asociado
         /// </summary>
-        /// <param name="asociado">Asociado que se va a eliminar</param>
-        /// <returns>True: si la eliminacion fue exitosa; False: en caso contrario</returns>
+        /// <param name="asociado">asociado a eliminar</param>
+        /// <param name="hash">hash del usuario que realiza la acción</param>
+        /// <returns>true en caso de ser exitoso, false en caso contrario</returns>
         public bool Eliminar(Asociado asociado, int hash)
         {
             #region trace
@@ -90,11 +100,12 @@ namespace Trascend.Bolet.Servicios.Implementacion
             return exitoso;
         }
 
+
         /// <summary>
-        /// Método que consulta la lista de auiditorias de una tabla
+        /// Servicio que se encarga consultar la auditoria de un Asociado
         /// </summary>
-        /// <param name="auditoria">Auditoria a filtrar</param>
-        /// <returns>Lista de auditorias</returns>
+        /// <param name="auditoria">Auditoria a consultar</param>
+        /// <returns>Lista de auditorias del asociado</returns>
         public IList<Auditoria> AuditoriaPorFkyTabla(Auditoria auditoria)
         {
             #region trace
@@ -113,6 +124,11 @@ namespace Trascend.Bolet.Servicios.Implementacion
         }
 
 
+        /// <summary>
+        /// Servicio que se encarga de consultar el asociado con todos sus objetos
+        /// </summary>
+        /// <param name="asociado">Asociado a buscar</param>
+        /// <returns>Asociado con todos sus objetos</returns>
         public Asociado ConsultarAsociadoConTodo(Asociado asociado)
         {
             Asociado asociadoConTodo;
@@ -137,6 +153,12 @@ namespace Trascend.Bolet.Servicios.Implementacion
             return asociadoConTodo;
         }
 
+
+        /// <summary>
+        /// Servicio que verifica la existencia de una Entidad
+        /// </summary>
+        /// <param name="entidad">Entidad a verificar existencia</param>
+        /// <returns>True en caso de ser exitoso, false en caso contrario</returns>
         public bool VerificarExistencia(Asociado entidad)
         {
             throw new NotImplementedException();
@@ -144,10 +166,10 @@ namespace Trascend.Bolet.Servicios.Implementacion
 
 
         /// <summary>
-        /// Servicio que consulta una serie de Interesados por uno o mas parametros
+        /// Servicio que se encarga de obtener un asociado basado en el filtro
         /// </summary>
-        /// <param name="asociado">Interesado que contiene los parametros de la consulta</param>
-        /// <returns>Lista de interesados filtrados</returns>
+        /// <param name="asociado">Asociado filtro</param>
+        /// <returns>Lista de asociados que cumplen con el filtro</returns>
         public IList<Asociado> ObtenerAsociadosFiltro(Asociado asociado)
         {
             #region trace

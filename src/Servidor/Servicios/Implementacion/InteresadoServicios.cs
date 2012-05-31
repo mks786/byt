@@ -12,10 +12,11 @@ namespace Trascend.Bolet.Servicios.Implementacion
     {
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
+
         /// <summary>
-        /// Método que obtiene todos los interesados
+        /// Servicio que consulta todos los elementos de una entidad
         /// </summary>
-        /// <returns>Todos los Interesados</returns>
+        /// <returns>Lista de Entidades</returns>
         public IList<Interesado> ConsultarTodos()
         {
             #region trace
@@ -33,17 +34,24 @@ namespace Trascend.Bolet.Servicios.Implementacion
             return interesados;
         }
 
+
+        /// <summary>
+        /// Servicio que consulta una entidad por su Id
+        /// </summary>
+        /// <param name="entidad"></param>
+        /// <returns></returns>
         public Interesado ConsultarPorId(Interesado entidad)
         {
             throw new NotImplementedException();
         }
 
+
         /// <summary>
-        /// Método que inserta o modifica un interesado
+        /// Servicio que inserta o modifica a una Entidad
         /// </summary>
-        /// <param name="interesado">Interesado a modificar o insertar</param>
-        /// <param name="hash">Hash del usuario que realiza la operacion</param>
-        /// <returns>True: si la insercion o modificacion fue exitosa; False: en caso contrario</returns>
+        /// <param name="entidad">Entidad a insertar</param>
+        /// <param name="hash">Hash del usuario que inserta</param>
+        /// <returns>true en caso de ser exitoso, false en caso contrario</returns>
         public bool InsertarOModificar(Interesado interesado, int hash)
         {
             #region trace
@@ -61,11 +69,13 @@ namespace Trascend.Bolet.Servicios.Implementacion
             return exitoso;
         }
 
+
         /// <summary>
-        /// Servicio que elimina un interesado
+        /// Servicio que elimina a una entidad
         /// </summary>
-        /// <param name="interesado">Interesado que se va a eliminar</param>
-        /// <returns>True: si la eliminacion fue exitosa; False: en caso contrario</returns>
+        /// <param name="entidad">Entidad a eliminar</param>
+        /// <param name="hash">hash del usuario que realiza la acción</param>
+        /// <returns>true en caso de ser exitoso, false en caso contrario</returns>
         public bool Eliminar(Interesado interesado, int hash)
         {
             #region trace
@@ -83,6 +93,12 @@ namespace Trascend.Bolet.Servicios.Implementacion
             return exitoso;
         }
 
+
+        /// <summary>
+        /// Servicio que se encarga de consultar la auditoria del interesado
+        /// </summary>
+        /// <param name="auditoria">Auditoria a consultar</param>
+        /// <returns>Lista de auditorias pertenecientes al interesado</returns>
         public IList<Auditoria> AuditoriaPorFkyTabla(Auditoria auditoria)
         {
             #region trace
@@ -101,12 +117,22 @@ namespace Trascend.Bolet.Servicios.Implementacion
         }
 
 
+        /// <summary>
+        /// Servicio que verifica la existencia de una Entidad
+        /// </summary>
+        /// <param name="entidad">Entidad a verificar existencia</param>
+        /// <returns>True en caso de ser exitoso, false en caso contrario</returns>
         public bool VerificarExistencia(Interesado entidad)
         {
             throw new NotImplementedException();
         }
 
 
+        /// <summary>
+        /// Servicio que se encarga de consultar al interesado con todos sus objetos
+        /// </summary>
+        /// <param name="interesado">Interesado a buscar</param>
+        /// <returns>Interesado con todos los objetos</returns>
         public Interesado ConsultarInteresadoConTodo(Interesado interesado)
         {
             Interesado interesadoConTodo;
@@ -131,11 +157,12 @@ namespace Trascend.Bolet.Servicios.Implementacion
             return interesadoConTodo;
         }
 
+
         /// <summary>
-        /// Servicio que consulta una serie de Interesados por uno o mas parametros
+        /// Servicio que se encarga de consultar los interesados por filtro
         /// </summary>
-        /// <param name="interesado">Interesado que contiene los parametros de la consulta</param>
-        /// <returns>Lista de interesados filtrados</returns>
+        /// <param name="interesado">Interesado filtro</param>
+        /// <returns>Lista de interesados que cumplen con el filtro</returns>
         public IList<Interesado> ObtenerInteresadosFiltro(Interesado interesado)
         {
             #region trace
@@ -156,6 +183,11 @@ namespace Trascend.Bolet.Servicios.Implementacion
         }
 
 
+        /// <summary>
+        /// Servicio que consulta el interesadi que pertenece a un poder
+        /// </summary>
+        /// <param name="poder">poder a consultar los interesados</param>
+        /// <returns>Interesado perteneciente al poder</returns>
         public Interesado ObtenerInteresadosDeUnPoder(Poder poder)
         {
             #region trace

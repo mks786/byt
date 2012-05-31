@@ -12,22 +12,30 @@ namespace Trascend.Bolet.Servicios.Implementacion
     {
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
+
         IList<Justificacion> IServicioBase<Justificacion>.ConsultarTodos()
         {
             throw new NotImplementedException();
         }
 
+
+        /// <summary>
+        /// Servicio que consulta una entidad por su Id
+        /// </summary>
+        /// <param name="entidad"></param>
+        /// <returns></returns>
         public Justificacion ConsultarPorId(Justificacion entidad)
         {
             throw new NotImplementedException();
         }
- 
+
+
         /// <summary>
-        /// Método que inserta o modifica una justificacion
+        /// Servicio que inserta o modifica a una Entidad
         /// </summary>
-        /// <param name="justificacion">Justificacion a Insertar/Modificar</param>
-        /// <param name="hash"></param>
-        /// <returns>Booleano, true - exitoso, false - fallido</returns>
+        /// <param name="entidad">Entidad a insertar</param>
+        /// <param name="hash">Hash del usuario que inserta</param>
+        /// <returns>true en caso de ser exitoso, false en caso contrario</returns>
         public bool InsertarOModificar(Justificacion justificacion, int hash)
         {
             #region trace
@@ -45,12 +53,24 @@ namespace Trascend.Bolet.Servicios.Implementacion
             return exitoso;
         }
 
+
+        /// <summary>
+        /// Servicio que elimina a una entidad
+        /// </summary>
+        /// <param name="entidad">Entidad a eliminar</param>
+        /// <param name="hash">hash del usuario que realiza la acción</param>
+        /// <returns>true en caso de ser exitoso, false en caso contrario</returns>
         public bool Eliminar(Justificacion entidad, int hash)
         {
             throw new NotImplementedException();
         }
 
 
+        /// <summary>
+        /// Servicio que verifica la existencia de una Entidad
+        /// </summary>
+        /// <param name="entidad">Entidad a verificar existencia</param>
+        /// <returns>True en caso de ser exitoso, false en caso contrario</returns>
         public bool VerificarExistencia(Justificacion entidad)
         {
             throw new NotImplementedException();

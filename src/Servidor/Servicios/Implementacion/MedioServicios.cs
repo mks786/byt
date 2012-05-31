@@ -12,10 +12,11 @@ namespace Trascend.Bolet.Servicios.Implementacion
     {
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
+
         /// <summary>
-        /// Método que obtiene todos los Medios
+        /// Servicio que consulta todos los elementos de una entidad
         /// </summary>
-        /// <returns>Todos los Medios</returns>
+        /// <returns>Lista de Entidades</returns>
         public IList<Medio> ConsultarTodos()
         {
             #region trace
@@ -34,17 +35,23 @@ namespace Trascend.Bolet.Servicios.Implementacion
         }
 
 
+        /// <summary>
+        /// Servicio que consulta una entidad por su Id
+        /// </summary>
+        /// <param name="entidad"></param>
+        /// <returns></returns>
         public Medio ConsultarPorId(Medio entidad)
         {
             throw new NotImplementedException();
         }
 
+
         /// <summary>
-        /// Método que inserta o modifica un Medio
+        /// Servicio que inserta o modifica a una Entidad
         /// </summary>
-        /// <param name="medio">Medio a insertar o modificar</param>
-        /// <param name="hash">hash del usuario loggeado</param>
-        /// <returns></returns>
+        /// <param name="entidad">Entidad a insertar</param>
+        /// <param name="hash">Hash del usuario que inserta</param>
+        /// <returns>true en caso de ser exitoso, false en caso contrario</returns>
         public bool InsertarOModificar(Medio medio, int hash)
         {
             #region trace
@@ -62,12 +69,13 @@ namespace Trascend.Bolet.Servicios.Implementacion
             return exitoso;
         }
 
+
         /// <summary>
-        /// Método que elimina un Medio
+        /// Servicio que elimina a una entidad
         /// </summary>
-        /// <param name="medio">Medio a eliminar</param>
-        /// <param name="hash">Hash del usuario loggeado</param>
-        /// <returns></returns>
+        /// <param name="entidad">Entidad a eliminar</param>
+        /// <param name="hash">hash del usuario que realiza la acción</param>
+        /// <returns>true en caso de ser exitoso, false en caso contrario</returns>
         public bool Eliminar(Medio medio, int hash)
         {
             #region trace
@@ -85,11 +93,12 @@ namespace Trascend.Bolet.Servicios.Implementacion
             return exitoso;
         }
 
+
         /// <summary>
-        /// Método que verifica si un Medio ya existe en el sistema
+        /// Servicio que verifica la existencia de una Entidad
         /// </summary>
-        /// <param name="anexo">Medio a buscar</param>
-        /// <returns>true si lo encontro, false en lo contrario</returns>
+        /// <param name="entidad">Entidad a verificar existencia</param>
+        /// <returns>True en caso de ser exitoso, false en caso contrario</returns>
         public bool VerificarExistencia(Medio medio)
         {
             #region trace

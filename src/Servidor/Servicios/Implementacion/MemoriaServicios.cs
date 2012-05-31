@@ -13,16 +13,33 @@ namespace Trascend.Bolet.Servicios.Implementacion
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
 
+        /// <summary>
+        /// Servicio que consulta todos los elementos de una entidad
+        /// </summary>
+        /// <returns>Lista de Entidades</returns>
         public IList<Memoria> ConsultarTodos()
         {
             throw new NotImplementedException();
         }
 
+
+        /// <summary>
+        /// Servicio que consulta una entidad por su Id
+        /// </summary>
+        /// <param name="entidad"></param>
+        /// <returns></returns>
         public Memoria ConsultarPorId(Memoria entidad)
         {
             throw new NotImplementedException();
         }
 
+
+        /// <summary>
+        /// Servicio que inserta o modifica a una Entidad
+        /// </summary>
+        /// <param name="entidad">Entidad a insertar</param>
+        /// <param name="hash">Hash del usuario que inserta</param>
+        /// <returns>true en caso de ser exitoso, false en caso contrario</returns>
         public bool InsertarOModificar(Memoria entidad, int hash)
         {
             #region trace
@@ -40,6 +57,13 @@ namespace Trascend.Bolet.Servicios.Implementacion
             return exitoso;
         }
 
+
+        /// <summary>
+        /// Servicio que elimina a una entidad
+        /// </summary>
+        /// <param name="entidad">Entidad a eliminar</param>
+        /// <param name="hash">hash del usuario que realiza la acción</param>
+        /// <returns>true en caso de ser exitoso, false en caso contrario</returns>
         public bool Eliminar(Memoria entidad, int hash)
         {
             #region trace
@@ -57,6 +81,12 @@ namespace Trascend.Bolet.Servicios.Implementacion
             return retorno;
         }
 
+
+        /// <summary>
+        /// Servicio que se encarga de consultar las memorias pertenecientes a una Patente
+        /// </summary>
+        /// <param name="patente">Patente a buscar</param>
+        /// <returns>Memorias pertenecientes a la patente</returns>
         public IList<Memoria> ConsultarMemoriasPorPatente(Patente patente)
         {
             #region trace
@@ -74,12 +104,24 @@ namespace Trascend.Bolet.Servicios.Implementacion
             return memorias;
         }
 
+
+        /// <summary>
+        /// Servicio que verifica la existencia de una Entidad
+        /// </summary>
+        /// <param name="entidad">Entidad a verificar existencia</param>
+        /// <returns>True en caso de ser exitoso, false en caso contrario</returns>
         public bool VerificarExistencia(Memoria entidad)
         {
             throw new NotImplementedException();
         }
 
 
+        /// <summary>
+        /// Servicio que se encarga de verificar la existencia de una memoria
+        /// </summary>
+        /// <param name="patente">Patente propietaria de la memoria</param>
+        /// <param name="memoria">memoria a buscar</param>
+        /// <returns>true en caso de existir, false en caso contrario</returns>
         public bool VerificarExistenciaMemoria(Patente patente, Memoria memoria)
         {
             #region trace

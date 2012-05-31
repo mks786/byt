@@ -12,10 +12,11 @@ namespace Trascend.Bolet.Servicios.Implementacion
     {
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
+
         /// <summary>
-        /// Método que obtiene todos las Búsquedas
+        /// Servicio que consulta todos los elementos de una entidad
         /// </summary>
-        /// <returns>Todos las Búsquedas</returns>
+        /// <returns>Lista de Entidades</returns>
         public IList<Busqueda> ConsultarTodos()
         {
             #region trace
@@ -35,9 +36,10 @@ namespace Trascend.Bolet.Servicios.Implementacion
 
 
         /// <summary>
-        /// Método que obtiene una Búsqueda por su Id
+        /// Servicio que consulta una entidad por su Id
         /// </summary>
-        /// <returns>Búsqueda buscada</returns>
+        /// <param name="entidad"></param>
+        /// <returns></returns>
         public Busqueda ConsultarPorId(Busqueda entidad)
         {
             #region trace
@@ -53,12 +55,13 @@ namespace Trascend.Bolet.Servicios.Implementacion
             #endregion
         }
 
+
         /// <summary>
-        /// Método que inserta o modifica una Búsqueda
+        /// Servicio que inserta o modifica a una Entidad
         /// </summary>
-        /// <param name="busqueda">Búsqueda a insertar</param>
-        /// <param name="hash"></param>
-        /// <returns></returns>
+        /// <param name="entidad">Entidad a insertar</param>
+        /// <param name="hash">Hash del usuario que inserta</param>
+        /// <returns>true en caso de ser exitoso, false en caso contrario</returns>
         public bool InsertarOModificar(Busqueda busqueda, int hash)
         {
             #region trace
@@ -76,12 +79,13 @@ namespace Trascend.Bolet.Servicios.Implementacion
             return exitoso;
         }
 
+
         /// <summary>
-        /// Método que elimina una Búsqueda determinada
+        /// Servicio que elimina a una entidad
         /// </summary>
-        /// <param name="busqueda">Búsqueda determinada</param>
-        /// <param name="hash"> hash del usuario que esta eliminando</param>
-        /// <returns></returns>
+        /// <param name="entidad">Entidad a eliminar</param>
+        /// <param name="hash">hash del usuario que realiza la acción</param>
+        /// <returns>true en caso de ser exitoso, false en caso contrario</returns>
         public bool Eliminar(Busqueda busqueda, int hash)
         {
             #region trace
@@ -99,11 +103,12 @@ namespace Trascend.Bolet.Servicios.Implementacion
             return exitoso;
         }
 
+
         /// <summary>
-        /// Método que permite verificar la existencia de una Búsqueda
+        /// Servicio que verifica la existencia de una Entidad
         /// </summary>
-        /// <param name="busqueda">Búsqueda a eliminar</param>
-        /// <returns></returns>
+        /// <param name="entidad">Entidad a verificar existencia</param>
+        /// <returns>True en caso de ser exitoso, false en caso contrario</returns>
         public bool VerificarExistencia(Busqueda busqueda)
         {
             #region trace
@@ -121,11 +126,12 @@ namespace Trascend.Bolet.Servicios.Implementacion
             return exitoso;
         }
 
+
         /// <summary>
-        /// Método que permite consultar las Búsquedas de una marca determinada
+        /// Servicio que se encarga de consultar las búsquedas pertenecientes a una marca
         /// </summary>
-        /// <param name="marca">Marca de la cuál se consultarán las Búsquedas</param>
-        /// <returns></returns>
+        /// <param name="marca">Marca a consultar las búsquedas</param>
+        /// <returns>Lista de búsquedas de la marca</returns>
         public IList<Busqueda> ConsultarBusquedasPorMarca(Marca marca)
         {            
             #region trace

@@ -12,10 +12,11 @@ namespace Trascend.Bolet.Servicios.Implementacion
     {
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
+
         /// <summary>
-        /// Método que obtiene todos los InfoBols
+        /// Servicio que consulta todos los elementos de una entidad
         /// </summary>
-        /// <returns>Todos los InfoBols</returns>
+        /// <returns>Lista de Entidades</returns>
         public IList<InfoBol> ConsultarTodos()
         {
             #region trace
@@ -34,11 +35,23 @@ namespace Trascend.Bolet.Servicios.Implementacion
         }
 
 
+        /// <summary>
+        /// Servicio que consulta una entidad por su Id
+        /// </summary>
+        /// <param name="entidad"></param>
+        /// <returns></returns>
         public InfoBol ConsultarPorId(InfoBol entidad)
         {
             return ControladorInfoBol.ConsultarPorId(entidad);
         }
 
+
+        /// <summary>
+        /// Servicio que inserta o modifica a una Entidad
+        /// </summary>
+        /// <param name="entidad">Entidad a insertar</param>
+        /// <param name="hash">Hash del usuario que inserta</param>
+        /// <returns>true en caso de ser exitoso, false en caso contrario</returns>
         public bool InsertarOModificar(InfoBol InfoBol, int hash)
         {
             #region trace
@@ -56,6 +69,13 @@ namespace Trascend.Bolet.Servicios.Implementacion
             return exitoso;
         }
 
+
+        /// <summary>
+        /// Servicio que elimina a una entidad
+        /// </summary>
+        /// <param name="entidad">Entidad a eliminar</param>
+        /// <param name="hash">hash del usuario que realiza la acción</param>
+        /// <returns>true en caso de ser exitoso, false en caso contrario</returns>
         public bool Eliminar(InfoBol InfoBol,int hash)
         {
             #region trace
@@ -72,7 +92,13 @@ namespace Trascend.Bolet.Servicios.Implementacion
 
             return exitoso;
         }
-        
+
+
+        /// <summary>
+        /// Servicio que verifica la existencia de una Entidad
+        /// </summary>
+        /// <param name="entidad">Entidad a verificar existencia</param>
+        /// <returns>True en caso de ser exitoso, false en caso contrario</returns>
         public bool VerificarExistencia(InfoBol InfoBol)
         {
             #region trace
@@ -90,6 +116,12 @@ namespace Trascend.Bolet.Servicios.Implementacion
             return exitoso;
         }
 
+
+        /// <summary>
+        /// Servicio que consulta los infoboles por una marca
+        /// </summary>
+        /// <param name="marca">marca a consultar las infoboles</param>
+        /// <returns>lista de infoboles pertenecientes a la marca</returns>
         public IList<InfoBol> ConsultarInfoBolesPorMarca(Marca marca)
         {            
             #region trace

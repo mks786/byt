@@ -12,10 +12,11 @@ namespace Trascend.Bolet.Servicios.Implementacion
     {
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
+
         /// <summary>
-        /// Método que obtiene todos los Corresponsals
+        /// Servicio que consulta todos los elementos de una entidad
         /// </summary>
-        /// <returns>Todos los Corresponsals</returns>
+        /// <returns>Lista de Entidades</returns>
         public IList<Corresponsal> ConsultarTodos()
         {
             #region trace
@@ -34,10 +35,16 @@ namespace Trascend.Bolet.Servicios.Implementacion
         }
 
 
+        /// <summary>
+        /// Servicio que consulta una entidad por su Id
+        /// </summary>
+        /// <param name="entidad"></param>
+        /// <returns></returns>
         public Corresponsal ConsultarPorId(Corresponsal entidad)
         {
             throw new NotImplementedException();
         }
+
 
         /// <summary>
         /// Método que inserta o modifica un Corresponsal
@@ -62,12 +69,13 @@ namespace Trascend.Bolet.Servicios.Implementacion
             return exitoso;
         }
 
+
         /// <summary>
-        /// Método que elimina un Corresponsal
+        /// Servicio que elimina a una entidad
         /// </summary>
-        /// <param name="corresponsal">Corresponsal a eliminar</param>
-        /// <param name="hash">Hash del usuario loggeado</param>
-        /// <returns></returns>
+        /// <param name="entidad">Entidad a eliminar</param>
+        /// <param name="hash">hash del usuario que realiza la acción</param>
+        /// <returns>true en caso de ser exitoso, false en caso contrario</returns>
         public bool Eliminar(Corresponsal corresponsal, int hash)
         {
             #region trace
@@ -85,11 +93,12 @@ namespace Trascend.Bolet.Servicios.Implementacion
             return exitoso;
         }
 
+
         /// <summary>
-        /// Método que verifica si un Corresponsal ya existe en el sistema
+        /// Servicio que verifica la existencia de una Entidad
         /// </summary>
-        /// <param name="corresponsal">Corresponsal a buscar</param>
-        /// <returns>true si lo encontro, false en lo contrario</returns>
+        /// <param name="entidad">Entidad a verificar existencia</param>
+        /// <returns>True en caso de ser exitoso, false en caso contrario</returns>
         public bool VerificarExistencia(Corresponsal corresponsal)
         {
             #region trace

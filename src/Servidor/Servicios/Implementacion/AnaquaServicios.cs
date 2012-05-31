@@ -12,10 +12,11 @@ namespace Trascend.Bolet.Servicios.Implementacion
     {
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
+
         /// <summary>
-        /// Método que obtiene todos los Anaqua
+        /// Servicio que consulta todos los elementos de una entidad
         /// </summary>
-        /// <returns>Todos los Anaquas</returns>
+        /// <returns>Lista de Entidades</returns>
         public IList<Anaqua> ConsultarTodos()
         {
             #region trace
@@ -34,6 +35,11 @@ namespace Trascend.Bolet.Servicios.Implementacion
         }
 
 
+        /// <summary>
+        /// Servicio que consulta una entidad por su Id
+        /// </summary>
+        /// <param name="entidad"></param>
+        /// <returns></returns>
         public Anaqua ConsultarPorId(Anaqua entidad)
         {            
             #region trace
@@ -51,12 +57,13 @@ namespace Trascend.Bolet.Servicios.Implementacion
             return anaqua;
         }
 
+
         /// <summary>
-        /// Método que inserta o modifica un Anaqua
+        /// Servicio que inserta o modifica a una Entidad
         /// </summary>
-        /// <param name="anaqua">Anaqua a insertar o modificar</param>
-        /// <param name="hash">hash del usuario loggeado</param>
-        /// <returns></returns>
+        /// <param name="entidad">Entidad a insertar</param>
+        /// <param name="hash">Hash del usuario que inserta</param>
+        /// <returns>true en caso de ser exitoso, false en caso contrario</returns>
         public bool InsertarOModificar(Anaqua anaqua, int hash)
         {
             #region trace
@@ -74,12 +81,13 @@ namespace Trascend.Bolet.Servicios.Implementacion
             return exitoso;
         }
 
+
         /// <summary>
-        /// Método que elimina un Anaqua
+        /// Servicio que elimina a una entidad
         /// </summary>
-        /// <param name="anaqua">Anaqua a eliminar</param>
-        /// <param name="hash">Hash del usuario loggeado</param>
-        /// <returns></returns>
+        /// <param name="entidad">Entidad a eliminar</param>
+        /// <param name="hash">hash del usuario que realiza la acción</param>
+        /// <returns>true en caso de ser exitoso, false en caso contrario</returns>
         public bool Eliminar(Anaqua anaqua, int hash)
         {
             #region trace
@@ -97,11 +105,12 @@ namespace Trascend.Bolet.Servicios.Implementacion
             return exitoso;
         }
 
+
         /// <summary>
-        /// Método que verifica si un Anaqua ya existe en el sistema
+        /// Servicio que verifica la existencia de una Entidad
         /// </summary>
-        /// <param name="anaqua">Anaqua a buscar</param>
-        /// <returns>true si lo encontro, false en lo contrario</returns>
+        /// <param name="entidad">Entidad a verificar existencia</param>
+        /// <returns>True en caso de ser exitoso, false en caso contrario</returns>
         public bool VerificarExistencia(Anaqua anaqua)
         {
             #region trace
@@ -119,11 +128,12 @@ namespace Trascend.Bolet.Servicios.Implementacion
             return exitoso;
         }
 
+
         /// <summary>
-        /// Metodo que consulta la lista de auiditorias de una tabla
+        /// Servicio que se encarga de consultar la auditoria de una anaqua
         /// </summary>
-        /// <param name="auditoria">Auditoria a filtrar</param>
-        /// <returns>Lista de auditorias</returns>
+        /// <param name="auditoria">Auditoria a consultar</param>
+        /// <returns>Lista de auditorias de la marca</returns>
         public IList<Auditoria> AuditoriaPorFkyTabla(Auditoria auditoria)
         {
             #region trace

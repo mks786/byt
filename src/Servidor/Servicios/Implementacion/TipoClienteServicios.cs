@@ -76,7 +76,6 @@ namespace Trascend.Bolet.Servicios.Implementacion
         }
 
 
-
         /// <summary>
         /// Servicio que verifica la existencia de un TipoCliente
         /// </summary>
