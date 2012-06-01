@@ -54,6 +54,12 @@ namespace Trascend.Bolet.Cliente.Ventanas.Abandonos
             set { this._txtNombreAsociado.Text = value; }
         }
 
+        public string IdAsociado
+        {
+            get { return this._txtIdAsociado.Text; }
+            set { this._txtIdAsociado.Text = value; }
+        }
+
         public string IdAsociadoFiltrar
         {
             get { return this._txtIdAsociadoFiltrar.Text; }
@@ -263,6 +269,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Abandonos
 
         #endregion
 
+        
         public GestionarAbandono(object abandono)
         {
             InitializeComponent();
@@ -270,6 +277,35 @@ namespace Trascend.Bolet.Cliente.Ventanas.Abandonos
             this._presentador = new PresentadorGestionarAbandono(this, abandono);
         }
 
+        
+        public void PintarAsociado(string tipo)
+        {
+            SolidColorBrush color;
+
+            if (tipo.Equals("1"))
+            {
+                color = Brushes.LightGreen;
+            }
+            else if (tipo.Equals("2"))
+            {
+                color = Brushes.LightBlue;
+            }
+            else if (tipo.Equals("3"))
+            {
+                color = Brushes.LightYellow;
+            }
+            else if (tipo.Equals("4"))
+            {
+                color = Brushes.Pink;
+            }
+            else color = Brushes.White;
+
+            this._txtIdAsociado.Background = color;
+            this._txtNombreAsociado.Background = color;
+
+        }
+
+        
         public void ConvertirEnteroMinimoABlanco()
         {
             if (null != this.Marca)
@@ -294,9 +330,21 @@ namespace Trascend.Bolet.Cliente.Ventanas.Abandonos
                 }
             }
 
+            if (null != this.Asociado)
+            {
+                if (!this.IdAsociado.Equals(""))
+                {
+                    if ((int.Parse(this.IdAsociado) == int.MinValue) || (int.Parse(this.IdAsociado) == 0))
+                    {
+                        this.IdAsociado = "";
+                    }
+                }
+            }
+
         
         }
 
+        
         public void ActivarControlesAlAgregar()
         {
             this.HabilitarCampos = true;
@@ -313,11 +361,13 @@ namespace Trascend.Bolet.Cliente.Ventanas.Abandonos
             this._txtDescripcionOperacion.IsReadOnly = false;
         }
 
+        
         private void _btnAceptar_Click(object sender, RoutedEventArgs e)
         {
             this._presentador.Agregar();
         }
 
+        
         private void _btnRegresar_Click(object sender, RoutedEventArgs e)
         {
             if (this.TextoBotonRegresar == Recursos.Etiquetas.btnRegresar)
@@ -326,6 +376,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Abandonos
                 this._presentador.Cancelar();
         }
 
+        
         private void _btnEliminar_Click(object sender, RoutedEventArgs e)
         {
             if (MessageBoxResult.Yes == MessageBox.Show(Recursos.MensajesConElUsuario.ConfirmacionEliminarAbandono,
@@ -335,6 +386,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Abandonos
             }
         }       
       
+        
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
             if (!EstaCargada)
@@ -352,6 +404,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Abandonos
             }
         }
 
+        
         private void _btnConsultar(object sender, RoutedEventArgs e)
         {
             if (((Button)sender).Name.Equals("_btnConsultarMarca"))
@@ -364,6 +417,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Abandonos
 
         #region Eventos Marcas
 
+        
         private void _lstMarcas_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             if (this._presentador.CambiarMarca())
@@ -376,11 +430,13 @@ namespace Trascend.Bolet.Cliente.Ventanas.Abandonos
             }
         }
 
+        
         private void _OrdenarMarcas_Click(object sender, RoutedEventArgs e)
         {
             this._presentador.OrdenarColumna(sender as GridViewColumnHeader, this._lstMarcas);
         }
 
+        
         private void _txtNombreMarca_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             if (this._presentador._agregar == true)
@@ -401,6 +457,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Abandonos
             }
         }
 
+        
         private void GestionarVisibilidadFiltroMarca(object value)
         {
             this._lblNombreMarca.Visibility = (System.Windows.Visibility)value;
@@ -411,22 +468,26 @@ namespace Trascend.Bolet.Cliente.Ventanas.Abandonos
             this._btnConsultarMarca.Visibility = (System.Windows.Visibility)value;
         }
 
+        
         private void GestionarVisibilidadDatosDeMarca(object value)
         {
             this._txtNombreMarca.Visibility = (System.Windows.Visibility)value;
             this._txtIdMarca.Visibility = (System.Windows.Visibility)value;
         }
 
+        
         private void _txtMarcaFiltrar_GotFocus(object sender, RoutedEventArgs e)
         {
             this._btnConsultarMarca.IsDefault = true;
             this._btnAceptar.IsDefault = false;
         }
 
+        
         #endregion
 
         #region Eventos Interesado
 
+        
         private void _lstInteresados_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             if (this._presentador.CambiarInteresado())
@@ -436,11 +497,13 @@ namespace Trascend.Bolet.Cliente.Ventanas.Abandonos
             }
         }
 
+        
         private void _OrdenarInteresados_Click(object sender, RoutedEventArgs e)
         {
             this._presentador.OrdenarColumna(sender as GridViewColumnHeader, this._lstInteresados);
         }
 
+        
         private void _txtInteresado_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             if (this._presentador.EsAgregar() == true)
@@ -462,6 +525,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Abandonos
             }
         }
 
+        
         private void GestionarVisibilidadFiltroInteresado(object value)
         {
             this._lblIdInteresado.Visibility = (System.Windows.Visibility)value;
@@ -472,6 +536,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Abandonos
             this._btnConsultarInteresado.Visibility = (System.Windows.Visibility)value;
         }
 
+        
         private void GestionarVisibilidadDatosDeInteresado(object value)
         {
             this._txtNombreInteresado.Visibility = (System.Windows.Visibility)value;
@@ -480,21 +545,25 @@ namespace Trascend.Bolet.Cliente.Ventanas.Abandonos
             this._txtCiudadInteresado.Visibility = (System.Windows.Visibility)value;
         }
 
+        
         public void GestionarBotonConsultarInteresado(bool value)
         {
             this._btnConsultarInteresado.IsEnabled = value;
         }
 
+        
         private void _txtInteresadoFiltrar_GotFocus(object sender, RoutedEventArgs e)
         {
             this._btnConsultarInteresado.IsDefault = true;
             this._btnAceptar.IsDefault = false;
         }
 
+        
         #endregion       
 
         #region Eventos Asociado
 
+        
         private void _lstAsociados_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             if (this._presentador.CambiarAsociado())
@@ -504,11 +573,13 @@ namespace Trascend.Bolet.Cliente.Ventanas.Abandonos
             }
         }
 
+        
         private void _OrdenarAsociados_Click(object sender, RoutedEventArgs e)
         {
             this._presentador.OrdenarColumna(sender as GridViewColumnHeader, this._lstInteresados);
         }
 
+        
         private void _txtNombreAsociado_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             if (this._presentador.EsAgregar() == true)
@@ -530,6 +601,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Abandonos
             }
         }
 
+        
         private void GestionarVisibilidadFiltroAsociado(object value)
         {
             this._lblIdAsociado.Visibility = (System.Windows.Visibility)value;
@@ -540,23 +612,27 @@ namespace Trascend.Bolet.Cliente.Ventanas.Abandonos
             this._btnConsultarAsociado.Visibility = (System.Windows.Visibility)value;
         }
 
+        
         private void GestionarVisibilidadDatosDeAsociado(object value)
         {
             this._txtNombreAsociado.Visibility = (System.Windows.Visibility)value;
             this._txtIdAsociado.Visibility = (System.Windows.Visibility)value;
         }
 
+        
         public void GestionarBotonConsultarAsociado(bool value)
         {
             this._btnConsultarAsociado.IsEnabled = value;
         }
 
+        
         private void _txtAsociadoFiltrar_GotFocus(object sender, RoutedEventArgs e)
         {
             this._btnConsultarAsociado.IsDefault = true;
             this._btnAceptar.IsDefault = false;
         }
 
+        
         #endregion       
 
     }

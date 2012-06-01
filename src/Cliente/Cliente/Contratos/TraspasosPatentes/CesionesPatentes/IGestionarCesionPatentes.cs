@@ -139,5 +139,7 @@ namespace Trascend.Bolet.Cliente.Contratos.TraspasosPatentes.CesionesPatentes
         void GestionarBotonConsultarPoderes(string tipo, bool value);
 
         void ActivarControlesAlAgregar();
+
+        void PintarAsociado(string tipo);
     }
 }

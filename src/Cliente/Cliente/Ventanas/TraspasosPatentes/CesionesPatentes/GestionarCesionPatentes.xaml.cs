@@ -3,6 +3,7 @@ using System.Windows.Controls;
 using Trascend.Bolet.Cliente.Contratos.TraspasosPatentes.CesionesPatentes;
 using Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CesionesPatentes;
 using Trascend.Bolet.Cliente.Ayuda;
+using System.Windows.Media;
 
 namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.CesionesPatentes
 {
@@ -405,6 +406,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.CesionesPatentes
 
         #endregion
 
+        
         public GestionarCesionPatentes(object cesion)
         {
             InitializeComponent();
@@ -412,6 +414,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.CesionesPatentes
             this._presentador = new PresentadorGestionarCesionPatentes(this, cesion);
         }
 
+        
         public void ActivarControlesAlAgregar()
         {
             this._btnEliminar.Visibility = System.Windows.Visibility.Collapsed;
@@ -425,11 +428,13 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.CesionesPatentes
             this._btnPlanillaVienen.Visibility = System.Windows.Visibility.Collapsed;            
         }
 
+        
         private void _btnModificar_Click(object sender, RoutedEventArgs e)
         {
             this._presentador.Modificar();
         }
 
+        
         private void _btnRegresar_Click(object sender, RoutedEventArgs e)
         {   
             if (this.TextoBotonRegresar == Recursos.Etiquetas.btnRegresar)
@@ -438,6 +443,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.CesionesPatentes
                 this._presentador.Cancelar();
         }
 
+        
         private void _btnEliminar_Click(object sender, RoutedEventArgs e)
         {
             if (MessageBoxResult.Yes == MessageBox.Show(Recursos.MensajesConElUsuario.ConfirmacionEliminarCesion,
@@ -447,6 +453,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.CesionesPatentes
             }
         }
 
+        
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
             if (!EstaCargada)
@@ -456,6 +463,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.CesionesPatentes
             }
         }
 
+        
         private void _btnConsultar(object sender, RoutedEventArgs e)
         {           
             if (((Button)sender).Name.Equals("_btnConsultarPatente"))
@@ -474,31 +482,63 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.CesionesPatentes
                 this._presentador.ConsultarPoderesCesionario();            
         }       
         
+        
         private void _btnPlanillaVienen_Click(object sender, RoutedEventArgs e)
         {
             this._presentador.IrImprimir(((Button)sender).Name);
         }
 
+        
         private void _btnPlanillaVan_Click(object sender, RoutedEventArgs e)
         {
             this._presentador.IrImprimir(((Button)sender).Name);
         }
 
+        
         private void _btnPlanilla_Click(object sender, RoutedEventArgs e)
         {
             this._presentador.IrImprimir(((Button)sender).Name);
         }
 
+        
         private void _btnCarpeta_Click(object sender, RoutedEventArgs e)
         {
             this._presentador.IrImprimir(((Button)sender).Name);
         }
 
+        
         private void _btnAnexo_Click(object sender, RoutedEventArgs e)
         {
             this._presentador.IrImprimir(((Button)sender).Name);
         }
 
+        
+        public void PintarAsociado(string tipo)
+        {
+            SolidColorBrush color;
+
+            if (tipo.Equals("1"))
+            {
+                color = Brushes.LightGreen;
+            }
+            else if (tipo.Equals("2"))
+            {
+                color = Brushes.LightBlue;
+            }
+            else if (tipo.Equals("3"))
+            {
+                color = Brushes.LightYellow;
+            }
+            else if (tipo.Equals("4"))
+            {
+                color = Brushes.Red;
+            }
+            else color = Brushes.White;
+
+            this._txtAsociado.Background = color;
+        }
+
+        
         public void ConvertirEnteroMinimoABlanco(string tipo)
         {
             if (tipo.Equals("Cedente"))
@@ -519,6 +559,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.CesionesPatentes
             }
         }
 
+        
         public void GestionarBotonConsultarInteresados(string tipo, bool value)
         {
             if (tipo.Equals("Cedente"))
@@ -531,6 +572,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.CesionesPatentes
             }
         }
 
+        
         public void GestionarBotonConsultarApoderados(string tipo, bool value)
         {
             if (tipo.Equals("Cedente"))
@@ -543,6 +585,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.CesionesPatentes
             }
         }
 
+        
         public void GestionarBotonConsultarPoderes(string tipo, bool value)
         {
             if (tipo.Equals("Cedente"))
@@ -557,6 +600,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.CesionesPatentes
 
         #region Patente
 
+        
         private void _lstPatentes_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             if (this._presentador.CambiarPatente())
@@ -566,11 +610,13 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.CesionesPatentes
             }
         }
 
+        
         private void _OrdenarPatentes_Click(object sender, RoutedEventArgs e)
         {
             this._presentador.OrdenarColumna(sender as GridViewColumnHeader, this._lstPatentes);
         }
 
+        
         private void _txtNombrePatente_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             GestionarVisibilidadDatosDePatente(Visibility.Collapsed);
@@ -602,6 +648,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.CesionesPatentes
             GestionarVisibilidadDatosDePoderCedente(Visibility.Visible);
         }
 
+        
         private void GestionarVisibilidadDatosDePatente(object value)
         {
             this._txtNombrePatente.Visibility = (System.Windows.Visibility)value;
@@ -620,6 +667,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.CesionesPatentes
             this._txtAsociado.Visibility = (System.Windows.Visibility)value;
         }
 
+        
         private void GestionarVisibilidadFiltroPatente(object value)
         {
             this._lblNombrePatente.Visibility = (System.Windows.Visibility)value;
@@ -630,16 +678,19 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.CesionesPatentes
             this._btnConsultarPatente.Visibility = (System.Windows.Visibility)value;
         }
 
+        
         private void _txtPatenteFiltrar_GotFocus(object sender, RoutedEventArgs e)
         {
             this._btnConsultarPatente.IsDefault = true;
             this._btnModificar.IsDefault = false;
         }      
 
+        
         #endregion
 
         #region Cedente
 
+        
         private void _lstCedentes_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             if (this._presentador.CambiarCedente())
@@ -660,6 +711,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.CesionesPatentes
 
         }
 
+        
         private void _lstPoderesCedente_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             if (this._presentador.CambiarPoderCedente())
@@ -680,6 +732,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.CesionesPatentes
             }
         }
 
+        
         private void _lstApoderadosCedente_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             if (this._presentador.CambiarApoderadoCedente())
@@ -698,21 +751,25 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.CesionesPatentes
             }
         }
 
+        
         private void _OrdenarCedentes_Click(object sender, RoutedEventArgs e)
         {
             this._presentador.OrdenarColumna(sender as GridViewColumnHeader, this._lstCedentes);
         }
 
+        
         private void _OrdenarApoderadosCedente_Click(object sender, RoutedEventArgs e)
         {
             this._presentador.OrdenarColumna(sender as GridViewColumnHeader, this._lstApoderadosCedente);
         }
 
+        
         private void _OrdenarPoderesCedente_Click(object sender, RoutedEventArgs e)
         {
             this._presentador.OrdenarColumna(sender as GridViewColumnHeader, this._lstPoderesCedente);
         }
 
+        
         private void _txtNombreCedente_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             GestionarVisibilidadDatosDeCedente(Visibility.Collapsed);
@@ -744,6 +801,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.CesionesPatentes
             GestionarVisibilidadDatosDePoderCesionario(Visibility.Visible);
         }
 
+        
         private void _txtNombreApoderadoCedente_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             GestionarVisibilidadDatosDeApoderadoCedente(Visibility.Collapsed);
@@ -775,6 +833,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.CesionesPatentes
             GestionarVisibilidadDatosDePoderCedente(Visibility.Visible);
         }
 
+        
         private void _txtIdPoderCedente_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             GestionarVisibilidadDatosDePoderCedente(Visibility.Collapsed);
@@ -806,24 +865,28 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.CesionesPatentes
             GestionarVisibilidadDatosDePoderCesionario(Visibility.Visible);
         }
 
+        
         private void _txtCedenteFiltrar_GotFocus(object sender, RoutedEventArgs e)
         {
             this._btnConsultarCedente.IsDefault = true;
             this._btnModificar.IsDefault = false;
         }
 
+        
         private void _txtApoderadoCedenteFiltrar_GotFocus(object sender, RoutedEventArgs e)
         {
             this._btnConsultarApoderadoCedente.IsDefault = true;
             this._btnModificar.IsDefault = false;
         }
 
+        
         private void _txtPoderCedenteFiltrar_GotFocus(object sender, RoutedEventArgs e)
         {
             this._btnConsultarPoderCedente.IsDefault = true;
             this._btnModificar.IsDefault = false;
         }        
 
+        
         private void GestionarVisibilidadDatosDeCedente(object value)
         {
             this._lblNombreCedente.Visibility = (System.Windows.Visibility)value;
@@ -832,12 +895,14 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.CesionesPatentes
             this._txtNacionalidadCedente.Visibility = (System.Windows.Visibility)value;
         }
 
+        
         private void GestionarVisibilidadDatosDeApoderadoCedente(object value)
         {
             this._lblNombreApoderadoCedente.Visibility = (System.Windows.Visibility)value;
             this._txtNombreApoderadoCedente.Visibility = (System.Windows.Visibility)value;
         }
 
+        
         private void GestionarVisibilidadDatosDePoderCedente(object value)
         {
             this._lblIdPoderCedente.Visibility = (System.Windows.Visibility)value;
@@ -854,6 +919,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.CesionesPatentes
             this._txtFacultadPoderCedente.Visibility = (System.Windows.Visibility)value;
         }
 
+        
         private void GestionarVisibilidadFiltroCedente(object value)
         {
             this._lblCedenteFiltrar.Visibility = (System.Windows.Visibility)value;
@@ -866,6 +932,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.CesionesPatentes
 
         }
 
+        
         private void GestionarVisibilidadFiltroApoderadoCedente(object value)
         {
             this._lblApoderadoCedenteFiltrar.Visibility = (System.Windows.Visibility)value;
@@ -878,6 +945,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.CesionesPatentes
 
         }
 
+        
         private void GestionarVisibilidadFiltroPoderCedente(object value)
         {
             this._lblPoderCedenteFiltrar.Visibility = (System.Windows.Visibility)value;
@@ -889,12 +957,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.CesionesPatentes
 
         }
 
-        
-
         #endregion
 
         #region Cesionario
 
+        
         private void _lstCesionarios_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             if (this._presentador.CambiarCesionario())
@@ -913,6 +980,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.CesionesPatentes
             }
         }
 
+        
         private void _lstApoderadosCesionario_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             if (this._presentador.CambiarApoderadoCesionario())
@@ -931,6 +999,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.CesionesPatentes
             }
         }
 
+        
         private void _lstPoderesCesionario_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             if (this._presentador.CambiarPoderCesionario())
@@ -951,21 +1020,25 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.CesionesPatentes
             }
         }
 
+        
         private void _OrdenarCesionarios_Click(object sender, RoutedEventArgs e)
         {
             this._presentador.OrdenarColumna(sender as GridViewColumnHeader, this._lstCesionarios);
         }
 
+        
         private void _OrdenarApoderadosCesionario_Click(object sender, RoutedEventArgs e)
         {
             this._presentador.OrdenarColumna(sender as GridViewColumnHeader, this._lstApoderadosCesionario);
         }
 
+        
         private void _OrdenarPoderesCesionario_Click(object sender, RoutedEventArgs e)
         {
             this._presentador.OrdenarColumna(sender as GridViewColumnHeader, this._lstPoderesCesionario);
         }
 
+        
         private void _txtNombreCesionario_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             GestionarVisibilidadDatosDeCesionario(Visibility.Collapsed);
@@ -997,6 +1070,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.CesionesPatentes
             GestionarVisibilidadDatosDePoderCesionario(Visibility.Visible);
         }
 
+        
         private void _txtNombreApoderadoCesionario_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             GestionarVisibilidadDatosDeApoderadoCesionario(Visibility.Collapsed);
@@ -1028,6 +1102,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.CesionesPatentes
             GestionarVisibilidadDatosDePoderCedente(Visibility.Visible);
         }
 
+        
         private void _txtIdPoderCesionario_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             GestionarVisibilidadDatosDePoderCesionario(Visibility.Collapsed);
@@ -1059,6 +1134,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.CesionesPatentes
             GestionarVisibilidadDatosDePoderCedente(Visibility.Visible);
         }
 
+        
         private void GestionarVisibilidadDatosDeCesionario(object value)
         {
             this._lblNombreCesionario.Visibility = (System.Windows.Visibility)value;
@@ -1067,12 +1143,14 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.CesionesPatentes
             this._txtNacionalidadCesionario.Visibility = (System.Windows.Visibility)value;
         }
 
+        
         private void GestionarVisibilidadDatosDeApoderadoCesionario(object value)
         {
             this._lblNombreApoderadoCesionario.Visibility = (System.Windows.Visibility)value;
             this._txtNombreApoderadoCesionario.Visibility = (System.Windows.Visibility)value;
         }
 
+        
         private void GestionarVisibilidadDatosDePoderCesionario(object value)
         {
             this._lblIdPoderCesionario.Visibility = (System.Windows.Visibility)value;
@@ -1089,6 +1167,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.CesionesPatentes
             this._txtFacultadPoderCesionario.Visibility = (System.Windows.Visibility)value;
         }
 
+        
         private void GestionarVisibilidadFiltroCesionario(object value)
         {
             this._lblCesionarioFiltrar.Visibility = (System.Windows.Visibility)value;
@@ -1100,6 +1179,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.CesionesPatentes
             this._btnConsultarCesionario.Visibility = (System.Windows.Visibility)value;
         }
 
+        
         private void GestionarVisibilidadFiltroApoderadoCesionario(object value)
         {
             this._lblApoderadoCesionarioFiltrar.Visibility = (System.Windows.Visibility)value;
@@ -1112,6 +1192,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.CesionesPatentes
 
         }
 
+        
         private void GestionarVisibilidadFiltroPoderCesionario(object value)
         {
             this._lblPoderCesionarioFiltrar.Visibility = (System.Windows.Visibility)value;
@@ -1123,18 +1204,21 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.CesionesPatentes
 
         }
 
+        
         private void _txtCesionarioFiltrar_GotFocus(object sender, RoutedEventArgs e)
         {
             this._btnConsultarCesionario.IsDefault = true;
             this._btnModificar.IsDefault = false;
         }
 
+        
         private void _txtApoderadoCesionarioFiltrar_GotFocus(object sender, RoutedEventArgs e)
         {
             this._btnConsultarApoderadoCesionario.IsDefault = true;
             this._btnModificar.IsDefault = false;
         }
 
+        
         private void _txtPoderCesionarioFiltrar_GotFocus(object sender, RoutedEventArgs e)
         {
             this._btnConsultarPoderCesionario.IsDefault = true;

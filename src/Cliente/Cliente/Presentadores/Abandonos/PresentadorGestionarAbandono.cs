@@ -40,6 +40,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Abandonos
         private IList<Marca> _marcas;        
         private IList<Interesado> _interesados;               
        
+        
         /// <summary>
         /// Constructor Predeterminado
         /// </summary>
@@ -100,6 +101,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Abandonos
             }
         }
 
+        
         public void ActualizarTitulo()
         {
             if (_agregar == true)
@@ -110,6 +112,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Abandonos
                 Recursos.Ids.GestionarAbandono);
         }
 
+        
         /// <summary>
         /// Método que carga los datos iniciales a mostrar en la página
         /// </summary>
@@ -156,8 +159,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Abandonos
 
                     CargarAsociado();
 
-                    CargaBoletines();              
+                    CargaBoletines();
+
                 }
+
+                this._ventana.ConvertirEnteroMinimoABlanco();
 
                 this._ventana.FocoPredeterminado();
 
@@ -177,11 +183,13 @@ namespace Trascend.Bolet.Cliente.Presentadores.Abandonos
             }
         }
 
+        
         public bool EsAgregar()
         {
             return _agregar;
         }
 
+        
         /// <summary>
         /// Método que carga la ventana de Consultar Abandonos
         /// </summary>
@@ -189,6 +197,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Abandonos
         {
            this.Navegar(new ConsultarAbandonos());
         }
+
 
         /// <summary>
         /// Método que carga los datos de Operacion Abandono para agregar en la Base de Datos
@@ -219,6 +228,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Abandonos
             return operacion;
         }
 
+        
         /// <summary>
         /// Método que carga los boletines registrados
         /// </summary>
@@ -229,6 +239,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Abandonos
             boletines.Insert(0, primerBoletin);
             this._ventana.Boletines = boletines;
         }
+
 
         /// <summary>
         /// Método que dependiendo del estado de la página, habilita los campos o 
@@ -287,6 +298,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Abandonos
             }
         }
 
+
         /// <summary>
         /// Metodo que se encarga de eliminar una Abandono
         /// </summary>
@@ -338,6 +350,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Abandonos
             }
         }   
 
+
         /// <summary>
         /// Método que ordena una columna
         /// </summary>
@@ -374,6 +387,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Abandonos
 
         #region Marcas
 
+
         /// <summary>
         /// Método que carga los datos iniciales de Marca a mostrar en la página
         /// </summary>
@@ -396,6 +410,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Abandonos
             }                           
                  
         }
+
 
         /// <summary>
         /// Método que se encarga de consultar una Marca en Base de datos
@@ -472,6 +487,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Abandonos
             }
         }        
 
+
         /// <summary>
         /// Método que se encarga en cambiar la Marca seleccionada en la lista filtrada
         /// </summary>
@@ -493,6 +509,58 @@ namespace Trascend.Bolet.Cliente.Presentadores.Abandonos
                 {
                     this._ventana.Marca = this._ventana.MarcaFiltrada;
                     this._ventana.NombreMarca = ((Marca)this._ventana.MarcaFiltrada).Descripcion;
+
+                    IList<Asociado> listaAsociadoAux = new List<Asociado>();
+                    listaAsociadoAux.Add(new Asociado(int.MinValue));
+
+                    if (this._agregar == true)
+                    {
+                        IList<Interesado> listaInteresadoAux = new List<Interesado>();
+                        listaInteresadoAux.Add(new Interesado(int.MinValue));
+
+                        if (null != ((Marca)this._ventana.Marca).Interesado)
+                        {
+                            Interesado interesadoAux = new Interesado(((Marca)this._ventana.Marca).Interesado.Id);
+                            Interesado interesado = this._interesadoServicios.ConsultarInteresadoConTodo(interesadoAux);
+                            this._ventana.Interesado = interesado;
+                            this._interesados.Add(interesado);
+                            this._ventana.Interesado = interesado;
+
+
+
+                            listaInteresadoAux.Add(interesado);
+
+                            this._ventana.InteresadosFiltrados = listaInteresadoAux;
+                            this._ventana.InteresadoFiltrado = this.BuscarInteresado((IList<Interesado>)this._ventana.InteresadosFiltrados, interesado);
+                        }
+                        else
+                        {
+                            this._ventana.Interesado = new Interesado(int.MinValue);
+                            this._ventana.InteresadosFiltrados = listaInteresadoAux;
+                            this._ventana.InteresadoFiltrado = this.BuscarInteresado((IList<Interesado>)this._ventana.InteresadosFiltrados, (Interesado)this._ventana.Interesado);
+                        }
+
+                        if (null != ((Marca)this._ventana.Marca).Asociado)
+                        {
+                            Asociado asociadoAux = new Asociado(((Marca)this._ventana.Marca).Asociado.Id);
+                            Asociado asociado = this._asociadoServicios.ConsultarAsociadoConTodo(asociadoAux);
+                            this._ventana.Asociado = asociado;
+
+
+                            listaAsociadoAux.Add(asociado);
+
+                            this._ventana.AsociadosFiltrados = listaAsociadoAux;
+                            this._ventana.AsociadoFiltrado = this.BuscarAsociado((IList<Asociado>)this._ventana.AsociadosFiltrados, asociado);
+                        }
+                        else
+                        {
+                            this._ventana.Asociado = new Asociado(int.MinValue);
+                            this._ventana.AsociadosFiltrados = listaAsociadoAux;
+                            this._ventana.AsociadoFiltrado = this.BuscarAsociado((IList<Asociado>)this._ventana.AsociadosFiltrados, (Asociado)this._ventana.Asociado);
+                        }
+
+                    }
+
                     this._marcas.RemoveAt(0);
                     this._marcas.Add((Marca)this._ventana.MarcaFiltrada);
 
@@ -539,6 +607,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Abandonos
 
         #region Interesado
 
+
         /// <summary>
         /// Método que carga los datos iniciales de Interesado a mostrar en la página
         /// </summary>
@@ -574,6 +643,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Abandonos
 
             }
         }             
+
 
         /// <summary>
         /// Método que se encarga de consultar un Intesesado en Base de datos
@@ -648,6 +718,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Abandonos
             }
         }
 
+
         /// <summary>
         /// Método que se encarga en cambiar el Interesado seleccionada en la lista filtrada
         /// </summary>
@@ -711,6 +782,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Abandonos
             return retorno;
         }
         
+
         /// <summary>
         /// Método que se encarga de limpiar las lista de Interesados
         /// </summary>
@@ -728,6 +800,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Abandonos
         #endregion       
 
         #region Asociado
+
 
         /// <summary>
         /// Método que se encarga de consultar un Asociado en Base de datos
@@ -805,6 +878,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Abandonos
             }
         }
 
+
         /// <summary>
         /// Método que carga los datos iniciales de Asociado a mostrar en la página
         /// </summary>
@@ -820,6 +894,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Abandonos
                 this._ventana.AsociadosFiltrados = this._asociados;                
                 this._ventana.AsociadoFiltrado = ((Operacion)this._ventana.Operacion).Asociado;
                 this._ventana.NombreAsociado = ((Operacion)this._ventana.Operacion).Asociado.Nombre;
+
+                this._ventana.PintarAsociado(((Operacion)this._ventana.Operacion).Asociado.TipoCliente.Id);
             }
             else
             {
@@ -828,6 +904,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Abandonos
             }
 
         }
+
 
         /// <summary>
         /// Método que se encarga en cambiar el Asociado seleccionada en la lista filtrada
@@ -850,9 +927,17 @@ namespace Trascend.Bolet.Cliente.Presentadores.Abandonos
                 if (this._ventana.AsociadoFiltrado != null)
                 {
                     this._ventana.Asociado = this._ventana.AsociadoFiltrado;
-                    this._ventana.NombreAsociado = ((Asociado)this._ventana.AsociadoFiltrado).Nombre;
+                    this._ventana.NombreAsociado = null != ((Asociado)this._ventana.AsociadoFiltrado).Nombre ? ((Asociado)this._ventana.AsociadoFiltrado).Nombre : "";
+                    this._ventana.IdAsociado = ((Asociado)this._ventana.AsociadoFiltrado).Id.ToString();
                     this._asociados.RemoveAt(0);
                     this._asociados.Add((Asociado)this._ventana.AsociadoFiltrado);
+
+                    if (((Asociado)this._ventana.Asociado).TipoCliente != null)
+                        this._ventana.PintarAsociado(((Asociado)this._ventana.Asociado).TipoCliente.Id);
+                    else
+                        this._ventana.PintarAsociado("5");
+
+                    this._ventana.ConvertirEnteroMinimoABlanco();
 
                     retorno = true;
                 }

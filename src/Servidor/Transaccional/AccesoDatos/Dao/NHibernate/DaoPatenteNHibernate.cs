@@ -61,12 +61,46 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
                     variosFiltros = true;
                 }
 
-                //if (!string.IsNullOrEmpty(Patente.Fichas))
-                //{
-                //    if (variosFiltros)
-                //        filtro += " and ";
-                //    filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerPatenteFichas, Patente.Fichas);
-                //}
+                if ((null != Patente.TipoEstado) && (!Patente.TipoEstado.Id.Equals("")))
+                {
+                    if (variosFiltros)
+                        filtro += " and ";
+                    filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerPatenteTipoEstado, Patente.TipoEstado.Id);
+                    variosFiltros = true;
+                }
+
+                if ((null != Patente.Servicio) && (!Patente.Servicio.Id.Equals("")))
+                {
+                    if (variosFiltros)
+                        filtro += " and ";
+                    filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerPatenteServicio, Patente.Servicio.Id);
+                    variosFiltros = true;
+                }
+
+                if ((null != Patente.BoletinPublicacion) && (!Patente.BoletinPublicacion.Id.Equals("")))
+                {
+                    if (variosFiltros)
+                        filtro += " and ";
+                    filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerPatenteBoletinPublicacion, Patente.BoletinPublicacion.Id);
+                    variosFiltros = true;
+                }
+
+                if ((null != Patente.BoletinConcesion) && (!Patente.BoletinConcesion.Id.Equals("")))
+                {
+                    if (variosFiltros)
+                        filtro += " and ";
+                    filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerPatenteBoletinConcesion, Patente.BoletinConcesion.Id);
+                    variosFiltros = true;
+                }
+
+                if ((null != Patente.BoletinOrdenPublicacion) && (!Patente.BoletinOrdenPublicacion.Id.Equals("")))
+                {
+                    if (variosFiltros)
+                        filtro += " and ";
+                    filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerPatenteBoletinOrdenPublicacion, Patente.BoletinOrdenPublicacion.Id);
+                    variosFiltros = true;
+                }
+
 
                 if ((null != Patente.FechaPublicacion) && (!Patente.FechaPublicacion.Equals(DateTime.MinValue)))
                 {
@@ -76,15 +110,6 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
                     string fecha2 = String.Format("{0:dd/MM/yy}", Patente.FechaPublicacion.Value.AddDays(1));
                     filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerPatenteFecha, fecha, fecha2);
                 }
-
-                //if (null != Patente.Recordatorio)
-                //{
-                //    if (variosFiltros)
-                //        filtro += " and ";
-
-                //    filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerPatenteRecordatorio, Patente.Recordatorio);
-                //}
-
 
                 IQuery query = Session.CreateQuery(cabecera + filtro);
                 Patentes = query.List<Patente>();

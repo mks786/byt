@@ -43,6 +43,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
         private int _filtroValido;//Variable utilizada para limitar a que el filtro se ejecute solo cuando 
         //dos filtros sean utilizados
 
+        
         /// <summary>
         /// Constructor Predeterminado
         /// </summary>
@@ -94,6 +95,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             }
         }
 
+        
         /// <summary>
         /// Método que se encarga de actualizar el títutlo de la ventana
         /// </summary>
@@ -113,6 +115,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             #endregion
         }
 
+        
         /// <summary>
         /// Método que carga los datos iniciales a mostrar en la página
         /// </summary>
@@ -219,6 +222,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             }
         }
 
+        
         /// <summary>
         /// Método que realiza una consulta al servicio, con el fin de filtrar los datos que se muestran 
         /// por pantalla
@@ -299,6 +303,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             }
         }
 
+        
         /// <summary>
         /// Método que devuelve la marca que se utilizara para realizar el filtrado
         /// </summary>
@@ -369,6 +374,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             return marcaAuxiliar;
         }
 
+        
         /// <summary>
         /// Método que devuelve la marca con los datos del check TYR
         /// </summary>
@@ -440,6 +446,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             return marcaAuxiliar;
         }
 
+        
         /// <summary>
         /// Método que devuelve la marca con los datos del check Prioridades
         /// </summary>
@@ -460,6 +467,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             return marcaAuxiliar;
         }
 
+        
         /// <summary>
         /// Método que devuelve la marca con los datos del check Indicadores
         /// </summary>
@@ -479,6 +487,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             return marcaAuxiliar;
         }
 
+        
         /// <summary>
         /// Método que devuelve la marca con los datos del check Boletines
         /// </summary>
@@ -516,6 +525,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             return marcaAuxiliar;
         }
 
+        
         /// <summary>
         /// Método que devuelve la marca con los datos del check Nacional
         /// </summary>
@@ -592,6 +602,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             return marcaAuxiliar;
         }
 
+
         /// <summary>
         /// Método que devuelve la marca con los datos del check Internacional
         /// </summary>
@@ -614,6 +625,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             return marcaAuxiliar;
         }
 
+        
         /// <summary>
         /// Método que valida que la pantalla de busqueda se encuentre seleccionado al menos un check
         /// </summary>
@@ -650,6 +662,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             return retorno;
         }
 
+        
         /// <summary>
         /// Método que invoca una nueva página "ConsultarPoder" y la instancia con el objeto seleccionado
         /// </summary>
@@ -686,6 +699,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             #endregion
         }
 
+        
         /// <summary>
         /// Método que ordena una columna
         /// </summary>
@@ -720,6 +734,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             #endregion
         }
 
+        
         //public void BuscarAsociado()
         //{
         //    IEnumerable<Asociado> asociadosFiltrados = (IList<Asociado>)this._asociados;
@@ -770,6 +785,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
         //        this._ventana.Interesados = this._interesados;
         //}
 
+        
         /// <summary>
         /// Método que limpia los campos de búsqueda
         /// </summary>
@@ -865,6 +881,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
 
         #region Interesado
 
+        
         /// <summary>
         /// Método que se encarga de buscar el interesado definido en el filtro
         /// </summary>
@@ -902,6 +919,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
 
         }
 
+        
         /// <summary>
         /// Metodo que cambia el texto del interesado en la interfaz
         /// </summary>
@@ -934,6 +952,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
 
         #region Asociado
 
+        
         /// <summary>
         /// Método que se encarga de buscar el asociado definido en el filtro
         /// </summary>
@@ -975,6 +994,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             #endregion
         }
 
+        
         /// <summary>
         /// Metodo que cambia el texto del Asociado en la interfaz
         /// </summary>
@@ -1006,6 +1026,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
 
         #region Corresponsal
 
+        
         /// <summary>
         /// Método que se encarga de buscar el asociado definido en el filtro
         /// </summary>
@@ -1047,6 +1068,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             #endregion
         }
 
+        
         /// <summary>
         /// Metodo que cambia el texto del Corresponsal en la interfaz
         /// </summary>
@@ -1078,6 +1100,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
 
         #region Marca
 
+        
         public void BuscarMarca()
         {
             try
@@ -1131,6 +1154,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             }
         }
 
+        
         public bool ElegirMarca()
         {
             bool retorno = false;

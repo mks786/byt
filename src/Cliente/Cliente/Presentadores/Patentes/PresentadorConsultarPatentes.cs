@@ -28,11 +28,21 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
         private IPatenteServicios _patenteServicios;
         private IAsociadoServicios _asociadoServicios;
         private IInteresadoServicios _interesadoServicios;
+        private IBoletinServicios _boletinServicios;
         private IAnualidadServicios _anualidadServicios;
+        private ICesionPatenteServicios _cesionServicios;
+        private IServicioServicios _servicioServicios;
+        private ITipoEstadoServicios _tipoEstadoServicios;
+        private IPaisServicios _paisServicios;
+
         private IList<Patente> _patentes;
         private IList<CesionPatente> _cesiones;
-        private ICesionPatenteServicios _cesionServicios;
-        
+        private IList<Asociado> _asociados;
+        private IList<Asociado> _interesados;
+
+        private int _filtroValido;//Variable utilizada para limitar a que el filtro se ejecute solo cuando 
+
+
         /// <summary>
         /// Constructor Predeterminado
         /// </summary>
@@ -52,6 +62,14 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["CesionPatenteServicios"]);
                 this._anualidadServicios = (IAnualidadServicios)Activator.GetObject(typeof(IAnualidadServicios),
                   ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["AnualidadServicios"]);
+                this._boletinServicios = (IBoletinServicios)Activator.GetObject(typeof(IBoletinServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["BoletinServicios"]);
+                this._servicioServicios = (IServicioServicios)Activator.GetObject(typeof(IServicioServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["ServicioServicios"]);
+                this._tipoEstadoServicios = (ITipoEstadoServicios)Activator.GetObject(typeof(ITipoEstadoServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["TipoEstadoServicios"]);
+                this._paisServicios = (IPaisServicios)Activator.GetObject(typeof(IPaisServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["PaisServicios"]);
             }
             catch (Exception ex)
             {
@@ -60,12 +78,14 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
             }
         }
 
+        
         public void ActualizarTitulo()
         {
             this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleConsultarPatente,
                 Recursos.Ids.ConsultarPatente);
         }
 
+        
         /// <summary>
         /// Método que carga los datos iniciales a mostrar en la página
         /// </summary>
@@ -82,9 +102,32 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
 
                 ActualizarTitulo();
 
-                //this._marcas = this._marcaServicios.ConsultarTodos();
-                //this._ventana.Resultados = this._marcas;
-         
+                IList<Boletin> boletines = this._boletinServicios.ConsultarTodos();
+                Boletin primerBoletin = new Boletin();
+                primerBoletin.Id = int.MinValue;
+                boletines.Insert(0, primerBoletin);
+                this._ventana.BoletinesOrdenPublicacion = boletines;
+                this._ventana.BoletinesPublicacion = boletines;
+                this._ventana.BoletinesConcesion = boletines;
+
+                IList<TipoEstado> tipoEstados = this._tipoEstadoServicios.ConsultarTodos();
+                TipoEstado primerDetalle = new TipoEstado();
+                primerDetalle.Id = "NGN";
+                tipoEstados.Insert(0, primerDetalle);
+                this._ventana.Detalles = tipoEstados;
+
+                IList<Servicio> servicios = this._servicioServicios.ConsultarTodos();
+                Servicio primerServicio = new Servicio();
+                primerServicio.Id = "NGN";
+                servicios.Insert(0, primerServicio);
+                this._ventana.Servicios = servicios;
+
+                IList<Pais> paises = this._paisServicios.ConsultarTodos();
+                Pais primerPais = new Pais();
+                primerPais.Id = int.MinValue;
+                paises.Insert(0, primerPais);
+                this._ventana.Paises = paises;
+
                 this._ventana.TotalHits = "0";
                 this._ventana.FocoPredeterminado();
 
@@ -119,12 +162,15 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
             }
         }
 
+        
         /// <summary>
         /// Método que realiza una consulta al servicio, con el fin de filtrar los datos que se muestran 
         /// por pantalla
         /// </summary>
         public void Consultar()
         {
+            int flagError = 0; //Se usa para saber que entidad da error y poder capturarlo en la exception, 1 = Asociado, 2 = Interesado
+            Patente patenteError = new Patente(); //Se usa para navegar a la pagina de gestionar patente en caso de haber ocurrido un error
             try
             {
                 #region trace
@@ -135,70 +181,79 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                 Mouse.OverrideCursor = Cursors.Wait;                
                 int filtroValido = 0;//Variable utilizada para limitar a que el filtro se ejecute solo cuando 
                 //dos filtros sean utilizados
-
-                Patente patenteAuxiliar = new Patente();
-
-                if (!this._ventana.Id.Equals(""))
-                {
-                    patenteAuxiliar.Id = int.Parse(this._ventana.Id);
-                    filtroValido = 2;
-                }
-
-                if (!this._ventana.NombrePatente.Equals(""))
-                {
-                    patenteAuxiliar.Descripcion = this._ventana.NombrePatente;
-                    filtroValido = 2;
-                }
-
-                //if ((null != this._ventana.Asociado) && (((Asociado)this._ventana.Asociado).Id != int.MinValue))
-                //{
-                //    PatenteAuxiliar.Asociado = (Asociado)this._ventana.Asociado;
-                //    filtroValido++;
-                //}
-
-                //if ((null != this._ventana.Interesado) && (((Interesado)this._ventana.Interesado).Id != int.MinValue))
-                //{
-                //    PatenteAuxiliar.Interesado = (Interesado)this._ventana.Interesado;
-                //    filtroValido++;
-                //}
+                
+                Patente patenteAuxiliar = ObtenerPatenteFiltro();
 
 
-                //if (!this._ventana.FichasFiltrar.Equals(""))
-                //{
-                //    PatenteAuxiliar.Fichas = this._ventana.FichasFiltrar.ToUpper();
-                //    filtroValido++;
-                //}
-
-
-                //if (!this._ventana.DescripcionFiltrar.Equals(""))
-                //{
-                //    filtroValido = 2;
-                //    PatenteAuxiliar.Descripcion = this._ventana.DescripcionFiltrar.ToUpper();
-                //}
-
-                if (!this._ventana.Fecha.Equals(""))
-                {
-                    DateTime fechaPatente = DateTime.Parse(this._ventana.Fecha);
-                    filtroValido = 2;
-                    patenteAuxiliar.FechaRegistro = fechaPatente;
-                }
-
-                if (filtroValido >= 2)
+                if (_filtroValido >= 2)
                 {
                     this._patentes = this._patenteServicios.ObtenerPatentesFiltro(patenteAuxiliar);
 
-                    this._ventana.Resultados = this._patentes;
-                    this._ventana.TotalHits = _patentes.Count.ToString();
-                    if (this._patentes.Count == 0)
+                    IList<Patente> patentesDesinfladas = new List<Patente>();
+
+                    foreach (var patente in this._patentes)
+                    {
+                        patenteError = patente;
+
+                        patenteAuxiliar = new Patente(patente.Id);
+                        Asociado asociadoAuxiliar = new Asociado();
+                        Interesado interesadoAuxiliar = new Interesado();
+
+                        patenteAuxiliar.Descripcion = patente.Descripcion != null ? patente.Descripcion : "";
+
+                        flagError = 1;
+                        if ((null != patente.Asociado) && (!string.IsNullOrEmpty(patente.Asociado.Nombre)))
+                        {   
+                            asociadoAuxiliar = patente.Asociado;
+                            patenteAuxiliar.Asociado = asociadoAuxiliar;
+                        }
+
+                        flagError = 2;
+                        if ((null != patente.Interesado) && (!string.IsNullOrEmpty(patente.Interesado.Nombre)))
+                        {
+                            interesadoAuxiliar = patente.Interesado;
+                            patenteAuxiliar.Interesado = interesadoAuxiliar;
+                        }
+
+                        flagError = 0;
+
+                        patenteAuxiliar.CodigoInscripcion = patente.CodigoInscripcion;
+
+                        patenteAuxiliar.FechaPublicacion = patente.FechaPublicacion != null ? patente.FechaPublicacion : null;
+
+                        patentesDesinfladas.Add(patenteAuxiliar);
+
+                    }
+
+                    this._ventana.Resultados = patentesDesinfladas;
+                    this._ventana.TotalHits = patentesDesinfladas.Count.ToString();
+                    if (patentesDesinfladas.Count == 0)
                         this._ventana.Mensaje(Recursos.MensajesConElUsuario.NoHayResultados, 1);
                 }
                 else
                     this._ventana.Mensaje(Recursos.MensajesConElUsuario.ErrorFiltroIncompleto, 0);
 
+              
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
                     logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
+            }
+
+            catch (NHibernate.LazyInitializationException ex)
+            {
+                logger.Error(ex.Message);
+
+                if (flagError == 1)
+                {
+                    this.Navegar(Recursos.MensajesConElUsuario.ErrorConsultandoAsociado+" "+patenteError.Asociado.Id, true);
+                }
+                else if (flagError == 2)
+                {
+                    this.Navegar(Recursos.MensajesConElUsuario.ErrorConsultandoInteresado + " " + patenteError.Interesado.Id, true);
+                }
+                else
+                    this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
             }
             catch (Exception ex)
             {
@@ -211,6 +266,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
             }
         }
 
+        
         /// <summary>
         /// Método que invoca una nueva página "GestionarPatente" y la instancia con el objeto seleccionado
         /// </summary>
@@ -234,6 +290,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
             #endregion
         }
 
+        
         /// <summary>
         /// Método que ordena una columna
         /// </summary>
@@ -268,58 +325,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
             #endregion
         }
 
-        //public void BuscarAsociado()
-        //{
-        //    IEnumerable<Asociado> asociadosFiltrados = (IList<Asociado>)this._asociados;
-
-        //    if (!string.IsNullOrEmpty(this._ventana.IdAsociadoFiltrar))
-        //    {
-        //        asociadosFiltrados = from p in asociadosFiltrados
-        //                             where p.Id == int.Parse(this._ventana.IdAsociadoFiltrar)
-        //                             select p;
-        //    }
-
-        //    if (!string.IsNullOrEmpty(this._ventana.NombreAsociadoFiltrar))
-        //    {
-        //        asociadosFiltrados = from p in asociadosFiltrados
-        //                             where p.Nombre != null &&
-        //                             p.Nombre.ToLower().Contains(this._ventana.NombreAsociadoFiltrar.ToLower())
-        //                             select p;
-        //    }
-
-        //    if (asociadosFiltrados.ToList<Asociado>().Count != 0)
-        //        this._ventana.Asociados = asociadosFiltrados.ToList<Asociado>();
-        //    else
-        //        this._ventana.Asociados = this._asociados;
-        //}
-
-        //public void BuscarInteresado()
-        //{
-        //    IEnumerable<Interesado> interesadosFiltrados = (IList<Interesado>)this._interesados;
-
-        //    if (!string.IsNullOrEmpty(this._ventana.IdInteresadoFiltrar))
-        //    {
-        //        interesadosFiltrados = from p in interesadosFiltrados
-        //                             where p.Id == int.Parse(this._ventana.IdInteresadoFiltrar)
-        //                             select p;
-        //    }
-
-        //    if (!string.IsNullOrEmpty(this._ventana.NombreInteresadoFiltrar))
-        //    {
-        //        interesadosFiltrados = from p in interesadosFiltrados
-        //                             where p.Nombre != null &&
-        //                             p.Nombre.ToLower().Contains(this._ventana.NombreInteresadoFiltrar.ToLower())
-        //                             select p;
-        //    }
-
-        //    if (interesadosFiltrados.ToList<Interesado>().Count != 0)
-        //        this._ventana.Interesados = interesadosFiltrados.ToList<Interesado>();
-        //    else
-        //        this._ventana.Interesados = this._interesados;
-        //}
 
         /// <summary>
-        /// Método que busca las marcas registradas
+        /// Método que busca las patentes registradas
         /// </summary>
         public void BuscarPatente()
         {
@@ -341,6 +349,337 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
             Mouse.OverrideCursor = null;
         }
 
+
+        /// <summary>
+        /// Método que devuelve la patente que se utilizara para realizar el filtrado
+        /// </summary>
+        /// <returns>Patente cargada con el filtro</returns>
+        private Patente ObtenerPatenteFiltro()
+        {
+            //Patente patenteAuxiliar = ((Patente)this._ventana.PatenteParaFiltrar);
+            Patente patenteAuxiliar = new Patente();
+
+            try
+            {
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+               
+                patenteAuxiliar = TomarDatosPatenteFiltro(patenteAuxiliar);
+                    
+                if (this._ventana.BoletinesEstaSeleccionado)
+                {
+                    patenteAuxiliar = TomarDatosPatenteFiltroBoletines(patenteAuxiliar);
+                }
+
+                if (this._ventana.PrioridadesEstaSeleccionado)
+                {
+                    patenteAuxiliar = TomarDatosPatenteFiltroPrioridades(patenteAuxiliar);
+                }
+              
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
+            }
+            finally
+            {
+                Mouse.OverrideCursor = null;
+            }
+            return patenteAuxiliar;
+        }
+
+
+        /// <summary>
+        /// Método que devuelve la patente con los datos del check Prioridades
+        /// </summary>
+        /// <param name="patenteAuxiliar">Patente a cargar</param>
+        /// <returns>patente cargada con los datos de Prioridades</returns>
+        private Patente TomarDatosPatenteFiltroPrioridades(Patente patenteAuxiliar)
+        {
+
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+            _filtroValido = 2;
+
+            
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+            return patenteAuxiliar;
+        }
+
+
+        /// <summary>
+        /// Método que devuelve la patente con los datos del check Boletines
+        /// </summary>
+        /// <param name="patenteAuxiliar">Patente a cargar</param>
+        /// <returns>patente cargada con los datos de Boletines</returns>
+        private Patente TomarDatosPatenteFiltroBoletines(Patente patenteAuxiliar)
+        {
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+            _filtroValido = 2;
+
+            if (((Boletin)this._ventana.BoletinConcesion).Id != int.MinValue)
+            {
+                patenteAuxiliar.BoletinConcesion = new Boletin();
+                patenteAuxiliar.BoletinConcesion = ((Boletin)this._ventana.BoletinConcesion);
+            }
+
+            if (((Boletin)this._ventana.BoletinPublicacion).Id != int.MinValue)
+            {
+                patenteAuxiliar.BoletinPublicacion = new Boletin();
+                patenteAuxiliar.BoletinPublicacion = ((Boletin)this._ventana.BoletinPublicacion);
+            }
+
+            if (((Boletin)this._ventana.BoletinOrdenPublicacion).Id != int.MinValue)
+            {
+                patenteAuxiliar.BoletinOrdenPublicacion = new Boletin();
+                patenteAuxiliar.BoletinOrdenPublicacion = ((Boletin)this._ventana.BoletinOrdenPublicacion);
+            }
+
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+            return patenteAuxiliar;
+        }
+
+        /// <summary>
+        /// Método que devuelve la patente con los datos del filtro
+        /// </summary>
+        /// <param name="patenteAuxiliar">Patente a cargar</param>
+        /// <returns>patente cargada con los datos del filtro</returns>
+        private Patente TomarDatosPatenteFiltro(Patente patenteAuxiliar)
+        {
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+            try
+            {
+                if (!this._ventana.Id.Equals(""))
+                {
+                    _filtroValido = 2;
+                    patenteAuxiliar.Id = int.Parse(this._ventana.Id);
+                }
+
+                if ((null != this._ventana.Asociado) && (((Asociado)this._ventana.Asociado).Id != int.MinValue))
+                {
+                    patenteAuxiliar.Asociado = (Asociado)this._ventana.Asociado;
+                    _filtroValido = 2;
+                }
+
+                if ((null != this._ventana.Interesado) && (((Interesado)this._ventana.Interesado).Id != int.MinValue))
+                {
+                    patenteAuxiliar.Interesado = (Interesado)this._ventana.Interesado;
+                    _filtroValido = 2;
+                }
+
+
+                if (!this._ventana.NombrePatente.Equals(""))
+                {
+                    _filtroValido = 2;
+                    patenteAuxiliar.Descripcion = this._ventana.NombrePatente.ToUpper();
+                }
+
+                if (!this._ventana.Fecha.Equals(""))
+                {
+                    DateTime fechaPublicacion = DateTime.Parse(this._ventana.Fecha);
+                    _filtroValido = 2;
+                    patenteAuxiliar.FechaPublicacion = fechaPublicacion;
+                }
+
+                if (!((TipoEstado)this._ventana.Detalle).Id.Equals("NGN"))
+                {
+                    _filtroValido = 2;
+                    patenteAuxiliar.TipoEstado = new TipoEstado();
+                    patenteAuxiliar.TipoEstado = ((TipoEstado)this._ventana.Detalle);
+                }
+
+                if (!((Servicio)this._ventana.Servicio).Id.Equals("NGN"))
+                {
+                    _filtroValido = 2;
+                    patenteAuxiliar.Servicio = new Servicio();
+                    patenteAuxiliar.Servicio = ((Servicio)this._ventana.Servicio);
+                }
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (ApplicationException ex)
+            {
+                logger.Debug(ex.Message);
+            }
+
+            return patenteAuxiliar;
+        }
+
+
+        #region Interesado
+
+
+        /// <summary>
+        /// Método que se encarga de buscar el interesado definido en el filtro
+        /// </summary>
+        public void BuscarInteresado()
+        {
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+            Interesado interesadoABuscar = new Interesado();
+
+            interesadoABuscar.Id = !this._ventana.IdInteresadoFiltrar.Equals("") ?
+                                   int.Parse(this._ventana.IdInteresadoFiltrar) : 0;
+
+            interesadoABuscar.Nombre = !this._ventana.NombreInteresadoFiltrar.Equals("") ?
+                                       this._ventana.NombreInteresadoFiltrar.ToUpper() : "";
+
+            if ((interesadoABuscar.Id != 0) || !(interesadoABuscar.Nombre.Equals("")))
+            {
+                IList<Interesado> interesados = this._interesadoServicios.ObtenerInteresadosFiltro(interesadoABuscar);
+                interesados.Insert(0, new Interesado(int.MinValue));
+                this._ventana.Interesados = interesados;
+            }
+            else
+            {
+                this._ventana.Interesados = this._interesados;
+                this._ventana.Mensaje(Recursos.MensajesConElUsuario.NoHayResultados, 1);
+            }
+
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+        }
+
         
+        /// <summary>
+        /// Metodo que cambia el texto del interesado en la interfaz
+        /// </summary>
+        /// <returns>true en caso de que el interesado haya sido valido, false en caso contrario</returns>
+        public bool CambiarInteresado()
+        {
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+            bool retorno = false;
+
+            if (this._ventana.Interesado != null)
+            {
+                this._ventana.InteresadoFiltro = ((Interesado)this._ventana.Interesado).Nombre;
+                retorno = true;
+            }
+
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+            return retorno;
+
+        }
+
+        #endregion
+
+        #region Asociado
+
+
+        /// <summary>
+        /// Método que se encarga de buscar el asociado definido en el filtro
+        /// </summary>
+        public void BuscarAsociado()
+        {
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+            Mouse.OverrideCursor = Cursors.Wait;
+
+            Asociado asociadoABuscar = new Asociado();
+
+            asociadoABuscar.Id = !this._ventana.IdAsociadoFiltrar.Equals("") ?
+                                 int.Parse(this._ventana.IdAsociadoFiltrar) : 0;
+
+            asociadoABuscar.Nombre = !this._ventana.NombreAsociadoFiltrar.Equals("") ?
+                                     this._ventana.NombreAsociadoFiltrar.ToUpper() : "";
+
+            if ((asociadoABuscar.Id != 0) || !(asociadoABuscar.Nombre.Equals("")))
+            {
+                IList<Asociado> asociados = this._asociadoServicios.ObtenerAsociadosFiltro(asociadoABuscar);
+                asociados.Insert(0, new Asociado(int.MinValue));
+                this._ventana.Asociados = asociados;
+
+            }
+            else
+            {
+                this._ventana.Mensaje(Recursos.MensajesConElUsuario.NoHayResultados, 1);
+                this._ventana.Asociados = this._asociados;
+            }
+
+            Mouse.OverrideCursor = null;
+
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+        }
+
+        
+        /// <summary>
+        /// Metodo que cambia el texto del Asociado en la interfaz
+        /// </summary>
+        /// <returns>true en caso de que el Asociado haya sido valido, false en caso contrario</returns>
+        public bool CambiarAsociado()
+        {
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+            bool retorno = false;
+
+            if (this._ventana.Asociado != null)
+            {
+                this._ventana.AsociadoFiltro = ((Asociado)this._ventana.Asociado).Nombre;
+                retorno = true;
+            }
+
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+            return retorno;
+        }
+
+        #endregion
     }
 }

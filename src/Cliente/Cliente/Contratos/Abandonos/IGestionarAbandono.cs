@@ -51,6 +51,8 @@ namespace Trascend.Bolet.Cliente.Contratos.Abandonos
 
         string NombreAsociado { set; }
 
+        string IdAsociado { get; set; }
+
         string IdAsociadoFiltrar { get; }
 
         string NombreAsociadoFiltrar { get; }
@@ -84,6 +86,8 @@ namespace Trascend.Bolet.Cliente.Contratos.Abandonos
         void PintarMarca();
 
         void PintarAsociado();
+
+        void PintarAsociado(string tipo);
 
         void PintarInteresado();
 

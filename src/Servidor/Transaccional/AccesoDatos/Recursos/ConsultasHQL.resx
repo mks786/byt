@@ -521,7 +521,7 @@
     <comment>Filtro por Id de clase nacional</comment>
   </data>
   <data name="CabeceraObtenerPatente" xml:space="preserve">
-    <value>Select p from Patente p left join fetch p.Asociado as asociado left join fetch p.Interesado as interesado left join fetch asociado.Pais as pais left join fetch asociado.Idioma as pais left join fetch p.BoletinConcesion as boletinC left join fetch p.BoletinPublicacion as boletinP left join fetch p.BoletinOrdenPublicacion as boletinO left join fetch p.Anualidades as anualidades left join fetch p.Agente as agente left join fetch p.TipoEstado as tipoEstado left join fetch p.StatusWeb as statusWeb where </value>
+    <value>Select p from Patente p left join fetch p.Asociado as asociado left join fetch p.Interesado as interesado left join fetch asociado.Pais as pais left join fetch asociado.Idioma as pais left join fetch p.BoletinConcesion as boletinC left join fetch p.BoletinPublicacion as boletinP left join fetch p.BoletinOrdenPublicacion as boletinO left join fetch p.Anualidades as anualidades left join fetch p.Agente as agente left join fetch p.TipoEstado as tipoEstado left join fetch p.Servicio as servicio left join fetch p.StatusWeb as statusWeb where </value>
     <comment>Cabecera del query para el filtro de Patentes</comment>
   </data>
   <data name="FiltroObtenerPatenteDescripcion" xml:space="preserve">
@@ -672,5 +672,25 @@
   <data name="CabeceraObtenerAnualidadesPorPatente" xml:space="preserve">
     <value>Select a from Anualidad a left join fetch a.Patente as patente left join fetch a.Asociado as asociado where patente.Id = {0}</value>
     <comment>Selecciona todas las anualidades de una patente</comment>
+  </data>
+  <data name="FiltroObtenerPatenteBoletinConcesion" xml:space="preserve">
+    <value>p.BoletinConcesion.Id = '{0}'</value>
+    <comment>Filtro por Boletin Concesión</comment>
+  </data>
+  <data name="FiltroObtenerPatenteBoletinOrdenPublicacion" xml:space="preserve">
+    <value>p.BoletinOrdenPublicacion.Id = '{0}'</value>
+    <comment>Filtro por Boletin Orden Publicación</comment>
+  </data>
+  <data name="FiltroObtenerPatenteBoletinPublicacion" xml:space="preserve">
+    <value>p.BoletinPublicacion.Id = '{0}'</value>
+    <comment>Filtro por Boletin Publicación</comment>
+  </data>
+  <data name="FiltroObtenerPatenteServicio" xml:space="preserve">
+    <value>p.Servicio.Id = '{0}'</value>
+    <comment>Filtro por Servicio</comment>
+  </data>
+  <data name="FiltroObtenerPatenteTipoEstado" xml:space="preserve">
+    <value>p.TipoEstado.Id = '{0}'</value>
+    <comment>Filtro por Tipo Estado</comment>
   </data>
 </root>

@@ -158,11 +158,11 @@
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblAsociado}"/>
                         </Label>
 
-                        <TextBox Name="_txtIdAsociado" MaxLength="40"  Text="{Binding Path=Asociado.Id}" IsEnabled="False" IsReadOnly="True"
+                        <TextBox Name="_txtIdAsociado" MaxLength="40"  Text="{Binding Path=Id}" IsEnabled="False" IsReadOnly="True"
                              VerticalContentAlignment="Center" MouseDoubleClick="_txtNombreAsociado_MouseDoubleClick" Margin="0,0,5,0" Grid.ColumnSpan="1" Grid.Column="1"
                              Grid.Row="0"/>
 
-                        <TextBox Name="_txtNombreAsociado" MaxLength="40"  Text="{Binding Path=Asociado.Nombre}" IsEnabled="False" IsReadOnly="True"
+                        <TextBox Name="_txtNombreAsociado" MaxLength="40"  Text="{Binding Path=Nombre}" IsEnabled="False" IsReadOnly="True"
                              VerticalContentAlignment="Center" MouseDoubleClick="_txtNombreAsociado_MouseDoubleClick" Margin="0,0,0,0" Grid.ColumnSpan="5" Grid.Column="2"
                              Grid.Row="0"/>
                         

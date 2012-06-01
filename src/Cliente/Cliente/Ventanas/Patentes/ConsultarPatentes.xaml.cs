@@ -25,6 +25,14 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
             set { this._lstResultados.DataContext = value; }
         }
 
+        public object PatenteParaFiltrar
+        {
+            get { return this._splFiltro.DataContext; }
+            set { this._splFiltro.DataContext = value; }
+        }
+
+        #region Patente
+
         public string Id
         {
             get { return this._txtId.Text; }
@@ -33,8 +41,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
 
         public string NombrePatente
         {
-            get { return this._txtNombre.Text; }
-            set { this._txtNombre.Text = value; }
+            get { return this._txtDescripcion.Text; }
+            set { this._txtDescripcion.Text = value; }
         }
 
         public object Patente
@@ -53,6 +61,170 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
             get { return this._lstResultados.DataContext; }
             set { this._lstResultados.DataContext = value; }
         }
+
+        #endregion
+
+        #region Checks
+
+        public bool PrioridadesEstaSeleccionado
+        {
+            get { return this._chkPrioridad.IsChecked.Value; }
+            set { this._chkPrioridad.IsChecked = value; }
+        }
+
+        public bool BoletinesEstaSeleccionado
+        {
+            get { return this._chkBoletines.IsChecked.Value; }
+            set { this._chkBoletines.IsChecked = value; }
+        }
+
+        #endregion
+
+        #region Asociado
+
+        public string IdAsociadoFiltrar
+        {
+            get { return this._txtIdAsociado.Text; }
+            set { this._txtIdAsociado.Text = value; }
+        }
+
+        public string NombreAsociadoFiltrar
+        {
+            get { return this._txtNombreAsociado.Text; }
+            set { this._txtNombreAsociado.Text = value; }
+        }
+
+        public object Asociados
+        {
+            get { return this._lstAsociados.DataContext; }
+            set { this._lstAsociados.DataContext = value; }
+        }
+
+        public object Asociado
+        {
+            get { return this._lstAsociados.SelectedItem; }
+            set { this._lstAsociados.SelectedItem = value; }
+        }
+
+        public string AsociadoFiltro
+        {
+            set { this._txtAsociado.Text = value; }
+        }
+
+        #endregion
+
+        #region Interesado
+
+        public string IdInteresadoFiltrar
+        {
+            get { return this._txtIdInteresado.Text; }
+            set { this._txtIdInteresado.Text = value; }
+        }
+
+        public string NombreInteresadoFiltrar
+        {
+            get { return this._txtNombreInteresado.Text; }
+            set { this._txtNombreInteresado.Text = value; }
+        }
+
+        public object Interesados
+        {
+            get { return this._lstInteresados.DataContext; }
+            set { this._lstInteresados.DataContext = value; }
+        }
+
+        public object Interesado
+        {
+            get { return this._lstInteresados.SelectedItem; }
+            set { this._lstInteresados.SelectedItem = value; }
+        }
+
+        public string InteresadoFiltro
+        {
+            set { this._txtInteresado.Text = value; }
+        }
+
+        #endregion
+
+        #region Boletin
+
+        public object BoletinesOrdenPublicacion
+        {
+            get { return this._cbxBolOrdPublicacion.DataContext; }
+            set { this._cbxBolOrdPublicacion.DataContext = value; }
+        }
+
+        public object BoletinOrdenPublicacion
+        {
+            get { return this._cbxBolOrdPublicacion.SelectedItem; }
+            set { this._cbxBolOrdPublicacion.SelectedItem = value; }
+        }
+
+        public object BoletinesPublicacion
+        {
+            get { return this._cbxBolPublicacion.DataContext; }
+            set { this._cbxBolPublicacion.DataContext = value; }
+        }
+
+        public object BoletinPublicacion
+        {
+            get { return this._cbxBolPublicacion.SelectedItem; }
+            set { this._cbxBolPublicacion.SelectedItem = value; }
+        }
+
+        public object BoletinesConcesion
+        {
+            get { return this._cbxBolConcesion.DataContext; }
+            set { this._cbxBolConcesion.DataContext = value; }
+        }
+
+        public object BoletinConcesion
+        {
+            get { return this._cbxBolConcesion.SelectedItem; }
+            set { this._cbxBolConcesion.SelectedItem = value; }
+        }
+
+        #endregion
+
+        #region Combobox
+
+        public object Servicios
+        {
+            get { return this._cbxSituacion.DataContext; }
+            set { this._cbxSituacion.DataContext = value; }
+        }
+
+        public object Servicio
+        {
+            get { return this._cbxSituacion.SelectedItem; }
+            set { this._cbxSituacion.SelectedItem = value; }
+        }
+
+        public object Detalles
+        {
+            get { return this._cbxDetalleDatos.DataContext; }
+            set { this._cbxDetalleDatos.DataContext = value; }
+        }
+
+        public object Detalle
+        {
+            get { return this._cbxDetalleDatos.SelectedItem; }
+            set { this._cbxDetalleDatos.SelectedItem = value; }
+        }
+
+        public object Paises
+        {
+            get { return this._cbxPrioridadPais.DataContext; }
+            set { this._cbxPrioridadPais.DataContext = value; }
+        }
+
+        public object PaisPrioridad
+        {
+            get { return this._cbxPrioridadPais.SelectedItem; }
+            set { this._cbxPrioridadPais.SelectedItem = value; }
+        }
+
+        #endregion
 
         public bool EstaCargada
         {
@@ -148,20 +320,6 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
             this._presentador.BuscarPatente();
         }
 
-        //private void _btnConsultarAsociado_Click(object sender, RoutedEventArgs e)
-        //{
-        //    this._presentador.BuscarAsociado();
-        //}
-
-        //private void _btnConsultarInteresado_Click(object sender, RoutedEventArgs e)
-        //{
-        //    this._presentador.BuscarInteresado();
-        //}
-
-        /// <summary>
-        /// Método que se encarga de posicionar el cursor en los campos del filto
-        /// </summary>
-        
         private void _dpkFecha_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
         {
 
@@ -190,10 +348,10 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
                 this._txtId.Focus();
             }
 
-            if (!this._txtNombre.Text.Equals(""))
+            if (!this._txtDescripcion.Text.Equals(""))
             {
                 todosCamposVacios = false;
-                this._txtNombre.Focus();
+                this._txtDescripcion.Focus();
             }
 
             if (!this._dpkFecha.Text.Equals(""))
@@ -205,6 +363,149 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
             if (todosCamposVacios)
                 this._txtId.Focus();
         }
+
+        private void _btnConsultarFocus(object sender, RoutedEventArgs e)
+        {
+            this._btnConsultar.IsDefault = true;
+            this._btnConsultarAsociado.IsDefault = false;
+            this._btnConsultarInteresado.IsDefault = false;
+        }
+
+
+        #region Asociado
+
+
+        private void _txtAsociado_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            GestionarVisibilidadFiltroAsociado(true);
+            GestionarVisibilidadFiltroInteresado(false);
+        }
+
+        
+        private void _lstAsociados_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            if (this._presentador.CambiarAsociado())
+                GestionarVisibilidadFiltroAsociado(false);
+        }
+
+        
+        private void GestionarVisibilidadFiltroAsociado(bool visibilidad)
+        {
+            if (visibilidad)
+            {
+                this._txtAsociado.Visibility = Visibility.Collapsed;
+
+                this._txtIdAsociado.Visibility = Visibility.Visible;
+                this._txtNombreAsociado.Visibility = Visibility.Visible;
+                this._lblIdAsociado.Visibility = Visibility.Visible;
+                this._lblNombreAsociado.Visibility = Visibility.Visible;
+                this._lstAsociados.Visibility = Visibility.Visible;
+                this._btnConsultarAsociado.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                this._txtAsociado.Visibility = Visibility.Visible;
+
+                this._txtIdAsociado.Visibility = Visibility.Collapsed;
+                this._txtNombreAsociado.Visibility = Visibility.Collapsed;
+                this._lblIdAsociado.Visibility = Visibility.Collapsed;
+                this._lblNombreAsociado.Visibility = Visibility.Collapsed;
+                this._lstAsociados.Visibility = Visibility.Collapsed;
+                this._btnConsultarAsociado.Visibility = Visibility.Collapsed;
+            }
+        }
+
+        
+        private void _btnConsultarAsociado_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.BuscarAsociado();
+        }
+
+        
+        private void _btnConsultarAsociadoFocus(object sender, RoutedEventArgs e)
+        {
+            this._btnConsultar.IsDefault = false;
+            this._btnConsultarAsociado.IsDefault = true;
+            this._btnConsultarInteresado.IsDefault = false;
+        }
+
+        #endregion
+
+        #region Interesado
+
+        private void _txtInteresado_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            GestionarVisibilidadFiltroAsociado(false);
+            GestionarVisibilidadFiltroInteresado(true);
+        }
+
+        private void GestionarVisibilidadFiltroInteresado(bool visibilidad)
+        {
+            if (visibilidad)
+            {
+                this._txtInteresado.Visibility = Visibility.Collapsed;
+
+                this._txtIdInteresado.Visibility = Visibility.Visible;
+                this._txtNombreInteresado.Visibility = Visibility.Visible;
+                this._lblIdInteresado.Visibility = Visibility.Visible;
+                this._lblNombreInteresado.Visibility = Visibility.Visible;
+                this._lstInteresados.Visibility = Visibility.Visible;
+                this._btnConsultarInteresado.Visibility = Visibility.Visible;
+
+            }
+            else
+            {
+                this._txtInteresado.Visibility = Visibility.Visible;
+
+                this._txtIdInteresado.Visibility = Visibility.Collapsed;
+                this._txtNombreInteresado.Visibility = Visibility.Collapsed;
+                this._lblIdInteresado.Visibility = Visibility.Collapsed;
+                this._lblNombreInteresado.Visibility = Visibility.Collapsed;
+                this._lstInteresados.Visibility = Visibility.Collapsed;
+                this._btnConsultarInteresado.Visibility = Visibility.Collapsed;
+            }
+        }
+
+        private void _lstInteresados_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            if (this._presentador.CambiarInteresado())
+                GestionarVisibilidadFiltroInteresado(false);
+        }
+
+        private void _btnConsultarInteresado_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.BuscarInteresado();
+        }
+
+        private void _btnConsultarInteresadoFocus(object sender, RoutedEventArgs e)
+        {
+            this._btnConsultar.IsDefault = false;
+            this._btnConsultarAsociado.IsDefault = false;
+            this._btnConsultarInteresado.IsDefault = true;
+        }
+
+        #endregion
+
+        #region Checks
+
+        public void _chkBoletines_Click(object sender, RoutedEventArgs e)
+        {
+            if (this._chkBoletines.IsChecked.Value)
+                this._boletines.Visibility = Visibility.Visible;
+            else
+                this._boletines.Visibility = Visibility.Collapsed;
+        }
+
+        public void _chkPrioridad_Click(object sender, RoutedEventArgs e)
+        {
+            if (this._chkPrioridad.IsChecked.Value)
+                this._prioridad.Visibility = Visibility.Visible;
+            else
+                this._prioridad.Visibility = Visibility.Collapsed;
+        }
+
+        #endregion
+
 
     }
 }
