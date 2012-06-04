@@ -30,6 +30,19 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.CambiosPeticionarioP
             get { return this._txtIdAnteriorFiltrar.Text; }
         }
 
+
+        public object Boletines
+        {
+            get { return this._cbxBoletin.DataContext; }
+            set { this._cbxBoletin.DataContext = value; }
+        }
+
+        public object Boletin
+        {
+            get { return this._cbxBoletin.SelectedItem; }
+            set { this._cbxBoletin.SelectedItem = value; }
+        }
+
         public string NombreAnteriorFiltrar
         {
             get { return this._txtNombreAnteriorFiltrar.Text; }
@@ -278,7 +291,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.CambiosPeticionarioP
                 this._txtIdPoderActualFiltrar.IsEnabled = value;
 
                 this._txtAnexoPoderActual.IsEnabled = value;
-                this._txtBoletinPoderActual.IsEnabled = value;
+                this._cbxBoletin.IsEnabled = value;
                 this._txtFacultadPoderActual.IsEnabled = value;                
                 this._txtNumPoderActual.IsEnabled = value;
                 this._txtFechaPoderActual.IsEnabled = value;  
@@ -1100,7 +1113,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.CambiosPeticionarioP
             this._lblFacultadPoderActual.Visibility = (System.Windows.Visibility)value;
             this._txtNumPoderActual.Visibility = (System.Windows.Visibility)value;
             this._txtFechaPoderActual.Visibility = (System.Windows.Visibility)value;
-            this._txtBoletinPoderActual.Visibility = (System.Windows.Visibility)value;
+            this._cbxBoletin.Visibility = (System.Windows.Visibility)value;
             this._txtAnexoPoderActual.Visibility = (System.Windows.Visibility)value;
             this._txtFacultadPoderActual.Visibility = (System.Windows.Visibility)value;
         }

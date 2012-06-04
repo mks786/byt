@@ -89,7 +89,11 @@ namespace Trascend.Bolet.Cliente.Contratos.TraspasosPatentes.CambiosDePeticionar
         object PoderActualFiltrado { get; set; }
 
         //----------------
-  
+
+
+        object Boletines { get; set; }
+
+        object Boletin { get; set; }
 
         bool HabilitarCampos { set; }
 

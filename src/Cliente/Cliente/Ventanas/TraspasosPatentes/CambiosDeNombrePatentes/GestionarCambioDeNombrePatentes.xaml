@@ -504,8 +504,20 @@
                         <Label Name="_lblBoletinPoder" Grid.Row="1" Grid.Column="3" HorizontalAlignment="Right" VerticalAlignment="Center">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblBoletin}"/>
                         </Label>
-                        <custom:ByTTextBox  IsEnabled="False"  Grid.Column="4" Grid.ColumnSpan="2" Grid.Row="1" Name="_txtBoletinPoder" VerticalAlignment="Center" MaxLength="255"  
-                                Text="{Binding Path=Boletin.Id}" IsReadOnly="True"></custom:ByTTextBox>
+                        <ComboBox Name="_cbxBoletin" Grid.Column="4" Grid.ColumnSpan="2" Grid.Row="1" ItemsSource="{Binding}" Height="25" IsEnabled="False">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock>
+                                <TextBlock.Text>
+                                    <MultiBinding Converter="{StaticResource convertirADosValores}">
+                                        <Binding Path="Id" />
+                                        <Binding Path="FechaBoletin" />
+                                    </MultiBinding>
+                                </TextBlock.Text>
+                                    </TextBlock>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
                         <!--Fin Campo-->
 
                         <!--Campo-->

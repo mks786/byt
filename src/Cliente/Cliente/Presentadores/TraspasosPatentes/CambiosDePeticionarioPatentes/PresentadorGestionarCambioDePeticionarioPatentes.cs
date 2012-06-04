@@ -209,6 +209,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CambiosDePetici
 
                     ValidarActual();
 
+                    CargaBoletines();
+
                 }
                 else
                 {
@@ -225,6 +227,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CambiosDePetici
                     CargarApoderado("Actual");
 
                     CargarPoder("Actual");
+
+                    CargaBoletines();
                 }
 
                 this._ventana.FocoPredeterminado();
@@ -244,6 +248,32 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CambiosDePetici
                 Mouse.OverrideCursor = null;
             }
         }
+
+
+        /// <summary>
+        /// Método que carga los boletines registrados
+        /// </summary>
+        private void CargaBoletines()
+        {
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+            CambioPeticionarioPatente cambioPeticionario = (CambioPeticionarioPatente)this._ventana.CambioPeticionarioPatente;
+            Boletin primerBoletin = new Boletin(int.MinValue);
+            IList<Boletin> boletines = this._boletinServicios.ConsultarTodos();
+            boletines.Insert(0, primerBoletin);
+            this._ventana.Boletines = boletines;
+            if (_agregar == false)
+                this._ventana.Boletin = BuscarBoletin(boletines, cambioPeticionario.BoletinPublicacion);
+
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+        }
+
 
         private void CargarInteresado(string tipo)
         {
@@ -410,6 +440,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CambiosDePetici
 
             if (null != this._ventana.PoderAnterior)
                 cambioPeticionario.PoderAnterior = ((Poder)this._ventana.PoderAnterior).Id != int.MinValue ? (Poder)this._ventana.PoderAnterior : null;
+
+            if (null != this._ventana.Boletin)
+                cambioPeticionario.BoletinPublicacion = ((Boletin)this._ventana.Boletin).Id != int.MinValue ? (Boletin)this._ventana.Boletin : null;     
+ 
 
             return cambioPeticionario;
         }

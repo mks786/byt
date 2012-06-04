@@ -195,7 +195,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.FusionesPatentes
                 this._txtIdPoder.IsEnabled = value;
                 this._cbxBoletin.IsEnabled = value;
                 this._txtAnexoPoder.IsEnabled = value;
-                this._txtBoletinPoder.IsEnabled = value;
+                this._txtFacultadPoder.IsEnabled = value;
                 this._txtFechaPoder.IsEnabled = value;
                 this._txtNumPoder.IsEnabled = value;
 
@@ -871,7 +871,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.FusionesPatentes
             this._lblFacultadPoder.Visibility = (System.Windows.Visibility)value;
             this._txtNumPoder.Visibility = (System.Windows.Visibility)value;
             this._txtFechaPoder.Visibility = (System.Windows.Visibility)value;
-            this._txtBoletinPoder.Visibility = (System.Windows.Visibility)value;
+            this._txtFacultadPoder.Visibility = (System.Windows.Visibility)value;
             this._txtAnexoPoder.Visibility = (System.Windows.Visibility)value;
             this._cbxBoletin.Visibility = (System.Windows.Visibility)value;
         }

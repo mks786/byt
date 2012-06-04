@@ -37,6 +37,18 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.CambiosDeNombrePaten
             }
         }
 
+        public object Boletines
+        {
+            get { return this._cbxBoletin.DataContext; }
+            set { this._cbxBoletin.DataContext = value; }
+        }
+
+        public object Boletin
+        {
+            get { return this._cbxBoletin.SelectedItem; }
+            set { this._cbxBoletin.SelectedItem = value; }
+        }
+
         public string IdAsociadoFiltrar
         {
             get { throw new System.NotImplementedException(); }
@@ -178,7 +190,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.CambiosDeNombrePaten
                 this._txtIdPoder.IsEnabled = value;
                 this._txtFacultadPoder.IsEnabled = value;
                 this._txtAnexoPoder.IsEnabled = value;
-                this._txtBoletinPoder.IsEnabled = value;
+                this._cbxBoletin.IsEnabled = value;
                 this._txtFacultadPoder.IsEnabled = value;
                 this._txtFechaPoder.IsEnabled = value;
                 this._txtNumPoder.IsEnabled = value;
@@ -828,7 +840,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.CambiosDeNombrePaten
             this._lblFacultadPoder.Visibility = (System.Windows.Visibility)value;
             this._txtNumPoder.Visibility = (System.Windows.Visibility)value;
             this._txtFechaPoder.Visibility = (System.Windows.Visibility)value;
-            this._txtBoletinPoder.Visibility = (System.Windows.Visibility)value;
+            this._cbxBoletin.Visibility = (System.Windows.Visibility)value;
             this._txtAnexoPoder.Visibility = (System.Windows.Visibility)value;
             this._txtFacultadPoder.Visibility = (System.Windows.Visibility)value;
         }

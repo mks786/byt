@@ -198,6 +198,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CambiosDeNombre
 
                     ValidarInteresado();
 
+                    CargaBoletines();
+
                 }
                 else
                 {
@@ -210,6 +212,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CambiosDeNombre
                     CargarApoderado();
 
                     CargarPoder();
+
+                    CargaBoletines();
                 }
 
                 this._ventana.FocoPredeterminado();
@@ -229,6 +233,31 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CambiosDeNombre
                 Mouse.OverrideCursor = null;
             }
         }
+
+        /// <summary>
+        /// Método que carga los boletines registrados
+        /// </summary>
+        private void CargaBoletines()
+        {
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+            CambioDeNombrePatente cambioDeNombre = (CambioDeNombrePatente)this._ventana.CambioDeNombrePatente;
+            Boletin primerBoletin = new Boletin(int.MinValue);
+            IList<Boletin> boletines = this._boletinServicios.ConsultarTodos();
+            boletines.Insert(0, primerBoletin);
+            this._ventana.Boletines = boletines;
+            if (_agregar == false)
+                this._ventana.Boletin = BuscarBoletin(boletines, cambioDeNombre.Boletin);
+
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+        }
+
 
         private void CargarInteresado(string tipo)
         {
@@ -313,6 +342,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CambiosDeNombre
             if (null != this._ventana.Poder)
                 cambioDeNombre.Poder = ((Poder)this._ventana.Poder).Id != int.MinValue ? (Poder)this._ventana.Poder : null;
 
+            if (null != this._ventana.Boletin)
+                cambioDeNombre.Boletin = ((Boletin)this._ventana.Boletin).Id != int.MinValue ? (Boletin)this._ventana.Boletin : null;     
+ 
             return cambioDeNombre;
         }
 
