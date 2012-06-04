@@ -26,6 +26,8 @@ namespace Trascend.Bolet.Cliente.Contratos.MarcasTercero
 
         object MarcaFiltrada { get; set; }
 
+        string TipoBaseTxt { set; get; }
+
         string NombreMarcaFiltrar { get; }
 
         string IdMarcaFiltrar { get; }
@@ -159,6 +161,8 @@ namespace Trascend.Bolet.Cliente.Contratos.MarcasTercero
         //string IdNacional { get; set; }
 
         bool HabilitarCampos { set; }
+
+        bool BytTipoDeBaseVisible { set; }
 
         bool AsociadosEstanCargados { get; set; }
 

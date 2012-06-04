@@ -218,6 +218,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
 
 
                     CargaComboBox();
+                    CargarTipoBaseCombo();
 
                     this._ventana.ComentarioClienteEspanol = marcaTercero.ComentarioEsp;
                     this._ventana.ComentarioClienteIngles = marcaTercero.ComentarioIng;
@@ -288,6 +289,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
                 {
                     MarcaTercero marcaTercero = (MarcaTercero)this._ventana.MarcaTercero;
                     CargaComboBox();
+                    CargarTipoBaseCombo();
                 }
 
                 this._ventana.FocoPredeterminado();
@@ -316,6 +318,17 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
             this.Navegar(new ConsultaMarcasTercero());
         }
 
+        public void CargarTipoBaseCombo()
+        {
+            if (null != (TipoBase)this._ventana.TipoBaseSolicitud)
+            {
+                if (((TipoBase)this._ventana.TipoBaseSolicitud).Id == "N")
+                    this._ventana.BytTipoDeBaseVisible = true;
+                else
+                     this._ventana.BytTipoDeBaseVisible = false;
+
+            }
+        }
 
         public void CargaComboBox()
         {
@@ -341,8 +354,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
             primerTipoBase.Id = "A";
             TipoBase.Insert(0, primerTipoBase);
             this._ventana.TiposBaseSolicitud = TipoBase;
+
             if (!_agregar)
-                  this._ventana.TipoBaseSolicitud = this.BuscarTipoBase(TipoBase, tipoBase);
+                this._ventana.TipoBaseSolicitud = this.BuscarTipoBase(TipoBase, tipoBase);
+
 
             IList<TipoEstado> tipoEstados = this._tipoEstadoServicios.ConsultarTodos();
             TipoEstado primerDetalle = new TipoEstado();
@@ -374,7 +389,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
 
 
             IList<ListaDatosDominio> tiposMarcas = this._listaDatosDominioServicios.
-            ConsultarListaDatosDominioPorParametro(new ListaDatosDominio(Recursos.Etiquetas.cbiTipoClaseNacional));
+            ConsultarListaDatosDominioPorParametro(new ListaDatosDominio(Recursos.Etiquetas.cbiCategoriaMarca));
             ListaDatosDominio TipoMarca = new ListaDatosDominio();
             this._ventana.TiposDeCasos = tiposMarcas;
             if (!_agregar)
@@ -839,6 +854,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
             primerTipoBase.Id = "A";
             this._ventana.IdNacionalByt = "";
             this._ventana.IdInternacionalByt = "";
+            this._ventana.TipoBaseTxt = "";
+            this._ventana.NombreMarca = "";
             this._ventana.PaisesSolicitud = BuscarPais(paises,primerPais);
             this._ventana.TiposBaseSolicitud = BuscarTipoBase(TipoBase,primerTipoBase);
 
@@ -917,17 +934,27 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
                      { 
                         aux.Marca = ((Marca)this._ventana.MarcaFiltrada);
                         aux.NombreMarca = ((Marca)this._ventana.MarcaFiltrada).Descripcion;
-                        Internacional inter = new Internacional();
-                        inter.Id = Int32.Parse(this._ventana.IdInternacionalByt);
-                        Nacional nacio = new Nacional();
-                        nacio.Id = Int32.Parse(this._ventana.IdNacionalByt);
+                        Internacional inter = ((Marca)this._ventana.MarcaFiltrada).Internacional;
+                        Nacional nacio = ((Marca)this._ventana.MarcaFiltrada).Nacional;
                         aux.Internacional = inter;
                         aux.Nacional = nacio;
-                        if (null != this._ventana.TipoBaseSolicitud)
-                            aux.TipoDeBase = ((TipoBase)this._ventana.TipoBaseSolicitud).Id != null ? ((TipoBase)this._ventana.TipoBaseSolicitud) : null;
-                        aux.NombreTipoBase = ((TipoBase)this._ventana.TipoBaseSolicitud).Descripcion;
-              
-                    }
+                        aux.Origen = "T";
+                        if ((null != this._ventana.TipoBaseSolicitud) && 
+                            ((TipoBase)this._ventana.TipoBaseSolicitud).Id != "N")
+                        {
+                            aux.TipoDeBase = ((TipoBase) this._ventana.TipoBaseSolicitud);
+                            aux.NombreTipoBase = this._ventana.TipoBaseTxt;
+                            if (((TipoBase)this._ventana.TipoBaseSolicitud).Id != "S")
+                            {
+                                aux.TipoDeBase.Descripcion = aux.Marca.CodigoInscripcion;
+                                aux.NombreTipoBase = aux.Marca.CodigoInscripcion;
+                            }
+                            if (((TipoBase)this._ventana.TipoBaseSolicitud).Id != "S")
+                                aux.TipoDeBase.Descripcion = aux.Marca.Registro.ToString();
+                                aux.NombreTipoBase = aux.Marca.Registro.ToString();
+                        }
+
+                     }
                  else
                      {
                         Marca nueva = new Marca();
@@ -935,12 +962,15 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
                         aux.Nacional = new Nacional(); 
                         nueva.Descripcion = NombreDeMarca;
                         aux.Marca = nueva;
+                        aux.Origen = "F";
                         aux.NombreMarca = NombreDeMarca;
-                        aux.Internacional.Id = Int32.Parse(this._ventana.IdInternacionalByt);
-                        aux.Nacional.Id = Int32.Parse(this._ventana.IdNacionalByt);
-                        if (null != aux.TipoDeBase)
+                        if (this._ventana.IdInternacionalByt !="")
+                            aux.Internacional.Id = Int32.Parse(this._ventana.IdInternacionalByt);
+                        if (this._ventana.IdNacionalByt != "")
+                            aux.Nacional.Id = Int32.Parse(this._ventana.IdNacionalByt);
+                        if (null != this._ventana.TipoBaseSolicitud)
                         {
-                            aux.NombreTipoBase = ((TipoBase) this._ventana.TipoBaseSolicitud).Descripcion;
+                            aux.NombreTipoBase = this._ventana.TipoBaseTxt;
                             aux.TipoDeBase = ((TipoBase) this._ventana.TipoBaseSolicitud);
                         }
                      }

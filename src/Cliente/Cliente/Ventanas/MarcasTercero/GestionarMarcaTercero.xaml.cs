@@ -282,6 +282,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.MarcasTercero
         //    set { this._txtClaseNacionalDatos.Text = value; }
         //}
 
+         public bool BytTipoDeBaseVisible
+        {
+            set { this._txtTipoBase.IsEnabled = value; }
+        }
+
         public bool HabilitarCampos
         {
             set
@@ -409,6 +414,12 @@ namespace Trascend.Bolet.Cliente.Ventanas.MarcasTercero
         {
             get { return this._txtAsociadoSolicitud.Text; }
             set { this._txtAsociadoSolicitud.Text = value; }
+        }
+
+        public string TipoBaseTxt
+        {
+            get { return this._txtTipoBase.Text; }
+            set { this._txtTipoBase.Text = value; }
         }
 
         public string FechaPublicacion
@@ -1364,11 +1375,18 @@ namespace Trascend.Bolet.Cliente.Ventanas.MarcasTercero
         //    this._presentador.IrImprimir(((Button)sender).Name);
         }
 
+
+
         private void _chkByt_Click(object sender, RoutedEventArgs e)
         {
+            
+            this._txtClaseInternacionalByt.IsEnabled = false;
+            this._txtClaseNacionalByt.IsEnabled = false;
+            this._txtTipoBase.IsEnabled = false;
+
             if ((bool)!this._chkByt.IsChecked)
             {
-
+                this._txtTipoBase.IsEnabled = true;
                 GestionarVisibilidadDatosDeMarca(Visibility.Visible);
                 this._txtClaseInternacionalByt.IsEnabled = false;
                 this._txtClaseNacionalByt.IsEnabled = false;
@@ -1398,6 +1416,18 @@ namespace Trascend.Bolet.Cliente.Ventanas.MarcasTercero
 
         }
 
+
+        private void _cbxTipoBase_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if ((bool)this._chkByt.IsChecked)
+            {
+                this._presentador.CargarTipoBaseCombo();
+            }
+            else
+            {
+                this._txtTipoBase.IsEnabled = true;
+            }
+        }
 
 
 
