@@ -54,9 +54,9 @@
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="58"/>
+                        <ColumnDefinition Width="100"/>
+                        <ColumnDefinition Width="80"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
@@ -116,7 +116,7 @@
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblGuion}"/>
                     </Label>
                     <custom:ByTTextBox IsEnabled="False"  Grid.Column="9" Grid.Row="2" Name="_txtNumero" VerticalAlignment="Center" 
-                         MaxLength="255" Grid.ColumnSpan="1" SoloNumero="True" Margin="0,0,0,0" ></custom:ByTTextBox>
+                         MaxLength="255" Width="50" HorizontalAlignment="Left" SoloNumero="True" Margin="0,0,0,0" ></custom:ByTTextBox>
 
                     <!--Final de la Fila 2 ddel grid-->
                     
@@ -651,14 +651,16 @@
                     <Label Grid.Column="6" Grid.Row="18" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblSituacion}"/>
                     </Label>
-                    <ComboBox IsEnabled="False" Grid.Column="7" Grid.Row="18" Grid.ColumnSpan="2" Name="_cbxSituacion" Height="20" 
-                              ItemsSource="{Binding}" DisplayMemberPath="Descripcion" SelectedIndex="0">
+                    <ComboBox IsEnabled="False" Grid.Column="7" Grid.Row="18" Grid.ColumnSpan="1" Name="_cbxSituacion" Height="20" 
+                              ItemsSource="{Binding}" DisplayMemberPath="Id" SelectedIndex="0" SelectionChanged="_cbxSituacion_SelectionChanged">
                     </ComboBox>
+                    <custom:ByTTextBox IsEnabled="False" Grid.Column="8" Grid.Row="18" Grid.ColumnSpan="2" Margin="1" Name="_txtNombreSituacion" VerticalAlignment="Center"  
+                          Text=""></custom:ByTTextBox>
 
                     <Label Grid.Column="6" Grid.Row="19" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblEstado}"/>
                     </Label>
-                    <ComboBox IsEnabled="False" Grid.Column="7" Grid.Row="19" Grid.ColumnSpan="2" Name="_cbxEstado" Height="20" 
+                    <ComboBox IsEnabled="False" Grid.Column="7" Grid.Row="19" Grid.ColumnSpan="3" Name="_cbxEstado" Height="20" 
                               ItemsSource="{Binding}" DisplayMemberPath="Descripcion" SelectedIndex="0">
                     </ComboBox>
 

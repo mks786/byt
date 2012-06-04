@@ -371,7 +371,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
             servicios.Insert(0, primerServicio);
             this._ventana.Situaciones = servicios;
             if (!_agregar)
-                 this._ventana.Situacion = this.BuscarServicio(servicios, marcaTercero.Servicio);
+            {
+                this._ventana.Situacion = this.BuscarServicio(servicios, marcaTercero.Servicio);
+                if (null != this._ventana.Situacion)
+                    this._ventana.SituacionDescripcion = ((Servicio) this._ventana.Situacion).Descripcion;
+            }
 
             IList<Boletin> boletines = this._boletinServicios.ConsultarTodos();
             Boletin primerBoletin = new Boletin();
@@ -761,6 +765,26 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
                 logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
         }
+
+        /// <summary>
+        /// Método que se encarga de duplicar la marcaTercero
+        /// </summary>
+        public void DescripcionSituacion()
+        {
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+            this._ventana.SituacionDescripcion = ((Servicio) this._ventana.Situacion).Descripcion;
+
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+        }
+
 
         /// <summary>
         /// Método que se encarga de duplicar la marcaTercero

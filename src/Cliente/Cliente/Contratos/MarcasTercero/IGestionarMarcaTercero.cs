@@ -42,6 +42,8 @@ namespace Trascend.Bolet.Cliente.Contratos.MarcasTercero
 
         string Letra { set; get; }
 
+        string SituacionDescripcion { set; }
+
         string Numero { set; get; }
 
         string CNacional { set; get; }

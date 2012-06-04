@@ -45,6 +45,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             set { this._txtPoderSolicitud.Text = value; }
         }
 
+        public string SituacionDescripcion
+        {
+            set { this._txtSituacionDescripcion.Text = value; }
+        }
+
         public object PoderesSolicitud
         {
             get { return this._lstPoderesSolicitud.DataContext; }
@@ -891,6 +896,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             }
         }
 
+
+        private void _cbxSituacion_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            this._presentador.DescripcionSituacion();
+        }
         
         #region Funciones
 
@@ -1701,6 +1711,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
         {
             this._presentador.IrRenovacionDeMarca();
         }
+
 
 
     }

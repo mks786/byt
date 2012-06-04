@@ -157,6 +157,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.MarcasTercero
             set { this._txtClaseInternacionalByt.Text = value; }
         }
 
+        public string SituacionDescripcion
+        {
+            set { this._txtNombreSituacion.Text = value; }
+        }
+
         public string CNacional
         {
             get { return this._txtCNaci.Text; }
@@ -1429,6 +1434,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.MarcasTercero
             }
         }
 
+        
+        private void _cbxSituacion_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            this._presentador.DescripcionSituacion();
+        }
 
 
         public void AgregarMarcaByt()

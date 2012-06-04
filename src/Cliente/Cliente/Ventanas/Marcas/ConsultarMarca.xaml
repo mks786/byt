@@ -1422,9 +1422,11 @@
                         <Label Grid.Column="6" Grid.Row="17" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblSituacion}"/>
                         </Label>
-                        <ComboBox IsEnabled="False" Grid.Column="7" Grid.Row="17" Grid.ColumnSpan="2" Name="_cbxSituacion" Height="20" 
-                              ItemsSource="{Binding}" DisplayMemberPath="Descripcion" SelectedIndex="0">
+                        <ComboBox IsEnabled="False" Grid.Column="7" Grid.Row="17" Grid.ColumnSpan="1" Name="_cbxSituacion" Height="20" 
+                              ItemsSource="{Binding}" DisplayMemberPath="Id" SelectedIndex="0" SelectionChanged="_cbxSituacion_SelectionChanged">
                         </ComboBox>
+                        <custom:ByTTextBox IsEnabled="False" Grid.Column="8" Grid.Row="17" Grid.ColumnSpan="3" Margin="3" Name="_txtSituacionDescripcion" VerticalAlignment="Center"  
+                          Text=""></custom:ByTTextBox>
 
                         <!--Fin Undécima Fila-->
 
