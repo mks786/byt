@@ -550,7 +550,7 @@
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblBoletin}"/>
                         </Label>
                         <custom:ByTTextBox  IsEnabled="False"  Grid.Column="4" Grid.ColumnSpan="2" Grid.Row="1" Name="_txtBoletinPoder" VerticalAlignment="Center" MaxLength="255"  
-                                Text="{Binding Path=Boletin.Id}" IsReadOnly="True"></custom:ByTTextBox>
+                                            Text="{Binding Path=Boletin.Id}" IsReadOnly="True"></custom:ByTTextBox>
                         <!--Fin Campo-->
 
                         <!--Campo-->

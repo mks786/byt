@@ -199,6 +199,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeDomicilio
 
                     ValidarInteresado();
 
+                    CargaBoletines();
+
                 }
                 else
                 {
@@ -211,6 +213,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeDomicilio
                     CargarApoderado();
 
                     CargarPoder();
+
+                    CargaBoletines();
                 }
 
                 this._ventana.FocoPredeterminado();
@@ -312,8 +316,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeDomicilio
                 cambioDeDomicilio.Agente = !((Agente)this._ventana.AgenteApoderado).Id.Equals("") ? (Agente)this._ventana.AgenteApoderado : null;            
 
             if (null != this._ventana.Poder)
-                cambioDeDomicilio.Poder = ((Poder)this._ventana.Poder).Id != int.MinValue ? (Poder)this._ventana.Poder : null;              
+                cambioDeDomicilio.Poder = ((Poder)this._ventana.Poder).Id != int.MinValue ? (Poder)this._ventana.Poder : null;
 
+            if (null != this._ventana.Boletin)
+                cambioDeDomicilio.BoletinPublicacion = ((Boletin)this._ventana.Boletin).Id != int.MinValue ? (Boletin)this._ventana.Boletin : null;     
+ 
             return cambioDeDomicilio;
         }
 
@@ -442,6 +449,32 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeDomicilio
                 Mouse.OverrideCursor = null;
             }
         }
+
+
+        /// <summary>
+        /// Método que carga los boletines registrados
+        /// </summary>
+        private void CargaBoletines()
+        {
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+            CambioDeDomicilio cambioDeDomicilio = (CambioDeDomicilio)this._ventana.CambioDeDomicilio;
+            Boletin primerBoletin = new Boletin(int.MinValue);
+            IList<Boletin> boletines = this._boletinServicios.ConsultarTodos();
+            boletines.Insert(0, primerBoletin);
+            this._ventana.Boletines = boletines;
+            if (_agregar == false)
+                this._ventana.Boletin = BuscarBoletin(boletines, cambioDeDomicilio.BoletinPublicacion);
+
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+        }
+
 
         public void Auditoria()
         {

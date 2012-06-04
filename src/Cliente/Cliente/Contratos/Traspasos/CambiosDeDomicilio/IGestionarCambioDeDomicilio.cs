@@ -103,6 +103,9 @@ namespace Trascend.Bolet.Cliente.Contratos.Traspasos.CambiosDeDomicilio
 
         string TextoBotonRegresar { get; set; }
 
+        object Boletines { get; set; }
+
+        object Boletin { get; set; }
 
         GridViewColumnHeader CurSortCol { get; set; }
 

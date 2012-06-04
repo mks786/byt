@@ -205,6 +205,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
 
                     ValidarInteresado();
 
+                    CargaBoletines();
+
                     this._ventana.FocoPredeterminado();
 
                 }
@@ -219,6 +221,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
                     CargarApoderado();
 
                     CargarPoder();
+
+                    CargaBoletines();
                 }
 
                 #region trace
@@ -345,6 +349,31 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
 
         }
 
+
+        /// <summary>
+        /// Método que carga los boletines registrados
+        /// </summary>
+        private void CargaBoletines()
+        {
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+            Fusion fusion = (Fusion)this._ventana.Fusion;
+            Boletin primerBoletin = new Boletin(int.MinValue);
+            IList<Boletin> boletines = this._boletinServicios.ConsultarTodos();
+            boletines.Insert(0, primerBoletin);
+            this._ventana.Boletines = boletines;
+            if (_agregar == false)
+                this._ventana.Boletin = BuscarBoletin(boletines, fusion.Boletin);
+
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+        }
+
         /// <summary>
         /// Método que carga el Apoderado registrado
         /// </summary>
@@ -440,6 +469,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
 
             if (null != this._ventana.PoderFiltrado)
                 fusion.Poder = ((Poder)this._ventana.PoderFiltrado).Id != int.MinValue ? (Poder)this._ventana.PoderFiltrado : null;
+
+            if (null != this._ventana.Boletin)
+                fusion.Boletin = ((Boletin)this._ventana.Boletin).Id != int.MinValue ? (Boletin)this._ventana.Boletin : null;     
+ 
 
             #region Comentado
             //marca.Operacion = "MODIFY";

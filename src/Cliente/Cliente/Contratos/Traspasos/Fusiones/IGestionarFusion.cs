@@ -95,6 +95,10 @@ namespace Trascend.Bolet.Cliente.Contratos.Traspasos.Fusiones
         
         #endregion
 
+        object Boletines { get; set; }
+
+        object Boletin { get; set; }
+
         bool HabilitarCampos { set; }
 
         string Region { get; set; }
