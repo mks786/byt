@@ -101,6 +101,31 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
                     variosFiltros = true;
                 }
 
+                if ((null != Patente.CPrioridad) && (!Patente.CPrioridad.Equals("")))
+                {
+                    if (variosFiltros)
+                        filtro += " and ";
+                    filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerPatenteCodigoPrioridad, Patente.CPrioridad);
+                    variosFiltros = true;
+                }
+
+                if ((null != Patente.FechaPrioridad) && (!Patente.FechaPrioridad.Equals("")))
+                {
+                    if (variosFiltros)
+                        filtro += " and ";
+                    string fecha = String.Format("{0:dd/MM/yy}", Patente.FechaPrioridad);
+                    string fecha2 = String.Format("{0:dd/MM/yy}", Patente.FechaPrioridad.Value.AddDays(1));
+                    filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerPatenteFechaPrioridad, fecha, fecha2);
+                }
+
+                if ((null != Patente.Pais) && (Patente.Pais.Id != int.MinValue))
+                {
+                    if (variosFiltros)
+                        filtro += " and ";
+                    filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerPatentePaisPrioridad, Patente.Pais.Id);
+                    variosFiltros = true;
+                }
+
 
                 if ((null != Patente.FechaPublicacion) && (!Patente.FechaPublicacion.Equals(DateTime.MinValue)))
                 {
@@ -109,6 +134,14 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
                     string fecha = String.Format("{0:dd/MM/yy}", Patente.FechaPublicacion);
                     string fecha2 = String.Format("{0:dd/MM/yy}", Patente.FechaPublicacion.Value.AddDays(1));
                     filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerPatenteFecha, fecha, fecha2);
+                }
+
+                if ((null != Patente) && (!Patente.CodigoInscripcion.Equals("")))
+                {
+                    if (variosFiltros)
+                        filtro += " and ";
+                    filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerPatenteSolicitud, Patente.CodigoInscripcion);
+                    variosFiltros = true;
                 }
 
                 IQuery query = Session.CreateQuery(cabecera + filtro);

@@ -693,4 +693,20 @@
     <value>p.TipoEstado.Id = '{0}'</value>
     <comment>Filtro por Tipo Estado</comment>
   </data>
+  <data name="FiltroObtenerPatenteCodigoPrioridad" xml:space="preserve">
+    <value>p.CPrioridad = '{0}'</value>
+    <comment>Filtro por Código de Prioridad</comment>
+  </data>
+  <data name="FiltroObtenerPatenteFechaPrioridad" xml:space="preserve">
+    <value>p.FechaPrioridad between '{0}' and '{1}'</value>
+    <comment>Filro por fecha Prioridad</comment>
+  </data>
+  <data name="FiltroObtenerPatentePaisPrioridad" xml:space="preserve">
+    <value>p.Pais.Id = '{0}'</value>
+    <comment>Filtro por País prioridad</comment>
+  </data>
+  <data name="FiltroObtenerPatenteSolicitud" xml:space="preserve">
+    <value>p.CodigoInscripcion = '{0}'</value>
+    <comment>Filtro por solicitud</comment>
+  </data>
 </root>

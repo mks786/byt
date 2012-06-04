@@ -17,6 +17,8 @@ namespace Trascend.Bolet.Cliente.Contratos.Patentes
 
         string Fecha { get; }
 
+        string Solicitud { get; set; }
+
         #region Asociado
 
         string IdAsociadoFiltrar { get; set; }
@@ -58,6 +60,14 @@ namespace Trascend.Bolet.Cliente.Contratos.Patentes
         object BoletinesConcesion { get; set; }
 
         object BoletinConcesion { get; set; }
+
+        #endregion
+
+        #region Prioridad
+
+        string IdPrioridad { get; set; }
+
+        string FechaPrioridad { get; }
 
         #endregion
 

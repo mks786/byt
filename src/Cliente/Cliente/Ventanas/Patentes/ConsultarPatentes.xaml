@@ -64,15 +64,34 @@
                             <Label Name="_lblSolicitud">
                                 <TextBlock Text="{x:Static recurso:Etiquetas.lblSolicitud}"/>
                             </Label>
-                            <custom:ByTTextBox Name="_txtSolicitud" Width="75" MaxLength="40" SoloNumero="True" Filtro="True" 
+                            <custom:ByTTextBox Name="_txtSolicitud" Width="150" MaxLength="40" SoloNumero="True" Filtro="True" 
                                        GotFocus="_btnConsultarFocus" GotKeyboardFocus="_btnConsultarFocus" Text="{Binding Path=CodigoInscripcion}"/>
 
-                            <DatePicker Name="_dpkFecha" Width="75" Focusable="False" BorderBrush="{x:Null}" SelectedDateChanged="_dpkFecha_SelectedDateChanged">
+                        </WrapPanel>
+                        <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,180,0">
+                       
+                            <Label Name="_lblFecha">
+                                <TextBlock Text="{x:Static recurso:Etiquetas.lblFecha}"/>
+                            </Label>
+
+
+                            <custom:ByTDatePicker Editable="True" Name="_dpkFecha" Width="150"  Focusable="False" BorderBrush="{x:Null}" 
+                                                  SelectedDateChanged="_dpkFecha_SelectedDateChanged">
                                 <DatePicker.SelectedDate>
                                     <Binding Path="FechaInscripcion" UpdateSourceTrigger="PropertyChanged"/>
                                 </DatePicker.SelectedDate>
-                            </DatePicker>
+                            </custom:ByTDatePicker>
+                            
+                            <!--<custom:ByTTextBox Name="_dpkFecha" Width="150" MaxLength="40" Filtro="True" 
+                                        Text="{Binding Path=FechaInscripcion}"/>-->
                         </WrapPanel>
+                           
+                            <!--<DatePicker Name="_dpkFecha" Width="75" Focusable="False" BorderBrush="{x:Null}" SelectedDateChanged="_dpkFecha_SelectedDateChanged">
+                                <DatePicker.SelectedDate>
+                                    <Binding Path="FechaInscripcion" UpdateSourceTrigger="PropertyChanged"/>
+                                </DatePicker.SelectedDate>
+                            </DatePicker>-->
+                        
                         <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,180,0">
                             <Label Name="_lblPatente">
                                 <TextBlock Text="{x:Static recurso:Etiquetas.lblPatente}"/>
@@ -311,16 +330,28 @@
                                        GotFocus="_btnConsultarFocus" GotKeyboardFocus="_btnConsultarFocus"/>
                         </WrapPanel>
 
+                        <!--<WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,180,0">
+
+                            <Label Name="_lblFechaPrioridad">
+                                <TextBlock Text="{x:Static recurso:Etiquetas.lblFecha}"/>
+                            </Label>
+
+
+                            <custom:ByTTextBox Name="_dpkPrioridadFecha" Width="150" MaxLength="40" Filtro="True" 
+                                        Text="{Binding Path=FechaPrioridad}"/>
+                        </WrapPanel>-->
+                        
                         <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,180,0">
 
                             <Label>
                                 <TextBlock Text="{x:Static recurso:Etiquetas.lblFecha}"/>
                             </Label>
-                            <DatePicker Name="_dpkPrioridadFecha" Width="150" Focusable="False" BorderBrush="{x:Null}" SelectedDateChanged="_dpkFecha_SelectedDateChanged">
+                            <custom:ByTDatePicker Editable="True" Name="_dpkPrioridadFecha" Width="150"  Focusable="False" BorderBrush="{x:Null}" 
+                                                  SelectedDateChanged="_dpkFecha_SelectedDateChanged">
                                 <DatePicker.SelectedDate>
                                     <Binding Path="Fecha" UpdateSourceTrigger="PropertyChanged"/>
                                 </DatePicker.SelectedDate>
-                            </DatePicker>
+                            </custom:ByTDatePicker>
                         </WrapPanel>
 
                         <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,180,0">
@@ -361,13 +392,14 @@
                         <GridViewColumn DisplayMemberBinding="{Binding Path=Descripcion}" Width="350">
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="Descripcion" Content="{x:Static recurso:Etiquetas.lsvPatente}"/>
                         </GridViewColumn>
-                        <GridViewColumn DisplayMemberBinding="{Binding Path=FechaInscripcion}" Width="180">
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=FechaPublicacion, StringFormat=dd/MM/yyyy}" Width="180">
+
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="FechaPublicacion" Content="{x:Static recurso:Etiquetas.lsvFecha}"/>
                         </GridViewColumn>                        
                     </GridView>
                 </ListView.View>
             </ListView>
-            <!--<DataGrid Name="_dataGridResultados" ItemsSource="{Binding}">
+            <!--<DataGrid Name="_dataGridResultados" ItemsSource="{Binding}">  StringFormat="{}{0:dd/MM/yyyy}
                 <DataGrid.Columns>
                     <DataGridHyperlinkColumn Header="Nombre Completo" 
                         Binding="{Binding Path=NombreCompleto, ValidatesOnExceptions=True}">

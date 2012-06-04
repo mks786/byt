@@ -943,6 +943,15 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a p.CPrioridad = &apos;{0}&apos;.
+        /// </summary>
+        public static string FiltroObtenerPatenteCodigoPrioridad {
+            get {
+                return ResourceManager.GetString("FiltroObtenerPatenteCodigoPrioridad", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a upper(p.Descripcion) like &apos;%{0}%&apos;.
         /// </summary>
         public static string FiltroObtenerPatenteDescripcion {
@@ -957,6 +966,15 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         public static string FiltroObtenerPatenteFecha {
             get {
                 return ResourceManager.GetString("FiltroObtenerPatenteFecha", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a p.FechaPrioridad between &apos;{0}&apos; and &apos;{1}&apos;.
+        /// </summary>
+        public static string FiltroObtenerPatenteFechaPrioridad {
+            get {
+                return ResourceManager.GetString("FiltroObtenerPatenteFechaPrioridad", resourceCulture);
             }
         }
         
@@ -988,11 +1006,29 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a p.Pais.Id = &apos;{0}&apos;.
+        /// </summary>
+        public static string FiltroObtenerPatentePaisPrioridad {
+            get {
+                return ResourceManager.GetString("FiltroObtenerPatentePaisPrioridad", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a p.Servicio.Id = &apos;{0}&apos;.
         /// </summary>
         public static string FiltroObtenerPatenteServicio {
             get {
                 return ResourceManager.GetString("FiltroObtenerPatenteServicio", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a p.CodigoInscripcion = &apos;{0}&apos;.
+        /// </summary>
+        public static string FiltroObtenerPatenteSolicitud {
+            get {
+                return ResourceManager.GetString("FiltroObtenerPatenteSolicitud", resourceCulture);
             }
         }
         

@@ -2717,4 +2717,7 @@ de Gracia</value>
   <data name="cbiTipoClaseNacional" xml:space="preserve">
     <value>TIPO_CLASE_NACIONAL</value>
   </data>
+  <data name="lblFechaSolicitud" xml:space="preserve">
+    <value>Fecha Solicitud</value>
+  </data>
 </root>

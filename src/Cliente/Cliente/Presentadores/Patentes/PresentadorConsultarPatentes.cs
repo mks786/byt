@@ -179,7 +179,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                 #endregion
 
                 Mouse.OverrideCursor = Cursors.Wait;                
-                int filtroValido = 0;//Variable utilizada para limitar a que el filtro se ejecute solo cuando 
+                _filtroValido = 0;//Variable utilizada para limitar a que el filtro se ejecute solo cuando 
                 //dos filtros sean utilizados
                 
                 Patente patenteAuxiliar = ObtenerPatenteFiltro();
@@ -412,8 +412,26 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                 logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
 
-            _filtroValido = 2;
+            if (!this._ventana.IdPrioridad.Equals(""))
+            {
+                _filtroValido = 2;
+                patenteAuxiliar.CPrioridad = this._ventana.IdPrioridad;
+            }
 
+            if (!this._ventana.FechaPrioridad.Equals(""))
+            {
+                _filtroValido = 2;
+
+                DateTime fechaPrioridad = DateTime.Parse(this._ventana.FechaPrioridad);
+                patenteAuxiliar.FechaPrioridad = fechaPrioridad;
+            }
+
+            if (( null != this._ventana.PaisPrioridad) && (!((Pais)this._ventana.PaisPrioridad).Id.Equals("NGN")))
+            {
+                _filtroValido = 2;
+                patenteAuxiliar.Pais = new Pais();
+                patenteAuxiliar.Pais = ((Pais)this._ventana.PaisPrioridad);
+            }
             
             #region trace
             if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -435,22 +453,25 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                 logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
 
-            _filtroValido = 2;
+            
 
             if (((Boletin)this._ventana.BoletinConcesion).Id != int.MinValue)
             {
+                _filtroValido = 2;
                 patenteAuxiliar.BoletinConcesion = new Boletin();
                 patenteAuxiliar.BoletinConcesion = ((Boletin)this._ventana.BoletinConcesion);
             }
 
             if (((Boletin)this._ventana.BoletinPublicacion).Id != int.MinValue)
             {
+                _filtroValido = 2;
                 patenteAuxiliar.BoletinPublicacion = new Boletin();
                 patenteAuxiliar.BoletinPublicacion = ((Boletin)this._ventana.BoletinPublicacion);
             }
 
             if (((Boletin)this._ventana.BoletinOrdenPublicacion).Id != int.MinValue)
             {
+                _filtroValido = 2;
                 patenteAuxiliar.BoletinOrdenPublicacion = new Boletin();
                 patenteAuxiliar.BoletinOrdenPublicacion = ((Boletin)this._ventana.BoletinOrdenPublicacion);
             }
@@ -507,6 +528,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                     DateTime fechaPublicacion = DateTime.Parse(this._ventana.Fecha);
                     _filtroValido = 2;
                     patenteAuxiliar.FechaPublicacion = fechaPublicacion;
+                }
+
+                if (!this._ventana.Solicitud.Equals(""))
+                {
+                    _filtroValido = 2;
+                    patenteAuxiliar.CodigoInscripcion = this._ventana.Solicitud;
                 }
 
                 if (!((TipoEstado)this._ventana.Detalle).Id.Equals("NGN"))

@@ -44,7 +44,13 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
             get { return this._txtDescripcion.Text; }
             set { this._txtDescripcion.Text = value; }
         }
-
+ 
+        public string Solicitud
+        {
+            get { return this._txtSolicitud.Text; }
+            set { this._txtSolicitud.Text = value; }
+        }
+        
         public object Patente
         {
             get { return this._lstResultados.SelectedItem; }
@@ -53,7 +59,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
 
         public string Fecha
         {
-            get { return this._dpkFecha.SelectedDate.ToString(); }
+            get { return this._dpkFecha.Text; }
         }
 
         public object Patentes
@@ -186,6 +192,21 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
 
         #endregion
 
+        #region Prioridad
+
+        public string FechaPrioridad
+        {
+            get { return this._dpkPrioridadFecha.Text; }
+        }
+
+        public string IdPrioridad
+        {
+            get { return this._txtPrioridadCodigo.Text; }
+            set { this._txtPrioridadCodigo.Text = value; }
+        }
+
+        #endregion
+
         #region Combobox
 
         public object Servicios
@@ -278,6 +299,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
         {
             InitializeComponent();
             this._cargada = false;
+
             this._presentador = new PresentadorConsultarPatentes(this);
         }
 
@@ -290,7 +312,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
         {
             this._btnConsultar.Focus();
             this._presentador.Consultar();
-            this._dpkFecha.Text = string.Empty;
+            //this._dpkFecha.Text = string.Empty;
             validarCamposVacios();
         }
 
