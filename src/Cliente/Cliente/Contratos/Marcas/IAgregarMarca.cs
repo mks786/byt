@@ -25,6 +25,8 @@ namespace Trascend.Bolet.Cliente.Contratos.Marcas
 
         string NumPoderDatos { get; set; }
 
+        string SituacionDescripcion { set; }
+
         string NumPoderSolicitud { get; set; }
 
         string IdInteresadoSolicitudFiltrar { get; }

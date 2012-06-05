@@ -481,7 +481,28 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 logger.Error(ex.Message);
                 this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
             }
-        }        
+        }
+
+        /// <summary>
+        /// Método que se ecarga la descripcion de la situacion
+        /// </summary>
+        /// <param name="tab"></param>
+        public void DescripcionSituacion()
+        {
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+            this._ventana.SituacionDescripcion = ((Servicio)this._ventana.Servicio).Descripcion;
+
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+        }
+
+
 
         #region Metodos de los filtros de asociados
 

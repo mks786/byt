@@ -530,6 +530,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
             set { this._corresponsalesCargados = value; }
         }
 
+        public string SituacionDescripcion
+        {
+            set { this._txtSituacionDescripcion.Text = value; }
+        }
+
         public bool PoderesEstanCargados
         {
             get { return this._poderesCargados; }
@@ -773,6 +778,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
                 if (item.Header.Equals(tab))
                     item.IsSelected = true;
             }
+        }
+
+        private void _cbxSituacionDatos_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            this._presentador.DescripcionSituacion();
         }
 
         #region Funciones Solicitud
@@ -1487,6 +1497,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
         }
 
         #endregion
+
+  
 
     }
 }

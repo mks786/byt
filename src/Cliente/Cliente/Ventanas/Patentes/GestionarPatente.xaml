@@ -1061,25 +1061,27 @@
                             <Label Grid.Column="0" Grid.Row="0" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                                 <TextBlock Text="{x:Static recurso:Etiquetas.lblSituacion}"/>
                             </Label>
-                            <ComboBox IsEnabled="False" Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="3" Name="_cbxSituacionDatos" Height="20" 
-                                  ItemsSource="{Binding}" SelectedIndex="0">
+                            <ComboBox IsEnabled="False" Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="1" Name="_cbxSituacionDatos" Height="20" 
+                                  ItemsSource="{Binding}" SelectedIndex="0" SelectionChanged="_cbxSituacionDatos_SelectionChanged">
                                 <ComboBox.ItemTemplate>
                                     <DataTemplate>
                                         <TextBlock>
                                 <TextBlock.Text>
                                    
-                                        <Binding Path="Descripcion" />
+                                        <Binding Path="Id" />
                                    
                                 </TextBlock.Text>
                                         </TextBlock>
                                     </DataTemplate>
                                 </ComboBox.ItemTemplate>
                             </ComboBox>
+                            <custom:ByTTextBox IsEnabled="False" Grid.Column="2" Grid.Row="0" Grid.ColumnSpan="3" Margin="3" Name="_txtSituacionDescripcion" VerticalAlignment="Center"  
+                          Text=""></custom:ByTTextBox>
 
                             <Label Grid.Column="0" Grid.Row="1" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                                 <TextBlock Text="{x:Static recurso:Etiquetas.lblDetalle}"/>
                             </Label>
-                            <ComboBox IsEnabled="False" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="3" Name="_cbxDetalleDatos" Height="20" 
+                            <ComboBox IsEnabled="False" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="4" Name="_cbxDetalleDatos" Height="20" 
                               ItemsSource="{Binding}" DisplayMemberPath="Descripcion" SelectedIndex="0">
                             </ComboBox>
 

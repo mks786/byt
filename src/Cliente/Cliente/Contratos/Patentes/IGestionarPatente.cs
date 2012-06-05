@@ -194,6 +194,8 @@ namespace Trascend.Bolet.Cliente.Contratos.Patentes
 
         string TextoBotonRegresar { get; set; }
 
+        string SituacionDescripcion { set; }
+
         bool MensajeAlerta(string mensaje);
 
         void ArchivoNoEncontrado();

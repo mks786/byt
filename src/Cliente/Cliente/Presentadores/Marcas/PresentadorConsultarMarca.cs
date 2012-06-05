@@ -236,7 +236,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 this._ventana.Servicios = servicios;
                 this._ventana.Servicio = this.BuscarServicio(servicios, marca.Servicio);
 
-
+                
                 IList<Boletin> boletines = this._boletinServicios.ConsultarTodos();
                 Boletin primerBoletin = new Boletin();
                 primerBoletin.Id = int.MinValue;

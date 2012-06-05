@@ -698,6 +698,25 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
         }
 
         /// <summary>
+        /// Método que se ecarga la descripcion de la situacion
+        /// </summary>
+        public void DescripcionSituacion()
+        {
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+            this._ventana.SituacionDescripcion = ((Servicio)this._ventana.SituacionDatos).Descripcion;
+
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+        }
+
+
+        /// <summary>
         /// Método que se encarga de mostrar la ventana con la lista de Auditorías
         /// </summary>
         public void Auditoria()

@@ -71,6 +71,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             get { return this._txtIdAsociadoDatosFiltrar.Text; }
         }
 
+        public string SituacionDescripcion
+        {
+            set { this._txtSituacionDescripcion.Text = value; }
+        }
+
         public string IdAsociadoDatos
         {
             get { return this._txtIdAsociadoDatos.Text; }
@@ -541,6 +546,10 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             this._presentador = new PresentadorAgregarMarca(this,marca);
         }
 
+        private void _cbxSituacion_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            this._presentador.DescripcionSituacion();
+        }
 
         #region funciones
 
@@ -1252,5 +1261,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
         {
 
         }
+
+
     }
 }
