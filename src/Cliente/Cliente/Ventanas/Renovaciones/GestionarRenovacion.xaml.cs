@@ -444,6 +444,10 @@ namespace Trascend.Bolet.Cliente.Ventanas.Renovaciones
             GestionarVisibilidadDatosDeAgente(Visibility.Visible);
             GestionarVisibilidadFiltroAgente(Visibility.Collapsed);
 
+            //escondo el filtro de Poder
+            GestionarVisibilidadDatosDePoder(Visibility.Visible);
+            GestionarVisibilidadFiltroPoder(Visibility.Collapsed);
+
             this._btnConsultarMarca.IsDefault = false;
             this._btnAceptar.IsDefault = true;
         }

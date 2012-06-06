@@ -269,12 +269,13 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                     this._ventana.BoletinPublicacionDatos = this.BuscarBoletin(boletines, patente.BoletinPublicacion);
                     this._ventana.BoletinOrdenPublicacionDatos = this.BuscarBoletin(boletines, patente.BoletinOrdenPublicacion);
 
-                    //if (File.Exists(ConfigurationManager.AppSettings["RutaImagenesDeMarcas"] + patente.Id + ".jpg"))
-                    //{
-                    //    patente.BEtiqueta = true;
-                    //    this._ventana.PintarEtiqueta();
+                    if (File.Exists(ConfigurationManager.AppSettings["RutaImagenesDePatentes"] + patente.Id + ".jpg"))
+                    {
+                        ((Patente)this._ventana.Patente).BDibujo = true;
+                        this._ventana.PintarDisenoDatos();
+                        this._ventana.PintarDisenoSolicitud();
 
-                    //}
+                    }
 
                     this._abandonos = this._operacionServicios.ConsultarOperacionesPorPatente(patente);
                     this._ventana.AbandonoDatos = this._abandonos.Count > 0 ? this._abandonos[0].Descripcion + " - "
@@ -333,7 +334,13 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
 
                     if (patente.Operaciones.Count > 0)
                         this._ventana.PintarOperacionesDatos();
-                    
+
+
+                    this._ventana.NombreAsociadoDatos = patente.Asociado != null ? patente.Asociado.Nombre : "";
+                    this._ventana.NombreAsociadoSolicitud = patente.Asociado != null ? patente.Asociado.Nombre : "";
+
+                    if (null != patente.Asociado)
+                    this._ventana.PintarAsociado(patente.Asociado.TipoCliente.Id);
                 }
                 else
                 {
@@ -1105,7 +1112,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                     this._ventana.NombreAsociadoDatos = ((Asociado)this._ventana.AsociadoSolicitud).Nombre;
                     this._ventana.IdAsociadoDatos = ((Asociado)this._ventana.AsociadoSolicitud).Id.ToString();
 
-                    this._ventana.ConvertirEnterioMinimoABlanco();
+                    if (asociado != null)
+                        this._ventana.PintarAsociado(asociado.TipoCliente.Id);
+                    else
+                        this._ventana.PintarAsociado("5");
+
+                    this._ventana.ConvertirEnteroMinimoABlanco();
                 }
 
                 #region trace
@@ -1141,7 +1153,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                     this._ventana.NombreAsociadoSolicitud = ((Asociado)this._ventana.AsociadoDatos).Nombre;
                     this._ventana.IdAsociadoSolicitud = ((Asociado)this._ventana.AsociadoDatos).Id.ToString();
 
-                    this._ventana.ConvertirEnterioMinimoABlanco();
+                    if (asociado != null)
+                        this._ventana.PintarAsociado(asociado.TipoCliente.Id);
+                    else
+                        this._ventana.PintarAsociado("5");
+
+                    this._ventana.ConvertirEnteroMinimoABlanco();
                 }
 
                 #region trace
@@ -1296,7 +1313,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                         this._ventana.InteresadoEstadoDatos = interesadoAux.Estado != null ? interesadoAux.Estado : "";
                     }
 
-                    this._ventana.ConvertirEnterioMinimoABlanco();
+                    this._ventana.ConvertirEnteroMinimoABlanco();
                 }
 
                 #region trace
@@ -1343,7 +1360,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                         this._ventana.InteresadoEstadoDatos = interesadoAux.Estado != null ? interesadoAux.Estado : "";
                     }
 
-                    this._ventana.ConvertirEnterioMinimoABlanco();
+                    this._ventana.ConvertirEnteroMinimoABlanco();
                 }
 
                 #region trace
@@ -1501,7 +1518,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                     this._ventana.PoderDatos = ((Poder)this._ventana.PoderSolicitudFiltrar).Id.ToString();
                 }
 
-                this._ventana.ConvertirEnterioMinimoABlanco();
+                this._ventana.ConvertirEnteroMinimoABlanco();
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -1598,7 +1615,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                     this._ventana.PoderDatos = ((Poder)this._ventana.PoderDatosFiltrar).Id.ToString();
                 }
 
-                this._ventana.ConvertirEnterioMinimoABlanco();
+                this._ventana.ConvertirEnteroMinimoABlanco();
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -1775,13 +1792,13 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
 
         public void MostrarDiseno()
         {
-            //Patente patenteAux = ((Patente)this._ventana.Patente);
-            //if (((Patente)this._ventana.Patente).BDibujo)
-            //{
-            //    EtiquetaMarca detalleEtiqueta = new EtiquetaMarca(ConfigurationManager.AppSettings["RutaImagenesDeMarcas"] + patenteAux.Id + ".jpg", patenteAux.Descripcion);
-            //    detalleEtiqueta.ShowDialog();
+            Patente patenteAux = ((Patente)this._ventana.Patente);
+            if (((Patente)this._ventana.Patente).BDibujo)
+            {
+                EtiquetaMarca detalleEtiqueta = new EtiquetaMarca(ConfigurationManager.AppSettings["RutaImagenesDePatentes"] + patenteAux.Id + ".jpg", patenteAux.Descripcion);
+                detalleEtiqueta.ShowDialog();
 
-            //}
+            }
         }
 
     }

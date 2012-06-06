@@ -207,6 +207,35 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
             }
         }
 
+
+        public void PintarAsociado(string tipo)
+        {
+            SolidColorBrush color;
+
+            if (tipo.Equals("1"))
+            {
+                color = Brushes.LightGreen;
+            }
+            else if (tipo.Equals("2"))
+            {
+                color = Brushes.LightBlue;
+            }
+            else if (tipo.Equals("3"))
+            {
+                color = Brushes.LightYellow;
+            }
+            else if (tipo.Equals("4"))
+            {
+                color = Brushes.Pink;
+            }
+            else color = Brushes.Transparent;
+
+            this._txtIdAsociadoDatos.Background = color;
+            this._txtIdAsociadoSolicitud.Background = color;
+            this._txtAsociadoDatos.Background = color;
+            this._txtAsociadoSolicitud.Background = color;
+        }
+
         public void PintarInfoAdicionalSolicitud()
         {
             this._btnInfoAdicionalSolicitud.Background = Brushes.LightGreen;
@@ -222,10 +251,10 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
             this._btnDisenoSolicitud.Background = Brushes.LightGreen;
         }
 
-        public void PintarDisenoReporteSolicitud()
-        {
-            this._btnDisenoReporteSolicitud.Background = Brushes.LightGreen;
-        }
+        //public void PintarDisenoReporteSolicitud()
+        //{
+        //    this._btnDisenoReporteSolicitud.Background = Brushes.LightGreen;
+        //}
 
         public void PintarCasoEspecialSolicitud()
         {
@@ -1015,7 +1044,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
 
         }
 
-        public void ConvertirEnterioMinimoABlanco()
+        public void ConvertirEnteroMinimoABlanco()
         {
 
             #region Poder
@@ -1264,7 +1293,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
 
         private void _btnDisenoSolicitud_Click(object sender, RoutedEventArgs e)
         {
-
+            this._presentador.MostrarDiseno();
         }
 
         private void _btnSaldoSolicitud_Click(object sender, RoutedEventArgs e)

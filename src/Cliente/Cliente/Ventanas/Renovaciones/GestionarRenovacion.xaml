@@ -53,7 +53,8 @@
                     <Label>
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblFecha}"/>
                     </Label>
-                    <DatePicker IsEnabled="False" Grid.Column="1" Grid.Row="2" SelectedDateChanged="_dpkFechaRenovacion_SelectedDateChanged" HorizontalAlignment="Left"  Name="_dpkFechaRenovacion" Width="180"  BorderBrush="{x:Null}">
+                    <DatePicker IsEnabled="False" Grid.Column="1" Grid.Row="2" SelectedDateChanged="_dpkFechaRenovacion_SelectedDateChanged" HorizontalAlignment="Left"  
+                                Name="_dpkFechaRenovacion" Width="180"  BorderBrush="{x:Null}">
                         <DatePicker.SelectedDate>
                             <Binding Path="Fecha" UpdateSourceTrigger="PropertyChanged"  StringFormat="{}{0:dd/MM/yyyy}"/>
                         </DatePicker.SelectedDate>

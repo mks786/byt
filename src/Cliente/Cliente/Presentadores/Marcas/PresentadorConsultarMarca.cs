@@ -257,6 +257,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 this._ventana.NombreAsociadoDatos = marca.Asociado != null ? marca.Asociado.Nombre : "";
                 this._ventana.NombreAsociadoSolicitud = marca.Asociado != null ? marca.Asociado.Nombre : "";
 
+                if (null != marca.Asociado)
                 this._ventana.PintarAsociado(marca.Asociado.TipoCliente.Id);
                     
                 

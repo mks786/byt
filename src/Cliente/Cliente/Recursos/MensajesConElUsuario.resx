@@ -789,4 +789,7 @@
   <data name="ErrorConsultandoInteresado" xml:space="preserve">
     <value>Error consultando la patente. No existe el Interesado con código:</value>
   </data>
+  <data name="AlertaRenovacionSinMarcas" xml:space="preserve">
+    <value>Disculpe la Renovación debe tener al menos una Marca</value>
+  </data>
 </root>

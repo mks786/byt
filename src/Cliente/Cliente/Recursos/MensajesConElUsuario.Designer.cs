@@ -286,6 +286,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Disculpe la Renovación debe tener al menos una Marca.
+        /// </summary>
+        internal static string AlertaRenovacionSinMarcas {
+            get {
+                return ResourceManager.GetString("AlertaRenovacionSinMarcas", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Anexo insertado con éxito.
         /// </summary>
         internal static string AnexoInsertado {

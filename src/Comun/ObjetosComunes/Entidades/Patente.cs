@@ -498,7 +498,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         {
             get
             {
-                if (this.Dibujo.ToString().ToUpper().Equals('T'))
+                if (this.Dibujo.ToString().ToUpper().Equals("T"))
                     return true;
                 else
                     return false;

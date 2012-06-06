@@ -136,7 +136,7 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
                     filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerPatenteFecha, fecha, fecha2);
                 }
 
-                if ((null != Patente) && (!Patente.CodigoInscripcion.Equals("")))
+                if ((null != Patente.CodigoInscripcion) && (!Patente.CodigoInscripcion.Equals("")))
                 {
                     if (variosFiltros)
                         filtro += " and ";

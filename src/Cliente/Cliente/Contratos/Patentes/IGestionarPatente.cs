@@ -72,7 +72,7 @@ namespace Trascend.Bolet.Cliente.Contratos.Patentes
 
         void PintarDisenoSolicitud();
 
-        void PintarDisenoReporteSolicitud();
+        //void PintarDisenoReporteSolicitud();
 
         void PintarInventoresSolicitud();
 
@@ -160,6 +160,8 @@ namespace Trascend.Bolet.Cliente.Contratos.Patentes
 
         object SituacionDatos { get; set; }
 
+        void PintarAsociado(string tipo);
+
         void PintarDisenoDatos();
 
         void PintarInventoresDatos();
@@ -206,6 +208,6 @@ namespace Trascend.Bolet.Cliente.Contratos.Patentes
 
         void ActivarControlesAlAgregar();
 
-        void ConvertirEnterioMinimoABlanco();
+        void ConvertirEnteroMinimoABlanco();
     }
 }
