@@ -130,5 +130,7 @@ namespace Trascend.Bolet.Cliente.Contratos.Traspasos.CambiosDeNombre
         void GestionarBotonConsultarPoder(bool value);
 
         void ActivarControlesAlAgregar();
+
+        void PintarAsociado(string tipo);
     }
 }

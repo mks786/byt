@@ -121,6 +121,8 @@ namespace Trascend.Bolet.Cliente.Contratos.Traspasos.CambiosDeDomicilio
 
         void GestionarBotonConsultarPoder(bool value);
 
-        void ActivarControlesAlAgregar();       
+        void ActivarControlesAlAgregar();
+
+        void PintarAsociado(string tipo);
     }
 }

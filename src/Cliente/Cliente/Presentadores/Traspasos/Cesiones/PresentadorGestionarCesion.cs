@@ -1015,7 +1015,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Cesiones
                 this._ventana.MarcasFiltradas = this._marcas;
                 this._ventana.MarcaFiltrada = (Marca)this._ventana.Marca;
 
-                this._ventana.PintarAsociado(((Marca)this._ventana.Marca).Asociado.TipoCliente.Id);
+                if (null != ((Marca)this._ventana.Marca).Asociado)
+                    this._ventana.PintarAsociado(((Marca)this._ventana.Marca).Asociado.TipoCliente.Id);
+                else
+                    this._ventana.PintarAsociado("5");
             }
             else
             {
@@ -1121,7 +1124,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Cesiones
                     this._ventana.NombreMarca = ((Marca)this._ventana.MarcaFiltrada).Descripcion;
                     retorno = true;
 
-                    this._ventana.PintarAsociado(((Marca)this._ventana.Marca).Asociado.TipoCliente.Id);
+                    if (null != ((Marca)this._ventana.Marca).Asociado)
+                        this._ventana.PintarAsociado(((Marca)this._ventana.Marca).Asociado.TipoCliente.Id);
+                    else
+                        this._ventana.PintarAsociado("5");
                 }
 
                 #region trace

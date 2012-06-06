@@ -76,5 +76,7 @@ namespace Trascend.Bolet.Cliente.Contratos.AbandonosPatente
         void Mensaje(string mensaje, int opcion);
       
         void ActivarControlesAlAgregar();
+
+        void PintarAsociado(string tipo);
     }
 }

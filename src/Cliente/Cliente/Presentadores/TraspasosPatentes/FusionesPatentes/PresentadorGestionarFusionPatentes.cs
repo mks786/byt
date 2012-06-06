@@ -362,6 +362,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.FusionesPatente
                 this._patentes.Add((Patente)this._ventana.Patente);
                 this._ventana.PatentesFiltradas = this._patentes;
                 this._ventana.PatenteFiltrada = (Patente)this._ventana.Patente;
+
+                if (null != ((Patente)this._ventana.Patente).Asociado)
+                    this._ventana.PintarAsociado(((Patente)this._ventana.Patente).Asociado.TipoCliente.Id);
+                else
+                    this._ventana.PintarAsociado("5");
             }
             else
             {
@@ -947,6 +952,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.FusionesPatente
                     this._patentes.RemoveAt(0);
                     this._patentes.Add((Patente)this._ventana.PatenteFiltrada);
                     retorno = true;
+
+                    if (null != ((Patente)this._ventana.Patente).Asociado)
+                        this._ventana.PintarAsociado(((Patente)this._ventana.Patente).Asociado.TipoCliente.Id);
+                    else
+                        this._ventana.PintarAsociado("5");
                 }
 
                 #region trace

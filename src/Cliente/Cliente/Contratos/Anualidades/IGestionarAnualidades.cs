@@ -127,6 +127,8 @@ namespace Trascend.Bolet.Cliente.Contratos.Anualidades
 
         void Mensaje(string mensaje, int opcion);
 
+        void PintarAsociado(string tipo);
+
       //  bool AsociadosEstanCargados { get; set; }
     }
 }

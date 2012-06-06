@@ -3,6 +3,7 @@ using System.Windows.Controls;
 using Trascend.Bolet.Cliente.Contratos.Traspasos.Licencias;
 using Trascend.Bolet.Cliente.Presentadores.Traspasos.Licencias;
 using Trascend.Bolet.Cliente.Ayuda;
+using System.Windows.Media;
 
 namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Licencias
 {
@@ -412,6 +413,34 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Licencias
             this._presentador = new PresentadorGestionarLicencia(this, Licencia);
 
         }
+
+
+        public void PintarAsociado(string tipo)
+        {
+            SolidColorBrush color;
+
+            if (tipo.Equals("1"))
+            {
+                color = Brushes.LightGreen;
+            }
+            else if (tipo.Equals("2"))
+            {
+                color = Brushes.LightBlue;
+            }
+            else if (tipo.Equals("3"))
+            {
+                color = Brushes.LightYellow;
+            }
+            else if (tipo.Equals("4"))
+            {
+                color = Brushes.Pink;
+            }
+            else color = Brushes.White;
+
+            this._txtAsociado.Background = color;
+
+        }
+
 
         public void ActivarControlesAlAgregar()
         {

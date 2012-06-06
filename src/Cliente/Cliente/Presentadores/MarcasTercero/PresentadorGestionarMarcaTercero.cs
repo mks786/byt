@@ -237,6 +237,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
 
                     //this._ventana.NombreAsociadoDatos = marcaTercero.Asociado != null ? marcaTercero.Asociado.Nombre : "";
                     this._ventana.NombreAsociadoSolicitud = marcaTercero.Asociado != null ? marcaTercero.Asociado.Nombre : "";
+
+                    if (null != marcaTercero.Asociado)
+                        this._ventana.PintarAsociado(marcaTercero.Asociado.TipoCliente.Id);
+                    else
+                        this._ventana.PintarAsociado("5");
+
                     //this._ventana.TipoCbx = this.BuscarTipoMarca((IList<ListaDatosDominio>)this._ventana.TiposCbx, marcaTercero.Tipo);
 
                     //this._ventana.DescripcionCorresponsalSolicitud = marcaTercero.Corresponsal != null ? marcaTercero.Corresponsal.Descripcion : "";
@@ -1066,7 +1072,14 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
                     this._ventana.NombreAsociadoSolicitud = ((Asociado)this._ventana.AsociadoSolicitud).Nombre;
                     //this._ventana.AsociadoDatos = (Asociado)this._ventana.AsociadoSolicitud;
                     //this._ventana.NombreAsociadoDatos = ((Asociado)this._ventana.AsociadoSolicitud).Nombre;
+
+
+                    this._ventana.PintarAsociado(((Asociado)this._ventana.AsociadoSolicitud).TipoCliente.Id);
+                    
+                    
                 }
+                else 
+                    this._ventana.PintarAsociado("5");
             }
             catch (ApplicationException e)
             {
@@ -1613,6 +1626,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
                     //if (null != ((Marca)this._ventana.MarcaFiltrada).Nacional)
                     //      this._ventana.IdNacionalByt = ((Marca)this._ventana.MarcaFiltrada).Nacional.Descripcion;
                     retorno = true;
+
                 }
 
                 #region trace

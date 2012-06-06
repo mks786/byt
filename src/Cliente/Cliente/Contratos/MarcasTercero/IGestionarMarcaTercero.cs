@@ -218,5 +218,7 @@ namespace Trascend.Bolet.Cliente.Contratos.MarcasTercero
 
         void MostrarByt();
 
+        void PintarAsociado(string tipo);
+
     }
 }

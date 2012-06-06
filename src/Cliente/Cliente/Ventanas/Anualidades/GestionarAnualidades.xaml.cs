@@ -4,6 +4,7 @@ using Trascend.Bolet.Cliente.Contratos.Anualidades;
 using Trascend.Bolet.Cliente.Presentadores.Anualidades;
 using Trascend.Bolet.Cliente.Ayuda;
 using System.Windows.Input;
+using System.Windows.Media;
 
 namespace Trascend.Bolet.Cliente.Ventanas.Anualidades
 {
@@ -390,6 +391,34 @@ namespace Trascend.Bolet.Cliente.Ventanas.Anualidades
             this._interesadosCargados = false;
             this._presentador = new PresentadorGestionarAnualidades(this, fusion);
         }
+
+
+        public void PintarAsociado(string tipo)
+        {
+            SolidColorBrush color;
+
+            if (tipo.Equals("1"))
+            {
+                color = Brushes.LightGreen;
+            }
+            else if (tipo.Equals("2"))
+            {
+                color = Brushes.LightBlue;
+            }
+            else if (tipo.Equals("3"))
+            {
+                color = Brushes.LightYellow;
+            }
+            else if (tipo.Equals("4"))
+            {
+                color = Brushes.Pink;
+            }
+            else color = Brushes.White;
+
+            this._txtAsociadoSolicitud.Background = color;
+
+        }
+
 
         private void _btnModificar_Click(object sender, RoutedEventArgs e)
         {

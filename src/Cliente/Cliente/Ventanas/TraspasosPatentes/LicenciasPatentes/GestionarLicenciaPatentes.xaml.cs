@@ -3,6 +3,7 @@ using System.Windows.Controls;
 using Trascend.Bolet.Cliente.Contratos.TraspasosPatentes.LicenciasPatentes;
 using Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.LicenciasPatentes;
 using Trascend.Bolet.Cliente.Ayuda;
+using System.Windows.Media;
 
 namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.LicenciasPatentes
 {
@@ -412,6 +413,34 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.LicenciasPatentes
             this._presentador = new PresentadorGestionarLicenciaPatentes(this, LicenciaPatente);
 
         }
+
+
+        public void PintarAsociado(string tipo)
+        {
+            SolidColorBrush color;
+
+            if (tipo.Equals("1"))
+            {
+                color = Brushes.LightGreen;
+            }
+            else if (tipo.Equals("2"))
+            {
+                color = Brushes.LightBlue;
+            }
+            else if (tipo.Equals("3"))
+            {
+                color = Brushes.LightYellow;
+            }
+            else if (tipo.Equals("4"))
+            {
+                color = Brushes.Pink;
+            }
+            else color = Brushes.White;
+
+            this._txtAsociado.Background = color;
+
+        }
+
 
         public void ActivarControlesAlAgregar()
         {

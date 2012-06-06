@@ -384,6 +384,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.AbandonosPatente
                 this._patentes.Add((Patente)this._ventana.Patente);
                 this._ventana.PatentesFiltradas = this._patentes;
                 this._ventana.PatenteFiltrada = (Patente)this._ventana.Patente;
+
             }
             else
             {
@@ -544,6 +545,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.AbandonosPatente
                         this._patentes.Add((Patente)this._ventana.PatenteFiltrada);
 
                     retorno = true;
+
                 }
 
                 #region trace
@@ -859,6 +861,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.AbandonosPatente
                 this._ventana.AsociadosFiltrados = this._asociados;                
                 this._ventana.AsociadoFiltrado = ((Operacion)this._ventana.Operacion).Asociado;
                 this._ventana.NombreAsociado = ((Operacion)this._ventana.Operacion).Asociado.Nombre;
+                
+                if (null != ((Patente)this._ventana.Patente).Asociado)
+                    this._ventana.PintarAsociado(((Patente)this._ventana.Patente).Asociado.TipoCliente.Id);
+                else
+                    this._ventana.PintarAsociado("5");
             }
             else
             {
@@ -894,6 +901,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.AbandonosPatente
                     this._asociados.Add((Asociado)this._ventana.AsociadoFiltrado);
 
                     retorno = true;
+
+                    if (((Asociado)this._ventana.AsociadoFiltrado).Id != int.MinValue)
+                        this._ventana.PintarAsociado(((Asociado)this._ventana.AsociadoFiltrado).TipoCliente.Id);
+                    else
+                        this._ventana.PintarAsociado("5");
                 }
 
                 #region trace
