@@ -10,6 +10,7 @@
     </composite-id>
     
     <property name="Descripcion" type="String" column="XDETALLE"/>
+    <property name="SubCodigo" column="SUBCOD" type="string"/>
   </class>
 </hibernate-mapping>
 

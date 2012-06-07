@@ -2720,4 +2720,7 @@ de Gracia</value>
   <data name="lblFechaSolicitud" xml:space="preserve">
     <value>Fecha Solicitud</value>
   </data>
+  <data name="cbiCategoriaServiciosOperaciones" xml:space="preserve">
+    <value>SERVICIOS</value>
+  </data>
 </root>

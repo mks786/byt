@@ -35,7 +35,7 @@
             </StackPanel>
         </GroupBox>
         <GroupBox Grid.Column="1" Grid.Row="0"  Margin="5">
-            <ListView Name="_lstResultados" ItemsSource="{Binding}" 
+            <ListView Name="_lstResultados" ItemsSource="{Binding}"
                       MouseDoubleClick="EventoIrGestionarOperacion" SelectionMode="Single"
                       Style="{DynamicResource EstiloListView}">
                 <ListView.View>

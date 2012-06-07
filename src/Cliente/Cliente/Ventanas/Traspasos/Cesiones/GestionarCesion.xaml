@@ -38,7 +38,7 @@
         <GroupBox Grid.Column="1" Grid.Row="1">
             <StackPanel Name="_gridDatos"  VerticalAlignment="Center"  HorizontalAlignment="Center"
                         DataContext="{Binding}" Orientation="Vertical">
-                <WrapPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="8" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0"
+                <WrapPanel Grid.Row="0" Grid.Column="0"  Grid.ColumnSpan="8" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0"
                            Width="650">
                     <Grid Width="640">
                         <Grid.ColumnDefinitions>
@@ -83,6 +83,7 @@
                     </Grid>
                 </WrapPanel>
                 <Separator Margin="5,5,0,0"/>
+                    <GroupBox IsTabStop="False">
                 <WrapPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="8"  Orientation="Horizontal" 
                            Margin="0,5,0,0">
                     <Grid Width="640" DataContext="{Binding}" Name="_gridDatosMarca">
@@ -210,11 +211,11 @@
                         <!--Fin datos de la Marca-->
                     </Grid>
                 </WrapPanel>
-
+                </GroupBox>
                 <Separator Margin="5,5,0,0"/>
                 <!--Cedente-->
-
-                <WrapPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="8"  Orientation="Horizontal" 
+                <GroupBox IsTabStop="False">
+                    <WrapPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="8"  Orientation="Horizontal" 
                            Margin="0,5,0,0">
                     <Grid Width="640" DataContext="{Binding}" Name="_gridDatosCedente">
                         <Grid.ColumnDefinitions>
@@ -309,7 +310,7 @@
                     </Grid>                                                                        
                 </WrapPanel>
                 
-                
+                </GroupBox>
                  
                 <!--Apoderado de Cedente-->
                 <WrapPanel>
@@ -401,7 +402,7 @@
 
                 <!--Poder de Cedente-->
                 <WrapPanel>
-                    <Grid Width="640" DataContext="{Binding}" Name="_gridDatosPoderCedente">
+                    <Grid Width="640" DataContext="{Binding}" Name="_gridDatosPoderCedente" >
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="*"/>

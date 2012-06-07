@@ -11,6 +11,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         private string _id;
         private string _valor;
         private string _descripcion;
+        private string _subCodigo;
 
         #endregion
 
@@ -80,6 +81,14 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
             set { _descripcion = value; }
         }
 
+        /// <summary>
+        /// Propiedad que asigna u obtiene el Valor
+        /// </summary>
+        public virtual string SubCodigo
+        {
+            get { return _subCodigo; }
+            set { _subCodigo = value; }
+        }
         #endregion
     }
 }

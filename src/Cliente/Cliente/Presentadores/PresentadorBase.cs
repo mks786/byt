@@ -1418,6 +1418,29 @@ namespace Trascend.Bolet.Cliente.Presentadores
         }
 
         /// <summary>
+        /// Método que busca un ListaDatosValores dentro de una lista de ListaDatosValores
+        /// </summary>
+        /// <param name="servicios">Lista de ListaDatosValores</param>
+        /// <param name="servicioBuscado">ListaDatosValores a buscar</param>
+        /// <returns>ListaDatosValores dentro de la lista</returns>
+        public ListaDatosValores BuscarListaDeDatosValores(IList<ListaDatosValores> servicios, ListaDatosValores servicioBuscado)
+        {
+            ListaDatosValores retorno = null;
+
+            if (servicioBuscado != null)
+                foreach (ListaDatosValores servicio in servicios)
+                {
+                    if (servicio.Valor == servicioBuscado.Valor)
+                    {
+                        retorno = servicio;
+                        break;
+                    }
+                }
+
+            return retorno;
+        }
+
+        /// <summary>
         /// Metodo que abre una ventana del explorador predeterminado a una URL determinada
         /// </summary>
         /// <param name="URL">URL dirigida</param>

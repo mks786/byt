@@ -888,7 +888,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Abandonos
             Asociado primerAsociado = new Asociado(int.MinValue);
             this._asociados.Add(primerAsociado);
 
-            if ( ((Operacion)this._ventana.Operacion).Asociado != null)
+            if (((Operacion)this._ventana.Operacion).Asociado != null) 
             {
                 this._asociados.Add(((Operacion)this._ventana.Operacion).Asociado);
                 this._ventana.AsociadosFiltrados = this._asociados;                
