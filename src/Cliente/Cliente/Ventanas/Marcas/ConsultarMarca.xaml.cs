@@ -565,7 +565,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
 
         public string NombreInteresadoDatosFiltrar
         {
-            get { return this._txtNombreInteresadoSolicitud.Text; }
+            get { return this._txtNombreInteresadoDatos.Text; }
         }
 
         public string NombreInteresadoSolicitud
@@ -843,6 +843,14 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
         public string DistingueSolicitud
         {
             set { this._txtDistingue.Text = value; }
+        }
+
+        public void Mensaje(string mensaje, int opcion)
+        {
+            if (opcion == 0)
+                MessageBox.Show(mensaje, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            else
+                MessageBox.Show(mensaje, "Advertencia", MessageBoxButton.OK, MessageBoxImage.Exclamation);
         }
 
         public void ArchivoNoEncontrado()

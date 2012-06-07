@@ -643,14 +643,20 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 if (asociadosFiltrados.ToList<Asociado>().Count != 0)
                     this._ventana.AsociadosSolicitud = asociadosFiltrados.ToList<Asociado>();
                 else
+                {
                     this._ventana.AsociadosSolicitud = this._asociados;
+                    this._ventana.Mensaje(Recursos.MensajesConElUsuario.NoHayResultados, 1);
+                }
             }
             else
             {
                 if (asociadosFiltrados.ToList<Asociado>().Count != 0)
                     this._ventana.AsociadosDatos = asociadosFiltrados.ToList<Asociado>();
                 else
+                {
                     this._ventana.AsociadosDatos = this._asociados;
+                    this._ventana.Mensaje(Recursos.MensajesConElUsuario.NoHayResultados, 1);
+                }
             }
         }
 
@@ -827,14 +833,20 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 if (interesadosFiltrados.ToList<Interesado>().Count != 0)
                     this._ventana.InteresadosSolicitud = interesadosFiltrados.ToList<Interesado>();
                 else
+                {
                     this._ventana.InteresadosSolicitud = this._interesados;
+                    this._ventana.Mensaje(Recursos.MensajesConElUsuario.NoHayResultados, 1);
+                }
             }
             else
             {
                 if (interesadosFiltrados.ToList<Interesado>().Count != 0)
                     this._ventana.InteresadosDatos = interesadosFiltrados.ToList<Interesado>();
                 else
+                {
                     this._ventana.InteresadosDatos = this._interesados;
+                    this._ventana.Mensaje(Recursos.MensajesConElUsuario.NoHayResultados, 1);
+                }
             }
 
             #region trace
@@ -965,7 +977,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 if (!string.IsNullOrEmpty(this._ventana.IdCorresponsalSolicitudFiltrar))
                 {
                     corresponsalesFiltrados = from p in corresponsalesFiltrados
-                                              where p.Id == int.Parse(this._ventana.IdAsociadoSolicitudFiltrar)
+                                              where p.Id == int.Parse(this._ventana.IdCorresponsalSolicitudFiltrar)
                                               select p;
                 }
 
@@ -1001,14 +1013,21 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 if (corresponsalesFiltrados.ToList<Corresponsal>().Count != 0)
                     this._ventana.CorresponsalesSolicitud = corresponsalesFiltrados.ToList<Corresponsal>();
                 else
-                    this._ventana.CorresponsalesSolicitud = this._asociados;
+                {
+                    this._ventana.CorresponsalesSolicitud = this._corresponsales;
+                    this._ventana.Mensaje(Recursos.MensajesConElUsuario.NoHayResultados, 1);
+                    
+                }
             }
             else
             {
                 if (corresponsalesFiltrados.ToList<Corresponsal>().Count != 0)
                     this._ventana.CorresponsalesDatos = corresponsalesFiltrados.ToList<Corresponsal>();
                 else
+                {
                     this._ventana.CorresponsalesDatos = this._corresponsales;
+                    this._ventana.Mensaje(Recursos.MensajesConElUsuario.NoHayResultados, 1);
+                }
             }
 
             #region trace

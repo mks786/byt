@@ -207,6 +207,8 @@ namespace Trascend.Bolet.Cliente.Contratos.Marcas
         
         void ConvertirEnteroMinimoABlanco();
 
+        void Mensaje(string tipo, int mensaje);
+
         GridViewColumnHeader CurSortCol { get; set; }
 
         SortAdorner CurAdorner { get; set; }

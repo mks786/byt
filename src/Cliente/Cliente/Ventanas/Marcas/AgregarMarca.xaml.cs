@@ -89,7 +89,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
 
         public string NombreAsociadoDatosFiltrar
         {
-            get { return this._txtNombreAsociadoSolicitud.Text; }
+            get { return this._txtNombreAsociadoDatos.Text; }
         }
 
         public string NombreAsociadoSolicitud
@@ -167,7 +167,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
 
         public string NombreInteresadoDatosFiltrar
         {
-            get { return this._txtNombreInteresadoSolicitud.Text; }
+            get { return this._txtNombreInteresadoDatos.Text; }
         }
 
         public string NombreInteresadoSolicitud
@@ -517,6 +517,14 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             this._txtClaseInternacionalDatos.Text = this._txtClaseInternacionalDatos.Text.Equals("0") ? "" : this._txtClaseInternacionalDatos.Text;
             this._txtClaseNacional.Text = this._txtClaseNacional.Text.Equals("0") ? "" : this._txtClaseNacional.Text;
             this._txtClaseNacionalDatos.Text = this._txtClaseNacionalDatos.Text.Equals("0") ? "" : this._txtClaseNacionalDatos.Text;
+        }
+
+        public void Mensaje(string mensaje, int opcion)
+        {
+            if (opcion == 0)
+                MessageBox.Show(mensaje, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            else
+                MessageBox.Show(mensaje, "Advertencia", MessageBoxButton.OK, MessageBoxImage.Exclamation);
         }
 
         public GridViewColumnHeader CurSortCol
@@ -1178,7 +1186,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
         
         private void _btnConsultarCorresponsalDatos_Click(object sender, RoutedEventArgs e)
         {
-            this._presentador.BuscarCorresponsal(0);
+            this._presentador.BuscarCorresponsal(1);
         }
 
         
