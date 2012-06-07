@@ -42,7 +42,7 @@
                     <Label>
                         <TextBlock Name="_lblIdCambioDeDomicilio" Text="{x:Static recurso:Etiquetas.lblId}"/>
                     </Label>
-                    <TextBox Name="_txtIdCambioDeDomicilio" Width="150" MaxLength="40"  Text="{Binding Path=Id}" IsEnabled="False" IsReadOnly="True"/>
+                    <TextBox Name="_txtIdCambioDeDomicilio" Width="150" MaxLength="40"  Text="{Binding Path=Id}" IsEnabled="False" IsReadOnly="True" IsTabStop="False"/>
                     <Label>
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblExpediente}"/>
                     </Label>
@@ -79,7 +79,7 @@
                         <Label Grid.Column="0" Grid.Row="0">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblMarca}"/>
                         </Label>
-                        <TextBox Name="_txtNombreMarca" MaxLength="40"  Text="" IsEnabled="False" IsReadOnly="True"
+                        <TextBox Name="_txtNombreMarca" MaxLength="40"  Text="" IsEnabled="False" IsReadOnly="True" IsTabStop="False"
                              VerticalContentAlignment="Center" Margin="0,0,0,0" Grid.ColumnSpan="6" Grid.Column="1"
                              Grid.Row="0" MouseDoubleClick="_txtNombreMarca_MouseDoubleClick" BorderBrush="LightGreen"/>
 
@@ -137,7 +137,7 @@
                         <Label Name="_lblNoInscripcion" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Center" >
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblNumInscripcion}"/>
                         </Label>
-                        <custom:ByTTextBox IsReadOnly="True"   IsEnabled="False"  Grid.Column="2" Grid.Row="1" Name="_txtNumInscripcion" VerticalAlignment="Center"  Grid.ColumnSpan="1"
+                        <custom:ByTTextBox IsReadOnly="True" IsTabStop="False"   IsEnabled="False"  Grid.Column="2" Grid.Row="1" Name="_txtNumInscripcion" VerticalAlignment="Center"  Grid.ColumnSpan="1"
                          MaxLength="255" Text="{Binding Path=CodigoInscripcion}"  ></custom:ByTTextBox>
                         <!--Fin Campo-->
 
@@ -145,7 +145,7 @@
                         <Label Name="_lblTipo" Grid.Column="3" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Center" >
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblTipo}"/>
                         </Label>
-                        <custom:ByTTextBox IsReadOnly="True"  IsEnabled="False"  Grid.Column="4" Grid.Row="1" Name="_txtTipo" VerticalAlignment="Center"  Grid.ColumnSpan="1"
+                        <custom:ByTTextBox IsReadOnly="True" IsTabStop="False"  IsEnabled="False"  Grid.Column="4" Grid.Row="1" Name="_txtTipo" VerticalAlignment="Center"  Grid.ColumnSpan="1"
                          MaxLength="255" Text="{Binding Path=Tipo}" ></custom:ByTTextBox>
                         <!--Fin Campo-->
 
@@ -153,7 +153,7 @@
                         <Label Name="_lblNoRegistro" Grid.Column="5" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Center" >
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblNumRegistro}"/>
                         </Label>
-                        <custom:ByTTextBox IsReadOnly="True"   IsEnabled="False"  Grid.Column="6" Grid.Row="1" Name="_txtNumRegistro" VerticalAlignment="Center"  Grid.ColumnSpan="1"
+                        <custom:ByTTextBox IsReadOnly="True" IsTabStop="False"   IsEnabled="False"  Grid.Column="6" Grid.Row="1" Name="_txtNumRegistro" VerticalAlignment="Center"  Grid.ColumnSpan="1"
                          MaxLength="255"  Text="{Binding Path=CodigoRegistro}"></custom:ByTTextBox>
                         <!--Fin Campo-->
 
@@ -161,7 +161,7 @@
                         <Label Name="_lblClaseInternacional" Grid.Column="0" Grid.Row="2" HorizontalAlignment="Right" VerticalAlignment="Center" >
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblClaseInt}"/>
                         </Label>
-                        <custom:ByTTextBox IsReadOnly="True"   IsEnabled="False"  Grid.Column="1" Grid.Row="2" Name="_txtClaseInternacional" VerticalAlignment="Center"  Grid.ColumnSpan="1"
+                        <custom:ByTTextBox IsReadOnly="True" IsTabStop="False"   IsEnabled="False"  Grid.Column="1" Grid.Row="2" Name="_txtClaseInternacional" VerticalAlignment="Center"  Grid.ColumnSpan="1"
                          MaxLength="255" Text="{Binding Path=Internacional.Id}" DobleClickDespliegaLista="True"></custom:ByTTextBox>
                         <!--Fin Campo-->
 
@@ -169,7 +169,7 @@
                         <Label Name="_lblClaseNacional" Grid.Column="2" Grid.Row="2" HorizontalAlignment="Right" VerticalAlignment="Center" >
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblClaseNac}"/>
                         </Label>
-                        <custom:ByTTextBox IsReadOnly="True"   IsEnabled="False"  Grid.Column="3" Grid.Row="2" Name="_txtClaseNacional" VerticalAlignment="Center"  Grid.ColumnSpan="1"
+                        <custom:ByTTextBox IsReadOnly="True" IsTabStop="False"   IsEnabled="False"  Grid.Column="3" Grid.Row="2" Name="_txtClaseNacional" VerticalAlignment="Center"  Grid.ColumnSpan="1"
                          MaxLength="255" Text="{Binding Path=Nacional.Id}" ></custom:ByTTextBox>
                         <!--Fin Campo-->
 
@@ -177,7 +177,7 @@
                         <Label Name="_lblAsociado" Grid.Column="4" Grid.Row="2" HorizontalAlignment="Right" VerticalAlignment="Center" >
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblAsociado}"/>
                         </Label>
-                        <custom:ByTTextBox IsReadOnly="True"   IsEnabled="False"  Grid.Column="5" Grid.Row="2" Name="_txtAsociado" VerticalAlignment="Center"  Grid.ColumnSpan="2"
+                        <custom:ByTTextBox IsReadOnly="True" IsTabStop="False"   IsEnabled="False"  Grid.Column="5" Grid.Row="2" Name="_txtAsociado" VerticalAlignment="Center"  Grid.ColumnSpan="2"
                          MaxLength="255" Text="{Binding Path=Asociado.Nombre}" ></custom:ByTTextBox>
                         <!--Fin Campo-->
 
@@ -209,7 +209,7 @@
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblAnterior}"/>
                         </Label>
                         <custom:ByTTextBox Text="{Binding Path=Nombre}" IsEnabled="False" MaxLength="255" Grid.Column="0" Grid.Row="1" Name="_txtNombreInteresadoAnterior" VerticalAlignment="Center" 
-                         Grid.ColumnSpan="3" MouseDoubleClick="_txtInteresadoAnterior_MouseDoubleClick" IsReadOnly="True" Margin="45,3,0,3" BorderBrush="LightGreen"></custom:ByTTextBox>
+                         Grid.ColumnSpan="3" MouseDoubleClick="_txtInteresadoAnterior_MouseDoubleClick" IsReadOnly="True" IsTabStop="False" Margin="45,3,0,3" BorderBrush="LightGreen"></custom:ByTTextBox>
 
                         <Label Name="_lblIdInteresadoAnterior" Grid.Column="0" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Center" Visibility="Collapsed">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblId}"/>
@@ -228,10 +228,10 @@
                             <TextBlock Text="{x:Static recurso:Etiquetas.btnConsultar}"/>
                         </Button>
 
-                        <custom:ByTTextBox Text="{Binding Path=Ciudad}" IsReadOnly="True" IsEnabled="False" MaxLength="40" Grid.Column="3" Grid.Row="1" 
+                        <custom:ByTTextBox Text="{Binding Path=Ciudad}" IsReadOnly="True" IsTabStop="False" IsEnabled="False" MaxLength="40" Grid.Column="3" Grid.Row="1" 
                                            Name="_txtPaisInteresadoAnterior" VerticalAlignment="Top"  
                          Grid.ColumnSpan="2"  Margin="3,3,0,0"></custom:ByTTextBox>
-                        <custom:ByTTextBox Text="{Binding Path=Estado}" IsReadOnly="True" IsEnabled="False" MaxLength="40" Grid.Column="5" Grid.Row="1" 
+                        <custom:ByTTextBox Text="{Binding Path=Estado}" IsReadOnly="True" IsTabStop="False" IsEnabled="False" MaxLength="40" Grid.Column="5" Grid.Row="1" 
                                            Name="_txtCiudadInteresadoAnterior" VerticalAlignment="Top"
                          Grid.ColumnSpan="2" Margin="3,3,0,0"></custom:ByTTextBox>
                         <Label Name="_lblDomicilioInteresadoAnterior" Grid.Column="0" Grid.Row="3" HorizontalAlignment="Right" VerticalAlignment="Center" >
@@ -239,7 +239,7 @@
                         </Label>
                         <custom:ByTTextBox Text="{Binding Path=Domicilio}" IsEnabled="False" Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="6" 
                                            Name="_txtDomicilioInteresadoAnterior" VerticalAlignment="Center" MaxLength="255" 
-                                           IsReadOnly="True"></custom:ByTTextBox>
+                                           IsReadOnly="True" IsTabStop="False"></custom:ByTTextBox>
                         <ListView Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="7" Grid.RowSpan="2" Name="_lstInteresadosAnterior" ItemsSource="{Binding}" 
                       SelectionMode="Single" MouseDoubleClick="_lstInteresadosAnterior_MouseDoubleClick"
                       Style="{DynamicResource EstiloListView}" Visibility="Collapsed" Height="150"  VerticalAlignment="Top" Width="640">
@@ -290,7 +290,7 @@
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblActual}"/>
                         </Label>
                         <custom:ByTTextBox Text="{Binding Path=Nombre}" IsEnabled="False" MaxLength="255" Grid.Column="0" Grid.Row="1" Name="_txtNombreInteresadoActual" VerticalAlignment="Center" 
-                         Grid.ColumnSpan="3" MouseDoubleClick="_txtInteresadoActual_MouseDoubleClick" IsReadOnly="True" Margin="45,3,0,3" BorderBrush="LightGreen"></custom:ByTTextBox>
+                         Grid.ColumnSpan="3" MouseDoubleClick="_txtInteresadoActual_MouseDoubleClick" IsReadOnly="True" IsTabStop="False" Margin="45,3,0,3" BorderBrush="LightGreen"></custom:ByTTextBox>
 
                         <Label Name="_lblIdInteresadoActual" Grid.Column="0" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Center" Visibility="Collapsed">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblId}"/>
@@ -309,16 +309,16 @@
                             <TextBlock Text="{x:Static recurso:Etiquetas.btnConsultar}"/>
                         </Button>
 
-                        <custom:ByTTextBox Text="{Binding Path=Ciudad}" IsReadOnly="True" IsEnabled="False" MaxLength="40" Grid.Column="3" Grid.Row="1" Name="_txtPaisInteresadoActual" VerticalAlignment="Top" 
+                        <custom:ByTTextBox Text="{Binding Path=Ciudad}" IsReadOnly="True" IsTabStop="False" IsEnabled="False" MaxLength="40" Grid.Column="3" Grid.Row="1" Name="_txtPaisInteresadoActual" VerticalAlignment="Top" 
                          Grid.ColumnSpan="2"  Margin="3,3,0,0"></custom:ByTTextBox>
-                        <custom:ByTTextBox Text="{Binding Path=Estado}" IsReadOnly="True" IsEnabled="False" MaxLength="40" Grid.Column="5" Grid.Row="1" Name="_txtCiudadInteresadoActual" VerticalAlignment="Top" 
+                        <custom:ByTTextBox Text="{Binding Path=Estado}" IsReadOnly="True" IsTabStop="False" IsEnabled="False" MaxLength="40" Grid.Column="5" Grid.Row="1" Name="_txtCiudadInteresadoActual" VerticalAlignment="Top" 
                          Grid.ColumnSpan="2" Margin="3,3,0,0"></custom:ByTTextBox>
                         <Label Name="_lblDomicilioInteresadoActual" Grid.Column="0" Grid.Row="3" HorizontalAlignment="Right" VerticalAlignment="Center" >
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblDomicilio}"/>
                         </Label>
                         <custom:ByTTextBox Text="{Binding Path=Domicilio}" IsEnabled="False" Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="6"  
                                            Name="_txtDomicilioInteresadoActual" VerticalAlignment="Center" MaxLength="255" 
-                                           IsReadOnly="True"></custom:ByTTextBox>
+                                           IsReadOnly="True" IsTabStop="False"></custom:ByTTextBox>
                         <ListView Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="7" Grid.RowSpan="2" Name="_lstInteresadosActual" ItemsSource="{Binding}" 
                       SelectionMode="Single" MouseDoubleClick="_lstInteresadosActual_MouseDoubleClick"
                       Style="{DynamicResource EstiloListView}" Visibility="Collapsed" Height="150"  VerticalAlignment="Top" Width="640">
@@ -370,7 +370,7 @@
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblApoderado}"/>
                         </Label>
                         <custom:ByTTextBox  IsEnabled="False"  Grid.Column="1" Grid.Row="0" Name="_txtNombreApoderado" VerticalAlignment="Center" 
-                                            MaxLength="255" Grid.ColumnSpan="7" Text="{Binding Path=Nombre}" IsReadOnly="True" BorderBrush="LightGreen"
+                                            MaxLength="255" Grid.ColumnSpan="7" Text="{Binding Path=Nombre}" IsReadOnly="True" IsTabStop="False" BorderBrush="LightGreen"
                                             MouseDoubleClick="_txtNombreApoderado_MouseDoubleClick"></custom:ByTTextBox>
 
                         <ListView Grid.Row="2" Grid.ColumnSpan="7" Grid.RowSpan="3" Name="_lstApoderados" ItemsSource="{Binding}" 
@@ -456,7 +456,7 @@
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblPoder}"/>
                         </Label>
                         <custom:ByTTextBox  IsEnabled="False"  Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="2" Name="_txtIdPoder" 
-                                IsReadOnly="True" VerticalAlignment="Center" MouseDoubleClick="_txtIdPoder_MouseDoubleClick"
+                                IsReadOnly="True" IsTabStop="False" VerticalAlignment="Center" MouseDoubleClick="_txtIdPoder_MouseDoubleClick"
                                 MaxLength="255" BorderBrush="LightGreen" Text="{Binding Path=Id}">
                         </custom:ByTTextBox>
 
@@ -465,7 +465,7 @@
                         </Label>
                         <custom:ByTTextBox  IsEnabled="False"  Grid.Column="4" Grid.ColumnSpan="2" Grid.Row="0" Name="_txtNumPoder" 
                                 VerticalAlignment="Center" MaxLength="255" Text="{Binding Path=NumPoder}" 
-                                IsReadOnly="True"></custom:ByTTextBox>
+                                IsReadOnly="True" IsTabStop="False"></custom:ByTTextBox>
 
                         <ListView Grid.Row="2" Grid.ColumnSpan="7" Grid.RowSpan="3" Name="_lstPoderes" ItemsSource="{Binding}" 
             SelectionMode="Single" MouseDoubleClick="_lstPoderes_MouseDoubleClick"
@@ -525,7 +525,7 @@
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblFecha}"/>
                         </Label>
                         <custom:ByTTextBox  IsEnabled="False"  Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="1" Name="_txtFechaPoder" VerticalAlignment="Center" MaxLength="255"  
-                                Text="{Binding Path=Fecha}" IsReadOnly="True"></custom:ByTTextBox>
+                                Text="{Binding Path=Fecha}" IsReadOnly="True" IsTabStop="False"></custom:ByTTextBox>
                         <!--Fin Campo-->
 
                         <!--Campo-->
@@ -554,7 +554,7 @@
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblAnexo}"/>
                         </Label>
                         <custom:ByTTextBox  IsEnabled="False"  Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="2" Name="_txtAnexoPoder" VerticalAlignment="Center" MaxLength="255"  
-                                Text="{Binding Path=Anexo}" IsReadOnly="True"></custom:ByTTextBox>
+                                Text="{Binding Path=Anexo}" IsReadOnly="True" IsTabStop="False"></custom:ByTTextBox>
                         <!--Fin Campo-->
 
                         <!--Campo-->
@@ -562,7 +562,7 @@
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblFacultad}"/>
                         </Label>
                         <custom:ByTTextBox  IsEnabled="False"  Grid.Column="4" Grid.Row="2" Grid.ColumnSpan="2" Name="_txtFacultadPoder" VerticalAlignment="Center" MaxLength="255"  
-                                Text="{Binding Path=Facultad}" IsReadOnly="True"></custom:ByTTextBox>
+                                Text="{Binding Path=Facultad}" IsReadOnly="True" IsTabStop="False"></custom:ByTTextBox>
                         <!--Fin Campo-->
 
                         <!--Fin datos de Poder-->

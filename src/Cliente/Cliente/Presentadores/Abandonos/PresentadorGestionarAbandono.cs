@@ -890,12 +890,13 @@ namespace Trascend.Bolet.Cliente.Presentadores.Abandonos
 
             if (((Operacion)this._ventana.Operacion).Asociado != null) 
             {
+                this._ventana.Asociado = this._asociadoServicios.ConsultarAsociadoConTodo(((Operacion)this._ventana.Operacion).Asociado);
                 this._asociados.Add(((Operacion)this._ventana.Operacion).Asociado);
                 this._ventana.AsociadosFiltrados = this._asociados;                
                 this._ventana.AsociadoFiltrado = ((Operacion)this._ventana.Operacion).Asociado;
-                this._ventana.NombreAsociado = ((Operacion)this._ventana.Operacion).Asociado.Nombre;
+                this._ventana.NombreAsociado = ((Asociado)this._ventana.Asociado).Nombre;
 
-                this._ventana.PintarAsociado(((Operacion)this._ventana.Operacion).Asociado.TipoCliente.Id);
+                this._ventana.PintarAsociado(((Asociado)this._ventana.Asociado).TipoCliente.Id);
             }
             else
             {

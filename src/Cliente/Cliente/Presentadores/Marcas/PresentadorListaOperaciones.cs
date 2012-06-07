@@ -219,7 +219,6 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 
                         Operacion operacion = this._operacionServicios.ConsultarPorId((Operacion)this._ventana.OperacionSeleccionado);
                         operacion.Marca = new Marca(((Operacion)this._ventana.OperacionSeleccionado).CodigoAplicada);
-                        operacion.Asociado = null;
                         this.Navegar(new GestionarAbandono(operacion));
 
 
