@@ -231,7 +231,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
 
                 IList<Servicio> servicios = this._servicioServicios.ConsultarTodos();
                 Servicio primerServicio = new Servicio();
-                primerServicio.Id = "NGN";
+                primerServicio.Id = "";
                 servicios.Insert(0, primerServicio);
                 this._ventana.Servicios = servicios;
                 this._ventana.Servicio = this.BuscarServicio(servicios, marca.Servicio);

@@ -252,10 +252,14 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
 
                     IList<Servicio> servicios = this._servicioServicios.ConsultarTodos();
                     Servicio primerServicio = new Servicio();
-                    primerServicio.Id = "NGN";
+                    primerServicio.Id = "";
                     servicios.Insert(0, primerServicio);
                     this._ventana.SituacionesDatos = servicios;
-                    this._ventana.SituacionDatos = this.BuscarServicio(servicios, patente.Servicio);
+
+                    if (patente.Servicio != null)
+                        this._ventana.SituacionDatos = this.BuscarServicio((IList<Servicio>)this._ventana.SituacionesDatos, patente.Servicio);
+                    else
+                        this._ventana.SituacionDatos = this.BuscarServicio((IList<Servicio>)this._ventana.SituacionesDatos, primerServicio);
 
 
                     IList<Boletin> boletines = this._boletinServicios.ConsultarTodos();
