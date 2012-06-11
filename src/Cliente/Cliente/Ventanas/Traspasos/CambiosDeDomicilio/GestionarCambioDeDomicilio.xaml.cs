@@ -4,6 +4,7 @@ using Trascend.Bolet.Cliente.Contratos.Traspasos.CambiosDeDomicilio;
 using Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeDomicilio;
 using Trascend.Bolet.Cliente.Ayuda;
 using System.Windows.Media;
+using Trascend.Bolet.Cliente.Presentadores.Traspasos.Cesiones;
 
 namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.CambiosDeDomicilio
 {
@@ -354,6 +355,19 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.CambiosDeDomicilio
             this._presentador = new PresentadorGestionarCambioDeDomicilio(this, cambioDeDomicilio);
         }
 
+        /// <summary>
+        /// Constructor para la consulta desde operaciones
+        /// </summary>
+        /// <param name="cambioDeDomicilio">la cambioDeDomicilio a mostrar</param>
+        /// <param name="visibilidad">parametro que indica la visibilidad de los botones</param>
+        public GestionarCambioDeDomicilio(object cambioDeDomicilio, object visibilidad)
+        {
+            InitializeComponent();
+            this._cargada = false;
+            this._btnModificar.Visibility = (System.Windows.Visibility)visibilidad;
+            this._btnEliminar.Visibility = (System.Windows.Visibility)visibilidad;
+            this._presentador = new PresentadorGestionarCambioDeDomicilio(this, cambioDeDomicilio);
+        }
 
         public void PintarAsociado(string tipo)
         {

@@ -240,6 +240,19 @@ namespace Trascend.Bolet.Cliente.Ventanas.AbandonosPatente
             this._presentador = new PresentadorGestionarAbandonoPatente(this, abandono);
         }
 
+                /// <summary>
+        /// Constructor para la consulta desde operaciones
+        /// </summary>
+        /// <param name="abandono">la abandono a mostrar</param>
+        /// <param name="visibilidad">parametro que indica la visibilidad de los botones</param>
+        public GestionarAbandonoPatente(object abandono, object visibilidad)
+        {
+            InitializeComponent();
+            this._cargada = false;
+            this._btnEliminar.Visibility = (System.Windows.Visibility)visibilidad;
+            this._presentador = new PresentadorGestionarAbandonoPatente(this, abandono);
+        }
+
 
         public void PintarAsociado(string tipo)
         {

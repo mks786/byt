@@ -1,6 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
 using Trascend.Bolet.Cliente.Contratos.Traspasos.CambiosDeNombre;
+using Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeDomicilio;
 using Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeNombre;
 using Trascend.Bolet.Cliente.Ayuda;
 using System.Windows.Media;
@@ -383,11 +384,25 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.CambiosDeNombre
 
         #endregion
 
-        public GestionarCambioDeNombre(object fusion)
+        public GestionarCambioDeNombre(object cambioDeNombre)
         {
             InitializeComponent();
             this._cargada = false;
-            this._presentador = new PresentadorGestionarCambioDeNombre(this, fusion);
+            this._presentador = new PresentadorGestionarCambioDeNombre(this, cambioDeNombre);
+        }
+
+        /// <summary>
+        /// Constructor para la consulta desde operaciones
+        /// </summary>
+        /// <param name="cambioDeNombre">la cambioDeDomicilio a mostrar</param>
+        /// <param name="visibilidad">parametro que indica la visibilidad de los botones</param>
+        public GestionarCambioDeNombre(object cambioDeNombre, object visibilidad)
+        {
+            InitializeComponent();
+            this._cargada = false;
+            this._btnModificar.Visibility = (System.Windows.Visibility)visibilidad;
+            this._btnEliminar.Visibility = (System.Windows.Visibility)visibilidad;
+            this._presentador = new PresentadorGestionarCambioDeNombre(this, cambioDeNombre);
         }
 
 

@@ -3,6 +3,7 @@ using System.Windows.Controls;
 using Trascend.Bolet.Cliente.Contratos.Renovaciones;
 using Trascend.Bolet.Cliente.Presentadores.Renovaciones;
 using Trascend.Bolet.Cliente.Ayuda;
+using Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeNombre;
 
 namespace Trascend.Bolet.Cliente.Ventanas.Renovaciones
 {
@@ -318,6 +319,19 @@ namespace Trascend.Bolet.Cliente.Ventanas.Renovaciones
         {
             InitializeComponent();
             this._cargada = false;
+            this._presentador = new PresentadorGestionarRenovacion(this, renovacion);
+        }
+
+        /// <summary>
+        /// Constructor para la consulta desde operaciones
+        /// </summary>
+        /// <param name="renovacion">la renovacion a mostrar</param>
+        /// <param name="visibilidad">parametro que indica la visibilidad de los botones</param>
+        public GestionarRenovacion(object renovacion, object visibilidad)
+        {
+            InitializeComponent();
+            this._cargada = false;
+            this._btnEliminar.Visibility = (System.Windows.Visibility)visibilidad;
             this._presentador = new PresentadorGestionarRenovacion(this, renovacion);
         }
 

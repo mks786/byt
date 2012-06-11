@@ -1,6 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
 using Trascend.Bolet.Cliente.Contratos.Traspasos.Licencias;
+using Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeNombre;
 using Trascend.Bolet.Cliente.Presentadores.Traspasos.Licencias;
 using Trascend.Bolet.Cliente.Ayuda;
 using System.Windows.Media;
@@ -414,6 +415,19 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Licencias
 
         }
 
+        /// <summary>
+        /// Constructor para la consulta desde operaciones
+        /// </summary>
+        /// <param name="Licencia">la Licencia a mostrar</param>
+        /// <param name="visibilidad">parametro que indica la visibilidad de los botones</param>
+        public GestionarLicencia(object Licencia, object visibilidad)
+        {
+            InitializeComponent();
+            this._cargada = false;
+            this._btnModificar.Visibility = (System.Windows.Visibility)visibilidad;
+            this._btnEliminar.Visibility = (System.Windows.Visibility)visibilidad;
+            this._presentador = new PresentadorGestionarLicencia(this, Licencia);
+        }
 
         public void PintarAsociado(string tipo)
         {

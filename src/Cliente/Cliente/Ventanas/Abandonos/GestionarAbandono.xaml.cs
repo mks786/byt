@@ -4,6 +4,7 @@ using Trascend.Bolet.Cliente.Contratos.Abandonos;
 using Trascend.Bolet.Cliente.Presentadores.Abandonos;
 using Trascend.Bolet.Cliente.Ayuda;
 using System.Windows.Media;
+using Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDePeticionario;
 
 namespace Trascend.Bolet.Cliente.Ventanas.Abandonos
 {
@@ -278,6 +279,19 @@ namespace Trascend.Bolet.Cliente.Ventanas.Abandonos
         }
 
         
+        /// <summary>
+        /// Constructor para la consulta desde operaciones
+        /// </summary>
+        /// <param name="abandono">la abandono a mostrar</param>
+        /// <param name="visibilidad">parametro que indica la visibilidad de los botones</param>
+        public GestionarAbandono(object abandono, object visibilidad)
+        {
+            InitializeComponent();
+            this._cargada = false;
+            this._btnEliminar.Visibility = (System.Windows.Visibility)visibilidad;
+            this._presentador = new PresentadorGestionarAbandono(this, abandono);
+        }
+
         public void PintarAsociado(string tipo)
         {
             SolidColorBrush color;

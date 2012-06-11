@@ -4,6 +4,7 @@ using Trascend.Bolet.Cliente.Contratos.Traspasos.Cesiones;
 using Trascend.Bolet.Cliente.Presentadores.Traspasos.Cesiones;
 using Trascend.Bolet.Cliente.Ayuda;
 using System.Windows.Media;
+using Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones;
 
 namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Cesiones
 {
@@ -410,6 +411,20 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Cesiones
         {
             InitializeComponent();
             this._cargada = false;
+            this._presentador = new PresentadorGestionarCesion(this, cesion);
+        }
+
+        /// <summary>
+        /// Constructor para la consulta desde operaciones
+        /// </summary>
+        /// <param name="cesion">la cesion a mostrar</param>
+        /// <param name="visibilidad">parametro que indica la visibilidad de los botones</param>
+        public GestionarCesion(object cesion, object visibilidad)
+        {
+            InitializeComponent();
+            this._cargada = false;
+            this._btnModificar.Visibility = (System.Windows.Visibility)visibilidad;
+            this._btnEliminar.Visibility = (System.Windows.Visibility)visibilidad;
             this._presentador = new PresentadorGestionarCesion(this, cesion);
         }
 

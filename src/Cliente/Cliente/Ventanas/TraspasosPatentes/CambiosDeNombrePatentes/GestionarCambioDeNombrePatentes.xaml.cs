@@ -345,11 +345,26 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.CambiosDeNombrePaten
 
         #endregion
 
-        public GestionarCambioDeNombrePatentes(object fusion)
+        public GestionarCambioDeNombrePatentes(object cambioDeNombre)
         {
             InitializeComponent();
             this._cargada = false;
-            this._presentador = new PresentadorGestionarCambioDeNombrePatentes(this, fusion);
+            this._presentador = new PresentadorGestionarCambioDeNombrePatentes(this, cambioDeNombre);
+        }
+
+                
+        /// <summary>
+        /// Constructor para la consulta desde operaciones
+        /// </summary>
+        /// <param name="cambioDeNombre">la cambioDeNombre a mostrar</param>
+        /// <param name="visibilidad">parametro que indica la visibilidad de los botones</param>
+        public GestionarCambioDeNombrePatentes(object cambioDeNombre, object visibilidad)
+        {
+            InitializeComponent();
+            this._cargada = false;
+            this._btnModificar.Visibility = (System.Windows.Visibility)visibilidad;
+            this._btnEliminar.Visibility = (System.Windows.Visibility)visibilidad;
+            this._presentador = new PresentadorGestionarCambioDeNombrePatentes(this, cambioDeNombre);
         }
 
         public void ActivarControlesAlAgregar()

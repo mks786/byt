@@ -4,6 +4,7 @@ using Trascend.Bolet.Cliente.Contratos.Traspasos.CambiosDePeticionario;
 using Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDePeticionario;
 using Trascend.Bolet.Cliente.Ayuda;
 using System.Windows.Media;
+using Trascend.Bolet.Cliente.Presentadores.Traspasos.Licencias;
 
 namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.CambiosPeticionario
 {
@@ -412,6 +413,20 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.CambiosPeticionario
         {
             InitializeComponent();
             this._cargada = false;
+            this._presentador = new PresentadorGestionarCambioDePeticionario(this, cambioPeticionario);
+        }
+
+        /// <summary>
+        /// Constructor para la consulta desde operaciones
+        /// </summary>
+        /// <param name="cambioPeticionario">la cambioPeticionario a mostrar</param>
+        /// <param name="visibilidad">parametro que indica la visibilidad de los botones</param>
+        public GestionarCambioPeticionario(object cambioPeticionario, object visibilidad)
+        {
+            InitializeComponent();
+            this._cargada = false;
+            this._btnModificar.Visibility = (System.Windows.Visibility)visibilidad;
+            this._btnEliminar.Visibility = (System.Windows.Visibility)visibilidad;
             this._presentador = new PresentadorGestionarCambioDePeticionario(this, cambioPeticionario);
         }
 

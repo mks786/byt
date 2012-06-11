@@ -358,6 +358,20 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.FusionesPatentes
             this._presentador = new PresentadorGestionarFusionPatentes(this, fusion);
         }
 
+        /// <summary>
+        /// Constructor para la consulta desde operaciones
+        /// </summary>
+        /// <param name="fusion">la fusion a mostrar</param>
+        /// <param name="visibilidad">parametro que indica la visibilidad de los botones</param>
+        public GestionarFusionPatentes(object fusion, object visibilidad)
+        {
+            InitializeComponent();
+            this._cargada = false;
+            this._btnModificar.Visibility = (System.Windows.Visibility)visibilidad;
+            this._btnEliminar.Visibility = (System.Windows.Visibility)visibilidad;
+            this._presentador = new PresentadorGestionarFusionPatentes(this, fusion);
+        }
+
         public void PintarAsociado(string tipo)
         {
             SolidColorBrush color;
