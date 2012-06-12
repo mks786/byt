@@ -896,67 +896,46 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
 
-            IEnumerable<Asociado> asociadosFiltrados = this._asociados;
+            Asociado primerAsociado = new Asociado(int.MinValue);
 
+
+            Asociado asociado = new Asociado();
+            IList<Asociado> asociadosFiltrados;
             if (filtrarEn == 0)
             {
-
-                if (!string.IsNullOrEmpty(this._ventana.IdAsociadoSolicitudFiltrar))
-                {
-                    asociadosFiltrados = from p in asociadosFiltrados
-                                         where p.Id == int.Parse(this._ventana.IdAsociadoSolicitudFiltrar)
-                                         select p;
-                }
-
-                if (!string.IsNullOrEmpty(this._ventana.NombreAsociadoSolicitudFiltrar))
-                {
-                    asociadosFiltrados = from p in asociadosFiltrados
-                                         where p.Nombre != null &&
-                                         p.Nombre.ToLower().Contains(this._ventana.NombreAsociadoSolicitudFiltrar.ToLower())
-                                         select p;
-                }
+                asociado.Nombre = this._ventana.NombreAsociadoSolicitudFiltrar.ToUpper();
+                asociado.Id = this._ventana.IdAsociadoSolicitudFiltrar.Equals("") ? 0
+                                  : int.Parse(this._ventana.IdAsociadoSolicitudFiltrar);
             }
             else
             {
-
-                if (!string.IsNullOrEmpty(this._ventana.IdAsociadoDatosFiltrar))
-                {
-                    asociadosFiltrados = from p in asociadosFiltrados
-                                         where p.Id == int.Parse(this._ventana.IdAsociadoDatosFiltrar)
-                                         select p;
-                }
-
-                if (!string.IsNullOrEmpty(this._ventana.NombreAsociadoDatosFiltrar))
-                {
-                    asociadosFiltrados = from p in asociadosFiltrados
-                                         where p.Nombre != null &&
-                                         p.Nombre.ToLower().Contains(this._ventana.NombreAsociadoDatosFiltrar.ToLower())
-                                         select p;
-                }
+                asociado.Nombre = this._ventana.NombreAsociadoDatosFiltrar.ToUpper();
+                asociado.Id = this._ventana.IdAsociadoDatosFiltrar.Equals("") ? 0
+                                  : int.Parse(this._ventana.IdAsociadoDatosFiltrar);
             }
+            if ((!asociado.Nombre.Equals("")) || (asociado.Id != 0))
+                asociadosFiltrados = this._asociadoServicios.ObtenerAsociadosFiltro(asociado);
+            else
+                asociadosFiltrados = new List<Asociado>();
 
-            // filtrarEn = 0 significa en el listview de la pestaña solicitud
-            // filtrarEn = 1 significa en el listview de la pestaña Datos 
-            if (filtrarEn == 0)
+            if (asociadosFiltrados.Count != 0)
             {
-                if (asociadosFiltrados.ToList<Asociado>().Count != 0)
-                    this._ventana.AsociadosSolicitud = asociadosFiltrados.ToList<Asociado>();
-                else
-                {
-                    this._ventana.AsociadosSolicitud = this._asociados;
-                    this._ventana.Mensaje(Recursos.MensajesConElUsuario.NoHayResultados, 1);
-                }
+                asociadosFiltrados.Insert(0, primerAsociado);
+                this._ventana.AsociadosSolicitud = asociadosFiltrados;
+                this._ventana.AsociadoSolicitud = primerAsociado;
+                this._ventana.AsociadosDatos = asociadosFiltrados;
+                this._ventana.AsociadoDatos = primerAsociado;
             }
             else
             {
-                if (asociadosFiltrados.ToList<Asociado>().Count != 0)
-                    this._ventana.AsociadosDatos = asociadosFiltrados.ToList<Asociado>();
-                else
-                {
-                    this._ventana.AsociadosDatos = this._asociados;
-                    this._ventana.Mensaje(Recursos.MensajesConElUsuario.NoHayResultados, 1);
-                }
+                asociadosFiltrados.Insert(0, primerAsociado);
+                this._ventana.AsociadosSolicitud = this._asociados;
+                this._ventana.AsociadoSolicitud = primerAsociado;
+                this._ventana.AsociadosDatos = this._asociados;
+                this._ventana.AsociadoDatos = primerAsociado;
+                this._ventana.Mensaje(Recursos.MensajesConElUsuario.NoHayResultados, 1);
             }
+
 
             #region trace
             if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -974,23 +953,23 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
 
-            Mouse.OverrideCursor = Cursors.Wait;
+            //Mouse.OverrideCursor = Cursors.Wait;
 
-            Marca marca = (Marca)this._ventana.Marca;
-            IList<Asociado> asociados = this._asociadoServicios.ConsultarTodos();
-            Asociado primerAsociado = new Asociado();
-            primerAsociado.Id = int.MinValue;
-            asociados.Insert(0, primerAsociado);
-            this._ventana.AsociadosSolicitud = asociados;
-            this._ventana.AsociadosDatos = asociados;
-            this._ventana.AsociadoSolicitud = this.BuscarAsociado(asociados, marca.Asociado);
-            this._ventana.AsociadoDatos = this.BuscarAsociado(asociados, marca.Asociado);
-            this._ventana.NombreAsociadoDatos = ((Marca)this._ventana.Marca).Asociado.Nombre;
-            this._ventana.NombreAsociadoSolicitud = ((Marca)this._ventana.Marca).Asociado.Nombre;
-            this._asociados = asociados;
-            this._ventana.AsociadosEstanCargados = true;
+            //Marca marca = (Marca)this._ventana.Marca;
+            //IList<Asociado> asociados = this._asociadoServicios.ConsultarTodos();
+            //Asociado primerAsociado = new Asociado();
+            //primerAsociado.Id = int.MinValue;
+            //asociados.Insert(0, primerAsociado);
+            //this._ventana.AsociadosSolicitud = asociados;
+            //this._ventana.AsociadosDatos = asociados;
+            //this._ventana.AsociadoSolicitud = this.BuscarAsociado(asociados, marca.Asociado);
+            //this._ventana.AsociadoDatos = this.BuscarAsociado(asociados, marca.Asociado);
+            //this._ventana.NombreAsociadoDatos = ((Marca)this._ventana.Marca).Asociado.Nombre;
+            //this._ventana.NombreAsociadoSolicitud = ((Marca)this._ventana.Marca).Asociado.Nombre;
+            //this._asociados = asociados;
+            //this._ventana.AsociadosEstanCargados = true;
 
-            Mouse.OverrideCursor = null;
+            //Mouse.OverrideCursor = null;
 
             #region trace
             if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -1093,64 +1072,48 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
 
-            IEnumerable<Interesado> interesadosFiltrados = this._interesados;
 
+            Interesado primerInteresado = new Interesado(int.MinValue);
+
+
+            Interesado interesado = new Interesado();
+            IList<Interesado> interesadosFiltrados;
             if (filtrarEn == 0)
             {
-                if (!string.IsNullOrEmpty(this._ventana.IdInteresadoSolicitudFiltrar))
-                {
-                    interesadosFiltrados = from p in interesadosFiltrados
-                                           where p.Id == int.Parse(this._ventana.IdInteresadoSolicitudFiltrar)
-                                           select p;
-                }
+                interesado.Nombre = this._ventana.NombreInteresadoSolicitudFiltrar.ToUpper();
+                interesado.Id = this._ventana.IdInteresadoSolicitudFiltrar.Equals("") ? 0
+                                    : int.Parse(this._ventana.IdInteresadoSolicitudFiltrar);
 
-                if (!string.IsNullOrEmpty(this._ventana.NombreInteresadoSolicitudFiltrar))
-                {
-                    interesadosFiltrados = from p in interesadosFiltrados
-                                           where p.Nombre != null &&
-                                           p.Nombre.ToLower().Contains(this._ventana.NombreInteresadoSolicitudFiltrar.ToLower())
-                                           select p;
-                }
+
             }
             else
             {
-                if (!string.IsNullOrEmpty(this._ventana.IdInteresadoDatosFiltrar))
-                {
-                    interesadosFiltrados = from p in interesadosFiltrados
-                                           where p.Id == int.Parse(this._ventana.IdInteresadoDatosFiltrar)
-                                           select p;
-                }
+                interesado.Nombre = this._ventana.NombreInteresadoDatosFiltrar.ToUpper();
+                interesado.Id = this._ventana.IdInteresadoDatosFiltrar.Equals("") ? 0
+                                    : int.Parse(this._ventana.IdInteresadoDatosFiltrar);
 
-                if (!string.IsNullOrEmpty(this._ventana.NombreInteresadoDatosFiltrar))
-                {
-                    interesadosFiltrados = from p in interesadosFiltrados
-                                           where p.Nombre != null &&
-                                           p.Nombre.ToLower().Contains(this._ventana.NombreInteresadoDatosFiltrar.ToLower())
-                                           select p;
-                }
             }
+            if ((!interesado.Nombre.Equals("")) || (interesado.Id != 0))
+                interesadosFiltrados = this._interesadoServicios.ObtenerInteresadosFiltro(interesado);
+            else
+                interesadosFiltrados = new List<Interesado>();
 
-            // filtrarEn = 0 significa en el listview de la pestaña solicitud
-            // filtrarEn = 1 significa en el listview de la pestaña Datos 
-            if (filtrarEn == 0)
+            if (interesadosFiltrados.Count != 0)
             {
-                if (interesadosFiltrados.ToList<Interesado>().Count != 0)
-                    this._ventana.InteresadosSolicitud = interesadosFiltrados.ToList<Interesado>();
-                else
-                {
-                    this._ventana.InteresadosSolicitud = this._interesados;
-                    this._ventana.Mensaje(Recursos.MensajesConElUsuario.NoHayResultados, 1);
-                }
+                interesadosFiltrados.Insert(0, interesado);
+                this._ventana.InteresadosSolicitud = interesadosFiltrados;
+                this._ventana.InteresadoSolicitud = interesado;
+                this._ventana.InteresadosDatos = interesadosFiltrados;
+                this._ventana.InteresadoDatos = interesado;
             }
             else
             {
-                if (interesadosFiltrados.ToList<Interesado>().Count != 0)
-                    this._ventana.InteresadosDatos = interesadosFiltrados.ToList<Interesado>();
-                else
-                {
-                    this._ventana.InteresadosDatos = this._interesados;
-                    this._ventana.Mensaje(Recursos.MensajesConElUsuario.NoHayResultados, 1);
-                }
+                interesadosFiltrados.Insert(0, primerInteresado);
+                this._ventana.InteresadosSolicitud = this._interesados;
+                this._ventana.InteresadoSolicitud = primerInteresado;
+                this._ventana.InteresadosDatos = this._interesados;
+                this._ventana.InteresadoDatos = primerInteresado;
+                this._ventana.Mensaje(Recursos.MensajesConElUsuario.NoHayResultados, 1);
             }
 
             #region trace
