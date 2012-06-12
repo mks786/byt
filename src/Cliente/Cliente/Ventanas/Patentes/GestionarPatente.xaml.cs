@@ -207,7 +207,6 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
             }
         }
 
-
         public void PintarAsociado(string tipo)
         {
             SolidColorBrush color;
@@ -1525,8 +1524,6 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
         }
 
         #endregion
-
-  
 
     }
 }

@@ -59,6 +59,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
         private IList<Poder> _poderesInterseccion;
 
         private Patente _patente;
+        private bool _cargarPoderInicial = false;
 
         private bool _agregar;
 
@@ -354,6 +355,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
 
                     if (null != _patente.Asociado)
                         this._ventana.PintarAsociado(_patente.Asociado.TipoCliente.Id);
+
+
+                    if ((null != _patente.Interesado) && (null != _patente.Agente))
+                        _cargarPoderInicial = true;
                 }
                 else
                 {
@@ -1815,13 +1820,19 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
 
                 this._ventana.PoderDatos = poder != null ? poder.Id.ToString() : "";
 
-                this._ventana.PoderesSolicitudFiltrar = this._poderesInterseccion;
-                this._ventana.PoderesDatosFiltrar = this._poderesInterseccion;
+                this._poderesInterseccion.Insert(0, poder);
+                this._ventana.PoderesSolicitudFiltrar = _poderesInterseccion;
+                this._ventana.PoderesDatosFiltrar = _poderesInterseccion;
 
                 this._ventana.PoderSolicitudFiltrar = poder;
                 this._ventana.PoderDatosFiltrar = poder;
 
 
+            }
+            else
+            {
+                this._ventana.PoderesSolicitudFiltrar = _poderesInterseccion;
+                this._ventana.PoderesDatosFiltrar = _poderesInterseccion;
             }
 
             //this._ventana.PoderesEstanCargados = true;
@@ -1849,6 +1860,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
             {
                 _poderesInterseccion = this._poderServicios
                     .ObtenerPoderesEntreAgenteEInteresado((Agente)this._ventana.AgenteSolicitudFiltrar, (Interesado)this._ventana.InteresadoSolicitud);
+            }
+            else if (_cargarPoderInicial)
+            {
+                _poderesInterseccion = this._poderServicios
+                    .ObtenerPoderesEntreAgenteEInteresado(_patente.Agente, _patente.Interesado);
             }
             else
             {
