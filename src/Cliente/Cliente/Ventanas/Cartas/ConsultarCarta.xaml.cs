@@ -440,6 +440,15 @@ namespace Trascend.Bolet.Cliente.Ventanas.Cartas
             }
         }
 
+        private void _btnEliminar_Click(object sender, RoutedEventArgs e)
+        {
+            if (MessageBoxResult.Yes == MessageBox.Show(Recursos.MensajesConElUsuario.ConfirmacionEliminarCarta,
+                "Eliminar Carta", MessageBoxButton.YesNo, MessageBoxImage.Question))
+            {
+                this._presentador.EliminarCarta();
+            }
+        }
+
 
         //private void _soloNumero_KeyUp(object sender, KeyEventArgs e)
         //{

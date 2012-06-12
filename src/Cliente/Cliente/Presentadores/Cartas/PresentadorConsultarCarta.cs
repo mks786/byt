@@ -1069,6 +1069,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
             int index = 0;
             foreach (Usuario usuario in this._responsables)
             {
+                index = 0;
                 foreach (Usuario usuarioCarta in responsables)
                 {
                     if ((usuarioCarta != null) && (usuario.Id == usuarioCarta.Id))
@@ -1151,5 +1152,46 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
         //    }
         //    return respuesta;
         //}
+
+        public void EliminarCarta()
+        {
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                if (this._cartaServicios.Eliminar((Carta)this._ventana.Carta, UsuarioLogeado.Hash))
+                {
+                    this.Navegar(Recursos.MensajesConElUsuario.CartaEliminadaConExito, false);
+                }
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (ApplicationException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(ex.Message, true);
+            }
+            catch (RemotingException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorRemoting, true);
+            }
+            catch (SocketException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorConexionServidor, true);
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
+            }
+        }
     }
 }

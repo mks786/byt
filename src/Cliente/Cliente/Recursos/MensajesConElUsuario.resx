@@ -792,4 +792,10 @@
   <data name="AlertaRenovacionSinMarcas" xml:space="preserve">
     <value>Disculpe la Renovación debe tener al menos una Marca</value>
   </data>
+  <data name="CartaEliminadaConExito" xml:space="preserve">
+    <value>Carta eliminada exitosamente</value>
+  </data>
+  <data name="ConfirmacionEliminarCarta" xml:space="preserve">
+    <value>¿Está seguro que desea eliminar la correspondencia?</value>
+  </data>
 </root>

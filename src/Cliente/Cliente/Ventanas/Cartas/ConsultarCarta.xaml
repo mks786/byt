@@ -390,6 +390,10 @@
                     Click="_btnAuditoria_Click">
                 <TextBlock Name="_txbAuditoria" Text="{x:Static recurso:Etiquetas.btnAuditoria}"/>
             </Button>
+            <Button Name="_btnEliminar"  VerticalAlignment="Bottom" Height="25" Width="90" 
+                    Click="_btnEliminar_Click"  IsDefault="True">
+                <TextBlock Name="_txbEliminar" Text="{x:Static recurso:Etiquetas.btnEliminar}"/>
+            </Button>
             <Button Name="_btnCancelar" VerticalAlignment="Bottom" Height="25" Width="90" Click="_btnCancelar_Click">Cancelar</Button>
         </WrapPanel>
     </Grid>
