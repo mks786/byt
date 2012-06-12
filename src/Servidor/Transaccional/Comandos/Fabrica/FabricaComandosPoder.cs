@@ -74,5 +74,18 @@ namespace Trascend.Bolet.Comandos.Fabrica
         {
             return new ComandoConsultarPoderesFiltro(poder);
         }
+
+        /// <summary>
+        /// Método que devuelve el comando para consultar los poderes pertenecientes a un agente y a un poder
+        /// </summary>
+        /// <param name="agente">Agente a buscar</param>
+        /// <param name="interesado">Interesado a buscar</param>
+        /// <returns>Lista de poderes pertenecientes a los parametros</returns>
+        public static ComandoBase<IList<Poder>> ObtenerComandoConsultarPoderesEntreAgentesEInteresado(Agente agente, Interesado interesado)
+        {
+            return new ComandoConsultarPoderesEntreAgentesEInteresado(agente, interesado);
+        }
+
+        
     }
 }

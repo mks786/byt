@@ -134,6 +134,7 @@
     <Compile Include="Comandos\ComandosPlanilla\ComandoEliminarPlanilla.cs" />
     <Compile Include="Comandos\ComandosPoder\ComandoConsultarPoderesFiltro.cs" />
     <Compile Include="Comandos\ComandosPoder\ComandoConsultarPoderesPorAgente.cs" />
+    <Compile Include="Comandos\ComandosPoder\ComandoConsultarPoderesEntreAgentesEInteresado.cs" />
     <Compile Include="Comandos\ComandosRenovacion\ComandoConsultarRenovacionesFiltro.cs" />
     <Compile Include="Comandos\ComandosRenovacion\ComandoVerificarExistenciaRenovacion.cs" />
     <Compile Include="Comandos\ComandosRenovacion\ComandoConsultarUltimaRenovacion.cs" />

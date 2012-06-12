@@ -197,5 +197,25 @@ namespace Trascend.Bolet.Servicios.Implementacion
                 logger.Debug("Saliendo del Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
         }
+
+
+        public IList<Poder> ObtenerPoderesEntreAgenteEInteresado(Agente agente, Interesado interesado)
+        {
+            #region trace
+            if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+            IList<Poder> poderes;
+
+            poderes = ControladorPoder.ConsultarPoderesEntreAgenteEInteresado(agente, interesado);
+
+            return poderes;
+
+            #region trace
+            if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                logger.Debug("Saliendo del Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+        }
     }
 }

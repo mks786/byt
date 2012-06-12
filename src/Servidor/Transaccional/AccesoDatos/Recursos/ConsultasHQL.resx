@@ -709,4 +709,7 @@
     <value>p.CodigoInscripcion = '{0}'</value>
     <comment>Filtro por solicitud</comment>
   </data>
+  <data name="ObtenerPoderesEntreAgenteEInteresado" xml:space="preserve">
+    <value>Select p from Poder p where </value>
+  </data>
 </root>

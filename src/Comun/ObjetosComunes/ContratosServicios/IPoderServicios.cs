@@ -35,5 +35,14 @@ namespace Trascend.Bolet.ObjetosComunes.ContratosServicios
         /// <param name="poder">Poder a filtrar</param>
         /// <returns>Lista de poderes que cumpla con el filtro</returns>
         IList<Poder> ObtenerPoderesFiltro(Poder poder);
+
+
+        /// <summary>
+        /// Servicio que obtiene los poderes pertenecientes a un Agente y a un interesado
+        /// </summary>
+        /// <param name="agente">Agente a buscar</param>
+        /// <param name="interesado">Interesado a buscar</param>
+        /// <returns>Poderes pertenecientes a los parametros</returns>
+        IList<Poder> ObtenerPoderesEntreAgenteEInteresado(Agente agente, Interesado interesado);
     }
 }

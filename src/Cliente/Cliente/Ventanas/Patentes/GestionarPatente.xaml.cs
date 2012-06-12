@@ -1211,7 +1211,6 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
 
         private void _txtPoderSolicitud_MouseDoubleClick(object sender, RoutedEventArgs e)
         {
-            if (!this._poderesCargados)
                 this._presentador.CargarPoderes();
 
             OcultarLstAsociadoSolicitud();

@@ -28,5 +28,8 @@ namespace Trascend.Bolet.AccesoDatos.Contrato
         /// <param name="poder">filtros de poder</param>
         /// <returns>poder filtrado</returns>
         IList<Poder> ObtenerPoderesFiltro(Poder poder);
+
+
+        IList<Poder> ObtenerPoderesEntreAgenteEInteresado(Agente agente, Interesado interesado);
     }
 }
