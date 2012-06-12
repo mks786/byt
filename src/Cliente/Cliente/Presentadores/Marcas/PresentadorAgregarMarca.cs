@@ -44,6 +44,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
         private IList<Interesado> _interesados;
         private IList<Corresponsal> _corresponsales;
         private IList<Auditoria> _auditorias;
+        private IList<Poder> _poderesInterseccion;
+
+      
 
         /// <summary>
         /// Constructor Predeterminado
@@ -1261,22 +1264,60 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
 
+            //Mouse.OverrideCursor = Cursors.Wait;
+
+            //Marca marca = (Marca)this._ventana.Marca;
+            //IList<Poder> poderes = this._poderServicios.ConsultarTodos();
+            //Poder poder = new Poder();
+            //poder.Id = int.MinValue;
+            //poderes.Insert(0, poder);
+            //this._ventana.PoderesDatos = poderes;
+            //this._ventana.PoderesSolicitud = poderes;
+
+            //this._ventana.PoderesEstanCargados = true;
+
+            //if (_esMarcaDuplicada)
+            //{
+            //    this._ventana.PoderDatos = this.BuscarPoder(poderes, marca.Poder);
+            //    this._ventana.PoderSolicitud = this.BuscarPoder(poderes, marca.Poder);
+            //}
+
+            //Mouse.OverrideCursor = null;
+
             Mouse.OverrideCursor = Cursors.Wait;
 
-            Marca marca = (Marca)this._ventana.Marca;
-            IList<Poder> poderes = this._poderServicios.ConsultarTodos();
-            Poder poder = new Poder();
-            poder.Id = int.MinValue;
-            poderes.Insert(0, poder);
-            this._ventana.PoderesDatos = poderes;
-            this._ventana.PoderesSolicitud = poderes;
+            CargarPoderesEntreInteresadoAgente();
 
-            this._ventana.PoderesEstanCargados = true;
+            Marca marca = null != this._ventana.Marca ? (Marca)this._ventana.Marca : new Marca();
 
-            if (_esMarcaDuplicada)
+            this._ventana.PoderesSolicitud = this._poderesInterseccion;
+            this._ventana.PoderesDatos = this._poderesInterseccion;
+            Mouse.OverrideCursor = null;
+
+
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+        }
+
+        private void CargarPoderesEntreInteresadoAgente()
+        {
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+            Mouse.OverrideCursor = Cursors.Wait;
+
+            if ((this._ventana.InteresadoSolicitud != null) && (this._ventana.Agente!= null))
             {
-                this._ventana.PoderDatos = this.BuscarPoder(poderes, marca.Poder);
-                this._ventana.PoderSolicitud = this.BuscarPoder(poderes, marca.Poder);
+                _poderesInterseccion = this._poderServicios
+                    .ObtenerPoderesEntreAgenteEInteresado((Agente)this._ventana.Agente, (Interesado)this._ventana.InteresadoSolicitud);
+            }
+            else
+            {
+                //MENSAJE DE ERROR
             }
 
             Mouse.OverrideCursor = null;
@@ -1286,6 +1327,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
         }
+
 
         #endregion
 
