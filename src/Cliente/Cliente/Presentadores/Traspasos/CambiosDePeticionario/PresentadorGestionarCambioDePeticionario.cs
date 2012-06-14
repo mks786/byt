@@ -467,6 +467,14 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDePeticionario
                 {
                     CambioPeticionario cambioPeticionario = CargarCambioPeticionarioDeLaPantalla();
 
+                    cambioPeticionario.Marca = (Marca)this._ventana.Marca;
+                    cambioPeticionario.Marca.InfoBoles = this._infoBolServicios.ConsultarInfoBolesPorMarca(cambioPeticionario.Marca);
+                    cambioPeticionario.Marca.Operaciones = this._operacionServicios.ConsultarOperacionesPorMarca(cambioPeticionario.Marca);
+                    cambioPeticionario.Marca.Busquedas = this._busquedaServicios.ConsultarBusquedasPorMarca(cambioPeticionario.Marca);
+
+                    cambioPeticionario.Marca.InfoAdicional = this._infoAdicionalServicios.ConsultarPorId(cambioPeticionario.Marca.InfoAdicional);
+                    cambioPeticionario.Marca.Anaqua = this._anaquaServicios.ConsultarPorId(cambioPeticionario.Marca.Anaqua);
+
                     bool exitoso = this._cambioPeticionarioServicios.InsertarOModificar(cambioPeticionario, UsuarioLogeado.Hash);
 
                     if ((exitoso) && (this._agregar == false))

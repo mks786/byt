@@ -373,7 +373,16 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeNombre
                 //Modifica los datos del Cambio De Nombre
                 else if (this._ventana.TextoBotonModificar == Recursos.Etiquetas.btnAceptar)
                 {
-                    CambioDeNombre cambioDeNombre = CargarCambioDeNombreDeLaPantalla();                   
+                    CambioDeNombre cambioDeNombre = CargarCambioDeNombreDeLaPantalla();
+
+                    cambioDeNombre.Marca = (Marca)this._ventana.Marca;
+                    cambioDeNombre.Marca.InfoBoles = this._infoBolServicios.ConsultarInfoBolesPorMarca(cambioDeNombre.Marca);
+                    cambioDeNombre.Marca.Operaciones = this._operacionServicios.ConsultarOperacionesPorMarca(cambioDeNombre.Marca);
+                    cambioDeNombre.Marca.Busquedas = this._busquedaServicios.ConsultarBusquedasPorMarca(cambioDeNombre.Marca);
+
+                    cambioDeNombre.Marca.InfoAdicional = this._infoAdicionalServicios.ConsultarPorId(cambioDeNombre.Marca.InfoAdicional);
+                    cambioDeNombre.Marca.Anaqua = this._anaquaServicios.ConsultarPorId(cambioDeNombre.Marca.Anaqua);
+
 
                     bool exitoso = this._cambioDeNombreServicios.InsertarOModificar(cambioDeNombre, UsuarioLogeado.Hash);
 

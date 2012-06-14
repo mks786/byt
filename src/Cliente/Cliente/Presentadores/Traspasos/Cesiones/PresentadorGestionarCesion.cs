@@ -486,6 +486,13 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Cesiones
                 else if (this._ventana.TextoBotonModificar == Recursos.Etiquetas.btnAceptar)
                 {
                     Cesion cesion = CargarCesionDeLaPantalla();
+                    cesion.Marca = (Marca)this._ventana.Marca;
+                    cesion.Marca.InfoBoles = this._infoBolServicios.ConsultarInfoBolesPorMarca(cesion.Marca);
+                    cesion.Marca.Operaciones = this._operacionServicios.ConsultarOperacionesPorMarca(cesion.Marca);
+                    cesion.Marca.Busquedas = this._busquedaServicios.ConsultarBusquedasPorMarca(cesion.Marca);
+
+                    cesion.Marca.InfoAdicional = this._infoAdicionalServicios.ConsultarPorId(cesion.Marca.InfoAdicional);
+                    cesion.Marca.Anaqua = this._anaquaServicios.ConsultarPorId(cesion.Marca.Anaqua);
 
                     bool exitoso = this._cesionServicios.InsertarOModificar(cesion, UsuarioLogeado.Hash);
 

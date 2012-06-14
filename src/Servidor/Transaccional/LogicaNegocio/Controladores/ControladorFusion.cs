@@ -94,6 +94,13 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
                     comando.Ejecutar();
                     comandoOperacion.Ejecutar();
 
+                    fusion.Marca.Interesado = fusion.InteresadoSobreviviente;
+                    fusion.Marca.Agente = fusion.Agente;
+                    fusion.Marca.Poder = fusion.Poder;
+
+                    ComandoBase<bool> comandoEditarMarca = FabricaComandosMarca.ObtenerComandoInsertarOModificar(fusion.Marca);
+                    comandoEditarMarca.Ejecutar();
+
                     exitoso = comando.Receptor.ObjetoAlmacenado;
 
                     if (exitoso)

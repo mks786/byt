@@ -97,21 +97,23 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
                     comando.Ejecutar();
                     comandoOperacion.Ejecutar();
 
-                    ComandoBase<Marca> comandoMarca = FabricaComandosMarca.ObtenerComandoConsultarMarcaConTodo(cesion.Marca);
-                    comandoMarca.Ejecutar();
-                    Marca marca = comandoMarca.Receptor.ObjetoAlmacenado;
-                    marca.Interesado = cesion.Cesionario;
-                    marca.Agente = cesion.AgenteCesionario;
-                    marca.Poder = cesion.PoderCesionario;
 
-                    ComandoBase<bool> comandoEditarMarca = FabricaComandosMarca.ObtenerComandoInsertarOModificar(marca);
+                    cesion.Marca.Interesado = cesion.Cesionario;
+                    cesion.Marca.Agente = cesion.AgenteCesionario;
+                    cesion.Marca.Poder = cesion.PoderCesionario;
 
-                    exitoso = comando.Receptor.ObjetoAlmacenado;
+                    ComandoBase<bool> comandoEditarMarca = FabricaComandosMarca.ObtenerComandoInsertarOModificar(cesion.Marca);
+                    comandoEditarMarca.Ejecutar();
 
-                    if (exitoso)
+                    if (comandoEditarMarca.Receptor.ObjetoAlmacenado)
                     {
-                        comandoCesionContador.Ejecutar();
-                        comandoOperacionContador.Ejecutar();
+                        exitoso = comando.Receptor.ObjetoAlmacenado;
+
+                        if (exitoso)
+                        {
+                            comandoCesionContador.Ejecutar();
+                            comandoOperacionContador.Ejecutar();
+                        }
                     }
                 }
                 else

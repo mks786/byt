@@ -529,6 +529,15 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Licencias
                 {
                     Licencia licencia = CargarLicenciaDeLaPantalla();
 
+                    licencia.Marca = (Marca)this._ventana.Marca;
+                    licencia.Marca.InfoBoles = this._infoBolServicios.ConsultarInfoBolesPorMarca(licencia.Marca);
+                    licencia.Marca.Operaciones = this._operacionServicios.ConsultarOperacionesPorMarca(licencia.Marca);
+                    licencia.Marca.Busquedas = this._busquedaServicios.ConsultarBusquedasPorMarca(licencia.Marca);
+
+                    licencia.Marca.InfoAdicional = this._infoAdicionalServicios.ConsultarPorId(licencia.Marca.InfoAdicional);
+                    licencia.Marca.Anaqua = this._anaquaServicios.ConsultarPorId(licencia.Marca.Anaqua);
+
+
                     bool exitoso = this._licenciaServicios.InsertarOModificar(licencia, UsuarioLogeado.Hash);
 
                     if ((exitoso) && (this._agregar == false))

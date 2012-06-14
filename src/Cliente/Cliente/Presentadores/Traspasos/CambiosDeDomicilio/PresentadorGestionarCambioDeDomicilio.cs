@@ -88,14 +88,14 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeDomicilio
                     this._ventana.Poder = null;
                     this._ventana.InteresadoAnterior = null;
                     this._ventana.InteresadoActual = null;
-                    this._ventana.AgenteApoderado = null;                    
+                    this._ventana.AgenteApoderado = null;
 
                     CambiarAModificar();
 
                     this._ventana.TextoBotonRegresar = Recursos.Etiquetas.btnCancelar;
-                                       
+
                     this._ventana.ActivarControlesAlAgregar();
-                    
+
                 }
 
                 #region Servicios
@@ -301,7 +301,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeDomicilio
         public CambioDeDomicilio CargarCambioDeDomicilioDeLaPantalla()
         {
 
-            CambioDeDomicilio cambioDeDomicilio = (CambioDeDomicilio)this._ventana.CambioDeDomicilio;          
+            CambioDeDomicilio cambioDeDomicilio = (CambioDeDomicilio)this._ventana.CambioDeDomicilio;
 
             if (null != this._ventana.Marca)
                 cambioDeDomicilio.Marca = ((Marca)this._ventana.Marca).Id != int.MinValue ? (Marca)this._ventana.Marca : null;
@@ -313,21 +313,21 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeDomicilio
                 cambioDeDomicilio.InteresadoActual = ((Interesado)this._ventana.InteresadoActual).Id != int.MinValue ? (Interesado)this._ventana.InteresadoActual : null;
 
             if (null != this._ventana.AgenteApoderado)
-                cambioDeDomicilio.Agente = !((Agente)this._ventana.AgenteApoderado).Id.Equals("") ? (Agente)this._ventana.AgenteApoderado : null;            
+                cambioDeDomicilio.Agente = !((Agente)this._ventana.AgenteApoderado).Id.Equals("") ? (Agente)this._ventana.AgenteApoderado : null;
 
             if (null != this._ventana.Poder)
                 cambioDeDomicilio.Poder = ((Poder)this._ventana.Poder).Id != int.MinValue ? (Poder)this._ventana.Poder : null;
 
             if (null != this._ventana.Boletin)
-                cambioDeDomicilio.BoletinPublicacion = ((Boletin)this._ventana.Boletin).Id != int.MinValue ? (Boletin)this._ventana.Boletin : null;     
- 
+                cambioDeDomicilio.BoletinPublicacion = ((Boletin)this._ventana.Boletin).Id != int.MinValue ? (Boletin)this._ventana.Boletin : null;
+
             return cambioDeDomicilio;
         }
 
         public void CambiarAModificar()
         {
             this._ventana.HabilitarCampos = true;
-            this._ventana.TextoBotonModificar = Recursos.Etiquetas.btnAceptar;            
+            this._ventana.TextoBotonModificar = Recursos.Etiquetas.btnAceptar;
         }
 
         /// <summary>
@@ -356,6 +356,15 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeDomicilio
                 else if (this._ventana.TextoBotonModificar == Recursos.Etiquetas.btnAceptar)
                 {
                     CambioDeDomicilio cambioDeDomicilio = CargarCambioDeDomicilioDeLaPantalla();
+
+                    cambioDeDomicilio.Marca = (Marca)this._ventana.Marca;
+                    cambioDeDomicilio.Marca.InfoBoles = this._infoBolServicios.ConsultarInfoBolesPorMarca(cambioDeDomicilio.Marca);
+                    cambioDeDomicilio.Marca.Operaciones = this._operacionServicios.ConsultarOperacionesPorMarca(cambioDeDomicilio.Marca);
+                    cambioDeDomicilio.Marca.Busquedas = this._busquedaServicios.ConsultarBusquedasPorMarca(cambioDeDomicilio.Marca);
+
+                    cambioDeDomicilio.Marca.InfoAdicional = this._infoAdicionalServicios.ConsultarPorId(cambioDeDomicilio.Marca.InfoAdicional);
+                    cambioDeDomicilio.Marca.Anaqua = this._anaquaServicios.ConsultarPorId(cambioDeDomicilio.Marca.Anaqua);
+
 
                     bool exitoso = this._cambioDeDomicilioServicios.InsertarOModificar(cambioDeDomicilio, UsuarioLogeado.Hash);
 
@@ -650,11 +659,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeDomicilio
         private void LlenarListaAgente(Poder poder)
         {
             Agente primerAgente = new Agente("");
-           
+
             this._agentesApoderados = this._agenteServicios.ObtenerAgentesDeUnPoder(poder);
             this._agentesApoderados.Insert(0, primerAgente);
             this._ventana.AgenteApoderadoFiltrados = this._agentesApoderados;
-            this._ventana.AgenteApoderadoFiltrado = primerAgente;               
+            this._ventana.AgenteApoderadoFiltrado = primerAgente;
         }
 
         #region Marcas
@@ -680,13 +689,13 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeDomicilio
             {
                 this._ventana.MarcasFiltradas = this._marcas;
                 this._ventana.MarcaFiltrada = primeraMarca;
-            }                           
-                 
+            }
+
         }
 
         public void ConsultarMarcas()
         {
- 
+
             Mouse.OverrideCursor = Cursors.Wait;
 
             try
@@ -698,7 +707,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeDomicilio
 
                 Marca primeraMarca = new Marca(int.MinValue);
 
-               
+
                 Marca marca = new Marca();
                 IList<Marca> marcasFiltradas;
                 marca.Descripcion = this._ventana.NombreMarcaFiltrar.ToUpper();
@@ -754,7 +763,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeDomicilio
             {
                 Mouse.OverrideCursor = null;
             }
-        }        
+        }
 
         public bool CambiarMarca()
         {
@@ -834,7 +843,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeDomicilio
                 #endregion
 
                 Interesado primerInteresado = new Interesado(int.MinValue);
-                
+
                 Interesado interesado = new Interesado();
                 IList<Interesado> interesadosFiltrados;
                 interesado.Nombre = this._ventana.NombreInteresadoAnteriorFiltrar.ToUpper();
@@ -857,7 +866,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeDomicilio
                     this._ventana.InteresadosAnteriorFiltrados = this._interesadosAnterior;
                     this._ventana.InteresadoAnteriorFiltrado = primerInteresado;
                     this._ventana.Mensaje(Recursos.MensajesConElUsuario.NoHayResultados, 1);
-                }               
+                }
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -1031,7 +1040,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeDomicilio
                 #endregion
 
                 Interesado primerInteresado = new Interesado(int.MinValue);
-                
+
                 Interesado interesado = new Interesado();
                 IList<Interesado> interesadosFiltrados;
                 interesado.Nombre = this._ventana.NombreInteresadoActualFiltrar.ToUpper();
@@ -1087,7 +1096,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeDomicilio
             {
                 Mouse.OverrideCursor = null;
             }
-        }        
+        }
 
         public bool CambiarInteresadoActual()
         {
@@ -1261,7 +1270,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeDomicilio
 
                 Agente primerAgente = new Agente("");
 
-                
+
                 Agente apoderadoInteresado = new Agente();
                 IList<Agente> agentesInteresadoFiltrados;
                 apoderadoInteresado.Nombre = this._ventana.NombreAgenteApoderadoFiltrar.ToUpper();
@@ -1284,7 +1293,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeDomicilio
                     this._ventana.AgenteApoderadoFiltrados = this._agentesApoderados;
                     this._ventana.AgenteApoderadoFiltrado = primerAgente;
                     this._ventana.Mensaje(Recursos.MensajesConElUsuario.NoHayResultados, 1);
-                }                
+                }
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -1315,7 +1324,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeDomicilio
             {
                 Mouse.OverrideCursor = null;
             }
-        }       
+        }
 
         public bool CambiarApoderado()
         {
@@ -1462,10 +1471,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeDomicilio
             {
                 this._ventana.PoderesFiltrados = this._poderes;
                 this._ventana.PoderFiltrado = this.BuscarPoder(this._poderes, this._poderes[0]);
-                this._ventana.ConvertirEnteroMinimoABlanco(); 
+                this._ventana.ConvertirEnteroMinimoABlanco();
             }
 
-             
+
         }
 
         public void ConsultarPoderes()
@@ -1481,7 +1490,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeDomicilio
 
                 Poder pimerPoder = new Poder(int.MinValue);
 
-                
+
                 Poder poder = new Poder();
                 IList<Poder> poderesFiltrados;
 
@@ -1510,7 +1519,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeDomicilio
                     this._ventana.PoderesFiltrados = this._poderes;
                     this._ventana.PoderFiltrado = pimerPoder;
                     this._ventana.Mensaje(Recursos.MensajesConElUsuario.NoHayResultados, 1);
-                }               
+                }
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -1541,7 +1550,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeDomicilio
             {
                 Mouse.OverrideCursor = null;
             }
-        }        
+        }
 
         public bool CambiarPoder()
         {
@@ -1631,7 +1640,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeDomicilio
             }
 
             return retorno;
-        }        
+        }
 
         public void LlenarListasPoderes(CambioDeDomicilio cambioDeDomicilio)
         {
@@ -1647,7 +1656,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeDomicilio
             Mouse.OverrideCursor = Cursors.Wait;
 
             bool retorno = false;
-            IList<Poder> listaIntereseccionInteresado = new List<Poder>();            
+            IList<Poder> listaIntereseccionInteresado = new List<Poder>();
             Poder primerPoder = new Poder(int.MinValue);
 
             Poder poderActual = new Poder();
@@ -1735,7 +1744,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeDomicilio
                     case "_btnVanDir":
                         ImprimirVanDir();
                         break;
-                        
+
 
                     default:
                         break;
@@ -1844,7 +1853,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeDomicilio
             return true;
         }
 
-        
+
 
     }
 }

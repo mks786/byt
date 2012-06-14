@@ -569,6 +569,13 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
                 else if (this._ventana.TextoBotonModificar == Recursos.Etiquetas.btnAceptar)
                 {
                     Fusion fusion = CargarFusionDeLaPantalla();
+                    fusion.Marca = (Marca)this._ventana.Marca;
+                    fusion.Marca.InfoBoles = this._infoBolServicios.ConsultarInfoBolesPorMarca(fusion.Marca);
+                    fusion.Marca.Operaciones = this._operacionServicios.ConsultarOperacionesPorMarca(fusion.Marca);
+                    fusion.Marca.Busquedas = this._busquedaServicios.ConsultarBusquedasPorMarca(fusion.Marca);
+
+                    fusion.Marca.InfoAdicional = this._infoAdicionalServicios.ConsultarPorId(fusion.Marca.InfoAdicional);
+                    fusion.Marca.Anaqua = this._anaquaServicios.ConsultarPorId(fusion.Marca.Anaqua);
 
                     bool exitoso = this._fusionesServicios.InsertarOModificar(fusion, UsuarioLogeado.Hash);
 

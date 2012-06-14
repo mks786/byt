@@ -94,6 +94,13 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
                     comando.Ejecutar();
                     comandoOperacion.Ejecutar();
 
+                    cambioDeDomicilio.Marca.Interesado = cambioDeDomicilio.InteresadoActual;
+                    cambioDeDomicilio.Marca.Agente = cambioDeDomicilio.Agente;
+                    cambioDeDomicilio.Marca.Poder = cambioDeDomicilio.Poder;
+
+                    ComandoBase<bool> comandoEditarMarca = FabricaComandosMarca.ObtenerComandoInsertarOModificar(cambioDeDomicilio.Marca);
+                    comandoEditarMarca.Ejecutar();
+
                     exitoso = comando.Receptor.ObjetoAlmacenado;
 
                     if (exitoso)

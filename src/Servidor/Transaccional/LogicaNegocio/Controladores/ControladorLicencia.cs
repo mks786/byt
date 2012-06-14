@@ -93,6 +93,13 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
                     comando.Ejecutar();
                     comandoOperacion.Ejecutar();
 
+                    licencia.Marca.Interesado = licencia.InteresadoLicenciatario;
+                    licencia.Marca.Agente = licencia.AgenteLicenciatario;
+                    licencia.Marca.Poder = licencia.PoderLicenciatario;
+
+                    ComandoBase<bool> comandoEditarMarca = FabricaComandosMarca.ObtenerComandoInsertarOModificar(licencia.Marca);
+                    comandoEditarMarca.Ejecutar();
+
                     exitoso = comando.Receptor.ObjetoAlmacenado;
 
                     if (exitoso)
