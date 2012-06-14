@@ -20,13 +20,19 @@ namespace Trascend.Bolet.Cliente.Contratos.Traspasos.Cesiones
 
         object MarcasFiltradas { get; set; }
 
-        object MarcaFiltrada { get; set; }      
+        object MarcaFiltrada { get; set; }
+
+        string IdMarca { get; set; }
 
         #endregion
 
         #region Cedente
 
         string NombreCedente { set; }
+
+        string IdApoderadoCedente { get; set; }
+
+        string IdCedente { get; set; }
 
         object InteresadoCedente { get; set; }
 
@@ -71,6 +77,10 @@ namespace Trascend.Bolet.Cliente.Contratos.Traspasos.Cesiones
         #region Cesionario
 
         string NombreCesionario { set; }
+
+        string IdApoderadoCesionario { get; set; }
+
+        string IdCesionario { get; set; }
 
         object InteresadoCesionario { get; set; }
 

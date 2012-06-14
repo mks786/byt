@@ -94,9 +94,21 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
                     comando.Ejecutar();
                     comandoOperacion.Ejecutar();
 
+                    ComandoBase<Patente> comandoMarca = FabricaComandosPatente.ObtenerComandoConsultarPatenteConTodo(cambioNombre.Patente);
+                    comandoMarca.Ejecutar();
+                    Patente patente = comandoMarca.Receptor.ObjetoAlmacenado;
+                    patente.Interesado = cambioNombre.InteresadoActual;
+                    patente.Agente = cambioNombre.Agente;
+                    patente.Poder = cambioNombre.Poder;
+
+                    ComandoBase<bool> comandoEditarPatente = FabricaComandosPatente.ObtenerComandoInsertarOModificar(patente);
+                    comandoEditarPatente.Ejecutar();
+                    bool exitosoPatente = comandoEditarPatente.Receptor.ObjetoAlmacenado;
+
+
                     exitoso = comando.Receptor.ObjetoAlmacenado;
 
-                    if (exitoso)
+                    if ((exitoso) && (exitosoPatente))
                     {
                         comandoCambioNombreContador.Ejecutar();
                         comandoOperacionContador.Ejecutar();

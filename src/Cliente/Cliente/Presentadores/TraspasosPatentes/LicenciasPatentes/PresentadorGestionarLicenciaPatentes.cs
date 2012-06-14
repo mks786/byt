@@ -458,31 +458,41 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.LicenciasPatent
                 logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
 
-            LicenciaPatente licencia = (LicenciaPatente)this._ventana.LicenciaPatente;            
+            LicenciaPatente licencia = (LicenciaPatente)this._ventana.LicenciaPatente;
 
             if (null != this._ventana.PatenteFiltrada)
-                licencia.Patente = ((Patente)this._ventana.PatenteFiltrada).Id != int.MinValue ? (Patente)this._ventana.PatenteFiltrada : null;
+            {
+                licencia.Patente = ((Patente) this._ventana.PatenteFiltrada).Id != int.MinValue ? 
+                                                    (Patente) this._ventana.PatenteFiltrada : null;
+                licencia.InteresadoLicenciante = ((Patente)this._ventana.Patente).Interesado;
+                licencia.AgenteLicenciante = ((Patente)this._ventana.Patente).Agente;
+                licencia.PoderLicenciante = ((Patente)this._ventana.Patente).Poder;
+            }
 
             if (null != this._ventana.InteresadoLicenciante)
                 licencia.InteresadoLicenciante = ((Interesado)this._ventana.InteresadoLicenciante).Id != int.MinValue ? (Interesado)this._ventana.InteresadoLicenciante : null;
 
             if (null != this._ventana.InteresadoLicenciatario)
-                licencia.InteresadoLicenciatario = ((Interesado)this._ventana.InteresadoLicenciatario).Id != int.MinValue ? (Interesado)this._ventana.InteresadoLicenciatario : null;
+                licencia.InteresadoLicenciatario = ((Interesado)this._ventana.InteresadoLicenciatario).Id != int.MinValue ?
+                                                                    (Interesado)this._ventana.InteresadoLicenciatario : null;
 
             if (null != this._ventana.ApoderadoLicencianteFiltrado)
                 licencia.AgenteLicenciante = !((Agente)this._ventana.ApoderadoLicencianteFiltrado).Id.Equals("") ? (Agente)this._ventana.ApoderadoLicencianteFiltrado : null;
 
             if (null != this._ventana.ApoderadoLicenciatarioFiltrado)
-                licencia.AgenteLicenciatario = !((Agente)this._ventana.ApoderadoLicenciatarioFiltrado).Id.Equals("") ? (Agente)this._ventana.ApoderadoLicenciatarioFiltrado : null;
+                licencia.AgenteLicenciatario = !((Agente)this._ventana.ApoderadoLicenciatarioFiltrado).Id.Equals("") ?
+                                                            (Agente)this._ventana.ApoderadoLicenciatarioFiltrado : null;
 
             if (null != this._ventana.PoderLicencianteFiltrado)
                 licencia.PoderLicenciante = ((Poder)this._ventana.PoderLicencianteFiltrado).Id != int.MinValue ? (Poder)this._ventana.PoderLicencianteFiltrado : null;
 
             if (null != this._ventana.PoderLicenciatarioFiltrado)
-                licencia.PoderLicenciatario = ((Poder)this._ventana.PoderLicenciatarioFiltrado).Id != int.MinValue ? (Poder)this._ventana.PoderLicenciatarioFiltrado : null;
+                licencia.PoderLicenciatario = ((Poder)this._ventana.PoderLicenciatarioFiltrado).Id != int.MinValue ? 
+                                                                (Poder)this._ventana.PoderLicenciatarioFiltrado : null;
 
             if (null != this._ventana.Boletin)
-                licencia.Boletin = ((Boletin)this._ventana.Boletin).Id != int.MinValue ? (Boletin)this._ventana.Boletin : null;
+                licencia.Boletin = ((Boletin)this._ventana.Boletin).Id != int.MinValue ? 
+                                                    (Boletin)this._ventana.Boletin : null;
 
             #region trace
             if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -1260,6 +1270,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.LicenciasPatent
                 {
                     this._ventana.Patente = this._ventana.PatenteFiltrada;
                     this._ventana.NombrePatente = ((Patente)this._ventana.PatenteFiltrada).Descripcion;
+                    this._ventana.InteresadoLicenciante = ((Patente)this._ventana.Patente).Interesado;
+                    this._ventana.ApoderadoLicenciante = ((Patente)this._ventana.Patente).Agente;
+                    this._ventana.PoderLicenciante = ((Patente)this._ventana.Patente).Poder;
                     retorno = true;
 
                     if (null != ((Patente)this._ventana.Patente).Asociado)

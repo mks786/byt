@@ -419,30 +419,44 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CambiosDePetici
         {
 
             CambioPeticionarioPatente cambioPeticionario = (CambioPeticionarioPatente)this._ventana.CambioPeticionarioPatente;
-            
+
             if (null != this._ventana.Patente)
-                cambioPeticionario.Patente = ((Patente)this._ventana.Patente).Id != int.MinValue ? (Patente)this._ventana.Patente : null;
+            {
+                cambioPeticionario.Patente = ((Patente) this._ventana.Patente).Id != int.MinValue
+                                                 ? (Patente) this._ventana.Patente : null;
+                cambioPeticionario.InteresadoAnterior = ((Patente)this._ventana.Patente).Interesado;
+                cambioPeticionario.AgenteAnterior = ((Patente)this._ventana.Patente).Agente;
+                cambioPeticionario.PoderAnterior = ((Patente)this._ventana.Patente).Poder;
+
+            }
 
             if (null != this._ventana.InteresadoAnterior)
-                cambioPeticionario.InteresadoAnterior = ((Interesado)this._ventana.InteresadoAnterior).Id != int.MinValue ? (Interesado)this._ventana.InteresadoAnterior : null;
+                cambioPeticionario.InteresadoAnterior = ((Interesado)this._ventana.InteresadoAnterior).Id != int.MinValue ? 
+                                                                        (Interesado)this._ventana.InteresadoAnterior : null;
 
             if (null != this._ventana.InteresadoActual)
-                cambioPeticionario.InteresadoActual = ((Interesado)this._ventana.InteresadoActual).Id != int.MinValue ? (Interesado)this._ventana.InteresadoActual : null;
+                cambioPeticionario.InteresadoActual = ((Interesado)this._ventana.InteresadoActual).Id != int.MinValue ?
+                                                                    (Interesado)this._ventana.InteresadoActual : null;
 
             if (null != this._ventana.ApoderadoActual)
-                cambioPeticionario.AgenteActual = !((Agente)this._ventana.ApoderadoActual).Id.Equals("") ? (Agente)this._ventana.ApoderadoActual : null;
+                cambioPeticionario.AgenteActual = !((Agente)this._ventana.ApoderadoActual).Id.Equals("") ?
+                                                                (Agente)this._ventana.ApoderadoActual : null;
 
             if (null != this._ventana.ApoderadoAnterior)
-                cambioPeticionario.AgenteAnterior = !((Agente)this._ventana.ApoderadoAnterior).Id.Equals("") ? (Agente)this._ventana.ApoderadoAnterior : null;
+                cambioPeticionario.AgenteAnterior = !((Agente)this._ventana.ApoderadoAnterior).Id.Equals("") ? 
+                                                                    (Agente)this._ventana.ApoderadoAnterior : null;
 
             if (null != this._ventana.PoderActual)
-                cambioPeticionario.PoderActual = ((Poder)this._ventana.PoderActual).Id != int.MinValue ? (Poder)this._ventana.PoderActual : null;
+                cambioPeticionario.PoderActual = ((Poder)this._ventana.PoderActual).Id != int.MinValue ?
+                                                                    (Poder)this._ventana.PoderActual : null;
 
             if (null != this._ventana.PoderAnterior)
-                cambioPeticionario.PoderAnterior = ((Poder)this._ventana.PoderAnterior).Id != int.MinValue ? (Poder)this._ventana.PoderAnterior : null;
+                cambioPeticionario.PoderAnterior = ((Poder)this._ventana.PoderAnterior).Id != int.MinValue ? 
+                                                                    (Poder)this._ventana.PoderAnterior : null;
 
             if (null != this._ventana.Boletin)
-                cambioPeticionario.BoletinPublicacion = ((Boletin)this._ventana.Boletin).Id != int.MinValue ? (Boletin)this._ventana.Boletin : null;     
+                cambioPeticionario.BoletinPublicacion = ((Boletin)this._ventana.Boletin).Id != int.MinValue ? 
+                                                                        (Boletin)this._ventana.Boletin : null;     
  
 
             return cambioPeticionario;
@@ -1069,6 +1083,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CambiosDePetici
                 {
                     this._ventana.Patente = this._ventana.PatenteFiltrada;
                     this._ventana.NombrePatente = ((Patente)this._ventana.PatenteFiltrada).Descripcion;
+                    this._ventana.InteresadoAnterior = ((Patente)this._ventana.Patente).Interesado;
+                    this._ventana.ApoderadoAnterior = ((Patente)this._ventana.Patente).Agente;
+                    this._ventana.PoderAnterior = ((Patente)this._ventana.Patente).Poder;
                     retorno = true;
                 }
 

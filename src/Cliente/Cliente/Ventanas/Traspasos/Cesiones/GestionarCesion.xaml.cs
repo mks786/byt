@@ -115,6 +115,37 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Cesiones
             set { this._gridDatosCesionario.DataContext = value; }            
         }
 
+        public string IdMarca
+        {
+            get {return this._txtIdMarca.Text; }
+            set { this._txtIdMarca.DataContext = value; } 
+        }
+
+        public string IdCesionario
+        {
+            get {return this._txtIdCesionario.Text; }
+            set { this._txtIdCesionario.DataContext = value; }
+        }
+
+        public string IdCedente
+        {
+            get {return this._txtIdCedente.Text; }
+            set { this._txtIdCedente.DataContext = value; }
+
+        }
+
+        public string IdApoderadoCesionario
+        {
+            get {return this._txtIdApoderadoCesionario.Text; }
+            set { this._txtIdApoderadoCesionario.DataContext = value; }
+        }
+
+        public string IdApoderadoCedente
+        {
+            get {return this._txtIdApoderadoCedente.Text; }
+            set { this._txtIdApoderadoCedente.DataContext = value; }
+        }
+
         public object ApoderadoCedente
         {
             get { return this._gridDatosApoderadoCedente.DataContext; }
@@ -251,6 +282,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Cesiones
                 this._txtIdCesion.IsEnabled = value;
                 this._txtIdMarcaFiltrar.IsEnabled = value;
                 this._txtNombreMarca.IsEnabled = value;
+                this._txtIdMarca.IsEnabled = value;
+                this._txtIdCedente.IsEnabled = value;
+                this._txtIdCesionario.IsEnabled = value;
+                this._txtIdApoderadoCedente.IsEnabled = value;
+                this._txtIdApoderadoCesionario.IsEnabled = value;
                 this._txtNombreMarcaFiltrar.IsEnabled = value;
                 this._txtNumInscripcion.IsEnabled = value;
                 this._txtNumRegistro.IsEnabled = value;

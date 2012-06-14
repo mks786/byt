@@ -462,22 +462,33 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.FusionesPatente
             FusionPatente fusion = (FusionPatente)this._ventana.FusionPatente;
 
             if (null != this._ventana.PatenteFiltrada)
-                fusion.Patente = ((Patente)this._ventana.PatenteFiltrada).Id != int.MinValue ? (Patente)this._ventana.Patente : null;
+            {
+                fusion.Patente = ((Patente) this._ventana.PatenteFiltrada).Id != int.MinValue
+                                                    ? (Patente) this._ventana.Patente : null;
+                fusion.InteresadoEntre = ((Patente)this._ventana.Patente).Interesado;
+                fusion.Agente = ((Patente)this._ventana.Patente).Agente;
+                fusion.Poder = ((Patente)this._ventana.Patente).Poder;
+            }
 
             if (null != this._ventana.InteresadoEntreFiltrado)
-                fusion.InteresadoEntre = ((Interesado)this._ventana.InteresadoEntreFiltrado).Id != int.MinValue ? (Interesado)this._ventana.InteresadoEntreFiltrado : null;
+                fusion.InteresadoEntre = ((Interesado)this._ventana.InteresadoEntreFiltrado).Id != int.MinValue ?
+                                                            (Interesado)this._ventana.InteresadoEntreFiltrado : null;
 
             if (null != this._ventana.InteresadoSobrevivienteFiltrado)
-                fusion.InteresadoSobreviviente = ((Interesado)this._ventana.InteresadoSobrevivienteFiltrado).Id != int.MinValue ? (Interesado)this._ventana.InteresadoSobrevivienteFiltrado : null;
+                fusion.InteresadoSobreviviente = ((Interesado)this._ventana.InteresadoSobrevivienteFiltrado).Id != int.MinValue ?
+                                                                (Interesado)this._ventana.InteresadoSobrevivienteFiltrado : null;
 
             if (null != this._ventana.AgenteApoderadoFiltrado)
-                fusion.Agente = !((Agente)this._ventana.AgenteApoderadoFiltrado).Id.Equals("") ? (Agente)this._ventana.AgenteApoderadoFiltrado : null;
+                fusion.Agente = !((Agente)this._ventana.AgenteApoderadoFiltrado).Id.Equals("") ?
+                                                (Agente)this._ventana.AgenteApoderadoFiltrado : null;
 
             if (null != this._ventana.PoderFiltrado)
-                fusion.Poder = ((Poder)this._ventana.PoderFiltrado).Id != int.MinValue ? (Poder)this._ventana.PoderFiltrado : null;
+                fusion.Poder = ((Poder)this._ventana.PoderFiltrado).Id != int.MinValue ? 
+                                                (Poder)this._ventana.PoderFiltrado : null;
 
             if (null != this._ventana.Boletin)
-                fusion.Boletin = ((Boletin)this._ventana.Boletin).Id != int.MinValue ? (Boletin)this._ventana.Boletin : null;     
+                fusion.Boletin = ((Boletin)this._ventana.Boletin).Id != int.MinValue ?
+                                                    (Boletin)this._ventana.Boletin : null;     
  
             #region Comentado
             //patente.Operacion = "MODIFY";
@@ -951,6 +962,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.FusionesPatente
                     this._ventana.NombrePatente = ((Patente)this._ventana.PatenteFiltrada).Descripcion;
                     this._patentes.RemoveAt(0);
                     this._patentes.Add((Patente)this._ventana.PatenteFiltrada);
+                    this._ventana.InteresadoEntre = ((Patente)this._ventana.Patente).Interesado;
+                    this._ventana.AgenteApoderado = ((Patente)this._ventana.Patente).Agente;
+                    this._ventana.Poder = ((Patente)this._ventana.Patente).Poder;
                     retorno = true;
 
                     if (null != ((Patente)this._ventana.Patente).Asociado)

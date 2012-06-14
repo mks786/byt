@@ -300,25 +300,36 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CambiosDeDomici
         public CambioDeDomicilioPatente CargarCambioDeDomicilioDeLaPantalla()
         {
 
-            CambioDeDomicilioPatente cambioDeDomicilio = (CambioDeDomicilioPatente)this._ventana.CambioDeDomicilioPatente;          
+            CambioDeDomicilioPatente cambioDeDomicilio = (CambioDeDomicilioPatente)this._ventana.CambioDeDomicilioPatente;
 
             if (null != this._ventana.Patente)
-                cambioDeDomicilio.Patente = ((Patente)this._ventana.Patente).Id != int.MinValue ? (Patente)this._ventana.Patente : null;
+            {
+                cambioDeDomicilio.Patente = ((Patente) this._ventana.Patente).Id != int.MinValue
+                                                ? (Patente) this._ventana.Patente : null;
+                cambioDeDomicilio.InteresadoAnterior = ((Patente)this._ventana.Patente).Interesado;
+                cambioDeDomicilio.Agente = ((Patente)this._ventana.Patente).Agente;
+                cambioDeDomicilio.Poder = ((Patente)this._ventana.Patente).Poder;
+            }
 
             if (null != this._ventana.InteresadoAnterior)
-                cambioDeDomicilio.InteresadoAnterior = ((Interesado)this._ventana.InteresadoAnterior).Id != int.MinValue ? (Interesado)this._ventana.InteresadoAnterior : null;
+                cambioDeDomicilio.InteresadoAnterior = ((Interesado)this._ventana.InteresadoAnterior).Id != int.MinValue ?
+                                                                        (Interesado)this._ventana.InteresadoAnterior : null;
 
             if (null != this._ventana.InteresadoActual)
-                cambioDeDomicilio.InteresadoActual = ((Interesado)this._ventana.InteresadoActual).Id != int.MinValue ? (Interesado)this._ventana.InteresadoActual : null;
+                cambioDeDomicilio.InteresadoActual = ((Interesado)this._ventana.InteresadoActual).Id != int.MinValue ?
+                                                                        (Interesado)this._ventana.InteresadoActual : null;
 
             if (null != this._ventana.AgenteApoderado)
-                cambioDeDomicilio.Agente = !((Agente)this._ventana.AgenteApoderado).Id.Equals("") ? (Agente)this._ventana.AgenteApoderado : null;            
+                cambioDeDomicilio.Agente = !((Agente)this._ventana.AgenteApoderado).Id.Equals("") ?
+                                                        (Agente)this._ventana.AgenteApoderado : null;            
 
             if (null != this._ventana.Poder)
-                cambioDeDomicilio.Poder = ((Poder)this._ventana.Poder).Id != int.MinValue ? (Poder)this._ventana.Poder : null;
+                cambioDeDomicilio.Poder = ((Poder)this._ventana.Poder).Id != int.MinValue ? 
+                                                            (Poder)this._ventana.Poder : null;
 
             if (null != this._ventana.Boletin)
-                cambioDeDomicilio.BoletinPublicacion = ((Boletin)this._ventana.Boletin).Id != int.MinValue ? (Boletin)this._ventana.Boletin : null;     
+                cambioDeDomicilio.BoletinPublicacion = ((Boletin)this._ventana.Boletin).Id != int.MinValue ? 
+                                                                        (Boletin)this._ventana.Boletin : null;     
  
 
             return cambioDeDomicilio;
@@ -770,6 +781,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CambiosDeDomici
                     this._ventana.NombrePatente = ((Patente)this._ventana.PatenteFiltrado).Descripcion;
                     this._patentes.RemoveAt(0);
                     this._patentes.Add((Patente)this._ventana.PatenteFiltrado);
+                    this._ventana.InteresadoAnterior = ((Patente)this._ventana.Patente).Interesado;
+                    this._ventana.AgenteApoderado = ((Patente)this._ventana.Patente).Agente;
+                    this._ventana.Poder = ((Patente)this._ventana.Patente).Poder;
                     retorno = true;
                 }
 

@@ -433,8 +433,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CesionesPatente
             CesionPatente cesion = (CesionPatente)this._ventana.CesionPatente;
 
             if (null != this._ventana.PatenteFiltrada)
+            {
                 cesion.Patente = ((Patente)this._ventana.PatenteFiltrada).Id != int.MinValue ? (Patente)this._ventana.PatenteFiltrada : null;
-
+                cesion.Cedente = ((Patente)this._ventana.Patente).Interesado;
+                cesion.AgenteCedente = ((Patente)this._ventana.Patente).Agente;
+                cesion.PoderCedente = ((Patente)this._ventana.Patente).Poder;
+            }
             if (null != this._ventana.CedenteFiltrado)
                 cesion.Cedente = ((Interesado)this._ventana.CedenteFiltrado).Id != int.MinValue ? (Interesado)this._ventana.CedenteFiltrado : null;
 
@@ -1146,7 +1150,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CesionesPatente
                     this._ventana.Patente = this._ventana.PatenteFiltrada;
                     this._ventana.NombrePatente = ((Patente)this._ventana.PatenteFiltrada).Descripcion;
                     retorno = true;
-
+                    this._ventana.InteresadoCedente = ((Patente)this._ventana.Patente).Interesado;
+                    this._ventana.ApoderadoCedente = ((Patente)this._ventana.Patente).Agente;
+                    this._ventana.PoderCedente = ((Patente)this._ventana.Patente).Poder;
                     if (((Patente)this._ventana.Patente).Asociado != null)
                     {
                         this._ventana.PintarAsociado(((Patente)this._ventana.Patente).Asociado.TipoCliente.Id);

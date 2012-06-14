@@ -1129,6 +1129,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Cesiones
                 {
                     this._ventana.Marca = this._ventana.MarcaFiltrada;
                     this._ventana.NombreMarca = ((Marca)this._ventana.MarcaFiltrada).Descripcion;
+                    this._ventana.IdMarca = (((Marca)this._ventana.MarcaFiltrada).Id).ToString();
                     retorno = true;
 
                     if (null != ((Marca)this._ventana.Marca).Asociado)
@@ -1495,6 +1496,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Cesiones
                         {
                             this._ventana.InteresadoCedente = this._interesadoServicios.ConsultarInteresadoConTodo((Interesado)this._ventana.CedenteFiltrado);
                             this._ventana.NombreCedente = ((Interesado)this._ventana.InteresadoCedente).Nombre;
+                            this._ventana.IdCedente = ((Interesado)this._ventana.InteresadoCedente).Id.ToString();
                             retorno = true;
                         }
                         else
@@ -1610,6 +1612,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Cesiones
                         {
                             this._ventana.ApoderadoCedente = this._ventana.ApoderadoCedenteFiltrado;
                             this._ventana.NombreApoderadoCedente = ((Agente)this._ventana.ApoderadoCedenteFiltrado).Nombre;
+                            this._ventana.IdApoderadoCedente = ((Agente)this._ventana.ApoderadoCedenteFiltrado).Id.ToString();
                             retorno = true;
                         }
                         else
@@ -2106,6 +2109,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Cesiones
                         {
                             this._ventana.InteresadoCesionario = this._interesadoServicios.ConsultarInteresadoConTodo((Interesado)this._ventana.CesionarioFiltrado);
                             this._ventana.NombreCesionario = ((Interesado)this._ventana.InteresadoCesionario).Nombre;
+                            this._ventana.IdCesionario = ((Interesado)this._ventana.InteresadoCesionario).Id.ToString();
                             retorno = true;
                         }
                         else
@@ -2221,6 +2225,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Cesiones
                         {
                             this._ventana.ApoderadoCesionario = this._ventana.ApoderadoCesionarioFiltrado;
                             this._ventana.NombreApoderadoCesionario = ((Agente)this._ventana.ApoderadoCesionarioFiltrado).Nombre;
+                            this._ventana.IdApoderadoCesionario = ((Agente)this._ventana.ApoderadoCesionarioFiltrado).Id.ToString();
                             retorno = true;
                         }
                         else
@@ -2248,6 +2253,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Cesiones
                         {
                             this._ventana.ApoderadoCesionario = this._ventana.ApoderadoCesionarioFiltrado;
                             this._ventana.NombreApoderadoCesionario = ((Agente)this._ventana.ApoderadoCesionarioFiltrado).Nombre;
+                            this._ventana.IdApoderadoCesionario = ((Agente)this._ventana.ApoderadoCesionarioFiltrado).Id.ToString();
                             retorno = true;
                         }
                         else
@@ -2255,6 +2261,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Cesiones
                             this._poderesApoderadosCesionario = this._poderServicios.ConsultarPoderesPorAgente(((Agente)_ventana.ApoderadoCesionarioFiltrado));
                             this._ventana.ApoderadoCesionario = this._ventana.ApoderadoCesionarioFiltrado;
                             this._ventana.NombreApoderadoCesionario = ((Agente)this._ventana.ApoderadoCesionarioFiltrado).Nombre;
+                            this._ventana.IdApoderadoCesionario = ((Agente)this._ventana.ApoderadoCesionarioFiltrado).Id;
                             retorno = true;
                         }
                     }
