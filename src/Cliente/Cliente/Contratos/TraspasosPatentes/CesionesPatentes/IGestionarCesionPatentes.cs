@@ -14,6 +14,8 @@ namespace Trascend.Bolet.Cliente.Contratos.TraspasosPatentes.CesionesPatentes
 
         string NombrePatente { set; }
 
+        string IdPatente { get; set; }
+
         string IdPatenteFiltrar { get; }
 
         string NombrePatenteFiltrar { get; }
@@ -27,6 +29,8 @@ namespace Trascend.Bolet.Cliente.Contratos.TraspasosPatentes.CesionesPatentes
         #region Cedente
 
         string NombreCedente { set; }
+        
+        string IdCedente { set; }
 
         object InteresadoCedente { get; set; }
 
@@ -43,6 +47,8 @@ namespace Trascend.Bolet.Cliente.Contratos.TraspasosPatentes.CesionesPatentes
         object CedenteFiltrado { get; set; }
 
         string NombreApoderadoCedente { set; }
+
+        string IdApoderadoCedente { get; set; }
 
         object ApoderadoCedente { get; set; }
 
@@ -72,6 +78,8 @@ namespace Trascend.Bolet.Cliente.Contratos.TraspasosPatentes.CesionesPatentes
 
         string NombreCesionario { set; }
 
+        string IdCesionario { get; set; }
+
         object InteresadoCesionario { get; set; }
 
         string PaisCesionario { set; }
@@ -87,6 +95,8 @@ namespace Trascend.Bolet.Cliente.Contratos.TraspasosPatentes.CesionesPatentes
         object CesionarioFiltrado { get; set; }
 
         string NombreApoderadoCesionario { set; }
+
+        string IdApoderadoCesionario { get; set; }
 
         object ApoderadoCesionario { get; set; }
 
@@ -130,7 +140,7 @@ namespace Trascend.Bolet.Cliente.Contratos.TraspasosPatentes.CesionesPatentes
 
         void Mensaje(string mensaje, int opcion);
 
-        void ConvertirEnteroMinimoABlanco(string tipo);
+        void ConvertirEnteroMinimoABlanco();
 
         void GestionarBotonConsultarInteresados(string tipo, bool value);
         

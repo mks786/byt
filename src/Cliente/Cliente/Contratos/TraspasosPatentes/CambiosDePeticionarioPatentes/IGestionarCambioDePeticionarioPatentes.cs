@@ -105,13 +105,23 @@ namespace Trascend.Bolet.Cliente.Contratos.TraspasosPatentes.CambiosDePeticionar
 
         string NombrePatente { set; }
 
+        string IdPatente { get; set; }
+
         string NombreAnterior { set; }
+
+        string IdAnterior { get; set; }
 
         string NombreActual { set; }
 
+        string IdActual { get; set; }
+
         string NombreApoderadoAnterior { set; }
 
+        string IdApoderadoAnterior { get; set; }
+
         string NombreApoderadoActual { set; }
+
+        string IdApoderadoActual { get; set; }
 
         string IdPoderAnterior { set; get; }
 
@@ -154,5 +164,7 @@ namespace Trascend.Bolet.Cliente.Contratos.TraspasosPatentes.CambiosDePeticionar
         void GestionarBotonConsultarPoderes(string tipo, bool value);       
 
         void ActivarControlesAlAgregar();
+
+        void ConvertirEnteroMinimoABlanco();
     }
 }

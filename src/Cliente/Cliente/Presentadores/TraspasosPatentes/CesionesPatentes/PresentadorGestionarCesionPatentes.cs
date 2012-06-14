@@ -182,9 +182,6 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CesionesPatente
                 if (_agregar == false)
                 {
 
-                    this._ventana.ConvertirEnteroMinimoABlanco("Cedente");
-                    this._ventana.ConvertirEnteroMinimoABlanco("Cesionario");
-
                     CesionPatente cesion = (CesionPatente)this._ventana.CesionPatente;
 
                     this._ventana.Patente = this._patenteServicios.ConsultarPatenteConTodo(cesion.Patente);
@@ -240,6 +237,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CesionesPatente
                     CargaBoletines();
                 }
 
+                this._ventana.ConvertirEnteroMinimoABlanco();
+
                 this._ventana.FocoPredeterminado();
 
                 #region trace
@@ -288,12 +287,14 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CesionesPatente
                 {
                     this._ventana.InteresadoCedente = this._interesadoServicios.ConsultarInteresadoConTodo(((CesionPatente)this._ventana.CesionPatente).Cedente);
                     this._ventana.NombreCedente = ((Interesado)this._ventana.InteresadoCedente).Nombre;
+                    this._ventana.IdCedente = ((Interesado)this._ventana.InteresadoCedente).Id.ToString();
 
                     if ((Interesado)this._ventana.InteresadoCedente != null)
                     {
                         this._interesadosCedente.Add((Interesado)this._ventana.InteresadoCedente);
                         this._ventana.CedentesFiltrados = this._interesadosCedente;
                         this._ventana.CedenteFiltrado = this.BuscarInteresado((IList<Interesado>)this._ventana.CedentesFiltrados, (Interesado)this._ventana.InteresadoCedente);
+                        this._ventana.IdCedente = ((Interesado)this._ventana.InteresadoCedente).Id.ToString();
                     }
                 }
                 else
@@ -301,6 +302,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CesionesPatente
                     this._ventana.InteresadoCedente = primerInteresado;
                     this._ventana.CedentesFiltrados = this._interesadosCedente;
                     this._ventana.CedenteFiltrado = primerInteresado;
+                    this._ventana.IdCedente = primerInteresado.Id.ToString();
 
                 }
             }
@@ -313,12 +315,14 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CesionesPatente
                 {
                     this._ventana.InteresadoCesionario = this._interesadoServicios.ConsultarInteresadoConTodo(((CesionPatente)this._ventana.CesionPatente).Cesionario);
                     this._ventana.NombreCesionario = ((Interesado)this._ventana.InteresadoCesionario).Nombre;
+                    this._ventana.IdCesionario = ((Interesado)this._ventana.InteresadoCesionario).Id.ToString();
 
                     if ((Interesado)this._ventana.InteresadoCesionario != null)
                     {
                         this._interesadosCesionario.Add((Interesado)this._ventana.InteresadoCesionario);
                         this._ventana.CesionariosFiltrados = this._interesadosCesionario;
                         this._ventana.CesionarioFiltrado = this.BuscarInteresado((IList<Interesado>)this._ventana.CesionariosFiltrados, (Interesado)this._ventana.InteresadoCesionario);
+                        this._ventana.IdCesionario = ((Interesado)this._ventana.InteresadoCesionario).Id.ToString();
                     }
                 }
                 else
@@ -326,6 +330,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CesionesPatente
                     this._ventana.InteresadoCesionario = primerInteresado;
                     this._ventana.CesionariosFiltrados = this._interesadosCesionario;
                     this._ventana.CesionarioFiltrado = primerInteresado;
+                    this._ventana.IdCesionario = primerInteresado.Id.ToString();
                 }
             }
         }
@@ -348,12 +353,14 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CesionesPatente
                     this._agentesCedente.Add((Agente)this._ventana.ApoderadoCedente);
                     this._ventana.ApoderadosCedenteFiltrados = this._agentesCedente;
                     this._ventana.ApoderadoCedenteFiltrado = this.BuscarAgente((IList<Agente>)this._ventana.ApoderadosCedenteFiltrados, (Agente)this._ventana.ApoderadoCedente);
+                    this._ventana.IdApoderadoCedente = ((Agente)this._ventana.ApoderadoCedente).Id.ToString();
                 }
                 else
                 {
                     this._ventana.ApoderadoCedente = primerAgente;
                     this._ventana.ApoderadosCedenteFiltrados = this._agentesCedente;
                     this._ventana.ApoderadoCedenteFiltrado = primerAgente;
+                    this._ventana.IdApoderadoCedente = primerAgente.Id.ToString();
                 }
             }
             else if (tipo.Equals("Cesionario"))
@@ -366,12 +373,14 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CesionesPatente
                     this._agentesCesionario.Add((Agente)this._ventana.ApoderadoCesionario);
                     this._ventana.ApoderadosCesionarioFiltrados = this._agentesCesionario;
                     this._ventana.ApoderadoCesionarioFiltrado = this.BuscarAgente((IList<Agente>)this._ventana.ApoderadosCesionarioFiltrados, (Agente)this._ventana.ApoderadoCesionario);
+                    this._ventana.IdApoderadoCesionario = ((Agente)this._ventana.ApoderadoCesionario).Id.ToString();
                 }
                 else
                 {
                     this._ventana.ApoderadoCesionario = primerAgente;
                     this._ventana.ApoderadosCesionarioFiltrados = this._agentesCesionario;
                     this._ventana.ApoderadoCesionarioFiltrado = primerAgente;
+                    this._ventana.IdApoderadoCesionario = primerAgente.Id.ToString();
                 }
             }
         }
@@ -399,7 +408,6 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CesionesPatente
                 {
                     this._ventana.PoderesCedenteFiltrados = this._poderesCedente;
                     this._ventana.PoderCedenteFiltrado = primerPoder;
-                    this._ventana.ConvertirEnteroMinimoABlanco("Cedente");
                 }
             }
             else if (tipo.Equals("Cesionario"))
@@ -417,9 +425,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CesionesPatente
                 {
                     this._ventana.PoderesCesionarioFiltrados = this._poderesCesionario;
                     this._ventana.PoderCesionarioFiltrado = primerPoder;
-                    this._ventana.ConvertirEnteroMinimoABlanco("Cesionario");
                 }
             }
+
+            this._ventana.ConvertirEnteroMinimoABlanco();
         }
 
         
@@ -1042,6 +1051,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CesionesPatente
                 this._patentes.Add((Patente)this._ventana.Patente);
                 this._ventana.PatentesFiltradas = this._patentes;
                 this._ventana.PatenteFiltrada = (Patente)this._ventana.Patente;
+                this._ventana.IdPatente = ((Patente)this._ventana.Patente).Id.ToString();
 
                 this._ventana.PintarAsociado(((Patente)this._ventana.Patente).Asociado.TipoCliente.Id);
             }
@@ -1149,6 +1159,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CesionesPatente
                 {
                     this._ventana.Patente = this._ventana.PatenteFiltrada;
                     this._ventana.NombrePatente = ((Patente)this._ventana.PatenteFiltrada).Descripcion;
+                    this._ventana.IdPatente = ((Patente)this._ventana.PatenteFiltrada).Id.ToString();
                     retorno = true;
                     this._ventana.InteresadoCedente = ((Patente)this._ventana.Patente).Interesado;
                     this._ventana.ApoderadoCedente = ((Patente)this._ventana.Patente).Agente;
@@ -1160,6 +1171,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CesionesPatente
                     else
                         this._ventana.PintarAsociado("5");
                 }
+
+                this._ventana.ConvertirEnteroMinimoABlanco();
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -1522,6 +1535,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CesionesPatente
                         {
                             this._ventana.InteresadoCedente = this._interesadoServicios.ConsultarInteresadoConTodo((Interesado)this._ventana.CedenteFiltrado);
                             this._ventana.NombreCedente = ((Interesado)this._ventana.InteresadoCedente).Nombre;
+                            this._ventana.IdCedente = ((Interesado)this._ventana.InteresadoCedente).Id.ToString();
                             retorno = true;
                         }
                         else
@@ -1534,11 +1548,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CesionesPatente
                             {
                                 this._ventana.InteresadoCedente = this._ventana.CedenteFiltrado;
                                 this._ventana.NombreCedente = ((Interesado)this._ventana.CedenteFiltrado).Nombre;
+                                this._ventana.IdCedente = ((Interesado)this._ventana.CedenteFiltrado).Id.ToString();
                                 retorno = true;
                             }
                             else if (!this.ValidarListaDePoderes(this._poderesCedente, _poderesApoderadosCedente, "Cedente"))
                             {
-                                this._ventana.ConvertirEnteroMinimoABlanco("Cedente");
                                 this._ventana.Mensaje(string.Format(Recursos.MensajesConElUsuario.ErrorInteresadoNoPoseePoderConAgente, "Cedente"), 0);
                             }
                         }
@@ -1557,6 +1571,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CesionesPatente
                             this._poderesCedente = this._poderServicios.ConsultarPoderesPorInteresado(((Interesado)_ventana.CedenteFiltrado));
                             this._ventana.InteresadoCedente = this._interesadoServicios.ConsultarInteresadoConTodo((Interesado)this._ventana.CedenteFiltrado);
                             this._ventana.NombreCedente = ((Interesado)this._ventana.InteresadoCedente).Nombre;
+                            this._ventana.IdCedente = ((Interesado)this._ventana.InteresadoCedente).Id.ToString();
                             retorno = true;
                         }
                         else
@@ -1565,6 +1580,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CesionesPatente
                             this._poderesCedente = this._poderServicios.ConsultarPoderesPorInteresado(((Interesado)_ventana.CedenteFiltrado));
                             this._ventana.InteresadoCedente = this._interesadoServicios.ConsultarInteresadoConTodo((Interesado)this._ventana.CedenteFiltrado);
                             this._ventana.NombreCedente = ((Interesado)this._ventana.InteresadoCedente).Nombre;
+                            this._ventana.NombreCedente = ((Interesado)this._ventana.InteresadoCedente).Id.ToString();
                             retorno = true;
                         }
                     }
@@ -1574,10 +1590,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CesionesPatente
                 {
                     this._ventana.InteresadoCedente = this._ventana.CedenteFiltrado;
                     this._ventana.NombreCedente = ((Interesado)this._ventana.InteresadoCedente).Nombre;
+                    this._ventana.IdCedente = ((Interesado)this._ventana.InteresadoCedente).Id.ToString();
                     retorno = true;
                 }
 
-                this._ventana.ConvertirEnteroMinimoABlanco("Cedente");
+                this._ventana.ConvertirEnteroMinimoABlanco();
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -1638,6 +1655,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CesionesPatente
                         {
                             this._ventana.ApoderadoCedente = this._ventana.ApoderadoCedenteFiltrado;
                             this._ventana.NombreApoderadoCedente = ((Agente)this._ventana.ApoderadoCedenteFiltrado).Nombre;
+                            this._ventana.IdApoderadoCedente = ((Agente)this._ventana.ApoderadoCedenteFiltrado).Id.ToString();
                             retorno = true;
                         }
                         else
@@ -1650,11 +1668,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CesionesPatente
                             {
                                 this._ventana.ApoderadoCedente = this._ventana.ApoderadoCedenteFiltrado;
                                 this._ventana.NombreApoderadoCedente = ((Agente)this._ventana.ApoderadoCedenteFiltrado).Nombre;
+                                this._ventana.IdApoderadoCedente = ((Agente)this._ventana.ApoderadoCedenteFiltrado).Id.ToString();
                                 retorno = true;
                             }
                             else if (!this.ValidarListaDePoderes(this._poderesCedente, this._poderesApoderadosCedente, "Cedente"))
                             {
-                                this._ventana.ConvertirEnteroMinimoABlanco("Cedente");
                                 this._ventana.Mensaje(string.Format(Recursos.MensajesConElUsuario.ErrorAgenteNoPoseePoderConInteresado, "Cedente"), 0);
                             }
                         }
@@ -1665,6 +1683,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CesionesPatente
                         {
                             this._ventana.ApoderadoCedente = this._ventana.ApoderadoCedenteFiltrado;
                             this._ventana.NombreApoderadoCedente = ((Agente)this._ventana.ApoderadoCedenteFiltrado).Nombre;
+                            this._ventana.IdApoderadoCedente = ((Agente)this._ventana.ApoderadoCedenteFiltrado).Id.ToString();
                             retorno = true;
                         }
                         else
@@ -1672,6 +1691,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CesionesPatente
                             this._poderesApoderadosCedente = this._poderServicios.ConsultarPoderesPorAgente(((Agente)_ventana.ApoderadoCedenteFiltrado));
                             this._ventana.ApoderadoCedente = this._ventana.ApoderadoCedenteFiltrado;
                             this._ventana.NombreApoderadoCedente = ((Agente)this._ventana.ApoderadoCedenteFiltrado).Nombre;
+                            this._ventana.IdApoderadoCedente = ((Agente)this._ventana.ApoderadoCedenteFiltrado).Id.ToString();
                             retorno = true;
                         }
                     }
@@ -1680,10 +1700,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CesionesPatente
                 {
                     this._ventana.ApoderadoCedente = this._ventana.ApoderadoCedenteFiltrado;
                     this._ventana.NombreApoderadoCedente = ((Agente)this._ventana.ApoderadoCedenteFiltrado).Nombre;
+                    this._ventana.IdApoderadoCedente = ((Agente)this._ventana.ApoderadoCedenteFiltrado).Id.ToString();
                     retorno = true;
                 }
 
-                this._ventana.ConvertirEnteroMinimoABlanco("Cedente");
+                //this._ventana.ConvertirEnteroMinimoABlanco();
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -1778,7 +1799,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CesionesPatente
                     retorno = true;
                 }
 
-                this._ventana.ConvertirEnteroMinimoABlanco("Cedente");
+                this._ventana.ConvertirEnteroMinimoABlanco();
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -2140,6 +2161,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CesionesPatente
                         {
                             this._ventana.InteresadoCesionario = this._interesadoServicios.ConsultarInteresadoConTodo((Interesado)this._ventana.CesionarioFiltrado);
                             this._ventana.NombreCesionario = ((Interesado)this._ventana.InteresadoCesionario).Nombre;
+                            this._ventana.IdCesionario = ((Interesado)this._ventana.InteresadoCesionario).Id.ToString();
                             retorno = true;
                         }
                         else
@@ -2152,11 +2174,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CesionesPatente
                             {
                                 this._ventana.InteresadoCesionario = this._ventana.CesionarioFiltrado;
                                 this._ventana.NombreCesionario = ((Interesado)this._ventana.CesionarioFiltrado).Nombre;
+                                this._ventana.IdCesionario = ((Interesado)this._ventana.CesionarioFiltrado).Id.ToString();
                                 retorno = true;
                             }
                             else if (!this.ValidarListaDePoderes(this._poderesCesionario, _poderesApoderadosCesionario, "Cesionario"))
                             {
-                                this._ventana.ConvertirEnteroMinimoABlanco("Cesionario");
                                 this._ventana.Mensaje(string.Format(Recursos.MensajesConElUsuario.ErrorInteresadoNoPoseePoderConAgente, "Cesionario"), 0);
                             }
                         }
@@ -2175,6 +2197,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CesionesPatente
                             this._poderesCesionario = this._poderServicios.ConsultarPoderesPorInteresado(((Interesado)_ventana.CesionarioFiltrado));
                             this._ventana.InteresadoCesionario = this._interesadoServicios.ConsultarInteresadoConTodo((Interesado)this._ventana.CesionarioFiltrado);
                             this._ventana.NombreCesionario = ((Interesado)this._ventana.InteresadoCesionario).Nombre;
+                            this._ventana.IdCesionario = ((Interesado)this._ventana.InteresadoCesionario).Id.ToString();
                             retorno = true;
                         }
                         else
@@ -2183,6 +2206,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CesionesPatente
                             this._poderesCesionario = this._poderServicios.ConsultarPoderesPorInteresado(((Interesado)_ventana.CesionarioFiltrado));
                             this._ventana.InteresadoCesionario = this._interesadoServicios.ConsultarInteresadoConTodo((Interesado)this._ventana.CesionarioFiltrado);
                             this._ventana.NombreCesionario = ((Interesado)this._ventana.InteresadoCesionario).Nombre;
+                            this._ventana.IdCesionario = ((Interesado)this._ventana.InteresadoCesionario).Id.ToString();
                             retorno = true;
                         }
                     }
@@ -2192,10 +2216,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CesionesPatente
                 {
                     this._ventana.InteresadoCesionario = this._ventana.CesionarioFiltrado;
                     this._ventana.NombreCesionario = ((Interesado)this._ventana.InteresadoCesionario).Nombre;
+                    this._ventana.IdCesionario = ((Interesado)this._ventana.InteresadoCesionario).Id.ToString();
                     retorno = true;
                 }
 
-                this._ventana.ConvertirEnteroMinimoABlanco("Cesionario");
+                this._ventana.ConvertirEnteroMinimoABlanco();
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -2256,6 +2281,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CesionesPatente
                         {
                             this._ventana.ApoderadoCesionario = this._ventana.ApoderadoCesionarioFiltrado;
                             this._ventana.NombreApoderadoCesionario = ((Agente)this._ventana.ApoderadoCesionarioFiltrado).Nombre;
+                            this._ventana.IdApoderadoCesionario = ((Agente)this._ventana.ApoderadoCesionarioFiltrado).Id.ToString();
                             retorno = true;
                         }
                         else
@@ -2268,11 +2294,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CesionesPatente
                             {
                                 this._ventana.ApoderadoCesionario = this._ventana.ApoderadoCesionarioFiltrado;
                                 this._ventana.NombreApoderadoCesionario = ((Agente)this._ventana.ApoderadoCesionarioFiltrado).Nombre;
+                                this._ventana.IdApoderadoCesionario = ((Agente)this._ventana.ApoderadoCesionarioFiltrado).Id.ToString();
                                 retorno = true;
                             }
                             else if (!this.ValidarListaDePoderes(this._poderesCesionario, this._poderesApoderadosCesionario, "Cesionario"))
                             {
-                                this._ventana.ConvertirEnteroMinimoABlanco("Cesionario");
                                 this._ventana.Mensaje(string.Format(Recursos.MensajesConElUsuario.ErrorAgenteNoPoseePoderConInteresado, "Cesionario"), 0);
                             }
                         }
@@ -2283,6 +2309,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CesionesPatente
                         {
                             this._ventana.ApoderadoCesionario = this._ventana.ApoderadoCesionarioFiltrado;
                             this._ventana.NombreApoderadoCesionario = ((Agente)this._ventana.ApoderadoCesionarioFiltrado).Nombre;
+                            this._ventana.IdApoderadoCesionario = ((Agente)this._ventana.ApoderadoCesionarioFiltrado).Id.ToString();
                             retorno = true;
                         }
                         else
@@ -2290,6 +2317,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CesionesPatente
                             this._poderesApoderadosCesionario = this._poderServicios.ConsultarPoderesPorAgente(((Agente)_ventana.ApoderadoCesionarioFiltrado));
                             this._ventana.ApoderadoCesionario = this._ventana.ApoderadoCesionarioFiltrado;
                             this._ventana.NombreApoderadoCesionario = ((Agente)this._ventana.ApoderadoCesionarioFiltrado).Nombre;
+                            this._ventana.IdApoderadoCesionario = ((Agente)this._ventana.ApoderadoCesionarioFiltrado).Id.ToString();
                             retorno = true;
                         }
                     }
@@ -2298,10 +2326,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CesionesPatente
                 {
                     this._ventana.ApoderadoCesionario = this._ventana.ApoderadoCesionarioFiltrado;
                     this._ventana.NombreApoderadoCesionario = ((Agente)this._ventana.ApoderadoCesionarioFiltrado).Nombre;
+                    this._ventana.IdApoderadoCesionario = ((Agente)this._ventana.ApoderadoCesionarioFiltrado).Id.ToString();
                     retorno = true;
                 }
 
-                this._ventana.ConvertirEnteroMinimoABlanco("Cesionario");
+                //this._ventana.ConvertirEnteroMinimoABlanco();
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -2396,7 +2425,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CesionesPatente
                     retorno = true;
                 }
 
-                this._ventana.ConvertirEnteroMinimoABlanco("Cesionario");
+                this._ventana.ConvertirEnteroMinimoABlanco();
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))

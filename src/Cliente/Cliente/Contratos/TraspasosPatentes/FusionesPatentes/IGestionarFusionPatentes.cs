@@ -19,6 +19,8 @@ namespace Trascend.Bolet.Cliente.Contratos.TraspasosPatentes.FusionesPatentes
 
         string NombrePatente { set; }
 
+        string IdPatente { get; set; }
+
         object Patente { get; set; }
 
         string IdPatenteFiltrar { get; }
@@ -37,6 +39,8 @@ namespace Trascend.Bolet.Cliente.Contratos.TraspasosPatentes.FusionesPatentes
 
         string NombreInteresadoEntre { set; }
 
+        string IdInteresadoEntre { get; set; }
+
         string IdInteresadoEntreFiltrar { get; }
 
         string NombreInteresadoEntreFiltrar { get; }
@@ -53,6 +57,8 @@ namespace Trascend.Bolet.Cliente.Contratos.TraspasosPatentes.FusionesPatentes
 
         string NombreInteresadoSobreviviente { set; }
 
+        string IdInteresadoSobreviviente { get; set; }
+
         string IdInteresadoSobrevivienteFiltrar { get; }
 
         string NombreInteresadoSobrevivienteFiltrar { get; }
@@ -68,6 +74,8 @@ namespace Trascend.Bolet.Cliente.Contratos.TraspasosPatentes.FusionesPatentes
         object AgenteApoderado { get; set; }
 
         string NombreAgenteApoderado { set; }
+
+        string IdAgenteApoderado { get; set; }
 
         string IdAgenteApoderadoFiltrar { get; }
 

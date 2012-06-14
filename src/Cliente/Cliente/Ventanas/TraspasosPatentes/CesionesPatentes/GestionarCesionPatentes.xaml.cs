@@ -250,6 +250,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.CesionesPatentes
                 this._txtIdCesion.IsEnabled = value;
                 this._txtIdPatenteFiltrar.IsEnabled = value;
                 this._txtNombrePatente.IsEnabled = value;
+                this._txtIdPatente.IsEnabled = value;
                 this._txtNombrePatenteFiltrar.IsEnabled = value;
                 this._txtNumInscripcion.IsEnabled = value;
                 this._txtNumRegistro.IsEnabled = value;
@@ -260,11 +261,13 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.CesionesPatentes
                 this._dpkFechaCesion.IsEnabled = value;
                 
                 this._txtNombreCedente.IsEnabled = value;
+                this._txtIdCedente.IsEnabled = value;
                 this._txtPaisCedente.IsEnabled = value;
                 this._txtNacionalidadCedente.IsEnabled = value;
                 this._txtIdCedenteFiltrar.IsEnabled = value;
                 this._txtNombreCedenteFiltrar.IsEnabled = value;
                 this._txtNombreApoderadoCedente.IsEnabled = value;
+                this._txtIdApoderadoCedente.IsEnabled = value;
                 this._txtNombreApoderadoCedenteFiltrar.IsEnabled = value;
                 this._txtIdApoderadoCedenteFiltrar.IsEnabled = value;                                
                 this._txtIdPoderCedente.IsEnabled = value;                
@@ -276,9 +279,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.CesionesPatentes
                 this._txtFechaPoderCedente.IsEnabled = value;
 
                 this._txtNombreCesionario.IsEnabled = value;
+                this._txtIdCesionario.IsEnabled = value;
                 this._txtIdCesionarioFiltrar.IsEnabled = value;
                 this._txtNombreCesionarioFiltrar.IsEnabled = value;
                 this._txtNombreApoderadoCesionario.IsEnabled = value;
+                this._txtIdApoderadoCesionario.IsEnabled = value;
                 this._txtIdApoderadoCesionarioFiltrar.IsEnabled = value;
                 this._txtNombreApoderadoCesionarioFiltrar.IsEnabled = value;                               
                 this._txtIdPoderCesionario.IsEnabled = value;
@@ -308,9 +313,21 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.CesionesPatentes
             set { this._txtNombrePatente.Text = value; }
         }
 
+        public string IdPatente
+        {
+            get { return this._txtIdPatente.Text; }
+            set { this._txtIdPatente.Text = value; }
+        }
+
         public string NombreCedente
         {
             set { this._txtNombreCedente.Text = value; }
+        }
+
+        public string IdCedente
+        {
+            get { return this._txtIdCedente.Text; }
+            set { this._txtIdCedente.Text = value; }
         }
 
         public string NombreApoderadoCedente
@@ -318,9 +335,21 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.CesionesPatentes
             set { this._txtNombreApoderadoCedente.Text = value; }
         }
 
+        public string IdApoderadoCedente
+        {
+            get { return this._txtIdApoderadoCedente.Text; }
+            set { this._txtIdApoderadoCedente.Text = value; }
+        }
+
         public string NombreApoderadoCesionario
         {
             set { this._txtNombreApoderadoCesionario.Text = value; }
+        }
+
+        public string IdApoderadoCesionario
+        {
+            get { return this._txtIdApoderadoCesionario.Text; }
+            set { this._txtIdApoderadoCesionario.Text = value; }
         }
 
         public string IdPoderCedente
@@ -350,6 +379,12 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.CesionesPatentes
         public string NombreCesionario
         {
             set { this._txtNombreCesionario.Text = value; }
+        }
+
+        public string IdCesionario
+        {
+            get { return this._txtIdCesionario.Text; }
+            set { this._txtIdCesionario.Text = value; }
         }
 
         public string PaisCedente
@@ -552,24 +587,38 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.CesionesPatentes
         }
 
         
-        public void ConvertirEnteroMinimoABlanco(string tipo)
+        public void ConvertirEnteroMinimoABlanco()
         {
-            if (tipo.Equals("Cedente"))
+            if (!this.IdPatente.Equals(""))
             {
-                if (!this.IdPoderCedente.Equals(""))
-                {
-                    if (int.Parse(this.IdPoderCedente) == int.MinValue)
-                        this.IdPoderCedente = "";
-                }
+                if (int.Parse(this.IdPatente) == int.MinValue)
+                    this.IdPatente = "";
             }
-            if (tipo.Equals("Cesionario"))
+
+            if (!this.IdCedente.Equals(""))
             {
-                if (!this.IdPoderCesionario.Equals(""))
-                {
-                    if (int.Parse(this.IdPoderCesionario) == int.MinValue)
-                        this.IdPoderCesionario = "";
-                }
+                if (int.Parse(this.IdCedente) == int.MinValue)
+                    this.IdCedente = "";
             }
+
+            if (!this.IdCesionario.Equals(""))
+            {
+                if (int.Parse(this.IdCesionario) == int.MinValue)
+                    this.IdCesionario = "";
+            }
+            
+            if (!this.IdPoderCedente.Equals(""))
+            {
+                if (int.Parse(this.IdPoderCedente) == int.MinValue)
+                    this.IdPoderCedente = "";
+            }
+            
+            if (!this.IdPoderCesionario.Equals(""))
+            {
+                if (int.Parse(this.IdPoderCesionario) == int.MinValue)
+                    this.IdPoderCesionario = "";
+            }
+            
         }
 
         
@@ -665,6 +714,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.CesionesPatentes
         private void GestionarVisibilidadDatosDePatente(object value)
         {
             this._txtNombrePatente.Visibility = (System.Windows.Visibility)value;
+            this._txtIdPatente.Visibility = (System.Windows.Visibility)value;
             this._chkEtiqueta.Visibility = (System.Windows.Visibility)value;
             this._lblNoInscripcion.Visibility = (System.Windows.Visibility)value;
             this._txtNumInscripcion.Visibility = (System.Windows.Visibility)value;
@@ -904,6 +954,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.CesionesPatentes
         {
             this._lblNombreCedente.Visibility = (System.Windows.Visibility)value;
             this._txtNombreCedente.Visibility = (System.Windows.Visibility)value;
+            this._txtIdCedente.Visibility = (System.Windows.Visibility)value;
             this._txtPaisCedente.Visibility = (System.Windows.Visibility)value;
             this._txtNacionalidadCedente.Visibility = (System.Windows.Visibility)value;
         }
@@ -913,6 +964,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.CesionesPatentes
         {
             this._lblNombreApoderadoCedente.Visibility = (System.Windows.Visibility)value;
             this._txtNombreApoderadoCedente.Visibility = (System.Windows.Visibility)value;
+            this._txtIdApoderadoCedente.Visibility = (System.Windows.Visibility)value;
         }
 
         
@@ -1152,6 +1204,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.CesionesPatentes
         {
             this._lblNombreCesionario.Visibility = (System.Windows.Visibility)value;
             this._txtNombreCesionario.Visibility = (System.Windows.Visibility)value;
+            this._txtIdCesionario.Visibility = (System.Windows.Visibility)value;
             this._txtPaisCesionario.Visibility = (System.Windows.Visibility)value;
             this._txtNacionalidadCesionario.Visibility = (System.Windows.Visibility)value;
         }
@@ -1161,6 +1214,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.CesionesPatentes
         {
             this._lblNombreApoderadoCesionario.Visibility = (System.Windows.Visibility)value;
             this._txtNombreApoderadoCesionario.Visibility = (System.Windows.Visibility)value;
+            this._txtIdApoderadoCesionario.Visibility = (System.Windows.Visibility)value;
         }
 
         

@@ -2649,10 +2649,10 @@ de Gracia</value>
     <value>Rev Para Web:</value>
   </data>
   <data name="lblSapi" xml:space="preserve">
-    <value>SAPI:</value>
+    <value>#SAPI:</value>
   </data>
   <data name="lsvSapi" xml:space="preserve">
-    <value>SAPI</value>
+    <value>#SAPI</value>
   </data>
   <data name="lsvAgentes" xml:space="preserve">
     <value>Agentes</value>
