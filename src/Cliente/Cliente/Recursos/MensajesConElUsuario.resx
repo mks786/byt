@@ -798,4 +798,16 @@
   <data name="ConfirmacionEliminarCarta" xml:space="preserve">
     <value>¿Está seguro que desea eliminar la correspondencia?</value>
   </data>
+  <data name="ErrorSinCesionario" xml:space="preserve">
+    <value>Es necesario agregar un Cesionario</value>
+  </data>
+  <data name="ErrorSinInteresadoActual" xml:space="preserve">
+    <value>Es necesario agregar un Interesado actual</value>
+  </data>
+  <data name="ErrorSinLicenciatario" xml:space="preserve">
+    <value>Es necesario agregar un Licenciatario</value>
+  </data>
+  <data name="ErrorSinSobreviviente" xml:space="preserve">
+    <value>Es necesario agregar un Sobreviviente</value>
+  </data>
 </root>

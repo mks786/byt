@@ -461,22 +461,33 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
             Fusion fusion = (Fusion)this._ventana.Fusion;
 
             if (null != this._ventana.MarcaFiltrada)
-                fusion.Marca = ((Marca)this._ventana.MarcaFiltrada).Id != int.MinValue ? (Marca)this._ventana.Marca : null;
+            {
+                fusion.Marca = ((Marca) this._ventana.MarcaFiltrada).Id != int.MinValue
+                                   ? (Marca) this._ventana.Marca : null;
+                fusion.InteresadoEntre = ((Marca)this._ventana.Marca).Interesado;
+                fusion.Agente = ((Marca)this._ventana.Marca).Agente;
+                fusion.Poder = ((Marca)this._ventana.Marca).Poder;
+            }
 
             if (null != this._ventana.InteresadoEntreFiltrado)
-                fusion.InteresadoEntre = ((Interesado)this._ventana.InteresadoEntreFiltrado).Id != int.MinValue ? (Interesado)this._ventana.InteresadoEntreFiltrado : null;
+                fusion.InteresadoEntre = ((Interesado)this._ventana.InteresadoEntreFiltrado).Id != int.MinValue ? 
+                                                            (Interesado)this._ventana.InteresadoEntreFiltrado : null;
 
             if (null != this._ventana.InteresadoSobrevivienteFiltrado)
-                fusion.InteresadoSobreviviente = ((Interesado)this._ventana.InteresadoSobrevivienteFiltrado).Id != int.MinValue ? (Interesado)this._ventana.InteresadoSobrevivienteFiltrado : null;
+                fusion.InteresadoSobreviviente = ((Interesado)this._ventana.InteresadoSobrevivienteFiltrado).Id != int.MinValue ? 
+                                                                    (Interesado)this._ventana.InteresadoSobrevivienteFiltrado : null;
 
             if (null != this._ventana.AgenteApoderadoFiltrado)
-                fusion.Agente = !((Agente)this._ventana.AgenteApoderadoFiltrado).Id.Equals("") ? (Agente)this._ventana.AgenteApoderadoFiltrado : null;
+                fusion.Agente = !((Agente)this._ventana.AgenteApoderadoFiltrado).Id.Equals("") ? (
+                                                Agente)this._ventana.AgenteApoderadoFiltrado : null;
 
             if (null != this._ventana.PoderFiltrado)
-                fusion.Poder = ((Poder)this._ventana.PoderFiltrado).Id != int.MinValue ? (Poder)this._ventana.PoderFiltrado : null;
+                fusion.Poder = ((Poder)this._ventana.PoderFiltrado).Id != int.MinValue ?
+                                                    (Poder)this._ventana.PoderFiltrado : null;
 
             if (null != this._ventana.Boletin)
-                fusion.Boletin = ((Boletin)this._ventana.Boletin).Id != int.MinValue ? (Boletin)this._ventana.Boletin : null;     
+                fusion.Boletin = ((Boletin)this._ventana.Boletin).Id != int.MinValue ? 
+                                                        (Boletin)this._ventana.Boletin : null;     
  
 
             #region Comentado
@@ -551,6 +562,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
         public void Modificar()
         {
             Mouse.OverrideCursor = Cursors.Wait;
+           
             try
             {
                 #region trace
@@ -574,17 +586,25 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
                     fusion.Marca.Operaciones = this._operacionServicios.ConsultarOperacionesPorMarca(fusion.Marca);
                     fusion.Marca.Busquedas = this._busquedaServicios.ConsultarBusquedasPorMarca(fusion.Marca);
 
-                    fusion.Marca.InfoAdicional = this._infoAdicionalServicios.ConsultarPorId(fusion.Marca.InfoAdicional);
-                    fusion.Marca.Anaqua = this._anaquaServicios.ConsultarPorId(fusion.Marca.Anaqua);
+                    if (null != fusion.Marca.InfoAdicional)
+                        fusion.Marca.InfoAdicional = this._infoAdicionalServicios.ConsultarPorId(fusion.Marca.InfoAdicional);
+                    if (null != fusion.Marca.Anaqua)
+                        fusion.Marca.Anaqua = this._anaquaServicios.ConsultarPorId(fusion.Marca.Anaqua);
 
-                    bool exitoso = this._fusionesServicios.InsertarOModificar(fusion, UsuarioLogeado.Hash);
-
-                    if ((exitoso) && (this._agregar == false))
-                        this.Navegar(new GestionarFusion(fusion));
-                    else if ((exitoso) && (this._agregar == true))
-                        this.Navegar(new GestionarFusion(fusion));
+                    if (null != fusion.InteresadoSobreviviente)
+                    {
+                        bool exitoso = this._fusionesServicios.InsertarOModificar(fusion, UsuarioLogeado.Hash);
+                        if ((exitoso) && (this._agregar == false))
+                            this.Navegar(new GestionarFusion(fusion));
+                        else if ((exitoso) && (this._agregar == true))
+                            this.Navegar(new GestionarFusion(fusion));
+                        else
+                            this.Navegar(Recursos.MensajesConElUsuario.ErrorAlGenerarTraspaso, true);
+                    }
                     else
-                        this.Navegar(Recursos.MensajesConElUsuario.ErrorAlGenerarTraspaso, true);
+                        this._ventana.Mensaje(Recursos.MensajesConElUsuario.ErrorSinSobreviviente, 1);
+
+
                 }
 
                 #region trace
@@ -958,6 +978,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
                     this._ventana.NombreMarca = ((Marca)this._ventana.MarcaFiltrada).Descripcion;
                     this._marcas.RemoveAt(0);
                     this._marcas.Add((Marca)this._ventana.MarcaFiltrada);
+                    this._ventana.InteresadoEntre = ((Marca)this._ventana.Marca).Interesado;
+                    this._ventana.AgenteApoderado = ((Marca)this._ventana.Marca).Agente;
+                    this._ventana.Poder = ((Marca)this._ventana.Marca).Poder;
                     retorno = true;
 
                     if (null != ((Marca)this._ventana.Marca).Asociado)

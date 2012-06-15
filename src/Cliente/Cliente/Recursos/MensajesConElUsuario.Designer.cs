@@ -1303,6 +1303,42 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Es necesario agregar un Cesionario.
+        /// </summary>
+        internal static string ErrorSinCesionario {
+            get {
+                return ResourceManager.GetString("ErrorSinCesionario", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Es necesario agregar un Interesado actual.
+        /// </summary>
+        internal static string ErrorSinInteresadoActual {
+            get {
+                return ResourceManager.GetString("ErrorSinInteresadoActual", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Es necesario agregar un Licenciatario.
+        /// </summary>
+        internal static string ErrorSinLicenciatario {
+            get {
+                return ResourceManager.GetString("ErrorSinLicenciatario", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Es necesario agregar un Sobreviviente.
+        /// </summary>
+        internal static string ErrorSinSobreviviente {
+            get {
+                return ResourceManager.GetString("ErrorSinSobreviviente", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to El Tipo de Base a insertar ya existe.
         /// </summary>
         internal static string ErrorTipoBaseRepetido {

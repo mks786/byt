@@ -317,25 +317,36 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeNombre
         public CambioDeNombre CargarCambioDeNombreDeLaPantalla()
         {
 
-            CambioDeNombre cambioDeNombre = (CambioDeNombre)this._ventana.CambioDeNombre;            
+            CambioDeNombre cambioDeNombre = (CambioDeNombre)this._ventana.CambioDeNombre;
 
             if (null != this._ventana.Marca)
-                cambioDeNombre.Marca = ((Marca)this._ventana.Marca).Id != int.MinValue ? (Marca)this._ventana.Marca : null;
+            {
+                cambioDeNombre.Marca = ((Marca) this._ventana.Marca).Id != int.MinValue
+                                           ? (Marca) this._ventana.Marca : null;
+                cambioDeNombre.InteresadoAnterior = ((Marca)this._ventana.Marca).Interesado;
+                cambioDeNombre.Agente = ((Marca)this._ventana.Marca).Agente;
+                cambioDeNombre.Poder = ((Marca)this._ventana.Marca).Poder;
+            }
 
             if (null != this._ventana.InteresadoAnterior)
-                cambioDeNombre.InteresadoAnterior = ((Interesado)this._ventana.InteresadoAnterior).Id != int.MinValue ? (Interesado)this._ventana.InteresadoAnterior : null;
+                cambioDeNombre.InteresadoAnterior = ((Interesado)this._ventana.InteresadoAnterior).Id != int.MinValue ? 
+                                                                    (Interesado)this._ventana.InteresadoAnterior : null;
 
             if (null != this._ventana.InteresadoActual)
-                cambioDeNombre.InteresadoActual = ((Interesado)this._ventana.InteresadoActual).Id != int.MinValue ? (Interesado)this._ventana.InteresadoActual : null;
+                cambioDeNombre.InteresadoActual = ((Interesado)this._ventana.InteresadoActual).Id != int.MinValue ? 
+                                                                    (Interesado)this._ventana.InteresadoActual : null;
 
             if (null != this._ventana.AgenteApoderado)
-                cambioDeNombre.Agente = !((Agente)this._ventana.AgenteApoderado).Id.Equals("") ? (Agente)this._ventana.AgenteApoderado : null;
+                cambioDeNombre.Agente = !((Agente)this._ventana.AgenteApoderado).Id.Equals("") ? 
+                                                            (Agente)this._ventana.AgenteApoderado : null;
 
             if (null != this._ventana.Poder)
-                cambioDeNombre.Poder = ((Poder)this._ventana.Poder).Id != int.MinValue ? (Poder)this._ventana.Poder : null;
+                cambioDeNombre.Poder = ((Poder)this._ventana.Poder).Id != int.MinValue ? 
+                                                        (Poder)this._ventana.Poder : null;
 
             if (null != this._ventana.Boletin)
-                cambioDeNombre.Boletin = ((Boletin)this._ventana.Boletin).Id != int.MinValue ? (Boletin)this._ventana.Boletin : null;
+                cambioDeNombre.Boletin = ((Boletin)this._ventana.Boletin).Id != int.MinValue ?  
+                                                            (Boletin)this._ventana.Boletin : null;
 
             (cambioDeNombre.Marca).BEtiqueta = ((CambioDeNombre)this._ventana.CambioDeNombre).Marca.BEtiqueta;
 
@@ -379,19 +390,26 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeNombre
                     cambioDeNombre.Marca.InfoBoles = this._infoBolServicios.ConsultarInfoBolesPorMarca(cambioDeNombre.Marca);
                     cambioDeNombre.Marca.Operaciones = this._operacionServicios.ConsultarOperacionesPorMarca(cambioDeNombre.Marca);
                     cambioDeNombre.Marca.Busquedas = this._busquedaServicios.ConsultarBusquedasPorMarca(cambioDeNombre.Marca);
+                     
+                    if (null != cambioDeNombre.Marca.InfoAdicional)
+                        cambioDeNombre.Marca.InfoAdicional = this._infoAdicionalServicios.ConsultarPorId(cambioDeNombre.Marca.InfoAdicional);
+                    if (null != cambioDeNombre.Marca.Anaqua)
+                        cambioDeNombre.Marca.Anaqua = this._anaquaServicios.ConsultarPorId(cambioDeNombre.Marca.Anaqua);
 
-                    cambioDeNombre.Marca.InfoAdicional = this._infoAdicionalServicios.ConsultarPorId(cambioDeNombre.Marca.InfoAdicional);
-                    cambioDeNombre.Marca.Anaqua = this._anaquaServicios.ConsultarPorId(cambioDeNombre.Marca.Anaqua);
-
-
-                    bool exitoso = this._cambioDeNombreServicios.InsertarOModificar(cambioDeNombre, UsuarioLogeado.Hash);
-
-                    if ((exitoso) && (this._agregar == false))
-                        this.Navegar(new GestionarCambioDeNombre(cambioDeNombre));
-                    else if ((exitoso) && (this._agregar == true))
-                        this.Navegar(new GestionarCambioDeNombre(cambioDeNombre));
+                    if (null != cambioDeNombre.InteresadoActual)
+                    {
+                        bool exitoso = this._cambioDeNombreServicios.InsertarOModificar(cambioDeNombre, UsuarioLogeado.Hash);
+                        if ((exitoso) && (this._agregar == false))
+                            this.Navegar(new GestionarCambioDeNombre(cambioDeNombre));
+                        else if ((exitoso) && (this._agregar == true))
+                            this.Navegar(new GestionarCambioDeNombre(cambioDeNombre));
+                        else
+                            this.Navegar(Recursos.MensajesConElUsuario.ErrorAlGenerarTraspaso, true);
+                    }
                     else
-                        this.Navegar(Recursos.MensajesConElUsuario.ErrorAlGenerarTraspaso, true);
+                        this._ventana.Mensaje(Recursos.MensajesConElUsuario.ErrorSinInteresadoActual, 1);
+
+
                 }
 
                 #region trace
@@ -769,6 +787,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeNombre
                     this._ventana.IdMarca = ((Marca)this._ventana.MarcaFiltrada).Id.ToString();
                     this._marcas.RemoveAt(0);
                     this._marcas.Add((Marca)this._ventana.MarcaFiltrada);
+                    this._ventana.InteresadoAnterior = ((Marca)this._ventana.Marca).Interesado;
+                    this._ventana.AgenteApoderado = ((Marca)this._ventana.Marca).Agente;
+                    this._ventana.Poder = ((Marca)this._ventana.Marca).Poder;
                     retorno = true;
 
                     if (null != ((Marca)this._ventana.Marca).Asociado)

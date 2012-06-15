@@ -458,31 +458,43 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Licencias
                 logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
 
-            Licencia licencia = (Licencia)this._ventana.Licencia;            
+            Licencia licencia = (Licencia)this._ventana.Licencia;
 
             if (null != this._ventana.MarcaFiltrada)
-                licencia.Marca = ((Marca)this._ventana.MarcaFiltrada).Id != int.MinValue ? (Marca)this._ventana.MarcaFiltrada : null;
-
+            {
+                licencia.Marca = ((Marca) this._ventana.MarcaFiltrada).Id != int.MinValue
+                                     ? (Marca) this._ventana.MarcaFiltrada : null;
+                licencia.InteresadoLicenciante = ((Marca)this._ventana.Marca).Interesado;
+                licencia.AgenteLicenciante = ((Marca)this._ventana.Marca).Agente;
+                licencia.PoderLicenciante = ((Marca)this._ventana.Marca).Poder;
+            }
             if (null != this._ventana.InteresadoLicenciante)
-                licencia.InteresadoLicenciante = ((Interesado)this._ventana.InteresadoLicenciante).Id != int.MinValue ? (Interesado)this._ventana.InteresadoLicenciante : null;
+                licencia.InteresadoLicenciante = ((Interesado)this._ventana.InteresadoLicenciante).Id != int.MinValue ? 
+                                                                    (Interesado)this._ventana.InteresadoLicenciante : null;
 
             if (null != this._ventana.InteresadoLicenciatario)
-                licencia.InteresadoLicenciatario = ((Interesado)this._ventana.InteresadoLicenciatario).Id != int.MinValue ? (Interesado)this._ventana.InteresadoLicenciatario : null;
+                licencia.InteresadoLicenciatario = ((Interesado)this._ventana.InteresadoLicenciatario).Id != int.MinValue ? 
+                                                                    (Interesado)this._ventana.InteresadoLicenciatario : null;
 
             if (null != this._ventana.ApoderadoLicencianteFiltrado)
-                licencia.AgenteLicenciante = !((Agente)this._ventana.ApoderadoLicencianteFiltrado).Id.Equals("") ? (Agente)this._ventana.ApoderadoLicencianteFiltrado : null;
+                licencia.AgenteLicenciante = !((Agente)this._ventana.ApoderadoLicencianteFiltrado).Id.Equals("") ?
+                                                            (Agente)this._ventana.ApoderadoLicencianteFiltrado : null;
 
             if (null != this._ventana.ApoderadoLicenciatarioFiltrado)
-                licencia.AgenteLicenciatario = !((Agente)this._ventana.ApoderadoLicenciatarioFiltrado).Id.Equals("") ? (Agente)this._ventana.ApoderadoLicenciatarioFiltrado : null;
+                licencia.AgenteLicenciatario = !((Agente)this._ventana.ApoderadoLicenciatarioFiltrado).Id.Equals("") ? 
+                                                            (Agente)this._ventana.ApoderadoLicenciatarioFiltrado : null;
 
             if (null != this._ventana.PoderLicencianteFiltrado)
-                licencia.PoderLicenciante = ((Poder)this._ventana.PoderLicencianteFiltrado).Id != int.MinValue ? (Poder)this._ventana.PoderLicencianteFiltrado : null;
+                licencia.PoderLicenciante = ((Poder)this._ventana.PoderLicencianteFiltrado).Id != int.MinValue ?
+                                                                (Poder)this._ventana.PoderLicencianteFiltrado : null;
 
             if (null != this._ventana.PoderLicenciatarioFiltrado)
-                licencia.PoderLicenciatario = ((Poder)this._ventana.PoderLicenciatarioFiltrado).Id != int.MinValue ? (Poder)this._ventana.PoderLicenciatarioFiltrado : null;
+                licencia.PoderLicenciatario = ((Poder)this._ventana.PoderLicenciatarioFiltrado).Id != int.MinValue ? 
+                                                                    (Poder)this._ventana.PoderLicenciatarioFiltrado : null;
 
             if (null != this._ventana.Boletin)
-                licencia.Boletin = ((Boletin)this._ventana.Boletin).Id != int.MinValue ? (Boletin)this._ventana.Boletin : null;
+                licencia.Boletin = ((Boletin)this._ventana.Boletin).Id != int.MinValue ? 
+                                                        (Boletin)this._ventana.Boletin : null;
 
             #region trace
             if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -509,7 +521,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Licencias
         public void Modificar()
         {
             Mouse.OverrideCursor = Cursors.Wait;
-
+         
             try
             {
                 #region trace
@@ -533,19 +545,28 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Licencias
                     licencia.Marca.InfoBoles = this._infoBolServicios.ConsultarInfoBolesPorMarca(licencia.Marca);
                     licencia.Marca.Operaciones = this._operacionServicios.ConsultarOperacionesPorMarca(licencia.Marca);
                     licencia.Marca.Busquedas = this._busquedaServicios.ConsultarBusquedasPorMarca(licencia.Marca);
+                    if (null != licencia.Marca.InfoAdicional)
+                        licencia.Marca.InfoAdicional = this._infoAdicionalServicios.ConsultarPorId(licencia.Marca.InfoAdicional);
+                    if (null != licencia.Marca.Anaqua)
+                        licencia.Marca.Anaqua = this._anaquaServicios.ConsultarPorId(licencia.Marca.Anaqua);
 
-                    licencia.Marca.InfoAdicional = this._infoAdicionalServicios.ConsultarPorId(licencia.Marca.InfoAdicional);
-                    licencia.Marca.Anaqua = this._anaquaServicios.ConsultarPorId(licencia.Marca.Anaqua);
+                    if (null != licencia.InteresadoLicenciatario)
+                    {
+                        bool exitoso = this._licenciaServicios.InsertarOModificar(licencia, UsuarioLogeado.Hash);
+                        if ((exitoso) && (this._agregar == false))
+                            this.Navegar(new GestionarLicencia(licencia));
+                        else if ((exitoso) && (this._agregar == true))
+                            this.Navegar(new GestionarLicencia(licencia));
+                        else
+                            this.Navegar(Recursos.MensajesConElUsuario.ErrorAlGenerarTraspaso, true);
+                    }
 
-
-                    bool exitoso = this._licenciaServicios.InsertarOModificar(licencia, UsuarioLogeado.Hash);
-
-                    if ((exitoso) && (this._agregar == false))
-                        this.Navegar(new GestionarLicencia(licencia));
-                    else if ((exitoso) && (this._agregar == true))
-                        this.Navegar(new GestionarLicencia(licencia));
                     else
-                        this.Navegar(Recursos.MensajesConElUsuario.ErrorAlGenerarTraspaso, true);
+                        this._ventana.Mensaje(Recursos.MensajesConElUsuario.ErrorSinLicenciatario, 1);
+
+                    
+
+
                 }
 
                 #region trace
@@ -1269,6 +1290,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Licencias
                 {
                     this._ventana.Marca = this._ventana.MarcaFiltrada;
                     this._ventana.NombreMarca = ((Marca)this._ventana.MarcaFiltrada).Descripcion;
+                    this._ventana.InteresadoLicenciante = ((Marca)this._ventana.Marca).Interesado;
+                    this._ventana.ApoderadoLicenciante = ((Marca)this._ventana.Marca).Agente;
+                    this._ventana.PoderLicenciante = ((Marca)this._ventana.Marca).Poder;
                     retorno = true;
 
                     if (null != ((Marca)this._ventana.Marca).Asociado)
