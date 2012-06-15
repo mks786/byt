@@ -3,6 +3,7 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:custom="clr-namespace:Trascend.Bolet.ControlesByT;assembly=ControlesByT"
       mc:Ignorable="d" 
       d:DesignHeight="550" d:DesignWidth="800"
       xmlns:recurso="clr-namespace:Trascend.Bolet.Cliente.Recursos" Loaded="Page_Loaded">
@@ -40,13 +41,13 @@
                     <Label>
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblId}"/>
                     </Label>
-                    <TextBox Name="_txtId" Width="150" MaxLength="40"/>
+                    <custom:ByTTextBox Name="_txtId" Width="150" MaxLength="40"/>
                 </WrapPanel>
                 <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
                     <Label>
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblDescripcion}"/>
                     </Label>
-                    <TextBox Name="_txtDescripcion" Width="150" MaxLength="50"  Text="{Binding Path=Descripcion}"/>
+                    <custom:ByTTextBox Name="_txtDescripcion" Width="150" MaxLength="50"  Text="{Binding Path=Descripcion}"/>
                 </WrapPanel>
                 
                 <Separator Margin="0,5,0,5"/>

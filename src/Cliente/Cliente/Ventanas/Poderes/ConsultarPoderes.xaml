@@ -3,6 +3,7 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:custom="clr-namespace:Trascend.Bolet.ControlesByT;assembly=ControlesByT"
       mc:Ignorable="d" 
       d:DesignHeight="550" d:DesignWidth="800"
       xmlns:recurso="clr-namespace:Trascend.Bolet.Cliente.Recursos"
@@ -46,14 +47,14 @@
                     <Label>
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblId}"/>
                     </Label>
-                    <TextBox Name="_txtId" Text="{Binding Path=Id}" Width="150" MaxLength="8"
+                    <custom:ByTTextBox Name="_txtId" Text="{Binding Path=Id}" Width="150" MaxLength="8"
                              GotFocus="_btnConsultarFocus" GotKeyboardFocus="_btnConsultarFocus"/>
                 </WrapPanel>
                 <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,180,0">
                     <Label>
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblNumPoder}"/>
                     </Label>
-                    <TextBox Name="_txtNumPoder" Text="{Binding Path=NumPoder}" Width="150" MaxLength="15"
+                    <custom:ByTTextBox Name="_txtNumPoder" Text="{Binding Path=NumPoder}" Width="150" MaxLength="15"
                              GotFocus="_btnConsultarFocus" GotKeyboardFocus="_btnConsultarFocus"/>
                 </WrapPanel>
                 <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,180,0">
@@ -98,12 +99,12 @@
                         <Label VerticalAlignment="Center" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Right">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblId}"/>
                         </Label>
-                        <TextBox Name="_txtIdInteresado" Text="" Width="150" MaxLength="15" Grid.Row="1" Grid.Column="1" Height="25" HorizontalAlignment="Left"
+                        <custom:ByTTextBox Name="_txtIdInteresado" Text="" Width="150" MaxLength="15" Grid.Row="1" Grid.Column="1" Height="25" HorizontalAlignment="Left"
                                  GotFocus="_btnConsultarInteresadoFocus" GotKeyboardFocus="_btnConsultarInteresadoFocus"/>
                         <Label VerticalAlignment="Center" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Right">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblNombre}"/>
                         </Label>
-                        <TextBox Name="_txtNombreInteresado" Text="" Width="150" MaxLength="15" Grid.Row="2" Grid.Column="1" Height="25" HorizontalAlignment="Left"
+                        <custom:ByTTextBox Name="_txtNombreInteresado" Text="" Width="150" MaxLength="15" Grid.Row="2" Grid.Column="1" Height="25" HorizontalAlignment="Left"
                                  GotFocus="_btnConsultarInteresadoFocus" GotKeyboardFocus="_btnConsultarInteresadoFocus"/>
 
                         <Button Name="_btnConsultarInteresado" Width="100" IsDefault="False" Grid.Row="2" Grid.Column="1" Height="25" HorizontalAlignment="Right" Click="_btnConsultarInteresado_Click">
@@ -141,24 +142,24 @@
                     <Label>
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblFacultad}"/>
                     </Label>
-                    <TextBox Name="_txtFacultad" Text="{Binding Path=Facultad}" Width="150" MaxLength="255"
+                    <custom:ByTTextBox Name="_txtFacultad" Text="{Binding Path=Facultad}" Width="150" MaxLength="255"
                              GotFocus="_btnConsultarFocus" GotKeyboardFocus="_btnConsultarFocus"/>
                 </WrapPanel>
                 <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,180,0">
                     <Label>
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblAnexo}"/>
                     </Label>
-                    <TextBox Name="_txtAnexo" Text="{Binding Path=Anexo}" Width="150" MaxLength="255"
+                    <custom:ByTTextBox Name="_txtAnexo" Text="{Binding Path=Anexo}" Width="150" MaxLength="255"
                              GotFocus="_btnConsultarFocus" GotKeyboardFocus="_btnConsultarFocus"/>
                 </WrapPanel>
                 <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,180,0">
                     <Label>
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblObservaciones}"/>
                     </Label>
-                    <TextBox Name="_txtObservaciones" VerticalAlignment="Center"  
+                    <custom:ByTTextBox Name="_txtObservaciones" VerticalAlignment="Center"  
                          HorizontalAlignment="Left" Width="150" Height="75" Text="{Binding Path=Observaciones}" MaxLength="2000" 
                          TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" AcceptsReturn="True" SpellCheck.IsEnabled="True"
-                             GotFocus="_btnConsultarFocus" GotKeyboardFocus="_btnConsultarFocus"></TextBox>
+                             GotFocus="_btnConsultarFocus" GotKeyboardFocus="_btnConsultarFocus"></custom:ByTTextBox>
                 </WrapPanel>
                 <Separator Margin="0,5,0,5"/>
                 <WrapPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,5,0,5">

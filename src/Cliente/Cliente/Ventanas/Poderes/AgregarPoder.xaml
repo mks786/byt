@@ -3,6 +3,7 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:custom="clr-namespace:Trascend.Bolet.ControlesByT;assembly=ControlesByT"
       mc:Ignorable="d" 
       xmlns:reglas="clr-namespace:Trascend.Bolet.Cliente.Validaciones"
       d:DesignHeight="550" d:DesignWidth="800"
@@ -55,7 +56,7 @@
                 <Label Grid.Column="0" Grid.Row="1" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                     <TextBlock Text="{x:Static recurso:Etiquetas.lblNumPoder}"/>
                 </Label>
-                <TextBox Name="_txtNumPoder" Grid.Column="1" Grid.Row="1" VerticalAlignment="Center"  
+                <custom:ByTTextBox Name="_txtNumPoder" Grid.Column="1" Grid.Row="1" VerticalAlignment="Center"  
                          HorizontalAlignment="Left" Width="180" SpellCheck.IsEnabled="True" MaxLength="15"
                          ToolTip="{Binding ElementName=_txtNumPoder, Path=(Validation.Errors)[0].ErrorContent}">
                     <TextBox.Text>
@@ -65,7 +66,7 @@
                             </Binding.ValidationRules>
                         </Binding>
                     </TextBox.Text>
-                </TextBox>
+                </custom:ByTTextBox>
 
 
                 <Label Grid.Column="0" Grid.Row="2" VerticalAlignment="Center" HorizontalContentAlignment="Right">
@@ -107,21 +108,21 @@
                 <Label Grid.Column="0" Grid.Row="4" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                     <TextBlock Text="{x:Static recurso:Etiquetas.lblFacultad}"/>
                 </Label>
-                <TextBox Grid.Column="1" Grid.Row="4" Name="_txtFacultad" VerticalAlignment="Center"  
-                         HorizontalAlignment="Left" Width="180" Text="{Binding Path=Facultad}" MaxLength="255"></TextBox>
+                <custom:ByTTextBox Grid.Column="1" Grid.Row="4" Name="_txtFacultad" VerticalAlignment="Center"  
+                         HorizontalAlignment="Left" Width="180" Text="{Binding Path=Facultad}" MaxLength="255"></custom:ByTTextBox>
 
                 <Label Grid.Column="0" Grid.Row="5" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                     <TextBlock Text="{x:Static recurso:Etiquetas.lblAnexo}"/>
                 </Label>
-                <TextBox Grid.Column="1" Grid.Row="5" Name="_txtAnexo" VerticalAlignment="Center"  
-                         HorizontalAlignment="Left" Width="180" Text="{Binding Path=Anexo}" MaxLength="255"></TextBox>
+                <custom:ByTTextBox Grid.Column="1" Grid.Row="5" Name="_txtAnexo" VerticalAlignment="Center"  
+                         HorizontalAlignment="Left" Width="180" Text="{Binding Path=Anexo}" MaxLength="255"></custom:ByTTextBox>
 
                 <Label Grid.Column="0" Grid.Row="6" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                     <TextBlock Text="{x:Static recurso:Etiquetas.lblObservaciones}"/>
                 </Label>
-                <TextBox Grid.Column="1" Grid.Row="6" Name="_txtObservaciones" VerticalAlignment="Center"  
+                <custom:ByTTextBox Grid.Column="1" Grid.Row="6" Name="_txtObservaciones" VerticalAlignment="Center"  
                          HorizontalAlignment="Left" Width="180" Height="75" Text="{Binding Path=Observaciones}" MaxLength="2000" 
-                         TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" AcceptsReturn="True" SpellCheck.IsEnabled="True"></TextBox>
+                         TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" AcceptsReturn="True" SpellCheck.IsEnabled="True"></custom:ByTTextBox>
             </Grid>
         </GroupBox>
 

@@ -46,25 +46,25 @@
                     <Label>
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblCodigoPais}"/>
                     </Label>
-                    <TextBox Name="_txtCodigo" Width="150" MaxLength="2"  Text="{Binding Path=Codigo}"/>
+                    <custom:ByTTextBox Name="_txtCodigo" Width="150" MaxLength="2"  Text="{Binding Path=Codigo}"/>
                 </WrapPanel>
                 <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
                     <Label>
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblNombreIngles}"/>
                     </Label>
-                    <TextBox Name="_txtNombreIngles" Width="150" MaxLength="40"  Text="{Binding Path=NombreIngles}"/>
+                    <custom:ByTTextBox Name="_txtNombreIngles" Width="150" MaxLength="40"  Text="{Binding Path=NombreIngles}"/>
                 </WrapPanel>
                 <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
                     <Label>
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblNombreEspanol}"/>
                     </Label>
-                    <TextBox Name="_txtNombreEspanol" Width="150" MaxLength="40"  Text="{Binding Path=NombreEspanol}"/>
+                    <custom:ByTTextBox Name="_txtNombreEspanol" Width="150" MaxLength="40"  Text="{Binding Path=NombreEspanol}"/>
                 </WrapPanel>
                 <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
                     <Label>
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblNacionalidad}"/>
                     </Label>
-                    <TextBox Name="_txtNacionalidad" Width="150" MaxLength="30"  Text="{Binding Path=Nacionalidad}"/>
+                    <custom:ByTTextBox Name="_txtNacionalidad" Width="150" MaxLength="30"  Text="{Binding Path=Nacionalidad}"/>
                 </WrapPanel>
                 <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
                     <Label>

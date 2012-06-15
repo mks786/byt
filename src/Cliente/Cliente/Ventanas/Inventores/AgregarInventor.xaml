@@ -3,6 +3,7 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:custom="clr-namespace:Trascend.Bolet.ControlesByT;assembly=ControlesByT"
       mc:Ignorable="d" 
       d:DesignHeight="550" d:DesignWidth="800"
       xmlns:reglas="clr-namespace:Trascend.Bolet.Cliente.Validaciones"
@@ -38,13 +39,13 @@
                     <Label>
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblId}"/>
                     </Label>
-                    <TextBox Name="_txtId" Width="150" MaxLength="30"  Text="{Binding Path=Id}" />
+                    <custom:ByTTextBox Name="_txtId" Width="150" MaxLength="30"  Text="{Binding Path=Id}" />
                 </WrapPanel>-->
                 <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
                     <Label>
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblNombre}"/>
                     </Label>
-                    <TextBox Name="_txtNombre" Width="150" MaxLength="30"  Text="{Binding Path=InventorPatente}" />
+                    <custom:ByTTextBox Name="_txtNombre" Width="150" MaxLength="30"  Text="{Binding Path=InventorPatente}" />
                 </WrapPanel>
                 <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
                     <Label>
@@ -70,7 +71,7 @@
                     <Label>
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblDomicilio}"/>
                     </Label>
-                    <TextBox Name="_txtDomicilio" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" AcceptsReturn="True" Width="150" MaxLength="30" 
+                    <custom:ByTTextBox Name="_txtDomicilio" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" AcceptsReturn="True" Width="150" MaxLength="30" 
                              Text="{Binding Path=Domicilio}"  Height="100"/>
                 </WrapPanel>
                 <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0"></WrapPanel>

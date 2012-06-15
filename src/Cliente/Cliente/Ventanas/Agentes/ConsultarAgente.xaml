@@ -3,6 +3,7 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:custom="clr-namespace:Trascend.Bolet.ControlesByT;assembly=ControlesByT"
       mc:Ignorable="d" 
       d:DesignHeight="550" d:DesignWidth="800"
       xmlns:reglas="clr-namespace:Trascend.Bolet.Cliente.Validaciones"
@@ -38,26 +39,26 @@
                     <Label>
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblId}"/>
                     </Label>
-                    <TextBox Name="_txtId" Width="150" MaxLength="2"  Text="{Binding Path=Id}" IsEnabled="False"/>
+                    <custom:ByTTextBox Name="_txtId" Width="150" MaxLength="2"  Text="{Binding Path=Id}" IsEnabled="False"/>
                 </WrapPanel>
                 <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
                     <Label>
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblNombre}"/>
                     </Label>
-                    <TextBox Name="_txtNombre" Width="150" MaxLength="255"  Text="{Binding Path=Nombre}" IsEnabled="False"/>
+                    <custom:ByTTextBox Name="_txtNombre" Width="150" MaxLength="255"  Text="{Binding Path=Nombre}" IsEnabled="False"/>
                 </WrapPanel>
                 <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
                     <Label>
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblDomicilio}"/>
                     </Label>
-                    <TextBox Name="_txtDomicilio" MaxLength="255"  Text="{Binding Path=Domicilio}" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" AcceptsReturn="True"
+                    <custom:ByTTextBox Name="_txtDomicilio" MaxLength="255"  Text="{Binding Path=Domicilio}" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" AcceptsReturn="True"
                              HorizontalAlignment="Left" Width="150" Height="150" SpellCheck.IsEnabled="True" IsEnabled="False"/>
                 </WrapPanel>
                 <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
                     <Label>
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblTelefono}"/>
                     </Label>
-                    <TextBox Name="_txtTelefono" Width="150" MaxLength="30"  Text="{Binding Path=Telefono}" IsEnabled="False"/>
+                    <custom:ByTTextBox Name="_txtTelefono" Width="150" MaxLength="30"  Text="{Binding Path=Telefono}" IsEnabled="False"/>
                 </WrapPanel>
                 <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
                     <Label>
@@ -78,25 +79,25 @@
                     <Label>
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblNumeroAbogado}"/>
                     </Label>
-                    <TextBox Name="_txtNumeroAbogado" Width="150" MaxLength="255"  Text="{Binding Path=NumeroAbogado}" IsEnabled="False"/>
+                    <custom:ByTTextBox Name="_txtNumeroAbogado" Width="150" MaxLength="255"  Text="{Binding Path=NumeroAbogado}" IsEnabled="False"/>
                 </WrapPanel>
                 <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
                     <Label>
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblNumeroImpresoAbogado}"/>
                     </Label>
-                    <TextBox Name="_txtNumeroImpresoAbogado" Width="150" MaxLength="255"  Text="{Binding Path=NumeroImpresoAbogado}" IsEnabled="False"/>
+                    <custom:ByTTextBox Name="_txtNumeroImpresoAbogado" Width="150" MaxLength="255"  Text="{Binding Path=NumeroImpresoAbogado}" IsEnabled="False"/>
                 </WrapPanel>
                 <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
                     <Label>
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblNumeroPropiedad}"/>
                     </Label>
-                    <TextBox Name="_txtNumeroPropiedad" Width="150" MaxLength="255"  Text="{Binding Path=NumeroPropiedad}" IsEnabled="False"/>
+                    <custom:ByTTextBox Name="_txtNumeroPropiedad" Width="150" MaxLength="255"  Text="{Binding Path=NumeroPropiedad}" IsEnabled="False"/>
                 </WrapPanel>
                 <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
                     <Label>
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblCCI}"/>
                     </Label>
-                    <TextBox Name="_txtCCI" Width="150" MaxLength="255"  Text="{Binding Path=CCI}" IsEnabled="False"/>
+                    <custom:ByTTextBox Name="_txtCCI" Width="150" MaxLength="255"  Text="{Binding Path=CCI}" IsEnabled="False"/>
                 </WrapPanel>
             </StackPanel>
         </GroupBox>

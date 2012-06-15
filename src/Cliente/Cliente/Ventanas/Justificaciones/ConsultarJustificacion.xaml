@@ -3,6 +3,7 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:custom="clr-namespace:Trascend.Bolet.ControlesByT;assembly=ControlesByT"
       mc:Ignorable="d" 
       xmlns:reglas="clr-namespace:Trascend.Bolet.Cliente.Validaciones"
       d:DesignHeight="550" d:DesignWidth="800"
@@ -55,17 +56,17 @@
                 <Label Grid.Column="0" Grid.Row="1" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                     <TextBlock Text="{x:Static recurso:Etiquetas.lblAsociado}"/>
                 </Label>
-                <TextBox Grid.Column="1" Grid.Row="1" Name="_txtIdAsociado" VerticalAlignment="Center" IsEnabled="False" 
+                <custom:ByTTextBox Grid.Column="1" Grid.Row="1" Name="_txtIdAsociado" VerticalAlignment="Center" IsEnabled="False" 
                          HorizontalAlignment="Left" Width="180" Text="{Binding Path=Asociado.Nombre}">
-                </TextBox>
+                </custom:ByTTextBox>
 
                 <Label Grid.Column="0" Grid.Row="2" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                     <TextBlock Text="{x:Static recurso:Etiquetas.lblCarta}"/>
                 </Label>
-                <TextBox Name="_txtCodigoCarta" Grid.Column="2" Grid.Row="2" VerticalAlignment="Center" IsEnabled="False" 
+                <custom:ByTTextBox Name="_txtCodigoCarta" Grid.Column="2" Grid.Row="2" VerticalAlignment="Center" IsEnabled="False" 
                          HorizontalAlignment="Left" Width="180" SpellCheck.IsEnabled="True" MaxLength="8" Text="{Binding Path=Carta.Id}">
 
-                </TextBox>
+                </custom:ByTTextBox>
 
                 <Label Grid.Column="0" Grid.Row="4" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                     <TextBlock Text="{x:Static recurso:Etiquetas.lblFecha}"/>

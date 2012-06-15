@@ -72,7 +72,7 @@
                         <Label Grid.Column="0" Grid.Row="0" HorizontalAlignment="Right">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblPatente}"/>
                         </Label>
-                        <TextBox Name="_txtNombrePatente" MaxLength="40"  Text="" IsEnabled="False" IsReadOnly="True"
+                        <custom:ByTTextBox Name="_txtNombrePatente" MaxLength="40"  Text="" IsEnabled="False" IsReadOnly="True"
                              VerticalContentAlignment="Center" Grid.ColumnSpan="6" Grid.Column="1"
                              Grid.Row="0" MouseDoubleClick="_txtNombrePatente_MouseDoubleClick" BorderBrush="LightGreen"/>
 

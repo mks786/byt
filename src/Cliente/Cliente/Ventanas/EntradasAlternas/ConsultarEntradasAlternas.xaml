@@ -87,7 +87,7 @@
                     <Label>
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblDescripcion}"/>
                     </Label>
-                    <TextBox Name="_txtDescripcion" MaxLength="200"  Text="{Binding Path=Descripcion}" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" AcceptsReturn="True"
+                    <custom:ByTTextBox Name="_txtDescripcion" MaxLength="200"  Text="{Binding Path=Descripcion}" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" AcceptsReturn="True"
                              HorizontalAlignment="Left" Width="180" Height="75" SpellCheck.IsEnabled="True"/>
                 </WrapPanel>
                 <Separator Margin="0,5,0,5"/>

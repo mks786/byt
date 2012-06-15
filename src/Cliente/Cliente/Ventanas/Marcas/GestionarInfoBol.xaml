@@ -3,6 +3,7 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:custom="clr-namespace:Trascend.Bolet.ControlesByT;assembly=ControlesByT"
       mc:Ignorable="d" 
       xmlns:reglas="clr-namespace:Trascend.Bolet.Cliente.Validaciones"
       d:DesignHeight="550" d:DesignWidth="800"
@@ -62,7 +63,7 @@
                     <Label>
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblPagina}"/>
                     </Label>
-                    <TextBox IsEnabled="False" Width="350" MaxLength="2000" Name="_txtPagina" VerticalAlignment="Center" Text="{Binding Path=Pagina}"/>
+                    <custom:ByTTextBox IsEnabled="False" Width="350" MaxLength="2000" Name="_txtPagina" VerticalAlignment="Center" Text="{Binding Path=Pagina}"/>
                 </WrapPanel>
                 <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
                     <Label>
@@ -75,7 +76,7 @@
                     <Label>
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblResolucion}"/>
                     </Label>
-                    <TextBox IsEnabled="False" Width="350" MaxLength="2000" Name="_txtResolucion" VerticalAlignment="Center" 
+                    <custom:ByTTextBox IsEnabled="False" Width="350" MaxLength="2000" Name="_txtResolucion" VerticalAlignment="Center" 
                          Grid.ColumnSpan="3" Text="{Binding Path=Resolucion}"/>
                 </WrapPanel>
                 <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
@@ -94,8 +95,8 @@
                             <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
 
-                        <TextBox IsEnabled="False" MaxLength="2000" Grid.Column="0" Grid.Row="0" Width="350" Name="_txtCambio" VerticalAlignment="Center"
-                         Grid.ColumnSpan="7" MouseDoubleClick="_txtCambio_MouseDoubleClick" IsReadOnly="True"></TextBox>
+                        <custom:ByTTextBox IsEnabled="False" MaxLength="2000" Grid.Column="0" Grid.Row="0" Width="350" Name="_txtCambio" VerticalAlignment="Center"
+                         Grid.ColumnSpan="7" MouseDoubleClick="_txtCambio_MouseDoubleClick" IsReadOnly="True"></custom:ByTTextBox>
 
                         <ListView Name="_lstCambios" ItemsSource="{Binding}" Grid.ColumnSpan="3"
                       MouseDoubleClick="_lstCambios_MouseDoubleClick" SelectionMode="Single" Width="350"
@@ -142,7 +143,7 @@
                     <Label>
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblComentario}"/>
                     </Label>
-                    <TextBox IsEnabled="False" Width="350" MaxLength="2000" Name="_txtComentario" VerticalAlignment="Center" Text="{Binding Path=Comentario}"/>
+                    <custom:ByTTextBox IsEnabled="False" Width="350" MaxLength="2000" Name="_txtComentario" VerticalAlignment="Center" Text="{Binding Path=Comentario}"/>
                 </WrapPanel>
                 <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
                     <Label>

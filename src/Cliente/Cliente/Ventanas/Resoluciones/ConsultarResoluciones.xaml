@@ -3,6 +3,7 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:custom="clr-namespace:Trascend.Bolet.ControlesByT;assembly=ControlesByT"
       mc:Ignorable="d" 
       d:DesignHeight="550" d:DesignWidth="800"
       xmlns:recurso="clr-namespace:Trascend.Bolet.Cliente.Recursos"
@@ -45,7 +46,7 @@
                     <Label>
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblId}"/>
                     </Label>
-                    <TextBox Name="_txtId" Text="{Binding Path=Id}" Width="150" MaxLength="8"/>
+                    <custom:ByTTextBox Name="_txtId" Text="{Binding Path=Id}" Width="150" MaxLength="8"/>
                 </WrapPanel>
                 <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
                     <Label VerticalAlignment="Center" HorizontalContentAlignment="Right">
@@ -81,13 +82,13 @@
                     <Label>
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblVolumen}"/>
                     </Label>
-                    <TextBox Name="_txtVolumen" Text="{Binding Path=Volumen}" Width="150" MaxLength="5"/>
+                    <custom:ByTTextBox Name="_txtVolumen" Text="{Binding Path=Volumen}" Width="150" MaxLength="5"/>
                 </WrapPanel>
                 <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
                     <Label>
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblPagina}"/>
                     </Label>
-                    <TextBox Name="_txtPagina" Text="{Binding Path=Pagina}" Width="150" MaxLength="5"/>
+                    <custom:ByTTextBox Name="_txtPagina" Text="{Binding Path=Pagina}" Width="150" MaxLength="5"/>
                 </WrapPanel>
                 
                 <Separator Margin="0,5,0,5"/>

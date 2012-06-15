@@ -3,6 +3,7 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:custom="clr-namespace:Trascend.Bolet.ControlesByT;assembly=ControlesByT"
       mc:Ignorable="d" 
       xmlns:reglas="clr-namespace:Trascend.Bolet.Cliente.Validaciones"
       d:DesignHeight="550" d:DesignWidth="800"
@@ -53,13 +54,13 @@
                 <Label Grid.Column="0" Grid.Row="1" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                     <TextBlock Text="{x:Static recurso:Etiquetas.lblId}"/>
                 </Label>
-                <TextBox Grid.Column="1" Grid.Row="1" Name="_txtId" VerticalAlignment="Center" IsEnabled="False" 
-                         HorizontalAlignment="Left" Width="180" Text="{Binding Path=Id}"></TextBox>
+                <custom:ByTTextBox Grid.Column="1" Grid.Row="1" Name="_txtId" VerticalAlignment="Center" IsEnabled="False" 
+                         HorizontalAlignment="Left" Width="180" Text="{Binding Path=Id}"></custom:ByTTextBox>
 
                 <Label Grid.Column="0" Grid.Row="2" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                     <TextBlock Text="{x:Static recurso:Etiquetas.lblNombreCompleto}"/>
                 </Label>
-                <TextBox Name="_txtNombreCompleto" Grid.Column="2" Grid.Row="2" VerticalAlignment="Center" IsEnabled="False" 
+                <custom:ByTTextBox Name="_txtNombreCompleto" Grid.Column="2" Grid.Row="2" VerticalAlignment="Center" IsEnabled="False" 
                          HorizontalAlignment="Left" Width="180" SpellCheck.IsEnabled="True" MaxLength="255"
                          ToolTip="{Binding ElementName=_txtNombreCompleto, Path=(Validation.Errors)[0].ErrorContent}">
                     <TextBox.Text>
@@ -69,13 +70,13 @@
                             </Binding.ValidationRules>
                         </Binding>
                     </TextBox.Text>
-                </TextBox>
+                </custom:ByTTextBox>
 
 
                 <Label Grid.Column="0" Grid.Row="3" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                     <TextBlock Text="{x:Static recurso:Etiquetas.lblIniciales}"/>
                 </Label>
-                <TextBox Name="_txtIniciales" Grid.Column="2" Grid.Row="3" VerticalAlignment="Center" 
+                <custom:ByTTextBox Name="_txtIniciales" Grid.Column="2" Grid.Row="3" VerticalAlignment="Center" 
                          IsEnabled="False" HorizontalAlignment="Left" MaxLength="3"
                          Width="180" ToolTip="{Binding ElementName=_txtIniciales, Path=(Validation.Errors)[0].ErrorContent}">
                     <TextBox.Text>
@@ -85,7 +86,7 @@
                             </Binding.ValidationRules>
                         </Binding>
                     </TextBox.Text>
-                </TextBox>
+                </custom:ByTTextBox>
 
                 <Label Grid.Column="0" Grid.Row="4" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                     <TextBlock Text="{x:Static recurso:Etiquetas.lblRol}"/>
@@ -102,7 +103,7 @@
                 <Label Grid.Column="0" Grid.Row="6" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                     <TextBlock Text="{x:Static recurso:Etiquetas.lblEmail}"/>
                 </Label>
-                <TextBox Name="_txtEmail" Grid.Column="2" Grid.Row="6" VerticalAlignment="Center" IsEnabled="False" 
+                <custom:ByTTextBox Name="_txtEmail" Grid.Column="2" Grid.Row="6" VerticalAlignment="Center" IsEnabled="False" 
                          HorizontalAlignment="Left" Width="180" MaxLength="50"
                          ToolTip="{Binding ElementName=_txtEmail, Path=(Validation.Errors)[0].ErrorContent}">
                     <TextBox.Text>
@@ -112,7 +113,7 @@
                             </Binding.ValidationRules>
                         </Binding>
                     </TextBox.Text>
-                </TextBox>
+                </custom:ByTTextBox>
 
                 <Label Grid.Column="0" Grid.Row="7" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                     <TextBlock Text="{x:Static recurso:Etiquetas.lblAutorizar}"/>

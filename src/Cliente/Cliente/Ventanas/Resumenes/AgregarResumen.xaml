@@ -3,6 +3,7 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:custom="clr-namespace:Trascend.Bolet.ControlesByT;assembly=ControlesByT"
       mc:Ignorable="d"
       xmlns:reglas="clr-namespace:Trascend.Bolet.Cliente.Validaciones"
       d:DesignHeight="550" d:DesignWidth="800"
@@ -40,7 +41,7 @@
                 <Label Grid.Column="0" Grid.Row="1" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                     <TextBlock Text="{x:Static recurso:Etiquetas.lblDescripcion}"/>
                 </Label>
-                <TextBox Name="_txtId" Grid.Column="1" Grid.Row="1" VerticalAlignment="Bottom" IsEnabled="true"
+                <custom:ByTTextBox Name="_txtId" Grid.Column="1" Grid.Row="1" VerticalAlignment="Bottom" IsEnabled="true"
                          HorizontalAlignment="Left" Width="180" SpellCheck.IsEnabled="True" MaxLength="4"
                          ToolTip="{Binding ElementName=_txtId, Path=(Validation.Errors)[0].ErrorContent}" Margin="0,0,0,5">
                     <TextBox.Text>
@@ -50,12 +51,12 @@
                             </Binding.ValidationRules>
                         </Binding>
                     </TextBox.Text>
-                </TextBox>
+                </custom:ByTTextBox>
 
                 <Label Grid.Column="0" Grid.Row="2" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                     <TextBlock Text="{x:Static recurso:Etiquetas.lblDescripcion}"/>
                 </Label>
-                <TextBox Name="_txtDescripcion" Grid.Column="1" Grid.Row="2" VerticalAlignment="Bottom" IsEnabled="true"
+                <custom:ByTTextBox Name="_txtDescripcion" Grid.Column="1" Grid.Row="2" VerticalAlignment="Bottom" IsEnabled="true"
                          HorizontalAlignment="Left" Width="180" SpellCheck.IsEnabled="True" MaxLength="255"
                          ToolTip="{Binding ElementName=_txtDescripcion, Path=(Validation.Errors)[0].ErrorContent}" Margin="0,0,0,5">
                     <TextBox.Text>
@@ -65,12 +66,12 @@
                             </Binding.ValidationRules>
                         </Binding>
                     </TextBox.Text>
-                </TextBox>
+                </custom:ByTTextBox>
                 
                 <Label Grid.Column="0" Grid.Row="3" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                     <TextBlock Text="{x:Static recurso:Etiquetas.lblDias}"/>
                 </Label>
-                <TextBox Grid.Column="1" Grid.Row="3" Name="_txtDias" VerticalAlignment="Bottom" IsEnabled="true"
+                <custom:ByTTextBox Grid.Column="1" Grid.Row="3" Name="_txtDias" VerticalAlignment="Bottom" IsEnabled="true"
                          HorizontalAlignment="Left" Width="180" Margin="0,0,0,5" Text="{Binding Path=Dias}" MaxLength="4"
                           KeyDown="_txtDias_KeyDown" KeyUp="_txtDias_KeyUp"/>
 

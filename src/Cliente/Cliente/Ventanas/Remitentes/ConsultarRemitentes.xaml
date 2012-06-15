@@ -3,6 +3,7 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:custom="clr-namespace:Trascend.Bolet.ControlesByT;assembly=ControlesByT"
       mc:Ignorable="d" 
       d:DesignHeight="550" d:DesignWidth="800"
       xmlns:recurso="clr-namespace:Trascend.Bolet.Cliente.Recursos"
@@ -45,13 +46,13 @@
                     <Label>
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblId}"/>
                     </Label>
-                    <TextBox Name="_txtId" Text="{Binding Path=Id}" Width="150" MaxLength="4"/>
+                    <custom:ByTTextBox Name="_txtId" Text="{Binding Path=Id}" Width="150" MaxLength="4"/>
                 </WrapPanel>
                 <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
                     <Label>
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblDescripcion}"/>
                     </Label>
-                    <TextBox Name="_txtDescripcion" Text="{Binding Path=Descripcion}" Width="150" MaxLength="150"/>
+                    <custom:ByTTextBox Name="_txtDescripcion" Text="{Binding Path=Descripcion}" Width="150" MaxLength="150"/>
                 </WrapPanel>
                 <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
                     <Label VerticalAlignment="Center" HorizontalContentAlignment="Right">
@@ -73,19 +74,19 @@
                     <Label>
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblDireccion}"/>
                     </Label>
-                    <TextBox Name="_txtDireccion" Text="{Binding Path=Direccion}" Width="150" MaxLength="150"/>
+                    <custom:ByTTextBox Name="_txtDireccion" Text="{Binding Path=Direccion}" Width="150" MaxLength="150"/>
                 </WrapPanel>
                 <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
                     <Label>
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblCiudad}"/>
                     </Label>
-                    <TextBox Name="_txtCiudad" Text="{Binding Path=Ciudad}" Width="150" MaxLength="60"/>
+                    <custom:ByTTextBox Name="_txtCiudad" Text="{Binding Path=Ciudad}" Width="150" MaxLength="60"/>
                 </WrapPanel>
                 <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
                     <Label>
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblEstado}"/>
                     </Label>
-                    <TextBox Name="_txtEstado" Text="{Binding Path=Estado}" Width="150" MaxLength="60"/>
+                    <custom:ByTTextBox Name="_txtEstado" Text="{Binding Path=Estado}" Width="150" MaxLength="60"/>
                 </WrapPanel>
                 <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
                     <Label>
@@ -99,13 +100,13 @@
                     <Label>
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblFax}"/>
                     </Label>
-                    <TextBox Name="_txtFax" Text="{Binding Path=Fax}" Width="150" MaxLength="50"/>
+                    <custom:ByTTextBox Name="_txtFax" Text="{Binding Path=Fax}" Width="150" MaxLength="50"/>
                 </WrapPanel>
                 <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
                     <Label>
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblTelefono}"/>
                     </Label>
-                    <TextBox Name="_txtTelefono" Text="{Binding Path=Telefono}" Width="150" MaxLength="50"/>
+                    <custom:ByTTextBox Name="_txtTelefono" Text="{Binding Path=Telefono}" Width="150" MaxLength="50"/>
                 </WrapPanel>
                 <Separator Margin="0,5,0,5"/>
                 <WrapPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,5,0,5">

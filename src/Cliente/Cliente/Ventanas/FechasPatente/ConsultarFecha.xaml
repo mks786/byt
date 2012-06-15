@@ -53,7 +53,7 @@
                         <Label Grid.Column="0" HorizontalAlignment="Right">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblFecha}"/>
                         </Label>
-                        <TextBox Name="_txtFecha" Width="140" MaxLength="30" Grid.Column="1" Grid.ColumnSpan="2"
+                        <custom:ByTTextBox Name="_txtFecha" Width="140" MaxLength="30" Grid.Column="1" Grid.ColumnSpan="2"
                                  Text="{Binding Path=FechaRegistro}" IsEnabled="False" HorizontalAlignment="Left"/>
                     
                         <Label Grid.Column="0" Grid.Row="1" HorizontalAlignment="Right" Margin="0,5,0,0">
@@ -87,7 +87,7 @@
                         <Label Grid.Row="4" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblComentario}"/>
                         </Label>
-                    <TextBox Name="_txtComentario" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" AcceptsReturn="True" Width="165" MaxLength="30" Margin="0,5,0,0"
+                    <custom:ByTTextBox Name="_txtComentario" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" AcceptsReturn="True" Width="165" MaxLength="30" Margin="0,5,0,0"
                              Text="{Binding Path=Comentario}" IsEnabled="False" Height="100" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" HorizontalAlignment="Left"/>
 
                     

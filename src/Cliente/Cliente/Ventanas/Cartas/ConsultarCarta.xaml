@@ -90,7 +90,7 @@
                 <Label Grid.Column="1" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Center">
                     <TextBlock Text="{x:Static recurso:Etiquetas.lblCodigo}"/>
                 </Label>
-                <TextBox IsEnabled="False" Name="_txtIdCarta" Text="{Binding Path=Id}" Grid.Column="2" Grid.Row="0" Height="20"></TextBox>
+                <custom:ByTTextBox IsEnabled="False" Name="_txtIdCarta" Text="{Binding Path=Id}" Grid.Column="2" Grid.Row="0" Height="20"></custom:ByTTextBox>
                 <Label Grid.Column="3" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Center">
                     <TextBlock Text="{x:Static recurso:Etiquetas.lblFecha}"/>
                 </Label>
@@ -143,12 +143,12 @@
 
 
 
-                    <TextBox IsReadOnly="True" IsEnabled="False"  Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="4"  Name="_txtAsociado" VerticalAlignment="Center"
-                          Margin="0,0,90,0" Text="" MaxLength="255" MouseDoubleClick="_txtAsociado_GotFocus" BorderBrush="LightGreen"></TextBox>
-                    <TextBox  IsEnabled="False"  Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="1" Name="_txtIdAsociado" VerticalAlignment="Center" 
-                          HorizontalAlignment="Left" Width="45" MaxLength="255"  Visibility="Collapsed"  ></TextBox>
-                    <TextBox  IsEnabled="False"  Grid.Column="4" Grid.Row="0" Grid.ColumnSpan="1" Name="_txtNombreAsociado" VerticalAlignment="Center" 
-                          MaxLength="255" Visibility="Collapsed"></TextBox>
+                    <custom:ByTTextBox IsReadOnly="True" IsEnabled="False"  Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="4"  Name="_txtAsociado" VerticalAlignment="Center"
+                          Margin="0,0,90,0" Text="" MaxLength="255" MouseDoubleClick="_txtAsociado_GotFocus" BorderBrush="LightGreen"></custom:ByTTextBox>
+                    <custom:ByTTextBox  IsEnabled="False"  Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="1" Name="_txtIdAsociado" VerticalAlignment="Center" 
+                          HorizontalAlignment="Left" Width="45" MaxLength="255"  Visibility="Collapsed"  ></custom:ByTTextBox>
+                    <custom:ByTTextBox  IsEnabled="False"  Grid.Column="4" Grid.Row="0" Grid.ColumnSpan="1" Name="_txtNombreAsociado" VerticalAlignment="Center" 
+                          MaxLength="255" Visibility="Collapsed"></custom:ByTTextBox>
                     <Label Name="_lblIdAsociado" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Center" Visibility="Collapsed">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblId}"/>
                     </Label>
@@ -190,7 +190,7 @@
                 <Label Grid.Column="1" Grid.Row="4" HorizontalAlignment="Right" VerticalAlignment="Center">
                     <TextBlock Text="{x:Static recurso:Etiquetas.lblDepartamento}"/>
                 </Label>
-                <TextBox  IsEnabled="False"  Grid.ColumnSpan="8" Name="_txtNombreDepartamento" Text="{Binding Path=DescripcionDepartamento}" Grid.Column="2" Grid.Row="4" Height="20"></TextBox>
+                <custom:ByTTextBox  IsEnabled="False"  Grid.ColumnSpan="8" Name="_txtNombreDepartamento" Text="{Binding Path=DescripcionDepartamento}" Grid.Column="2" Grid.Row="4" Height="20"></custom:ByTTextBox>
                 <Label Grid.Column="1" Grid.Row="5" HorizontalAlignment="Right" VerticalAlignment="Center">
                     <TextBlock Text="{x:Static recurso:Etiquetas.lblPersona}"/>
                 </Label>
@@ -201,11 +201,11 @@
                 <Label Grid.Column="6" Grid.Row="5" HorizontalAlignment="Right" VerticalAlignment="Center">
                     <TextBlock Text="{x:Static recurso:Etiquetas.lblReferencia}"/>
                 </Label>
-                <TextBox IsEnabled="False"   Grid.ColumnSpan="3" Name="_txtReferencia" Text="{Binding Path=Referencia}" Grid.Column="7" Grid.Row="5" Height="20"></TextBox>
+                <custom:ByTTextBox IsEnabled="False"   Grid.ColumnSpan="3" Name="_txtReferencia" Text="{Binding Path=Referencia}" Grid.Column="7" Grid.Row="5" Height="20"></custom:ByTTextBox>
                 <Label Grid.Column="1" Grid.Row="6" HorizontalAlignment="Right" VerticalAlignment="Center">
                     <TextBlock Text="{x:Static recurso:Etiquetas.lblResumen}"/>
                 </Label>
-                <TextBox IsEnabled="False"   Name="_txtResumen" Text="{Binding Path=DescripcionResumen}" Grid.Column="2" Grid.Row="6" Grid.ColumnSpan="6" Height="20" Margin="0,0,5,0" ></TextBox>
+                <custom:ByTTextBox IsEnabled="False"   Name="_txtResumen" Text="{Binding Path=DescripcionResumen}" Grid.Column="2" Grid.Row="6" Grid.ColumnSpan="6" Height="20" Margin="0,0,5,0" ></custom:ByTTextBox>
                 <ComboBox IsEnabled="False"  Grid.Column="8" Grid.Row="6" Grid.ColumnSpan="2" Name="_cbxResumen" Height="20"  ItemsSource="{Binding}"
                          DisplayMemberPath="Descripcion">
                 </ComboBox>
@@ -213,7 +213,7 @@
                 <Label Grid.Column="1" Grid.Row="7" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,3" Grid.RowSpan="2">
                     <TextBlock Text="{x:Static recurso:Etiquetas.lblTracking}"/>
                 </Label>
-                <TextBox  IsEnabled="False"  Grid.ColumnSpan="2" Name="_txtTracking" Text="{Binding Path=Tracking}" Grid.Column="2" Grid.Row="7" Height="20" Margin="0,5" Grid.RowSpan="2"></TextBox>
+                <custom:ByTTextBox  IsEnabled="False"  Grid.ColumnSpan="2" Name="_txtTracking" Text="{Binding Path=Tracking}" Grid.Column="2" Grid.Row="7" Height="20" Margin="0,5" Grid.RowSpan="2"></custom:ByTTextBox>
                 <Label Grid.Column="2" Grid.Row="7" Grid.ColumnSpan="2" HorizontalAlignment="Right" VerticalAlignment="Bottom" Grid.RowSpan="2" Foreground="Gray">
                     <TextBlock Name="_lsbFormato" Text="Formato: " FontSize="10" />
                 </Label>
@@ -307,7 +307,7 @@
                 <Label Grid.Column="4" Grid.Row="20" HorizontalAlignment="Right" VerticalAlignment="Center">
                     <TextBlock Text="{x:Static recurso:Etiquetas.lblTracking}"/>
                 </Label>
-                <TextBox IsEnabled="False" Grid.ColumnSpan="2" Name="_txtTrackingConfirmacion" Text="{Binding Path=AnexoTracking}" Grid.Column="5" Grid.Row="20" Height="20"></TextBox>
+                <custom:ByTTextBox IsEnabled="False" Grid.ColumnSpan="2" Name="_txtTrackingConfirmacion" Text="{Binding Path=AnexoTracking}" Grid.Column="5" Grid.Row="20" Height="20"></custom:ByTTextBox>
                 <Label Grid.Column="5" Grid.ColumnSpan="2"  Grid.Row="21" HorizontalAlignment="Right" VerticalAlignment="top" Grid.RowSpan="2" Foreground="Gray">
                     <TextBlock Name="_lsbFormatoConfirmacion" Text="Formato: " FontSize="10" />
                 </Label>
@@ -338,13 +338,13 @@
                 <!--<Label Grid.Column="6" Grid.Row="22" HorizontalAlignment="Right" VerticalAlignment="Center">
                 <TextBlock Text="{x:Static recurso:Etiquetas.lblMedio}"/>
             </Label>
-            <TextBox IsEnabled="False"   Grid.ColumnSpan="2" Name="_txtMedio" Text="{Binding Path=AnexoMedio}" Grid.Column="7" Grid.Row="22" Height="20"></TextBox>-->
+            <custom:ByTTextBox IsEnabled="False"   Grid.ColumnSpan="2" Name="_txtMedio" Text="{Binding Path=AnexoMedio}" Grid.Column="7" Grid.Row="22" Height="20"></custom:ByTTextBox>-->
 
 
                 <Label Grid.Column="1" Grid.Row="23" HorizontalAlignment="Right" VerticalAlignment="Center">
                     <TextBlock Text="{x:Static recurso:Etiquetas.lblTipoAnexo}"/>
                 </Label>
-                <TextBox IsEnabled="False"  Grid.ColumnSpan="2" Name="_txtTipoAnexo" Text="{Binding Path=DetalleResumen}" Grid.Column="2" Grid.Row="23" Height="20"></TextBox>
+                <custom:ByTTextBox IsEnabled="False"  Grid.ColumnSpan="2" Name="_txtTipoAnexo" Text="{Binding Path=DetalleResumen}" Grid.Column="2" Grid.Row="23" Height="20"></custom:ByTTextBox>
 
                 <Label Grid.Column="1" Grid.Row="24" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.RowSpan="2">
                     <TextBlock Text="{x:Static recurso:Etiquetas.lblAnexos}"/>

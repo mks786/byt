@@ -3,6 +3,7 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:custom="clr-namespace:Trascend.Bolet.ControlesByT;assembly=ControlesByT"
       mc:Ignorable="d" 
       xmlns:reglas="clr-namespace:Trascend.Bolet.Cliente.Validaciones"
       d:DesignHeight="550" d:DesignWidth="800"
@@ -39,7 +40,7 @@
                     <Label>
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblCodigo}"/>
                     </Label>
-                    <TextBox Name="_txtIdMarca" Width="150" MaxLength="255" IsEnabled="False"
+                    <custom:ByTTextBox Name="_txtIdMarca" Width="150" MaxLength="255" IsEnabled="False"
                              ToolTip="{Binding ElementName=_txtNombre, Path=(Validation.Errors)[0].ErrorContent}">
                         <TextBox.Text>
                             <Binding Path="IdMarca" UpdateSourceTrigger="PropertyChanged">
@@ -48,31 +49,31 @@
                                 </Binding.ValidationRules>
                             </Binding>
                         </TextBox.Text>
-                    </TextBox>
+                    </custom:ByTTextBox>
                 </WrapPanel>
                 <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
                     <Label>
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblSolicitud}"/>
                     </Label>
-                    <TextBox Name="_txtSolicitud" Width="150" MaxLength="30" IsEnabled="False"/>
+                    <custom:ByTTextBox Name="_txtSolicitud" Width="150" MaxLength="30" IsEnabled="False"/>
                 </WrapPanel>
                 <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
                     <Label>
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblRegistro}"/>
                     </Label>
-                    <TextBox Name="_txtRegistro" Width="150" MaxLength="30" IsEnabled="False" />
+                    <custom:ByTTextBox Name="_txtRegistro" Width="150" MaxLength="30" IsEnabled="False" />
                 </WrapPanel>
                 <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
                     <Label>
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblIdAnaqua}"/>
                     </Label>
-                    <TextBox Name="_txtIdAnaqua" Width="150" MaxLength="30" IsEnabled="False" Text="{Binding Path=IdAnaqua}"/>
+                    <custom:ByTTextBox Name="_txtIdAnaqua" Width="150" MaxLength="30" IsEnabled="False" Text="{Binding Path=IdAnaqua}"/>
                 </WrapPanel>
                 <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
                     <Label>
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblBKId}"/>
                     </Label>
-                    <TextBox Name="_txtBKId" Width="150" MaxLength="30" IsEnabled="False" Text="{Binding Path=BkId}"/>
+                    <custom:ByTTextBox Name="_txtBKId" Width="150" MaxLength="30" IsEnabled="False" Text="{Binding Path=BkId}"/>
                 </WrapPanel>
                 <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
                     <Label>
@@ -87,19 +88,19 @@
                     <Label>
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblDistingueIngles}"/>
                     </Label>
-                    <TextBox Name="_txtDistingueIngles" MaxLength="255"  TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" AcceptsReturn="True"
+                    <custom:ByTTextBox Name="_txtDistingueIngles" MaxLength="255"  TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" AcceptsReturn="True"
                              HorizontalAlignment="Left" Width="150" Height="75" IsEnabled="False"
                              SpellCheck.IsEnabled="True" Text="{Binding Path=Distingue}">
-                    </TextBox>
+                    </custom:ByTTextBox>
                 </WrapPanel>
                 <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
                     <Label>
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblComentario}"/>
                     </Label>
-                    <TextBox Name="_txtComentario" MaxLength="255"  TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" AcceptsReturn="True"
+                    <custom:ByTTextBox Name="_txtComentario" MaxLength="255"  TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" AcceptsReturn="True"
                              HorizontalAlignment="Left" Width="150" Height="75" IsEnabled="False"
                              SpellCheck.IsEnabled="True" Text="{Binding Path=Comentario}">
-                    </TextBox>
+                    </custom:ByTTextBox>
                 </WrapPanel>
                 <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
                     <Label>

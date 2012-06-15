@@ -42,11 +42,11 @@
                     <Label>
                         <TextBlock Name="_lblIdFusion" Text="{x:Static recurso:Etiquetas.lblId}"/>
                     </Label>
-                    <TextBox Name="_txtIdFusion" Width="150" MaxLength="40"  Text="{Binding Path=Id}" IsReadOnly="True" IsTabStop="False"  IsEnabled="False"/>
+                    <custom:ByTTextBox Name="_txtIdFusion" Width="150" MaxLength="40"  Text="{Binding Path=Id}" IsReadOnly="True" IsTabStop="False"  IsEnabled="False"/>
                     <Label>
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblExpediente}"/>
                     </Label>
-                    <TextBox Name="_txtExpediente" Width="150" MaxLength="40"  Text="{Binding Path=Expediente}" IsEnabled="False"/>
+                    <custom:ByTTextBox Name="_txtExpediente" Width="150" MaxLength="40"  Text="{Binding Path=Expediente}" IsEnabled="False"/>
                     <Label>
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblFecha}"/>
                     </Label>
@@ -80,11 +80,11 @@
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblPatente}"/>
                         </Label>
 
-                        <TextBox Name="_txtIdPatente" MaxLength="40"  Text="" IsEnabled="False" IsReadOnly="True" IsTabStop="False" 
+                        <custom:ByTTextBox Name="_txtIdPatente" MaxLength="40"  Text="" IsEnabled="False" IsReadOnly="True" IsTabStop="False" 
                              VerticalContentAlignment="Center" Margin="0,0,5,0" Grid.ColumnSpan="1" Grid.Column="1"
                              Grid.Row="0" MouseDoubleClick="_txtNombrePatente_MouseDoubleClick" BorderBrush="LightGreen"/>
                         
-                        <TextBox Name="_txtNombrePatente" MaxLength="40"  Text="" IsEnabled="False" IsReadOnly="True" IsTabStop="False" 
+                        <custom:ByTTextBox Name="_txtNombrePatente" MaxLength="40"  Text="" IsEnabled="False" IsReadOnly="True" IsTabStop="False" 
                              VerticalContentAlignment="Center" Margin="0,0,0,0" Grid.ColumnSpan="5" Grid.Column="2"
                              Grid.Row="0" MouseDoubleClick="_txtNombrePatente_MouseDoubleClick" BorderBrush="LightGreen"/>
 

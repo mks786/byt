@@ -75,14 +75,14 @@
                             <Label Name="_lblMarcaTercero">
                                 <TextBlock Text="{x:Static recurso:Etiquetas.lblMarcaTercero}"/>
                             </Label>
-                            <TextBox Name="_txtDescripcion" Text="{Binding Path=Descripcion}" Width="150" MaxLength="8"
+                            <custom:ByTTextBox Name="_txtDescripcion" Text="{Binding Path=Descripcion}" Width="150" MaxLength="8"
                              GotFocus="_btnConsultarFocus" GotKeyboardFocus="_btnConsultarFocus"/>
                         </WrapPanel>
                         <!--<WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,180,0">
                         <Label>
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblFichas}"/>
                         </Label>
-                        <TextBox Name="_txtFichas" Text="" Width="150" MaxLength="15"
+                        <custom:ByTTextBox Name="_txtFichas" Text="" Width="150" MaxLength="15"
                              GotFocus="_btnConsultarFocus" GotKeyboardFocus="_btnConsultarFocus" CharacterCasing="Upper"/>
                     </WrapPanel>-->
                         <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,14,0">
@@ -112,7 +112,7 @@
                                 <Label Name="_lblNombreAsociado" Visibility="Collapsed"  VerticalAlignment="Center" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Right">
                                     <TextBlock Text="{x:Static recurso:Etiquetas.lblNombre}"/>
                                 </Label>
-                                <TextBox Visibility="Collapsed"  Name="_txtNombreAsociado" Text="" Width="150" MaxLength="255" Grid.Row="2" Grid.Column="1" Height="25" HorizontalAlignment="Left"
+                                <custom:ByTTextBox Visibility="Collapsed"  Name="_txtNombreAsociado" Text="" Width="150" MaxLength="255" Grid.Row="2" Grid.Column="1" Height="25" HorizontalAlignment="Left"
                                  GotFocus="_btnConsultarAsociadoFocus" GotKeyboardFocus="_btnConsultarAsociadoFocus" Margin="0,3" />
 
                                 <Button Visibility="Collapsed"  Name="_btnConsultarAsociado" Width="100" IsDefault="False" Grid.Row="2" Grid.Column="1" Height="25" HorizontalAlignment="Right" Click="_btnConsultarAsociado_Click">
@@ -172,7 +172,7 @@
                                 <Label Name="_lblNombreInteresado" Visibility="Collapsed"  VerticalAlignment="Center" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Right">
                                     <TextBlock Text="{x:Static recurso:Etiquetas.lblNombre}"/>
                                 </Label>
-                                <TextBox Visibility="Collapsed"  Name="_txtNombreInteresado" Text="" Width="150" MaxLength="15" Grid.Row="2" Grid.Column="1" Height="25" HorizontalAlignment="Left"
+                                <custom:ByTTextBox Visibility="Collapsed"  Name="_txtNombreInteresado" Text="" Width="150" MaxLength="15" Grid.Row="2" Grid.Column="1" Height="25" HorizontalAlignment="Left"
                                  GotFocus="_btnConsultarInteresadoFocus" GotKeyboardFocus="_btnConsultarInteresadoFocus" Margin="0,3" />
 
                                 <Button Visibility="Collapsed"  Name="_btnConsultarInteresado" Width="100" IsDefault="False" Grid.Row="2" Grid.Column="1" Height="25" HorizontalAlignment="Right" Click="_btnConsultarInteresado_Click">
@@ -231,7 +231,7 @@
                                 <Label Name="_lblNombreCorresponsal" Visibility="Collapsed"  VerticalAlignment="Center" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Right">
                                     <TextBlock Text="{x:Static recurso:Etiquetas.lblNombre}"/>
                                 </Label>
-                                <TextBox Visibility="Collapsed"  Name="_txtNombreCorresponsal" Text="" Width="150" MaxLength="255" Grid.Row="2" Grid.Column="1" Height="25" HorizontalAlignment="Left"
+                                <custom:ByTTextBox Visibility="Collapsed"  Name="_txtNombreCorresponsal" Text="" Width="150" MaxLength="255" Grid.Row="2" Grid.Column="1" Height="25" HorizontalAlignment="Left"
                                  GotFocus="_btnConsultarCorresponsalFocus" GotKeyboardFocus="_btnConsultarCorresponsalFocus" Margin="0,3" />
 
                                 <Button Visibility="Collapsed"  Name="_btnConsultarCorresponsal" Width="100" IsDefault="False" Grid.Row="2" Grid.Column="1" Height="25" HorizontalAlignment="Right" Click="_btnConsultarCorresponsal_Click">

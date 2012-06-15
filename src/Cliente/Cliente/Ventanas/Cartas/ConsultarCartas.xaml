@@ -54,7 +54,7 @@
                     <Label>
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblResumen}"/>
                     </Label>
-                    <TextBox Name="_txtResumen" Text="" Width="150" MaxLength="15"
+                    <custom:ByTTextBox Name="_txtResumen" Text="" Width="150" MaxLength="15"
                              GotFocus="_btnConsultarFocus" GotKeyboardFocus="_btnConsultarFocus" CharacterCasing="Upper"/>
                 </WrapPanel>
                 <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,180,0">
@@ -94,7 +94,7 @@
                         <Label VerticalAlignment="Center" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Right">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblNombre}"/>
                         </Label>
-                        <TextBox Name="_txtNombreAsociado" Text="" Width="150" MaxLength="15" Grid.Row="2" Grid.Column="1" Height="25" HorizontalAlignment="Left"
+                        <custom:ByTTextBox Name="_txtNombreAsociado" Text="" Width="150" MaxLength="15" Grid.Row="2" Grid.Column="1" Height="25" HorizontalAlignment="Left"
                                  GotFocus="_btnConsultarInteresadoFocus" GotKeyboardFocus="_btnConsultarInteresadoFocus"/>
 
                         <Button Name="_btnConsultarAsociado" Width="100" IsDefault="False" Grid.Row="2" Grid.Column="1" Height="25" HorizontalAlignment="Right" Click="_btnConsultarAsociado_Click">

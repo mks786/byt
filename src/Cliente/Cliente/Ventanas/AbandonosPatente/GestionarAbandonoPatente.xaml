@@ -42,9 +42,9 @@
                     <Label>
                         <TextBlock Name="_lblIdOperacion" Text="{x:Static recurso:Etiquetas.lblId}"/>
                     </Label>
-                    <TextBox Name="_txtIdOperacion" Width="150" MaxLength="40"  Text="{Binding Path=Id}" IsEnabled="False" IsReadOnly="True"/>
+                    <custom:ByTTextBox Name="_txtIdOperacion" Width="150" MaxLength="40"  Text="{Binding Path=Id}" IsEnabled="False" IsReadOnly="True"/>
 
-                    <TextBox Name="_txtAplicada" Width="150" MaxLength="40"  Text="{Binding Path=Aplicada}" IsEnabled="False" IsReadOnly="True"/>
+                    <custom:ByTTextBox Name="_txtAplicada" Width="150" MaxLength="40"  Text="{Binding Path=Aplicada}" IsEnabled="False" IsReadOnly="True"/>
                     <Label>
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblFecha}"/>
                     </Label>
@@ -78,7 +78,7 @@
                         <Label Grid.Column="0" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Center">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblPatente}"/>
                         </Label>
-                        <TextBox Name="_txtNombrePatente" MaxLength="40"  Text="" IsEnabled="False" IsReadOnly="True"
+                        <custom:ByTTextBox Name="_txtNombrePatente" MaxLength="40"  Text="" IsEnabled="False" IsReadOnly="True"
                              VerticalContentAlignment="Center" Margin="0,0,0,0" Grid.ColumnSpan="6" Grid.Column="1"                               
                              Grid.Row="0" MouseDoubleClick="_txtNombrePatente_MouseDoubleClick" BorderBrush="LightGreen"/>
                      
@@ -152,7 +152,7 @@
                         <Label Grid.Column="0" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Center">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblAsociado}"/>
                         </Label>
-                        <TextBox Name="_txtNombreAsociado" MaxLength="40"  Text="{Binding Path=Nombre}" IsEnabled="False" IsReadOnly="True"
+                        <custom:ByTTextBox Name="_txtNombreAsociado" MaxLength="40"  Text="{Binding Path=Nombre}" IsEnabled="False" IsReadOnly="True"
                              VerticalContentAlignment="Center" Margin="0,0,0,0" Grid.ColumnSpan="6" Grid.Column="1"                               
                              Grid.Row="0" MouseDoubleClick="_txtNombreAsociado_MouseDoubleClick" BorderBrush="LightGreen"/>
                         
@@ -226,7 +226,7 @@
                         <Label Grid.Column="0" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Center">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblInteresado}"/>
                         </Label>
-                        <TextBox Name="_txtNombreInteresado" MaxLength="40"  Text="{Binding Path=Nombre}" IsEnabled="False" IsReadOnly="True"
+                        <custom:ByTTextBox Name="_txtNombreInteresado" MaxLength="40"  Text="{Binding Path=Nombre}" IsEnabled="False" IsReadOnly="True"
                              VerticalContentAlignment="Center" Margin="0,0,0,0" Grid.ColumnSpan="2" Grid.Column="1"                               
                              Grid.Row="1" MouseDoubleClick="_txtInteresado_MouseDoubleClick" BorderBrush="LightGreen"/>                                            
 
@@ -247,11 +247,11 @@
                             <TextBlock Text="{x:Static recurso:Etiquetas.btnConsultar}"/>
                         </Button>
 
-                        <TextBox Name="_txtPaisInteresado" MaxLength="40"  Text="{Binding Path=Ciudad}" IsEnabled="False" IsReadOnly="True"
+                        <custom:ByTTextBox Name="_txtPaisInteresado" MaxLength="40"  Text="{Binding Path=Ciudad}" IsEnabled="False" IsReadOnly="True"
                              VerticalContentAlignment="Center" Margin="5,0,0,0" Grid.ColumnSpan="2" Grid.Column="3"                               
                              Grid.Row="1"/>
 
-                        <TextBox Name="_txtCiudadInteresado" MaxLength="40"  Text="{Binding Path=Estado}" IsEnabled="False" IsReadOnly="True"
+                        <custom:ByTTextBox Name="_txtCiudadInteresado" MaxLength="40"  Text="{Binding Path=Estado}" IsEnabled="False" IsReadOnly="True"
                              VerticalContentAlignment="Center" Margin="5,0,0,0" Grid.ColumnSpan="2" Grid.Column="5"                               
                              Grid.Row="1"/>
                                                 

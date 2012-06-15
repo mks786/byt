@@ -3,6 +3,7 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:custom="clr-namespace:Trascend.Bolet.ControlesByT;assembly=ControlesByT"
       mc:Ignorable="d" 
       xmlns:reglas="clr-namespace:Trascend.Bolet.Cliente.Validaciones"
       d:DesignHeight="550" d:DesignWidth="800"
@@ -59,66 +60,66 @@
                 <Label Grid.Column="0" Grid.Row="1" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                     <TextBlock Text="{x:Static recurso:Etiquetas.lblBeneficiario}"/>
                 </Label>
-                <TextBox Name="_txtBeneficiario" Grid.Column="2" Grid.Row="1" VerticalAlignment="Center"  
+                <custom:ByTTextBox Name="_txtBeneficiario" Grid.Column="2" Grid.Row="1" VerticalAlignment="Center"  
                          HorizontalAlignment="Left" Width="180" SpellCheck.IsEnabled="True" MaxLength="200"
                          ToolTip="{Binding ElementName=_txtBeneficiario, Path=(Validation.Errors)[0].ErrorContent}">
-                    <TextBox.Text>
+                    <custom:ByTTextBox.Text>
                         <Binding Path="Beneficiario" UpdateSourceTrigger="PropertyChanged">
                             <Binding.ValidationRules>
                                 <reglas:Obligatorio ValidatesOnTargetUpdated="True" />
                             </Binding.ValidationRules>
                         </Binding>
-                    </TextBox.Text>
-                </TextBox>
+                    </custom:ByTTextBox.Text>
+                </custom:ByTTextBox>
 
                 <Label Grid.Column="0" Grid.Row="2" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                     <TextBlock Text="{x:Static recurso:Etiquetas.lblBancoBeneficiario}"/>
                 </Label>
-                <TextBox Name="_txtBancoBenef" Grid.Column="2" Grid.Row="2" VerticalAlignment="Center" 
+                <custom:ByTTextBox Name="_txtBancoBenef" Grid.Column="2" Grid.Row="2" VerticalAlignment="Center" 
                          HorizontalAlignment="Left" Width="180" SpellCheck.IsEnabled="True" MaxLength="200" Text="{Binding Path=BancoBenef}">
-                </TextBox>
+                </custom:ByTTextBox>
 
                 <Label Grid.Column="0" Grid.Row="3" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                     <TextBlock Text="{x:Static recurso:Etiquetas.lblDireccion}"/>
                 </Label>
-                <TextBox Name="_txtDireccion" Grid.Column="2" Grid.Row="3" VerticalAlignment="Center"  
+                <custom:ByTTextBox Name="_txtDireccion" Grid.Column="2" Grid.Row="3" VerticalAlignment="Center"  
                          HorizontalAlignment="Left" Width="180" SpellCheck.IsEnabled="True" MaxLength="300" Text="{Binding Path=Direccion}">
-                </TextBox>
+                </custom:ByTTextBox>
 
                 <Label Grid.Column="0" Grid.Row="4" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                     <TextBlock Text="{x:Static recurso:Etiquetas.lblCuenta}"/>
                 </Label>
-                <TextBox Name="_txtCuenta" Grid.Column="2" Grid.Row="4" VerticalAlignment="Center" 
+                <custom:ByTTextBox Name="_txtCuenta" Grid.Column="2" Grid.Row="4" VerticalAlignment="Center" 
                          HorizontalAlignment="Left" Width="180" SpellCheck.IsEnabled="True" MaxLength="40" Text="{Binding Path=Cuenta}">
-                </TextBox>
+                </custom:ByTTextBox>
 
                 <Label Grid.Column="0" Grid.Row="5" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                     <TextBlock Text="{x:Static recurso:Etiquetas.lblAba}"/>
                 </Label>
-                <TextBox Name="_txtAba" Grid.Column="2" Grid.Row="5" VerticalAlignment="Center" 
+                <custom:ByTTextBox Name="_txtAba" Grid.Column="2" Grid.Row="5" VerticalAlignment="Center" 
                          HorizontalAlignment="Left" Width="180" SpellCheck.IsEnabled="True" MaxLength="40" Text="{Binding Path=Aba}">
-                </TextBox>
+                </custom:ByTTextBox>
 
                 <Label Grid.Column="0" Grid.Row="6" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                     <TextBlock Text="{x:Static recurso:Etiquetas.lblSwif}"/>
                 </Label>
-                <TextBox Name="_txtSwif" Grid.Column="2" Grid.Row="6" VerticalAlignment="Center"  
+                <custom:ByTTextBox Name="_txtSwif" Grid.Column="2" Grid.Row="6" VerticalAlignment="Center"  
                          HorizontalAlignment="Left" Width="180" SpellCheck.IsEnabled="True" MaxLength="40" Text="{Binding Path=Swif}">
-                </TextBox>
+                </custom:ByTTextBox>
 
                 <Label Grid.Column="0" Grid.Row="7" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                     <TextBlock Text="{x:Static recurso:Etiquetas.lblBancoInt}"/>
                 </Label>
-                <TextBox Name="_txtBancoInt" Grid.Column="2" Grid.Row="7" VerticalAlignment="Center" 
+                <custom:ByTTextBox Name="_txtBancoInt" Grid.Column="2" Grid.Row="7" VerticalAlignment="Center" 
                          HorizontalAlignment="Left" Width="180" SpellCheck.IsEnabled="True" MaxLength="200" Text="{Binding Path=BancoInt}">
-                </TextBox>
+                </custom:ByTTextBox>
 
                 <Label Grid.Column="0" Grid.Row="8" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                     <TextBlock Text="{x:Static recurso:Etiquetas.lblSwiftInt}"/>
                 </Label>
-                <TextBox Name="_txtSwiftInt" Grid.Column="2" Grid.Row="8" VerticalAlignment="Center" 
+                <custom:ByTTextBox Name="_txtSwiftInt" Grid.Column="2" Grid.Row="8" VerticalAlignment="Center" 
                          HorizontalAlignment="Left" Width="180" SpellCheck.IsEnabled="True" MaxLength="40" Text="{Binding Path=SwiftInt}">
-                </TextBox>
+                </custom:ByTTextBox>
 
             </Grid>
         </GroupBox>

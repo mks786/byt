@@ -2,6 +2,7 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:resx="clr-namespace:Trascend.Bolet.Cliente.Recursos"
+      xmlns:custom="clr-namespace:Trascend.Bolet.ControlesByT;assembly=ControlesByT"
         Title="{x:Static resx:Etiquetas.titleLogin}" Height="300" Width="400" ResizeMode="NoResize" WindowStartupLocation="CenterScreen"
         Background="Transparent" WindowStyle="None" SizeToContent="WidthAndHeight" AllowsTransparency="True">
     <Border CornerRadius="10"
@@ -41,8 +42,8 @@
             <Label Grid.Row="2" Height="25" HorizontalContentAlignment="Right">
                 <TextBlock Text="{x:Static resx:Etiquetas.lblLogin}"/>
             </Label>
-            <TextBox Name="_txtLogin" Grid.Column="1" Grid.Row="2" Height="20" Margin="5" CharacterCasing="Upper">HUGO</TextBox>
-            
+            <custom:ByTTextBox Name="_txtLogin" Grid.Column="1" Grid.Row="2" Height="20" Margin="5" CharacterCasing="Upper">HUGO</custom:ByTTextBox>
+
             <Label Height="25" HorizontalContentAlignment="Right" Grid.Row="3">
                 <TextBlock Text="{x:Static resx:Etiquetas.lblPassword}"/>
             </Label>

@@ -3,6 +3,7 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:custom="clr-namespace:Trascend.Bolet.ControlesByT;assembly=ControlesByT"
       mc:Ignorable="d" 
       xmlns:reglas="clr-namespace:Trascend.Bolet.Cliente.Validaciones"
       d:DesignHeight="550" d:DesignWidth="800"
@@ -64,8 +65,8 @@
                 <Label Grid.Column="0" Grid.Row="1" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                     <TextBlock Text="{x:Static recurso:Etiquetas.lblCiudad}"/>
                 </Label>
-                <TextBox Grid.Column="1" Grid.Row="1" Name="_txtId" VerticalAlignment="Center"  
-                         HorizontalAlignment="Left" Width="180" Text="{Binding Path=Id}" IsEnabled="False"></TextBox>
+                <custom:ByTTextBox Grid.Column="1" Grid.Row="1" Name="_txtId" VerticalAlignment="Center"  
+                         HorizontalAlignment="Left" Width="180" Text="{Binding Path=Id}" IsEnabled="False"></custom:ByTTextBox>
                 
                 <Label Grid.Column="0" Grid.Row="2" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                     <TextBlock Text="{x:Static recurso:Etiquetas.lblTipoPersona}"/>
@@ -78,7 +79,7 @@
                 <Label Grid.Column="0" Grid.Row="3" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                     <TextBlock Text="{x:Static recurso:Etiquetas.lblNombre}"/>
                 </Label>
-                <TextBox Grid.Column="2" Grid.Row="3" Name="_txtNombre" VerticalAlignment="Center"  
+                <custom:ByTTextBox Grid.Column="2" Grid.Row="3" Name="_txtNombre" VerticalAlignment="Center"  
                          HorizontalAlignment="Left" Width="180" MaxLength="255" IsEnabled="False"
                              ToolTip="{Binding ElementName=_txtNombre, Path=(Validation.Errors)[0].ErrorContent}">
                     <TextBox.Text>
@@ -88,19 +89,19 @@
                             </Binding.ValidationRules>
                         </Binding>
                     </TextBox.Text>
-                </TextBox>
+                </custom:ByTTextBox>
 
                 <Label Grid.Column="0" Grid.Row="4" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                     <TextBlock Text="{x:Static recurso:Etiquetas.lblCiudad}"/>
                 </Label>
-                <TextBox Grid.Column="1" Grid.Row="4" Name="_txtCiudad" VerticalAlignment="Center"  
-                         HorizontalAlignment="Left" Width="180" Text="{Binding Path=Ciudad}" IsEnabled="False"></TextBox>
+                <custom:ByTTextBox Grid.Column="1" Grid.Row="4" Name="_txtCiudad" VerticalAlignment="Center"  
+                         HorizontalAlignment="Left" Width="180" Text="{Binding Path=Ciudad}" IsEnabled="False"></custom:ByTTextBox>
 
                 <Label Grid.Column="0" Grid.Row="5" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                     <TextBlock Text="{x:Static recurso:Etiquetas.lblEstado}"/>
                 </Label>
-                <TextBox Grid.Column="1" Grid.Row="5" Name="_txtEstado" VerticalAlignment="Center"  
-                         HorizontalAlignment="Left" Width="180" Text="{Binding Path=Estado}" IsEnabled="False"></TextBox>
+                <custom:ByTTextBox Grid.Column="1" Grid.Row="5" Name="_txtEstado" VerticalAlignment="Center"  
+                         HorizontalAlignment="Left" Width="180" Text="{Binding Path=Estado}" IsEnabled="False"></custom:ByTTextBox>
 
                 <Label Grid.Column="0" Grid.Row="6" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                     <TextBlock Text="{x:Static recurso:Etiquetas.lblPais}"/>
@@ -123,32 +124,32 @@
                 <Label Grid.Column="0" Grid.Row="9" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                     <TextBlock Text="{x:Static recurso:Etiquetas.lblCi}"/>
                 </Label>
-                <TextBox Grid.Column="1" Grid.Row="9" Name="_txtCi" VerticalAlignment="Center"  
-                         HorizontalAlignment="Left" Width="180" Text="{Binding Path=Ci}" IsEnabled="False"></TextBox>
+                <custom:ByTTextBox Grid.Column="1" Grid.Row="9" Name="_txtCi" VerticalAlignment="Center"  
+                         HorizontalAlignment="Left" Width="180" Text="{Binding Path=Ci}" IsEnabled="False"></custom:ByTTextBox>
 
                 <Label Grid.Column="0" Grid.Row="10" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                     <TextBlock Text="{x:Static recurso:Etiquetas.lblRMercantil}"/>
                 </Label>
-                <TextBox Grid.Column="1" Grid.Row="10" Name="_txtRMercantil" VerticalAlignment="Center"  
-                         HorizontalAlignment="Left" Width="180" Text="{Binding Path=RMercantil}" IsEnabled="False"></TextBox>
+                <custom:ByTTextBox Grid.Column="1" Grid.Row="10" Name="_txtRMercantil" VerticalAlignment="Center"  
+                         HorizontalAlignment="Left" Width="180" Text="{Binding Path=RMercantil}" IsEnabled="False"></custom:ByTTextBox>
 
                 <Label Grid.Column="0" Grid.Row="11" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                     <TextBlock Text="{x:Static recurso:Etiquetas.lblRegMercantil}"/>
                 </Label>
-                <TextBox Grid.Column="1" Grid.Row="11" Name="_txtRegMercantil" VerticalAlignment="Center"  
-                         HorizontalAlignment="Left" Width="180" Text="{Binding Path=RegMercantil}" IsEnabled="False"></TextBox>
+                <custom:ByTTextBox Grid.Column="1" Grid.Row="11" Name="_txtRegMercantil" VerticalAlignment="Center"  
+                         HorizontalAlignment="Left" Width="180" Text="{Binding Path=RegMercantil}" IsEnabled="False"></custom:ByTTextBox>
 
                 <Label Grid.Column="0" Grid.Row="12" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                     <TextBlock Text="{x:Static recurso:Etiquetas.lblDomicilio}"/>
                 </Label>
-                <TextBox Grid.Column="1" Grid.Row="12" Name="_txtDomicilio" VerticalAlignment="Center"  
-                         HorizontalAlignment="Left" Width="180" Text="{Binding Path=Domicilio}" IsEnabled="False"></TextBox>
+                <custom:ByTTextBox Grid.Column="1" Grid.Row="12" Name="_txtDomicilio" VerticalAlignment="Center"  
+                         HorizontalAlignment="Left" Width="180" Text="{Binding Path=Domicilio}" IsEnabled="False"></custom:ByTTextBox>
 
                 <Label Grid.Column="0" Grid.Row="13" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                     <TextBlock Text="{x:Static recurso:Etiquetas.lblAlerta}"/>
                 </Label>
-                <TextBox Grid.Column="1" Grid.Row="13" Name="_txtAlerta" VerticalAlignment="Center"  
-                         HorizontalAlignment="Left" Width="180" Text="{Binding Path=Alerta}" IsEnabled="False"></TextBox>
+                <custom:ByTTextBox Grid.Column="1" Grid.Row="13" Name="_txtAlerta" VerticalAlignment="Center"  
+                         HorizontalAlignment="Left" Width="180" Text="{Binding Path=Alerta}" IsEnabled="False"></custom:ByTTextBox>
 
             </Grid>
         </GroupBox>

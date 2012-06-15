@@ -3,6 +3,7 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:custom="clr-namespace:Trascend.Bolet.ControlesByT;assembly=ControlesByT"
       mc:Ignorable="d" 
       xmlns:reglas="clr-namespace:Trascend.Bolet.Cliente.Validaciones"
       d:DesignHeight="550" d:DesignWidth="800"
@@ -45,13 +46,13 @@
                     <Label>
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblExpedienteMarca}"/>
                     </Label>
-                    <TextBox IsEnabled="False" Name="_txtIdMarca" Text="{Binding Path=Marca.Id}" Width="130" MaxLength="8"/>
+                    <custom:ByTTextBox IsEnabled="False" Name="_txtIdMarca" Text="{Binding Path=Marca.Id}" Width="130" MaxLength="8"/>
                 </WrapPanel>
                 <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
                     <Label>
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblCodigoBusqueda}"/>
                     </Label>
-                    <TextBox IsEnabled="False" Name="_txtCodigoBusqueda" Width="130" MaxLength="15" Focusable="True" 
+                    <custom:ByTTextBox IsEnabled="False" Name="_txtCodigoBusqueda" Width="130" MaxLength="15" Focusable="True" 
                     ToolTip="{Binding ElementName=_txtCodigoBusqueda, Path=(Validation.Errors)[0].ErrorContent}">
                         <TextBox.Text>
                             <Binding Path="Id" UpdateSourceTrigger="PropertyChanged">
@@ -61,7 +62,7 @@
                                 </Binding.ValidationRules>
                             </Binding>
                         </TextBox.Text>
-                    </TextBox>
+                    </custom:ByTTextBox>
                 </WrapPanel>
                 <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
                     <Label>

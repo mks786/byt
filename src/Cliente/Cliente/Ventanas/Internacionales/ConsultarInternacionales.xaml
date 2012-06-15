@@ -46,7 +46,7 @@
                     <Label>
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblDescripcion}"/>
                     </Label>
-                    <TextBox Name="_txtDescripcion" Text="{Binding Path=Descripcion}" Width="150" MaxLength="2000"/>
+                    <custom:ByTTextBox Name="_txtDescripcion" Text="{Binding Path=Descripcion}" Width="150" MaxLength="2000"/>
                 </WrapPanel>
                 <Separator Margin="0,5,0,5"/>
                 <WrapPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,5,0,5">

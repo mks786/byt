@@ -3,6 +3,7 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:custom="clr-namespace:Trascend.Bolet.ControlesByT;assembly=ControlesByT"
       mc:Ignorable="d" 
       d:DesignHeight="550" d:DesignWidth="800"
       xmlns:recurso="clr-namespace:Trascend.Bolet.Cliente.Recursos"
@@ -53,7 +54,7 @@
                         <Label>
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblDescripcion}"/>
                         </Label>
-                        <TextBox Name="_txtDescripcion" Width="100"></TextBox>
+                        <custom:ByTTextBox Name="_txtDescripcion" Width="100"></custom:ByTTextBox>
                     </WrapPanel>
                     <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="50,5,0,5">
                         <Button Name="_btnConsultar" Width="100" IsDefault="True">

@@ -43,7 +43,7 @@
                     <Label>
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblId}"/>
                     </Label>
-                    <TextBox Name="_txtId" Width="180" MaxLength="8" Focusable="True" 
+                    <custom:ByTTextBox Name="_txtId" Width="180" MaxLength="8" Focusable="True" 
                     ToolTip="{Binding ElementName=_txtId, Path=(Validation.Errors)[0].ErrorContent}">
                         <TextBox.Text>
                             <Binding Path="Id" UpdateSourceTrigger="PropertyChanged">
@@ -52,7 +52,7 @@
                                 </Binding.ValidationRules>
                             </Binding>
                         </TextBox.Text>
-                    </TextBox>
+                    </custom:ByTTextBox>
                 </WrapPanel>
                 <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
                     <Label VerticalAlignment="Center" HorizontalContentAlignment="Right">
@@ -136,7 +136,7 @@
                     <Label>
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblDescripcion}"/>
                     </Label>
-                    <TextBox Name="_txtDescripcion" MaxLength="200"  Text="{Binding Path=Descripcion}" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" AcceptsReturn="True"
+                    <custom:ByTTextBox Name="_txtDescripcion" MaxLength="200"  Text="{Binding Path=Descripcion}" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" AcceptsReturn="True"
                              HorizontalAlignment="Left" Width="180" Height="75" SpellCheck.IsEnabled="True"/>
                 </WrapPanel>
             </StackPanel>

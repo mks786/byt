@@ -39,13 +39,13 @@
                     <Label>
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblId}"/>
                     </Label>
-                    <TextBox Name="_txtId" Width="150" MaxLength="30"  Text="{Binding Path=Id}" />
+                    <custom:ByTTextBox Name="_txtId" Width="150" MaxLength="30"  Text="{Binding Path=Id}" />
                 </WrapPanel>-->
                 <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
                     <Label>
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblFecha}"/>
                     </Label>
-                    <TextBox Name="_txtFecha" Width="150" MaxLength="30"  IsReadOnly="true"/>
+                    <custom:ByTTextBox Name="_txtFecha" Width="150" MaxLength="30"  IsReadOnly="true"/>
                 </WrapPanel>
                 <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
                     <Label>
@@ -71,7 +71,7 @@
                     <Label>
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblComentario}"/>
                     </Label>
-                    <TextBox Name="_txtComentario" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" AcceptsReturn="True" Width="150" MaxLength="30" 
+                    <custom:ByTTextBox Name="_txtComentario" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" AcceptsReturn="True" Width="150" MaxLength="30" 
                              IsEnabled="True" Height="100" Grid.Row="1" Grid.Column="1"/>
                     
                 

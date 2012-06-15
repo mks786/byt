@@ -3,6 +3,7 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:custom="clr-namespace:Trascend.Bolet.ControlesByT;assembly=ControlesByT"
       mc:Ignorable="d" 
       xmlns:reglas="clr-namespace:Trascend.Bolet.Cliente.Validaciones"
       d:DesignHeight="550" d:DesignWidth="800"
@@ -55,7 +56,7 @@
                 <Label Grid.Column="0" Grid.Row="1" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                     <TextBlock Text="{x:Static recurso:Etiquetas.lblCarta}"/>
                 </Label>
-                <TextBox Name="_txtCarta" Grid.Column="1" Grid.Row="1" VerticalAlignment="Center"  
+                <custom:ByTTextBox Name="_txtCarta" Grid.Column="1" Grid.Row="1" VerticalAlignment="Center"  
                          HorizontalAlignment="Left" Width="180" SpellCheck.IsEnabled="True" MaxLength="8"
                          ToolTip="{Binding ElementName=_txtCarta, Path=(Validation.Errors)[0].ErrorContent}">
                     <TextBox.Text>
@@ -65,7 +66,7 @@
                             </Binding.ValidationRules>
                         </Binding>
                     </TextBox.Text>
-                </TextBox>
+                </custom:ByTTextBox>
 
 
                 <Label Grid.Column="0" Grid.Row="2" VerticalAlignment="Center" HorizontalContentAlignment="Right">
