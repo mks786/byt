@@ -1162,6 +1162,29 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CesionesPatente
                     this._ventana.IdPatente = ((Patente)this._ventana.PatenteFiltrada).Id.ToString();
                     retorno = true;
                     this._ventana.InteresadoCedente = ((Patente)this._ventana.Patente).Interesado;
+
+                    if (((Patente)this._ventana.Patente).Interesado != null)
+                        this._ventana.IdCedente = (((Patente)this._ventana.Patente).Interesado).Id.ToString();
+
+                    IList<Interesado> listaAux = new List<Interesado>();
+                    listaAux.Add(new Interesado(int.MinValue));
+
+                    if (((Patente)this._ventana.PatenteFiltrada).Id != int.MinValue)
+                    {
+                        listaAux.Add((Interesado)this._ventana.InteresadoCedente);
+
+                        this._ventana.CedentesFiltrados = listaAux;
+                        this._ventana.CedenteFiltrado = this.BuscarInteresado((IList<Interesado>)this._ventana.CedentesFiltrados,
+                            (Interesado)this._ventana.InteresadoCedente);
+                    }
+                    else
+                    {
+                        this._ventana.CedentesFiltrados = listaAux;
+                        this._ventana.IdCedente = int.MinValue.ToString();
+                        this._ventana.CedenteFiltrado = this.BuscarInteresado((IList<Interesado>)this._ventana.CedentesFiltrados,
+                            new Interesado(int.MinValue));
+                    }
+
                     this._ventana.ApoderadoCedente = ((Patente)this._ventana.Patente).Agente;
                     this._ventana.PoderCedente = ((Patente)this._ventana.Patente).Poder;
                     if (((Patente)this._ventana.Patente).Asociado != null)
@@ -1580,7 +1603,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CesionesPatente
                             this._poderesCedente = this._poderServicios.ConsultarPoderesPorInteresado(((Interesado)_ventana.CedenteFiltrado));
                             this._ventana.InteresadoCedente = this._interesadoServicios.ConsultarInteresadoConTodo((Interesado)this._ventana.CedenteFiltrado);
                             this._ventana.NombreCedente = ((Interesado)this._ventana.InteresadoCedente).Nombre;
-                            this._ventana.NombreCedente = ((Interesado)this._ventana.InteresadoCedente).Id.ToString();
+                            this._ventana.IdCedente = ((Interesado)this._ventana.InteresadoCedente).Id.ToString();
                             retorno = true;
                         }
                     }

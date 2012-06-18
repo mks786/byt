@@ -1098,6 +1098,17 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CambiosDePetici
                     this._ventana.NombrePatente = ((Patente)this._ventana.PatenteFiltrada).Descripcion;
                     this._ventana.IdPatente = ((Patente)this._ventana.PatenteFiltrada).Id.ToString();
                     this._ventana.InteresadoAnterior = ((Patente)this._ventana.Patente).Interesado;
+                    this._ventana.IdAnterior= (((Patente)this._ventana.Patente).Interesado).Id.ToString();
+
+                    IList<Interesado> listaAux = new List<Interesado>();
+
+                    listaAux.Add(new Interesado(int.MinValue));
+                    listaAux.Add((Interesado)this._ventana.InteresadoAnterior);
+
+                    this._ventana.AnteriorsFiltrados = listaAux;
+                    this._ventana.AnteriorFiltrado = this.BuscarInteresado((IList<Interesado>)this._ventana.AnteriorsFiltrados,
+                        (Interesado)this._ventana.InteresadoAnterior);
+
                     this._ventana.ApoderadoAnterior = ((Patente)this._ventana.Patente).Agente;
                     this._ventana.PoderAnterior = ((Patente)this._ventana.Patente).Poder;
                     retorno = true;

@@ -116,6 +116,12 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.CambiosDeNombrePaten
             set { this._txtNombreInteresadoAnterior.Text = value; }
         }
 
+        public string IdInteresadoAnterior
+        {
+            get { return this._txtIdInteresadoAnterior.Text; }
+            set { this._txtIdInteresadoAnterior.Text = value; }
+        }
+
         public object InteresadoActual
         {
             get { return this._gridDatosInteresadoActual.DataContext; }
@@ -125,6 +131,12 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.CambiosDeNombrePaten
         public string NombreInteresadoActual
         {
             set { this._txtNombreInteresadoActual.Text = value; }
+        }
+
+        public string IdInteresadoActual
+        {
+            get { return this._txtIdInteresadoActual.Text; }
+            set { this._txtIdInteresadoActual.Text = value; }
         }
 
         public string Region
@@ -154,6 +166,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.CambiosDeNombrePaten
                 this._txtIdCambioDeNombre.IsEnabled = value;
                 this._txtIdPatenteFiltrar.IsEnabled = value;
                 this._txtNombrePatente.IsEnabled = value;
+                this._txtIdPatente.IsEnabled = value;
                 this._txtNombrePatenteFiltrar.IsEnabled = value;
                 this._txtNumInscripcion.IsEnabled = value;
                 this._txtNumRegistro.IsEnabled = value;
@@ -164,6 +177,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.CambiosDeNombrePaten
 
                 this._btnConsultarInteresadoAnterior.IsEnabled = value;
                 this._txtNombreInteresadoAnterior.IsEnabled = value;
+                this._txtIdInteresadoAnterior.IsEnabled = value;
                 this._txtNombreInteresadoAnteriorFiltrar.IsEnabled = value;
                 this._txtIdInteresadoAnteriorFiltrar.IsEnabled = value;
                 this._txtPaisInteresadoAnterior.IsEnabled = value;
@@ -171,6 +185,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.CambiosDeNombrePaten
                 this._txtDomicilioInteresadoAnterior.IsEnabled = value;
 
                 this._txtNombreInteresadoActual.IsEnabled = value;
+                this._txtIdInteresadoActual.IsEnabled = value;
                 this._txtNombreInteresadoActualFiltrar.IsEnabled = value;
                 this._txtIdInteresadoActualFiltrar.IsEnabled = value;
                 this._txtPaisInteresadoActual.IsEnabled = value;
@@ -178,6 +193,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.CambiosDeNombrePaten
                 this._txtDomicilioInteresadoActual.IsEnabled = value;
 
                 this._txtNombreApoderado.IsEnabled = value;
+                this._txtIdApoderado.IsEnabled = value;
                 this._txtNombreApoderadoFiltrar.IsEnabled = value;
                 this._txtIdApoderadoFiltrar.IsEnabled = value;
 
@@ -206,6 +222,12 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.CambiosDeNombrePaten
         public string NombrePatente
         {
             set { this._txtNombrePatente.Text = value; }
+        }
+
+        public string IdPatente
+        {
+            get { return this._txtIdPatente.Text; }
+            set { this._txtIdPatente.Text = value; }
         }
 
         public object PatentesFiltradas
@@ -253,6 +275,12 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.CambiosDeNombrePaten
         public string NombreAgenteApoderado
         {
             set { this._txtNombreApoderado.Text = value; }
+        }
+
+        public string IdAgenteApoderado
+        {
+            get { return this._txtIdApoderado.Text; }
+            set { this._txtIdApoderado.Text = value; }
         }
 
         public string IdAgenteApoderadoFiltrar
@@ -433,6 +461,24 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.CambiosDeNombrePaten
 
         public void ConvertirEnteroMinimoABlanco()
         {
+            if (!this.IdPatente.Equals(""))
+            {
+                if (int.Parse(this.IdPatente) == int.MinValue)
+                    this.IdPatente = "";
+            }
+
+            if (!this.IdInteresadoActual.Equals(""))
+            {
+                if (int.Parse(this.IdInteresadoActual) == int.MinValue)
+                    this.IdInteresadoActual = "";
+            }
+
+            if (!this.IdInteresadoAnterior.Equals(""))
+            {
+                if (int.Parse(this.IdInteresadoAnterior) == int.MinValue)
+                    this.IdInteresadoAnterior = "";
+            }
+
             if (!this.IdPoder.Equals(""))
             {
                 if (int.Parse(this.IdPoder) == int.MinValue)
@@ -502,6 +548,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.CambiosDeNombrePaten
         private void GestionarVisibilidadDatosDePatente(object value)
         {
             this._txtNombrePatente.Visibility = (System.Windows.Visibility)value;
+            this._txtIdPatente.Visibility = (System.Windows.Visibility)value;
             //this._chkEtiqueta.Visibility = (System.Windows.Visibility)value;
             this._lblNoInscripcion.Visibility = (System.Windows.Visibility)value;
             this._txtNumInscripcion.Visibility = (System.Windows.Visibility)value;
@@ -582,6 +629,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.CambiosDeNombrePaten
         private void GestionarVisibilidadDatosDeInteresadoAnterior(object value)
         {
             this._txtNombreInteresadoAnterior.Visibility = (System.Windows.Visibility)value;
+            this._txtIdInteresadoAnterior.Visibility = (System.Windows.Visibility)value;
             this._txtPaisInteresadoAnterior.Visibility = (System.Windows.Visibility)value;
             this._txtCiudadInteresadoAnterior.Visibility = (System.Windows.Visibility)value;
             this._txtDomicilioInteresadoAnterior.Visibility = (System.Windows.Visibility)value;
@@ -659,6 +707,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.CambiosDeNombrePaten
         private void GestionarVisibilidadDatosDeInteresadoActual(object value)
         {
             this._txtNombreInteresadoActual.Visibility = (System.Windows.Visibility)value;
+            this._txtIdInteresadoActual.Visibility = (System.Windows.Visibility)value;
             this._txtPaisInteresadoActual.Visibility = (System.Windows.Visibility)value;
             this._txtCiudadInteresadoActual.Visibility = (System.Windows.Visibility)value;
             this._txtDomicilioInteresadoActual.Visibility = (System.Windows.Visibility)value;
@@ -746,6 +795,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.CambiosDeNombrePaten
         private void GestionarVisibilidadDatosDeAgenteApoderado(object value)
         {
             this._txtNombreApoderado.Visibility = (System.Windows.Visibility)value;
+            this._txtIdApoderado.Visibility = (System.Windows.Visibility)value;
         }
 
         public void GestionarBotonConsultarApoderado(bool value)

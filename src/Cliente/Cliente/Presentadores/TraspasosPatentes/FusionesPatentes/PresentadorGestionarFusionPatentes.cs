@@ -982,6 +982,29 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.FusionesPatente
                     this._patentes.RemoveAt(0);
                     this._patentes.Add((Patente)this._ventana.PatenteFiltrada);
                     this._ventana.InteresadoEntre = ((Patente)this._ventana.Patente).Interesado;
+
+                    if (((Patente)this._ventana.Patente).Interesado != null)
+                        this._ventana.IdInteresadoEntre = (((Patente)this._ventana.Patente).Interesado).Id.ToString();
+
+                    IList<Interesado> listaAux = new List<Interesado>();
+                    listaAux.Add(new Interesado(int.MinValue));
+
+                    if (((Patente)this._ventana.PatenteFiltrada).Id != int.MinValue)
+                    {
+                        listaAux.Add((Interesado)this._ventana.InteresadoEntre);
+
+                        this._ventana.InteresadosEntreFiltrados = listaAux;
+                        this._ventana.InteresadoEntreFiltrado = this.BuscarInteresado((IList<Interesado>)this._ventana.InteresadosEntreFiltrados,
+                            (Interesado)this._ventana.InteresadoEntre);
+                    }
+                    else
+                    {
+                        this._ventana.InteresadosEntreFiltrados = listaAux;
+                        this._ventana.IdInteresadoEntre = int.MinValue.ToString();
+                        this._ventana.InteresadoEntreFiltrado = this.BuscarInteresado((IList<Interesado>)this._ventana.InteresadosEntreFiltrados,
+                            new Interesado(int.MinValue));
+                    }
+
                     this._ventana.AgenteApoderado = ((Patente)this._ventana.Patente).Agente;
                     this._ventana.Poder = ((Patente)this._ventana.Patente).Poder;
                     retorno = true;
