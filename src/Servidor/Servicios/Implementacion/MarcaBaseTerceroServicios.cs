@@ -12,22 +12,35 @@ namespace Trascend.Bolet.Servicios.Implementacion
     {
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
-     
+
         public IList<MarcaBaseTercero> ConsultarTodos()
         {
-            #region trace
-            if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
-                logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
-            #endregion
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
 
-            IList<MarcaBaseTercero> marcaBaseTerceros = ControladorMarcaBaseTercero.ConsultarTodos();
+                IList<MarcaBaseTercero> marcaBaseTerceros = ControladorMarcaBaseTercero.ConsultarTodos();
 
-            #region trace
-            if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
-                logger.Debug("Saliendo del Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
-            #endregion
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Saliendo del Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
 
-            return marcaBaseTerceros;
+                return marcaBaseTerceros;
+            }
+            catch (ApplicationException ex)
+            {
+                logger.Error(ex.Message);
+                throw ex;
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                throw new ApplicationException(Errores.MensajesAlServidor.ErrorInesperadoServidor);
+            }
         }
 
         /// <summary>
@@ -48,19 +61,32 @@ namespace Trascend.Bolet.Servicios.Implementacion
         /// <returns>true en caso de ser exitoso, false en caso contrario</returns>
         public bool InsertarOModificar(MarcaBaseTercero marcaBaseTercero, int hash)
         {
-            #region trace
-            if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
-                logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
-            #endregion
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
 
-            bool exitoso = ControladorMarcaBaseTercero.InsertarOModificar(marcaBaseTercero, hash);
+                bool exitoso = ControladorMarcaBaseTercero.InsertarOModificar(marcaBaseTercero, hash);
 
-            #region trace
-            if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
-                logger.Debug("Saliendo del Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
-            #endregion
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Saliendo del Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
 
-            return exitoso;
+                return exitoso;
+            }
+            catch (ApplicationException ex)
+            {
+                logger.Error(ex.Message);
+                throw ex;
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                throw new ApplicationException(Errores.MensajesAlServidor.ErrorInesperadoServidor);
+            }
         }
 
         /// <summary>
@@ -71,19 +97,32 @@ namespace Trascend.Bolet.Servicios.Implementacion
         /// <returns>true en caso de ser exitoso, false en caso contrario</returns>
         public bool Eliminar(MarcaBaseTercero marcaBaseTercero, int hash)
         {
-            #region trace
-            if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
-                logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
-            #endregion
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
 
-            bool exitoso = ControladorMarcaBaseTercero.Eliminar(marcaBaseTercero, hash);
+                bool exitoso = ControladorMarcaBaseTercero.Eliminar(marcaBaseTercero, hash);
 
-            #region trace
-            if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
-                logger.Debug("Saliendo del Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
-            #endregion
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Saliendo del Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
 
-            return exitoso;
+                return exitoso;
+            }
+            catch (ApplicationException ex)
+            {
+                logger.Error(ex.Message);
+                throw ex;
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                throw new ApplicationException(Errores.MensajesAlServidor.ErrorInesperadoServidor);
+            }
         }
 
         /// <summary>
@@ -93,19 +132,32 @@ namespace Trascend.Bolet.Servicios.Implementacion
         /// <returns>True en caso de ser exitoso, false en caso contrario</returns>
         public bool VerificarExistencia(MarcaBaseTercero marcaBaseTercero)
         {
-            #region trace
-            if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
-                logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
-            #endregion
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
 
-            bool exitoso = ControladorMarcaBaseTercero.VerificarExistencia(marcaBaseTercero);
+                bool exitoso = ControladorMarcaBaseTercero.VerificarExistencia(marcaBaseTercero);
 
-            #region trace
-            if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
-                logger.Debug("Saliendo del Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
-            #endregion
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Saliendo del Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
 
-            return exitoso;
+                return exitoso;
+            }
+            catch (ApplicationException ex)
+            {
+                logger.Error(ex.Message);
+                throw ex;
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                throw new ApplicationException(Errores.MensajesAlServidor.ErrorInesperadoServidor);
+            }
         }
 
 
@@ -116,11 +168,24 @@ namespace Trascend.Bolet.Servicios.Implementacion
         /// <returns>Lista de Marca Base Tercero</returns>
         IList<MarcaBaseTercero> IMarcaBaseTerceroServicios.ObtenerMarcaBaseTerceroFiltro(MarcaBaseTercero MarcaBaseTercero)
         {
-            IList<MarcaBaseTercero> marcas;
+            try
+            {
+                IList<MarcaBaseTercero> marcas;
 
-            marcas = ControladorMarcaBaseTercero.ConsultarMarcasTerceroFiltro(MarcaBaseTercero);
+                marcas = ControladorMarcaBaseTercero.ConsultarMarcasTerceroFiltro(MarcaBaseTercero);
 
-            return marcas;
+                return marcas;
+            }
+            catch (ApplicationException ex)
+            {
+                logger.Error(ex.Message);
+                throw ex;
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                throw new ApplicationException(Errores.MensajesAlServidor.ErrorInesperadoServidor);
+            }
         }
 
 
@@ -159,7 +224,7 @@ namespace Trascend.Bolet.Servicios.Implementacion
             #endregion
 
             throw new NotImplementedException();
-         //   bool exitoso = ControladorMarcaBaseTercero.InsertarOModificar(entidad, hash);
+            //   bool exitoso = ControladorMarcaBaseTercero.InsertarOModificar(entidad, hash);
 
             #region trace
             if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
@@ -182,7 +247,7 @@ namespace Trascend.Bolet.Servicios.Implementacion
             #endregion
 
             throw new NotImplementedException();
-       //     bool exitoso = ControladorMarcaBaseTercero.Eliminar(entidad, hash);
+            //     bool exitoso = ControladorMarcaBaseTercero.Eliminar(entidad, hash);
 
             #region trace
             if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))

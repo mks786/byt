@@ -19,19 +19,32 @@ namespace Trascend.Bolet.Servicios.Implementacion
         /// <returns>Lista de Entidades</returns>
         public IList<Interesado> ConsultarTodos()
         {
-            #region trace
-            if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
-                logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
-            #endregion
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
 
-            IList<Interesado> interesados = ControladorInteresado.ConsultarTodos();
+                IList<Interesado> interesados = ControladorInteresado.ConsultarTodos();
 
-            #region trace
-            if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
-                logger.Debug("Saliendo del Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
-            #endregion
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Saliendo del Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
 
-            return interesados;
+                return interesados;
+            }
+            catch (ApplicationException ex)
+            {
+                logger.Error(ex.Message);
+                throw ex;
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                throw new ApplicationException(Errores.MensajesAlServidor.ErrorInesperadoServidor);
+            }
         }
 
 
@@ -54,19 +67,32 @@ namespace Trascend.Bolet.Servicios.Implementacion
         /// <returns>true en caso de ser exitoso, false en caso contrario</returns>
         public bool InsertarOModificar(Interesado interesado, int hash)
         {
-            #region trace
-            if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
-                logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
-            #endregion
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
 
-            bool exitoso = ControladorInteresado.InsertarOModificar(interesado, hash);
+                bool exitoso = ControladorInteresado.InsertarOModificar(interesado, hash);
 
-            #region trace
-            if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
-                logger.Debug("Saliendo del Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
-            #endregion
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Saliendo del Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
 
-            return exitoso;
+                return exitoso;
+            }
+            catch (ApplicationException ex)
+            {
+                logger.Error(ex.Message);
+                throw ex;
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                throw new ApplicationException(Errores.MensajesAlServidor.ErrorInesperadoServidor);
+            }
         }
 
 
@@ -78,19 +104,32 @@ namespace Trascend.Bolet.Servicios.Implementacion
         /// <returns>true en caso de ser exitoso, false en caso contrario</returns>
         public bool Eliminar(Interesado interesado, int hash)
         {
-            #region trace
-            if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
-                logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
-            #endregion
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
 
-            bool exitoso = ControladorInteresado.Eliminar(interesado, hash);
+                bool exitoso = ControladorInteresado.Eliminar(interesado, hash);
 
-            #region trace
-            if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
-                logger.Debug("Saliendo del Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
-            #endregion
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Saliendo del Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
 
-            return exitoso;
+                return exitoso;
+            }
+            catch (ApplicationException ex)
+            {
+                logger.Error(ex.Message);
+                throw ex;
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                throw new ApplicationException(Errores.MensajesAlServidor.ErrorInesperadoServidor);
+            }
         }
 
 
@@ -101,19 +140,32 @@ namespace Trascend.Bolet.Servicios.Implementacion
         /// <returns>Lista de auditorias pertenecientes al interesado</returns>
         public IList<Auditoria> AuditoriaPorFkyTabla(Auditoria auditoria)
         {
-            #region trace
-            if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
-                logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
-            #endregion
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
 
-            IList<Auditoria> auditorias = ControladorInteresado.AuditoriaPorFkyTabla(auditoria);
+                IList<Auditoria> auditorias = ControladorInteresado.AuditoriaPorFkyTabla(auditoria);
 
-            #region trace
-            if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
-                logger.Debug("Saliendo del Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
-            #endregion
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Saliendo del Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
 
-            return auditorias;
+                return auditorias;
+            }
+            catch (ApplicationException ex)
+            {
+                logger.Error(ex.Message);
+                throw ex;
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                throw new ApplicationException(Errores.MensajesAlServidor.ErrorInesperadoServidor);
+            }
         }
 
 
@@ -152,7 +204,13 @@ namespace Trascend.Bolet.Servicios.Implementacion
             }
             catch (ApplicationException ex)
             {
+                logger.Error(ex.Message);
                 throw ex;
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                throw new ApplicationException(Errores.MensajesAlServidor.ErrorInesperadoServidor);
             }
             return interesadoConTodo;
         }
@@ -165,21 +223,33 @@ namespace Trascend.Bolet.Servicios.Implementacion
         /// <returns>Lista de interesados que cumplen con el filtro</returns>
         public IList<Interesado> ObtenerInteresadosFiltro(Interesado interesado)
         {
-            #region trace
-            if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
-                logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
-            #endregion
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
 
-            IList<Interesado> interesados;
+                IList<Interesado> interesados;
 
-            interesados = ControladorInteresado.ConsultarInteresadosFiltro(interesado);
+                interesados = ControladorInteresado.ConsultarInteresadosFiltro(interesado);
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Saliendo del Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+                return interesados;
 
-            return interesados;
-
-            #region trace
-            if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
-                logger.Debug("Saliendo del Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
-            #endregion
+            }
+            catch (ApplicationException ex)
+            {
+                logger.Error(ex.Message);
+                throw ex;
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                throw new ApplicationException(Errores.MensajesAlServidor.ErrorInesperadoServidor);
+            }
         }
 
 
@@ -190,21 +260,34 @@ namespace Trascend.Bolet.Servicios.Implementacion
         /// <returns>Interesado perteneciente al poder</returns>
         public Interesado ObtenerInteresadosDeUnPoder(Poder poder)
         {
-            #region trace
-            if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
-                logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
-            #endregion
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
 
-            Interesado interesado;
+                Interesado interesado;
 
-            interesado = ControladorInteresado.ConsultarInteresadosDeUnPoder(poder);
+                interesado = ControladorInteresado.ConsultarInteresadosDeUnPoder(poder);
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Saliendo del Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
 
-            return interesado;
+                return interesado;
+            }
+            catch (ApplicationException ex)
+            {
+                logger.Error(ex.Message);
+                throw ex;
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                throw new ApplicationException(Errores.MensajesAlServidor.ErrorInesperadoServidor);
+            }
 
-            #region trace
-            if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
-                logger.Debug("Saliendo del Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
-            #endregion
         }
     }
 }

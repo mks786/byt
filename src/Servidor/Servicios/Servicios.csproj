@@ -42,6 +42,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Errores\MensajesAlServidor.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MensajesAlServidor.resx</DependentUpon>
+    </Compile>
     <Compile Include="Implementacion\AgenteServicios.cs" />
     <Compile Include="Implementacion\AnexoServicios.cs" />
     <Compile Include="Implementacion\AsociadoServicios.cs" />
@@ -127,6 +132,12 @@
       <Project>{909389CB-11DE-41FB-B24F-D9AE6B10B82C}</Project>
       <Name>LogicaNegocio</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Errores\MensajesAlServidor.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>MensajesAlServidor.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

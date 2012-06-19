@@ -12,7 +12,20 @@ namespace Trascend.Bolet.Servicios.Implementacion
 
         public static int CargarUsuarios()
         {
-            return ControladorBase.CargarUsuariosXML();
+            try
+            {
+                return ControladorBase.CargarUsuariosXML();
+            }
+            catch (ApplicationException ex)
+            {
+                logger.Error(ex.Message);
+                throw ex;
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                throw new ApplicationException(Errores.MensajesAlServidor.ErrorInesperadoServidor);
+            }
         }
 
     }
