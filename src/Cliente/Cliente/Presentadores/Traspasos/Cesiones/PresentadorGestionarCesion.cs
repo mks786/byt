@@ -220,6 +220,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Cesiones
                 }
                 else
                 {
+
                     CargarMarca();
 
                     CargarInteresado("Cedente");
@@ -296,6 +297,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Cesiones
                     this._ventana.InteresadoCedente = primerInteresado;
                     this._ventana.CedentesFiltrados = this._interesadosCedente;
                     this._ventana.CedenteFiltrado = primerInteresado;
+                    this._ventana.IdCedente = primerInteresado.Id.ToString();
 
                 }
             }
@@ -321,6 +323,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Cesiones
                     this._ventana.InteresadoCesionario = primerInteresado;
                     this._ventana.CesionariosFiltrados = this._interesadosCesionario;
                     this._ventana.CesionarioFiltrado = primerInteresado;
+                    this._ventana.IdCesionario = primerInteresado.Id.ToString();
                 }
             }
         }
@@ -1151,9 +1154,18 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Cesiones
                     this._ventana.Marca = this._ventana.MarcaFiltrada;
                     this._ventana.NombreMarca = ((Marca)this._ventana.MarcaFiltrada).Descripcion;
                     this._ventana.IdMarca = (((Marca)this._ventana.MarcaFiltrada).Id).ToString();
-                    this._ventana.InteresadoCedente = ((Marca)this._ventana.Marca).Interesado;
-                    this._ventana.ApoderadoCedente = ((Marca)this._ventana.Marca).Agente;
-                    this._ventana.PoderCedente = ((Marca)this._ventana.Marca).Poder;
+                    if (null != ((Marca)this._ventana.Marca).Interesado)
+                    {
+                        this._ventana.InteresadoCedente = ((Marca) this._ventana.Marca).Interesado;
+                        this._ventana.IdCedente = ((Marca) this._ventana.Marca).Interesado.Id.ToString();
+                    }
+                    if (null != ((Marca)this._ventana.Marca).Agente)
+                    {
+                        this._ventana.ApoderadoCedente = ((Marca) this._ventana.Marca).Agente;
+                        this._ventana.IdApoderadoCedente = ((Marca) this._ventana.Marca).Agente.Id;
+                    }
+                    if (null != ((Marca)this._ventana.Marca).Poder)
+                         this._ventana.PoderCedente = ((Marca)this._ventana.Marca).Poder;
                     retorno = true;
 
                     if (null != ((Marca)this._ventana.Marca).Asociado)
@@ -1533,6 +1545,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Cesiones
                             {
                                 this._ventana.InteresadoCedente = this._ventana.CedenteFiltrado;
                                 this._ventana.NombreCedente = ((Interesado)this._ventana.CedenteFiltrado).Nombre;
+                                this._ventana.IdCedente = ((Interesado)this._ventana.InteresadoCedente).Id.ToString();
                                 retorno = true;
                             }
                             else if (!this.ValidarListaDePoderes(this._poderesCedente, _poderesApoderadosCedente, "Cedente"))
@@ -1556,6 +1569,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Cesiones
                             this._poderesCedente = this._poderServicios.ConsultarPoderesPorInteresado(((Interesado)_ventana.CedenteFiltrado));
                             this._ventana.InteresadoCedente = this._interesadoServicios.ConsultarInteresadoConTodo((Interesado)this._ventana.CedenteFiltrado);
                             this._ventana.NombreCedente = ((Interesado)this._ventana.InteresadoCedente).Nombre;
+                            this._ventana.IdCedente = ((Interesado)this._ventana.InteresadoCedente).Id.ToString();
                             retorno = true;
                         }
                         else
@@ -1564,6 +1578,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Cesiones
                             this._poderesCedente = this._poderServicios.ConsultarPoderesPorInteresado(((Interesado)_ventana.CedenteFiltrado));
                             this._ventana.InteresadoCedente = this._interesadoServicios.ConsultarInteresadoConTodo((Interesado)this._ventana.CedenteFiltrado);
                             this._ventana.NombreCedente = ((Interesado)this._ventana.InteresadoCedente).Nombre;
+                            this._ventana.IdCedente = ((Interesado)this._ventana.InteresadoCedente).Id.ToString();
                             retorno = true;
                         }
                     }
@@ -1573,6 +1588,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Cesiones
                 {
                     this._ventana.InteresadoCedente = this._ventana.CedenteFiltrado;
                     this._ventana.NombreCedente = ((Interesado)this._ventana.InteresadoCedente).Nombre;
+                    this._ventana.IdCedente = ((Interesado)this._ventana.InteresadoCedente).Id.ToString();
                     retorno = true;
                 }
 

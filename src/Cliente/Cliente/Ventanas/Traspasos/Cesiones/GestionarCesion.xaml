@@ -106,8 +106,8 @@
                         <Label Grid.Column="0" Grid.Row="0">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblMarca}"/>
                         </Label>
-                        <custom:ByTTextBox Name="_txtIdMarca" MaxLength="40"  Text="" IsEnabled="False" IsReadOnly="True" IsTabStop="False"
-                             VerticalContentAlignment="Center" Margin="0,0,0,0" Grid.ColumnSpan="1" Grid.Column="1"
+                        <custom:ByTTextBox Name="_txtIdMarca" MaxLength="40" Text="" IsEnabled="False" IsReadOnly="True" IsTabStop="False"
+                             VerticalContentAlignment="Center" Margin="0,0,6,0" Grid.ColumnSpan="1" Grid.Column="1"
                              Grid.Row="0" MouseDoubleClick="_txtNombreMarca_MouseDoubleClick" BorderBrush="LightGreen"/>
                         <custom:ByTTextBox Name="_txtNombreMarca" MaxLength="40"  Text="" IsEnabled="False" IsReadOnly="True" IsTabStop="False"
                              VerticalContentAlignment="Center" Margin="0,0,0,0" Grid.ColumnSpan="5" Grid.Column="2"
@@ -242,8 +242,8 @@
                         <Label Name="_lblNombreCedente" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Center">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblCedente}"/>
                         </Label>
-                            <custom:ByTTextBox Name="_txtIdCedente" MaxLength="40"  Text="{Binding Path=Nombre}" IsEnabled="False" 
-                             VerticalContentAlignment="Center" Grid.Row="0" Grid.Column="1" IsReadOnly="True" IsTabStop="False" BorderBrush="LightGreen"
+                            <custom:ByTTextBox Name="_txtIdCedente" MaxLength="40"  Text="" IsEnabled="False" 
+                             VerticalContentAlignment="Center" Margin="0,0,6,0" Grid.Row="0" Grid.Column="1" IsReadOnly="True" IsTabStop="False" BorderBrush="LightGreen"
                              Grid.ColumnSpan="1" MouseDoubleClick="_txtNombreCedente_MouseDoubleClick" />
                             <custom:ByTTextBox Name="_txtNombreCedente" MaxLength="40"  Text="{Binding Path=Nombre}" IsEnabled="False" 
                              VerticalContentAlignment="Center" Grid.Row="0" Grid.Column="2" IsReadOnly="True" IsTabStop="False" BorderBrush="LightGreen"
@@ -344,7 +344,7 @@
                                 <TextBlock Text="{x:Static recurso:Etiquetas.lblApoderado}"/>
                             </Label>
                         <custom:ByTTextBox  IsEnabled="False"  Grid.Column="1" Grid.Row="0" Name="_txtIdApoderadoCedente" VerticalAlignment="Center" 
-                                            MaxLength="255" Grid.ColumnSpan="1" Text="{Binding Path=Nombre}" IsReadOnly="True" IsTabStop="False" BorderBrush="LightGreen"
+                                            MaxLength="255" Grid.ColumnSpan="1" Margin="0,0,6,0" Text="{Binding Path=Id}" IsReadOnly="True" IsTabStop="False" BorderBrush="LightGreen"
                                             MouseDoubleClick="_txtNombreApoderadoCedente_MouseDoubleClick"></custom:ByTTextBox>
 
                         <custom:ByTTextBox  IsEnabled="False"  Grid.Column="2" Grid.Row="0" Name="_txtNombreApoderadoCedente" VerticalAlignment="Center" 
@@ -570,9 +570,9 @@
                         <Label Grid.Column="0" HorizontalAlignment="Right" Name="_lblNombreCesionario">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblCesionario}"/>
                         </Label>
-                        <custom:ByTTextBox Name="_txtIdCesionario" MaxLength="40"  Text="{Binding Path=Nombre}" IsEnabled="False" 
+                        <custom:ByTTextBox Name="_txtIdCesionario" MaxLength="40"  Text="" IsEnabled="False" 
                              VerticalContentAlignment="Center" Grid.Row="0" Grid.Column="1" IsReadOnly="True" IsTabStop="False" BorderBrush="LightGreen"
-                             Grid.ColumnSpan="1" MouseDoubleClick="_txtNombreCesionario_MouseDoubleClick" />
+                             Grid.ColumnSpan="1" Margin="0,0,6,0" MouseDoubleClick="_txtNombreCesionario_MouseDoubleClick" />
                         <custom:ByTTextBox Name="_txtNombreCesionario" MaxLength="40"  Text="{Binding Path=Nombre}" IsEnabled="False" 
                              VerticalContentAlignment="Center" Grid.Row="0" Grid.Column="2" IsReadOnly="True" IsTabStop="False" BorderBrush="LightGreen"
                              Grid.ColumnSpan="3" MouseDoubleClick="_txtNombreCesionario_MouseDoubleClick" />
@@ -668,7 +668,7 @@
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblApoderado}"/>
                         </Label>
                         <custom:ByTTextBox  IsEnabled="False"  Grid.Column="1" Grid.Row="0" Name="_txtIdApoderadoCesionario" IsReadOnly="True" IsTabStop="False"
-                                            VerticalAlignment="Center" MaxLength="255" Grid.ColumnSpan="1" Text="{Binding Path=Nombre}"
+                                            VerticalAlignment="Center" MaxLength="255" Margin="0,0,6,0" Grid.ColumnSpan="1" Text=""
                                             MouseDoubleClick="_txtNombreApoderadoCesionario_MouseDoubleClick" BorderBrush="LightGreen"></custom:ByTTextBox>
 
                         <custom:ByTTextBox  IsEnabled="False"  Grid.Column="2" Grid.Row="0" Name="_txtNombreApoderadoCesionario" IsReadOnly="True" IsTabStop="False"

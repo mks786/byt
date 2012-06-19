@@ -118,32 +118,32 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Cesiones
         public string IdMarca
         {
             get {return this._txtIdMarca.Text; }
-            set { this._txtIdMarca.DataContext = value; } 
+            set { this._txtIdMarca.Text = value; } 
         }
 
         public string IdCesionario
         {
             get {return this._txtIdCesionario.Text; }
-            set { this._txtIdCesionario.DataContext = value; }
+            set { this._txtIdCesionario.Text = value; }
         }
 
         public string IdCedente
         {
             get {return this._txtIdCedente.Text; }
-            set { this._txtIdCedente.DataContext = value; }
+            set { this._txtIdCedente.Text = value; }
 
         }
 
         public string IdApoderadoCesionario
         {
             get {return this._txtIdApoderadoCesionario.Text; }
-            set { this._txtIdApoderadoCesionario.DataContext = value; }
+            set { this._txtIdApoderadoCesionario.Text = value; }
         }
 
         public string IdApoderadoCedente
         {
             get {return this._txtIdApoderadoCedente.Text; }
-            set { this._txtIdApoderadoCedente.DataContext = value; }
+            set { this._txtIdApoderadoCedente.Text = value; }
         }
 
         public object ApoderadoCedente
@@ -586,6 +586,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Cesiones
                     if (int.Parse(this.IdPoderCedente) == int.MinValue)
                         this.IdPoderCedente = "";
                 }
+                if (!this.IdCedente.Equals(""))
+                {
+                    if (int.Parse(this.IdCedente) == int.MinValue)
+                        this.IdCedente = "";
+                }
             }
             if (tipo.Equals("Cesionario"))
             {
@@ -593,6 +598,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Cesiones
                 {
                     if (int.Parse(this.IdPoderCesionario) == int.MinValue)
                         this.IdPoderCesionario = "";
+                }
+                if (!this.IdCesionario.Equals(""))
+                {
+                    if (int.Parse(this.IdCesionario) == int.MinValue)
+                        this.IdCesionario = "";
                 }
             }
         }
@@ -696,6 +706,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Cesiones
             this._txtClaseInternacional.Visibility = (System.Windows.Visibility)value;
             this._lblAsociado.Visibility = (System.Windows.Visibility)value;
             this._txtAsociado.Visibility = (System.Windows.Visibility)value;
+            this._txtIdMarca.Visibility = (System.Windows.Visibility)value;
         }
 
         private void GestionarVisibilidadFiltroMarca(object value)
@@ -908,12 +919,14 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Cesiones
             this._txtNombreCedente.Visibility = (System.Windows.Visibility)value;
             this._txtPaisCedente.Visibility = (System.Windows.Visibility)value;
             this._txtNacionalidadCedente.Visibility = (System.Windows.Visibility)value;
+            this._txtIdCedente.Visibility = (System.Windows.Visibility)value;
         }
 
         private void GestionarVisibilidadDatosDeApoderadoCedente(object value)
         {
             this._lblNombreApoderadoCedente.Visibility = (System.Windows.Visibility)value;
             this._txtNombreApoderadoCedente.Visibility = (System.Windows.Visibility)value;
+            this._txtIdApoderadoCedente.Visibility = (System.Windows.Visibility)value;
         }
 
         private void GestionarVisibilidadDatosDePoderCedente(object value)
@@ -1143,12 +1156,14 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Cesiones
             this._txtNombreCesionario.Visibility = (System.Windows.Visibility)value;
             this._txtPaisCesionario.Visibility = (System.Windows.Visibility)value;
             this._txtNacionalidadCesionario.Visibility = (System.Windows.Visibility)value;
+            this._txtIdCesionario.Visibility = (System.Windows.Visibility)value;
         }
 
         private void GestionarVisibilidadDatosDeApoderadoCesionario(object value)
         {
             this._lblNombreApoderadoCesionario.Visibility = (System.Windows.Visibility)value;
             this._txtNombreApoderadoCesionario.Visibility = (System.Windows.Visibility)value;
+            this._txtIdApoderadoCesionario.Visibility = (System.Windows.Visibility)value;
         }
 
         private void GestionarVisibilidadDatosDePoderCesionario(object value)
