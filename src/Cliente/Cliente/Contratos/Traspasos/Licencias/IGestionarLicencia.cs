@@ -17,6 +17,8 @@ namespace Trascend.Bolet.Cliente.Contratos.Traspasos.Licencias
 
         object MarcaFiltrada { get; set; }
 
+        string IdMarca { get; set; }
+
         //-----------
         
         //ListView Licenciante
@@ -27,6 +29,10 @@ namespace Trascend.Bolet.Cliente.Contratos.Traspasos.Licencias
         object LicenciantesFiltrados { get; set; }
 
         object LicencianteFiltrado { get; set; }
+
+        string IdLicenciante { get; set; }
+
+        string IdApoderadoLicenciante { get; set; }
        
         //----------------
 
@@ -39,6 +45,10 @@ namespace Trascend.Bolet.Cliente.Contratos.Traspasos.Licencias
         object LicenciatariosFiltrados { get; set; }
 
         object LicenciatarioFiltrado { get; set; }
+
+        string IdLicenciatario { get; set; }
+
+        string IdApoderadoLicenciatario { get; set; }
 
         //----------------
 

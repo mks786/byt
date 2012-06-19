@@ -101,6 +101,30 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Fusiones
             get { return this._txtNombreMarcaFiltrar.Text; }
         }
 
+        public string IdMarca
+        {
+            get { return this._txtIdMarca.Text; }
+            set { this._txtIdMarca.Text = value; }
+        }
+
+        public string IdInteresadoEntre
+        {
+            get { return this._txtIdInteresadoEntre.Text; }
+            set { this._txtIdInteresadoEntre.Text = value; }
+        }
+
+        public string IdInteresadoSobreviviente
+        {
+            get { return this._txtIdInteresadoSobreviviente.Text; }
+            set { this._txtIdInteresadoSobreviviente.Text = value; }
+        }
+
+        public string IdApoderado
+        {
+            get { return this._txtIdApoderado.Text; }
+            set { this._txtIdApoderado.Text = value; }
+        }
+
         public object Marca
         {
             get { return this._gridDatosMarca.DataContext; }
@@ -171,6 +195,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Fusiones
                 this._txtIdInteresadoEntreFiltrar.IsEnabled = value;
                 this._txtPaisInteresadoEntre.IsEnabled = value;
                 this._txtCiudadInteresadoEntre.IsEnabled = value;
+
+                this._txtIdInteresadoEntre.IsEnabled = value;
+                this._txtIdInteresadoSobreviviente.IsEnabled = value;
+                this._txtIdApoderado.IsEnabled = value;
+                this._txtIdMarca.IsEnabled = value;
 
                 this._txtIdMarcaTercero.IsEnabled = value;
                 this._txtPaisMarcaTercero.IsEnabled = value;
@@ -474,7 +503,22 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Fusiones
             {
                 if (int.Parse(this.IdPoder) == int.MinValue)
                     this.IdPoder = "";
-            }                       
+            }
+            if (!this.IdInteresadoEntre.Equals(""))
+            {
+                if (int.Parse(this.IdInteresadoEntre) == int.MinValue)
+                    this.IdInteresadoEntre = "";
+            }
+            if (!this.IdInteresadoSobreviviente.Equals(""))
+            {
+                if (int.Parse(this.IdInteresadoSobreviviente) == int.MinValue)
+                    this.IdInteresadoSobreviviente = "";
+            }
+            if (!this.IdMarca.Equals(""))
+            {
+                if (int.Parse(this.IdMarca) == int.MinValue)
+                    this.IdMarca = "";
+            }    
         }
 
         #region Eventos Marcas
@@ -535,6 +579,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Fusiones
         private void GestionarVisibilidadDatosDeMarca(object value)
         {
             this._txtNombreMarca.Visibility = (System.Windows.Visibility)value;
+            this._txtIdMarca.Visibility = (System.Windows.Visibility)value;
             this._chkEtiqueta.Visibility = (System.Windows.Visibility)value;
             this._lblNoInscripcion.Visibility = (System.Windows.Visibility)value;
             this._txtNumInscripcion.Visibility = (System.Windows.Visibility)value;
@@ -622,6 +667,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Fusiones
         private void GestionarVisibilidadDatosDeInteresadoEntre(object value)
         {                        
             this._txtNombreInteresadoEntre.Visibility = (System.Windows.Visibility)value;
+            this._txtIdInteresadoEntre.Visibility = (System.Windows.Visibility)value;
             this._txtPaisInteresadoEntre.Visibility = (System.Windows.Visibility)value;
             this._txtCiudadInteresadoEntre.Visibility = (System.Windows.Visibility)value;
             this._txtDomicilioMarcaTercero.Visibility = (System.Windows.Visibility)value;
@@ -717,6 +763,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Fusiones
         private void GestionarVisibilidadDatosDeInteresadoSobreviviente(object value)
         {
             this._txtNombreInteresadoSobreviviente.Visibility = (System.Windows.Visibility)value;
+            this._txtIdInteresadoSobreviviente.Visibility = (System.Windows.Visibility)value;
             this._txtPaisInteresadoSobreviviente.Visibility = (System.Windows.Visibility)value;
             this._txtCiudadInteresadoSobreviviente.Visibility = (System.Windows.Visibility)value;
         }
@@ -805,6 +852,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Fusiones
         private void GestionarVisibilidadDatosDeAgenteApoderado(object value)
         {
             this._txtNombreApoderado.Visibility = (System.Windows.Visibility)value;
+            this._txtIdApoderado.Visibility = (System.Windows.Visibility)value;
         }
 
         public void GestionarBotonConsultarApoderado(bool value)

@@ -97,6 +97,36 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Licencias
             get { return this._txtNombreMarcaFiltrar.Text; }
         }
 
+        public string IdMarca
+        {
+            get { return this._txtIdMarca.Text; }
+            set { this._txtIdMarca.Text = value; }
+        }
+
+        public string IdLicenciante
+        {
+            get { return this._txtIdLicenciante.Text; }
+            set { this._txtIdLicenciante.Text = value; }
+        }
+
+        public string IdApoderadoLicenciante
+        {
+            get { return this._txtIdApoderadoLicenciante.Text; }
+            set { this._txtIdApoderadoLicenciante.Text = value; }
+        }
+
+        public string IdLicenciatario
+        {
+            get { return this._txtIdLicenciatario.Text; }
+            set { this._txtIdLicenciatario.Text = value; }
+        }
+
+        public string IdApoderadoLicenciatario
+        {
+            get { return this._txtIdApoderadoLicenciatario.Text; }
+            set { this._txtIdApoderadoLicenciatario.Text = value; }
+        }
+
         public object Marca
         {
             get { return this._gridDatosMarca.DataContext; }
@@ -276,6 +306,12 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Licencias
                 this._txtNumPoderLicenciante.IsEnabled = value;
                 this._txtFechaPoderLicenciante.IsEnabled = value;
                 this._dpkFechaLicencia.IsEnabled = value;
+
+                this._txtIdLicenciatario.IsEnabled = value;
+                this._txtIdLicenciante.IsEnabled = value;
+                this._txtIdApoderadoLicenciatario.IsEnabled = value;
+                this._txtIdApoderadoLicenciante.IsEnabled = value;
+                this._txtIdMarca.IsEnabled = value;
 
                 this._txtNombreLicenciatario.IsEnabled = value;
                 this._txtIdLicenciatarioFiltrar.IsEnabled = value;
@@ -552,6 +588,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Licencias
                     if (int.Parse(this.IdPoderLicenciante) == int.MinValue)
                         this.IdPoderLicenciante = "";
                 }
+                if (!this.IdLicenciante.Equals(""))
+                {
+                    if (int.Parse(this.IdLicenciante) == int.MinValue)
+                        this.IdLicenciante = "";
+                }
             }
             if (tipo.Equals("Licenciatario"))
             {
@@ -560,6 +601,20 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Licencias
                     if (int.Parse(this.IdPoderLicenciatario) == int.MinValue)
                         this.IdPoderLicenciatario = "";
                 }
+                if (!this.IdLicenciatario.Equals(""))
+                {
+                    if (int.Parse(this.IdLicenciatario) == int.MinValue)
+                        this.IdLicenciatario = "";
+                }
+            }
+            if (tipo.Equals("Marca"))
+            {
+                if (!this.IdMarca.Equals(""))
+                {
+                    if (int.Parse(this.IdMarca) == int.MinValue)
+                        this.IdMarca = "";
+                }
+               
             }
         }
 
@@ -649,6 +704,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Licencias
         private void GestionarVisibilidadDatosDeMarca(object value)
         {
             this._txtNombreMarca.Visibility = (System.Windows.Visibility)value;
+            this._txtIdMarca.Visibility = (System.Windows.Visibility)value;
             this._chkEtiqueta.Visibility = (System.Windows.Visibility)value;
             this._lblNoInscripcion.Visibility = (System.Windows.Visibility)value;
             this._txtNumInscripcion.Visibility = (System.Windows.Visibility)value;
@@ -854,6 +910,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Licencias
         {
             this._lblNombreLicenciante.Visibility = (System.Windows.Visibility)value;
             this._txtNombreLicenciante.Visibility = (System.Windows.Visibility)value;
+            this._txtIdLicenciante.Visibility = (System.Windows.Visibility)value;
             this._txtPaisLicenciante.Visibility = (System.Windows.Visibility)value;
             this._txtNacionalidadLicenciante.Visibility = (System.Windows.Visibility)value;
         }
@@ -862,6 +919,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Licencias
         {
             this._lblNombreApoderadoLicenciante.Visibility = (System.Windows.Visibility)value;
             this._txtNombreApoderadoLicenciante.Visibility = (System.Windows.Visibility)value;
+            this._txtIdApoderadoLicenciante.Visibility = (System.Windows.Visibility)value;
         }
 
         private void GestionarVisibilidadDatosDePoderLicenciante(object value)
@@ -1097,6 +1155,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Licencias
         {
             this._lblNombreLicenciatario.Visibility = (System.Windows.Visibility)value;
             this._txtNombreLicenciatario.Visibility = (System.Windows.Visibility)value;
+            this._txtIdLicenciatario.Visibility = (System.Windows.Visibility)value;
             this._txtPaisLicenciatario.Visibility = (System.Windows.Visibility)value;
             this._txtNacionalidadLicenciatario.Visibility = (System.Windows.Visibility)value;
         }
@@ -1105,6 +1164,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Licencias
         {
             this._lblNombreApoderadoLicenciatario.Visibility = (System.Windows.Visibility)value;
             this._txtNombreApoderadoLicenciatario.Visibility = (System.Windows.Visibility)value;
+            this._txtIdApoderadoLicenciatario.Visibility = (System.Windows.Visibility)value;
         }
 
         private void GestionarVisibilidadDatosDePoderLicenciatario(object value)

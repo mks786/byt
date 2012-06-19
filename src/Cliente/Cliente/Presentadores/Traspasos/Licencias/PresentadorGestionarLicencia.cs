@@ -1289,9 +1289,18 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Licencias
                 if (this._ventana.MarcaFiltrada != null)
                 {
                     this._ventana.Marca = this._ventana.MarcaFiltrada;
+                    this._ventana.IdMarca = ((Marca)this._ventana.MarcaFiltrada).Id.ToString();
                     this._ventana.NombreMarca = ((Marca)this._ventana.MarcaFiltrada).Descripcion;
-                    this._ventana.InteresadoLicenciante = ((Marca)this._ventana.Marca).Interesado;
-                    this._ventana.ApoderadoLicenciante = ((Marca)this._ventana.Marca).Agente;
+                    if (null != ((Marca)this._ventana.Marca).Interesado)
+                    {
+                        this._ventana.InteresadoLicenciante = ((Marca) this._ventana.Marca).Interesado;
+                        this._ventana.IdLicenciante = ((Marca)this._ventana.Marca).Interesado.Id.ToString();
+                    }
+                    if (null != ((Marca)this._ventana.Marca).Agente)
+                    {
+                        this._ventana.ApoderadoLicenciante = ((Marca) this._ventana.Marca).Agente;
+                        this._ventana.IdApoderadoLicenciante = ((Marca) this._ventana.Marca).Id.ToString();
+                    }
                     this._ventana.PoderLicenciante = ((Marca)this._ventana.Marca).Poder;
                     retorno = true;
 
@@ -1299,6 +1308,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Licencias
                         this._ventana.PintarAsociado(((Marca)this._ventana.Marca).Asociado.TipoCliente.Id);
                     else
                         this._ventana.PintarAsociado("5");
+
+                    this._ventana.ConvertirEnteroMinimoABlanco("Marca");
                 }
 
                 #region trace
@@ -1665,6 +1676,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Licencias
                         {
                             this._ventana.InteresadoLicenciante = this._interesadoServicios.ConsultarInteresadoConTodo((Interesado)this._ventana.LicencianteFiltrado);
                             this._ventana.NombreLicenciante = ((Interesado)this._ventana.InteresadoLicenciante).Nombre;
+                            this._ventana.IdLicenciante = ((Interesado)this._ventana.InteresadoLicenciante).Id.ToString();
                             retorno = true;
                         }
                         else
@@ -1677,6 +1689,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Licencias
                             {
                                 this._ventana.InteresadoLicenciante = this._ventana.LicencianteFiltrado;
                                 this._ventana.NombreLicenciante = ((Interesado)this._ventana.LicencianteFiltrado).Nombre;
+                                this._ventana.IdLicenciante = ((Interesado)this._ventana.InteresadoLicenciante).Id.ToString();
                                 retorno = true;
                             }
                             else if (!this.ValidarListaDePoderes(this._poderesLicenciante, _poderesApoderadosLicenciante, "Licenciante"))
@@ -1700,6 +1713,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Licencias
                             this._poderesLicenciante = this._poderServicios.ConsultarPoderesPorInteresado(((Interesado)_ventana.LicencianteFiltrado));
                             this._ventana.InteresadoLicenciante = this._interesadoServicios.ConsultarInteresadoConTodo((Interesado)this._ventana.LicencianteFiltrado);
                             this._ventana.NombreLicenciante = ((Interesado)this._ventana.InteresadoLicenciante).Nombre;
+                            this._ventana.IdLicenciante = ((Interesado)this._ventana.InteresadoLicenciante).Id.ToString();
                             retorno = true;
                         }
                         else
@@ -1708,6 +1722,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Licencias
                             this._poderesLicenciante = this._poderServicios.ConsultarPoderesPorInteresado(((Interesado)_ventana.LicencianteFiltrado));
                             this._ventana.InteresadoLicenciante = this._interesadoServicios.ConsultarInteresadoConTodo((Interesado)this._ventana.LicencianteFiltrado);
                             this._ventana.NombreLicenciante = ((Interesado)this._ventana.InteresadoLicenciante).Nombre;
+                            this._ventana.IdLicenciante = ((Interesado)this._ventana.InteresadoLicenciante).Id.ToString();
                             retorno = true;
                         }
                     }
@@ -1717,6 +1732,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Licencias
                 {
                     this._ventana.InteresadoLicenciante = this._ventana.LicencianteFiltrado;
                     this._ventana.NombreLicenciante = ((Interesado)this._ventana.InteresadoLicenciante).Nombre;
+                    this._ventana.IdLicenciante = ((Interesado)this._ventana.InteresadoLicenciante).Id.ToString();
                     retorno = true;
                 }
 
@@ -1780,6 +1796,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Licencias
                         {
                             this._ventana.ApoderadoLicenciante = this._ventana.ApoderadoLicencianteFiltrado;
                             this._ventana.NombreApoderadoLicenciante = ((Agente)this._ventana.ApoderadoLicencianteFiltrado).Nombre;
+                            this._ventana.IdApoderadoLicenciante = ((Agente)this._ventana.ApoderadoLicencianteFiltrado).Id;
                             retorno = true;
                         }
                         else
@@ -1792,6 +1809,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Licencias
                             {
                                 this._ventana.ApoderadoLicenciante = this._ventana.ApoderadoLicencianteFiltrado;
                                 this._ventana.NombreApoderadoLicenciante = ((Agente)this._ventana.ApoderadoLicencianteFiltrado).Nombre;
+                                this._ventana.IdApoderadoLicenciante = ((Agente)this._ventana.ApoderadoLicencianteFiltrado).Id;
                                 retorno = true;
                             }
                             else if (!this.ValidarListaDePoderes(this._poderesLicenciante, this._poderesApoderadosLicenciante, "Licenciante"))
@@ -1807,6 +1825,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Licencias
                         {
                             this._ventana.ApoderadoLicenciante = this._ventana.ApoderadoLicencianteFiltrado;
                             this._ventana.NombreApoderadoLicenciante = ((Agente)this._ventana.ApoderadoLicencianteFiltrado).Nombre;
+                            this._ventana.IdApoderadoLicenciante = ((Agente)this._ventana.ApoderadoLicencianteFiltrado).Id;
                             retorno = true;
                         }
                         else
@@ -1814,6 +1833,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Licencias
                             this._poderesApoderadosLicenciante = this._poderServicios.ConsultarPoderesPorAgente(((Agente)_ventana.ApoderadoLicencianteFiltrado));
                             this._ventana.ApoderadoLicenciante = this._ventana.ApoderadoLicencianteFiltrado;
                             this._ventana.NombreApoderadoLicenciante = ((Agente)this._ventana.ApoderadoLicencianteFiltrado).Nombre;
+                            this._ventana.IdApoderadoLicenciante = ((Agente)this._ventana.ApoderadoLicencianteFiltrado).Id;
                             retorno = true;
                         }
                     }
@@ -1822,6 +1842,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Licencias
                 {
                     this._ventana.ApoderadoLicenciante = this._ventana.ApoderadoLicencianteFiltrado;
                     this._ventana.NombreApoderadoLicenciante = ((Agente)this._ventana.ApoderadoLicencianteFiltrado).Nombre;
+                    this._ventana.IdApoderadoLicenciante = ((Agente)this._ventana.ApoderadoLicencianteFiltrado).Id;
                     retorno = true;
                 }
 
@@ -2282,6 +2303,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Licencias
                         {
                             this._ventana.InteresadoLicenciatario = this._interesadoServicios.ConsultarInteresadoConTodo((Interesado)this._ventana.LicenciatarioFiltrado);
                             this._ventana.NombreLicenciatario = ((Interesado)this._ventana.InteresadoLicenciatario).Nombre;
+                            this._ventana.IdLicenciatario = ((Interesado)this._ventana.InteresadoLicenciatario).Id.ToString();
                             retorno = true;
                         }
                         else
@@ -2294,6 +2316,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Licencias
                             {
                                 this._ventana.InteresadoLicenciatario = this._ventana.LicenciatarioFiltrado;
                                 this._ventana.NombreLicenciatario = ((Interesado)this._ventana.LicenciatarioFiltrado).Nombre;
+                                this._ventana.IdLicenciatario = ((Interesado)this._ventana.InteresadoLicenciatario).Id.ToString();
                                 retorno = true;
                             }
                             else if (!this.ValidarListaDePoderes(this._poderesLicenciatario, _poderesApoderadosLicenciatario, "Licenciatario"))
@@ -2317,6 +2340,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Licencias
                             this._poderesLicenciatario = this._poderServicios.ConsultarPoderesPorInteresado(((Interesado)_ventana.LicenciatarioFiltrado));
                             this._ventana.InteresadoLicenciatario = this._interesadoServicios.ConsultarInteresadoConTodo((Interesado)this._ventana.LicenciatarioFiltrado);
                             this._ventana.NombreLicenciatario = ((Interesado)this._ventana.InteresadoLicenciatario).Nombre;
+                            this._ventana.IdLicenciatario = ((Interesado)this._ventana.InteresadoLicenciatario).Id.ToString();
                             retorno = true;
                         }
                         else
@@ -2325,6 +2349,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Licencias
                             this._poderesLicenciatario = this._poderServicios.ConsultarPoderesPorInteresado(((Interesado)_ventana.LicenciatarioFiltrado));
                             this._ventana.InteresadoLicenciatario = this._interesadoServicios.ConsultarInteresadoConTodo((Interesado)this._ventana.LicenciatarioFiltrado);
                             this._ventana.NombreLicenciatario = ((Interesado)this._ventana.InteresadoLicenciatario).Nombre;
+                            this._ventana.IdLicenciatario = ((Interesado)this._ventana.InteresadoLicenciatario).Id.ToString();
                             retorno = true;
                         }
                     }
@@ -2334,6 +2359,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Licencias
                 {
                     this._ventana.InteresadoLicenciatario = this._ventana.LicenciatarioFiltrado;
                     this._ventana.NombreLicenciatario = ((Interesado)this._ventana.InteresadoLicenciatario).Nombre;
+                    this._ventana.IdLicenciatario = ((Interesado)this._ventana.InteresadoLicenciatario).Id.ToString();
                     retorno = true;
                 }
 
@@ -2397,6 +2423,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Licencias
                         {
                             this._ventana.ApoderadoLicenciatario = this._ventana.ApoderadoLicenciatarioFiltrado;
                             this._ventana.NombreApoderadoLicenciatario = ((Agente)this._ventana.ApoderadoLicenciatarioFiltrado).Nombre;
+                            this._ventana.IdApoderadoLicenciatario = ((Agente)this._ventana.ApoderadoLicenciatarioFiltrado).Id;
                             retorno = true;
                         }
                         else
@@ -2409,6 +2436,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Licencias
                             {
                                 this._ventana.ApoderadoLicenciatario = this._ventana.ApoderadoLicenciatarioFiltrado;
                                 this._ventana.NombreApoderadoLicenciatario = ((Agente)this._ventana.ApoderadoLicenciatarioFiltrado).Nombre;
+                                this._ventana.IdApoderadoLicenciatario = ((Agente)this._ventana.ApoderadoLicenciatarioFiltrado).Id;
                                 retorno = true;
                             }
                             else if (!this.ValidarListaDePoderes(this._poderesLicenciatario, this._poderesApoderadosLicenciatario, "Licenciatario"))
@@ -2424,6 +2452,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Licencias
                         {
                             this._ventana.ApoderadoLicenciatario = this._ventana.ApoderadoLicenciatarioFiltrado;
                             this._ventana.NombreApoderadoLicenciatario = ((Agente)this._ventana.ApoderadoLicenciatarioFiltrado).Nombre;
+                            this._ventana.IdApoderadoLicenciatario = ((Agente)this._ventana.ApoderadoLicenciatarioFiltrado).Id;
                             retorno = true;
                         }
                         else
@@ -2431,6 +2460,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Licencias
                             this._poderesApoderadosLicenciatario = this._poderServicios.ConsultarPoderesPorAgente(((Agente)_ventana.ApoderadoLicenciatarioFiltrado));
                             this._ventana.ApoderadoLicenciatario = this._ventana.ApoderadoLicenciatarioFiltrado;
                             this._ventana.NombreApoderadoLicenciatario = ((Agente)this._ventana.ApoderadoLicenciatarioFiltrado).Nombre;
+                            this._ventana.IdApoderadoLicenciatario = ((Agente)this._ventana.ApoderadoLicenciatarioFiltrado).Id;
                             retorno = true;
                         }
                     }
@@ -2439,6 +2469,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Licencias
                 {
                     this._ventana.ApoderadoLicenciatario = this._ventana.ApoderadoLicenciatarioFiltrado;
                     this._ventana.NombreApoderadoLicenciatario = ((Agente)this._ventana.ApoderadoLicenciatarioFiltrado).Nombre;
+                    this._ventana.IdApoderadoLicenciatario = ((Agente)this._ventana.ApoderadoLicenciatarioFiltrado).Id;
                     retorno = true;
                 }
 

@@ -15,6 +15,14 @@ namespace Trascend.Bolet.Cliente.Contratos.Traspasos.Fusiones
 
         string NombreAgenteFiltrar { get; }
 
+        string IdMarca { get; set; }
+
+        string IdInteresadoEntre{ get; set; }
+
+        string IdInteresadoSobreviviente { get; set; }
+
+        string IdApoderado { get; set; }
+
         #region Marcas
 
         string NombreMarca { set; }

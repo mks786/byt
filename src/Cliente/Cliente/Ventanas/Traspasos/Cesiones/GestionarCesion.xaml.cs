@@ -605,6 +605,16 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Cesiones
                         this.IdCesionario = "";
                 }
             }
+            if (tipo.Equals("Marca"))
+            {
+                if (!this.IdMarca.Equals(""))
+                {
+                    if (int.Parse(this.IdMarca) == int.MinValue)
+                        this.IdMarca = "";
+                }
+
+            }
+
         }
 
         public void GestionarBotonConsultarInteresados(string tipo, bool value)
