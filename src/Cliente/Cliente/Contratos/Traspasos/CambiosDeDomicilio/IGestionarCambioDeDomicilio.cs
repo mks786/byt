@@ -19,6 +19,8 @@ namespace Trascend.Bolet.Cliente.Contratos.Traspasos.CambiosDeDomicilio
 
         string NombreMarca { set; }
 
+        string IdMarca { get; set; }
+
         object Marca { get; set; }
 
         string IdMarcaFiltrar { get; }
@@ -37,6 +39,8 @@ namespace Trascend.Bolet.Cliente.Contratos.Traspasos.CambiosDeDomicilio
 
         string NombreInteresadoAnterior { set; }
 
+        string IdInteresadoAnterior { get; set; }
+
         string IdInteresadoAnteriorFiltrar { get; }
 
         string NombreInteresadoAnteriorFiltrar { get; }
@@ -53,6 +57,8 @@ namespace Trascend.Bolet.Cliente.Contratos.Traspasos.CambiosDeDomicilio
 
         string NombreInteresadoActual { set; }
 
+        string IdInteresadoActual { get; set; }
+
         string IdInteresadoActualFiltrar { get; }
 
         string NombreInteresadoActualFiltrar { get; }
@@ -68,6 +74,8 @@ namespace Trascend.Bolet.Cliente.Contratos.Traspasos.CambiosDeDomicilio
         object AgenteApoderado { get; set; }
 
         string NombreAgenteApoderado { set; }
+
+        string IdAgenteApoderado { get; set; }
 
         string IdAgenteApoderadoFiltrar { get; }
 

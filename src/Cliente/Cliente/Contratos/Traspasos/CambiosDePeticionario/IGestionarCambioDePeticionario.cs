@@ -101,13 +101,23 @@ namespace Trascend.Bolet.Cliente.Contratos.Traspasos.CambiosDePeticionario
 
         string NombreMarca { set; }
 
+        string IdMarca { get; set; }
+
         string NombreAnterior { set; }
+
+        string IdAnterior { get; set; }
 
         string NombreActual { set; }
 
+        string IdActual { get; set; }
+
         string NombreApoderadoAnterior { set; }
 
+        string IdApoderadoAnterior { get; set; }
+
         string NombreApoderadoActual { set; }
+
+        string IdApoderadoActual { get; set; }
 
         string IdPoderAnterior { set; get; }
 
@@ -145,7 +155,7 @@ namespace Trascend.Bolet.Cliente.Contratos.Traspasos.CambiosDePeticionario
 
         void Mensaje(string mensaje, int opcion);
 
-        void ConvertirEnteroMinimoABlanco(string tipo);
+        void ConvertirEnteroMinimoABlanco();
 
         void GestionarBotonConsultarInteresados(string tipo, bool value);
         

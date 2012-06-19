@@ -105,13 +105,23 @@ namespace Trascend.Bolet.Cliente.Contratos.TraspasosPatentes.LicenciasPatentes
 
         string NombrePatente { set; }
 
+        string IdPatente { get; set; }
+
         string NombreLicenciante { set; }
+
+        string IdLicenciante { get; set; }
 
         string NombreLicenciatario { set; }
 
+        string IdLicenciatario { get; set; }
+
         string NombreApoderadoLicenciante { set; }
 
+        string IdApoderadoLicenciante { set; }
+
         string NombreApoderadoLicenciatario { set; }
+
+        string IdApoderadoLicenciatario { set; }
 
         string PaisLicenciante { set; }
 
@@ -145,7 +155,7 @@ namespace Trascend.Bolet.Cliente.Contratos.TraspasosPatentes.LicenciasPatentes
 
         void Mensaje(string mensaje, int opcion);
 
-        void ConvertirEnteroMinimoABlanco(string tipo);
+        void ConvertirEnteroMinimoABlanco();
 
         void GestionarBotonConsultarInteresados(string tipo, bool value);
 

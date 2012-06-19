@@ -511,12 +511,6 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.CambiosDeNombre
                     this.IdPoder = "";
             }
 
-            if (!this.IdAgenteApoderado.Equals(""))
-            {
-                if (int.Parse(this.IdAgenteApoderado) == int.MinValue)
-                    this.IdAgenteApoderado = "";
-            }
-
             if (!this.IdInteresadoActual.Equals(""))
             {
                 if (int.Parse(this.IdInteresadoActual) == int.MinValue)

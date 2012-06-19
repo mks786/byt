@@ -251,6 +251,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.CambiosPeticionario
                 this._txtIdCambioPeticionario.IsEnabled = value;
                 this._txtIdMarcaFiltrar.IsEnabled = value;
                 this._txtNombreMarca.IsEnabled = value;
+                this._txtIdMarca.IsEnabled = value;
                 this._txtNombreMarcaFiltrar.IsEnabled = value;
                 this._txtNumInscripcion.IsEnabled = value;
                 this._txtNumRegistro.IsEnabled = value;
@@ -261,11 +262,13 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.CambiosPeticionario
                 this._dpkFechaCambioPeticionario.IsEnabled = value;
                 
                 this._txtNombreAnterior.IsEnabled = value;
+                this._txtIdAnterior.IsEnabled = value;
                 this._txtPaisAnterior.IsEnabled = value;
                 this._txtNacionalidadAnterior.IsEnabled = value;
                 this._txtIdAnteriorFiltrar.IsEnabled = value;
                 this._txtNombreAnteriorFiltrar.IsEnabled = value;
                 this._txtNombreApoderadoAnterior.IsEnabled = value;
+                this._txtIdApoderadoAnterior.IsEnabled = value;
                 this._txtNombreApoderadoAnteriorFiltrar.IsEnabled = value;
                 this._txtIdApoderadoAnteriorFiltrar.IsEnabled = value;                                
                 this._txtIdPoderAnterior.IsEnabled = value;                
@@ -277,9 +280,12 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.CambiosPeticionario
                 this._txtFechaPoderAnterior.IsEnabled = value;
 
                 this._txtNombreActual.IsEnabled = value;
+                this._txtIdActual.IsEnabled = value;
                 this._txtIdActualFiltrar.IsEnabled = value;
                 this._txtNombreActualFiltrar.IsEnabled = value;
+                this._txtIdActualFiltrar.IsEnabled = value;
                 this._txtNombreApoderadoActual.IsEnabled = value;
+                this._txtIdApoderadoActual.IsEnabled = value;
                 this._txtIdApoderadoActualFiltrar.IsEnabled = value;
                 this._txtNombreApoderadoActualFiltrar.IsEnabled = value;                               
                 this._txtIdPoderActual.IsEnabled = value;
@@ -311,9 +317,22 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.CambiosPeticionario
             set { this._txtNombreMarca.Text = value; }
         }
 
+        public string IdMarca
+        {
+            get { return this._txtIdMarca.Text; }
+            set { this._txtIdMarca.Text = value; }
+        }
+
         public string NombreAnterior
         {
             set { this._txtNombreAnterior.Text = value; }
+        }
+
+        public string IdAnterior
+        {
+
+            get { return this._txtIdAnterior.Text; }
+            set { this._txtIdAnterior.Text = value; }
         }
 
         public string NombreApoderadoAnterior
@@ -321,9 +340,21 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.CambiosPeticionario
             set { this._txtNombreApoderadoAnterior.Text = value; }
         }
 
+        public string IdApoderadoAnterior
+        {
+            get { return this._txtIdApoderadoAnterior.Text; }
+            set { this._txtIdApoderadoAnterior.Text = value; }
+        }
+
         public string NombreApoderadoActual
         {
             set { this._txtNombreApoderadoActual.Text = value; }
+        }
+
+        public string IdApoderadoActual
+        {
+            get { return this._txtIdApoderadoActual.Text; }
+            set { this._txtIdApoderadoActual.Text = value; }
         }
 
         public string IdPoderAnterior
@@ -353,6 +384,12 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.CambiosPeticionario
         public string NombreActual
         {
             set { this._txtNombreActual.Text = value; }
+        }
+
+        public string IdActual
+        {
+            get { return this._txtIdActual.Text; }
+            set { this._txtIdActual.Text = value; }
         }
 
         public string PaisAnterior
@@ -540,24 +577,39 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.CambiosPeticionario
         //    this._presentador.IrImprimir(((Button)sender).Name);
         //}
 
-        public void ConvertirEnteroMinimoABlanco(string tipo)
+        public void ConvertirEnteroMinimoABlanco()
         {
-            if (tipo.Equals("Anterior"))
+
+            if (!this.IdMarca.Equals(""))
             {
-                if (!this.IdPoderAnterior.Equals(""))
-                {
-                    if (int.Parse(this.IdPoderAnterior) == int.MinValue)
-                        this.IdPoderAnterior = "";
-                }
+                if (int.Parse(this.IdMarca) == int.MinValue)
+                    this.IdMarca = "";
             }
-            if (tipo.Equals("Actual"))
+
+            if (!this.IdAnterior.Equals(""))
             {
-                if (!this.IdPoderActual.Equals(""))
-                {
-                    if (int.Parse(this.IdPoderActual) == int.MinValue)
-                        this.IdPoderActual = "";
-                }
+                if (int.Parse(this.IdAnterior) == int.MinValue)
+                    this.IdAnterior = "";
             }
+
+            if (!this.IdPoderAnterior.Equals(""))
+            {
+                if (int.Parse(this.IdPoderAnterior) == int.MinValue)
+                    this.IdPoderAnterior = "";
+            }
+
+            if (!this.IdActual.Equals(""))
+            {
+                if (int.Parse(this.IdActual) == int.MinValue)
+                    this.IdActual = "";
+            }
+            
+            if (!this.IdPoderActual.Equals(""))
+            {
+                if (int.Parse(this.IdPoderActual) == int.MinValue)
+                    this.IdPoderActual = "";
+            }
+            
         }
 
         public void GestionarBotonConsultarInteresados(string tipo, bool value)
@@ -646,6 +698,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.CambiosPeticionario
         private void GestionarVisibilidadDatosDeMarca(object value)
         {
             this._txtNombreMarca.Visibility = (System.Windows.Visibility)value;
+            this._txtIdMarca.Visibility = (System.Windows.Visibility)value;
             this._chkEtiqueta.Visibility = (System.Windows.Visibility)value;
             this._lblNoInscripcion.Visibility = (System.Windows.Visibility)value;
             this._txtNumInscripcion.Visibility = (System.Windows.Visibility)value;
@@ -741,6 +794,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.CambiosPeticionario
         {
             this._lblNombreAnterior.Visibility = (System.Windows.Visibility)value;
             this._txtNombreAnterior.Visibility = (System.Windows.Visibility)value;
+            this._txtIdAnterior.Visibility = (System.Windows.Visibility)value;
             this._txtPaisAnterior.Visibility = (System.Windows.Visibility)value;
             this._txtNacionalidadAnterior.Visibility = (System.Windows.Visibility)value;
         }     
@@ -825,6 +879,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.CambiosPeticionario
         {
             this._lblNombreApoderadoAnterior.Visibility = (System.Windows.Visibility)value;
             this._txtNombreApoderadoAnterior.Visibility = (System.Windows.Visibility)value;
+            this._txtIdApoderadoAnterior.Visibility = (System.Windows.Visibility)value;
         }
 
         private void GestionarVisibilidadFiltroApoderadoAnterior(object value)
@@ -1000,6 +1055,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.CambiosPeticionario
         {
             this._lblNombreActual.Visibility = (System.Windows.Visibility)value;
             this._txtNombreActual.Visibility = (System.Windows.Visibility)value;
+            this._txtIdActual.Visibility = (System.Windows.Visibility)value;
             this._txtPaisActual.Visibility = (System.Windows.Visibility)value;
             this._txtNacionalidadActual.Visibility = (System.Windows.Visibility)value;
         }
@@ -1083,6 +1139,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.CambiosPeticionario
         {
             this._lblNombreApoderadoActual.Visibility = (System.Windows.Visibility)value;
             this._txtNombreApoderadoActual.Visibility = (System.Windows.Visibility)value;
+            this._txtIdApoderadoActual.Visibility = (System.Windows.Visibility)value;
         }
 
         private void GestionarVisibilidadFiltroApoderadoActual(object value)

@@ -118,6 +118,12 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.CambiosDeDomicilio
             set { this._txtNombreInteresadoAnterior.Text = value; }
         }
 
+        public string IdInteresadoAnterior
+        {
+            get { return this._txtIdInteresadoAnterior.Text; }
+            set { this._txtIdInteresadoAnterior.Text = value; }
+        }
+
         public object InteresadoActual
         {
             get { return this._gridDatosInteresadoActual.DataContext; }
@@ -127,6 +133,12 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.CambiosDeDomicilio
         public string NombreInteresadoActual
         {
             set { this._txtNombreInteresadoActual.Text = value; }
+        }
+
+        public string IdInteresadoActual
+        {
+            get { return this._txtIdInteresadoActual.Text; }
+            set { this._txtIdInteresadoActual.Text = value; }
         }
 
         public string Region
@@ -157,6 +169,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.CambiosDeDomicilio
                 this._txtIdCambioDeDomicilio.IsEnabled = value;
                 this._txtIdMarcaFiltrar.IsEnabled = value;
                 this._txtNombreMarca.IsEnabled = value;
+                this._txtIdMarca.IsEnabled = value;
                 this._txtNombreMarcaFiltrar.IsEnabled = value;
                 this._txtNumInscripcion.IsEnabled = value;
                 this._txtNumRegistro.IsEnabled = value;
@@ -167,6 +180,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.CambiosDeDomicilio
 
                 _btnConsultarInteresadoAnterior.IsEnabled = value;
                 _txtNombreInteresadoAnterior.IsEnabled = value;
+                _txtIdInteresadoAnterior.IsEnabled = value;
                 _txtNombreInteresadoAnteriorFiltrar.IsEnabled = value;
                 _txtIdInteresadoAnteriorFiltrar.IsEnabled = value;
                 _txtPaisInteresadoAnterior.IsEnabled = value;
@@ -174,6 +188,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.CambiosDeDomicilio
                 _txtDomicilioInteresadoAnterior.IsEnabled = value;
                 
                 _txtNombreInteresadoActual.IsEnabled = value;
+                _txtIdInteresadoActual.IsEnabled = value;
                 _txtNombreInteresadoActualFiltrar.IsEnabled = value;
                 _txtIdInteresadoActualFiltrar.IsEnabled = value;
                 _txtPaisInteresadoActual.IsEnabled = value;
@@ -181,6 +196,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.CambiosDeDomicilio
                 _txtDomicilioInteresadoActual.IsEnabled = value;
                 
                 _txtNombreApoderado.IsEnabled = value;
+                _txtIdApoderado.IsEnabled = value;
                 _txtNombreApoderadoFiltrar.IsEnabled = value;
                 _txtIdApoderadoFiltrar.IsEnabled = value;
 
@@ -209,6 +225,12 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.CambiosDeDomicilio
         public string NombreMarca
         {
             set { this._txtNombreMarca.Text = value; }
+        }
+
+        public string IdMarca
+        {
+            get { return this._txtIdMarca.Text; }
+            set { this._txtIdMarca.Text = value; }
         }
 
         public object MarcasFiltradas
@@ -256,6 +278,12 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.CambiosDeDomicilio
         public string NombreAgenteApoderado
         {
             set { this._txtNombreApoderado.Text = value; }
+        }
+
+        public string IdAgenteApoderado
+        {
+            get { return this._txtIdApoderado.Text; }
+            set { this._txtIdApoderado.Text = value; }
         }
 
         public string IdAgenteApoderadoFiltrar
@@ -476,7 +504,25 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.CambiosDeDomicilio
             {
                 if (int.Parse(this.IdPoder) == int.MinValue)
                     this.IdPoder = "";
-            }           
+            }
+
+            if (!this.IdMarca.Equals(""))
+            {
+                if (int.Parse(this.IdMarca) == int.MinValue)
+                    this.IdMarca = "";
+            }
+
+            if (!this.IdInteresadoAnterior.Equals(""))
+            {
+                if (int.Parse(this.IdInteresadoAnterior) == int.MinValue)
+                    this.IdInteresadoAnterior = "";
+            }
+
+            if (!this.IdInteresadoActual.Equals(""))
+            {
+                if (int.Parse(this.IdInteresadoActual) == int.MinValue)
+                    this.IdInteresadoActual = "";
+            }
         }
 
         #region Eventos Marcas
@@ -537,6 +583,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.CambiosDeDomicilio
         private void GestionarVisibilidadDatosDeMarca(object value)
         {
             this._txtNombreMarca.Visibility = (System.Windows.Visibility)value;
+            this._txtIdMarca.Visibility = (System.Windows.Visibility)value;
             this._chkEtiqueta.Visibility = (System.Windows.Visibility)value;
             this._lblNoInscripcion.Visibility = (System.Windows.Visibility)value;
             this._txtNumInscripcion.Visibility = (System.Windows.Visibility)value;
@@ -619,6 +666,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.CambiosDeDomicilio
         private void GestionarVisibilidadDatosDeInteresadoAnterior(object value)
         {
             this._txtNombreInteresadoAnterior.Visibility = (System.Windows.Visibility)value;
+            this._txtIdInteresadoAnterior.Visibility = (System.Windows.Visibility)value;
             this._txtPaisInteresadoAnterior.Visibility = (System.Windows.Visibility)value;
             this._txtCiudadInteresadoAnterior.Visibility = (System.Windows.Visibility)value;
             this._txtDomicilioInteresadoAnterior.Visibility = (System.Windows.Visibility)value;
@@ -696,6 +744,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.CambiosDeDomicilio
         private void GestionarVisibilidadDatosDeInteresadoActual(object value)
         {
             this._txtNombreInteresadoActual.Visibility = (System.Windows.Visibility)value;
+            this._txtIdInteresadoActual.Visibility = (System.Windows.Visibility)value;
             this._txtPaisInteresadoActual.Visibility = (System.Windows.Visibility)value;
             this._txtCiudadInteresadoActual.Visibility = (System.Windows.Visibility)value;
             this._txtDomicilioInteresadoActual.Visibility = (System.Windows.Visibility)value;
@@ -783,6 +832,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.CambiosDeDomicilio
         private void GestionarVisibilidadDatosDeAgenteApoderado(object value)
         {
             this._txtNombreApoderado.Visibility = (System.Windows.Visibility)value;
+            this._txtIdApoderado.Visibility = (System.Windows.Visibility)value;
         }
 
         public void GestionarBotonConsultarApoderado(bool value)

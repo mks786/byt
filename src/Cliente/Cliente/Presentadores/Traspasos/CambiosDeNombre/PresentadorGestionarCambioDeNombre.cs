@@ -788,6 +788,29 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeNombre
                     this._marcas.RemoveAt(0);
                     this._marcas.Add((Marca)this._ventana.MarcaFiltrada);
                     this._ventana.InteresadoAnterior = ((Marca)this._ventana.Marca).Interesado;
+
+                    if (((Marca)this._ventana.Marca).Interesado != null)
+                        this._ventana.IdInteresadoAnterior = (((Marca)this._ventana.Marca).Interesado).Id.ToString();
+
+                    IList<Interesado> listaAux = new List<Interesado>();
+                    listaAux.Add(new Interesado(int.MinValue));
+
+                    if (((Marca)this._ventana.MarcaFiltrada).Id != int.MinValue)
+                    {
+                        listaAux.Add((Interesado)this._ventana.InteresadoAnterior);
+
+                        this._ventana.InteresadosAnteriorFiltrados = listaAux;
+                        this._ventana.InteresadoAnteriorFiltrado = this.BuscarInteresado((IList<Interesado>)this._ventana.InteresadosAnteriorFiltrados,
+                            (Interesado)this._ventana.InteresadoAnterior);
+                    }
+                    else
+                    {
+                        this._ventana.InteresadosAnteriorFiltrados = listaAux;
+                        this._ventana.IdInteresadoAnterior = int.MinValue.ToString();
+                        this._ventana.InteresadoAnteriorFiltrado = this.BuscarInteresado((IList<Interesado>)this._ventana.InteresadosAnteriorFiltrados,
+                            new Interesado(int.MinValue));
+                    }
+
                     this._ventana.AgenteApoderado = ((Marca)this._ventana.Marca).Agente;
                     this._ventana.Poder = ((Marca)this._ventana.Marca).Poder;
                     retorno = true;

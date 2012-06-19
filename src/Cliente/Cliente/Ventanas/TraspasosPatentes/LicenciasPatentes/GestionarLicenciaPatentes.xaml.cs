@@ -251,6 +251,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.LicenciasPatentes
                 this._txtIdLicencia.IsEnabled = value;
                 this._txtIdPatenteFiltrar.IsEnabled = value;
                 this._txtNombrePatente.IsEnabled = value;
+                this._txtIdPatente.IsEnabled = value;
                 this._txtNombrePatenteFiltrar.IsEnabled = value;
                 this._txtNumInscripcion.IsEnabled = value;
                 this._txtNumRegistro.IsEnabled = value;
@@ -260,11 +261,13 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.LicenciasPatentes
                 this._btnConsultarPatente.IsEnabled = value;
                 
                 this._txtNombreLicenciante.IsEnabled = value;
+                this._txtIdLicenciante.IsEnabled = value;
                 this._txtPaisLicenciante.IsEnabled = value;
                 this._txtNacionalidadLicenciante.IsEnabled = value;
                 this._txtIdLicencianteFiltrar.IsEnabled = value;
                 this._txtNombreLicencianteFiltrar.IsEnabled = value;
                 this._txtNombreApoderadoLicenciante.IsEnabled = value;
+                this._txtIdApoderadoLicenciante.IsEnabled = value;
                 this._txtNombreApoderadoLicencianteFiltrar.IsEnabled = value;
                 this._txtIdApoderadoLicencianteFiltrar.IsEnabled = value;                                
                 this._txtIdPoderLicenciante.IsEnabled = value;                
@@ -277,9 +280,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.LicenciasPatentes
                 this._dpkFechaLicencia.IsEnabled = value;
 
                 this._txtNombreLicenciatario.IsEnabled = value;
+                this._txtIdLicenciatario.IsEnabled = value;
                 this._txtIdLicenciatarioFiltrar.IsEnabled = value;
                 this._txtNombreLicenciatarioFiltrar.IsEnabled = value;
                 this._txtNombreApoderadoLicenciatario.IsEnabled = value;
+                this._txtIdApoderadoLicenciatario.IsEnabled = value;
                 this._txtIdApoderadoLicenciatarioFiltrar.IsEnabled = value;
                 this._txtNombreApoderadoLicenciatarioFiltrar.IsEnabled = value;                               
                 this._txtIdPoderLicenciatario.IsEnabled = value;
@@ -308,9 +313,21 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.LicenciasPatentes
             set { this._txtNombrePatente.Text = value; }
         }
 
+        public string IdPatente
+        {
+            get { return this._txtIdPatente.Text; }
+            set { this._txtIdPatente.Text = value; }
+        }
+
         public string NombreLicenciante
         {
             set { this._txtNombreLicenciante.Text = value; }
+        }
+
+        public string IdLicenciante
+        {
+            get { return this._txtIdLicenciante.Text; }
+            set { this._txtIdLicenciante.Text = value; }
         }
 
         public string NombreApoderadoLicenciante
@@ -318,9 +335,21 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.LicenciasPatentes
             set { this._txtNombreApoderadoLicenciante.Text = value; }
         }
 
+        public string IdApoderadoLicenciante
+        {
+            get { return this._txtIdApoderadoLicenciante.Text; }
+            set { this._txtIdApoderadoLicenciante.Text = value; }
+        }
+
         public string NombreApoderadoLicenciatario
         {
             set { this._txtNombreApoderadoLicenciatario.Text = value; }
+        }
+
+        public string IdApoderadoLicenciatario
+        {
+            get { return this._txtIdApoderadoLicenciatario.Text; }
+            set { this._txtIdApoderadoLicenciatario.Text = value; }
         }
 
         public string IdPoderLicenciante
@@ -350,6 +379,12 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.LicenciasPatentes
         public string NombreLicenciatario
         {
             set { this._txtNombreLicenciatario.Text = value; }
+        }
+
+        public string IdLicenciatario
+        {
+            get { return this._txtIdLicenciatario.Text; }
+            set { this._txtIdLicenciatario.Text = value; }
         }
 
         public string PaisLicenciante
@@ -543,24 +578,38 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.LicenciasPatentes
         //    this._presentador.IrImprimir(((Button)sender).Name);
         //}
 
-        public void ConvertirEnteroMinimoABlanco(string tipo)
+        public void ConvertirEnteroMinimoABlanco()
         {
-            if (tipo.Equals("Licenciante"))
+            if (!this.IdPatente.Equals(""))
             {
-                if (!this.IdPoderLicenciante.Equals(""))
-                {
-                    if (int.Parse(this.IdPoderLicenciante) == int.MinValue)
-                        this.IdPoderLicenciante = "";
-                }
+                if (int.Parse(this.IdPatente) == int.MinValue)
+                    this.IdPatente = "";
             }
-            if (tipo.Equals("Licenciatario"))
+
+            if (!this.IdLicenciante.Equals(""))
             {
-                if (!this.IdPoderLicenciatario.Equals(""))
-                {
-                    if (int.Parse(this.IdPoderLicenciatario) == int.MinValue)
-                        this.IdPoderLicenciatario = "";
-                }
+                if (int.Parse(this.IdLicenciante) == int.MinValue)
+                    this.IdLicenciante = "";
             }
+
+            if (!this.IdPoderLicenciante.Equals(""))
+            {
+                if (int.Parse(this.IdPoderLicenciante) == int.MinValue)
+                    this.IdPoderLicenciante = "";
+            }
+
+            if (!this.IdLicenciatario.Equals(""))
+            {
+                if (int.Parse(this.IdLicenciatario) == int.MinValue)
+                    this.IdLicenciatario = "";
+            }
+
+            if (!this.IdPoderLicenciatario.Equals(""))
+            {
+                if (int.Parse(this.IdPoderLicenciatario) == int.MinValue)
+                    this.IdPoderLicenciatario = "";
+            }
+           
         }
 
         public void GestionarBotonConsultarInteresados(string tipo, bool value)
@@ -649,6 +698,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.LicenciasPatentes
         private void GestionarVisibilidadDatosDePatente(object value)
         {
             this._txtNombrePatente.Visibility = (System.Windows.Visibility)value;
+            this._txtIdPatente.Visibility = (System.Windows.Visibility)value;
             this._chkEtiqueta.Visibility = (System.Windows.Visibility)value;
             this._lblNoInscripcion.Visibility = (System.Windows.Visibility)value;
             this._txtNumInscripcion.Visibility = (System.Windows.Visibility)value;
@@ -854,6 +904,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.LicenciasPatentes
         {
             this._lblNombreLicenciante.Visibility = (System.Windows.Visibility)value;
             this._txtNombreLicenciante.Visibility = (System.Windows.Visibility)value;
+            this._txtIdLicenciante.Visibility = (System.Windows.Visibility)value;
             this._txtPaisLicenciante.Visibility = (System.Windows.Visibility)value;
             this._txtNacionalidadLicenciante.Visibility = (System.Windows.Visibility)value;
         }
@@ -862,6 +913,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.LicenciasPatentes
         {
             this._lblNombreApoderadoLicenciante.Visibility = (System.Windows.Visibility)value;
             this._txtNombreApoderadoLicenciante.Visibility = (System.Windows.Visibility)value;
+            this._txtIdApoderadoLicenciante.Visibility = (System.Windows.Visibility)value;
         }
 
         private void GestionarVisibilidadDatosDePoderLicenciante(object value)
@@ -1097,6 +1149,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.LicenciasPatentes
         {
             this._lblNombreLicenciatario.Visibility = (System.Windows.Visibility)value;
             this._txtNombreLicenciatario.Visibility = (System.Windows.Visibility)value;
+            this._txtIdLicenciatario.Visibility = (System.Windows.Visibility)value;
             this._txtPaisLicenciatario.Visibility = (System.Windows.Visibility)value;
             this._txtNacionalidadLicenciatario.Visibility = (System.Windows.Visibility)value;
         }
@@ -1105,6 +1158,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.LicenciasPatentes
         {
             this._lblNombreApoderadoLicenciatario.Visibility = (System.Windows.Visibility)value;
             this._txtNombreApoderadoLicenciatario.Visibility = (System.Windows.Visibility)value;
+            this._txtIdApoderadoLicenciatario.Visibility = (System.Windows.Visibility)value;
         }
 
         private void GestionarVisibilidadDatosDePoderLicenciatario(object value)
