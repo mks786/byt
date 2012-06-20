@@ -2350,6 +2350,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Duración.
+        /// </summary>
+        public static string lblDuracion {
+            get {
+                return ResourceManager.GetString("lblDuracion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Envío Estado de Cuenta:.
         /// </summary>
         public static string lblEdoCuenta {
@@ -2752,6 +2761,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string lblFechaSolicitud {
             get {
                 return ResourceManager.GetString("lblFechaSolicitud", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Término.
+        /// </summary>
+        public static string lblFechaTermino {
+            get {
+                return ResourceManager.GetString("lblFechaTermino", resourceCulture);
             }
         }
         

@@ -503,6 +503,12 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
             }
         }
 
+        public string FechaTermino
+        {
+            get { return this._txtFechaRenovacionDatos.Text; }
+            set { this._txtFechaRenovacionDatos.Text = value; }
+        }
+
         public void PintarInventoresDatos()
         {
             this._btnInventoresDatos.Background = Brushes.LightGreen;

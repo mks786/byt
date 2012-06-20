@@ -198,6 +198,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                     _patente = this._patenteServicios.ConsultarPatenteConTodo((Patente)this._ventana.Patente);
                     this._ventana.Patente = _patente;
 
+                    DateTime fechaTerminoAux = (DateTime)((Patente)this._ventana.Patente).FechaTermino;
+                    this._ventana.FechaTermino = fechaTerminoAux.ToShortDateString();
+
                     InfoAdicional infoAdicional = new InfoAdicional("P." + _patente.Id);
 
                     _patente.InfoAdicional = this._infoAdicionalServicios.ConsultarPorId(infoAdicional);

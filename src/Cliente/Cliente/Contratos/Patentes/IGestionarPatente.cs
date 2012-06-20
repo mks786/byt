@@ -160,6 +160,8 @@ namespace Trascend.Bolet.Cliente.Contratos.Patentes
 
         object SituacionDatos { get; set; }
 
+        string FechaTermino { get; set; }
+
         void PintarAsociado(string tipo);
 
         void PintarDisenoDatos();

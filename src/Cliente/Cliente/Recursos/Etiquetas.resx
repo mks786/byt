@@ -2723,4 +2723,10 @@ de Gracia</value>
   <data name="cbiCategoriaServiciosOperaciones" xml:space="preserve">
     <value>SERVICIOS</value>
   </data>
+  <data name="lblDuracion" xml:space="preserve">
+    <value>Duración</value>
+  </data>
+  <data name="lblFechaTermino" xml:space="preserve">
+    <value>Término</value>
+  </data>
 </root>
