@@ -63,6 +63,12 @@ namespace Trascend.Bolet.Cliente.Ventanas.Cartas
             set { this._txtResumen.Text = value; }
         }
 
+        public string ReferenciaFiltrar
+        {
+            get { return this._txtReferencia.Text; }
+            set { this._txtReferencia.Text = value; }
+        }
+
         public string Fecha
         {
             get { return this._dpkFecha.SelectedDate.ToString(); }

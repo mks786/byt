@@ -58,6 +58,13 @@
                              GotFocus="_btnConsultarFocus" GotKeyboardFocus="_btnConsultarFocus" CharacterCasing="Upper"/>
                 </WrapPanel>
                 <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,180,0">
+                    <Label>
+                        <TextBlock Text="{x:Static recurso:Etiquetas.lblReferencia}"/>
+                    </Label>
+                    <custom:ByTTextBox Name="_txtReferencia" Text="" Width="150" MaxLength="15"
+                             GotFocus="_btnConsultarFocus" GotKeyboardFocus="_btnConsultarFocus"/>
+                </WrapPanel>
+                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,180,0">
                     <Label VerticalAlignment="Center" HorizontalContentAlignment="Right">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblFechaBoletin}"/>
                     </Label>

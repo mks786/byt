@@ -712,4 +712,8 @@
   <data name="ObtenerPoderesEntreAgenteEInteresado" xml:space="preserve">
     <value>Select p from Poder p where </value>
   </data>
+  <data name="FiltroObtenerCartaReferencia" xml:space="preserve">
+    <value>c.Referencia = '{0}'</value>
+    <comment>Filtro por Id</comment>
+  </data>
 </root>

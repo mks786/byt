@@ -98,12 +98,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
                 //this._cartas = this._cartaServicios.ObtenerCartasFiltro();
                 //this._ventana.Resultados = this._cartas;
 
-                IList<Asociado> asociados = this._asociadoServicios.ConsultarTodos();
-                Asociado primerAsociado = new Asociado();
-                primerAsociado.Id = int.MinValue;
-                asociados.Insert(0, primerAsociado);
-                this._ventana.Asociados = asociados;
-                this._asociados = asociados;
+                //IList<Asociado> asociados = this._asociadoServicios.ConsultarTodos();
+                //Asociado primerAsociado = new Asociado();
+                //primerAsociado.Id = int.MinValue;
+                //asociados.Insert(0, primerAsociado);
+                //this._ventana.Asociados = asociados;
+                //this._asociados = asociados;
                 this._ventana.TotalHits = "0";
 
                 this._ventana.FocoPredeterminado();
@@ -152,6 +152,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
+                Mouse.OverrideCursor = Cursors.Wait;
+
                 bool consultaResumen = false;
                 int filtroValido = 0;//Variable utilizada para limitar a que el filtro se ejecute solo cuando 
                 //dos filtros sean utilizados
@@ -180,6 +182,14 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
                     cartaAuxiliar.Resumen = resumenAux;
                 }
 
+
+                if (!this._ventana.ReferenciaFiltrar.Equals(""))
+                {
+                    filtroValido++;
+                    consultaResumen = true;
+                    cartaAuxiliar.Referencia = this._ventana.ReferenciaFiltrar;
+                }
+
                 if (!this._ventana.Fecha.Equals(""))
                 {
                     DateTime fechaCarta = DateTime.Parse(this._ventana.Fecha);
@@ -187,17 +197,16 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
                     cartaAuxiliar.Fecha = fechaCarta;
                 }
 
-                if ((filtroValido >= 2) || ((!consultaResumen) && (filtroValido > 0)))
+                if (filtroValido != 0)
                 {
                     this._cartas = this._cartaServicios.ObtenerCartasFiltro(cartaAuxiliar);
                     this._ventana.Resultados = this._cartas;
                     this._ventana.TotalHits = this._cartas.Count.ToString();
+
                     if (this._cartas.Count == 0)
                         this._ventana.Mensaje(Recursos.MensajesConElUsuario.NoHayResultados, 1);
                 }
-                else
-                    this._ventana.Mensaje(Recursos.MensajesConElUsuario.ErrorFiltroIncompleto, 0);
-
+                Mouse.OverrideCursor = null;
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
                     logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
@@ -274,24 +283,30 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
                 logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
 
-            IEnumerable<Asociado> asociadosFiltrados = (IList<Asociado>)this._asociados;
+            //IEnumerable<Asociado> asociadosFiltrados = (IList<Asociado>)this._asociados;
 
-            if (!string.IsNullOrEmpty(this._ventana.IdAsociadoFiltrar))
-            {
-                asociadosFiltrados = from p in asociadosFiltrados
-                                     where p.Id == int.Parse(this._ventana.IdAsociadoFiltrar)
-                                     select p;
-            }
+            //if (!string.IsNullOrEmpty(this._ventana.IdAsociadoFiltrar))
+            //{
+            //    asociadosFiltrados = from p in asociadosFiltrados
+            //                         where p.Id == int.Parse(this._ventana.IdAsociadoFiltrar)
+            //                         select p;
+            //}
 
-            if (!string.IsNullOrEmpty(this._ventana.NombreAsociadoFiltrar))
-            {
-                asociadosFiltrados = from p in asociadosFiltrados
-                                     where p.Nombre != null &&
-                                     p.Nombre.ToLower().Contains(this._ventana.NombreAsociadoFiltrar.ToLower())
-                                     select p;
-            }
+            //if (!string.IsNullOrEmpty(this._ventana.NombreAsociadoFiltrar))
+            //{
+            //    asociadosFiltrados = from p in asociadosFiltrados
+            //                         where p.Nombre != null &&
+            //                         p.Nombre.ToLower().Contains(this._ventana.NombreAsociadoFiltrar.ToLower())
+            //                         select p;
+            //}
+            Asociado asociadoAFiltrar = new Asociado();
+            asociadoAFiltrar.Id = !this._ventana.IdAsociadoFiltrar.Equals("") ? int.Parse(this._ventana.IdAsociadoFiltrar) : 0;
+            asociadoAFiltrar.Nombre = !this._ventana.NombreAsociadoFiltrar.Equals("") ? this._ventana.NombreAsociadoFiltrar.ToUpper() : string.Empty;
 
-            if (asociadosFiltrados.ToList<Asociado>().Count != 0)
+
+            IList<Asociado> asociadosFiltrados = this._asociadoServicios.ObtenerAsociadosFiltro(asociadoAFiltrar);
+
+            if (asociadosFiltrados.Count != 0)
                 this._ventana.Asociados = asociadosFiltrados.ToList<Asociado>();
             else
                 this._ventana.Asociados = this._asociados;
@@ -315,18 +330,18 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
             IEnumerable<Carta> cartasFiltradas = this._cartas;
             IEnumerable<Asociado> asociadosFiltrados = (IList<Asociado>)this._asociados;
 
-            this._ventana.Resultados = null;            
+            this._ventana.Resultados = null;
 
             this._ventana.Id = null;
             this._ventana.ResumenFiltrar = null;
             this._ventana.Fecha = null;
 
             this._ventana.IdAsociadoFiltrar = null;
-            this._ventana.NombreAsociadoFiltrar = null;            
+            this._ventana.NombreAsociadoFiltrar = null;
 
             this._ventana.Asociados = asociadosFiltrados.ToList<Asociado>();
             this._ventana.Asociado = null;
-            
+
             if (this._cartas != null)
                 this._ventana.TotalHits = cartasFiltradas.ToList<Carta>().Count.ToString();
             else

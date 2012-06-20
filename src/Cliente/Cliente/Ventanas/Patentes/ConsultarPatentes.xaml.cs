@@ -528,6 +528,14 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
 
         #endregion
 
+        private void Page_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.F4) 
+            {
+                this._presentador.Consultar();
+            }
+        }
+
 
     }
 }

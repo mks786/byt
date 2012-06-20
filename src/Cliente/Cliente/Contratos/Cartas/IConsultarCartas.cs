@@ -23,6 +23,8 @@ namespace Trascend.Bolet.Cliente.Contratos.Cartas
 
         string ResumenFiltrar { get; set; }
 
+        string ReferenciaFiltrar { get; set; }
+
         string Fecha { get; set; }
 
         GridViewColumnHeader CurSortCol { get; set; }

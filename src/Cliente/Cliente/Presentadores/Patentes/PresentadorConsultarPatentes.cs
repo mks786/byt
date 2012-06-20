@@ -178,12 +178,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-                Mouse.OverrideCursor = Cursors.Wait;                
+                Mouse.OverrideCursor = Cursors.Wait;
+
                 _filtroValido = 0;//Variable utilizada para limitar a que el filtro se ejecute solo cuando 
                 //dos filtros sean utilizados
                 
                 Patente patenteAuxiliar = ObtenerPatenteFiltro();
-
 
                 if (_filtroValido >= 2)
                 {
@@ -232,6 +232,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                 }
                 else
                     this._ventana.Mensaje(Recursos.MensajesConElUsuario.ErrorFiltroIncompleto, 0);
+
+
+                Mouse.OverrideCursor = null ;
 
               
                 #region trace
@@ -393,7 +396,6 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
             }
             finally
             {
-                Mouse.OverrideCursor = null;
             }
             return patenteAuxiliar;
         }

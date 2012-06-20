@@ -50,6 +50,12 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
                         filtro += " and ";
                     filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerCartaResumen, carta.Resumen.Descripcion);
                 }
+                if ((null != carta.Referencia) && (!carta.Referencia.Equals("")))
+                {
+                    if (variosFiltros)
+                        filtro += " and ";
+                    filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerCartaReferencia, carta.Referencia);
+                }
                 if ((null != carta.Fecha) && (!carta.Fecha.Equals(DateTime.MinValue)))
                 {
                     if (variosFiltros)
