@@ -810,4 +810,7 @@
   <data name="ErrorSinSobreviviente" xml:space="preserve">
     <value>Es necesario agregar un Sobreviviente</value>
   </data>
+  <data name="ErrorInteresadoNoPoseePoderesConAgente" xml:space="preserve">
+    <value>Error el interesado no posee poderes con el agente seleccionado.</value>
+  </data>
 </root>

@@ -260,7 +260,13 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 this._ventana.NombreInteresadoSolicitud = interesado.Nombre;
                 this._ventana.InteresadoPaisSolicitud = interesado.Pais.NombreEspanol;
                 this._ventana.InteresadoCiudadSolicitud = interesado.Ciudad;
-                //this._ventana.InteresadoSolicitud = marca.Interesado;
+
+                IList<Interesado> listaInteresado = new List<Interesado>();
+                Interesado primerInteresado = new Interesado(0);
+                listaInteresado.Add(primerInteresado);
+                listaInteresado.Add(this._marca.Interesado);
+                this._ventana.InteresadosSolicitud = listaInteresado;
+                this._ventana.InteresadoSolicitud = this.BuscarInteresado((IList<Interesado>)this._ventana.InteresadosSolicitud, ((Marca)this._ventana.Marca).Interesado);
 
                 this._ventana.NombreAsociadoDatos = marca.Asociado != null ? marca.Asociado.Nombre : "";
                 this._ventana.NombreAsociadoSolicitud = marca.Asociado != null ? marca.Asociado.Nombre : "";
@@ -1016,13 +1022,27 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 if ((Interesado)this._ventana.InteresadoSolicitud != null)
                 {
                     Interesado interesadoAux = this._interesadoServicios.ConsultarInteresadoConTodo((Interesado)this._ventana.InteresadoSolicitud);
-                    this._ventana.NombreInteresadoSolicitud = ((Interesado)this._ventana.InteresadoSolicitud).Nombre;
-                    this._ventana.IdInteresadoSolicitud = ((Interesado)this._ventana.InteresadoSolicitud).Id.ToString();
-                    this._ventana.InteresadoDatos = (Interesado)this._ventana.InteresadoSolicitud;
-                    this._ventana.NombreInteresadoDatos = ((Interesado)this._ventana.InteresadoSolicitud).Nombre;
-                    this._ventana.IdInteresadoDatos = ((Interesado)this._ventana.InteresadoSolicitud).Id.ToString();
-                    this._ventana.InteresadoPaisSolicitud = interesadoAux.Pais != null ? interesadoAux.Pais.NombreEspanol : "";
-                    this._ventana.InteresadoCiudadSolicitud = interesadoAux.Ciudad != null ? interesadoAux.Ciudad : "";
+
+                    if (null != interesadoAux)
+                    {
+                        this._ventana.NombreInteresadoSolicitud = ((Interesado)this._ventana.InteresadoSolicitud).Nombre;
+                        this._ventana.IdInteresadoSolicitud = ((Interesado)this._ventana.InteresadoSolicitud).Id.ToString();
+                        this._ventana.InteresadoDatos = (Interesado)this._ventana.InteresadoSolicitud;
+                        this._ventana.NombreInteresadoDatos = ((Interesado)this._ventana.InteresadoSolicitud).Nombre;
+                        this._ventana.IdInteresadoDatos = ((Interesado)this._ventana.InteresadoSolicitud).Id.ToString();
+                        this._ventana.InteresadoPaisSolicitud = interesadoAux.Pais != null ? interesadoAux.Pais.NombreEspanol : "";
+                        this._ventana.InteresadoCiudadSolicitud = interesadoAux.Ciudad != null ? interesadoAux.Ciudad : "";
+                    }
+                    else
+                    {
+                        this._ventana.NombreInteresadoSolicitud = "";
+                        this._ventana.IdInteresadoSolicitud = "";
+                        this._ventana.InteresadoDatos = "";
+                        this._ventana.NombreInteresadoDatos = "";
+                        this._ventana.IdInteresadoDatos = "";
+                        this._ventana.InteresadoPaisSolicitud = "";
+                        this._ventana.InteresadoCiudadSolicitud = "";
+                    }
 
                     this._ventana.ConvertirEnteroMinimoABlanco();
                 }
@@ -1056,13 +1076,28 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 if ((Interesado)this._ventana.InteresadoDatos != null)
                 {
                     Interesado interesadoAux = this._interesadoServicios.ConsultarInteresadoConTodo((Interesado)this._ventana.InteresadoSolicitud);
-                    this._ventana.InteresadoDatos = this._interesadoServicios.ConsultarInteresadoConTodo((Interesado)this._ventana.InteresadoDatos);
-                    this._ventana.NombreInteresadoDatos = ((Interesado)this._ventana.InteresadoDatos).Nombre;
-                    this._ventana.InteresadoSolicitud = (Interesado)this._ventana.InteresadoDatos;
-                    this._ventana.NombreInteresadoSolicitud = ((Interesado)this._ventana.InteresadoDatos).Nombre;
-                    this._ventana.IdInteresadoSolicitud = ((Interesado)this._ventana.InteresadoDatos).Id.ToString();
-                    this._ventana.InteresadoPaisSolicitud = interesadoAux.Pais != null ? interesadoAux.Pais.NombreEspanol : "";
-                    this._ventana.InteresadoCiudadSolicitud = interesadoAux.Ciudad != null ? interesadoAux.Ciudad : "";
+
+                    if (null != interesadoAux)
+                    {
+                        this._ventana.InteresadoDatos = this._interesadoServicios.ConsultarInteresadoConTodo((Interesado)this._ventana.InteresadoDatos);
+                        this._ventana.NombreInteresadoDatos = ((Interesado)this._ventana.InteresadoDatos).Nombre;
+                        this._ventana.InteresadoSolicitud = (Interesado)this._ventana.InteresadoDatos;
+                        this._ventana.NombreInteresadoSolicitud = ((Interesado)this._ventana.InteresadoDatos).Nombre;
+                        this._ventana.IdInteresadoSolicitud = ((Interesado)this._ventana.InteresadoDatos).Id.ToString();
+                        this._ventana.InteresadoPaisSolicitud = interesadoAux.Pais != null ? interesadoAux.Pais.NombreEspanol : "";
+                        this._ventana.InteresadoCiudadSolicitud = interesadoAux.Ciudad != null ? interesadoAux.Ciudad : "";
+
+                    }
+                    else
+                    {
+                        this._ventana.NombreInteresadoSolicitud = "";
+                        this._ventana.IdInteresadoSolicitud = "";
+                        this._ventana.InteresadoDatos = "";
+                        this._ventana.NombreInteresadoDatos = "";
+                        this._ventana.IdInteresadoDatos = "";
+                        this._ventana.InteresadoPaisSolicitud = "";
+                        this._ventana.InteresadoCiudadSolicitud = "";
+                    }
 
                     this._ventana.ConvertirEnteroMinimoABlanco();
                 }
@@ -1393,8 +1428,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 if ((Poder)this._ventana.PoderSolicitud != null)
                 {
                     this._ventana.IdPoderSolicitud = ((Poder)this._ventana.PoderSolicitud).Id.ToString();
+                    this._ventana.IdPoderDatos = ((Poder)this._ventana.PoderSolicitud).Id.ToString();
                     this._ventana.PoderDatos = (Poder)this._ventana.PoderSolicitud;
                     this._ventana.NumPoderDatos = ((Poder)this._ventana.PoderSolicitud).NumPoder;
+
+                    this._ventana.ConvertirEnteroMinimoABlanco();
                 }
 
                 #region trace
@@ -1426,6 +1464,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                     this._ventana.NumPoderDatos = ((Poder)this._ventana.PoderDatos).NumPoder;
                     this._ventana.PoderSolicitud = (Poder)this._ventana.PoderDatos;
                     this._ventana.IdPoderSolicitud = ((Poder)this._ventana.PoderDatos).Id.ToString();
+                    this._ventana.IdPoderDatos = ((Poder)this._ventana.PoderDatos).Id.ToString();
+
+                    this._ventana.ConvertirEnteroMinimoABlanco();
                 }
 
                 #region trace
@@ -1513,6 +1554,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             {
                 _poderesInterseccion = this._poderServicios
                     .ObtenerPoderesEntreAgenteEInteresado((Agente)this._ventana.Agente, (Interesado)this._ventana.InteresadoSolicitud);
+
+                if (_poderesInterseccion.Count() == 0)
+                    this._ventana.Mensaje(Recursos.MensajesConElUsuario.ErrorInteresadoNoPoseePoderesConAgente,0);
+
+
+                _poderesInterseccion.Insert(0,new Poder(int.MinValue));
             }
             else
             {

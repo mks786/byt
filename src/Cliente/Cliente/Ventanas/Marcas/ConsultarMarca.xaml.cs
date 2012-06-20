@@ -953,6 +953,25 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
                     }
                 }
             }
+
+            if (null != this.PoderDatos)
+            {
+                if (this.IdPoderDatos == int.MinValue.ToString())
+                {
+                    this.IdPoderDatos = "";
+                    this.IdPoderSolicitud = "";
+                }
+            }
+
+            if (null != this.PoderSolicitud)
+            {
+                if (this.IdPoderSolicitud == int.MinValue.ToString())
+                {
+                    this.IdPoderSolicitud = "";
+                    this.IdPoderDatos = "";
+                }
+            }
+
             #endregion
 
             #region Asociados

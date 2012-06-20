@@ -307,6 +307,14 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 this._ventana.TiposClaseNacional = tipoClasesNacional;
                 //this._ventana.TipoClaseNacional = this.BuscarClaseNacional(tipoClasesNacional, marca.TipoCnac);
 
+
+                IList<Poder> poderes = new List<Poder>();
+                Poder primerPoder = new Poder();
+                primerPoder.Id = int.MinValue;
+                poderes.Insert(0, primerPoder);
+                this._ventana.PoderesDatos = poderes;
+                this._ventana.PoderesSolicitud = poderes;
+
                 if (_esMarcaDuplicada)
                     CargarDatosDeMarcaDuplicada();
 
@@ -1314,10 +1322,19 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             {
                 _poderesInterseccion = this._poderServicios
                     .ObtenerPoderesEntreAgenteEInteresado((Agente)this._ventana.Agente, (Interesado)this._ventana.InteresadoSolicitud);
+
+                if (_poderesInterseccion.Count() == 0)
+                    this._ventana.Mensaje(Recursos.MensajesConElUsuario.ErrorInteresadoNoPoseePoderesConAgente, 0);
+
+                _poderesInterseccion.Insert(0, new Poder(int.MinValue));
             }
             else
             {
-                //MENSAJE DE ERROR
+                IList<Poder> poderes = new List<Poder>();
+                Poder primerPoder = new Poder();
+                primerPoder.Id = int.MinValue;
+                poderes.Insert(0, primerPoder);
+                this._poderesInterseccion = poderes;
             }
 
             Mouse.OverrideCursor = null;

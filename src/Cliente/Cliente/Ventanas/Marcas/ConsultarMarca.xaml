@@ -588,8 +588,12 @@
                                                 </DataTemplate>
                                             </GridViewColumn.CellTemplate>
                                         </GridViewColumn>
-                                        <GridViewColumn DisplayMemberBinding="{Binding Path=Id}" Width="300">
-                                            <GridViewColumnHeader Click="_OrdenarPoderSolicitud_Click" Tag="NumPoder" Content="{x:Static recurso:Etiquetas.lsvNombre}"/>
+                                        <GridViewColumn DisplayMemberBinding="{Binding Path=NumPoder}" Width="100">
+                                            <GridViewColumnHeader Click="_OrdenarPoderSolicitud_Click" Tag="NumPoder" Content="{x:Static recurso:Etiquetas.lsvSapi}"/>
+                                        </GridViewColumn>
+
+                                        <GridViewColumn DisplayMemberBinding="{Binding Path=Facultad}" Width="200">
+                                            <GridViewColumnHeader Click="_OrdenarPoderSolicitud_Click" Tag="Facultad" Content="{x:Static recurso:Etiquetas.lsvFacultad}"/>
                                         </GridViewColumn>
                                     </GridView>
                                 </ListView.View>
@@ -1079,9 +1083,13 @@
                                                 </DataTemplate>
                                             </GridViewColumn.CellTemplate>
                                         </GridViewColumn>
-                                        <GridViewColumn DisplayMemberBinding="{Binding Path=NumPoder}" Width="300">
-                                            <GridViewColumnHeader Click="_OrdenarPoderDatos_Click" Tag="NumPoder" Content="{x:Static recurso:Etiquetas.lsvNombre}"/>
+                                        <GridViewColumn DisplayMemberBinding="{Binding Path=NumPoder}" Width="100">
+                                            <GridViewColumnHeader Click="_OrdenarPoderDatos_Click" Tag="NumPoder" Content="{x:Static recurso:Etiquetas.lsvSapi}"/>
                                         </GridViewColumn>
+                                        <GridViewColumn DisplayMemberBinding="{Binding Path=Facultad}" Width="200">
+                                            <GridViewColumnHeader Click="_OrdenarPoderDatos_Click" Tag="Facultad" Content="{x:Static recurso:Etiquetas.lsvFacultad}"/>
+                                        </GridViewColumn>
+                                        
                                     </GridView>
                                 </ListView.View>
                             </ListView>
