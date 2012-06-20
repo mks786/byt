@@ -390,48 +390,31 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-                //if ((null != this._ventana.Condicion) && (((Condicion)this._ventana.Condicion).Id != int.MinValue))
-                //{
-                //    //marcaAuxiliar.Condicion = (Condicion)this._ventana.Condicion;
-                //    //_filtroValido = 2;
-                //}
+                if (!this._ventana.CodigoRegistro.Equals(""))
+                {
+                    marcaAuxiliar.CodigoRegistro = this._ventana.CodigoRegistro.ToUpper();
+                    _filtroValido = 2;
+                }
 
-                //if ((null != this._ventana.Interesado) && (((Interesado)this._ventana.Interesado).Id != int.MinValue))
-                //{
-                //    marcaAuxiliar.Interesado = (Interesado)this._ventana.Interesado;
-                //    _filtroValido = 2;
-                //}
+                if (!this._ventana.FechaRegistro.Equals(""))
+                {
+                    DateTime fechaRegistro = DateTime.Parse(this._ventana.FechaRegistro);
+                    _filtroValido = 2;
+                    marcaAuxiliar.FechaRegistro = fechaRegistro;
+                }
 
-                //if ((null != this._ventana.Corresponsal) && (((Corresponsal)this._ventana.Corresponsal).Id != int.MinValue))
-                //{
-                //    marcaAuxiliar.Corresponsal = (Corresponsal)this._ventana.Corresponsal;
-                //    _filtroValido = 2;
-                //}
+                if (null!=this._ventana.Condicion)
+                {
+                   // marcaAuxiliar.NumeroCondiciones = this._ventana.Condicion;
+                    _filtroValido = 2;              
 
-                //if (!this._ventana.DescripcionFiltrar.Equals(""))
-                //{
-                //    _filtroValido = 2;
-                //    marcaAuxiliar.Descripcion = this._ventana.DescripcionFiltrar.ToUpper();
-                //}
+                }
 
-                //if (!this._ventana.Fecha.Equals(""))
-                //{
-                //    DateTime fechaPublicacion = DateTime.Parse(this._ventana.Fecha);
-                //    _filtroValido = 2;
-                //    marcaAuxiliar.FechaPublicacion = fechaPublicacion;
-                //}
-
-                //if (!((TipoEstado)this._ventana.Detalle).Id.Equals("NGN"))
-                //{
-                //    _filtroValido = 2;
-                //    marcaAuxiliar.TipoEstado = ((TipoEstado)this._ventana.Detalle);
-                //}
-
-                //if (!((Servicio)this._ventana.Detalle).Id.Equals("NGN"))
-                //{
-                //    _filtroValido = 2;
-                //    marcaAuxiliar.Servicio = ((Servicio)this._ventana.Detalle);
-                //}
+                if (this._ventana.RenovadoPorOtroTramitante)
+                {
+                    marcaAuxiliar.BRenovacionOtroTramitante = this._ventana.RenovadoPorOtroTramitante;
+                    _filtroValido = 2;
+                }
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -459,6 +442,27 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
                 logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
+
+            if (null != this._ventana.PaisPrioridad)
+            {
+                marcaAuxiliar.Pais = ((Pais)this._ventana.PaisPrioridad);
+                _filtroValido = 2;
+            }
+            else
+                marcaAuxiliar.Pais = null;
+
+            if (!this._ventana.PrioridadCodigo.Equals(""))
+            {
+                marcaAuxiliar.CPrioridad = this._ventana.PrioridadCodigo;
+                _filtroValido = 2;
+            }
+
+            if (!this._ventana.PrioridadFecha.Equals(""))
+            {
+                DateTime fechaPrioridad = DateTime.Parse(this._ventana.PrioridadFecha);
+                _filtroValido = 2;
+                marcaAuxiliar.FechaPrioridad = fechaPrioridad;
+            }
 
             #region trace
             if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -500,22 +504,33 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
 
-            _filtroValido = 2;
+            
 
             if (((Boletin)this._ventana.BoletinConcesion).Id != int.MinValue)
             {
                 marcaAuxiliar.BoletinConcesion = ((Boletin)this._ventana.BoletinConcesion);
+                _filtroValido = 2;
             }
+            else
+                marcaAuxiliar.BoletinConcesion = null;
 
             if (((Boletin)this._ventana.BoletinPublicacion).Id != int.MinValue)
             {
                 marcaAuxiliar.BoletinPublicacion = ((Boletin)this._ventana.BoletinPublicacion);
+                _filtroValido = 2;
             }
+            else
+                marcaAuxiliar.BoletinPublicacion = null;
 
-            //if (((Boletin)this._ventana.BoletinConcesion).Id != int.MinValue)
-            //{
-            //    marcaAuxiliar.BoletinConcesion = ((Boletin)this._ventana.BoletinConcesion);
-            //}
+            
+            if (((Boletin)this._ventana.BoletinOrdenPublicacion).Id != int.MinValue)
+            {
+                marcaAuxiliar.BoletinOrdenPublicacion = ((Boletin)this._ventana.BoletinOrdenPublicacion);
+            _filtroValido = 2;
+            }
+            else
+                marcaAuxiliar.BoletinOrdenPublicacion = null;
+            
 
             #region trace
             if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -551,18 +566,25 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                     marcaAuxiliar.Asociado = (Asociado)this._ventana.Asociado;
                     _filtroValido = 2;
                 }
+                else
+                    marcaAuxiliar.Asociado = null;
+
 
                 if ((null != this._ventana.Interesado) && (((Interesado)this._ventana.Interesado).Id != int.MinValue))
                 {
                     marcaAuxiliar.Interesado = (Interesado)this._ventana.Interesado;
                     _filtroValido = 2;
                 }
+                else
+                    marcaAuxiliar.Interesado = null;
 
                 if ((null != this._ventana.Corresponsal) && (((Corresponsal)this._ventana.Corresponsal).Id != int.MinValue))
                 {
                     marcaAuxiliar.Corresponsal = (Corresponsal)this._ventana.Corresponsal;
                     _filtroValido = 2;
                 }
+                else
+                    marcaAuxiliar.Corresponsal = null;
 
                 if (!this._ventana.DescripcionFiltrar.Equals(""))
                 {
@@ -582,12 +604,40 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                     _filtroValido = 2;
                     marcaAuxiliar.TipoEstado = ((TipoEstado)this._ventana.Detalle);
                 }
+                else
+                    marcaAuxiliar.TipoEstado = null;
 
-                //if (!((Servicio)this._ventana.Detalle).Id.Equals("NGN"))
-                //{
-                //    _filtroValido = 2;
-                //    marcaAuxiliar.Servicio = ((Servicio)this._ventana.Detalle);
-                //}
+                if (!((Servicio)this._ventana.Servicio).Id.Equals("NGN"))
+                {
+                    _filtroValido = 2;
+                    marcaAuxiliar.Servicio = ((Servicio)this._ventana.Servicio);
+                }
+                else
+                    marcaAuxiliar.Servicio = null;
+
+                if ((!this._ventana.ClaseInternacional.Equals("")) && (this._ventana.ClaseInternacional != "0"))
+                {
+                    _filtroValido = 2;
+                    marcaAuxiliar.Internacional.Id = int.Parse(this._ventana.ClaseInternacional);
+                }
+
+                if ((!this._ventana.ClaseNacional.Equals("")) && (this._ventana.ClaseNacional != "0"))
+                {
+                    _filtroValido = 2;
+                    marcaAuxiliar.Nacional.Id = int.Parse(this._ventana.ClaseNacional);
+                }
+
+                if (!this._ventana.Distingue.Equals(""))
+                {
+                    _filtroValido = 2;
+                    marcaAuxiliar.Distingue = this._ventana.Distingue.ToUpper();
+                }
+
+                if ((!this._ventana.Solicitud.Equals("")) && (this._ventana.Solicitud != "0"))
+                {
+                    _filtroValido = 2;
+                    marcaAuxiliar.CodigoInscripcion = this._ventana.Solicitud;
+                }
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))

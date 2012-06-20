@@ -8,7 +8,7 @@
       xmlns:recurso="clr-namespace:Trascend.Bolet.Cliente.Recursos"
       xmlns:conv="clr-namespace:Trascend.Bolet.Cliente.Transformadores"
       xmlns:custom="clr-namespace:Trascend.Bolet.ControlesByT;assembly=ControlesByT"
-	Title="{x:Static recurso:Etiquetas.titleConsultarPoderes}" Loaded="Page_Loaded">
+	Title="{x:Static recurso:Etiquetas.titleConsultarPoderes}" Loaded="Page_Loaded" KeyDown="Page_KeyDown">
     <Page.Resources>
         <conv:DosValresAUno x:Key="convertirADosValores"></conv:DosValresAUno>
         <conv:EnteroMinimoABlanco x:Key="convertir"></conv:EnteroMinimoABlanco>

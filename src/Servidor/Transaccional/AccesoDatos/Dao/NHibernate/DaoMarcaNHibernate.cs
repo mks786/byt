@@ -32,6 +32,8 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
                 string filtro = "";
                 string cabecera = string.Format(Recursos.ConsultasHQL.CabeceraObtenerMarca);
 
+                #region Filtros de MarcaNacional
+
                 if ((null != marca) && (marca.Id != 0))
                 {
                     filtro = string.Format(Recursos.ConsultasHQL.FiltroObtenerMarcaId, marca.Id);
@@ -85,6 +87,87 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
                     filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerMarcaRecordatorio, marca.Recordatorio);
                 }
 
+                if ((null != marca.Nacional) && (marca.Nacional.Id != 0))
+                {
+                    if (variosFiltros)
+                        filtro += " and ";
+                    filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerMarcaNacional, marca.Nacional.Id);
+                    variosFiltros = true;
+                }
+
+                if ((null != marca.Internacional) && (marca.Internacional.Id != 0))
+                {
+                    if (variosFiltros)
+                        filtro += " and ";
+                    filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerMarcaInternacional, marca.Internacional.Id);
+                    variosFiltros = true;
+                }
+
+                if ((null != marca.Servicio))
+                {
+                    if (variosFiltros)
+                        filtro += " and ";
+                    filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerMarcaServicio, marca.Servicio.Id);
+                    variosFiltros = true;
+                }
+
+                if ((null != marca.TipoEstado))
+                {
+                    if (variosFiltros)
+                        filtro += " and ";
+                    filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerMarcaTipoEstado, marca.TipoEstado.Id);
+                    variosFiltros = true;
+                }
+
+                if ((null != marca.Corresponsal))
+                {
+                    if (variosFiltros)
+                        filtro += " and ";
+                    filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerMarcaCorresponsal, marca.Corresponsal.Id);
+                    variosFiltros = true;
+                }
+
+                if ((null != marca.CodigoInscripcion ))
+                {
+                    if (variosFiltros)
+                        filtro += " and ";
+                    filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerMarcaSolicitud, marca.CodigoInscripcion);
+                    variosFiltros = true;
+                }
+
+                if ((null != marca.Distingue))
+                {
+                    if (variosFiltros)
+                        filtro += " and ";
+                    filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerMarcaDistingue, marca.Distingue);
+                    variosFiltros = true;
+                }
+
+                #endregion
+
+                #region Filtros Marca TYR
+
+                if ((null != marca.CodigoRegistro))
+                {
+                    if (variosFiltros)
+                        filtro += " and ";
+                    filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerMarcaRegistro, marca.CodigoRegistro);
+                    variosFiltros = true;
+                }
+
+                if ((null != marca.FechaRegistro) && (!marca.FechaRegistro.Equals(DateTime.MinValue)))
+                {
+                    if (variosFiltros)
+                        filtro += " and ";
+                    string fecha = String.Format("{0:dd/MM/yy}", marca.FechaRegistro);
+                    string fecha2 = String.Format("{0:dd/MM/yy}", marca.FechaRegistro.Value.AddDays(1));
+                    filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerMarcaFechaRegistro, fecha, fecha2);
+                }
+
+                #endregion
+
+                #region Filtros Marca Boletines
+
                 if ((null != marca.BoletinPublicacion) && (!marca.BoletinPublicacion.Id.Equals("")))
                 {
                     if (variosFiltros)
@@ -101,21 +184,44 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
                     variosFiltros = true;
                 }
 
-                if ((null != marca.Nacional) && (marca.Nacional.Id != 0))
+                if ((null != marca.BoletinOrdenPublicacion) && (!marca.BoletinOrdenPublicacion.Id.Equals("")))
                 {
                     if (variosFiltros)
                         filtro += " and ";
-                    filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerMarcaNacional, marca.Nacional.Id);
+                    filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerMarcaBoletinOrdenPub, marca.BoletinOrdenPublicacion.Id);
                     variosFiltros = true;
                 }
 
-                if ((null != marca.Internacional) && (marca.Internacional.Id != 0))
+                #endregion
+
+                #region Filtro Marca Prioridad
+
+                if ((null != marca.CPrioridad))
                 {
                     if (variosFiltros)
                         filtro += " and ";
-                    filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerMarcaInternacional, marca.Internacional.Id);
+                    filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerMarcaPrioridad, marca.CPrioridad);
                     variosFiltros = true;
                 }
+
+                if ((null != marca.FechaPrioridad) && (!marca.FechaPrioridad.Equals(DateTime.MinValue)))
+                {
+                    if (variosFiltros)
+                        filtro += " and ";
+                    string fecha = String.Format("{0:dd/MM/yy}", marca.FechaPrioridad);
+                    string fecha2 = String.Format("{0:dd/MM/yy}", marca.FechaPrioridad.Value.AddDays(1));
+                    filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerMarcaFechaPrioridad, fecha, fecha2);
+                }
+
+                if ((null != marca.Pais))
+                {
+                    if (variosFiltros)
+                        filtro += " and ";
+                    filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerMarcaPais, marca.Pais.Id);
+                    variosFiltros = true;
+                }
+
+                #endregion
 
                 IQuery query = Session.CreateQuery(cabecera + filtro);
                 Marcas = query.List<Marca>();

@@ -141,6 +141,18 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             set { this._txtIdInteresado.Text = value; }
         }
 
+        public string Solicitud
+        {
+            get { return this._txtSolicitud.Text; }
+            set { this._txtSolicitud.Text = value; }
+        }
+
+        public string Distingue
+        {
+            get { return this._txtDistingue.Text; }
+            set { this._txtDistingue.Text = value; }
+        }
+
         public string NombreInteresadoFiltrar
         {
             get { return this._txtNombreInteresado.Text; }
@@ -294,10 +306,28 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             set { this._txtIdMarcaFiltrar.Text = value; }
         }
 
+        public string ClaseInternacional
+        {
+            get { return this._txtClaseInternacional.Text; }
+            set { this._txtClaseInternacional.Text = value; }
+        }
+
+        public string ClaseNacional
+        {
+            get { return this._txtClaseNacional.Text; }
+            set { this._txtClaseNacional.Text = value; }
+        }
+
         public string NombreMarcaFiltrar
         {
             get { return this._txtNombreMarcaFiltrar.Text; }
             set { this._txtNombreMarcaFiltrar.Text = value; }
+        }
+
+        public string PrioridadCodigo
+        {
+            get { return this._txtPrioridadCodigo.Text; }
+            set { this._txtPrioridadCodigo.Text = value; }
         }
 
         public object Marcas
@@ -358,6 +388,12 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
         {
             get { return this._dpkFechaTYR.Text; }
             set { this._dpkFechaTYR.Text = value; }
+        }
+
+        public string PrioridadFecha
+        {
+            get { return this._dpkPrioridadFecha.Text; }
+            set { this._dpkPrioridadFecha.Text = value; }
         }
 
         public bool RenovadoPorOtroTramitante
@@ -862,6 +898,13 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
         }
 
         #endregion
+
+        private void Page_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.F4)
+            { this._presentador.Consultar(); }
+                
+        }
 
     }
 }

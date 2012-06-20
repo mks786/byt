@@ -10,6 +10,7 @@
     <property name="Tipo" column="ITIPO" type="string"/>
     <property name="FechaPrioridad" column="FPRIORIDAD" type="DateTime"/>
     <property name="PrimeraReferencia" column="XREFERENCIA1" type="string"/>
+    <property name="CPrioridad" column="CPRIORIDAD" type="string"/>
     <property name="FechaInscripcion" column="FINSCRIPCION" type="DateTime"/>
     <property name="CodigoInscripcion" column="CINSCRIPCION" type="string"/>
     <property name="FechaPublicacion" column="FPUBLICACION" type="DateTime"/>

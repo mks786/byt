@@ -712,6 +712,50 @@
   <data name="ObtenerPoderesEntreAgenteEInteresado" xml:space="preserve">
     <value>Select p from Poder p where </value>
   </data>
+  <data name="FiltroObtenerMarcaBoletinOrdenPub" xml:space="preserve">
+    <value>m.BoletinOrdenPub.Id = '{0}'</value>
+    <comment>Filtra marca por Boletin orden Pub</comment>
+  </data>
+  <data name="FiltroObtenerMarcaCorresponsal" xml:space="preserve">
+    <value>m.Corresponsal.Id = {0}</value>
+    <comment>Filtra marca por Corresponsal</comment>
+  </data>
+  <data name="FiltroObtenerMarcaDistingue" xml:space="preserve">
+    <value>upper(m.Distingue) like '%{0}%'</value>
+    <comment>Filtra marca por distingue</comment>
+  </data>
+  <data name="FiltroObtenerMarcaFechaPrioridad" xml:space="preserve">
+    <value>m.FechaPrioridad between '{0}' and '{1}'</value>
+    <comment>Filtra marca por fecha Prioridad</comment>
+  </data>
+  <data name="FiltroObtenerMarcaFechaRegistro" xml:space="preserve">
+    <value>m.FechaRegistro between '{0}' and '{1}'</value>
+    <comment>Filtra marca por fecha Registro</comment>
+  </data>
+  <data name="FiltroObtenerMarcaPais" xml:space="preserve">
+    <value>m.Pais.Id = {0}</value>
+    <comment>Filtra marca por pais prioridad</comment>
+  </data>
+  <data name="FiltroObtenerMarcaPrioridad" xml:space="preserve">
+    <value>m.CPrioridad = {0}</value>
+    <comment>Filtra marca por prioridad</comment>
+  </data>
+  <data name="FiltroObtenerMarcaRegistro" xml:space="preserve">
+    <value>upper(m.CodigoRegistro) like '%{0}%'</value>
+    <comment>Filtra marca por Registro</comment>
+  </data>
+  <data name="FiltroObtenerMarcaServicio" xml:space="preserve">
+    <value>m.Servicio.Id = '{0}'</value>
+    <comment>Filtra marca por servicio las marcas</comment>
+  </data>
+  <data name="FiltroObtenerMarcaSolicitud" xml:space="preserve">
+    <value>m.CodigoInscripcion = '{0}'</value>
+    <comment>Filtra marca por la solicitud</comment>
+  </data>
+  <data name="FiltroObtenerMarcaTipoEstado" xml:space="preserve">
+    <value>m.TipoEstado.Id = {0}</value>
+    <comment>Filtra marca por tipo de estad</comment>
+  </data>
   <data name="FiltroObtenerCartaReferencia" xml:space="preserve">
     <value>c.Referencia = '{0}'</value>
     <comment>Filtro por Id</comment>

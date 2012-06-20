@@ -13,6 +13,10 @@ namespace Trascend.Bolet.Cliente.Contratos.Marcas
 
         string IdAsociadoFiltrar { get; set; }
 
+        string PrioridadCodigo { get; set; }
+
+        string PrioridadFecha { get; set; }
+
         string NombreAsociadoFiltrar { get; set; }
 
         object Asociados { get; set; }
@@ -22,6 +26,14 @@ namespace Trascend.Bolet.Cliente.Contratos.Marcas
         string IdCorresponsalFiltrar { get; set; }
 
         string NombreCorresponsalFiltrar { get; set; }
+
+        string Solicitud { get; set; }
+
+        string Distingue { get; set; }
+
+        string ClaseInternacional { get; set; }
+
+        string ClaseNacional { get; set; }
 
         object Corresponsales { get; set; }
 

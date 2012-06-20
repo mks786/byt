@@ -462,6 +462,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
             set { _boletinPublicacion = value; }
         }
 
+
         /// <summary>
         /// Propiedad que asigna u obtiene el Boletin de Orden Publicacion
         /// </summary>
