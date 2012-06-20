@@ -299,7 +299,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 this._ventana.TiposClaseNacional = tipoClasesNacional;
                 this._ventana.TipoClaseNacional = this.BuscarClaseNacional(tipoClasesNacional, marca.TipoCnac);
 
-                //string prueba = ConfigurationManager.AppSettings["RutaImagenesDeMarcas"] + marca.Id + ".BMP";
+                string prueba = ConfigurationManager.AppSettings["RutaImagenesDeMarcas"] + marca.Id + ".BMP";
 
                 if (File.Exists(ConfigurationManager.AppSettings["RutaImagenesDeMarcas"] + marca.Id + ".BMP"))
                 {

@@ -983,6 +983,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
                 this._presentador.CargarPagina();
                 EstaCargada = true;
             }
+            else
+                this._presentador.ActualizarTitulo();
         }
 
         private void _btnAceptar_Click(object sender, RoutedEventArgs e)

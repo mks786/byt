@@ -196,6 +196,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                 if (this._agregar == false)
                 {
                     _patente = this._patenteServicios.ConsultarPatenteConTodo((Patente)this._ventana.Patente);
+                    this._ventana.Patente = _patente;
 
                     InfoAdicional infoAdicional = new InfoAdicional("P." + _patente.Id);
 
