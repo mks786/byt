@@ -16,6 +16,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Cartas
         private SortAdorner _CurAdorner = null;
         private PresentadorConsultarCartas _presentador;
         private bool _cargada;
+        private bool _precargada = false;
 
         #region IConsultarCartas
 
@@ -36,7 +37,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Cartas
 
         public object CartaSeleccionado
         {
-            get { return this._lstResultados.SelectedItem; }            
+            get { return this._lstResultados.SelectedItem; }
         }
 
         public object CartaFiltrar
@@ -143,12 +144,24 @@ namespace Trascend.Bolet.Cliente.Ventanas.Cartas
         {
             InitializeComponent();
             this._cargada = false;
-            this._presentador = new PresentadorConsultarCartas(this);
+            this._presentador = new PresentadorConsultarCartas(this, null, null);
+        }
+        /// <summary>
+        /// Constructor predeterminado
+        /// </summary>
+        public ConsultarCartas(object ventana, object asociado) : this()
+        {
+            this._precargada = true;
+            this._presentador = new PresentadorConsultarCartas(this, asociado, ventana);
+
         }
 
         private void _btnCancelar_Click(object sender, RoutedEventArgs e)
         {
-            this._presentador.Cancelar();
+            if (_precargada)
+                this._presentador.Volver();
+            else
+                this._presentador.Cancelar();
         }
 
         private void _btnConsultar_Click(object sender, RoutedEventArgs e)

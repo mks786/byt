@@ -235,6 +235,15 @@ namespace Trascend.Bolet.Cliente.Ventanas.Asociados
             this._btnContactosDatos.Background = Brushes.LightGreen;
         }
 
+        public void pintarCorrespondencia()
+        {
+            this._btnCorrespondenciasDatos.Background = Brushes.LightGreen;
+            this._btnCorrespondenciasDatos.Background = Brushes.LightGreen;
+
+            this._btnCorrespondenciasAdministracion.Background = Brushes.LightGreen;
+            this._btnCorrespondenciasAdministracion.Background = Brushes.LightGreen;
+        }
+
         public void pintarDatosTransferencia()
         {
             this._btnTrasferenciaAdministracion.Background = Brushes.LightGreen;
@@ -262,7 +271,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Asociados
 
         private void _btnRegresar_Click(object sender, RoutedEventArgs e)
         {
-            this._presentador.Regresar();
+            this._presentador.Navegar();
         }
 
         private void _btnAuditoria_Click(object sender, RoutedEventArgs e)
@@ -350,6 +359,12 @@ namespace Trascend.Bolet.Cliente.Ventanas.Asociados
         {
 
         }
+
+        private void _btnCorrespondenciasDatos_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.IrACorrespondencia();
+        }
+
     }
 }
 

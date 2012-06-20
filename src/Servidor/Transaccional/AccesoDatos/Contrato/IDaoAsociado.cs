@@ -21,5 +21,13 @@ namespace Trascend.Bolet.AccesoDatos.Contrato
         /// <returns>lista de asociados</returns>
         IList<Asociado> ObtenerAsociadosFiltro(Asociado asociado);
 
+
+        /// <summary>
+        /// Consulta si un asociado tiene cartas
+        /// </summary>
+        /// <param name="asociado">asociado a buscar cartas</param>
+        /// <returns>true en caso de tener cartas, false en caso contrario</returns>
+        bool VerificarCartasDeAsociado(Asociado asociado);
+
     }
 }

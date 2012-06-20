@@ -13,6 +13,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Cartas
     {
         private PresentadorConsultarCarta _presentador;
         private bool _cargada;
+        private bool _precargada = false;
 
         #region IConsultarCarta
 
@@ -309,7 +310,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Cartas
         {
             get { return this._txbAceptar.Text; }
             set { this._txbAceptar.Text = value; }
-      
+
         }
 
         #endregion
@@ -318,12 +319,22 @@ namespace Trascend.Bolet.Cliente.Ventanas.Cartas
         {
             InitializeComponent();
             this._cargada = false;
-            this._presentador = new PresentadorConsultarCarta(this,cartaSeleccionada);
+            this._presentador = new PresentadorConsultarCarta(this, cartaSeleccionada, null);
+        }
+
+        public ConsultarCarta(object cartaSeleccionada, object ventana)
+            : this(cartaSeleccionada)
+        {
+            _precargada = true;
+            this._presentador = new PresentadorConsultarCarta(this, cartaSeleccionada, ventana);
         }
 
         private void _btnCancelar_Click(object sender, RoutedEventArgs e)
         {
-            this._presentador.IrConsultarCartas();
+            if (_precargada)
+                this._presentador.VolverAVentanaPadre();
+            else
+                this._presentador.IrConsultarCartas();
         }
 
         private void _btnAceptar_Click(object sender, RoutedEventArgs e)

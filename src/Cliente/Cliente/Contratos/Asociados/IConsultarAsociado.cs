@@ -54,6 +54,8 @@ namespace Trascend.Bolet.Cliente.Contratos.Asociados
 
         void pintarAuditoria();
 
+        void pintarCorrespondencia();
+
         void ArchivoNoEncontrado();
 
 

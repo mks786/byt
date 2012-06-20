@@ -11,6 +11,7 @@ using Trascend.Bolet.ObjetosComunes.ContratosServicios;
 using Trascend.Bolet.ObjetosComunes.Entidades;
 using System.Collections.Generic;
 using Trascend.Bolet.Cliente.Ventanas.Auditorias;
+using Trascend.Bolet.Cliente.Ventanas.Cartas;
 using System.ComponentModel;
 
 namespace Trascend.Bolet.Cliente.Presentadores.Asociados
@@ -166,6 +167,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
                     this._ventana.pintarDatosTransferencia();
                 if (_auditorias.Count > 0)
                     this._ventana.pintarAuditoria();
+                if (this._asociadoServicios.VerificarCartasPorAsociado(asociado))
+                    this._ventana.pintarCorrespondencia();
 
                 this._ventana.FocoPredeterminado();
 
@@ -428,6 +431,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
                 logger.Error(ex.Message);
                 this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
             }
+        }
+
+        public void IrACorrespondencia() 
+        {
+            Navegar(new ConsultarCartas(this._ventana,this._ventana.Asociado));
         }
     }
 }

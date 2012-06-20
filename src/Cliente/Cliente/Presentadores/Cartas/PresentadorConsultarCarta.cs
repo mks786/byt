@@ -40,11 +40,14 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
         private IList<Departamento> _departamentos;
         private IList<Usuario> _responsables;
 
+        private bool _precargada = false;
+        private object _ventanaAVolver;
+
         /// <summary>
         /// Constructor predeterminado
         /// </summary>
         /// <param name="ventana">Página que satisface el contrato</param>
-        public PresentadorConsultarCarta(IConsultarCarta ventana, object carta)
+        public PresentadorConsultarCarta(IConsultarCarta ventana, object carta, object ventanaAVolver)
         {
             try
             {
@@ -55,6 +58,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
 
                 this._ventana = ventana;
                 this._ventana.Carta = carta;
+                this._precargada = ventanaAVolver.Equals(null) ? false : true;
+                this._ventanaAVolver = ventanaAVolver;
+
                 this._cartaServicios = (ICartaServicios)Activator.GetObject(typeof(ICartaServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["CartaServicios"]);
                 this._resumenServicios = (IResumenServicios)Activator.GetObject(typeof(IResumenServicios),
@@ -1192,6 +1198,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
                 logger.Error(ex.Message);
                 this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
             }
+        }
+
+        public void VolverAVentanaPadre()
+        {
+            Navegar((Page)_ventanaAVolver);
         }
     }
 }

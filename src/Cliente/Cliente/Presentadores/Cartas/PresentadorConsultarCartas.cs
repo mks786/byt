@@ -23,6 +23,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
         private static PaginaPrincipal _paginaPrincipal = PaginaPrincipal.ObtenerInstancia;
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
+        private bool _precargada;
+        private Asociado _asociadoAFiltrar; //Asociado que es pasado a esta ventana para filtrar directamente
+        private object _ventanaAVolver; //Asociado que es pasado a esta ventana para filtrar directamente
+
         private IConsultarCartas _ventana;
         private ICartaServicios _cartaServicios;
         private IAsociadoServicios _asociadoServicios;
@@ -33,7 +37,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
         /// Constructor Predeterminado
         /// </summary>
         /// <param name="ventana">página que satisface el contrato</param>
-        public PresentadorConsultarCartas(IConsultarCartas ventana)
+        public PresentadorConsultarCartas(IConsultarCartas ventana, object asociado, object ventanaAVolver)
         {
             try
             {
@@ -43,6 +47,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
                 #endregion
 
                 this._ventana = ventana;
+                _precargada = asociado.Equals(null) ? false : true;
+                _asociadoAFiltrar = (Asociado)asociado;
+                _ventanaAVolver = ventanaAVolver;
                 this._cartaServicios = (ICartaServicios)Activator.GetObject(typeof(ICartaServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["CartaServicios"]);
                 this._asociadoServicios = (IAsociadoServicios)Activator.GetObject(typeof(IAsociadoServicios),
@@ -95,17 +102,21 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
 
                 ActualizarTitulo();
 
-                //this._cartas = this._cartaServicios.ObtenerCartasFiltro();
-                //this._ventana.Resultados = this._cartas;
-
-                //IList<Asociado> asociados = this._asociadoServicios.ConsultarTodos();
-                //Asociado primerAsociado = new Asociado();
-                //primerAsociado.Id = int.MinValue;
-                //asociados.Insert(0, primerAsociado);
-                //this._ventana.Asociados = asociados;
-                //this._asociados = asociados;
-                this._ventana.TotalHits = "0";
-
+                if (_precargada)
+                {
+                    Carta carta = new Carta();
+                    carta.Asociado = _asociadoAFiltrar;
+                    IList<Asociado> _asociados = new List<Asociado>();
+                    this._ventana.Asociados = _asociados;
+                    _asociados.Add(carta.Asociado);
+                    this._ventana.Asociado = carta.Asociado;
+                    this._ventana.Resultados = this._cartaServicios.ObtenerCartasFiltro(carta);
+                    this._ventana.TotalHits = ((IList<Carta>)this._ventana.Resultados).Count.ToString();
+                }
+                else
+                {
+                    this._ventana.TotalHits = "0";
+                }
                 this._ventana.FocoPredeterminado();
 
                 #region trace
@@ -230,7 +241,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
             #endregion
 
             if (this._ventana.CartaSeleccionado != null)
-                this.Navegar(new ConsultarCarta(this._ventana.CartaSeleccionado));
+                if (_precargada)
+                    this.Navegar(new ConsultarCarta(this._ventana.CartaSeleccionado, this._ventana));
+                else
+                    this.Navegar(new ConsultarCarta(this._ventana.CartaSeleccionado));
 
 
             #region trace
@@ -351,6 +365,14 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
             if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
                 logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
+        }
+
+        /// <summary>
+        /// Método que vuelve a una ventana cualquiera
+        /// </summary>
+        public void Volver()
+        {
+            this.Navegar((Page)_ventanaAVolver);
         }
     }
 }

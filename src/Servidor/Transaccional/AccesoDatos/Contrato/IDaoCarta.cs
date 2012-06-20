@@ -22,5 +22,6 @@ namespace Trascend.Bolet.AccesoDatos.Contrato
         /// <param name="transaccion">objetoITransicion indica si se realizo el Commit</param>
         /// <returns>Bool si se inserto correctamente, de lo contrario false</returns>
         bool Insertar(Carta carta, ITransaction transaccion);
+
     }
 }

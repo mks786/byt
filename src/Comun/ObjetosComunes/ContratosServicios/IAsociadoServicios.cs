@@ -28,5 +28,12 @@ namespace Trascend.Bolet.ObjetosComunes.ContratosServicios
         /// <param name="asociado">Asociado filtro</param>
         /// <returns>Lista de asociados que cumplen con el filtro</returns>
         IList<Asociado> ObtenerAsociadosFiltro(Asociado asociado);
+
+        /// <summary>
+        /// Método que verifica si un asociado tiene cartas
+        /// </summary>
+        /// <param name="asociado">asociado a verificar</param>
+        /// <returns>true en caso correcto</returns>
+        bool VerificarCartasPorAsociado(Asociado asociado);
     }
 }

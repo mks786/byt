@@ -284,7 +284,7 @@
                             <Button Name="_btnJustificacionesDatos" VerticalAlignment="Bottom" Height="25" Width="105" Click="_btnJustificacionesDatos_Click">
                                 <TextBlock Name="_txbJustificacionesDatos" Text="{x:Static recurso:Etiquetas.btnJustificaciones}"/>
                             </Button>
-                            <Button Name="_btnCorrespondenciasDatos" VerticalAlignment="Bottom" Height="25" Width="105">
+                            <Button Name="_btnCorrespondenciasDatos" VerticalAlignment="Bottom" Height="25" Width="105" Click="_btnCorrespondenciasDatos_Click">
                                 <TextBlock Name="_txbCorrespondenciasDatos" Text="{x:Static recurso:Etiquetas.btnCorrespondencias}"/>
                             </Button>
                         </WrapPanel>
@@ -508,7 +508,7 @@
                             <Button Name="_btnJustificacionesAdministracion" VerticalAlignment="Bottom" Height="25" Width="105" Click="_btnJustificacionesDatos_Click">
                                 <TextBlock Name="_txbJustificacionesAdministracion" Text="{x:Static recurso:Etiquetas.btnJustificaciones}"/>
                             </Button>
-                            <Button Name="_btnCorrespondenciasAdministracion" VerticalAlignment="Bottom" Height="25" Width="105">
+                            <Button Name="_btnCorrespondenciasAdministracion" VerticalAlignment="Bottom" Height="25" Width="105" Click="_btnCorrespondenciasDatos_Click">
                                 <TextBlock Name="_txbCorrespondenciasAdministracion" Text="{x:Static recurso:Etiquetas.btnCorrespondencias}"/>
                             </Button>
                         </WrapPanel>

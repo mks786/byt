@@ -716,4 +716,8 @@
     <value>c.Referencia = '{0}'</value>
     <comment>Filtro por Id</comment>
   </data>
+  <data name="VerificarCartasPorAsociado" xml:space="preserve">
+    <value>Select count(*) from Carta c where c.Asociado.Id = {0}</value>
+    <comment>Verifica la existencia de cartas de un asociado</comment>
+  </data>
 </root>
