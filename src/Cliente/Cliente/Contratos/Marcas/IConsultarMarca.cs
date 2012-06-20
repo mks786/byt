@@ -45,7 +45,11 @@ namespace Trascend.Bolet.Cliente.Contratos.Marcas
 
         string NumPoderDatos { get; set; }
 
-        string NumPoderSolicitud { get; set; }
+        //string NumPoderSolicitud { get; set; }
+
+        string IdPoderDatos { get; set; }
+
+        string IdPoderSolicitud { get; set; }
 
         string IdCorresponsalSolicitudFiltrar { get; }
 

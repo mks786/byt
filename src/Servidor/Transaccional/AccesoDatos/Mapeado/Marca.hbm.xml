@@ -79,6 +79,10 @@
       <column name="CBOLETIN_PUBLICACION"/>
     </many-to-one>
 
+    <many-to-one name="BoletinOrdenPublicacion" class="Boletin">
+      <column name="CBOLETIN_ORDENPUB"/>
+    </many-to-one>
+
     <many-to-one name="Internacional" class="Internacional">
       <column name="CINTER"/>
     </many-to-one>

@@ -8,7 +8,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
     {
         #region Atributos
 
-        private int _id;
+        private int? _id;
         private string _descripcion;
 
         #endregion
@@ -24,7 +24,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         /// Constructor que inicializa el Id del Pais
         /// </summary>
         /// <param name="id">Id del Pais</param>
-        public Condicion(int id)
+        public Condicion(int? id)
         {
             this._id = id;
         }
@@ -36,7 +36,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         /// <summary>
         /// Propiedad que asigna u obtiene el id de la condición
         /// </summary>
-        public virtual int Id
+        public virtual int? Id
         {
             get { return this._id; }
             set { this._id = value; }

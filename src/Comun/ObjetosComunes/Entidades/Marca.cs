@@ -35,7 +35,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         private string _representante;
         private string _observacion;
         private string _distingue;
-        private int _numeroCondiciones;
+        private int? _numeroCondiciones;
         private string _sector;
         private char _tipoRps;
         private string _tipoCnac;
@@ -49,6 +49,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         private Asociado _asociado;
         private Boletin _boletinConcesion;
         private Boletin _boletinPublicacion;
+        private Boletin _boletinOrdenPublicacion;
         private Internacional _internacional;
         private Nacional _nacional;
         private Interesado _interesado;
@@ -338,7 +339,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         /// <summary>
         /// Propiedad que asigna u obtiene el Numero de Condiciones
         /// </summary>
-        public virtual int NumeroCondiciones
+        public virtual int? NumeroCondiciones
         {
             get { return _numeroCondiciones; }
             set { _numeroCondiciones = value; }
@@ -459,6 +460,15 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         {
             get { return _boletinPublicacion; }
             set { _boletinPublicacion = value; }
+        }
+
+        /// <summary>
+        /// Propiedad que asigna u obtiene el Boletin de Orden Publicacion
+        /// </summary>
+        public virtual Boletin BoletinOrdenPublicacion
+        {
+            get { return _boletinOrdenPublicacion; }
+            set { _boletinOrdenPublicacion = value; }
         }
 
         /// <summary>

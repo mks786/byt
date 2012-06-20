@@ -588,7 +588,7 @@
                                                 </DataTemplate>
                                             </GridViewColumn.CellTemplate>
                                         </GridViewColumn>
-                                        <GridViewColumn DisplayMemberBinding="{Binding Path=NumPoder}" Width="300">
+                                        <GridViewColumn DisplayMemberBinding="{Binding Path=Id}" Width="300">
                                             <GridViewColumnHeader Click="_OrdenarPoderSolicitud_Click" Tag="NumPoder" Content="{x:Static recurso:Etiquetas.lsvNombre}"/>
                                         </GridViewColumn>
                                     </GridView>
@@ -597,7 +597,7 @@
                         </Grid>
 
                         <Label Grid.Column="10" Grid.Row="13" VerticalAlignment="Center" HorizontalContentAlignment="Right">
-                            <TextBlock Text="{x:Static recurso:Etiquetas.lblCodigoFomento}"/>
+                            <TextBlock Text="{x:Static recurso:Etiquetas.lblSapi}"/>
                         </Label>
                         <custom:ByTTextBox IsEnabled="False" MaxLength="255" Grid.Column="11" Grid.Row="13" Name="_txtNumSapi" VerticalAlignment="Center"></custom:ByTTextBox>
 
@@ -1409,9 +1409,9 @@
                                 <TextBlock Name="_txbNoRegistro" Text="{x:Static recurso:Etiquetas.btnNoRegistro}"/>
                             </Button>
                             <custom:ByTTextBox IsEnabled="False" Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="1" Margin="3" Name="_txtCodigoRegistro" VerticalAlignment="Center"  
-                          Text=""></custom:ByTTextBox>
+                          Text="{Binding Path=CodigoRegistro}"></custom:ByTTextBox>
                             <custom:ByTTextBox IsEnabled="False" Grid.Column="2" Grid.Row="4" Grid.ColumnSpan="1" Margin="3" Name="_txtFechaRegistro" VerticalAlignment="Center"  
-                          Text=""></custom:ByTTextBox>
+                          Text="{Binding Path=FechaRegistro}"></custom:ByTTextBox>
                             <Label Grid.Column="0" Grid.Row="5" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                                 <TextBlock Text="{x:Static recurso:Etiquetas.lblRenovarAntesDe}"/>
                             </Label>

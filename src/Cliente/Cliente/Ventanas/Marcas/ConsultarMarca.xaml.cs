@@ -35,11 +35,23 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
 
         public string NumPoderDatos
         {
+            get { return this._txtNumSapi.Text; }
+            set { this._txtNumSapi.Text = value; }
+        }
+
+        //public string NumPoderSolicitud
+        //{
+        //    get { return this._txtPoderSolicitud.Text; }
+        //    set { this._txtPoderSolicitud.Text = value; }
+        //}
+
+        public string IdPoderDatos
+        {
             get { return this._txtPoderDatos.Text; }
             set { this._txtPoderDatos.Text = value; }
         }
 
-        public string NumPoderSolicitud
+        public string IdPoderSolicitud
         {
             get { return this._txtPoderSolicitud.Text; }
             set { this._txtPoderSolicitud.Text = value; }

@@ -227,6 +227,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 condiciones.Insert(0, primeraCondicion);
                 this._ventana.Condiciones = condiciones;
 
+                Condicion condicionAuxiliar = new Condicion(((Marca)this._ventana.Marca).NumeroCondiciones);
+                this._ventana.Condicion = this.BuscarCondicion((IList<Condicion>)this._ventana.Condiciones,condicionAuxiliar);
+
                 IList<TipoEstado> tipoEstados = this._tipoEstadoServicios.ConsultarTodos();
                 TipoEstado primerDetalle = new TipoEstado();
                 primerDetalle.Id = "NGN";
@@ -248,6 +251,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 this._ventana.BoletinesOrdenPublicacion = boletines;
                 this._ventana.BoletinesPublicacion = boletines;
                 this._ventana.BoletinesConcesion = boletines;
+                this._ventana.BoletinOrdenPublicacion = this.BuscarBoletin(boletines, marca.BoletinOrdenPublicacion);
                 this._ventana.BoletinConcesion = this.BuscarBoletin(boletines, marca.BoletinConcesion);
                 this._ventana.BoletinPublicacion = this.BuscarBoletin(boletines, marca.BoletinPublicacion);
 
@@ -273,7 +277,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 }
 
                 this._ventana.NumPoderDatos = marca.Poder != null ? marca.Poder.NumPoder : "";
-                this._ventana.NumPoderSolicitud = marca.Poder != null ? marca.Poder.NumPoder : "";
+
+                this._ventana.IdPoderDatos = marca.Poder != null ? marca.Poder.Id.ToString() : "";
+                this._ventana.IdPoderSolicitud = marca.Poder != null ? marca.Poder.Id.ToString() : "";
+
+                //this._ventana.NumPoderSolicitud = marca.Poder != null ? marca.Poder.NumPoder : "";
 
                 IList<ListaDatosDominio> sectores = this._listaDatosDominioServicios.
                     ConsultarListaDatosDominioPorParametro(new ListaDatosDominio(Recursos.Etiquetas.cbiSector));
@@ -438,6 +446,14 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
 
             if (string.IsNullOrEmpty(this._ventana.IdNacional))
                 marca.Nacional = null;
+
+            if (null != this._ventana.Condicion)
+            {
+                if (((Condicion)this._ventana.Condicion).Id == int.MinValue)
+                    marca.NumeroCondiciones = null;
+                else
+                    marca.NumeroCondiciones = ((Condicion)this._ventana.Condicion).Id;
+            }
 
             return marca;
 
@@ -1376,7 +1392,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
 
                 if ((Poder)this._ventana.PoderSolicitud != null)
                 {
-                    this._ventana.NumPoderSolicitud = ((Poder)this._ventana.PoderSolicitud).NumPoder;
+                    this._ventana.IdPoderSolicitud = ((Poder)this._ventana.PoderSolicitud).Id.ToString();
                     this._ventana.PoderDatos = (Poder)this._ventana.PoderSolicitud;
                     this._ventana.NumPoderDatos = ((Poder)this._ventana.PoderSolicitud).NumPoder;
                 }
@@ -1388,8 +1404,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             }
             catch (ApplicationException e)
             {
-                this._ventana.NumPoderSolicitud = "";
-                this._ventana.NumPoderDatos = "";
+                this._ventana.IdPoderSolicitud = "";
+                this._ventana.IdPoderDatos = "";
             }
         }
 
@@ -1409,7 +1425,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 {
                     this._ventana.NumPoderDatos = ((Poder)this._ventana.PoderDatos).NumPoder;
                     this._ventana.PoderSolicitud = (Poder)this._ventana.PoderDatos;
-                    this._ventana.NumPoderSolicitud = ((Poder)this._ventana.PoderDatos).NumPoder;
+                    this._ventana.IdPoderSolicitud = ((Poder)this._ventana.PoderDatos).Id.ToString();
                 }
 
                 #region trace
@@ -1419,8 +1435,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             }
             catch (ApplicationException e)
             {
-                this._ventana.NumPoderSolicitud = "";
-                this._ventana.NumPoderDatos = "";
+                this._ventana.IdPoderSolicitud = "";
+                this._ventana.IdPoderDatos = "";
             }
         }
 
@@ -1463,7 +1479,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
 
             this._ventana.PoderSolicitud = poder != null ? poder.Id.ToString() : "";
             //this._ventana.PoderSolicitud = poder.Id.ToString();
-            this._ventana.NumPoderSolicitud = poder != null ? poder.NumPoder : "";
+            this._ventana.IdPoderSolicitud = poder != null ? poder.Id.ToString() : "";
 
             this._ventana.PoderDatos = poder != null ? poder.Id.ToString() : "";
 
