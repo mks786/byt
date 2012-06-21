@@ -175,8 +175,13 @@
                         <Label Name="_lblFechaRegistro" Grid.Column="5" Grid.Row="2" HorizontalAlignment="Right" VerticalAlignment="Center" >
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblFecha}"/>
                         </Label>
-                        <custom:ByTTextBox IsReadOnly="True"   IsEnabled="False"  Grid.Column="6" Grid.Row="2" Name="_txtFechaRegistro" VerticalAlignment="Center"  
-                                           Grid.ColumnSpan="2" MaxLength="255"  Text="{Binding Path=FechaRegistro}" ></custom:ByTTextBox>                      
+                        <DatePicker IsEnabled="False" Grid.Column="6" Grid.Row="2" Grid.ColumnSpan="2"  
+                                Name="_txtFechaRegistro"  BorderBrush="{x:Null}">
+                            <DatePicker.SelectedDate>
+                                <Binding Path="FechaRegistro" UpdateSourceTrigger="PropertyChanged"  StringFormat="{}{0:dd/MM/yyyy}"/>
+                            </DatePicker.SelectedDate>
+                        </DatePicker>
+                    
                         <!--Fin Campo-->
 
                         <!--Campo-->

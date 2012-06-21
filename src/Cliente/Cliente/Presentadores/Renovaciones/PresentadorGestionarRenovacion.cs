@@ -1070,6 +1070,16 @@ namespace Trascend.Bolet.Cliente.Presentadores.Renovaciones
                             this._poderesInteresado = this._poderServicios.ConsultarPoderesPorInteresado(((Interesado)_ventana.InteresadoFiltrado));
                             this._poderesInteresado.Insert(0, primerPoder);
                             this._ventana.PoderesFiltrados = this._poderesInteresado;
+                            IList<Poder> poderes = this._poderesInteresado;
+                            foreach (Poder poder in poderes)
+                            {
+                                IList<Agente> ListaAgentes = this._agenteServicios.ObtenerAgentesDeUnPoder(poder);
+                                foreach (Agente agente in ListaAgentes)
+                                {
+                                    primerPoder.MostrarAgentes += agente.Id + "-" + agente.Nombre + "\n";
+                                }
+                            }
+
                             this._ventana.PoderFiltrado = primerPoder;
 
                             this._poderesInteresado = this._poderServicios.ConsultarPoderesPorInteresado(((Interesado)_ventana.InteresadoFiltrado));
@@ -1413,7 +1423,14 @@ namespace Trascend.Bolet.Cliente.Presentadores.Renovaciones
             {
                 this._poderes.Add((Poder)this._ventana.Poder);
                 this._ventana.PoderesFiltrados = this._poderes;
-                this._ventana.PoderFiltrado = this.BuscarPoder((IList<Poder>)this._ventana.PoderesFiltrados, (Poder)this._ventana.Poder);
+                primerPoder = this.BuscarPoder((IList<Poder>)this._ventana.PoderesFiltrados,
+                                                                                    (Poder)this._ventana.Poder);
+                IList<Agente> ListaAgentes = this._agenteServicios.ObtenerAgentesDeUnPoder(primerPoder);
+                foreach (Agente agente in ListaAgentes)
+                {
+                    primerPoder.MostrarAgentes += agente.Id + "-" + agente.Nombre + "\n";
+                }
+                this._ventana.PoderFiltrado = primerPoder;
             }
             else
             {

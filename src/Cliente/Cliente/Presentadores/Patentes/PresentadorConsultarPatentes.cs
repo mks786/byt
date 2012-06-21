@@ -434,6 +434,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                 patenteAuxiliar.Pais = new Pais();
                 patenteAuxiliar.Pais = ((Pais)this._ventana.PaisPrioridad);
             }
+            else
+                patenteAuxiliar.Pais = null;
             
             #region trace
             if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -463,6 +465,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                 patenteAuxiliar.BoletinConcesion = new Boletin();
                 patenteAuxiliar.BoletinConcesion = ((Boletin)this._ventana.BoletinConcesion);
             }
+            else
+                patenteAuxiliar.BoletinConcesion = null;
 
             if (((Boletin)this._ventana.BoletinPublicacion).Id != int.MinValue)
             {
@@ -470,6 +474,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                 patenteAuxiliar.BoletinPublicacion = new Boletin();
                 patenteAuxiliar.BoletinPublicacion = ((Boletin)this._ventana.BoletinPublicacion);
             }
+            else
+                patenteAuxiliar.BoletinPublicacion = null;
 
             if (((Boletin)this._ventana.BoletinOrdenPublicacion).Id != int.MinValue)
             {
@@ -477,6 +483,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                 patenteAuxiliar.BoletinOrdenPublicacion = new Boletin();
                 patenteAuxiliar.BoletinOrdenPublicacion = ((Boletin)this._ventana.BoletinOrdenPublicacion);
             }
+            else
+                patenteAuxiliar.BoletinOrdenPublicacion = null;
+
 
             #region trace
             if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -511,12 +520,16 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                     patenteAuxiliar.Asociado = (Asociado)this._ventana.Asociado;
                     _filtroValido = 2;
                 }
+                else
+                    patenteAuxiliar.Asociado = null;
 
                 if ((null != this._ventana.Interesado) && (((Interesado)this._ventana.Interesado).Id != int.MinValue))
                 {
                     patenteAuxiliar.Interesado = (Interesado)this._ventana.Interesado;
                     _filtroValido = 2;
                 }
+                else
+                    patenteAuxiliar.Interesado = null;
 
 
                 if (!this._ventana.NombrePatente.Equals(""))
@@ -524,6 +537,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                     _filtroValido = 2;
                     patenteAuxiliar.Descripcion = this._ventana.NombrePatente.ToUpper();
                 }
+
 
                 if (!this._ventana.Fecha.Equals(""))
                 {
@@ -544,6 +558,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                     patenteAuxiliar.TipoEstado = new TipoEstado();
                     patenteAuxiliar.TipoEstado = ((TipoEstado)this._ventana.Detalle);
                 }
+                else
+                    patenteAuxiliar.TipoEstado = null;
 
                 if (!((Servicio)this._ventana.Servicio).Id.Equals("NGN"))
                 {
@@ -551,6 +567,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                     patenteAuxiliar.Servicio = new Servicio();
                     patenteAuxiliar.Servicio = ((Servicio)this._ventana.Servicio);
                 }
+                else
+                    patenteAuxiliar.Servicio = null;
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))

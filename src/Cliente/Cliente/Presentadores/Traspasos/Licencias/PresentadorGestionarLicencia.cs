@@ -311,12 +311,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Licencias
             if (null != ((Licencia)this._ventana.Licencia).AgenteLicenciante)
             {
                 this._ventana.ApoderadoLicenciante = ((Licencia)this._ventana.Licencia).AgenteLicenciante;
-                this._ventana.IdLicenciante = ((Licencia)this._ventana.Licencia).AgenteLicenciante.Id;
+                this._ventana.IdApoderadoLicenciante = ((Licencia)this._ventana.Licencia).AgenteLicenciante.Id;
             }
             if (null != ((Licencia)this._ventana.Licencia).AgenteLicenciatario)
             {
                 this._ventana.ApoderadoLicenciatario = ((Licencia)this._ventana.Licencia).AgenteLicenciatario;
-                this._ventana.IdLicenciatario = ((Licencia)this._ventana.Licencia).AgenteLicenciatario.Id;
+                this._ventana.IdApoderadoLicenciatario = ((Licencia)this._ventana.Licencia).AgenteLicenciatario.Id;
             }
 
 
