@@ -168,7 +168,7 @@
     <comment>Obtiene la lista de valores respectiva a la tabla CFG_DOMINIOS con el parametro que se le pase</comment>
   </data>
   <data name="ObtenerPoderesPorInteresado" xml:space="preserve">
-    <value>Select p from Poder p where p.Interesado.Id = '{0}'</value>
+    <value>Select p from Poder p where p.Interesado.Id = '{0}' order by p.Id desc</value>
     <comment>Selecciona todas los poderes que posee un interesado</comment>
   </data>
   <data name="ObtenerRolesYObjetos" xml:space="preserve">
@@ -325,11 +325,11 @@
     <comment>Selecciona todas los poderes que posee un Agente</comment>
   </data>
   <data name="ObtenerAgentesDeUnPoder" xml:space="preserve">
-    <value>Select p from Poder p left join fetch p.Agentes where p.Id = '{0}'</value>
+    <value>Select p from Poder p left join fetch p.Agentes where p.Id = '{0}' order by p.Id desc</value>
     <comment>Selecciona todos los agentes que tienen un poder</comment>
   </data>
   <data name="ObtenerInteresadosDeUnPoder" xml:space="preserve">
-    <value>Select p from Poder p left join fetch p.Interesado where p.Id ='{0}'</value>
+    <value>Select p from Poder p left join fetch p.Interesado where p.Id ='{0}' order by p.Id desc</value>
   </data>
   <data name="CabeceraObtenerLicencia" xml:space="preserve">
     <value>Select l from Licencia l left join fetch l.Marca as marca left join fetch l.AgenteLicenciatario as Alicentario left join fetch l.AgenteLicenciante as Alice left join fetch l.Asociado as asosia left join fetch l.Boletin as boletin left join fetch l.InteresadoLicenciatario as InterLicen left join fetch l.InteresadoLicenciante left join fetch l.PoderLicenciatario as Plicentario left join fetch l.PoderLicenciante as Plicenciant Where </value>

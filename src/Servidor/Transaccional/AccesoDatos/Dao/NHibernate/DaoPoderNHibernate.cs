@@ -124,6 +124,8 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
                     filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerPoderFecha, fecha, fecha2);
                 }
 
+                filtro += " order by p.Id desc";
+
                 IQuery query = Session.CreateQuery(cabecera + filtro);
                 poderes = query.List<Poder>();
 

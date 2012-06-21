@@ -259,8 +259,7 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Select m from Marca m left join fetch m.Asociado as asociado left join fetch m.Agente as agente left join fetch m.Corresponsal as corresponsal left join fetch m.Interesado as interesado left join fetch asociado.Pais as pais left join fetch asociado.Idioma as pais left join fetch m.BoletinConcesion as boletinC left join fetch m.BoletinPublicacion as boletinP left join fetch m.Nacional as nacional left join fetch m.Internacional as internacional where .
-        ///   Busca una cadena traducida similar a Select m from Marca m left join fetch m.Asociado as asociado left join fetch m.Agente as agente left join fetch m.Corresponsal as corresponsal left join fetch m.Interesado as interesado left join fetch asociado.Pais as pais left join fetch asociado.Idioma as pais left join fetch m.BoletinConcesion as boletinC left join fetch m.BoletinPublicacion as boletinP left join fetch m.BoletinOrdenPublicacion as boletinO left join fetch m.Nacional as nacional left join fetch m.Internacional as internacional where .
+        ///   Looks up a localized string similar to Select m from Marca m left join fetch m.Asociado as asociado left join fetch m.Agente as agente left join fetch m.Corresponsal as corresponsal left join fetch m.Interesado as interesado left join fetch asociado.Pais as pais left join fetch asociado.Idioma as pais left join fetch m.BoletinConcesion as boletinC left join fetch m.BoletinPublicacion as boletinP left join fetch m.BoletinOrdenPublicacion as boletinO left join fetch m.Nacional as nacional left join fetch m.Internacional as internacional where .
         /// </summary>
         public static string CabeceraObtenerMarca {
             get {
@@ -566,8 +565,7 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to upper(resumen.Descripcion) like &apos;%{0}%&apos;.
-        ///   Busca una cadena traducida similar a c.Referencia = &apos;{0}&apos;.
+        ///   Looks up a localized string similar to c.Referencia = &apos;{0}&apos;.
         /// </summary>
         public static string FiltroObtenerCartaReferencia {
             get {
@@ -576,7 +574,7 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a upper(resumen.Descripcion) like &apos;%{0}%&apos;.
+        ///   Looks up a localized string similar to upper(resumen.Descripcion) like &apos;%{0}%&apos;.
         /// </summary>
         public static string FiltroObtenerCartaResumen {
             get {
@@ -1197,7 +1195,7 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Select p from Poder p left join fetch p.Agentes where p.Id = &apos;{0}&apos;.
+        ///   Looks up a localized string similar to Select p from Poder p left join fetch p.Agentes where p.Id = &apos;{0}&apos; order by p.Id desc.
         /// </summary>
         public static string ObtenerAgentesDeUnPoder {
             get {
@@ -1323,7 +1321,7 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Select p from Poder p left join fetch p.Interesado where p.Id =&apos;{0}&apos;.
+        ///   Looks up a localized string similar to Select p from Poder p left join fetch p.Interesado where p.Id =&apos;{0}&apos; order by p.Id desc.
         /// </summary>
         public static string ObtenerInteresadosDeUnPoder {
             get {
@@ -1476,7 +1474,7 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Select p from Poder p where p.Interesado.Id = &apos;{0}&apos;.
+        ///   Looks up a localized string similar to Select p from Poder p where p.Interesado.Id = &apos;{0}&apos; order by p.Id desc.
         /// </summary>
         public static string ObtenerPoderesPorInteresado {
             get {
@@ -1539,7 +1537,6 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Select r from Resolucion r where r.Id = {0} and r.FechaResolucion = &apos;{1}&apos; and r.Boletin.Id =  {2}.
         ///   Looks up a localized string similar to Select count(*) from Carta c where c.Asociado.Id = {0}.
         /// </summary>
         public static string VerificarCartasPorAsociado {
@@ -1550,7 +1547,6 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         
         /// <summary>
         ///   Looks up a localized string similar to Select r from Resolucion r where r.Id = {0} and r.FechaResolucion = &apos;{1}&apos; and r.Boletin.Id =  {2}.
-        ///   Busca una cadena traducida similar a Select r from Resolucion r where r.Id = {0} and r.FechaResolucion = &apos;{1}&apos; and r.Boletin.Id =  {2}.
         /// </summary>
         public static string VerificarExistenciaResolucion {
             get {
