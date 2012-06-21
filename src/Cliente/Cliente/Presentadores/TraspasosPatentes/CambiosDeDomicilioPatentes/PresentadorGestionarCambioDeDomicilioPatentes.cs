@@ -378,7 +378,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CambiosDeDomici
                     int? exitoso = this._cambioDeDomicilioPatenteServicios.InsertarOModificarCambioDeDomicilio(cambioDeDomicilio, UsuarioLogeado.Hash);
 
                     if ((!exitoso.Equals(null)) && (this._agregar == false))
-                        this.Navegar(new GestionarCambioDeDomicilioPatentes(cambioDeDomicilio));
+                    {
+                        this._ventana.HabilitarCampos = false;
+                        this._ventana.TextoBotonModificar = Recursos.Etiquetas.btnModificar;
+                    }
                     else if ((!exitoso.Equals(null)) && (this._agregar == true))
                     {
                         cambioDeDomicilio.Id = exitoso.Value;

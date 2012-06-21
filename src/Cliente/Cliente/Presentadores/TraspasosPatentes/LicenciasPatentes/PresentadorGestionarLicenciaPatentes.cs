@@ -545,7 +545,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.LicenciasPatent
                     int? exitoso = this._licenciaServicios.InsertarOModificarLicencia(licencia, UsuarioLogeado.Hash);
 
                     if ((!exitoso.Equals(null)) && (this._agregar == false))
-                        this.Navegar(new GestionarLicenciaPatentes(licencia));
+                    {
+                        this._ventana.HabilitarCampos = false;
+                        this._ventana.TextoBotonModificar = Recursos.Etiquetas.btnModificar;
+                    }
                     else if ((!exitoso.Equals(null)) && (this._agregar == true))
                     {
                         licencia.Id = exitoso.Value;

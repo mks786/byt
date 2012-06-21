@@ -404,7 +404,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CambiosDeNombre
                     int? exitoso = this._cambioDeNombrePatenteServicios.InsertarOModificarCambioNombre(cambioDeNombre, UsuarioLogeado.Hash);
 
                     if ((!exitoso.Equals(null)) && (this._agregar == false))
-                        this.Navegar(new GestionarCambioDeNombrePatentes(cambioDeNombre));
+                    {
+                        this._ventana.HabilitarCampos = false;
+                        this._ventana.TextoBotonModificar = Recursos.Etiquetas.btnModificar;
+                    }
                     else if ((!exitoso.Equals(null)) && (this._agregar == true))
                     {
                         cambioDeNombre.Id = exitoso.Value;

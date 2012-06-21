@@ -384,13 +384,13 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
 
                 #region Botones
 
-                this._btnAceptar.IsEnabled = value;
+                //this._btnAceptar.IsEnabled = value;
                 this._btnAnaqua.IsEnabled = value;
                 this._btnAnexoFM02.IsEnabled = value;
                 this._btnAuditoria.IsEnabled = value;
                 this._btnBusquedaDatos.IsEnabled = value;
                 this._btnBusquedaSolicitud.IsEnabled = value;
-                this._btnCancelar.IsEnabled = value;
+                //this._btnCancelar.IsEnabled = value;
                 this._btnCarpeta.IsEnabled = value;
                 this._btnCertificados.IsEnabled = value;
                 this._btnClaseCompletaSolicitud.IsEnabled = value;

@@ -383,7 +383,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeDomicilio
                     {
                         int? exitoso = this._cambioDeDomicilioServicios.InsertarOModificarCambioDeDomicilio(cambioDeDomicilio,UsuarioLogeado.Hash);
                         if ((!exitoso.Equals(null)) && (this._agregar == false))
-                            this.Navegar(new GestionarCambioDeDomicilio(cambioDeDomicilio));
+                        {
+                            this._ventana.HabilitarCampos = false;
+                            this._ventana.TextoBotonModificar = Recursos.Etiquetas.btnModificar;
+                        }
                         else if ((!exitoso.Equals(null)) && (this._agregar == true))
                         {
                             cambioDeDomicilio.Id = exitoso.Value;

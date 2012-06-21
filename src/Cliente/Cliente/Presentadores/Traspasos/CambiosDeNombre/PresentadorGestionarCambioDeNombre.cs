@@ -400,7 +400,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeNombre
                     {
                         int? exitoso = this._cambioDeNombreServicios.InsertarOModificarCambioNombre(cambioDeNombre, UsuarioLogeado.Hash);
                         if ((!exitoso.Equals(null)) && (this._agregar == false))
-                            this.Navegar(new GestionarCambioDeNombre(cambioDeNombre));
+                        {
+                            this._ventana.HabilitarCampos = false;
+                            this._ventana.TextoBotonModificar = Recursos.Etiquetas.btnModificar;
+                        }
                         else if ((!exitoso.Equals(null)) && (this._agregar == true))
                         {
                             cambioDeNombre.Id = exitoso.Value;

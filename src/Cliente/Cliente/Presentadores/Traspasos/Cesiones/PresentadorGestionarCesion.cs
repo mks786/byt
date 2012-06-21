@@ -556,7 +556,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Cesiones
                     {
                        int? exitoso = this._cesionServicios.InsertarOModificarCesion(cesion, UsuarioLogeado.Hash);
                        if ((!exitoso.Equals(null)) && (this._agregar == false))
-                            this.Navegar(new GestionarCesion(cesion));
+                       {
+                           this._ventana.HabilitarCampos = false;
+                           this._ventana.TextoBotonModificar = Recursos.Etiquetas.btnModificar;
+                       }
                        else if ((!exitoso.Equals(null)) && (this._agregar == true))
                        {
                            cesion.Id = exitoso.Value;

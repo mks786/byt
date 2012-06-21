@@ -517,7 +517,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                     bool exitoso = this._marcaServicios.InsertarOModificar(marca, UsuarioLogeado.Hash);
 
                     if (exitoso)
-                        this.Navegar(Recursos.MensajesConElUsuario.MarcaModificada, false);
+                    {
+                        this._ventana.HabilitarCampos = false;
+                        this._ventana.TextoBotonModificar = Recursos.Etiquetas.btnModificar;
+                    }
                 }
 
                 #region trace

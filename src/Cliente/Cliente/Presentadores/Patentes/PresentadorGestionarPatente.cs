@@ -594,8 +594,14 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
 
                     if ((!exitosoEntero.Equals(null)) || (exitoso))
                     {
+                        if (_agregar)
+                            this.Navegar(new GestionarPatente(patente));
+                        else
+                        {
+                            this._ventana.HabilitarCampos = false;
+                            this._ventana.TextoBotonModificar = Recursos.Etiquetas.btnModificar;
 
-                        this.Navegar(new GestionarPatente(patente));
+                        }
                     }
                 }
 

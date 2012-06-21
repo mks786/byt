@@ -628,7 +628,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
                     {
                         int? exitoso = this._fusionesServicios.InsertarOModificarFusion(fusion, UsuarioLogeado.Hash);
                         if ((!exitoso.Equals(null)) && (this._agregar == false))
-                            this.Navegar(new GestionarFusion(fusion));
+                        {
+                            this._ventana.HabilitarCampos = false;
+                            this._ventana.TextoBotonModificar = Recursos.Etiquetas.btnModificar;
+                        }
                         else if ((!exitoso.Equals(null)) && (this._agregar == true))
                         {
                             fusion.Id = exitoso.Value;

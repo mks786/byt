@@ -501,7 +501,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDePeticionario
                     {
                         int? exitoso = this._cambioPeticionarioServicios.InsertarOModificarCambioPeticionario(cambioPeticionario,UsuarioLogeado.Hash);
                         if ((!exitoso.Equals(null)) && (this._agregar == false))
-                            this.Navegar(new GestionarCambioPeticionario(cambioPeticionario));
+                        {
+                            this._ventana.HabilitarCampos = false;
+                            this._ventana.TextoBotonModificar = Recursos.Etiquetas.btnModificar;
+                        }
                         else if ((!exitoso.Equals(null)) && (this._agregar == true))
                         {
                             cambioPeticionario.Id = exitoso.Value;
