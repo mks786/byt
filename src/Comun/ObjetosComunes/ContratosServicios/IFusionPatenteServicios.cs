@@ -12,5 +12,14 @@ namespace Trascend.Bolet.ObjetosComunes.ContratosServicios
         /// <param name="Fusion">fusión filtro</param>
         /// <returns>Lista de fusiones que cumplan con el filtro</returns>
         IList<FusionPatente> ObtenerFusionPatenteFiltro(FusionPatente FusionPatente);
+
+
+        /// <summary>
+        /// Servicio que se encarga de insertar la fusion
+        /// </summary>
+        /// <param name="marca">fusion a insertar</param>
+        /// <param name="hash">hash del usuario que ejecuta la insercion</param>
+        /// <returns>Id de la fusion insertada</returns>
+        int? InsertarOModificarFusion(FusionPatente fusion, int hash);
     }
 }

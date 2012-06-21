@@ -49,7 +49,7 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
         /// <param name="cambioNombre">Usuario a modificar</param>
         /// <param name="hash">Hash del usuario que va a realizar la operacion</param>
         /// <returns>True si la modificación fue exitosa, en caso contrario False</returns>
-        public static bool InsertarOModificar(CambioDeNombrePatente cambioNombre, int hash)
+        public static bool InsertarOModificar(ref CambioDeNombrePatente cambioNombre, int hash)
         {
             bool exitoso = false;
 

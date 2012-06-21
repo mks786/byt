@@ -499,11 +499,14 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDePeticionario
 
                     if (null != cambioPeticionario.InteresadoActual)
                     {
-                        bool exitoso = this._cambioPeticionarioServicios.InsertarOModificar(cambioPeticionario,UsuarioLogeado.Hash);
-                        if ((exitoso) && (this._agregar == false))
+                        int? exitoso = this._cambioPeticionarioServicios.InsertarOModificarCambioPeticionario(cambioPeticionario,UsuarioLogeado.Hash);
+                        if ((!exitoso.Equals(null)) && (this._agregar == false))
                             this.Navegar(new GestionarCambioPeticionario(cambioPeticionario));
-                        else if ((exitoso) && (this._agregar == true))
+                        else if ((!exitoso.Equals(null)) && (this._agregar == true))
+                        {
+                            cambioPeticionario.Id = exitoso.Value;
                             this.Navegar(new GestionarCambioPeticionario(cambioPeticionario));
+                        }
                         else
                             this.Navegar(Recursos.MensajesConElUsuario.ErrorAlGenerarTraspaso, true);
                     }

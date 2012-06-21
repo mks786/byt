@@ -401,12 +401,15 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CambiosDeNombre
                 {
                     CambioDeNombrePatente cambioDeNombre = CargarCambioDeNombreDeLaPantalla();                   
 
-                    bool exitoso = this._cambioDeNombrePatenteServicios.InsertarOModificar(cambioDeNombre, UsuarioLogeado.Hash);
+                    int? exitoso = this._cambioDeNombrePatenteServicios.InsertarOModificarCambioNombre(cambioDeNombre, UsuarioLogeado.Hash);
 
-                    if ((exitoso) && (this._agregar == false))
+                    if ((!exitoso.Equals(null)) && (this._agregar == false))
                         this.Navegar(new GestionarCambioDeNombrePatentes(cambioDeNombre));
-                    else if ((exitoso) && (this._agregar == true))
+                    else if ((!exitoso.Equals(null)) && (this._agregar == true))
+                    {
+                        cambioDeNombre.Id = exitoso.Value;
                         this.Navegar(new GestionarCambioDeNombrePatentes(cambioDeNombre));
+                    }
                     else
                         this.Navegar(Recursos.MensajesConElUsuario.ErrorAlGenerarTraspaso, true);
                 }

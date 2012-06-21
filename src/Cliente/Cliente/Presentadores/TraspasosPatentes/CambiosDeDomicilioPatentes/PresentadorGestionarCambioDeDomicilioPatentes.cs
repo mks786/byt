@@ -375,12 +375,15 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CambiosDeDomici
                 {
                     CambioDeDomicilioPatente cambioDeDomicilio = CargarCambioDeDomicilioDeLaPantalla();
 
-                    bool exitoso = this._cambioDeDomicilioPatenteServicios.InsertarOModificar(cambioDeDomicilio, UsuarioLogeado.Hash);
+                    int? exitoso = this._cambioDeDomicilioPatenteServicios.InsertarOModificarCambioDeDomicilio(cambioDeDomicilio, UsuarioLogeado.Hash);
 
-                    if ((exitoso) && (this._agregar == false))
+                    if ((!exitoso.Equals(null)) && (this._agregar == false))
                         this.Navegar(new GestionarCambioDeDomicilioPatentes(cambioDeDomicilio));
-                    else if ((exitoso) && (this._agregar == true))
+                    else if ((!exitoso.Equals(null)) && (this._agregar == true))
+                    {
+                        cambioDeDomicilio.Id = exitoso.Value;
                         this.Navegar(new GestionarCambioDeDomicilioPatentes(cambioDeDomicilio));
+                    }
                     else
                         this.Navegar(Recursos.MensajesConElUsuario.ErrorAlGenerarTraspaso, true);
                 }

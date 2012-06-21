@@ -49,7 +49,7 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
         /// <param name="fusion">Usuario a modificar</param>
         /// <param name="hash">Hash del usuario que va a realizar la operacion</param>
         /// <returns>True si la modificación fue exitosa, en caso contrario False</returns>
-        public static bool InsertarOModificar(Fusion fusion, int hash)
+        public static bool InsertarOModificar(ref Fusion fusion, int hash)
         {
             bool exitoso = false;
 

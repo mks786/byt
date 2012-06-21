@@ -510,12 +510,15 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CesionesPatente
                 {
                     CesionPatente cesion = CargarCesionDeLaPantalla();
 
-                    bool exitoso = this._cesionServicios.InsertarOModificar(cesion, UsuarioLogeado.Hash);
+                    int? exitoso = this._cesionServicios.InsertarOModificarCesion(cesion, UsuarioLogeado.Hash);
 
-                    if ((exitoso) && (this._agregar == false))
+                    if ((!exitoso.Equals(null)) && (this._agregar == false))
                         this.Navegar(new GestionarCesionPatentes(cesion));
-                    else if ((exitoso) && (this._agregar == true))
+                    else if ((!exitoso.Equals(null)) && (this._agregar == true))
+                    {
+                        cesion.Id = exitoso.Value;
                         this.Navegar(new GestionarCesionPatentes(cesion));
+                    }
                     else
                         this.Navegar(Recursos.MensajesConElUsuario.ErrorAlGenerarTraspaso, true);
                 }

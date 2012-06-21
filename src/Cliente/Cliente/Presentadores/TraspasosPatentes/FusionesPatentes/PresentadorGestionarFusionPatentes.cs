@@ -599,12 +599,15 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.FusionesPatente
                 {
                     FusionPatente fusion = CargarFusionDeLaPantalla();
 
-                    bool exitoso = this._fusionesServicios.InsertarOModificar(fusion, UsuarioLogeado.Hash);
+                    int? exitoso = this._fusionesServicios.InsertarOModificarFusion(fusion, UsuarioLogeado.Hash);
 
-                    if ((exitoso) && (this._agregar == false))
+                    if ((!exitoso.Equals(null)) && (this._agregar == false))
                         this.Navegar(new GestionarFusionPatentes(fusion));
-                    else if ((exitoso) && (this._agregar == true))
+                    else if ((!exitoso.Equals(null)) && (this._agregar == true))
+                    {
+                        fusion.Id = exitoso.Value;
                         this.Navegar(new GestionarFusionPatentes(fusion));
+                    }
                     else
                         this.Navegar(Recursos.MensajesConElUsuario.ErrorAlGenerarTraspaso, true);
                 }

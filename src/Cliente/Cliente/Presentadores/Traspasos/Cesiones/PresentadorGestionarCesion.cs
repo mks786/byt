@@ -554,13 +554,16 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Cesiones
 
                     if (null != cesion.Cesionario)
                     {
-                       bool exitoso = this._cesionServicios.InsertarOModificar(cesion, UsuarioLogeado.Hash);
-                        if ((exitoso) && (this._agregar == false))
+                       int? exitoso = this._cesionServicios.InsertarOModificarCesion(cesion, UsuarioLogeado.Hash);
+                       if ((!exitoso.Equals(null)) && (this._agregar == false))
                             this.Navegar(new GestionarCesion(cesion));
-                        else if ((exitoso) && (this._agregar == true))
-                            this.Navegar(new GestionarCesion(cesion));
-                        else
-                            this.Navegar(Recursos.MensajesConElUsuario.ErrorAlGenerarTraspaso, true);
+                       else if ((!exitoso.Equals(null)) && (this._agregar == true))
+                       {
+                           cesion.Id = exitoso.Value;
+                           this.Navegar(new GestionarCesion(cesion));
+                       }
+                       else
+                           this.Navegar(Recursos.MensajesConElUsuario.ErrorAlGenerarTraspaso, true);
 
                     }
                     else

@@ -381,11 +381,14 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeDomicilio
 
                     if (null != cambioDeDomicilio.InteresadoActual)
                     {
-                        bool exitoso = this._cambioDeDomicilioServicios.InsertarOModificar(cambioDeDomicilio,UsuarioLogeado.Hash);
-                        if ((exitoso) && (this._agregar == false))
+                        int? exitoso = this._cambioDeDomicilioServicios.InsertarOModificarCambioDeDomicilio(cambioDeDomicilio,UsuarioLogeado.Hash);
+                        if ((!exitoso.Equals(null)) && (this._agregar == false))
                             this.Navegar(new GestionarCambioDeDomicilio(cambioDeDomicilio));
-                        else if ((exitoso) && (this._agregar == true))
+                        else if ((!exitoso.Equals(null)) && (this._agregar == true))
+                        {
+                            cambioDeDomicilio.Id = exitoso.Value;
                             this.Navegar(new GestionarCambioDeDomicilio(cambioDeDomicilio));
+                        }
                         else
                             this.Navegar(Recursos.MensajesConElUsuario.ErrorAlGenerarTraspaso, true);
                     }

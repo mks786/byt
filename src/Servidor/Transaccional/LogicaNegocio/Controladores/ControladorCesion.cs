@@ -51,7 +51,7 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
         /// <param name="cesion">Cesion a modificar</param>
         /// <param name="hash">Hash de la Cesion que va a realizar la operacion</param>
         /// <returns>True si la modificación fue exitosa, en caso contrario False</returns>
-        public static bool InsertarOModificar(Cesion cesion, int hash)
+        public static bool InsertarOModificar(ref Cesion cesion, int hash)
         {
             bool exitoso = false;
 

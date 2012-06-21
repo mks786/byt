@@ -505,12 +505,15 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CambiosDePetici
                 {
                     CambioPeticionarioPatente cambioPeticionario = CargarCambioPeticionarioDeLaPantalla();
 
-                    bool exitoso = this._cambioPeticionarioPatenteServicios.InsertarOModificar(cambioPeticionario, UsuarioLogeado.Hash);
+                    int? exitoso = this._cambioPeticionarioPatenteServicios.InsertarOModificarCambioPeticionario(cambioPeticionario, UsuarioLogeado.Hash);
 
-                    if ((exitoso) && (this._agregar == false))
+                    if ((!exitoso.Equals(null)) && (this._agregar == false))
                         this.Navegar(new GestionarCambioPeticionarioPatentes(cambioPeticionario));
-                    else if ((exitoso) && (this._agregar == true))
+                    else if ((!exitoso.Equals(null)) && (this._agregar == true))
+                    {
+                        cambioPeticionario.Id = exitoso.Value;
                         this.Navegar(new GestionarCambioPeticionarioPatentes(cambioPeticionario));
+                    }
                     else
                         this.Navegar(Recursos.MensajesConElUsuario.ErrorAlGenerarTraspaso, true);
                 }

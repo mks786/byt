@@ -542,12 +542,15 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.LicenciasPatent
                 {
                     LicenciaPatente licencia = CargarLicenciaDeLaPantalla();
 
-                    bool exitoso = this._licenciaServicios.InsertarOModificar(licencia, UsuarioLogeado.Hash);
+                    int? exitoso = this._licenciaServicios.InsertarOModificarLicencia(licencia, UsuarioLogeado.Hash);
 
-                    if ((exitoso) && (this._agregar == false))
+                    if ((!exitoso.Equals(null)) && (this._agregar == false))
                         this.Navegar(new GestionarLicenciaPatentes(licencia));
-                    else if ((exitoso) && (this._agregar == true))
+                    else if ((!exitoso.Equals(null)) && (this._agregar == true))
+                    {
+                        licencia.Id = exitoso.Value;
                         this.Navegar(new GestionarLicenciaPatentes(licencia));
+                    }
                     else
                         this.Navegar(Recursos.MensajesConElUsuario.ErrorAlGenerarTraspaso, true);
                 }

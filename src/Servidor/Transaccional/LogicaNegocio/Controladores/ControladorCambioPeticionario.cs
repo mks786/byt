@@ -49,7 +49,7 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
         /// <param name="cambioPeticionario">CambioPeticionario a modificar</param>
         /// <param name="hash">Hash del CambioPeticionario que va a realizar la operacion</param>
         /// <returns>True si la modificación fue exitosa, en caso contrario False</returns>
-        public static bool InsertarOModificar(CambioPeticionario cambioPeticionario, int hash)
+        public static bool InsertarOModificar(ref CambioPeticionario cambioPeticionario, int hash)
         {
             bool exitoso = false;
 

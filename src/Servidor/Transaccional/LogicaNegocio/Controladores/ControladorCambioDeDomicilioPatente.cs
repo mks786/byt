@@ -49,7 +49,7 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
         /// <param name="cambioDeDomicilio">CambioDeDomicilioPatente a modificar</param>
         /// <param name="hash">Hash del CambioDeDomicilioPatente que va a realizar la operacion</param>
         /// <returns>True si la modificación fue exitosa, en caso contrario False</returns>
-        public static bool InsertarOModificar(CambioDeDomicilioPatente cambioDeDomicilio, int hash)
+        public static bool InsertarOModificar(ref CambioDeDomicilioPatente cambioDeDomicilio, int hash)
         {
             bool exitoso = false;
 
