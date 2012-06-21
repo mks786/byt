@@ -23,7 +23,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
         private static PaginaPrincipal _paginaPrincipal = PaginaPrincipal.ObtenerInstancia;
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
-        private bool _precargada;
+        private bool _precargada = false;
         private Asociado _asociadoAFiltrar; //Asociado que es pasado a esta ventana para filtrar directamente
         private object _ventanaAVolver; //Asociado que es pasado a esta ventana para filtrar directamente
 
@@ -47,9 +47,13 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
                 #endregion
 
                 this._ventana = ventana;
-                _precargada = asociado.Equals(null) ? false : true;
-                _asociadoAFiltrar = (Asociado)asociado;
-                _ventanaAVolver = ventanaAVolver;
+                if (null != asociado)
+                {
+                    _precargada = true;
+                    _asociadoAFiltrar = (Asociado)asociado;
+                    _ventanaAVolver = ventanaAVolver;
+                }
+
                 this._cartaServicios = (ICartaServicios)Activator.GetObject(typeof(ICartaServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["CartaServicios"]);
                 this._asociadoServicios = (IAsociadoServicios)Activator.GetObject(typeof(IAsociadoServicios),
@@ -210,6 +214,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
 
                 if (filtroValido != 0)
                 {
+                    this._cartas = new List<Carta>();
                     this._cartas = this._cartaServicios.ObtenerCartasFiltro(cartaAuxiliar);
                     this._ventana.Resultados = this._cartas;
                     this._ventana.TotalHits = this._cartas.Count.ToString();
