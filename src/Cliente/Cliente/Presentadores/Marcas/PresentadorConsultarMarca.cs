@@ -1035,6 +1035,13 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                         this._ventana.IdInteresadoDatos = ((Interesado)this._ventana.InteresadoSolicitud).Id.ToString();
                         this._ventana.InteresadoPaisSolicitud = interesadoAux.Pais != null ? interesadoAux.Pais.NombreEspanol : "";
                         this._ventana.InteresadoCiudadSolicitud = interesadoAux.Ciudad != null ? interesadoAux.Ciudad : "";
+
+                        Poder poderAux = new Poder(int.MinValue);
+
+                        this._ventana.PoderDatos = null;
+                        this._ventana.PoderSolicitud = null;
+                        this._ventana.IdPoderDatos = "";
+                        this._ventana.IdPoderSolicitud = "";
                     }
                     else
                     {

@@ -198,8 +198,13 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                     _patente = this._patenteServicios.ConsultarPatenteConTodo((Patente)this._ventana.Patente);
                     this._ventana.Patente = _patente;
 
-                    DateTime fechaTerminoAux = (DateTime)((Patente)this._ventana.Patente).FechaTermino;
-                    this._ventana.FechaTermino = fechaTerminoAux.ToShortDateString();
+                    DateTime fechaTerminoAux = null != ((Patente)this._ventana.Patente).FechaTermino ? (DateTime)((Patente)this._ventana.Patente).FechaTermino
+                        : DateTime.MinValue;
+
+                    if (fechaTerminoAux != DateTime.MinValue)
+                        this._ventana.FechaTermino = fechaTerminoAux.ToShortDateString();
+                    else
+                        this._ventana.FechaTermino = "";
 
                     InfoAdicional infoAdicional = new InfoAdicional("P." + _patente.Id);
 
@@ -328,6 +333,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                     ((Patente)this._ventana.Patente).Memorias = this._memoriaServicios.ConsultarMemoriasPorPatente(((Patente)this._ventana.Patente));
 
                     _patente.Fechas = this._patenteServicios.ConsultarFechasPorPatente(((Patente)this._ventana.Patente));
+
+                    CalcularDuracion();
 
                     if (null != _patente.Fechas && _patente.Fechas.Count != 0)
                         this._ventana.PintarFechasDatos();
@@ -484,6 +491,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
             #endregion
 
             Patente patente = (Patente)this._ventana.Patente;
+
             if (_agregar) { patente.Operacion = "CREATE"; }
             else { patente.Operacion = "MODIFY"; }
 
@@ -1983,6 +1991,29 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                 EtiquetaMarca detalleEtiqueta = new EtiquetaMarca(ConfigurationManager.AppSettings["RutaImagenesDePatentes"] + patenteAux.Id + ".jpg", patenteAux.Descripcion);
                 detalleEtiqueta.ShowDialog();
 
+            }
+        }
+
+        public void CalcularDuracion()
+        {
+            int duracionAux = 0;
+            
+            if (((Patente)this._ventana.Patente).FechaTermino != null)
+            {
+                if (((Patente)this._ventana.Patente).FechaRegistro != null)
+                {
+                    duracionAux = TimeSpan.Parse((((Patente)this._ventana.Patente).FechaTermino - 
+                        ((Patente)this._ventana.Patente).FechaRegistro).ToString()).Days;
+                    this._ventana.Duracion = duracionAux.ToString();
+                }
+                else
+                {
+                    
+                    duracionAux = TimeSpan.Parse((((Patente)this._ventana.Patente).FechaTermino -
+                        ((Patente)this._ventana.Patente).FechaInscripcion).ToString()).Days;
+                    this._ventana.Duracion = duracionAux.ToString();
+                }
+               
             }
         }
 

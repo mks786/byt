@@ -331,7 +331,7 @@
                         </Grid>
 
                         <Label Grid.Column="8" Grid.Row="4" VerticalAlignment="Center" HorizontalContentAlignment="Right">
-                            <TextBlock Text="{x:Static recurso:Etiquetas.lblCorresponsal}"/>
+                            <TextBlock Text="{x:Static recurso:Etiquetas.lblCorrespondencia}"/>
                         </Label>
                         <Grid Grid.Column="9" Grid.Row="4" Grid.ColumnSpan="1">
                             <Grid.ColumnDefinitions>
@@ -351,7 +351,7 @@
                             </Grid.RowDefinitions>
 
                             <custom:ByTTextBox IsReadOnly="True" Grid.Column="0" Grid.Row="1" Name="_txtIdCartaOrden" VerticalAlignment="Center"
-                         MaxLength="255" Margin="0,0,5,0" IsEnabled="False" MouseDoubleClick="_txtIdCartaOrden_MouseDoubleClick" Text="{Binding Path=Corresponsal.Id}"></custom:ByTTextBox>
+                         MaxLength="255" Margin="0,0,5,0" IsEnabled="False" MouseDoubleClick="_txtIdCartaOrden_MouseDoubleClick" Text="{Binding Path=Carta.Id}"></custom:ByTTextBox>
 
                             <Label Name="_lblIdCarta" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Center" Visibility="Collapsed">
                                 <TextBlock Text="{x:Static recurso:Etiquetas.lblId}"/>

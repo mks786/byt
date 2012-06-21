@@ -11,7 +11,7 @@
     <property name="FechaCorreo" type="string" column="FECHA_COR"/>
     <property name="FechaIngreso" type="DateTime" column="FECHA_ING"/>
     <property name="Fecha" type="string" column="FECHA"/>
-    <property name="Cuerpo" type="string" column="CUERPO"/>
+    <property name="Cuerpo" type="AnsiString" column="CUERPO"/>
     <property name="Status" type="char" column="STATUS"/>
     <property name="NRelacion" type="int" column="NRELACION"/>
     <property name="TipoEmail" type="char" column="TIPO_EMAIL"/>

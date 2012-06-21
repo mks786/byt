@@ -214,7 +214,7 @@
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblEntre}"/>
                         </Label>
                         <custom:ByTTextBox Text="" IsEnabled="False" MaxLength="255" Grid.Column="0" Grid.Row="1" Name="_txtIdInteresadoEntre" VerticalAlignment="Center" 
-                         Grid.ColumnSpan="3" MouseDoubleClick="_txtInteresadoEntre_MouseDoubleClick" IsReadOnly="True" IsTabStop="False" Margin="45,3,0,3" BorderBrush="LightGreen"></custom:ByTTextBox>
+                         Grid.ColumnSpan="1" MouseDoubleClick="_txtInteresadoEntre_MouseDoubleClick" IsReadOnly="True" IsTabStop="False" Margin="45,3,5,3" BorderBrush="LightGreen"></custom:ByTTextBox>
 
                         <custom:ByTTextBox Text="{Binding Path=Nombre}" IsEnabled="False" MaxLength="255" Grid.Column="1" Grid.Row="1" Name="_txtNombreInteresadoEntre" VerticalAlignment="Center" 
                          Grid.ColumnSpan="2" MouseDoubleClick="_txtInteresadoEntre_MouseDoubleClick" IsReadOnly="True" IsTabStop="False" BorderBrush="LightGreen"></custom:ByTTextBox>
@@ -343,8 +343,11 @@
             <Label Grid.Column="0" Grid.Row="1">
                 <TextBlock Text="{x:Static recurso:Etiquetas.lblSobreviviente}"/>
             </Label>
-                        <custom:ByTTextBox Text="" IsEnabled="False" MaxLength="255" Grid.Column="0" Grid.Row="1" Name="_txtIdInteresadoSobreviviente" VerticalAlignment="Center" 
-                         Grid.ColumnSpan="3" MouseDoubleClick="_txtInteresadoSobreviviente_MouseDoubleClick" IsReadOnly="True" IsTabStop="False" Margin="45,3,0,3" BorderBrush="LightGreen"></custom:ByTTextBox>
+                    
+            <custom:ByTTextBox Text="" IsEnabled="False" MaxLength="255" Grid.Column="0" Grid.Row="1" Name="_txtIdInteresadoSobreviviente" VerticalAlignment="Center" 
+                        Grid.ColumnSpan="1" MouseDoubleClick="_txtInteresadoSobreviviente_MouseDoubleClick" IsReadOnly="True" IsTabStop="False" Margin="45,3,5,3" BorderBrush="LightGreen"></custom:ByTTextBox>
+            
+            
             <custom:ByTTextBox Text="{Binding Path=Nombre}" IsEnabled="False" MaxLength="255" Grid.Column="1" Grid.Row="1" Name="_txtNombreInteresadoSobreviviente" VerticalAlignment="Center" 
                          Grid.ColumnSpan="2" MouseDoubleClick="_txtInteresadoSobreviviente_MouseDoubleClick" IsReadOnly="True" IsTabStop="False" BorderBrush="LightGreen"></custom:ByTTextBox>
 

@@ -162,6 +162,8 @@ namespace Trascend.Bolet.Cliente.Contratos.Patentes
 
         string FechaTermino { get; set; }
 
+        string Duracion { get; set; }
+
         void PintarAsociado(string tipo);
 
         void PintarDisenoDatos();

@@ -509,6 +509,12 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
             set { this._txtFechaRenovacionDatos.Text = value; }
         }
 
+        public string Duracion
+        {
+            get { return this._txtDuracion.Text; }
+            set { this._txtDuracion.Text = value; }
+        }
+
         public void PintarInventoresDatos()
         {
             this._btnInventoresDatos.Background = Brushes.LightGreen;
@@ -680,6 +686,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
                 this._txtOrdenDatos.IsEnabled = value;
                 this._txtAbandonoDatos.IsEnabled = value;
                 this._txtAnualidadDatos.IsEnabled = value;
+                this._txtFechaRenovacionDatos.IsEnabled = value;
+                this._txtDuracion.IsEnabled = value;
                 
                 this._txtComentarioDatos.IsEnabled = value;
                 this._txtCodigoRegistroDatos.IsEnabled = value;
