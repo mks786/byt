@@ -25,7 +25,7 @@ namespace Trascend.Bolet.Comandos.Comandos.ComandosPoder
                 #endregion
 
                 IDaoPoder dao = FabricaDaoBase.ObtenerFabricaDao().ObtenerDaoPoder();
-                this.Receptor = new Receptor<IList<Poder>>(dao.ObtenerTodos());
+                this.Receptor = new Receptor<IList<Poder>>(dao.ObtenerTodos("Id","Desc"));
 
                 #region trace
                 if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
