@@ -201,6 +201,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
 
                     CargarPoder();
 
+                    CargarId();
+
                     LlenarListasPoderes((Fusion)this._ventana.Fusion);
 
                     ValidarInteresado();
@@ -351,6 +353,37 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
             if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
                 logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
+
+        }
+
+        /// <summary>
+        /// Método que carga los Id de la cesion
+        /// </summary>
+        private void CargarId()
+        {
+
+            if ((Marca)this._ventana.Marca != null)
+            {
+                this._ventana.IdMarca = (((Marca)this._ventana.MarcaFiltrada).Id).ToString();
+            }
+
+            if (null != ((Fusion)this._ventana.Fusion).InteresadoEntre)
+            {
+                this._ventana.InteresadoEntre = ((Fusion)this._ventana.Fusion).InteresadoEntre;
+                this._ventana.IdInteresadoEntre = ((Fusion)this._ventana.Fusion).InteresadoEntre.Id.ToString();
+            }
+
+            if (null != ((Fusion)this._ventana.Fusion).InteresadoSobreviviente)
+            {
+                this._ventana.InteresadoSobreviviente = ((Fusion)this._ventana.Fusion).InteresadoSobreviviente;
+                this._ventana.IdInteresadoSobreviviente = ((Fusion)this._ventana.Fusion).InteresadoSobreviviente.Id.ToString();
+            }
+            if (null != ((Fusion)this._ventana.Fusion).Agente)
+            {
+                this._ventana.AgenteApoderado = ((Fusion)this._ventana.Fusion).Agente;
+                this._ventana.IdApoderado = ((Fusion)this._ventana.Fusion).Agente.Id;
+            }
+         
 
         }
 
@@ -986,6 +1019,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
                     }
                     if (null != ((Marca)this._ventana.Marca).Agente)
                     {
+                        this._ventana.AgenteApoderado = ((Marca)this._ventana.Marca).Agente;
                         this._ventana.IdApoderado = ((Marca) this._ventana.Marca).Agente.Id.ToString();
                     }
                     this._ventana.Poder = ((Marca)this._ventana.Marca).Poder;

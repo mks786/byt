@@ -216,6 +216,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Licencias
 
                     CargarPoder("Licenciatario");
 
+                    CargarId();
+
                     LlenarListasPoderes((Licencia)this._ventana.Licencia);
 
                     ValidarLicenciante();
@@ -283,6 +285,45 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Licencias
             #endregion
 
         }
+
+        /// <summary>
+        /// Método que carga los Id de la Licencia
+        /// </summary>
+        private void CargarId()
+        {
+
+            if ((Marca)this._ventana.Marca != null)
+            {
+                this._ventana.IdMarca = (((Marca)this._ventana.MarcaFiltrada).Id).ToString();
+            }
+
+            if (null != ((Licencia)this._ventana.Licencia).InteresadoLicenciante)
+            {
+                this._ventana.InteresadoLicenciante = ((Licencia)this._ventana.Licencia).InteresadoLicenciante;
+                this._ventana.IdLicenciante = ((Licencia)this._ventana.Licencia).InteresadoLicenciante.Id.ToString();
+            }
+
+            if (null != ((Licencia)this._ventana.Licencia).InteresadoLicenciatario)
+            {
+                this._ventana.InteresadoLicenciatario = ((Licencia)this._ventana.Licencia).InteresadoLicenciatario;
+                this._ventana.IdLicenciatario = ((Licencia)this._ventana.Licencia).InteresadoLicenciatario.Id.ToString();
+            }
+            if (null != ((Licencia)this._ventana.Licencia).AgenteLicenciante)
+            {
+                this._ventana.ApoderadoLicenciante = ((Licencia)this._ventana.Licencia).AgenteLicenciante;
+                this._ventana.IdLicenciante = ((Licencia)this._ventana.Licencia).AgenteLicenciante.Id;
+            }
+            if (null != ((Licencia)this._ventana.Licencia).AgenteLicenciatario)
+            {
+                this._ventana.ApoderadoLicenciatario = ((Licencia)this._ventana.Licencia).AgenteLicenciatario;
+                this._ventana.IdLicenciatario = ((Licencia)this._ventana.Licencia).AgenteLicenciatario.Id;
+            }
+
+
+
+
+        }
+
 
         /// <summary>
         /// Método que carga los interesados implicados

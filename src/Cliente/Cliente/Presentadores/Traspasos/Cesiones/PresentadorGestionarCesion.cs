@@ -211,6 +211,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Cesiones
 
                     CargarPoder("Cesionario");
 
+                    CargarId();
+
                     LlenarListasPoderes((Cesion)this._ventana.Cesion);
 
                     ValidarCedente();
@@ -266,6 +268,45 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Cesiones
             boletines.Insert(0, primerBoletin);
             this._ventana.Boletines = boletines;
         }
+
+        /// <summary>
+        /// Método que carga los Id de la cesion
+        /// </summary>
+        private void CargarId()
+        {
+
+            if ((Marca)this._ventana.Marca != null)
+            {
+                this._ventana.IdMarca = (((Marca) this._ventana.MarcaFiltrada).Id).ToString();
+            }
+
+            if (null != ((Cesion)this._ventana.Cesion).Cedente)
+                {
+                    this._ventana.InteresadoCedente = ((Cesion)this._ventana.Cesion).Cedente;
+                    this._ventana.IdCedente = ((Cesion)this._ventana.Cesion).Cedente.Id.ToString();
+                }
+
+            if (null != ((Cesion)this._ventana.Cesion).Cesionario)
+            {
+                this._ventana.InteresadoCesionario = ((Cesion)this._ventana.Cesion).Cesionario;
+                this._ventana.IdCesionario = ((Cesion)this._ventana.Cesion).Cesionario.Id.ToString();
+            }
+            if (null != ((Cesion)this._ventana.Cesion).AgenteCedente)
+                {
+                    this._ventana.ApoderadoCedente = ((Cesion)this._ventana.Cesion).AgenteCedente;
+                    this._ventana.IdApoderadoCedente = ((Cesion)this._ventana.Cesion).AgenteCedente.Id;
+                }
+            if (null != ((Cesion)this._ventana.Cesion).AgenteCesionario)
+            {
+                this._ventana.ApoderadoCesionario = ((Cesion)this._ventana.Cesion).AgenteCesionario;
+                this._ventana.IdApoderadoCesionario= ((Cesion)this._ventana.Cesion).AgenteCesionario.Id;
+            }
+           
+
+            
+
+        }
+
 
         /// <summary>
         /// Método que carga el interesado
