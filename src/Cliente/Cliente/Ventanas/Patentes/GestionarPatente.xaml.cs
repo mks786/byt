@@ -743,8 +743,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
 
                 #region Botones
 
-                this._btnAceptar.IsEnabled = value;
-                this._btnCancelar.IsEnabled = value;
+                //this._btnAceptar.IsEnabled = value;
+                //this._btnCancelar.IsEnabled = value;
 
                 //Solicitud
                 this._btnConsultarAsociadoSolicitud.IsEnabled = value;
