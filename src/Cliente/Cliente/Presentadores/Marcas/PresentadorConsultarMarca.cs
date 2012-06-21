@@ -1567,7 +1567,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
 
                 if (_poderesInterseccion.Count() == 0)
                     this._ventana.Mensaje(Recursos.MensajesConElUsuario.ErrorInteresadoNoPoseePoderesConAgente,0);
-
+                else
+                {
+                    this._ventana.mostrarLstPoderSolicitud();
+                }
 
                 _poderesInterseccion.Insert(0,new Poder(int.MinValue));
             }

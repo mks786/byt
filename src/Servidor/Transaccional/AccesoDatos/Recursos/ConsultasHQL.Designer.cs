@@ -727,7 +727,7 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to m.BoletinOrdenPub.Id = &apos;{0}&apos;.
+        ///   Looks up a localized string similar to m.BoletinOrdenPublicacion.Id = &apos;{0}&apos;.
         /// </summary>
         public static string FiltroObtenerMarcaBoletinOrdenPub {
             get {

@@ -29,6 +29,8 @@ namespace Trascend.Bolet.Cliente.Contratos.Marcas
 
         string NumPoderSolicitud { get; set; }
 
+        string Sapi { get; set; }
+
         string IdInteresadoSolicitudFiltrar { get; }
 
         string IdInteresadoSolicitud { set; }
@@ -174,6 +176,10 @@ namespace Trascend.Bolet.Cliente.Contratos.Marcas
         void PintarAsociado(string tipo);
 
         void ConvertirEnteroMinimoABlanco();
+
+        void mostrarLstPoderSolicitud();
+
+        void ocultarLstPoderSolicutud();
 
         void Mensaje(string mensaje, int opcion);
 

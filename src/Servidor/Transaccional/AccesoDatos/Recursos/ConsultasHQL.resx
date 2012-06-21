@@ -713,7 +713,7 @@
     <value>Select p from Poder p where </value>
   </data>
   <data name="FiltroObtenerMarcaBoletinOrdenPub" xml:space="preserve">
-    <value>m.BoletinOrdenPub.Id = '{0}'</value>
+    <value>m.BoletinOrdenPublicacion.Id = '{0}'</value>
     <comment>Filtra marca por Boletin orden Pub</comment>
   </data>
   <data name="FiltroObtenerMarcaCorresponsal" xml:space="preserve">

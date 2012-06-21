@@ -180,7 +180,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 this._ventana.DescripcionCorresponsalDatos = marca.Corresponsal != null ? marca.Corresponsal.Descripcion : "";
 
                 this._ventana.NumPoderDatos = marca.Poder != null ? marca.Poder.NumPoder : "";
-                this._ventana.NumPoderSolicitud = marca.Poder != null ? marca.Poder.NumPoder : "";
+                this._ventana.NumPoderSolicitud = marca.Poder != null ? marca.Poder.Id.ToString() : "";
+                this._ventana.Sapi = marca.Poder != null ? marca.Poder.NumPoder : "";
 
                 this._ventana.Sector = this.BuscarSector((IList<ListaDatosDominio>)this._ventana.Sectores, marca.Sector);
                 this._ventana.TipoReproduccion = this.BuscarTipoReproduccion((IList<ListaDatosDominio>)this._ventana.TipoReproducciones, marca.Tipo);
@@ -786,7 +787,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                     this._ventana.IdInteresadoDatos = ((Interesado)this._ventana.InteresadoSolicitud).Id.ToString();
                     this._ventana.InteresadoPaisSolicitud = interesadoAux.Pais != null ? interesadoAux.Pais.NombreEspanol : "";
                     this._ventana.InteresadoCiudadSolicitud = interesadoAux.Ciudad != null ? interesadoAux.Ciudad : "";
+                    
+
                 }
+                
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -1214,11 +1218,13 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
 
                 if ((Poder)this._ventana.PoderSolicitud != null)
                 {
-                    this._ventana.NumPoderSolicitud = ((Poder)this._ventana.PoderSolicitud).NumPoder;
-                    this._ventana.PoderDatos = (Poder)this._ventana.PoderSolicitud;
                     this._ventana.NumPoderDatos = ((Poder)this._ventana.PoderSolicitud).NumPoder;
+                    this._ventana.PoderDatos = (Poder)this._ventana.PoderSolicitud;
+                    this._ventana.NumPoderSolicitud = ((Poder)this._ventana.PoderSolicitud).Id.ToString();
+                    this._ventana.Sapi = ((Poder)this._ventana.PoderSolicitud).NumPoder;
+                    
                 }
-
+                this._ventana.ConvertirEnteroMinimoABlanco();
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
                     logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
@@ -1247,7 +1253,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 {
                     this._ventana.NumPoderDatos = ((Poder)this._ventana.PoderDatos).NumPoder;
                     this._ventana.PoderSolicitud = (Poder)this._ventana.PoderDatos;
-                    this._ventana.NumPoderSolicitud = ((Poder)this._ventana.PoderDatos).NumPoder;
+                    this._ventana.NumPoderSolicitud = ((Poder)this._ventana.PoderDatos).Id.ToString();
+                    this._ventana.Sapi = ((Poder)this._ventana.PoderDatos).NumPoder;
                 }
 
                 #region trace
@@ -1297,9 +1304,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             CargarPoderesEntreInteresadoAgente();
 
             Marca marca = null != this._ventana.Marca ? (Marca)this._ventana.Marca : new Marca();
-
-            this._ventana.PoderesSolicitud = this._poderesInterseccion;
-            this._ventana.PoderesDatos = this._poderesInterseccion;
+            if (this._poderesInterseccion.Count != 0)
+            {
+                this._ventana.PoderesSolicitud = this._poderesInterseccion;
+                this._ventana.PoderesDatos = this._poderesInterseccion;
+            }
             Mouse.OverrideCursor = null;
 
 
@@ -1324,7 +1333,13 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                     .ObtenerPoderesEntreAgenteEInteresado((Agente)this._ventana.Agente, (Interesado)this._ventana.InteresadoSolicitud);
 
                 if (_poderesInterseccion.Count() == 0)
+                {
                     this._ventana.Mensaje(Recursos.MensajesConElUsuario.ErrorInteresadoNoPoseePoderesConAgente, 0);
+                }
+                else
+                {
+                    this._ventana.mostrarLstPoderSolicitud();
+                }
 
                 _poderesInterseccion.Insert(0, new Poder(int.MinValue));
             }

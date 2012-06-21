@@ -84,6 +84,24 @@ namespace Trascend.Bolet.Cliente.Ventanas.Renovaciones
             set { _dpkFechaRenovacion = value; }
     }
 
+        public string IdMarca
+        {
+            get { return this._txtIdMarca.Text; }
+            set { this._txtIdMarca.Text = value; }
+        }
+
+        public string IdInteresado
+        {
+            get { return this._txtIdInteresado.Text; }
+            set { this._txtIdInteresado.Text = value; }
+        }
+
+        public string IdAgente
+        {
+            get { return this._txtIdAgente.Text; }
+            set { this._txtIdAgente.Text = value; }
+        }
+
         public object Marca
         {
             get { return this._gridDatosMarca.DataContext; }
@@ -135,6 +153,10 @@ namespace Trascend.Bolet.Cliente.Ventanas.Renovaciones
                 this._txtNombreMarcaFiltrar.IsEnabled = value;
                 this._btnConsultarMarca.IsEnabled = value;
                 this._dpkFechaRenovacion.IsEnabled = value;
+
+                this._txtIdMarca.IsEnabled = value;
+                this._txtIdInteresado.IsEnabled = value;
+                this._txtIdAgente.IsEnabled = value;
 
                // this._txtFechaProximaRenovacionMarca.IsEnabled = value;
                // this._txtFechaRegistro.IsEnabled = value;
@@ -419,6 +441,19 @@ namespace Trascend.Bolet.Cliente.Ventanas.Renovaciones
                 if (int.Parse(this.IdPoder) == int.MinValue)
                     this.IdPoder = "";
             }
+
+            if (!this.IdInteresado.Equals(""))
+            {
+                if (int.Parse(this.IdInteresado) == int.MinValue)
+                    this.IdInteresado = "";
+            }
+
+            if (!this.IdMarca.Equals(""))
+            {
+                if (int.Parse(this.IdMarca) == int.MinValue)
+                    this.IdMarca = "";
+            }
+
         }
 
         #region Eventos Marcas
@@ -479,6 +514,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Renovaciones
         private void GestionarVisibilidadDatosDeMarca(object value)
         {
             this._txtNombreMarca.Visibility = (System.Windows.Visibility)value;
+            this._txtIdMarca.Visibility = (System.Windows.Visibility)value;
             this._chkEtiqueta.Visibility = (System.Windows.Visibility)value;
             this._lblNoRegistro.Visibility = (System.Windows.Visibility)value;
             this._txtNumRegistro.Visibility = (System.Windows.Visibility)value;
@@ -573,6 +609,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Renovaciones
         private void GestionarVisibilidadDatosDeInteresado(object value)
         {
             this._txtNombreInteresado.Visibility = (System.Windows.Visibility)value;
+            this._txtIdInteresado.Visibility = (System.Windows.Visibility)value;
             this._txtPaisInteresado.Visibility = (System.Windows.Visibility)value;
             this._txtCiudadInteresado.Visibility = (System.Windows.Visibility)value;
         }
@@ -655,6 +692,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Renovaciones
         private void GestionarVisibilidadDatosDeAgente(object value)
         {
             this._txtNombreAgente.Visibility = (System.Windows.Visibility)value;
+            this._txtIdAgente.Visibility = (System.Windows.Visibility)value;
         }
 
         public void GestionarBotonConsultarAgente(bool value)

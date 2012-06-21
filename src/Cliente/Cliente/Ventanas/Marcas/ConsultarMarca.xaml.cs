@@ -1460,7 +1460,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
         }
 
 
-        private void mostrarLstPoderSolicitud()
+        public void mostrarLstPoderSolicitud()
         {
             this._txtPoderSolicitud.Visibility = System.Windows.Visibility.Collapsed;
             this._lstPoderesSolicitud.Visibility = System.Windows.Visibility.Visible;
@@ -1749,6 +1749,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
         private void _btnRenovacion_Click(object sender, RoutedEventArgs e)
         {
             this._presentador.IrRenovacionDeMarca();
+        }
+
+        private void _cbxAgente_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            ocultarLstPoderSolicutud();
         }
 
 

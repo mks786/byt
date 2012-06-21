@@ -213,6 +213,8 @@ namespace Trascend.Bolet.Cliente.Contratos.Marcas
 
         void Mensaje(string tipo, int mensaje);
 
+        void mostrarLstPoderSolicitud();
+
         GridViewColumnHeader CurSortCol { get; set; }
 
         SortAdorner CurAdorner { get; set; }

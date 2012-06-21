@@ -385,6 +385,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
             }
          
 
+
         }
 
 

@@ -551,7 +551,7 @@
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblAgente}"/>
                         </Label>
                         <ComboBox IsEnabled="False" Grid.Column="5" Grid.Row="13"  Name="_cbxAgente" Height="20" Grid.ColumnSpan="2"
-                              ItemsSource="{Binding}" DisplayMemberPath="Nombre" SelectedIndex="0">
+                              ItemsSource="{Binding}" DisplayMemberPath="Nombre" SelectionChanged="_cbxAgente_SelectionChanged" SelectedIndex="0">
                         </ComboBox>
 
                         <Label Grid.Column="7" Grid.Row="13" VerticalAlignment="Center" HorizontalContentAlignment="Right">

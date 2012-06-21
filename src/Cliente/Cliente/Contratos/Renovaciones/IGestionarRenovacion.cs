@@ -9,7 +9,13 @@ namespace Trascend.Bolet.Cliente.Contratos.Renovaciones
 
         string IdAsociadoFiltrar { get; }
 
-        string NombreAsociadoFiltrar { get; }       
+        string NombreAsociadoFiltrar { get; }
+
+        string IdMarca{ set; get; }
+
+        string IdInteresado { set; get; }
+
+        string IdAgente { set; get; }
 
         #region Marcas
 

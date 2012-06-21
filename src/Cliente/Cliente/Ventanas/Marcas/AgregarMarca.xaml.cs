@@ -48,6 +48,12 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             get { return this._txtClaseInternacionalSolicitud.Text; }
             set { this._txtClaseInternacionalSolicitud.Text = value; }
         }
+        
+         public string Sapi
+        {
+            get { return this._txtNumSapi.Text; }
+            set { this._txtNumSapi.Text = value; }
+        }
 
         public string IdNacional
         {
@@ -593,6 +599,13 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
 
         public void ConvertirEnteroMinimoABlanco()
         {
+
+            if (!this.NumPoderSolicitud.Equals(int.MinValue))
+            {
+                this.NumPoderSolicitud = "";
+                
+            }
+
             #region Corresponsal
 
             if (null != this.CorresponsalDatos)
@@ -738,7 +751,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
         }
 
         
-        private void mostrarLstPoderSolicitud()
+        public void mostrarLstPoderSolicitud()
         {
             this._lstPoderesSolicitud.ScrollIntoView(this.PoderSolicitud);
             this._txtPoderSolicitud.Visibility = System.Windows.Visibility.Collapsed;
@@ -747,7 +760,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
         }
 
         
-        private void ocultarLstPoderSolicutud()
+        public void ocultarLstPoderSolicutud()
         {
             this._presentador.CambiarPoderSolicitud();
             this._lstPoderesSolicitud.Visibility = System.Windows.Visibility.Collapsed;
@@ -1016,13 +1029,15 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
         {
             if (!this._poderesCargados)
                 this._presentador.CargarPoderes();
+           
+            
 
 
             ocultarLstCorresponsalSolicitud();
             ocultarLstAsociadoSolicitud();
             ocultarLstInteresadoSolicitud();
 
-            mostrarLstPoderSolicitud();
+           // mostrarLstPoderSolicitud();
         }
 
         
@@ -1268,6 +1283,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
         private void _cbxTipoClaseNacional_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
+        }
+
+        private void _cbxAgenteSolicitud_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            this.ocultarLstPoderSolicutud();
         }
 
 

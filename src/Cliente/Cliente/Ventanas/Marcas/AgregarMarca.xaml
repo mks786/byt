@@ -487,7 +487,7 @@
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblAgente}"/>
                         </Label>
                         <ComboBox  Grid.Column="5" Grid.Row="13"  Name="_cbxAgenteSolicitud" Height="20" Grid.ColumnSpan="2"
-                              ItemsSource="{Binding}" DisplayMemberPath="Nombre" SelectedIndex="0">
+                              ItemsSource="{Binding}" SelectionChanged="_cbxAgenteSolicitud_SelectionChanged" DisplayMemberPath="Nombre" SelectedIndex="0">
                         </ComboBox>
 
                         <Label Grid.Column="7" Grid.Row="13" VerticalAlignment="Center" HorizontalContentAlignment="Right">
@@ -534,7 +534,7 @@
                         </Grid>
 
                         <Label Grid.Column="10" Grid.Row="13" VerticalAlignment="Center" HorizontalContentAlignment="Right">
-                            <TextBlock Text="{x:Static recurso:Etiquetas.lblCodigoFomento}"/>
+                            <TextBlock Text="{x:Static recurso:Etiquetas.lblSapi}"/>
                         </Label>
                         <custom:ByTTextBox  MaxLength="255" Grid.Column="11" Grid.Row="13" Name="_txtNumSapi" VerticalAlignment="Center"></custom:ByTTextBox>
 

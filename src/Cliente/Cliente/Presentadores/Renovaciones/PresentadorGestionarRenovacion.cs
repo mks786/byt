@@ -162,8 +162,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Renovaciones
 
                     CargarPoder();
 
-                    
-                                      
+                    CargarId();
+
+
 
                 }
                 else
@@ -179,8 +180,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Renovaciones
 
                     ActualizarFechaProxima();
 
+                    this._ventana.ConvertirEnteroMinimoABlanco();
                 }
-
+                
                 this._ventana.FocoPredeterminado();
 
                 #region trace
@@ -564,6 +566,33 @@ namespace Trascend.Bolet.Cliente.Presentadores.Renovaciones
             this._ventana.AgenteFiltrado = primerAgente;               
         }
 
+        /// <summary>
+        /// Método que carga los Id de la cesion
+        /// </summary>
+        private void CargarId()
+        {
+
+            if ((Marca)this._ventana.Marca != null)
+            {
+                this._ventana.IdMarca = (((Marca)this._ventana.MarcaFiltrada).Id).ToString();
+            }
+
+            if (null != ((Renovacion)this._ventana.Renovacion).Interesado)
+            {
+                this._ventana.Interesado = ((Renovacion)this._ventana.Renovacion).Interesado;
+                this._ventana.IdInteresado = ((Renovacion)this._ventana.Renovacion).Interesado.Id.ToString();
+            }
+
+            if (null != ((Renovacion)this._ventana.Renovacion).Agente)
+            {
+                this._ventana.Agente = ((Renovacion)this._ventana.Renovacion).Agente;
+                this._ventana.IdAgente = ((Renovacion)this._ventana.Renovacion).Agente.Id;
+            }
+            this._ventana.ConvertirEnteroMinimoABlanco();
+
+        }
+
+
         #region Marcas
 
         /// <summary>
@@ -685,6 +714,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Renovaciones
                 if (this._ventana.MarcaFiltrada != null)
                 {
                     this._ventana.Marca = this._ventana.MarcaFiltrada;
+                    this._ventana.IdMarca = ((Marca)this._ventana.MarcaFiltrada).Id.ToString();
                     this._ventana.NombreMarca = ((Marca)this._ventana.MarcaFiltrada).Descripcion;
                     this._marcas.RemoveAt(0);
                     this._marcas.Add((Marca)this._ventana.MarcaFiltrada);
@@ -720,11 +750,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Renovaciones
                         if (((Marca)this._ventana.MarcaFiltrada).Interesado != null)
                         {
                             this._ventana.Interesado = ((Marca)this._ventana.MarcaFiltrada).Interesado;
-                            ////this._ventana.NombreInteresado = ((Interesado) this._ventana.Interesado).Nombre;
-
-                            //if ((null != (Interesado)this._ventana.Interesado) && (((Interesado)this._ventana.Interesado).Id != int.MinValue))
-                            //    this._poderesInteresado = this._poderServicios.ConsultarPoderesPorInteresado(((Interesado)this._ventana.Interesado));
-
+                            this._ventana.IdInteresado = ((Marca)this._ventana.MarcaFiltrada).Interesado.Id.ToString();
+                         
                             IList<Interesado> listaAux = new List<Interesado>();
                             listaAux.Add(new Interesado(int.MinValue));
                             listaAux.Add(((Marca)this._ventana.MarcaFiltrada).Interesado);
@@ -757,10 +784,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Renovaciones
                         if (((Marca)this._ventana.MarcaFiltrada).Agente != null)
                         {
                             this._ventana.Agente = ((Marca)this._ventana.MarcaFiltrada).Agente;
-                            //this._ventana.NombreAgente = ((Agente) this._ventana.Agente).Nombre;
-                            //if ((null != (Agente)this._ventana.Agente) && !((Agente)this._ventana.Agente).Id.Equals(""))
-                            //    this._poderes = this._poderServicios.ConsultarPoderesPorAgente(((Agente)_ventana.Agente));
-
+                            this._ventana.IdAgente = ((Marca)this._ventana.MarcaFiltrada).Agente.Id;
+                          
                             IList<Agente> listaAux = new List<Agente>();
                             listaAux.Add(new Agente(""));
                             listaAux.Add((Agente)this._ventana.Agente);
@@ -800,6 +825,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Renovaciones
 
                 }
 
+                this._ventana.ConvertirEnteroMinimoABlanco();
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -1069,17 +1095,19 @@ namespace Trascend.Bolet.Cliente.Presentadores.Renovaciones
 
                             this._poderesInteresado = this._poderServicios.ConsultarPoderesPorInteresado(((Interesado)_ventana.InteresadoFiltrado));
                             this._poderesInteresado.Insert(0, primerPoder);
-                            this._ventana.PoderesFiltrados = this._poderesInteresado;
                             IList<Poder> poderes = this._poderesInteresado;
                             foreach (Poder poder in poderes)
                             {
-                                IList<Agente> ListaAgentes = this._agenteServicios.ObtenerAgentesDeUnPoder(poder);
-                                foreach (Agente agente in ListaAgentes)
+                                if (poder.Id != int.MinValue)
                                 {
-                                    primerPoder.MostrarAgentes += agente.Id + "-" + agente.Nombre + "\n";
+                                    IList<Agente> ListaAgentes = this._agenteServicios.ObtenerAgentesDeUnPoder(poder);
+                                    foreach (Agente agente in ListaAgentes)
+                                    {
+                                        poder.MostrarAgentes += agente.Id + "-" + agente.Nombre + "\n";
+                                    }
                                 }
                             }
-
+                            this._ventana.PoderesFiltrados = poderes;
                             this._ventana.PoderFiltrado = primerPoder;
 
                             this._poderesInteresado = this._poderServicios.ConsultarPoderesPorInteresado(((Interesado)_ventana.InteresadoFiltrado));
