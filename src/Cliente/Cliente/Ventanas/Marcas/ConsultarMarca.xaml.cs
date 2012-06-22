@@ -545,6 +545,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
 
         public string IdInteresadoSolicitud
         {
+            get { return this._txtIdInteresadoSolicitud.Text; }
             set { this._txtIdInteresadoSolicitud.Text = value; }
         }
 

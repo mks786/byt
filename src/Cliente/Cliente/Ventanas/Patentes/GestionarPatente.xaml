@@ -1095,8 +1095,8 @@
                                 <TextBlock Text="{x:Static recurso:Etiquetas.lblComentario}"/>
                             </Label>
                             <custom:ByTTextBox Grid.Column="7" Grid.Row="0" Grid.RowSpan="3" Name="_txtComentarioDatos" VerticalAlignment="Center"
-                                           Text="{Binding Path=Observacion}" Grid.ColumnSpan="4" Margin="0,5,0,0" IsEnabled="False"
-                                           MaxLength="280" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" AcceptsReturn="True"
+                                           Text="{Binding Path=Observacion}" Grid.ColumnSpan="4" Margin="0,5,0,0" IsEnabled="False" Width="200"
+                                           MaxLength="200" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" AcceptsReturn="True"
                                            Height="135" SpellCheck.IsEnabled="True"></custom:ByTTextBox>
 
                             <Label Grid.Column="0" Grid.Row="1" VerticalAlignment="Center" HorizontalContentAlignment="Right">

@@ -600,10 +600,22 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
         public void ConvertirEnteroMinimoABlanco()
         {
 
-            if (!this.NumPoderSolicitud.Equals(int.MinValue))
+            if (!this.NumPoderSolicitud.Equals(""))
             {
-                this.NumPoderSolicitud = "";
-                
+                if ((int.Parse(this.NumPoderSolicitud) == int.MinValue))
+                {
+                    this.NumPoderSolicitud = "";
+                    this.NumPoderDatos = "";
+                }
+            }
+
+            if (!this.NumPoderDatos.Equals(""))
+            {
+                if ((int.Parse(this.NumPoderDatos) == int.MinValue))
+                {
+                    this.NumPoderDatos = "";
+                    this.NumPoderSolicitud = "";
+                }
             }
 
             #region Corresponsal

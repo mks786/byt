@@ -331,7 +331,7 @@
                         </Grid>
 
                         <Label Grid.Column="8" Grid.Row="4" VerticalAlignment="Center" HorizontalContentAlignment="Right">
-                            <TextBlock Text="{x:Static recurso:Etiquetas.lblCorrespondencia}"/>
+                            <TextBlock Text="{x:Static recurso:Etiquetas.lblCartaOrden}"/>
                         </Label>
                         <Grid Grid.Column="9" Grid.Row="4" Grid.ColumnSpan="1">
                             <Grid.ColumnDefinitions>
@@ -1455,7 +1455,7 @@
                                   Name="_chkRenovacionTramitente" IsChecked="{Binding Path=BRenovacionOtroTramitante}"/>
                         
                         <Button IsEnabled="False" Grid.Column="8" Grid.Row="19" Grid.ColumnSpan="2" Grid.RowSpan="2" Name="_btnIntRenovacion" Margin="25,6,3,6">
-                            <TextBlock Name="_txbIntRenovacion" Text="{x:Static recurso:Etiquetas.btnNoRegistro}"/>
+                            <TextBlock Name="_txbIntRenovacion" Text="{x:Static recurso:Etiquetas.btnInstRenovacion}"/>
                         </Button>
                         <Button IsEnabled="False" Grid.Column="10" Grid.Row="19" Grid.ColumnSpan="1" Grid.RowSpan="2" Name="_btnRenovacion" Margin="3,6,3,6" Click="_btnRenovacion_Click">
                             <TextBlock Name="_txbRenovacion" Text="{x:Static recurso:Etiquetas.btnRenovacion}"/>

@@ -202,7 +202,7 @@
     <value>c.FechaIngreso between '{0}' and '{1}'</value>
   </data>
   <data name="CabeceraObtenerMarca" xml:space="preserve">
-    <value>Select m from Marca m left join fetch m.Asociado as asociado left join fetch m.Agente as agente left join fetch m.Corresponsal as corresponsal left join fetch m.Interesado as interesado left join fetch asociado.Pais as pais left join fetch asociado.Idioma as pais left join fetch m.BoletinConcesion as boletinC left join fetch m.BoletinPublicacion as boletinP left join fetch m.BoletinOrdenPublicacion as boletinO left join fetch m.Nacional as nacional left join fetch m.Internacional as internacional where </value>
+    <value>Select m from Marca m left join fetch m.Asociado as asociado left join fetch m.Agente as agente left join fetch m.Corresponsal as corresponsal left join fetch m.Interesado as interesado left join fetch asociado.Pais as pais left join fetch asociado.Idioma as idioma left join fetch m.BoletinConcesion as boletinC left join fetch m.BoletinPublicacion as boletinP left join fetch m.BoletinOrdenPublicacion as boletinO left join fetch m.Nacional as nacional left join fetch m.Internacional as internacional where </value>
     <comment>Cabecera del query para el filtro de marcas</comment>
   </data>
   <data name="FiltroObtenerMarcaDescripcion" xml:space="preserve">
@@ -763,5 +763,21 @@
   <data name="VerificarCartasPorAsociado" xml:space="preserve">
     <value>Select count(*) from Carta c where c.Asociado.Id = {0}</value>
     <comment>Verifica la existencia de cartas de un asociado</comment>
+  </data>
+  <data name="FiltroObtenerMarcaInstruccionesRenovacion" xml:space="preserve">
+    <value>m.Rev = '{0}'</value>
+    <comment>Filtro por Intrucción de renovación</comment>
+  </data>
+  <data name="FiltroObtenerMarcaNumeroCondiciones" xml:space="preserve">
+    <value>m.NumeroCondiciones = {0}</value>
+    <comment>Filtro por número de condiciones</comment>
+  </data>
+  <data name="FiltroObtenerMarcaRenovacionOtroTramitante" xml:space="preserve">
+    <value>m.Ter = '{0}'</value>
+    <comment>Filtro por renovación otro tramitante</comment>
+  </data>
+  <data name="CabeceraObtenerMarcaRecordatorio" xml:space="preserve">
+    <value>Select distinct(m.Id) from Marca m left join fetch m.Asociado as asociado left join fetch m.Agente as agente left join fetch m.Corresponsal as corresponsal left join fetch m.Interesado as interesado left join fetch asociado.Pais as pais left join fetch asociado.Idioma as idioma  where </value>
+    <comment>Cabecera para los recordatorio de marca</comment>
   </data>
 </root>

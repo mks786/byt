@@ -1321,6 +1321,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Error. La marca debe tener un interesado.
+        /// </summary>
+        internal static string ErrorSinInteresado {
+            get {
+                return ResourceManager.GetString("ErrorSinInteresado", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Es necesario agregar un Interesado actual.
         /// </summary>
         internal static string ErrorSinInteresadoActual {

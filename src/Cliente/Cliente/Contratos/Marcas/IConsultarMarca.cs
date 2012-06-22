@@ -29,7 +29,7 @@ namespace Trascend.Bolet.Cliente.Contratos.Marcas
 
         string IdInteresadoSolicitudFiltrar { get; }
 
-        string IdInteresadoSolicitud { set; }
+        string IdInteresadoSolicitud { get; set; }
 
         string IdInteresadoDatosFiltrar { get; }
 

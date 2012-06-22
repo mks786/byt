@@ -147,7 +147,7 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
 
                 #region Filtros Marca TYR
 
-                if ((null != marca.CodigoRegistro))
+                if ((null != marca.CodigoRegistro) && (!marca.CodigoRegistro.Equals("")))
                 {
                     if (variosFiltros)
                         filtro += " and ";
@@ -162,6 +162,30 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
                     string fecha = String.Format("{0:dd/MM/yy}", marca.FechaRegistro);
                     string fecha2 = String.Format("{0:dd/MM/yy}", marca.FechaRegistro.Value.AddDays(1));
                     filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerMarcaFechaRegistro, fecha, fecha2);
+                }
+
+                if ((null != marca.NumeroCondiciones) && (!marca.NumeroCondiciones.Equals(int.MinValue)))
+                {
+                    if (variosFiltros)
+                        filtro += " and ";
+                    filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerMarcaNumeroCondiciones, marca.NumeroCondiciones);
+                    variosFiltros = true;
+                }
+
+                if (marca.BInstruccionesRenovacion)
+                {
+                    if (variosFiltros)
+                        filtro += " and ";
+                    filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerMarcaInstruccionesRenovacion, marca.Rev);
+                    variosFiltros = true;
+                }
+
+                if (marca.BRenovacionOtroTramitante)
+                {
+                    if (variosFiltros)
+                        filtro += " and ";
+                    filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerMarcaRenovacionOtroTramitante, marca.Ter);
+                    variosFiltros = true;
                 }
 
                 #endregion
@@ -196,7 +220,7 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
 
                 #region Filtro Marca Prioridad
 
-                if ((null != marca.CPrioridad))
+                if ((null != marca.CPrioridad) && (!marca.CPrioridad.Equals("")))
                 {
                     if (variosFiltros)
                         filtro += " and ";
@@ -213,7 +237,7 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
                     filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerMarcaFechaPrioridad, fecha, fecha2);
                 }
 
-                if ((null != marca.Pais))
+                if ((null != marca.Pais) && (marca.Pais.Id != int.MinValue))
                 {
                     if (variosFiltros)
                         filtro += " and ";
@@ -299,7 +323,7 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
 
                 bool variosFiltros = false;
                 string filtro = "";
-                string cabecera = string.Format(Recursos.ConsultasHQL.CabeceraObtenerMarca);
+                string cabecera = string.Format(Recursos.ConsultasHQL.CabeceraObtenerMarcaRecordatorio);
 
                
                 string fecha = String.Format("{0:dd/MM/yy}", fechas[0]);
@@ -316,7 +340,6 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
 
                     filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerMarcaRecordatorio, marca.Recordatorio);
                 }
-
 
                 IQuery query = Session.CreateQuery(cabecera + filtro);
                 Marcas = query.List<Marca>();

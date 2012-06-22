@@ -351,61 +351,68 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-                Marca marca = (Marca)this._ventana.Marca;
-
-                marca.Operacion = "CREATE";
-
-                if (null != this._ventana.Agente)
-                    marca.Agente = !((Agente)this._ventana.Agente).Id.Equals("NGN") ? (Agente)this._ventana.Agente : null;
-
-                if (null != this._ventana.AsociadoSolicitud)
-                    marca.Asociado = ((Asociado)this._ventana.AsociadoSolicitud).Id != int.MinValue ? (Asociado)this._ventana.AsociadoSolicitud : null;
-
-                if (null != this._ventana.BoletinConcesion)
-                    marca.BoletinConcesion = ((Boletin)this._ventana.BoletinConcesion).Id != int.MinValue ? (Boletin)this._ventana.BoletinConcesion : null;
-
-                if (null != this._ventana.BoletinPublicacion)
-                    marca.BoletinPublicacion = ((Boletin)this._ventana.BoletinPublicacion).Id != int.MinValue ? (Boletin)this._ventana.BoletinPublicacion : null;
-
-                if (null != this._ventana.InteresadoSolicitud)
-                    marca.Interesado = !((Interesado)this._ventana.InteresadoSolicitud).Id.Equals("NGN") ? ((Interesado)this._ventana.InteresadoSolicitud) : null;
-
-                if (null != this._ventana.Servicio)
-                    marca.Servicio = !((Servicio)this._ventana.Servicio).Id.Equals("NGN") ? ((Servicio)this._ventana.Servicio) : null;
-
-                if (null != this._ventana.PoderSolicitud)
-                    marca.Poder = !((Poder)this._ventana.PoderSolicitud).Id.Equals("NGN") ? ((Poder)this._ventana.PoderSolicitud) : null;
-
-                if (null != this._ventana.PaisSolicitud)
-                    marca.Pais = ((Pais)this._ventana.PaisSolicitud).Id != int.MinValue ? ((Pais)this._ventana.PaisSolicitud) : null;
-
-                if (null != this._ventana.CorresponsalSolicitud)
-                    marca.Corresponsal = ((Corresponsal)this._ventana.CorresponsalSolicitud).Id != int.MinValue ? ((Corresponsal)this._ventana.CorresponsalSolicitud) : null;
-
-                if (null != this._ventana.Sector)
-                    marca.Sector = !((ListaDatosDominio)this._ventana.Sector).Id.Equals("NGN") ? ((ListaDatosDominio)this._ventana.Sector).Id : null;
-
-                if (null != this._ventana.TipoReproduccion)
-                    marca.TipoRps = ((ListaDatosDominio)this._ventana.TipoReproduccion).Id[0];
-
-                if (null != this._ventana.TipoClaseNacional)
-                    marca.TipoCnac = !((ListaDatosDominio)this._ventana.TipoClaseNacional).Id.Equals("NGN") ? ((ListaDatosDominio)this._ventana.TipoClaseNacional).Id : null;
-
-                if (null != this._ventana.TipoMarcaDatos)
-                    marca.Tipo = !((ListaDatosDominio)this._ventana.TipoMarcaDatos).Id.Equals("NGN") ? ((ListaDatosDominio)this._ventana.TipoMarcaDatos).Id : null;
-
-                if (string.IsNullOrEmpty(this._ventana.IdInternacional))
-                    marca.Internacional = null;
-
-                if (string.IsNullOrEmpty(this._ventana.IdNacional))
-                    marca.Nacional = null;
-
-                int? exitoso = this._marcaServicios.InsertarOModificarMarca(marca, UsuarioLogeado.Hash);
-
-                if (!exitoso.Equals(null))
+                if (ValidarPoder())
                 {
-                    marca.Id = (int)exitoso;
-                    this.Navegar(new ConsultarMarca(marca));
+                    Marca marca = (Marca)this._ventana.Marca;
+
+                    marca.Operacion = "CREATE";
+
+                    if (null != this._ventana.Agente)
+                        marca.Agente = !((Agente)this._ventana.Agente).Id.Equals("NGN") ? (Agente)this._ventana.Agente : null;
+
+                    if (null != this._ventana.AsociadoSolicitud)
+                        marca.Asociado = ((Asociado)this._ventana.AsociadoSolicitud).Id != int.MinValue ? (Asociado)this._ventana.AsociadoSolicitud : null;
+
+                    if (null != this._ventana.BoletinConcesion)
+                        marca.BoletinConcesion = ((Boletin)this._ventana.BoletinConcesion).Id != int.MinValue ? (Boletin)this._ventana.BoletinConcesion : null;
+
+                    if (null != this._ventana.BoletinPublicacion)
+                        marca.BoletinPublicacion = ((Boletin)this._ventana.BoletinPublicacion).Id != int.MinValue ? (Boletin)this._ventana.BoletinPublicacion : null;
+
+                    if (null != this._ventana.InteresadoSolicitud)
+                        marca.Interesado = !((Interesado)this._ventana.InteresadoSolicitud).Id.Equals("NGN") ? ((Interesado)this._ventana.InteresadoSolicitud) : null;
+
+                    if (null != this._ventana.Servicio)
+                        marca.Servicio = !((Servicio)this._ventana.Servicio).Id.Equals("NGN") ? ((Servicio)this._ventana.Servicio) : null;
+
+                    if (null != this._ventana.PoderSolicitud)
+                        marca.Poder = ((Poder)this._ventana.PoderSolicitud).Id != int.MinValue ? ((Poder)this._ventana.PoderSolicitud) : null;
+
+                    if (null != this._ventana.PaisSolicitud)
+                        marca.Pais = ((Pais)this._ventana.PaisSolicitud).Id != int.MinValue ? ((Pais)this._ventana.PaisSolicitud) : null;
+
+                    if (null != this._ventana.CorresponsalSolicitud)
+                        marca.Corresponsal = ((Corresponsal)this._ventana.CorresponsalSolicitud).Id != int.MinValue ? ((Corresponsal)this._ventana.CorresponsalSolicitud) : null;
+
+                    if (null != this._ventana.Sector)
+                        marca.Sector = !((ListaDatosDominio)this._ventana.Sector).Id.Equals("NGN") ? ((ListaDatosDominio)this._ventana.Sector).Id : null;
+
+                    if (null != this._ventana.TipoReproduccion)
+                        marca.TipoRps = ((ListaDatosDominio)this._ventana.TipoReproduccion).Id[0];
+
+                    if (null != this._ventana.TipoClaseNacional)
+                        marca.TipoCnac = !((ListaDatosDominio)this._ventana.TipoClaseNacional).Id.Equals("NGN") ? ((ListaDatosDominio)this._ventana.TipoClaseNacional).Id : null;
+
+                    if (null != this._ventana.TipoMarcaDatos)
+                        marca.Tipo = !((ListaDatosDominio)this._ventana.TipoMarcaDatos).Id.Equals("NGN") ? ((ListaDatosDominio)this._ventana.TipoMarcaDatos).Id : null;
+
+                    if (string.IsNullOrEmpty(this._ventana.IdInternacional))
+                        marca.Internacional = null;
+
+                    if (string.IsNullOrEmpty(this._ventana.IdNacional))
+                        marca.Nacional = null;
+
+                    int? exitoso = this._marcaServicios.InsertarOModificarMarca(marca, UsuarioLogeado.Hash);
+
+                    if (!exitoso.Equals(null))
+                    {
+                        marca.Id = (int)exitoso;
+                        this.Navegar(new ConsultarMarca(marca));
+                    }
+                }
+                else
+                {
+                    this._ventana.Mensaje(Recursos.MensajesConElUsuario.ErrorInteresadoNoPoseePoderesConAgente, 0);
                 }
 
                 #region trace
@@ -1218,13 +1225,13 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
 
                 if ((Poder)this._ventana.PoderSolicitud != null)
                 {
-                    this._ventana.NumPoderDatos = ((Poder)this._ventana.PoderSolicitud).NumPoder;
-                    this._ventana.PoderDatos = (Poder)this._ventana.PoderSolicitud;
+                    this._ventana.NumPoderDatos = ((Poder)this._ventana.PoderSolicitud).Id.ToString();
                     this._ventana.NumPoderSolicitud = ((Poder)this._ventana.PoderSolicitud).Id.ToString();
+                    this._ventana.PoderDatos = (Poder)this._ventana.PoderSolicitud;
                     this._ventana.Sapi = ((Poder)this._ventana.PoderSolicitud).NumPoder;
-                    
+                    this._ventana.ConvertirEnteroMinimoABlanco();
                 }
-                this._ventana.ConvertirEnteroMinimoABlanco();
+
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
                     logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
@@ -1251,11 +1258,13 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
 
                 if ((Poder)this._ventana.PoderDatos != null)
                 {
-                    this._ventana.NumPoderDatos = ((Poder)this._ventana.PoderDatos).NumPoder;
+                    this._ventana.NumPoderDatos = ((Poder)this._ventana.PoderDatos).Id.ToString();
                     this._ventana.PoderSolicitud = (Poder)this._ventana.PoderDatos;
                     this._ventana.NumPoderSolicitud = ((Poder)this._ventana.PoderDatos).Id.ToString();
                     this._ventana.Sapi = ((Poder)this._ventana.PoderDatos).NumPoder;
                 }
+
+                this._ventana.ConvertirEnteroMinimoABlanco();
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -1358,6 +1367,55 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
                 logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
+        }
+
+
+        /// <summary>
+        /// Método que se usa para validar que cuando se modifique el poder sea actualizado
+        /// </summary>
+        /// <returns>true si el poder es válido, false en caso contrario</returns>
+        private bool ValidarPoder()
+        {
+            bool retorno = false;
+
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+                if (!this._ventana.NumPoderSolicitud.Equals(""))
+                {
+                    IList<Poder> poderesAux = new List<Poder>();
+
+                    poderesAux = this._poderServicios
+                            .ObtenerPoderesEntreAgenteEInteresado((Agente)this._ventana.Agente, (Interesado)this._ventana.InteresadoSolicitud);
+
+
+                    foreach (Poder poder in poderesAux)
+                    {
+                        if (poder.Id == int.Parse(this._ventana.NumPoderSolicitud))
+                        {
+                            retorno = true;
+                            break;
+                        }
+                    }
+                }
+                else
+                    retorno = true;
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
+            }
+
+            return retorno;
         }
 
 

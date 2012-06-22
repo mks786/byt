@@ -813,4 +813,7 @@
   <data name="ErrorInteresadoNoPoseePoderesConAgente" xml:space="preserve">
     <value>Error el interesado no posee poderes con el agente seleccionado.</value>
   </data>
+  <data name="ErrorSinInteresado" xml:space="preserve">
+    <value>Error. La marca debe tener un interesado</value>
+  </data>
 </root>

@@ -241,7 +241,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
 
                 _filtroValido = 0;
 
-                Marca MarcaAuxiliar = ObtenerMarcaFiltro();
+                Marca MarcaAuxiliar = new Marca();
+                MarcaAuxiliar = ObtenerMarcaFiltro();
 
                 if (_filtroValido >= 2)
                 {
@@ -285,7 +286,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                         this._ventana.Mensaje(Recursos.MensajesConElUsuario.NoHayResultados, 1);
                 }
                 else
+                {
+                    this._ventana.Resultados = null;
                     this._ventana.Mensaje(Recursos.MensajesConElUsuario.ErrorFiltroIncompleto, 0);
+                }
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -395,6 +399,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                     marcaAuxiliar.CodigoRegistro = this._ventana.CodigoRegistro.ToUpper();
                     _filtroValido = 2;
                 }
+                else
+                    this._ventana.CodigoRegistro = string.Empty;
+
 
                 if (!this._ventana.FechaRegistro.Equals(""))
                 {
@@ -403,16 +410,29 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                     marcaAuxiliar.FechaRegistro = fechaRegistro;
                 }
 
-                if (null!=this._ventana.Condicion)
-                {
-                   // marcaAuxiliar.NumeroCondiciones = this._ventana.Condicion;
-                    _filtroValido = 2;              
-
-                }
-
                 if (this._ventana.RenovadoPorOtroTramitante)
                 {
                     marcaAuxiliar.BRenovacionOtroTramitante = this._ventana.RenovadoPorOtroTramitante;
+                    _filtroValido = 2;
+                }
+
+                if ((null != this._ventana.Condicion) && (((Condicion)this._ventana.Condicion).Id != int.MinValue))
+                {
+                    Condicion condicionAux = (Condicion)this._ventana.Condicion;
+                    marcaAuxiliar.NumeroCondiciones = condicionAux.Id;
+                    _filtroValido = 2;
+                }
+                else
+                    marcaAuxiliar.NumeroCondiciones = null;
+
+                if (this._ventana.InstruccionesDeRenovacion)
+                {
+                    marcaAuxiliar.BInstruccionesRenovacion = this._ventana.InstruccionesDeRenovacion;
+                    _filtroValido = 2;
+                }
+
+                if (!this._ventana.ExpCambioPendiente.Equals(""))
+                {
                     _filtroValido = 2;
                 }
 
@@ -443,8 +463,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
 
-            if (null != this._ventana.PaisPrioridad)
+            if ((null != this._ventana.PaisPrioridad) && (((Pais)this._ventana.PaisPrioridad).Id != int.MinValue))
             {
+                marcaAuxiliar.Pais = new Pais();
                 marcaAuxiliar.Pais = ((Pais)this._ventana.PaisPrioridad);
                 _filtroValido = 2;
             }
@@ -456,6 +477,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 marcaAuxiliar.CPrioridad = this._ventana.PrioridadCodigo;
                 _filtroValido = 2;
             }
+            else
+                marcaAuxiliar.CPrioridad = null;
 
             if (!this._ventana.PrioridadFecha.Equals(""))
             {
@@ -508,6 +531,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
 
             if (((Boletin)this._ventana.BoletinConcesion).Id != int.MinValue)
             {
+                marcaAuxiliar.BoletinConcesion = new Boletin();
                 marcaAuxiliar.BoletinConcesion = ((Boletin)this._ventana.BoletinConcesion);
                 _filtroValido = 2;
             }
@@ -516,6 +540,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
 
             if (((Boletin)this._ventana.BoletinPublicacion).Id != int.MinValue)
             {
+                marcaAuxiliar.BoletinPublicacion = new Boletin();
                 marcaAuxiliar.BoletinPublicacion = ((Boletin)this._ventana.BoletinPublicacion);
                 _filtroValido = 2;
             }
@@ -525,6 +550,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             
             if (((Boletin)this._ventana.BoletinOrdenPublicacion).Id != int.MinValue)
             {
+                marcaAuxiliar.BoletinOrdenPublicacion = new Boletin();
                 marcaAuxiliar.BoletinOrdenPublicacion = ((Boletin)this._ventana.BoletinOrdenPublicacion);
             _filtroValido = 2;
             }
@@ -560,9 +586,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                     _filtroValido = 2;
                     marcaAuxiliar.Id = int.Parse(this._ventana.Id);
                 }
+                else
+                    marcaAuxiliar.Id = 0;
 
                 if ((null != this._ventana.Asociado) && (((Asociado)this._ventana.Asociado).Id != int.MinValue))
                 {
+                    marcaAuxiliar.Asociado = new Asociado();
                     marcaAuxiliar.Asociado = (Asociado)this._ventana.Asociado;
                     _filtroValido = 2;
                 }
@@ -572,6 +601,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
 
                 if ((null != this._ventana.Interesado) && (((Interesado)this._ventana.Interesado).Id != int.MinValue))
                 {
+                    marcaAuxiliar.Interesado = new Interesado();
                     marcaAuxiliar.Interesado = (Interesado)this._ventana.Interesado;
                     _filtroValido = 2;
                 }
@@ -580,6 +610,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
 
                 if ((null != this._ventana.Corresponsal) && (((Corresponsal)this._ventana.Corresponsal).Id != int.MinValue))
                 {
+                    marcaAuxiliar.Corresponsal = new Corresponsal();
                     marcaAuxiliar.Corresponsal = (Corresponsal)this._ventana.Corresponsal;
                     _filtroValido = 2;
                 }
@@ -591,6 +622,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                     _filtroValido = 2;
                     marcaAuxiliar.Descripcion = this._ventana.DescripcionFiltrar.ToUpper();
                 }
+                else
+                    marcaAuxiliar.Descripcion = null;
 
                 if (!this._ventana.Fecha.Equals(""))
                 {
@@ -598,10 +631,13 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                     _filtroValido = 2;
                     marcaAuxiliar.FechaPublicacion = fechaPublicacion;
                 }
+                else
+                    marcaAuxiliar.FechaPublicacion = null;
 
                 if (!((TipoEstado)this._ventana.Detalle).Id.Equals("NGN"))
                 {
                     _filtroValido = 2;
+                    marcaAuxiliar.TipoEstado = new TipoEstado();
                     marcaAuxiliar.TipoEstado = ((TipoEstado)this._ventana.Detalle);
                 }
                 else
@@ -610,6 +646,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 if (!((Servicio)this._ventana.Servicio).Id.Equals("NGN"))
                 {
                     _filtroValido = 2;
+                    marcaAuxiliar.Servicio = new Servicio();
                     marcaAuxiliar.Servicio = ((Servicio)this._ventana.Servicio);
                 }
                 else
@@ -618,26 +655,36 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 if ((!this._ventana.ClaseInternacional.Equals("")) && (this._ventana.ClaseInternacional != "0"))
                 {
                     _filtroValido = 2;
+                    marcaAuxiliar.Internacional = new Internacional();
                     marcaAuxiliar.Internacional.Id = int.Parse(this._ventana.ClaseInternacional);
                 }
+                else
+                    marcaAuxiliar.Internacional = new Internacional();
 
                 if ((!this._ventana.ClaseNacional.Equals("")) && (this._ventana.ClaseNacional != "0"))
                 {
                     _filtroValido = 2;
+                    marcaAuxiliar.Nacional = new Nacional();
                     marcaAuxiliar.Nacional.Id = int.Parse(this._ventana.ClaseNacional);
                 }
+                else
+                    marcaAuxiliar.Nacional = new Nacional();
 
                 if (!this._ventana.Distingue.Equals(""))
                 {
                     _filtroValido = 2;
                     marcaAuxiliar.Distingue = this._ventana.Distingue.ToUpper();
                 }
+                else
+                    marcaAuxiliar.Distingue = null;
 
                 if ((!this._ventana.Solicitud.Equals("")) && (this._ventana.Solicitud != "0"))
                 {
                     _filtroValido = 2;
                     marcaAuxiliar.CodigoInscripcion = this._ventana.Solicitud;
                 }
+                else
+                    marcaAuxiliar.CodigoInscripcion = null;
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -853,7 +900,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
 
             this._ventana.GestionarVisibilidadFiltroNacional(true);
 
-            this._ventana.GestionarVisibilidadLimpiarFiltros();
+            //this._ventana.GestionarVisibilidadLimpiarFiltros();
+
+            this._ventana.MarcaParaFiltrar = new Marca();
 
             #region Internacional
 
@@ -871,19 +920,28 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             this._ventana.AsociadoFiltro = null;
             this._ventana.IdAsociadoFiltrar = null;
             this._ventana.NombreAsociadoFiltrar = null;
-            this._ventana.Asociados = null;
+            IList<Asociado> asociadosAux = new List<Asociado>();
+            Asociado primerAsociado = new Asociado(int.MinValue);
+            asociadosAux.Add(primerAsociado);
+            this._ventana.Asociados = asociadosAux;
+            this._ventana.Asociado = this.BuscarAsociado(asociadosAux, primerAsociado);
 
             this._ventana.IdInteresadoFiltrar = null;
             this._ventana.NombreInteresadoFiltrar = null;
             this._ventana.InteresadoFiltro = null;
-            this._ventana.Interesados = null;
+            IList<Interesado> interesadosAux = new List<Interesado>();
+            Interesado primerInteresado = new Interesado(int.MinValue);
+            interesadosAux.Add(primerInteresado);
+            this._ventana.Interesados = interesadosAux;
+            this._ventana.Interesado = this.BuscarInteresado(interesadosAux, primerInteresado);
 
             this._ventana.IdCorresponsalFiltrar = null;
             this._ventana.NombreCorresponsalFiltrar = null;
             this._ventana.CorresponsalFiltro = null;
             this._ventana.Corresponsal = null;
 
-
+            this._ventana.ClaseNacional = null;
+            this._ventana.ClaseInternacional = null;
             this._ventana.Servicio = this.BuscarServicio((IList<Servicio>)this._ventana.Servicios, new Servicio("NGN"));            
             //this._ventana.Detalle = this.BuscarDetalle((IList<TipoEstado>)this._ventana.Detalles, new TipoEstado("NGN"));
             this._ventana.Detalle = ((IList<TipoEstado>)this._ventana.Detalles)[0];
@@ -894,7 +952,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
 
             this._ventana.TYREstaSeleccionado = false;
             this._ventana.CodigoRegistro = null;
-            this._ventana.FechaRegistro = null;
+            this._ventana.FechaRegistro = "";
             this._ventana.RenovadoPorOtroTramitante = false;
             this._ventana.Condicion = this.BuscarCondicion((IList<Condicion>) this._ventana.Condiciones, new Condicion(int.MinValue));
             this._ventana.ExpCambioPendiente = null;
@@ -953,13 +1011,18 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             if ((interesadoABuscar.Id != 0) || !(interesadoABuscar.Nombre.Equals("")))
             {
                 IList<Interesado> interesados = this._interesadoServicios.ObtenerInteresadosFiltro(interesadoABuscar);
-                interesados.Insert(0, new Interesado(int.MinValue));
-                this._ventana.Interesados = interesados;
-            }
-            else
-            {
-                this._ventana.Interesados = this._interesados;
-                this._ventana.Mensaje(Recursos.MensajesConElUsuario.NoHayResultados, 1);
+
+                if (interesados.Count > 0)
+                {
+                    interesados.Insert(0, new Interesado(int.MinValue));
+                    this._ventana.Interesados = interesados;
+                }
+                else
+                {
+                    interesados.Insert(0, new Interesado(int.MinValue));
+                    this._ventana.Interesados = this._interesados;
+                    this._ventana.Mensaje(Recursos.MensajesConElUsuario.NoHayResultados, 1);
+                }
             }
 
             #region trace
@@ -1026,14 +1089,17 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             if ((asociadoABuscar.Id != 0) || !(asociadoABuscar.Nombre.Equals("")))
             {
                 IList<Asociado> asociados = this._asociadoServicios.ObtenerAsociadosFiltro(asociadoABuscar);
-                asociados.Insert(0, new Asociado(int.MinValue));
-                this._ventana.Asociados = asociados;
 
-            }
-            else
-            {
-                this._ventana.Mensaje(Recursos.MensajesConElUsuario.NoHayResultados, 1);
-                this._ventana.Asociados = this._asociados;
+                if (asociados.Count > 0)
+                {
+                    asociados.Insert(0, new Asociado(int.MinValue));
+                    this._ventana.Asociados = asociados;
+                }
+                else
+                {
+                    this._ventana.Mensaje(Recursos.MensajesConElUsuario.NoHayResultados, 1);
+                    this._ventana.Asociados = this._asociados;
+                }
             }
 
             Mouse.OverrideCursor = null;

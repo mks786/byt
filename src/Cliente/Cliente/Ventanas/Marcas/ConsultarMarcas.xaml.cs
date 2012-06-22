@@ -789,6 +789,32 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
                 this._lblInteresado.Visibility = Visibility.Visible;
 
                 this._nacional.Visibility = Visibility.Visible;
+
+                this._lstInteresados.Visibility = Visibility.Collapsed;
+                this._btnConsultarInteresado.Visibility = Visibility.Collapsed;
+                this._txtIdInteresado.Visibility = Visibility.Collapsed;
+                this._txtNombreInteresado.Visibility = Visibility.Collapsed;
+                this._lblNombreInteresado.Visibility = Visibility.Collapsed;
+                this._lblIdInteresado.Visibility = Visibility.Collapsed;
+                
+                this._lstAsociados.Visibility = Visibility.Collapsed;
+                this._btnConsultarAsociado.Visibility = Visibility.Collapsed;
+                this._txtIdAsociado.Visibility = Visibility.Collapsed;
+                this._txtNombreAsociado.Visibility = Visibility.Collapsed;
+                this._lblNombreAsociado.Visibility = Visibility.Collapsed;
+                this._lblIdAsociado.Visibility = Visibility.Collapsed;
+
+
+                this._indicadores.Visibility = Visibility.Collapsed;
+                this._prioridad.Visibility = Visibility.Collapsed;
+                this._boletines.Visibility = Visibility.Collapsed;
+                this._TYR.Visibility = Visibility.Collapsed;
+
+                this.GestionarVisibilidadFiltroMarca(Visibility.Collapsed);
+                this.GestionarVisibilidadDatosDeMarca(Visibility.Visible);
+                
+
+                this.GestionarVisibilidadFiltroCorresponsal(false);
             }
             else
             {
@@ -873,7 +899,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             }
         }
 
-        private void GestionarVisibilidadFiltroMarca(object value)
+        public void GestionarVisibilidadFiltroMarca(object value)
         {
             this._txtIdMarcaFiltrar.Visibility = (System.Windows.Visibility)value;
             this._txtNombreMarcaFiltrar.Visibility = (System.Windows.Visibility)value;
