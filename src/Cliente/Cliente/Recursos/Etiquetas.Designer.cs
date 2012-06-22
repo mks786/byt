@@ -133,7 +133,7 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Auditoria.
+        ///   Looks up a localized string similar to Auditoría.
         /// </summary>
         public static string btnAuditoria {
             get {
@@ -1152,7 +1152,7 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Juridica.
+        ///   Looks up a localized string similar to Jurídica.
         /// </summary>
         public static string cbiJuridica {
             get {
@@ -3233,7 +3233,7 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to # Inscripcion:.
+        ///   Looks up a localized string similar to # Inscripción:.
         /// </summary>
         public static string lblNumInscripcion {
             get {
@@ -3359,7 +3359,7 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Pais:.
+        ///   Looks up a localized string similar to País:.
         /// </summary>
         public static string lblPais {
             get {
@@ -3476,7 +3476,7 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Proximo Evento:.
+        ///   Looks up a localized string similar to Próximo Evento:.
         /// </summary>
         public static string lblProximoPaso {
             get {
@@ -3485,7 +3485,7 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Proximo Evento (Ingles):.
+        ///   Looks up a localized string similar to Próximo Evento (Ingles):.
         /// </summary>
         public static string lblProximoPasoIngles {
             get {
@@ -4673,7 +4673,7 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Codigo Marca.
+        ///   Looks up a localized string similar to Código Marca.
         /// </summary>
         public static string lsvIdMarca {
             get {
@@ -4781,7 +4781,7 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Operacion.
+        ///   Looks up a localized string similar to Operación.
         /// </summary>
         public static string lsvOperacion {
             get {
@@ -4826,7 +4826,7 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Proximo Evento.
+        ///   Looks up a localized string similar to Próximo Evento.
         /// </summary>
         public static string lsvProximoPaso {
             get {
@@ -4835,7 +4835,7 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Proximo Evento (Ingles).
+        ///   Looks up a localized string similar to Próximo Evento (Ingles).
         /// </summary>
         public static string lsvProximoPasoIngles {
             get {

@@ -254,10 +254,10 @@
     <value>Contraseña:</value>
   </data>
   <data name="lblProximoPaso" xml:space="preserve">
-    <value>Proximo Evento:</value>
+    <value>Próximo Evento:</value>
   </data>
   <data name="lblProximoPasoIngles" xml:space="preserve">
-    <value>Proximo Evento (Ingles):</value>
+    <value>Próximo Evento (Ingles):</value>
   </data>
   <data name="lblRegion" xml:space="preserve">
     <value>Región:</value>
@@ -314,10 +314,10 @@
     <value>Nombre</value>
   </data>
   <data name="lsvProximoPaso" xml:space="preserve">
-    <value>Proximo Evento</value>
+    <value>Próximo Evento</value>
   </data>
   <data name="lsvProximoPasoIngles" xml:space="preserve">
-    <value>Proximo Evento (Ingles)</value>
+    <value>Próximo Evento (Ingles)</value>
   </data>
   <data name="lsvRegion" xml:space="preserve">
     <value>Region</value>
@@ -557,7 +557,7 @@
     <value>Gestionar Relacion de Poderes con Agentes</value>
   </data>
   <data name="btnAuditoria" xml:space="preserve">
-    <value>Auditoria</value>
+    <value>Auditoría</value>
   </data>
   <data name="lsvUsuario" xml:space="preserve">
     <value>Usuario</value>
@@ -566,7 +566,7 @@
     <value>Lista de Auditorias</value>
   </data>
   <data name="lsvOperacion" xml:space="preserve">
-    <value>Operacion</value>
+    <value>Operación</value>
   </data>
   <data name="btnVerPoder" xml:space="preserve">
     <value>Ver Poder</value>
@@ -596,7 +596,7 @@
     <value>Consultar Interesados</value>
   </data>
   <data name="cbiJuridica" xml:space="preserve">
-    <value>Juridica</value>
+    <value>Jurídica</value>
   </data>
   <data name="cbiNatural" xml:space="preserve">
     <value>Natural</value>
@@ -611,7 +611,7 @@
     <value>Estado:</value>
   </data>
   <data name="lblPais" xml:space="preserve">
-    <value>Pais:</value>
+    <value>País:</value>
   </data>
   <data name="btnNuevoPoder" xml:space="preserve">
     <value>Nuevo Poder</value>
@@ -1308,7 +1308,7 @@ Cuenta solo digital:</value>
     <value>Marca Origen:</value>
   </data>
   <data name="lblNumInscripcion" xml:space="preserve">
-    <value># Inscripcion:</value>
+    <value># Inscripción:</value>
   </data>
   <data name="lblNumSapi" xml:space="preserve">
     <value>Nº Sapi:</value>
@@ -2730,6 +2730,6 @@ de Gracia</value>
     <value>Término</value>
   </data>
   <data name="lsvIdMarca" xml:space="preserve">
-    <value>Codigo Marca</value>
+    <value>Código Marca</value>
   </data>
 </root>
