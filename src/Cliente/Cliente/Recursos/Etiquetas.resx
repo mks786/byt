@@ -2732,4 +2732,7 @@ de Gracia</value>
   <data name="lsvIdMarca" xml:space="preserve">
     <value>Código Marca</value>
   </data>
+  <data name="lsvIdPatente" xml:space="preserve">
+    <value>Código Patente</value>
+  </data>
 </root>

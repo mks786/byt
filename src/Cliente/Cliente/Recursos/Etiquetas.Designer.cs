@@ -4682,6 +4682,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Código Patente.
+        /// </summary>
+        public static string lsvIdPatente {
+            get {
+                return ResourceManager.GetString("lsvIdPatente", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Iniciales.
         /// </summary>
         public static string lsvIniciales {

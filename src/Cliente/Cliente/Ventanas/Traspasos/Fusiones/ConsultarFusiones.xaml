@@ -182,6 +182,9 @@
                         <GridViewColumn DisplayMemberBinding="{Binding Path=Id}" Width="120">
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="Id" Content="{x:Static recurso:Etiquetas.lsvId}"/>
                         </GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Marca.Id}" Width="80">
+                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="Marca.Id" Content="{x:Static recurso:Etiquetas.lsvIdMarca}"/>
+                        </GridViewColumn>
                         <GridViewColumn DisplayMemberBinding="{Binding Path=Marca.Descripcion}" Width="150">
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="Marca.Descripcion" Content="{x:Static recurso:Etiquetas.lsvMarca}"/>
                         </GridViewColumn>

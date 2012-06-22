@@ -162,14 +162,14 @@
                         <GridViewColumn DisplayMemberBinding="{Binding Path=Id}" Width="80">
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="Id" Content="{x:Static recurso:Etiquetas.lsvId}"/>
                         </GridViewColumn>
-                        <GridViewColumn DisplayMemberBinding="{Binding Path=Registro}" Width="80">
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Patente.CodigoRegistro}" Width="80">
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="Patente.CodigoRegistro" Content="{x:Static recurso:Etiquetas.lsvRegistro}"/>
+                        </GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Patente.Id}" Width="90">
+                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="Patente.Id" Content="{x:Static recurso:Etiquetas.lsvIdPatente}"/>
                         </GridViewColumn>
                         <GridViewColumn DisplayMemberBinding="{Binding Path=Patente.Descripcion}" Width="300">
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="Patente.Descripcion" Content="{x:Static recurso:Etiquetas.lsvPatente}"/>
-                        </GridViewColumn>
-                        <GridViewColumn DisplayMemberBinding="{Binding Path=Patente.Interesado.Nombre}" Width="200">
-                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="Patente.Interesado.Nombre" Content="{x:Static recurso:Etiquetas.lsvInteresado}"/>
                         </GridViewColumn>
                         <GridViewColumn Width="120">
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="FechaCesion" Content="{x:Static recurso:Etiquetas.lsvFecha}"/>
