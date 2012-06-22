@@ -1485,7 +1485,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             ocultarLstAsociadoSolicitud();
             ocultarLstInteresadoSolicutud();
 
-            mostrarLstPoderSolicitud();
+          //  mostrarLstPoderSolicitud();
         }
 
 

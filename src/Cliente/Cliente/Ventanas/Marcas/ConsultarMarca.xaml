@@ -510,7 +510,7 @@
                         <Label Grid.Column="0" Grid.Row="11" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblDistingue}"/>
                         </Label>
-                        <custom:ByTTextBox IsEnabled="False" MaxLength="255" Grid.Column="1" Grid.Row="11" Name="_txtDistingue" VerticalAlignment="Center" 
+                        <custom:ByTTextBox IsEnabled="False" MaxLength="10000" Grid.Column="1" Grid.Row="11" Name="_txtDistingue" VerticalAlignment="Center" 
                          Grid.ColumnSpan="9" Text="{Binding Path=Distingue}"></custom:ByTTextBox>
 
                         <Button IsEnabled="False" Name="_btnIngles" VerticalAlignment="Bottom" Grid.Column="10" Grid.Row="11" Grid.ColumnSpan="2" Height="25" Width="90">Ingles</Button>
