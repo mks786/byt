@@ -193,6 +193,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Renovaciones
                         if ((renovacion.Marca != null) && (!string.IsNullOrEmpty(renovacion.Marca.Descripcion)))
                         {
                             marcaAuxiliar.Descripcion = renovacion.Marca.Descripcion;
+                            marcaAuxiliar.Id = renovacion.Marca.Id;
+                            marcaAuxiliar.CodigoRegistro = renovacion.Marca.CodigoRegistro;
                             RenovacionAuxiliar.Marca = marcaAuxiliar;
                         }
 
@@ -495,6 +497,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Renovaciones
                         if ((renovacion.Marca != null) && (!string.IsNullOrEmpty(renovacion.Marca.Descripcion)))
                         {
                             marcaAuxiliar.Descripcion = renovacion.Marca.Descripcion;
+                            marcaAuxiliar.Id = renovacion.Marca.Id;
+                            marcaAuxiliar.CodigoRegistro = renovacion.Marca.CodigoRegistro;
                             RenovacionAuxiliar.Marca = marcaAuxiliar;
                         }
 
