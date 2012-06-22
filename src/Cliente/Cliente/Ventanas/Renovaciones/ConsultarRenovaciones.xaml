@@ -161,11 +161,8 @@
                       Style="{DynamicResource EstiloListView}">
                 <ListView.View>
                     <GridView>
-                        <GridViewColumn DisplayMemberBinding="{Binding Path=Id}" Width="100">
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Id}" Width="80">
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="Id" Content="{x:Static recurso:Etiquetas.lsvId}"/>
-                        </GridViewColumn>
-                        <GridViewColumn DisplayMemberBinding="{Binding Path=Registro}" Width="100">
-                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="Registro" Content="{x:Static recurso:Etiquetas.lsvRegistro}"/>
                         </GridViewColumn>
                         <GridViewColumn Width="120">
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="Fecha" Content="{x:Static recurso:Etiquetas.lsvFechaRenovacion}"/>
@@ -178,6 +175,12 @@
                                     </TextBlock>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Marca.CodigoRegistro}" Width="80">
+                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="Marca.CodigoRegistro" Content="{x:Static recurso:Etiquetas.lsvRegistro}"/>
+                        </GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Marca.Id}" Width="80">
+                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="Marca.Id" Content="{x:Static recurso:Etiquetas.lsvIdMarca}"/>
                         </GridViewColumn>
                         <GridViewColumn DisplayMemberBinding="{Binding Path=Marca.Descripcion}" Width="150">
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="Marca.Descripcion" Content="{x:Static recurso:Etiquetas.lsvMarca}"/>

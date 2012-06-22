@@ -2729,4 +2729,7 @@ de Gracia</value>
   <data name="lblFechaTermino" xml:space="preserve">
     <value>Término</value>
   </data>
+  <data name="lsvIdMarca" xml:space="preserve">
+    <value>Codigo Marca</value>
+  </data>
 </root>
