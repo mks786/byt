@@ -192,7 +192,7 @@
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="Marca.CodigoRegistro" Content="{x:Static recurso:Etiquetas.lsvCodigoRegistro}"/>
                         </GridViewColumn>
                         <GridViewColumn Width="150">
-                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="Fecha" Content="{x:Static recurso:Etiquetas.lsvFechaImpresion}"/>
+                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="Fecha" Content="{x:Static recurso:Etiquetas.lsvFecha}"/>
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <TextBlock>
