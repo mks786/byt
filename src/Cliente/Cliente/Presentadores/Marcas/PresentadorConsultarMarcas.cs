@@ -371,10 +371,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 logger.Error(ex.Message);
                 this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
             }
-            finally
-            {
-                Mouse.OverrideCursor = null;
-            }
+
             return marcaAuxiliar;
         }
 

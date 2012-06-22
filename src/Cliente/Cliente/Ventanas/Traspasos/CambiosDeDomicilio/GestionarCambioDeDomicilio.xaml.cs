@@ -101,6 +101,12 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.CambiosDeDomicilio
             get { return this._txtNombreMarcaFiltrar.Text; }
         }
 
+        public string TipoClaseNacional
+        {
+            get { return this._txtTipo.Text; }
+            set { this._txtTipo.Text = value; }
+        }
+
         public object Marca
         {
             get { return this._gridDatosMarca.DataContext; }
@@ -162,6 +168,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.CambiosDeDomicilio
         {
             set
             {
+                this._txtIdAsociado.IsEnabled = value;
                 this._txtAsociado.IsEnabled = value;
                 this._txtClaseInternacional.IsEnabled = value;
                 this._txtClaseNacional.IsEnabled = value;
@@ -428,13 +435,13 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.CambiosDeDomicilio
             this._btnEliminar.Visibility = System.Windows.Visibility.Collapsed;
             this._lblIdCambioDeDomicilio.Visibility = System.Windows.Visibility.Collapsed;
             this._txtIdCambioDeDomicilio.Visibility = System.Windows.Visibility.Collapsed;
-            this._dpkFechaDomicilio.IsEnabled = false;
+            this._dpkFechaDomicilio.IsEnabled = true;
             this._btnAnexo.Visibility = System.Windows.Visibility.Collapsed;
             this._btnCarpeta.Visibility = System.Windows.Visibility.Collapsed;
             this._btnPlanilla.Visibility = System.Windows.Visibility.Collapsed;
             this._btnPlanillaVan.Visibility = System.Windows.Visibility.Collapsed;
             this._btnPlanillaVienen.Visibility = System.Windows.Visibility.Collapsed;
-            this._btnVanDir.Visibility = System.Windows.Visibility.Collapsed;            
+            this._btnVanDir.Visibility = System.Windows.Visibility.Collapsed;
         }
 
         private void _btnModificar_Click(object sender, RoutedEventArgs e)

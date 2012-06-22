@@ -21,6 +21,8 @@ namespace Trascend.Bolet.Cliente.Contratos.Traspasos.CambiosDeNombre
 
         string IdMarca { get; set; }
 
+        string TipoClaseNacional { get; set; }
+
         object Marca { get; set; }
 
         string IdMarcaFiltrar { get; }

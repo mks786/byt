@@ -703,6 +703,14 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeDomicilio
 
             if ((Marca)this._ventana.Marca != null)
             {
+                IList<ListaDatosDominio> tipoClasesNacional = this._listaDatosDominioServicios.
+                    ConsultarListaDatosDominioPorParametro(new ListaDatosDominio(Recursos.Etiquetas.cbiCategoriaTipoClaseNacional));
+               
+                
+                //this._ventana.TiposClaseNacional = tipoClasesNacional;
+                ListaDatosDominio listaDatoAux = this.BuscarClaseNacional(tipoClasesNacional, ((Marca)this._ventana.Marca).Tipo);
+                this._ventana.TipoClaseNacional = listaDatoAux.Descripcion;
+
                 this._marcas.Add((Marca)this._ventana.Marca);
                 this._ventana.MarcasFiltradas = this._marcas;
                 this._ventana.MarcaFiltrada = (Marca)this._ventana.Marca;

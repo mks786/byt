@@ -432,7 +432,7 @@
                         <!--<custom:ByTTextBox  MaxLength="255" Grid.Column="7" Grid.Row="10" Name="_txtTipoClaseNacional" VerticalAlignment="Center" 
                          Grid.ColumnSpan="1" Text="{Binding Path=TipoCnac}"></custom:ByTTextBox>-->
 
-                        <ComboBox Grid.Column="7" Grid.Row="10" Grid.ColumnSpan="1" Name="_cbxTipoClaseNacional" Height="20" 
+                        <ComboBox Grid.Column="7" Grid.Row="10" Grid.ColumnSpan="1" Name="_cbxTipoClaseNacional" Height="20"
                               ItemsSource="{Binding}" DisplayMemberPath="Descripcion" SelectedIndex="0" SelectionChanged="_cbxTipoClaseNacional_SelectionChanged">
                         </ComboBox>
                         <Label Grid.Column="8" Grid.Row="10" VerticalAlignment="Center" HorizontalContentAlignment="Right">
@@ -1333,7 +1333,7 @@
                         <Label Grid.Column="6" Grid.Row="17" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblSituacion}"/>
                         </Label>
-                        <ComboBox  Grid.Column="7" Grid.Row="17" Grid.ColumnSpan="1" Name="_cbxSituacion" Height="20" 
+                        <ComboBox  Grid.Column="7" Grid.Row="17" Grid.ColumnSpan="1" Name="_cbxSituacion" Height="20" IsEnabled="False"
                               ItemsSource="{Binding}" DisplayMemberPath="Id" SelectedIndex="0" SelectionChanged="_cbxSituacion_SelectionChanged">
                         </ComboBox>
                         <custom:ByTTextBox IsEnabled="False" Grid.Column="8" Grid.Row="17" Grid.ColumnSpan="3" Margin="3" Name="_txtSituacionDescripcion" VerticalAlignment="Center"  

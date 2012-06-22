@@ -242,6 +242,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 this._ventana.TipoMarcasDatos = tiposMarcas;
                 this._ventana.TipoMarcasSolicitud = tiposMarcas;
 
+
                 IList<Agente> agentes = this._agenteServicios.ConsultarTodos();
                 Agente primerAgente = new Agente();
                 primerAgente.Id = "NGN";
@@ -278,6 +279,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 //servicios.Insert(0, primerServicio);
                 this._ventana.Servicios = servicios;
 
+                Marca marcaAux = new Marca();
+                marcaAux.Servicio = new Servicio("MS");
+                this._ventana.Servicio = this.BuscarServicio(servicios, marcaAux.Servicio);
+
                 IList<Boletin> boletines = this._boletinServicios.ConsultarTodos();
                 Boletin primerBoletin = new Boletin();
                 primerBoletin.Id = int.MinValue;
@@ -306,8 +311,6 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 primerTipoClase.Id = "NGN";
                 tipoClasesNacional.Insert(0, primerTipoClase);
                 this._ventana.TiposClaseNacional = tipoClasesNacional;
-                //this._ventana.TipoClaseNacional = this.BuscarClaseNacional(tipoClasesNacional, marca.TipoCnac);
-
 
                 IList<Poder> poderes = new List<Poder>();
                 Poder primerPoder = new Poder();

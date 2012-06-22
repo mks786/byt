@@ -129,6 +129,12 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.CambiosDeNombre
             set { this._txtIdInteresadoActual.Text = value; }
         }
 
+        public string TipoClaseNacional
+        {
+            get { return this._txtTipo.Text; }
+            set { this._txtTipo.Text = value; }
+        }
+
         public string Region
         {
             get
@@ -151,6 +157,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.CambiosDeNombre
             set
             {
                 this._txtAsociado.IsEnabled = value;
+                this._txtIdAsociado.IsEnabled = value;
                 this._txtClaseInternacional.IsEnabled = value;
                 this._txtClaseNacional.IsEnabled = value;
                 this._txtExpediente.IsEnabled = value;
@@ -438,7 +445,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.CambiosDeNombre
             this._btnEliminar.Visibility = System.Windows.Visibility.Collapsed;
             this._lblIdCambioDeNombre.Visibility = System.Windows.Visibility.Collapsed;
             this._txtIdCambioDeNombre.Visibility = System.Windows.Visibility.Collapsed;
-            this._dpkFechaCambioDeNombre.IsEnabled = false;
+            this._dpkFechaCambioDeNombre.IsEnabled = true;
 
             this._btnAnexo.Visibility = System.Windows.Visibility.Collapsed;
             this._btnCarpeta.Visibility = System.Windows.Visibility.Collapsed;

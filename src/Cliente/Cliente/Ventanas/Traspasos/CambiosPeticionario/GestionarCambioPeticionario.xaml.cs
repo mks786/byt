@@ -97,6 +97,12 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.CambiosPeticionario
             get { return this._txtNombreMarcaFiltrar.Text; }
         }
 
+        public string TipoClaseNacional
+        {
+            get { return this._txtTipo.Text; }
+            set { this._txtTipo.Text = value; }
+        }
+
         public object Marca
         {
             get { return this._gridDatosMarca.DataContext; }
@@ -245,6 +251,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.CambiosPeticionario
             set
             {
                 this._txtAsociado.IsEnabled = value;
+                this._txtIdAsociado.IsEnabled = value;
                 this._txtClaseInternacional.IsEnabled = value;
                 this._txtClaseNacional.IsEnabled = value;
                 this._txtExpediente.IsEnabled = value;
@@ -500,7 +507,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.CambiosPeticionario
             this._btnEliminar.Visibility = System.Windows.Visibility.Collapsed;
             this._lblIdCambioPeticionario.Visibility = System.Windows.Visibility.Collapsed;
             this._txtIdCambioPeticionario.Visibility = System.Windows.Visibility.Collapsed;
-            this._dpkFechaCambioPeticionario.IsEnabled = false;
+            this._dpkFechaCambioPeticionario.IsEnabled = true;
         }
 
         private void _btnModificar_Click(object sender, RoutedEventArgs e)

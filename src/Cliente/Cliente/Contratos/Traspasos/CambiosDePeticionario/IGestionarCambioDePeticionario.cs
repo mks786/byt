@@ -133,6 +133,8 @@ namespace Trascend.Bolet.Cliente.Contratos.Traspasos.CambiosDePeticionario
 
         object Marca { get; set; }
 
+        string TipoClaseNacional { get; set; }
+
         object InteresadoAnterior { get; set; }
 
         object InteresadoActual { get; set; }
