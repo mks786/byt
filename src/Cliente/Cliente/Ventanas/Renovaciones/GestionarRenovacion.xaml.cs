@@ -102,6 +102,18 @@ namespace Trascend.Bolet.Cliente.Ventanas.Renovaciones
             set { this._txtIdAgente.Text = value; }
         }
 
+        public string Tipo
+        {
+            get { return this._txtTipo.Text; }
+            set { this._txtTipo.Text = value; }
+        }
+
+        public string PeriodoDeGracia
+        {
+            get { return this._txtObservacion.Text; }
+            set { this._txtObservacion.Text = value; }
+        }
+
         public object Marca
         {
             get { return this._gridDatosMarca.DataContext; }
@@ -423,6 +435,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Renovaciones
 
         private void _btnPeriodoDeGracia_Click(object sender, RoutedEventArgs e)
         {
+            this._presentador.EscribirPeriodoDeGracia();
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)

@@ -17,6 +17,8 @@ namespace Trascend.Bolet.Cliente.Contratos.Renovaciones
 
         string IdAgente { set; get; }
 
+        string PeriodoDeGracia { set; get; }
+
         #region Marcas
 
         string NombreMarca { set; }
@@ -70,6 +72,8 @@ namespace Trascend.Bolet.Cliente.Contratos.Renovaciones
         object Poder { get; set; }
 
         string IdPoder { set; get; }
+
+        string Tipo { set; get; }
 
         string IdPoderFiltrar { get; }
 

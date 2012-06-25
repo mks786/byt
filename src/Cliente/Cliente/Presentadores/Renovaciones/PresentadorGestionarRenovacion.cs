@@ -36,6 +36,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Renovaciones
         private IServicioServicios _servicioServicios;
         private IRenovacionServicios _renovacionServicios;
         private IListaDatosValoresServicios _listaDatosValoresServicios;
+        private IListaDatosDominioServicios _listaDatosDominioServicios;
 
         private IList<Asociado> _asociados;        
         private IList<Marca> _marcas;        
@@ -103,6 +104,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Renovaciones
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["RenovacionServicios"]);
                 this._listaDatosValoresServicios = (IListaDatosValoresServicios)Activator.GetObject(typeof(IListaDatosValoresServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["ListaDatosValoresServicios"]);
+                this._listaDatosDominioServicios = (IListaDatosDominioServicios)Activator.GetObject(typeof(IListaDatosDominioServicios),
+                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["ListaDatosDominioServicios"]);
+               
 
                 #endregion
             }
@@ -609,6 +613,16 @@ namespace Trascend.Bolet.Cliente.Presentadores.Renovaciones
                 this._marcas.Add((Marca)this._ventana.Marca);
                 this._ventana.MarcasFiltradas = this._marcas;
                 this._ventana.MarcaFiltrada = (Marca)this._ventana.Marca;
+
+                IList<ListaDatosDominio> tiposMarcas = this._listaDatosDominioServicios.
+                ConsultarListaDatosDominioPorParametro(new ListaDatosDominio(Recursos.Etiquetas.cbiCategoriaMarca));
+                ListaDatosDominio DatoDominio = new ListaDatosDominio();
+                DatoDominio.Id = ((Marca)this._ventana.Marca).Tipo;
+                DatoDominio = BuscarListaDeDominio(tiposMarcas, DatoDominio);
+                if (null != DatoDominio)
+                    this._ventana.Tipo = DatoDominio.Descripcion;
+                else
+                    this._ventana.Tipo = "";
             }
             else
             {
@@ -797,6 +811,16 @@ namespace Trascend.Bolet.Cliente.Presentadores.Renovaciones
 
                             this.CambiarAgente();
                         }
+
+                        IList<ListaDatosDominio> tiposMarcas = this._listaDatosDominioServicios.
+                        ConsultarListaDatosDominioPorParametro(new ListaDatosDominio(Recursos.Etiquetas.cbiCategoriaMarca));
+                        ListaDatosDominio DatoDominio = new ListaDatosDominio();
+                        DatoDominio.Id = ((Marca)this._ventana.Marca).Tipo;
+                        DatoDominio = BuscarListaDeDominio(tiposMarcas, DatoDominio);
+                        if (null != DatoDominio)
+                            this._ventana.Tipo = DatoDominio.Descripcion;
+                        else
+                            this._ventana.Tipo = "";
                     }
                     else
                     {
@@ -1840,6 +1864,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Renovaciones
             int tiempoConfiguracion = int.Parse(ConfigurationManager.AppSettings["PeriodoRenovacion"].ToString());
             this._ventana.ProximaRenovacion = ((Renovacion)this._ventana.Renovacion).Fecha.Value.AddYears(tiempoConfiguracion).ToString();
 
+        }
+
+        public void EscribirPeriodoDeGracia()
+        {
+            this._ventana.PeriodoDeGracia = ConfigurationManager.AppSettings["TextoPeriodoDeGracia"].ToString();
         }
     }
 }

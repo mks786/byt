@@ -496,8 +496,6 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.LicenciasPatent
                 licencia.Boletin = ((Boletin)this._ventana.Boletin).Id != int.MinValue ? 
                                                     (Boletin)this._ventana.Boletin : null;
 
-            licencia.Expediente = this._ventana.Expediente;
-            licencia.Ubicacion = this._ventana.Ubicacion;
 
             #region trace
             if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
