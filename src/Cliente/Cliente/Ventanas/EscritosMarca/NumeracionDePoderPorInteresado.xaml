@@ -113,7 +113,7 @@
                 <Label Name="_lblIdAgenteFiltrar" Grid.Column="1" Visibility="Collapsed" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Center" >
                     <TextBlock Text="{x:Static recurso:Etiquetas.lblId}"/>
                 </Label>
-                <custom:ByTTextBox  IsEnabled="True"  Grid.Column="2" Grid.Row="0" Name="_txtIdAgenteFiltrar" VerticalAlignment="Center" MaxLength="255" 
+                <custom:ByTTextBox  IsEnabled="True"  Grid.Column="2" Grid.Row="0" Name="_txtIdAgenteFiltrar" VerticalAlignment="Center" MaxLength="8" 
                                             Grid.ColumnSpan="1" Visibility="Collapsed" 
                                             GotFocus="_txtAgenteFiltrar_GotFocus"></custom:ByTTextBox>
                 <!--Fin Campo-->
@@ -205,7 +205,7 @@
             <Label Name="_lblIdInteresadoFiltrar" Grid.Column="1" Visibility="Collapsed" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Center" >
                 <TextBlock Text="{x:Static recurso:Etiquetas.lblId}"/>
             </Label>
-            <custom:ByTTextBox  IsEnabled="True"  Grid.Column="2" Grid.Row="0" Name="_txtIdInteresadoFiltrar" VerticalAlignment="Center" MaxLength="255" 
+            <custom:ByTTextBox  IsEnabled="True"  Grid.Column="2" Grid.Row="0" Name="_txtIdInteresadoFiltrar" VerticalAlignment="Center" MaxLength="8" 
                                             Grid.ColumnSpan="1" Visibility="Collapsed" 
                                             GotFocus="_txtInteresadoFiltrar_GotFocus"></custom:ByTTextBox>
             <!--Fin Campo-->

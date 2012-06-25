@@ -296,7 +296,7 @@
             <Label Name="_lblIdMarcaFiltrar" Grid.Column="1" Visibility="Collapsed" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Center" >
                 <TextBlock Text="{x:Static recurso:Etiquetas.lblId}"/>
             </Label>
-            <custom:ByTTextBox  IsEnabled="True"  Grid.Column="2" Grid.Row="0" Name="_txtIdMarcaFiltrar" VerticalAlignment="Center" MaxLength="255" 
+            <custom:ByTTextBox  IsEnabled="True"  Grid.Column="2" Grid.Row="0" Name="_txtIdMarcaFiltrar" VerticalAlignment="Center" MaxLength="8" 
                                             Grid.ColumnSpan="1" Visibility="Collapsed" 
                                             GotFocus="_txtMarcaFiltrar_GotFocus"></custom:ByTTextBox>
             <!--Fin Campo-->
