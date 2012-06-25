@@ -343,6 +343,16 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
                     this._ventana.PintarAsociado(((Marca)this._ventana.Marca).Asociado.TipoCliente.Id);
                 else
                     this._ventana.PintarAsociado("5");
+
+                IList<ListaDatosDominio> tiposMarcas = this._listaDatosDominioServicios.
+                ConsultarListaDatosDominioPorParametro(new ListaDatosDominio(Recursos.Etiquetas.cbiCategoriaMarca));
+                ListaDatosDominio DatoDominio = new ListaDatosDominio();
+                DatoDominio.Id = ((Marca)this._ventana.Marca).Tipo;
+                DatoDominio = BuscarListaDeDominio(tiposMarcas, DatoDominio);
+                if (null != DatoDominio)
+                    this._ventana.Tipo = DatoDominio.Descripcion;
+                else
+                    this._ventana.Tipo = "";
             }
             else
             {
@@ -494,13 +504,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
 
             Fusion fusion = (Fusion)this._ventana.Fusion;
 
-            if (null != this._ventana.MarcaFiltrada)
+            if ((null != this._ventana.MarcaFiltrada)&&(((Marca)this._ventana.MarcaFiltrada).Id != int.MinValue))
             {
-                fusion.Marca = ((Marca) this._ventana.MarcaFiltrada).Id != int.MinValue
-                                   ? (Marca) this._ventana.Marca : null;
-                fusion.InteresadoEntre = ((Marca)this._ventana.Marca).Interesado;
-                fusion.Agente = ((Marca)this._ventana.Marca).Agente;
-                fusion.Poder = ((Marca)this._ventana.Marca).Poder;
+                fusion.Marca = (Marca)this._ventana.MarcaFiltrada;
+                fusion.InteresadoEntre = ((Marca)this._ventana.MarcaFiltrada).Interesado;
+                fusion.Agente = ((Marca)this._ventana.MarcaFiltrada).Agente;
+                fusion.Poder = ((Marca)this._ventana.MarcaFiltrada).Poder;
             }
 
             if (null != this._ventana.InteresadoEntreFiltrado)
@@ -616,35 +625,41 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
                 {
                     Fusion fusion = CargarFusionDeLaPantalla();
                     fusion.Marca = (Marca)this._ventana.Marca;
-                    fusion.Marca.InfoBoles = this._infoBolServicios.ConsultarInfoBolesPorMarca(fusion.Marca);
-                    fusion.Marca.Operaciones = this._operacionServicios.ConsultarOperacionesPorMarca(fusion.Marca);
-                    fusion.Marca.Busquedas = this._busquedaServicios.ConsultarBusquedasPorMarca(fusion.Marca);
 
-                    if (null != fusion.Marca.InfoAdicional)
-                        fusion.Marca.InfoAdicional = this._infoAdicionalServicios.ConsultarPorId(fusion.Marca.InfoAdicional);
-                    if (null != fusion.Marca.Anaqua)
-                        fusion.Marca.Anaqua = this._anaquaServicios.ConsultarPorId(fusion.Marca.Anaqua);
-
-                    if (null != fusion.InteresadoSobreviviente)
+                    if (null != fusion.Marca)
                     {
-                        int? exitoso = this._fusionesServicios.InsertarOModificarFusion(fusion, UsuarioLogeado.Hash);
-                        if ((!exitoso.Equals(null)) && (this._agregar == false))
+                        fusion.Marca.InfoBoles = this._infoBolServicios.ConsultarInfoBolesPorMarca(fusion.Marca);
+                        fusion.Marca.Operaciones = this._operacionServicios.ConsultarOperacionesPorMarca(fusion.Marca);
+                        fusion.Marca.Busquedas = this._busquedaServicios.ConsultarBusquedasPorMarca(fusion.Marca);
+
+                        if (null != fusion.Marca.InfoAdicional)
+                            fusion.Marca.InfoAdicional =
+                                this._infoAdicionalServicios.ConsultarPorId(fusion.Marca.InfoAdicional);
+                        if (null != fusion.Marca.Anaqua)
+                            fusion.Marca.Anaqua = this._anaquaServicios.ConsultarPorId(fusion.Marca.Anaqua);
+
+                        if (null != fusion.InteresadoSobreviviente)
                         {
-                            this._ventana.HabilitarCampos = false;
-                            this._ventana.TextoBotonModificar = Recursos.Etiquetas.btnModificar;
-                        }
-                        else if ((!exitoso.Equals(null)) && (this._agregar == true))
-                        {
-                            fusion.Id = exitoso.Value;
-                            this.Navegar(new GestionarFusion(fusion));
+                            int? exitoso = this._fusionesServicios.InsertarOModificarFusion(fusion, UsuarioLogeado.Hash);
+                            if ((!exitoso.Equals(null)) && (this._agregar == false))
+                            {
+                                this._ventana.HabilitarCampos = false;
+                                this._ventana.TextoBotonModificar = Recursos.Etiquetas.btnModificar;
+                            }
+                            else if ((!exitoso.Equals(null)) && (this._agregar == true))
+                            {
+                                fusion.Id = exitoso.Value;
+                                this.Navegar(new GestionarFusion(fusion));
+                            }
+                            else
+                                this.Navegar(Recursos.MensajesConElUsuario.ErrorAlGenerarTraspaso, true);
                         }
                         else
-                            this.Navegar(Recursos.MensajesConElUsuario.ErrorAlGenerarTraspaso, true);
+                            this._ventana.Mensaje(Recursos.MensajesConElUsuario.ErrorSinSobreviviente, 1);
+
                     }
                     else
-                        this._ventana.Mensaje(Recursos.MensajesConElUsuario.ErrorSinSobreviviente, 1);
-
-
+                        this._ventana.Mensaje(Recursos.MensajesConElUsuario.ErrorTraspasoSinMarca, 1);
                 }
 
                 #region trace
@@ -1030,7 +1045,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
                         this._ventana.IdApoderado = ((Marca) this._ventana.Marca).Agente.Id.ToString();
                     }
                     this._ventana.Poder = ((Marca)this._ventana.Marca).Poder;
-                    retorno = true;
+                    
 
                     if (null != ((Marca)this._ventana.Marca).Asociado)
                         this._ventana.PintarAsociado(((Marca)this._ventana.Marca).Asociado.TipoCliente.Id);
@@ -1038,6 +1053,18 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
                         this._ventana.PintarAsociado("5");
 
                     this._ventana.ConvertirEnteroMinimoABlanco();
+
+                    IList<ListaDatosDominio> tiposMarcas = this._listaDatosDominioServicios.
+                    ConsultarListaDatosDominioPorParametro(new ListaDatosDominio(Recursos.Etiquetas.cbiCategoriaMarca));
+                    ListaDatosDominio DatoDominio = new ListaDatosDominio();
+                    DatoDominio.Id = ((Marca)this._ventana.Marca).Tipo;
+                    DatoDominio = BuscarListaDeDominio(tiposMarcas, DatoDominio);
+                    if (null != DatoDominio)
+                        this._ventana.Tipo = DatoDominio.Descripcion;
+                    else
+                        this._ventana.Tipo = "";
+
+                    retorno = true;
                 }
 
                 #region trace

@@ -31,6 +31,24 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.CesionesPatentes
             get { return this._txtIdCedenteFiltrar.Text; }
         }
 
+        public string Ubicacion
+        {
+            get { return this._txtUbicacion.Text; }
+            set { this._txtUbicacion.Text = value; }
+        }
+
+        public string Expediente
+        {
+            get { return this._txtExpediente.Text; }
+            set { this._txtExpediente.Text = value; }
+        }
+
+        public string Tipo
+        {
+            get { return this._txtTipo.Text; }
+            set { this._txtTipo.Text = value; }
+        }
+
         public string NombreCedenteFiltrar
         {
             get { return this._txtNombreCedenteFiltrar.Text; }
@@ -244,8 +262,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.CesionesPatentes
             set
             {
                 this._txtAsociado.IsEnabled = value;
-                this._txtClaseInternacional.IsEnabled = value;
-                this._txtClaseNacional.IsEnabled = value;
+                this._txtIdAsociado.IsEnabled = value;
                 this._txtExpediente.IsEnabled = value;
                 this._txtIdCesion.IsEnabled = value;
                 this._txtIdPatenteFiltrar.IsEnabled = value;
@@ -254,7 +271,6 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.CesionesPatentes
                 this._txtNombrePatenteFiltrar.IsEnabled = value;
                 this._txtNumInscripcion.IsEnabled = value;
                 this._txtNumRegistro.IsEnabled = value;
-                this._chkEtiqueta.IsEnabled = value;
                 this._txtTipo.IsEnabled = value;
                 this._txtUbicacion.IsEnabled = value;                                
                 this._btnConsultarPatente.IsEnabled = value;
@@ -468,7 +484,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.CesionesPatentes
             this._btnEliminar.Visibility = System.Windows.Visibility.Collapsed;
             this._lblIdCesion.Visibility = System.Windows.Visibility.Collapsed;
             this._txtIdCesion.Visibility = System.Windows.Visibility.Collapsed;
-            this._dpkFechaCesion.IsEnabled = false;
+            this._dpkFechaCesion.IsEnabled = true;
             this._btnAnexo.Visibility = System.Windows.Visibility.Collapsed;
             //this._btnCarpeta.Visibility = System.Windows.Visibility.Collapsed;
             this._btnPlanilla.Visibility = System.Windows.Visibility.Collapsed;
@@ -584,6 +600,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.CesionesPatentes
             else color = Brushes.White;
 
             this._txtAsociado.Background = color;
+            this._txtIdAsociado.Background = color;
         }
 
         
@@ -715,19 +732,15 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.CesionesPatentes
         {
             this._txtNombrePatente.Visibility = (System.Windows.Visibility)value;
             this._txtIdPatente.Visibility = (System.Windows.Visibility)value;
-            this._chkEtiqueta.Visibility = (System.Windows.Visibility)value;
             this._lblNoInscripcion.Visibility = (System.Windows.Visibility)value;
             this._txtNumInscripcion.Visibility = (System.Windows.Visibility)value;
             this._lblNoRegistro.Visibility = (System.Windows.Visibility)value;
             this._txtNumRegistro.Visibility = (System.Windows.Visibility)value;
             this._lblTipo.Visibility = (System.Windows.Visibility)value;
             this._txtTipo.Visibility = (System.Windows.Visibility)value;
-            this._lblClaseNacional.Visibility = (System.Windows.Visibility)value;
-            this._txtClaseNacional.Visibility = (System.Windows.Visibility)value;
-            this._lblClaseInternacional.Visibility = (System.Windows.Visibility)value;
-            this._txtClaseInternacional.Visibility = (System.Windows.Visibility)value;
             this._lblAsociado.Visibility = (System.Windows.Visibility)value;
             this._txtAsociado.Visibility = (System.Windows.Visibility)value;
+            this._txtIdAsociado.Visibility = (System.Windows.Visibility)value;
         }
 
         

@@ -8,6 +8,12 @@ namespace Trascend.Bolet.Cliente.Contratos.Traspasos.Cesiones
         
         object Cesion { get; set; }
 
+        string Tipo { set; get; }
+
+        string Expediente { get; set; }
+
+        string Ubicacion { get; set; }
+
         #region Marca
 
         object Marca { get; set; }

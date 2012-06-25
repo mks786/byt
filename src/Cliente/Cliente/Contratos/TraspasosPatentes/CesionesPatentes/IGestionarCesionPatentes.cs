@@ -8,6 +8,12 @@ namespace Trascend.Bolet.Cliente.Contratos.TraspasosPatentes.CesionesPatentes
         
         object CesionPatente { get; set; }
 
+        string Tipo { set; get; }
+
+        string Expediente { get; set; }
+
+        string Ubicacion { get; set; }
+
         #region Patente
 
         object Patente { get; set; }

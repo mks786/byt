@@ -430,13 +430,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CambiosDePetici
 
             CambioPeticionarioPatente cambioPeticionario = (CambioPeticionarioPatente)this._ventana.CambioPeticionarioPatente;
 
-            if (null != this._ventana.Patente)
+            if ((null != this._ventana.PatenteFiltrada) && (((Patente)this._ventana.PatenteFiltrada).Id != int.MinValue))
             {
-                cambioPeticionario.Patente = ((Patente) this._ventana.Patente).Id != int.MinValue
-                                                 ? (Patente) this._ventana.Patente : null;
-                cambioPeticionario.InteresadoAnterior = ((Patente)this._ventana.Patente).Interesado;
-                cambioPeticionario.AgenteAnterior = ((Patente)this._ventana.Patente).Agente;
-                cambioPeticionario.PoderAnterior = ((Patente)this._ventana.Patente).Poder;
+                cambioPeticionario.Patente = (Patente)this._ventana.PatenteFiltrada;
+                cambioPeticionario.InteresadoAnterior = ((Patente)this._ventana.PatenteFiltrada).Interesado;
+                cambioPeticionario.AgenteAnterior = ((Patente)this._ventana.PatenteFiltrada).Agente;
+                cambioPeticionario.PoderAnterior = ((Patente)this._ventana.PatenteFiltrada).Poder;
 
             }
 
@@ -504,21 +503,30 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CambiosDePetici
                 else if (this._ventana.TextoBotonModificar == Recursos.Etiquetas.btnAceptar)
                 {
                     CambioPeticionarioPatente cambioPeticionario = CargarCambioPeticionarioDeLaPantalla();
+                    cambioPeticionario.Patente = (Patente) this._ventana.Patente;
 
-                    int? exitoso = this._cambioPeticionarioPatenteServicios.InsertarOModificarCambioPeticionario(cambioPeticionario, UsuarioLogeado.Hash);
+                    if (null != cambioPeticionario.Patente)
+                    {
 
-                    if ((!exitoso.Equals(null)) && (this._agregar == false))
-                    {
-                        this._ventana.HabilitarCampos = false;
-                        this._ventana.TextoBotonModificar = Recursos.Etiquetas.btnModificar;
-                    }
-                    else if ((!exitoso.Equals(null)) && (this._agregar == true))
-                    {
-                        cambioPeticionario.Id = exitoso.Value;
-                        this.Navegar(new GestionarCambioPeticionarioPatentes(cambioPeticionario));
+                        int? exitoso =
+                            this._cambioPeticionarioPatenteServicios.InsertarOModificarCambioPeticionario(
+                                cambioPeticionario, UsuarioLogeado.Hash);
+
+                        if ((!exitoso.Equals(null)) && (this._agregar == false))
+                        {
+                            this._ventana.HabilitarCampos = false;
+                            this._ventana.TextoBotonModificar = Recursos.Etiquetas.btnModificar;
+                        }
+                        else if ((!exitoso.Equals(null)) && (this._agregar == true))
+                        {
+                            cambioPeticionario.Id = exitoso.Value;
+                            this.Navegar(new GestionarCambioPeticionarioPatentes(cambioPeticionario));
+                        }
+                        else
+                            this.Navegar(Recursos.MensajesConElUsuario.ErrorAlGenerarTraspaso, true);
                     }
                     else
-                        this.Navegar(Recursos.MensajesConElUsuario.ErrorAlGenerarTraspaso, true);
+                        this._ventana.Mensaje(Recursos.MensajesConElUsuario.ErrorTraspasoSinPatente, 1);
                 }
 
                 #region trace
@@ -1117,10 +1125,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CambiosDePetici
 
                     this._ventana.ApoderadoAnterior = ((Patente)this._ventana.Patente).Agente;
                     this._ventana.PoderAnterior = ((Patente)this._ventana.Patente).Poder;
+                    this._ventana.ConvertirEnteroMinimoABlanco();
                     retorno = true;
                 }
 
-                this._ventana.ConvertirEnteroMinimoABlanco();
+                
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))

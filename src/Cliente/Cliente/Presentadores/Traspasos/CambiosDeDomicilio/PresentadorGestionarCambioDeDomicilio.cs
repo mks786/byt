@@ -310,13 +310,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeDomicilio
 
             CambioDeDomicilio cambioDeDomicilio = (CambioDeDomicilio)this._ventana.CambioDeDomicilio;
 
-            if (null != this._ventana.Marca)
+            if ((null != this._ventana.MarcaFiltrada) && (((Marca)this._ventana.MarcaFiltrada).Id != int.MinValue))
             {
-                cambioDeDomicilio.Marca = ((Marca) this._ventana.Marca).Id != int.MinValue
-                                              ? (Marca) this._ventana.Marca : null;
-                cambioDeDomicilio.InteresadoAnterior = ((Marca)this._ventana.Marca).Interesado;
-                cambioDeDomicilio.Agente = ((Marca)this._ventana.Marca).Agente;
-                cambioDeDomicilio.Poder = ((Marca)this._ventana.Marca).Poder;
+                cambioDeDomicilio.Marca = (Marca)this._ventana.MarcaFiltrada;
+                cambioDeDomicilio.InteresadoAnterior = ((Marca)this._ventana.MarcaFiltrada).Interesado;
+                cambioDeDomicilio.Agente = ((Marca)this._ventana.MarcaFiltrada).Agente;
+                cambioDeDomicilio.Poder = ((Marca)this._ventana.MarcaFiltrada).Poder;
             }
 
             if (null != this._ventana.InteresadoAnterior)
@@ -371,34 +370,45 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeDomicilio
                     CambioDeDomicilio cambioDeDomicilio = CargarCambioDeDomicilioDeLaPantalla();
 
                     cambioDeDomicilio.Marca = (Marca)this._ventana.Marca;
-                    cambioDeDomicilio.Marca.InfoBoles = this._infoBolServicios.ConsultarInfoBolesPorMarca(cambioDeDomicilio.Marca);
-                    cambioDeDomicilio.Marca.Operaciones = this._operacionServicios.ConsultarOperacionesPorMarca(cambioDeDomicilio.Marca);
-                    cambioDeDomicilio.Marca.Busquedas = this._busquedaServicios.ConsultarBusquedasPorMarca(cambioDeDomicilio.Marca);
-                    if (cambioDeDomicilio.Marca.InfoAdicional != null)
-                         cambioDeDomicilio.Marca.InfoAdicional = this._infoAdicionalServicios.ConsultarPorId(cambioDeDomicilio.Marca.InfoAdicional);
-                    if (cambioDeDomicilio.Marca.Anaqua != null)
-                         cambioDeDomicilio.Marca.Anaqua = this._anaquaServicios.ConsultarPorId(cambioDeDomicilio.Marca.Anaqua);
-
-                    if (null != cambioDeDomicilio.InteresadoActual)
+                    if (null != cambioDeDomicilio.Marca)
                     {
-                        int? exitoso = this._cambioDeDomicilioServicios.InsertarOModificarCambioDeDomicilio(cambioDeDomicilio,UsuarioLogeado.Hash);
-                        if ((!exitoso.Equals(null)) && (this._agregar == false))
+                        cambioDeDomicilio.Marca.InfoBoles =
+                            this._infoBolServicios.ConsultarInfoBolesPorMarca(cambioDeDomicilio.Marca);
+                        cambioDeDomicilio.Marca.Operaciones =
+                            this._operacionServicios.ConsultarOperacionesPorMarca(cambioDeDomicilio.Marca);
+                        cambioDeDomicilio.Marca.Busquedas =
+                            this._busquedaServicios.ConsultarBusquedasPorMarca(cambioDeDomicilio.Marca);
+                        if (cambioDeDomicilio.Marca.InfoAdicional != null)
+                            cambioDeDomicilio.Marca.InfoAdicional =
+                                this._infoAdicionalServicios.ConsultarPorId(cambioDeDomicilio.Marca.InfoAdicional);
+                        if (cambioDeDomicilio.Marca.Anaqua != null)
+                            cambioDeDomicilio.Marca.Anaqua =
+                                this._anaquaServicios.ConsultarPorId(cambioDeDomicilio.Marca.Anaqua);
+
+                        if (null != cambioDeDomicilio.InteresadoActual)
                         {
-                            this._ventana.HabilitarCampos = false;
-                            this._ventana.TextoBotonModificar = Recursos.Etiquetas.btnModificar;
-                        }
-                        else if ((!exitoso.Equals(null)) && (this._agregar == true))
-                        {
-                            cambioDeDomicilio.Id = exitoso.Value;
-                            this.Navegar(new GestionarCambioDeDomicilio(cambioDeDomicilio));
+                            int? exitoso =
+                                this._cambioDeDomicilioServicios.InsertarOModificarCambioDeDomicilio(cambioDeDomicilio,
+                                                                                                     UsuarioLogeado.Hash);
+                            if ((!exitoso.Equals(null)) && (this._agregar == false))
+                            {
+                                this._ventana.HabilitarCampos = false;
+                                this._ventana.TextoBotonModificar = Recursos.Etiquetas.btnModificar;
+                            }
+                            else if ((!exitoso.Equals(null)) && (this._agregar == true))
+                            {
+                                cambioDeDomicilio.Id = exitoso.Value;
+                                this.Navegar(new GestionarCambioDeDomicilio(cambioDeDomicilio));
+                            }
+                            else
+                                this.Navegar(Recursos.MensajesConElUsuario.ErrorAlGenerarTraspaso, true);
                         }
                         else
-                            this.Navegar(Recursos.MensajesConElUsuario.ErrorAlGenerarTraspaso, true);
+                            this._ventana.Mensaje(Recursos.MensajesConElUsuario.ErrorSinInteresadoActual, 1);
+
                     }
                     else
-                        this._ventana.Mensaje(Recursos.MensajesConElUsuario.ErrorSinInteresadoActual, 1);
-                        
-                    
+                        this._ventana.Mensaje(Recursos.MensajesConElUsuario.ErrorTraspasoSinMarca, 1);
 
 
 
@@ -848,12 +858,14 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeDomicilio
 
                     this._ventana.AgenteApoderado = ((Marca)this._ventana.Marca).Agente;
                     this._ventana.Poder = ((Marca)this._ventana.Marca).Poder;
-                    retorno = true;
+                    
 
                     if (null != ((Marca)this._ventana.Marca).Asociado)
                         this._ventana.PintarAsociado(((Marca)this._ventana.Marca).Asociado.TipoCliente.Id);
                     else
                         this._ventana.PintarAsociado("5");
+
+                    retorno = true;
                 }
 
                 this._ventana.ConvertirEnteroMinimoABlanco();

@@ -377,6 +377,16 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.FusionesPatente
                     this._ventana.PintarAsociado(((Patente)this._ventana.Patente).Asociado.TipoCliente.Id);
                 else
                     this._ventana.PintarAsociado("5");
+
+                IList<ListaDatosDominio> tiposPatentes = this._listaDatosDominioServicios.
+                            ConsultarListaDatosDominioPorParametro(new ListaDatosDominio(Recursos.Etiquetas.cbiTipoPatente));
+                ListaDatosDominio DatoDominio = new ListaDatosDominio();
+                DatoDominio.Id = ((Patente)this._ventana.Patente).Tipo;
+                DatoDominio = BuscarListaDeDominio(tiposPatentes, DatoDominio);
+                if (null != DatoDominio)
+                    this._ventana.Tipo = DatoDominio.Descripcion;
+                else
+                    this._ventana.Tipo = "";
             }
             else
             {
@@ -479,13 +489,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.FusionesPatente
 
             FusionPatente fusion = (FusionPatente)this._ventana.FusionPatente;
 
-            if (null != this._ventana.PatenteFiltrada)
+            if ((null != this._ventana.PatenteFiltrada) && (((Patente)this._ventana.PatenteFiltrada).Id != int.MinValue))
             {
-                fusion.Patente = ((Patente) this._ventana.PatenteFiltrada).Id != int.MinValue
-                                                    ? (Patente) this._ventana.Patente : null;
-                fusion.InteresadoEntre = ((Patente)this._ventana.Patente).Interesado;
-                fusion.Agente = ((Patente)this._ventana.Patente).Agente;
-                fusion.Poder = ((Patente)this._ventana.Patente).Poder;
+                fusion.Patente = (Patente)this._ventana.PatenteFiltrada;
+                fusion.InteresadoEntre = ((Patente)this._ventana.PatenteFiltrada).Interesado;
+                fusion.Agente = ((Patente)this._ventana.PatenteFiltrada).Agente;
+                fusion.Poder = ((Patente)this._ventana.PatenteFiltrada).Poder;
             }
 
             if (null != this._ventana.InteresadoEntreFiltrado)
@@ -598,21 +607,29 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.FusionesPatente
                 else if (this._ventana.TextoBotonModificar == Recursos.Etiquetas.btnAceptar)
                 {
                     FusionPatente fusion = CargarFusionDeLaPantalla();
+                    fusion.Patente = (Patente) this._ventana.Patente;
 
-                    int? exitoso = this._fusionesServicios.InsertarOModificarFusion(fusion, UsuarioLogeado.Hash);
+                    if (null != fusion.Patente)
+                    {
 
-                    if ((!exitoso.Equals(null)) && (this._agregar == false))
-                    {
-                        this._ventana.HabilitarCampos = false;
-                        this._ventana.TextoBotonModificar = Recursos.Etiquetas.btnModificar;
-                    }
-                    else if ((!exitoso.Equals(null)) && (this._agregar == true))
-                    {
-                        fusion.Id = exitoso.Value;
-                        this.Navegar(new GestionarFusionPatentes(fusion));
+                        int? exitoso = this._fusionesServicios.InsertarOModificarFusion(fusion, UsuarioLogeado.Hash);
+
+                        if ((!exitoso.Equals(null)) && (this._agregar == false))
+                        {
+                            this._ventana.HabilitarCampos = false;
+                            this._ventana.TextoBotonModificar = Recursos.Etiquetas.btnModificar;
+                        }
+                        else if ((!exitoso.Equals(null)) && (this._agregar == true))
+                        {
+                            fusion.Id = exitoso.Value;
+                            this.Navegar(new GestionarFusionPatentes(fusion));
+                        }
+                        else
+                            this.Navegar(Recursos.MensajesConElUsuario.ErrorAlGenerarTraspaso, true);
                     }
                     else
-                        this.Navegar(Recursos.MensajesConElUsuario.ErrorAlGenerarTraspaso, true);
+                        this._ventana.Mensaje(Recursos.MensajesConElUsuario.ErrorTraspasoSinPatente, 1);
+
                 }
 
                 #region trace
@@ -1013,15 +1030,28 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.FusionesPatente
 
                     this._ventana.AgenteApoderado = ((Patente)this._ventana.Patente).Agente;
                     this._ventana.Poder = ((Patente)this._ventana.Patente).Poder;
-                    retorno = true;
+                    
 
                     if (null != ((Patente)this._ventana.Patente).Asociado)
                         this._ventana.PintarAsociado(((Patente)this._ventana.Patente).Asociado.TipoCliente.Id);
                     else
                         this._ventana.PintarAsociado("5");
+
+                    this._ventana.ConvertirEnteroMinimoABlanco();
+
+                    IList<ListaDatosDominio> tiposPatentes = this._listaDatosDominioServicios.
+                    ConsultarListaDatosDominioPorParametro(new ListaDatosDominio(Recursos.Etiquetas.cbiTipoPatente));
+                    ListaDatosDominio DatoDominio = new ListaDatosDominio();
+                    DatoDominio.Id = ((Patente)this._ventana.Patente).Tipo;
+                    DatoDominio = BuscarListaDeDominio(tiposPatentes, DatoDominio);
+                    if (null != DatoDominio)
+                        this._ventana.Tipo = DatoDominio.Descripcion;
+                    else
+                        this._ventana.Tipo = "";
+                    retorno = true;
                 }
 
-                this._ventana.ConvertirEnteroMinimoABlanco();
+                
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))

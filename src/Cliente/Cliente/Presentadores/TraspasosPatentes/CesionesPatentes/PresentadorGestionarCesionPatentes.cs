@@ -441,12 +441,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CesionesPatente
 
             CesionPatente cesion = (CesionPatente)this._ventana.CesionPatente;
 
-            if (null != this._ventana.PatenteFiltrada)
+            if ((null != this._ventana.PatenteFiltrada)&&(((Patente)this._ventana.PatenteFiltrada).Id!=int.MinValue))
             {
-                cesion.Patente = ((Patente)this._ventana.PatenteFiltrada).Id != int.MinValue ? (Patente)this._ventana.PatenteFiltrada : null;
-                cesion.Cedente = ((Patente)this._ventana.Patente).Interesado;
-                cesion.AgenteCedente = ((Patente)this._ventana.Patente).Agente;
-                cesion.PoderCedente = ((Patente)this._ventana.Patente).Poder;
+                cesion.Patente = (Patente) this._ventana.PatenteFiltrada;
+                cesion.Cedente = ((Patente)this._ventana.PatenteFiltrada).Interesado;
+                cesion.AgenteCedente = ((Patente)this._ventana.PatenteFiltrada).Agente;
+                cesion.PoderCedente = ((Patente)this._ventana.PatenteFiltrada).Poder;
             }
             if (null != this._ventana.CedenteFiltrado)
                 cesion.Cedente = ((Interesado)this._ventana.CedenteFiltrado).Id != int.MinValue ? (Interesado)this._ventana.CedenteFiltrado : null;
@@ -509,21 +509,29 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CesionesPatente
                 else if (this._ventana.TextoBotonModificar == Recursos.Etiquetas.btnAceptar)
                 {
                     CesionPatente cesion = CargarCesionDeLaPantalla();
+                    cesion.Patente = (Patente) this._ventana.Patente;
 
-                    int? exitoso = this._cesionServicios.InsertarOModificarCesion(cesion, UsuarioLogeado.Hash);
+                    if (null != cesion.Patente)
+                    {
 
-                    if ((!exitoso.Equals(null)) && (this._agregar == false))
-                    {
-                        this._ventana.HabilitarCampos = false;
-                        this._ventana.TextoBotonModificar = Recursos.Etiquetas.btnModificar;
-                    }
-                    else if ((!exitoso.Equals(null)) && (this._agregar == true))
-                    {
-                        cesion.Id = exitoso.Value;
-                        this.Navegar(new GestionarCesionPatentes(cesion));
+                        int? exitoso = this._cesionServicios.InsertarOModificarCesion(cesion, UsuarioLogeado.Hash);
+
+                        if ((!exitoso.Equals(null)) && (this._agregar == false))
+                        {
+                            this._ventana.HabilitarCampos = false;
+                            this._ventana.TextoBotonModificar = Recursos.Etiquetas.btnModificar;
+                        }
+                        else if ((!exitoso.Equals(null)) && (this._agregar == true))
+                        {
+                            cesion.Id = exitoso.Value;
+                            this.Navegar(new GestionarCesionPatentes(cesion));
+                        }
+                        else
+                            this.Navegar(Recursos.MensajesConElUsuario.ErrorAlGenerarTraspaso, true);
                     }
                     else
-                        this.Navegar(Recursos.MensajesConElUsuario.ErrorAlGenerarTraspaso, true);
+                        this._ventana.Mensaje(Recursos.MensajesConElUsuario.ErrorTraspasoSinPatente, 1);
+
                 }
 
                 #region trace
@@ -1060,6 +1068,13 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CesionesPatente
                 this._ventana.IdPatente = ((Patente)this._ventana.Patente).Id.ToString();
 
                 this._ventana.PintarAsociado(((Patente)this._ventana.Patente).Asociado.TipoCliente.Id);
+
+                IList<ListaDatosDominio> tiposPatentes = this._listaDatosDominioServicios.
+                ConsultarListaDatosDominioPorParametro(new ListaDatosDominio(Recursos.Etiquetas.cbiTipoPatente));
+                ListaDatosDominio DatoDominio = new ListaDatosDominio();
+                DatoDominio.Id = ((Patente)this._ventana.Patente).Tipo;
+                DatoDominio = BuscarListaDeDominio(tiposPatentes, DatoDominio);
+                this._ventana.Tipo = DatoDominio.Descripcion;
             }
             else
             {
@@ -1166,7 +1181,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CesionesPatente
                     this._ventana.Patente = this._ventana.PatenteFiltrada;
                     this._ventana.NombrePatente = ((Patente)this._ventana.PatenteFiltrada).Descripcion;
                     this._ventana.IdPatente = ((Patente)this._ventana.PatenteFiltrada).Id.ToString();
-                    retorno = true;
+                    
                     this._ventana.InteresadoCedente = ((Patente)this._ventana.Patente).Interesado;
 
                     if (((Patente)this._ventana.Patente).Interesado != null)
@@ -1199,9 +1214,22 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CesionesPatente
                     }
                     else
                         this._ventana.PintarAsociado("5");
+
+                    this._ventana.ConvertirEnteroMinimoABlanco();
+
+                    IList<ListaDatosDominio> tiposPatentes = this._listaDatosDominioServicios.
+                    ConsultarListaDatosDominioPorParametro(new ListaDatosDominio(Recursos.Etiquetas.cbiTipoPatente));
+                    ListaDatosDominio DatoDominio = new ListaDatosDominio();
+                    DatoDominio.Id = ((Patente)this._ventana.Patente).Tipo;
+                    DatoDominio = BuscarListaDeDominio(tiposPatentes, DatoDominio);
+                    if (null != DatoDominio)
+                        this._ventana.Tipo = DatoDominio.Descripcion;
+                    else
+                        this._ventana.Tipo = "";
+                    retorno = true;
                 }
 
-                this._ventana.ConvertirEnteroMinimoABlanco();
+                
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))

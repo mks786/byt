@@ -501,13 +501,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Licencias
 
             Licencia licencia = (Licencia)this._ventana.Licencia;
 
-            if (null != this._ventana.MarcaFiltrada)
+            if ((null != this._ventana.MarcaFiltrada) && (((Marca)this._ventana.MarcaFiltrada).Id != int.MinValue))
             {
-                licencia.Marca = ((Marca) this._ventana.MarcaFiltrada).Id != int.MinValue
-                                     ? (Marca) this._ventana.MarcaFiltrada : null;
-                licencia.InteresadoLicenciante = ((Marca)this._ventana.Marca).Interesado;
-                licencia.AgenteLicenciante = ((Marca)this._ventana.Marca).Agente;
-                licencia.PoderLicenciante = ((Marca)this._ventana.Marca).Poder;
+                licencia.Marca = (Marca) this._ventana.MarcaFiltrada;
+                licencia.InteresadoLicenciante = ((Marca)this._ventana.MarcaFiltrada).Interesado;
+                licencia.AgenteLicenciante = ((Marca)this._ventana.MarcaFiltrada).Agente;
+                licencia.PoderLicenciante = ((Marca)this._ventana.MarcaFiltrada).Poder;
             }
             if (null != this._ventana.InteresadoLicenciante)
                 licencia.InteresadoLicenciante = ((Interesado)this._ventana.InteresadoLicenciante).Id != int.MinValue ? 
@@ -583,36 +582,44 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Licencias
                     Licencia licencia = CargarLicenciaDeLaPantalla();
 
                     licencia.Marca = (Marca)this._ventana.Marca;
-                    licencia.Marca.InfoBoles = this._infoBolServicios.ConsultarInfoBolesPorMarca(licencia.Marca);
-                    licencia.Marca.Operaciones = this._operacionServicios.ConsultarOperacionesPorMarca(licencia.Marca);
-                    licencia.Marca.Busquedas = this._busquedaServicios.ConsultarBusquedasPorMarca(licencia.Marca);
-                    if (null != licencia.Marca.InfoAdicional)
-                        licencia.Marca.InfoAdicional = this._infoAdicionalServicios.ConsultarPorId(licencia.Marca.InfoAdicional);
-                    if (null != licencia.Marca.Anaqua)
-                        licencia.Marca.Anaqua = this._anaquaServicios.ConsultarPorId(licencia.Marca.Anaqua);
 
-                    if (null != licencia.InteresadoLicenciatario)
+                    if (null != licencia.Marca)
                     {
-                        int? exitoso = this._licenciaServicios.InsertarOModificarLicencia(licencia, UsuarioLogeado.Hash);
-                        if ((!exitoso.Equals(null)) && (this._agregar == false))
+                        licencia.Marca.InfoBoles = this._infoBolServicios.ConsultarInfoBolesPorMarca(licencia.Marca);
+                        licencia.Marca.Operaciones =
+                            this._operacionServicios.ConsultarOperacionesPorMarca(licencia.Marca);
+                        licencia.Marca.Busquedas = this._busquedaServicios.ConsultarBusquedasPorMarca(licencia.Marca);
+                        if (null != licencia.Marca.InfoAdicional)
+                            licencia.Marca.InfoAdicional =
+                                this._infoAdicionalServicios.ConsultarPorId(licencia.Marca.InfoAdicional);
+                        if (null != licencia.Marca.Anaqua)
+                            licencia.Marca.Anaqua = this._anaquaServicios.ConsultarPorId(licencia.Marca.Anaqua);
+
+                        if (null != licencia.InteresadoLicenciatario)
                         {
-                            this._ventana.HabilitarCampos = false;
-                            this._ventana.TextoBotonModificar = Recursos.Etiquetas.btnModificar;
+                            int? exitoso = this._licenciaServicios.InsertarOModificarLicencia(licencia,
+                                                                                              UsuarioLogeado.Hash);
+                            if ((!exitoso.Equals(null)) && (this._agregar == false))
+                            {
+                                this._ventana.HabilitarCampos = false;
+                                this._ventana.TextoBotonModificar = Recursos.Etiquetas.btnModificar;
+                            }
+                            else if ((!exitoso.Equals(null)) && (this._agregar == true))
+                            {
+                                licencia.Id = exitoso.Value;
+                                this.Navegar(new GestionarLicencia(licencia));
+                            }
+                            else
+                                this.Navegar(Recursos.MensajesConElUsuario.ErrorAlGenerarTraspaso, true);
                         }
-                        else if ((!exitoso.Equals(null)) && (this._agregar == true))
-                        {
-                            licencia.Id = exitoso.Value;
-                            this.Navegar(new GestionarLicencia(licencia));
-                        }
+
                         else
-                            this.Navegar(Recursos.MensajesConElUsuario.ErrorAlGenerarTraspaso, true);
+                            this._ventana.Mensaje(Recursos.MensajesConElUsuario.ErrorSinLicenciatario, 1);
+
+
                     }
-
                     else
-                        this._ventana.Mensaje(Recursos.MensajesConElUsuario.ErrorSinLicenciatario, 1);
-
-                    
-
+                        this._ventana.Mensaje(Recursos.MensajesConElUsuario.ErrorTraspasoSinMarca, 1);
 
                 }
 
@@ -1231,6 +1238,16 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Licencias
                     this._ventana.PintarAsociado(((Marca)this._ventana.Marca).Asociado.TipoCliente.Id);
                 else
                     this._ventana.PintarAsociado("5");
+
+                IList<ListaDatosDominio> tiposMarcas = this._listaDatosDominioServicios.
+                ConsultarListaDatosDominioPorParametro(new ListaDatosDominio(Recursos.Etiquetas.cbiCategoriaMarca));
+                ListaDatosDominio DatoDominio = new ListaDatosDominio();
+                DatoDominio.Id = ((Marca)this._ventana.Marca).Tipo;
+                DatoDominio = BuscarListaDeDominio(tiposMarcas, DatoDominio);
+                if (null != DatoDominio)
+                    this._ventana.Tipo = DatoDominio.Descripcion;
+                else
+                    this._ventana.Tipo = "";
             }
             else
             {
@@ -1349,7 +1366,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Licencias
                         this._ventana.IdApoderadoLicenciante = ((Marca) this._ventana.Marca).Id.ToString();
                     }
                     this._ventana.PoderLicenciante = ((Marca)this._ventana.Marca).Poder;
-                    retorno = true;
+                    
 
                     if (null != ((Marca)this._ventana.Marca).Asociado)
                         this._ventana.PintarAsociado(((Marca)this._ventana.Marca).Asociado.TipoCliente.Id);
@@ -1357,6 +1374,18 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Licencias
                         this._ventana.PintarAsociado("5");
 
                     this._ventana.ConvertirEnteroMinimoABlanco("Marca");
+
+                    IList<ListaDatosDominio> tiposMarcas = this._listaDatosDominioServicios.
+                    ConsultarListaDatosDominioPorParametro(new ListaDatosDominio(Recursos.Etiquetas.cbiCategoriaMarca));
+                    ListaDatosDominio DatoDominio = new ListaDatosDominio();
+                    DatoDominio.Id = ((Marca)this._ventana.Marca).Tipo;
+                    DatoDominio = BuscarListaDeDominio(tiposMarcas, DatoDominio);
+                    if (null != DatoDominio)
+                        this._ventana.Tipo = DatoDominio.Descripcion;
+                    else
+                        this._ventana.Tipo = "";
+
+                    retorno = true;
                 }
 
                 #region trace

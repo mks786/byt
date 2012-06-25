@@ -319,13 +319,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeNombre
 
             CambioDeNombre cambioDeNombre = (CambioDeNombre)this._ventana.CambioDeNombre;
 
-            if (null != this._ventana.Marca)
+            if ((null != this._ventana.MarcaFiltrada) && (((Marca)this._ventana.MarcaFiltrada).Id != int.MinValue))
             {
-                cambioDeNombre.Marca = ((Marca) this._ventana.Marca).Id != int.MinValue
-                                           ? (Marca) this._ventana.Marca : null;
-                cambioDeNombre.InteresadoAnterior = ((Marca)this._ventana.Marca).Interesado;
-                cambioDeNombre.Agente = ((Marca)this._ventana.Marca).Agente;
-                cambioDeNombre.Poder = ((Marca)this._ventana.Marca).Poder;
+                cambioDeNombre.Marca = (Marca) this._ventana.MarcaFiltrada;
+                cambioDeNombre.InteresadoAnterior = ((Marca)this._ventana.MarcaFiltrada).Interesado;
+                cambioDeNombre.Agente = ((Marca)this._ventana.MarcaFiltrada).Agente;
+                cambioDeNombre.Poder = ((Marca)this._ventana.MarcaFiltrada).Poder;
             }
 
             if (null != this._ventana.InteresadoAnterior)
@@ -387,35 +386,46 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeNombre
                     CambioDeNombre cambioDeNombre = CargarCambioDeNombreDeLaPantalla();
 
                     cambioDeNombre.Marca = (Marca)this._ventana.Marca;
-                    cambioDeNombre.Marca.InfoBoles = this._infoBolServicios.ConsultarInfoBolesPorMarca(cambioDeNombre.Marca);
-                    cambioDeNombre.Marca.Operaciones = this._operacionServicios.ConsultarOperacionesPorMarca(cambioDeNombre.Marca);
-                    cambioDeNombre.Marca.Busquedas = this._busquedaServicios.ConsultarBusquedasPorMarca(cambioDeNombre.Marca);
-                     
-                    if (null != cambioDeNombre.Marca.InfoAdicional)
-                        cambioDeNombre.Marca.InfoAdicional = this._infoAdicionalServicios.ConsultarPorId(cambioDeNombre.Marca.InfoAdicional);
-                    if (null != cambioDeNombre.Marca.Anaqua)
-                        cambioDeNombre.Marca.Anaqua = this._anaquaServicios.ConsultarPorId(cambioDeNombre.Marca.Anaqua);
-
-                    if (null != cambioDeNombre.InteresadoActual)
+                    if (null != cambioDeNombre.Marca)
                     {
-                        int? exitoso = this._cambioDeNombreServicios.InsertarOModificarCambioNombre(cambioDeNombre, UsuarioLogeado.Hash);
-                        if ((!exitoso.Equals(null)) && (this._agregar == false))
+                        cambioDeNombre.Marca.InfoBoles =
+                            this._infoBolServicios.ConsultarInfoBolesPorMarca(cambioDeNombre.Marca);
+                        cambioDeNombre.Marca.Operaciones =
+                            this._operacionServicios.ConsultarOperacionesPorMarca(cambioDeNombre.Marca);
+                        cambioDeNombre.Marca.Busquedas =
+                            this._busquedaServicios.ConsultarBusquedasPorMarca(cambioDeNombre.Marca);
+
+                        if (null != cambioDeNombre.Marca.InfoAdicional)
+                            cambioDeNombre.Marca.InfoAdicional =
+                                this._infoAdicionalServicios.ConsultarPorId(cambioDeNombre.Marca.InfoAdicional);
+                        if (null != cambioDeNombre.Marca.Anaqua)
+                            cambioDeNombre.Marca.Anaqua =
+                                this._anaquaServicios.ConsultarPorId(cambioDeNombre.Marca.Anaqua);
+
+                        if (null != cambioDeNombre.InteresadoActual)
                         {
-                            this._ventana.HabilitarCampos = false;
-                            this._ventana.TextoBotonModificar = Recursos.Etiquetas.btnModificar;
-                        }
-                        else if ((!exitoso.Equals(null)) && (this._agregar == true))
-                        {
-                            cambioDeNombre.Id = exitoso.Value;
-                            this.Navegar(new GestionarCambioDeNombre(cambioDeNombre));
+                            int? exitoso = this._cambioDeNombreServicios.InsertarOModificarCambioNombre(cambioDeNombre,
+                                                                                                        UsuarioLogeado.
+                                                                                                            Hash);
+                            if ((!exitoso.Equals(null)) && (this._agregar == false))
+                            {
+                                this._ventana.HabilitarCampos = false;
+                                this._ventana.TextoBotonModificar = Recursos.Etiquetas.btnModificar;
+                            }
+                            else if ((!exitoso.Equals(null)) && (this._agregar == true))
+                            {
+                                cambioDeNombre.Id = exitoso.Value;
+                                this.Navegar(new GestionarCambioDeNombre(cambioDeNombre));
+                            }
+                            else
+                                this.Navegar(Recursos.MensajesConElUsuario.ErrorAlGenerarTraspaso, true);
                         }
                         else
-                            this.Navegar(Recursos.MensajesConElUsuario.ErrorAlGenerarTraspaso, true);
+                            this._ventana.Mensaje(Recursos.MensajesConElUsuario.ErrorSinInteresadoActual, 1);
+
                     }
                     else
-                        this._ventana.Mensaje(Recursos.MensajesConElUsuario.ErrorSinInteresadoActual, 1);
-
-
+                        this._ventana.Mensaje(Recursos.MensajesConElUsuario.ErrorTraspasoSinMarca, 1);
                 }
 
                 #region trace
@@ -827,12 +837,14 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeNombre
 
                     this._ventana.AgenteApoderado = ((Marca)this._ventana.Marca).Agente;
                     this._ventana.Poder = ((Marca)this._ventana.Marca).Poder;
-                    retorno = true;
+                    
 
                     if (null != ((Marca)this._ventana.Marca).Asociado)
                         this._ventana.PintarAsociado(((Marca)this._ventana.Marca).Asociado.TipoCliente.Id);
                     else
                         this._ventana.PintarAsociado("5");
+
+                    retorno = true;
                 }
 
                 this._ventana.ConvertirEnteroMinimoABlanco();

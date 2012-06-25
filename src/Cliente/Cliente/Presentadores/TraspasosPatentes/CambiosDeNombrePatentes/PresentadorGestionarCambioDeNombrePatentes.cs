@@ -334,13 +334,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CambiosDeNombre
 
             CambioDeNombrePatente cambioDeNombre = (CambioDeNombrePatente)this._ventana.CambioDeNombrePatente;
 
-            if (null != this._ventana.Patente)
+            if ((null != this._ventana.PatenteFiltrada) && (((Patente)this._ventana.PatenteFiltrada).Id != int.MinValue))
             {
-                cambioDeNombre.Patente = ((Patente) this._ventana.Patente).Id != int.MinValue
-                                             ? (Patente) this._ventana.Patente : null;
-                cambioDeNombre.InteresadoAnterior = ((Patente)this._ventana.Patente).Interesado;
-                cambioDeNombre.Agente = ((Patente)this._ventana.Patente).Agente;
-                cambioDeNombre.Poder = ((Patente)this._ventana.Patente).Poder;
+                cambioDeNombre.Patente = (Patente) this._ventana.PatenteFiltrada;
+                cambioDeNombre.InteresadoAnterior = ((Patente)this._ventana.PatenteFiltrada).Interesado;
+                cambioDeNombre.Agente = ((Patente)this._ventana.PatenteFiltrada).Agente;
+                cambioDeNombre.Poder = ((Patente)this._ventana.PatenteFiltrada).Poder;
 
 
             }
@@ -399,22 +398,31 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CambiosDeNombre
                 //Modifica los datos del Cambio De Nombre
                 else if (this._ventana.TextoBotonModificar == Recursos.Etiquetas.btnAceptar)
                 {
-                    CambioDeNombrePatente cambioDeNombre = CargarCambioDeNombreDeLaPantalla();                   
+                    CambioDeNombrePatente cambioDeNombre = CargarCambioDeNombreDeLaPantalla();
+                    cambioDeNombre.Patente = (Patente) this._ventana.Patente;
 
-                    int? exitoso = this._cambioDeNombrePatenteServicios.InsertarOModificarCambioNombre(cambioDeNombre, UsuarioLogeado.Hash);
+                    if (null != cambioDeNombre.Patente)
+                    {
 
-                    if ((!exitoso.Equals(null)) && (this._agregar == false))
-                    {
-                        this._ventana.HabilitarCampos = false;
-                        this._ventana.TextoBotonModificar = Recursos.Etiquetas.btnModificar;
-                    }
-                    else if ((!exitoso.Equals(null)) && (this._agregar == true))
-                    {
-                        cambioDeNombre.Id = exitoso.Value;
-                        this.Navegar(new GestionarCambioDeNombrePatentes(cambioDeNombre));
+                        int? exitoso =
+                            this._cambioDeNombrePatenteServicios.InsertarOModificarCambioNombre(cambioDeNombre,
+                                                                                                UsuarioLogeado.Hash);
+
+                        if ((!exitoso.Equals(null)) && (this._agregar == false))
+                        {
+                            this._ventana.HabilitarCampos = false;
+                            this._ventana.TextoBotonModificar = Recursos.Etiquetas.btnModificar;
+                        }
+                        else if ((!exitoso.Equals(null)) && (this._agregar == true))
+                        {
+                            cambioDeNombre.Id = exitoso.Value;
+                            this.Navegar(new GestionarCambioDeNombrePatentes(cambioDeNombre));
+                        }
+                        else
+                            this.Navegar(Recursos.MensajesConElUsuario.ErrorAlGenerarTraspaso, true);
                     }
                     else
-                        this.Navegar(Recursos.MensajesConElUsuario.ErrorAlGenerarTraspaso, true);
+                        this._ventana.Mensaje(Recursos.MensajesConElUsuario.ErrorTraspasoSinPatente, 1);
                 }
 
                 #region trace
@@ -815,9 +823,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CambiosDeNombre
 
                     this._ventana.AgenteApoderado = ((Patente)this._ventana.Patente).Agente;
                     this._ventana.Poder = ((Patente)this._ventana.Patente).Poder;
-                    retorno = true;
+                    
 
                     this._ventana.ConvertirEnteroMinimoABlanco();
+
+                    retorno = true;
                 }
 
                 #region trace

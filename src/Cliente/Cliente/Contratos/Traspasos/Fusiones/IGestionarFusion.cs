@@ -7,6 +7,10 @@ namespace Trascend.Bolet.Cliente.Contratos.Traspasos.Fusiones
     {
         object Fusion { get; set; }
 
+        string Tipo { get; set; }
+
+        string Expediente { get; set; }
+
         string IdAsociadoFiltrar { get; }
 
         string NombreAsociadoFiltrar { get; }

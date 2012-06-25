@@ -25,8 +25,20 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Cesiones
         {
             get { return this._cargada; }
             set { this._cargada = value; }
-        }           
-     
+        }
+
+        public string Ubicacion
+        {
+            get { return this._txtUbicacion.Text; }
+            set { this._txtUbicacion.Text = value; }
+        }
+
+        public string Expediente
+        {
+            get { return this._txtExpediente.Text; }
+            set { this._txtExpediente.Text = value; }
+        }
+
         public string IdCedenteFiltrar
         {
             get { return this._txtIdCedenteFiltrar.Text; }
@@ -276,6 +288,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Cesiones
             set
             {
                 this._txtAsociado.IsEnabled = value;
+                this._txtIdAsociado.IsEnabled = value;
                 this._txtClaseInternacional.IsEnabled = value;
                 this._txtClaseNacional.IsEnabled = value;
                 this._txtExpediente.IsEnabled = value;
@@ -364,6 +377,12 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Cesiones
         {
             get { return this._txtIdPoderCedente.Text; }
             set { this._txtIdPoderCedente.Text = value; }
+        }
+
+        public string Tipo
+        {
+            get { return this._txtTipo.Text; }
+            set { this._txtTipo.Text = value; }
         }
 
         public string IdPoderCesionario
@@ -487,6 +506,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Cesiones
             else color = Brushes.White;
 
             this._txtAsociado.Background = color;
+            this._txtIdAsociado.Background = color;
 
         }
 
@@ -495,7 +515,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Cesiones
             this._btnEliminar.Visibility = System.Windows.Visibility.Collapsed;
             this._lblIdCesion.Visibility = System.Windows.Visibility.Collapsed;
             this._txtIdCesion.Visibility = System.Windows.Visibility.Collapsed;
-            this._dpkFechaCesion.IsEnabled = false;
+            this._dpkFechaCesion.IsEnabled = true;
             this._btnAnexo.Visibility = System.Windows.Visibility.Collapsed;
             this._btnCarpeta.Visibility = System.Windows.Visibility.Collapsed;
             this._btnPlanilla.Visibility = System.Windows.Visibility.Collapsed;
@@ -716,6 +736,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Cesiones
             this._txtClaseInternacional.Visibility = (System.Windows.Visibility)value;
             this._lblAsociado.Visibility = (System.Windows.Visibility)value;
             this._txtAsociado.Visibility = (System.Windows.Visibility)value;
+            this._txtIdAsociado.Visibility = (System.Windows.Visibility)value;
             this._txtIdMarca.Visibility = (System.Windows.Visibility)value;
         }
 

@@ -279,7 +279,7 @@
 
                         <!--Segunda Fila-->
                         <Label Name="_lblEstadoMarcaTercero" Grid.Column="0" Grid.Row="3" HorizontalAlignment="Right" VerticalAlignment="Center" >
-                            <TextBlock Text="{x:Static recurso:Etiquetas.lblEstado}"/>
+                            <TextBlock Text="{x:Static recurso:Etiquetas.lblCorp}"/>
                         </Label>
                         <custom:ByTTextBox Text="{Binding Path=Estado.Descripcion}" IsEnabled="False" Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="1" 
                                            Name="_txtEstadoMarcaTercero" VerticalAlignment="Center" MaxLength="255" IsReadOnly="True" IsTabStop="False"></custom:ByTTextBox>
@@ -324,7 +324,7 @@
                            Margin="0,5,0,0">
         <Grid Width="640" Name="_gridDatosInteresadoSobreviviente" DataContext="{Binding}">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="110"/>
+                <ColumnDefinition Width="145"/>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
@@ -344,7 +344,7 @@
                 <TextBlock Text="{x:Static recurso:Etiquetas.lblSobreviviente}"/>
             </Label>
                         <custom:ByTTextBox Text="" IsEnabled="False" MaxLength="255" Grid.Column="0" Grid.Row="1" Name="_txtIdInteresadoSobreviviente" VerticalAlignment="Center" 
-                         Grid.ColumnSpan="1" MouseDoubleClick="_txtInteresadoSobreviviente_MouseDoubleClick" IsReadOnly="True" Width="50" IsTabStop="False" Margin="45,3,6,3" BorderBrush="LightGreen"></custom:ByTTextBox>
+                         Grid.ColumnSpan="1" MouseDoubleClick="_txtInteresadoSobreviviente_MouseDoubleClick" IsReadOnly="True" Width="50" IsTabStop="False" Margin="55,3,3,3" BorderBrush="LightGreen"></custom:ByTTextBox>
                     
             
             <custom:ByTTextBox Text="{Binding Path=Nombre}" IsEnabled="False" MaxLength="255" Grid.Column="1" Grid.Row="1" Name="_txtNombreInteresadoSobreviviente" VerticalAlignment="Center" 
@@ -517,7 +517,7 @@
             </custom:ByTTextBox>
 
             <Label Name="_lblFomento" Grid.Row="0" Grid.Column="3" HorizontalAlignment="Right" VerticalAlignment="Center">
-                <TextBlock Text="{x:Static recurso:Etiquetas.lblFomento}"/>
+                <TextBlock Text="{x:Static recurso:Etiquetas.lblSapi}"/>
             </Label>
             <custom:ByTTextBox  IsEnabled="False"  Grid.Column="4" Grid.ColumnSpan="2" Grid.Row="0" Name="_txtNumPoder" 
                                 VerticalAlignment="Center" MaxLength="255" Text="{Binding Path=NumPoder}" 

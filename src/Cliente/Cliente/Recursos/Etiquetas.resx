@@ -2738,4 +2738,7 @@ de Gracia</value>
   <data name="btnInstRenovacion" xml:space="preserve">
     <value>Inst. de Renovación</value>
   </data>
+  <data name="lblCorp" xml:space="preserve">
+    <value>Corp:</value>
+  </data>
 </root>

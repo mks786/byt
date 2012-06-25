@@ -5,7 +5,13 @@ namespace Trascend.Bolet.Cliente.Contratos.Traspasos.Licencias
 {
     interface IGestionarLicencia : IPaginaBase
     {
-        object Licencia { get; set; }               
+        object Licencia { get; set; }
+
+        string Tipo { get; set; }
+
+        string Expediente { get; set; }
+
+        string Ubicacion { get; set; }
         
         //ListView Marcas
 

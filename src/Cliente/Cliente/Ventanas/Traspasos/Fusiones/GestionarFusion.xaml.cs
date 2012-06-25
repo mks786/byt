@@ -26,6 +26,12 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Fusiones
             set { this._cargada = value; }
         }
 
+        public string Expediente
+        {
+            get { return this._txtExpediente.Text; }
+            set { this._txtExpediente.Text = value; }
+        }
+
         public object Fusion
         {
             get
@@ -350,6 +356,13 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Fusiones
             set { this._txtIdPoder.Text = value; }
         }
 
+        public string Tipo
+        {
+            get { return this._txtTipo.Text; }
+            set { this._txtTipo.Text = value; }
+        }
+
+
         public string IdPoderFiltrar
         {
             get { return this._txtIdPoderFiltrar.Text; }
@@ -434,7 +447,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Fusiones
             this._btnEliminar.Visibility = System.Windows.Visibility.Collapsed;
             this._lblIdFusion.Visibility = System.Windows.Visibility.Collapsed;
             this._txtIdFusion.Visibility = System.Windows.Visibility.Collapsed;
-            this._dpkFechaFusion.IsEnabled = false;
+            this._dpkFechaFusion.IsEnabled = true;
 
             this._btnAnexo.Visibility = System.Windows.Visibility.Collapsed;
             this._btnCarpeta.Visibility = System.Windows.Visibility.Collapsed;

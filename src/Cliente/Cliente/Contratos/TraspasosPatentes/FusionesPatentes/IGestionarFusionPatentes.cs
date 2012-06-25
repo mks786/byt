@@ -9,6 +9,10 @@ namespace Trascend.Bolet.Cliente.Contratos.TraspasosPatentes.FusionesPatentes
 
         string IdAsociadoFiltrar { get; }
 
+        string Expediente { get; set; }
+
+        string Tipo { get; set; }
+
         string NombreAsociadoFiltrar { get; }
 
         string IdAgenteFiltrar { get; }

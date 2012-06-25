@@ -97,6 +97,24 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Licencias
             get { return this._txtNombreMarcaFiltrar.Text; }
         }
 
+        public string Tipo
+        {
+            get { return this._txtTipo.Text; }
+            set { this._txtTipo.Text = value; }
+        }
+
+        public string Ubicacion
+        {
+            get { return this._txtUbicacion.Text; }
+            set { this._txtUbicacion.Text = value; }
+        }
+
+        public string Expediente
+        {
+            get { return this._txtExpediente.Text; }
+            set { this._txtExpediente.Text = value; }
+        }
+
         public string IdMarca
         {
             get { return this._txtIdMarca.Text; }
@@ -497,7 +515,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Licencias
             this._btnEliminar.Visibility = System.Windows.Visibility.Collapsed;
             this._lblIdLicencia.Visibility = System.Windows.Visibility.Collapsed;
             this._txtIdLicencia.Visibility = System.Windows.Visibility.Collapsed;
-            this._dpkFechaLicencia.IsEnabled = false;
+            this._dpkFechaLicencia.IsEnabled = true;
             this._btnAnexo.Visibility = System.Windows.Visibility.Collapsed;
             this._btnCarpeta.Visibility = System.Windows.Visibility.Collapsed;
             this._btnPlanilla.Visibility = System.Windows.Visibility.Collapsed;

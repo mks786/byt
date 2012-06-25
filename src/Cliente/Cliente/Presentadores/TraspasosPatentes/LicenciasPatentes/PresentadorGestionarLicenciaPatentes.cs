@@ -463,13 +463,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.LicenciasPatent
 
             LicenciaPatente licencia = (LicenciaPatente)this._ventana.LicenciaPatente;
 
-            if (null != this._ventana.PatenteFiltrada)
+            if ((null != this._ventana.PatenteFiltrada) && (((Patente)this._ventana.PatenteFiltrada).Id != int.MinValue))
             {
-                licencia.Patente = ((Patente) this._ventana.PatenteFiltrada).Id != int.MinValue ? 
-                                                    (Patente) this._ventana.PatenteFiltrada : null;
-                licencia.InteresadoLicenciante = ((Patente)this._ventana.Patente).Interesado;
-                licencia.AgenteLicenciante = ((Patente)this._ventana.Patente).Agente;
-                licencia.PoderLicenciante = ((Patente)this._ventana.Patente).Poder;
+                licencia.Patente = (Patente) this._ventana.PatenteFiltrada;
+                licencia.InteresadoLicenciante = ((Patente)this._ventana.PatenteFiltrada).Interesado;
+                licencia.AgenteLicenciante = ((Patente)this._ventana.PatenteFiltrada).Agente;
+                licencia.PoderLicenciante = ((Patente)this._ventana.PatenteFiltrada).Poder;
             }
 
             if (null != this._ventana.InteresadoLicenciante)
@@ -496,6 +495,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.LicenciasPatent
             if (null != this._ventana.Boletin)
                 licencia.Boletin = ((Boletin)this._ventana.Boletin).Id != int.MinValue ? 
                                                     (Boletin)this._ventana.Boletin : null;
+
+            licencia.Expediente = this._ventana.Expediente;
+            licencia.Ubicacion = this._ventana.Ubicacion;
 
             #region trace
             if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -541,21 +543,28 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.LicenciasPatent
                 else if (this._ventana.TextoBotonModificar == Recursos.Etiquetas.btnAceptar)
                 {
                     LicenciaPatente licencia = CargarLicenciaDeLaPantalla();
+                    licencia.Patente = (Patente) this._ventana.Patente;
 
-                    int? exitoso = this._licenciaServicios.InsertarOModificarLicencia(licencia, UsuarioLogeado.Hash);
+                    if (null != licencia.Patente)
+                    {
 
-                    if ((!exitoso.Equals(null)) && (this._agregar == false))
-                    {
-                        this._ventana.HabilitarCampos = false;
-                        this._ventana.TextoBotonModificar = Recursos.Etiquetas.btnModificar;
-                    }
-                    else if ((!exitoso.Equals(null)) && (this._agregar == true))
-                    {
-                        licencia.Id = exitoso.Value;
-                        this.Navegar(new GestionarLicenciaPatentes(licencia));
+                        int? exitoso = this._licenciaServicios.InsertarOModificarLicencia(licencia, UsuarioLogeado.Hash);
+
+                        if ((!exitoso.Equals(null)) && (this._agregar == false))
+                        {
+                            this._ventana.HabilitarCampos = false;
+                            this._ventana.TextoBotonModificar = Recursos.Etiquetas.btnModificar;
+                        }
+                        else if ((!exitoso.Equals(null)) && (this._agregar == true))
+                        {
+                            licencia.Id = exitoso.Value;
+                            this.Navegar(new GestionarLicenciaPatentes(licencia));
+                        }
+                        else
+                            this.Navegar(Recursos.MensajesConElUsuario.ErrorAlGenerarTraspaso, true);
                     }
                     else
-                        this.Navegar(Recursos.MensajesConElUsuario.ErrorAlGenerarTraspaso, true);
+                        this._ventana.Mensaje(Recursos.MensajesConElUsuario.ErrorTraspasoSinPatente, 1);
                 }
 
                 #region trace
@@ -1176,6 +1185,16 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.LicenciasPatent
                     this._ventana.PintarAsociado(((Patente)this._ventana.Patente).Asociado.TipoCliente.Id);
                 else
                     this._ventana.PintarAsociado("5");
+
+                IList<ListaDatosDominio> tiposPatentes = this._listaDatosDominioServicios.
+                ConsultarListaDatosDominioPorParametro(new ListaDatosDominio(Recursos.Etiquetas.cbiTipoPatente));
+                ListaDatosDominio DatoDominio = new ListaDatosDominio();
+                DatoDominio.Id = ((Patente)this._ventana.Patente).Tipo;
+                DatoDominio = BuscarListaDeDominio(tiposPatentes, DatoDominio);
+                if (null != DatoDominio)
+                    this._ventana.Tipo = DatoDominio.Descripcion;
+                else
+                    this._ventana.Tipo = "";
             }
             else
             {
@@ -1309,15 +1328,28 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.LicenciasPatent
 
                     this._ventana.ApoderadoLicenciante = ((Patente)this._ventana.Patente).Agente;
                     this._ventana.PoderLicenciante = ((Patente)this._ventana.Patente).Poder;
-                    retorno = true;
+                    
 
                     if (null != ((Patente)this._ventana.Patente).Asociado)
                         this._ventana.PintarAsociado(((Patente)this._ventana.Patente).Asociado.TipoCliente.Id);
                     else
                         this._ventana.PintarAsociado("5");
+
+                    this._ventana.ConvertirEnteroMinimoABlanco();
+
+                    IList<ListaDatosDominio> tiposPatentes = this._listaDatosDominioServicios.
+                    ConsultarListaDatosDominioPorParametro(new ListaDatosDominio(Recursos.Etiquetas.cbiTipoPatente));
+                    ListaDatosDominio DatoDominio = new ListaDatosDominio();
+                    DatoDominio.Id = ((Patente)this._ventana.Patente).Tipo;
+                    DatoDominio = BuscarListaDeDominio(tiposPatentes, DatoDominio);
+                    if (null != DatoDominio)
+                        this._ventana.Tipo = DatoDominio.Descripcion;
+                    else
+                        this._ventana.Tipo = "";
+                    retorno = true;
                 }
 
-                this._ventana.ConvertirEnteroMinimoABlanco();
+                
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))

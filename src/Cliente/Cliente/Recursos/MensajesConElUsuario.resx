@@ -816,4 +816,10 @@
   <data name="ErrorSinInteresado" xml:space="preserve">
     <value>Error. La marca debe tener un interesado</value>
   </data>
+  <data name="ErrorTraspasoSinMarca" xml:space="preserve">
+    <value>El traspaso debe tener una marca seleccionada</value>
+  </data>
+  <data name="ErrorTraspasoSinPatente" xml:space="preserve">
+    <value>El traspaso debe tener una patente seleccionada</value>
+  </data>
 </root>

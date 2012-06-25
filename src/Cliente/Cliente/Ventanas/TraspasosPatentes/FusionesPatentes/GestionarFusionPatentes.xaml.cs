@@ -26,6 +26,18 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.FusionesPatentes
             set { this._cargada = value; }
         }
 
+        public string Expediente
+        {
+            get { return this._txtExpediente.Text; }
+            set { this._txtExpediente.Text = value; }
+        }
+
+        public string Tipo
+        {
+            get { return this._txtTipo.Text; }
+            set { this._txtTipo.Text = value; }
+        }
+
         public object Boletines
         {
             get { return this._cbxBoletin.DataContext; }
@@ -162,8 +174,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.FusionesPatentes
             set
             {
                 this._txtAsociado.IsEnabled = value;
-                this._txtClaseInternacional.IsEnabled = value;
-                this._txtClaseNacional.IsEnabled = value;
+                this._txtIdAsociado.IsEnabled = value;
                 this._txtExpediente.IsEnabled = value;
                 this._txtIdFusion.IsEnabled = value;
                 this._txtIdPatenteFiltrar.IsEnabled = value;
@@ -175,7 +186,6 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.FusionesPatentes
                 this._txtTipo.IsEnabled = value;
                 this._btnConsultarPatente.IsEnabled = value;
                 this._dpkFechaFusion.IsEnabled = value;
-                this._chkEtiqueta.IsEnabled = value;
 
                 this._btnConsultarInteresadoEntre.IsEnabled = value;
                 this._txtNombreInteresadoEntre.IsEnabled = value;
@@ -423,6 +433,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.FusionesPatentes
             else color = Brushes.White;
 
             this._txtAsociado.Background = color;
+            this._txtIdAsociado.Background = color;
 
         }
 
@@ -431,7 +442,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.FusionesPatentes
             this._btnEliminar.Visibility = System.Windows.Visibility.Collapsed;
             this._lblIdFusion.Visibility = System.Windows.Visibility.Collapsed;
             this._txtIdFusion.Visibility = System.Windows.Visibility.Collapsed;
-            this._dpkFechaFusion.IsEnabled = false;
+            this._dpkFechaFusion.IsEnabled = true;
 
             this._btnAnexo.Visibility = System.Windows.Visibility.Collapsed;
             //this._btnCarpeta.Visibility = System.Windows.Visibility.Collapsed;
@@ -582,19 +593,15 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.FusionesPatentes
         {
             this._txtNombrePatente.Visibility = (System.Windows.Visibility)value;
             this._txtIdPatente.Visibility = (System.Windows.Visibility)value;
-            this._chkEtiqueta.Visibility = (System.Windows.Visibility)value;
             this._lblNoInscripcion.Visibility = (System.Windows.Visibility)value;
             this._txtNumInscripcion.Visibility = (System.Windows.Visibility)value;
             this._lblNoRegistro.Visibility = (System.Windows.Visibility)value;
             this._txtNumRegistro.Visibility = (System.Windows.Visibility)value;
             this._lblTipo.Visibility = (System.Windows.Visibility)value;
             this._txtTipo.Visibility = (System.Windows.Visibility)value;
-            this._lblClaseNacional.Visibility = (System.Windows.Visibility)value;
-            this._txtClaseNacional.Visibility = (System.Windows.Visibility)value;
-            this._lblClaseInternacional.Visibility = (System.Windows.Visibility)value;
-            this._txtClaseInternacional.Visibility = (System.Windows.Visibility)value;
             this._lblAsociado.Visibility = (System.Windows.Visibility)value;
             this._txtAsociado.Visibility = (System.Windows.Visibility)value;
+            this._txtIdAsociado.Visibility = (System.Windows.Visibility)value;
         }
 
         private void _txtPatenteFiltrar_GotFocus(object sender, RoutedEventArgs e)

@@ -5,7 +5,13 @@ namespace Trascend.Bolet.Cliente.Contratos.TraspasosPatentes.LicenciasPatentes
 {
     interface IGestionarLicenciaPatentes : IPaginaBase
     {
-        object LicenciaPatente { get; set; }               
+        object LicenciaPatente { get; set; }
+
+        string Tipo { set; get; }
+
+        string Expediente { get; set; }
+
+        string Ubicacion { get; set; }
         
         //ListView Patentes
 

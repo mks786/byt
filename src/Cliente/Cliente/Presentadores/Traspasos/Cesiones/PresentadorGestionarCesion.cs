@@ -212,7 +212,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Cesiones
                     CargarPoder("Cesionario");
 
                     CargarId();
-
+  
                     LlenarListasPoderes((Cesion)this._ventana.Cesion);
 
                     ValidarCedente();
@@ -468,13 +468,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Cesiones
 
             Cesion cesion = (Cesion)this._ventana.Cesion;
 
-            if (null != this._ventana.MarcaFiltrada)
+            if ((null != this._ventana.MarcaFiltrada) && (((Marca)this._ventana.MarcaFiltrada).Id != int.MinValue))
             {
-                cesion.Marca = ((Marca) this._ventana.MarcaFiltrada).Id != int.MinValue
-                                   ? (Marca) this._ventana.MarcaFiltrada : null;
-                cesion.Cedente = ((Marca) this._ventana.Marca).Interesado;
-                cesion.AgenteCedente = ((Marca) this._ventana.Marca).Agente;
-                cesion.PoderCedente = ((Marca) this._ventana.Marca).Poder;
+                cesion.Marca = (Marca)this._ventana.MarcaFiltrada;
+                cesion.Cedente = ((Marca)this._ventana.MarcaFiltrada).Interesado;
+                cesion.AgenteCedente = ((Marca)this._ventana.MarcaFiltrada).Agente;
+                cesion.PoderCedente = ((Marca)this._ventana.MarcaFiltrada).Poder;
             }
 
             if (null != this._ventana.CedenteFiltrado)
@@ -544,35 +543,41 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Cesiones
                 {
                     Cesion cesion = CargarCesionDeLaPantalla();
                     cesion.Marca = (Marca)this._ventana.Marca;
-                    cesion.Marca.InfoBoles = this._infoBolServicios.ConsultarInfoBolesPorMarca(cesion.Marca);
-                    cesion.Marca.Operaciones = this._operacionServicios.ConsultarOperacionesPorMarca(cesion.Marca);
-                    cesion.Marca.Busquedas = this._busquedaServicios.ConsultarBusquedasPorMarca(cesion.Marca);
-                    if (null != cesion.Marca.InfoAdicional)
-                        cesion.Marca.InfoAdicional = this._infoAdicionalServicios.ConsultarPorId(cesion.Marca.InfoAdicional);
-                    if (null != cesion.Marca.Anaqua)
-                        cesion.Marca.Anaqua = this._anaquaServicios.ConsultarPorId(cesion.Marca.Anaqua);
 
-                    if (null != cesion.Cesionario)
+                    if (null != cesion.Marca)
                     {
-                       int? exitoso = this._cesionServicios.InsertarOModificarCesion(cesion, UsuarioLogeado.Hash);
-                       if ((!exitoso.Equals(null)) && (this._agregar == false))
-                       {
-                           this._ventana.HabilitarCampos = false;
-                           this._ventana.TextoBotonModificar = Recursos.Etiquetas.btnModificar;
-                       }
-                       else if ((!exitoso.Equals(null)) && (this._agregar == true))
-                       {
-                           cesion.Id = exitoso.Value;
-                           this.Navegar(new GestionarCesion(cesion));
-                       }
-                       else
-                           this.Navegar(Recursos.MensajesConElUsuario.ErrorAlGenerarTraspaso, true);
+                        cesion.Marca.InfoBoles = this._infoBolServicios.ConsultarInfoBolesPorMarca(cesion.Marca);
+                        cesion.Marca.Operaciones = this._operacionServicios.ConsultarOperacionesPorMarca(cesion.Marca);
+                        cesion.Marca.Busquedas = this._busquedaServicios.ConsultarBusquedasPorMarca(cesion.Marca);
+                        if (null != cesion.Marca.InfoAdicional)
+                            cesion.Marca.InfoAdicional =
+                                this._infoAdicionalServicios.ConsultarPorId(cesion.Marca.InfoAdicional);
+                        if (null != cesion.Marca.Anaqua)
+                            cesion.Marca.Anaqua = this._anaquaServicios.ConsultarPorId(cesion.Marca.Anaqua);
+
+                        if (null != cesion.Cesionario)
+                        {
+                            int? exitoso = this._cesionServicios.InsertarOModificarCesion(cesion, UsuarioLogeado.Hash);
+                            if ((!exitoso.Equals(null)) && (this._agregar == false))
+                            {
+                                this._ventana.HabilitarCampos = false;
+                                this._ventana.TextoBotonModificar = Recursos.Etiquetas.btnModificar;
+                            }
+                            else if ((!exitoso.Equals(null)) && (this._agregar == true))
+                            {
+                                cesion.Id = exitoso.Value;
+                                this.Navegar(new GestionarCesion(cesion));
+                            }
+                            else
+                                this.Navegar(Recursos.MensajesConElUsuario.ErrorAlGenerarTraspaso, true);
+
+                        }
+                        else
+                            this._ventana.Mensaje(Recursos.MensajesConElUsuario.ErrorSinCesionario, 1);
 
                     }
                     else
-                        this._ventana.Mensaje(Recursos.MensajesConElUsuario.ErrorSinCesionario, 1);
-
-
+                        this._ventana.Mensaje(Recursos.MensajesConElUsuario.ErrorTraspasoSinMarca, 1);
                 }
 
                 #region trace
@@ -1097,6 +1102,17 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Cesiones
                     this._ventana.PintarAsociado(((Marca)this._ventana.Marca).Asociado.TipoCliente.Id);
                 else
                     this._ventana.PintarAsociado("5");
+
+
+                IList<ListaDatosDominio> tiposMarcas = this._listaDatosDominioServicios.
+                ConsultarListaDatosDominioPorParametro(new ListaDatosDominio(Recursos.Etiquetas.cbiCategoriaMarca));
+                ListaDatosDominio DatoDominio = new ListaDatosDominio();
+                DatoDominio.Id = ((Marca)this._ventana.Marca).Tipo;
+                DatoDominio = BuscarListaDeDominio(tiposMarcas, DatoDominio);
+                if (null != DatoDominio)
+                    this._ventana.Tipo = DatoDominio.Descripcion;
+                else
+                    this._ventana.Tipo = "";
             }
             else
             {
@@ -1213,7 +1229,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Cesiones
                     }
                     if (null != ((Marca)this._ventana.Marca).Poder)
                          this._ventana.PoderCedente = ((Marca)this._ventana.Marca).Poder;
-                    retorno = true;
+                    
 
                     if (null != ((Marca)this._ventana.Marca).Asociado)
                         this._ventana.PintarAsociado(((Marca)this._ventana.Marca).Asociado.TipoCliente.Id);
@@ -1221,6 +1237,18 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Cesiones
                         this._ventana.PintarAsociado("5");
 
                     this._ventana.ConvertirEnteroMinimoABlanco("Marca");
+
+                    IList<ListaDatosDominio> tiposMarcas = this._listaDatosDominioServicios.
+                    ConsultarListaDatosDominioPorParametro(new ListaDatosDominio(Recursos.Etiquetas.cbiCategoriaMarca));
+                    ListaDatosDominio DatoDominio = new ListaDatosDominio();
+                    DatoDominio.Id = ((Marca)this._ventana.Marca).Tipo;
+                    DatoDominio = BuscarListaDeDominio(tiposMarcas, DatoDominio);
+                    if (null != DatoDominio)
+                        this._ventana.Tipo = DatoDominio.Descripcion;
+                    else
+                        this._ventana.Tipo = "";
+
+                    retorno = true;
                 }
 
                 #region trace
