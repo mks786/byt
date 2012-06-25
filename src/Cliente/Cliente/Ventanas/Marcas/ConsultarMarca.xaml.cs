@@ -379,6 +379,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
                 this._chkPrioridad.IsEnabled = value;
                 this._chkReclasificacionNacional.IsEnabled = value;
                 this._chkOtroDatos.IsEnabled = value;
+                this._chkEtiquetaDatos.IsEnabled = value;
+                this._chkEtiquetaSolicitud.IsEnabled = value;
 
                 #endregion
 
