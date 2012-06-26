@@ -822,4 +822,10 @@
   <data name="ErrorTraspasoSinPatente" xml:space="preserve">
     <value>El traspaso debe tener una patente seleccionada</value>
   </data>
+  <data name="MarcaSinPrioridad" xml:space="preserve">
+    <value>Esta marca no tiene prioridad</value>
+  </data>
+  <data name="MarcaSinPoder" xml:space="preserve">
+    <value>Esta marca no posee ningun poder</value>
+  </data>
 </root>

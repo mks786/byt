@@ -278,6 +278,9 @@
                             <GridViewColumn DisplayMemberBinding="{Binding Path=FechaBusquedaDiseno}" Width="200">
                                 <GridViewColumnHeader Click="_OrdenarMarcas_Click" Tag="Pedido/Diseño" Content="{x:Static recurso:Etiquetas.lsvPedidoDiseno}"/>
                             </GridViewColumn>
+                            <GridViewColumn DisplayMemberBinding="{Binding Path=TipoBusqueda}" Width="60">
+                                <GridViewColumnHeader Click="_OrdenarMarcas_Click" Tag="TipoBusqueda" Content="{x:Static recurso:Etiquetas.lsvTipoBusqueda}"/>
+                            </GridViewColumn>
                         </GridView>
                     </ListView.View>
                 </ListView>

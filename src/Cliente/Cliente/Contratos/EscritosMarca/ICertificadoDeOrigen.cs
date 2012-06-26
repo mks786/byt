@@ -56,5 +56,7 @@ namespace Trascend.Bolet.Cliente.Contratos.EscritosMarca
         string BotonModificar { get; set; }
 
         bool HabilitarCampos { set; }
+
+        
     }
 }

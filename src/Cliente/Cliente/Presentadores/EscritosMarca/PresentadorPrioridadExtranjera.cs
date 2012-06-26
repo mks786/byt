@@ -423,6 +423,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
 
                 if (this._ventana.MarcaFiltrado != null)
                 {
+                    if (null != ((Marca)this._ventana.MarcaFiltrado).CPrioridad)
+                    {
                     if (((Marca)this._ventana.MarcaFiltrado).Id != int.MinValue)
                     {
                         this._ventana.Marca =
@@ -430,6 +432,13 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
                     }
                     this._ventana.NombreMarca = ((Marca)this._ventana.MarcaFiltrado).Descripcion;
                     retorno = true;
+                    }
+                    else
+                    {
+                        retorno = false;
+                        this._ventana.MarcaFiltrado = null;
+                        this._ventana.Mensaje(Recursos.MensajesConElUsuario.MarcaSinPrioridad, 1);
+                    }
                 }
 
                 #region trace
@@ -562,8 +571,13 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
 
                 if ((this._ventana.MarcaFiltrado != null) && (((Marca)this._ventana.MarcaFiltrado).Id != int.MinValue))
                 {
-                    this._marcasAgregadas.Insert(0, (Marca)this._ventana.MarcaFiltrado);
-                    this._marcas.Remove((Marca)this._ventana.MarcaFiltrado);
+                    if (null != ((Marca)this._ventana.MarcaFiltrado).Poder)
+                    {
+                        this._marcasAgregadas.Insert(0, (Marca)this._ventana.MarcaFiltrado);
+                        this._marcas.Remove((Marca)this._ventana.MarcaFiltrado);
+                    }
+                    else
+                        this._ventana.MensajeAlerta(Recursos.MensajesConElUsuario.MarcaSinPoder);
                 }
 
                 this._ventana.MarcasAgregadas = null;

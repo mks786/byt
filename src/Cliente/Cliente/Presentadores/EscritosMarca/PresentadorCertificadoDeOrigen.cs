@@ -374,13 +374,23 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
 
                 if (this._ventana.MarcaFiltrado != null)
                 {
-                    if (((Marca)this._ventana.MarcaFiltrado).Id != int.MinValue)
+                    if (null != ((Marca)this._ventana.MarcaFiltrado).CPrioridad)
                     {
-                        this._ventana.Marca =
-                            this._marcaServicios.ConsultarMarcaConTodo((Marca)this._ventana.MarcaFiltrado);                        
+                        
+                        if (((Marca) this._ventana.MarcaFiltrado).Id != int.MinValue)
+                        {
+                            this._ventana.Marca =
+                                this._marcaServicios.ConsultarMarcaConTodo((Marca) this._ventana.MarcaFiltrado);
+                        }
+                        this._ventana.NombreMarca = ((Marca) this._ventana.MarcaFiltrado).Descripcion;
+                        retorno = true;
                     }
-                    this._ventana.NombreMarca = ((Marca)this._ventana.MarcaFiltrado).Descripcion;
-                    retorno = true;
+                    else
+                    {
+                        retorno = false;
+                        this._ventana.MarcaFiltrado = null;
+                        this._ventana.MensajeAlerta(Recursos.MensajesConElUsuario.MarcaSinPrioridad);
+                    }
                 }
 
                 #region trace
@@ -510,11 +520,15 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
-
                 if ((this._ventana.MarcaFiltrado != null) && (((Marca)this._ventana.MarcaFiltrado).Id != int.MinValue))
                 {
-                    this._marcasAgregadas.Insert(0, (Marca)this._ventana.MarcaFiltrado);
-                    this._marcas.Remove((Marca)this._ventana.MarcaFiltrado);
+                    if (null != ((Marca)this._ventana.MarcaFiltrado).Poder)
+                    {
+                        this._marcasAgregadas.Insert(0, (Marca)this._ventana.MarcaFiltrado);
+                        this._marcas.Remove((Marca)this._ventana.MarcaFiltrado);
+                    }
+                    else
+                        this._ventana.MensajeAlerta(Recursos.MensajesConElUsuario.MarcaSinPoder);
                 }
 
                 this._ventana.MarcasAgregadas = null;

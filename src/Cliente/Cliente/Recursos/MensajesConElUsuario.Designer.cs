@@ -1708,6 +1708,24 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Esta marca no posee ningun poder.
+        /// </summary>
+        internal static string MarcaSinPoder {
+            get {
+                return ResourceManager.GetString("MarcaSinPoder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Esta marca no tiene prioridad.
+        /// </summary>
+        internal static string MarcaSinPrioridad {
+            get {
+                return ResourceManager.GetString("MarcaSinPrioridad", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Marca Tercero Eliminado con éxito.
         /// </summary>
         internal static string MarcaTerceroEliminado {

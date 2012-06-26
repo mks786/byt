@@ -574,8 +574,13 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
 
                 if ((this._ventana.MarcaFiltrado != null) && (((Marca)this._ventana.MarcaFiltrado).Id != int.MinValue))
                 {
-                    this._marcasAgregadas.Insert(0, (Marca)this._ventana.MarcaFiltrado);
-                    this._marcas.Remove((Marca)this._ventana.MarcaFiltrado);
+                    if (null != ((Marca)this._ventana.MarcaFiltrado).Poder)
+                    {
+                        this._marcasAgregadas.Insert(0, (Marca)this._ventana.MarcaFiltrado);
+                        this._marcas.Remove((Marca)this._ventana.MarcaFiltrado);
+                    }
+                    else
+                        this._ventana.MensajeAlerta(Recursos.MensajesConElUsuario.MarcaSinPoder);
                 }
 
                 this._ventana.MarcasAgregadas = null;

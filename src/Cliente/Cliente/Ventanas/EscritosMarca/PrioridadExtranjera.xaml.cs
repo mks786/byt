@@ -338,5 +338,13 @@ namespace Trascend.Bolet.Cliente.Ventanas.EscritosMarca
         {
             _btnMenos_Click(sender, e);
         }
+
+        public void Mensaje(string mensaje, int opcion)
+        {
+            if (opcion == 0)
+                MessageBox.Show(mensaje, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            else
+                MessageBox.Show(mensaje, "Advertencia", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+        }
     }
 }

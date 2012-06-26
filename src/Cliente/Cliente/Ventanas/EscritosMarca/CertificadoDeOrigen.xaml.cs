@@ -326,5 +326,6 @@ namespace Trascend.Bolet.Cliente.Ventanas.EscritosMarca
         {
             _btnMenos_Click(sender, e);
         }
+
     }
 }
