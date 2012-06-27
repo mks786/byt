@@ -564,7 +564,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
                 {
                     MarcaTercero marcaTercero = CargarMarcaTerceroDeLaPantalla();
 
-                    if (ValidarCampos(marcaTercero))
+                    if (!ValidarCampos(marcaTercero))
                     {
 
                         bool exitoso = this._marcaTerceroServicios.InsertarOModificar(marcaTercero, UsuarioLogeado.Hash);

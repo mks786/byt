@@ -181,6 +181,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Fusiones
             set
             {
                 this._txtAsociado.IsEnabled = value;
+                this._txtIdAsociado.IsEnabled = value;
                 this._txtClaseInternacional.IsEnabled = value;
                 this._txtClaseNacional.IsEnabled = value;
                 this._txtExpediente.IsEnabled = value;
@@ -439,6 +440,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Fusiones
             else color = Brushes.White;
 
             this._txtAsociado.Background = color;
+            this._txtIdAsociado.Background = color;
 
 
         }
@@ -606,6 +608,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Fusiones
             this._txtClaseInternacional.Visibility = (System.Windows.Visibility)value;
             this._lblAsociado.Visibility = (System.Windows.Visibility)value;
             this._txtAsociado.Visibility = (System.Windows.Visibility)value;
+            this._txtIdAsociado.Visibility = (System.Windows.Visibility)value;
         }
 
         private void _txtMarcaFiltrar_GotFocus(object sender, RoutedEventArgs e)

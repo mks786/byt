@@ -71,17 +71,32 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
                 {
                     id = (marcaTercero.Descripcion[0].ToString().ToUpper());// + marcaTercero.Descripcion[1].ToString().ToUpper());
 
-                    ComandoBase<string> idBuscado = FabricaComandosMarcaTercero.ObtenerComandoConsultarMarcaTerceroMaxId(id);
-                    idBuscado.Ejecutar();
-                    indice = idBuscado.Receptor.ObjetoAlmacenado.Length - 2;
-                    contadorStr = idBuscado.Receptor.ObjetoAlmacenado.Substring(2, indice);
-                    contador = int.Parse(contadorStr) + 1;
-                    marcaTercero.Id = idBuscado.Receptor.ObjetoAlmacenado.Substring(0, 2) + contador.ToString();
-                    marcaTercero.Anexo = 1;
+
                     if ((id == "E") && (marcaTercero.Descripcion[1].ToString().ToUpper() == "T"))
                     {
+                        ComandoBase<string> idBuscado = FabricaComandosMarcaTercero.ObtenerComandoConsultarMarcaTerceroMaxId("ET");
+                        idBuscado.Ejecutar();
 
+                        indice = idBuscado.Receptor.ObjetoAlmacenado.Length - 3;
+                        contadorStr = idBuscado.Receptor.ObjetoAlmacenado.Substring(3, indice);
+                        contador = int.Parse(contadorStr) + 1;
+                        if(idBuscado.Receptor.ObjetoAlmacenado[3] =='0')
+                            marcaTercero.Id = idBuscado.Receptor.ObjetoAlmacenado.Substring(0, 4) + contador.ToString();
+                        else
+                            marcaTercero.Id = idBuscado.Receptor.ObjetoAlmacenado.Substring(0, 3) + contador.ToString();
+                        marcaTercero.Anexo = 1;
 
+                    }
+                    else
+                    {
+                        ComandoBase<string> idBuscado = FabricaComandosMarcaTercero.ObtenerComandoConsultarMarcaTerceroMaxId(id);
+                        idBuscado.Ejecutar();
+
+                        indice = idBuscado.Receptor.ObjetoAlmacenado.Length - 2;
+                        contadorStr = idBuscado.Receptor.ObjetoAlmacenado.Substring(2, indice);
+                        contador = int.Parse(contadorStr) + 1;
+                        marcaTercero.Id = idBuscado.Receptor.ObjetoAlmacenado.Substring(0, 2) + contador.ToString();
+                        marcaTercero.Anexo = 1;
                     }
 
                     ComandoBase<bool> comando = FabricaComandosMarcaTercero.ObtenerComandoInsertarOModificar(marcaTercero);

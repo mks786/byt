@@ -180,7 +180,10 @@
                         <Label Name="_lblAsociado" Grid.Column="4" Grid.Row="2" HorizontalAlignment="Right" VerticalAlignment="Center" >
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblAsociado}"/>
                         </Label>
-                        <custom:ByTTextBox IsReadOnly="True" IsTabStop="False"   IsEnabled="False"  Grid.Column="5" Grid.Row="2" Name="_txtAsociado" VerticalAlignment="Center"  Grid.ColumnSpan="2"
+                        <custom:ByTTextBox IsReadOnly="True" IsTabStop="False"   IsEnabled="False"  Grid.Column="5" Grid.Row="2" Name="_txtIdAsociado" Margin="0,0,60,0" VerticalAlignment="Center"  Grid.ColumnSpan="1"
+                         MaxLength="255" Text="{Binding Path=Asociado.Id}" ></custom:ByTTextBox>
+
+                        <custom:ByTTextBox IsReadOnly="True" IsTabStop="False"   IsEnabled="False"  Grid.Column="6" Grid.Row="2" Name="_txtAsociado" Margin="-55,0,0,0"  VerticalAlignment="Center"  Grid.ColumnSpan="2"
                          MaxLength="255" Text="{Binding Path=Asociado.Nombre}" ></custom:ByTTextBox>
                         <!--Fin Campo-->
 

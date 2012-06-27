@@ -311,7 +311,7 @@
                            Margin="0,5,0,0">
         <Grid Width="640" Name="_gridDatosInteresadoSobreviviente" DataContext="{Binding}">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="145"/>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
@@ -333,7 +333,7 @@
 
 
                         <custom:ByTTextBox Text="" IsEnabled="False" MaxLength="255" Grid.Column="0" Grid.Row="1" Name="_txtIdInteresadoSobreviviente" VerticalAlignment="Center" 
-                        Grid.ColumnSpan="1" MouseDoubleClick="_txtInteresadoEntre_MouseDoubleClick" IsReadOnly="True" IsTabStop="False" Margin="45,3,0,3" BorderBrush="LightGreen"></custom:ByTTextBox>
+                        Grid.ColumnSpan="1" MouseDoubleClick="_txtInteresadoEntre_MouseDoubleClick" Width="50" IsReadOnly="True" IsTabStop="False" Margin="55,3,3,3" BorderBrush="LightGreen"></custom:ByTTextBox>
 
                         
             <custom:ByTTextBox Text="{Binding Path=Nombre}" IsEnabled="False" MaxLength="255" Grid.Column="1" Grid.Row="1" Name="_txtNombreInteresadoSobreviviente" VerticalAlignment="Center" 
