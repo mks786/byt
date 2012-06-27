@@ -58,7 +58,7 @@
                                 <TextBlock Text="{x:Static recurso:Etiquetas.lblId}"/>
                             </Label>
                             <custom:ByTTextBox Name="_txtId" Width="150" MaxLength="40" SoloNumero="True" Filtro="True" 
-                                       GotFocus="_btnConsultarFocus" GotKeyboardFocus="_btnConsultarFocus"/>
+                                       GotFocus="_btnConsultarFocus" GotKeyboardFocus="_btnConsultarFocus" TamanoMaximo="8"/>
                         </WrapPanel>
                         <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,180,0">
                             <Label Name="_lblSolicitud">
@@ -128,7 +128,7 @@
                                 <custom:ByTTextBox BorderBrush="LightGreen" Name="_txtAsociado" Text="" Width="150" MaxLength="15" Grid.Row="0" Grid.Column="1" Height="25" HorizontalAlignment="Left"
                                  MouseDoubleClick="_txtAsociado_MouseDoubleClick" IsReadOnly="True"/>
                                 <custom:ByTTextBox Visibility="Collapsed" Name="_txtIdAsociado" Text="" Width="150" MaxLength="15" Grid.Row="1" Grid.Column="1" Height="25" HorizontalAlignment="Left"
-                                 GotFocus="_btnConsultarAsociadoFocus" GotKeyboardFocus="_btnConsultarAsociadoFocus" SoloNumero="True" Filtro="True" Margin="0,3"/>
+                                 GotFocus="_btnConsultarAsociadoFocus" GotKeyboardFocus="_btnConsultarAsociadoFocus" SoloNumero="True" Filtro="True" Margin="0,3" TamanoMaximo="8"/>
 
                                 <Label Name="_lblNombreAsociado" Visibility="Collapsed"  VerticalAlignment="Center" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Right">
                                     <TextBlock Text="{x:Static recurso:Etiquetas.lblNombre}"/>
@@ -188,7 +188,7 @@
                                  MouseDoubleClick="_txtInteresado_MouseDoubleClick" IsReadOnly="True"/>
 
                                 <custom:ByTTextBox Visibility="Collapsed"  Name="_txtIdInteresado" Text="" Width="150" MaxLength="15" Grid.Row="1" Grid.Column="1" Height="25" HorizontalAlignment="Left"
-                                 GotFocus="_btnConsultarInteresadoFocus" GotKeyboardFocus="_btnConsultarInteresadoFocus" SoloNumero="True" Filtro="True" Margin="0,3" />
+                                 GotFocus="_btnConsultarInteresadoFocus" GotKeyboardFocus="_btnConsultarInteresadoFocus" SoloNumero="True" Filtro="True" Margin="0,3" TamanoMaximo="8" />
 
                                 <Label Name="_lblNombreInteresado" Visibility="Collapsed"  VerticalAlignment="Center" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Right">
                                     <TextBlock Text="{x:Static recurso:Etiquetas.lblNombre}"/>
@@ -327,7 +327,7 @@
                                 <TextBlock Text="{x:Static recurso:Etiquetas.lblCodigo}"/>
                             </Label>
                             <custom:ByTTextBox Name="_txtPrioridadCodigo" Width="150" MaxLength="40" SoloNumero="True" Filtro="True" 
-                                       GotFocus="_btnConsultarFocus" GotKeyboardFocus="_btnConsultarFocus"/>
+                                       GotFocus="_btnConsultarFocus" GotKeyboardFocus="_btnConsultarFocus" TamanoMaximo="8"/>
                         </WrapPanel>
 
                         <!--<WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,180,0">

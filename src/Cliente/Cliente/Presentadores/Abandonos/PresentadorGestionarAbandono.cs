@@ -256,15 +256,25 @@ namespace Trascend.Bolet.Cliente.Presentadores.Abandonos
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-                Operacion operacion = CargarAbandonoDeLaPantalla();              
-               
-                bool exitoso = this._operacionServicios.InsertarOModificar(operacion, UsuarioLogeado.Hash);
+                Operacion operacion = CargarAbandonoDeLaPantalla();
 
+                IList<Operacion> operacionesAux = this._operacionServicios.ConsultarOperacionesPorMarca(operacion.Marca);
 
-                if (exitoso)                               
-                    this.Navegar(Recursos.MensajesConElUsuario.AbandonoInsertado, false);                
+                if (operacionesAux.Count == 0)
+                {
+
+                    bool exitoso = this._operacionServicios.InsertarOModificar(operacion, UsuarioLogeado.Hash);
+
+                    if (exitoso)
+                        this.Navegar(Recursos.MensajesConElUsuario.AbandonoInsertado, false);
+                    else
+                        this.Navegar(Recursos.MensajesConElUsuario.AbandonoInsertado, true);
+
+                }
                 else
-                    this.Navegar(Recursos.MensajesConElUsuario.AbandonoInsertado, true);
+                {
+                    this._ventana.Mensaje(Recursos.MensajesConElUsuario.MarcaEstaAbandonada, 0);
+                }
                 
 
                 #region trace

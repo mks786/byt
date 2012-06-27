@@ -28,21 +28,37 @@ namespace Trascend.Bolet.ControlesByT.Ventanas
             this._detalle.SelectionLength = 0;
         }
 
+        public ChildWindow(string descripcion)
+        {
+            InitializeComponent();
+
+            this._detalle.Text = descripcion;
+            this._detalle.AcceptsReturn = true;
+            //this._detalle.MaxLength = descripcion.TamanoMaximo;
+            this._detalle.ScrollBars = ScrollBars.Vertical;
+            this._detalle.ReadOnly = true;
+
+            this._detalle.SelectionStart = this._detalle.Text.Length;
+            this._detalle.SelectionLength = 0;
+        }
+
         private void _btnAceptar_Click(object sender, EventArgs e)
         {
-            this._textBox.Text = this._detalle.Text;
+            if (null != this._textBox)
+                this._textBox.Text = this._detalle.Text;
             this.Close();
         }
 
         private void _detalle_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (this._textBox.SoloNumero)
+
+            if ((null != this._textBox) && (this._textBox.SoloNumero))
             {
                 if (!System.Text.RegularExpressions.Regex.IsMatch(e.KeyChar.ToString(), "\\d+"))
                     if (!e.KeyChar.Equals('\b'))
                         e.Handled = true;
             }
-            if (this._textBox.SoloPorcentaje)
+            if ((null != this._textBox) && (this._textBox.SoloPorcentaje))
             {
                 if ((!this._detalle.Text.Contains(".")) || ((!e.KeyChar.ToString().Equals("."))))
                 {

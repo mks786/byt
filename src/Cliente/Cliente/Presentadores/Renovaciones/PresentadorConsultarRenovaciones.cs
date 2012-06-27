@@ -363,7 +363,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Renovaciones
             marcaABuscar.Descripcion = !this._ventana.NombreMarcaFiltrar.Equals("") ?
                                      this._ventana.NombreMarcaFiltrar.ToUpper() : "";
 
-            if ((marcaABuscar.Id != 0) || !(marcaABuscar.Descripcion.Equals("")))
+            marcaABuscar.CodigoRegistro = !this._ventana.RegistroMarcaFiltrar.Equals("") ?
+                                     this._ventana.RegistroMarcaFiltrar.ToUpper() : "";
+
+            if ((marcaABuscar.Id != 0) || !(marcaABuscar.Descripcion.Equals("")) || !(marcaABuscar.CodigoRegistro.Equals("")) )
             {
                 IList<Marca> marcas = this._marcaServicios.ObtenerMarcasFiltro(marcaABuscar);
                 marcas.Insert(0, new Marca(int.MinValue));
@@ -427,6 +430,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Renovaciones
             this._ventana.FechaFiltrar = "";
             this._ventana.IdMarcaFiltrar = "";
             this._ventana.NombreMarcaFiltrar = "";
+            this._ventana.RegistroMarcaFiltrar = "";
 
 
 

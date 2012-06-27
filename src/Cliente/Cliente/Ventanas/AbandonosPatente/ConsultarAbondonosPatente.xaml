@@ -57,7 +57,7 @@
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblAbandono}"/>
                     </Label>
                     <custom:ByTTextBox SoloNumero="True" Name="_txtId" Text="{Binding Path=Id}" Width="150" MaxLength="8"
-                             GotFocus="_btnConsultarFocus" GotKeyboardFocus="_btnConsultarFocus"/>                    
+                             GotFocus="_btnConsultarFocus" GotKeyboardFocus="_btnConsultarFocus" TamanoMaximo="8"/>                    
                 </WrapPanel>
                 <WrapPanel Margin="40,0,0,0" Orientation="Horizontal" HorizontalAlignment="Left">
                     <Label>
@@ -98,7 +98,7 @@
                                                Height="25" HorizontalAlignment="Left" MouseDoubleClick="_txtPatente_MouseDoubleClick" IsReadOnly="True"/>
 
                         <custom:ByTTextBox Visibility="Collapsed" Name="_txtIdPatenteFiltrar" Text="" Width="150" MaxLength="15" Grid.Row="1" Grid.Column="1" Height="25" HorizontalAlignment="Left"
-                                 GotFocus="_btnConsultarPatenteFocus" GotKeyboardFocus="_btnConsultarPatenteFocus" SoloNumero="True" Filtro="True" Margin="0,3" />
+                                 GotFocus="_btnConsultarPatenteFocus" GotKeyboardFocus="_btnConsultarPatenteFocus" SoloNumero="True" Filtro="True" Margin="0,3" TamanoMaximo="8" />
 
                         <Label Name="_lblNombrePatente" Visibility="Collapsed"  VerticalAlignment="Center" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Right">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblNombre}"/>
@@ -178,9 +178,20 @@
                         <GridViewColumn DisplayMemberBinding="{Binding Path=Id}" Width="120">
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="Id" Content="{x:Static recurso:Etiquetas.lsvId}"/>
                         </GridViewColumn>
-                        <GridViewColumn DisplayMemberBinding="{Binding Path=Fecha}" Width="150">
+                        
+                        <GridViewColumn Width="150">
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="Fecha" Content="{x:Static recurso:Etiquetas.lsvFechaOperacion}"/>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock>
+                                        <TextBlock.Text>
+                                            <Binding Path="Fecha" StringFormat="{}{0:dd/MM/yyyy}"/>
+                                        </TextBlock.Text>
+                                    </TextBlock>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
                         </GridViewColumn>
+                        
                         <GridViewColumn DisplayMemberBinding="{Binding Path=Descripcion}" Width="150">
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="Descripcion" Content="{x:Static recurso:Etiquetas.lsvOperacion}"/>
                         </GridViewColumn>

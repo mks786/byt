@@ -93,7 +93,13 @@ namespace Trascend.Bolet.Cliente.Ventanas.Renovaciones
         {
             get { return this._txtNombreMarcaFiltrar.Text; }
             set { this._txtNombreMarcaFiltrar.Text = value; }
-        }        
+        }
+
+        public string RegistroMarcaFiltrar
+        {
+            get { return this._txtRegistroMarcaFiltrar.Text; }
+            set { this._txtRegistroMarcaFiltrar.Text = value; }
+        }
 
         public void MostrarBotonVolverAMarca()
         {
@@ -228,6 +234,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.Renovaciones
                 this._lblNombreMarca.Visibility = Visibility.Visible;
                 this._lstMarcas.Visibility = Visibility.Visible;
                 this._btnConsultarMarca.Visibility = Visibility.Visible;
+                this._lblRegistroMarca.Visibility = Visibility.Visible;
+                this._txtRegistroMarcaFiltrar.Visibility = Visibility.Visible;
             }
             else
             {
@@ -239,6 +247,9 @@ namespace Trascend.Bolet.Cliente.Ventanas.Renovaciones
                 this._lblNombreMarca.Visibility = Visibility.Collapsed;
                 this._lstMarcas.Visibility = Visibility.Collapsed;
                 this._btnConsultarMarca.Visibility = Visibility.Collapsed;
+                this._lblRegistroMarca.Visibility = Visibility.Collapsed;
+                this._txtRegistroMarcaFiltrar.Visibility = Visibility.Collapsed;
+
             }
         }     
 

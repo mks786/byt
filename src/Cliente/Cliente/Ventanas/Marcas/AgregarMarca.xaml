@@ -135,7 +135,7 @@
                                 <TextBlock Text="{x:Static recurso:Etiquetas.lblId}"/>
                             </Label>
                             <custom:ByTTextBox SoloNumero="True" Grid.Column="1" Grid.Row="0" Name="_txtIdAsociadoSolicitudFiltrar" VerticalAlignment="Center" 
-                         MaxLength="255" Grid.ColumnSpan="2" Visibility="Collapsed"  ></custom:ByTTextBox>
+                         MaxLength="255" Grid.ColumnSpan="2" Visibility="Collapsed" TamanoMaximo="8" ></custom:ByTTextBox>
 
                             <Label Name="_lblNombreAsociadoSolicitud" Grid.Column="3" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Center" Visibility="Collapsed">
                                 <TextBlock Text="{x:Static recurso:Etiquetas.lblNombre}"/>
@@ -221,7 +221,7 @@
                                 <TextBlock Text="{x:Static recurso:Etiquetas.lblId}"/>
                             </Label>
                             <custom:ByTTextBox SoloNumero="True" Grid.Column="1" Grid.Row="0" Name="_txtIdInteresadoSolicitudFiltrar" VerticalAlignment="Center" 
-                         MaxLength="255" Grid.ColumnSpan="2" Visibility="Collapsed"  ></custom:ByTTextBox>
+                         MaxLength="255" Grid.ColumnSpan="2" Visibility="Collapsed" TamanoMaximo="8"></custom:ByTTextBox>
 
                             <Label Name="_lblNombreInteresadoSolicitud" Grid.Column="3" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Center" Visibility="Collapsed">
                                 <TextBlock Text="{x:Static recurso:Etiquetas.lblNombre}"/>
@@ -296,7 +296,7 @@
                                 <TextBlock Text="{x:Static recurso:Etiquetas.lblId}"/>
                             </Label>
                             <custom:ByTTextBox SoloNumero="True" Grid.Column="1" Grid.Row="0" Name="_txtIdCorresponsalSolicitudFiltrar" VerticalAlignment="Center" 
-                         MaxLength="255" Grid.ColumnSpan="2" Visibility="Collapsed"  ></custom:ByTTextBox>
+                         MaxLength="255" Grid.ColumnSpan="2" Visibility="Collapsed" TamanoMaximo="8" ></custom:ByTTextBox>
 
                             <Label Name="_lblDescripcionCorresponsalSolicitud" Grid.Column="3" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Center" Visibility="Collapsed">
                                 <TextBlock Text="{x:Static recurso:Etiquetas.lblDescripcion}"/>
@@ -843,7 +843,7 @@
                                 <TextBlock Text="{x:Static recurso:Etiquetas.lblId}"/>
                             </Label>
                             <custom:ByTTextBox SoloNumero="True" Grid.Column="1" Grid.Row="0" Name="_txtIdAsociadoDatosFiltrar" VerticalAlignment="Center" 
-                         MaxLength="255" Grid.ColumnSpan="2" Visibility="Collapsed"  ></custom:ByTTextBox>
+                         MaxLength="255" Grid.ColumnSpan="2" Visibility="Collapsed" TamanoMaximo="8" ></custom:ByTTextBox>
 
                             <Label Name="_lblNombreAsociadoDatos" Grid.Column="3" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Center" Visibility="Collapsed">
                                 <TextBlock Text="{x:Static recurso:Etiquetas.lblNombre}"/>
@@ -927,7 +927,7 @@
                                 <TextBlock Text="{x:Static recurso:Etiquetas.lblId}"/>
                             </Label>
                             <custom:ByTTextBox SoloNumero="True" Grid.Column="1" Grid.Row="0" Name="_txtIdInteresadoDatosFiltrar" VerticalAlignment="Center" 
-                         MaxLength="255" Grid.ColumnSpan="2" Visibility="Collapsed"  ></custom:ByTTextBox>
+                         MaxLength="255" Grid.ColumnSpan="2" Visibility="Collapsed" TamanoMaximo="8" ></custom:ByTTextBox>
 
                             <Label Name="_lblNombreInteresadoDatos" Grid.Column="3" Grid.Row="0" Grid.RowSpan="2" HorizontalAlignment="Right" VerticalAlignment="Center" Visibility="Collapsed">
                                 <TextBlock Text="{x:Static recurso:Etiquetas.lblNombre}"/>
@@ -1043,7 +1043,7 @@
                                 <TextBlock Text="{x:Static recurso:Etiquetas.lblId}"/>
                             </Label>
                             <custom:ByTTextBox SoloNumero="True" Grid.Column="1" Grid.Row="0" Name="_txtIdCorresponsalDatosFiltrar" VerticalAlignment="Center" 
-                         MaxLength="255" Grid.ColumnSpan="2" Visibility="Collapsed"  ></custom:ByTTextBox>
+                         MaxLength="255" Grid.ColumnSpan="2" Visibility="Collapsed" TamanoMaximo="8" ></custom:ByTTextBox>
 
                             <Label Name="_lblDescripcionCorresponsalDatos" Grid.Column="3" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Center" Visibility="Collapsed">
                                 <TextBlock Text="{x:Static recurso:Etiquetas.lblDescripcion}"/>

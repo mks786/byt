@@ -400,7 +400,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.CambiosDeNombrePaten
             this._btnEliminar.Visibility = System.Windows.Visibility.Collapsed;
             this._lblIdCambioDeNombre.Visibility = System.Windows.Visibility.Collapsed;
             this._txtIdCambioDeNombre.Visibility = System.Windows.Visibility.Collapsed;
-            this._dpkFechaCambioDeNombre.IsEnabled = false;
+            this._dpkFechaCambioDeNombre.IsEnabled = true;
 
             this._btnAnexo.Visibility = System.Windows.Visibility.Collapsed;
             this._btnPlanilla.Visibility = System.Windows.Visibility.Collapsed;

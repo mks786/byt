@@ -39,6 +39,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.CambiosDeDomicilio
             }
         }
 
+        public string Fecha
+        {
+            get { return this._dpkFechaDomicilio.Text; }
+        }
+
         public object Boletines
         {
             get { return this._cbxBoletin.DataContext; }

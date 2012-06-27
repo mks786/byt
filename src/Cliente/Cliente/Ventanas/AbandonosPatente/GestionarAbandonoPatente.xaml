@@ -362,7 +362,7 @@
                         <custom:ByTTextBox Grid.Column="1" Grid.Row="1" Name="_txtDescripcionOperacion" VerticalAlignment="Center"                          
                                            Text="{Binding Path=Descripcion}" Grid.ColumnSpan="7" Margin="0,5,0,0" IsEnabled="False"  
                                            MaxLength="250" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" AcceptsReturn="True" 
-                                           Height="75" SpellCheck.IsEnabled="True"></custom:ByTTextBox>
+                                           Height="75" SpellCheck.IsEnabled="True" IsReadOnly="True" ></custom:ByTTextBox>
                     </Grid>
                 </WrapPanel>                                                                
             </StackPanel>

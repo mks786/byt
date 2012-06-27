@@ -17,7 +17,9 @@ namespace Trascend.Bolet.Cliente.Contratos.Marcas
 
         string IdAsociadoDatos { get; set; }
 
-        string SituacionDescripcion {set; }
+        string SituacionDescripcion { set; }
+
+        string DetalleDescripcion { set; }
 
         string NombreAsociadoSolicitudFiltrar { get; }
 
@@ -177,6 +179,8 @@ namespace Trascend.Bolet.Cliente.Contratos.Marcas
 
         bool PoderesEstanCargados { get; set; }
 
+        void DeshabilitarBotonModificar();
+
         void PintarInfoAdicional();
 
         void PintarAnaqua();
@@ -218,6 +222,5 @@ namespace Trascend.Bolet.Cliente.Contratos.Marcas
         GridViewColumnHeader CurSortCol { get; set; }
 
         SortAdorner CurAdorner { get; set; }
-
     }
 }

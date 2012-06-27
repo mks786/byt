@@ -83,7 +83,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeDomicilio
                     CambioDeDomicilio cambioDeDomicilioAgregar = new CambioDeDomicilio();
                     this._ventana.CambioDeDomicilio = cambioDeDomicilioAgregar;
 
-                    ((CambioDeDomicilio)this._ventana.CambioDeDomicilio).FechaDomicilio = DateTime.Now;
+                    //((CambioDeDomicilio)this._ventana.CambioDeDomicilio).FechaDomicilio = DateTime.Now;
                     this._ventana.Marca = null;
                     this._ventana.Poder = null;
                     this._ventana.InteresadoAnterior = null;
@@ -310,6 +310,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeDomicilio
 
             CambioDeDomicilio cambioDeDomicilio = (CambioDeDomicilio)this._ventana.CambioDeDomicilio;
 
+            if (!this._ventana.Fecha.Equals(""))
+                cambioDeDomicilio.FechaDomicilio = DateTime.Parse(this._ventana.Fecha);
+            else
+                cambioDeDomicilio.FechaDomicilio = null;
+
             if ((null != this._ventana.MarcaFiltrada) && (((Marca)this._ventana.MarcaFiltrada).Id != int.MinValue))
             {
                 cambioDeDomicilio.Marca = (Marca)this._ventana.MarcaFiltrada;
@@ -387,21 +392,26 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeDomicilio
 
                         if (null != cambioDeDomicilio.InteresadoActual)
                         {
-                            int? exitoso =
-                                this._cambioDeDomicilioServicios.InsertarOModificarCambioDeDomicilio(cambioDeDomicilio,
-                                                                                                     UsuarioLogeado.Hash);
-                            if ((!exitoso.Equals(null)) && (this._agregar == false))
+                            if (null != cambioDeDomicilio.FechaDomicilio)
                             {
-                                this._ventana.HabilitarCampos = false;
-                                this._ventana.TextoBotonModificar = Recursos.Etiquetas.btnModificar;
-                            }
-                            else if ((!exitoso.Equals(null)) && (this._agregar == true))
-                            {
-                                cambioDeDomicilio.Id = exitoso.Value;
-                                this.Navegar(new GestionarCambioDeDomicilio(cambioDeDomicilio));
+                                int? exitoso =
+                                    this._cambioDeDomicilioServicios.InsertarOModificarCambioDeDomicilio(cambioDeDomicilio,
+                                                                                                         UsuarioLogeado.Hash);
+                                if ((!exitoso.Equals(null)) && (this._agregar == false))
+                                {
+                                    this._ventana.HabilitarCampos = false;
+                                    this._ventana.TextoBotonModificar = Recursos.Etiquetas.btnModificar;
+                                }
+                                else if ((!exitoso.Equals(null)) && (this._agregar == true))
+                                {
+                                    cambioDeDomicilio.Id = exitoso.Value;
+                                    this.Navegar(new GestionarCambioDeDomicilio(cambioDeDomicilio));
+                                }
+                                else
+                                    this.Navegar(Recursos.MensajesConElUsuario.ErrorAlGenerarTraspaso, true);
                             }
                             else
-                                this.Navegar(Recursos.MensajesConElUsuario.ErrorAlGenerarTraspaso, true);
+                                this._ventana.Mensaje(Recursos.MensajesConElUsuario.ErrorSinFecha, 1);
                         }
                         else
                             this._ventana.Mensaje(Recursos.MensajesConElUsuario.ErrorSinInteresadoActual, 1);

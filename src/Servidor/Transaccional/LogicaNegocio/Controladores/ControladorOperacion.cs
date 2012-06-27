@@ -45,7 +45,23 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
                 exitoso = comando.Receptor.ObjetoAlmacenado;
 
                 if (exitoso)
-                    comandoOperacionContador.Ejecutar();
+                {
+                    if (null != operacion.Marca)
+                    {
+                        operacion.Marca.Servicio = new Servicio("AB");
+                        ComandoBase<bool> comandoMarca = FabricaComandosMarca.ObtenerComandoInsertarOModificar(operacion.Marca);
+                        comandoMarca.Ejecutar();
+                        comandoOperacionContador.Ejecutar();
+                    }
+
+                    if (null != operacion.Patente)
+                    {
+                        operacion.Patente.Servicio = new Servicio("AB");
+                        ComandoBase<bool> comandoPatente = FabricaComandosPatente.ObtenerComandoInsertarOModificar(operacion.Patente);
+                        comandoPatente.Ejecutar();
+                        comandoOperacionContador.Ejecutar();
+                    }
+                }
 
                 #region trace
                 if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))

@@ -62,6 +62,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             set { this._txtSituacionDescripcion.Text = value; }
         }
 
+        public string DetalleDescripcion
+        {
+            set { this._txtDetalleDescripcion.Text = value; }
+        }
+
         public object PoderesSolicitud
         {
             get { return this._lstPoderesSolicitud.DataContext; }
@@ -840,6 +845,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             this._txtClaseNacionalDatos.Text = this._txtClaseNacionalDatos.Text.Equals("0") ? "" : this._txtClaseNacionalDatos.Text;
         }
 
+        public void DeshabilitarBotonModificar()
+        {
+            this._btnAceptar.IsEnabled = false;
+        }
+
         public string ClaseInternacional
         {
             get { return this._txtClaseInternacional.Text; }
@@ -923,6 +933,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
         private void _cbxSituacion_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             this._presentador.DescripcionSituacion();
+        }
+
+        private void _cbxDetalle_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            this._presentador.DescripcionDetalle();
         }
         
         #region Funciones
@@ -1441,7 +1456,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
 
         private void _btnInglesSolicitud_Click(object sender, RoutedEventArgs e)
         {
-
+            this._presentador.MostrarDistingueIngles();
         }
 
 

@@ -5,7 +5,9 @@ namespace Trascend.Bolet.Cliente.Contratos.Traspasos.CambiosDeDomicilio
 {
     interface IGestionarCambioDeDomicilio : IPaginaBase
     {
-        object CambioDeDomicilio { get; set; }        
+        object CambioDeDomicilio { get; set; }
+
+        string Fecha { get; }
 
         string IdAsociadoFiltrar { get; }
 

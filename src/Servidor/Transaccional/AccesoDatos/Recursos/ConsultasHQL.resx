@@ -202,7 +202,7 @@
     <value>c.FechaIngreso between '{0}' and '{1}'</value>
   </data>
   <data name="CabeceraObtenerMarca" xml:space="preserve">
-    <value>Select m from Marca m left join fetch m.Asociado as asociado left join fetch m.Agente as agente left join fetch m.Corresponsal as corresponsal left join fetch m.Interesado as interesado left join fetch asociado.Pais as pais left join fetch asociado.Idioma as idioma left join fetch m.BoletinConcesion as boletinC left join fetch m.BoletinPublicacion as boletinP left join fetch m.BoletinOrdenPublicacion as boletinO left join fetch m.Nacional as nacional left join fetch m.Internacional as internacional where </value>
+    <value>Select m from Marca m left join fetch m.Asociado as asociado left join fetch m.Agente as agente left join fetch m.Corresponsal as corresponsal left join fetch m.Interesado as interesado left join fetch asociado.Pais as pais left join fetch asociado.Idioma as idioma left join fetch m.BoletinConcesion as boletinC left join fetch m.BoletinPublicacion as boletinP left join fetch m.BoletinOrdenPublicacion as boletinO left join fetch m.Nacional as nacional left join fetch m.Internacional as internacional left join fetch m.Servicio as servicio where </value>
     <comment>Cabecera del query para el filtro de marcas</comment>
   </data>
   <data name="FiltroObtenerMarcaDescripcion" xml:space="preserve">

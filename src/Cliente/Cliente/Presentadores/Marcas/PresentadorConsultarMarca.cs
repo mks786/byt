@@ -234,16 +234,18 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
 
                 IList<TipoEstado> tipoEstados = this._tipoEstadoServicios.ConsultarTodos();
                 TipoEstado primerDetalle = new TipoEstado();
-                primerDetalle.Id = "NGN";
+                primerDetalle.Id = "";
                 tipoEstados.Insert(0, primerDetalle);
                 this._ventana.Detalles = tipoEstados;
 
+                if (null != marca.TipoEstado)
+                    this._ventana.Detalle = this.BuscarDetalle(tipoEstados, marca.TipoEstado);
+
                 IList<Servicio> servicios = this._servicioServicios.ConsultarTodos();
-                Servicio primerServicio = new Servicio();
-                primerServicio.Id = "";
-                servicios.Insert(0, primerServicio);
                 this._ventana.Servicios = servicios;
-                this._ventana.Servicio = this.BuscarServicio(servicios, marca.Servicio);
+
+                if (null != marca.Servicio)
+                    this._ventana.Servicio = this.BuscarServicio(servicios, marca.Servicio);
 
                 
                 IList<Boletin> boletines = this._boletinServicios.ConsultarTodos();
@@ -373,6 +375,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 if (null != this._auditorias && this._auditorias.Count > 0)
                     this._ventana.PintarAuditoria();
 
+
+                //if (marca.Servicio.Id.Equals("AB"))
+                //{
+                //    this._ventana.DeshabilitarBotonModificar();
+                //}
+
                 this._ventana.BorrarCeros();
 
                 this._ventana.FocoPredeterminado();
@@ -446,7 +454,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 marca.Interesado = new Interesado(int.Parse(this._ventana.IdInteresadoSolicitud));
 
             if (null != this._ventana.Servicio)
-                marca.Servicio = !((Servicio)this._ventana.Servicio).Id.Equals("NGN") ? ((Servicio)this._ventana.Servicio) : null;
+                marca.Servicio = !((Servicio)this._ventana.Servicio).Id.Equals("") ? ((Servicio)this._ventana.Servicio) : null;
+
+            if (null != this._ventana.Detalle)
+                marca.TipoEstado = !((TipoEstado)this._ventana.Detalle).Id.Equals("") ? ((TipoEstado)this._ventana.Detalle) : null;
 
             if (null != this._ventana.PoderSolicitud)
                 marca.Poder = ((Poder)this._ventana.PoderSolicitud).Id != int.MinValue ? ((Poder)this._ventana.PoderSolicitud) : null;
@@ -549,6 +560,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                             {
                                 this._ventana.HabilitarCampos = false;
                                 this._ventana.TextoBotonModificar = Recursos.Etiquetas.btnModificar;
+
+                                //if (marca.Servicio.Id.Equals("AB"))
+                                //{
+                                //    this._ventana.DeshabilitarBotonModificar();
+                                //}
                             }
                         }
                         else
@@ -634,7 +650,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
         }
         
 
-                /// <summary>
+        /// <summary>
         /// Método que se ecarga la descripcion de la situacion
         /// </summary>
         /// <param name="tab"></param>
@@ -646,6 +662,25 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             #endregion
 
             this._ventana.SituacionDescripcion = ((Servicio)this._ventana.Servicio).Descripcion;
+
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+        }
+
+        /// <summary>
+        /// Método que se ecarga la descripcion de la situacion
+        /// </summary>
+        /// <param name="tab"></param>
+        public void DescripcionDetalle()
+        {
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+            this._ventana.DetalleDescripcion = ((TipoEstado)this._ventana.Detalle).Descripcion;
 
             #region trace
             if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -2157,6 +2192,17 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             {
                     EtiquetaMarca detalleEtiqueta = new EtiquetaMarca(ConfigurationManager.AppSettings["RutaImagenesDeMarcas"] + marcaAux.Id + ".BMP", marcaAux.Descripcion);
                     detalleEtiqueta.ShowDialog();
+
+            }
+        }
+
+        public void MostrarDistingueIngles()
+        {
+            Marca marcaAux = ((Marca)this._ventana.Marca);
+            if (!((Marca)this._ventana.Marca).Distingue.Equals(""))
+            {
+                ChildWindow detalleEtiqueta = new ChildWindow(marcaAux.InfoAdicional.Info);
+                detalleEtiqueta.ShowDialog();
 
             }
         }

@@ -828,4 +828,10 @@
   <data name="MarcaSinPoder" xml:space="preserve">
     <value>Esta marca no posee ningun poder</value>
   </data>
+  <data name="MarcaEstaAbandonada" xml:space="preserve">
+    <value>Error. La marca ya se está Abandonada</value>
+  </data>
+  <data name="ErrorSinFecha" xml:space="preserve">
+    <value>Debe seleccionar una fecha</value>
+  </data>
 </root>

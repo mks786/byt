@@ -17,6 +17,8 @@ namespace Trascend.Bolet.Cliente.Contratos.Renovaciones
 
         string NombreMarcaFiltrar { get; set; }
 
+        string RegistroMarcaFiltrar { get; set; }
+
         object Marcas { get; set; }
 
         object Marca { get; set; }

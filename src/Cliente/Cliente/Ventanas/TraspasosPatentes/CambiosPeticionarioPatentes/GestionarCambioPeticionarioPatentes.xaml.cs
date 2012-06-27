@@ -458,7 +458,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.CambiosPeticionarioP
             this._btnEliminar.Visibility = System.Windows.Visibility.Collapsed;
             this._lblIdCambioPeticionario.Visibility = System.Windows.Visibility.Collapsed;
             this._txtIdCambioPeticionario.Visibility = System.Windows.Visibility.Collapsed;
-            this._dpkFechaCambioPeticionario.IsEnabled = false;
+            this._dpkFechaCambioPeticionario.IsEnabled = true;
         }
 
         public void ConvertirEnteroMinimoABlanco()

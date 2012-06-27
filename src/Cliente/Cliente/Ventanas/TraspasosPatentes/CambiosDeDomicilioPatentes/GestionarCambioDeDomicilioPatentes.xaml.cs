@@ -401,7 +401,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.CambiosDeDomicilioPa
             this._btnEliminar.Visibility = System.Windows.Visibility.Collapsed;
             this._lblIdCambioDeDomicilio.Visibility = System.Windows.Visibility.Collapsed;
             this._txtIdCambioDeDomicilio.Visibility = System.Windows.Visibility.Collapsed;
-            this._dpkFechaDomicilio.IsEnabled = false;
+            this._dpkFechaDomicilio.IsEnabled = true;
             this._btnAnexo.Visibility = System.Windows.Visibility.Collapsed;
             this._btnPlanilla.Visibility = System.Windows.Visibility.Collapsed;
             this._btnPlanillaVan.Visibility = System.Windows.Visibility.Collapsed;
