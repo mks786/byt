@@ -68,6 +68,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosPatente
                     "");
                 CargarAgente();
                 CargarPatente();
+                this._ventana.Fecha = DateTime.Now.ToString();
                 this._ventana.FocoPredeterminado();
             }
             catch (ApplicationException ex)

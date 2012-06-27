@@ -76,6 +76,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosPatente
                 CargarPatente();
                 CargaTipoPoder();
                 CargaBoletines();
+                this._ventana.Fecha = DateTime.Now.ToString();
                 this._ventana.FocoPredeterminado();
             }
             catch (ApplicationException ex)

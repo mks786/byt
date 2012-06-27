@@ -1837,7 +1837,8 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Boletin De Publicacion en Prensa:.
+        ///   Looks up a localized string similar to Boletin De Publicacion 
+        ///en Prensa:.
         /// </summary>
         public static string lblBoletinPublicacionPrensa {
             get {

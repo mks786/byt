@@ -64,7 +64,7 @@ namespace Trascend.Bolet.Cliente.Contratos.EscritosPatente
 
         #endregion
 
-        string Fecha { get; }
+        string Fecha { get; set; }
 
         void MensajeAlerta(string mensaje);
 

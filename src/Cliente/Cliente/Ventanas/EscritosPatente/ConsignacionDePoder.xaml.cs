@@ -129,6 +129,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.EscritosPatente
         public string Fecha
         {
             get { return this._dpkFecha.SelectedDate.ToString(); }
+            set { this._dpkFecha.Text = value; }
         }
 
         public string BotonModificar

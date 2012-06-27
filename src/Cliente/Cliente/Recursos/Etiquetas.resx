@@ -2400,7 +2400,8 @@ de Gracia</value>
     <value>Boletin De Perencion:</value>
   </data>
   <data name="lblBoletinPublicacionPrensa" xml:space="preserve">
-    <value>Boletin De Publicacion en Prensa:</value>
+    <value>Boletin De Publicacion 
+en Prensa:</value>
   </data>
   <data name="lblCantidadBoletines" xml:space="preserve">
     <value>Cantidad De Boletines:</value>
