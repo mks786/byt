@@ -697,8 +697,13 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosPatente
 
                 if (this._ventana.PatenteAgregada != null)
                 {
-                    this._patentesAgregadas.Remove((Patente)this._ventana.PatenteAgregada);
-                    this._patentes.Insert(0, (Patente)this._ventana.PatenteAgregada);
+                    if (null != ((Patente)this._ventana.PatenteFiltrado).Poder)
+                    {
+                        this._patentesAgregadas.Insert(0, (Patente)this._ventana.PatenteFiltrado);
+                        this._patentes.Remove((Patente)this._ventana.PatenteFiltrado);
+                    }
+                    else
+                        this._ventana.MensajeAlerta(Recursos.MensajesConElUsuario.PatenteSinPoder);
                 }
 
                 this._ventana.PatentesAgregadas = null;

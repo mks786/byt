@@ -838,4 +838,7 @@
   <data name="ErrorSinFecha" xml:space="preserve">
     <value>Debe seleccionar una fecha</value>
   </data>
+  <data name="PatenteSinPoder" xml:space="preserve">
+    <value>Esta patente no posee ningun poder</value>
+  </data>
 </root>

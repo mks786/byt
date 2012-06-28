@@ -560,8 +560,13 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosPatente
 
                 if ((this._ventana.PatenteFiltrado != null) && (((Patente)this._ventana.PatenteFiltrado).Id != int.MinValue))
                 {
-                    this._patentesAgregadas.Insert(0, (Patente)this._ventana.PatenteFiltrado);
-                    this._patentes.Remove((Patente)this._ventana.PatenteFiltrado);
+                    if (null != ((Patente)this._ventana.PatenteFiltrado).Poder)
+                    {
+                        this._patentesAgregadas.Insert(0, (Patente)this._ventana.PatenteFiltrado);
+                        this._patentes.Remove((Patente)this._ventana.PatenteFiltrado);
+                    }
+                    else
+                        this._ventana.MensajeAlerta(Recursos.MensajesConElUsuario.PatenteSinPoder);
                 }
 
                 this._ventana.PatentesAgregadas = null;
