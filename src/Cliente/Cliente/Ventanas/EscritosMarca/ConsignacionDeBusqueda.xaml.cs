@@ -42,6 +42,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.EscritosMarca
             set { _CurSortCol = value; }
         }
 
+        public string String
+        {
+            set { this._txtString.Text = value; }
+        }
+
         public SortAdorner CurAdorner
         {
             get { return _CurAdorner; }
@@ -187,6 +192,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.EscritosMarca
 
         private void _btnAceptar_Click(object sender, RoutedEventArgs e)
         {
+            this._presentador.GenerarString();
             if (MessageBoxResult.Yes == MessageBox.Show(string.Format(Recursos.MensajesConElUsuario.ConfirmacionGenerarEscrito,
                 this._lstMarcasBusqueda.Items.Count),
                 "Generar Escrito", MessageBoxButton.YesNo, MessageBoxImage.Question))
@@ -330,7 +336,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.EscritosMarca
 
         private void _lstMarcasBusqueda_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            
+            this._presentador.GenerarString();
 
         }
 

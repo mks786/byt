@@ -1643,16 +1643,23 @@ namespace Trascend.Bolet.Cliente.Presentadores
 
             try
             {
-                foreach (Patente Patente in listaPatentes)
+                if (listaPatentes.Count != 0)
                 {
-                    retorno = retorno + Patente.Id + "_";
+                    foreach (Patente Patente in listaPatentes)
+                    {
+                        retorno = retorno + Patente.Id + "_";
+                    }
+                    return retorno.Substring(0, retorno.Length - 1);
                 }
+                else
+                     return retorno;
+                
             }
             catch (Exception ex)
             {
                 throw new ApplicationException();
             }
-            return retorno.Substring(0, retorno.Length - 1);
+            
         }
 
         /// <summary>

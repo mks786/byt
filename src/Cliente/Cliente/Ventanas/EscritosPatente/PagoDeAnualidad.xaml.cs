@@ -58,6 +58,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.EscritosPatente
             get { return this._txtNombreAgenteFiltrar.Text; }
         }
 
+        public string String
+        {  
+            set { this._txtString.Text= value; }
+        }
+
         public object Agente
         {
             get { return this._gridDatosAgente.DataContext; }
@@ -178,7 +183,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.EscritosPatente
 
         private void _btnAceptar_Click(object sender, RoutedEventArgs e)
         {
-            if (MessageBoxResult.Yes == MessageBox.Show(string.Format(Recursos.MensajesConElUsuario.ConfirmacionGenerarEscritoPatente,
+
+            if (MessageBoxResult.Yes == MessageBox.Show(string.Format(Recursos.MensajesConElUsuario.ConfirmacionGenerarEscrito,
                 this._lstPatentesAgregadas.Items.Count),
                 "Generar Escrito", MessageBoxButton.YesNo, MessageBoxImage.Question))
                 this._presentador.Aceptar();

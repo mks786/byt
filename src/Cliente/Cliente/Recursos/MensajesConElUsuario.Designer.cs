@@ -556,6 +556,17 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ¿Está seguro que desea genera el escrito para la patente con estos Parametro? 
+        ///{0}.
+        /// </summary>
+        internal static string ConfirmacionDeEscritoConParametros {
+            get {
+                return ResourceManager.GetString("ConfirmacionDeEscritoConParametros", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ¿Seguro que desea duplicar la Marca?.
         ///   Busca una cadena traducida similar a ¿Seguro que desea duplicar la Marca?.
         /// </summary>
         internal static string ConfirmacionDuplicarMarca {

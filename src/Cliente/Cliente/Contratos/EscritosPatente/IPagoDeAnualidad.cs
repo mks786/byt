@@ -49,6 +49,8 @@ namespace Trascend.Bolet.Cliente.Contratos.EscritosPatente
 
         string Fecha { get; set; }
 
+        string String {set; }
+
         void MensajeAlerta(string mensaje);
 
         GridViewColumnHeader CurSortCol { get; set; }

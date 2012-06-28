@@ -49,6 +49,8 @@ namespace Trascend.Bolet.Cliente.Contratos.EscritosMarca
 
         #region Boletin y Numerales
 
+        string String { set; }
+
         object Boletines { get; set; }
 
         object Boletin { get; set; }

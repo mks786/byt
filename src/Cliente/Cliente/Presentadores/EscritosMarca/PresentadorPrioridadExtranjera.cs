@@ -73,6 +73,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
                 CargarAgente();
                 CargarMarca();
                 CargarTipoDetallePrioridad();
+                GenerarString();
 
                 this._ventana.FocoPredeterminado();
             }
@@ -126,6 +127,40 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
         }
 
         /// <summary>
+        /// Metodo que genera el string de codigos a enviar al .BAT
+        /// </summary>
+        /// <returns></returns>
+        public string GenerarString()
+        {
+
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+            string parametroMarcas = "";
+            if (this._marcasAgregadas.Count != 0)
+            {
+                parametroMarcas = ArmarStringParametroMarcas(this._marcasAgregadas);
+            }
+
+            string StringLlleno = "";
+            if(null!=this._ventana.TipoDetallePrioridad)
+                StringLlleno += ((ListaDatosValores)this._ventana.TipoDetallePrioridad).Valor + "  ";
+            if (null != ((Agente)this._ventana.Agente))
+                StringLlleno += ((Agente)this._ventana.Agente).Id + "  ";
+            this._ventana.String = StringLlleno + "  " + parametroMarcas;
+
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+            return StringLlleno;
+
+        }
+
+        /// <summary>
         /// Método que arma el parametro y hace el llamado al .bat
         /// </summary>
         public void Aceptar()
@@ -136,7 +171,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
-
+                
                 if (ValidarEscrito())
                 {
                     string parametroMarcas = ArmarStringParametroMarcas(this._marcasAgregadas);
@@ -279,6 +314,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
                     this._ventana.Agente = this._ventana.AgenteFiltrado;
                     this._ventana.NombreAgente = ((Agente)this._ventana.AgenteFiltrado).Nombre;
                     this._Agentes.Add((Agente)this._ventana.AgenteFiltrado);
+                    GenerarString();
                     retorno = true;
                 }
 
@@ -431,6 +467,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
                             this._marcaServicios.ConsultarMarcaConTodo((Marca)this._ventana.MarcaFiltrado);                        
                     }
                     this._ventana.NombreMarca = ((Marca)this._ventana.MarcaFiltrado).Descripcion;
+                    
                     retorno = true;
                     }
                     else
@@ -585,6 +622,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
 
                 this._ventana.MarcasFiltrados = null;
                 this._ventana.MarcasFiltrados = this._marcas;
+                GenerarString();
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -642,6 +680,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
 
                 this._ventana.MarcasFiltrados = null;
                 this._ventana.MarcasFiltrados = this._marcas;
+                GenerarString();
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))

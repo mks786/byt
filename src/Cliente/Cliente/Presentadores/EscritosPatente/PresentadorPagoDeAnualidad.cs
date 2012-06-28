@@ -69,6 +69,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosPatente
                 CargarAgente();
                 CargarPatente();
                 this._ventana.Fecha = DateTime.Now.ToString();
+                GenerarString();
                 this._ventana.FocoPredeterminado();
             }
             catch (ApplicationException ex)
@@ -97,6 +98,31 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosPatente
             }
         }
 
+        public string GenerarString()
+        {
+
+            #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+            string parametroPatentes = ArmarStringParametroPatentes(this._patentesAgregadas);
+            string StringLlleno="";
+            if (null != this._ventana.Fecha)
+                StringLlleno += DateTime.Parse(this._ventana.Fecha).ToShortDateString() + "  ";
+            if (null != ((Agente)this._ventana.Agente))
+                StringLlleno += ((Agente)this._ventana.Agente).Id + "  ";
+            this._ventana.String = StringLlleno + "  " + parametroPatentes;
+       
+            #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+            return StringLlleno;
+
+        }
+
         /// <summary>
         /// Método que realiza toda la lógica para agregar al País dentro de la base de datos
         /// </summary>
@@ -114,7 +140,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosPatente
                     string parametroPatentes = ArmarStringParametroPatentes(this._patentesAgregadas);
                     this.EjecutarArchivoBAT(ConfigurationManager.AppSettings["RutaBatEscrito"].ToString()
                         + "\\" + ConfigurationManager.AppSettings["EscritoPagoDeAnualidad"].ToString(),
-                        this._ventana.Fecha+ " " + ((Agente)this._ventana.AgenteFiltrado).Id + " " + parametroPatentes);
+                        DateTime.Parse(this._ventana.Fecha).ToShortDateString() + " " + ((Agente)this._ventana.AgenteFiltrado).Id + " " + parametroPatentes);
                 }
 
                 #region trace
@@ -249,6 +275,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosPatente
                     this._ventana.Agente = this._ventana.AgenteFiltrado;
                     this._ventana.NombreAgente = ((Agente)this._ventana.AgenteFiltrado).Nombre;
                     this._Agentes.Add((Agente)this._ventana.AgenteFiltrado);
+                    GenerarString();
                     retorno = true;
                 }
 
@@ -542,6 +569,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosPatente
 
                 this._ventana.PatentesFiltrados = null;
                 this._ventana.PatentesFiltrados = this._patentes;
+                GenerarString();
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -599,6 +627,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosPatente
 
                 this._ventana.PatentesFiltrados = null;
                 this._ventana.PatentesFiltrados = this._patentes;
+                GenerarString();
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))

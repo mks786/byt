@@ -49,6 +49,8 @@ namespace Trascend.Bolet.Cliente.Contratos.EscritosMarca
 
         object TiposErrores { get; set; }
 
+        string String { set; }
+
         object TipoError { get; set; }
 
         string Error { get; set; }

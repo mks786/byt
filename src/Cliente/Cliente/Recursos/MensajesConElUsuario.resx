@@ -828,6 +828,10 @@
   <data name="MarcaSinPoder" xml:space="preserve">
     <value>Esta marca no posee ningun poder</value>
   </data>
+  <data name="ConfirmacionDeEscritoConParametros" xml:space="preserve">
+    <value>¿Está seguro que desea genera el escrito para la patente con estos Parametro? 
+{0}</value>
+  </data>
   <data name="MarcaEstaAbandonada" xml:space="preserve">
     <value>Error. La marca ya se está Abandonada</value>
   </data>

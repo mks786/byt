@@ -36,6 +36,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.EscritosMarca
             set { this._gridDatosAgente.DataContext = value; }
         }
 
+        public string String
+        {
+            set { this._txtString.Text = value; }
+        }
+
         public GridViewColumnHeader CurSortCol
         {
             get { return _CurSortCol; }
@@ -172,6 +177,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.EscritosMarca
 
         private void _btnAceptar_Click(object sender, RoutedEventArgs e)
         {
+            this._presentador.GenerarString();
             if (MessageBoxResult.Yes == MessageBox.Show(string.Format(Recursos.MensajesConElUsuario.ConfirmacionGenerarEscrito,
                 this._lstMarcasAgregadas.Items.Count),
                 "Generar Escrito", MessageBoxButton.YesNo, MessageBoxImage.Question))

@@ -49,6 +49,8 @@ namespace Trascend.Bolet.Cliente.Contratos.EscritosMarca
 
         string Error { get; set; }
 
+        string String { set; }
+
         void MensajeAlerta(string mensaje);
 
         GridViewColumnHeader CurSortCol { get; set; }

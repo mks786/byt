@@ -49,6 +49,8 @@ namespace Trascend.Bolet.Cliente.Contratos.EscritosMarca
 
         string Error { get; set; }
 
+        string String { set; }
+
         string Correccion { get; set; }
 
         void MensajeAlerta(string mensaje);

@@ -73,6 +73,8 @@ namespace Trascend.Bolet.Cliente.Contratos.EscritosMarca
 
         void MensajeAlerta(string mensaje);
 
+        string String { set; }
+
         GridViewColumnHeader CurSortCol { get; set; }
 
         SortAdorner CurAdorner { get; set; }

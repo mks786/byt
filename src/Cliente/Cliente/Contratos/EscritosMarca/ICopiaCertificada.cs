@@ -49,6 +49,8 @@ namespace Trascend.Bolet.Cliente.Contratos.EscritosMarca
 
         object TipoCopiasCertificadas { get; set; }
 
+        string String { set; }
+
         object TipoCopiaCertificada { get; set; }
 
         void MensajeAlerta(string mensaje);

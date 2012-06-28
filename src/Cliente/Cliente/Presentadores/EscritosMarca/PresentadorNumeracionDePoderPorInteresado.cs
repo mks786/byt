@@ -69,6 +69,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
 
                 CargarAgente();
                 CargarInteresado();
+                GenerarString();
                 this._ventana.FocoPredeterminado();
             }
             catch (ApplicationException ex)
@@ -98,6 +99,38 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
         }
 
         /// <summary>
+        /// Metodo que genera el string de codigos a enviar al .BAT
+        /// </summary>
+        /// <returns></returns>
+        public string GenerarString()
+        {
+
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+            string parametroInteresados = "";
+            if (this._interesadosAgregados.Count != 0)
+            {
+                parametroInteresados = ArmarStringParametroInteresados(this._interesadosAgregados);
+            }
+
+            string StringLlleno = "";
+            if (null != ((Agente)this._ventana.Agente))
+                StringLlleno += ((Agente)this._ventana.Agente).Id + "  ";
+            this._ventana.String = StringLlleno + "  " + parametroInteresados;
+
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+            return StringLlleno;
+
+        }
+
+        /// <summary>
         /// Método que hace el llamado a generar el escrito
         /// </summary>
         public void Aceptar()
@@ -109,7 +142,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
-
+                GenerarString();
                 if (ValidarEscrito())
                 {
                     string parametroInteresados = ArmarStringParametroInteresados(this._interesadosAgregados);
@@ -251,6 +284,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
                     this._ventana.Agente = this._ventana.AgenteFiltrado;
                     this._ventana.NombreAgente = ((Agente)this._ventana.AgenteFiltrado).Nombre;
                     this._Agentes.Add((Agente)this._ventana.AgenteFiltrado);
+                    GenerarString();
                     retorno = true;
                 }
 
@@ -543,6 +577,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
 
                 this._ventana.InteresadosFiltrados = null;
                 this._ventana.InteresadosFiltrados = this._interesados;
+                GenerarString();
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -600,6 +635,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
 
                 this._ventana.InteresadosFiltrados = null;
                 this._ventana.InteresadosFiltrados = this._interesados;
+                GenerarString();
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))

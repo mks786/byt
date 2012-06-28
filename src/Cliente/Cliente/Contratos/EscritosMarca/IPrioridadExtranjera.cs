@@ -49,6 +49,8 @@ namespace Trascend.Bolet.Cliente.Contratos.EscritosMarca
 
         object TipoDetallePrioridades { get; set; }
 
+        string String { set; }
+
         object TipoDetallePrioridad { get; set; }
 
         void MensajeAlerta(string mensaje);

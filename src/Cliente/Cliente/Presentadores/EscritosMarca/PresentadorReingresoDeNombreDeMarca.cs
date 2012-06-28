@@ -76,6 +76,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
                 CargarMarca();
                 CargaBoletines();
                 CargaNumerales();
+                GenerarString();
                 this._ventana.FocoPredeterminado();
             }
             catch (ApplicationException ex)
@@ -105,6 +106,49 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
         }
 
         /// <summary>
+        /// Metodo que genera el string de codigos a enviar al .BAT
+        /// </summary>
+        /// <returns></returns>
+        public string GenerarString()
+        {
+
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+            string parametroMarcas = "";
+            if (this._marcasAgregadas.Count != 0)
+            {
+                parametroMarcas = ArmarStringParametroMarcas(this._marcasAgregadas);
+            }
+
+            string StringLlleno = "";
+            if (null != this._ventana.Boletin)
+            {
+                StringLlleno += ((Boletin)this._ventana.Boletin).Id + "  ";
+                if (null != this._ventana.Resolucion)
+                    StringLlleno += ((Resolucion)this._ventana.Resolucion).Id + "  ";
+            }
+            if (null != this._ventana.CantidadNumeralSelec)
+                StringLlleno += ((ListaDatosValores)this._ventana.CantidadNumeralSelec).Valor + "  ";
+            StringLlleno += this._ventana.Numerales + "  ";
+            StringLlleno += this._ventana.CalificativoNombreMarca + "  ";
+            if (null != ((Agente)this._ventana.Agente))
+                StringLlleno += ((Agente)this._ventana.Agente).Id + "  ";
+            this._ventana.String = StringLlleno + "  " + parametroMarcas;
+
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+            return StringLlleno;
+
+        }
+
+
+        /// <summary>
         /// Método que arma el string y hace el llamado a generar el escrito
         /// </summary>
         public void Aceptar()
@@ -115,7 +159,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
-
+                
                 if (ValidarEscrito())
                 {
                    
@@ -291,6 +335,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
                     this._ventana.Agente = this._ventana.AgenteFiltrado;
                     this._ventana.NombreAgente = ((Agente)this._ventana.AgenteFiltrado).Nombre;
                     this._Agentes.Add((Agente)this._ventana.AgenteFiltrado);
+                    GenerarString();
                     retorno = true;
                 }
 
@@ -588,6 +633,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
 
                 this._ventana.MarcasFiltrados = null;
                 this._ventana.MarcasFiltrados = this._marcas;
+                GenerarString();
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -645,6 +691,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
 
                 this._ventana.MarcasFiltrados = null;
                 this._ventana.MarcasFiltrados = this._marcas;
+                GenerarString();
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -750,6 +797,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
                     this._ventana.Resoluciones = null;
                     this._ventana.Resolucion = null;
                 }
+                GenerarString();
             }
             else
             {

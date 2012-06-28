@@ -68,6 +68,8 @@ namespace Trascend.Bolet.Cliente.Contratos.EscritosMarca
 
         object CantidadNumeralSelec { get; set; }
 
+        string String { set; }
+
         object CantidadNumerales { get; set; }
         
         void MensajeAlerta(string mensaje);
