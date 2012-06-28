@@ -183,7 +183,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.EscritosPatente
 
         private void _btnAceptar_Click(object sender, RoutedEventArgs e)
         {
-
+            this._presentador.GenerarString();
             if (MessageBoxResult.Yes == MessageBox.Show(string.Format(Recursos.MensajesConElUsuario.ConfirmacionGenerarEscrito,
                 this._lstPatentesAgregadas.Items.Count),
                 "Generar Escrito", MessageBoxButton.YesNo, MessageBoxImage.Question))

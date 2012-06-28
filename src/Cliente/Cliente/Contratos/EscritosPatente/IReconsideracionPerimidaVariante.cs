@@ -82,6 +82,8 @@ namespace Trascend.Bolet.Cliente.Contratos.EscritosPatente
 
         string Fecha { get; set; }
 
+        string String { set; }
+
         string FechaDeAviso { get; }
 
         void MensajeAlerta(string mensaje);

@@ -68,6 +68,8 @@ namespace Trascend.Bolet.Cliente.Contratos.EscritosPatente
 
         string Fecha { get; set; }
 
+        string String { set; }
+
         string Oponente { get; set; }
 
         string Domiciliado { get; set; }

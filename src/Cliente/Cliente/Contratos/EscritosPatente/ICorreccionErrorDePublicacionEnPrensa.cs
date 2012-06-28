@@ -68,6 +68,8 @@ namespace Trascend.Bolet.Cliente.Contratos.EscritosPatente
 
         object ErrorPrimeras { get; set; }
 
+        string String { set; }
+
         object PrimerError { get; set; }
 
         object ErrorSegundas { get; set; }

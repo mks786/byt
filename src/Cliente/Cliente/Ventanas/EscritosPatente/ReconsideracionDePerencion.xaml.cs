@@ -25,6 +25,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.EscritosPatente
             set { this._cargada = value; }
         }
 
+        public string String
+        {
+            set { this._txtString.Text = value; }
+        }
+
         public void FocoPredeterminado()
         {
             this._txtIdAgenteFiltrar.Focus();
@@ -249,6 +254,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.EscritosPatente
 
         private void _btnAceptar_Click(object sender, RoutedEventArgs e)
         {
+            this._presentador.GenerarString();
             if (MessageBoxResult.Yes == MessageBox.Show(string.Format(Recursos.MensajesConElUsuario.ConfirmacionGenerarEscritoPatente,
                 this._lstPatentesAgregadas.Items.Count),
                 "Generar Escrito", MessageBoxButton.YesNo, MessageBoxImage.Question))

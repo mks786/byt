@@ -76,6 +76,8 @@ namespace Trascend.Bolet.Cliente.Contratos.EscritosPatente
 
         #endregion
 
+        string String { set; }
+
         object CantidadesBoletines { get; set; }
 
         object CantidadBoletinSelecionado { get; set; }

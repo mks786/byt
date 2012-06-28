@@ -395,7 +395,10 @@
             </Button>
 
         </Grid>
+        <custom:ByTTextBox  IsEnabled="True"  Grid.Column="1" Background="Transparent" BorderBrush="Transparent" Grid.Row="2" Name="_txtString" VerticalAlignment="Center" MaxLength="255" 
+                                            Grid.ColumnSpan="1" Text="">
 
+        </custom:ByTTextBox>
         <WrapPanel Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="2" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="5" Orientation="Horizontal">
             <Button Name="_btnAceptar"  VerticalAlignment="Bottom" Height="25" Width="90" 
                     Click="_btnAceptar_Click" IsDefault="True">
