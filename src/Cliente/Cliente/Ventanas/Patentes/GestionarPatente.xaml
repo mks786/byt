@@ -492,33 +492,33 @@
                                 <RowDefinition Height="Auto"/>
                             </Grid.RowDefinitions>
 
-                            <Button IsEnabled="False" Name="_btnDocumentosSolicitud" Width="100" IsDefault="False" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Left"
+                            <Button IsEnabled="False" Name="_btnDocumentosSolicitud" Width="90" IsDefault="False" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Left"
                                 Click="_btnDocumentosSolicitud_Click" Margin="0,5,0,0">
                                 <TextBlock Text="{x:Static recurso:Etiquetas.btnDocumentos}"/>
                             </Button>
 
-                            <Button IsEnabled="False" Name="_btnCasoEspecialSolicitud" Width="100" IsDefault="False" Grid.Row="0" Grid.Column="1" Height="25" HorizontalAlignment="Left"
+                            <Button IsEnabled="False" Name="_btnCasoEspecialSolicitud" Width="90" IsDefault="False" Grid.Row="0" Grid.Column="1" Height="25" HorizontalAlignment="Left"
                                 Click="_btnCasoEspecialSolicitud_Click" Margin="0,5,0,0">
                                 <TextBlock Text="{x:Static recurso:Etiquetas.btnCasoEspecial}"/>
                             </Button>
 
-                            <Button IsEnabled="False" Name="_btnDisenoReporteSolicitud" Width="100" IsDefault="False" Grid.Row="0" Grid.Column="2" Height="25" HorizontalAlignment="Left"
+                            <Button IsEnabled="False" Name="_btnDisenoReporteSolicitud" Width="90" IsDefault="False" Grid.Row="0" Grid.Column="2" Height="25" HorizontalAlignment="Left"
                                 Click="_btnDisenoReporteSolicitud_Click" Margin="0,5,0,0" Visibility="Collapsed">
                                 <TextBlock Text="{x:Static recurso:Etiquetas.btnDiseno}"/>
                             </Button>
 
-                            <Button IsEnabled="False" Name="_btnInventoresSolicitud" Width="100" IsDefault="False" Grid.Row="0" Grid.Column="3" Height="25" HorizontalAlignment="Left"
+                            <Button IsEnabled="False" Name="_btnInventoresSolicitud" Width="90" IsDefault="False" Grid.Row="0" Grid.Column="3" Height="25" HorizontalAlignment="Left"
                                 Click="_btnInventoresSolicitud_Click" Margin="0,5,0,0">
                                 <TextBlock Text="{x:Static recurso:Etiquetas.btnInventores}"/>
                             </Button>
 
-                            <Button IsEnabled="False" Name="_btnInfoAdicionalSolicitud"  Width="100" IsDefault="False" Grid.Row="0" Grid.Column="4" Height="25" HorizontalAlignment="Left"
+                            <Button IsEnabled="False" Name="_btnInfoAdicionalSolicitud"  Width="90" IsDefault="False" Grid.Row="0" Grid.Column="4" Height="25" HorizontalAlignment="Left"
                                 Click="_btnInfoAdicionalSolicitud_Click" Margin="0,5,0,0">
                                 <TextBlock Text="{x:Static recurso:Etiquetas.btnInfoAdicional}"/>
                             </Button>    
                         </Grid>
                         
-                            <Separator Margin="10,5,0,40" Grid.Column="0" Grid.Row="21" Grid.ColumnSpan="12" VerticalAlignment="Center"/>
+                            <Separator Margin="10,5,0,20" Grid.Column="0" Grid.Row="21" Grid.ColumnSpan="12" VerticalAlignment="Center"/>
 
                         <Grid Grid.Column="1" Grid.Row="22" Grid.ColumnSpan="12">
                             <Grid.ColumnDefinitions>
@@ -542,8 +542,8 @@
                                 <TextBlock Text="{x:Static recurso:Etiquetas.btnImprimirEdoCta}"/>
                             </Button>
 
-                            <Button IsEnabled="False" Name="_btnSaldosSolicitud" IsDefault="False" Width="100" Grid.Row="0" Grid.Column="1" Height="25" HorizontalAlignment="Left"
-                                Click="_btnSaldoSolicitud_Click">
+                            <Button IsEnabled="False" Name="_btnSaldosSolicitud" IsDefault="False" Width="80" Grid.Row="0" Grid.Column="1" Height="25" HorizontalAlignment="Left"
+                                Click="_btnSaldoSolicitud_Click" Margin="5,0,0,0">
                                 <TextBlock Text="{x:Static recurso:Etiquetas.btnSaldos}"/>
                             </Button>
 
@@ -944,7 +944,7 @@
                             </Grid.RowDefinitions>
 
                             <Button IsEnabled="False" Name="_btnDisenoDatos" HorizontalAlignment="Center" Grid.Column="1" Grid.Row="0" VerticalAlignment="Center" 
-                           Width="90" Click="_btnDisenoDatos_Click" Grid.ColumnSpan="2">Diseño</Button>
+                           Width="70" Click="_btnDisenoDatos_Click" Grid.ColumnSpan="2">Diseño</Button>
                             
                             <Button IsEnabled="False" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2" Name="_btnNoSolicitudDatos" VerticalAlignment="Bottom" Height="25"
                                 Click="_btnIrExplorador_Click">
@@ -1047,8 +1047,9 @@
                           Text=""></custom:ByTTextBox>
                         </Grid>
                         
-                        <Grid Grid.Column="4" Grid.Row="13" Grid.ColumnSpan="8" HorizontalAlignment="Center">
+                        <Grid Grid.Column="3" Grid.Row="13" Grid.ColumnSpan="10" HorizontalAlignment="Center">
                             <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
                                 <ColumnDefinition Width="*"/>
                                 <ColumnDefinition Width="*"/>
                                 <ColumnDefinition Width="*"/>
@@ -1074,35 +1075,35 @@
                             <Label Grid.Column="0" Grid.Row="0" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                                 <TextBlock Text="{x:Static recurso:Etiquetas.lblSituacion}"/>
                             </Label>
+                            
                             <ComboBox IsEnabled="False" Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="1" Name="_cbxSituacionDatos" Height="20" 
                                   ItemsSource="{Binding}" SelectedIndex="0" SelectionChanged="_cbxSituacionDatos_SelectionChanged">
                                 <ComboBox.ItemTemplate>
                                     <DataTemplate>
                                         <TextBlock>
                                 <TextBlock.Text>
-                                   
-                                        <Binding Path="Id" />
-                                   
+                                        <Binding Path="Id" />       
                                 </TextBlock.Text>
                                         </TextBlock>
                                     </DataTemplate>
                                 </ComboBox.ItemTemplate>
                             </ComboBox>
-                            <custom:ByTTextBox IsEnabled="False" Grid.Column="2" Grid.Row="0" Grid.ColumnSpan="3" Margin="3" Name="_txtSituacionDescripcion" VerticalAlignment="Center"  
+                            
+                            <custom:ByTTextBox IsEnabled="False" Grid.Column="2" Grid.Row="0" Grid.ColumnSpan="2" Margin="3" Name="_txtSituacionDescripcion" VerticalAlignment="Center"  
                           Text=""></custom:ByTTextBox>
 
-                            <Label Grid.Column="6" Grid.Row="0" Grid.ColumnSpan="1" VerticalAlignment="Center" HorizontalContentAlignment="Right">
+                            <Label Grid.Column="5" Grid.Row="0" Grid.ColumnSpan="1" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                                 <TextBlock Text="{x:Static recurso:Etiquetas.lblComentario}"/>
                             </Label>
-                            <custom:ByTTextBox Grid.Column="7" Grid.Row="0" Grid.RowSpan="3" Name="_txtComentarioDatos" VerticalAlignment="Center"
-                                           Text="{Binding Path=Observacion}" Grid.ColumnSpan="4" Margin="0,5,0,0" IsEnabled="False" Width="200"
+                            <custom:ByTTextBox Grid.Column="6" Grid.Row="0" Grid.RowSpan="4" Name="_txtComentarioDatos" VerticalAlignment="Center"
+                                           Text="{Binding Path=Observacion}" Grid.ColumnSpan="4" Margin="10,10,0,0" IsEnabled="False" Width="180"
                                            MaxLength="200" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" AcceptsReturn="True"
                                            Height="135" SpellCheck.IsEnabled="True"></custom:ByTTextBox>
 
                             <Label Grid.Column="0" Grid.Row="1" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                                 <TextBlock Text="{x:Static recurso:Etiquetas.lblDetalle}"/>
                             </Label>
-                            <ComboBox IsEnabled="False" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="4" Name="_cbxDetalleDatos" Height="20" 
+                            <ComboBox IsEnabled="False" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="3" Name="_cbxDetalleDatos" Height="20" 
                               ItemsSource="{Binding}" DisplayMemberPath="Descripcion" SelectedIndex="0">
                             </ComboBox>
 
@@ -1110,20 +1111,20 @@
                                 <TextBlock Text="{x:Static recurso:Etiquetas.lblAbandono}"/>
                             </Label>
                             <custom:ByTTextBox IsEnabled="False" MaxLength="255" Grid.Column="1" Grid.Row="2" Name="_txtAbandonoDatos" IsReadOnly="True" 
-                                               VerticalAlignment="Center" Grid.ColumnSpan="3" Text="">
+                                               VerticalAlignment="Center" Grid.ColumnSpan="2" Text="">
                             </custom:ByTTextBox>
 
                             <Label Grid.Column="0" Grid.Row="3" VerticalAlignment="Center" HorizontalContentAlignment="Right" Name="_lblAnualidad">
                                 <TextBlock Text="{x:Static recurso:Etiquetas.lblAnualidad}"/>
                             </Label>
                             <custom:ByTTextBox IsEnabled="False" MaxLength="255" Grid.Column="1" Grid.Row="3" Name="_txtAnualidadDatos" IsReadOnly="True" 
-                                               VerticalAlignment="Center" Grid.ColumnSpan="3" Text="">
+                                               VerticalAlignment="Center" Grid.ColumnSpan="2" Text="">
                             </custom:ByTTextBox>
                             
-                            <Label Grid.Column="0" Grid.Row="5" VerticalAlignment="Center" HorizontalContentAlignment="Right">
+                            <Label Grid.Column="0" Grid.Row="4" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                                 <TextBlock Text="{x:Static recurso:Etiquetas.lblFechaBase}"/>
                             </Label>
-                            <DatePicker IsEnabled="False" Grid.Column="1" Grid.Row="5" Grid.ColumnSpan="3" Name="_dpkFechaBaseDatos" 
+                            <DatePicker IsEnabled="False" Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="2" Name="_dpkFechaBaseDatos" 
                                     Focusable="False" BorderBrush="{x:Null}" VerticalAlignment="Center">
                                 <DatePicker.SelectedDate>
                                     <Binding Path="FechaBase" UpdateSourceTrigger="PropertyChanged"/>
@@ -1152,42 +1153,56 @@
 
                         </Grid>-->
 
-                        <Button IsEnabled="False" Name="_btnOperacionDatos" IsDefault="False" Grid.Row="14" Width="100" Grid.ColumnSpan="2" Grid.Column="6" Height="25" 
-                                    HorizontalAlignment="Left"  VerticalAlignment="Center" Click="_btnOperacionesDatos_Click" Margin="0,5,0,0">
+                        <Grid Grid.Column="0" Grid.Row="14" Grid.ColumnSpan="10" HorizontalAlignment="Center">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+
+                            <Button IsEnabled="False" Name="_btnOperacionDatos" IsDefault="False" Grid.Row="0" Grid.ColumnSpan="1" Grid.Column="0" Height="25" 
+                                    HorizontalAlignment="Left"  VerticalAlignment="Center" Click="_btnOperacionesDatos_Click" Margin="5,5,0,0">
                                 <TextBlock Text="{x:Static recurso:Etiquetas.btnOperaciones}"/>
                             </Button>
 
-                            <Button IsEnabled="False" Name="_btnAuditoriaDatos" Width="100" IsDefault="False" Grid.Row="14" Grid.ColumnSpan="1" Grid.Column="7" Height="25" 
-                                        HorizontalAlignment="Left" Click="_btnAuditoriaDatos_Click" Margin="0,5,0,0">
+                            <Button IsEnabled="False" Name="_btnAuditoriaDatos" IsDefault="False" Width="70" Grid.Row="0" Grid.ColumnSpan="1" Grid.Column="1" Height="25" 
+                                        HorizontalAlignment="Center" Click="_btnAuditoriaDatos_Click" Margin="5,5,0,0">
                                 <TextBlock Text="{x:Static recurso:Etiquetas.btnAuditoria}"/>
                             </Button>
 
-                            <Button IsEnabled="False" Name="_btnInventoresDatos" IsDefault="False"  Width="100" Grid.Row="14" Grid.ColumnSpan="1" Grid.Column="8" Height="25" 
-                                        HorizontalAlignment="Left" Click="_btnInventoresDatos_Click" Margin="0,5,0,0">
+                            <Button IsEnabled="False" Name="_btnInventoresDatos" IsDefault="False" Width="70" Grid.Row="0" Grid.ColumnSpan="1" Grid.Column="2" Height="25" 
+                                        HorizontalAlignment="Center" Click="_btnInventoresDatos_Click" Margin="5,5,0,0">
                                 <TextBlock Text="{x:Static recurso:Etiquetas.btnInventores}"/>
                             </Button>
 
-                            <Button IsEnabled="False" Name="_btnVerSolicitudDatos" Width="100" IsDefault="False" Grid.Row="14" Grid.ColumnSpan="1" Grid.Column="9" Height="25" 
-                                        HorizontalAlignment="Left" Click="_btnVerSolicitudDatos_Click" Margin="0,5,0,0">
+                            <Button IsEnabled="False" Name="_btnVerSolicitudDatos" IsDefault="False" Width="70" Grid.Row="0" Grid.ColumnSpan="1" Grid.Column="3" Height="25" 
+                                        HorizontalAlignment="Center" Click="_btnVerSolicitudDatos_Click" Margin="5,5,0,0">
                                 <TextBlock Text="{x:Static recurso:Etiquetas.btnVerSolicitud}"/>
                             </Button>
 
-                            <Button IsEnabled="False" Name="_btnInfoBolDatos" Width="100" IsDefault="False" Grid.Row="15" Grid.ColumnSpan="1" Grid.Column="7" Height="25" 
-                                        HorizontalAlignment="Left" Click="_btnInfoBolDatos_Click" Margin="0,5,0,0">
+                            <Button IsEnabled="False" Name="_btnInfoBolDatos"  IsDefault="False" Width="70" Grid.Row="0" Grid.ColumnSpan="1" Grid.Column="4" Height="25" 
+                                        HorizontalAlignment="Center" Click="_btnInfoBolDatos_Click" Margin="5,5,0,0">
                                 <TextBlock Text="{x:Static recurso:Etiquetas.btnInfoBol}"/>
                             </Button>
 
-                            <Button IsEnabled="False" Name="_btnFechasDatos" Width="100" IsDefault="False" Grid.Row="15" Grid.ColumnSpan="1" Grid.Column="8" Height="25" 
-                                        HorizontalAlignment="Left" Click="_btnFechasDatos_Click" Margin="0,5,0,0">
+                            <Button IsEnabled="False" Name="_btnFechasDatos" IsDefault="False" Width="70" Grid.Row="0" Grid.ColumnSpan="1" Grid.Column="5" Height="25" 
+                                        HorizontalAlignment="Center" Click="_btnFechasDatos_Click" Margin="5,5,0,0">
                                 <TextBlock Text="{x:Static recurso:Etiquetas.btnFechas}"/>
                             </Button>
 
-                            <Button IsEnabled="False" Name="_btnVerTituloDatos" Width="100" IsDefault="False" Grid.Row="15" Grid.ColumnSpan="1" Grid.Column="9" Height="25" 
-                                        HorizontalAlignment="Left" Click="_btnVerTituloDatos_Click" Margin="0,5,0,0">
+                            <Button IsEnabled="False" Name="_btnVerTituloDatos" IsDefault="False" Width="70" Grid.Row="0" Grid.ColumnSpan="2" Grid.Column="6" Height="25" 
+                                        HorizontalAlignment="Center" Click="_btnVerTituloDatos_Click" Margin="5,5,0,0">
                                 <TextBlock Text="{x:Static recurso:Etiquetas.btnVerTitulo}"/>
                             </Button>
 
-
+                        </Grid>
+                        
                         <Separator Margin="10,5,0,0" Grid.Column="0" Grid.Row="16" Grid.ColumnSpan="12" VerticalAlignment="Center"/>
 
                         <CheckBox IsEnabled="False" Margin="3" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="17" VerticalAlignment="Center" 
@@ -1201,11 +1216,6 @@
                         <custom:ByTTextBox IsEnabled="False" MaxLength="255" Grid.Column="6" Grid.Row="17" Name="_txtExpedienteDatos" 
                                                VerticalAlignment="Center" Grid.ColumnSpan="2" Text="{Binding Path=CodigoExpediente}">
                         </custom:ByTTextBox>
-
-                        <Button IsEnabled="False" Name="_btnVerMemoriaDatos" Width="100" IsDefault="False" Grid.Row="17" Grid.ColumnSpan="1" Grid.Column="9" Height="25" 
-                                        HorizontalAlignment="Left" Click="_btnVerMemoriaDatos_Click" Margin="0,5,0,0">
-                            <TextBlock Text="{x:Static recurso:Etiquetas.btnVerMemoria}"/>
-                        </Button>
                         
                         <Label Grid.Column="1" Grid.Row="18" Grid.ColumnSpan="1" VerticalAlignment="Center" Margin="0,5,0,0">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblStatusWEB}"/>
@@ -1221,10 +1231,7 @@
                                                VerticalAlignment="Center" Grid.ColumnSpan="2" Text="{Binding Path=Ubicacion}">
                         </custom:ByTTextBox>
 
-                        <Button IsEnabled="False" Name="_btnVerExpedienteDatos" Width="100" IsDefault="False" Grid.Row="18" Grid.ColumnSpan="1" Grid.Column="9" Height="25" 
-                                        HorizontalAlignment="Left" Click="_btnVerExpedienteDatos_Click" Margin="0,5,0,0">
-                            <TextBlock Text="{x:Static recurso:Etiquetas.btnVerExpediente}"/>
-                        </Button>
+                        
 
                         <Label Grid.Column="5" Grid.Row="19" Grid.ColumnSpan="1" VerticalAlignment="Center" Margin="0,5,0,0">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblFechaPublicacion}"/>
@@ -1241,20 +1248,44 @@
                             <TextBlock Text="{x:Static recurso:Etiquetas.btnArchivo}"/>
                         </Button>-->
 
-                        <Button IsEnabled="False" Name="_btnFacturacionDatos" Width="100" IsDefault="False" Grid.Row="19" Grid.ColumnSpan="1" Grid.Column="9" Height="25" 
-                                        HorizontalAlignment="Left" Click="_btnFacturacionDatos_Click" Margin="0,5,0,0">
-                            <TextBlock Text="{x:Static recurso:Etiquetas.btnFacturacion}"/>
-                        </Button>
+                        <Grid Grid.Column="0" Grid.Row="20" Grid.ColumnSpan="10" HorizontalAlignment="Center">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
 
-                        <Button IsEnabled="False" Name="_btnVerMemoriaRutaDatos" Width="100" IsDefault="False" Grid.Row="20" Grid.ColumnSpan="1" Grid.Column="9" Height="25" 
-                                        HorizontalAlignment="Left" Click="_btnVerMemoriaRutaDatos_Click" Margin="0,5,0,0">
-                            <TextBlock Text="{x:Static recurso:Etiquetas.btnVerMemoria}"/>
-                        </Button>
+                            <Button IsEnabled="False" Name="_btnVerMemoriaDatos" Width="100" IsDefault="False" Grid.Row="0" Grid.ColumnSpan="1" Grid.Column="0" Height="25" 
+                                        HorizontalAlignment="Left" Click="_btnVerMemoriaDatos_Click" Margin="0,0,0,0">
+                                <TextBlock Text="{x:Static recurso:Etiquetas.btnVerMemoria}"/>
+                            </Button>
 
-                        <Button IsEnabled="False" Name="_btnCertificadoDatos" Width="100" IsDefault="False" Grid.Row="21" Grid.ColumnSpan="1" Grid.Column="9" Height="25" 
-                                        HorizontalAlignment="Left" Click="_btnCertificadoDatos_Click" Margin="0,5,0,0">
-                            <TextBlock Text="{x:Static recurso:Etiquetas.btnCertificado}"/>
-                        </Button>
+                            <Button IsEnabled="False" Name="_btnVerExpedienteDatos" Width="100" IsDefault="False" Grid.Row="0" Grid.ColumnSpan="1" Grid.Column="1" Height="25" 
+                                        HorizontalAlignment="Left" Click="_btnVerExpedienteDatos_Click" Margin="5,0,0,0">
+                                <TextBlock Text="{x:Static recurso:Etiquetas.btnVerExpediente}"/>
+                            </Button>
+
+                            <Button IsEnabled="False" Name="_btnFacturacionDatos" Width="100" IsDefault="False" Grid.Row="0" Grid.ColumnSpan="1" Grid.Column="2" Height="25" 
+                                        HorizontalAlignment="Left" Click="_btnFacturacionDatos_Click" Margin="5,0,0,0">
+                                <TextBlock Text="{x:Static recurso:Etiquetas.btnFacturacion}"/>
+                            </Button>
+
+                            <Button IsEnabled="False" Name="_btnVerMemoriaRutaDatos" Width="100" IsDefault="False" Grid.Row="0" Grid.ColumnSpan="1" Grid.Column="3" Height="25" 
+                                        HorizontalAlignment="Left" Click="_btnVerMemoriaRutaDatos_Click" Margin="5,0,0,0">
+                                <TextBlock Text="{x:Static recurso:Etiquetas.btnVerMemoria}"/>
+                            </Button>
+
+                            <Button IsEnabled="False" Name="_btnCertificadoDatos" Width="100" IsDefault="False" Grid.Row="0" Grid.ColumnSpan="1" Grid.Column="4" Height="25" 
+                                        HorizontalAlignment="Left" Click="_btnCertificadoDatos_Click" Margin="5,0,0,0">
+                                <TextBlock Text="{x:Static recurso:Etiquetas.btnCertificado}"/>
+                            </Button>
+
+                        </Grid>
 
                     </Grid>
                 </TabItem>

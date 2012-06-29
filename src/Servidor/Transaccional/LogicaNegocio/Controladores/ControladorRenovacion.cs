@@ -81,7 +81,8 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
 
                     comandoOperacionContador = FabricaComandosContador.ObtenerComandoInsertarOModificar(contadorOperacion);
                     operacion.Id = contadorOperacion.ProximoValor++;
-                    operacion.Fecha = System.DateTime.Now;
+                    //operacion.Fecha = System.DateTime.Now;
+                    operacion.Fecha = renovacion.Fecha;
                     operacion.Aplicada = 'M';
                     operacion.CodigoAplicada = renovacion.Marca.Id;
                     operacion.Interno = renovacion.Id;
@@ -89,17 +90,17 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
 
                     ComandoBase<bool> comandoOperacion = FabricaComandosOperacion.ObtenerComandoInsertarOModificar(operacion);
 
-                    ComandoBase<Marca> comandoMarca = FabricaComandosMarca.ObtenerComandoConsultarMarcaConTodo(renovacion.Marca);
-                    comandoMarca.Ejecutar();
-                    Marca marca = comandoMarca.Receptor.ObjetoAlmacenado;
-                    marca.Interesado = renovacion.Interesado;
-                    marca.Agente = renovacion.Agente;
-                    marca.Poder = renovacion.Poder;
-                    marca.FechaRenovacion = renovacion.FechaProxima;
+                    //ComandoBase<Marca> comandoMarca = FabricaComandosMarca.ObtenerComandoConsultarMarcaConTodo(renovacion.Marca);
+                    //comandoMarca.Ejecutar();
+                    //Marca marca = comandoMarca.Receptor.ObjetoAlmacenado;
+                    //marca.Interesado = renovacion.Interesado;
+                    //marca.Agente = renovacion.Agente;
+                    //marca.Poder = renovacion.Poder;
+                    //marca.FechaRenovacion = renovacion.FechaProxima;
 
-                    ComandoBase<bool> comandoEditarMarca = FabricaComandosMarca.ObtenerComandoInsertarOModificar(marca);
-                    comandoEditarMarca.Ejecutar();
-                    bool exitosomarca = comandoEditarMarca.Receptor.ObjetoAlmacenado;
+                    //ComandoBase<bool> comandoEditarMarca = FabricaComandosMarca.ObtenerComandoInsertarOModificar(renovacion.Marca);
+                    //comandoEditarMarca.Ejecutar();
+                    //bool exitosomarca = comandoEditarMarca.Receptor.ObjetoAlmacenado;
 
                     ComandoBase<bool> comando = FabricaComandosRenovacion.ObtenerComandoInsertarOModificar(renovacion);
                     comando.Ejecutar();
@@ -109,7 +110,7 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
 
 
 
-                    if ((exitoso) && (exitosomarca))
+                    if (exitoso)
                     {
                         comandoRenovacionContador.Ejecutar();
                         comandoOperacionContador.Ejecutar();

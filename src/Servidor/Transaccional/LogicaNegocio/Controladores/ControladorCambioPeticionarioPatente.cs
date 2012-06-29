@@ -82,7 +82,8 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
 
                     comandoOperacionContador = FabricaComandosContador.ObtenerComandoInsertarOModificar(contadorOperacion);
                     operacion.Id = contadorOperacion.ProximoValor++;
-                    operacion.Fecha = DateTime.Parse(String.Format("{0:dd/MM/yyyy}", System.DateTime.Now));
+                    //operacion.Fecha = DateTime.Parse(String.Format("{0:dd/MM/yyyy}", System.DateTime.Now));
+                    operacion.Fecha = cambioPeticionario.FechaPeticionario;
                     operacion.Aplicada = 'P';
                     operacion.CodigoAplicada = cambioPeticionario.Patente.Id;
                     operacion.Interno = cambioPeticionario.Id;

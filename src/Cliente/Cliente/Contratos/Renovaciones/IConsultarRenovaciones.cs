@@ -13,9 +13,13 @@ namespace Trascend.Bolet.Cliente.Contratos.Renovaciones
 
         string IdMarcaFiltrar { get; set; }
 
+        string IdInteresadoFiltrar { get; set; }
+
         string FechaFiltrar { get; set; }
 
         string NombreMarcaFiltrar { get; set; }
+
+        string NombreInteresadoFiltrar { get; set; }
 
         string RegistroMarcaFiltrar { get; set; }
 
@@ -23,7 +27,13 @@ namespace Trascend.Bolet.Cliente.Contratos.Renovaciones
 
         object Marca { get; set; }
 
+        object Interesados { get; set; }
+
+        object Interesado { get; set; }
+
         string MarcaFiltrada { get; set; }
+
+        string InteresadoFiltrado { get; set; }
 
         void MostrarBotonVolverAMarca();
 

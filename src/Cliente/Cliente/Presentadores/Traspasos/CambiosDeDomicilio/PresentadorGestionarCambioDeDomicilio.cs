@@ -83,7 +83,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeDomicilio
                     CambioDeDomicilio cambioDeDomicilioAgregar = new CambioDeDomicilio();
                     this._ventana.CambioDeDomicilio = cambioDeDomicilioAgregar;
 
-                    //((CambioDeDomicilio)this._ventana.CambioDeDomicilio).FechaDomicilio = DateTime.Now;
+                    ((CambioDeDomicilio)this._ventana.CambioDeDomicilio).FechaDomicilio = DateTime.Now;
                     this._ventana.Marca = null;
                     this._ventana.Poder = null;
                     this._ventana.InteresadoAnterior = null;

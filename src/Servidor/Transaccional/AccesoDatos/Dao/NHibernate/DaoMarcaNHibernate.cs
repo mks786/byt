@@ -323,7 +323,7 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
 
                 bool variosFiltros = false;
                 string filtro = "";
-                string cabecera = string.Format(Recursos.ConsultasHQL.CabeceraObtenerMarcaRecordatorio);
+                string cabecera = string.Format(Recursos.ConsultasHQL.CabeceraObtenerMarca);
 
                
                 string fecha = String.Format("{0:dd/MM/yy}", fechas[0]);

@@ -49,6 +49,12 @@ namespace Trascend.Bolet.Cliente.Ventanas.AbandonosPatente
             set { this._gridDatosAsociado.DataContext = value; }
         }
 
+        public string IdAsociado
+        {
+            get { return this._txtIdAsociado.Text; }
+            set { this._txtIdAsociado.Text = value; }
+        }
+
         public string NombreAsociado
         {
             set { this._txtNombreAsociado.Text = value; }
@@ -87,6 +93,12 @@ namespace Trascend.Bolet.Cliente.Ventanas.AbandonosPatente
             set { this._txtNombreInteresado.Text = value; }
         }
 
+        public string IdInteresado
+        {
+            get { return this._txtIdInteresado.Text; }
+            set { this._txtIdInteresado.Text = value; }
+        }
+
         public string IdInteresadoFiltrar
         {
             get { return this._txtIdInteresadoFiltrar.Text; }
@@ -113,6 +125,12 @@ namespace Trascend.Bolet.Cliente.Ventanas.AbandonosPatente
         {
             get { return this._gridDatosPatente.DataContext; }
             set { this._gridDatosPatente.DataContext = value; }
+        }
+
+        public string IdPatente
+        {
+            get { return this._txtIdPatente.Text; }
+            set { this._txtIdPatente.Text = value; }
         }
 
         public string NombrePatente
@@ -181,16 +199,19 @@ namespace Trascend.Bolet.Cliente.Ventanas.AbandonosPatente
 
 
                 this._txtNombrePatente.IsEnabled = value;
+                this._txtIdPatente.IsEnabled = value;
                 this._txtIdPatenteFiltrar.IsEnabled = value;
                 this._txtNombrePatenteFiltrar.IsEnabled = value;
                 this._btnConsultarPatente.IsEnabled = value;
 
                 this._txtNombreAsociado.IsEnabled = value;
+                this._txtIdAsociado.IsEnabled = value;
                 this._txtIdAsociadoFiltrar.IsEnabled = value;
                 this._txtNombreAsociadoFiltrar.IsEnabled = value;
                 this._btnConsultarAsociado.IsEnabled = value;
 
                 this._txtNombreInteresado.IsEnabled = value;
+                this._txtIdInteresado.IsEnabled = value;
                 this._txtNombreInteresadoFiltrar.IsEnabled = value;
                 this._txtIdInteresadoFiltrar.IsEnabled = value;
                 this._txtPaisInteresado.IsEnabled = value;
@@ -204,7 +225,25 @@ namespace Trascend.Bolet.Cliente.Ventanas.AbandonosPatente
                 this._txtDescripcionOperacion.IsEnabled = value;                
             }
         }
-                     
+
+        public void PintarMarca()
+        {
+            this._txtNombrePatente.BorderBrush = new SolidColorBrush(Colors.LightGreen);
+            this._txtIdPatente.BorderBrush = new SolidColorBrush(Colors.LightGreen);
+        }
+
+        public void PintarInteresado()
+        {
+            this._txtNombreInteresado.BorderBrush = new SolidColorBrush(Colors.LightGreen);
+            this._txtIdInteresado.BorderBrush = new SolidColorBrush(Colors.LightGreen);
+        }
+
+        public void PintarAsociado()
+        {
+            this._txtNombreAsociado.BorderBrush = new SolidColorBrush(Colors.LightGreen);
+            this._txtIdAsociado.BorderBrush = new SolidColorBrush(Colors.LightGreen);
+        }
+
         public string TextoBotonRegresar
         {
             get { return this._txbRegresar.Text; }
@@ -280,6 +319,43 @@ namespace Trascend.Bolet.Cliente.Ventanas.AbandonosPatente
         }
 
 
+        public void ConvertirEnteroMinimoABlanco()
+        {
+            if (null != this.Patente)
+            {
+                if (!this.IdPatente.Equals(""))
+                {
+                    if (int.Parse(this.IdPatente) == int.MinValue)
+                    {
+                        this.IdPatente = "";
+                    }
+                }
+            }
+
+            if (null != this.Interesado)
+            {
+                if (!this.IdInteresado.Equals(""))
+                {
+                    if (int.Parse(this.IdInteresado) == int.MinValue)
+                    {
+                        this.IdInteresado = "";
+                    }
+                }
+            }
+
+            if (null != this.Asociado)
+            {
+                if (!this.IdAsociado.Equals(""))
+                {
+                    if ((int.Parse(this.IdAsociado) == int.MinValue) || (int.Parse(this.IdAsociado) == 0))
+                    {
+                        this.IdAsociado = "";
+                    }
+                }
+            }
+
+        }
+
         public void ActivarControlesAlAgregar()
         {
             this.HabilitarCampos = true;
@@ -321,6 +397,14 @@ namespace Trascend.Bolet.Cliente.Ventanas.AbandonosPatente
             if (!EstaCargada)
             {
                 this._presentador.CargarPagina();
+                
+                if (this._presentador._agregar == true)
+                {
+                    PintarAsociado();
+                    PintarInteresado();
+                    PintarMarca();
+                }
+                
                 EstaCargada = true;
             }
         }
@@ -356,19 +440,22 @@ namespace Trascend.Bolet.Cliente.Ventanas.AbandonosPatente
 
         private void _txtNombrePatente_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            GestionarVisibilidadDatosDePatente(Visibility.Collapsed);
-            GestionarVisibilidadFiltroPatente(Visibility.Visible);
+            if (this._presentador._agregar)
+            {
+                GestionarVisibilidadDatosDePatente(Visibility.Collapsed);
+                GestionarVisibilidadFiltroPatente(Visibility.Visible);
 
-            //escondo el filtro de interesado
-            GestionarVisibilidadDatosDeInteresado(Visibility.Visible);
-            GestionarVisibilidadFiltroInteresado(Visibility.Collapsed);
+                //escondo el filtro de interesado
+                GestionarVisibilidadDatosDeInteresado(Visibility.Visible);
+                GestionarVisibilidadFiltroInteresado(Visibility.Collapsed);
 
-            //escondo el filtro de Asociado
-            GestionarVisibilidadDatosDeAsociado(Visibility.Visible);
-            GestionarVisibilidadFiltroAsociado(Visibility.Collapsed);
+                //escondo el filtro de Asociado
+                GestionarVisibilidadDatosDeAsociado(Visibility.Visible);
+                GestionarVisibilidadFiltroAsociado(Visibility.Collapsed);
 
-            this._btnConsultarPatente.IsDefault = false;
-            this._btnAceptar.IsDefault = true;
+                this._btnConsultarPatente.IsDefault = false;
+                this._btnAceptar.IsDefault = true;
+            }
         }
 
         private void GestionarVisibilidadFiltroPatente(object value)
@@ -383,7 +470,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.AbandonosPatente
 
         private void GestionarVisibilidadDatosDePatente(object value)
         {
-            this._txtNombrePatente.Visibility = (System.Windows.Visibility)value;            
+            this._txtNombrePatente.Visibility = (System.Windows.Visibility)value;
+            this._txtIdPatente.Visibility = (System.Windows.Visibility)value;
         }
 
         private void _txtPatenteFiltrar_GotFocus(object sender, RoutedEventArgs e)
@@ -412,20 +500,23 @@ namespace Trascend.Bolet.Cliente.Ventanas.AbandonosPatente
 
         private void _txtInteresado_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            GestionarVisibilidadDatosDeInteresado(Visibility.Collapsed);
+            if (this._presentador._agregar)
+            {
+                GestionarVisibilidadDatosDeInteresado(Visibility.Collapsed);
 
-            GestionarVisibilidadFiltroInteresado(Visibility.Visible);
+                GestionarVisibilidadFiltroInteresado(Visibility.Visible);
 
-            //escondo el filtro de interesado Patente
-            GestionarVisibilidadDatosDePatente(Visibility.Visible);
-            GestionarVisibilidadFiltroPatente(Visibility.Collapsed);
+                //escondo el filtro de interesado Patente
+                GestionarVisibilidadDatosDePatente(Visibility.Visible);
+                GestionarVisibilidadFiltroPatente(Visibility.Collapsed);
 
-            //escondo el filtro de Asociado
-            GestionarVisibilidadDatosDeAsociado(Visibility.Visible);
-            GestionarVisibilidadFiltroAsociado(Visibility.Collapsed);
-           
-            this._btnConsultarInteresado.IsDefault = true;
-            this._btnAceptar.IsDefault = false;
+                //escondo el filtro de Asociado
+                GestionarVisibilidadDatosDeAsociado(Visibility.Visible);
+                GestionarVisibilidadFiltroAsociado(Visibility.Collapsed);
+
+                this._btnConsultarInteresado.IsDefault = true;
+                this._btnAceptar.IsDefault = false;
+            }
         }
 
         private void GestionarVisibilidadFiltroInteresado(object value)
@@ -440,6 +531,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.AbandonosPatente
 
         private void GestionarVisibilidadDatosDeInteresado(object value)
         {
+            this._txtIdInteresado.Visibility = (System.Windows.Visibility)value;
             this._txtNombreInteresado.Visibility = (System.Windows.Visibility)value;
             this._txtPaisInteresado.Visibility = (System.Windows.Visibility)value;
             this._txtCiudadInteresado.Visibility = (System.Windows.Visibility)value;
@@ -476,20 +568,23 @@ namespace Trascend.Bolet.Cliente.Ventanas.AbandonosPatente
 
         private void _txtNombreAsociado_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            GestionarVisibilidadDatosDeAsociado(Visibility.Collapsed);
+            if (this._presentador._agregar)
+            {
+                GestionarVisibilidadDatosDeAsociado(Visibility.Collapsed);
 
-            GestionarVisibilidadFiltroAsociado(Visibility.Visible);
+                GestionarVisibilidadFiltroAsociado(Visibility.Visible);
 
-            //escondo el filtro de Patente
-            GestionarVisibilidadDatosDePatente(Visibility.Visible);
-            GestionarVisibilidadFiltroPatente(Visibility.Collapsed);
+                //escondo el filtro de Patente
+                GestionarVisibilidadDatosDePatente(Visibility.Visible);
+                GestionarVisibilidadFiltroPatente(Visibility.Collapsed);
 
-            //escondo el filtro de interesado
-            GestionarVisibilidadDatosDeInteresado(Visibility.Visible);
-            GestionarVisibilidadFiltroInteresado(Visibility.Collapsed);
+                //escondo el filtro de interesado
+                GestionarVisibilidadDatosDeInteresado(Visibility.Visible);
+                GestionarVisibilidadFiltroInteresado(Visibility.Collapsed);
 
-            this._btnConsultarAsociado.IsDefault = true;
-            this._btnAceptar.IsDefault = false;
+                this._btnConsultarAsociado.IsDefault = true;
+                this._btnAceptar.IsDefault = false;
+            }
         }
 
         private void GestionarVisibilidadFiltroAsociado(object value)
@@ -504,7 +599,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.AbandonosPatente
 
         private void GestionarVisibilidadDatosDeAsociado(object value)
         {
-            this._txtNombreAsociado.Visibility = (System.Windows.Visibility)value;          
+            this._txtNombreAsociado.Visibility = (System.Windows.Visibility)value;
+            this._txtIdAsociado.Visibility = (System.Windows.Visibility)value;
         }
 
         public void GestionarBotonConsultarAsociado(bool value)

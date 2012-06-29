@@ -2003,14 +2003,14 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                 if (((Patente)this._ventana.Patente).FechaRegistro != null)
                 {
                     duracionAux = TimeSpan.Parse((((Patente)this._ventana.Patente).FechaTermino - 
-                        ((Patente)this._ventana.Patente).FechaRegistro).ToString()).Days;
+                        ((Patente)this._ventana.Patente).FechaRegistro).ToString()).Days/365;
                     this._ventana.Duracion = duracionAux.ToString();
                 }
                 else
                 {
                     
                     duracionAux = TimeSpan.Parse((((Patente)this._ventana.Patente).FechaTermino -
-                        ((Patente)this._ventana.Patente).FechaInscripcion).ToString()).Days;
+                        ((Patente)this._ventana.Patente).FechaInscripcion).ToString()).Days/365;
                     this._ventana.Duracion = duracionAux.ToString();
                 }
                

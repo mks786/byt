@@ -1469,7 +1469,21 @@
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblSituacion}"/>
                         </Label>
                         <ComboBox IsEnabled="False" Grid.Column="7" Grid.Row="17" Grid.ColumnSpan="1" Name="_cbxSituacion" Height="20" 
-                              ItemsSource="{Binding}" DisplayMemberPath="Id" SelectedIndex="0" SelectionChanged="_cbxSituacion_SelectionChanged">
+                              ItemsSource="{Binding}" SelectedIndex="0" SelectionChanged="_cbxSituacion_SelectionChanged">
+
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock>
+                                <TextBlock.Text>
+                                    <MultiBinding Converter="{StaticResource convertirADosValores}">
+                                        <Binding Path="Id" />
+                                        <Binding Path="Descripcion" />
+                                    </MultiBinding>
+                                </TextBlock.Text>
+                                    </TextBlock>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+
                         </ComboBox>
                         <custom:ByTTextBox IsEnabled="False" Grid.Column="8" Grid.Row="17" Grid.ColumnSpan="3" Margin="3" Name="_txtSituacionDescripcion" VerticalAlignment="Center"  
                           Text=""></custom:ByTTextBox>
@@ -1481,7 +1495,20 @@
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblDetalle}"/>
                         </Label>
                         <ComboBox IsEnabled="False" Grid.Column="7" Grid.Row="18" Grid.ColumnSpan="1" Name="_cbxDetalleDatos" Height="20" 
-                              ItemsSource="{Binding}" DisplayMemberPath="Id" SelectedIndex="0" SelectionChanged="_cbxDetalle_SelectionChanged">
+                              ItemsSource="{Binding}" SelectedIndex="0" SelectionChanged="_cbxDetalle_SelectionChanged">
+
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock>
+                                <TextBlock.Text>
+                                    <MultiBinding Converter="{StaticResource convertirADosValores}">
+                                        <Binding Path="Id" />
+                                        <Binding Path="Descripcion" />
+                                    </MultiBinding>
+                                </TextBlock.Text>
+                                    </TextBlock>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
                         </ComboBox>
                         <custom:ByTTextBox IsEnabled="False" Grid.Column="8" Grid.Row="18" Grid.ColumnSpan="3" Margin="3" Name="_txtDetalleDescripcion" VerticalAlignment="Center"  
                           Text=""></custom:ByTTextBox>

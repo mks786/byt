@@ -243,9 +243,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
 
                 IList<Servicio> servicios = this._servicioServicios.ConsultarTodos();
                 this._ventana.Servicios = servicios;
-
-                if (null != marca.Servicio)
-                    this._ventana.Servicio = this.BuscarServicio(servicios, marca.Servicio);
+                this._ventana.Servicio = this.BuscarServicio(servicios, marca.Servicio);
 
                 
                 IList<Boletin> boletines = this._boletinServicios.ConsultarTodos();

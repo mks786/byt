@@ -841,4 +841,7 @@
   <data name="PatenteSinPoder" xml:space="preserve">
     <value>Esta patente no posee ningun poder</value>
   </data>
+  <data name="RenovacionTercero" xml:space="preserve">
+    <value>Alerta. La marca es renovada por un tercero.</value>
+  </data>
 </root>

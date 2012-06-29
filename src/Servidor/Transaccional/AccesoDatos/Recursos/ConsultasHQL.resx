@@ -784,4 +784,8 @@
     <value>m.CodigoInscripcion = '{0}'</value>
     <comment>Filtra Marca a tercero por numero de solicitud</comment>
   </data>
+  <data name="FiltroObtenerRenovacionIdInteresado" xml:space="preserve">
+    <value>interesado.Id = {0}</value>
+    <comment>Filtro por Interesado</comment>
+  </data>
 </root>

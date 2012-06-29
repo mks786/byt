@@ -28,6 +28,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Renovaciones
         private IMarcaServicios _marcaServicios;
         private IRenovacionServicios _renovacionServicios;
         private IList<Marca> _marcas;
+        private IInteresadoServicios _interesadoServicios;
         private IList<Renovacion> _renovaciones;
 
         private Marca _marcaAFiltrar;
@@ -44,6 +45,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Renovaciones
                 this._ventana = ventana;
                 this._marcaServicios = (IMarcaServicios)Activator.GetObject(typeof(IMarcaServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["MarcaServicios"]);
+                this._interesadoServicios = (IInteresadoServicios)Activator.GetObject(typeof(IInteresadoServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["InteresadoServicios"]);
                 this._renovacionServicios = (IRenovacionServicios)Activator.GetObject(typeof(IRenovacionServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["RenovacionServicios"]);
             }
@@ -178,6 +181,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.Renovaciones
                     filtroValido = 2;
                 }
 
+                if ((null != this._ventana.Interesado) && (((Interesado)this._ventana.Interesado).Id != int.MinValue))
+                {
+                    RenovacionAuxiliar.Interesado = (Interesado)this._ventana.Interesado;
+                    filtroValido = 2;
+                }
+
                 if (filtroValido >= 2)
                 {
                     this._renovaciones = this._renovacionServicios.ObtenerRenovacionFiltro(RenovacionAuxiliar);
@@ -201,6 +210,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Renovaciones
                         if ((renovacion.Interesado != null) && (!string.IsNullOrEmpty(renovacion.Interesado.Nombre)))
                         {
                             interesadoAuxiliar.Nombre = renovacion.Interesado.Nombre;
+                            interesadoAuxiliar.Id = renovacion.Interesado.Id;
                             RenovacionAuxiliar.Interesado = interesadoAuxiliar;
                         }
 
@@ -387,6 +397,49 @@ namespace Trascend.Bolet.Cliente.Presentadores.Renovaciones
             #endregion
         }
 
+
+        /// <summary>
+        /// Método que se encarga de buscar el interesado definido en el filtro
+        /// </summary>
+        public void BuscarInteresado()
+        {
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+            Mouse.OverrideCursor = Cursors.Wait;
+
+            Interesado interesadoABuscar = new Interesado();
+
+            interesadoABuscar.Id = !this._ventana.IdInteresadoFiltrar.Equals("") ?
+                                 int.Parse(this._ventana.IdInteresadoFiltrar) : 0;
+
+            interesadoABuscar.Nombre = !this._ventana.NombreInteresadoFiltrar.Equals("") ?
+                                     this._ventana.NombreInteresadoFiltrar.ToUpper() : "";
+
+            
+            if ( (interesadoABuscar.Id != 0) || !(interesadoABuscar.Nombre.Equals("")) )
+            {
+                IList<Interesado> interesados = this._interesadoServicios.ObtenerInteresadosFiltro(interesadoABuscar);
+                interesados.Insert(0, new Interesado(int.MinValue));
+                this._ventana.Interesados = interesados;
+
+            }
+            else
+            {
+                this._ventana.Mensaje(Recursos.MensajesConElUsuario.NoHayResultados, 1);
+                this._ventana.Marcas = this._marcas;
+            }
+
+            Mouse.OverrideCursor = null;
+
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+        }
+
         /// <summary>
         /// Método que se encarga de buscar la Marca definida en el filtro
         /// </summary>
@@ -432,10 +485,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Renovaciones
             this._ventana.NombreMarcaFiltrar = "";
             this._ventana.RegistroMarcaFiltrar = "";
 
-
-
-
-
+            this._ventana.IdInteresadoFiltrar = "";
+            this._ventana.NombreInteresadoFiltrar = "";
+            this._ventana.Interesado = null;
+            this._ventana.Interesados = null;
+            this._ventana.InteresadoFiltrado = "";
 
             #region trace
             if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -460,6 +514,29 @@ namespace Trascend.Bolet.Cliente.Presentadores.Renovaciones
             if (this._ventana.Marca != null)
             {
                 this._ventana.MarcaFiltrada = ((Marca)this._ventana.Marca).Descripcion;
+                retorno = true;
+            }
+
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+            return retorno;
+        }
+
+        public bool CambiarInteresado()
+        {
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+            bool retorno = false;
+
+            if (this._ventana.Interesado != null)
+            {
+                this._ventana.InteresadoFiltrado = ((Interesado)this._ventana.Interesado).Nombre;
                 retorno = true;
             }
 

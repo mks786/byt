@@ -101,6 +101,30 @@ namespace Trascend.Bolet.Cliente.Ventanas.Renovaciones
             set { this._txtRegistroMarcaFiltrar.Text = value; }
         }
 
+        public object Interesados
+        {
+            get { return this._lstInteresados.DataContext; }
+            set { this._lstInteresados.DataContext = value; }
+        }
+
+        public object Interesado
+        {
+            get { return this._lstInteresados.SelectedItem; }
+            set { this._lstInteresados.SelectedItem = value; }
+        }
+
+        public string IdInteresadoFiltrar
+        {
+            get { return this._txtIdInteresadoFiltrar.Text; }
+            set { this._txtIdInteresadoFiltrar.Text = value; }
+        }
+
+        public string NombreInteresadoFiltrar
+        {
+            get { return this._txtNombreInteresadoFiltrar.Text; }
+            set { this._txtNombreInteresadoFiltrar.Text = value; }
+        }
+
         public void MostrarBotonVolverAMarca()
         {
             this._btnVolverMarca.Visibility = Visibility.Visible;
@@ -118,6 +142,12 @@ namespace Trascend.Bolet.Cliente.Ventanas.Renovaciones
         {
             get { return this._txtMarca.Text; }
             set { this._txtMarca.Text = value; }
+        }
+
+        public string InteresadoFiltrado
+        {
+            get { return this._txtInteresado.Text; }
+            set { this._txtInteresado.Text = value; }
         }
 
         public string TotalHits
@@ -181,7 +211,12 @@ namespace Trascend.Bolet.Cliente.Ventanas.Renovaciones
         private void _btnConsultarMarca_Click(object sender, RoutedEventArgs e)
         {
             this._presentador.BuscarMarca();
-        }          
+        }
+
+        private void _btnConsultarInteresado_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.BuscarInteresado();
+        } 
 
         private void _btnConsultarFocus(object sender, RoutedEventArgs e)
         {
@@ -193,6 +228,12 @@ namespace Trascend.Bolet.Cliente.Ventanas.Renovaciones
         {
             this._btnConsultar.IsDefault = false;
             this._btnConsultarMarca.IsDefault = true;
+        }
+
+        private void _btnConsultarInteresadoFocus(object sender, RoutedEventArgs e)
+        {
+            this._btnConsultar.IsDefault = false;
+            this._btnConsultarInteresado.IsDefault = true;
         }
 
         private void _dpkFecha_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
@@ -219,8 +260,20 @@ namespace Trascend.Bolet.Cliente.Ventanas.Renovaciones
       
         private void _txtMarca_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            GestionarVisibilidadFiltroMarca(true);            
-        }        
+            GestionarVisibilidadFiltroMarca(true);
+            GestionarVisibilidadFiltroInteresado(false);
+
+            this._txtIdMarcaFiltrar.Focus();
+
+        }
+
+        private void _txtInteresado_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            GestionarVisibilidadFiltroInteresado(true);
+            GestionarVisibilidadFiltroMarca(false);
+
+            this._txtIdInteresadoFiltrar.Focus();
+        }
 
         private void GestionarVisibilidadFiltroMarca(bool visibilidad)
         {
@@ -251,12 +304,52 @@ namespace Trascend.Bolet.Cliente.Ventanas.Renovaciones
                 this._txtRegistroMarcaFiltrar.Visibility = Visibility.Collapsed;
 
             }
-        }     
+        }
+
+        private void GestionarVisibilidadFiltroInteresado(bool visibilidad)
+        {
+            if (visibilidad)
+            {
+                this._txtInteresado.Visibility = Visibility.Collapsed;
+
+                this._txtIdInteresadoFiltrar.Visibility = Visibility.Visible;
+                this._txtNombreInteresadoFiltrar.Visibility = Visibility.Visible;
+                this._lblIdInteresado.Visibility = Visibility.Visible;
+                this._lblNombreInteresado.Visibility = Visibility.Visible;
+                this._lstInteresados.Visibility = Visibility.Visible;
+                this._btnConsultarInteresado.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                this._txtInteresado.Visibility = Visibility.Visible;
+
+                this._txtIdInteresadoFiltrar.Visibility = Visibility.Collapsed;
+                this._txtNombreInteresadoFiltrar.Visibility = Visibility.Collapsed;
+                this._lblIdInteresado.Visibility = Visibility.Collapsed;
+                this._lblNombreInteresado.Visibility = Visibility.Collapsed;
+                this._lstInteresados.Visibility = Visibility.Collapsed;
+                this._btnConsultarInteresado.Visibility = Visibility.Collapsed;
+                
+
+            }
+        }
 
         private void _lstMarcas_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             if (this._presentador.CambiarMarca())
                 GestionarVisibilidadFiltroMarca(false);
+
+            this._btnConsultarMarca.IsDefault = false;
+            this._btnConsultar.IsDefault = true;
+        }
+
+        private void _lstInteresados_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            if (this._presentador.CambiarInteresado())
+                GestionarVisibilidadFiltroInteresado(false);
+
+            this._btnConsultarInteresado.IsDefault = false;
+            this._btnConsultar.IsDefault = true;
         }
 
         private void _btnVolverMarca_Click(object sender, RoutedEventArgs e)

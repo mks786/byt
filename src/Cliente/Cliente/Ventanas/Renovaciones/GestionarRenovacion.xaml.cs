@@ -810,7 +810,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Renovaciones
 
         private void _dpkFechaRenovacion_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
         {
-            this._presentador.ActualizarFechaProxima();
+            //this._presentador.ActualizarFechaProxima();
         }
 
     }

@@ -1232,6 +1232,16 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         
         /// <summary>
         ///   Looks up a localized string similar to marca.Id = {0}.
+        ///   Busca una cadena traducida similar a interesado.Id = {0}.
+        /// </summary>
+        public static string FiltroObtenerRenovacionIdInteresado {
+            get {
+                return ResourceManager.GetString("FiltroObtenerRenovacionIdInteresado", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a marca.Id = {0}.
         /// </summary>
         public static string FiltroObtenerRenovacionIdMarca {
             get {

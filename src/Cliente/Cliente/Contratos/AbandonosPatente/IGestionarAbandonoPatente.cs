@@ -11,6 +11,8 @@ namespace Trascend.Bolet.Cliente.Contratos.AbandonosPatente
 
         string NombrePatente { set; }
 
+        string IdPatente { get; set; }
+
         object Patente { get; set; }
 
         string IdPatenteFiltrar { get; }
@@ -26,6 +28,8 @@ namespace Trascend.Bolet.Cliente.Contratos.AbandonosPatente
         #region Interesado
 
         object Interesado { get; set; }
+
+        string IdInteresado { get; set; }
 
         string NombreInteresado { set; }
 
@@ -44,6 +48,8 @@ namespace Trascend.Bolet.Cliente.Contratos.AbandonosPatente
         #region Asociado
 
         object Asociado { get; set; }
+
+        string IdAsociado { get; set; }
 
         string NombreAsociado { set; }
 
@@ -78,5 +84,13 @@ namespace Trascend.Bolet.Cliente.Contratos.AbandonosPatente
         void ActivarControlesAlAgregar();
 
         void PintarAsociado(string tipo);
+
+        void PintarMarca();
+       
+        void PintarInteresado();
+      
+        void PintarAsociado();
+
+        void ConvertirEnteroMinimoABlanco();
     }
 }
