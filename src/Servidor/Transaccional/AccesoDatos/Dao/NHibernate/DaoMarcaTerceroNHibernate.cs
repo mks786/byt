@@ -36,6 +36,13 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
                     filtro = string.Format(Recursos.ConsultasHQL.FiltroObtenerMarcaTerceroId, marcaTercero.Id);
                     variosFiltros = true;
                 }
+                if (null != marcaTercero.CodigoInscripcion)
+                {
+                    if (variosFiltros)
+                        filtro += " and ";
+                    filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerMarcaTerceroSolicitud, marcaTercero.CodigoInscripcion);
+                    variosFiltros = true;
+                }
                 if ((null != marcaTercero.Asociado) && (!marcaTercero.Asociado.Id.Equals("")))
                 {
                     if (variosFiltros)
@@ -48,6 +55,20 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
                     if (variosFiltros)
                         filtro += " and ";
                     filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerMarcaTerceroInteresadoId, marcaTercero.Interesado.Id);
+                    variosFiltros = true;
+                }
+                if (null != marcaTercero.Internacional)
+                {
+                    if (variosFiltros)
+                        filtro += " and ";
+                    filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerMarcaInternacional, marcaTercero.Internacional.Id);
+                    variosFiltros = true;
+                }
+                if (null != marcaTercero.Nacional)
+                {
+                    if (variosFiltros)
+                        filtro += " and ";
+                    filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerMarcaNacional, marcaTercero.Nacional.Id);
                     variosFiltros = true;
                 }
                 if (!string.IsNullOrEmpty(marcaTercero.Fichas))

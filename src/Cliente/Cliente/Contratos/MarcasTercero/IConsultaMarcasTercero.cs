@@ -7,6 +7,8 @@ namespace Trascend.Bolet.Cliente.Contratos.MarcasTercero
     {
         string Id { get; set; }
 
+        string Solicitud { get; set; }
+
         object MarcaTerceroSeleccionada { get; }
 
         object Resultados { get; set; }
@@ -18,14 +20,6 @@ namespace Trascend.Bolet.Cliente.Contratos.MarcasTercero
         object Asociados { get; set; }
 
         object Asociado { get; set; }
-
-        string IdCorresponsalFiltrar { get; set; }
-
-        string NombreCorresponsalFiltrar { get; set; }
-
-        object Corresponsales { get; set; }
-
-        object Corresponsal { get; set; }
 
         string IdInteresadoFiltrar { get; set; }
 
@@ -41,6 +35,12 @@ namespace Trascend.Bolet.Cliente.Contratos.MarcasTercero
 
         string Fecha { get; set; }
 
+        string ClaseNacional { get; set; }
+
+        string ClaseInternacional{ get; set; }
+
+        string Distingue { get; set; }
+
         GridViewColumnHeader CurSortCol { get; set; }
 
         SortAdorner CurAdorner { get; set; }
@@ -53,8 +53,6 @@ namespace Trascend.Bolet.Cliente.Contratos.MarcasTercero
 
         string InteresadoFiltro { set; }
 
-        string CorresponsalFiltro { set; }
-
         string TotalHits { set; }
 
         object Servicios { get; set; }
@@ -64,6 +62,10 @@ namespace Trascend.Bolet.Cliente.Contratos.MarcasTercero
         object Detalle { get; set; }
 
         object Detalles { get; set; }
+
+        object TipoDeCaso { get; set; }
+
+        object TiposDeCasos { get; set; }
 
         object BoletinesOrdenPublicacion { get; set; }
 

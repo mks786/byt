@@ -2721,6 +2721,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Fecha de Presentacion:.
+        /// </summary>
+        public static string lblFechaPresentacion {
+            get {
+                return ResourceManager.GetString("lblFechaPresentacion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Fecha Presentación De Escrito.
         /// </summary>
         public static string lblFechaPresentacionDeEscrito {

@@ -31,9 +31,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
         private ICorresponsalServicios _corresponsalServicios;
         private IServicioServicios _servicioServicios;
         private ITipoEstadoServicios _tipoEstadoServicios;
+        private IEstadoMarcaServicios _estadoMarcaServicios;
         private IPaisServicios _paisServicios;
         private ICondicionServicios _condicionServicios;
         private IBoletinServicios _boletinServicios;
+        private IListaDatosValoresServicios _listaDatosValoresServicios;
 
         private IList<MarcaTercero> _marcas;
         private IList<Asociado> _asociados;
@@ -81,6 +83,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["CondicionServicios"]);
                 this._boletinServicios = (IBoletinServicios)Activator.GetObject(typeof(IBoletinServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["BoletinServicios"]);
+                this._estadoMarcaServicios = (IEstadoMarcaServicios)Activator.GetObject(typeof(IEstadoMarcaServicios),
+                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["EstadoMarcaServicios"]);
+                this._listaDatosValoresServicios = (IListaDatosValoresServicios)Activator.GetObject(typeof(IListaDatosValoresServicios),
+                        ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["ListaDatosValoresServicios"]);
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -145,18 +151,17 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
                 this._ventana.Interesados = interesados;
                 this._interesados = interesados;
 
-                IList<Corresponsal> corresponsales = this._corresponsalServicios.ConsultarTodos();
-                Corresponsal primerCorresponsal = new Corresponsal();
-                primerCorresponsal.Id = int.MinValue;
-                corresponsales.Insert(0, primerCorresponsal);
-                this._ventana.Corresponsales = corresponsales;
-                this._corresponsales = corresponsales;
-
-                IList<TipoEstado> tipoEstados = this._tipoEstadoServicios.ConsultarTodos();
-                TipoEstado primerDetalle = new TipoEstado();
+                IList<EstadoMarca> tipoEstados = this._estadoMarcaServicios.ConsultarTodos();
+                EstadoMarca primerDetalle = new EstadoMarca();
                 primerDetalle.Id = "NGN";
                 tipoEstados.Insert(0, primerDetalle);
                 this._ventana.Detalles = tipoEstados;
+
+                //IList<ListaDatosValores> tipodecasos = this._listaDatosValoresServicios.ConsultarTodos();
+                //ListaDatosValores primerTipoDeCaso = new ListaDatosValores();
+                //primerTipoDeCaso.Id = "NGN";
+                //tipodecasos.Insert(0, primerTipoDeCaso);
+                //this._ventana.TiposDeCasos = tipodecasos;
 
                 IList<Servicio> servicios = this._servicioServicios.ConsultarTodos();
                 Servicio primerServicio = new Servicio();
@@ -294,7 +299,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
         /// <returns>MarcaTercero cargada con el filtro</returns>
         private MarcaTercero ObtenerMarcaTerceroFiltro()
         {
-            MarcaTercero marcaAuxiliar = ((MarcaTercero)this._ventana.MarcaTerceroParaFiltrar);
+          //  MarcaTercero marcaAuxiliar = ((MarcaTercero)this._ventana.MarcaTerceroParaFiltrar);
+            MarcaTercero marcaAuxiliar = new MarcaTercero();
             try
             {
 
@@ -508,6 +514,13 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
         
                 }
 
+                if (this._ventana.Solicitud != "")
+                {
+                    _filtroValido = 2;
+                    marcaAuxiliar.CodigoInscripcion = this._ventana.Solicitud.ToUpper();
+
+                }
+
                 if ((null != this._ventana.Asociado) && (((Asociado)this._ventana.Asociado).Id != int.MinValue))
                 {
                     marcaAuxiliar.Asociado = (Asociado)this._ventana.Asociado;
@@ -517,12 +530,6 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
                 if ((null != this._ventana.Interesado) && (((Interesado)this._ventana.Interesado).Id != int.MinValue))
                 {
                     marcaAuxiliar.Interesado = (Interesado)this._ventana.Interesado;
-                    _filtroValido = 2;
-                }
-
-                if ((null != this._ventana.Corresponsal) && (((Corresponsal)this._ventana.Corresponsal).Id != int.MinValue))
-                {
-                    marcaAuxiliar.Corresponsal = (Corresponsal)this._ventana.Corresponsal;
                     _filtroValido = 2;
                 }
 
@@ -539,11 +546,29 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
                     marcaAuxiliar.FechaPublicacion = fechaPublicacion;
                 }
 
-                if (!((TipoEstado)this._ventana.Detalle).Id.Equals("NGN"))
+                if (this._ventana.ClaseInternacional != "")
                 {
                     _filtroValido = 2;
-                    marcaAuxiliar.TipoEstado = ((TipoEstado)this._ventana.Detalle);
+                    Internacional inter = new Internacional();
+                    inter.Id = int.Parse(this._ventana.ClaseInternacional);
+                    marcaAuxiliar.Internacional = inter;
+
                 }
+
+                if (this._ventana.ClaseNacional != "")
+                {
+                    _filtroValido = 2;
+                    Nacional nac = new Nacional();
+                    nac.Id = int.Parse(this._ventana.ClaseNacional);
+                    marcaAuxiliar.Nacional = nac;
+
+                }
+
+                //if (!((EstadoMarca)this._ventana.Detalle).Id.Equals("NGN"))
+                //{
+                //    _filtroValido = 2;
+                //    marcaAuxiliar.TipoEstado = ((EstadoMarca)this._ventana.Detalle);
+                //}
 
                 //if (!((Servicio)this._ventana.Detalle).Id.Equals("NGN"))
                 //{
@@ -769,16 +794,16 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
             this._ventana.NombreInteresadoFiltrar = null;
             this._ventana.InteresadoFiltro = null;
             this._ventana.Interesados = null;
+            this._ventana.ClaseInternacional = "";
+            this._ventana.ClaseNacional = "";
+             this._ventana.Distingue = "";
+             this._ventana.Solicitud = "";
 
-            this._ventana.IdCorresponsalFiltrar = null;
-            this._ventana.NombreCorresponsalFiltrar = null;
-            this._ventana.CorresponsalFiltro = null;
-            this._ventana.Corresponsal = null;
 
 
             this._ventana.Servicio = this.BuscarServicio((IList<Servicio>)this._ventana.Servicios, new Servicio("NGN"));            
             //this._ventana.Detalle = this.BuscarDetalle((IList<TipoEstado>)this._ventana.Detalles, new TipoEstado("NGN"));
-            this._ventana.Detalle = ((IList<TipoEstado>)this._ventana.Detalles)[0];
+            this._ventana.Detalle = ((IList<EstadoMarca>)this._ventana.Detalles)[0];
 
             #endregion            
 
@@ -938,77 +963,6 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
 
         #endregion
 
-        #region Corresponsal
-
-        /// <summary>
-        /// Método que se encarga de buscar el asociado definido en el filtro
-        /// </summary>
-        public void BuscarCorresponsal()
-        {
-            #region trace
-            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
-                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
-            #endregion
-
-            Mouse.OverrideCursor = Cursors.Wait;
-
-            Corresponsal corresponsalABuscar = new Corresponsal();
-
-            corresponsalABuscar.Id = !this._ventana.IdCorresponsalFiltrar.Equals("") ?
-                                 int.Parse(this._ventana.IdCorresponsalFiltrar) : 0;
-
-            corresponsalABuscar.Descripcion = !this._ventana.NombreCorresponsalFiltrar.Equals("") ?
-                                     this._ventana.NombreCorresponsalFiltrar.ToUpper() : "";
-
-            if ((corresponsalABuscar.Id != 0) || !(corresponsalABuscar.Descripcion.Equals("")))
-            {
-                IList<Corresponsal> corresponsales = this._corresponsalServicios.ConsultarTodos();
-                corresponsales.Insert(0, new Corresponsal(int.MinValue));
-                this._ventana.Corresponsales = corresponsales;
-
-            }
-            else
-            {
-                this._ventana.Mensaje(Recursos.MensajesConElUsuario.NoHayResultados, 1);
-                this._ventana.Corresponsales = this._asociados;
-            }
-
-            Mouse.OverrideCursor = null;
-
-            #region trace
-            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
-                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
-            #endregion
-        }
-
-        /// <summary>
-        /// Metodo que cambia el texto del Corresponsal en la interfaz
-        /// </summary>
-        /// <returns>true en caso de que el Corresponsal haya sido valido, false en caso contrario</returns>
-        public bool CambiarCorresponsal()
-        {
-            #region trace
-            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
-                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
-            #endregion
-
-            bool retorno = false;
-
-            if (this._ventana.Corresponsal != null)
-            {
-                this._ventana.CorresponsalFiltro = ((Corresponsal)this._ventana.Corresponsal).Descripcion;
-                retorno = true;
-            }
-
-            #region trace
-            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
-                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
-            #endregion
-
-            return retorno;
-        }
-
-        #endregion
 
         #region MarcaTercero
 

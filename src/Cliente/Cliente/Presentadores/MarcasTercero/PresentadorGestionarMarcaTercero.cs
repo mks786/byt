@@ -373,7 +373,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
 
             IList<Servicio> servicios = this._servicioServicios.ConsultarTodos();
             Servicio primerServicio = new Servicio();
-            primerServicio.Id = "NGN";
+            primerServicio.Id = "";
             servicios.Insert(0, primerServicio);
             this._ventana.Situaciones = servicios;
             if (!_agregar)
@@ -782,7 +782,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
                 logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
 
-            this._ventana.SituacionDescripcion = ((Servicio) this._ventana.Situacion).Descripcion;
+              this._ventana.SituacionDescripcion = ((Servicio) this._ventana.Situacion).Descripcion;
 
             #region trace
             if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
