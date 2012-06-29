@@ -237,9 +237,13 @@ namespace Trascend.Bolet.Cliente.Presentadores.Recordatorios
                 {
                     if (this._ventana.EmailFiltro.Value)
                     {
+                        //marcasDesinfladas = from m in marcasDesinfladas
+                        //                    where m.Asociado.Email != null &&
+                        //                    m.Asociado.Fax1 == null
+                        //                    select m;
+
                         marcasDesinfladas = from m in marcasDesinfladas
-                                            where m.Asociado.Email != null &&
-                                            m.Asociado.Fax1 == null
+                                            where m.Asociado.Email != null
                                             select m;
                         filtroValido = 1;
                     }
@@ -248,6 +252,16 @@ namespace Trascend.Bolet.Cliente.Presentadores.Recordatorios
                     {
                         marcasDesinfladas = from m in marcasDesinfladas
                                             where m.Asociado.Fax1 != null &&
+                                            m.Asociado.Email == null
+                                            select m;
+
+                        filtroValido = 1;
+                    }
+
+                    if ((!this._ventana.FaxFiltro.Value) && (!this._ventana.EmailFiltro.Value))
+                    {
+                        marcasDesinfladas = from m in marcasDesinfladas
+                                            where m.Asociado.Fax1 == null &&
                                             m.Asociado.Email == null
                                             select m;
                         filtroValido = 1;

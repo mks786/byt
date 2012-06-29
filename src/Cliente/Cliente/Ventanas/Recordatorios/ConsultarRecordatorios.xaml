@@ -157,8 +157,8 @@
                       Style="{DynamicResource EstiloListView}">
                 <ListView.View>
                     <GridView>
-                        <GridViewColumn DisplayMemberBinding="{Binding Path=Asociado.Id}" Width="70">
-                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="Id" Content="{x:Static recurso:Etiquetas.lsvId}"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Asociado.Id}" Width="110">
+                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="Id" Content="{x:Static recurso:Etiquetas.lsvCodigoAsociado}"/>
                         </GridViewColumn>
                         <GridViewColumn DisplayMemberBinding="{Binding Path=Asociado.Nombre}" Width="150">
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="Nombre" Content="{x:Static recurso:Etiquetas.lsvAsociado}"/>
@@ -169,8 +169,8 @@
                         <GridViewColumn DisplayMemberBinding="{Binding Path=Asociado.Email}" Width="100">
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="Email" Content="{x:Static recurso:Etiquetas.lsvEmail}"/>
                         </GridViewColumn>
-                        <GridViewColumn DisplayMemberBinding="{Binding Path=Id}" Width="70">
-                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="Id" Content="{x:Static recurso:Etiquetas.lsvId}"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Id}" Width="90">
+                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="Id" Content="{x:Static recurso:Etiquetas.lsvIdMarca}"/>
                         </GridViewColumn>
                         <GridViewColumn DisplayMemberBinding="{Binding Path=Descripcion}" Width="150">
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="Descripcion" Content="{x:Static recurso:Etiquetas.lsvDescripcion}"/>
@@ -180,6 +180,9 @@
                         </GridViewColumn>
                         <GridViewColumn DisplayMemberBinding="{Binding Path=Asociado.Idioma.Id}" Width="50">
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="Asociado.Idioma.Id" Content="{x:Static recurso:Etiquetas.lsvIdioma}"/>
+                        </GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Interesado.Id}" Width="110">
+                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="Interesado.Id" Content="{x:Static recurso:Etiquetas.lsvIdInteresado}"/>
                         </GridViewColumn>
                         <GridViewColumn DisplayMemberBinding="{Binding Path=Interesado.Nombre}" Width="150">
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="Interesado.Nombre" Content="{x:Static recurso:Etiquetas.lsvInteresado}"/>

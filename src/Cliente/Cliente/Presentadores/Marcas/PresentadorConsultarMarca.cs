@@ -1654,7 +1654,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             Marca marca = null != this._ventana.Marca ? (Marca)this._ventana.Marca : new Marca();
 
 
-            Poder poder = _marca.Poder;
+            //Poder poder = _marca.Poder;
+            Poder poder = new Poder(int.Parse(this._ventana.IdPoderDatos));
 
             this._ventana.PoderSolicitud = poder != null ? poder.Id.ToString() : "";
             //this._ventana.PoderSolicitud = poder.Id.ToString();

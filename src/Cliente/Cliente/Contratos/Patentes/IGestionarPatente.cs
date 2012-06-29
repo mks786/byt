@@ -204,6 +204,8 @@ namespace Trascend.Bolet.Cliente.Contratos.Patentes
 
         bool MensajeAlerta(string mensaje);
 
+        void Mensaje(string mensaje, int opcion);
+
         void ArchivoNoEncontrado();
 
         GridViewColumnHeader CurSortCol { get; set; }
@@ -213,5 +215,7 @@ namespace Trascend.Bolet.Cliente.Contratos.Patentes
         void ActivarControlesAlAgregar();
 
         void ConvertirEnteroMinimoABlanco();
+
+        void MostrarLstPoderSolicitud();
     }
 }

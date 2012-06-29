@@ -608,6 +608,14 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
             return retorno;
         }
 
+        public void Mensaje(string mensaje, int opcion)
+        {
+            if (opcion == 0)
+                MessageBox.Show(mensaje, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            else
+                MessageBox.Show(mensaje, "Advertencia", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+        }
+
         public bool EstaCargada
         {
             get { return this._cargada; }
@@ -692,8 +700,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
                 this._txtComentarioDatos.IsEnabled = value;
                 this._txtCodigoRegistroDatos.IsEnabled = value;
                 this._txtCodigoInscripcionDatos.IsEnabled = value;
-                this._txtUbicacionDatos.IsEnabled = value;
-                this._txtExpedienteDatos.IsEnabled = value;
+                //this._txtUbicacionDatos.IsEnabled = value;
+                //this._txtExpedienteDatos.IsEnabled = value;
                 
                 #endregion
                 
@@ -707,7 +715,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
                 //Datos
                 this._dpkFechaPrioridadDatos.IsEnabled = value;
                 this._dpkFechaOrdenDatos.IsEnabled = value;
-                this._dpkFechaPublicacionDatos.IsEnabled = value;
+                //this._dpkFechaPublicacionDatos.IsEnabled = value;
                 this._dpkFechaBaseDatos.IsEnabled = value;
                 this._dpkFechaRegistroDatos.IsEnabled = value;
                 this._dpkFechaInscripcionDatos.IsEnabled = value;
@@ -762,6 +770,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
 
                 //Datos
                 this._btnDisenoDatos.IsEnabled = value;
+                this._btnConsultarInteresadoDatos.IsEnabled = value;
+                this._btnConsultarAsociadoDatos.IsEnabled = value;
                 this._btnInventoresDatos.IsEnabled = value;
                 this._btnNoSolicitudDatos.IsEnabled = value;
                 this._btnNoRegistroDatos.IsEnabled = value;
@@ -884,7 +894,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
             this._lblNombreInteresadoSolicitud.Visibility = System.Windows.Visibility.Collapsed;
         }
 
-        private void MostrarLstPoderSolicitud()
+        public void MostrarLstPoderSolicitud()
         {
             this._txtPoderSolicitud.Visibility = System.Windows.Visibility.Collapsed;
             this._lstPoderesSolicitud.Visibility = System.Windows.Visibility.Visible;
@@ -1054,6 +1064,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
 
             this._txtDescripcionSolicitud.IsReadOnly = false;
             this._txtDescripcionDatos.IsReadOnly = false;
+
+            this._cbxSituacionDatos.IsEnabled = false;
 
             #endregion
 

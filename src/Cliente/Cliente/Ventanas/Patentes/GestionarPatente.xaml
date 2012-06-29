@@ -1077,12 +1077,16 @@
                             </Label>
                             
                             <ComboBox IsEnabled="False" Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="1" Name="_cbxSituacionDatos" Height="20" 
-                                  ItemsSource="{Binding}" SelectedIndex="0" SelectionChanged="_cbxSituacionDatos_SelectionChanged">
+                                  ItemsSource="{Binding}" SelectedIndex="0" SelectionChanged="_cbxSituacionDatos_SelectionChanged" Width="100" HorizontalAlignment="Left">
+
                                 <ComboBox.ItemTemplate>
                                     <DataTemplate>
                                         <TextBlock>
                                 <TextBlock.Text>
-                                        <Binding Path="Id" />       
+                                    <MultiBinding Converter="{StaticResource convertirADosValores}">
+                                        <Binding Path="Id" />
+                                        <Binding Path="Descripcion" />
+                                    </MultiBinding>
                                 </TextBlock.Text>
                                         </TextBlock>
                                     </DataTemplate>
@@ -1104,8 +1108,22 @@
                                 <TextBlock Text="{x:Static recurso:Etiquetas.lblDetalle}"/>
                             </Label>
                             <ComboBox IsEnabled="False" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="3" Name="_cbxDetalleDatos" Height="20" 
-                              ItemsSource="{Binding}" DisplayMemberPath="Descripcion" SelectedIndex="0">
+                              ItemsSource="{Binding}" SelectedIndex="0" Width="160" HorizontalAlignment="Left">
+
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock>
+                                <TextBlock.Text>
+                                    <MultiBinding Converter="{StaticResource convertirADosValores}">
+                                        <Binding Path="Id" />
+                                        <Binding Path="Descripcion" />
+                                    </MultiBinding>
+                                </TextBlock.Text>
+                                        </TextBlock>
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
                             </ComboBox>
+
 
                             <Label Grid.Column="0" Grid.Row="2" VerticalAlignment="Center" HorizontalContentAlignment="Right" Name="_lblAbandono">
                                 <TextBlock Text="{x:Static recurso:Etiquetas.lblAbandono}"/>
@@ -1210,12 +1228,12 @@
                             <TextBlock Text="{x:Static recurso:Etiquetas.chkRevisadoWeb}" />
                         </CheckBox>
 
-                        <Label Grid.Column="5" Grid.Row="17" Grid.ColumnSpan="1" VerticalAlignment="Center" Margin="0,5,0,0">
+                        <!--<Label Grid.Column="5" Grid.Row="17" Grid.ColumnSpan="1" VerticalAlignment="Center" Margin="0,5,0,0">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblExpediente}"/>
                         </Label>
                         <custom:ByTTextBox IsEnabled="False" MaxLength="255" Grid.Column="6" Grid.Row="17" Name="_txtExpedienteDatos" 
                                                VerticalAlignment="Center" Grid.ColumnSpan="2" Text="{Binding Path=CodigoExpediente}">
-                        </custom:ByTTextBox>
+                        </custom:ByTTextBox>-->
                         
                         <Label Grid.Column="1" Grid.Row="18" Grid.ColumnSpan="1" VerticalAlignment="Center" Margin="0,5,0,0">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblStatusWEB}"/>
@@ -1224,7 +1242,7 @@
                               Height="20" ItemsSource="{Binding}" DisplayMemberPath="Descripcion">
                         </ComboBox>
 
-                        <Label Grid.Column="5" Grid.Row="18" Grid.ColumnSpan="1" VerticalAlignment="Center" Margin="0,5,0,0">
+                        <!--<Label Grid.Column="5" Grid.Row="18" Grid.ColumnSpan="1" VerticalAlignment="Center" Margin="0,5,0,0">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblUbicacion}"/>
                         </Label>
                         <custom:ByTTextBox IsEnabled="False" MaxLength="255" Grid.Column="6" Grid.Row="18" Name="_txtUbicacionDatos" 
@@ -1241,7 +1259,7 @@
                             <DatePicker.SelectedDate>
                                 <Binding Path="FechaPublicacion" UpdateSourceTrigger="PropertyChanged"/>
                             </DatePicker.SelectedDate>
-                        </DatePicker>
+                        </DatePicker>-->
 
                         <!--<Button IsEnabled="False" Name="_btnArchivoDatos" Width="100" IsDefault="False" Grid.Row="19" Grid.ColumnSpan="1" Grid.Column="9" Height="25" 
                                         HorizontalAlignment="Left" Click="_btnArchivoDatos_Click" Margin="0,5,0,0">

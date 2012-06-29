@@ -233,6 +233,20 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                     this._ventana.PresentacionesPatenteDatos = presentacionPatente;
                     this._ventana.PresentacionPatenteDatos = this.BuscarPresentacionPatente(_patente.Presentacion, presentacionPatente);
 
+                    IList<Agente> agentes = this._agenteServicios.ConsultarTodos();
+                    Agente primerAgente = new Agente();
+                    primerAgente.Id = "NGN";
+                    agentes.Insert(0, primerAgente);
+                    this._ventana.AgentesSolicitudFiltrar = agentes;
+                    this._ventana.AgenteSolicitudFiltrar = this.BuscarAgente(agentes, (Agente)_patente.Agente);
+
+                    IList<Interesado> Interesados = this._interesadoServicios.ConsultarTodos();
+                    Interesado primerInteresado = new Interesado();
+                    primerInteresado.Id = int.MinValue;
+                    Interesados.Insert(0, primerInteresado);
+                    this._ventana.InteresadosSolicitud = Interesados;
+                    this._ventana.InteresadoSolicitud = this.BuscarInteresado(Interesados, (Interesado)_patente.Interesado);
+
                     IList<Pais> paises = this._paisServicios.ConsultarTodos();
                     Pais primerPais = new Pais();
                     primerPais.Id = int.MinValue;
@@ -433,9 +447,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
         {
             IList<Servicio> servicios = this._servicioServicios.ConsultarTodos();
             Servicio primerServicio = new Servicio();
-            primerServicio.Id = "NGN";
-            servicios.Insert(0, primerServicio);
             this._ventana.SituacionesDatos = servicios;
+
+            Servicio servicioAux = new Servicio("PS");
+            this._ventana.SituacionDatos = this.BuscarServicio((IList<Servicio>)this._ventana.SituacionesDatos, servicioAux);
         }
 
         private void CargarPresentaciones()
@@ -505,7 +520,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                 patente.Interesado = !((Interesado)this._ventana.InteresadoSolicitud).Id.Equals("NGN") ? ((Interesado)this._ventana.InteresadoSolicitud) : null;
 
             if (null != this._ventana.PoderSolicitudFiltrar)
-                patente.Poder = !((Poder)this._ventana.PoderSolicitudFiltrar).Id.Equals("NGN") ? ((Poder)this._ventana.PoderSolicitudFiltrar) : null;
+                patente.Poder = ((Poder)this._ventana.PoderSolicitudFiltrar).Id != int.MinValue ? ((Poder)this._ventana.PoderSolicitudFiltrar) : null;
 
             if (null != this._ventana.PaisSolicitud)
                 patente.Pais = ((Pais)this._ventana.PaisSolicitud).Id != int.MinValue ? ((Pais)this._ventana.PaisSolicitud) : null;
@@ -588,29 +603,35 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                 //Modifica los datos del Pais
                 else
                 {
-                    Patente patente = CargarPatenteDeLaPantalla();
+                    if (ValidarPoder())
+                    {
 
-                    if (_agregar)
-                    {
-                        exitosoEntero = this._patenteServicios.InsertarOModificarPatente(patente, UsuarioLogeado.Hash);
-                        patente.Id = (int)exitosoEntero;
-                    }
-                    else
-                    {
-                        exitoso = this._patenteServicios.InsertarOModificar(patente, UsuarioLogeado.Hash);
-                    }
+                        Patente patente = CargarPatenteDeLaPantalla();
 
-                    if ((!exitosoEntero.Equals(null)) || (exitoso))
-                    {
                         if (_agregar)
-                            this.Navegar(new GestionarPatente(patente));
+                        {
+                            exitosoEntero = this._patenteServicios.InsertarOModificarPatente(patente, UsuarioLogeado.Hash);
+                            patente.Id = (int)exitosoEntero;
+                        }
                         else
                         {
-                            this._ventana.HabilitarCampos = false;
-                            this._ventana.TextoBotonModificar = Recursos.Etiquetas.btnModificar;
+                            exitoso = this._patenteServicios.InsertarOModificar(patente, UsuarioLogeado.Hash);
+                        }
 
+                        if ((!exitosoEntero.Equals(null)) || (exitoso))
+                        {
+                            if (_agregar)
+                                this.Navegar(new GestionarPatente(patente));
+                            else
+                            {
+                                this._ventana.HabilitarCampos = false;
+                                this._ventana.TextoBotonModificar = Recursos.Etiquetas.btnModificar;
+
+                            }
                         }
                     }
+                    else
+                        this._ventana.Mensaje(Recursos.MensajesConElUsuario.ErrorInteresadoNoPoseePoderesConAgente, 0);
                 }
 
                 #region trace
@@ -1398,7 +1419,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                     }
 
                     this._ventana.ConvertirEnteroMinimoABlanco();
-                    CargarPoderesEntreInteresadoAgente();
+                    //CargarPoderesEntreInteresadoAgente();
                 }
 
                 #region trace
@@ -1838,7 +1859,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
 
                 this._ventana.PoderDatos = poder != null ? poder.Id.ToString() : "";
 
-                this._poderesInterseccion.Insert(0, poder);
+                //this._poderesInterseccion.Insert(0, poder);
                 this._ventana.PoderesSolicitudFiltrar = _poderesInterseccion;
                 this._ventana.PoderesDatosFiltrar = _poderesInterseccion;
 
@@ -1878,6 +1899,16 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
             {
                 _poderesInterseccion = this._poderServicios
                     .ObtenerPoderesEntreAgenteEInteresado((Agente)this._ventana.AgenteSolicitudFiltrar, (Interesado)this._ventana.InteresadoSolicitud);
+
+                if (_poderesInterseccion.Count() == 0)
+                    this._ventana.Mensaje(Recursos.MensajesConElUsuario.ErrorInteresadoNoPoseePoderesConAgente, 0);
+                else
+                {
+                    this._ventana.MostrarLstPoderSolicitud();
+                }
+
+                //_poderesInterseccion.Insert(0, new Poder(int.MinValue));
+
             }
             else if (_cargarPoderInicial)
             {
@@ -1889,12 +1920,65 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                 //MENSAJE DE ERROR
             }
 
+            _poderesInterseccion.Insert(0, new Poder(int.MinValue));
+
             Mouse.OverrideCursor = null;
 
             #region trace
             if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
                 logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
+        }
+
+
+        /// <summary>
+        /// Método que se usa para validar que cuando se modifique el poder sea actualizado
+        /// </summary>
+        /// <returns>true si el poder es válido, false en caso contrario</returns>
+        private bool ValidarPoder()
+        {
+            bool retorno = false;
+
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+                if (!this._ventana.PoderSolicitud.Equals(""))
+                {
+                    IList<Poder> poderesAux = new List<Poder>();
+
+                    Interesado interesadoAux = new Interesado(int.Parse(this._ventana.IdInteresadoSolicitud));
+
+                    poderesAux = this._poderServicios
+                            .ObtenerPoderesEntreAgenteEInteresado((Agente)this._ventana.AgenteSolicitudFiltrar, interesadoAux);
+
+
+                    foreach (Poder poder in poderesAux)
+                    {
+                        if (poder.Id == int.Parse(this._ventana.PoderSolicitud))
+                        {
+                            retorno = true;
+                            break;
+                        }
+                    }
+                }
+                else
+                    retorno = true;
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
+            }
+
+            return retorno;
         }
 
         #endregion
