@@ -130,7 +130,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosPatente
                     StringLlleno += ((Resolucion)this._ventana.Resolucion).Id + "  ";
             }
             StringLlleno += DateTime.Parse(this._ventana.Fecha).ToShortDateString() + "  ";
-            StringLlleno += ((Resolucion)this._ventana.Resolucion).FechaResolucion + "  ";
+            if (null != this._ventana.Resolucion)
+                StringLlleno += ((Resolucion)this._ventana.Resolucion).FechaResolucion + "  ";
             if (null != ((Agente)this._ventana.Agente))
                 StringLlleno += ((Agente)this._ventana.Agente).Id + "  ";
             this._ventana.String = StringLlleno + "  " + parametroPatentes;
