@@ -67,10 +67,6 @@ namespace Trascend.Bolet.Cliente.Contratos.MarcasTercero
 
         object TiposDeCasos { get; set; }
 
-        object BoletinesOrdenPublicacion { get; set; }
-
-        object BoletinOrdenPublicacion { get; set; }
-
         object BoletinesPublicacion { get; set; }
 
         object BoletinPublicacion { get; set; }

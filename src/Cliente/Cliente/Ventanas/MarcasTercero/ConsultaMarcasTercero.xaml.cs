@@ -218,17 +218,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.MarcasTercero
             set { this._cbxDetalleDatos.SelectedItem = value; }
         }
 
-        public object BoletinesOrdenPublicacion
-        {
-            get { return this._cbxBolOrdPublicacion.DataContext; }
-            set { this._cbxBolOrdPublicacion.DataContext = value; }
-        }
 
-        public object BoletinOrdenPublicacion
-        {
-            get { return this._cbxBolOrdPublicacion.SelectedItem; }
-            set { this._cbxBolOrdPublicacion.SelectedItem = value; }
-        }
 
         public object BoletinesPublicacion
         {

@@ -83,6 +83,27 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
                         filtro += " and ";
                     filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerMarcaDescripcion, marcaTercero.Descripcion);
                 }
+                if (null != marcaTercero.Distingue)
+                {
+                    if (variosFiltros)
+                        filtro += " and ";
+                    filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerMarcaDistingue, marcaTercero.Distingue);
+                    variosFiltros = true;
+                }
+                if (null != marcaTercero.CasoT)
+                {
+                    if (variosFiltros)
+                        filtro += " and ";
+                    filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerMarcaTipoDeCaso, marcaTercero.CasoT);
+                    variosFiltros = true;
+                }
+                if (null != marcaTercero.EstadoMarca)
+                {
+                    if (variosFiltros)
+                        filtro += " and ";
+                    filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerMarcaEstadoMarca, marcaTercero.EstadoMarca);
+                    variosFiltros = true;
+                }
                 if ((null != marcaTercero.FechaPublicacion) && (!marcaTercero.FechaPublicacion.Equals(DateTime.MinValue)))
                 {
                     if (variosFiltros)
@@ -91,6 +112,35 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
                     string fecha2 = String.Format("{0:dd/MM/yy}", marcaTercero.FechaPublicacion.Value.AddDays(1));
                     filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerMarcaTerceroFechas, fecha, fecha2);
                 }
+                if (null != marcaTercero.Servicio)
+                {
+                    if (variosFiltros)
+                        filtro += " and ";
+                    filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerMarcaServicio, marcaTercero.Servicio.Id);
+                    variosFiltros = true;
+                }
+                #region Filtros Marca Boletines
+
+                if ((null != marcaTercero.BoletinPublicacion) && (!marcaTercero.BoletinPublicacion.Id.Equals("")))
+                {
+                    if (variosFiltros)
+                        filtro += " and ";
+                    filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerMarcaBoletinPublicacion, marcaTercero.BoletinPublicacion.Id);
+                    variosFiltros = true;
+                }
+
+                if ((null != marcaTercero.BoletinConcesion) && (!marcaTercero.BoletinConcesion.Id.Equals("")))
+                {
+                    if (variosFiltros)
+                        filtro += " and ";
+                    filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerMarcaBoletinConcesion, marcaTercero.BoletinConcesion.Id);
+                    variosFiltros = true;
+                }
+
+
+                #endregion
+
+
                 IQuery query = Session.CreateQuery(cabecera + filtro);
                 MarcasTercero = query.List<MarcaTercero>();
 

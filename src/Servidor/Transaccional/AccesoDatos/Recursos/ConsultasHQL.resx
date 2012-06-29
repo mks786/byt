@@ -780,9 +780,17 @@
     <value>Select distinct(m.Id) from Marca m left join fetch m.Asociado as asociado left join fetch m.Agente as agente left join fetch m.Corresponsal as corresponsal left join fetch m.Interesado as interesado left join fetch asociado.Pais as pais left join fetch asociado.Idioma as idioma  where </value>
     <comment>Cabecera para los recordatorio de marca</comment>
   </data>
+  <data name="FiltroObtenerMarcaEstadoMarca" xml:space="preserve">
+    <value>m.EstadoMarca = '{0}'</value>
+    <comment>Filtra Marca por estado de la Marca</comment>
+  </data>
   <data name="FiltroObtenerMarcaTerceroSolicitud" xml:space="preserve">
     <value>m.CodigoInscripcion = '{0}'</value>
     <comment>Filtra Marca a tercero por numero de solicitud</comment>
+  </data>
+  <data name="FiltroObtenerMarcaTipoDeCaso" xml:space="preserve">
+    <value>m.CasoT = '{0}'</value>
+    <comment>Filtra Marca Tercero por tipo de caso</comment>
   </data>
   <data name="FiltroObtenerRenovacionIdInteresado" xml:space="preserve">
     <value>interesado.Id = {0}</value>

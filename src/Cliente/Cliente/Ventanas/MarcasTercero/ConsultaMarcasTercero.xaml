@@ -247,9 +247,10 @@
                               ItemsSource="{Binding}" DisplayMemberPath="Descripcion" SelectedIndex="0">
                             </ComboBox>
                         </WrapPanel>
+                        <!--Detalle es igual al EstadoMarca-->
                         <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,180,0">
                             <Label VerticalAlignment="Center" HorizontalContentAlignment="Right">
-                                <TextBlock Text="{x:Static recurso:Etiquetas.lblDetalle}"/>
+                                <TextBlock Text="{x:Static recurso:Etiquetas.lblEstadoMarca}"/>
                             </Label>
                             <ComboBox Width="150" Name="_cbxDetalleDatos" Height="20" 
                               ItemsSource="{Binding}" DisplayMemberPath="Descripcion" SelectedIndex="0">
@@ -265,27 +266,6 @@
                                   Height="16" HorizontalAlignment="Left" Margin="5,0,0,0" Name="_chkBoletines"
                                   VerticalAlignment="Center" Click="_chkBoletines_Click"/>
                     <StackPanel Name="_boletines" Visibility="Collapsed">
-
-                        <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,180,0">
-                            <Label VerticalAlignment="Center" HorizontalContentAlignment="Right">
-                                <TextBlock Text="{x:Static recurso:Etiquetas.lblOrdPublicacion}"/>
-                            </Label>
-                            <ComboBox Name="_cbxBolOrdPublicacion" Height="20" Width="150"
-                              ItemsSource="{Binding}" SelectedIndex="0">
-                                <ComboBox.ItemTemplate>
-                                    <DataTemplate>
-                                        <TextBlock>
-                                <TextBlock.Text>
-                                    <MultiBinding Converter="{StaticResource convertirADosValores}">
-                                        <Binding Path="Id" />
-                                        <Binding Path="FechaBoletin" />
-                                    </MultiBinding>
-                                </TextBlock.Text>
-                                        </TextBlock>
-                                    </DataTemplate>
-                                </ComboBox.ItemTemplate>
-                            </ComboBox>
-                        </WrapPanel>
 
                         <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,180,0">
                             <Label VerticalAlignment="Center" HorizontalContentAlignment="Right">

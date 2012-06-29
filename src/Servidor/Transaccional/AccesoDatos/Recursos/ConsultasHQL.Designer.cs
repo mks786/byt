@@ -781,6 +781,15 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to m.EstadoMarca = &apos;{0}&apos;.
+        /// </summary>
+        public static string FiltroObtenerMarcaEstadoMarca {
+            get {
+                return ResourceManager.GetString("FiltroObtenerMarcaEstadoMarca", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to m.FechaPublicacion between &apos;{0}&apos; and &apos;{1}&apos;.
         /// </summary>
         public static string FiltroObtenerMarcaFecha {
@@ -1002,6 +1011,15 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         public static string FiltroObtenerMarcaTerceroSolicitud {
             get {
                 return ResourceManager.GetString("FiltroObtenerMarcaTerceroSolicitud", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to m.CasoT = &apos;{0}&apos;.
+        /// </summary>
+        public static string FiltroObtenerMarcaTipoDeCaso {
+            get {
+                return ResourceManager.GetString("FiltroObtenerMarcaTipoDeCaso", resourceCulture);
             }
         }
         

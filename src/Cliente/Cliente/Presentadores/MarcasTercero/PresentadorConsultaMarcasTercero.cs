@@ -157,6 +157,14 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
                 tipoEstados.Insert(0, primerDetalle);
                 this._ventana.Detalles = tipoEstados;
 
+
+                IList<ListaDatosValores> listaDatosValores = this._listaDatosValoresServicios.
+                    ConsultarListaDatosValoresPorParametro(new ListaDatosValores(Recursos.Etiquetas.cbiCategoriaTipoDeCaso));
+                ListaDatosValores primerDatoValor = new ListaDatosValores();
+                primerDatoValor.Id = "NGN";
+                listaDatosValores.Insert(0, primerDatoValor);
+                this._ventana.TiposDeCasos = listaDatosValores;
+
                 //IList<ListaDatosValores> tipodecasos = this._listaDatosValoresServicios.ConsultarTodos();
                 //ListaDatosValores primerTipoDeCaso = new ListaDatosValores();
                 //primerTipoDeCaso.Id = "NGN";
@@ -174,7 +182,6 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
                 Boletin primerBoletin = new Boletin();
                 primerBoletin.Id = int.MinValue;
                 boletines.Insert(0, primerBoletin);
-                this._ventana.BoletinesOrdenPublicacion = boletines;
                 this._ventana.BoletinesPublicacion = boletines;
                 this._ventana.BoletinesConcesion = boletines;
 
@@ -480,10 +487,6 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
                 marcaAuxiliar.BoletinPublicacion = ((Boletin)this._ventana.BoletinPublicacion);
             }
 
-            //if (((Boletin)this._ventana.BoletinConcesion).Id != int.MinValue)
-            //{
-            //    marcaAuxiliar.BoletinConcesion = ((Boletin)this._ventana.BoletinConcesion);
-            //}
 
             #region trace
             if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -564,17 +567,30 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
 
                 }
 
-                //if (!((EstadoMarca)this._ventana.Detalle).Id.Equals("NGN"))
-                //{
-                //    _filtroValido = 2;
-                //    marcaAuxiliar.TipoEstado = ((EstadoMarca)this._ventana.Detalle);
-                //}
+                if (!this._ventana.Distingue.Equals(""))
+                {
+                    _filtroValido = 2;
+                    marcaAuxiliar.Id = this._ventana.Distingue.ToUpper();
 
-                //if (!((Servicio)this._ventana.Detalle).Id.Equals("NGN"))
-                //{
-                //    _filtroValido = 2;
-                //    marcaAuxiliar.Servicio = ((Servicio)this._ventana.Detalle);
-                //}
+                }
+
+                if (!((EstadoMarca)this._ventana.Detalle).Id.Equals("NGN"))
+                {
+                    _filtroValido = 2;
+                    marcaAuxiliar.EstadoMarca = ((EstadoMarca)this._ventana.Detalle).Id;
+                }
+
+                if ((null!=this._ventana.TipoDeCaso)&&((ListaDatosValores)this._ventana.TipoDeCaso).Id != "NGN")
+                {
+                    _filtroValido = 2;
+                    marcaAuxiliar.CasoT = ((ListaDatosValores)this._ventana.TipoDeCaso).Valor;
+                }
+
+                if (!((Servicio)this._ventana.Servicio).Id.Equals("NGN"))
+                {
+                    _filtroValido = 2;
+                    marcaAuxiliar.Servicio = ((Servicio)this._ventana.Servicio);
+                }
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -810,7 +826,6 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
             #region Boletines
 
             this._ventana.BoletinesEstaSeleccionado = false;
-            this._ventana.BoletinOrdenPublicacion = this.BuscarBoletin((IList<Boletin>)this._ventana.BoletinesOrdenPublicacion, new Boletin(int.MinValue));
             this._ventana.BoletinPublicacion = this.BuscarBoletin((IList<Boletin>)this._ventana.BoletinesPublicacion, new Boletin(int.MinValue));
             this._ventana.BoletinConcesion = this.BuscarBoletin((IList<Boletin>)this._ventana.BoletinesConcesion, new Boletin(int.MinValue));
 

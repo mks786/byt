@@ -2742,6 +2742,9 @@ en Prensa:</value>
   <data name="lblCorp" xml:space="preserve">
     <value>Corp:</value>
   </data>
+  <data name="cbiCategoriaTipoDeCaso" xml:space="preserve">
+    <value>MARCATIPODECASO</value>
+  </data>
   <data name="lsvIdInteresado" xml:space="preserve">
     <value>Código Interesado</value>
   </data>

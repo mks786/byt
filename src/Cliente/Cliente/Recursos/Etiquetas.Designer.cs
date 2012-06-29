@@ -1044,6 +1044,16 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to MARCATIPODECASO.
+        /// </summary>
+        public static string cbiCategoriaTipoDeCaso {
+            get {
+                return ResourceManager.GetString("cbiCategoriaTipoDeCaso", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ESCRITOTIPODISTINGUE.
         ///   Busca una cadena traducida similar a ESCRITOTIPODISTINGUE.
         /// </summary>
         public static string cbiCategoriaTipoDistingue {
