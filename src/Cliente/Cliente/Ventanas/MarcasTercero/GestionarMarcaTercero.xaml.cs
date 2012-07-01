@@ -41,13 +41,13 @@ namespace Trascend.Bolet.Cliente.Ventanas.MarcasTercero
             set { this._lstMarcas.DataContext = value; }
         }
 
-        public object TipoCbx
+        public object TiposCbx
         {
             get { return this._cbxTipo.DataContext; }
             set { this._cbxTipo.DataContext = value; }
         }
 
-        public object TiposCbx
+        public object TipoCbx
         {
             get { return this._cbxTipo.SelectedItem; }
             set { this._cbxTipo.SelectedItem = value; }
@@ -355,9 +355,9 @@ namespace Trascend.Bolet.Cliente.Ventanas.MarcasTercero
 
                 #region Botones
 
-                this._btnAceptar.IsEnabled = value;
+                //this._btnAceptar.IsEnabled = value;
                 this._btnBusquedaDatos.IsEnabled = value;
-                this._btnCancelar.IsEnabled = value;
+               // this._btnCancelar.IsEnabled = value;
                 this._btnCertificados.IsEnabled = value;
                 this._btnConsultarAsociadoSolicitud.IsEnabled = value;
                 this._btnConsultarInteresadoSolicitud.IsEnabled = value;
@@ -393,6 +393,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.MarcasTercero
             get { return this._txtAnexo.Text; }
         }
 
+        public string IdMarcaTercero
+        {
+            set { this._txtIdSolicitud.Text = value; }
+            get { return this._txtIdSolicitud.Text; }
+        }
    
 
         public string IdAsociadoSolicitudFiltrar
@@ -1382,6 +1387,10 @@ namespace Trascend.Bolet.Cliente.Ventanas.MarcasTercero
         private void GestionarVisibilidadDatosDeMarca(object value)
         {
             this._txtNombreMarca.Visibility = (System.Windows.Visibility)value;
+            this._txtClaseInternacionalByt.Visibility = (System.Windows.Visibility)value;
+            this._txtClaseNacionalByt.Visibility = (System.Windows.Visibility)value;
+            this.lblClaseNac.Visibility = (System.Windows.Visibility)value;
+            this.lblClaseInt.Visibility = (System.Windows.Visibility)value;
             //this._chkEtiqueta.Visibility = (System.Windows.Visibility)value;
          }
 

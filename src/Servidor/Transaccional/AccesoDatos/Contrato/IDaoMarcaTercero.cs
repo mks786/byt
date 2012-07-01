@@ -29,6 +29,12 @@ namespace Trascend.Bolet.AccesoDatos.Contrato
         /// <returns>El ultimo anexo de la marcatercero</returns>
         int ObtenerMaxAnexo(string maxAnexo);
 
+        /// <summary>
+        /// Metodo verifica si existe una marca a tercero con esa clase internacional
+        /// </summary>
+        /// <param name="claseInt">El ultimo claseInt</param>
+        /// <returns>El ultimo claseInt de la marcatercero</returns>
+        bool ObtenerClaseInternacionalMarcaTercero(int claseInt, string marcaT,int anexo);
    
     }
 }

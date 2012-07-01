@@ -121,6 +121,7 @@
     <Compile Include="Comandos\ComandosMarcaTercero\ComandoConsultarMaxId.cs" />
     <Compile Include="Comandos\ComandosMarcaTercero\ComandoConsultarMaxAnexo.cs" />
     <Compile Include="Comandos\ComandosMarcaBaseTercero\ComandoConsultarMaxSecuencia.cs" />
+    <Compile Include="Comandos\ComandosMarcaTercero\ComandoConsultarClaseInternacional.cs" />
     <Compile Include="Comandos\ComandosMarca\ComandoConsultarMarcaConTodo.cs" />
     <Compile Include="Comandos\ComandosMarca\ComandoConsultarMarcasFiltro.cs" />
     <Compile Include="Comandos\ComandosMarca\ComandoConsultarMarcaPorId.cs" />

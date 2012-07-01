@@ -38,6 +38,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
         private IBoletinServicios _boletinServicios;
         private IPaisServicios _paisServicios;
         private IListaDatosDominioServicios _listaDatosDominioServicios;
+        private IListaDatosValoresServicios _listaDatosValoresServicios;
         private IInteresadoServicios _interesadoServicios;
         private IServicioServicios _servicioServicios;
         private ITipoEstadoServicios _tipoEstadoServicios;
@@ -153,6 +154,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
                      ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["EstadoMarcaServicios"]);
                 this._tipoBaseServicios = (ITipoBaseServicios)Activator.GetObject(typeof(ITipoBaseServicios),
                       ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["TipoBaseServicios"]);
+                this._listaDatosValoresServicios = (IListaDatosValoresServicios)Activator.GetObject(typeof(IListaDatosValoresServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["ListaDatosValoresServicios"]);
+
 
             }
             catch (Exception ex)
@@ -212,7 +216,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
                     this._ventana.Letra = marcaTercero.Letra;
                     this._ventana.Numero = marcaTercero.Numero.ToString();
                     this._ventana.TipoDeCaso = marcaTercero.CasoT;
-                    this._ventana.Caso = marcaTercero.CasoT;
+                    this._ventana.Caso = marcaTercero.PrimeraReferencia;
                     this._ventana.FechaPublicacion = marcaTercero.FechaPublicacion.ToString();
                     this._ventana.FechaRenovacion = marcaTercero.FechaRenovacion.ToString();
 
@@ -365,8 +369,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
                 this._ventana.TipoBaseSolicitud = this.BuscarTipoBase(TipoBase, tipoBase);
 
 
-            IList<TipoEstado> tipoEstados = this._tipoEstadoServicios.ConsultarTodos();
-            TipoEstado primerDetalle = new TipoEstado();
+            IList<EstadoMarca> tipoEstados = this._estadoMarcaServicios.ConsultarTodos();
+            EstadoMarca primerDetalle = new EstadoMarca();
             primerDetalle.Id = "NGN";
             tipoEstados.Insert(0, primerDetalle);
             this._ventana.Estados = tipoEstados;
@@ -398,15 +402,32 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
 
 
 
-            IList<ListaDatosDominio> tiposMarcas = this._listaDatosDominioServicios.
+            IList<ListaDatosDominio> tipos = this._listaDatosDominioServicios.
             ConsultarListaDatosDominioPorParametro(new ListaDatosDominio(Recursos.Etiquetas.cbiCategoriaMarca));
-            ListaDatosDominio TipoMarca = new ListaDatosDominio();
+            ListaDatosDominio primerDatoDomin= new ListaDatosDominio();
+            primerDatoDomin.Id = "NGN";
+            tipos.Insert(0, primerDatoDomin);
+            ListaDatosDominio Tipo = new ListaDatosDominio();
+            this._ventana.TiposCbx= tipos;
+            if (!_agregar)
+            {
+                Tipo.Id = marcaTercero.Tipo;
+                this._ventana.TipoCbx = this.BuscarListaDeDominio(tipos, Tipo);
+            }
+
+            IList<ListaDatosValores> tiposMarcas = this._listaDatosValoresServicios.
+            ConsultarListaDatosValoresPorParametro(new ListaDatosValores(Recursos.Etiquetas.cbiCategoriaTipoDeCaso));
+            ListaDatosValores primerDatoValor = new ListaDatosValores();
+            primerDatoValor.Id = "NGN";
+            tiposMarcas.Insert(0, primerDatoValor);
+            ListaDatosValores TipoMarca = new ListaDatosValores();
             this._ventana.TiposDeCasos = tiposMarcas;
             if (!_agregar)
             {
-                TipoMarca.Id = marcaTercero.Tipo;
-                this._ventana.TipoDeCaso = this.BuscarListaDeDominio(tiposMarcas, TipoMarca);
+                TipoMarca.Valor = marcaTercero.CasoT;
+                this._ventana.TipoDeCaso = this.BuscarListaDeDatosValores(tiposMarcas, TipoMarca);
             }
+
             #region trace
             if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
                 logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
@@ -440,6 +461,20 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
             if (null != this._ventana.InteresadoSolicitud)
                 marcaTercero.Interesado = !((Interesado)this._ventana.InteresadoSolicitud).Id.Equals("NGN") ? ((Interesado)this._ventana.InteresadoSolicitud) : null;
 
+            if ("" != this._ventana.CInternacional)
+            {
+                Internacional internac= new Internacional();
+                internac.Id = int.Parse(this._ventana.CInternacional);
+                marcaTercero.Internacional = internac;
+            }
+
+            if ("" != this._ventana.CInternacional)
+            {
+                Nacional nacional = new Nacional();
+                nacional.Id = int.Parse(this._ventana.CNacional);
+                marcaTercero.Nacional = nacional;
+            }
+
             if (null != this._ventana.Situacion)
                 marcaTercero.Servicio = !((Servicio)this._ventana.Situacion).Id.Equals("NGN") ? ((Servicio)this._ventana.Situacion) : null;
 
@@ -449,9 +484,16 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
             if (null != ((MarcaTercero)this._ventana.MarcaTercero).MarcasBaseTercero)
                 marcaTercero.MarcasBaseTercero = ((MarcaTercero)this._ventana.MarcaTercero).MarcasBaseTercero;
 
-            //if (null != this._ventana.TipoCbx)
-            //    marcaTercero.Tipo = !((ListaDatosDominio)this._ventana.TipoCbx).Id.Equals("NGN") ? ((ListaDatosDominio)this._ventana.TipoCbx).Id : null;
-            marcaTercero.Tipo = ((ListaDatosDominio)this._ventana.TipoDeCaso).Id;
+            if (null != this._ventana.TipoCbx)
+                marcaTercero.Tipo = !((ListaDatosDominio)this._ventana.TipoCbx).Id.Equals("NGN") ? ((ListaDatosDominio)this._ventana.TipoCbx).Id : null;
+
+            if (null != this._ventana.TipoDeCaso)
+                marcaTercero.CasoT = !((ListaDatosValores)this._ventana.TipoDeCaso).Id.Equals("NGN") ? ((ListaDatosValores)this._ventana.TipoDeCaso).Valor : null;
+
+            if (null != this._ventana.Estado)
+                marcaTercero.EstadoT = !((EstadoMarca)this._ventana.Estado).Id.Equals("NGN") ? ((EstadoMarca)this._ventana.Estado).Id : null;
+
+
             marcaTercero.ComentarioEsp = this._ventana.ComentarioClienteEspanol;
             marcaTercero.ComentarioIng = this._ventana.ComentarioClienteIngles;
 
@@ -505,30 +547,37 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
             {
                 if ((MarcaTerceroValidar.Interesado != null) && (MarcaTerceroValidar.Interesado.Id != 0))
                 {
-                    if ((MarcaTerceroValidar.Servicio !=null))
+                    if ((MarcaTerceroValidar.Servicio != null) && (MarcaTerceroValidar.Servicio.Id != ""))
                     {
-                        if (MarcaTerceroValidar.Descripcion != "")
+                        if ((MarcaTerceroValidar.Tipo != null) && (MarcaTerceroValidar.Tipo != ""))
                         {
-                            bandera = true;
+                            if ((MarcaTerceroValidar.Descripcion != "") && (null != MarcaTerceroValidar.Descripcion))
+                            {
+                                bandera = true;
+                            }
+                            else
+                            {
+                                this._ventana.Mensaje(Recursos.MensajesConElUsuario.AlertaMarcaTerceroSinNombre, 1);
+                            }
                         }
-                        else 
+                        else
                         {
-                            this._ventana.MensajeAlerta(Recursos.MensajesConElUsuario.AlertaMarcaTerceroSinNombre);
+                            this._ventana.Mensaje(Recursos.MensajesConElUsuario.AlertaMarcaTerceroSinTipo, 1); 
                         }
                     }
                     else 
                     {
-                        this._ventana.MensajeAlerta(Recursos.MensajesConElUsuario.AlertaMarcaTerceroSinSituacion);
+                        this._ventana.Mensaje(Recursos.MensajesConElUsuario.AlertaMarcaTerceroSinSituacion, 1);
                     }
                 }
                 else
                 {
-                    this._ventana.MensajeAlerta(Recursos.MensajesConElUsuario.AlertaMarcaTerceroSinInteresado);
+                    this._ventana.Mensaje(Recursos.MensajesConElUsuario.AlertaMarcaTerceroSinInteresado, 1);
                 }
             }
             else
             {
-                this._ventana.MensajeAlerta(Recursos.MensajesConElUsuario.AlertaMarcaTerceroSinAsociado);
+                this._ventana.Mensaje(Recursos.MensajesConElUsuario.AlertaMarcaTerceroSinAsociado, 1);
             }
             #region trace
             if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -564,14 +613,16 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
                 {
                     MarcaTercero marcaTercero = CargarMarcaTerceroDeLaPantalla();
 
-                    if (!ValidarCampos(marcaTercero))
+                    if (ValidarCampos(marcaTercero))
                     {
 
-                        bool exitoso = this._marcaTerceroServicios.InsertarOModificar(marcaTercero, UsuarioLogeado.Hash);
+                        string exitoso = this._marcaTerceroServicios.InsertarOModificarMarcaTercero(marcaTercero, UsuarioLogeado.Hash);
 
 
-                        if (exitoso)
-                            this.Navegar(Recursos.MensajesConElUsuario.MarcaTerceroModificado, false);
+                        if (exitoso != "")
+                            this._ventana.HabilitarCampos = false;
+                            this._ventana.IdMarcaTercero = exitoso;
+                            this._ventana.TextoBotonModificar = Recursos.Etiquetas.btnModificar;
                     }
                 }
 
@@ -693,7 +744,6 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
 
         #endregion
 
-    
         
         /// <summary>
         /// Método que se encarga de mostrar la ventana con la lista de Auditorías
@@ -1060,6 +1110,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
 
             return respuesta;
         }
+
         #region Metodos de los filtros de asociados
 
         public void CambiarAsociadoSolicitud()
@@ -1113,21 +1164,46 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
 
             if (filtrarEn == 0)
             {
-
-                if (!string.IsNullOrEmpty(this._ventana.IdAsociadoSolicitudFiltrar))
+                Asociado asociado = new Asociado();
+                bool bandera = false;
+                if (this._ventana.IdAsociadoSolicitudFiltrar != "")
                 {
-                    asociadosFiltrados = from p in asociadosFiltrados
-                                         where p.Id == int.Parse(this._ventana.IdAsociadoSolicitudFiltrar)
-                                         select p;
+                    asociado.Id = int.Parse(this._ventana.IdAsociadoSolicitudFiltrar);
+                    bandera = true;
                 }
-
-                if (!string.IsNullOrEmpty(this._ventana.NombreAsociadoSolicitudFiltrar))
+                if (this._ventana.NombreAsociadoSolicitudFiltrar != "")
                 {
-                    asociadosFiltrados = from p in asociadosFiltrados
-                                         where p.Nombre != null &&
-                                         p.Nombre.ToLower().Contains(this._ventana.NombreAsociadoSolicitudFiltrar.ToLower())
-                                         select p;
+                    asociado.Nombre = this._ventana.NombreAsociadoSolicitudFiltrar.ToUpper();
+                    bandera = true;
                 }
+                if (bandera)
+                {
+                    IList<Asociado> asociados = this._asociadoServicios.ObtenerAsociadosFiltro(asociado);
+                    if (asociados.Count != 0)
+                    {
+                        asociadosFiltrados = asociados;
+                        if (asociadosFiltrados.ToList<Asociado>().Count != 0)
+                            this._ventana.AsociadosSolicitud = asociadosFiltrados.ToList<Asociado>();
+                        else
+                            this._ventana.AsociadosSolicitud = this._asociados;
+                    }
+                    else
+                        this._ventana.Mensaje(Recursos.MensajesConElUsuario.NoHayResultados, 1);
+                }
+                //if (!string.IsNullOrEmpty(this._ventana.IdAsociadoSolicitudFiltrar))
+                //{
+                //    asociadosFiltrados = from p in asociados
+                //                         where p.Id == int.Parse(this._ventana.IdAsociadoSolicitudFiltrar)
+                //                         select p;
+                //}
+
+                //if (!string.IsNullOrEmpty(this._ventana.NombreAsociadoSolicitudFiltrar))
+                //{
+                //    asociadosFiltrados = from p in asociados
+                //                         where p.Nombre != null &&
+                //                         p.Nombre.ToLower().Contains(this._ventana.NombreAsociadoSolicitudFiltrar.ToLower())
+                //                         select p;
+                //}
             }
             //else
             //{
@@ -1150,13 +1226,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
 
             // filtrarEn = 0 significa en el listview de la pestaña solicitud
             // filtrarEn = 1 significa en el listview de la pestaña Datos 
-            if (filtrarEn == 0)
-            {
-                if (asociadosFiltrados.ToList<Asociado>().Count != 0)
-                    this._ventana.AsociadosSolicitud = asociadosFiltrados.ToList<Asociado>();
-                else
-                    this._ventana.AsociadosSolicitud = this._asociados;
-            }
+
             //else
             //{
             //    if (asociadosFiltrados.ToList<Asociado>().Count != 0)
@@ -1170,19 +1240,19 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
         {
             Mouse.OverrideCursor = Cursors.Wait;
 
-            MarcaTercero marcaTercero = (MarcaTercero)this._ventana.MarcaTercero;
-            IList<Asociado> asociados = this._asociadoServicios.ConsultarTodos();
-            Asociado primerAsociado = new Asociado();
-            primerAsociado.Id = int.MinValue;
-            asociados.Insert(0, primerAsociado);
-            this._ventana.AsociadosSolicitud = asociados;
-            //this._ventana.AsociadosDatos = asociados;
-            this._ventana.AsociadoSolicitud = this.BuscarAsociado(asociados, marcaTercero.Asociado);
+            //MarcaTercero marcaTercero = (MarcaTercero)this._ventana.MarcaTercero;
+            //IList<Asociado> asociados = this._asociadoServicios.ConsultarTodos();
+            //Asociado primerAsociado = new Asociado();
+            //primerAsociado.Id = int.MinValue;
+            //asociados.Insert(0, primerAsociado);
+            //this._ventana.AsociadosSolicitud = asociados;
+            ////this._ventana.AsociadosDatos = asociados;
+            //this._ventana.AsociadoSolicitud = this.BuscarAsociado(asociados, marcaTercero.Asociado);
             //this._ventana.AsociadoDatos = this.BuscarAsociado(asociados, marcaTercero.Asociado);
             //this._ventana.NombreAsociadoDatos = ((MarcaTercero)this._ventana.MarcaTercero).Asociado.Nombre;
             this._ventana.NombreAsociadoSolicitud = ((MarcaTercero)this._ventana.MarcaTercero).Asociado.Nombre;
-            this._asociados = asociados;
-            this._ventana.AsociadosEstanCargados = true;
+            //this._asociados = asociados;
+            //this._ventana.AsociadosEstanCargados = true;
 
             Mouse.OverrideCursor = null;
         }
@@ -1206,6 +1276,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
 
                         this._ventana.InteresadoPaisSolicitud = interesadoAux.Pais != null ? interesadoAux.Pais.NombreEspanol : "";
                         this._ventana.InteresadoCiudadSolicitud = interesadoAux.Ciudad != null ? interesadoAux.Ciudad : "";
+
                     }
                 }
             }
@@ -1248,20 +1319,48 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
 
             if (filtrarEn == 0)
             {
-                if (!string.IsNullOrEmpty(this._ventana.IdInteresadoSolicitudFiltrar))
+                Interesado interesado = new Interesado();
+                bool bandera = false;
+                if (this._ventana.IdInteresadoSolicitudFiltrar != "")
                 {
-                    interesadosFiltrados = from p in interesadosFiltrados
-                                           where p.Id == int.Parse(this._ventana.IdInteresadoSolicitudFiltrar)
-                                           select p;
+                    interesado.Id = int.Parse(this._ventana.IdInteresadoSolicitudFiltrar);
+                    bandera = true;
                 }
+                if (this._ventana.NombreInteresadoSolicitudFiltrar != "")
+                {
+                    interesado.Nombre = this._ventana.NombreInteresadoSolicitudFiltrar.ToUpper();
+                    bandera = true;
+                }
+                if (bandera) 
+                {
+                    IList<Interesado> interesados = this._interesadoServicios.ObtenerInteresadosFiltro(interesado);
+                    if (interesados.Count != 0)
+                    {
+                        interesadosFiltrados = interesados;
+                        if (interesadosFiltrados.ToList<Interesado>().Count != 0)
+                            this._ventana.InteresadosSolicitud = interesadosFiltrados.ToList<Interesado>();
+                        else
+                            this._ventana.InteresadosSolicitud = this._interesados;
 
-                if (!string.IsNullOrEmpty(this._ventana.NombreInteresadoSolicitudFiltrar))
-                {
-                    interesadosFiltrados = from p in interesadosFiltrados
-                                           where p.Nombre != null &&
-                                           p.Nombre.ToLower().Contains(this._ventana.NombreInteresadoSolicitudFiltrar.ToLower())
-                                           select p;
+                    }
+                    else
+                        this._ventana.Mensaje(Recursos.MensajesConElUsuario.NoHayResultados, 1);
+
                 }
+                //if (!string.IsNullOrEmpty(this._ventana.IdInteresadoSolicitudFiltrar))
+                //{
+                //    interesadosFiltrados = from p in interesadosFiltrados
+                //                           where p.Id == int.Parse(this._ventana.IdInteresadoSolicitudFiltrar)
+                //                           select p;
+                //}
+
+                //if (!string.IsNullOrEmpty(this._ventana.NombreInteresadoSolicitudFiltrar))
+                //{
+                //    interesadosFiltrados = from p in interesadosFiltrados
+                //                           where p.Nombre != null &&
+                //                           p.Nombre.ToLower().Contains(this._ventana.NombreInteresadoSolicitudFiltrar.ToLower())
+                //                           select p;
+                //}
             }
             //else
             //{
@@ -1283,13 +1382,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
 
             // filtrarEn = 0 significa en el listview de la pestaña solicitud
             // filtrarEn = 1 significa en el listview de la pestaña Datos 
-            if (filtrarEn == 0)
-            {
-                if (interesadosFiltrados.ToList<Interesado>().Count != 0)
-                    this._ventana.InteresadosSolicitud = interesadosFiltrados.ToList<Interesado>();
-                else
-                    this._ventana.InteresadosSolicitud = this._interesados;
-            }
+
             //else
             //{
             //    if (interesadosFiltrados.ToList<Interesado>().Count != 0)
@@ -1304,14 +1397,14 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
             Mouse.OverrideCursor = Cursors.Wait;
             MarcaTercero marcaTercero = (MarcaTercero)this._ventana.MarcaTercero;
 
-            IList<Interesado> interesados = this._interesadoServicios.ConsultarTodos();
-            Interesado primerInteresado = new Interesado();
-            primerInteresado.Id = int.MinValue;
-            interesados.Insert(0, primerInteresado);
-            //this._ventana.InteresadosDatos = interesados;
-            this._ventana.InteresadosSolicitud = interesados;
-            ((MarcaTercero)this._ventana.MarcaTercero).Interesado = this.BuscarInteresado(interesados, marcaTercero.Interesado);
-            Interesado interesado = this.BuscarInteresado(interesados, marcaTercero.Interesado);
+            //IList<Interesado> interesados = this._interesadoServicios.ConsultarTodos();
+            //Interesado primerInteresado = new Interesado();
+            //primerInteresado.Id = int.MinValue;
+            //interesados.Insert(0, primerInteresado);
+            ////this._ventana.InteresadosDatos = interesados;
+            //this._ventana.InteresadosSolicitud = interesados;
+                
+            Interesado interesado = ((MarcaTercero) this._ventana.MarcaTercero).Interesado;
             this._ventana.InteresadoSolicitud = interesado;
             //this._ventana.InteresadoDatos = interesado;
             interesado = this._interesadoServicios.ConsultarInteresadoConTodo(interesado);
@@ -1319,9 +1412,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
             this._ventana.InteresadoCiudadSolicitud = interesado.Ciudad;
             //this._ventana.NombreInteresadoDatos = ((MarcaTercero)this._ventana.MarcaTercero).Interesado.Nombre;
             this._ventana.NombreInteresadoSolicitud = ((MarcaTercero)this._ventana.MarcaTercero).Interesado.Nombre;
-            this._interesados = interesados;
+            //this._interesados = interesados;
 
-            this._ventana.InteresadosEstanCargados = true;
+            //this._ventana.InteresadosEstanCargados = true;
 
             Mouse.OverrideCursor = null;
         }

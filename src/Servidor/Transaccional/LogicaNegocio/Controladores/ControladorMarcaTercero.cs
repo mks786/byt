@@ -51,7 +51,7 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
         /// <param name="usuario">MarcaTercero a modificar</param>
         /// <param name="hash">Hash del usuario que va a realizar la operacion</param>
         /// <returns>True si la modificación fue exitosa, en caso contrario False</returns>
-        public static bool InsertarOModificar(MarcaTercero marcaTercero, int hash)
+        public static string InsertarOModificarMarcaTercero(MarcaTercero marcaTercero, int hash)
         {
             bool exitoso = false;
             string id;
@@ -106,9 +106,16 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
                 else //Cuando se se Modifica un Registro
                 {
 
-                    //ComandoBase<int> idAnexo = FabricaComandosMarcaTercero.ObtenerComandoConsultarMarcaTerceroMaxAnexo(marcaTercero.Id);
-                    //idAnexo.Ejecutar();
-                    //marcaTercero.Anexo = idAnexo.Receptor.ObjetoAlmacenado + 1;
+                    ComandoBase<bool> nuevoAnexo =
+                        FabricaComandosMarcaTercero.ObtenerComandoConsultarClaseInternacional(
+                            marcaTercero.Internacional.Id, marcaTercero.Id, marcaTercero.Anexo);
+                    nuevoAnexo.Ejecutar();
+                    if (nuevoAnexo.Receptor.ObjetoAlmacenado)
+                    {
+                        ComandoBase<int> idAnexo = FabricaComandosMarcaTercero.ObtenerComandoConsultarMarcaTerceroMaxAnexo(marcaTercero.Id);
+                        idAnexo.Ejecutar();
+                        marcaTercero.Anexo = idAnexo.Receptor.ObjetoAlmacenado + 1;
+                    }
                     ContadorFac contadorSecuencia = new ContadorFac();
                     List<MarcaBaseTercero> marcasBaseTerceroModificada = new List<MarcaBaseTercero>();
                     ComandoBase<ContadorFac> maxSecuencia = FabricaComandosContadorFac.ObtenerComandoConsultarPorId("MYP_MARCAS_BASE_TER");
@@ -171,6 +178,8 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
                             comandoMTB.Ejecutar();
                             exitoso = comandoMTB.Receptor.ObjetoAlmacenado;
 
+                            
+
                             if ((bandera)&&(exitoso))
                             {
                                 ComandoBase<bool> comandoSec = FabricaComandosContadorFac.ObtenerComandoInsertarOModificar(contadorSecuencia);
@@ -209,7 +218,7 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
                 logger.Error(ex.Message);
                 throw ex;
             }
-            return exitoso;
+            return marcaTercero.Id;
         }
 
         /// <summary>

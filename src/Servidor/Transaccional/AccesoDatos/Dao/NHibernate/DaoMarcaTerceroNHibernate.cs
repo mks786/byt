@@ -248,6 +248,54 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
             return idConsultado;
         }
 
+        /// <summary>
+        /// Metodo queobtiene el ultimo anexo de la MarcaTercero
+        /// </summary>
+        /// <param name="maxAnexo">El ultimo Anexo</param>
+        /// <returns>El ultimo anexo de la marcatercero</returns>
+        public bool ObtenerClaseInternacionalMarcaTercero(int ClaseInt,string idMarcaT,int anexo)
+        {
+            bool retorno = true;
+
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+                IList<MarcaTercero> MarcasTercero = null;
+                string cabecera = string.Format(Recursos.ConsultasHQL.CabeceraObtenerMarcaTercero);
+                string filtro = string.Format(Recursos.ConsultasHQL.FiltroObtenerMarcaTerceroId, idMarcaT);
+                IQuery query = Session.CreateQuery(cabecera + filtro);
+                MarcasTercero = query.List<MarcaTercero>();
+
+                foreach (MarcaTercero aux in MarcasTercero)
+                {
+                   
+                        if (aux.Internacional.Id == ClaseInt)
+                            retorno = false;
+                    
+                }
+
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Saliendo del Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                throw new ApplicationException(Recursos.Errores.exObtenerMaxAnexoMarcaTercero);
+            }
+            finally
+            {
+                Session.Close();
+            }
+
+            return retorno;
+        }
+
+
 
         //public Marca ObtenerMarcaConTodo(Marca marca)
         //{

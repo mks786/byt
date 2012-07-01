@@ -844,4 +844,7 @@
   <data name="RenovacionTercero" xml:space="preserve">
     <value>Alerta. La marca es renovada por un tercero.</value>
   </data>
+  <data name="AlertaMarcaTerceroSinTipo" xml:space="preserve">
+    <value>La marca a tercero requiere de un tipo</value>
+  </data>
 </root>

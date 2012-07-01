@@ -28,5 +28,13 @@ namespace Trascend.Bolet.ObjetosComunes.ContratosServicios
         /// <param name="marcaTercero">Marca Tercero a consultar</param>
         /// <returns>Marca tercero consultada con todos los objetos</returns>
         MarcaTercero ConsultarMarcaConTodo(MarcaTercero marcaTercero);
+
+        /// <summary>
+        /// Servicio que inserta o modifica a una Entidad
+        /// </summary>
+        /// <param name="entidad">Entidad a insertar</param>
+        /// <param name="hash">Hash del usuario que inserta</param>
+        /// <returns>true en caso de ser exitoso, false en caso contrario</returns>
+        string InsertarOModificarMarcaTercero(MarcaTercero entidad, int hash);
     }
 }

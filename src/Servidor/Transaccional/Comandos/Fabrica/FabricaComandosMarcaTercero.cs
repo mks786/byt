@@ -38,6 +38,16 @@ namespace Trascend.Bolet.Comandos.Fabrica
         }
 
         /// <summary>
+        /// Método que devuelve el Comando para elimnar un MarcaTercero
+        /// </summary>
+        /// <param name="usuario">MarcaTercero que se va a eliminar</param>
+        /// <returns>Comando para eliminar</returns>
+        public static ComandoBase<bool> ObtenerComandoConsultarClaseInternacional(int claseInt, string idMarcaT, int anexo)
+        {
+            return new ComandoConsultarClaseInternacionalMarcaTercero(claseInt, idMarcaT, anexo);
+        }
+
+        /// <summary>
         /// Método que devuelve el Comando para consultar un MarcaTercero por su ID
         /// </summary>
         /// <returns></returns>

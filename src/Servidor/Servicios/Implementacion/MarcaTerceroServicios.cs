@@ -59,7 +59,8 @@ namespace Trascend.Bolet.Servicios.Implementacion
         /// <param name="marcaTercero">MarcaTercero a insertar o modificar</param>
         /// <param name="hash">hash del usuario loggeado</param>
         /// <returns></returns>
-        public bool InsertarOModificar(MarcaTercero marcaTercero, List<MarcaBaseTercero> marcasBaseTercero, int hash)
+       // public string InsertarOModificar(MarcaTercero marcaTercero, List<MarcaBaseTercero> marcasBaseTercero, int hash)
+            public string InsertarOModificarMarcaTercero(MarcaTercero marcaTercero,  int hash)
         {
             try
             {
@@ -68,7 +69,7 @@ namespace Trascend.Bolet.Servicios.Implementacion
                     logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-                bool exitoso = ControladorMarcaTercero.InsertarOModificar(marcaTercero, hash);
+                string exitoso = ControladorMarcaTercero.InsertarOModificarMarcaTercero(marcaTercero, hash);
 
                 #region trace
                 if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
@@ -220,41 +221,41 @@ namespace Trascend.Bolet.Servicios.Implementacion
         }
 
 
-        /// <summary>
-        /// Servicio que insertar o modifica una Marca Tercera
-        /// </summary>
-        /// <param name="marca">Marca que se va a insertar o modificar</param>
-        /// <param name="hash">Hash del usuario que esta realiando la operacion</param>
-        /// <returns>True: si la inserción o modificación fue exitosa; False: en caso contrario</returns>
-        bool IServicioBase<MarcaTercero>.InsertarOModificar(MarcaTercero entidad, int hash)
-        {
-            try
-            {
-                #region trace
-                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
-                    logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
-                #endregion
+        ///// <summary>
+        ///// Servicio que insertar o modifica una Marca Tercera
+        ///// </summary>
+        ///// <param name="marca">Marca que se va a insertar o modificar</param>
+        ///// <param name="hash">Hash del usuario que esta realiando la operacion</param>
+        ///// <returns>True: si la inserción o modificación fue exitosa; False: en caso contrario</returns>
+        //bool IServicioBase<MarcaTercero>.InsertarOModificar(MarcaTercero entidad, int hash)
+        //{
+        //    try
+        //    {
+        //        #region trace
+        //        if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+        //            logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+        //        #endregion
 
-                bool exitoso = ControladorMarcaTercero.InsertarOModificar(entidad, hash);
+        //        string exitoso = ControladorMarcaTercero.InsertarOModificar(entidad, hash);
 
-                #region trace
-                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
-                    logger.Debug("Saliendo del Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
-                #endregion
+        //        #region trace
+        //        if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+        //            logger.Debug("Saliendo del Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+        //        #endregion
 
-                return exitoso;
-            }
-            catch (ApplicationException ex)
-            {
-                logger.Error(ex.Message);
-                throw ex;
-            }
-            catch (Exception ex)
-            {
-                logger.Error(ex.Message);
-                throw new ApplicationException(Errores.MensajesAlServidor.ErrorInesperadoServidor);
-            }
-        }
+        //        return exitoso;
+        //    }
+        //    catch (ApplicationException ex)
+        //    {
+        //        logger.Error(ex.Message);
+        //        throw ex;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        logger.Error(ex.Message);
+        //        throw new ApplicationException(Errores.MensajesAlServidor.ErrorInesperadoServidor);
+        //    }
+        //}
 
 
         /// <summary>
@@ -324,5 +325,11 @@ namespace Trascend.Bolet.Servicios.Implementacion
             throw new NotImplementedException();
         }
 
+
+
+        public bool InsertarOModificar(MarcaTercero entidad, int hash)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

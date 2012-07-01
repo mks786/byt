@@ -10,6 +10,8 @@ namespace Trascend.Bolet.Cliente.Contratos.MarcasTercero
 
         string IdAsociadoSolicitudFiltrar { get; }
 
+        string IdMarcaTercero { get; set; }
+
         object Marca { get; set; }
 
         object GridByt { get; set; }
