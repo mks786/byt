@@ -188,19 +188,6 @@ namespace Trascend.Bolet.Cliente.Ventanas.MarcasTercero
         }
 
 
-        public string Letra
-        {
-            get { return this._txtLetra.Text; }
-            set { this._txtLetra.Text = value; }
-        }
-
-
-        public string Numero
-        {
-            get { return this._txtNumero.Text; }
-            set { this._txtNumero.Text = value; }
-        }
-
         public object TipoBaseSolicitud
         {
             get { return this._cbxTipoBase.SelectedItem; }
@@ -306,6 +293,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.MarcasTercero
                 this._txtNombreMarcaFiltrar.IsEnabled = value;
                 this._txtIdMarcaFiltrar.IsEnabled = value;
                 this._btnConsultarMarca.IsEnabled = value;
+                this._txtTipoBase.IsEnabled = value;
                 this._txtCodigoInscripcion.IsEnabled = value;
                 this._txtCodigoRegistro.IsEnabled = value;
                 this._txtComencliEsp.IsEnabled = value;
@@ -324,8 +312,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.MarcasTercero
                 this._txtNombreInteresadoSolicitud.IsEnabled = value;
                 this._txtOtrosImp.IsEnabled = value;
                 this._txtCaso.IsEnabled = value;
-                this._txtLetra.IsEnabled = value;
-                this._txtNumero.IsEnabled = value;
+
 
                 #endregion
 
@@ -356,9 +343,9 @@ namespace Trascend.Bolet.Cliente.Ventanas.MarcasTercero
                 #region Botones
 
                 //this._btnAceptar.IsEnabled = value;
-                this._btnBusquedaDatos.IsEnabled = value;
+                this._btnExpediente.IsEnabled = value;
                // this._btnCancelar.IsEnabled = value;
-                this._btnCertificados.IsEnabled = value;
+                this._btnAuditoriaDatos.IsEnabled = value;
                 this._btnConsultarAsociadoSolicitud.IsEnabled = value;
                 this._btnConsultarInteresadoSolicitud.IsEnabled = value;
                 this._btnInfoAdicional.IsEnabled = value;
@@ -708,11 +695,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.MarcasTercero
         //    this._btnOperacionesDatos.Background = Brushes.LightGreen;
         //}
 
-        public void PintarBusquedas()
-        {
-            this._btnBusquedaDatos.Background = Brushes.LightGreen;
-            //this._btnBusquedaSolicitud.Background = Brushes.LightGreen;
-        }
+        //public void PintarBusquedas()
+        //{
+        //    this._btnBusquedaDatos.Background = Brushes.LightGreen;
+        //    //this._btnBusquedaSolicitud.Background = Brushes.LightGreen;
+        //}
 
         //public void PintarAuditoria()
         //{
@@ -763,6 +750,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.MarcasTercero
             this._corresponsalesCargados = false;
             this._poderesCargados = false;
             this._byt = false;
+            if (null == marcaTerceroSeleccionada)
+                this._btnNuevoAnexo.Visibility = System.Windows.Visibility.Collapsed;
             this._presentador = new PresentadorGestionarMarcaTercero(this, marcaTerceroSeleccionada);
         }
 
@@ -944,6 +933,9 @@ namespace Trascend.Bolet.Cliente.Ventanas.MarcasTercero
                 this._presentador.CargarPagina();
                 if (this._presentador.CargarMarcasByt())
                     this._lstMarcasB.Visibility = System.Windows.Visibility.Visible;
+                else
+                    this._lstMarcasB.Visibility = System.Windows.Visibility.Collapsed;
+                
                 EstaCargada = true;
             }
         }
@@ -979,6 +971,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.MarcasTercero
         private void _btnAceptar_Click(object sender, RoutedEventArgs e)
         {
             this._presentador.Modificar();
+            this._btnNuevoAnexo.Visibility = System.Windows.Visibility.Visible;
         }
 
         private void _btnCancelar_Click(object sender, RoutedEventArgs e)
@@ -1342,7 +1335,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.MarcasTercero
         public void MostrarByt()
         {
             _agregar = true;
-            this._gridByt.Visibility = System.Windows.Visibility.Collapsed;
+            this._gridByt.Visibility = System.Windows.Visibility.Visible;
         }
 
         private void ValidarByt()
@@ -1502,6 +1495,30 @@ namespace Trascend.Bolet.Cliente.Ventanas.MarcasTercero
         private void _chkRevWeb_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void _btnAuditoriaDatos_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void _btnArchivo_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void _btnExpediente_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void _btnNuevoAnexo_Click(object sender, RoutedEventArgs e)
+        {
+            
+            this._presentador.NuevoAnexo();
+            this._btnNuevoAnexo.Visibility = System.Windows.Visibility.Collapsed;
+            this._lstMarcasB.Visibility = System.Windows.Visibility.Collapsed;
+            this.HabilitarCampos = true;
         }
 
 

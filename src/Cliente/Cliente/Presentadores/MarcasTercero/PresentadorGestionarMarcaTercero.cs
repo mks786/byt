@@ -12,6 +12,7 @@ using NLog;
 using System.Windows;
 using Trascend.Bolet.Cliente.Ayuda;
 using Trascend.Bolet.Cliente.Contratos.MarcasTercero;
+using Trascend.Bolet.Cliente.Ventanas.Marcas;
 using Trascend.Bolet.Cliente.Ventanas.Principales;
 using Trascend.Bolet.Cliente.Ventanas.MarcasTercero;
 using Trascend.Bolet.ObjetosComunes.ContratosServicios;
@@ -213,8 +214,6 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
                     //this._ventana.TipoMarcaTerceroDatos = tiposMarcaTerceros;
                     //this._ventana.TipoMarcaTerceroSolicitud = tiposMarcaTerceros;
                     //this._ventana.TipoMarcaTerceroDatos = this.BuscarTipoMarca(tiposMarcaTerceros, marcaTercero.Tipo);
-                    this._ventana.Letra = marcaTercero.Letra;
-                    this._ventana.Numero = marcaTercero.Numero.ToString();
                     this._ventana.TipoDeCaso = marcaTercero.CasoT;
                     this._ventana.Caso = marcaTercero.PrimeraReferencia;
                     this._ventana.FechaPublicacion = marcaTercero.FechaPublicacion.ToString();
@@ -222,6 +221,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
 
 
                     CargaComboBox();
+                    CargaComboBoxByt();
                     CargarTipoBaseCombo();
 
                     this._ventana.ComentarioClienteEspanol = marcaTercero.ComentarioEsp;
@@ -234,8 +234,16 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
                     this._ventana.InteresadoPaisSolicitud = interesado.Pais.NombreEspanol;
                     this._ventana.InteresadoCiudadSolicitud = interesado.Ciudad;
                     this._ventana.TipoCbx = marcaTercero.Tipo;
-                    this._ventana.CInternacional = ((Internacional)marcaTercero.Internacional).Id.ToString();
-                    this._ventana.CNacional = ((Nacional)marcaTercero.Nacional).Id.ToString();
+
+                    if (((Internacional)marcaTercero.Internacional).Id == 0)
+                        this._ventana.CInternacional = null;
+                    else
+                        this._ventana.CInternacional = ((Internacional)marcaTercero.Internacional).Id.ToString();
+
+                    if (((Nacional)marcaTercero.Nacional).Id == 0)
+                        this._ventana.CNacional = null;
+                    else
+                        this._ventana.CNacional = ((Nacional)marcaTercero.Nacional).Id.ToString();
                     
                     //this._ventana.InteresadoSolicitud = marcaTercero.Interesado;
 
@@ -287,8 +295,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
                     //if (null != marcaTercero.Operaciones && marcaTercero.Operaciones.Count > 0)
                     //    this._ventana.PintarOperaciones();
 
-                    if (null != marcaTercero.Busquedas && marcaTercero.Busquedas.Count > 0)
-                        this._ventana.PintarBusquedas();
+                    //if (null != marcaTercero.Busquedas && marcaTercero.Busquedas.Count > 0)
+                    //    this._ventana.PintarBusquedas();
 
                     //if (null != this._auditorias && this._auditorias.Count > 0)
                     //    this._ventana.PintarAuditoria();
@@ -299,6 +307,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
                 {
                     MarcaTercero marcaTercero = (MarcaTercero)this._ventana.MarcaTercero;
                     CargaComboBox();
+                    CargaComboBoxByt();
                     CargarTipoBaseCombo();
                 }
 
@@ -330,17 +339,27 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
 
         public void CargarTipoBaseCombo()
         {
-            if (null != (TipoBase)this._ventana.TipoBaseSolicitud)
+
+            if ((null != (TipoBase)this._ventana.TipoBaseSolicitud) && (null != this._ventana.MarcaFiltrada))
             {
                 if (((TipoBase)this._ventana.TipoBaseSolicitud).Id == "N")
+                {
                     this._ventana.BytTipoDeBaseVisible = true;
+                    this._ventana.TipoBaseTxt = "";
+                }
                 else
-                     this._ventana.BytTipoDeBaseVisible = false;
+                {
+                    this._ventana.BytTipoDeBaseVisible = false;
+                    if (((TipoBase)this._ventana.TipoBaseSolicitud).Id == "S")
+                        this._ventana.TipoBaseTxt = ((Marca)this._ventana.MarcaFiltrada).CodigoInscripcion;
+                    else
+                        this._ventana.TipoBaseTxt = ((Marca)this._ventana.MarcaFiltrada).CodigoRegistro;
+                }
 
             }
         }
 
-        public void CargaComboBox()
+        public void CargaComboBoxByt()
         {
             #region trace
             if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -357,7 +376,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
             paises.Insert(0, primerPais);
             this._ventana.PaisesSolicitud = paises;
             if (!_agregar)
-                 this._ventana.PaisSolicitud = this.BuscarPais(paises, marcaTercero.Pais);
+                this._ventana.PaisSolicitud = this.BuscarPais(paises, marcaTercero.Pais);
 
             IList<TipoBase> TipoBase = this._tipoBaseServicios.ConsultarTodos();
             TipoBase primerTipoBase = new TipoBase();
@@ -367,6 +386,25 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
 
             if (!_agregar)
                 this._ventana.TipoBaseSolicitud = this.BuscarTipoBase(TipoBase, tipoBase);
+
+
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+        }
+
+        public void CargaComboBox()
+        {
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+            MarcaTercero marcaTercero = (MarcaTercero)this._ventana.MarcaTercero;
+            EstadoMarca estadoMarca = new EstadoMarca();
+            TipoBase tipoBase = new TipoBase();
 
 
             IList<EstadoMarca> tipoEstados = this._estadoMarcaServicios.ConsultarTodos();
@@ -476,7 +514,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
             }
 
             if (null != this._ventana.Situacion)
-                marcaTercero.Servicio = !((Servicio)this._ventana.Situacion).Id.Equals("NGN") ? ((Servicio)this._ventana.Situacion) : null;
+                marcaTercero.Servicio = !((Servicio)this._ventana.Situacion).Id.Equals("") ? ((Servicio)this._ventana.Situacion) : null;
 
             if (null != this._ventana.PaisSolicitud)
                 marcaTercero.Pais = ((Pais)this._ventana.PaisSolicitud).Id != int.MinValue ? ((Pais)this._ventana.PaisSolicitud) : null;
@@ -620,9 +658,14 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
 
 
                         if (exitoso != "")
+                        {
                             this._ventana.HabilitarCampos = false;
-                            this._ventana.IdMarcaTercero = exitoso;
+                            string[] IdYanexo = exitoso.Split('/');
+                            this._ventana.IdMarcaTercero = IdYanexo[0];
+                            this._ventana.Anexo = IdYanexo[1];
                             this._ventana.TextoBotonModificar = Recursos.Etiquetas.btnModificar;
+                        }
+
                     }
                 }
 
@@ -651,6 +694,71 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
                 logger.Error(ex.Message);
                 this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
             }
+        }
+
+        public void NuevoAnexo()
+        {
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+            
+            
+            //NuevoExpediente.Anexo = ((MarcaTercero)this._ventana.MarcaTercero).Anexo;
+
+            MarcaTercero NuevoExpediente = new MarcaTercero();
+            if (((MarcaTercero)NuevoExpediente).Asociado == null)
+                ((MarcaTercero)NuevoExpediente).Asociado = new Asociado();
+            if (((MarcaTercero)NuevoExpediente).Interesado == null)
+                ((MarcaTercero)NuevoExpediente).Interesado = new Interesado();
+            this._ventana.Marca = null;
+            this._ventana.InteresadoCiudadSolicitud = null;
+            this._ventana.InteresadoPaisSolicitud = null;
+            this._ventana.InteresadoSolicitud = null;
+            this._ventana.NombreAsociadoSolicitud = null;
+            this._ventana.NombreInteresadoSolicitud = null;
+            this._ventana.AsociadoSolicitud = null;
+            this._ventana.BoletinesConcesion = null;
+            this._ventana.BoletinesPublicacion = null;
+            this._ventana.BoletinesOrdenPublicacion = null;
+            //((Boletin)this._ventana.BoletinPublicacion).Id = int.MinValue ;
+            //((Boletin)this._ventana.BoletinConcesion).Id = int.MinValue;
+            //((Boletin)this._ventana.BoletinesOrdenPublicacion).Id = int.MinValue;
+            this._ventana.SituacionDescripcion = "";
+            this._ventana.ComentarioClienteIngles = "";
+            this._ventana.ComentarioClienteEspanol = "";
+            this._ventana.CInternacional = "";
+            this._ventana.CNacional = "";
+            this._ventana.Situacion = null;
+            this._ventana.PaisSolicitud = null;
+            this._ventana.Estado = null;
+            this._ventana.TipoCbx = null;
+            this._ventana.TipoDeCaso = null;
+            this._ventana.MarcasByt = null;
+            this._ventana.PintarAsociado("5");
+            this._agregar = true;
+            int NuevoAnexo =this._marcaTerceroServicios.ObtenerUltimoAnexoMarcaTercero(
+                    ((MarcaTercero) this._ventana.MarcaTercero).Id);
+            NuevoAnexo++;
+
+            NuevoExpediente.Id = ((MarcaTercero)this._ventana.MarcaTercero).Id;
+            NuevoExpediente.Anexo = NuevoAnexo;
+            this._ventana.MarcaTercero = NuevoExpediente;
+            this._ventana.IdMarcaTercero = ((MarcaTercero) this._ventana.MarcaTercero).Id;
+            this._ventana.Anexo = NuevoAnexo.ToString();
+            CargaComboBox();
+            CargaComboBoxByt();
+            CargarMarcasByt();
+            this._ventana.TextoBotonModificar = Recursos.Etiquetas.btnAceptar;
+
+            this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleAgregarMarcaTercero,
+    Recursos.Ids.AgregarMarcaTercero);
+            
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
         }
 
         /// <summary>
@@ -705,7 +813,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
         /// <param name="tab"></param>
         public void IrInfoAdicional(string tab)
         {
-       // NO USA     this.Navegar(new GestionarInfoAdicional(CargarMarcaTerceroDeLaPantalla(), tab));
+           this.Navegar(new GestionarInfoAdicional(CargarMarcaTerceroDeLaPantalla(), tab));
         }
 
         /// <summary>
@@ -714,7 +822,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
         public void IrInfoBoles()
         {
 
-      //NO USA      this.Navegar(new ListaInfoBoles(CargarMarcaTerceroDeLaPantalla()));
+           this.Navegar(new ListaInfoBoles(CargarMarcaTerceroDeLaPantalla()));
         }
 
         /// <summary>
@@ -832,6 +940,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
                 logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
 
+            if (null != this._ventana.Situacion)
               this._ventana.SituacionDescripcion = ((Servicio) this._ventana.Situacion).Descripcion;
 
             #region trace
@@ -840,7 +949,6 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
             #endregion
 
         }
-
 
         /// <summary>
         /// Método que se encarga de duplicar la marcaTercero
@@ -939,7 +1047,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
             this._ventana.PaisesSolicitud = BuscarPais(paises,primerPais);
             this._ventana.TiposBaseSolicitud = BuscarTipoBase(TipoBase,primerTipoBase);
 
-            CargaComboBox();
+            CargaComboBoxByt();
 
             #region trace
             if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -1024,14 +1132,16 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
                         {
                             aux.TipoDeBase = ((TipoBase) this._ventana.TipoBaseSolicitud);
                             aux.NombreTipoBase = this._ventana.TipoBaseTxt;
-                            if (((TipoBase)this._ventana.TipoBaseSolicitud).Id != "S")
-                            {
-                                aux.TipoDeBase.Descripcion = aux.Marca.CodigoInscripcion;
-                                aux.NombreTipoBase = aux.Marca.CodigoInscripcion;
-                            }
-                            if (((TipoBase)this._ventana.TipoBaseSolicitud).Id != "S")
-                                aux.TipoDeBase.Descripcion = aux.Marca.Registro.ToString();
-                                aux.NombreTipoBase = aux.Marca.Registro.ToString();
+                            //if (((TipoBase)this._ventana.TipoBaseSolicitud).Id != "S")
+                            //{
+                            //    aux.TipoDeBase.Descripcion = aux.Marca.CodigoInscripcion;
+                            //    aux.NombreTipoBase = aux.Marca.CodigoInscripcion;
+                            //}
+                            //if (((TipoBase)this._ventana.TipoBaseSolicitud).Id != "S")
+                            //{
+                            //    aux.TipoDeBase.Descripcion = aux.Marca.Registro.ToString();
+                            //    aux.NombreTipoBase = aux.Marca.Registro.ToString();
+                            //}
                         }
 
                      }

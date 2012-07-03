@@ -42,11 +42,7 @@ namespace Trascend.Bolet.Cliente.Contratos.MarcasTercero
 
         string Caso { set; get; }
 
-        string Letra { set; get; }
-
         string SituacionDescripcion { set; }
-
-        string Numero { set; get; }
 
         string CNacional { set; get; }
 
@@ -184,7 +180,7 @@ namespace Trascend.Bolet.Cliente.Contratos.MarcasTercero
 
         //void PintarOperaciones();
 
-        void PintarBusquedas();
+        //void PintarBusquedas();
 
         void AgregarMarcaByt();
 

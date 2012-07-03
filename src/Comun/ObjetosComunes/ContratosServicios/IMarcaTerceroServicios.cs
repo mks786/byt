@@ -36,5 +36,12 @@ namespace Trascend.Bolet.ObjetosComunes.ContratosServicios
         /// <param name="hash">Hash del usuario que inserta</param>
         /// <returns>true en caso de ser exitoso, false en caso contrario</returns>
         string InsertarOModificarMarcaTercero(MarcaTercero entidad, int hash);
+
+        /// <summary>
+        /// Metodo que obtiene el ultimo anexo insertado de una marcatercero
+        /// </summary>
+        /// <param name="idMarcaTercero">id de marca a buscar anexo</param>
+        /// <returns></returns>
+        int ObtenerUltimoAnexoMarcaTercero(string idMarcaTercero);
     }
 }
