@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System;
 using NHibernate;
 using System.Configuration;
+using NHibernate.Criterion;
 
 namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
 {
@@ -359,6 +360,76 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
                 Session.Close();
             }
             return Marcas;
+        }
+
+
+        /// <summary>
+        /// Metodo que obtine las marcas dada una fecha de renovacion
+        /// </summary>
+        /// <param name="RecordatorioVista">recordatorio con parametros</param>
+        /// <returns>la lista de recordatorios</returns>
+        public IList<RecordatorioVista> ObtenerRecordatoriosVista(RecordatorioVista recordatorio, DateTime[] fechas)
+        {
+            IList<RecordatorioVista> recordatorios = null;
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+
+                //recordatorio.Mes = "09";
+                //recordatorio.Ano = "2012";
+                //Marca marca = new Marca();
+                //marca.Recordatorio = 1;
+                //recordatorio.Marca = marca;
+                
+
+                //bool variosFiltros = false;
+                //string filtro = "";
+
+
+                recordatorios = Session.CreateCriteria(typeof(RecordatorioVista))
+                       .CreateAlias("Marca", "m")
+                       .SetFetchMode("Asociado", FetchMode.Join)
+                       .SetFetchMode("Marca", FetchMode.Join)
+                       .Add(Restrictions.Between("m.FechaRenovacion",fechas[0],fechas[1]))
+                       .List<RecordatorioVista>();
+
+                //string fecha = String.Format("{0:dd/MM/yy}", fechas[0]);
+                //string fecha2 = String.Format("{0:dd/MM/yy}", fechas[1]);
+                //filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerMarcaFechaRenovacion, fecha, fecha2);
+
+                //variosFiltros = true;
+
+
+                //if (null != marca.Recordatorio)
+                //{
+                //    if (variosFiltros)
+                //        filtro += " or ";
+
+                //    filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerMarcaRecordatorio, marca.Recordatorio);
+                //}
+
+                //IQuery query = Session.CreateSQLQuery(cabecera + filtro);
+                //recordatorios = query.List<RecordatorioVista>();
+
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Saliendo del Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                throw new ApplicationException(Recursos.Errores.exObtenerMarcasPorFechaRenovacion);
+            }
+            finally
+            {
+                Session.Close();
+            }
+            return recordatorios;
         }
     }
 }

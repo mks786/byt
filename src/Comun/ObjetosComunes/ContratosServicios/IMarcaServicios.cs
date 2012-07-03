@@ -47,5 +47,14 @@ namespace Trascend.Bolet.ObjetosComunes.ContratosServicios
         /// <param name="hash">hash del usuario que ejecuta la insercion</param>
         /// <returns>Id de la Marca insertada</returns>
         int? InsertarOModificarMarca(Marca marca, int hash);
+
+
+        /// <summary>
+        /// Servicio que se encarga de obtener los recordatorios
+        /// </summary>
+        /// <param name="RecordatorioVista">Recordatorio con parámetros a filtrar</param>
+        /// <param name="fechas">fechas de renovacion marca a filtrar</param>
+        /// <returns>Lista de marcas por fecha de renovacion</returns>
+        IList<RecordatorioVista> ConsultarRecordatoriosVistaMarca(RecordatorioVista recordatorio, DateTime[] fechas);
     }
 }

@@ -172,11 +172,11 @@
                         <GridViewColumn DisplayMemberBinding="{Binding Path=Id}" Width="90">
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="Id" Content="{x:Static recurso:Etiquetas.lsvIdMarca}"/>
                         </GridViewColumn>
-                        <GridViewColumn DisplayMemberBinding="{Binding Path=Descripcion}" Width="150">
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Marca.Descripcion}" Width="150">
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="Descripcion" Content="{x:Static recurso:Etiquetas.lsvDescripcion}"/>
                         </GridViewColumn>
-                        <GridViewColumn DisplayMemberBinding="{Binding Path=Asociado.Pais.NombreEspanol}" Width="150">
-                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="Asociado.Pais.NombreEspanol" Content="{x:Static recurso:Etiquetas.lsvPais}"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Pais}" Width="150">
+                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="Pais" Content="{x:Static recurso:Etiquetas.lsvPais}"/>
                         </GridViewColumn>
                         <GridViewColumn DisplayMemberBinding="{Binding Path=Asociado.Idioma.Id}" Width="50">
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="Asociado.Idioma.Id" Content="{x:Static recurso:Etiquetas.lsvIdioma}"/>
@@ -184,19 +184,19 @@
                         <GridViewColumn DisplayMemberBinding="{Binding Path=Interesado.Id}" Width="110">
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="Interesado.Id" Content="{x:Static recurso:Etiquetas.lsvIdInteresado}"/>
                         </GridViewColumn>
-                        <GridViewColumn DisplayMemberBinding="{Binding Path=Interesado.Nombre}" Width="150">
-                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="Interesado.Nombre" Content="{x:Static recurso:Etiquetas.lsvInteresado}"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=NombreInteresado}" Width="150">
+                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="NombreInteresado" Content="{x:Static recurso:Etiquetas.lsvInteresado}"/>
                         </GridViewColumn>
-                        <GridViewColumn DisplayMemberBinding="{Binding Path=Recordatorio}" Width="150">
-                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="Recordatorio" Content="{x:Static recurso:Etiquetas.lsvRecordatorio}"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Marca.Recordatorio}" Width="150">
+                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="Marca.Recordatorio" Content="{x:Static recurso:Etiquetas.lsvRecordatorio}"/>
                         </GridViewColumn>
                         <GridViewColumn Width="150">
-                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="FechaRenovacion" Content="{x:Static recurso:Etiquetas.lsvFechaRenovacion}"/>
+                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="FechaRenovacion1" Content="{x:Static recurso:Etiquetas.lsvFechaRenovacion}"/>
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <TextBlock>
                                         <TextBlock.Text>
-                                            <Binding Path="FechaRenovacion" StringFormat="{}{0:dd/MM/yyyy}"/>
+                                            <Binding Path="FechaRenovacion1" StringFormat="{}{0:dd/MM/yyyy}"/>
                                         </TextBlock.Text>
                                     </TextBlock>
                                 </DataTemplate>

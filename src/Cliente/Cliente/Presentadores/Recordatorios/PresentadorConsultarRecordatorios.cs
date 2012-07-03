@@ -31,6 +31,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Recordatorios
         private IInteresadoServicios _interesadoServicios;
         private IListaDatosValoresServicios _listaDatosValoresServicios;
         private IList<Marca> _marcas;
+        private IList<RecordatorioVista> _recordatorios;
 
         /// <summary>
         /// Constructor Predeterminado
@@ -144,11 +145,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.Recordatorios
             MarcaAuxiliar.Recordatorio = int.Parse(listaAuxiliar.Valor);
 
             DateTime[] fechas = this.ObtenerFechaFinRecordatorio();
-
+            RecordatorioVista recordatorio = new RecordatorioVista();
 
             if (this._ventana.AutomaticoFiltro.Value)
             {
                 this._marcas = this._marcaServicios.ObtenerMarcasPorFechaRenovacion(MarcaAuxiliar, fechas);
+                this._recordatorios = this._marcaServicios.ConsultarRecordatoriosVistaMarca(recordatorio, fechas);
             }
             else
             {
@@ -159,16 +161,18 @@ namespace Trascend.Bolet.Cliente.Presentadores.Recordatorios
 
             if (this._ventana.AutomaticoFiltro.Value)
             {
+                //marcasDesinfladas = from m in marcasDesinfladas
+                //                    where fechas[0] < m.FechaRenovacion && m.FechaRenovacion <= fechas[1] &&
+                //                    m.Recordatorio != MarcaAuxiliar.Recordatorio
+                //                    select m;
                 marcasDesinfladas = from m in marcasDesinfladas
-                                    where fechas[0] < m.FechaRenovacion && m.FechaRenovacion <= fechas[1] &&
-                                    m.Recordatorio != MarcaAuxiliar.Recordatorio
                                     select m;
             }
 
             this._ventana.GestionarEnableChecksFiltro(false);
 
-            this._ventana.Resultados = marcasDesinfladas;
-            this._ventana.TotalHits = marcasDesinfladas.ToList().Count.ToString();
+            this._ventana.Resultados = _recordatorios;
+            this._ventana.TotalHits = _recordatorios.ToList().Count.ToString();
         }
 
         /// <summary>
@@ -226,11 +230,13 @@ namespace Trascend.Bolet.Cliente.Presentadores.Recordatorios
 
                 IEnumerable<Marca> marcasDesinfladas = this._marcas;
 
+                IEnumerable<RecordatorioVista> recordatoriossDesinflados = this._recordatorios;
+
 
 
                 if (this._ventana.TodosFiltro.Value)
                 {
-                    marcasDesinfladas = from m in marcasDesinfladas
+                    recordatoriossDesinflados = from m in recordatoriossDesinflados
                                         select m;
                 }
                 else
@@ -242,7 +248,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Recordatorios
                         //                    m.Asociado.Fax1 == null
                         //                    select m;
 
-                        marcasDesinfladas = from m in marcasDesinfladas
+                        recordatoriossDesinflados = from m in recordatoriossDesinflados
                                             where m.Asociado.Email != null
                                             select m;
                         filtroValido = 1;
@@ -250,7 +256,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Recordatorios
 
                     if (this._ventana.FaxFiltro.Value)
                     {
-                        marcasDesinfladas = from m in marcasDesinfladas
+                        recordatoriossDesinflados = from m in recordatoriossDesinflados
                                             where m.Asociado.Fax1 != null &&
                                             m.Asociado.Email == null
                                             select m;
@@ -260,7 +266,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Recordatorios
 
                     if ((!this._ventana.FaxFiltro.Value) && (!this._ventana.EmailFiltro.Value))
                     {
-                        marcasDesinfladas = from m in marcasDesinfladas
+                        recordatoriossDesinflados = from m in recordatoriossDesinflados
                                             where m.Asociado.Fax1 == null &&
                                             m.Asociado.Email == null
                                             select m;
@@ -270,8 +276,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Recordatorios
 
                 if (!this._ventana.AnoFiltro.Equals(""))
                 {
-                    marcasDesinfladas = from m in marcasDesinfladas
-                                        where m.FechaRenovacion.Value.Year == int.Parse(this._ventana.AnoFiltro)
+                    recordatoriossDesinflados = from m in recordatoriossDesinflados
+                                        where m.FechaRenovacion1.Value.Year == int.Parse(this._ventana.AnoFiltro)
                                         select m;
                     filtroValido = 1;
 
@@ -279,31 +285,31 @@ namespace Trascend.Bolet.Cliente.Presentadores.Recordatorios
 
                 if (!this._ventana.MesFiltro.Equals(""))
                 {
-                    marcasDesinfladas = from m in marcasDesinfladas
-                                        where m.FechaRenovacion.Value.Month == int.Parse(this._ventana.MesFiltro)
+                    recordatoriossDesinflados = from m in recordatoriossDesinflados
+                                        where m.FechaRenovacion1.Value.Month == int.Parse(this._ventana.MesFiltro)
                                         select m;
                     filtroValido = 1;
                 }
 
                 if (this._ventana.FechaDesdeFiltro.HasValue)
                 {
-                    marcasDesinfladas = from m in marcasDesinfladas
-                                        where m.FechaRenovacion.Value >= this._ventana.FechaDesdeFiltro
+                    recordatoriossDesinflados = from m in recordatoriossDesinflados
+                                        where m.FechaRenovacion1.Value >= this._ventana.FechaDesdeFiltro
                                         select m;
                     filtroValido = 1;
                 }
 
                 if (this._ventana.FechaHastaFiltro.HasValue)
                 {
-                    marcasDesinfladas = from m in marcasDesinfladas
-                                        where m.FechaRenovacion.Value <= this._ventana.FechaHastaFiltro
+                    recordatoriossDesinflados = from m in recordatoriossDesinflados
+                                        where m.FechaRenovacion1.Value <= this._ventana.FechaHastaFiltro
                                         select m;
                     filtroValido = 1;
                 }
 
 
-                this._ventana.Resultados = marcasDesinfladas;
-                this._ventana.TotalHits = marcasDesinfladas.ToList<Marca>().Count.ToString();
+                this._ventana.Resultados = recordatoriossDesinflados;
+                this._ventana.TotalHits = recordatoriossDesinflados.ToList<RecordatorioVista>().Count.ToString();
 
 
                 #region trace
@@ -377,7 +383,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Recordatorios
 
                 string comando = ConfigurationManager.AppSettings["ComandoRecordatorio"];
 
-                this.EjecutarComandoDeConsola(comando, "Generar Recordatorios con plantilla de word");
+                //this.EjecutarComandoDeConsola(comando, "Generar Recordatorios con plantilla de word");
+
+                this.AbrirArchivoPorConsola(comando, "Generar Recordatorios con plantilla de word");
 
                 this.ActualizarNRecordatorio();
 
@@ -452,7 +460,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Recordatorios
 
                 }
                 //else
-                //    marcaAux = this._marcas;
+                //  marcaAux = this._marcas;
 
                 foreach (Marca marcaRecordatorio in this._marcas)
                 {

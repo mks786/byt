@@ -77,5 +77,17 @@ namespace Trascend.Bolet.Comandos.Fabrica
         {
             return new ComandoConsultarMarcaPorId(id);
         }
+
+
+        /// <summary>
+        /// Método que devuelve el ComandoConsultarRecordatorioVista
+        /// </summary>
+        /// <param name="RecordatorioVista">recordatorio de marca</param>
+        /// <param name="fechas">fecha de renovación de marca a fitlrar</param>
+        /// <returns>ComandoConsultarRecordatorioVista</returns>
+        public static ComandoBase<IList<RecordatorioVista>> ObtenerComandoConsultarRecordatoriosVista(RecordatorioVista recordatorio, DateTime[] fechas)
+        {
+            return new ComandoConsultarRecordatoriosVista(recordatorio, fechas);
+        }
     }
 }

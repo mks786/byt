@@ -126,6 +126,7 @@
     <Compile Include="Comandos\ComandosMarca\ComandoConsultarMarcasFiltro.cs" />
     <Compile Include="Comandos\ComandosMarca\ComandoConsultarMarcaPorId.cs" />
     <Compile Include="Comandos\ComandosMarca\ComandoConsultarMarcasPorFechaRenovacion.cs" />
+    <Compile Include="Comandos\ComandosMarca\ComandoConsultarRecordatoriosVista.cs" />
     <Compile Include="Comandos\ComandosMemoria\ComandoVerificarExistenciaMemoria.cs" />
     <Compile Include="Comandos\ComandosOperacion\ComandoConsultarOperacionesFiltro.cs" />
     <Compile Include="Comandos\ComandosOperacion\ComandoConsultarOperacionesPorPatente.cs" />

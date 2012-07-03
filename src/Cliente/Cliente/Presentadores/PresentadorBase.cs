@@ -1934,6 +1934,7 @@ namespace Trascend.Bolet.Cliente.Presentadores
             }
         }
 
+
         /// <summary>
         /// Comando que abre a traves de la consola un archivo
         /// </summary>

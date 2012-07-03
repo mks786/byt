@@ -30,5 +30,13 @@ namespace Trascend.Bolet.AccesoDatos.Contrato
         /// <returns>la lista de marcas con esa fecha de renovacion</returns>
         IList<Marca> ObtenerMarcasPorFechaRenovacion(Marca marca, DateTime[] fechas);
 
+        /// <summary>
+        /// Método que obtiene los recordatorios de marcas
+        /// </summary>
+        /// <param name="recordatorio">recordatorio a filtrar</param>
+        /// /// <param name="fechas">fechas de renovación de marca a filtrar</param>
+        /// <returns>lista de recordatorios filtrados</returns>
+        IList<RecordatorioVista> ObtenerRecordatoriosVista(RecordatorioVista recordatorio, DateTime[] fechas);
+
     }
 }

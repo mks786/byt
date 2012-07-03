@@ -245,6 +245,9 @@
     <EmbeddedResource Include="Mapeado\Departamento.hbm.xml">
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="Mapeado\RecordatorioVista.hbm.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="Recursos\ConsultasHQL.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>ConsultasHQL.Designer.cs</LastGenOutput>

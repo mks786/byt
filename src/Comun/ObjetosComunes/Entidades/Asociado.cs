@@ -63,7 +63,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         }
 
         /// <summary>
-        /// Constructor que inicializa el condigo del asociado
+        /// Constructor que inicializa el codigo del asociado
         /// </summary>
         /// <param name="codigo">Codigo del asociado</param>
         public Asociado(int id) : this()

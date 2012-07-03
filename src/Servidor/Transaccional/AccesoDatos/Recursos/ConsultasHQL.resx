@@ -796,4 +796,8 @@
     <value>interesado.Id = {0}</value>
     <comment>Filtro por Interesado</comment>
   </data>
+  <data name="CabeceraObtenerRecordatorioVista" xml:space="preserve">
+    <value>Select r from RecordatorioVista r left join fetch m.Asociado as asociado left join fetch m.Interesado as interesado left join fetch asociado.Pais as pais left join fetch asociado.Idioma as idioma where </value>
+    <comment>Cabecera del query para el filtro de recordatorioVista</comment>
+  </data>
 </root>

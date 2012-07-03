@@ -1653,9 +1653,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
 
             Marca marca = null != this._ventana.Marca ? (Marca)this._ventana.Marca : new Marca();
 
-
+            Poder poder = null;
             //Poder poder = _marca.Poder;
-            Poder poder = new Poder(int.Parse(this._ventana.IdPoderDatos));
+            if (!this._ventana.IdPoderDatos.Equals(""))
+                poder = new Poder(int.Parse(this._ventana.IdPoderDatos));
 
             this._ventana.PoderSolicitud = poder != null ? poder.Id.ToString() : "";
             //this._ventana.PoderSolicitud = poder.Id.ToString();
@@ -2198,7 +2199,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
         public void MostrarDistingueIngles()
         {
             Marca marcaAux = ((Marca)this._ventana.Marca);
-            if (!((Marca)this._ventana.Marca).Distingue.Equals(""))
+            if ((null != marcaAux.InfoAdicional) && !((Marca)this._ventana.Marca).Distingue.Equals(""))
             {
                 ChildWindow detalleEtiqueta = new ChildWindow(marcaAux.InfoAdicional.Info);
                 detalleEtiqueta.ShowDialog();

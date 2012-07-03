@@ -155,6 +155,9 @@
     <Compile Include="Entidades\MarcaTercero.cs" />
     <Compile Include="Entidades\Licencia.cs" />
     <Compile Include="Entidades\Fusion.cs" />
+    <Compile Include="Entidades\RecordatorioVista.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Entidades\StatusWeb.cs" />
     <Compile Include="Entidades\Operacion.cs" />
     <Compile Include="Entidades\InfoBol.cs" />

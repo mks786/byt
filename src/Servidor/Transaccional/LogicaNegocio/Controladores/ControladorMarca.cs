@@ -293,6 +293,42 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
             return retorno;
         }
 
+
+        /// <summary>
+        /// Metodo que obtiene el marcas por fecha de renovacion
+        /// </summary>
+        /// <param name="recordatorio">recordatorio a filtrar</param>
+        /// <param name="fechas">fechas de renovación de marca a filtrar</param>
+        /// <returns>Lista de recordatorios fitlrados</returns>
+        public static IList<RecordatorioVista> ConsultarRecordatoriosVista(RecordatorioVista recordatorio, DateTime[] fechas)
+        {
+            IList<RecordatorioVista> retorno;
+
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                ComandoBase<IList<RecordatorioVista>> comando = FabricaComandosMarca.ObtenerComandoConsultarRecordatoriosVista(recordatorio, fechas);
+                comando.Ejecutar();
+                retorno = comando.Receptor.ObjetoAlmacenado;
+
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Saliendo del Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (ApplicationException ex)
+            {
+                logger.Error(ex.Message);
+                throw ex;
+            }
+
+            return retorno;
+        }
+
     }
 }
 
