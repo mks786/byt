@@ -113,6 +113,9 @@
     <Compile Include="Contratos\AbandonosPatente\IConsultarAbandonosPatente.cs" />
     <Compile Include="Contratos\AbandonosPatente\IGestionarAbandonoPatente.cs" />
     <Compile Include="Contratos\MarcasTercero\IConsultaMarcasTercero.cs" />
+    <Compile Include="Contratos\MarcasTercero\IGestionarInfoAdicionalMarcaTercero.cs" />
+    <Compile Include="Contratos\MarcasTercero\IGestionarInfoBolMarcaTer.cs" />
+    <Compile Include="Contratos\MarcasTercero\IListaInfoBolMarcaTeres.cs" />
     <Compile Include="Contratos\Memorias\IAgregarMemoria.cs" />
     <Compile Include="Contratos\Memorias\IConsultarMemoria.cs" />
     <Compile Include="Contratos\FechasPatente\IAgregarFecha.cs" />
@@ -340,6 +343,9 @@
     <Compile Include="Presentadores\Inventores\PresentadorAgregarInventor.cs" />
     <Compile Include="Presentadores\Inventores\PresentadorConsultarInventor.cs" />
     <Compile Include="Presentadores\MarcasTercero\PresentadorConsultaMarcasTercero.cs" />
+    <Compile Include="Presentadores\MarcasTercero\PresentadorGestionarInfoAdicionalMarcaTercero.cs" />
+    <Compile Include="Presentadores\MarcasTercero\PresentadorGestionarInfoBolMarcaTer.cs" />
+    <Compile Include="Presentadores\MarcasTercero\PresentadorListaInfoBolMarcaTeres.cs" />
     <Compile Include="Presentadores\Memorias\PresentadorAgregarMemoria.cs" />
     <Compile Include="Presentadores\Memorias\PresentadorConsultarMemoria.cs" />
     <Compile Include="Presentadores\Memorias\PresentadorConsultarMemorias.cs" />
@@ -588,6 +594,15 @@
     </Compile>
     <Compile Include="Ventanas\MarcasTercero\ConsultaMarcasTercero.xaml.cs">
       <DependentUpon>ConsultaMarcasTercero.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\MarcasTercero\GestionarInfoAdicionalMarcaTercero.xaml.cs">
+      <DependentUpon>GestionarInfoAdicionalMarcaTercero.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\MarcasTercero\GestionarInfoBolMarcaTer.xaml.cs">
+      <DependentUpon>GestionarInfoBolMarcaTer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\MarcasTercero\ListaInfoBolMarcaTeres.xaml.cs">
+      <DependentUpon>ListaInfoBolMarcaTeres.xaml</DependentUpon>
     </Compile>
     <Compile Include="Ventanas\Memorias\AgregarMemoria.xaml.cs">
       <DependentUpon>AgregarMemoria.xaml</DependentUpon>
@@ -1213,6 +1228,18 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Ventanas\MarcasTercero\ConsultaMarcasTercero.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\MarcasTercero\GestionarInfoAdicionalMarcaTercero.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\MarcasTercero\GestionarInfoBolMarcaTer.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\MarcasTercero\ListaInfoBolMarcaTeres.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

@@ -699,4 +699,7 @@
   <data name="ConsultarPatente" xml:space="preserve">
     <value>MYP_PATENTE</value>
   </data>
+  <data name="InfoBolMarcaTer" xml:space="preserve">
+    <value>MYP_INFOBO_TER</value>
+  </data>
 </root>

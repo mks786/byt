@@ -172,7 +172,7 @@ namespace Trascend.Bolet.Cliente.Contratos.MarcasTercero
 
         bool PoderesEstanCargados { get; set; }
 
-        //void PintarInfoAdicional();
+        void PintarInfoAdicional();
 
         //void PintarAnaqua();
 

@@ -61,6 +61,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Contrato\IDaoInfoBolMarcaTer.cs" />
     <Compile Include="Contrato\IDaoMemoria.cs" />
     <Compile Include="Contrato\IDaoFecha.cs" />
     <Compile Include="Contrato\IDaoInfoBolPatente.cs" />
@@ -141,6 +142,7 @@
     <Compile Include="Contrato\IDaoBase.cs" />
     <Compile Include="Contrato\IDaoUsuario.cs" />
     <Compile Include="Contrato\IFabricaDaoBase.cs" />
+    <Compile Include="Dao\NHibernate\DaoInfoBolMarcaTerNHibernate.cs" />
     <Compile Include="Dao\NHibernate\DaoMemoriaNHibernate.cs" />
     <Compile Include="Dao\NHibernate\DaoFechaNHibernate.cs" />
     <Compile Include="Dao\NHibernate\DaoInfoBolPatenteNHibernate.cs" />
@@ -617,6 +619,11 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Mapeado\Memoria.hbm.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Mapeado\InfoBolMarcaTer.hbm.xml">
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>

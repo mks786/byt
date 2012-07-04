@@ -74,7 +74,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         private Anaqua _anaqua;
         private int _anexo;
         private InfoAdicional _infoAdicional;
-        private IList<InfoBol> _infoBoles;
+        private IList<InfoBolMarcaTer> _infoBoles;
         private IList<Operacion> _operaciones;
         private IList<Busqueda> _busquedas;
         private IList<MarcaBaseTercero> _marcasBaseTercero;
@@ -757,7 +757,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         /// <summary>
         /// Propiedad que asigna u obtiene la lista de infoboles
         /// </summary>
-        public virtual IList<InfoBol> InfoBoles
+        public virtual IList<InfoBolMarcaTer> InfoBoles
         {
             get { return _infoBoles; }
             set { _infoBoles = value; }

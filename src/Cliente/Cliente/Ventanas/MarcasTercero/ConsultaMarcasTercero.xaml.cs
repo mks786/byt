@@ -285,6 +285,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.MarcasTercero
             this._presentador = new PresentadorConsultaMarcasTercero(this);
         }
 
+
         private void _btnCancelar_Click(object sender, RoutedEventArgs e)
         {
             this._presentador.Cancelar();

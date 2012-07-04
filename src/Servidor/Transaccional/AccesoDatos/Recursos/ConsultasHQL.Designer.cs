@@ -1258,6 +1258,7 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to interesado.Id = {0}.
         ///   Busca una cadena traducida similar a interesado.Id = {0}.
         /// </summary>
         public static string FiltroObtenerRenovacionIdInteresado {
@@ -1267,7 +1268,7 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a marca.Id = {0}.
+        ///   Looks up a localized string similar to marca.Id = {0}.
         /// </summary>
         public static string FiltroObtenerRenovacionIdMarca {
             get {
@@ -1375,7 +1376,17 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Select i from InfoBolMarcaTer i left outer  join fetch i.TipoInfobol where i.Marca.Id = &apos;{0}&apos; and i.Marca.Anexo = {1}.
         ///   Busca una cadena traducida similar a Select i from InfoBol i left outer join fetch i.TipoInfobol where i.Marca.Id = &apos;{0}&apos;.
+        /// </summary>
+        public static string ObtenerInfoBolesMarcaTerPorMarcas {
+            get {
+                return ResourceManager.GetString("ObtenerInfoBolesMarcaTerPorMarcas", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select i from InfoBol i left outer join fetch i.TipoInfobol where i.Marca.Id = &apos;{0}&apos;.
         /// </summary>
         public static string ObtenerInfoBolesPorMarcas {
             get {

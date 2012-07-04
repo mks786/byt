@@ -12,7 +12,7 @@ using NLog;
 using System.Windows;
 using Trascend.Bolet.Cliente.Ayuda;
 using Trascend.Bolet.Cliente.Contratos.MarcasTercero;
-using Trascend.Bolet.Cliente.Ventanas.Marcas;
+using Trascend.Bolet.Cliente.Ventanas.MarcasTercero;
 using Trascend.Bolet.Cliente.Ventanas.Principales;
 using Trascend.Bolet.Cliente.Ventanas.MarcasTercero;
 using Trascend.Bolet.ObjetosComunes.ContratosServicios;
@@ -46,7 +46,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
         private ICorresponsalServicios _corresponsalServicios;
         private ICondicionServicios _condicionServicios;
         private IInfoAdicionalServicios _infoAdicionalServicios;
-        private IInfoBolServicios _infoBolServicios;
+        private IInfoBolMarcaTerServicios _infoBolMarcaTerServicios;
         private IOperacionServicios _operacionServicios;
         private IBusquedaServicios _busquedaServicios;
         private IStatusWebServicios _statusWebServicios;
@@ -137,8 +137,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["AnaquaServicios"]);
                 this._infoAdicionalServicios = (IInfoAdicionalServicios)Activator.GetObject(typeof(IInfoAdicionalServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["InfoAdicionalServicios"]);
-                this._infoBolServicios = (IInfoBolServicios)Activator.GetObject(typeof(IInfoBolServicios),
-                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["InfoBolServicios"]);
+                this._infoBolMarcaTerServicios = (IInfoBolMarcaTerServicios)Activator.GetObject(typeof(IInfoBolMarcaTerServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["InfoBolMarcaTerServicios"]);
                 this._operacionServicios = (IOperacionServicios)Activator.GetObject(typeof(IOperacionServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["OperacionServicios"]);
                 this._busquedaServicios = (IBusquedaServicios)Activator.GetObject(typeof(IBusquedaServicios),
@@ -204,6 +204,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
                     //  marcaTercero.Busquedas = this._busquedaServicios.ConsultarBusquedasPorMarcaTercero(marcaTercero);
 
                     marcaTercero.InfoAdicional = this._infoAdicionalServicios.ConsultarPorId(infoAdicional);
+                    marcaTercero.InfoBoles = this._infoBolMarcaTerServicios.ConsultarInfoBolMarcaTeresPorMarca(marcaTercero);
                     //  marcaTercero.Anaqua = this._anaquaServicios.ConsultarPorId(anaqua);
 
                     //IList<ListaDatosDominio> tiposMarcaTerceros = this._listaDatosDominioServicios.
@@ -283,8 +284,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
                     auditoria.Tabla = "MYP_MARCAS_TER";
                     // OJO!!  this._auditorias = this._marcaTerceroServicios.AuditoriaPorFkyTabla(auditoria);
 
-                    //if (null != marcaTercero.InfoAdicional && !string.IsNullOrEmpty(marcaTercero.InfoAdicional.Id))
-                    //    this._ventana.PintarInfoAdicional();
+                    if (null != marcaTercero.InfoAdicional && !string.IsNullOrEmpty(marcaTercero.InfoAdicional.Id))
+                        this._ventana.PintarInfoAdicional();
 
                     //if (null != marcaTercero.Anaqua)
                     //    this._ventana.PintarAnaqua();
@@ -506,7 +507,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
                 marcaTercero.Internacional = internac;
             }
 
-            if ("" != this._ventana.CInternacional)
+            if ("" != this._ventana.CNacional)
             {
                 Nacional nacional = new Nacional();
                 nacional.Id = int.Parse(this._ventana.CNacional);
@@ -813,7 +814,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
         /// <param name="tab"></param>
         public void IrInfoAdicional(string tab)
         {
-           this.Navegar(new GestionarInfoAdicional(CargarMarcaTerceroDeLaPantalla(), tab));
+           this.Navegar(new GestionarInfoAdicionalMarcaTercero(CargarMarcaTerceroDeLaPantalla(), tab));
         }
 
         /// <summary>
@@ -821,8 +822,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
         /// </summary>
         public void IrInfoBoles()
         {
-
-           this.Navegar(new ListaInfoBoles(CargarMarcaTerceroDeLaPantalla()));
+           this.Navegar(new ListaInfoBolMarcaTeres(CargarMarcaTerceroDeLaPantalla()));
         }
 
         /// <summary>

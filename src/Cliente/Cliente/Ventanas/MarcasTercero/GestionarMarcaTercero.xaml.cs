@@ -674,11 +674,10 @@ namespace Trascend.Bolet.Cliente.Ventanas.MarcasTercero
         //    set { this._cbxTipoReproduccion.DataContext = value; }
         //}
 
-        //public void PintarInfoAdicional()
-        //{
-        //    this._btnInfoAdicional.Background = Brushes.LightGreen;
-        //    this._btnInfoAdicionalSolicitud.Background = Brushes.LightGreen;
-        //}
+        public void PintarInfoAdicional()
+        {
+            this._btnInfoAdicional.Background = Brushes.LightGreen;
+        }
 
         //public void PintarAnaqua()
         //{
@@ -751,7 +750,13 @@ namespace Trascend.Bolet.Cliente.Ventanas.MarcasTercero
             this._poderesCargados = false;
             this._byt = false;
             if (null == marcaTerceroSeleccionada)
+            {
                 this._btnNuevoAnexo.Visibility = System.Windows.Visibility.Collapsed;
+                this._btnAuditoriaDatos.Visibility = System.Windows.Visibility.Collapsed;
+                this._btnExpediente.Visibility = System.Windows.Visibility.Collapsed;
+                this._btnInfoAdicional.Visibility = System.Windows.Visibility.Collapsed;
+                this._btnInfobol.Visibility= System.Windows.Visibility.Collapsed;
+            }
             this._presentador = new PresentadorGestionarMarcaTercero(this, marcaTerceroSeleccionada);
         }
 
@@ -972,6 +977,10 @@ namespace Trascend.Bolet.Cliente.Ventanas.MarcasTercero
         {
             this._presentador.Modificar();
             this._btnNuevoAnexo.Visibility = System.Windows.Visibility.Visible;
+            this._btnAuditoriaDatos.Visibility = System.Windows.Visibility.Visible;
+            this._btnExpediente.Visibility = System.Windows.Visibility.Visible;
+            this._btnInfoAdicional.Visibility = System.Windows.Visibility.Visible;
+            this._btnInfobol.Visibility = System.Windows.Visibility.Visible;
         }
 
         private void _btnCancelar_Click(object sender, RoutedEventArgs e)
@@ -1519,6 +1528,10 @@ namespace Trascend.Bolet.Cliente.Ventanas.MarcasTercero
             this._btnNuevoAnexo.Visibility = System.Windows.Visibility.Collapsed;
             this._lstMarcasB.Visibility = System.Windows.Visibility.Collapsed;
             this.HabilitarCampos = true;
+            this._btnAuditoriaDatos.Visibility = System.Windows.Visibility.Collapsed;
+            this._btnExpediente.Visibility = System.Windows.Visibility.Collapsed;
+            this._btnInfoAdicional.Visibility = System.Windows.Visibility.Collapsed;
+            this._btnInfobol.Visibility = System.Windows.Visibility.Collapsed;
         }
 
 
