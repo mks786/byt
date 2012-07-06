@@ -7,22 +7,6 @@
     
     <id name="Id" column="CMARCA" type ="int"/>
     
-    <!--<property name="CodigoMarca" column="CMARCA" type="int"/>
-    <property name="CodigoRegistro" column="CREGISTRO" type="string"/>
-    <property name="CodigoInscripcion" column="CINSCRIPCION" type="string"/>
-    <property name="DescripcionMarca" column="MARCA" type="string"/>
-    <property name="CodigoAsociado" column="CASOCIADO" type="int"/>
-    <property name="NombreAsociado" column="XASOCIADO" type="string"/>
-    <property name="Condicion" column="CONDI" type="int"/>
-    <property name="Direccion" column="DIR" type="string"/>
-    <property name="Fax" column="FAX" type="string"/>
-    <property name="Email" column="EMAIL" type="string"/>
-    <property name="Clase" column="CLASE" type="string"/>
-    <property name="Idioma" column="IDIOMA" type="int"/>
-    <property name="Tipo" column="TIPO" type="string"/>-->
-    
-    
-    
     <property name="NombreInteresado" column="XINTERESADO" type="string"/>
     <property name="FechaRenovacion" column="FRENOVACION" type="string"/>
     <property name="Ano" column="ANO" type="string"/>
@@ -42,14 +26,6 @@
     <many-to-one name="Asociado" class="Asociado">
       <column name="CASOCIADO"/>
     </many-to-one>
-    
-    <!--<many-to-one name="Interesado" class="Interesado">
-      <column name="CINTERESADO"/>
-    </many-to-one>-->
-    
-    <!--<many-to-one name="Pais" class="Pais">
-      <column name="PAIS"/>
-    </many-to-one>-->
     
   </class>
 
