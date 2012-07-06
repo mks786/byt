@@ -839,11 +839,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
             {
               //Este es un ejemplo de como debe quedar--> \\BYT2008\BIBLIO\VEN\AC3\OPO\OPO.A-155.PDF
                 string Cadena = ConfigurationManager.AppSettings["RutaVerExpedienteMarcaTercero"].ToString() +
-                    "\\" + ((ListaDatosValores)this._ventana.TipoDeCaso).Id + "\\" 
-                    + ((ListaDatosValores)this._ventana.TipoDeCaso).Id+"."+((MarcaTercero)this._ventana.MarcaTercero).Id
+                    ((ListaDatosValores)this._ventana.TipoDeCaso).Valor + "\\" 
+                    + ((ListaDatosValores)this._ventana.TipoDeCaso).Valor+"."+((MarcaTercero)this._ventana.MarcaTercero).Id
                     +".PDF";
 
-                //this.EjecutarComandoDeConsola();
+                this.EjecutarComandoDeConsola(Cadena,"Ejecuta el expediente de MarcaTercero");
             }
         }
 

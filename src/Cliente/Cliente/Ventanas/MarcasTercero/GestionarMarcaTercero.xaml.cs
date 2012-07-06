@@ -1537,7 +1537,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.MarcasTercero
 
         private void _btnExpediente_Click(object sender, RoutedEventArgs e)
         {
-
+            this._presentador.IrExpediente();
         }
 
         private void _btnNuevoAnexo_Click(object sender, RoutedEventArgs e)
