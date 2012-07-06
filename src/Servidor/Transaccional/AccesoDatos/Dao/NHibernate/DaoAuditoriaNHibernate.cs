@@ -28,7 +28,12 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
                     logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-                IQuery query = Session.CreateQuery(string.Format(Recursos.ConsultasHQL.ObtenerAuditoriaPorFKYTabla, auditoria.Fk, auditoria.Tabla));
+                IQuery query;
+                if(auditoria.Tabla!="MYP_MARCAS_TER")
+                    query = Session.CreateQuery(string.Format(Recursos.ConsultasHQL.ObtenerAuditoriaPorFKYTabla, auditoria.Fk, auditoria.Tabla));
+                else
+                    query = Session.CreateQuery(string.Format(Recursos.ConsultasHQL.ObtenerAuditoriaPorFKYTablaMarcaTer, auditoria.Fks, auditoria.Tabla,auditoria.Fk));
+
                 retorno = query.List<Auditoria>();
 
                 #region trace

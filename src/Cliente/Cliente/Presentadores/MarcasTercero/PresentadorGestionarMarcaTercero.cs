@@ -282,9 +282,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
                     //this._ventana.TipoReproduccion = this.BuscarTipoReproduccion(tipoReproducciones, marcaTercero.Tipo);
 
                     Auditoria auditoria = new Auditoria();
-                    //auditoria.Fk = ((MarcaTercero)this._ventana.MarcaTercero).Id;
+                    auditoria.Fk = ((MarcaTercero)this._ventana.MarcaTercero).Anexo;
+                    auditoria.Fks = ((MarcaTercero)this._ventana.MarcaTercero).Id;
                     auditoria.Tabla = "MYP_MARCAS_TER";
-                  //  this._auditorias = this._marcaTerceroServicios.AuditoriaPorFkyTabla(auditoria);
+                    this._auditorias = this._marcaTerceroServicios.AuditoriaPorFkyTabla(auditoria);
 
                     if (null != marcaTercero.InfoAdicional && !string.IsNullOrEmpty(marcaTercero.InfoAdicional.Id))
                         this._ventana.PintarInfoAdicional();
@@ -301,8 +302,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
                     //if (null != marcaTercero.Busquedas && marcaTercero.Busquedas.Count > 0)
                     //    this._ventana.PintarBusquedas();
 
-                    //if (null != this._auditorias && this._auditorias.Count > 0)
-                    //    this._ventana.PintarAuditoria();
+                    if (null != this._auditorias && this._auditorias.Count > 0)
+                        this._ventana.PintarAuditoria();
 
                     this._ventana.BorrarCeros();
                 }

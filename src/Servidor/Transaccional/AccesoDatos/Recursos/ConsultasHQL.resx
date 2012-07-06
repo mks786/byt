@@ -812,4 +812,8 @@
     <value>marca.Recordatorio = {0}</value>
     <comment>filtro por recordatorio</comment>
   </data>
+  <data name="ObtenerAuditoriaPorFKYTablaMarcaTer" xml:space="preserve">
+    <value>Select a from Auditoria a where a.Fks = '{0}' and a.Tabla = '{1}' and a.Fk = '{2}'</value>
+    <comment>Obtiene las auditorias de una marcaTercero</comment>
+  </data>
 </root>

@@ -194,7 +194,7 @@ namespace Trascend.Bolet.Cliente.Contratos.MarcasTercero
 
         void DeshabilitarMarcasByt();
 
-        //void PintarAuditoria();
+        void PintarAuditoria();
 
         string ComentarioClienteEspanol { set; get; }
 

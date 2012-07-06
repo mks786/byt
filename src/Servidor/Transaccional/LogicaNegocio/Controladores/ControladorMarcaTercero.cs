@@ -67,6 +67,26 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
                     logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
+                Auditoria auditoria = new Auditoria();
+                ComandoBase<ContadorAuditoria> comandoContadorAuditoriaPoximoValor = FabricaComandosContadorAuditoria.ObtenerComandoConsultarPorId("SEG_AUDITORIA");
+
+                comandoContadorAuditoriaPoximoValor.Ejecutar();
+                ContadorAuditoria contadorAuditoria = comandoContadorAuditoriaPoximoValor.Receptor.ObjetoAlmacenado;
+
+
+                auditoria.Id = contadorAuditoria.ProximoValor++;
+                auditoria.Usuario = ObtenerUsuarioPorHash(hash).Id;
+                auditoria.Fecha = System.DateTime.Now;
+                auditoria.Operacion = marcaTercero.Operacion;
+                auditoria.Tabla = "MYP_MARCAS_TER";
+                auditoria.Fk = marcaTercero.Anexo;
+                auditoria.Fks = marcaTercero.Id;
+
+                ComandoBase<bool> comandoAuditoria = FabricaComandosAuditoria.ObtenerComandoInsertarOModificar(auditoria);
+                ComandoBase<bool> comandoAuditoriaContador = FabricaComandosContadorAuditoria.ObtenerComandoInsertarOModificar(contadorAuditoria);
+           
+
+
                 if (marcaTercero.Id == null) //Cuando se agrega un Registro nuevo
                 {
                     id = (marcaTercero.Descripcion[0].ToString().ToUpper());// + marcaTercero.Descripcion[1].ToString().ToUpper());
@@ -259,6 +279,14 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
                     ComandoBase<bool> comando = FabricaComandosMarcaTercero.ObtenerComandoInsertarOModificar(marcaTercero);
                     comando.Ejecutar();
                     exitoso = comando.Receptor.ObjetoAlmacenado;
+
+                    if(exitoso)
+                    {
+                        comandoAuditoria.Ejecutar();
+                        comandoAuditoriaContador.Ejecutar();
+
+                        
+                    }
 
                 }
 

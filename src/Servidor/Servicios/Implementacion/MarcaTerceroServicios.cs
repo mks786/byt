@@ -341,7 +341,32 @@ namespace Trascend.Bolet.Servicios.Implementacion
         /// <returns>Lista de Auditorias</returns>
         IList<Auditoria> IMarcaTerceroServicios.AuditoriaPorFkyTabla(Auditoria auditoria)
         {
-            throw new NotImplementedException();
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                IList<Auditoria> auditorias = ControladorMarcaTercero.AuditoriaPorFkyTabla(auditoria);
+
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Saliendo del Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                return auditorias;
+            }
+            catch (ApplicationException ex)
+            {
+                logger.Error(ex.Message);
+                throw ex;
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                throw new ApplicationException(Errores.MensajesAlServidor.ErrorInesperadoServidor);
+            }
         }
 
 

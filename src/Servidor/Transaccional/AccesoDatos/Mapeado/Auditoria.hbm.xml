@@ -10,6 +10,7 @@
     <property name="Operacion" column="OPERACION" type="string"/>
     <property name="Tabla" column="TABLA" type="string"/>
     <property name="Fk" column="FK" type="int"/>
+    <property name="Fks" column="FKS" type="string"/>
     
   </class>
 

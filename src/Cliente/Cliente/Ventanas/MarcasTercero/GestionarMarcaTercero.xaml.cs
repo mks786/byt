@@ -1527,7 +1527,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.MarcasTercero
 
         private void _btnAuditoriaDatos_Click(object sender, RoutedEventArgs e)
         {
-
+            this._presentador.Auditoria();
         }
 
         private void _btnArchivo_Click(object sender, RoutedEventArgs e)
