@@ -166,8 +166,11 @@
                             <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
 
-                        <custom:ByTTextBox IsEnabled="False" MaxLength="255" Grid.Column="0" Grid.Row="1" Name="_txtAsociadoSolicitud" VerticalAlignment="Center" 
-                         Grid.ColumnSpan="7" MouseDoubleClick="_txtAsociadoSolicitud_GotFocus" IsReadOnly="True" BorderBrush="LightGreen"></custom:ByTTextBox>
+                        <custom:ByTTextBox IsEnabled="False" MaxLength="8" Grid.Column="0" Margin="3" Grid.Row="1" Name="_txtIdAsociado" VerticalAlignment="Center" 
+                         Grid.ColumnSpan="1" MouseDoubleClick="_txtAsociadoSolicitud_GotFocus" IsReadOnly="True" BorderBrush="LightGreen"></custom:ByTTextBox>
+
+                        <custom:ByTTextBox IsEnabled="False" MaxLength="255" Grid.Column="1" Grid.Row="1" Name="_txtAsociadoSolicitud" VerticalAlignment="Center" 
+                         Grid.ColumnSpan="6" MouseDoubleClick="_txtAsociadoSolicitud_GotFocus" IsReadOnly="True" BorderBrush="LightGreen"></custom:ByTTextBox>
 
                         <Label Name="_lblIdAsociadoSolicitud" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Center" Visibility="Collapsed">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblId}"/>
@@ -233,8 +236,11 @@
                             <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
 
-                        <custom:ByTTextBox IsEnabled="False" MaxLength="255" Grid.Column="0" Grid.Row="1" Name="_txtInteresadoSolicitud" VerticalAlignment="Center" 
-                         Grid.ColumnSpan="7" MouseDoubleClick="_txtInteresadoSolicitud_GotFocus" IsReadOnly="True" BorderBrush="LightGreen"></custom:ByTTextBox>
+                        <custom:ByTTextBox IsEnabled="False" MaxLength="8" Grid.Column="0" Margin="3" Grid.Row="1" Name="_txtIdInteresado" VerticalAlignment="Center" 
+                         Grid.ColumnSpan="1" MouseDoubleClick="_txtInteresadoSolicitud_GotFocus" IsReadOnly="True" BorderBrush="LightGreen"></custom:ByTTextBox>
+                        
+                        <custom:ByTTextBox IsEnabled="False" MaxLength="255" Grid.Column="1" Grid.Row="1" Name="_txtInteresadoSolicitud" VerticalAlignment="Center" 
+                         Grid.ColumnSpan="6" MouseDoubleClick="_txtInteresadoSolicitud_GotFocus" IsReadOnly="True" BorderBrush="LightGreen"></custom:ByTTextBox>
 
                         <Label Name="_lblIdInteresadoSolicitud" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Center" Visibility="Collapsed">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblId}"/>

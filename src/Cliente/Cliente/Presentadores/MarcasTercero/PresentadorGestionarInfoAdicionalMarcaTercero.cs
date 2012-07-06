@@ -86,7 +86,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
                 }
 
                 Auditoria auditoria = new Auditoria();
-                int id = int.Parse(((InfoAdicional)this._ventana.InfoAdicional).Id.Substring(2));
+                string validarTam =((InfoAdicional)this._ventana.InfoAdicional).Id;
+                int id;
+                if(validarTam[3]=='-')
+                     id = int.Parse(((InfoAdicional)this._ventana.InfoAdicional).Id.Substring(4));
+                else
+                     id = int.Parse(((InfoAdicional)this._ventana.InfoAdicional).Id.Substring(4));
                 auditoria.Fk = id;
                 auditoria.Tabla = "MYP_ADICIONAL";
 

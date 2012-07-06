@@ -151,6 +151,18 @@ namespace Trascend.Bolet.Cliente.Ventanas.MarcasTercero
             //set { this._chkByt = value; }
         }
 
+        public string IdInteresado
+        {
+            get { return this._txtIdInteresado.Text; }
+            set { this._txtIdInteresado.Text = value; }
+        }
+
+        public string IdAsociado
+        {
+            get { return this._txtIdAsociado.Text; }
+            set { this._txtIdAsociado.Text = value; }
+        }
+
         public string IdInternacionalByt
         {
             get { return this._txtClaseInternacionalByt.Text; }
@@ -288,6 +300,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.MarcasTercero
                 this._txtCNaci.IsEnabled = value;
                 this._txtCInter.IsEnabled = value;
                 this._txtAsociadoSolicitud.IsEnabled = value;
+                this._txtIdInteresado.IsEnabled = value;
+                this._txtIdAsociado.IsEnabled = value;
 
                 this._txtNombreMarca.IsEnabled = value;
                 this._txtNombreMarcaFiltrar.IsEnabled = value;
@@ -700,10 +714,10 @@ namespace Trascend.Bolet.Cliente.Ventanas.MarcasTercero
         //    //this._btnBusquedaSolicitud.Background = Brushes.LightGreen;
         //}
 
-        //public void PintarAuditoria()
-        //{
-        //    this._btnAuditoria.Background = Brushes.LightGreen;
-        //}
+        public void PintarAuditoria()
+        {
+            this._btnAuditoriaDatos.Background = Brushes.LightGreen;
+        }
 
         public void BorrarCeros()
         {
@@ -784,6 +798,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.MarcasTercero
         {
             this._lstAsociadosSolicitud.ScrollIntoView(this.AsociadoSolicitud);
             this._txtAsociadoSolicitud.Visibility = System.Windows.Visibility.Collapsed;
+            this._txtIdAsociado.Visibility = System.Windows.Visibility.Collapsed;
             this._lstAsociadosSolicitud.Visibility = System.Windows.Visibility.Visible;
             this._lstAsociadosSolicitud.IsEnabled = true;
             this._btnConsultarAsociadoSolicitud.Visibility = System.Windows.Visibility.Visible;
@@ -800,6 +815,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.MarcasTercero
             this._txtIdAsociadoSolicitud.Visibility = System.Windows.Visibility.Collapsed;
             this._txtNombreAsociadoSolicitud.Visibility = System.Windows.Visibility.Collapsed;
             this._txtAsociadoSolicitud.Visibility = System.Windows.Visibility.Visible;
+            this._txtIdAsociado.Visibility = System.Windows.Visibility.Visible;
             this._lblIdAsociadoSolicitud.Visibility = System.Windows.Visibility.Collapsed;
             this._lblNombreAsociadoSolicitud.Visibility = System.Windows.Visibility.Collapsed;
         }
@@ -808,6 +824,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.MarcasTercero
         {
             this._lstInteresadosSolicitud.ScrollIntoView(this.InteresadoSolicitud);
             this._txtInteresadoSolicitud.Visibility = System.Windows.Visibility.Collapsed;
+            this._txtIdInteresado.Visibility = System.Windows.Visibility.Collapsed;
             this._lstInteresadosSolicitud.Visibility = System.Windows.Visibility.Visible;
             this._lstInteresadosSolicitud.IsEnabled = true;
             this._btnConsultarInteresadoSolicitud.Visibility = System.Windows.Visibility.Visible;
@@ -825,6 +842,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.MarcasTercero
             this._txtIdInteresadoSolicitud.Visibility = System.Windows.Visibility.Collapsed;
             this._txtNombreInteresadoSolicitud.Visibility = System.Windows.Visibility.Collapsed;
             this._txtInteresadoSolicitud.Visibility = System.Windows.Visibility.Visible;
+            this._txtIdInteresado.Visibility = System.Windows.Visibility.Visible;
             this._lblIdInteresadoSolicitud.Visibility = System.Windows.Visibility.Collapsed;
             this._lblNombreInteresadoSolicitud.Visibility = System.Windows.Visibility.Collapsed;
         }
@@ -969,6 +987,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.MarcasTercero
             else color = Brushes.White;
 
             this._txtAsociadoSolicitud.Background = color;
+            this._txtIdAsociado.Background = color;
 
         }
 
@@ -1001,21 +1020,21 @@ namespace Trascend.Bolet.Cliente.Ventanas.MarcasTercero
             this._presentador.IrInfoAdicional(parametro);
         }
 
-        private void _btnAnaqua_Click(object sender, RoutedEventArgs e)
-        {
-            this._presentador.IrAnaqua();
-        }
+        //private void _btnAnaqua_Click(object sender, RoutedEventArgs e)
+        //{
+        //    this._presentador.IrAnaqua();
+        //}
 
-        private void _btnBusqueda_Click(object sender, RoutedEventArgs e)
-        {
-            string parametro = "";
-            if (((Button)sender).Name.Equals("_btnBusquedaSolicitud"))
-                parametro = Recursos.Etiquetas.tabSolicitud;
-            else if (((Button)sender).Name.Equals("_btnBusquedaDatos"))
-                parametro = Recursos.Etiquetas.tabDatos;
+        //private void _btnBusqueda_Click(object sender, RoutedEventArgs e)
+        //{
+        //    string parametro = "";
+        //    if (((Button)sender).Name.Equals("_btnBusquedaSolicitud"))
+        //        parametro = Recursos.Etiquetas.tabSolicitud;
+        //    else if (((Button)sender).Name.Equals("_btnBusquedaDatos"))
+        //        parametro = Recursos.Etiquetas.tabDatos;
 
-            this._presentador.IrBusquedas(parametro);
-        }
+        //    this._presentador.IrBusquedas(parametro);
+        //}
 
         private void _btnAuditoria_Click(object sender, RoutedEventArgs e)
         {
@@ -1327,10 +1346,10 @@ namespace Trascend.Bolet.Cliente.Ventanas.MarcasTercero
             this._presentador.IrInfoBoles();
         }
 
-        private void _btnOperacionesDatos_Click(object sender, RoutedEventArgs e)
-        {
-            this._presentador.IrOperaciones();
-        }
+        //private void _btnOperacionesDatos_Click(object sender, RoutedEventArgs e)
+        //{
+        //    this._presentador.IrOperaciones();
+        //}
 
         private void _btnIrExplorador_Click(object sender, RoutedEventArgs e)
         {

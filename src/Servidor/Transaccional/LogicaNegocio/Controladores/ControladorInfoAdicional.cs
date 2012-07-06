@@ -39,14 +39,20 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
                 comandoContadorAuditoriaPoximoValor.Ejecutar();
                 ContadorAuditoria contadorAuditoria = comandoContadorAuditoriaPoximoValor.Receptor.ObjetoAlmacenado;
 
-
+                string[] IdMarcaTercero = InfoAdicional.Id.Split('-');
+                string id = "";
                 auditoria.Id = contadorAuditoria.ProximoValor++;
                 auditoria.Usuario = ObtenerUsuarioPorHash(hash).Id;
                 auditoria.Fecha = System.DateTime.Now;
                 auditoria.Operacion = InfoAdicional.Operacion;
                 auditoria.Tabla = "MYP_ADICIONAL";
-                string id = InfoAdicional.Id.Substring(2, InfoAdicional.Id.Length-2);
+                if (IdMarcaTercero.Count() == 1)
+                    id = InfoAdicional.Id.Substring(2, InfoAdicional.Id.Length - 2);
+                else
+                    id = IdMarcaTercero[1];
+
                 auditoria.Fk = int.Parse(id);
+
 
                 ComandoBase<bool> comando = FabricaComandosInfoAdicional.ObtenerComandoInsertarOModificar(InfoAdicional);
                 ComandoBase<bool> comandoAuditoria = FabricaComandosAuditoria.ObtenerComandoInsertarOModificar(auditoria);
