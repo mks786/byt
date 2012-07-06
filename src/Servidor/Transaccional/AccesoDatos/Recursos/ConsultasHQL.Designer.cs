@@ -322,7 +322,7 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Select r from RecordatorioVista r left join fetch m.Asociado as asociado left join fetch m.Interesado as interesado left join fetch asociado.Pais as pais left join fetch asociado.Idioma as idioma where .
+        ///   Busca una cadena traducida similar a Select r from RecordatorioVista r left join fetch r.Asociado as asociado left join fetch r.Marca as marca left join fetch asociado.Pais as pais left join fetch marca.Nacional as nacional where .
         /// </summary>
         public static string CabeceraObtenerRecordatorioVista {
             get {
@@ -1236,6 +1236,24 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         public static string FiltroObtenerPoderId {
             get {
                 return ResourceManager.GetString("FiltroObtenerPoderId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a r.FechaRenovacion between &apos;{0}&apos; and &apos;{1}&apos;.
+        /// </summary>
+        public static string FiltroObtenerRecordatorioVistaFechaRenovacion {
+            get {
+                return ResourceManager.GetString("FiltroObtenerRecordatorioVistaFechaRenovacion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a marca.Recordatorio = {0}.
+        /// </summary>
+        public static string FiltroObtenerRecordatorioVistaMarcaRecordatorio {
+            get {
+                return ResourceManager.GetString("FiltroObtenerRecordatorioVistaMarcaRecordatorio", resourceCulture);
             }
         }
         

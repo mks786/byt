@@ -149,24 +149,24 @@ namespace Trascend.Bolet.Cliente.Presentadores.Recordatorios
 
             if (this._ventana.AutomaticoFiltro.Value)
             {
-                this._marcas = this._marcaServicios.ObtenerMarcasPorFechaRenovacion(MarcaAuxiliar, fechas);
                 this._recordatorios = this._marcaServicios.ConsultarRecordatoriosVistaMarca(recordatorio, fechas);
             }
             else
             {
-                this._marcas = this._marcaServicios.ObtenerMarcasFiltro(MarcaAuxiliar);
+                recordatorio.Marca = MarcaAuxiliar;
+                this._recordatorios = this._marcaServicios.ConsultarRecordatoriosVistaMarca(recordatorio, fechas);
             }
 
-            IEnumerable<Marca> marcasDesinfladas = this._marcas;
+            IEnumerable<RecordatorioVista> recordatorios = this._recordatorios;
 
             if (this._ventana.AutomaticoFiltro.Value)
             {
-                //marcasDesinfladas = from m in marcasDesinfladas
-                //                    where fechas[0] < m.FechaRenovacion && m.FechaRenovacion <= fechas[1] &&
-                //                    m.Recordatorio != MarcaAuxiliar.Recordatorio
-                //                    select m;
-                marcasDesinfladas = from m in marcasDesinfladas
+                recordatorios = from m in recordatorios
+                                    where fechas[0] < recordatorio.Marca.FechaRenovacion && recordatorio.Marca.FechaRenovacion <= fechas[1] &&
+                                    recordatorio.Marca.Recordatorio != MarcaAuxiliar.Recordatorio
                                     select m;
+                //marcasDesinfladas = from m in marcasDesinfladas
+                //                    select m;
             }
 
             this._ventana.GestionarEnableChecksFiltro(false);
@@ -443,42 +443,49 @@ namespace Trascend.Bolet.Cliente.Presentadores.Recordatorios
                 string recordatorioAux = "";
 
                 cabecera = "Asociado|Nombre|Fax|E_mail|Marca|Interesado|Freno|Recordatorio|Pais|Idioma|Dir|cregistro|clase|Fgracia|" +
-                                  "frenovacion_in|fechagra_in|cmarca^";
+                                  "frenovacion_in|fechagra_in|cmarca" + "\r\n";
 
                 string[] tipoRecordatorio = this.ValidarTipoRecordatorio();
 
                 if (((IList<object>)this._ventana.Resultado).Count != 0)
                 {
-                    this._marcas = new List<Marca>();
+                    this._recordatorios = new List<RecordatorioVista>();
 
                     IList<object> resultadoAux = (IList<object>)this._ventana.Resultado;
 
-                    foreach (Marca marca in resultadoAux)
+                    foreach (RecordatorioVista recordatorio in resultadoAux)
                     {
-                        this._marcas.Add(marca);
+                        this._recordatorios.Add(recordatorio);
                     }
 
                 }
                 //else
                 //  marcaAux = this._marcas;
 
-                foreach (Marca marcaRecordatorio in this._marcas)
+                foreach (RecordatorioVista recordatorio in this._recordatorios)
                 {
 
-                    recordatorioAux = marcaRecordatorio.Asociado.Idioma.Id.Equals("IN") ? tipoRecordatorio[1] : tipoRecordatorio[0];
+                    recordatorioAux = recordatorio.Asociado.Idioma.Id.Equals("IN") ? tipoRecordatorio[1] : tipoRecordatorio[0];
 
-                    string claseAux = marcaRecordatorio.Nacional != null ? marcaRecordatorio.Nacional.Descripcion : string.Empty;
+                    string claseAux = "";
+                    if(recordatorio.Marca != null)
+                        claseAux = recordatorio.Marca.Nacional != null ? recordatorio.Marca.Nacional.Descripcion : string.Empty;
 
-                    if (!marcaRecordatorio.Asociado.Pais.NombreEspanol.Equals("VENEZUELA"))
-                        fax = "00" + marcaRecordatorio.Asociado.Fax1;
+                    if (recordatorio.Asociado != null)
+                    {
+                        if (recordatorio.Asociado.Pais != null)
+                        {
+                            if (!recordatorio.Asociado.Pais.NombreEspanol.Equals("VENEZUELA"))
+                                fax = "00" + recordatorio.Asociado.Fax1;
+                        }
+                    }
 
-                    cadena = cadena + marcaRecordatorio.Asociado.Id + "|" + marcaRecordatorio.Asociado.Nombre + "|" + fax + "|" +
-                             marcaRecordatorio.Asociado.Email + "|" + marcaRecordatorio.Descripcion + "|" + marcaRecordatorio.Interesado.Nombre + "|" +
-                             ((DateTime)marcaRecordatorio.FechaRenovacion).ToShortDateString() + "|" + recordatorioAux + "|" + marcaRecordatorio.Asociado.Pais.NombreEspanol + "|" +
-                             marcaRecordatorio.Asociado.Idioma.Descripcion + "|" + marcaRecordatorio.Asociado.Domicilio + "|" + marcaRecordatorio.CodigoRegistro +
-                             "|" + claseAux + "|" + ((DateTime)marcaRecordatorio.FechaRegistro).ToShortDateString() + "|" +
-                             ((DateTime)marcaRecordatorio.FechaRegistro).ToShortDateString() + "|" + ((DateTime)marcaRecordatorio.FechaRegistro).ToShortDateString()
-                             + "|" + marcaRecordatorio.Id + "^";
+                    cadena = cadena + recordatorio.Asociado.Id + "|" + recordatorio.Asociado.Nombre + "|" + fax + "|" +
+                             recordatorio.Asociado.Email + "|" + recordatorio.Marca.Descripcion + "|" + recordatorio.NombreInteresado + "|" +
+                             ((DateTime)recordatorio.FechaRenovacion1).ToShortDateString() + "|" + recordatorioAux + "|" + recordatorio.Asociado.Pais.NombreEspanol + "|" +
+                             recordatorio.Asociado.Idioma.Descripcion + "|" + recordatorio.Asociado.Domicilio + "|" + recordatorio.Marca.CodigoRegistro +
+                             "|" + claseAux + "|" + recordatorio.FechaGracia + "|" +
+                             recordatorio.FechaRenovacionIn + "|" + recordatorio.FechaGraciaIn + "|" + recordatorio.Id + "\r\n";
                 }
 
                 #region trace

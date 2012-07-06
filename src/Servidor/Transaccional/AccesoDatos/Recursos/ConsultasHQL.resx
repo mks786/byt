@@ -801,7 +801,15 @@
     <comment>Obtiene los Infoboles de marcaTercero</comment>
   </data>
   <data name="CabeceraObtenerRecordatorioVista" xml:space="preserve">
-    <value>Select r from RecordatorioVista r left join fetch m.Asociado as asociado left join fetch m.Interesado as interesado left join fetch asociado.Pais as pais left join fetch asociado.Idioma as idioma where </value>
+    <value>Select r from RecordatorioVista r left join fetch r.Asociado as asociado left join fetch r.Marca as marca left join fetch asociado.Pais as pais left join fetch marca.Nacional as nacional where </value>
     <comment>Cabecera del query para el filtro de recordatorioVista</comment>
+  </data>
+  <data name="FiltroObtenerRecordatorioVistaFechaRenovacion" xml:space="preserve">
+    <value>r.FechaRenovacion between '{0}' and '{1}'</value>
+    <comment>filtro por fecha</comment>
+  </data>
+  <data name="FiltroObtenerRecordatorioVistaMarcaRecordatorio" xml:space="preserve">
+    <value>marca.Recordatorio = {0}</value>
+    <comment>filtro por recordatorio</comment>
   </data>
 </root>

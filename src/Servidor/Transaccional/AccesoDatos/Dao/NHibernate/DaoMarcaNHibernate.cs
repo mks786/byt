@@ -6,6 +6,7 @@ using System;
 using NHibernate;
 using System.Configuration;
 using NHibernate.Criterion;
+using NHibernate.SqlCommand;
 
 namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
 {
@@ -371,6 +372,7 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
         public IList<RecordatorioVista> ObtenerRecordatoriosVista(RecordatorioVista recordatorio, DateTime[] fechas)
         {
             IList<RecordatorioVista> recordatorios = null;
+            
             try
             {
                 #region trace
@@ -378,42 +380,56 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
                     logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
+                //No es automatico
+                if ((null != recordatorio.Marca) && (null != recordatorio.Marca.Recordatorio))
+                {
+                    recordatorios = Session.CreateCriteria(typeof(RecordatorioVista))
+                        .SetFetchMode("Asociado", FetchMode.Join)
+                        .SetFetchMode("Asociado.Pais", FetchMode.Join)
+                        .SetFetchMode("Asociado.Idioma", FetchMode.Join)
+                        .CreateCriteria("Marca")
+                            .SetFetchMode("Nacional", FetchMode.Join)
+                            //.Add(Restrictions.Between("FechaRenovacion", fechas[0], fechas[1]))
+                            .Add(Restrictions.Eq("Recordatorio", recordatorio.Marca.Recordatorio))
+                        .List<RecordatorioVista>();
 
-                //recordatorio.Mes = "09";
-                //recordatorio.Ano = "2012";
-                //Marca marca = new Marca();
-                //marca.Recordatorio = 1;
-                //recordatorio.Marca = marca;
-                
+                    recordatorios = Session.CreateCriteria(typeof(RecordatorioVista))
+                        .CreateAlias("Marca", "m")
+                        .SetFetchMode("Marca", FetchMode.Join)
+                        .SetFetchMode("m.Nacional", FetchMode.Join)
+                        .SetFetchMode("Asociado.Pais", FetchMode.Join)
+                        .SetFetchMode("Asociado.Idioma", FetchMode.Join)
+                        .Add(Restrictions.Eq("m.Recordatorio", recordatorio.Marca.Recordatorio))
+                        .List<RecordatorioVista>();
 
-                //bool variosFiltros = false;
-                //string filtro = "";
-
-
-                recordatorios = Session.CreateCriteria(typeof(RecordatorioVista))
-                       .CreateAlias("Marca", "m")
-                       .SetFetchMode("Asociado", FetchMode.Join)
-                       .SetFetchMode("Marca", FetchMode.Join)
-                       .Add(Restrictions.Between("m.FechaRenovacion",fechas[0],fechas[1]))
-                       .List<RecordatorioVista>();
-
-                //string fecha = String.Format("{0:dd/MM/yy}", fechas[0]);
-                //string fecha2 = String.Format("{0:dd/MM/yy}", fechas[1]);
-                //filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerMarcaFechaRenovacion, fecha, fecha2);
-
-                //variosFiltros = true;
+                }
+                else
+                {
+                    recordatorios = Session.CreateCriteria(typeof(RecordatorioVista))
+                        .SetFetchMode("Asociado", FetchMode.Join)
+                        .SetFetchMode("Asociado.Pais", FetchMode.Join)
+                        .SetFetchMode("Asociado.Idioma", FetchMode.Join)
+                        .CreateCriteria("Marca")
+                            .SetFetchMode("Nacional", FetchMode.Join)
+                            .Add(Restrictions.Between("FechaRenovacion", fechas[0], fechas[1]))
+ 
+                            .List<RecordatorioVista>();
 
 
-                //if (null != marca.Recordatorio)
-                //{
-                //    if (variosFiltros)
-                //        filtro += " or ";
+                            recordatorios = Session.CreateCriteria(typeof(RecordatorioVista))
+                        .CreateAlias("Marca", "m")
+                        .SetFetchMode("Marca", FetchMode.Join)
+                        .SetFetchMode("m.Nacional", FetchMode.Join)
+                        .SetFetchMode("Asociado.Pais", FetchMode.Join)
+                        .SetFetchMode("Asociado.Idioma", FetchMode.Join)
+                        .Add(Restrictions.Between("m.FechaRenovacion", fechas[0], fechas[1]))
+                        
+                        .List<RecordatorioVista>();
 
-                //    filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerMarcaRecordatorio, marca.Recordatorio);
-                //}
+                       
 
-                //IQuery query = Session.CreateSQLQuery(cabecera + filtro);
-                //recordatorios = query.List<RecordatorioVista>();
+                    
+                }
 
                 #region trace
                 if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
