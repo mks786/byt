@@ -84,9 +84,9 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
         /// </summary>
         /// <param name="marcaBaseTercero">MarcaBaseTercero con el Id del pais buscado</param>
         /// <returns>El MarcaBaseTercero solicitado</returns>
-        public static MarcaBaseTercero ConsultarPorId(MarcaBaseTercero marcaBaseTercero)
+        public static IList<MarcaBaseTercero> ConsultarPorId(MarcaBaseTercero marcaBaseTercero)
         {
-            MarcaBaseTercero retorno;
+            IList<MarcaBaseTercero> retorno;
 
             try
             {
@@ -95,7 +95,7 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
                     logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-                ComandoBase<MarcaBaseTercero> comando = FabricaComandosMarcaBaseTercero.ObtenerComandoConsultarPorID(marcaBaseTercero);
+                ComandoBase<List<MarcaBaseTercero>> comando = FabricaComandosMarcaBaseTercero.ObtenerComandoConsultarPorID(marcaBaseTercero);
                 comando.Ejecutar();
                 retorno = comando.Receptor.ObjetoAlmacenado;
 

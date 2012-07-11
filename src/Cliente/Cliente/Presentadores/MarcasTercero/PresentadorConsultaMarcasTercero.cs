@@ -36,6 +36,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
         private ICondicionServicios _condicionServicios;
         private IBoletinServicios _boletinServicios;
         private IListaDatosValoresServicios _listaDatosValoresServicios;
+        private IMarcaBaseTerceroServicios _marcaBaseTerceroServicios;
 
         private IList<MarcaTercero> _marcas;
         private IList<Asociado> _asociados;
@@ -87,6 +88,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
                      ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["EstadoMarcaServicios"]);
                 this._listaDatosValoresServicios = (IListaDatosValoresServicios)Activator.GetObject(typeof(IListaDatosValoresServicios),
                         ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["ListaDatosValoresServicios"]);
+                this._marcaBaseTerceroServicios = (IMarcaBaseTerceroServicios)Activator.GetObject(typeof(IMarcaBaseTerceroServicios),
+                        ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["MarcaBaseTerceroServicios"]);
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -233,7 +236,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
                 #endregion
 
                 Mouse.OverrideCursor = Cursors.Wait;
-                bool consultaResumen = false;
+                bool NullFK;
+
 
                 _filtroValido = 0;
 
@@ -247,6 +251,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
 
                     foreach (var marca in this._marcas)
                     {
+                        NullFK = false;
                         MarcaTerceroAuxiliar = new MarcaTercero(marca.Id.ToUpper());
                         MarcaTerceroAuxiliar.Anexo = marca.Anexo;
                         Asociado asociadoAuxiliar = new Asociado();
@@ -256,14 +261,32 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
 
                         if ((marca.Asociado != null) && (!string.IsNullOrEmpty(marca.Asociado.Nombre)))
                         {
-                            asociadoAuxiliar.Nombre = marca.Asociado.Nombre;
-                            MarcaTerceroAuxiliar.Asociado = asociadoAuxiliar;
+                            
+                                asociadoAuxiliar.Nombre = marca.Asociado.Nombre;
+                                MarcaTerceroAuxiliar.Asociado = asociadoAuxiliar;
+                                 
                         }
 
-                        if ((marca.Interesado != null) && (!string.IsNullOrEmpty(marca.Interesado.Nombre)))
+
+                        try
                         {
-                            interesadoAuxiliar.Nombre = marca.Interesado.Nombre;
-                            MarcaTerceroAuxiliar.Interesado = interesadoAuxiliar;
+
+                      
+
+                            if ((marca.Interesado != null) && (!string.IsNullOrEmpty(marca.Interesado.Nombre)))
+                            {
+                           
+                                    interesadoAuxiliar.Nombre = marca.Interesado.Nombre;
+                                    MarcaTerceroAuxiliar.Interesado = interesadoAuxiliar;
+                            
+                        
+                            
+                            }
+                        }
+                        catch (NHibernate.LazyInitializationException ex)
+                        {
+                            marca.Interesado = null;
+                            NullFK = true;
                         }
 
                         MarcaTerceroAuxiliar.Nacional = marca.Nacional;
@@ -271,12 +294,13 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
                         MarcaTerceroAuxiliar.CodigoInscripcion = marca.CodigoInscripcion;
 
                         MarcaTerceroAuxiliar.FechaPublicacion = marca.FechaPublicacion != null ? marca.FechaPublicacion : null;
-
-                        marcasDesinfladas.Add(MarcaTerceroAuxiliar);
+                        if(!NullFK)
+                            marcasDesinfladas.Add(MarcaTerceroAuxiliar);
 
                     }
-
+                   // marcasDesinfladas = _marcas;
                     this._ventana.Resultados = marcasDesinfladas;
+                   // this._ventana.Resultados = _marcas;
                     this._ventana.TotalHits = marcasDesinfladas.Count.ToString();
                     if (marcasDesinfladas.Count == 0)
                         this._ventana.Mensaje(Recursos.MensajesConElUsuario.NoHayResultados, 1);
@@ -681,7 +705,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
                     }
                     cont++;
                 }
-
+               MarcaBaseTercero MarcaABuscar = new MarcaBaseTercero();
+                MarcaABuscar.MarcaTercero = new MarcaTercero(marcaTerceroParaNavegar.Id);
+                MarcaABuscar.MarcaTercero.Anexo = marcaTerceroParaNavegar.Anexo;
+                marcaTerceroParaNavegar.MarcasBaseTercero = _marcaBaseTerceroServicios.ConsultarMarcasBasePorId(MarcaABuscar);
 
                 this.Navegar(new GestionarMarcaTercero(marcaTerceroParaNavegar));
             }

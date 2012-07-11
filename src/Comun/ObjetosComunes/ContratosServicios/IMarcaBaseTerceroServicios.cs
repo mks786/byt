@@ -28,5 +28,14 @@ namespace Trascend.Bolet.ObjetosComunes.ContratosServicios
         /// <param name="marcaTercero">Marca Base Tercero a consultar</param>
         /// <returns>Marca Base Tercero con sus objetos</returns>
         MarcaBaseTercero ConsultarMarcaConTodo(MarcaBaseTercero marcaTercero);
+
+        /// <summary>
+        /// metodo que consulta todas las marcasBaseTercero dado un Id y un Anexo
+        /// </summary>
+        /// <param name="marcaBaseTercero"></param>
+        /// <returns></returns>
+        IList<MarcaBaseTercero> ConsultarMarcasBasePorId(MarcaBaseTercero marcaBaseTercero);
+
+
     }
 }

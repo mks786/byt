@@ -145,13 +145,13 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
                 MarcasTercero = query.List<MarcaTercero>();
 
                 //Busca la lista de marcaBaseTercero por cada marcaTercero
-                foreach (MarcaTercero aux in MarcasTercero)
-                {
-                    string CabeceraBase = string.Format(Recursos.ConsultasHQL.CabeceraObtenerMarcaBaseTercero, aux.Id, aux.Anexo);
-                    IQuery query2 = Session.CreateQuery(CabeceraBase);
-                    aux.MarcasBaseTercero = query2.List<MarcaBaseTercero>();
+                //foreach (MarcaTercero aux in MarcasTercero)
+                //{
+                //    string CabeceraBase = string.Format(Recursos.ConsultasHQL.CabeceraObtenerMarcaBaseTercero, aux.Id, aux.Anexo);
+                //    IQuery query2 = Session.CreateQuery(CabeceraBase);
+                //    aux.MarcasBaseTercero = query2.List<MarcaBaseTercero>();
 
-                }
+                //}
 
                 #region trace
                 if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))

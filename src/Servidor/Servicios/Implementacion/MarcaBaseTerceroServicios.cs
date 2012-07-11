@@ -48,9 +48,34 @@ namespace Trascend.Bolet.Servicios.Implementacion
         /// </summary>
         /// <param name="entidad"></param>
         /// <returns></returns>
-        public MarcaBaseTercero ConsultarPorId(MarcaBaseTercero marcaBaseTercero)
+        public IList<MarcaBaseTercero> ConsultarMarcasBasePorId(MarcaBaseTercero marcaBaseTercero)
         {
-            throw new NotImplementedException();
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                IList<MarcaBaseTercero> exitoso = ControladorMarcaBaseTercero.ConsultarPorId(marcaBaseTercero);
+
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Saliendo del Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                return exitoso;
+            }
+            catch (ApplicationException ex)
+            {
+                logger.Error(ex.Message);
+                throw ex;
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                throw new ApplicationException(Errores.MensajesAlServidor.ErrorInesperadoServidor);
+            }
         }
 
         /// <summary>
@@ -160,6 +185,39 @@ namespace Trascend.Bolet.Servicios.Implementacion
             }
         }
 
+        /// <summary>
+        /// Metodo que obtiene todas las marcaBase tercera dada un Id
+        /// </summary>
+        /// <returns></returns>
+        public IList<MarcaBaseTercero> ConsultarTodosPorId()
+        {
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                IList<MarcaBaseTercero> marcaBaseTerceros = ControladorMarcaBaseTercero.ConsultarTodos();
+
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Saliendo del Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                return marcaBaseTerceros;
+            }
+            catch (ApplicationException ex)
+            {
+                logger.Error(ex.Message);
+                throw ex;
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                throw new ApplicationException(Errores.MensajesAlServidor.ErrorInesperadoServidor);
+            }
+        }
 
         /// <summary>
         /// Servicio que se encarga de obtener las Marcas Base Tercero segun un filtro
@@ -194,17 +252,6 @@ namespace Trascend.Bolet.Servicios.Implementacion
         /// </summary>
         /// <returns>Lista de Entidades</returns>
         IList<MarcaBaseTercero> IServicioBase<MarcaBaseTercero>.ConsultarTodos()
-        {
-            throw new NotImplementedException();
-        }
-
-
-        /// <summary>
-        /// Servicio que consulta una entidad por su Id
-        /// </summary>
-        /// <param name="entidad"></param>
-        /// <returns></returns>
-        MarcaBaseTercero IServicioBase<MarcaBaseTercero>.ConsultarPorId(MarcaBaseTercero entidad)
         {
             throw new NotImplementedException();
         }
@@ -284,6 +331,12 @@ namespace Trascend.Bolet.Servicios.Implementacion
         /// <param name="marcaTercero">Marca Base Tercero a consultar</param>
         /// <returns>Marca Base Tercero con sus objetos</returns>
         MarcaBaseTercero IMarcaBaseTerceroServicios.ConsultarMarcaConTodo(MarcaBaseTercero marcaBaseTercero)
+        {
+            throw new NotImplementedException();
+        }
+
+
+        MarcaBaseTercero IServicioBase<MarcaBaseTercero>.ConsultarPorId(MarcaBaseTercero entidad)
         {
             throw new NotImplementedException();
         }

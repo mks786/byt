@@ -41,9 +41,9 @@ namespace Trascend.Bolet.Comandos.Fabrica
         /// Método que devuelve el Comando para consultar un MarcaBaseTercero por su ID
         /// </summary>
         /// <returns></returns>
-        public static ComandoBase<MarcaBaseTercero> ObtenerComandoConsultarPorID(MarcaBaseTercero marcaBaseTercero)
+        public static ComandoBase<List<MarcaBaseTercero>> ObtenerComandoConsultarPorID(MarcaBaseTercero marcaBaseTercero)
         {
-            throw new NotImplementedException();
+            return new ComandoConsultarTodosMarcaBaseTerceroPorId(marcaBaseTercero.MarcaTercero.Id,marcaBaseTercero.MarcaTercero.Anexo);
         }
 
         /// <summary>
