@@ -33,7 +33,11 @@ namespace Trascend.Bolet.Cliente.Contratos.Renovaciones
 
         string MarcaFiltrada { get; set; }
 
+        string IdMarcaFiltrada { get; set; }
+
         string InteresadoFiltrado { get; set; }
+
+        string IdInteresadoFiltrado { get; set; }
 
         void MostrarBotonVolverAMarca();
 
@@ -46,5 +50,7 @@ namespace Trascend.Bolet.Cliente.Contratos.Renovaciones
         void Mensaje(string mensaje,int opcion);
 
         string TotalHits { set; }
+
+        void ConvertirEnteroMinimoABlanco();
     }
 }

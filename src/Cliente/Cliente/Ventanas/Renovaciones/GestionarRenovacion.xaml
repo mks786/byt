@@ -205,15 +205,17 @@
                         <Label Name="_lblAsociado" Grid.Column="2" Grid.Row="3" HorizontalAlignment="Right" VerticalAlignment="Center" >
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblAsociado}"/>
                         </Label>
-                        <custom:ByTTextBox IsReadOnly="True"   IsEnabled="False"  Grid.Column="3" Grid.Row="3" Name="_txtAsociado" VerticalAlignment="Center" 
+                        <custom:ByTTextBox IsReadOnly="True"   IsEnabled="False"  Grid.Column="3" Grid.Row="3" Name="_txtIdAsociado" VerticalAlignment="Center" 
+                                           Grid.ColumnSpan="1" MaxLength="255" Text="{Binding Path=Asociado.Id}" Margin="0,0,5,0"></custom:ByTTextBox>
+                        <custom:ByTTextBox IsReadOnly="True"   IsEnabled="False"  Grid.Column="4" Grid.Row="3" Name="_txtAsociado" VerticalAlignment="Center" 
                                            Grid.ColumnSpan="2" MaxLength="255" Text="{Binding Path=Asociado.Nombre}" ></custom:ByTTextBox>
                         <!--Fin Campo-->
 
                         <!--Campo-->
-                        <Label Name="_lblEstatus" Grid.Column="5" Grid.Row="3" HorizontalAlignment="Right" VerticalAlignment="Center" >
+                        <Label Name="_lblEstatus" Grid.Column="6" Grid.Row="3" HorizontalAlignment="Right" VerticalAlignment="Center" >
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblEstatus}"/>
                         </Label>
-                        <custom:ByTTextBox IsReadOnly="True"   IsEnabled="False"  Grid.Column="6" Grid.Row="3" Name="_txtEstatus" VerticalAlignment="Center"  Grid.ColumnSpan="1"
+                        <custom:ByTTextBox IsReadOnly="True"   IsEnabled="False"  Grid.Column="7" Grid.Row="3" Name="_txtEstatus" VerticalAlignment="Center"  Grid.ColumnSpan="1"
                          MaxLength="255" Text="{Binding Path=Servicio.Id}" ></custom:ByTTextBox>
                         <!--Fin Campo-->
 
@@ -300,6 +302,116 @@
 
 
                 </WrapPanel>
+
+                <!--Poder-->
+                <WrapPanel>
+                    <Grid Width="640" DataContext="{Binding}" Name="_gridDatosPoder">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <!--Datos de Carga de Poder-->
+                        <Label Name="_lblIdPoder" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center">
+                            <TextBlock Text="{x:Static recurso:Etiquetas.lblPoder}"/>
+                        </Label>
+                        <custom:ByTTextBox  IsEnabled="False"  Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="2" Name="_txtIdPoder" 
+                                IsReadOnly="True" VerticalAlignment="Center" MouseDoubleClick="_txtIdPoder_MouseDoubleClick"
+                                MaxLength="255" BorderBrush="LightGreen" Text="{Binding Path=Id}">
+                        </custom:ByTTextBox>
+
+                        <Label Name="_lblFomento" Grid.Row="0" Grid.Column="3" HorizontalAlignment="Right" VerticalAlignment="Center">
+                            <TextBlock Text="{x:Static recurso:Etiquetas.lblSapi}"/>
+                        </Label>
+                        <custom:ByTTextBox  IsEnabled="False"  Grid.Column="4" Grid.ColumnSpan="2" Grid.Row="0" Name="_txtNumPoder" 
+                                VerticalAlignment="Center" MaxLength="255" Text="{Binding Path=NumPoder}" 
+                                IsReadOnly="True"></custom:ByTTextBox>
+
+                        <ListView Grid.Row="2" Grid.ColumnSpan="7" Grid.RowSpan="3" Name="_lstPoderes" ItemsSource="{Binding}" 
+            SelectionMode="Single" MouseDoubleClick="_lstPoderes_MouseDoubleClick"
+            Style="{DynamicResource EstiloListView}" Visibility="Collapsed" Height="150"  VerticalAlignment="Top">
+                            <ListView.View>
+                                <GridView>
+                                    <GridViewColumn Width="45">
+                                        <GridViewColumnHeader Click="_OrdenarPoderes_Click" Tag="Id" Content="{x:Static recurso:Etiquetas.lsvId}"/>
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBlock>
+                                        <TextBlock.Text>
+                                            <Binding Path="Id" Converter="{StaticResource convertir}"/>
+                                        </TextBlock.Text>
+                                                </TextBlock>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                    <GridViewColumn DisplayMemberBinding="{Binding Path=NumPoder}" Width="100">
+                                        <GridViewColumnHeader Tag="Fomento" Content="{x:Static recurso:Etiquetas.lsvSapi}"/>
+                                    </GridViewColumn>
+                                    <GridViewColumn Width="120">
+                                        <GridViewColumnHeader Tag="Fecha" Content="{x:Static recurso:Etiquetas.lsvFecha}"/>
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBlock>
+                                        <TextBlock.Text>
+                                            <Binding Path="Fecha" StringFormat="{}{0:dd/MM/yyyy}"/>
+                                        </TextBlock.Text>
+                                                </TextBlock>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                    <GridViewColumn DisplayMemberBinding="{Binding Path=MostrarAgentes}" Width="200">
+                                        <GridViewColumnHeader  Tag="MostrarAgentes" Content="{x:Static recurso:Etiquetas.lsvAgentes}"/>
+                                    </GridViewColumn>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                        <!--Fin de Datos de Carga de Poder-->
+
+                        <!--Datos de Poder-->
+                        <!--Campo-->
+                        <Label Name="_lblPoderFiltrar"  Grid.Column="0" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Center" Visibility="Collapsed">
+                            <TextBlock Text="{x:Static recurso:Etiquetas.lblPoder}"/>
+                        </Label>
+                        <!--Fin Campo-->
+
+                        <!--Campo-->
+                        <Label Name="_lblIdPoderFiltrar" Grid.Row="1" Visibility="Collapsed" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Center">
+                            <TextBlock Text="{x:Static recurso:Etiquetas.lblId}"/>
+                        </Label>
+                        <custom:ByTTextBox  IsEnabled="False"  Grid.Column="2" Grid.ColumnSpan="1" Grid.Row="1" Name="_txtIdPoderFiltrar" VerticalAlignment="Center" 
+                                Visibility="Collapsed" MaxLength="255" GotFocus="_txtPoderFiltrar_GotFocus" SoloNumero="True"></custom:ByTTextBox>
+                        <!--Fin Campo-->
+
+                        <!--Campo-->
+                        <DatePicker Grid.ColumnSpan="2" Grid.Row="1" Grid.Column="4"  HorizontalAlignment="Right"  Name="_dpkFechaPoderFiltrar" Width="180"
+                        Focusable="False" BorderBrush="{x:Null}" Visibility="Collapsed">
+                        </DatePicker>
+                        <!--Fin Campo-->
+
+                        <!--Campo-->
+                        <Button IsEnabled="True" Name="_btnConsultarPoder" Width="65" IsDefault="False" Grid.Row="1" Grid.Column="7" Height="25" 
+                    HorizontalAlignment="Right" Click="_btnConsultar" Visibility="Collapsed">
+                            <TextBlock Text="{x:Static recurso:Etiquetas.btnConsultar}"/>
+                        </Button>
+                        <!--Fin Campo-->
+
+                        <!--Fin datos de Poder-->
+                    </Grid>
+                </WrapPanel>
+                <!--Fin de Poder-->
+                
+                
                 <WrapPanel>
                     <Grid Width="640" DataContext="{Binding}" Name="_gridDatosAgente">
                         <Grid.ColumnDefinitions>
@@ -390,113 +502,6 @@
                     </Grid>
                 </WrapPanel>
 
-                <!--Poder-->
-                <WrapPanel>
-                    <Grid Width="640" DataContext="{Binding}" Name="_gridDatosPoder">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto"/>
-                        </Grid.RowDefinitions>
-                        <!--Datos de Carga de Poder-->
-                        <Label Name="_lblIdPoder" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center">
-                            <TextBlock Text="{x:Static recurso:Etiquetas.lblPoder}"/>
-                        </Label>
-                        <custom:ByTTextBox  IsEnabled="False"  Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="2" Name="_txtIdPoder" 
-                                IsReadOnly="True" VerticalAlignment="Center" MouseDoubleClick="_txtIdPoder_MouseDoubleClick"
-                                MaxLength="255" BorderBrush="LightGreen" Text="{Binding Path=Id}">
-                        </custom:ByTTextBox>
-
-                        <Label Name="_lblFomento" Grid.Row="0" Grid.Column="3" HorizontalAlignment="Right" VerticalAlignment="Center">
-                            <TextBlock Text="{x:Static recurso:Etiquetas.lblSapi}"/>
-                        </Label>
-                        <custom:ByTTextBox  IsEnabled="False"  Grid.Column="4" Grid.ColumnSpan="2" Grid.Row="0" Name="_txtNumPoder" 
-                                VerticalAlignment="Center" MaxLength="255" Text="{Binding Path=NumPoder}" 
-                                IsReadOnly="True"></custom:ByTTextBox>
-
-                        <ListView Grid.Row="2" Grid.ColumnSpan="7" Grid.RowSpan="3" Name="_lstPoderes" ItemsSource="{Binding}" 
-            SelectionMode="Single" MouseDoubleClick="_lstPoderes_MouseDoubleClick"
-            Style="{DynamicResource EstiloListView}" Visibility="Collapsed" Height="150"  VerticalAlignment="Top">
-                            <ListView.View>
-                                <GridView>
-                                    <GridViewColumn Width="45">
-                                        <GridViewColumnHeader Click="_OrdenarPoderes_Click" Tag="Id" Content="{x:Static recurso:Etiquetas.lsvId}"/>
-                                        <GridViewColumn.CellTemplate>
-                                            <DataTemplate>
-                                                <TextBlock>
-                                        <TextBlock.Text>
-                                            <Binding Path="Id" Converter="{StaticResource convertir}"/>
-                                        </TextBlock.Text>
-                                                </TextBlock>
-                                            </DataTemplate>
-                                        </GridViewColumn.CellTemplate>
-                                    </GridViewColumn>
-                                    <GridViewColumn DisplayMemberBinding="{Binding Path=NumPoder}" Width="100">
-                                        <GridViewColumnHeader Tag="Fomento" Content="{x:Static recurso:Etiquetas.lsvSapi}"/>
-                                    </GridViewColumn>
-                                    <GridViewColumn Width="120">
-                                        <GridViewColumnHeader Tag="Fecha" Content="{x:Static recurso:Etiquetas.lsvFechaRenovacion}"/>
-                                        <GridViewColumn.CellTemplate>
-                                            <DataTemplate>
-                                                <TextBlock>
-                                        <TextBlock.Text>
-                                            <Binding Path="Fecha" StringFormat="{}{0:dd/MM/yyyy}"/>
-                                        </TextBlock.Text>
-                                                </TextBlock>
-                                            </DataTemplate>
-                                        </GridViewColumn.CellTemplate>
-                                    </GridViewColumn>
-                                    <GridViewColumn DisplayMemberBinding="{Binding Path=MostrarAgentes}" Width="200">
-                                        <GridViewColumnHeader  Tag="MostrarAgentes" Content="{x:Static recurso:Etiquetas.lsvAgentes}"/>
-                                    </GridViewColumn>
-                                </GridView>
-                            </ListView.View>
-                        </ListView>
-                        <!--Fin de Datos de Carga de Poder-->
-
-                        <!--Datos de Poder-->
-                        <!--Campo-->
-                        <Label Name="_lblPoderFiltrar"  Grid.Column="0" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Center" Visibility="Collapsed">
-                            <TextBlock Text="{x:Static recurso:Etiquetas.lblPoder}"/>
-                        </Label>
-                        <!--Fin Campo-->
-
-                        <!--Campo-->
-                        <Label Name="_lblIdPoderFiltrar" Grid.Row="1" Visibility="Collapsed" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Center">
-                            <TextBlock Text="{x:Static recurso:Etiquetas.lblId}"/>
-                        </Label>
-                        <custom:ByTTextBox  IsEnabled="False"  Grid.Column="2" Grid.ColumnSpan="1" Grid.Row="1" Name="_txtIdPoderFiltrar" VerticalAlignment="Center" 
-                                Visibility="Collapsed" MaxLength="255" GotFocus="_txtPoderFiltrar_GotFocus" SoloNumero="True"></custom:ByTTextBox>
-                        <!--Fin Campo-->
-
-                        <!--Campo-->
-                        <DatePicker Grid.ColumnSpan="2" Grid.Row="1" Grid.Column="4"  HorizontalAlignment="Right"  Name="_dpkFechaPoderFiltrar" Width="180"
-                        Focusable="False" BorderBrush="{x:Null}" Visibility="Collapsed">
-                        </DatePicker>
-                        <!--Fin Campo-->
-
-                        <!--Campo-->
-                        <Button IsEnabled="True" Name="_btnConsultarPoder" Width="65" IsDefault="False" Grid.Row="1" Grid.Column="7" Height="25" 
-                    HorizontalAlignment="Right" Click="_btnConsultar" Visibility="Collapsed">
-                            <TextBlock Text="{x:Static recurso:Etiquetas.btnConsultar}"/>
-                        </Button>
-                        <!--Fin Campo-->
-                       
-                        <!--Fin datos de Poder-->
-                    </Grid>
-                </WrapPanel>
-                <!--Fin de Poder-->
 
                 <WrapPanel>
                     <Grid Width="640">

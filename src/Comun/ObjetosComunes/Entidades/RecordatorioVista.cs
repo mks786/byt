@@ -27,11 +27,11 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         //private string _fax;
         //private string _email;
         private string _pais;
-        //private int _idioma;
+        private string _idioma;
         //private string _tipo;
         private string _fechaRenovacionIn;
         private string _fechaGraciaIn;
-        //private int _clase;
+        private string _clase;
         private DateTime? _fechaRenovacion1;
 
 
@@ -192,11 +192,11 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         }
 
 
-        //public int Idioma
-        //{
-        //    get { return _idioma; }
-        //    set { _idioma = value; }
-        //}
+        public virtual string Idioma
+        {
+            get { return _idioma; }
+            set { _idioma = value; }
+        }
 
 
         //public string Tipo
@@ -220,11 +220,11 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         }
 
 
-        //public int Clase
-        //{
-        //    get { return _clase; }
-        //    set { _clase = value; }
-        //}
+        public virtual string Clase
+        {
+            get { return _clase; }
+            set { _clase = value; }
+        }
 
 
         public virtual DateTime? FechaRenovacion1

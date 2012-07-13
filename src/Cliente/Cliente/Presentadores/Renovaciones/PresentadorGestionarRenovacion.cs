@@ -262,6 +262,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Renovaciones
             if (!this._ventana.Otros.Equals(""))
                 renovacion.OtrosS1 = this._ventana.Otros;
 
+            if (!this._ventana.PeriodoDeGracia.Equals(""))
+                renovacion.Observacion = this._ventana.PeriodoDeGracia;
+
             return renovacion;
         }
 
@@ -642,6 +645,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Renovaciones
 
 
                 CargarTipoRenovacion(TipoDeRenovacion);
+
+                if (null != ((Marca)this._ventana.Marca).Asociado)
+                    this._ventana.PintarAsociado(((Marca)this._ventana.Marca).Asociado.TipoCliente.Id);
 
             //    IList<ListaDatosValores> tiposRenovacion = this._listaDatosValoresServicios.
             //    ConsultarListaDatosValoresPorParametro(new ListaDatosValores(Recursos.Etiquetas.cbiTipoRenovacion));

@@ -179,6 +179,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Abandonos
                     this.IdMarca = "";
             }
         }
+
         private void _btnConsultarMarca_Click(object sender, RoutedEventArgs e)
         {
             this._presentador.ConsultarMarca();

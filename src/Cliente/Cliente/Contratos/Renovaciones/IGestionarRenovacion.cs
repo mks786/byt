@@ -115,6 +115,8 @@ namespace Trascend.Bolet.Cliente.Contratos.Renovaciones
 
         void GestionarBotonConsultarPoder(bool value);
 
-        void ActivarControlesAlAgregar();       
+        void ActivarControlesAlAgregar();
+
+        void PintarAsociado(string tipo);
     }
 }

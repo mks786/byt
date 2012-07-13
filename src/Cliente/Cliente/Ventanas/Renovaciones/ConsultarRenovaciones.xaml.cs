@@ -144,10 +144,22 @@ namespace Trascend.Bolet.Cliente.Ventanas.Renovaciones
             set { this._txtMarca.Text = value; }
         }
 
+        public string IdMarcaFiltrada
+        {
+            get { return this._txtIdMarca.Text; }
+            set { this._txtIdMarca.Text = value; }
+        }
+
         public string InteresadoFiltrado
         {
             get { return this._txtInteresado.Text; }
             set { this._txtInteresado.Text = value; }
+        }
+
+        public string IdInteresadoFiltrado
+        {
+            get { return this._txtIdInteresado.Text; }
+            set { this._txtIdInteresado.Text = value; }
         }
 
         public string TotalHits
@@ -173,6 +185,22 @@ namespace Trascend.Bolet.Cliente.Ventanas.Renovaciones
         {
             this._presentador = new PresentadorConsultarRenovaciones(this,marca);
         }
+
+        public void ConvertirEnteroMinimoABlanco()
+        {
+            if (!this.IdMarcaFiltrada.Equals(""))
+            {
+                if (int.Parse(this.IdMarcaFiltrada) == int.MinValue)
+                    this.IdMarcaFiltrada = "";
+            }
+
+            if (!this.IdInteresadoFiltrado.Equals(""))
+            {
+                if (int.Parse(this.IdInteresadoFiltrado) == int.MinValue)
+                    this.IdInteresadoFiltrado = "";
+            }
+        }
+
 
         private void _btnCancelar_Click(object sender, RoutedEventArgs e)
         {
@@ -280,6 +308,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Renovaciones
             if (visibilidad)
             {
                 this._txtMarca.Visibility = Visibility.Collapsed;
+                this._txtIdMarca.Visibility = Visibility.Collapsed;
 
                 this._txtIdMarcaFiltrar.Visibility = Visibility.Visible;
                 this._txtNombreMarcaFiltrar.Visibility = Visibility.Visible;
@@ -293,6 +322,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Renovaciones
             else
             {
                 this._txtMarca.Visibility = Visibility.Visible;
+                this._txtIdMarca.Visibility = Visibility.Visible;
 
                 this._txtIdMarcaFiltrar.Visibility = Visibility.Collapsed;
                 this._txtNombreMarcaFiltrar.Visibility = Visibility.Collapsed;
@@ -311,6 +341,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Renovaciones
             if (visibilidad)
             {
                 this._txtInteresado.Visibility = Visibility.Collapsed;
+                this._txtIdInteresado.Visibility = Visibility.Collapsed;
 
                 this._txtIdInteresadoFiltrar.Visibility = Visibility.Visible;
                 this._txtNombreInteresadoFiltrar.Visibility = Visibility.Visible;
@@ -322,6 +353,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Renovaciones
             else
             {
                 this._txtInteresado.Visibility = Visibility.Visible;
+                this._txtIdInteresado.Visibility = Visibility.Visible;
 
                 this._txtIdInteresadoFiltrar.Visibility = Visibility.Collapsed;
                 this._txtNombreInteresadoFiltrar.Visibility = Visibility.Collapsed;

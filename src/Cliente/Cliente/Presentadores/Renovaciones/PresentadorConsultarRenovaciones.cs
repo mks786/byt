@@ -28,6 +28,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Renovaciones
         private IMarcaServicios _marcaServicios;
         private IRenovacionServicios _renovacionServicios;
         private IList<Marca> _marcas;
+        private IList<Interesado> _interesados;
         private IInteresadoServicios _interesadoServicios;
         private IList<Renovacion> _renovaciones;
 
@@ -99,6 +100,13 @@ namespace Trascend.Bolet.Cliente.Presentadores.Renovaciones
                     marcas.Insert(0, primeraMarca);
                     this._ventana.Marcas = marcas;
                     this._marcas = marcas;
+
+                    IList<Interesado> interesados = new List<Interesado>();
+                    Interesado primeraInteresado = new Interesado();
+                    primeraInteresado.Id = int.MinValue;
+                    interesados.Insert(0, primeraInteresado);
+                    this._ventana.Interesados = interesados;
+                    this._interesados = interesados;
 
                     this._ventana.TotalHits = "0";
                 }
@@ -479,6 +487,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Renovaciones
             this._ventana.Marca = false;
             this._ventana.Marcas = null;
             this._ventana.MarcaFiltrada = "";
+            this._ventana.IdMarcaFiltrada = "";
             this._ventana.Id = "";
             this._ventana.FechaFiltrar = "";
             this._ventana.IdMarcaFiltrar = "";
@@ -490,6 +499,20 @@ namespace Trascend.Bolet.Cliente.Presentadores.Renovaciones
             this._ventana.Interesado = null;
             this._ventana.Interesados = null;
             this._ventana.InteresadoFiltrado = "";
+            this._ventana.IdInteresadoFiltrado = "";
+
+            IList<Marca> marcas = new List<Marca>();
+            Marca primeraMarca = new Marca();
+            primeraMarca.Id = int.MinValue;
+            marcas.Insert(0, primeraMarca);
+            this._ventana.Marcas = marcas;
+
+            IList<Interesado> interesados = new List<Interesado>();
+            Interesado primeraInteresado = new Interesado();
+            primeraInteresado.Id = int.MinValue;
+            interesados.Insert(0, primeraInteresado);
+            this._ventana.Interesados = interesados;
+
 
             #region trace
             if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -514,6 +537,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Renovaciones
             if (this._ventana.Marca != null)
             {
                 this._ventana.MarcaFiltrada = ((Marca)this._ventana.Marca).Descripcion;
+                this._ventana.IdMarcaFiltrada = ((Marca)this._ventana.Marca).Id.ToString();
+
+
+                this._ventana.ConvertirEnteroMinimoABlanco();
+
                 retorno = true;
             }
 
@@ -537,6 +565,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Renovaciones
             if (this._ventana.Interesado != null)
             {
                 this._ventana.InteresadoFiltrado = ((Interesado)this._ventana.Interesado).Nombre;
+                this._ventana.IdInteresadoFiltrado = ((Interesado)this._ventana.Interesado).Id.ToString();
+
+                this._ventana.ConvertirEnteroMinimoABlanco();
+
                 retorno = true;
             }
 

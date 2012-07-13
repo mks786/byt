@@ -4,6 +4,7 @@ using Trascend.Bolet.Cliente.Contratos.Renovaciones;
 using Trascend.Bolet.Cliente.Presentadores.Renovaciones;
 using Trascend.Bolet.Cliente.Ayuda;
 using Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeNombre;
+using System.Windows.Media;
 
 namespace Trascend.Bolet.Cliente.Ventanas.Renovaciones
 {
@@ -152,14 +153,15 @@ namespace Trascend.Bolet.Cliente.Ventanas.Renovaciones
         {
             set
             {
-              //  this._txtAsociado.IsEnabled = value;
-               // this._txtClaseInternacional.IsEnabled = value;
-                //this._txtClaseNacional.IsEnabled = value;
-                //this._txtTipo.IsEnabled = value;
+                this._txtAsociado.IsEnabled = value;
+                this._txtIdAsociado.IsEnabled = value;
+                this._txtClaseInternacional.IsEnabled = value;
+                this._txtClaseNacional.IsEnabled = value;
+                this._txtTipo.IsEnabled = value;
                 //this._chkEtiqueta.IsEnabled = value;
-                // this._txtEtiquetaDescripcion.IsEnabled = value;
-                //this._txtNumRegistro.IsEnabled = value;
-               // this._txtIdRenovacion.IsEnabled = value;
+                this._txtEtiquetaDescripcion.IsEnabled = value;
+                this._txtNumRegistro.IsEnabled = value;
+                this._txtIdRenovacion.IsEnabled = value;
                 this._txtIdMarcaFiltrar.IsEnabled = value;
                 this._txtNombreMarca.IsEnabled = value;
                 this._txtNombreMarcaFiltrar.IsEnabled = value;
@@ -170,9 +172,9 @@ namespace Trascend.Bolet.Cliente.Ventanas.Renovaciones
                 this._txtIdInteresado.IsEnabled = value;
                 this._txtIdAgente.IsEnabled = value;
 
-               // this._txtFechaProximaRenovacionMarca.IsEnabled = value;
-               // this._txtFechaRegistro.IsEnabled = value;
-               // this._txtEstatus.IsEnabled = value;
+                // this._txtFechaProximaRenovacionMarca.IsEnabled = value;
+                // this._txtFechaRegistro.IsEnabled = value;
+                this._txtEstatus.IsEnabled = value;
 
                 this._txtNombreInteresado.IsEnabled = value;
                 this._txtNombreInteresadoFiltrar.IsEnabled = value;
@@ -469,6 +471,32 @@ namespace Trascend.Bolet.Cliente.Ventanas.Renovaciones
 
         }
 
+        public void PintarAsociado(string tipo)
+        {
+            SolidColorBrush color;
+
+            if (tipo.Equals("1"))
+            {
+                color = Brushes.LightGreen;
+            }
+            else if (tipo.Equals("2"))
+            {
+                color = Brushes.LightBlue;
+            }
+            else if (tipo.Equals("3"))
+            {
+                color = Brushes.LightYellow;
+            }
+            else if (tipo.Equals("4"))
+            {
+                color = Brushes.Pink;
+            }
+            else color = Brushes.Transparent;
+
+            this._txtIdAsociado.Background = color;
+            this._txtAsociado.Background = color;
+        }
+
         #region Eventos Marcas
 
         private void _btnConsultarMarca_Click(object sender, RoutedEventArgs e)
@@ -539,6 +567,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Renovaciones
             this._txtClaseInternacional.Visibility = (System.Windows.Visibility)value;
             this._lblAsociado.Visibility = (System.Windows.Visibility)value;
             this._txtAsociado.Visibility = (System.Windows.Visibility)value;
+            this._txtIdAsociado.Visibility = (System.Windows.Visibility)value;
             this._lblFechaProximaRenovacionMarca.Visibility = (System.Windows.Visibility)value;
             this._txtFechaProximaRenovacionMarca.Visibility = (System.Windows.Visibility)value;
             this._lblEstatus.Visibility = (System.Windows.Visibility)value;

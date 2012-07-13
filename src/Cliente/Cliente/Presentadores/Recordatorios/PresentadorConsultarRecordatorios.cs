@@ -410,15 +410,29 @@ namespace Trascend.Bolet.Cliente.Presentadores.Recordatorios
         /// </summary>
         private void ActualizarNRecordatorio()
         {
-            foreach (Marca marcaRecordatorio in this._marcas)
-            {
-                marcaRecordatorio.Operacion = "MODIFY";
+            for (int i = 0; i < this._recordatorios.Count; i++)
+			{
+                Marca marcaAux = new Marca();
 
-                marcaRecordatorio.Recordatorio = marcaRecordatorio.Recordatorio.Equals((int?)null) ? 0 : marcaRecordatorio.Recordatorio;
-                marcaRecordatorio.Recordatorio = marcaRecordatorio.Recordatorio + 1;
+                marcaAux = this._recordatorios[i].Marca;
+                marcaAux.Operacion = "MODIFY";
+                
+                marcaAux.Recordatorio = this._recordatorios[i].Marca.Recordatorio.Equals((int?)null) ? 0 : this._recordatorios[i].Marca.Recordatorio;
+                marcaAux.Recordatorio = marcaAux.Recordatorio + 1;
 
-                this._marcaServicios.InsertarOModificar(marcaRecordatorio, UsuarioLogeado.Hash);
-            }
+                this._marcaServicios.InsertarOModificar(marcaAux, UsuarioLogeado.Hash);
+			 
+			}
+            
+            //foreach (Marca marcaRecordatorio in this._marcas)
+            //{
+            //    marcaRecordatorio.Operacion = "MODIFY";
+
+            //    marcaRecordatorio.Recordatorio = marcaRecordatorio.Recordatorio.Equals((int?)null) ? 0 : marcaRecordatorio.Recordatorio;
+            //    marcaRecordatorio.Recordatorio = marcaRecordatorio.Recordatorio + 1;
+
+            //    this._marcaServicios.InsertarOModificar(marcaRecordatorio, UsuarioLogeado.Hash);
+            //}
 
         }
 
@@ -482,9 +496,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Recordatorios
 
                     cadena = cadena + recordatorio.Asociado.Id + "|" + recordatorio.Asociado.Nombre + "|" + fax + "|" +
                              recordatorio.Asociado.Email + "|" + recordatorio.Marca.Descripcion + "|" + recordatorio.NombreInteresado + "|" +
-                             ((DateTime)recordatorio.FechaRenovacion1).ToShortDateString() + "|" + recordatorioAux + "|" + recordatorio.Asociado.Pais.NombreEspanol + "|" +
-                             recordatorio.Asociado.Idioma.Descripcion + "|" + recordatorio.Asociado.Domicilio + "|" + recordatorio.Marca.CodigoRegistro +
-                             "|" + claseAux + "|" + recordatorio.FechaGracia + "|" +
+                             recordatorio.FechaRenovacion + "|" + recordatorioAux + "|" + recordatorio.Pais + "|" +
+                             recordatorio.Idioma + "|" + recordatorio.Asociado.Domicilio + "|" + recordatorio.Marca.CodigoRegistro +
+                             "|" + recordatorio.Clase + "|" + recordatorio.FechaGracia + "|" +
                              recordatorio.FechaRenovacionIn + "|" + recordatorio.FechaGraciaIn + "|" + recordatorio.Id + "\r\n";
                 }
 

@@ -19,6 +19,9 @@
     <property name="FechaGraciaIn" column="FECHAGRA_IN" type="string"/>
     <property name="FechaRenovacion1" column="FRENO" type="DateTime"/>
 
+    <property name="Idioma" column="IDIOMA" type="string"/>
+    <property name="Clase" column="CLASE" type="string"/>
+
     <many-to-one name="Marca" class="Marca">
       <column name="CMARCA"/>
     </many-to-one>
