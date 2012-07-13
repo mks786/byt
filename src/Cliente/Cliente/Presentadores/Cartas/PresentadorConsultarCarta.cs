@@ -39,8 +39,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
         private IList<Resumen> _resumenes;
         private IList<Departamento> _departamentos;
         private IList<Usuario> _responsables;
+        private IList<Carta> _cartasARecorrer;
+        private int _posicion = 1;
 
         private bool _precargada = false;
+        private bool _otraCarta = false;
         private object _ventanaAVolver;
 
         /// <summary>
@@ -93,6 +96,59 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
         }
 
         /// <summary>
+        /// Constructor Con Lista de Resultados
+        /// </summary>
+        /// <param name="ventana">Página que satisface el contrato</param>
+        public PresentadorConsultarCarta(IConsultarCarta ventana, object carta, object cartasConsultadas, int posicion)
+        {
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                this._ventana = ventana;
+                this._ventana.Carta = carta;
+                //this._precargada = ventanaAVolver.Equals(null) ? false : true;
+                //this._ventanaAVolver = ventanaAVolver;
+                this._cartasARecorrer = (List<Carta>)cartasConsultadas;
+                
+                this._posicion += posicion;
+
+                this._cartaServicios = (ICartaServicios)Activator.GetObject(typeof(ICartaServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["CartaServicios"]);
+                this._resumenServicios = (IResumenServicios)Activator.GetObject(typeof(IResumenServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["ResumenServicios"]);
+                this._medioServicios = (IMedioServicios)Activator.GetObject(typeof(IMedioServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["MedioServicios"]);
+                this._usuarioServicios = (IUsuarioServicios)Activator.GetObject(typeof(IUsuarioServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["UsuarioServicios"]);
+                this._anexoServicios = (IAnexoServicios)Activator.GetObject(typeof(IAnexoServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["AnexoServicios"]);
+                this._contactoServicios = (IContactoServicios)Activator.GetObject(typeof(IContactoServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["ContactoServicios"]);
+                this._departamentoServicios = (IDepartamentoServicios)Activator.GetObject(typeof(IDepartamentoServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["DepartamentoServicios"]);
+                this._asociadoServicios = (IAsociadoServicios)Activator.GetObject(typeof(IAsociadoServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["AsociadoServicios"]);
+                this._asignacionServicios = (IAsignacionServicios)Activator.GetObject(typeof(IAsignacionServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["AsignacionServicios"]);
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
+            }
+        }
+
+
+        /// <summary>
         /// Método que carga los datos iniciales a mostrar en la página
         /// </summary>
         public void CargarPagina()
@@ -109,8 +165,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
 
                 this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleConsultarCarta,
                     Recursos.Ids.AgregarCarta);
-
-                this._medios = this._medioServicios.ConsultarTodos();
+                
+                if(!_otraCarta)
+                    this._medios = this._medioServicios.ConsultarTodos();
                 this._ventana.Medios = this._medios;
                 Medio medio = new Medio();
                 medio.Id = carta.Medio;
@@ -125,11 +182,13 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
                 medioConfirmacion.Id = carta.AnexoMedio;
                 this._ventana.MedioTrackingConfirmacion = this.BuscarMedio(mediosTracking, medioConfirmacion); ;
 
-                this._receptores = this._usuarioServicios.ConsultarTodos();
+                if (!_otraCarta)
+                    this._receptores = this._usuarioServicios.ConsultarTodos();
                 this._ventana.Receptores = this._receptores;
                 this._ventana.Receptor = this.BuscarReceptor(this._receptores, carta.Receptor);
 
-                this._anexos = this._anexoServicios.ConsultarTodos();
+                if (!_otraCarta)
+                    this._anexos = this._anexoServicios.ConsultarTodos();
                 Anexo primerAnexo = new Anexo();
                 primerAnexo.Id = "NGN";
                 this._anexos.Insert(0, primerAnexo);
@@ -138,7 +197,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
                 this._anexosConfirmacion.Insert(0, primerAnexo);
                 this._ventana.AnexosConfirmacion = _anexosConfirmacion;
 
-                this._asociados = this._asociadoServicios.ConsultarTodos();
+                if (!_otraCarta)
+                    this._asociados = this._asociadoServicios.ConsultarTodos();
                 this._ventana.Asociados = this._asociados;
                 if (null != carta.Asociado)
                 {
@@ -152,7 +212,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
                     this._ventana.NombreAsociado = ((Carta)this._ventana.Carta).Asociado.Nombre;
                 }
 
-                _departamentos = this._departamentoServicios.ConsultarTodos();
+                if (!_otraCarta)
+                    _departamentos = this._departamentoServicios.ConsultarTodos();
                 Departamento primeraTarifa = new Departamento();
                 primeraTarifa.Id = "NGN";
                 _departamentos.Insert(0, primeraTarifa);
@@ -160,7 +221,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
                 if (null != carta.Departamento)
                     this._ventana.Departamento = this.BuscarDepartamento(this._departamentos, carta.Departamento);
 
-                this._responsables = this._usuarioServicios.ConsultarTodos();
+                if (!_otraCarta)
+                    this._responsables = this._usuarioServicios.ConsultarTodos();
                 Usuario primerResponsable = new Usuario();
                 primerResponsable.Id = "NGN";
                 _responsables.Insert(0, primerResponsable);
@@ -168,7 +230,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
 
                 this._ventana.MediosTrackingConfirmacion = mediosTracking;
 
-                this._resumenes = this._resumenServicios.ConsultarTodos();
+                if (!_otraCarta)
+                    this._resumenes = this._resumenServicios.ConsultarTodos();
                 Resumen primeraResumen = new Resumen();
                 primeraResumen.Id = "NGN";
                 _resumenes.Insert(0, primeraResumen);
@@ -180,6 +243,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
                 ((Carta)this._ventana.Carta).Asignaciones = this._asignacionServicios.ObtenerAsignacionesPorCarta((Carta)this._ventana.Carta);
 
                 this._ventana.FocoPredeterminado();
+                this._ventana.ContadorCartas = this._posicion.ToString() + " de " 
+                    + ((List<Carta>)this._cartasARecorrer).Count.ToString();
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -559,6 +624,194 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
                 this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
             }
         }
+
+        /// <summary>
+        /// Método que permite pasar a la carta siguiente
+        /// </summary>
+        public void SiguienteCarta()
+        {
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                #region descomentar
+                //bool tracking = true;
+
+                //if (null != (((Medio)this._ventana.Medio).Formato) &&
+                //    (!String.IsNullOrEmpty(((Carta)this._ventana.Carta).Tracking)))
+
+                //    tracking = this.VerificarFormato(((Medio)this._ventana.Medio).Formato, ((Carta)this._ventana.Carta).Tracking);
+
+                //if (null != (((Medio)this._ventana.MedioTrackingConfirmacion)) &&
+                //    (null != (((Medio)this._ventana.MedioTrackingConfirmacion).Formato)) &&
+                //    (!String.IsNullOrEmpty(((Carta)this._ventana.Carta).AnexoTracking)))
+
+                //    tracking = this.VerificarFormato(((Medio)this._ventana.MedioTrackingConfirmacion).Formato, ((Carta)this._ventana.Carta).AnexoTracking);
+
+                //if (tracking)
+                //{
+                //    Carta carta = (Carta)this._ventana.Carta;
+                //    carta.Operacion = "MODIFY";
+
+                //    if (null != this._ventana.Departamento)
+                //        carta.Departamento = !((Departamento)this._ventana.Departamento).Id.Equals("NGN") ?
+                //                                (Departamento)this._ventana.Departamento : null;
+
+                //    if (null != this._ventana.Asociado)
+                //        carta.Asociado = !((Asociado)this._ventana.Asociado).Id.Equals("NGN") ? (Asociado)this._ventana.Asociado : null;
+
+                //    if (null != this._ventana.Persona)
+                //        carta.Persona = !((Contacto)this._ventana.Persona).Id.Equals("NGN") ? ((Contacto)this._ventana.Persona).Nombre : null;
+
+                //    if (null != this._ventana.Resumen)
+                //        carta.Resumen = !((Resumen)this._ventana.Resumen).Id.Equals("NGN") ? ((Resumen)this._ventana.Resumen) : null;
+
+                //    if (null != this._ventana.MedioTrackingConfirmacion)
+                //        carta.AnexoMedio = ((Medio)this._ventana.MedioTrackingConfirmacion).Id;
+
+                //    carta.Medio = ((Medio)this._ventana.Medio).Id;
+                //    carta.Receptor = ((Usuario)this._ventana.Receptor).Iniciales;
+                //    bool exitoso = this._cartaServicios.InsertarOModificar(carta, UsuarioLogeado.Hash);
+
+                //    if (exitoso)
+                //        this.Navegar(Recursos.MensajesConElUsuario.CartaModificada, false);
+                //}
+                #endregion
+
+                if (_posicion == _cartasARecorrer.Count())
+                    _posicion = 0;
+                    
+                this._ventana.Carta = this._cartasARecorrer[_posicion];
+                _posicion += 1;
+                _otraCarta = true;
+                this.CargarPagina();
+
+
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (ApplicationException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(ex.Message, true);
+            }
+            catch (RemotingException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorRemoting, true);
+            }
+            catch (SocketException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorConexionServidor, true);
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
+            }
+        }
+
+        /// <summary>
+        /// Método que permite pasar a la carta anterior
+        /// </summary>
+        public void AnteriorCarta()
+        {
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                #region descomentar
+                //bool tracking = true;
+
+                //if (null != (((Medio)this._ventana.Medio).Formato) &&
+                //    (!String.IsNullOrEmpty(((Carta)this._ventana.Carta).Tracking)))
+
+                //    tracking = this.VerificarFormato(((Medio)this._ventana.Medio).Formato, ((Carta)this._ventana.Carta).Tracking);
+
+                //if (null != (((Medio)this._ventana.MedioTrackingConfirmacion)) &&
+                //    (null != (((Medio)this._ventana.MedioTrackingConfirmacion).Formato)) &&
+                //    (!String.IsNullOrEmpty(((Carta)this._ventana.Carta).AnexoTracking)))
+
+                //    tracking = this.VerificarFormato(((Medio)this._ventana.MedioTrackingConfirmacion).Formato, ((Carta)this._ventana.Carta).AnexoTracking);
+
+                //if (tracking)
+                //{
+                //    Carta carta = (Carta)this._ventana.Carta;
+                //    carta.Operacion = "MODIFY";
+
+                //    if (null != this._ventana.Departamento)
+                //        carta.Departamento = !((Departamento)this._ventana.Departamento).Id.Equals("NGN") ?
+                //                                (Departamento)this._ventana.Departamento : null;
+
+                //    if (null != this._ventana.Asociado)
+                //        carta.Asociado = !((Asociado)this._ventana.Asociado).Id.Equals("NGN") ? (Asociado)this._ventana.Asociado : null;
+
+                //    if (null != this._ventana.Persona)
+                //        carta.Persona = !((Contacto)this._ventana.Persona).Id.Equals("NGN") ? ((Contacto)this._ventana.Persona).Nombre : null;
+
+                //    if (null != this._ventana.Resumen)
+                //        carta.Resumen = !((Resumen)this._ventana.Resumen).Id.Equals("NGN") ? ((Resumen)this._ventana.Resumen) : null;
+
+                //    if (null != this._ventana.MedioTrackingConfirmacion)
+                //        carta.AnexoMedio = ((Medio)this._ventana.MedioTrackingConfirmacion).Id;
+
+                //    carta.Medio = ((Medio)this._ventana.Medio).Id;
+                //    carta.Receptor = ((Usuario)this._ventana.Receptor).Iniciales;
+                //    bool exitoso = this._cartaServicios.InsertarOModificar(carta, UsuarioLogeado.Hash);
+
+                //    if (exitoso)
+                //        this.Navegar(Recursos.MensajesConElUsuario.CartaModificada, false);
+                //}
+                #endregion
+
+                if (_posicion == 1)
+                    _posicion = _cartasARecorrer.Count();
+                else
+                    _posicion -= 1;
+                this._ventana.Carta = this._cartasARecorrer[_posicion-1];
+
+                _otraCarta = true;
+                this.CargarPagina();
+
+
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (ApplicationException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(ex.Message, true);
+            }
+            catch (RemotingException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorRemoting, true);
+            }
+            catch (SocketException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorConexionServidor, true);
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
+            }
+        }
+
 
         /// <summary>
         /// Método que cambia el asociado en la ventana
@@ -1199,6 +1452,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
                 this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
             }
         }
+
+
 
         public void VolverAVentanaPadre()
         {

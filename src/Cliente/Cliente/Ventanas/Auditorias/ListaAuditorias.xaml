@@ -37,8 +37,17 @@
                         <GridViewColumn DisplayMemberBinding="{Binding Path=Usuario}" Width="166">
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="Usuario" Content="{x:Static recurso:Etiquetas.lsvUsuario}"/>
                         </GridViewColumn>
-                        <GridViewColumn DisplayMemberBinding="{Binding Path=Fecha}" Width="167">
+                        <GridViewColumn Width="150">
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="Fecha" Content="{x:Static recurso:Etiquetas.lsvFecha}"/>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock>
+                                        <TextBlock.Text>
+                                            <Binding Path="Fecha" StringFormat="{}{0:dd/MM/yyyy}"/>
+                                        </TextBlock.Text>
+                                    </TextBlock>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
                         </GridViewColumn>
                         <GridViewColumn DisplayMemberBinding="{Binding Path=Operacion}" Width="167">
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="Operacion" Content="{x:Static recurso:Etiquetas.lsvOperacion}"/>

@@ -1339,7 +1339,7 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Select a from Auditoria a where a.Fk = &apos;{0}&apos; and a.Tabla = &apos;{1}&apos;.
+        ///   Looks up a localized string similar to Select a from Auditoria a where a.Fk = &apos;{0}&apos; and a.Tabla = &apos;{1}&apos; ORDER BY a.Fecha DESC.
         /// </summary>
         public static string ObtenerAuditoriaPorFKYTabla {
             get {
@@ -1348,7 +1348,7 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Select a from Auditoria a where a.Fks = &apos;{0}&apos; and a.Tabla = &apos;{1}&apos; and a.Fk = &apos;{2}&apos;.
+        ///   Looks up a localized string similar to Select a from Auditoria a where a.Fks = &apos;{0}&apos; and a.Tabla = &apos;{1}&apos; and a.Fk = &apos;{2}&apos; ORDER BY a.Fecha DESC.
         /// </summary>
         public static string ObtenerAuditoriaPorFKYTablaMarcaTer {
             get {

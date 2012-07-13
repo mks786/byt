@@ -259,14 +259,24 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
 
                         MarcaTerceroAuxiliar.Descripcion = marca.Descripcion != null ? marca.Descripcion : "";
 
-                        if ((marca.Asociado != null) && (!string.IsNullOrEmpty(marca.Asociado.Nombre)))
+                        try
                         {
-                            
-                                asociadoAuxiliar.Nombre = marca.Asociado.Nombre;
-                                MarcaTerceroAuxiliar.Asociado = asociadoAuxiliar;
-                                 
-                        }
 
+
+                            if ((marca.Asociado != null) && (!string.IsNullOrEmpty(marca.Asociado.Nombre)))
+                            {
+                            
+                                    asociadoAuxiliar.Nombre = marca.Asociado.Nombre;
+                                    MarcaTerceroAuxiliar.Asociado = asociadoAuxiliar;
+                                 
+                            }
+                        }
+                        catch (NHibernate.LazyInitializationException ex)
+                        {
+
+                            marca.Asociado = null;
+                            NullFK = true;
+                        }
 
                         try
                         {

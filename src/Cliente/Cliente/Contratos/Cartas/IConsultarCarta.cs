@@ -13,6 +13,8 @@ namespace Trascend.Bolet.Cliente.Contratos.Cartas
 
         string NombreAsociado { get; set; }
 
+        string ContadorCartas { get; set; }
+
         string idAsociadoFiltrar { get; set; }
 
         string NombreAsociadoFiltrar { get; set; }

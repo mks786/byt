@@ -241,6 +241,12 @@ namespace Trascend.Bolet.Cliente.Ventanas.Cartas
             set { this._txtAsociado.Text = value; }
         }
 
+        public string ContadorCartas
+        {
+            get { return this._txtContadorCarta.Text; }
+            set { this._txtContadorCarta.Text = value; }
+        }
+
         public string idAsociadoFiltrar
         {
             get { return this._txtIdAsociado.Text; }
@@ -327,6 +333,17 @@ namespace Trascend.Bolet.Cliente.Ventanas.Cartas
         {
             _precargada = true;
             this._presentador = new PresentadorConsultarCarta(this, cartaSeleccionada, ventana);
+        }
+        
+        /// <summary>
+        /// Constructor con LineStackingStrategy de resultados
+        /// </summary>
+        /// <param name="cartaSeleccionada"></param>
+        public ConsultarCarta(object cartaSeleccionada, object lista, int posicion)
+        {
+            InitializeComponent();
+            this._cargada = false;
+            this._presentador = new PresentadorConsultarCarta(this, cartaSeleccionada, lista, posicion);
         }
 
         private void _btnCancelar_Click(object sender, RoutedEventArgs e)
@@ -458,6 +475,16 @@ namespace Trascend.Bolet.Cliente.Ventanas.Cartas
             {
                 this._presentador.EliminarCarta();
             }
+        }
+
+        private void _btnSiguiente_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.SiguienteCarta();
+        }
+
+        private void _btnAnterior_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.AnteriorCarta();
         }
 
 

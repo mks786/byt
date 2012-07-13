@@ -27,6 +27,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
         private Asociado _asociadoAFiltrar; //Asociado que es pasado a esta ventana para filtrar directamente
         private object _ventanaAVolver; //Asociado que es pasado a esta ventana para filtrar directamente
 
+        int _posicion;
         private IConsultarCartas _ventana;
         private ICartaServicios _cartaServicios;
         private IAsociadoServicios _asociadoServicios;
@@ -245,12 +246,19 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
                 logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
 
-            if (this._ventana.CartaSeleccionado != null)
-                if (_precargada)
-                    this.Navegar(new ConsultarCarta(this._ventana.CartaSeleccionado, this._ventana));
-                else
-                    this.Navegar(new ConsultarCarta(this._ventana.CartaSeleccionado));
-
+            if (((List<Carta>)this._ventana.Resultados).Count == 1)
+            {
+                if (this._ventana.CartaSeleccionado != null)
+                    if (_precargada)
+                        this.Navegar(new ConsultarCarta(this._ventana.CartaSeleccionado, this._ventana));
+                    else
+                        this.Navegar(new ConsultarCarta(this._ventana.CartaSeleccionado));
+            }
+            else
+            {
+                _posicion = ((List<Carta>) this._ventana.Resultados).IndexOf((Carta) this._ventana.CartaSeleccionado);
+                this.Navegar(new ConsultarCarta(this._ventana.CartaSeleccionado, this._ventana.Resultados, _posicion));
+            }
 
             #region trace
             if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))

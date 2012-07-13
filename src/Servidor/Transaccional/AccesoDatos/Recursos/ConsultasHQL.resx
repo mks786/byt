@@ -148,7 +148,7 @@
     <comment>Selecciona el asociado con todas sus listas</comment>
   </data>
   <data name="ObtenerAuditoriaPorFKYTabla" xml:space="preserve">
-    <value>Select a from Auditoria a where a.Fk = '{0}' and a.Tabla = '{1}'</value>
+    <value>Select a from Auditoria a where a.Fk = '{0}' and a.Tabla = '{1}' ORDER BY a.Fecha DESC</value>
     <comment>Selecciona todas las auditorias que poseen una FK en una tabla espacifica</comment>
   </data>
   <data name="ObtenerContactosPorAsociado" xml:space="preserve">
@@ -813,7 +813,7 @@
     <comment>filtro por recordatorio</comment>
   </data>
   <data name="ObtenerAuditoriaPorFKYTablaMarcaTer" xml:space="preserve">
-    <value>Select a from Auditoria a where a.Fks = '{0}' and a.Tabla = '{1}' and a.Fk = '{2}'</value>
+    <value>Select a from Auditoria a where a.Fks = '{0}' and a.Tabla = '{1}' and a.Fk = '{2}' ORDER BY a.Fecha DESC</value>
     <comment>Obtiene las auditorias de una marcaTercero</comment>
   </data>
 </root>

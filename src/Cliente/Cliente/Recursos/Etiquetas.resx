@@ -2751,4 +2751,10 @@ en Prensa:</value>
   <data name="lblFechaPresentacion" xml:space="preserve">
     <value>Fecha de Presentacion:</value>
   </data>
+  <data name="btnAnterior" xml:space="preserve">
+    <value>Anterior</value>
+  </data>
+  <data name="btnSiguiente" xml:space="preserve">
+    <value>Siguiente</value>
+  </data>
 </root>

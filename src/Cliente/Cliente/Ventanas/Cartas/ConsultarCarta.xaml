@@ -29,7 +29,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="30"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="40"/>
+            <RowDefinition Height="65"/>
             <RowDefinition Height="10"/>
         </Grid.RowDefinitions>
 
@@ -381,6 +381,19 @@
             </Grid>
 
         </ScrollViewer>
+
+        <WrapPanel Grid.Row="2" Grid.ColumnSpan="3" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="5" Orientation="Horizontal">
+            <custom:ByTTextBox  IsEnabled="true"  Grid.ColumnSpan="2" BorderBrush="Transparent" Name="_txtContadorCarta" Text="12 de 104"  Height="20" TextAlignment="Right" Margin="0,5" Background="Transparent" Width="80"></custom:ByTTextBox>
+
+            <Button Name="_btnAnterior"  VerticalAlignment="Bottom" Height="25" Width="90" 
+                    Click="_btnAnterior_Click"  IsDefault="True">
+                <TextBlock Name="_txbAnterior" Text="{x:Static recurso:Etiquetas.btnAnterior}"/>
+            </Button>
+            <Button Name="_btnSiguiente" VerticalAlignment="Bottom" Height="25" Width="90"
+                    Click="_btnSiguiente_Click">
+                <TextBlock Name="_txbSiguiente" Text="{x:Static recurso:Etiquetas.btnSiguiente}"/>
+            </Button>
+        </WrapPanel>
         <WrapPanel Grid.Row="2" Grid.ColumnSpan="3" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="5" Orientation="Horizontal">
             <Button Name="_btnAceptar"  VerticalAlignment="Bottom" Height="25" Width="90" 
                     Click="_btnAceptar_Click"  IsDefault="True">
