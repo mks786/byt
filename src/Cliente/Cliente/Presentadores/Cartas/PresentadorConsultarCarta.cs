@@ -43,6 +43,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
         private int _posicion = 1;
 
         private bool _precargada = false;
+        private bool _listaCartasCargada = false;
         private bool _otraCarta = false;
         private object _ventanaAVolver;
 
@@ -61,8 +62,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
 
                 this._ventana = ventana;
                 this._ventana.Carta = carta;
-                this._precargada = ventanaAVolver.Equals(null) ? false : true;
-                this._ventanaAVolver = ventanaAVolver;
+         //       this._precargada = ventanaAVolver.Equals(null) ? false : true;
+         //       this._ventanaAVolver = ventanaAVolver;
 
                 this._cartaServicios = (ICartaServicios)Activator.GetObject(typeof(ICartaServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["CartaServicios"]);
@@ -112,6 +113,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
                 this._ventana.Carta = carta;
                 //this._precargada = ventanaAVolver.Equals(null) ? false : true;
                 //this._ventanaAVolver = ventanaAVolver;
+                this._listaCartasCargada = true;
                 this._cartasARecorrer = (List<Carta>)cartasConsultadas;
                 
                 this._posicion += posicion;
@@ -200,16 +202,28 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
                 if (!_otraCarta)
                     this._asociados = this._asociadoServicios.ConsultarTodos();
                 this._ventana.Asociados = this._asociados;
-                if (null != carta.Asociado)
+                try
                 {
-                    this._ventana.Asociado = this.BuscarAsociado(this._asociados, carta.Asociado);
-                    Asociado asociado = this._asociadoServicios.ConsultarAsociadoConTodo((Asociado)this._ventana.Asociado);
-                    asociado.Contactos = this._contactoServicios.ConsultarContactosPorAsociado(asociado);
-                    this._personas = asociado.Contactos;
+                    if (null != carta.Asociado)
+                    {
+                        this._ventana.NombreAsociado = ((Carta)this._ventana.Carta).Asociado.Nombre;
+                        this._ventana.Asociado = this.BuscarAsociado(this._asociados, carta.Asociado);
+                        Asociado asociado = this._asociadoServicios.ConsultarAsociadoConTodo((Asociado)this._ventana.Asociado);
+                        asociado.Contactos = this._contactoServicios.ConsultarContactosPorAsociado(asociado);
+                        this._personas = asociado.Contactos;
+                        this._ventana.Personas = null;
+                        this._ventana.Personas = this._personas;
+                        this._ventana.Persona = BuscarContacto(this._personas, carta.Persona);
+                        this._ventana.NombreAsociado = ((Carta)this._ventana.Carta).Asociado.Nombre;
+                    }
+                }
+                catch (NHibernate.LazyInitializationException)
+                {
+                    carta.Asociado = null;
+                    this._ventana.Asociado = null;
                     this._ventana.Personas = null;
-                    this._ventana.Personas = this._personas;
-                    this._ventana.Persona = BuscarContacto(this._personas, carta.Persona);
-                    this._ventana.NombreAsociado = ((Carta)this._ventana.Carta).Asociado.Nombre;
+                    this._ventana.Persona = null;
+                    this._ventana.NombreAsociado = null;
                 }
 
                 if (!_otraCarta)
@@ -243,8 +257,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
                 ((Carta)this._ventana.Carta).Asignaciones = this._asignacionServicios.ObtenerAsignacionesPorCarta((Carta)this._ventana.Carta);
 
                 this._ventana.FocoPredeterminado();
-                this._ventana.ContadorCartas = this._posicion.ToString() + " de " 
-                    + ((List<Carta>)this._cartasARecorrer).Count.ToString();
+                if(_listaCartasCargada)
+                    this._ventana.ContadorCartas = this._posicion.ToString() + " de " 
+                                + ((List<Carta>)this._cartasARecorrer).Count.ToString();
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -688,6 +703,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
                 _posicion += 1;
                 _otraCarta = true;
                 this.CargarPagina();
+             //   CargarResponsables();
 
 
 
@@ -782,6 +798,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
 
                 _otraCarta = true;
                 this.CargarPagina();
+              //  CargarResponsables();
 
 
 

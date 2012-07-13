@@ -254,9 +254,9 @@
                 </ListView>
 
                 <Separator Grid.Column="1" Grid.Row="13" Grid.ColumnSpan="9" Margin="0,5,0,5" VerticalAlignment="Center"/>
-                <Label Grid.Column="1" Grid.Row="14" HorizontalAlignment="Right" VerticalAlignment="Center">
+                <!--<Label Grid.Column="1" Grid.Row="14" HorizontalAlignment="Right" VerticalAlignment="Center">
                     <TextBlock Text="{x:Static recurso:Etiquetas.lblTitleResponsables}"/>
-                </Label>
+                </Label>-->
 
                 <Separator Grid.Column="1" Grid.Row="15" Grid.ColumnSpan="9" Margin="0,5,0,5" VerticalAlignment="Center"/>
                 <Label Grid.Column="1" Grid.Row="16" HorizontalAlignment="Right" VerticalAlignment="Top">
@@ -383,7 +383,7 @@
         </ScrollViewer>
 
         <WrapPanel Grid.Row="2" Grid.ColumnSpan="3" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="5" Orientation="Horizontal">
-            <custom:ByTTextBox  IsEnabled="true"  Grid.ColumnSpan="2" BorderBrush="Transparent" Name="_txtContadorCarta" Text="12 de 104"  Height="20" TextAlignment="Right" Margin="0,5" Background="Transparent" Width="80"></custom:ByTTextBox>
+            <custom:ByTTextBox  IsEnabled="true"  Grid.ColumnSpan="2" BorderBrush="Transparent" Name="_txtContadorCarta" Text=""  Height="20" TextAlignment="Right" Margin="0,5" Background="Transparent" Width="80"></custom:ByTTextBox>
 
             <Button Name="_btnAnterior"  VerticalAlignment="Bottom" Height="25" Width="90" 
                     Click="_btnAnterior_Click"  IsDefault="True">

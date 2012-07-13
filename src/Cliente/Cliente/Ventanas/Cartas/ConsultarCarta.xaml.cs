@@ -325,6 +325,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.Cartas
         {
             InitializeComponent();
             this._cargada = false;
+            this._btnSiguiente.Visibility = System.Windows.Visibility.Collapsed;
+            this._btnAnterior.Visibility = System.Windows.Visibility.Collapsed;
             this._presentador = new PresentadorConsultarCarta(this, cartaSeleccionada, null);
         }
 
@@ -336,7 +338,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Cartas
         }
         
         /// <summary>
-        /// Constructor con LineStackingStrategy de resultados
+        /// Constructor con Lista de resultados
         /// </summary>
         /// <param name="cartaSeleccionada"></param>
         public ConsultarCarta(object cartaSeleccionada, object lista, int posicion)
@@ -480,11 +482,19 @@ namespace Trascend.Bolet.Cliente.Ventanas.Cartas
         private void _btnSiguiente_Click(object sender, RoutedEventArgs e)
         {
             this._presentador.SiguienteCarta();
+            if (!this._presentador.CargarResponsables())
+            {
+                this._lstResponsables.Visibility = System.Windows.Visibility.Collapsed;
+            }
         }
 
         private void _btnAnterior_Click(object sender, RoutedEventArgs e)
         {
             this._presentador.AnteriorCarta();
+            if (!this._presentador.CargarResponsables())
+            {
+                this._lstResponsables.Visibility = System.Windows.Visibility.Collapsed;
+            }
         }
 
 
