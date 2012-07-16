@@ -22,5 +22,15 @@ namespace Trascend.Bolet.Comandos.Fabrica
         {
             return new ComandoConsultarAsignacionesPorCarta(carta);
         }
+
+        /// <summary>
+        /// Metodo regresa una lista de sasignaciones por un Responsable
+        /// </summary>
+        /// <param name="user"></param>
+        /// <returns></returns>
+        public static ComandoBase<IList<Asignacion>> ObtenerComandoConsultarAsignacionesPorUsuario(Usuario user)
+        {
+            return new ComandoConsultarAsignacionesPorUsuario(user);
+        }
     }
 }

@@ -816,4 +816,7 @@
     <value>Select a from Auditoria a where a.Fks = '{0}' and a.Tabla = '{1}' and a.Fk = '{2}' ORDER BY a.Fecha DESC</value>
     <comment>Obtiene las auditorias de una marcaTercero</comment>
   </data>
+  <data name="ObtenerAsignacionesPorUsuario" xml:space="preserve">
+    <value>Select a from Asignacion a where a.Iniciales= '{0}'</value>
+  </data>
 </root>

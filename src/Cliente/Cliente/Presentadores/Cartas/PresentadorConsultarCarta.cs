@@ -33,6 +33,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
         private IList<Asociado> _asociados;
         private IList<Usuario> _receptores;
         private IList<Medio> _medios;
+        private IList<Medio> _listaMedioTracking;
         private IList<Anexo> _anexos;
         private IList<Anexo> _anexosConfirmacion;
         private IList<Contacto> _personas;
@@ -175,14 +176,24 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
                 medio.Id = carta.Medio;
                 this._ventana.Medio = this.BuscarMedio(this._medios, medio);
 
-                IList<Medio> mediosTracking = this._medioServicios.ConsultarTodos();
-                Medio primerosMediosTracking = new Medio();
-                primerosMediosTracking.Id = "NGN";
-                mediosTracking.Insert(0, primerosMediosTracking);
-                this._ventana.MediosTrackingConfirmacion = mediosTracking;
+
+                if (!_otraCarta)
+                {
+                    IList<Medio> mediosTracking = this._medioServicios.ConsultarTodos();
+                    _listaMedioTracking = mediosTracking;
+                    Medio primerosMediosTracking = new Medio();
+                    primerosMediosTracking.Id = "NGN";
+                    mediosTracking.Insert(0, primerosMediosTracking);
+                    this._ventana.MediosTrackingConfirmacion = mediosTracking;
+                }
                 Medio medioConfirmacion = new Medio();
-                medioConfirmacion.Id = carta.AnexoMedio;
-                this._ventana.MedioTrackingConfirmacion = this.BuscarMedio(mediosTracking, medioConfirmacion); ;
+                if (null != carta.AnexoMedio)
+                {
+                    medioConfirmacion.Id = carta.AnexoMedio;
+                    this._ventana.MedioTrackingConfirmacion = this.BuscarMedio(_listaMedioTracking, medioConfirmacion);
+                }
+                else
+                    this._ventana.MedioTrackingConfirmacion = _listaMedioTracking[0];
 
                 if (!_otraCarta)
                     this._receptores = this._usuarioServicios.ConsultarTodos();
@@ -190,14 +201,17 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
                 this._ventana.Receptor = this.BuscarReceptor(this._receptores, carta.Receptor);
 
                 if (!_otraCarta)
+                {
                     this._anexos = this._anexoServicios.ConsultarTodos();
-                Anexo primerAnexo = new Anexo();
-                primerAnexo.Id = "NGN";
-                this._anexos.Insert(0, primerAnexo);
-                this._ventana.Anexos = _anexos;
-                this._anexosConfirmacion = this._anexoServicios.ConsultarTodos();
-                this._anexosConfirmacion.Insert(0, primerAnexo);
-                this._ventana.AnexosConfirmacion = _anexosConfirmacion;
+                    Anexo primerAnexo = new Anexo();
+                    primerAnexo.Id = "NGN";
+                    this._anexos.Insert(0, primerAnexo);
+
+                    this._ventana.Anexos = _anexos;
+                    this._anexosConfirmacion = this._anexoServicios.ConsultarTodos();
+                    this._anexosConfirmacion.Insert(0, primerAnexo);
+                    this._ventana.AnexosConfirmacion = _anexosConfirmacion;
+                }
 
                 if (!_otraCarta)
                     this._asociados = this._asociadoServicios.ConsultarTodos();
@@ -227,28 +241,34 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
                 }
 
                 if (!_otraCarta)
+                {
                     _departamentos = this._departamentoServicios.ConsultarTodos();
-                Departamento primeraTarifa = new Departamento();
-                primeraTarifa.Id = "NGN";
-                _departamentos.Insert(0, primeraTarifa);
+                    Departamento primeraTarifa = new Departamento();
+                    primeraTarifa.Id = "NGN";
+                    _departamentos.Insert(0, primeraTarifa);
+                }
                 this._ventana.Departamentos = _departamentos;
                 if (null != carta.Departamento)
                     this._ventana.Departamento = this.BuscarDepartamento(this._departamentos, carta.Departamento);
 
                 if (!_otraCarta)
+                {
                     this._responsables = this._usuarioServicios.ConsultarTodos();
-                Usuario primerResponsable = new Usuario();
-                primerResponsable.Id = "NGN";
-                _responsables.Insert(0, primerResponsable);
+                    Usuario primerResponsable = new Usuario();
+                    primerResponsable.Id = "NGN";
+                    _responsables.Insert(0, primerResponsable);
+                }
                 this._ventana.Responsables = _responsables;
 
-                this._ventana.MediosTrackingConfirmacion = mediosTracking;
+                this._ventana.MediosTrackingConfirmacion = _listaMedioTracking;
 
                 if (!_otraCarta)
+                {
                     this._resumenes = this._resumenServicios.ConsultarTodos();
-                Resumen primeraResumen = new Resumen();
-                primeraResumen.Id = "NGN";
-                _resumenes.Insert(0, primeraResumen);
+                    Resumen primeraResumen = new Resumen();
+                    primeraResumen.Id = "NGN";
+                    _resumenes.Insert(0, primeraResumen);
+                }
                 this._ventana.Resumenes = null;
                 this._ventana.Resumenes = this._resumenes;
                 if (null != carta.Resumen)
@@ -652,54 +672,69 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-                #region descomentar
-                //bool tracking = true;
+                #region Guarda Antes de ir a la Carta siguiente
 
-                //if (null != (((Medio)this._ventana.Medio).Formato) &&
-                //    (!String.IsNullOrEmpty(((Carta)this._ventana.Carta).Tracking)))
+                 if (this._ventana.TextoBotonModificar != Recursos.Etiquetas.btnModificar)
+                {
+                    bool tracking = true;
 
-                //    tracking = this.VerificarFormato(((Medio)this._ventana.Medio).Formato, ((Carta)this._ventana.Carta).Tracking);
+                    if (null != (((Medio)this._ventana.Medio).Formato) &&
+                        (!String.IsNullOrEmpty(((Carta)this._ventana.Carta).Tracking)))
 
-                //if (null != (((Medio)this._ventana.MedioTrackingConfirmacion)) &&
-                //    (null != (((Medio)this._ventana.MedioTrackingConfirmacion).Formato)) &&
-                //    (!String.IsNullOrEmpty(((Carta)this._ventana.Carta).AnexoTracking)))
+                        tracking = this.VerificarFormato(((Medio)this._ventana.Medio).Formato, ((Carta)this._ventana.Carta).Tracking);
 
-                //    tracking = this.VerificarFormato(((Medio)this._ventana.MedioTrackingConfirmacion).Formato, ((Carta)this._ventana.Carta).AnexoTracking);
+                    if (null != (((Medio)this._ventana.MedioTrackingConfirmacion)) &&
+                        (null != (((Medio)this._ventana.MedioTrackingConfirmacion).Formato)) &&
+                        (!String.IsNullOrEmpty(((Carta)this._ventana.Carta).AnexoTracking)))
 
-                //if (tracking)
-                //{
-                //    Carta carta = (Carta)this._ventana.Carta;
-                //    carta.Operacion = "MODIFY";
+                        tracking = this.VerificarFormato(((Medio)this._ventana.MedioTrackingConfirmacion).Formato, ((Carta)this._ventana.Carta).AnexoTracking);
 
-                //    if (null != this._ventana.Departamento)
-                //        carta.Departamento = !((Departamento)this._ventana.Departamento).Id.Equals("NGN") ?
-                //                                (Departamento)this._ventana.Departamento : null;
+                    if (tracking)
+                    {
+                        Carta carta = (Carta) this._ventana.Carta;
+                        carta.Operacion = "MODIFY";
 
-                //    if (null != this._ventana.Asociado)
-                //        carta.Asociado = !((Asociado)this._ventana.Asociado).Id.Equals("NGN") ? (Asociado)this._ventana.Asociado : null;
+                        if (null != this._ventana.Departamento)
+                            carta.Departamento = !((Departamento) this._ventana.Departamento).Id.Equals("NGN")
+                                                     ? (Departamento) this._ventana.Departamento
+                                                     : null;
 
-                //    if (null != this._ventana.Persona)
-                //        carta.Persona = !((Contacto)this._ventana.Persona).Id.Equals("NGN") ? ((Contacto)this._ventana.Persona).Nombre : null;
+                        if (null != this._ventana.Asociado)
+                            carta.Asociado = !((Asociado) this._ventana.Asociado).Id.Equals("NGN")
+                                                 ? (Asociado) this._ventana.Asociado
+                                                 : null;
 
-                //    if (null != this._ventana.Resumen)
-                //        carta.Resumen = !((Resumen)this._ventana.Resumen).Id.Equals("NGN") ? ((Resumen)this._ventana.Resumen) : null;
+                        if (null != this._ventana.Persona)
+                            carta.Persona = !((Contacto) this._ventana.Persona).Id.Equals("NGN")
+                                                ? ((Contacto) this._ventana.Persona).Nombre
+                                                : null;
 
-                //    if (null != this._ventana.MedioTrackingConfirmacion)
-                //        carta.AnexoMedio = ((Medio)this._ventana.MedioTrackingConfirmacion).Id;
+                        if (null != this._ventana.Resumen)
+                            carta.Resumen = !((Resumen) this._ventana.Resumen).Id.Equals("NGN")
+                                                ? ((Resumen) this._ventana.Resumen)
+                                                : null;
 
-                //    carta.Medio = ((Medio)this._ventana.Medio).Id;
-                //    carta.Receptor = ((Usuario)this._ventana.Receptor).Iniciales;
-                //    bool exitoso = this._cartaServicios.InsertarOModificar(carta, UsuarioLogeado.Hash);
+                        if (null != this._ventana.MedioTrackingConfirmacion)
+                            carta.AnexoMedio = ((Medio) this._ventana.MedioTrackingConfirmacion).Id;
 
-                //    if (exitoso)
-                //        this.Navegar(Recursos.MensajesConElUsuario.CartaModificada, false);
-                //}
+                        carta.Medio = ((Medio) this._ventana.Medio).Id;
+                        carta.Receptor = ((Usuario) this._ventana.Receptor).Iniciales;
+                        bool exitoso = this._cartaServicios.InsertarOModificar(carta, UsuarioLogeado.Hash);
+
+                        if (exitoso)
+                        {
+                            this._ventana.HabilitarCampos = false;
+                            this._ventana.TextoBotonModificar = Recursos.Etiquetas.btnModificar;
+                        }
+                    }
+                }
+
                 #endregion
 
                 if (_posicion == _cartasARecorrer.Count())
                     _posicion = 0;
                     
-                this._ventana.Carta = this._cartasARecorrer[_posicion];
+                this._ventana.Carta =  this._cartasARecorrer[_posicion];
                 _posicion += 1;
                 _otraCarta = true;
                 this.CargarPagina();
@@ -746,48 +781,65 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-                #region descomentar
-                //bool tracking = true;
+                #region Guarda la Carta antes de pasar la anterior
 
-                //if (null != (((Medio)this._ventana.Medio).Formato) &&
-                //    (!String.IsNullOrEmpty(((Carta)this._ventana.Carta).Tracking)))
+                if (this._ventana.TextoBotonModificar != Recursos.Etiquetas.btnModificar)
+                {
+                    bool tracking = true;
 
-                //    tracking = this.VerificarFormato(((Medio)this._ventana.Medio).Formato, ((Carta)this._ventana.Carta).Tracking);
+                    if (null != (((Medio) this._ventana.Medio).Formato) &&
+                        (!String.IsNullOrEmpty(((Carta) this._ventana.Carta).Tracking)))
 
-                //if (null != (((Medio)this._ventana.MedioTrackingConfirmacion)) &&
-                //    (null != (((Medio)this._ventana.MedioTrackingConfirmacion).Formato)) &&
-                //    (!String.IsNullOrEmpty(((Carta)this._ventana.Carta).AnexoTracking)))
+                        tracking = this.VerificarFormato(((Medio) this._ventana.Medio).Formato,
+                                                         ((Carta) this._ventana.Carta).Tracking);
 
-                //    tracking = this.VerificarFormato(((Medio)this._ventana.MedioTrackingConfirmacion).Formato, ((Carta)this._ventana.Carta).AnexoTracking);
+                    if (null != (((Medio) this._ventana.MedioTrackingConfirmacion)) &&
+                        (null != (((Medio) this._ventana.MedioTrackingConfirmacion).Formato)) &&
+                        (!String.IsNullOrEmpty(((Carta) this._ventana.Carta).AnexoTracking)))
 
-                //if (tracking)
-                //{
-                //    Carta carta = (Carta)this._ventana.Carta;
-                //    carta.Operacion = "MODIFY";
+                        tracking = this.VerificarFormato(((Medio) this._ventana.MedioTrackingConfirmacion).Formato,
+                                                         ((Carta) this._ventana.Carta).AnexoTracking);
 
-                //    if (null != this._ventana.Departamento)
-                //        carta.Departamento = !((Departamento)this._ventana.Departamento).Id.Equals("NGN") ?
-                //                                (Departamento)this._ventana.Departamento : null;
+                    if (tracking)
+                    {
+                        Carta carta = (Carta) this._ventana.Carta;
+                        carta.Operacion = "MODIFY";
 
-                //    if (null != this._ventana.Asociado)
-                //        carta.Asociado = !((Asociado)this._ventana.Asociado).Id.Equals("NGN") ? (Asociado)this._ventana.Asociado : null;
+                        if (null != this._ventana.Departamento)
+                            carta.Departamento = !((Departamento) this._ventana.Departamento).Id.Equals("NGN")
+                                                     ? (Departamento) this._ventana.Departamento
+                                                     : null;
 
-                //    if (null != this._ventana.Persona)
-                //        carta.Persona = !((Contacto)this._ventana.Persona).Id.Equals("NGN") ? ((Contacto)this._ventana.Persona).Nombre : null;
+                        if (null != this._ventana.Asociado)
+                            carta.Asociado = !((Asociado) this._ventana.Asociado).Id.Equals("NGN")
+                                                 ? (Asociado) this._ventana.Asociado
+                                                 : null;
 
-                //    if (null != this._ventana.Resumen)
-                //        carta.Resumen = !((Resumen)this._ventana.Resumen).Id.Equals("NGN") ? ((Resumen)this._ventana.Resumen) : null;
+                        if (null != this._ventana.Persona)
+                            carta.Persona = !((Contacto) this._ventana.Persona).Id.Equals("NGN")
+                                                ? ((Contacto) this._ventana.Persona).Nombre
+                                                : null;
 
-                //    if (null != this._ventana.MedioTrackingConfirmacion)
-                //        carta.AnexoMedio = ((Medio)this._ventana.MedioTrackingConfirmacion).Id;
+                        if (null != this._ventana.Resumen)
+                            carta.Resumen = !((Resumen) this._ventana.Resumen).Id.Equals("NGN")
+                                                ? ((Resumen) this._ventana.Resumen)
+                                                : null;
 
-                //    carta.Medio = ((Medio)this._ventana.Medio).Id;
-                //    carta.Receptor = ((Usuario)this._ventana.Receptor).Iniciales;
-                //    bool exitoso = this._cartaServicios.InsertarOModificar(carta, UsuarioLogeado.Hash);
+                        if (null != this._ventana.MedioTrackingConfirmacion)
+                            carta.AnexoMedio = ((Medio) this._ventana.MedioTrackingConfirmacion).Id;
 
-                //    if (exitoso)
-                //        this.Navegar(Recursos.MensajesConElUsuario.CartaModificada, false);
-                //}
+                        carta.Medio = ((Medio) this._ventana.Medio).Id;
+                        carta.Receptor = ((Usuario) this._ventana.Receptor).Iniciales;
+                        bool exitoso = this._cartaServicios.InsertarOModificar(carta, UsuarioLogeado.Hash);
+
+                        if (exitoso)
+                        {
+                            this._ventana.HabilitarCampos = false;
+                            this._ventana.TextoBotonModificar = Recursos.Etiquetas.btnModificar;
+                        }
+                    }
+                }
+
                 #endregion
 
                 if (_posicion == 1)

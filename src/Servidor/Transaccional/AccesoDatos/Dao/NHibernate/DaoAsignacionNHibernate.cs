@@ -47,5 +47,41 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
             }
             return asignaciones;
         }
+
+
+        /// <summary>
+        /// Obtiene todas las asignaciones que tiene una carta
+        /// </summary>
+        /// <param name="user">El usuario</param>
+        /// <returns>Lista de Asignaciones</returns>
+        public IList<Asignacion> ObtenerAsignacionesPorUsuario(Usuario user)
+        {
+            IList<Asignacion> asignaciones = null;
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                IQuery query = Session.CreateQuery(string.Format(Recursos.ConsultasHQL.ObtenerAsignacionesPorUsuario, user.Iniciales));
+                asignaciones = query.List<Asignacion>();
+
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Saliendo del Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                throw new ApplicationException(Recursos.Errores.exObtenerAsignacionesPorCarta);
+            }
+            finally
+            {
+                Session.Close();
+            }
+            return asignaciones;
+        }
     }
 }

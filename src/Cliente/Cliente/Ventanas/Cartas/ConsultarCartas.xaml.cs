@@ -34,6 +34,18 @@ namespace Trascend.Bolet.Cliente.Ventanas.Cartas
             set { this._txtId.Text = value; }
         }
 
+        public object Responsable
+        {
+            get { return this._cbxResponsable.SelectedItem; }
+            set { this._cbxResponsable.SelectedItem = value; }
+        }
+
+        public object Responsables
+        {
+            get { return this._cbxResponsable.DataContext; }
+            set { this._cbxResponsable.DataContext = value; }
+        }
+
 
         public object CartaSeleccionado
         {

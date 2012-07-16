@@ -73,8 +73,17 @@
                             <Binding Path="Fecha" UpdateSourceTrigger="PropertyChanged"/>
                         </DatePicker.SelectedDate>
                     </DatePicker>
-                </WrapPanel>
 
+                </WrapPanel>
+                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right"  Margin="0,5,180,0">
+                    <Label  VerticalAlignment="Center" HorizontalAlignment="Right">
+                        <TextBlock Text="{x:Static recurso:Etiquetas.lblTitleResponsable}"/>
+                    </Label>
+                    <ComboBox IsEnabled="True" 
+                      Name="_cbxResponsable" Height="20" Width="150" SelectedIndex="0"
+                      ItemsSource="{Binding}" VerticalAlignment="Center" DisplayMemberPath="NombreCompleto">
+                    </ComboBox>
+                </WrapPanel>
 
                 <Separator Margin="0,5,0,5"/>
                 <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,14,0">

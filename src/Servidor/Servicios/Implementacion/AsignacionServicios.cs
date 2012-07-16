@@ -226,6 +226,43 @@ namespace Trascend.Bolet.Servicios.Implementacion
         }
 
 
+        /// <summary>
+        /// Servicio que se encarga de obtener las asignaciones pertenecientes a una carta
+        /// </summary>
+        /// <param name="carta">Carta a consultar las asignaciones</param>
+        /// <returns>Lista de asignaciones de la carta</returns>
+        public IList<Asignacion> ObtenerAsignacionesPorUsuario(Usuario user)
+        {
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                IList<Asignacion> asignaciones;
+
+                asignaciones = ControladorAsignacion.ConsultarAsignacionesPorUsuario(user);
+
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Saliendo del Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+                return asignaciones;
+            }
+            catch (ApplicationException ex)
+            {
+                logger.Error(ex.Message);
+                throw ex;
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                throw new ApplicationException(Errores.MensajesAlServidor.ErrorInesperadoServidor);
+            }
+
+        }
+
 
         IList<Asignacion> IServicioBase<Asignacion>.ConsultarTodos()
         {

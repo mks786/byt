@@ -31,6 +31,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
         private IConsultarCartas _ventana;
         private ICartaServicios _cartaServicios;
         private IAsociadoServicios _asociadoServicios;
+        private IUsuarioServicios _usuariosServicios;
+        private IAsignacionServicios _asignacionServicios;
         private IList<Carta> _cartas;
         private IList<Asociado> _asociados;
 
@@ -59,6 +61,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["CartaServicios"]);
                 this._asociadoServicios = (IAsociadoServicios)Activator.GetObject(typeof(IAsociadoServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["AsociadoServicios"]);
+                this._usuariosServicios = (IUsuarioServicios)Activator.GetObject(typeof(IUsuarioServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["UsuarioServicios"]);
+                this._asignacionServicios = (IAsignacionServicios)Activator.GetObject(typeof(IAsignacionServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["AsignacionServicios"]);
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -117,10 +123,17 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
                     this._ventana.Asociado = carta.Asociado;
                     this._ventana.Resultados = this._cartaServicios.ObtenerCartasFiltro(carta);
                     this._ventana.TotalHits = ((IList<Carta>)this._ventana.Resultados).Count.ToString();
+
                 }
                 else
                 {
                     this._ventana.TotalHits = "0";
+
+                    IList<Usuario> responsables = this._usuariosServicios.ConsultarTodos();
+                    Usuario primerUsuario = new Usuario();
+                    primerUsuario.Id = "NGN";
+                    responsables.Insert(0,primerUsuario);
+                    this._ventana.Responsables = responsables;
                 }
                 this._ventana.FocoPredeterminado();
 
@@ -175,6 +188,18 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
                 //dos filtros sean utilizados
 
                 Carta cartaAuxiliar = new Carta();
+                IList<Asignacion> asignaciones = new List<Asignacion>();
+
+                if ((null != this._ventana.Responsable) && ((Usuario)this._ventana.Responsable).Id != "NGN")
+                {
+                    //asignaciones =
+                    //    this._asignacionServicios.ObtenerAsignacionesPorUsuario(((Usuario)this._ventana.Responsable));
+                    //Asignacion asignacion = new Asignacion();
+                    //asignacion.Responsable = ((Usuario)this._ventana.Responsable);
+                    //cartaAuxiliar.Asignaciones = new List<Asignacion>();
+                    //cartaAuxiliar.Asignaciones.Add(asignacion);
+                    //filtroValido = 2;
+                }
 
                 if (!this._ventana.Id.Equals(""))
                 {

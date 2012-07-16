@@ -57,6 +57,7 @@
     <Compile Include="Comandos\ComandosAnualidad\ComandoConsultarUltimoIdAnualidad.cs" />
     <Compile Include="Comandos\ComandosAnualidad\ComandoConsultarAnualidadesPorPatente.cs" />
     <Compile Include="Comandos\ComandosAsignacion\ComandoConsultarAsignacionesPorCarta.cs" />
+    <Compile Include="Comandos\ComandosAsignacion\ComandoConsultarAsignacionesPorUsuario.cs" />
     <Compile Include="Comandos\ComandosAsociado\ComandoConsultarAsociadoConTodo.cs" />
     <Compile Include="Comandos\ComandosAsociado\ComandoConsultarAsociadosFiltro.cs" />
     <Compile Include="Comandos\ComandosAsociado\ComandoVerificarCartasDeAsociado.cs" />

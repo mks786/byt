@@ -486,6 +486,22 @@ namespace Trascend.Bolet.Cliente.Ventanas.Cartas
             {
                 this._lstResponsables.Visibility = System.Windows.Visibility.Collapsed;
             }
+            else
+                this._lstResponsables.Visibility = System.Windows.Visibility.Visible;
+
+            if (!this._presentador.CargarAnexosCarta())
+            {
+                this._lstAnexosCarta.Visibility = System.Windows.Visibility.Collapsed;
+            }
+            else
+                this._lstAnexosCarta.Visibility = System.Windows.Visibility.Visible;
+
+            if (!this._presentador.CargarAnexosCartaConfirmacion())
+            {
+                this._lstAnexosCartaConfirmacion.Visibility = System.Windows.Visibility.Collapsed;
+            }
+            else
+                this._lstAnexosCartaConfirmacion.Visibility = System.Windows.Visibility.Visible;
         }
 
         private void _btnAnterior_Click(object sender, RoutedEventArgs e)
@@ -495,6 +511,22 @@ namespace Trascend.Bolet.Cliente.Ventanas.Cartas
             {
                 this._lstResponsables.Visibility = System.Windows.Visibility.Collapsed;
             }
+            else
+                this._lstResponsables.Visibility = System.Windows.Visibility.Visible;
+
+            if (!this._presentador.CargarAnexosCarta())
+            {
+                this._lstAnexosCarta.Visibility = System.Windows.Visibility.Collapsed;
+            }
+            else
+                this._lstAnexosCarta.Visibility = System.Windows.Visibility.Visible;
+
+            if (!this._presentador.CargarAnexosCartaConfirmacion())
+            {
+                this._lstAnexosCartaConfirmacion.Visibility = System.Windows.Visibility.Collapsed;
+            }
+            else
+                this._lstAnexosCartaConfirmacion.Visibility = System.Windows.Visibility.Visible;
         }
 
 

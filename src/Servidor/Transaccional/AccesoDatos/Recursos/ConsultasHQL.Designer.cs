@@ -1330,6 +1330,15 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Select a from Asignacion a where a.Iniciales= &apos;{0}&apos;.
+        /// </summary>
+        public static string ObtenerAsignacionesPorUsuario {
+            get {
+                return ResourceManager.GetString("ObtenerAsignacionesPorUsuario", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select distinct(a) from Asociado a left outer join fetch a.Justificaciones where a.Id = &apos;{0}&apos; order by a.Id.
         /// </summary>
         public static string ObtenerAsociadoConTodo {
