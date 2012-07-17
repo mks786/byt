@@ -189,7 +189,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
                 Medio medioConfirmacion = new Medio();
                 if (null != carta.AnexoMedio)
                 {
-                    medioConfirmacion.Id = carta.AnexoMedio;
+                    medioConfirmacion.Id = carta.AnexoMedio.ToUpper();
                     this._ventana.MedioTrackingConfirmacion = this.BuscarMedio(_listaMedioTracking, medioConfirmacion);
                 }
                 else

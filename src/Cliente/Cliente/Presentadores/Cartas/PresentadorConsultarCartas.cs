@@ -16,6 +16,7 @@ using Trascend.Bolet.Cliente.Ventanas.Cartas;
 using Trascend.Bolet.ObjetosComunes.ContratosServicios;
 using Trascend.Bolet.ObjetosComunes.Entidades;
 
+
 namespace Trascend.Bolet.Cliente.Presentadores.Cartas
 {
     class PresentadorConsultarCartas : PresentadorBase
@@ -34,6 +35,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
         private IUsuarioServicios _usuariosServicios;
         private IAsignacionServicios _asignacionServicios;
         private IList<Carta> _cartas;
+        private IEnumerable<Carta> _cartasDeUnResponsable;
         private IList<Asociado> _asociados;
 
         /// <summary>
@@ -184,33 +186,45 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
                 Mouse.OverrideCursor = Cursors.Wait;
 
                 bool consultaResumen = false;
+                bool responsable = false;
                 int filtroValido = 0;//Variable utilizada para limitar a que el filtro se ejecute solo cuando 
                 //dos filtros sean utilizados
 
                 Carta cartaAuxiliar = new Carta();
                 IList<Asignacion> asignaciones = new List<Asignacion>();
+                IList<Carta> cartasPorResponsable = new List<Carta>();
+                
 
                 if ((null != this._ventana.Responsable) && ((Usuario)this._ventana.Responsable).Id != "NGN")
                 {
-                    //asignaciones =
-                    //    this._asignacionServicios.ObtenerAsignacionesPorUsuario(((Usuario)this._ventana.Responsable));
-                    //Asignacion asignacion = new Asignacion();
-                    //asignacion.Responsable = ((Usuario)this._ventana.Responsable);
-                    //cartaAuxiliar.Asignaciones = new List<Asignacion>();
-                    //cartaAuxiliar.Asignaciones.Add(asignacion);
-                    //filtroValido = 2;
+                    asignaciones =
+                        this._asignacionServicios.ObtenerAsignacionesPorUsuario(((Usuario)this._ventana.Responsable));
+
+                    IList<Carta> Carta;
+                    foreach (Asignacion asigna in asignaciones)
+                    {
+                        Carta = this._cartaServicios.ObtenerCartasFiltro(new Carta(asigna.Carta.Id));
+                        cartasPorResponsable.Add(Carta[0]);
+
+                    }
+                    this._cartasDeUnResponsable = cartasPorResponsable;
+                    responsable = true;
+                    filtroValido = 2;
                 }
 
                 if (!this._ventana.Id.Equals(""))
                 {
                     filtroValido = 2;
                     cartaAuxiliar.Id = int.Parse(this._ventana.Id);
+
+
                 }
 
                 if ((null != this._ventana.Asociado) && (((Asociado)this._ventana.Asociado).Id != int.MinValue))
                 {
                     cartaAuxiliar.Asociado = (Asociado)this._ventana.Asociado;
                     filtroValido++;
+
                 }
 
 
@@ -238,7 +252,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
                     cartaAuxiliar.Fecha = fechaCarta;
                 }
 
-                if (filtroValido != 0)
+                //Si responsable no fue activado se consulta normalmente.
+                if ((filtroValido != 0)&&(!responsable))
                 {
                     this._cartas = new List<Carta>();
                     this._cartas = this._cartaServicios.ObtenerCartasFiltro(cartaAuxiliar);
@@ -246,6 +261,18 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
                     this._ventana.TotalHits = this._cartas.Count.ToString();
 
                     if (this._cartas.Count == 0)
+                        this._ventana.Mensaje(Recursos.MensajesConElUsuario.NoHayResultados, 1);
+                }
+
+                //si responsable fue activado se consultan todas las cartas de cada una de sus asignaciones
+                if ((filtroValido != 0) && (responsable))
+                {
+
+
+                    this._ventana.Resultados = ((IEnumerable<Carta>)_cartasDeUnResponsable);
+                   
+                    this._ventana.TotalHits = cartasPorResponsable.Count.ToString();
+                    if (asignaciones.Count == 0)
                         this._ventana.Mensaje(Recursos.MensajesConElUsuario.NoHayResultados, 1);
                 }
                 Mouse.OverrideCursor = null;
