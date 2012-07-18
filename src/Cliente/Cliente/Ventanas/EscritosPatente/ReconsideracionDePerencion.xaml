@@ -232,11 +232,9 @@
                   Grid.Column="0" Grid.Row="3" 
                   HorizontalAlignment="Stretch">
                 <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="150"/>
                     <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="120"/>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
@@ -349,7 +347,7 @@
                     <TextBlock Text="{x:Static recurso:Etiquetas.lblFechaDePresentacionDeEscrito}"/>
                 </Label>
                 
-                <DatePicker Name="_dpkFecha" Grid.Row="3" Grid.Column="4" Grid.ColumnSpan="2" Width="150" Focusable="False" BorderBrush="{x:Null}"
+                <DatePicker Name="_dpkFecha" Grid.Row="3" Grid.Column="4" Grid.ColumnSpan="1" Width="100" Focusable="False" BorderBrush="{x:Null}"
                             HorizontalAlignment="Left">
                 </DatePicker>
                 

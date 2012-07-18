@@ -219,6 +219,45 @@ namespace Trascend.Bolet.Cliente.Presentadores
             return retorno;
         }
 
+
+        /// <summary>
+        /// Método que filtra los usuarios por sus iniciales
+        /// </summary>
+        /// <param name="users">Lista de usuario</param>
+        /// <returns>lista de usuarios filtrado</returns>
+        public IList<Usuario> FiltrarUsuariosRepetidos(IList<Usuario> users)
+        {
+            IList<Usuario> retorno = new List<Usuario>();
+            int conta=0;
+            string iniciales="";
+            if (users.Count != 0)
+            {
+                foreach (Usuario usuario in users)
+                {
+                    
+                    if (conta == 0)//primer usuario de la lista siempre entra
+                    {
+                        retorno.Add(usuario);
+                        iniciales = usuario.Iniciales;
+                        conta++;
+                        
+                    }
+                    else//compara siguientes usuarios
+                    {
+
+                        if (usuario.Iniciales != iniciales)
+                        {
+                            retorno.Add(usuario);
+                            iniciales = usuario.Iniciales;
+                            
+                        }
+                    }
+                }
+            }
+
+            return retorno;
+        }
+
         /// <summary>
         /// Método que busca un Boletin dentro de una lista de Boletines
         /// </summary>

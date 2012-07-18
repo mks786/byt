@@ -624,7 +624,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
-
+                _marcasAgregadas = new List<Marca>();
 
                 if ((this._ventana.MarcaFiltrado != null) && (((Marca)this._ventana.MarcaFiltrado).Id != int.MinValue))
                 {
@@ -635,6 +635,14 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
                     this._marcasAgregadas.Insert(0, (Marca)this._ventana.MarcaFiltrado);
               //      this._marcas.Remove((Marca)this._ventana.MarcaFiltrado);
 
+                }
+                else
+                {
+                    this._marcasBusqueda = null;
+                    _marcasAgregadas = new List<Marca>();
+                    this._ventana.MarcaFiltrado = null;
+                    this._ventana.MarcaBusquedaSeleccionada= null;
+                    GenerarString();
                 }
 
                 this._ventana.MarcasBusqueda = null;
