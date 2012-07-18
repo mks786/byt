@@ -81,7 +81,7 @@
                     </Label>
                     <ComboBox IsEnabled="True" 
                       Name="_cbxResponsable" Height="20" Width="150" SelectedIndex="0"
-                      ItemsSource="{Binding}" VerticalAlignment="Center" DisplayMemberPath="NombreCompleto">
+                      ItemsSource="{Binding}" VerticalAlignment="Center" SelectionChanged="_cbxResponsable_SelectionChanged" DisplayMemberPath="NombreCompleto"> 
                     </ComboBox>
                 </WrapPanel>
 

@@ -37,6 +37,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
         private IAsignacionServicios _asignacionServicios;
         private IList<Carta> _cartas;
         private IEnumerable<Carta> _cartasDeUnResponsable;
+        private IEnumerable<Carta> _cartasDeUnResponsableConAsociado;
         private IList<Asociado> _asociados;
 
         /// <summary>
@@ -195,6 +196,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
                 Carta cartaAuxiliar = new Carta();
                 IList<Asignacion> asignaciones = new List<Asignacion>();
                 IList<Carta> cartasPorResponsable = new List<Carta>();
+                IList<Carta> cartasPorResponsableConAsociado = new List<Carta>();
                 
 
                 if ((null != this._ventana.Responsable) && ((Usuario)this._ventana.Responsable).Id != "NGN")
@@ -206,10 +208,27 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
                     foreach (Asignacion asigna in asignaciones)
                     {
                         Carta = this._cartaServicios.ObtenerCartasFiltro(new Carta(asigna.Carta.Id));
+                        if (null != Carta[0].Asociado)
+                        {
+                            cartasPorResponsableConAsociado.Add(Carta[0]);
+                        }
+                        else
+                        {
+                            Carta[0].Asociado = new Asociado(int.MinValue);
+                        }
+                        if (null == Carta[0].Resumen)
+                        {
+                            Carta[0].Resumen = new Resumen("NGN");
+                        }
+                        if (null == Carta[0].Referencia)
+                        {
+                            Carta[0].Referencia = "";
+                        }
                         cartasPorResponsable.Add(Carta[0]);
 
                     }
                     this._cartasDeUnResponsable = cartasPorResponsable;
+                    this._cartasDeUnResponsableConAsociado = cartasPorResponsableConAsociado;
                     _responsable = true;
                     filtroValido = 2;
                 }
@@ -239,15 +258,15 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
                     cartaAuxiliar.Asociado = (Asociado)this._ventana.Asociado;
                     filtroValido++;
 
-                    //if (_responsable)
-                    //{
-                    //    int? idAsociado = ((Asociado) this._ventana.Asociado).Id;
-                    //    this._cartasDeUnResponsable = from c in cartasPorResponsable
-                    //                                  where c.Asociado.Id == idAsociado
-                    //                                  select c;
-                    //    cartasPorResponsable = this._cartasDeUnResponsable.ToList();
+                    if (_responsable)
+                    {
+                        int idAsociado = ((Asociado)this._ventana.Asociado).Id;
+                        this._cartasDeUnResponsableConAsociado = from c in cartasPorResponsableConAsociado
+                                                      where c.Asociado.Id == idAsociado
+                                                      select c;
+                        cartasPorResponsable = this._cartasDeUnResponsableConAsociado.ToList();
 
-                    //}
+                    }
 
                 }
 
@@ -280,7 +299,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
                     if (_responsable)
                     {
                         this._cartasDeUnResponsable = from c in cartasPorResponsable
-                                                      where c.Referencia == this._ventana.ReferenciaFiltrar
+                                                      where c.Referencia.Contains(this._ventana.ReferenciaFiltrar.ToUpper())
                                                       select c;
                         cartasPorResponsable = this._cartasDeUnResponsable.ToList();
 
@@ -324,7 +343,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
                 {
 
 
-                    this._ventana.Resultados = _cartasDeUnResponsable;
+                    this._ventana.Resultados = cartasPorResponsable;
                    
                     this._ventana.TotalHits = cartasPorResponsable.Count.ToString();
                     if (asignaciones.Count == 0)

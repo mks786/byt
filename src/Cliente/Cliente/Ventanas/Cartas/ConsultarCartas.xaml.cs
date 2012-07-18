@@ -265,5 +265,10 @@ namespace Trascend.Bolet.Cliente.Ventanas.Cartas
             this._presentador.LimpiarCampos();
         }
 
+        private void _cbxResponsable_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
     }
 }
