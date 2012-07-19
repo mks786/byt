@@ -289,7 +289,21 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 boletines.Insert(0, primerBoletin);
                 this._ventana.BoletinesOrdenPublicacion = boletines;
                 this._ventana.BoletinesPublicacion = boletines;
-                this._ventana.BoletinConcesion = boletines;
+                this._ventana.BoletinesConcesion = boletines;
+                this._ventana.BoletinOrdenPublicacion = this.BuscarBoletin(boletines, primerBoletin);
+                this._ventana.BoletinConcesion = this.BuscarBoletin(boletines, primerBoletin);
+                this._ventana.BoletinPublicacion = this.BuscarBoletin(boletines, primerBoletin);
+
+               // Interesado interesado = (this._interesadoServicios.ConsultarInteresadoConTodo(marca.Interesado));
+               
+
+                //IList<Boletin> boletines = this._boletinServicios.ConsultarTodos();
+                //Boletin primerBoletin = new Boletin();
+                //primerBoletin.Id = int.MinValue;
+                //boletines.Insert(0, primerBoletin);
+                //this._ventana.BoletinesOrdenPublicacion = boletines;
+                //this._ventana.BoletinesPublicacion = boletines;
+                //this._ventana.BoletinConcesion = boletines;
 
                 IList<ListaDatosDominio> sectores = this._listaDatosDominioServicios.
                                     ConsultarListaDatosDominioPorParametro(new ListaDatosDominio(Recursos.Etiquetas.cbiSector));
@@ -366,6 +380,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                     if (null != this._ventana.AsociadoSolicitud)
                         marca.Asociado = ((Asociado)this._ventana.AsociadoSolicitud).Id != int.MinValue ? (Asociado)this._ventana.AsociadoSolicitud : null;
 
+                    if (null != this._ventana.BoletinOrdenPublicacion)
+                        marca.BoletinOrdenPublicacion = ((Boletin)this._ventana.BoletinOrdenPublicacion).Id != int.MinValue ? (Boletin)this._ventana.BoletinOrdenPublicacion : null;
+
                     if (null != this._ventana.BoletinConcesion)
                         marca.BoletinConcesion = ((Boletin)this._ventana.BoletinConcesion).Id != int.MinValue ? (Boletin)this._ventana.BoletinConcesion : null;
 
@@ -377,6 +394,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
 
                     if (null != this._ventana.Servicio)
                         marca.Servicio = !((Servicio)this._ventana.Servicio).Id.Equals("NGN") ? ((Servicio)this._ventana.Servicio) : null;
+
+                    if (null != this._ventana.Detalle)
+                        marca.TipoEstado = !((TipoEstado)this._ventana.Detalle).Id.Equals("") ? ((TipoEstado)this._ventana.Detalle) : null;
 
                     if (null != this._ventana.PoderSolicitud)
                         marca.Poder = ((Poder)this._ventana.PoderSolicitud).Id != int.MinValue ? ((Poder)this._ventana.PoderSolicitud) : null;
@@ -404,6 +424,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
 
                     if (string.IsNullOrEmpty(this._ventana.IdNacional))
                         marca.Nacional = null;
+
+                    
 
                     int? exitoso = this._marcaServicios.InsertarOModificarMarca(marca, UsuarioLogeado.Hash);
 
@@ -1435,6 +1457,25 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
 
             this._ventana.DistingueSolicitud = internacionalAux.Descripcion;
             this._ventana.DistingueDatos = internacionalAux.Descripcion;
+        }
+
+        /// <summary>
+        /// Método que se ecarga la descripcion de la situacion
+        /// </summary>
+        /// <param name="tab"></param>
+        public void DescripcionDetalle()
+        {
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+            this._ventana.DetalleDescripcion = ((TipoEstado)this._ventana.Detalle).Descripcion;
+
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
         }
     }
 }

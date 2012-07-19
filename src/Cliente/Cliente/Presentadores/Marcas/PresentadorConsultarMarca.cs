@@ -440,6 +440,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             else if (!this._ventana.IdAsociadoSolicitud.Equals(""))
                 marca.Asociado = new Asociado(int.Parse(this._ventana.IdAsociadoSolicitud));
 
+            if (null != this._ventana.BoletinOrdenPublicacion)
+                marca.BoletinOrdenPublicacion = ((Boletin)this._ventana.BoletinOrdenPublicacion).Id != int.MinValue ? (Boletin)this._ventana.BoletinOrdenPublicacion : null;
+
             if (null != this._ventana.BoletinConcesion)
                 marca.BoletinConcesion = ((Boletin)this._ventana.BoletinConcesion).Id != int.MinValue ? (Boletin)this._ventana.BoletinConcesion : null;
 

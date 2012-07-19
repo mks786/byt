@@ -43,6 +43,27 @@
     <property name="Ter" column="ITER" type="char"/>
     <property name="Recordatorio" column="NRECORDATORIO" type="int"/>
 
+
+    <property name="Localidad" column="CLOCALIDAD" type="char"/>
+    <property name="IdInternacional" column="CMARCAI" type="int"/>
+    <property name="Donde" column="CDONDE" type="int"/>
+    
+    <many-to-one name="PaisInternacional" class="Pais">
+      <column name="CPAIS_INT"/>
+    </many-to-one>
+    
+    <many-to-one name="AsociadoInternacional" class="Asociado">
+      <column name="CASOCIADO_I"/>
+    </many-to-one>
+    
+    <property name="CasoInteresado" column="XCASO_INTERESADO" type="string"/>
+    <property name="Clasificacion" column="ICLASIFICACION" type="string"/>
+    <property name="Clase" column="XCLASE" type="string"/>
+
+    
+    
+    
+    
     <many-to-one name="Agente" class="Agente">
       <column name="CAGENTE"/>
     </many-to-one>

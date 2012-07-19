@@ -67,6 +67,73 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         private IList<Busqueda> _busquedas;
         private int? _recordatorio;
 
+
+        private char _localidad;
+
+        public virtual char Localidad
+        {
+            get { return _localidad; }
+            set { _localidad = value; }
+        }
+
+        private int? _idInternacional;
+
+        public virtual int? IdInternacional
+        {
+            get { return _idInternacional; }
+            set { _idInternacional = value; }
+        }
+
+        private int? _donde;
+
+        public virtual int? Donde
+        {
+            get { return _donde; }
+            set { _donde = value; }
+        }
+
+        private Pais _paisInternacional;
+
+        public virtual Pais PaisInternacional
+        {
+            get { return _paisInternacional; }
+            set { _paisInternacional = value; }
+        }
+
+        private Asociado _asociadoInternacional;
+
+        public virtual Asociado AsociadoInternacional
+        {
+            get { return _asociadoInternacional; }
+            set { _asociadoInternacional = value; }
+        }
+
+        private string _casoInteresado;
+
+        public virtual string CasoInteresado
+        {
+            get { return _casoInteresado; }
+            set { _casoInteresado = value; }
+        }
+
+        private string _clasificacion;
+
+        public virtual string Clasificacion
+        {
+            get { return _clasificacion; }
+            set { _clasificacion = value; }
+        }
+
+        private string _clase;
+
+        public virtual string Clase
+        {
+            get { return _clase; }
+            set { _clase = value; }
+        }
+
+
+
         #endregion
 
         #region Constructores

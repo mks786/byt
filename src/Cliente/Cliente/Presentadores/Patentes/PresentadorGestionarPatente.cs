@@ -1894,6 +1894,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
             #endregion
 
             Mouse.OverrideCursor = Cursors.Wait;
+            
+            _poderesInterseccion = new List<Poder>();
 
             if ((this._ventana.InteresadoSolicitud != null) && (this._ventana.AgenteSolicitudFiltrar != null))
             {
@@ -1917,7 +1919,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
             }
             else
             {
-                //MENSAJE DE ERROR
+                this._ventana.Mensaje(Recursos.MensajesConElUsuario.ErrorInteresadoNoPoseePoderesConAgente, 0);
             }
 
             _poderesInterseccion.Insert(0, new Poder(int.MinValue));

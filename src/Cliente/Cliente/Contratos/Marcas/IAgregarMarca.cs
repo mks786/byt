@@ -27,6 +27,8 @@ namespace Trascend.Bolet.Cliente.Contratos.Marcas
 
         string SituacionDescripcion { set; }
 
+        string DetalleDescripcion { set; }
+
         string NumPoderSolicitud { get; set; }
 
         string Sapi { get; set; }

@@ -82,6 +82,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             set { this._txtSituacionDescripcion.Text = value; }
         }
 
+        public string DetalleDescripcion
+        {
+            set { this._txtDetalleDescripcion.Text = value; }
+        }
+
         public string IdAsociadoDatos
         {
             get { return this._txtIdAsociadoDatos.Text; }
@@ -1286,6 +1291,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
         private void _btnIrExplorador_Click(object sender, RoutedEventArgs e)
         {
             this._presentador.IrSAPI();
+        }
+
+        private void _cbxDetalle_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            this._presentador.DescripcionDetalle();
         }
 
         

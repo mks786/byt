@@ -968,7 +968,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
 
             #region Prioridades
 
-            this._ventana.PrioridadesEstaSeleccionado = false;           
+            this._ventana.PrioridadesEstaSeleccionado = false;
+            this._ventana.PrioridadCodigo = "";
+            this._ventana.PrioridadFecha = "";
+            this._ventana.PaisPrioridad = BuscarPais((IList<Pais>)this._ventana.Paises, new Pais(int.MinValue));
 
             #endregion            
 

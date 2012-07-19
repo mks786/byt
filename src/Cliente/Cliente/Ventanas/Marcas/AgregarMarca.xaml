@@ -461,12 +461,14 @@
                         <custom:ByTTextBox  MaxLength="255" Grid.Column="1" Grid.Row="12" Name="_txtOtrosImp" VerticalAlignment="Center" 
                          Grid.ColumnSpan="8" Text="{Binding Path=Observacion}"></custom:ByTTextBox>
 
-                        <Label Grid.Column="9" Grid.Row="12" VerticalAlignment="Center" HorizontalContentAlignment="Right">
+                        <!--<Label Grid.Column="9" Grid.Row="12" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblConflicto}"/>
                         </Label>
                         <ComboBox  Grid.Column="10" Grid.Row="12"  Name="_cbxConflicto" Height="20" Grid.ColumnSpan="2"
                               ItemsSource="{Binding}" DisplayMemberPath="Nombre" SelectedIndex="0">
-                        </ComboBox>
+                        </ComboBox>-->
+                        <Button IsEnabled="False" Name="_btnConflictoSolicitud" HorizontalAlignment="Right" Grid.Column="9" Grid.Row="12" VerticalAlignment="Center" Grid.ColumnSpan="2"
+                            Height="25" Width="90">Conflicto</Button>
 
                         <Label Grid.Column="0" Grid.Row="13" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblNumInscripcion}"/>
@@ -1192,45 +1194,68 @@
                         </Label>
                         <custom:ByTTextBox  Grid.Column="1" Grid.Row="14" Grid.ColumnSpan="8" Margin="3" Name="_txtComentarioDatos" VerticalAlignment="Center"  
                           Text="{Binding Path=Observacion}"></custom:ByTTextBox>
-                        <Label Grid.Column="9" Grid.Row="14" VerticalAlignment="Center" HorizontalContentAlignment="Right">
+
+                        <!--<Label Grid.Column="9" Grid.Row="14" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblConflicto}"/>
                         </Label>
                         <custom:ByTTextBox  Grid.Column="10" Grid.Row="14" Grid.ColumnSpan="2" Margin="3" Name="_txtConflictoDatos" VerticalAlignment="Center"  
-                          Text=""></custom:ByTTextBox>
+                          Text=""></custom:ByTTextBox>-->
+
+                        <Button IsEnabled="False" Name="_btnConflictoDatos" HorizontalAlignment="Center" Grid.Column="9" Grid.Row="14" VerticalAlignment="Center" Grid.ColumnSpan="2"
+                            Height="25" Width="90">Conflicto</Button>
                         <!--Fin Décima Fila-->
 
                         <!--Nuevo-->
                         <!--Undécima Fila-->
-                        <Label Grid.Column="0" Grid.Row="15" VerticalAlignment="Center" HorizontalContentAlignment="Right">
-                            <TextBlock Text="{x:Static recurso:Etiquetas.lblInstrucciones}"/>
-                        </Label>
-                        <Label Grid.Column="1" Grid.Row="15" VerticalAlignment="Center" HorizontalContentAlignment="Right">
-                            <TextBlock Text="{x:Static recurso:Etiquetas.lblCorrespondencia}"/>
-                        </Label>
-                        <CheckBox   Name="_chkCorrespondenciaDatos" Grid.Column="2" Grid.Row="15" VerticalAlignment="Center"
-                         HorizontalAlignment="Center">
-                        </CheckBox>
 
-                        <Label Grid.Column="4" Grid.Row="15" VerticalAlignment="Center" HorizontalContentAlignment="Right">
-                            <TextBlock Text="{x:Static recurso:Etiquetas.lblFacturacion}"/>
-                        </Label>
-                        <CheckBox   Name="_chkFacturacionDatos" Grid.Column="5" Grid.Row="15" VerticalAlignment="Center"
-                         HorizontalAlignment="Center">
-                        </CheckBox>
+                        <Grid Grid.Column="0" Grid.Row="15" Grid.ColumnSpan="10">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="95"/>
+                                <ColumnDefinition Width="105"/>
+                                <ColumnDefinition Width="30"/>
+                                <ColumnDefinition Width="75"/>
+                                <ColumnDefinition Width="30"/>
+                                <ColumnDefinition Width="70"/>
+                                <ColumnDefinition Width="30"/>
+                                <ColumnDefinition Width="40"/>
+                                <ColumnDefinition Width="30"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
 
-                        <Label Grid.Column="7" Grid.Row="15" VerticalAlignment="Center" HorizontalContentAlignment="Right">
-                            <TextBlock Text="{x:Static recurso:Etiquetas.lblDescuento}"/>
-                        </Label>
-                        <CheckBox   Name="_chkDescuentoDatos" Grid.Column="8" Grid.Row="15" VerticalAlignment="Center"
-                         HorizontalAlignment="Center">
-                        </CheckBox>
+                            <Label Grid.Column="0" Grid.Row="0" VerticalAlignment="Center" HorizontalContentAlignment="Right">
+                                <TextBlock Text="{x:Static recurso:Etiquetas.lblInstrucciones}" Margin="0,0,5,0"/>
+                            </Label>
+                            <Label Grid.Column="1" Grid.ColumnSpan="1" Grid.Row="0" VerticalAlignment="Center" HorizontalContentAlignment="Left">
+                                <TextBlock Text="{x:Static recurso:Etiquetas.lblCorrespondencia}" Margin="0,0,0,0"/>
+                            </Label>
+                            <CheckBox IsEnabled="True" Name="_chkCorrespondenciaDatos" Grid.Column="2" Grid.ColumnSpan="1" Grid.Row="0" VerticalAlignment="Center"
+                         HorizontalAlignment="Left" Margin="0,0,0,0">
+                            </CheckBox>
 
-                        <Label Grid.Column="10" Grid.Row="15" VerticalAlignment="Center" HorizontalContentAlignment="Right">
-                            <TextBlock Text="{x:Static recurso:Etiquetas.lblOtro}"/>
-                        </Label>
-                        <CheckBox   Name="_chkOtroDatos" Grid.Column="11" Grid.Row="15" VerticalAlignment="Center"
-                         HorizontalAlignment="Center">
-                        </CheckBox>
+                            <Label Grid.Column="3" Grid.Row="0" VerticalAlignment="Center" HorizontalContentAlignment="Left">
+                                <TextBlock Text="{x:Static recurso:Etiquetas.lblFacturacion}" Margin="0,0,0,0"/>
+                            </Label>
+                            <CheckBox IsEnabled="True" Name="_chkFacturacionDatos" Grid.Column="4" Grid.Row="0" VerticalAlignment="Center"
+                         HorizontalAlignment="Left" Margin="0,0,0,0" >
+                            </CheckBox>
+
+                            <Label Grid.Column="5" Grid.Row="0" VerticalAlignment="Center" HorizontalContentAlignment="Left">
+                                <TextBlock Text="{x:Static recurso:Etiquetas.lblDescuento}" Margin="0,0,0,0"/>
+                            </Label>
+                            <CheckBox IsEnabled="True" Name="_chkDescuentoDatos" Grid.Column="6" Grid.Row="0" VerticalAlignment="Center"
+                         HorizontalAlignment="Left" Margin="0,0,0,0">
+                            </CheckBox>
+
+                            <Label Grid.Column="7" Grid.Row="0" VerticalAlignment="Center" HorizontalContentAlignment="Left">
+                                <TextBlock Text="{x:Static recurso:Etiquetas.lblOtro}" Margin="0,0,0,0"/>
+                            </Label>
+                            <CheckBox IsEnabled="True" Name="_chkOtroDatos" Grid.Column="8" Grid.Row="0" VerticalAlignment="Center"
+                         HorizontalAlignment="Left" Margin="0,0,0,0">
+                            </CheckBox>
+                        </Grid>
+
                         <!--Fin Undécima Fila-->
                         <!--Fin Nuevo-->
 
@@ -1346,16 +1371,33 @@
                         <Label Grid.Column="6" Grid.Row="18" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblDetalle}"/>
                         </Label>
-                        <ComboBox Grid.Column="7" Grid.Row="18" Grid.ColumnSpan="2" Name="_cbxDetalleDatos" Height="20" 
-                              ItemsSource="{Binding}" DisplayMemberPath="Descripcion" SelectedIndex="0">
+                        <ComboBox IsEnabled="True" Grid.Column="7" Grid.Row="18" Grid.ColumnSpan="1" Name="_cbxDetalleDatos" Height="20" 
+                              ItemsSource="{Binding}" SelectedIndex="0" SelectionChanged="_cbxDetalle_SelectionChanged">
+
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock>
+                                <TextBlock.Text>
+                                    <MultiBinding Converter="{StaticResource convertirADosValores}">
+                                        <Binding Path="Id" />
+                                        <Binding Path="Descripcion" />
+                                    </MultiBinding>
+                                </TextBlock.Text>
+                                    </TextBlock>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
                         </ComboBox>
+                        <custom:ByTTextBox IsEnabled="False" Grid.Column="8" Grid.Row="18" Grid.ColumnSpan="3" Margin="3" Name="_txtDetalleDescripcion" VerticalAlignment="Center"  
+                          Text=""></custom:ByTTextBox>
                         <!--Fin Duodécima Fila-->
                         <Separator Margin="10 0" Grid.Column="6" Grid.Row="18" Grid.ColumnSpan="3" VerticalAlignment="bottom"/>
                         <!--Fila Trece-->
                         <Label Grid.Column="6" Grid.Row="19" Grid.ColumnSpan="2" VerticalAlignment="Center">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblRenovadoPorOtroTramitante}"/>
                         </Label>
-                        <CheckBox  Margin="3" Grid.Column="8" Grid.ColumnSpan="1" Grid.Row="19" Height="16" VerticalAlignment="Center" Name="_checkBoxRenovacionTramitente"/>
+                        <CheckBox  Margin="3" Grid.Column="8" Grid.ColumnSpan="1" Grid.Row="19" Height="16" VerticalAlignment="Center" Name="_chkRenovacionTramitente"
+                                   IsChecked="{Binding Path=BRenovacionOtroTramitante}"/>
+                        
                         <Button Visibility="Hidden" Grid.Column="8" Grid.Row="19" Grid.ColumnSpan="2" Grid.RowSpan="2" Name="_btnIntRenovacion" Margin="25,6,3,6">
                             <TextBlock Name="_txbIntRenovacion" Text="{x:Static recurso:Etiquetas.btnNoRegistro}"/>
                         </Button>
@@ -1366,7 +1408,8 @@
                         <Label Grid.Column="6" Grid.Row="20" Grid.ColumnSpan="2" VerticalAlignment="Center">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblInstruccionesDeRenovacion}"/>
                         </Label>
-                        <CheckBox Grid.Column="8" Grid.ColumnSpan="1" Grid.Row="20" Height="16" VerticalAlignment="Center" Name="_checkBoxInstruccionesRenovacion"/>
+                        <CheckBox Grid.Column="8" Grid.ColumnSpan="1" Grid.Row="20" Height="16" VerticalAlignment="Center" 
+                                  Name="_chkInstruccionesRenovacion" IsChecked="{Binding Path=BInstruccionesRenovacion}"/>
                         <!--Fin Fila Trece-->
 
                         <!--Fila Catorce-->
