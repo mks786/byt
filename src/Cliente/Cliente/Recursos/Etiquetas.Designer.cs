@@ -963,6 +963,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ENTRADA_ACUSE.
+        /// </summary>
+        public static string cbiCategoriaAcuseEntrada {
+            get {
+                return ResourceManager.GetString("cbiCategoriaAcuseEntrada", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ESCRITOCIRCULACIONNACIONAL.
         /// </summary>
         public static string cbiCategoriaCirculacionNacional {
@@ -1062,7 +1071,7 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a MARCATIPODECASO.
+        ///   Looks up a localized string similar to MARCATIPODECASO.
         /// </summary>
         public static string cbiCategoriaTipoDeCaso {
             get {
@@ -1071,6 +1080,7 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ESCRITOTIPODISTINGUE.
         /// </summary>
         public static string cbiCategoriaTipoDistingue {
             get {
@@ -4376,7 +4386,7 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Código Interesado.
+        ///   Looks up a localized string similar to Código Interesado.
         /// </summary>
         public static string lsvCodigoInteresado {
             get {
@@ -4385,7 +4395,6 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Codigo País.
         ///   Looks up a localized string similar to Codigo País.
         /// </summary>
         public static string lsvCodigoPais {

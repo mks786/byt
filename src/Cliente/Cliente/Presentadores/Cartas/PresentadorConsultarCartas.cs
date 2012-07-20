@@ -36,7 +36,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
         private IUsuarioServicios _usuariosServicios;
         private IAsignacionServicios _asignacionServicios;
         private IList<Carta> _cartas;
-        private IEnumerable<Carta> _cartasDeUnResponsable;
+        private IList<Carta> _cartasDeUnResponsable;
         private IEnumerable<Carta> _cartasDeUnResponsableConAsociado;
         private IList<Asociado> _asociados;
 
@@ -195,45 +195,44 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
 
                 Carta cartaAuxiliar = new Carta();
                 IList<Asignacion> asignaciones = new List<Asignacion>();
-                IList<Carta> cartasPorResponsable = new List<Carta>();
-                IList<Carta> cartasPorResponsableConAsociado = new List<Carta>();
+              //  IList<Carta> cartasPorResponsable = new List<Carta>();
                 
 
-                if ((null != this._ventana.Responsable) && ((Usuario)this._ventana.Responsable).Id != "NGN")
-                {
-                    asignaciones =
-                        this._asignacionServicios.ObtenerAsignacionesPorUsuario(((Usuario)this._ventana.Responsable));
+                //if ((null != this._ventana.Responsable) && ((Usuario)this._ventana.Responsable).Id != "NGN")
+                //{
+                //    asignaciones =
+                //        this._asignacionServicios.ObtenerAsignacionesPorUsuario(((Usuario)this._ventana.Responsable));
 
-                    IList<Carta> Carta;
-                    foreach (Asignacion asigna in asignaciones)
-                    {
-                        Carta = this._cartaServicios.ObtenerCartasFiltro(new Carta(asigna.Carta.Id));
-                        if (null != Carta[0].Asociado)
-                        {
-                            cartasPorResponsableConAsociado.Add(Carta[0]);
-                        }
-                        else
-                        {
-                            Carta[0].Asociado = new Asociado(int.MinValue);
-                        }
-                        if (null == Carta[0].Resumen)
-                        {
-                            Carta[0].Resumen = new Resumen("NGN");
-                        }
-                        if (null == Carta[0].Referencia)
-                        {
-                            Carta[0].Referencia = "";
-                        }
-                        cartasPorResponsable.Add(Carta[0]);
+                //    IList<Carta> Carta;
+                //    foreach (Asignacion asigna in asignaciones)
+                //    {
+                //        Carta = this._cartaServicios.ObtenerCartasFiltro(new Carta(asigna.Carta.Id));
+                //        if (null != Carta[0].Asociado)
+                //        {
+                //            cartasPorResponsableConAsociado.Add(Carta[0]);
+                //        }
+                //        else
+                //        {
+                //            Carta[0].Asociado = new Asociado(int.MinValue);
+                //        }
+                //        if (null == Carta[0].Resumen)
+                //        {
+                //            Carta[0].Resumen = new Resumen("NGN");
+                //        }
+                //        if (null == Carta[0].Referencia)
+                //        {
+                //            Carta[0].Referencia = "";
+                //        }
+                //        cartasPorResponsable.Add(Carta[0]);
 
-                    }
-                    this._cartasDeUnResponsable = cartasPorResponsable;
-                    this._cartasDeUnResponsableConAsociado = cartasPorResponsableConAsociado;
-                    _responsable = true;
-                    filtroValido = 2;
-                }
-                else
-                    _responsable = false;
+                //    }
+                //    this._cartasDeUnResponsable = cartasPorResponsable;
+                //    this._cartasDeUnResponsableConAsociado = cartasPorResponsableConAsociado;
+                //    _responsable = true;
+                //    filtroValido = 2;
+                //}
+                //else
+                //    _responsable = false;
                 
                
                 if (!this._ventana.Id.Equals(""))
@@ -241,14 +240,14 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
                     filtroValido = 2;
                     cartaAuxiliar.Id = int.Parse(this._ventana.Id);
 
-                    if(_responsable)
-                    {
-                        this._cartasDeUnResponsable = from c in cartasPorResponsable
-                                                       where c.Id == int.Parse(this._ventana.Id)
-                                                       select c;
-                        cartasPorResponsable = this._cartasDeUnResponsable.ToList();
+                    //if(_responsable)
+                    //{
+                    //    this._cartasDeUnResponsable = from c in cartasPorResponsable
+                    //                                   where c.Id == int.Parse(this._ventana.Id)
+                    //                                   select c;
+                    //    cartasPorResponsable = this._cartasDeUnResponsable.ToList();
 
-                    }
+                    //}
 
 
                 }
@@ -258,15 +257,15 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
                     cartaAuxiliar.Asociado = (Asociado)this._ventana.Asociado;
                     filtroValido++;
 
-                    if (_responsable)
-                    {
-                        int idAsociado = ((Asociado)this._ventana.Asociado).Id;
-                        this._cartasDeUnResponsableConAsociado = from c in cartasPorResponsableConAsociado
-                                                      where c.Asociado.Id == idAsociado
-                                                      select c;
-                        cartasPorResponsable = this._cartasDeUnResponsableConAsociado.ToList();
+                    //if (_responsable)
+                    //{
+                    //    int idAsociado = ((Asociado)this._ventana.Asociado).Id;
+                    //    this._cartasDeUnResponsableConAsociado = from c in cartasPorResponsableConAsociado
+                    //                                  where c.Asociado.Id == idAsociado
+                    //                                  select c;
+                    //    cartasPorResponsable = this._cartasDeUnResponsableConAsociado.ToList();
 
-                    }
+                    //}
 
                 }
 
@@ -296,14 +295,14 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
                     consultaResumen = true;
                     cartaAuxiliar.Referencia = this._ventana.ReferenciaFiltrar;
 
-                    if (_responsable)
-                    {
-                        this._cartasDeUnResponsable = from c in cartasPorResponsable
-                                                      where c.Referencia.Contains(this._ventana.ReferenciaFiltrar.ToUpper())
-                                                      select c;
-                        cartasPorResponsable = this._cartasDeUnResponsable.ToList();
+                    //if (_responsable)
+                    //{
+                    //    this._cartasDeUnResponsable = from c in cartasPorResponsable
+                    //                                  where c.Referencia.Contains(this._ventana.ReferenciaFiltrar.ToUpper())
+                    //                                  select c;
+                    //    cartasPorResponsable = this._cartasDeUnResponsable.ToList();
 
-                    }
+                    //}
 
                 }
 
@@ -314,17 +313,69 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
                     cartaAuxiliar.Fecha = fechaCarta;
                     
 
-                    if (_responsable)
-                    {
-                        DateTime fechafin = DateTime.Parse(this._ventana.Fecha).AddDays(1);
-                        this._cartasDeUnResponsable = from c in cartasPorResponsable
-                                                      where (c.Fecha > fechaCarta) && (c.Fecha < fechafin)
-                                                      select c;
-                        cartasPorResponsable = this._cartasDeUnResponsable.ToList();
+                    //if (_responsable)
+                    //{
+                    //    DateTime fechafin = DateTime.Parse(this._ventana.Fecha).AddDays(1);
+                    //    this._cartasDeUnResponsable = from c in cartasPorResponsable
+                    //                                  where (c.Fecha > fechaCarta) && (c.Fecha < fechafin)
+                    //                                  select c;
+                    //    cartasPorResponsable = this._cartasDeUnResponsable.ToList();
 
-                    }
+                    //}
 
                 }
+
+                if ((null != this._ventana.Responsable) && ((Usuario)this._ventana.Responsable).Id != "NGN")
+                {
+                    IList<Carta> cartasPorResponsable = new List<Carta>();
+                    if (filtroValido == 0)
+                    {
+                        asignaciones =
+                            this._asignacionServicios.ObtenerAsignacionesPorUsuario(
+                                ((Usuario) this._ventana.Responsable));
+
+                        IList<Carta> Carta;
+                        foreach (Asignacion asigna in asignaciones)
+                        {
+                            Carta = this._cartaServicios.ObtenerCartasFiltro(new Carta(asigna.Carta.Id));
+                            cartasPorResponsable.Add(Carta[0]);
+
+                        }
+                        this._cartasDeUnResponsable = cartasPorResponsable;
+                        _responsable = true;
+                        filtroValido = 2;
+                    }
+                    else
+                        {
+                            this._cartas = new List<Carta>();
+                            IList<Carta> Carta;
+                            _responsable = true;
+                            this._cartas = this._cartaServicios.ObtenerCartasFiltro(cartaAuxiliar);
+                            foreach (Carta CartAux in _cartas)
+                            {
+                                CartAux.Asignaciones = this._asignacionServicios.ObtenerAsignacionesPorCarta(CartAux);
+                                if (null != CartAux.Asignaciones)
+                                {
+                                    foreach (Asignacion AsignAux in CartAux.Asignaciones)
+                                    {
+                                        if (AsignAux.Iniciales == ((Usuario) this._ventana.Responsable).Iniciales)
+                                        {
+
+                                            cartasPorResponsable.Add(CartAux);
+                                        }
+
+                                    }
+                                }
+                            }
+                        }
+
+                    _cartasDeUnResponsable = cartasPorResponsable;
+
+                }
+                else
+                    _responsable = false;
+                
+
 
                 //Si responsable no fue activado se consulta normalmente.
                 if ((filtroValido != 0)&&(!_responsable))
@@ -343,10 +394,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
                 {
 
 
-                    this._ventana.Resultados = cartasPorResponsable;
-                   
-                    this._ventana.TotalHits = cartasPorResponsable.Count.ToString();
-                    if (asignaciones.Count == 0)
+
+
+                    this._ventana.Resultados = _cartasDeUnResponsable;
+
+                    this._ventana.TotalHits = _cartasDeUnResponsable.Count.ToString();
+                    if (_cartasDeUnResponsable.Count == 0)
                         this._ventana.Mensaje(Recursos.MensajesConElUsuario.NoHayResultados, 1);
                 }
                 Mouse.OverrideCursor = null;

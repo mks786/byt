@@ -2760,4 +2760,7 @@ en Prensa:</value>
   <data name="btnSiguiente" xml:space="preserve">
     <value>Siguiente</value>
   </data>
+  <data name="cbiCategoriaAcuseEntrada" xml:space="preserve">
+    <value>ENTRADA_ACUSE</value>
+  </data>
 </root>

@@ -28,12 +28,14 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
         private IContactoServicios _contactoServicios;
         private IDepartamentoServicios _departamentoServicios;
         private IAsignacionServicios _asignacionServicios;
+        private IListaDatosValoresServicios _listaDatosValoresServicios;
         private static PaginaPrincipal _paginaPrincipal = PaginaPrincipal.ObtenerInstancia;
         private static Logger logger = LogManager.GetCurrentClassLogger();
         private IList<Asociado> _asociados;
         private IList<Usuario> _receptores;
         private IList<Medio> _medios;
         private IList<Medio> _listaMedioTracking;
+        private IList<ListaDatosValores> _listaDatosValores;
         private IList<Anexo> _anexos;
         private IList<Anexo> _anexosConfirmacion;
         private IList<Contacto> _personas;
@@ -84,6 +86,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["AsociadoServicios"]);
                 this._asignacionServicios = (IAsignacionServicios)Activator.GetObject(typeof(IAsignacionServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["AsignacionServicios"]);
+                this._listaDatosValoresServicios = (IListaDatosValoresServicios)Activator.GetObject(typeof(IListaDatosValoresServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["ListaDatosValoresServicios"]);
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -137,6 +141,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["AsociadoServicios"]);
                 this._asignacionServicios = (IAsignacionServicios)Activator.GetObject(typeof(IAsignacionServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["AsignacionServicios"]);
+                this._listaDatosValoresServicios = (IListaDatosValoresServicios)Activator.GetObject(typeof(IListaDatosValoresServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["ListaDatosValoresServicios"]);
+
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -176,6 +183,17 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
                 medio.Id = carta.Medio;
                 this._ventana.Medio = this.BuscarMedio(this._medios, medio);
 
+                if(!_otraCarta)
+                {
+                    IList<ListaDatosValores> listaAcuse =
+                    this._listaDatosValoresServicios.ConsultarListaDatosValoresPorParametro
+                                    (new ListaDatosValores(Recursos.Etiquetas.cbiCategoriaAcuseEntrada));
+                    this._ventana.AcuseLista = listaAcuse;
+                    this._listaDatosValores = listaAcuse;
+                }
+                ListaDatosValores DatoValor = new ListaDatosValores();
+                DatoValor.Valor = carta.Acuse.ToString();
+                this._ventana.Acuse = BuscarListaDeDatosValores(_listaDatosValores, DatoValor);
 
                 if (!_otraCarta)
                 {
@@ -221,6 +239,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
                     if (null != carta.Asociado)
                     {
                         this._ventana.NombreAsociado = ((Carta)this._ventana.Carta).Asociado.Nombre;
+                        this._ventana.CodigoAsociado = ((Carta)this._ventana.Carta).Asociado.Id.ToString();
                         this._ventana.Asociado = this.BuscarAsociado(this._asociados, carta.Asociado);
                         Asociado asociado = this._asociadoServicios.ConsultarAsociadoConTodo((Asociado)this._ventana.Asociado);
                         asociado.Contactos = this._contactoServicios.ConsultarContactosPorAsociado(asociado);
@@ -228,7 +247,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
                         this._ventana.Personas = null;
                         this._ventana.Personas = this._personas;
                         this._ventana.Persona = BuscarContacto(this._personas, carta.Persona);
-                        this._ventana.NombreAsociado = ((Carta)this._ventana.Carta).Asociado.Nombre;
+                        
                     }
                 }
                 catch (NHibernate.LazyInitializationException)
@@ -238,6 +257,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
                     this._ventana.Personas = null;
                     this._ventana.Persona = null;
                     this._ventana.NombreAsociado = null;
+                    this._ventana.CodigoAsociado = null;
                 }
 
                 if (!_otraCarta)
@@ -254,6 +274,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
                 if (!_otraCarta)
                 {
                     this._responsables = this._usuarioServicios.ConsultarTodos();
+                    _responsables = FiltrarUsuariosRepetidos(_responsables);
                     Usuario primerResponsable = new Usuario();
                     primerResponsable.Id = "NGN";
                     _responsables.Insert(0, primerResponsable);
@@ -563,7 +584,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
 
                         if (null != this._ventana.MedioTrackingConfirmacion)
                             carta.AnexoMedio = ((Medio)this._ventana.MedioTrackingConfirmacion).Id;
-
+                        carta.Acuse = ((ListaDatosValores) this._ventana.Acuse).Valor[0];
                         carta.Medio = ((Medio)this._ventana.Medio).Id;
                         carta.Receptor = ((Usuario)this._ventana.Receptor).Iniciales;
                         bool exitoso = this._cartaServicios.InsertarOModificar(carta, UsuarioLogeado.Hash);
@@ -717,6 +738,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
                         if (null != this._ventana.MedioTrackingConfirmacion)
                             carta.AnexoMedio = ((Medio) this._ventana.MedioTrackingConfirmacion).Id;
 
+                        carta.Acuse = ((ListaDatosValores)this._ventana.Acuse).Valor[0];
                         carta.Medio = ((Medio) this._ventana.Medio).Id;
                         carta.Receptor = ((Usuario) this._ventana.Receptor).Iniciales;
                         bool exitoso = this._cartaServicios.InsertarOModificar(carta, UsuarioLogeado.Hash);
@@ -828,6 +850,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
                         if (null != this._ventana.MedioTrackingConfirmacion)
                             carta.AnexoMedio = ((Medio) this._ventana.MedioTrackingConfirmacion).Id;
 
+                        carta.Acuse = ((ListaDatosValores)this._ventana.Acuse).Valor[0];
                         carta.Medio = ((Medio) this._ventana.Medio).Id;
                         carta.Receptor = ((Usuario) this._ventana.Receptor).Iniciales;
                         bool exitoso = this._cartaServicios.InsertarOModificar(carta, UsuarioLogeado.Hash);
@@ -897,6 +920,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
                 Asociado asociado = this._asociadoServicios.ConsultarAsociadoConTodo((Asociado)this._ventana.Asociado);
                 asociado.Contactos = this._contactoServicios.ConsultarContactosPorAsociado(asociado);
                 this._ventana.NombreAsociado = ((Asociado)this._ventana.Asociado).Nombre;
+                this._ventana.CodigoAsociado = ((Asociado)this._ventana.Asociado).Id.ToString();
                 this._ventana.Personas = asociado.Contactos;
 
                 #region trace

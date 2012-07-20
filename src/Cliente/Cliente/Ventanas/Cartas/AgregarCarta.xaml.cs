@@ -139,6 +139,18 @@ namespace Trascend.Bolet.Cliente.Ventanas.Cartas
             set { this._cbxContacto.DataContext = value; }
         }
 
+        public object Acuse
+        {
+            get { return this._cbxAcuse.SelectedItem; }
+            set { this._cbxAcuse.SelectedItem = value; }
+        }
+
+        public object AcuseLista
+        {
+            get { return this._cbxAcuse.DataContext; }
+            set { this._cbxAcuse.DataContext = value; }
+        }
+
         public object Medio
         {
             get { return this._cbxMedio.SelectedItem; }
@@ -227,6 +239,12 @@ namespace Trascend.Bolet.Cliente.Ventanas.Cartas
             set { this._txtAsociado.Text = value; }
         }
 
+        public string CodigoAsociado
+        {
+            get { return this._txtCodigoAsociado.Text; }
+            set { this._txtCodigoAsociado.Text = value; }
+        }
+
         public string idAsociadoFiltrar
         {
             get { return this._txtIdAsociado.Text; }
@@ -282,6 +300,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Cartas
         private void _txtAsociado_GotFocus(object sender, RoutedEventArgs e)
         {
             this._txtAsociado.Visibility = System.Windows.Visibility.Collapsed;
+            this._txtCodigoAsociado.Visibility = System.Windows.Visibility.Collapsed;
             this._lstAsociados.Visibility = System.Windows.Visibility.Visible;
             this._lstAsociados.IsEnabled = true;
             this._btnConsultarAsociado.Visibility = System.Windows.Visibility.Visible;
@@ -300,6 +319,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Cartas
             this._txtIdAsociado.Visibility = System.Windows.Visibility.Collapsed;
             this._txtNombreAsociado.Visibility = System.Windows.Visibility.Collapsed;
             this._txtAsociado.Visibility = System.Windows.Visibility.Visible;
+            this._txtCodigoAsociado.Visibility = System.Windows.Visibility.Visible;
             this._lblIdAsociado.Visibility = System.Windows.Visibility.Collapsed;
             this._lblNombreAsociado.Visibility = System.Windows.Visibility.Collapsed;
         }
@@ -365,6 +385,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Cartas
             {
                 this._lstResponsables.Visibility = System.Windows.Visibility.Collapsed;
             }
+        }
+
+        private void _cbxAcuse_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
         }
 
 

@@ -64,6 +64,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Cartas
             set { this._txtIdAsociado.Text = value; }
         }
 
+
         public string NombreAsociadoFiltrar
         {
             get { return this._txtNombreAsociado.Text; }
