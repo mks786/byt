@@ -188,6 +188,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
                     IList<ListaDatosValores> listaAcuse =
                     this._listaDatosValoresServicios.ConsultarListaDatosValoresPorParametro
                                     (new ListaDatosValores(Recursos.Etiquetas.cbiCategoriaAcuseEntrada));
+                    ListaDatosValores primerDatoValor = new ListaDatosValores();
+                    primerDatoValor.Id = "NGN";
+                    listaAcuse.Insert(0,primerDatoValor);
                     this._ventana.AcuseLista = listaAcuse;
                     this._listaDatosValores = listaAcuse;
                 }
@@ -584,7 +587,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
 
                         if (null != this._ventana.MedioTrackingConfirmacion)
                             carta.AnexoMedio = ((Medio)this._ventana.MedioTrackingConfirmacion).Id;
-                        carta.Acuse = ((ListaDatosValores) this._ventana.Acuse).Valor[0];
+                        if ((null != this._ventana.Acuse) && ((ListaDatosValores)this._ventana.Acuse).Id != "NGN")
+                            carta.Acuse = ((ListaDatosValores)this._ventana.Acuse).Valor[0];
+                        else
+                            carta.Acuse = ' ';
                         carta.Medio = ((Medio)this._ventana.Medio).Id;
                         carta.Receptor = ((Usuario)this._ventana.Receptor).Iniciales;
                         bool exitoso = this._cartaServicios.InsertarOModificar(carta, UsuarioLogeado.Hash);

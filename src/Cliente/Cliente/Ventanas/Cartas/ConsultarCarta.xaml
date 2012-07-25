@@ -148,7 +148,7 @@
                 <Label Grid.Column="1" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Center">
                     <TextBlock Text="{x:Static recurso:Etiquetas.lblAsociado}"/>
                 </Label>
-                <Grid Grid.Column="2" Grid.Row="1" Grid.ColumnSpan="4">
+                <Grid Grid.Column="2" Grid.Row="1" Grid.ColumnSpan="5">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="60"/>
                         <ColumnDefinition Width="50"/>
@@ -165,9 +165,9 @@
 
 
                     <custom:ByTTextBox   IsEnabled="False" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="3"  Name="_txtAsociado" VerticalAlignment="Center"
-                          Margin="0,0,90,0" Text="" MaxLength="255" GotFocus="_txtAsociado_GotFocus" GotKeyboardFocus="_txtAsociado_GotFocus"  ></custom:ByTTextBox>
+                          Margin="0,0,0,0" BorderBrush="Green" Text="" MaxLength="255" GotFocus="_txtAsociado_GotFocus" GotKeyboardFocus="_txtAsociado_GotFocus"  ></custom:ByTTextBox>
                     <custom:ByTTextBox IsEnabled="False"   Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="1"  Name="_txtCodigoAsociado" VerticalAlignment="Center"
-                          Margin="0,0,5,0" Text=""  MaxLength="255" GotFocus="_txtAsociado_GotFocus" GotKeyboardFocus="_txtAsociado_GotFocus"  ></custom:ByTTextBox>
+                          Margin="0,0,5,0" BorderBrush="Green" Text=""  MaxLength="255" GotFocus="_txtAsociado_GotFocus" GotKeyboardFocus="_txtAsociado_GotFocus"  ></custom:ByTTextBox>
 
                     <custom:ByTTextBox  IsEnabled="False"  Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="1" Name="_txtIdAsociado" VerticalAlignment="Center" 
                           HorizontalAlignment="Left" Width="45" MaxLength="255"  Visibility="Collapsed"  ></custom:ByTTextBox>
@@ -199,10 +199,10 @@
                 </Grid>
 
 
-                <Label Grid.Column="6" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Center">
+                <Label Grid.Column="7" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Center">
                     <TextBlock Text="{x:Static recurso:Etiquetas.lblReceptor}"/>
                 </Label>
-                <ComboBox  IsEnabled="False" Grid.Column="7" Grid.Row="1" Grid.ColumnSpan="2" Name="_cbxReceptor"  Height="20"  ItemsSource="{Binding}"
+                <ComboBox  IsEnabled="False" Grid.Column="8" Grid.Row="1" Grid.ColumnSpan="2" Name="_cbxReceptor"  Height="20"  ItemsSource="{Binding}"
                            SelectedIndex="0" DisplayMemberPath="NombreCompleto">
                 </ComboBox>
                 <Separator Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="9" Margin="0,5,0,5" VerticalAlignment="Top"/>

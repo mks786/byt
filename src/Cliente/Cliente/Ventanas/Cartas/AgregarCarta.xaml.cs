@@ -251,6 +251,12 @@ namespace Trascend.Bolet.Cliente.Ventanas.Cartas
             set { this._txtIdAsociado.Text = value; }
         }
 
+        public string idCarta
+        {
+            get { return this._txtIdCarta.Text; }
+            set { this._txtIdCarta.Text = value; }
+        }
+
         public string NombreAsociadoFiltrar
         {
             get { return this._txtNombreAsociado.Text; }

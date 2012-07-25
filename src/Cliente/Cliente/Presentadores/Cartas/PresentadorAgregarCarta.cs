@@ -97,6 +97,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
                 this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleAgregarCarta,
                     Recursos.Ids.AgregarCarta);
 
+                this._ventana.idCarta = "";
                 this._ventana.Medios = this._medioServicios.ConsultarTodos();
 
                 this._ventana.Receptores = this._usuarioServicios.ConsultarTodos();
@@ -134,6 +135,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
 
                 IList<ListaDatosValores> listaAcuse =
                 this._listaDatosValoresServicios.ConsultarListaDatosValoresPorParametro(new ListaDatosValores(Recursos.Etiquetas.cbiCategoriaAcuseEntrada));
+                ListaDatosValores primerDatoValor = new ListaDatosValores();
+                primerDatoValor.Id = "NGN";
+                listaAcuse.Insert(0, primerDatoValor);
                 this._ventana.AcuseLista = listaAcuse;
 
                 this._responsables = this._usuarioServicios.ConsultarTodos();
@@ -208,7 +212,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
                         carta.Persona = !((Contacto)this._ventana.Persona).Id.Equals("NGN") ? ((Contacto)this._ventana.Persona).Nombre : null;
                     if (null != this._ventana.Resumen)
                         carta.Resumen = !((Resumen)this._ventana.Resumen).Id.Equals("NGN") ? ((Resumen)this._ventana.Resumen): null;
-                    carta.Acuse = ((ListaDatosValores) this._ventana.Acuse).Valor[0];
+                    if ((null != this._ventana.Acuse) && ((ListaDatosValores)this._ventana.Acuse).Id != "NGN")
+                        carta.Acuse = ((ListaDatosValores)this._ventana.Acuse).Valor[0];
+                    else
+                        carta.Acuse = ' ';
                     carta.Medio = ((Medio)this._ventana.Medio).Id;
                     carta.AnexoMedio = ((Medio)this._ventana.MedioTrackingConfirmacion) == null ? "" : ((Medio)this._ventana.MedioTrackingConfirmacion).Id;
                     carta.Receptor = ((Usuario)this._ventana.Receptor).Iniciales;
