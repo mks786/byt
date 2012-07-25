@@ -6,6 +6,7 @@ using System.Windows.Input;
 using NLog;
 using System.Linq;
 using Trascend.Bolet.Cliente.Contratos.Cartas;
+using Trascend.Bolet.Cliente.Ventanas.Cartas;
 using Trascend.Bolet.Cliente.Ventanas.Principales;
 using Trascend.Bolet.ObjetosComunes.ContratosServicios;
 using Trascend.Bolet.ObjetosComunes.Entidades;
@@ -225,7 +226,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
                         bool exitoso = this._cartaServicios.InsertarOModificar(carta, UsuarioLogeado.Hash);
 
                         if (exitoso)
-                            this.Navegar(Recursos.MensajesConElUsuario.CartaInsertada, false);
+                        {
+                            this._ventana.HabilitarCampos = false;
+                            this.Navegar(new ConsultarCarta(carta,this._ventana));
+                          //  this.Navegar(Recursos.MensajesConElUsuario.CartaInsertada, false);
+                        }
                     }
                     else
                     {

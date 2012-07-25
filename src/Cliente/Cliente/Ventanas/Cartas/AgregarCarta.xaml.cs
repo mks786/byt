@@ -275,6 +275,50 @@ namespace Trascend.Bolet.Cliente.Ventanas.Cartas
             set { this._lsbFormatoConfirmacion.Text = value; }
         }
 
+        public bool HabilitarCampos
+        {
+            set
+            {
+                this._txtAsociado.IsEnabled = value;
+                this._txtCodigoAsociado.IsEnabled = value;
+                this._cbxAcuse.IsEnabled = value;
+                this._txtNombreDepartamento.IsEnabled = value;
+                this._txtReferencia.IsEnabled = value;
+                this._txtResumen.IsEnabled = value;
+                this._txtTipoAnexo.IsEnabled = value;
+                this._txtTracking.IsEnabled = value;
+                this._txtTrackingConfirmacion.IsEnabled = value;
+                this._cbxAnexo.IsEnabled = value;
+                this._cbxAnexoConfirmacion.IsEnabled = value;
+                this._cbxContacto.IsEnabled = value;
+                this._cbxDepartamento.IsEnabled = value;
+                this._cbxMedio.IsEnabled = value;
+                //this._cbxMedioTracking.IsEnabled = value;
+                this._cbxResumen.IsEnabled = value;
+                this._cbxReceptor.IsEnabled = value;
+                this._lstAnexosCarta.IsEnabled = value;
+                this._lstAnexosCartaConfirmacion.IsEnabled = value;
+                this._btnMas.IsEnabled = value;
+                this._btnMasConfirmacion.IsEnabled = value;
+                this._btnMenos.IsEnabled = value;
+                this._btnMenosConfirmacion.IsEnabled = value;
+                this._dpkFecha.IsEnabled = value;
+                this._dpkFechaAlternativa.IsEnabled = value;
+                this._dpkFechaAnexo.IsEnabled = value;
+                this._dpkFechaConfirmacion.IsEnabled = value;
+                this._dpkFechaReal.IsEnabled = value;
+                //this._txtMedio.IsEnabled = value;
+                this._cbxMedioTrackingConfirmacion.IsEnabled = value;
+                this._lstResponsables.IsEnabled = value;
+                this._btnMasResponsable.IsEnabled = value;
+                this._btnMenosResponsable.IsEnabled = value;
+                this._cbxResponsable.IsEnabled = value;
+                this._txtIdAsociado.IsEnabled = value;
+                this._txtNombreAsociado.IsEnabled = value;
+            }
+        }
+
+
         #endregion
 
         public AgregarCarta()

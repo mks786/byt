@@ -26,6 +26,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
 
         private bool _precargada = false;
         private bool _responsable = false;
+        private bool _conListaDeCartas = false;
         private Asociado _asociadoAFiltrar; //Asociado que es pasado a esta ventana para filtrar directamente
         private object _ventanaAVolver; //Asociado que es pasado a esta ventana para filtrar directamente
 
@@ -37,6 +38,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
         private IAsignacionServicios _asignacionServicios;
         private IList<Carta> _cartas;
         private IList<Carta> _cartasDeUnResponsable;
+        private IList<Carta> _cartasYaConsultadas;
         private IEnumerable<Carta> _cartasDeUnResponsableConAsociado;
         private IList<Asociado> _asociados;
 
@@ -54,6 +56,50 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
                 #endregion
 
                 this._ventana = ventana;
+                if (null != asociado)
+                {
+                    _precargada = true;
+                    _asociadoAFiltrar = (Asociado)asociado;
+                    _ventanaAVolver = ventanaAVolver;
+                }
+
+                this._cartaServicios = (ICartaServicios)Activator.GetObject(typeof(ICartaServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["CartaServicios"]);
+                this._asociadoServicios = (IAsociadoServicios)Activator.GetObject(typeof(IAsociadoServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["AsociadoServicios"]);
+                this._usuariosServicios = (IUsuarioServicios)Activator.GetObject(typeof(IUsuarioServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["UsuarioServicios"]);
+                this._asignacionServicios = (IAsignacionServicios)Activator.GetObject(typeof(IAsignacionServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["AsignacionServicios"]);
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
+            }
+        }
+
+        /// <summary>
+        /// Constructor Predeterminado
+        /// </summary>
+        /// <param name="ventana">página que satisface el contrato</param>
+        public PresentadorConsultarCartas(IConsultarCartas ventana, object asociado, object ventanaAVolver,object Cartas)
+        {
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                this._ventana = ventana;
+                this._conListaDeCartas = true;
+                this._cartasYaConsultadas = (IList<Carta>)Cartas;
                 if (null != asociado)
                 {
                     _precargada = true;
@@ -140,6 +186,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
                     responsables.Insert(0,primerUsuario);
                     this._ventana.Responsables = responsables;
                 }
+                if (_conListaDeCartas)
+                {
+                    this._ventana.Resultados = this._cartasYaConsultadas;
+                    this._ventana.TotalHits = _cartasYaConsultadas.Count.ToString();
+                }
                 this._ventana.FocoPredeterminado();
 
                 #region trace
@@ -195,59 +246,13 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
 
                 Carta cartaAuxiliar = new Carta();
                 IList<Asignacion> asignaciones = new List<Asignacion>();
-              //  IList<Carta> cartasPorResponsable = new List<Carta>();
-                
 
-                //if ((null != this._ventana.Responsable) && ((Usuario)this._ventana.Responsable).Id != "NGN")
-                //{
-                //    asignaciones =
-                //        this._asignacionServicios.ObtenerAsignacionesPorUsuario(((Usuario)this._ventana.Responsable));
-
-                //    IList<Carta> Carta;
-                //    foreach (Asignacion asigna in asignaciones)
-                //    {
-                //        Carta = this._cartaServicios.ObtenerCartasFiltro(new Carta(asigna.Carta.Id));
-                //        if (null != Carta[0].Asociado)
-                //        {
-                //            cartasPorResponsableConAsociado.Add(Carta[0]);
-                //        }
-                //        else
-                //        {
-                //            Carta[0].Asociado = new Asociado(int.MinValue);
-                //        }
-                //        if (null == Carta[0].Resumen)
-                //        {
-                //            Carta[0].Resumen = new Resumen("NGN");
-                //        }
-                //        if (null == Carta[0].Referencia)
-                //        {
-                //            Carta[0].Referencia = "";
-                //        }
-                //        cartasPorResponsable.Add(Carta[0]);
-
-                //    }
-                //    this._cartasDeUnResponsable = cartasPorResponsable;
-                //    this._cartasDeUnResponsableConAsociado = cartasPorResponsableConAsociado;
-                //    _responsable = true;
-                //    filtroValido = 2;
-                //}
-                //else
-                //    _responsable = false;
-                
                
                 if (!this._ventana.Id.Equals(""))
                 {
                     filtroValido = 2;
                     cartaAuxiliar.Id = int.Parse(this._ventana.Id);
 
-                    //if(_responsable)
-                    //{
-                    //    this._cartasDeUnResponsable = from c in cartasPorResponsable
-                    //                                   where c.Id == int.Parse(this._ventana.Id)
-                    //                                   select c;
-                    //    cartasPorResponsable = this._cartasDeUnResponsable.ToList();
-
-                    //}
 
 
                 }
@@ -256,16 +261,6 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
                 {
                     cartaAuxiliar.Asociado = (Asociado)this._ventana.Asociado;
                     filtroValido++;
-
-                    //if (_responsable)
-                    //{
-                    //    int idAsociado = ((Asociado)this._ventana.Asociado).Id;
-                    //    this._cartasDeUnResponsableConAsociado = from c in cartasPorResponsableConAsociado
-                    //                                  where c.Asociado.Id == idAsociado
-                    //                                  select c;
-                    //    cartasPorResponsable = this._cartasDeUnResponsableConAsociado.ToList();
-
-                    //}
 
                 }
 
@@ -278,14 +273,6 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
                     resumenAux.Descripcion = this._ventana.ResumenFiltrar;
                     cartaAuxiliar.Resumen = resumenAux;
 
-                    //if (_responsable)
-                    //{
-                    //    this._cartasDeUnResponsable = from c in cartasPorResponsable
-                    //                                  where c.Resumen.Descripcion == resumenAux.Descripcion
-                    //                                  select c;
-                    //    cartasPorResponsable = this._cartasDeUnResponsable.ToList();
-
-                    //}
                 }
 
 
@@ -295,14 +282,6 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
                     consultaResumen = true;
                     cartaAuxiliar.Referencia = this._ventana.ReferenciaFiltrar;
 
-                    //if (_responsable)
-                    //{
-                    //    this._cartasDeUnResponsable = from c in cartasPorResponsable
-                    //                                  where c.Referencia.Contains(this._ventana.ReferenciaFiltrar.ToUpper())
-                    //                                  select c;
-                    //    cartasPorResponsable = this._cartasDeUnResponsable.ToList();
-
-                    //}
 
                 }
 
@@ -311,17 +290,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
                     DateTime fechaCarta = DateTime.Parse(this._ventana.Fecha);
                     filtroValido = 2;
                     cartaAuxiliar.Fecha = fechaCarta;
-                    
-
-                    //if (_responsable)
-                    //{
-                    //    DateTime fechafin = DateTime.Parse(this._ventana.Fecha).AddDays(1);
-                    //    this._cartasDeUnResponsable = from c in cartasPorResponsable
-                    //                                  where (c.Fecha > fechaCarta) && (c.Fecha < fechafin)
-                    //                                  select c;
-                    //    cartasPorResponsable = this._cartasDeUnResponsable.ToList();
-
-                    //}
+    
 
                 }
 

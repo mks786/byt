@@ -7,6 +7,8 @@ namespace Trascend.Bolet.Cliente.Contratos.Cartas
 
         void Mensaje(string mensaje);
 
+        bool HabilitarCampos { set; }
+
         object Asociado { get; set; }
 
         object Asociados { get; set; }

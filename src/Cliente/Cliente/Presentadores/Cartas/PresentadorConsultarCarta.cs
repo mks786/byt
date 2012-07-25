@@ -596,69 +596,15 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
                         bool exitoso = this._cartaServicios.InsertarOModificar(carta, UsuarioLogeado.Hash);
 
                         if (exitoso)
-                            this.Navegar(Recursos.MensajesConElUsuario.CartaModificada, false);
+                        {
+                            this._ventana.HabilitarCampos = false;
+                            this._ventana.TextoBotonModificar = Recursos.Etiquetas.btnModificar;
+                            //this.Navegar(Recursos.MensajesConElUsuario.CartaModificada, false);
+                        }
+                           
                     }
                 }
 
-                //try
-                //{
-                //    bool tracking = true;
-
-                //    if (!String.IsNullOrEmpty(((Carta)this._ventana.Carta).Tracking))
-                //        tracking = this.verificarFormato(((Medio)this._ventana.Medio).Formato, ((Carta)this._ventana.Carta).Tracking);
-                //    if (tracking)
-                //    {
-                //        Carta carta = (Carta)this._ventana.Carta;
-                //        if (null != this._ventana.Departamento)
-                //            carta.Departamento = !((Departamento)this._ventana.Departamento).Id.Equals("NGN") ? (Departamento)this._ventana.Departamento : null;
-                //        if (null != this._ventana.Asociado)
-                //            carta.Asociado = !((Asociado)this._ventana.Asociado).Id.Equals("NGN") ? (Asociado)this._ventana.Asociado : null;
-                //        if (null != this._ventana.Persona)
-                //            carta.Persona = !((Contacto)this._ventana.Persona).Id.Equals("NGN") ? ((Contacto)this._ventana.Persona).Nombre : null;
-
-
-
-
-                //        carta.Medio = ((Medio)this._ventana.Medio).Id;
-                //        carta.Receptor = ((Usuario)this._ventana.Receptor).Iniciales;
-
-                //        carta.Medio = ((Medio)this._ventana.Medio).Id;
-                //        carta.Receptor = ((Usuario)this._ventana.Receptor).Iniciales;
-
-                //        //if (!this._cartaServicios.VerificarExistencia(carta))
-                //        //{
-                //        //    bool exitoso = this._cartaServicios.InsertarOModificar(carta, UsuarioLogeado.Hash);
-
-                //        //    if (exitoso)
-                //        //        this.Navegar(Recursos.MensajesConElUsuario.EntradaAlternaInsertado, false);
-                //        //}
-                //        //else
-                //        //{
-                //        //    this._ventana.Mensaje(Recursos.MensajesConElUsuario.ErrorAgenteRepetido);
-                //        //}
-                //    }
-
-                //}
-                //catch (ApplicationException ex)
-                //{
-                //    logger.Error(ex.Message);
-                //    this.Navegar(ex.Message, true);
-                //}
-                //catch (RemotingException ex)
-                //{
-                //    logger.Error(ex.Message);
-                //    this.Navegar(Recursos.MensajesConElUsuario.ErrorRemoting, true);
-                //}
-                //catch (SocketException ex)
-                //{
-                //    logger.Error(ex.Message);
-                //    this.Navegar(Recursos.MensajesConElUsuario.ErrorConexionServidor, true);
-                //}
-                //catch (Exception ex)
-                //{
-                //    logger.Error(ex.Message);
-                //    this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
-                //}
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -1457,7 +1403,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
                 logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
 
-            this.Navegar(new ConsultarCartas());
+            this.Navegar(new ConsultarCartas(this._cartasARecorrer));
 
             #region trace
             if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))

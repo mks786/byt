@@ -159,6 +159,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Cartas
             this._cargada = false;
             this._presentador = new PresentadorConsultarCartas(this, null, null);
         }
+
         /// <summary>
         /// Constructor predeterminado
         /// </summary>
@@ -168,6 +169,18 @@ namespace Trascend.Bolet.Cliente.Ventanas.Cartas
             this._presentador = new PresentadorConsultarCartas(this, asociado, ventana);
 
         }
+
+        /// <summary>
+        /// Constructor Con Que recive la lista de cartas anteriormente consultada
+        /// </summary>
+        public ConsultarCartas(object listaCartas)
+        {
+            InitializeComponent();
+            this._cargada = false;
+            this._presentador = new PresentadorConsultarCartas(this, null, null,listaCartas);
+        }
+
+
 
         private void _btnCancelar_Click(object sender, RoutedEventArgs e)
         {
