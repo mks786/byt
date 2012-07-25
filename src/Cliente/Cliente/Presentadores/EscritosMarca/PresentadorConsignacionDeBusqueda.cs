@@ -115,16 +115,16 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
             #endregion
 
             string parametroMarcas = "";
-            if (null!=this._ventana.MarcaFiltrado)
+            if (null != this._ventana.MarcaFiltrado)
             {
                 parametroMarcas = ((Marca)this._ventana.MarcaFiltrado).Id.ToString();
             }
             string StringLleno = "";
             if (null != ((Agente)this._ventana.Agente))
                 StringLleno += ((Agente)this._ventana.Agente).Id + "  ";
-            StringLleno += parametroMarcas +"  ";
+            StringLleno += parametroMarcas + "  ";
             if (null != ((Busqueda)this._ventana.MarcaBusquedaSeleccionada))
-                StringLleno += ((Busqueda) this._ventana.MarcaBusquedaSeleccionada).Id;
+                StringLleno += ((Busqueda)this._ventana.MarcaBusquedaSeleccionada).Id;
             this._ventana.String = StringLleno;
 
             #region trace
@@ -153,16 +153,16 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
                     string parametroMarcas = ArmarStringParametroMarcas(this._marcasAgregadas);
                     this.EjecutarArchivoBAT(ConfigurationManager.AppSettings["RutaBatEscrito"].ToString()
                        + "\\" + ConfigurationManager.AppSettings["EscritoConsignacionDeBusqueda"].ToString(),
-                       ((Agente)this._ventana.AgenteFiltrado).Id + " " + parametroMarcas
-                       + " " + ((Busqueda)this._ventana.MarcaBusquedaSeleccionada).Id);
+                       ((Agente)this._ventana.AgenteFiltrado).Id + " " + 
+                       ((Busqueda)this._ventana.MarcaBusquedaSeleccionada).Id +" "+ parametroMarcas);
                 }
-         
 
-                    #region trace
-                    if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
-                        logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
-                    #endregion
-                
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
             }
             catch (ApplicationException ex)
             {
@@ -452,7 +452,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
                         this._marcas.Add((Marca)this._ventana.MarcaFiltrado);
                     }
                     this._ventana.NombreMarca = ((Marca)this._ventana.MarcaFiltrado).Descripcion;
-                   
+
                     retorno = true;
                 }
 
@@ -587,23 +587,23 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
                 this._ventana.MarcasBusqueda = from m in _marcasBusqueda
                                                where m.TipoBusqueda == 'P'
                                                select m;
-
             }
-
-            if ((bool)this._ventana.ChkDiseño.IsChecked)
+            else if ((bool)this._ventana.ChkDiseño.IsChecked)
             {
                 this._ventana.MarcasBusqueda = from m in _marcasBusqueda
                                                where m.TipoBusqueda == 'D'
                                                select m;
 
             }
-
-            if ((bool)this._ventana.ChkMixto.IsChecked)
+            else if ((bool)this._ventana.ChkMixto.IsChecked)
             {
                 this._ventana.MarcasBusqueda = from m in _marcasBusqueda
                                                where m.TipoBusqueda == 'M'
                                                select m;
-
+            }
+            else
+            {
+                this._ventana.MarcasBusqueda = _marcasBusqueda;
             }
 
 
@@ -633,7 +633,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
                     busquedas = ((Marca)this._ventana.MarcaFiltrado).Busquedas;
                     this._marcasBusqueda = busquedas;
                     this._marcasAgregadas.Insert(0, (Marca)this._ventana.MarcaFiltrado);
-              //      this._marcas.Remove((Marca)this._ventana.MarcaFiltrado);
+                    //      this._marcas.Remove((Marca)this._ventana.MarcaFiltrado);
 
                 }
                 else
@@ -641,7 +641,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
                     this._marcasBusqueda = null;
                     _marcasAgregadas = new List<Marca>();
                     this._ventana.MarcaFiltrado = null;
-                    this._ventana.MarcaBusquedaSeleccionada= null;
+                    this._ventana.MarcaBusquedaSeleccionada = null;
                     GenerarString();
                 }
 

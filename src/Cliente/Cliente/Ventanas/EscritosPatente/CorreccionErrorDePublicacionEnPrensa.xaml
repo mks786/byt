@@ -292,28 +292,28 @@
                 </ComboBox>
 
 
-                <Label Name="_lblCirculacionNacional" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center">
+                <Label Name="_lblCirculacionNacional" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.ColumnSpan="2">
                     <TextBlock Text="{x:Static recurso:Etiquetas.lblCirculacionNacional}"/>
                 </Label>
-                <ComboBox Name="_cbxCirculacionNacional" Grid.Column="1" Grid.ColumnSpan="1" Grid.Row="1" Height="25" ItemsSource="{Binding}" DisplayMemberPath="Descripcion" SelectedIndex="0">
+                <ComboBox Name="_cbxCirculacionNacional" Grid.Column="2" Grid.ColumnSpan="1" Grid.Row="1" Height="25" ItemsSource="{Binding}" DisplayMemberPath="Descripcion" SelectedIndex="0">
                 </ComboBox>
 
-                <Label Name="_lblErrorPrimeraPub" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center">
+                <Label Name="_lblErrorPrimeraPub" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.ColumnSpan="2">
                     <TextBlock Text="{x:Static recurso:Etiquetas.lblErrorPrimeraPublicacion}"/>
                 </Label>
-                <ComboBox Name="_cbxEprimeraPub" Grid.Column="1" Grid.ColumnSpan="1" Grid.Row="2" Height="25" ItemsSource="{Binding}" DisplayMemberPath="Descripcion" SelectedIndex="0">
+                <ComboBox Name="_cbxEprimeraPub" Grid.Column="2" Grid.ColumnSpan="1" Grid.Row="2" Height="25" ItemsSource="{Binding}" DisplayMemberPath="Descripcion" SelectedIndex="0">
                 </ComboBox>
 
-                <Label Name="_lblErrorSegundaPub" Grid.Row="3" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center">
+                <Label Name="_lblErrorSegundaPub" Grid.Row="3" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center"  Grid.ColumnSpan="2">
                     <TextBlock Text="{x:Static recurso:Etiquetas.lblErrorSegundaPublicacion}"/>
                 </Label>
-                <ComboBox Name="_cbxEsegundaPub" Grid.Column="1" Grid.ColumnSpan="1" Grid.Row="3" Height="25" ItemsSource="{Binding}" DisplayMemberPath="Descripcion" SelectedIndex="0">
+                <ComboBox Name="_cbxEsegundaPub" Grid.Column="2" Grid.ColumnSpan="1" Grid.Row="3" Height="25" ItemsSource="{Binding}" DisplayMemberPath="Descripcion" SelectedIndex="0">
                 </ComboBox>
 
-                <Label Name="_lblErrorTerceraPub" Grid.Row="4" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center">
+                <Label Name="_lblErrorTerceraPub" Grid.Row="4" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.ColumnSpan="2">
                     <TextBlock Text="{x:Static recurso:Etiquetas.lblErrorTerceraPublicacion}"/>
                 </Label>
-                <ComboBox Name="_cbxEterceraPub" Grid.Column="1" Grid.ColumnSpan="1" Grid.Row="4" Height="25" ItemsSource="{Binding}" DisplayMemberPath="Descripcion" SelectedIndex="0">
+                <ComboBox Name="_cbxEterceraPub" Grid.Column="2" Grid.ColumnSpan="1" Grid.Row="4" Height="25" ItemsSource="{Binding}" DisplayMemberPath="Descripcion" SelectedIndex="0">
                 </ComboBox>
                 
                 <Label Name="_lblPatentesAgregadas" Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="5"  HorizontalAlignment="Left" 

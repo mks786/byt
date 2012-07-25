@@ -1892,7 +1892,7 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Busqueda:.
+        ///   Looks up a localized string similar to Búsqueda:.
         /// </summary>
         public static string lblBusqueda {
             get {
@@ -1901,7 +1901,7 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Busquedas de la Marca Seleccionada:.
+        ///   Looks up a localized string similar to Búsquedas de la Marca Seleccionada:.
         /// </summary>
         public static string lblBusquedaMarca {
             get {
@@ -7266,7 +7266,7 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Escrito Consignacion de Busqueda.
+        ///   Looks up a localized string similar to Escrito Consignacion de Búsqueda.
         /// </summary>
         public static string titleEscritoConsignacionDeBusqueda {
             get {

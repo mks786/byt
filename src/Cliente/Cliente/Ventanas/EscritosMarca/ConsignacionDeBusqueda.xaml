@@ -272,13 +272,37 @@
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
                             </GridViewColumn>
-                            <GridViewColumn DisplayMemberBinding="{Binding Path=FechaBusquedaPalabra}" Width="200">
-                                <GridViewColumnHeader Click="_OrdenarMarcas_Click" Tag="Pedido/Palabra" Content="{x:Static recurso:Etiquetas.lsvPedidoPalabra}"/>
+
+
+                            <GridViewColumn Width="150">
+                                <GridViewColumnHeader Click="_OrdenarMarcas_Click" Tag="FechaBusquedaPalabra" Content="{x:Static recurso:Etiquetas.lsvFecha}"/>
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock>
+                                        <TextBlock.Text>
+                                            <Binding Path="FechaBusquedaPalabra" StringFormat="{}{0:dd/MM/yyyy}"/>
+                                        </TextBlock.Text>
+                                        </TextBlock>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
                             </GridViewColumn>
-                            <GridViewColumn DisplayMemberBinding="{Binding Path=FechaBusquedaDiseno}" Width="200">
-                                <GridViewColumnHeader Click="_OrdenarMarcas_Click" Tag="Pedido/Diseño" Content="{x:Static recurso:Etiquetas.lsvPedidoDiseno}"/>
+
+
+                            <GridViewColumn Width="150">
+                                <GridViewColumnHeader Click="_OrdenarMarcas_Click" Tag="FechaBusquedaDiseno" Content="{x:Static recurso:Etiquetas.lsvFecha}"/>
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock>
+                                        <TextBlock.Text>
+                                            <Binding Path="FechaBusquedaDiseno" StringFormat="{}{0:dd/MM/yyyy}"/>
+                                        </TextBlock.Text>
+                                        </TextBlock>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
                             </GridViewColumn>
-                            <GridViewColumn DisplayMemberBinding="{Binding Path=TipoBusqueda}" Width="60">
+
+
+                            <GridViewColumn DisplayMemberBinding="{Binding Path=TipoBusqueda}" Width="80">
                                 <GridViewColumnHeader Click="_OrdenarMarcas_Click" Tag="TipoBusqueda" Content="{x:Static recurso:Etiquetas.lsvTipoBusqueda}"/>
                             </GridViewColumn>
                         </GridView>
@@ -289,22 +313,22 @@
                 <Label Grid.Column="1" Grid.Row="0" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                     <TextBlock Text="{x:Static recurso:Etiquetas.lblPalabra}"/>
                 </Label>
-                <CheckBox Name="_chkPalabra" Grid.Column="1" Grid.Row="0" VerticalAlignment="Center"
-                         HorizontalAlignment="Center" Click="_chkPalabra_Click" >
+                <CheckBox Name="_chkPalabra" Grid.Column="2" Grid.Row="0" VerticalAlignment="Center"
+                         HorizontalAlignment="Left" Click="_chkPalabra_Click" >
                 </CheckBox>
 
                 <Label Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                     <TextBlock Text="{x:Static recurso:Etiquetas.lblDiseño}"/>
                 </Label>
-                <CheckBox Name="_chkDiseño" Grid.Column="1" Grid.Row="1" VerticalAlignment="Center"
-                         HorizontalAlignment="Center"  Click="_chkDiseño_Click">
+                <CheckBox Name="_chkDiseño" Grid.Column="2" Grid.Row="1" VerticalAlignment="Center"
+                         HorizontalAlignment="Left"  Click="_chkDiseño_Click">
                 </CheckBox>
 
                 <Label Grid.Column="1" Grid.Row="2" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                     <TextBlock Text="{x:Static recurso:Etiquetas.lblMixto}"/>
                 </Label>
-                <CheckBox  Name="_chkMixto" Grid.Column="1" Grid.Row="2" VerticalAlignment="Center"
-                         HorizontalAlignment="Center" Click="_chkMixto_Click">
+                <CheckBox  Name="_chkMixto" Grid.Column="2" Grid.Row="2" VerticalAlignment="Center"
+                         HorizontalAlignment="Left" Click="_chkMixto_Click">
                 </CheckBox>
             </Grid>
 

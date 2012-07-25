@@ -1260,7 +1260,7 @@ Cuenta solo digital:</value>
     <value>Bol. Publicación:</value>
   </data>
   <data name="lblBusqueda" xml:space="preserve">
-    <value>Busqueda:</value>
+    <value>Búsqueda:</value>
   </data>
   <data name="lblCartaOrden" xml:space="preserve">
     <value>Carta Orden:</value>
@@ -1941,7 +1941,7 @@ de Gracia</value>
     <value>Renuncia Parcial</value>
   </data>
   <data name="titleEscritoConsignacionDeBusqueda" xml:space="preserve">
-    <value>Escrito Consignacion de Busqueda</value>
+    <value>Escrito Consignacion de Búsqueda</value>
   </data>
   <data name="titleEscritoNotificacionDeIngresoDePoder" xml:space="preserve">
     <value>Escrito Notificación de Ingreso de Poder</value>
@@ -2052,7 +2052,7 @@ de Gracia</value>
     <value>ESCRITOTIPOPRIORIDAD</value>
   </data>
   <data name="lblBusquedaMarca" xml:space="preserve">
-    <value>Busquedas de la Marca Seleccionada:</value>
+    <value>Búsquedas de la Marca Seleccionada:</value>
   </data>
   <data name="lblDiseño" xml:space="preserve">
     <value>Diseño:</value>
