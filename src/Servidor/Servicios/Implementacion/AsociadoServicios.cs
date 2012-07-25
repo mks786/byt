@@ -233,10 +233,12 @@ namespace Trascend.Bolet.Servicios.Implementacion
                 IList<Asociado> asociados;
 
                 asociados = ControladorAsociado.ConsultarAsociadosFiltro(asociado);
+
                 #region trace
                 if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
                     logger.Debug("Saliendo del Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
+
                 return asociados;
 
             }

@@ -146,8 +146,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosPatente
             }
             if (this._ventana.FechaDeAviso!="")
                 StringLlleno += DateTime.Parse(this._ventana.FechaDeAviso).ToShortDateString() + "  ";
-            StringLlleno += this._ventana.CantidadBoletines+"  ";
-            StringLlleno += DateTime.Parse(this._ventana.Fecha).ToShortDateString() + "  ";
+            
+            if (!this._ventana.CantidadBoletines.Equals(""))
+                StringLlleno += this._ventana.CantidadBoletines+"  ";
+
+            StringLlleno += DateTime.Parse(this._ventana.Fecha).ToShortDateString();
             this._ventana.String = StringLlleno + "  " + parametroPatentes;
 
             #region trace
@@ -178,8 +181,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosPatente
                         + "\\" + ConfigurationManager.AppSettings["EscritoReconsideracionDePerencion"].ToString(),
                         ((Agente)this._ventana.AgenteFiltrado).Id + " " + ((Resolucion)this._ventana.Resolucion).Id + " " +
                         ((Boletin)this._ventana.Boletin).Id + " " + ((Resolucion)this._ventana.Resolucion2).Id + " " +
-                        DateTime.Parse(this._ventana.FechaDeAviso).ToShortDateString() + " " + ((Boletin)this._ventana.Boletin2).Id + " " + this._ventana.CantidadesBoletines + " " +
-                        DateTime.Parse(this._ventana.Fecha).ToShortDateString() + " " + parametroPatentes);
+                        DateTime.Parse(this._ventana.FechaDeAviso).ToShortDateString() + " " + ((ListaDatosValores)this._ventana.CantidadBoletinSelecionado).Valor + " " +
+                        this._ventana.CantidadBoletines + " " + DateTime.Parse(this._ventana.Fecha).ToShortDateString() + " " + 
+                        parametroPatentes);
                 }
 
                 #region trace
@@ -314,8 +318,17 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosPatente
             if (((Boletin)this._ventana.Boletin).Id != int.MinValue)
             {
                 IList<Resolucion> resoluciones = this._boletinServicios.ConsultarResolucionesDeBoletin((Boletin)this._ventana.Boletin);
-                this._ventana.Resoluciones = resoluciones;
-                this._ventana.Resolucion = resoluciones[0];
+
+                if (resoluciones.Count > 0)
+                {
+                    this._ventana.Resoluciones = resoluciones;
+                    this._ventana.Resolucion = resoluciones[0];
+                }
+                else
+                {
+                    this._ventana.Resoluciones = null;
+                    this._ventana.Resolucion = null;
+                }
             }
             else
             {
@@ -342,8 +355,17 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosPatente
             if (((Boletin)this._ventana.Boletin2).Id != int.MinValue)
             {
                 IList<Resolucion> resoluciones = this._boletinServicios.ConsultarResolucionesDeBoletin((Boletin)this._ventana.Boletin2);
-                this._ventana.Resoluciones2 = resoluciones;
-                this._ventana.Resolucion2 = resoluciones[0];
+                
+                if (resoluciones.Count > 0)
+                {
+                    this._ventana.Resoluciones2 = resoluciones;
+                    this._ventana.Resolucion2 = resoluciones[0];
+                }
+                else
+                {
+                    this._ventana.Resoluciones2 = null;
+                    this._ventana.Resolucion2 = null;
+                }
             }
             else
             {

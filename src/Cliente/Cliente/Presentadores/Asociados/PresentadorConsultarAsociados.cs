@@ -35,6 +35,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
         private IListaDatosDominioServicios _listaDatosDominioServicios;
         private IList<Asociado> _asociados;
 
+        private int _filtroValido;
+
         /// <summary>
         /// Constructor Predeterminado
         /// </summary>
@@ -112,10 +114,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
 
                 ActualizarTitulo();
 
-                this._asociados = this._asociadoServicios.ConsultarTodos();
-                this._ventana.Resultados = this._asociados;
-                this._ventana.TotalHits = this._asociados.Count.ToString();
-                this._ventana.AsociadoFiltrar = new Asociado();
+                //this._asociados = this._asociadoServicios.ConsultarTodos();
+                //this._ventana.Resultados = this._asociados;
+                //this._ventana.TotalHits = this._asociados.Count.ToString();
+                //this._ventana.AsociadoFiltrar = new Asociado();
+                
+                this._ventana.TotalHits = "0";
 
                 IList<DetallePago> detallesPagos = this._detallePagoServicios.ConsultarTodos();
                 DetallePago primerDetallePago = new DetallePago();
@@ -210,107 +214,123 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
+                
+                this._filtroValido = 0;
 
-                Asociado asociado = (Asociado) this._ventana.AsociadoFiltrar;
+                Asociado asociado = this.CargarDatosFiltro();
 
-                IEnumerable<Asociado> asociadosFiltrados = this._asociados;
-
-                if (!string.IsNullOrEmpty(this._ventana.Id))
+                if (this._filtroValido >= 2)
                 {
-                    asociadosFiltrados = from a in asociadosFiltrados
-                                         where a.Id == int.Parse(this._ventana.Id)
-                                         select a;
-                }
+                    IEnumerable<Asociado> asociadosFiltrados = this._asociadoServicios.ObtenerAsociadosFiltro(asociado);
 
-                if (!string.IsNullOrEmpty(asociado.Nombre))
-                {
-                    asociadosFiltrados = from a in asociadosFiltrados
-                                       where a.Nombre != null &&
-                                       a.Nombre.ToLower().Contains(asociado.Nombre.ToLower())
-                                       select a;
-                }
+                    this._ventana.Resultados = asociadosFiltrados.ToList<Asociado>();
+                    this._ventana.TotalHits = asociadosFiltrados.ToList<Asociado>().Count.ToString();
 
-                if (!string.IsNullOrEmpty(asociado.Domicilio))
-                {
-                    asociadosFiltrados = from a in asociadosFiltrados
-                                       where a.Domicilio != null &&
-                                       a.Domicilio.ToLower().Contains(asociado.Domicilio.ToLower())
-                                       select a;
-                }
-
-                if (!((ListaDatosDominio)this._ventana.TipoPersona).Id.Equals("NGN"))
-                {
-                    asociadosFiltrados = from i in asociadosFiltrados
-                                           where i.TipoPersona == ((ListaDatosDominio)this._ventana.TipoPersona).Id[0]
-                                           select i;
-                }
-
-                if (this._ventana.Pais != null && ((Pais)this._ventana.Pais).Id != int.MinValue)
-                {
-                    asociadosFiltrados = from a in asociadosFiltrados
-                                         where a.Pais != null &&  
-                                         a.Pais.Id == ((Pais)this._ventana.Pais).Id
-                                        select a;
+                    if (asociadosFiltrados.ToList().Count == 0)
+                        this._ventana.Mensaje(Recursos.MensajesConElUsuario.NoHayResultados, 1);
 
                 }
+                else
+                    this._ventana.Mensaje(Recursos.MensajesConElUsuario.ErrorFiltroIncompleto, 0);
 
-                if (this._ventana.Idioma != null && !((Idioma)this._ventana.Idioma).Id.Equals("NGN"))
-                {
-                    asociadosFiltrados = from a in asociadosFiltrados
-                                         where a.Idioma != null && 
-                                         a.Idioma.Id.Contains(((Idioma)this._ventana.Idioma).Id)
-                                         select a;
+                //IEnumerable<Asociado> asociadosFiltrados = this._asociados;
 
-                }
+                //if (!string.IsNullOrEmpty(this._ventana.Id))
+                //{
+                //    asociadosFiltrados = from a in asociadosFiltrados
+                //                         where a.Id == int.Parse(this._ventana.Id)
+                //                         select a;
+                //}
 
-                if (this._ventana.Moneda != null && !((Moneda)this._ventana.Moneda).Id.Equals("NGN"))
-                {
-                    asociadosFiltrados = from a in asociadosFiltrados
-                                         where a.Moneda != null && 
-                                         a.Moneda.Id.Contains(((Moneda)this._ventana.Moneda).Id)
-                                         select a;
+                //if (!string.IsNullOrEmpty(asociado.Nombre))
+                //{
+                //    asociadosFiltrados = from a in asociadosFiltrados
+                //                       where a.Nombre != null &&
+                //                       a.Nombre.ToLower().Contains(asociado.Nombre.ToLower())
+                //                       select a;
+                //}
 
-                }
+                //if (!string.IsNullOrEmpty(asociado.Domicilio))
+                //{
+                //    asociadosFiltrados = from a in asociadosFiltrados
+                //                       where a.Domicilio != null &&
+                //                       a.Domicilio.ToLower().Contains(asociado.Domicilio.ToLower())
+                //                       select a;
+                //}
 
-                if (this._ventana.Tarifa != null && !((Tarifa)this._ventana.Tarifa).Id.Equals("NGN"))
-                {
-                    asociadosFiltrados = from a in asociadosFiltrados
-                                         where a.Tarifa != null &&  
-                                         a.Tarifa.Id.Contains(((Tarifa)this._ventana.Tarifa).Id)
-                                         select a;
+                //if (!((ListaDatosDominio)this._ventana.TipoPersona).Id.Equals("NGN"))
+                //{
+                //    asociadosFiltrados = from i in asociadosFiltrados
+                //                           where i.TipoPersona == ((ListaDatosDominio)this._ventana.TipoPersona).Id[0]
+                //                           select i;
+                //}
 
-                }
+                //if (this._ventana.Pais != null && ((Pais)this._ventana.Pais).Id != int.MinValue)
+                //{
+                //    asociadosFiltrados = from a in asociadosFiltrados
+                //                         where a.Pais != null &&  
+                //                         a.Pais.Id == ((Pais)this._ventana.Pais).Id
+                //                        select a;
 
-                if (this._ventana.TipoCliente != null && !((TipoCliente)this._ventana.TipoCliente).Id.Equals("NGN"))
-                {
-                    asociadosFiltrados = from a in asociadosFiltrados
-                                         where a.TipoCliente != null &&
-                                         a.TipoCliente.Id.Contains(((TipoCliente)this._ventana.TipoCliente).Id)
-                                         select a;
+                //}
 
-                }
+                //if (this._ventana.Idioma != null && !((Idioma)this._ventana.Idioma).Id.Equals("NGN"))
+                //{
+                //    asociadosFiltrados = from a in asociadosFiltrados
+                //                         where a.Idioma != null && 
+                //                         a.Idioma.Id.Contains(((Idioma)this._ventana.Idioma).Id)
+                //                         select a;
 
-                if (this._ventana.Etiqueta != null && !((Etiqueta)this._ventana.Etiqueta).Id.Equals("NGN"))
-                {
-                    asociadosFiltrados = from a in asociadosFiltrados
-                                         where a.Etiqueta != null && 
-                                         a.Etiqueta.Id.Contains(((Etiqueta)this._ventana.Etiqueta).Id)
-                                         select a;
+                //}
 
-                }
+                //if (this._ventana.Moneda != null && !((Moneda)this._ventana.Moneda).Id.Equals("NGN"))
+                //{
+                //    asociadosFiltrados = from a in asociadosFiltrados
+                //                         where a.Moneda != null && 
+                //                         a.Moneda.Id.Contains(((Moneda)this._ventana.Moneda).Id)
+                //                         select a;
 
-                if (this._ventana.DetallePago != null && !((DetallePago)this._ventana.DetallePago).Id.Equals("NGN"))
-                {
-                    asociadosFiltrados = from a in asociadosFiltrados
-                                         where a.DetallePago != null && 
-                                         a.DetallePago.Id.Contains(((DetallePago)this._ventana.DetallePago).Id)
-                                         select a;
+                //}
 
-                }
+                //if (this._ventana.Tarifa != null && !((Tarifa)this._ventana.Tarifa).Id.Equals("NGN"))
+                //{
+                //    asociadosFiltrados = from a in asociadosFiltrados
+                //                         where a.Tarifa != null &&  
+                //                         a.Tarifa.Id.Contains(((Tarifa)this._ventana.Tarifa).Id)
+                //                         select a;
+
+                //}
+
+                //if (this._ventana.TipoCliente != null && !((TipoCliente)this._ventana.TipoCliente).Id.Equals("NGN"))
+                //{
+                //    asociadosFiltrados = from a in asociadosFiltrados
+                //                         where a.TipoCliente != null &&
+                //                         a.TipoCliente.Id.Contains(((TipoCliente)this._ventana.TipoCliente).Id)
+                //                         select a;
+
+                //}
+
+                //if (this._ventana.Etiqueta != null && !((Etiqueta)this._ventana.Etiqueta).Id.Equals("NGN"))
+                //{
+                //    asociadosFiltrados = from a in asociadosFiltrados
+                //                         where a.Etiqueta != null && 
+                //                         a.Etiqueta.Id.Contains(((Etiqueta)this._ventana.Etiqueta).Id)
+                //                         select a;
+
+                //}
+
+                //if (this._ventana.DetallePago != null && !((DetallePago)this._ventana.DetallePago).Id.Equals("NGN"))
+                //{
+                //    asociadosFiltrados = from a in asociadosFiltrados
+                //                         where a.DetallePago != null && 
+                //                         a.DetallePago.Id.Contains(((DetallePago)this._ventana.DetallePago).Id)
+                //                         select a;
+
+                //}
 
 
-                this._ventana.Resultados = asociadosFiltrados.ToList<Asociado>();
-                this._ventana.TotalHits = asociadosFiltrados.ToList<Asociado>().Count.ToString();
+                //this._ventana.Resultados = asociadosFiltrados.ToList<Asociado>();
+                //this._ventana.TotalHits = asociadosFiltrados.ToList<Asociado>().Count.ToString();
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -322,6 +342,88 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
                 logger.Error(ex.Message);
                 this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
             }
+        }
+
+        private Asociado CargarDatosFiltro()
+        {
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+            Asociado asociado = new Asociado();
+
+            if (!this._ventana.Id.Equals(""))
+            {
+                asociado.Id = int.Parse(this._ventana.Id);
+                this._filtroValido = 2;
+            }
+
+            if (!this._ventana.NombreAsociado.Equals(""))
+            {
+                asociado.Nombre = this._ventana.NombreAsociado;
+                this._filtroValido = 2;
+            }
+
+            if (!this._ventana.DomicilioAsociado.Equals(""))
+            {
+                asociado.Domicilio = this._ventana.DomicilioAsociado;
+                this._filtroValido = 2;
+            }
+
+            if ((null != this._ventana.TipoPersona) && !((ListaDatosDominio)this._ventana.TipoPersona).Id.Equals("NGN"))
+            {
+                asociado.TipoPersona = ((ListaDatosDominio)this._ventana.TipoPersona).Id.ToCharArray()[0];
+                this._filtroValido = 2;
+            }
+
+            if ((null != this._ventana.Pais) && (((Pais)this._ventana.Pais).Id != int.MinValue))
+            {
+                asociado.Pais = (Pais)this._ventana.Pais;
+                this._filtroValido = 2;
+            }
+
+            if ((null != this._ventana.Idioma) && (!((Idioma)this._ventana.Idioma).Id.Equals("NGN")))
+            {
+                asociado.Idioma = (Idioma)this._ventana.Idioma;
+                this._filtroValido = 2;
+            }
+
+            if ((null != this._ventana.Moneda) && (!((Moneda)this._ventana.Moneda).Id.Equals("NGN")))
+            {
+                asociado.Moneda = (Moneda)this._ventana.Moneda;
+                this._filtroValido = 2;
+            }
+
+            if ((null != this._ventana.TipoCliente) && (!((TipoCliente)this._ventana.TipoCliente).Id.Equals("NGN")))
+            {
+                asociado.TipoCliente = (TipoCliente)this._ventana.TipoCliente;
+                this._filtroValido = 2;
+            }
+
+            if ((null != this._ventana.Tarifa) && (!((Tarifa)this._ventana.Tarifa).Id.Equals("NGN")))
+            {
+                asociado.Tarifa = (Tarifa)this._ventana.Tarifa;
+                this._filtroValido = 2;
+            }
+
+            if ((null != this._ventana.Etiqueta) && (!((Etiqueta)this._ventana.Etiqueta).Id.Equals("NGN")))
+            {
+                asociado.Etiqueta = (Etiqueta)this._ventana.Etiqueta;
+                this._filtroValido = 2;
+            }
+
+            if ((null != this._ventana.DetallePago) && (!((DetallePago)this._ventana.DetallePago).Id.Equals("NGN")))
+            {
+                asociado.DetallePago = (DetallePago)this._ventana.DetallePago;
+                this._filtroValido = 2;
+            }
+
+            return asociado;
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
         }
 
         /// <summary>
@@ -389,8 +491,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
 
             IEnumerable<Asociado> asociadosFiltrados = this._asociados;
 
-            this._ventana.Resultados = asociadosFiltrados.ToList<Asociado>();
-            this._ventana.TotalHits = asociadosFiltrados.ToList<Asociado>().Count.ToString();
+            this._ventana.Resultados = null;
+            this._ventana.TotalHits = "0";
 
             this._ventana.Id = null;
             this._ventana.NombreAsociado = null;

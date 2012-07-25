@@ -68,17 +68,71 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
                 bool variosFiltros = false;
                 string filtro = "";
                 string cabecera = string.Format(Recursos.ConsultasHQL.CabeceraObtenerInteresado);
+                
                 if ((null != interesado) && (interesado.Id != 0))
                 {
                     filtro = string.Format(Recursos.ConsultasHQL.FiltroObtenerInteresadoId, interesado.Id);
                     variosFiltros = true;
                 }
+                
                 if (!string.IsNullOrEmpty(interesado.Nombre))
                 {
                     if (variosFiltros)
                         filtro += " and ";
                     filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerInteresadoNombre, interesado.Nombre);
                 }
+
+                if ((null != interesado.TipoPersona) && (! interesado.TipoPersona.Equals(char.MinValue)))
+                {
+                    
+                }
+
+                if ((null != interesado.Ciudad) && (! interesado.Ciudad.Equals("")))
+                {
+                    
+                }
+
+                if ((null != interesado.Estado) && (!interesado.Estado.Equals("")))
+                {
+                    
+                }
+
+                if ((null != interesado.Pais) && (! interesado.Pais.Id.Equals("")))
+                {
+                    
+                }
+
+                if ((null != interesado.Nacionalidad) && (!((Pais)interesado.Nacionalidad).Id.Equals("")))
+                {
+                 
+                }
+
+                if ((null != interesado.Corporacion) && (!((Estado)interesado.Corporacion).Id.Equals("")))
+                {
+                    
+                }
+
+                if ((null != interesado.Ci) && (!interesado.Ci.Equals("")))
+                {
+                    
+                }
+
+                if ((null != interesado.RegMercantil) && (!interesado.RegMercantil.Equals("")))
+                {
+                    
+                }
+
+                if ((null != interesado.Domicilio) && (!interesado.Domicilio.Equals("")))
+                {
+                    
+                }
+
+
+                if ((null != interesado.Alerta) && (!interesado.Alerta.Equals("")))
+                {
+                    
+                }
+
                 IQuery query = Session.CreateQuery(cabecera + filtro);
                 interesados = query.List<Interesado>();
 

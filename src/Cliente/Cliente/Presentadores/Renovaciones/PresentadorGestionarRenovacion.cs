@@ -1132,6 +1132,40 @@ namespace Trascend.Bolet.Cliente.Presentadores.Renovaciones
                             this._ventana.Interesado = this._interesadoServicios.ConsultarInteresadoConTodo((Interesado)this._ventana.InteresadoFiltrado);
                             this._ventana.NombreInteresado = ((Interesado)this._ventana.Interesado).Nombre;
                             this._ventana.IdInteresado = ((Interesado)this._ventana.Interesado).Id.ToString();
+
+                            this._ventana.NombreAgente = null;
+                            this._ventana.IdAgente = null;
+                            this._ventana.IdPoder = null;
+                            this._ventana.NumPoder = null;
+
+                            Agente primerAgente = new Agente("");
+                            this._ventana.Agente = primerAgente;
+                            
+                            IList<Agente> listaAux = new List<Agente>();
+                            listaAux.Add(new Agente(""));
+
+                            this._ventana.AgentesFiltrados = listaAux;
+                            this._ventana.AgenteFiltrado = this.BuscarAgente((IList<Agente>)this._ventana.AgentesFiltrados,primerAgente);
+
+                            Poder primerPoder = new Poder(int.MinValue);
+
+                            this._poderesInteresado = this._poderServicios.ConsultarPoderesPorInteresado(((Interesado)_ventana.InteresadoFiltrado));
+                            this._poderesInteresado.Insert(0, primerPoder);
+                            IList<Poder> poderes = this._poderesInteresado;
+                            foreach (Poder poder in poderes)
+                            {
+                                if (poder.Id != int.MinValue)
+                                {
+                                    IList<Agente> ListaAgentes = this._agenteServicios.ObtenerAgentesDeUnPoder(poder);
+                                    foreach (Agente agente in ListaAgentes)
+                                    {
+                                        poder.MostrarAgentes += agente.Id + "-" + agente.Nombre + "\n";
+                                    }
+                                }
+                            }
+                            this._ventana.PoderesFiltrados = poderes;
+                            this._ventana.PoderFiltrado = primerPoder;
+
                             retorno = true;
                         }
                         else

@@ -127,9 +127,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosPatente
             string StringLlleno = "";
             StringLlleno += DateTime.Parse(this._ventana.Fecha).ToShortDateString() + "  ";
             if (null != this._ventana.TipoEscrito)
-                StringLlleno += ((ListaDatosValores) this._ventana.TipoEscrito).Valor;
+                StringLlleno += ((ListaDatosValores) this._ventana.TipoEscrito).Valor + "  ";
             if (null != ((Agente)this._ventana.Agente))
-                StringLlleno += ((Agente)this._ventana.Agente).Id + "  ";
+                StringLlleno += ((Agente)this._ventana.Agente).Id;
+            
             this._ventana.String = StringLlleno + "  " + parametroPatentes;
 
             #region trace

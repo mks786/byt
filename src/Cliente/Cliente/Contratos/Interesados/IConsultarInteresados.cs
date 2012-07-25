@@ -36,5 +36,7 @@ namespace Trascend.Bolet.Cliente.Contratos.Interesados
         ListView ListaResultados { get; set; }
 
         string TotalHits { set; }
+
+        void Mensaje(string mensaje, int opcion);
     }
 }

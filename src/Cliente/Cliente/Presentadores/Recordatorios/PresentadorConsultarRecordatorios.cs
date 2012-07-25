@@ -497,7 +497,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Recordatorios
                     cadena = cadena + recordatorio.Asociado.Id + "|" + recordatorio.Asociado.Nombre + "|" + fax + "|" +
                              recordatorio.Asociado.Email + "|" + recordatorio.Marca.Descripcion + "|" + recordatorio.NombreInteresado + "|" +
                              recordatorio.FechaRenovacion + "|" + recordatorioAux + "|" + recordatorio.Pais + "|" +
-                             recordatorio.Idioma + "|" + recordatorio.Asociado.Domicilio + "|" + recordatorio.Marca.CodigoRegistro +
+                             recordatorio.Idioma + "|" + recordatorio.Direccion + "|" + recordatorio.Marca.CodigoRegistro +
                              "|" + recordatorio.Clase + "|" + recordatorio.FechaGracia + "|" +
                              recordatorio.FechaRenovacionIn + "|" + recordatorio.FechaGraciaIn + "|" + recordatorio.Id + "\r\n";
                 }

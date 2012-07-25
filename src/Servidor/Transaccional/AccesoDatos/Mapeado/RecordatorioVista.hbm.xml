@@ -18,6 +18,7 @@
     <property name="FechaRenovacionIn" column="FRENOVACION_IN" type="string"/>
     <property name="FechaGraciaIn" column="FECHAGRA_IN" type="string"/>
     <property name="FechaRenovacion1" column="FRENO" type="DateTime"/>
+    <property name="Direccion" column="DIR" type="String"/>
 
     <property name="Idioma" column="IDIOMA" type="string"/>
     <property name="Clase" column="CLASE" type="string"/>

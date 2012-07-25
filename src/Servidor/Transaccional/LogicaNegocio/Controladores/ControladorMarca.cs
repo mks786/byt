@@ -35,6 +35,7 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
                 // si es una insercion
                 if (marca.Operacion.Equals("CREATE"))
                 {
+                    marca.Recordatorio = 1;
                     ComandoBase<Contador> comandoContadorInteresadoProximoValor = FabricaComandosContador.ObtenerComandoConsultarPorId("MYP_MARCAS");
                     comandoContadorInteresadoProximoValor.Ejecutar();
                     Contador contador = comandoContadorInteresadoProximoValor.Receptor.ObjetoAlmacenado;

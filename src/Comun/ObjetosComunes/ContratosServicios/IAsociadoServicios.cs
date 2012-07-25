@@ -6,6 +6,7 @@ namespace Trascend.Bolet.ObjetosComunes.ContratosServicios
 {
     public interface IAsociadoServicios: IServicioBase<Asociado>
     {
+
         /// <summary>
         /// Servicio que se encarga consultar la auditoria de un Asociado
         /// </summary>
@@ -28,6 +29,7 @@ namespace Trascend.Bolet.ObjetosComunes.ContratosServicios
         /// <param name="asociado">Asociado filtro</param>
         /// <returns>Lista de asociados que cumplen con el filtro</returns>
         IList<Asociado> ObtenerAsociadosFiltro(Asociado asociado);
+
 
         /// <summary>
         /// Método que verifica si un asociado tiene cartas

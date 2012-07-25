@@ -23,7 +23,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         private string _fechaGracia;
         private string _anoGracia;
         private string _mesGracia;
-        //private string _direccion;
+        private string _direccion;
         //private string _fax;
         //private string _email;
         private string _pais;
@@ -164,11 +164,11 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         }
 
 
-        //public string Direccion
-        //{
-        //    get { return _direccion; }
-        //    set { _direccion = value; }
-        //}
+        public virtual string Direccion
+        {
+            get { return _direccion; }
+            set { _direccion = value; }
+        }
 
 
         //public string Fax

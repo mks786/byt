@@ -388,7 +388,7 @@
     <comment>Filtro por Marca</comment>
   </data>
   <data name="CabeceraObtenerAsociado" xml:space="preserve">
-    <value>Select a from Asociado a where </value>
+    <value>Select a from Asociado a left join fetch a.Pais as pais left join fetch a.Idioma as idioma left join fetch a.Moneda as moneda left join fetch a.TipoCliente as tipoCliente left join fetch a.Tarifa as tarifa left join fetch a.Etiqueta as etiqueta left join fetch a.DetallePago as detallePago where </value>
     <comment>Cabecera del query para el filtro de asociados</comment>
   </data>
   <data name="FiltroObtenerAsociadoId" xml:space="preserve">
@@ -818,5 +818,41 @@
   </data>
   <data name="ObtenerAsignacionesPorUsuario" xml:space="preserve">
     <value>Select a from Asignacion a where a.Iniciales= '{0}'</value>
+  </data>
+  <data name="FiltroObtenerAsociadoDetallePago" xml:space="preserve">
+    <value>detallePago.Id = '{0}'</value>
+    <comment>Filtro por DetallePago</comment>
+  </data>
+  <data name="FiltroObtenerAsociadoDomicilio" xml:space="preserve">
+    <value>a.Domicilio = '{0}'</value>
+    <comment>Filtro por domicilio</comment>
+  </data>
+  <data name="FiltroObtenerAsociadoEtiqueta" xml:space="preserve">
+    <value>etiqueta.Id = {0}</value>
+    <comment>Filtro por Etiqueta</comment>
+  </data>
+  <data name="FiltroObtenerAsociadoIdioma" xml:space="preserve">
+    <value>idioma.Id = '{0}'</value>
+    <comment>Filtro por Idioma</comment>
+  </data>
+  <data name="FiltroObtenerAsociadoMoneda" xml:space="preserve">
+    <value>moneda.Id = '{0}'</value>
+    <comment>Filtro por moneda</comment>
+  </data>
+  <data name="FiltroObtenerAsociadoPais" xml:space="preserve">
+    <value>pais.Id = {0}</value>
+    <comment>Filtro por Pais</comment>
+  </data>
+  <data name="FiltroObtenerAsociadoTarifa" xml:space="preserve">
+    <value>tarifa.Id = {0}</value>
+    <comment>Filtro por tarifa</comment>
+  </data>
+  <data name="FiltroObtenerAsociadoTipoCliente" xml:space="preserve">
+    <value>tipoCliente.Id = {0}</value>
+    <comment>Filtro por TipoCliente</comment>
+  </data>
+  <data name="FiltroObtenerAsociadoTipoPersona" xml:space="preserve">
+    <value>a.TipoPersona = '{0}'</value>
+    <comment>Filtro por TipoPersona</comment>
   </data>
 </root>

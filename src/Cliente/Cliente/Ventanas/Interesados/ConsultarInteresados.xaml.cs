@@ -174,6 +174,14 @@ namespace Trascend.Bolet.Cliente.Ventanas.Interesados
                 this._presentador.ActualizarTitulo();
         }
 
+        public void Mensaje(string mensaje, int opcion)
+        {
+            if (opcion == 0)
+                MessageBox.Show(mensaje, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            else
+                MessageBox.Show(mensaje, "Advertencia", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+        }
+
         /// <summary>
         /// Método que se encarga de posicionar el cursor en los campos del filto
         /// </summary>

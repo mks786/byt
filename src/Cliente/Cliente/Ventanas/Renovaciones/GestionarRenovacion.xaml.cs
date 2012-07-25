@@ -295,6 +295,12 @@ namespace Trascend.Bolet.Cliente.Ventanas.Renovaciones
             set { this._txtIdPoder.Text = value; }
         }
 
+        public string NumPoder
+        {
+            get { return this._txtNumPoder.Text; }
+            set { this._txtNumPoder.Text = value; }
+        }
+
         public string IdPoderFiltrar
         {
             get { return this._txtIdPoderFiltrar.Text; }

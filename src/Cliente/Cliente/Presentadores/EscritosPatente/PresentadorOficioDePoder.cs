@@ -132,7 +132,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosPatente
 
             StringLlleno += DateTime.Parse(this._ventana.Fecha).ToShortDateString() + "  ";
             if (null != ((Agente)this._ventana.Agente))
-                StringLlleno += ((Agente)this._ventana.Agente).Id + "  ";
+                StringLlleno += ((Agente)this._ventana.Agente).Id;
             this._ventana.String = StringLlleno + "  " + parametroPatentes;
 
             #region trace

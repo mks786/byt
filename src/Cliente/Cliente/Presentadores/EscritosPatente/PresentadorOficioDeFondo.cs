@@ -131,9 +131,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosPatente
             }
             StringLlleno += DateTime.Parse(this._ventana.Fecha).ToShortDateString() + "  ";
             if (null != this._ventana.Resolucion)
-                StringLlleno += ((Resolucion)this._ventana.Resolucion).FechaResolucion + "  ";
+                StringLlleno += ((Resolucion)this._ventana.Resolucion).FechaResolucion.ToShortDateString() + "  ";
             if (null != ((Agente)this._ventana.Agente))
-                StringLlleno += ((Agente)this._ventana.Agente).Id + "  ";
+                StringLlleno += ((Agente)this._ventana.Agente).Id;
             this._ventana.String = StringLlleno + "  " + parametroPatentes;
 
             #region trace
@@ -165,7 +165,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosPatente
                         + "\\" + ConfigurationManager.AppSettings["EscritoOficioDeFondo"].ToString(),
                         ((Boletin)this._ventana.Boletin).Id + " " + ((Resolucion)this._ventana.Resolucion).Id
                         + " " + DateTime.Parse(this._ventana.Fecha).ToShortDateString() 
-                        + " " + ((Resolucion)this._ventana.Resolucion).FechaResolucion + " " +
+                        + " " + ((Resolucion)this._ventana.Resolucion).FechaResolucion.ToShortDateString() + " " +
                         ((Agente)this._ventana.AgenteFiltrado).Id + " " + parametroPatentes);
                 }
 

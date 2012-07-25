@@ -196,6 +196,15 @@ namespace Trascend.Bolet.Cliente.Ventanas.Asociados
             set { this._cbxTipoPersona.SelectedItem = value; }
         }
 
+        public void Mensaje(string mensaje, int opcion)
+        {
+            if (opcion == 0)
+                MessageBox.Show(mensaje, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            else
+                MessageBox.Show(mensaje, "Advertencia", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+        }
+
+
         public string TotalHits
         {
             set { this._lblHits.Text = value; }
