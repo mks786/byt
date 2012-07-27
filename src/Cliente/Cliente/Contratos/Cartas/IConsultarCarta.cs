@@ -86,5 +86,7 @@ namespace Trascend.Bolet.Cliente.Contratos.Cartas
         string FormatoTracking { get; set; }
 
         string FormatoTrackingConfirmacion { get; set; }
+
+        void SetFechaConfirmacion(string fecha);
     }
 }

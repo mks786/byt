@@ -27,14 +27,14 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         private string _medioAcuse;
         private DateTime? _fechaEnvioAcuse;
         private Resumen _resumen;
-        private DateTime? _fechaAlt;
+        private string _fechaAlt;
         private double? _salida;
         private string _detalleResumen;
         private string _iniciales;
         private Departamento _departamento;
         private DateTime? _fechaL;
         private char _iRev;
-        private DateTime? _fechaReal;
+        private string _fechaReal;
         private DateTime? _fechaConfirmacion;
         private IList<Justificacion> _justificaciones;
         private IList<Contacto> _contactos;
@@ -200,7 +200,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
             set { _resumen = value; }
         }
 
-        public virtual DateTime? FechaAlt
+        public virtual string FechaAlt
         {
             get { return _fechaAlt; }
             set { _fechaAlt = value; }
@@ -242,7 +242,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
             set { _iRev = value; }
         }
 
-        public virtual DateTime? FechaReal
+        public virtual string FechaReal
         {
             get { return _fechaReal; }
             set { _fechaReal = value; }

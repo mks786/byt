@@ -165,7 +165,10 @@ namespace Trascend.Bolet.Cliente.Ventanas.Cartas
             set { this._cbxMedio.DataContext = value; }
         }
 
-
+        public void SetFechaConfirmacion(string fecha)
+        {
+            this._dpkFechaConfirmacion.Text = fecha;
+        }
         //public object MedioTracking
         //{
         //    get { return this._cbxMedioTracking.SelectedItem; }
@@ -602,5 +605,6 @@ namespace Trascend.Bolet.Cliente.Ventanas.Cartas
         //{
         //    this._presentador.IrListaJustificaciones();
         //}      
+
     }
 }

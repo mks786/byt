@@ -125,7 +125,12 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
                 carta.Asociado = asociado;
                 carta.Iniciales = cartaOut.Iniciales;
                 carta.Persona = cartaOut.Persona;
-                carta.FechaAlt = cartaOut.FechaIngreso;
+                //carta.FechaAlt = cartaOut.FechaCorreo
+                carta.Fecha = cartaOut.FechaIngreso.Value;
+
+                String fechaAux = TraducirFecha(cartaOut.FechaIngreso);
+                carta.FechaAlt = fechaAux;
+                carta.FechaReal = fechaAux;
 
                 if (cartaOut.TipoEmail.Equals('I'))
                     carta.Acuse = 'S';
@@ -133,6 +138,7 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
                     carta.Acuse = 'E';
                 if (cartaOut.TipoEmail.Equals(""))
                     carta.Acuse = 'S';
+
 
                 //Hashtable tabla = new Hashtable();
                 //tabla["I"] = "S";
@@ -147,6 +153,8 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
                 carta.Asignaciones.Add(asignacion);
                 carta.Receptor = cartaOut.Iniciales;
                 // ENTRADA.asignacion = nrelacion.cor_mail_out
+                carta.Departamento = new Departamento();
+                carta.Departamento.Id = cartaOut.Departamento;
 
                 retorno.Add(carta);
             }
@@ -157,6 +165,21 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
             if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
                 logger.Debug("Saliendo del Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
+        }
+
+        private static string TraducirFecha(DateTime? fecha)
+        {
+            string retorno = "";
+            if (null != fecha)
+            {
+                string dia = fecha.Value.Day.ToString();
+                if (fecha.Value.Day < 10)
+                {
+                    dia = "0" + fecha.Value.Day;
+                }
+                retorno = dia + "/" + fecha.Value.Month + "/" + fecha.Value.Year;
+            }
+            return retorno;
         }
     }
 }

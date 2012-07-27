@@ -2048,5 +2048,17 @@ namespace Trascend.Bolet.Cliente.Presentadores
             return retorno;
         }
 
+        public string FormatearFecha(string fecha)
+        {
+            string retorno = "";
+
+            string dia = fecha.Substring(0, 2);
+            string mes = fecha.Substring(3, 2);
+            string ano = fecha.Substring(6, 4);
+
+            retorno = dia + "/" + mes + "/" + ano;
+            return retorno;
+        }
+
     }
 }

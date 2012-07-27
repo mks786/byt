@@ -319,7 +319,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Renovaciones
 
                     if (marcaExitoso)
                     {
-                        this.Navegar(Recursos.MensajesConElUsuario.RenovacionInsertada, false);
+                        //this.Navegar(Recursos.MensajesConElUsuario.RenovacionInsertada, false);
+                        this._ventana.HabilitarCampos = false;
                     }
                     else
                         this.Navegar(Recursos.MensajesConElUsuario.RenovacionInsertada, true);

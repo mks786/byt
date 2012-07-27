@@ -64,7 +64,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
                 #endregion
 
                 this._ventana = ventana;
-                this._ventana.Carta = carta;
+
+                Carta cartaA = (Carta)carta;
+                cartaA.FechaAlt = FormatearFecha(cartaA.FechaAlt);
+                cartaA.FechaReal = FormatearFecha(cartaA.FechaReal);
+                this._ventana.Carta = cartaA;
+
          //       this._precargada = ventanaAVolver.Equals(null) ? false : true;
          //       this._ventanaAVolver = ventanaAVolver;
 
@@ -234,24 +239,34 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
                     this._ventana.AnexosConfirmacion = _anexosConfirmacion;
                 }
 
-                if (!_otraCarta)
-                    this._asociados = this._asociadoServicios.ConsultarTodos();
-                this._ventana.Asociados = this._asociados;
+                if (!_otraCarta) 
+                {
+                    //this._asociados = this._asociadoServicios.ConsultarTodos();
+
+                }
+                    
+                //this._ventana.Asociados = this._asociados;
                 try
                 {
+                    IList<Asociado> asociados = new List<Asociado>();
                     if (null != carta.Asociado)
                     {
                         this._ventana.NombreAsociado = ((Carta)this._ventana.Carta).Asociado.Nombre;
                         this._ventana.CodigoAsociado = ((Carta)this._ventana.Carta).Asociado.Id.ToString();
-                        this._ventana.Asociado = this.BuscarAsociado(this._asociados, carta.Asociado);
-                        Asociado asociado = this._asociadoServicios.ConsultarAsociadoConTodo((Asociado)this._ventana.Asociado);
+                        Asociado asociado = this._asociadoServicios.ConsultarAsociadoConTodo(((Carta)this._ventana.Carta).Asociado);
                         asociado.Contactos = this._contactoServicios.ConsultarContactosPorAsociado(asociado);
                         this._personas = asociado.Contactos;
                         this._ventana.Personas = null;
                         this._ventana.Personas = this._personas;
                         this._ventana.Persona = BuscarContacto(this._personas, carta.Persona);
-                        
+                        asociados.Add(((Carta)this._ventana.Carta).Asociado);
                     }
+                    Asociado primerAsociado = new Asociado();
+                    primerAsociado.Id = int.MinValue;
+                    asociados.Insert(0, primerAsociado);
+                    this._ventana.Asociados = asociados;
+                    if (null != carta.Asociado)
+                        this._ventana.Asociado = this.BuscarAsociado(asociados, carta.Asociado);
                 }
                 catch (NHibernate.LazyInitializationException)
                 {
@@ -570,6 +585,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
                     if (tracking)
                     {
                         Carta carta = (Carta)this._ventana.Carta;
+                        carta.FechaAlt = FormatearFecha(carta.FechaAlt);
+                        carta.FechaReal = FormatearFecha(carta.FechaReal);
                         carta.Operacion = "MODIFY";
 
                         if (null != this._ventana.Departamento)
@@ -593,6 +610,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
                             carta.Acuse = ' ';
                         carta.Medio = ((Medio)this._ventana.Medio).Id;
                         carta.Receptor = ((Usuario)this._ventana.Receptor).Iniciales;
+                        carta.FechaConfirmacion = System.DateTime.Now;
+                        this._ventana.SetFechaConfirmacion(carta.FechaConfirmacion.ToString());
                         bool exitoso = this._cartaServicios.InsertarOModificar(carta, UsuarioLogeado.Hash);
 
                         if (exitoso)
@@ -868,13 +887,16 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
-
+                 if (((Asociado)this._ventana.Asociado).Id != int.MinValue)
+                {
                 Asociado asociado = this._asociadoServicios.ConsultarAsociadoConTodo((Asociado)this._ventana.Asociado);
                 asociado.Contactos = this._contactoServicios.ConsultarContactosPorAsociado(asociado);
                 this._ventana.NombreAsociado = ((Asociado)this._ventana.Asociado).Nombre;
                 this._ventana.CodigoAsociado = ((Asociado)this._ventana.Asociado).Id.ToString();
                 this._ventana.Personas = asociado.Contactos;
-
+                if (asociado.Contactos.Count != 0)
+                    this._ventana.Personas = asociado.Contactos;
+                    }
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
                     logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
@@ -896,27 +918,47 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
                 logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
 
-            IEnumerable<Asociado> asociadosFiltrados = this._asociados;
+            Asociado asociadoAFiltrar = new Asociado();
 
-            if (!string.IsNullOrEmpty(this._ventana.idAsociadoFiltrar))
+            IList<Asociado> resultados = new List<Asociado>();
+
+            if ((!this._ventana.idAsociadoFiltrar.Equals("")) || (!this._ventana.NombreAsociadoFiltrar.Equals("")))
             {
-                asociadosFiltrados = from p in asociadosFiltrados
-                                     where p.Id == int.Parse(this._ventana.idAsociadoFiltrar)
-                                     select p;
+                asociadoAFiltrar.Id = !this._ventana.idAsociadoFiltrar.Equals("") ? int.Parse(this._ventana.idAsociadoFiltrar) : 0;
+                asociadoAFiltrar.Nombre = !this._ventana.NombreAsociadoFiltrar.Equals("")
+                    ? this._ventana.NombreAsociadoFiltrar.ToUpper() : "";
+
+
+                resultados = this._asociadoServicios.ObtenerAsociadosFiltro(asociadoAFiltrar);
+
             }
 
-            if (!string.IsNullOrEmpty(this._ventana.NombreAsociadoFiltrar))
-            {
-                asociadosFiltrados = from p in asociadosFiltrados
-                                     where p.Nombre != null &&
-                                     p.Nombre.ToLower().Contains(this._ventana.NombreAsociadoFiltrar.ToLower())
-                                     select p;
-            }
+            Asociado primerAsociado = new Asociado();
+            primerAsociado.Id = int.MinValue;
+            resultados.Insert(0, primerAsociado);
+            this._ventana.Asociados = resultados;
 
-            if (asociadosFiltrados.ToList<Asociado>().Count != 0)
-                this._ventana.Asociados = asociadosFiltrados.ToList<Asociado>();
-            else
-                this._ventana.Asociados = this._asociados;
+            //IEnumerable<Asociado> asociadosFiltrados = this._asociados;
+
+            //if (!string.IsNullOrEmpty(this._ventana.idAsociadoFiltrar))
+            //{
+            //    asociadosFiltrados = from p in asociadosFiltrados
+            //                         where p.Id == int.Parse(this._ventana.idAsociadoFiltrar)
+            //                         select p;
+            //}
+
+            //if (!string.IsNullOrEmpty(this._ventana.NombreAsociadoFiltrar))
+            //{
+            //    asociadosFiltrados = from p in asociadosFiltrados
+            //                         where p.Nombre != null &&
+            //                         p.Nombre.ToLower().Contains(this._ventana.NombreAsociadoFiltrar.ToLower())
+            //                         select p;
+            //}
+
+            //if (asociadosFiltrados.ToList<Asociado>().Count != 0)
+            //    this._ventana.Asociados = asociadosFiltrados.ToList<Asociado>();
+            //else
+            //    this._ventana.Asociados = this._asociados;
 
             #region trace
             if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))

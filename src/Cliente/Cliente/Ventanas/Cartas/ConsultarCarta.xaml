@@ -11,6 +11,7 @@
       xmlns:conv="clr-namespace:Trascend.Bolet.Cliente.Transformadores"
       Title="{x:Static recurso:Etiquetas.titleAgregarAgente}" Loaded="Page_Loaded">
     <Page.Resources>
+        <conv:EnteroMinimoABlanco x:Key="convertir"></conv:EnteroMinimoABlanco>
         <conv:DosValresAUno x:Key="convertirADosValores"></conv:DosValresAUno>
         <Style x:Key="ElementInError" TargetType="{x:Type FrameworkElement}">
             <Style.Triggers>
@@ -187,8 +188,17 @@
                       Style="{DynamicResource EstiloListView}" Visibility="Collapsed" Height="150" MouseDoubleClick="_lstAsociados_MouseDoubleClick" VerticalAlignment="Top">
                         <ListView.View>
                             <GridView>
-                                <GridViewColumn DisplayMemberBinding="{Binding Path=Id}" Width="45">
-                                    <GridViewColumnHeader  Tag="Id" Content="{x:Static recurso:Etiquetas.lsvId}"/>
+                                <GridViewColumn Width="45">
+                                    <GridViewColumnHeader Tag="Id" Content="{x:Static recurso:Etiquetas.lsvId}"/>
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock>
+                                                    <TextBlock.Text>
+                                                        <Binding Path="Id" Converter="{StaticResource convertir}"/>
+                                                    </TextBlock.Text>
+                                            </TextBlock>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
                                 <GridViewColumn DisplayMemberBinding="{Binding Path=Nombre}" Width="260">
                                     <GridViewColumnHeader  Tag="Nombre" Content="{x:Static recurso:Etiquetas.lsvNombre}"/>
