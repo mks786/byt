@@ -84,53 +84,73 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
 
                 if ((null != interesado.TipoPersona) && (! interesado.TipoPersona.Equals(char.MinValue)))
                 {
-                    
+                    if (variosFiltros)
+                        filtro += " and ";
+                    filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerInteresadoTipoPersona, interesado.TipoPersona);
                 }
 
                 if ((null != interesado.Ciudad) && (! interesado.Ciudad.Equals("")))
                 {
-                    
+                    if (variosFiltros)
+                        filtro += " and ";
+                    filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerInteresadoCiudad, interesado.Ciudad);
                 }
 
                 if ((null != interesado.Estado) && (!interesado.Estado.Equals("")))
                 {
-                    
+                    if (variosFiltros)
+                        filtro += " and ";
+                    filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerInteresadoEstado, interesado.Estado);
                 }
 
                 if ((null != interesado.Pais) && (! interesado.Pais.Id.Equals("")))
                 {
-                    
+                    if (variosFiltros)
+                        filtro += " and ";
+                    filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerInteresadoPais, ((Pais)interesado.Pais).Id);
                 }
 
-                if ((null != interesado.Nacionalidad) && (!((Pais)interesado.Nacionalidad).Id.Equals("")))
+                if ((null != interesado.Nacionalidad) && (!((Pais)interesado.Nacionalidad).Nacionalidad.Equals("")))
                 {
-                 
+                    if (variosFiltros)
+                        filtro += " and ";
+                    filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerInteresadoNacionalidad, ((Pais)interesado.Nacionalidad).Nacionalidad);
                 }
 
                 if ((null != interesado.Corporacion) && (!((Estado)interesado.Corporacion).Id.Equals("")))
                 {
-                    
+                    if (variosFiltros)
+                        filtro += " and ";
+                    filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerInteresadoCorporacion, ((Estado)interesado.Corporacion).Id);
                 }
 
                 if ((null != interesado.Ci) && (!interesado.Ci.Equals("")))
                 {
-                    
+                    if (variosFiltros)
+                        filtro += " and ";
+                    filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerInteresadoCi, interesado.Ci);
                 }
 
                 if ((null != interesado.RegMercantil) && (!interesado.RegMercantil.Equals("")))
                 {
-                    
+                    if (variosFiltros)
+                        filtro += " and ";
+                    filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerInteresadoRegMercantil, interesado.RegMercantil);
                 }
 
                 if ((null != interesado.Domicilio) && (!interesado.Domicilio.Equals("")))
                 {
-                    
+                    if (variosFiltros)
+                        filtro += " and ";
+                    filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerInteresadoDomicilio, interesado.Domicilio);
                 }
 
 
                 if ((null != interesado.Alerta) && (!interesado.Alerta.Equals("")))
                 {
-                    
+                    if (variosFiltros)
+                        filtro += " and ";
+                    filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerInteresadoAlerta, interesado.Alerta);
                 }
 
                 IQuery query = Session.CreateQuery(cabecera + filtro);

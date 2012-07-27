@@ -338,7 +338,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Interesados
                 this._filtroValido = 2;
             }
 
-            if ((null != this._ventana.TipoPersona) && (!((ListaDatosDominio)this._ventana.TipoPersona).Id.Equals(char.MinValue)))
+            if ((null != this._ventana.TipoPersona) && (!((ListaDatosDominio)this._ventana.TipoPersona).Id.Equals("NGN")))
             {
                 interesado.TipoPersona = ((ListaDatosDominio)this._ventana.TipoPersona).Id.ToCharArray()[0];
                 this._filtroValido = 2;
@@ -362,13 +362,13 @@ namespace Trascend.Bolet.Cliente.Presentadores.Interesados
                 this._filtroValido = 2;
             }
 
-            if ((null != this._ventana.Pais) && (!((Pais)this._ventana.Pais).Id.Equals("")))
+            if ((null != this._ventana.Pais) && (!((Pais)this._ventana.Pais).Id.Equals("")) && (((Pais)this._ventana.Pais).Id != int.MinValue))
             {
                 interesado.Pais = (Pais)this._ventana.Pais;
                 this._filtroValido = 2;
             }
 
-            if ((null != this._ventana.Nacionalidad) && (!((Pais)this._ventana.Nacionalidad).Id.Equals("")))
+            if ((null != ((Pais)this._ventana.Nacionalidad).Nacionalidad) && (!((Pais)this._ventana.Nacionalidad).Nacionalidad.Equals("")))
             {
                 interesado.Nacionalidad = (Pais)this._ventana.Nacionalidad;
                 this._filtroValido = 2;
@@ -379,27 +379,27 @@ namespace Trascend.Bolet.Cliente.Presentadores.Interesados
                 interesado.Corporacion = (Estado)this._ventana.Corporacion;
                 this._filtroValido = 2;
             }
-            
-            if ((null != this._ventana.InteresadoFiltrar) && (!((Interesado)this._ventana.InteresadoFiltrar).Ci.Equals("")))
+
+            if ((null != ((Interesado)this._ventana.InteresadoFiltrar).Ci) && (!((Interesado)this._ventana.InteresadoFiltrar).Ci.Equals("")))
             {
                 interesado.Ci = ((Interesado)this._ventana.InteresadoFiltrar).Ci;
                 this._filtroValido = 2;
             }
 
-            if ((null != this._ventana.InteresadoFiltrar) && (!((Interesado)this._ventana.InteresadoFiltrar).RegMercantil.Equals("")))
+            if ((null != ((Interesado)this._ventana.InteresadoFiltrar).RegMercantil) && (!((Interesado)this._ventana.InteresadoFiltrar).RegMercantil.Equals("")))
             {
                 interesado.RegMercantil = ((Interesado)this._ventana.InteresadoFiltrar).RegMercantil;
                 this._filtroValido = 2;
             }
 
-            if ((null != this._ventana.InteresadoFiltrar) && (!((Interesado)this._ventana.InteresadoFiltrar).Domicilio.Equals("")))
+            if ((null != ((Interesado)this._ventana.InteresadoFiltrar).Domicilio) && (!((Interesado)this._ventana.InteresadoFiltrar).Domicilio.Equals("")))
             {
                 interesado.Domicilio = ((Interesado)this._ventana.InteresadoFiltrar).Domicilio;
                 this._filtroValido = 2;
             }
 
 
-            if ((null != this._ventana.InteresadoFiltrar) && (!((Interesado)this._ventana.InteresadoFiltrar).Alerta.Equals("")))
+            if ((null != ((Interesado)this._ventana.InteresadoFiltrar).Alerta) && (!((Interesado)this._ventana.InteresadoFiltrar).Alerta.Equals("")))
             {
                 interesado.Alerta = ((Interesado)this._ventana.InteresadoFiltrar).Alerta;
                 this._filtroValido = 2;

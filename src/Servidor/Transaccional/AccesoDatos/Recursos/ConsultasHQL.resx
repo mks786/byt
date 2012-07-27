@@ -285,7 +285,7 @@
     <comment>Filtro por Marca</comment>
   </data>
   <data name="CabeceraObtenerInteresado" xml:space="preserve">
-    <value>Select i from Interesado i left outer join i.Pais as pais where </value>
+    <value>Select i from Interesado i left outer join i.Pais as pais left outer join i.Corporacion as corporacion where </value>
     <comment>Cabecera del query para el filtro de interesados</comment>
   </data>
   <data name="FiltroObtenerInteresadoId" xml:space="preserve">
@@ -805,7 +805,7 @@
     <comment>Cabecera del query para el filtro de recordatorioVista</comment>
   </data>
   <data name="FiltroObtenerRecordatorioVistaFechaRenovacion" xml:space="preserve">
-    <value>r.FechaRenovacion between '{0}' and '{1}'</value>
+    <value>marca.FechaRenovacion between '{0}' and '{1}'</value>
     <comment>filtro por fecha</comment>
   </data>
   <data name="FiltroObtenerRecordatorioVistaMarcaRecordatorio" xml:space="preserve">
@@ -854,5 +854,53 @@
   <data name="FiltroObtenerAsociadoTipoPersona" xml:space="preserve">
     <value>a.TipoPersona = '{0}'</value>
     <comment>Filtro por TipoPersona</comment>
+  </data>
+  <data name="FiltroObtenerRecordatorioVistaAno" xml:space="preserve">
+    <value>to_char(marca.FechaRenovacion,'YYYY') like '{0}'</value>
+    <comment>Filtro por Año</comment>
+  </data>
+  <data name="FiltroObtenerInteresadoAlerta" xml:space="preserve">
+    <value>i.Alerta = '{0}'</value>
+    <comment>Filtro por Alerta</comment>
+  </data>
+  <data name="FiltroObtenerInteresadoCi" xml:space="preserve">
+    <value>i.Ci = '{0}'</value>
+    <comment>Filtro por CI</comment>
+  </data>
+  <data name="FiltroObtenerInteresadoCiudad" xml:space="preserve">
+    <value>i.Ciudad = '{0}'</value>
+    <comment>Filtro por ciudad</comment>
+  </data>
+  <data name="FiltroObtenerInteresadoCorporacion" xml:space="preserve">
+    <value>corporacion.Id = '{0}'</value>
+    <comment>Filtro por Corporación</comment>
+  </data>
+  <data name="FiltroObtenerInteresadoDomicilio" xml:space="preserve">
+    <value>i.Domicilio = '{0}'</value>
+    <comment>Filtro por Domicilio</comment>
+  </data>
+  <data name="FiltroObtenerInteresadoEstado" xml:space="preserve">
+    <value>i.Estado = '{0}'</value>
+    <comment>Filtro por Estado</comment>
+  </data>
+  <data name="FiltroObtenerInteresadoNacionalidad" xml:space="preserve">
+    <value>pais.Nacionalidad ='{0}'</value>
+    <comment>Filtro por Nacionalidad</comment>
+  </data>
+  <data name="FiltroObtenerInteresadoPais" xml:space="preserve">
+    <value>pais.Id = {0}</value>
+    <comment>Filtro por Pais</comment>
+  </data>
+  <data name="FiltroObtenerInteresadoRegMercantil" xml:space="preserve">
+    <value>i.RegMercantil = '{0}'</value>
+    <comment>Filtro por RegMercantil</comment>
+  </data>
+  <data name="FiltroObtenerInteresadoTipoPersona" xml:space="preserve">
+    <value>i.TipoPersona = '{0}'</value>
+    <comment>Filtro por TipoPersona</comment>
+  </data>
+  <data name="FiltroObtenerRecordatorioVistaMes" xml:space="preserve">
+    <value>to_char(marca.FechaRenovacion,'MM') like '{0}'</value>
+    <comment>Filtro por Mes</comment>
   </data>
 </root>

@@ -128,7 +128,18 @@ namespace Trascend.Bolet.Cliente.Ventanas.Recordatorios
             else
                 MessageBox.Show(mensaje, "Operación Exitosa", MessageBoxButton.OK, MessageBoxImage.Information);
         }
-  
+
+        public bool MensajeAlerta(string mensaje)
+        {
+            bool retorno = false;
+
+            if (MessageBoxResult.Yes == MessageBox.Show(mensaje,
+                "Alerta", MessageBoxButton.YesNo, MessageBoxImage.Question))
+                retorno = true;
+
+            return retorno;
+        }
+
         public string TotalHits
         {
             set { this._lblHits.Text = value; }
@@ -237,7 +248,16 @@ namespace Trascend.Bolet.Cliente.Ventanas.Recordatorios
         private void _btnLimpiarCampos_Click(object sender, RoutedEventArgs e)
         {
             this._presentador.LimpiarCampos();
-        }       
-     
+        }
+
+        public void SeleccionarTodos(int longitud)
+        {
+            ////foreach (ListViewItem item in ((ListView)_lstResultados.DataContext).Items)
+            ////{
+            ////    item.IsSelected = true;
+            ////}
+            //this._lstResultados = ((ListView)this._lstResultados.DataContext).SelectAll();
+
+        }
     }
 }

@@ -232,7 +232,7 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Select i from Interesado i left outer join i.Pais as pais where .
+        ///   Busca una cadena traducida similar a Select i from Interesado i left outer join i.Pais as pais left outer join i.Corporacion as corporacion where .
         /// </summary>
         public static string CabeceraObtenerInteresado {
             get {
@@ -754,6 +754,60 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a i.Alerta = &apos;{0}&apos;.
+        /// </summary>
+        public static string FiltroObtenerInteresadoAlerta {
+            get {
+                return ResourceManager.GetString("FiltroObtenerInteresadoAlerta", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a i.Ci = &apos;{0}&apos;.
+        /// </summary>
+        public static string FiltroObtenerInteresadoCi {
+            get {
+                return ResourceManager.GetString("FiltroObtenerInteresadoCi", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a i.Ciudad = &apos;{0}&apos;.
+        /// </summary>
+        public static string FiltroObtenerInteresadoCiudad {
+            get {
+                return ResourceManager.GetString("FiltroObtenerInteresadoCiudad", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a corporacion.Id = &apos;{0}&apos;.
+        /// </summary>
+        public static string FiltroObtenerInteresadoCorporacion {
+            get {
+                return ResourceManager.GetString("FiltroObtenerInteresadoCorporacion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a i.Domicilio = &apos;{0}&apos;.
+        /// </summary>
+        public static string FiltroObtenerInteresadoDomicilio {
+            get {
+                return ResourceManager.GetString("FiltroObtenerInteresadoDomicilio", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a i.Estado = &apos;{0}&apos;.
+        /// </summary>
+        public static string FiltroObtenerInteresadoEstado {
+            get {
+                return ResourceManager.GetString("FiltroObtenerInteresadoEstado", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a i.Id = {0}.
         /// </summary>
         public static string FiltroObtenerInteresadoId {
@@ -763,11 +817,47 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a pais.Nacionalidad =&apos;{0}&apos;.
+        /// </summary>
+        public static string FiltroObtenerInteresadoNacionalidad {
+            get {
+                return ResourceManager.GetString("FiltroObtenerInteresadoNacionalidad", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a upper(i.Nombre) like &apos;%{0}%&apos;.
         /// </summary>
         public static string FiltroObtenerInteresadoNombre {
             get {
                 return ResourceManager.GetString("FiltroObtenerInteresadoNombre", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a pais.Id = {0}.
+        /// </summary>
+        public static string FiltroObtenerInteresadoPais {
+            get {
+                return ResourceManager.GetString("FiltroObtenerInteresadoPais", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a i.RegMercantil = &apos;{0}&apos;.
+        /// </summary>
+        public static string FiltroObtenerInteresadoRegMercantil {
+            get {
+                return ResourceManager.GetString("FiltroObtenerInteresadoRegMercantil", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a i.TipoPersona = &apos;{0}&apos;.
+        /// </summary>
+        public static string FiltroObtenerInteresadoTipoPersona {
+            get {
+                return ResourceManager.GetString("FiltroObtenerInteresadoTipoPersona", resourceCulture);
             }
         }
         
@@ -1321,7 +1411,16 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a r.FechaRenovacion between &apos;{0}&apos; and &apos;{1}&apos;.
+        ///   Busca una cadena traducida similar a to_char(marca.FechaRenovacion,&apos;YYYY&apos;) like &apos;{0}&apos;.
+        /// </summary>
+        public static string FiltroObtenerRecordatorioVistaAno {
+            get {
+                return ResourceManager.GetString("FiltroObtenerRecordatorioVistaAno", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a marca.FechaRenovacion between &apos;{0}&apos; and &apos;{1}&apos;.
         /// </summary>
         public static string FiltroObtenerRecordatorioVistaFechaRenovacion {
             get {
@@ -1335,6 +1434,15 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         public static string FiltroObtenerRecordatorioVistaMarcaRecordatorio {
             get {
                 return ResourceManager.GetString("FiltroObtenerRecordatorioVistaMarcaRecordatorio", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a to_char(marca.FechaRenovacion,&apos;MM&apos;) like &apos;{0}&apos;.
+        /// </summary>
+        public static string FiltroObtenerRecordatorioVistaMes {
+            get {
+                return ResourceManager.GetString("FiltroObtenerRecordatorioVistaMes", resourceCulture);
             }
         }
         

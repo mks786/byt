@@ -80,7 +80,7 @@ namespace Trascend.Bolet.Comandos.Fabrica
 
 
         /// <summary>
-        /// Método que devuelve el ComandoConsultarRecordatorioVista
+        /// Método que devuelve el ComandoConsultarRecordatorioVista Filtrado Automático
         /// </summary>
         /// <param name="RecordatorioVista">recordatorio de marca</param>
         /// <param name="fechas">fecha de renovación de marca a fitlrar</param>
@@ -88,6 +88,20 @@ namespace Trascend.Bolet.Comandos.Fabrica
         public static ComandoBase<IList<RecordatorioVista>> ObtenerComandoConsultarRecordatoriosVista(RecordatorioVista recordatorio, DateTime[] fechas)
         {
             return new ComandoConsultarRecordatoriosVista(recordatorio, fechas);
+        }
+
+
+        /// <summary>
+        /// Método que devuelve el ComandoConsultarRecordatorioVista Filtrado no Automático
+        /// </summary>
+        /// <param name="RecordatorioVista">recordatorio a consultar</param>
+        /// <param name="ano">Ano de fecha renovacion a filtrar</param>
+        /// <param name="mes">mes de fecha renovación a filtrar</param>
+        /// <param name="fechas">fecha desde y hasta de renovación a filtrar</param>
+        /// <returns>Lista de marcas para recordatorio filtradas</returns>
+        public static ComandoBase<IList<RecordatorioVista>> ObtenerComandoConsultarRecordatoriosVista(RecordatorioVista recordatorio, string ano, string mes, DateTime?[] fechas)
+        {
+            return new ComandoConsultarRecordatoriosVistaNoAutomatico(recordatorio, ano, mes, fechas);
         }
     }
 }

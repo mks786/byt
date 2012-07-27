@@ -381,55 +381,232 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
                 #endregion
 
                 //No es automatico
-                if ((null != recordatorio.Marca) && (null != recordatorio.Marca.Recordatorio))
-                {
-                    recordatorios = Session.CreateCriteria(typeof(RecordatorioVista))
-                        .SetFetchMode("Asociado", FetchMode.Join)
-                        .SetFetchMode("Asociado.Pais", FetchMode.Join)
-                        .SetFetchMode("Asociado.Idioma", FetchMode.Join)
-                        .CreateCriteria("Marca")
-                            .SetFetchMode("Nacional", FetchMode.Join)
-                            //.Add(Restrictions.Between("FechaRenovacion", fechas[0], fechas[1]))
-                            .Add(Restrictions.Eq("Recordatorio", recordatorio.Marca.Recordatorio))
-                        .List<RecordatorioVista>();
+                //if ((null != recordatorio.Marca) && (null != recordatorio.Marca.Recordatorio))
+                //{
+                //    recordatorios = Session.CreateCriteria(typeof(RecordatorioVista))
+                //        .SetFetchMode("Asociado", FetchMode.Join)
+                //        .SetFetchMode("Asociado.Pais", FetchMode.Join)
+                //        .SetFetchMode("Asociado.Idioma", FetchMode.Join)
+                //        .CreateCriteria("Marca")
+                //            .SetFetchMode("Nacional", FetchMode.Join)
+                //            .Add(Restrictions.Between("FechaRenovacion", fechas[0], fechas[1]))
+                //            .Add(Restrictions.Eq("Recordatorio", recordatorio.Marca.Recordatorio))
+                //        .List<RecordatorioVista>();
 
-                    recordatorios = Session.CreateCriteria(typeof(RecordatorioVista))
-                        .CreateAlias("Marca", "m")
-                        .SetFetchMode("Marca", FetchMode.Join)
-                        .SetFetchMode("m.Nacional", FetchMode.Join)
-                        .SetFetchMode("Asociado.Pais", FetchMode.Join)
-                        .SetFetchMode("Asociado.Idioma", FetchMode.Join)
-                        .Add(Restrictions.Eq("m.Recordatorio", recordatorio.Marca.Recordatorio))
-                        .List<RecordatorioVista>();
+           
+
+                //}
+                //else
+                //{
+
+                    bool variosFiltros = true;
+                    string filtro = "";
+                    string cabecera = string.Format(Recursos.ConsultasHQL.CabeceraObtenerRecordatorioVista);
+
+                    //string fechaMesI = String.Format("{0:MM}", fechas[0]);
+                    string fechaMesF = String.Format("{0:MM}", fechas[1]);
+
+                    //string fechaAnoI = String.Format("{0:yyyy}", fechas[0]);
+                    string fechaAnoF = String.Format("{0:yyyy}", fechas[1]);
+
+                    filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerRecordatorioVistaMes, fechaMesF);
+
+                    filtro += " and ";
+                    filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerRecordatorioVistaAno, fechaAnoF);
+
+
+                    //recordatorios = Session.CreateCriteria(typeof(RecordatorioVista))
+                    //    .SetFetchMode("Asociado", FetchMode.Join)
+                    //    .SetFetchMode("Asociado.Pais", FetchMode.Join)
+                    //    .SetFetchMode("Asociado.Idioma", FetchMode.Join)
+                    //    .CreateCriteria("Marca")
+                    //        .SetFetchMode("Nacional", FetchMode.Join)
+                    //        .Add(Restrictions.("FechaRenovacion", fechas[0], fechas[1]))
+ 
+                    //        .List<RecordatorioVista>();
+
+                    IQuery query = Session.CreateQuery(cabecera + filtro);
+                    recordatorios = query.List<RecordatorioVista>();
+
+
+
+                //}
+
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Saliendo del Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                throw new ApplicationException(Recursos.Errores.exObtenerMarcasPorFechaRenovacion);
+            }
+            finally
+            {
+                Session.Close();
+            }
+            return recordatorios;
+        }
+
+
+        /// <summary>
+        /// Metodo que obtine las marcas dada una fecha de renovacion no automatico
+        /// </summary>
+        /// <param name="RecordatorioVista">recordatorio a consultar</param>
+        /// <param name="ano">Ano de fecha renovacion a filtrar</param>
+        /// <param name="mes">mes de fecha renovación a filtrar</param>
+        /// <param name="fechas">fecha desde y hasta de renovación a filtrar</param>
+        /// <returns>Lista de marcas para recordatorio filtradas</returns>
+        public IList<RecordatorioVista> ObtenerRecordatoriosVistaNoAutomatico(RecordatorioVista recordatorio, string ano, string mes, DateTime?[] fechas)
+        {
+
+            IList<RecordatorioVista> recordatorios = null;
+
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                bool variosFiltros = true;
+                string filtro = "";
+                string cabecera = string.Format(Recursos.ConsultasHQL.CabeceraObtenerRecordatorioVista);
+
+
+                filtro = string.Format(Recursos.ConsultasHQL.FiltroObtenerRecordatorioVistaMarcaRecordatorio, recordatorio.Marca.Recordatorio);
+
+                if ((null != ano) && (!ano.Equals("")))
+                {
+                    if (variosFiltros)
+                        filtro += " and ";
+
+                    filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerRecordatorioVistaAno, ano);
+                    variosFiltros = true;
+                }
+
+
+                if ((null != mes) && (!mes.Equals("")))
+                {
+                    if (variosFiltros)
+                        filtro += " and ";
+
+                    filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerRecordatorioVistaMes, mes);
+                    variosFiltros = true;
 
                 }
-                else
+
+                if (((null != fechas[1]) && (!fechas[1].Value.Equals(DateTime.MinValue))) &&
+                        ((null != fechas[0]) && (!fechas[0].Value.Equals(DateTime.MinValue))))
                 {
-                    recordatorios = Session.CreateCriteria(typeof(RecordatorioVista))
-                        .SetFetchMode("Asociado", FetchMode.Join)
-                        .SetFetchMode("Asociado.Pais", FetchMode.Join)
-                        .SetFetchMode("Asociado.Idioma", FetchMode.Join)
-                        .CreateCriteria("Marca")
-                            .SetFetchMode("Nacional", FetchMode.Join)
-                            .Add(Restrictions.Between("FechaRenovacion", fechas[0], fechas[1]))
- 
-                            .List<RecordatorioVista>();
+                    if (variosFiltros)
+                        filtro += " and ";
 
+                    string fecha = String.Format("{0:dd/MM/yy}", fechas[0]);
+                    string fecha2 = String.Format("{0:dd/MM/yy}", fechas[1]);
 
-                            recordatorios = Session.CreateCriteria(typeof(RecordatorioVista))
-                        .CreateAlias("Marca", "m")
-                        .SetFetchMode("Marca", FetchMode.Join)
-                        .SetFetchMode("m.Nacional", FetchMode.Join)
-                        .SetFetchMode("Asociado.Pais", FetchMode.Join)
-                        .SetFetchMode("Asociado.Idioma", FetchMode.Join)
-                        .Add(Restrictions.Between("m.FechaRenovacion", fechas[0], fechas[1]))
-                        
-                        .List<RecordatorioVista>();
+                    filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerRecordatorioVistaFechaRenovacion, fecha, fecha2);
 
-                       
+                }
 
                     
-                }
+                IQuery query = Session.CreateQuery(cabecera + filtro);
+                recordatorios = query.List<RecordatorioVista>();
+
+
+
+                //DateTime fechaAno = new DateTime();
+
+
+                //ISession sesion = (ISession)Session.CreateCriteria(typeof(RecordatorioVista))
+                //            .SetFetchMode("Asociado", FetchMode.Join)
+                //            .SetFetchMode("Asociado.Pais", FetchMode.Join)
+                //            .SetFetchMode("Asociado.Idioma", FetchMode.Join);
+
+                //ICriteria criteria;
+                //criteria = criteria.CreateCriteria("Marca").SetFetchMode("Nacional", FetchMode.Join);
+
+
+
+                //recordatorios = Session.CreateCriteria(typeof(RecordatorioVista))
+                //            .SetFetchMode("Asociado", FetchMode.Join)
+                //            .SetFetchMode("Asociado.Pais", FetchMode.Join)
+                //            .SetFetchMode("Asociado.Idioma", FetchMode.Join)
+                //            .CreateCriteria("Marca")
+
+
+              
+
+
+                    //DateTime anoDateI = new DateTime();
+                    //anoDateI = DateTime.Parse("01/01/" + ano);
+
+                    //DateTime anoDateF = new DateTime();
+                    //anoDateF = DateTime.Parse("31/01/"+ano);
+
+                
+
+                    //mes = "01/" + mes;
+
+                    //DateTime mesDate = new DateTime();
+                    //mesDate = DateTime.Parse(mes);
+               
+
+
+
+
+
+
+                //No es automatico
+                //if ((null != recordatorio.Marca) && (null != recordatorio.Marca.Recordatorio))
+                //{
+                //    recordatorios = Session.CreateCriteria(typeof(RecordatorioVista))
+                //        .SetFetchMode("Asociado", FetchMode.Join)
+                //        .SetFetchMode("Asociado.Pais", FetchMode.Join)
+                //        .SetFetchMode("Asociado.Idioma", FetchMode.Join)
+                //        .CreateCriteria("Marca")
+                //            .SetFetchMode("Nacional", FetchMode.Join)
+                //        //.Add(Restrictions.Between("FechaRenovacion", fechas[0], fechas[1]))
+                //            .Add(Restrictions.Eq("Recordatorio", recordatorio.Marca.Recordatorio))
+                //        .List<RecordatorioVista>();
+
+                //recordatorios = Session.CreateCriteria(typeof(RecordatorioVista))
+                //    .CreateAlias("Marca", "m")
+                //    .SetFetchMode("Marca", FetchMode.Join)
+                //    .SetFetchMode("m.Nacional", FetchMode.Join)
+                //    .SetFetchMode("Asociado.Pais", FetchMode.Join)
+                //    .SetFetchMode("Asociado.Idioma", FetchMode.Join)
+                //    .Add(Restrictions.Eq("m.Recordatorio", recordatorio.Marca.Recordatorio))
+                //    .List<RecordatorioVista>();
+
+                //}
+                //else
+                //{
+                //    recordatorios = Session.CreateCriteria(typeof(RecordatorioVista))
+                //        .SetFetchMode("Asociado", FetchMode.Join)
+                //        .SetFetchMode("Asociado.Pais", FetchMode.Join)
+                //        .SetFetchMode("Asociado.Idioma", FetchMode.Join)
+                //        .CreateCriteria("Marca")
+                //            .SetFetchMode("Nacional", FetchMode.Join)
+                //            .Add(Restrictions.Between("FechaRenovacion", fechas[0], fechas[1]))
+
+                //            .List<RecordatorioVista>();
+
+
+                //    recordatorios = Session.CreateCriteria(typeof(RecordatorioVista))
+                //.CreateAlias("Marca", "m")
+                //.SetFetchMode("Marca", FetchMode.Join)
+                //.SetFetchMode("m.Nacional", FetchMode.Join)
+                //.SetFetchMode("Asociado.Pais", FetchMode.Join)
+                //.SetFetchMode("Asociado.Idioma", FetchMode.Join)
+                //.Add(Restrictions.Between("m.FechaRenovacion", fechas[0], fechas[1]))
+
+                //.List<RecordatorioVista>();
+
+
+                
+
 
                 #region trace
                 if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))

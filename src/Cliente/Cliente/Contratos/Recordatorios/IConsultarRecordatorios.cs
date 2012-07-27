@@ -39,7 +39,11 @@ namespace Trascend.Bolet.Cliente.Contratos.Recordatorios
 
         void Mensaje(string mensaje, int opcion);
 
+        bool MensajeAlerta(string mensaje);
+
         void LimpiarFiltros();
+
+        void SeleccionarTodos(int longitud);
 
         void GestionarEnableChecksFiltro(bool value);
 

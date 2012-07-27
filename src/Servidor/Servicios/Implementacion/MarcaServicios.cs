@@ -395,6 +395,47 @@ namespace Trascend.Bolet.Servicios.Implementacion
             }
 
         }
+
+
+
+        /// <summary>
+        /// Servicio que se encarga de consultar la vista de recordatorios de marca con filtro no automático
+        /// </summary>
+        /// <param name="RecordatorioVista">recordatorio a consultar</param>
+        /// <param name="ano">Ano de fecha renovacion a filtrar</param>
+        /// <param name="mes">mes de fecha renovación a filtrar</param>
+        /// <param name="fechas">fecha desde y hasta de renovación a filtrar</param>
+        /// <returns>Lista de marcas para recordatorio filtradas</returns>
+        public IList<RecordatorioVista> ConsultarRecordatoriosVistaMarca(RecordatorioVista recordatorio, string ano, string mes, DateTime?[] fechas)
+        {
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                IList<RecordatorioVista> retorno = ControladorMarca.ConsultarRecordatoriosVista(recordatorio, ano, mes, fechas);
+
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Saliendo del Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                return retorno;
+            }
+            catch (ApplicationException ex)
+            {
+                logger.Error(ex.Message);
+                throw ex;
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                throw new ApplicationException(Errores.MensajesAlServidor.ErrorInesperadoServidor);
+            }
+
+        }
         
     }
 }

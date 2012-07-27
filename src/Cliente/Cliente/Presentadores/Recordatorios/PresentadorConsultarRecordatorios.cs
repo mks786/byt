@@ -143,36 +143,40 @@ namespace Trascend.Bolet.Cliente.Presentadores.Recordatorios
             Marca MarcaAuxiliar = new Marca();
             ListaDatosValores listaAuxiliar = this.BuscarRecordatorio(this._listaRecordatorios, (ListaDatosValores)this._ventana.Recordatorio);
             MarcaAuxiliar.Recordatorio = int.Parse(listaAuxiliar.Valor);
-
+            
             DateTime[] fechas = this.ObtenerFechaFinRecordatorio();
             RecordatorioVista recordatorio = new RecordatorioVista();
 
             if (this._ventana.AutomaticoFiltro.Value)
             {
                 this._recordatorios = this._marcaServicios.ConsultarRecordatoriosVistaMarca(recordatorio, fechas);
+
+                IEnumerable<RecordatorioVista> recordatorios = this._recordatorios;
+
+                //if (this._ventana.AutomaticoFiltro.Value)
+                //{
+                //    recordatorios = from m in recordatorios
+                //                    where fechas[0] < recordatorio.Marca.FechaRenovacion && recordatorio.Marca.FechaRenovacion <= fechas[1] &&
+                //                    recordatorio.Marca.Recordatorio != MarcaAuxiliar.Recordatorio
+                //                    select m;
+                //    marcasDesinfladas = from m in marcasDesinfladas
+                //                        select m;
+                //}
+
+
+                this._ventana.GestionarEnableChecksFiltro(false);
+
+                this._ventana.Resultados = _recordatorios;
+                //this._ventana.SeleccionarTodos(_recordatorios.Count());
+                this._ventana.TotalHits = _recordatorios.ToList().Count.ToString();
             }
             else
             {
-                recordatorio.Marca = MarcaAuxiliar;
-                this._recordatorios = this._marcaServicios.ConsultarRecordatoriosVistaMarca(recordatorio, fechas);
+                this._ventana.Resultados = null;
+                this._ventana.TotalHits = "0";
+
             }
 
-            IEnumerable<RecordatorioVista> recordatorios = this._recordatorios;
-
-            if (this._ventana.AutomaticoFiltro.Value)
-            {
-                recordatorios = from m in recordatorios
-                                    where fechas[0] < recordatorio.Marca.FechaRenovacion && recordatorio.Marca.FechaRenovacion <= fechas[1] &&
-                                    recordatorio.Marca.Recordatorio != MarcaAuxiliar.Recordatorio
-                                    select m;
-                //marcasDesinfladas = from m in marcasDesinfladas
-                //                    select m;
-            }
-
-            this._ventana.GestionarEnableChecksFiltro(false);
-
-            this._ventana.Resultados = _recordatorios;
-            this._ventana.TotalHits = _recordatorios.ToList().Count.ToString();
         }
 
         /// <summary>
@@ -202,7 +206,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Recordatorios
             }
 
             fechas[0] = System.DateTime.Now.AddMonths(tiempo - 1);
-            fechas[1] = System.DateTime.Now.AddMonths(tiempo);
+            fechas[1] = System.DateTime.Now.AddMonths(tiempo + 1);
 
 
             return fechas;
@@ -223,93 +227,18 @@ namespace Trascend.Bolet.Cliente.Presentadores.Recordatorios
 
                 Mouse.OverrideCursor = Cursors.Wait;
 
-                int filtroValido = 0;//Variable utilizada para limitar a que el filtro se ejecute solo cuando 
-                //dos filtros sean utilizados
+               
 
-                ListaDatosValores filtro = new ListaDatosValores(Recursos.Etiquetas.cbiRecordatorio);
+                
 
-                IEnumerable<Marca> marcasDesinfladas = this._marcas;
-
-                IEnumerable<RecordatorioVista> recordatoriossDesinflados = this._recordatorios;
-
-
-
-                if (this._ventana.TodosFiltro.Value)
+                //Hacemos la Consulta Si Automatico es False
+                if (!this._ventana.AutomaticoFiltro.Value)
                 {
-                    recordatoriossDesinflados = from m in recordatoriossDesinflados
-                                        select m;
+                    ConsultarNoAutomatico();
                 }
                 else
-                {
-                    if (this._ventana.EmailFiltro.Value)
-                    {
-                        //marcasDesinfladas = from m in marcasDesinfladas
-                        //                    where m.Asociado.Email != null &&
-                        //                    m.Asociado.Fax1 == null
-                        //                    select m;
-
-                        recordatoriossDesinflados = from m in recordatoriossDesinflados
-                                            where m.Asociado.Email != null
-                                            select m;
-                        filtroValido = 1;
-                    }
-
-                    if (this._ventana.FaxFiltro.Value)
-                    {
-                        recordatoriossDesinflados = from m in recordatoriossDesinflados
-                                            where m.Asociado.Fax1 != null &&
-                                            m.Asociado.Email == null
-                                            select m;
-
-                        filtroValido = 1;
-                    }
-
-                    if ((!this._ventana.FaxFiltro.Value) && (!this._ventana.EmailFiltro.Value))
-                    {
-                        recordatoriossDesinflados = from m in recordatoriossDesinflados
-                                            where m.Asociado.Fax1 == null &&
-                                            m.Asociado.Email == null
-                                            select m;
-                        filtroValido = 1;
-                    }
-                }
-
-                if (!this._ventana.AnoFiltro.Equals(""))
-                {
-                    recordatoriossDesinflados = from m in recordatoriossDesinflados
-                                        where m.FechaRenovacion1.Value.Year == int.Parse(this._ventana.AnoFiltro)
-                                        select m;
-                    filtroValido = 1;
-
-                }
-
-                if (!this._ventana.MesFiltro.Equals(""))
-                {
-                    recordatoriossDesinflados = from m in recordatoriossDesinflados
-                                        where m.FechaRenovacion1.Value.Month == int.Parse(this._ventana.MesFiltro)
-                                        select m;
-                    filtroValido = 1;
-                }
-
-                if (this._ventana.FechaDesdeFiltro.HasValue)
-                {
-                    recordatoriossDesinflados = from m in recordatoriossDesinflados
-                                        where m.FechaRenovacion1.Value >= this._ventana.FechaDesdeFiltro
-                                        select m;
-                    filtroValido = 1;
-                }
-
-                if (this._ventana.FechaHastaFiltro.HasValue)
-                {
-                    recordatoriossDesinflados = from m in recordatoriossDesinflados
-                                        where m.FechaRenovacion1.Value <= this._ventana.FechaHastaFiltro
-                                        select m;
-                    filtroValido = 1;
-                }
-
-
-                this._ventana.Resultados = recordatoriossDesinflados;
-                this._ventana.TotalHits = recordatoriossDesinflados.ToList<RecordatorioVista>().Count.ToString();
+                    ConsultarAutomatico();
+              
 
 
                 #region trace
@@ -387,11 +316,14 @@ namespace Trascend.Bolet.Cliente.Presentadores.Recordatorios
 
                 this.AbrirArchivoPorConsola(comando, "Generar Recordatorios con plantilla de word");
 
-                this.ActualizarNRecordatorio();
+                if (this._ventana.MensajeAlerta(string.Format(Recursos.MensajesConElUsuario.ExitoGenerandoInformacionRecordatorio, rutaArchivo)))
+                {
 
-                this.ActualizarMarcasRecordatorio();
+                    this.ActualizarNRecordatorio();
 
-                this._ventana.Mensaje(string.Format(Recursos.MensajesConElUsuario.ExitoGenerandoInformacionRecordatorio, rutaArchivo), 2);
+                    this.ActualizarMarcasRecordatorio();
+                }
+                
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -583,6 +515,181 @@ namespace Trascend.Bolet.Cliente.Presentadores.Recordatorios
             if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
                 logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
+        }
+
+        /// <summary>
+        /// Método que se encarga de hacer el filtrado cuando es automatico
+        /// </summary>
+        public void ConsultarAutomatico()
+        {
+
+            IEnumerable<RecordatorioVista> recordatoriossDesinflados = this._recordatorios;
+
+            RecordatorioVista recordatorio = new RecordatorioVista();
+
+            int filtroValido = 0;//Variable utilizada para limitar a que el filtro se ejecute solo cuando 
+            //dos filtros sean utilizados
+
+            ListaDatosValores filtro = new ListaDatosValores(Recursos.Etiquetas.cbiRecordatorio);
+
+            if (this._ventana.TodosFiltro.Value)
+            {
+                recordatoriossDesinflados = from m in recordatoriossDesinflados
+                                            select m;
+            }
+            else
+            {
+                if (this._ventana.EmailFiltro.Value)
+                {
+                    //marcasDesinfladas = from m in marcasDesinfladas
+                    //                    where m.Asociado.Email != null &&
+                    //                    m.Asociado.Fax1 == null
+                    //                    select m;
+
+                    recordatoriossDesinflados = from m in recordatoriossDesinflados
+                                                where m.Asociado.Email != null
+                                                select m;
+                    filtroValido = 1;
+                }
+
+                if (this._ventana.FaxFiltro.Value)
+                {
+                    recordatoriossDesinflados = from m in recordatoriossDesinflados
+                                                where m.Asociado.Fax1 != null &&
+                                                m.Asociado.Email == null
+                                                select m;
+
+                    filtroValido = 1;
+                }
+
+                if ((!this._ventana.FaxFiltro.Value) && (!this._ventana.EmailFiltro.Value))
+                {
+                    recordatoriossDesinflados = from m in recordatoriossDesinflados
+                                                where m.Asociado.Fax1 == null &&
+                                                m.Asociado.Email == null
+                                                select m;
+                    filtroValido = 1;
+                }
+            }
+
+            if (!this._ventana.AnoFiltro.Equals(""))
+            {
+                recordatoriossDesinflados = from m in recordatoriossDesinflados
+                                            where m.FechaRenovacion1.Value.Year == int.Parse(this._ventana.AnoFiltro)
+                                            select m;
+                filtroValido = 1;
+
+            }
+
+            if (!this._ventana.MesFiltro.Equals(""))
+            {
+                recordatoriossDesinflados = from m in recordatoriossDesinflados
+                                            where m.FechaRenovacion1.Value.Month == int.Parse(this._ventana.MesFiltro)
+                                            select m;
+                filtroValido = 1;
+            }
+
+            if (this._ventana.FechaDesdeFiltro.HasValue)
+            {
+                recordatoriossDesinflados = from m in recordatoriossDesinflados
+                                            where m.FechaRenovacion1.Value >= this._ventana.FechaDesdeFiltro
+                                            select m;
+                filtroValido = 1;
+            }
+
+            if (this._ventana.FechaHastaFiltro.HasValue)
+            {
+                recordatoriossDesinflados = from m in recordatoriossDesinflados
+                                            where m.FechaRenovacion1.Value <= this._ventana.FechaHastaFiltro
+                                            select m;
+                filtroValido = 1;
+            }
+
+            this._ventana.Resultados = recordatoriossDesinflados;
+            this._ventana.TotalHits = recordatoriossDesinflados.ToList<RecordatorioVista>().Count.ToString();
+        }
+
+        /// <summary>
+        /// Método que se encarga de mostrar los resultados de una consulta cuando el filtrado no es automatico
+        /// </summary>
+        public void ConsultarNoAutomatico()
+        {
+            string mes = null;
+            string ano = null;
+            DateTime?[] fechas = new DateTime?[2];
+
+            RecordatorioVista recordatorio = new RecordatorioVista();
+            
+            Marca MarcaAuxiliar = new Marca();
+            ListaDatosValores listaAuxiliar = this.BuscarRecordatorio(this._listaRecordatorios, (ListaDatosValores)this._ventana.Recordatorio);
+            MarcaAuxiliar.Recordatorio = int.Parse(listaAuxiliar.Valor);
+
+            recordatorio.Marca = MarcaAuxiliar;
+
+            if (!this._ventana.AnoFiltro.Equals(""))
+            {
+                ano = this._ventana.AnoFiltro;
+            }
+
+            if (!this._ventana.MesFiltro.Equals(""))
+            {
+                mes = this._ventana.MesFiltro;
+            }
+
+            if (this._ventana.FechaDesdeFiltro.HasValue)
+            {
+                fechas[0] = this._ventana.FechaDesdeFiltro;
+            }
+
+            if (this._ventana.FechaHastaFiltro.HasValue)
+            {
+                fechas[1] = this._ventana.FechaHastaFiltro;
+            }
+
+            IList<RecordatorioVista> recordatorios = this._marcaServicios.ConsultarRecordatoriosVistaMarca(recordatorio, ano, mes, fechas);
+    
+            IEnumerable<RecordatorioVista> recordatoriosDesinflados = recordatorios;
+
+            if (this._ventana.TodosFiltro.Value)
+            {
+                recordatoriosDesinflados = from m in recordatoriosDesinflados
+                                            select m;
+            }
+            else
+            {
+                if (this._ventana.EmailFiltro.Value)
+                {
+                    //marcasDesinfladas = from m in marcasDesinfladas
+                    //                    where m.Asociado.Email != null &&
+                    //                    m.Asociado.Fax1 == null
+                    //                    select m;
+
+                    recordatoriosDesinflados = from m in recordatoriosDesinflados
+                                                where m.Asociado.Email != null
+                                                select m;
+                }
+
+                if (this._ventana.FaxFiltro.Value)
+                {
+                    recordatoriosDesinflados = from m in recordatoriosDesinflados
+                                                where m.Asociado.Fax1 != null &&
+                                                m.Asociado.Email == null
+                                                select m;
+                }
+
+                if ((!this._ventana.FaxFiltro.Value) && (!this._ventana.EmailFiltro.Value))
+                {
+                    recordatoriosDesinflados = from m in recordatoriosDesinflados
+                                                where m.Asociado.Fax1 == null &&
+                                                m.Asociado.Email == null
+                                                select m;
+                }
+            }
+
+
+
+            this._ventana.Resultados = recordatoriosDesinflados;
+            this._ventana.TotalHits = recordatoriosDesinflados.ToList<RecordatorioVista>().Count.ToString();
         }
     }
 }

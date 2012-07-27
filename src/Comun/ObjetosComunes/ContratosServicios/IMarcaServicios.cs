@@ -50,11 +50,22 @@ namespace Trascend.Bolet.ObjetosComunes.ContratosServicios
 
 
         /// <summary>
-        /// Servicio que se encarga de obtener los recordatorios
+        /// Servicio que se encarga de obtener los recordatorios Filtrado Automático
         /// </summary>
         /// <param name="RecordatorioVista">Recordatorio con parámetros a filtrar</param>
         /// <param name="fechas">fechas de renovacion marca a filtrar</param>
         /// <returns>Lista de marcas por fecha de renovacion</returns>
         IList<RecordatorioVista> ConsultarRecordatoriosVistaMarca(RecordatorioVista recordatorio, DateTime[] fechas);
+
+
+        /// <summary>
+        /// Servicio que se encarga de obtener los recordatorios cuando el filtrado no es automático
+        /// </summary>
+        /// <param name="RecordatorioVista">recordatorio a consultar</param>
+        /// <param name="ano">Ano de fecha renovacion a filtrar</param>
+        /// <param name="mes">mes de fecha renovación a filtrar</param>
+        /// <param name="fechas">fecha desde y hasta de renovación a filtrar</param>
+        /// <returns>Lista de marcas para recordatorio filtradas</returns>
+        IList<RecordatorioVista> ConsultarRecordatoriosVistaMarca(RecordatorioVista recordatorio, string ano, string mes, DateTime?[] fechas);
     }
 }
