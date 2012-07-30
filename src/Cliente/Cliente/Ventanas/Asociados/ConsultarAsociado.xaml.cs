@@ -16,6 +16,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.Asociados
 
         private PresentadorConsultarAsociado _presentador;
         private bool _cargada;
+        private object p;
+        private IConsultarAsociados iConsultarAsociados;
 
         #region IconsultarAsociado
 
@@ -256,11 +258,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Asociados
         }
         #endregion
 
-        public ConsultarAsociado(object asociado)
+        public ConsultarAsociado(object asociado, object ventanaPadre)
         {
             InitializeComponent();
             this._cargada = false;
-            this._presentador = new PresentadorConsultarAsociado(this, asociado);
+            this._presentador = new PresentadorConsultarAsociado(this, asociado,ventanaPadre);
 
         }
 
@@ -271,7 +273,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Asociados
 
         private void _btnRegresar_Click(object sender, RoutedEventArgs e)
         {
-            this._presentador.Navegar();
+            this._presentador.RegresarVentanaPadre();
         }
 
         private void _btnAuditoria_Click(object sender, RoutedEventArgs e)

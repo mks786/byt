@@ -139,7 +139,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Contactos
                 if (exitoso)
                 {
                     this._asociado.Contactos.Insert(0, contacto);
-                    this.Navegar(new ListaContactos(this._asociado));
+                    this.Navegar(new ListaContactos(this._asociado,null));
                 }
 
                 #region trace

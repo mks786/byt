@@ -115,10 +115,13 @@
                             </custom:ByTTextBox.Text>
                         </custom:ByTTextBox>
 
-                        <Label Grid.Column="0" Grid.Row="2" VerticalAlignment="Center" HorizontalContentAlignment="Right">
+                        <!--<Label Grid.Column="0" Grid.Row="2" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblAsociado}"/>
-                        </Label>                  
-                               
+                        </Label>-->
+                        <Button Grid.Column="0" Grid.Row="2" Name="_btnIrAsociados" IsDefault="False" Height="25" HorizontalAlignment="Right" Click="_btnIrAsociados_Click">
+                            <TextBlock Text="{x:Static recurso:Etiquetas.btnAsociado}"/>
+                        </Button>
+
                         <Grid Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="7">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"/>

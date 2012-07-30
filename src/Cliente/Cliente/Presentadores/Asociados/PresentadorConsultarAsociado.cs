@@ -39,7 +39,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
         /// </summary>
         /// <param name="ventana">Página que satisface el contrato</param>
         /// <param name="asociado">Asociado a mostrar</param>
-        public PresentadorConsultarAsociado(IConsultarAsociado ventana, object asociado)
+        public PresentadorConsultarAsociado(IConsultarAsociado ventana, object asociado, object ventanaPadre)
         {
             try
             {
@@ -48,6 +48,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
+                this._ventanaPadre = ventanaPadre;
                 this._ventana = ventana;
                 this._ventana.Asociado = asociado;
                 this._asociadoServicios = (IAsociadoServicios)Activator.GetObject(typeof(IAsociadoServicios),
@@ -335,7 +336,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
                 logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
 
-            this.Navegar(new ListaContactos(this._ventana.Asociado));
+            this.Navegar(new ListaContactos(this._ventana.Asociado,this._ventana));
 
             #region trace
             if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))

@@ -2763,4 +2763,7 @@ en Prensa:</value>
   <data name="cbiCategoriaAcuseEntrada" xml:space="preserve">
     <value>ENTRADA_ACUSE</value>
   </data>
+  <data name="btnAsociado" xml:space="preserve">
+    <value>Asociado:</value>
+  </data>
 </root>

@@ -69,11 +69,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Asociados
 
         #endregion
 
-        public ListaContactos(object asociado)
+        public ListaContactos(object asociado,object ventanaPadre)
         {
             InitializeComponent();
             this._cargada= false;
-            this._presentador = new PresentadorListaContactos(this, asociado);
+            this._presentador = new PresentadorListaContactos(this, asociado,ventanaPadre);
 
         }
 
@@ -93,7 +93,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Asociados
 
         private void _btnRegresar_Click(object sender, RoutedEventArgs e)
         {
-            this._presentador.Regresar();
+            this._presentador.RegresarVentanaPadre();
         }
 
         private void _btnAgregar_Click(object sender, RoutedEventArgs e)

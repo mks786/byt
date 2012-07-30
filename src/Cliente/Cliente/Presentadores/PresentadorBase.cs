@@ -28,6 +28,8 @@ namespace Trascend.Bolet.Cliente.Presentadores
         private IInteresadoServicios _interesadoServicios;
         private IPoderServicios _poderServicios;
 
+        public object _ventanaPadre = null;
+
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
         public PresentadorBase()
@@ -2058,6 +2060,14 @@ namespace Trascend.Bolet.Cliente.Presentadores
 
             retorno = dia + "/" + mes + "/" + ano;
             return retorno;
+        }
+
+        public void RegresarVentanaPadre() 
+        {
+            if (_ventanaPadre != null)
+                Navegar((Page)_ventanaPadre);
+            else
+                Navegar();
         }
 
     }

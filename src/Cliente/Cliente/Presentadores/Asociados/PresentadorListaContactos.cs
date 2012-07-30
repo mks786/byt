@@ -30,13 +30,14 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
         /// Constructor Predeterminado
         /// </summary>
         /// <param name="ventana">página que satisface el contrato</param>
-        public PresentadorListaContactos(IListaContactos ventana, object asociado)
+        public PresentadorListaContactos(IListaContactos ventana, object asociado, object ventanaPadre)
         {
             #region trace
             if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
                 logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
 
+            this._ventanaPadre = ventanaPadre;
             this._ventana = ventana;
             this._asociado = (Asociado)asociado;
 

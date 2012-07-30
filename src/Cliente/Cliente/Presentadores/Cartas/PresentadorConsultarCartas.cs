@@ -88,7 +88,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
         /// Constructor Predeterminado
         /// </summary>
         /// <param name="ventana">página que satisface el contrato</param>
-        public PresentadorConsultarCartas(IConsultarCartas ventana, object asociado, object ventanaAVolver,object Cartas)
+        public PresentadorConsultarCartas(IConsultarCartas ventana, object asociado, object ventanaAVolver, object Cartas)
         {
             try
             {
@@ -183,7 +183,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
                     responsables = FiltrarUsuariosRepetidos(responsables);
                     Usuario primerUsuario = new Usuario();
                     primerUsuario.Id = "NGN";
-                    responsables.Insert(0,primerUsuario);
+                    responsables.Insert(0, primerUsuario);
                     this._ventana.Responsables = responsables;
                 }
                 if (_conListaDeCartas)
@@ -240,14 +240,14 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
                 Mouse.OverrideCursor = Cursors.Wait;
 
                 bool consultaResumen = false;
-               
+
                 int filtroValido = 0;//Variable utilizada para limitar a que el filtro se ejecute solo cuando 
                 //dos filtros sean utilizados
 
                 Carta cartaAuxiliar = new Carta();
                 IList<Asignacion> asignaciones = new List<Asignacion>();
 
-               
+
                 if (!this._ventana.Id.Equals(""))
                 {
                     filtroValido = 2;
@@ -290,7 +290,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
                     DateTime fechaCarta = DateTime.Parse(this._ventana.Fecha);
                     filtroValido = 2;
                     cartaAuxiliar.Fecha = fechaCarta;
-    
+
 
                 }
 
@@ -301,7 +301,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
                     {
                         asignaciones =
                             this._asignacionServicios.ObtenerAsignacionesPorUsuario(
-                                ((Usuario) this._ventana.Responsable));
+                                ((Usuario)this._ventana.Responsable));
 
                         IList<Carta> Carta;
                         foreach (Asignacion asigna in asignaciones)
@@ -315,39 +315,39 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
                         filtroValido = 2;
                     }
                     else
+                    {
+                        this._cartas = new List<Carta>();
+                        IList<Carta> Carta;
+                        _responsable = true;
+                        this._cartas = this._cartaServicios.ObtenerCartasFiltro(cartaAuxiliar);
+                        foreach (Carta CartAux in _cartas)
                         {
-                            this._cartas = new List<Carta>();
-                            IList<Carta> Carta;
-                            _responsable = true;
-                            this._cartas = this._cartaServicios.ObtenerCartasFiltro(cartaAuxiliar);
-                            foreach (Carta CartAux in _cartas)
+                            CartAux.Asignaciones = this._asignacionServicios.ObtenerAsignacionesPorCarta(CartAux);
+                            if (null != CartAux.Asignaciones)
                             {
-                                CartAux.Asignaciones = this._asignacionServicios.ObtenerAsignacionesPorCarta(CartAux);
-                                if (null != CartAux.Asignaciones)
+                                foreach (Asignacion AsignAux in CartAux.Asignaciones)
                                 {
-                                    foreach (Asignacion AsignAux in CartAux.Asignaciones)
+                                    if (AsignAux.Iniciales == ((Usuario)this._ventana.Responsable).Iniciales)
                                     {
-                                        if (AsignAux.Iniciales == ((Usuario) this._ventana.Responsable).Iniciales)
-                                        {
 
-                                            cartasPorResponsable.Add(CartAux);
-                                        }
-
+                                        cartasPorResponsable.Add(CartAux);
                                     }
+
                                 }
                             }
                         }
+                    }
 
                     _cartasDeUnResponsable = cartasPorResponsable;
 
                 }
                 else
                     _responsable = false;
-                
+
 
 
                 //Si responsable no fue activado se consulta normalmente.
-                if ((filtroValido != 0)&&(!_responsable))
+                if ((filtroValido != 0) && (!_responsable))
                 {
                     this._cartas = new List<Carta>();
                     this._cartas = this._cartaServicios.ObtenerCartasFiltro(cartaAuxiliar);
@@ -380,7 +380,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
             catch (Exception ex)
             {
                 logger.Error(ex.Message);
-                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
+
+                if ((null != this._ventana.Responsable) && ((Usuario)this._ventana.Responsable).Id != "NGN")
+                    this.Navegar(String.Format(Recursos.MensajesConElUsuario.ErrorConsultarCartas, ((Usuario)this._ventana.Responsable).NombreCompleto), true);
+                else
+                    this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
             }
         }
 
@@ -404,7 +408,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
             }
             else
             {
-                _posicion = ((List<Carta>) this._ventana.Resultados).IndexOf((Carta) this._ventana.CartaSeleccionado);
+                _posicion = ((List<Carta>)this._ventana.Resultados).IndexOf((Carta)this._ventana.CartaSeleccionado);
                 this.Navegar(new ConsultarCarta(this._ventana.CartaSeleccionado, this._ventana.Resultados, _posicion));
             }
 
@@ -474,18 +478,21 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
             //                         p.Nombre.ToLower().Contains(this._ventana.NombreAsociadoFiltrar.ToLower())
             //                         select p;
             //}
-            Asociado asociadoAFiltrar = new Asociado();
-            asociadoAFiltrar.Id = !this._ventana.IdAsociadoFiltrar.Equals("") ? int.Parse(this._ventana.IdAsociadoFiltrar) : 0;
-            asociadoAFiltrar.Nombre = !this._ventana.NombreAsociadoFiltrar.Equals("") ? this._ventana.NombreAsociadoFiltrar.ToUpper() : string.Empty;
+
+            if ((!this._ventana.IdAsociadoFiltrar.Equals("")) || (!this._ventana.NombreAsociadoFiltrar.Equals("")))
+            {
+                Asociado asociadoAFiltrar = new Asociado();
+                asociadoAFiltrar.Id = !this._ventana.IdAsociadoFiltrar.Equals("") ? int.Parse(this._ventana.IdAsociadoFiltrar) : 0;
+                asociadoAFiltrar.Nombre = !this._ventana.NombreAsociadoFiltrar.Equals("") ? this._ventana.NombreAsociadoFiltrar.ToUpper() : string.Empty;
 
 
-            IList<Asociado> asociadosFiltrados = this._asociadoServicios.ObtenerAsociadosFiltro(asociadoAFiltrar);
+                IList<Asociado> asociadosFiltrados = this._asociadoServicios.ObtenerAsociadosFiltro(asociadoAFiltrar);
 
-            if (asociadosFiltrados.Count != 0)
-                this._ventana.Asociados = asociadosFiltrados.ToList<Asociado>();
-            else
-                this._ventana.Asociados = this._asociados;
-
+                if (asociadosFiltrados.Count != 0)
+                    this._ventana.Asociados = asociadosFiltrados.ToList<Asociado>();
+                else
+                    this._ventana.Asociados = this._asociados;
+            }
             #region trace
             if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
                 logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);

@@ -35,13 +35,15 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
         private IListaDatosDominioServicios _listaDatosDominioServicios;
         private IList<Asociado> _asociados;
 
+        private Asociado _asociadoPrecargado;
+
         private int _filtroValido;
 
         /// <summary>
         /// Constructor Predeterminado
         /// </summary>
         /// <param name="ventana">página que satisface el contrato</param>
-        public PresentadorConsultarAsociados(IConsultarAsociados ventana)
+        public PresentadorConsultarAsociados(IConsultarAsociados ventana,object ventanaPadre, object asociado)
         {
             try
             {
@@ -50,6 +52,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
+
+                _ventanaPadre = ventanaPadre;
+                _asociadoPrecargado = (Asociado)asociado;
                 this._ventana = ventana;
                 this._asociadoServicios = (IAsociadoServicios)Activator.GetObject(typeof(IAsociadoServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["AsociadoServicios"]);
@@ -118,8 +123,19 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
                 //this._ventana.Resultados = this._asociados;
                 //this._ventana.TotalHits = this._asociados.Count.ToString();
                 //this._ventana.AsociadoFiltrar = new Asociado();
-                
-                this._ventana.TotalHits = "0";
+
+
+                if (null != _ventanaPadre) 
+                {
+                    IList<Asociado> asociados = new List<Asociado>();
+                    asociados.Add(_asociadoPrecargado);
+                    this._ventana.Resultados = asociados;
+                    this._ventana.TotalHits = "1";
+                }
+                else
+                {
+                    this._ventana.TotalHits = "0";
+                }
 
                 IList<DetallePago> detallesPagos = this._detallePagoServicios.ConsultarTodos();
                 DetallePago primerDetallePago = new DetallePago();
@@ -437,7 +453,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
             #endregion
 
             if(this._ventana.AsociadoSeleccionado != null)
-                this.Navegar(new ConsultarAsociado(this._ventana.AsociadoSeleccionado));
+                this.Navegar(new ConsultarAsociado(this._ventana.AsociadoSeleccionado, this._ventana));
 
             #region trace
             if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -513,5 +529,6 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
                 logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
         }
+
     }
 }

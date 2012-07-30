@@ -411,7 +411,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Cartas
             this._txtNombreAsociado.Visibility = System.Windows.Visibility.Visible;
             this._lblIdAsociado.Visibility = System.Windows.Visibility.Visible;
             this._lblNombreAsociado.Visibility = System.Windows.Visibility.Visible;
-
+            this._btnConsultarAsociado.IsDefault = true;
         }
 
         private void _lstAsociados_MouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -425,6 +425,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Cartas
             this._txtCodigoAsociado.Visibility = System.Windows.Visibility.Visible;
             this._lblIdAsociado.Visibility = System.Windows.Visibility.Collapsed;
             this._lblNombreAsociado.Visibility = System.Windows.Visibility.Collapsed;
+            this._btnAceptar.IsDefault = false;
 
         }
 

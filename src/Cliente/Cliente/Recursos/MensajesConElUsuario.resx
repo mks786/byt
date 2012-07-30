@@ -847,4 +847,7 @@
   <data name="AlertaMarcaTerceroSinTipo" xml:space="preserve">
     <value>La marca a tercero requiere de un tipo</value>
   </data>
+  <data name="ErrorConsultarCartas" xml:space="preserve">
+    <value>Ha ocurrido un error al consultar las cartas del responsable {0}, posiblemente posea una carta asignada que no existe en base de datos</value>
+  </data>
 </root>

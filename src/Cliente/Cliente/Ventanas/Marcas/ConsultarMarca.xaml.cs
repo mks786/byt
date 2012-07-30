@@ -1774,7 +1774,9 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             ocultarLstPoderSolicutud();
         }
 
-
-
+        private void _btnIrAsociados_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.IrVentanaAsociado();
+        }
     }
 }

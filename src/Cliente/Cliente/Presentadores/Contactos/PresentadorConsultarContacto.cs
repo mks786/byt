@@ -132,7 +132,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Contactos
                         exitoso = this._contactoServicios.InsertarOModificar(contacto, UsuarioLogeado.Hash);
                     }
                     if (exitoso)
-                        this.Navegar(new ListaContactos(((Contacto)this._ventana.Contacto).Asociado));
+                        this.Navegar(new ListaContactos(((Contacto)this._ventana.Contacto).Asociado,null));
                 }
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -178,7 +178,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Contactos
                 {
                     Asociado asociado = ((Contacto)this._ventana.Contacto).Asociado;
                     asociado.Contactos.Remove((Contacto)this._ventana.Contacto);
-                    this.Navegar(new ListaContactos(asociado));
+                    this.Navegar(new ListaContactos(asociado,null));
                 }
 
                 #region trace

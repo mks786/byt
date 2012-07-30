@@ -4,6 +4,7 @@ using System.Windows.Input;
 using Trascend.Bolet.Cliente.Ayuda;
 using Trascend.Bolet.Cliente.Contratos.Asociados;
 using Trascend.Bolet.Cliente.Presentadores.Asociados;
+using Trascend.Bolet.Cliente.Contratos.Marcas;
 
 namespace Trascend.Bolet.Cliente.Ventanas.Asociados
 {
@@ -212,11 +213,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Asociados
 
         #endregion
 
-        public ConsultarAsociados()
+        public ConsultarAsociados(object ventanaPadre, object asociado)
         {
             InitializeComponent();
             this._cargada = false;
-            this._presentador = new PresentadorConsultarAsociados(this);
+            this._presentador = new PresentadorConsultarAsociados(this,ventanaPadre,asociado);
 
         }
 
@@ -233,7 +234,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Asociados
 
         private void _btnCancelar_Click(object sender, RoutedEventArgs e)
         {
-            this._presentador.Cancelar();
+            this._presentador.RegresarVentanaPadre();
         }
 
         private void _btnConsultar_Click(object sender, RoutedEventArgs e)

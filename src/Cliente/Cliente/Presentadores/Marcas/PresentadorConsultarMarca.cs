@@ -20,6 +20,7 @@ using Trascend.Bolet.Cliente.Ventanas.Auditorias;
 using Trascend.Bolet.ControlesByT.Ventanas;
 using System.Text;
 using System.IO;
+using Trascend.Bolet.Cliente.Ventanas.Asociados;
 
 namespace Trascend.Bolet.Cliente.Presentadores.Marcas
 {
@@ -2218,6 +2219,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
         public void IrRenovacionDeMarca()
         {
             this.Navegar(new ConsultarRenovaciones(this._ventana.Marca));
+        }
+
+        public void IrVentanaAsociado()
+        {
+            Asociado asociado = ((Asociado)this._ventana.AsociadoSolicitud).Id != int.MinValue ? (Asociado)this._ventana.AsociadoSolicitud : null;
+            Navegar(new ConsultarAsociados(this._ventana,asociado));
         }
     }
 }
