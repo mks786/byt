@@ -368,7 +368,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Interesados
                 this._filtroValido = 2;
             }
 
-            if ((null != ((Pais)this._ventana.Nacionalidad).Nacionalidad) && (!((Pais)this._ventana.Nacionalidad).Nacionalidad.Equals("")))
+            if ((null != this._ventana.Nacionalidad) && (!((Pais)this._ventana.Nacionalidad).Nacionalidad.Equals("")))
             {
                 interesado.Nacionalidad = (Pais)this._ventana.Nacionalidad;
                 this._filtroValido = 2;
