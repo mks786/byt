@@ -61,7 +61,7 @@ namespace Trascend.Bolet.Comandos.Fabrica
 
         public static ComandoBase<bool> ObtenerComandoTransferirPlantilla(IList<Carta> cartas, IList<CartaOut> cartasOut)
         {
-            return new ComandoTransferirPlantilla(cartas,cartasOut);
+            return new ComandoTransferirPlantilla(cartas, cartasOut);
         }
 
 

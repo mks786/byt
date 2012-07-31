@@ -145,6 +145,14 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
                     variosFiltros = true;
                 }
 
+                if (null != marca.PrimeraReferencia)
+                {
+                    if (variosFiltros)
+                        filtro += " and ";
+                    filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerMarcaReferencia, marca.PrimeraReferencia);
+                    variosFiltros = true;
+                }
+
                 #endregion
 
                 #region Filtros Marca TYR

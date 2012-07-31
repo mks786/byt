@@ -253,6 +253,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                     foreach (var marca in this._marcas)
                     {
                         MarcaAuxiliar = new Marca(marca.Id);
+                        MarcaAuxiliar.PrimeraReferencia = marca.PrimeraReferencia;
                         Asociado asociadoAuxiliar = new Asociado();
                         Interesado interesadoAuxiliar = new Interesado();
 
@@ -682,6 +683,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 }
                 else
                     marcaAuxiliar.CodigoInscripcion = null;
+
+                if (null != marcaAuxiliar.PrimeraReferencia)
+                {
+                    _filtroValido = 2;
+                }
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))

@@ -113,9 +113,9 @@
                 </DatePicker>
                 <DatePicker IsEnabled="False"  Grid.Column="5" Grid.Row="0"  
                         Name="_dpkFechaAlternativa" Grid.ColumnSpan="1" 
-                        Focusable="False" BorderBrush="{x:Null}" VerticalAlignment="Center" >
+                        Focusable="False" BorderBrush="{x:Null}" VerticalAlignment="Center">
                     <DatePicker.SelectedDate>
-                        <Binding Path="FechaAlt" UpdateSourceTrigger="PropertyChanged"/>
+                        <Binding Path="FechaAltDate" UpdateSourceTrigger="PropertyChanged"/>
                     </DatePicker.SelectedDate>
                 </DatePicker>
                 <Label Grid.Column="6" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Center">
@@ -124,7 +124,7 @@
 
                 <DatePicker  IsEnabled="False" Grid.Column="7" Grid.Row="0" Grid.ColumnSpan="1" Name="_dpkFechaReal" Focusable="False" BorderBrush="{x:Null}" VerticalAlignment="Center" >
                     <DatePicker.SelectedDate>
-                        <Binding Path="FechaReal" UpdateSourceTrigger="PropertyChanged"/>
+                        <Binding Path="FechaRealDate" UpdateSourceTrigger="PropertyChanged"/>
                     </DatePicker.SelectedDate>
                 </DatePicker>
                 <Label Grid.Column="8" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Center">

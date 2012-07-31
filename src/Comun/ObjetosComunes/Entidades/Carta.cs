@@ -10,6 +10,8 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
 
         private int _id;
         private DateTime _fecha;
+        private DateTime? _fechaRealDate;
+        private DateTime? _fechaAltDate;
         private string _medio;
         private Asociado _asociado;
         private string _descripcionDepartamento;
@@ -42,7 +44,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         private IList<Asignacion> _asignaciones;
         private IList<Anexo> _anexosConfirmacion;
         private string _operacion;
-        
+
         #endregion
 
         #region Constructores
@@ -203,7 +205,16 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         public virtual string FechaAlt
         {
             get { return _fechaAlt; }
-            set { _fechaAlt = value; }
+            set
+            {
+                _fechaAlt = value;
+
+                if ((null != _fechaAlt) && (!_fechaAlt.Equals(string.Empty)))
+                if (!_fechaAlt.Equals(string.Empty))
+                    _fechaAltDate = DateTime.Parse(_fechaAlt);
+                else
+                    _fechaAltDate = null;
+            }
         }
 
         public virtual double? Salida
@@ -245,7 +256,14 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         public virtual string FechaReal
         {
             get { return _fechaReal; }
-            set { _fechaReal = value; }
+            set
+            {
+                _fechaReal = value;
+                if ((null != _fechaReal) && (!_fechaReal.Equals(string.Empty)))
+                    _fechaRealDate = DateTime.Parse(_fechaReal);
+                else
+                    _fechaRealDate = null;
+            }
         }
 
         public virtual DateTime? FechaConfirmacion
@@ -295,6 +313,18 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         {
             get { return _operacion; }
             set { _operacion = value; }
+        }
+
+        public virtual DateTime? FechaRealDate
+        {
+            get { return _fechaRealDate; }
+            set { _fechaRealDate = value; }
+        }
+
+        public virtual DateTime? FechaAltDate
+        {
+            get { return _fechaAltDate; }
+            set { _fechaAltDate = value; }
         }
         #endregion
     }

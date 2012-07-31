@@ -103,6 +103,7 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
 
                 foreach (Carta carta in cartas)
                 {
+
                     cartasOut[index].Status = 'M';
 
                     Session.SaveOrUpdate(cartasOut[index]);

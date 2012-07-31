@@ -144,6 +144,14 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
                     variosFiltros = true;
                 }
 
+                if (null != Patente.PrimeraReferencia)
+                {
+                    if (variosFiltros)
+                        filtro += " and ";
+                    filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerPatenteReferencia, Patente.PrimeraReferencia);
+                    variosFiltros = true;
+                }
+
                 IQuery query = Session.CreateQuery(cabecera + filtro);
                 Patentes = query.List<Patente>();
 

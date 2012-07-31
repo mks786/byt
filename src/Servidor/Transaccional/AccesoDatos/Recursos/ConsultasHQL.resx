@@ -706,7 +706,7 @@
     <comment>Filtro por País prioridad</comment>
   </data>
   <data name="FiltroObtenerPatenteSolicitud" xml:space="preserve">
-    <value>p.CodigoInscripcion = '{0}'</value>
+    <value>p.CodigoInscripcion like '%{0}%'</value>
     <comment>Filtro por solicitud</comment>
   </data>
   <data name="ObtenerPoderesEntreAgenteEInteresado" xml:space="preserve">
@@ -749,7 +749,7 @@
     <comment>Filtra marca por servicio las marcas</comment>
   </data>
   <data name="FiltroObtenerMarcaSolicitud" xml:space="preserve">
-    <value>m.CodigoInscripcion = '{0}'</value>
+    <value>m.CodigoInscripcion like '%{0}%'</value>
     <comment>Filtra marca por la solicitud</comment>
   </data>
   <data name="FiltroObtenerMarcaTipoEstado" xml:space="preserve">
@@ -902,5 +902,11 @@
   <data name="FiltroObtenerRecordatorioVistaMes" xml:space="preserve">
     <value>to_char(marca.FechaRenovacion,'MM') like '{0}'</value>
     <comment>Filtro por Mes</comment>
+  </data>
+  <data name="FiltroObtenerMarcaReferencia" xml:space="preserve">
+    <value>m.PrimeraReferencia like '%{0}%'</value>
+  </data>
+  <data name="FiltroObtenerPatenteReferencia" xml:space="preserve">
+    <value>p.PrimeraReferencia like '%{0}%'</value>
   </data>
 </root>

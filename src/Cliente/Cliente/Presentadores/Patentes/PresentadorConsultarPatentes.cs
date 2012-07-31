@@ -92,6 +92,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
         public void CargarPagina()
         {
             Mouse.OverrideCursor = Cursors.Wait;
+            this._ventana.PatenteParaFiltrar = new Patente();
 
             try
             {
@@ -199,6 +200,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                         Asociado asociadoAuxiliar = new Asociado();
                         Interesado interesadoAuxiliar = new Interesado();
 
+                        patenteAuxiliar.PrimeraReferencia = patente.PrimeraReferencia;
                         patenteAuxiliar.Descripcion = patente.Descripcion != null ? patente.Descripcion : "";
 
                         flagError = 1;
@@ -359,8 +361,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
         /// <returns>Patente cargada con el filtro</returns>
         private Patente ObtenerPatenteFiltro()
         {
-            //Patente patenteAuxiliar = ((Patente)this._ventana.PatenteParaFiltrar);
-            Patente patenteAuxiliar = new Patente();
+            Patente patenteAuxiliar = ((Patente)this._ventana.PatenteParaFiltrar);
+            //Patente patenteAuxiliar = new Patente();
+            //patenteAuxiliar.PrimeraReferencia = null != ((Patente)this._ventana.PatenteParaFiltrar).PrimeraReferencia ? ((Patente)this._ventana.PatenteParaFiltrar).PrimeraReferencia : null;
 
             try
             {
@@ -569,6 +572,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                 }
                 else
                     patenteAuxiliar.Servicio = null;
+
+
+                if (null != patenteAuxiliar.PrimeraReferencia)
+                {
+                    _filtroValido = 2;
+                }
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))

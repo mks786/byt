@@ -138,11 +138,11 @@ namespace Trascend.Bolet.Servicios.Implementacion
         /// </summary>
         /// <param name="cartas">Cartas a transferir</param>
         /// <returns>true en caso de ser exitoso, false en caso contrario</returns>
-        public bool TransferirPlantilla(IList<CartaOut> cartas)
+        public bool TransferirPlantilla(IList<CartaOut> cartas, int hash)
         {
             try
             {
-                bool retorno = ControladorCartaOut.TransferirPlantilla(cartas);
+                bool retorno = ControladorCartaOut.TransferirPlantilla(cartas, hash);
                 return true;
 
             }

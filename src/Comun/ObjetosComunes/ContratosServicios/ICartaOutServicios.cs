@@ -19,6 +19,6 @@ namespace Trascend.Bolet.ObjetosComunes.ContratosServicios
         /// </summary>
         /// <param name="cartas">Cartas a transferir</param>
         /// <returns>true en caso de ser exitoso, false en caso contrario</returns>
-        bool TransferirPlantilla(IList<CartaOut> cartas);
+        bool TransferirPlantilla(IList<CartaOut> cartas, int hash);
     }
 }

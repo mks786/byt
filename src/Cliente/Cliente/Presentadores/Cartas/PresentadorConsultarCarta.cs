@@ -66,8 +66,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
                 this._ventana = ventana;
 
                 Carta cartaA = (Carta)carta;
-                cartaA.FechaAlt = null != cartaA.FechaAlt ? FormatearFecha(cartaA.FechaAlt) : null;
-                cartaA.FechaReal = null != cartaA.FechaReal ? FormatearFecha(cartaA.FechaReal) : null;
+                //cartaA.FechaAlt = null != cartaA.FechaAlt ? FormatearFecha(cartaA.FechaAlt) : null;
+                //cartaA.FechaReal = null != cartaA.FechaReal ? FormatearFecha(cartaA.FechaReal) : null;
                 this._ventana.Carta = cartaA;
 
                 //       this._precargada = ventanaAVolver.Equals(null) ? false : true;

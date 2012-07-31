@@ -88,11 +88,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.CartasOuts
                 //this._cartas = this._cartaServicios.ObtenerCartasFiltro();
                 //this._ventana.Resultados = this._cartas;
 
-                IList<Asociado> asociados = this._asociadoServicios.ConsultarTodos();
-                Asociado primerAsociado = new Asociado();
-                primerAsociado.Id = int.MinValue;
-                asociados.Insert(0, primerAsociado);
-                this._asociados = asociados;
+                //IList<Asociado> asociados = this._asociadoServicios.ConsultarTodos();
+                //Asociado primerAsociado = new Asociado();
+                //primerAsociado.Id = int.MinValue;
+                //asociados.Insert(0, primerAsociado);
+                //this._asociados = asociados;
 
                 CartaOut cartaOut = new CartaOut();
                 cartaOut.Status = 'T';
@@ -247,7 +247,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.CartasOuts
                 #endregion
 
                 Mouse.OverrideCursor = Cursors.Wait;
-                if (this._cartaOutServicios.TransferirPlantilla(this._cartasOuts))
+                if (this._cartaOutServicios.TransferirPlantilla(this._cartasOuts,UsuarioLogeado.Hash))
                 {
                     this.Navegar(Recursos.MensajesConElUsuario.ConfirmacionTransferenciaPlantilla, false);
                 }

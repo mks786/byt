@@ -109,7 +109,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Interesados
                 //this._interesados = this._interesadoServicios.ConsultarTodos();
                 //this._ventana.Resultados = this._interesados;
                 //this._ventana.TotalHits = this._interesados.Count.ToString();
-                //this._ventana.FocoPredeterminado();
+                this._ventana.FocoPredeterminado();
 
                 this._ventana.TotalHits = "0";
 

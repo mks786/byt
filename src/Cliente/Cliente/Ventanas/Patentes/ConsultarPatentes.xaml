@@ -64,7 +64,7 @@
                             <Label Name="_lblSolicitud">
                                 <TextBlock Text="{x:Static recurso:Etiquetas.lblSolicitud}"/>
                             </Label>
-                            <custom:ByTTextBox Name="_txtSolicitud" Width="150" MaxLength="40" SoloNumero="True" Filtro="True" 
+                            <custom:ByTTextBox Name="_txtSolicitud" Width="150" MaxLength="40" Filtro="True" 
                                        GotFocus="_btnConsultarFocus" GotKeyboardFocus="_btnConsultarFocus" Text="{Binding Path=CodigoInscripcion}"/>
 
                         </WrapPanel>
@@ -225,7 +225,15 @@
                                 </ListView>
                             </Grid>
                         </WrapPanel>
-
+                        <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,180,0">
+                            <Label Name="_lblReferencia">
+                                <TextBlock Text="{x:Static recurso:Etiquetas.lblReferencia}"/>
+                            </Label>
+                            <custom:ByTTextBox Name="_txtPrimeraReferencia" Width="150" MaxLength="40" Filtro="True" 
+                                       GotFocus="_btnConsultarFocus" GotKeyboardFocus="_btnConsultarFocus" Text="{Binding Path=PrimeraReferencia}"/>
+                        </WrapPanel>
+                        
+                        
                         <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,180,0">
                             <Label VerticalAlignment="Center" HorizontalContentAlignment="Right">
                                 <TextBlock Text="{x:Static recurso:Etiquetas.lblSituacion}"/>
@@ -392,6 +400,9 @@
                        
                         <GridViewColumn DisplayMemberBinding="{Binding Path=Solicitud}" Width="120">
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="Solicitud" Content="{x:Static recurso:Etiquetas.lsvSolicitud}"/>
+                        </GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=PrimeraReferencia}" Width="120">
+                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="PrimeraReferencia" Content="{x:Static recurso:Etiquetas.lsvReferencia}"/>
                         </GridViewColumn>
 
                         <GridViewColumn DisplayMemberBinding="{Binding Path=Asociado.Id}" Width="150">
