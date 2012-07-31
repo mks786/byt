@@ -398,8 +398,8 @@
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="Id" Content="{x:Static recurso:Etiquetas.lsvId}"/>
                         </GridViewColumn>
                        
-                        <GridViewColumn DisplayMemberBinding="{Binding Path=Solicitud}" Width="120">
-                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="Solicitud" Content="{x:Static recurso:Etiquetas.lsvSolicitud}"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=CodigoInscripcion}" Width="120">
+                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="CodigoInscripcion" Content="{x:Static recurso:Etiquetas.lsvSolicitud}"/>
                         </GridViewColumn>
                         <GridViewColumn DisplayMemberBinding="{Binding Path=PrimeraReferencia}" Width="120">
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="PrimeraReferencia" Content="{x:Static recurso:Etiquetas.lsvReferencia}"/>
@@ -424,7 +424,7 @@
                         <GridViewColumn DisplayMemberBinding="{Binding Path=FechaPublicacion, StringFormat=dd/MM/yyyy}" Width="180">
 
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="FechaPublicacion" Content="{x:Static recurso:Etiquetas.lsvFecha}"/>
-                        </GridViewColumn>                        
+                        </GridViewColumn>
                     </GridView>
                 </ListView.View>
             </ListView>

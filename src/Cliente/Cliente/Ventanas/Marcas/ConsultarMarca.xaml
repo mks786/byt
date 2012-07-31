@@ -1566,10 +1566,6 @@
                             Height="25" Click="_btnInfobol_Click">
                             <TextBlock Name="_txbInfobol" Text="{x:Static recurso:Etiquetas.btnInfoBol}"/>
                         </Button>
-                        <Button IsEnabled="False" Grid.Column="8" Grid.Row="22" Grid.ColumnSpan="1" Name="_btnCertificados" Margin="8,0,0,0"
-                            Height="25" Click="_btnCertificados_Click">
-                            <TextBlock Name="_txbCertificados" Text="{x:Static recurso:Etiquetas.btnCertificados}"/>
-                        </Button>
                         <Button IsEnabled="False" Grid.Column="9" Grid.Row="22" Grid.ColumnSpan="1" Name="_btnBusquedaDatos" Margin="8,0,0,0"
                             Height="25" Click="_btnBusqueda_Click">
                             <TextBlock Name="_txbBusquedas" Text="{x:Static recurso:Etiquetas.btnBusqueda}"/>
@@ -1600,24 +1596,33 @@
                               Height="20" ItemsSource="{Binding}" DisplayMemberPath="Descripcion" SelectedIndex="0" >
                         </ComboBox>
 
-                        <Button IsEnabled="False" Grid.Column="9" Grid.Row="24" Grid.ColumnSpan="1" Name="_btnAuditoria" Margin="8,0,0,0"
+                        <Button IsEnabled="False" Grid.Column="8" Grid.Row="22" Grid.ColumnSpan="1" Name="_btnAuditoria" Margin="8,0,0,0"
                             Height="25" Click="_btnAuditoria_Click">
                             <TextBlock Name="_txbAuditoria" Text="{x:Static recurso:Etiquetas.btnAuditoria}"/>
                         </Button>
 
-                        <Button IsEnabled="False" Grid.Column="10" Grid.Row="24" Grid.ColumnSpan="1" Name="_btnOperacionesDatos" Margin="8,0,0,0"
+                        <Button IsEnabled="False" Grid.Column="8" Grid.Row="23" Grid.ColumnSpan="1" Name="_btnOperacionesDatos" Margin="8,0,0,0"
                             Height="25" Click="_btnOperacionesDatos_Click">
                             <TextBlock Name="_txbOperaciones" Text="{x:Static recurso:Etiquetas.btnOperaciones}"/>
                         </Button>
 
-                        <Button IsEnabled="False" Grid.Column="11" Grid.Row="24" Grid.ColumnSpan="1" Name="_btnFacturacionDatos" Margin="8,0,0,0"
+                        <Button IsEnabled="False" Grid.Column="9" Grid.Row="23" Grid.ColumnSpan="1" Name="_btnFacturacionDatos" Margin="8,0,0,0"
                             Height="25">
                             <TextBlock Name="_txbFacturacion" Text="{x:Static recurso:Etiquetas.btnFacturacion}"/>
                         </Button>
 
-                        <Button IsEnabled="False" Grid.Column="12" Grid.Row="24" Grid.ColumnSpan="1" Name="_btnVerDocDatos" Margin="8,0,0,0"
-                            Height="25">
-                            <TextBlock Name="_txbVerDoc" Text="{x:Static recurso:Etiquetas.btnVerDoc}"/>
+                        <Button IsEnabled="False" Grid.Column="7" Grid.Row="24" Grid.ColumnSpan="1" Name="_btnVerSolicitud" Margin="8,2,0,0"
+                            Height="25" Click="_btnVerSolicitud_Click">
+                            <TextBlock Name="_txbVerDoc" Text="{x:Static recurso:Etiquetas.btnVerSolicitud}"/>
+                        </Button>
+                        <Button IsEnabled="False" Grid.Column="8" Grid.Row="24" Grid.ColumnSpan="1" Name="_btnVerExpediente" Margin="8,2,0,0"
+                            Height="25" Click="_btnVerExpediente_Click">
+                            <TextBlock Name="_txbVerExp" Text="{x:Static recurso:Etiquetas.btnVerExpediente}"/>
+                        </Button>
+
+                        <Button IsEnabled="False" Grid.Column="9" Grid.Row="24" Grid.ColumnSpan="1" Name="_btnCertificados" Margin="8,2,0,0"
+                            Height="25" Click="_btnCertificados_Click">
+                            <TextBlock Name="_txbCertificados" Text="{x:Static recurso:Etiquetas.btnCertificados}"/>
                         </Button>
 
                         <!--Fin Fila Dieciocho-->

@@ -205,7 +205,7 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Certificados.
+        ///   Looks up a localized string similar to Ver Certificados.
         /// </summary>
         public static string btnCertificados {
             get {
@@ -819,7 +819,7 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Expediente.
+        ///   Looks up a localized string similar to Ver Expediente.
         /// </summary>
         public static string btnVerExpediente {
             get {

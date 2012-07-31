@@ -674,7 +674,7 @@
     <value>Datos Transferencia</value>
   </data>
   <data name="btnVerExpediente" xml:space="preserve">
-    <value>Expediente</value>
+    <value>Ver Expediente</value>
   </data>
   <data name="lblActivo" xml:space="preserve">
     <value>Activo:</value>
@@ -1194,7 +1194,7 @@ Cuenta solo digital:</value>
     <value>Carpeta</value>
   </data>
   <data name="btnCertificados" xml:space="preserve">
-    <value>Certificados</value>
+    <value>Ver Certificados</value>
   </data>
   <data name="btnDuplicar" xml:space="preserve">
     <value>Duplicar</value>

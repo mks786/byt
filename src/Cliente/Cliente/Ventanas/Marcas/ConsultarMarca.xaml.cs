@@ -446,7 +446,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
                 this._btnRenovacion.IsEnabled = value;
                 this._btnRevisarWeb.IsEnabled = value;
                 this._btnSaldo.IsEnabled = value;
-                this._btnVerDocDatos.IsEnabled = value;
+                this._btnVerExpediente.IsEnabled = value;
+                this._btnVerSolicitud.IsEnabled = value;
                 this._btnConflictoSolicitud.IsEnabled = value;
                 this._btnConflictoDatos.IsEnabled = value;
                 this._btnEtiqueta.IsEnabled = value;
@@ -1746,12 +1747,6 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
         }
 
 
-        private void _btnCertificados_Click(object sender, RoutedEventArgs e)
-        {
-            this._presentador.Certificado();
-        }
-
-
         private void _cbxTipoClaseNacional_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
@@ -1777,6 +1772,23 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
         private void _btnIrAsociados_Click(object sender, RoutedEventArgs e)
         {
             this._presentador.IrVentanaAsociado();
+        }
+
+        private void _btnVerExpediente_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.VerExpediente();
+        }
+
+        private void _btnVerSolicitud_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.VerSolicitud();
+
+        }
+
+
+        private void _btnCertificados_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.VerCertificado();
         }
     }
 }
