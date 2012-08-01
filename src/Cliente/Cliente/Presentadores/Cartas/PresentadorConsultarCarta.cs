@@ -1547,5 +1547,20 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
         {
             Navegar((Page)_ventanaAVolver);
         }
+
+        public void AbrirCorrespondencia()
+        {
+            string rutaEntrada = ConfigurationManager.AppSettings["RutaVerEntrada"];
+            string comando = "START " + rutaEntrada;
+            int anoCorrespondencia = ((Carta)this._ventana.Carta).Fecha.Year;
+            string mesCorrespondencia = ((Carta)this._ventana.Carta).Fecha.Month.ToString().Length == 2 ? ((Carta)this._ventana.Carta).Fecha.Month.ToString() : "0" + ((Carta)this._ventana.Carta).Fecha.Month.ToString();
+
+            string diaCorrespondencia = ((Carta)this._ventana.Carta).Fecha.Day.ToString().Length == 2 ? ((Carta)this._ventana.Carta).Fecha.Day.ToString() : "0" + ((Carta)this._ventana.Carta).Fecha.Day.ToString();
+            int codigoEntrada = ((Carta)this._ventana.Carta).Id;
+
+            string comandoRutaCorrespondencia = rutaEntrada + anoCorrespondencia + "\\" + mesCorrespondencia + "\\" + anoCorrespondencia + mesCorrespondencia + diaCorrespondencia + "\\" + codigoEntrada;
+
+            EjecutarComandoDeConsola("Lectura de la correspondencia Id: " + codigoEntrada, comando + "ejecutar.bat " + comandoRutaCorrespondencia + ".TIF" + " " + comandoRutaCorrespondencia + ".MSG");
+        }
     }
 }

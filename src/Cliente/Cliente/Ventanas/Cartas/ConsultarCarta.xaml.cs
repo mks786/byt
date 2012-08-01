@@ -561,6 +561,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Cartas
 
         }
 
+        private void _btnAbrirCorrespondencia_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.AbrirCorrespondencia();
+        }
+
 
         //private void _soloNumero_KeyUp(object sender, KeyEventArgs e)
         //{

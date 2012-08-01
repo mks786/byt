@@ -2766,4 +2766,7 @@ en Prensa:</value>
   <data name="btnAsociado" xml:space="preserve">
     <value>Asociado:</value>
   </data>
+  <data name="btnVerCorrespondencia" xml:space="preserve">
+    <value>Ver Correspondencia</value>
+  </data>
 </root>

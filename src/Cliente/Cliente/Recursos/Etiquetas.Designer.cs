@@ -810,6 +810,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Ver Correspondencia.
+        /// </summary>
+        public static string btnVerCorrespondencia {
+            get {
+                return ResourceManager.GetString("btnVerCorrespondencia", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Ver Doc..
         /// </summary>
         public static string btnVerDoc {
