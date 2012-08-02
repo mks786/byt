@@ -133,8 +133,17 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosPatente
             }
 
             StringLlleno += DateTime.Parse(this._ventana.Fecha).ToShortDateString() + "  ";
+
+
+
+            if (null != ((ListaDatosValores)this._ventana.TipoPoder))
+                StringLlleno += ((ListaDatosValores)this._ventana.TipoPoder).Valor + "  ";
+
+
             if (null != ((Agente)this._ventana.Agente))
-                StringLlleno += ((Agente)this._ventana.Agente).Id;
+                StringLlleno += ((Agente)this._ventana.Agente).Id+"  "; 
+
+
             this._ventana.String = StringLlleno + "  " + parametroPatentes;
 
             #region trace
@@ -165,7 +174,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosPatente
                         + "\\" + ConfigurationManager.AppSettings["EscritoOficioDeJuramento"].ToString(),
                         ((Boletin)this._ventana.Boletin).Id + " " 
                         + DateTime.Parse(this._ventana.Fecha).ToShortDateString() + " " +
-                        ((ListaDatosValores)this._ventana.TipoPoder).Valor +
+                        ((ListaDatosValores)this._ventana.TipoPoder).Valor +" "+
                         ((Agente)this._ventana.AgenteFiltrado).Id + " " + parametroPatentes);
                 }
 

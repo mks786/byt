@@ -1457,6 +1457,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Disculpe, alguna de las marcas seleccionada no posee Prioridad.
+        /// </summary>
+        internal static string EscritoSinPrioridad {
+            get {
+                return ResourceManager.GetString("EscritoSinPrioridad", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Estado eliminado con éxito.
         /// </summary>
         internal static string EstadoEliminado {

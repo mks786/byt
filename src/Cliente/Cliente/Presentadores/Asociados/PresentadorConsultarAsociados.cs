@@ -377,7 +377,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
 
             if (!this._ventana.NombreAsociado.Equals(""))
             {
-                asociado.Nombre = this._ventana.NombreAsociado;
+                asociado.Nombre = this._ventana.NombreAsociado.ToUpper();
                 this._filtroValido = 2;
             }
 

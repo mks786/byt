@@ -850,4 +850,7 @@
   <data name="ErrorConsultarCartas" xml:space="preserve">
     <value>Ha ocurrido un error al consultar las cartas del responsable {0}, posiblemente posea una carta asignada que no existe en base de datos</value>
   </data>
+  <data name="EscritoSinPrioridad" xml:space="preserve">
+    <value>Disculpe, alguna de las marcas seleccionada no posee Prioridad</value>
+  </data>
 </root>

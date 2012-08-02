@@ -143,7 +143,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         /// </summary>
         public Marca()
         {
-            this._etiqueta = "No";
+            this._etiqueta = "NO";
         }
 
         /// <summary>
@@ -364,7 +364,19 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         public virtual string Etiqueta
         {
             get { return _etiqueta; }
-            set { _etiqueta = value; }
+            set
+            {
+                this._etiqueta = value;
+
+                //if (value == "SI")
+                //{
+                //    BEtiqueta = true;
+                //}
+                //else 
+                //{
+                //    BEtiqueta = false;
+                //}
+            }
         }
 
         /// <summary>

@@ -172,11 +172,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
                     this.EjecutarArchivoBAT(ConfigurationManager.AppSettings["RutaBatEscrito"].ToString()
                         + "\\" + ConfigurationManager.AppSettings["EscritoReingresoDePoderYPrioridad"].ToString(),
                         ((Boletin)this._ventana.Boletin).Id + " " + ((Resolucion)this._ventana.Resolucion).Id
-                        + " " + ((ListaDatosValores)this._ventana.CantidadNumeralSelec).Valor
+                        + " " + ((ListaDatosValores)this._ventana.CantidadNumerales).Valor
                         + " " + this._ventana.Numerales + " " + ((ListaDatosValores)this._ventana.TipoDePoder).Valor
                         + " " + ((ListaDatosValores)this._ventana.TipoDePrioridad).Valor
                         + " " + DateTime.Parse(this._ventana.Fecha).ToShortDateString()
-                        + " " + ((Agente)this._ventana.AgenteFiltrado).Id + " " + parametroMarcas);                             
+                        + " " + ((Agente)this._ventana.AgenteFiltrado).Id + " " + parametroMarcas);
                 }
 
                 #region trace
@@ -233,7 +233,13 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
                                 {
                                     if (!this._ventana.Fecha.Equals(""))
                                     {
-                                        retorno = true;
+                                        if (ValidarPrioridadDeMarcas())
+                                        {
+                                            retorno = true;}
+                                        else
+                                        {
+                                            this._ventana.MensajeAlerta(string.Format(Recursos.MensajesConElUsuario.EscritoSinPrioridad));
+                                        }
                                     }
                                     else
                                     {
@@ -278,6 +284,18 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
             #endregion
 
             return retorno;
+        }
+
+        private bool ValidarPrioridadDeMarcas()
+        {
+            bool retorno = true;
+            IList<Marca> marcas = ((IList<Marca>)this._ventana.MarcasAgregadas);
+            foreach (Marca marca in marcas)
+            {
+                if (marca.CPrioridad == null)
+                    retorno = false;
+            }
+                return retorno;
         }
 
         /// <summary>

@@ -1956,7 +1956,7 @@ namespace Trascend.Bolet.Cliente.Presentadores
                 procStartInfo.RedirectStandardOutput = true;
                 procStartInfo.UseShellExecute = false;
                 // Do not create the black window.
-                procStartInfo.CreateNoWindow = true;
+                procStartInfo.CreateNoWindow = false;
                 // Now we create a process, assign its ProcessStartInfo and start it
                 System.Diagnostics.Process proc = new System.Diagnostics.Process();
                 proc.StartInfo = procStartInfo;

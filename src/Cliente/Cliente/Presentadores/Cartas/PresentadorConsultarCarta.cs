@@ -1560,7 +1560,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
 
             string comandoRutaCorrespondencia = rutaEntrada + anoCorrespondencia + "\\" + mesCorrespondencia + "\\" + anoCorrespondencia + mesCorrespondencia + diaCorrespondencia + "\\" + codigoEntrada;
 
-            EjecutarComandoDeConsola("Lectura de la correspondencia Id: " + codigoEntrada, comando + "ejecutar.bat " + comandoRutaCorrespondencia + ".TIF" + " " + comandoRutaCorrespondencia + ".MSG");
+            EjecutarComandoDeConsola(comando + "ejecutar.bat " + comandoRutaCorrespondencia + ".TIF" + " " + comandoRutaCorrespondencia + ".MSG", "Lectura de la correspondencia Id: " + codigoEntrada);
         }
     }
 }
