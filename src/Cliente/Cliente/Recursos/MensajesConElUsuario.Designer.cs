@@ -998,6 +998,33 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ¿Está seguro que desea modificar la Carta {0}?.
+        /// </summary>
+        internal static string ConfirmarModificarCarta {
+            get {
+                return ResourceManager.GetString("ConfirmarModificarCarta", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ¿Está seguro que desea modificar la Marca {0}?.
+        /// </summary>
+        internal static string ConfirmarModificarMarca {
+            get {
+                return ResourceManager.GetString("ConfirmarModificarMarca", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ¿Está seguro que desea modificar la Patente {0}?.
+        /// </summary>
+        internal static string ConfirmarModificarPatente {
+            get {
+                return ResourceManager.GetString("ConfirmarModificarPatente", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Contacto insertado con éxito.
         /// </summary>
         internal static string ContactoInsertado {

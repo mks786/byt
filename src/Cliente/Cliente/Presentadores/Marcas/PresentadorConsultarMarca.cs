@@ -339,7 +339,6 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 {
                     marca.BEtiqueta = true;
                     this._ventana.PintarEtiqueta();
-
                 }
                 else
                     marca.BEtiqueta = false;
@@ -2287,6 +2286,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
         {
             Asociado asociado = ((Asociado)this._ventana.AsociadoSolicitud).Id != int.MinValue ? (Asociado)this._ventana.AsociadoSolicitud : null;
             Navegar(new ConsultarAsociados(this._ventana,asociado));
+        }
+
+        public string ObtenerIdMarca()
+        {
+            return ((Marca)this._ventana.Marca).Id.ToString();
         }
     }
 }

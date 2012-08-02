@@ -14,6 +14,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Cartas
         private PresentadorConsultarCarta _presentador;
         private bool _cargada;
         private bool _precargada = false;
+        private bool _camposHabilitados = true;
 
         #region IConsultarCarta
 
@@ -333,6 +334,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Cartas
                 this._cbxResponsable.IsEnabled = value;
                 this._txtIdAsociado.IsEnabled = value;
                 this._txtNombreAsociado.IsEnabled = value;
+                _camposHabilitados = value;
             }
         }
 
@@ -360,7 +362,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Cartas
             _precargada = true;
             this._presentador = new PresentadorConsultarCarta(this, cartaSeleccionada, ventana);
         }
-        
+
         /// <summary>
         /// Constructor con Lista de resultados
         /// </summary>
@@ -382,7 +384,18 @@ namespace Trascend.Bolet.Cliente.Ventanas.Cartas
 
         private void _btnAceptar_Click(object sender, RoutedEventArgs e)
         {
-            this._presentador.Modificar();
+            if (_camposHabilitados)
+            {
+                if (MessageBoxResult.Yes == MessageBox.Show(string.Format(Recursos.MensajesConElUsuario.ConfirmarModificarCarta,
+                    _presentador.ObtenerIdCarta()),
+                    "Modificar Carta", MessageBoxButton.YesNo, MessageBoxImage.Question))
+                {
+                    this._presentador.Modificar();
+                    _camposHabilitados = false;
+                }
+            }
+            else
+                this._presentador.Modificar();
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
@@ -564,6 +577,20 @@ namespace Trascend.Bolet.Cliente.Ventanas.Cartas
         private void _btnAbrirCorrespondencia_Click(object sender, RoutedEventArgs e)
         {
             this._presentador.AbrirCorrespondencia();
+        }
+
+
+
+        private void Page_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Next)
+            { 
+                this._presentador.SiguienteCarta();
+            }
+            else if (e.Key == Key.Prior)
+            {
+                this._presentador.AnteriorCarta();
+            }
         }
 
 

@@ -24,6 +24,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
         private bool _corresponsalesCargados;
         private bool _poderesCargados;
         private bool _agentesCargados;
+        private bool _camposHabilitados = true;
 
         #region IGestionarPatente
 
@@ -789,7 +790,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
                 this._btnFacturacionDatos.IsEnabled = value;
                 this._btnCertificadoDatos.IsEnabled = value;
                 this._btnCertificadoDatos.IsEnabled = value;
-
+                this._camposHabilitados = value;
                 #endregion
 
             }
@@ -1013,7 +1014,19 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
 
         private void _btnAceptar_Click(object sender, RoutedEventArgs e)
         {
-            this._presentador.Modificar();
+            if (_camposHabilitados)
+            {
+                if (MessageBoxResult.Yes == MessageBox.Show(string.Format(Recursos.MensajesConElUsuario.ConfirmarModificarPatente,
+                    _presentador.ObtenerIdCarta()),
+                    "Modificar Patente", MessageBoxButton.YesNo, MessageBoxImage.Question))
+                {
+                    this._presentador.Modificar();
+                    _camposHabilitados = false;
+                }
+            }
+            else
+                this._presentador.Modificar();
+
         }
 
         private void _btnCancelar_Click(object sender, RoutedEventArgs e)

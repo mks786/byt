@@ -9,11 +9,11 @@
     <property name="DescripcionDepartamento" type="String" column="`DEPARTAMENTO`"/>
     <property name="DetalleResumen" type="String" column="`DETALLE_RES`"/>
     <property name="Fecha" type="DateTime" column="`FECHA`"/>
-    <property name="FechaAlt" type="string" column="`FECHA_ALT`"/>
+    <property name="FechaAlt" type="DateTime" column="`FECHA_ALT`"/>
     <property name="FechaConfirmacion" type="DateTime" column="`FECHA_D`"/>
     <property name="FechaEnvioAcuse" type="DateTime" column="`FECHA_ENV_ACUSE`"/>
     <property name="FechaL" type="DateTime" column="`FECHA_L`" length="7" />
-    <property name="FechaReal" type="string" column="`FECHA_REAL`"/>
+    <property name="FechaReal" type="DateTime" column="`FECHA_REAL`"/>
     <property name="Iniciales" type="String" column="`INICIALES`"/>
     <property name="IRev" type="char" column="`IREV`" />
     <property name="Medio" type="String" column="`MEDIO`" length="3" />

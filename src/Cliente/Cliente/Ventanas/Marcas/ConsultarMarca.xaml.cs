@@ -23,6 +23,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
         private bool _interesadosCargados;
         private bool _corresponsalesCargados;
         private bool _poderesCargados;
+        private bool _camposHabilitados = true;
 
 
         #region IConsultarMarca
@@ -452,6 +453,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
                 this._btnConflictoDatos.IsEnabled = value;
                 this._btnEtiqueta.IsEnabled = value;
                 this._btnEtiquetaSolicitud.IsEnabled = value;
+                this._camposHabilitados = value;
 
                 #endregion
 
@@ -1214,7 +1216,19 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
 
         private void _btnAceptar_Click(object sender, RoutedEventArgs e)
         {
-            this._presentador.Modificar();
+
+            if (_camposHabilitados)
+            {
+                if (MessageBoxResult.Yes == MessageBox.Show(string.Format(Recursos.MensajesConElUsuario.ConfirmarModificarMarca,
+                    _presentador.ObtenerIdMarca()),
+                    "Modificar Marca", MessageBoxButton.YesNo, MessageBoxImage.Question))
+                {
+                    this._presentador.Modificar();
+                    _camposHabilitados = false;
+                }
+            }
+            else
+                this._presentador.Modificar();
         }
 
 

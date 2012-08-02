@@ -585,8 +585,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
                     if (tracking)
                     {
                         Carta carta = (Carta)this._ventana.Carta;
-                        carta.FechaAlt = FormatearFecha(carta.FechaAlt);
-                        carta.FechaReal = FormatearFecha(carta.FechaReal);
+                        //carta.FechaAlt = FormatearFecha(carta.FechaAlt);
+                        //carta.FechaReal = FormatearFecha(carta.FechaReal);
                         carta.Operacion = "MODIFY";
 
                         if (null != this._ventana.Departamento)
@@ -716,8 +716,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
 
                         if (exitoso)
                         {
-                            this._ventana.HabilitarCampos = false;
-                            this._ventana.TextoBotonModificar = Recursos.Etiquetas.btnModificar;
+                            //this._ventana.HabilitarCampos = false;
+                            //this._ventana.TextoBotonModificar = Recursos.Etiquetas.btnModificar;
                         }
                     }
                 }
@@ -828,8 +828,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
 
                         if (exitoso)
                         {
-                            this._ventana.HabilitarCampos = false;
-                            this._ventana.TextoBotonModificar = Recursos.Etiquetas.btnModificar;
+                            //this._ventana.HabilitarCampos = false;
+                            //this._ventana.TextoBotonModificar = Recursos.Etiquetas.btnModificar;
                         }
                     }
                 }
@@ -1559,8 +1559,14 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
             int codigoEntrada = ((Carta)this._ventana.Carta).Id;
 
             string comandoRutaCorrespondencia = rutaEntrada + anoCorrespondencia + "\\" + mesCorrespondencia + "\\" + anoCorrespondencia + mesCorrespondencia + diaCorrespondencia + "\\" + codigoEntrada;
+            this.EjecutarArchivoBAT(ConfigurationManager.AppSettings["RutaBatCorrespondencia"].ToString() +ConfigurationManager.AppSettings["ArchivoBatCorrespondencia"].ToString(), ConfigurationManager.AppSettings["RutaBatCorrespondencia"].ToString()+comandoRutaCorrespondencia + ".TIF" + " " +ConfigurationManager.AppSettings["RutaBatCorrespondencia"].ToString()+ comandoRutaCorrespondencia + ".MSG");
 
-            EjecutarComandoDeConsola(comando + "ejecutar.bat " + comandoRutaCorrespondencia + ".TIF" + " " + comandoRutaCorrespondencia + ".MSG", "Lectura de la correspondencia Id: " + codigoEntrada);
+            //EjecutarComandoDeConsola(comando + "ejecutar.bat " + comandoRutaCorrespondencia + ".TIF" + " " + comandoRutaCorrespondencia + ".MSG", "Lectura de la correspondencia Id: " + codigoEntrada);
+        }
+
+        public string ObtenerIdCarta()
+        {
+            return ((Carta)this._ventana.Carta).Id.ToString();
         }
     }
 }

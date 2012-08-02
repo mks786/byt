@@ -29,14 +29,14 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         private string _medioAcuse;
         private DateTime? _fechaEnvioAcuse;
         private Resumen _resumen;
-        private string _fechaAlt;
+        private DateTime? _fechaAlt;
         private double? _salida;
         private string _detalleResumen;
         private string _iniciales;
         private Departamento _departamento;
         private DateTime? _fechaL;
         private char _iRev;
-        private string _fechaReal;
+        private DateTime? _fechaReal;
         private DateTime? _fechaConfirmacion;
         private IList<Justificacion> _justificaciones;
         private IList<Contacto> _contactos;
@@ -202,18 +202,22 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
             set { _resumen = value; }
         }
 
-        public virtual string FechaAlt
+        public virtual DateTime? FechaAlt
         {
-            get { return _fechaAlt; }
+            get
+            {
+
+                if (null != _fechaAlt)
+                    return _fechaAlt.Value.Date;
+                else
+                    return null;
+            }
             set
             {
-                _fechaAlt = value;
-
-                if ((null != _fechaAlt) && (!_fechaAlt.Equals(string.Empty)))
-                if (!_fechaAlt.Equals(string.Empty))
-                    _fechaAltDate = DateTime.Parse(_fechaAlt);
+                if (null != _fechaAlt)
+                    _fechaAlt = value.Value.Date;
                 else
-                    _fechaAltDate = null;
+                    _fechaAlt = null;
             }
         }
 
@@ -253,16 +257,21 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
             set { _iRev = value; }
         }
 
-        public virtual string FechaReal
+        public virtual DateTime? FechaReal
         {
-            get { return _fechaReal; }
+            get {
+
+                if (null != _fechaReal)
+                    return _fechaReal.Value.Date;
+                else
+                    return null;
+            }
             set
             {
-                _fechaReal = value;
-                if ((null != _fechaReal) && (!_fechaReal.Equals(string.Empty)))
-                    _fechaRealDate = DateTime.Parse(_fechaReal);
+                if (null != _fechaReal)
+                    _fechaReal = value.Value.Date;
                 else
-                    _fechaRealDate = null;
+                    _fechaReal = null;
             }
         }
 

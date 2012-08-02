@@ -1,4 +1,5 @@
 ﻿using Trascend.Bolet.ControlesByT;
+using System;
 
 namespace Trascend.Bolet.ControlesByT.Ventanas
 {

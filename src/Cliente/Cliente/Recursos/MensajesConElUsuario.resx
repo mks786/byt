@@ -853,4 +853,13 @@
   <data name="EscritoSinPrioridad" xml:space="preserve">
     <value>Disculpe, alguna de las marcas seleccionada no posee Prioridad</value>
   </data>
+  <data name="ConfirmarModificarCarta" xml:space="preserve">
+    <value>¿Está seguro que desea modificar la Carta {0}?</value>
+  </data>
+  <data name="ConfirmarModificarMarca" xml:space="preserve">
+    <value>¿Está seguro que desea modificar la Marca {0}?</value>
+  </data>
+  <data name="ConfirmarModificarPatente" xml:space="preserve">
+    <value>¿Está seguro que desea modificar la Patente {0}?</value>
+  </data>
 </root>

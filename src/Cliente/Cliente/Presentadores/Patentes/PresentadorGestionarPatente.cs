@@ -240,12 +240,14 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                     this._ventana.AgentesSolicitudFiltrar = agentes;
                     this._ventana.AgenteSolicitudFiltrar = this.BuscarAgente(agentes, (Agente)_patente.Agente);
 
-                    IList<Interesado> Interesados = this._interesadoServicios.ConsultarTodos();
+                    //IList<Interesado> Interesados = this._interesadoServicios.ConsultarTodos();
+                    IList<Interesado> Interesados = new List<Interesado>();
                     Interesado primerInteresado = new Interesado();
                     primerInteresado.Id = int.MinValue;
+                    Interesados.Add(((Patente)this._ventana.Patente).Interesado);
                     Interesados.Insert(0, primerInteresado);
                     this._ventana.InteresadosSolicitud = Interesados;
-                    this._ventana.InteresadoSolicitud = this.BuscarInteresado(Interesados, (Interesado)_patente.Interesado);
+                    this._ventana.InteresadoSolicitud = this.BuscarInteresado(Interesados, ((Patente)this._ventana.Patente).Interesado);
 
                     IList<Pais> paises = this._paisServicios.ConsultarTodos();
                     Pais primerPais = new Pais();
@@ -2103,5 +2105,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
             }
         }
 
+
+        public string ObtenerIdCarta()
+        {
+            return ((Patente)this._ventana.Patente).Id.ToString();
+        }
     }
 }

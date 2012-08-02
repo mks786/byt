@@ -9,7 +9,7 @@
       d:DesignHeight="550" d:DesignWidth="800"
       xmlns:recurso="clr-namespace:Trascend.Bolet.Cliente.Recursos"
       xmlns:conv="clr-namespace:Trascend.Bolet.Cliente.Transformadores"
-      Title="{x:Static recurso:Etiquetas.titleAgregarAgente}" Loaded="Page_Loaded">
+      Title="{x:Static recurso:Etiquetas.titleAgregarAgente}" Loaded="Page_Loaded" KeyDown="Page_KeyDown" PreviewKeyDown="Page_KeyDown">
     <Page.Resources>
         <conv:EnteroMinimoABlanco x:Key="convertir"></conv:EnteroMinimoABlanco>
         <conv:DosValresAUno x:Key="convertirADosValores"></conv:DosValresAUno>
@@ -93,9 +93,9 @@
                 <Label Grid.Column="1" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Center">
                     <TextBlock Text="{x:Static recurso:Etiquetas.lblCodigo}"/>
                 </Label>
-                <custom:ByTTextBox  IsEnabled="False"  Name="_txtIdCarta" Text="{Binding Path=Id}" HorizontalAlignment="Left" Grid.Column="2" Grid.Row="0" 
+                <custom:ByTTextBox  IsReadOnly="True"  Name="_txtIdCarta" Text="{Binding Path=Id}" HorizontalAlignment="Left" Grid.Column="2" Grid.Row="0" 
                                       Width="50" Height="20"></custom:ByTTextBox>
-                <ComboBox IsEnabled="False"  Grid.Column="2" Grid.Row="0" Name="_cbxAcuse" Grid.ColumnSpan="2" Height="20" 
+                <ComboBox   Grid.Column="2" Grid.Row="0" Name="_cbxAcuse" Grid.ColumnSpan="2" Height="20" 
                           ItemsSource="{Binding}" SelectedIndex="0" SelectionChanged="_cbxAcuse_SelectionChanged" DisplayMemberPath="Descripcion"
                           Margin="55,0,40,0">
 
@@ -104,14 +104,14 @@
                     <TextBlock Text="{x:Static recurso:Etiquetas.lblFecha}"/>
                 </Label>
 
-                <DatePicker  IsEnabled="False" Grid.Column="4" Grid.Row="0" 
+                <DatePicker   Grid.Column="4" Grid.Row="0" 
                         Name="_dpkFecha" Grid.ColumnSpan="1" Focusable="False" 
                         BorderBrush="{x:Null}" VerticalAlignment="Center" >
                     <DatePicker.SelectedDate>
                         <Binding Path="Fecha" UpdateSourceTrigger="PropertyChanged"/>
                     </DatePicker.SelectedDate>
                 </DatePicker>
-                <DatePicker IsEnabled="False"  Grid.Column="5" Grid.Row="0"  
+                <DatePicker   Grid.Column="5" Grid.Row="0"  
                         Name="_dpkFechaAlternativa" Grid.ColumnSpan="1" 
                         Focusable="False" BorderBrush="{x:Null}" VerticalAlignment="Center">
                     <DatePicker.SelectedDate>
@@ -122,7 +122,7 @@
                     <TextBlock Text="{x:Static recurso:Etiquetas.lblFechaReal}"/>
                 </Label>
 
-                <DatePicker  IsEnabled="False" Grid.Column="7" Grid.Row="0" Grid.ColumnSpan="1" Name="_dpkFechaReal" Focusable="False" BorderBrush="{x:Null}" VerticalAlignment="Center" >
+                <DatePicker   Grid.Column="7" Grid.Row="0" Grid.ColumnSpan="1" Name="_dpkFechaReal" Focusable="False" BorderBrush="{x:Null}" VerticalAlignment="Center" >
                     <DatePicker.SelectedDate>
                         <Binding Path="FechaRealDate" UpdateSourceTrigger="PropertyChanged"/>
                     </DatePicker.SelectedDate>
@@ -130,7 +130,7 @@
                 <Label Grid.Column="8" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Center">
                     <TextBlock Text="{x:Static recurso:Etiquetas.lblMedio}"/>
                 </Label>
-                <ComboBox IsEnabled="False" Grid.Column="9" Grid.Row="0" Grid.ColumnSpan="1" Name="_cbxMedio" Height="20" 
+                <ComboBox  Grid.Column="9" Grid.Row="0" Grid.ColumnSpan="1" Name="_cbxMedio" Height="20" 
                               ItemsSource="{Binding}" SelectedIndex="0" SelectionChanged="_cbxMedio_SelectionChanged">
 
                     <ComboBox.ItemTemplate>
@@ -165,14 +165,14 @@
 
 
 
-                    <custom:ByTTextBox   IsEnabled="False" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="3"  Name="_txtAsociado" VerticalAlignment="Center"
+                    <custom:ByTTextBox    Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="3"  Name="_txtAsociado" VerticalAlignment="Center"
                           Margin="0,0,0,0" BorderBrush="Green" Text="" MaxLength="255" GotFocus="_txtAsociado_GotFocus" GotKeyboardFocus="_txtAsociado_GotFocus"  ></custom:ByTTextBox>
-                    <custom:ByTTextBox IsEnabled="False"   Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="1"  Name="_txtCodigoAsociado" VerticalAlignment="Center"
+                    <custom:ByTTextBox    Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="1"  Name="_txtCodigoAsociado" VerticalAlignment="Center"
                           Margin="0,0,5,0" BorderBrush="Green" Text=""  MaxLength="255" GotFocus="_txtAsociado_GotFocus" GotKeyboardFocus="_txtAsociado_GotFocus"  ></custom:ByTTextBox>
 
-                    <custom:ByTTextBox  IsEnabled="False"  Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="1" Name="_txtIdAsociado" VerticalAlignment="Center" 
+                    <custom:ByTTextBox    Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="1" Name="_txtIdAsociado" VerticalAlignment="Center" 
                           HorizontalAlignment="Left" Width="45" MaxLength="255"  Visibility="Collapsed"  ></custom:ByTTextBox>
-                    <custom:ByTTextBox  IsEnabled="False"  Grid.Column="4" Grid.Row="0" Grid.ColumnSpan="1" Name="_txtNombreAsociado" VerticalAlignment="Center" 
+                    <custom:ByTTextBox    Grid.Column="4" Grid.Row="0" Grid.ColumnSpan="1" Name="_txtNombreAsociado" VerticalAlignment="Center" 
                           MaxLength="255" Visibility="Collapsed"></custom:ByTTextBox>
                     <Label Name="_lblIdAsociado" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Center" Visibility="Collapsed">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblId}"/>
@@ -184,7 +184,7 @@
                         <TextBlock Text="{x:Static recurso:Etiquetas.btnConsultar}"/>
                     </Button>
                     <ListView Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="4" Grid.RowSpan="2" Name="_lstAsociados" ItemsSource="{Binding}" 
-                      SelectionMode="Single" IsEnabled="False"
+                      SelectionMode="Single" 
                       Style="{DynamicResource EstiloListView}" Visibility="Collapsed" Height="150" MouseDoubleClick="_lstAsociados_MouseDoubleClick" VerticalAlignment="Top">
                         <ListView.View>
                             <GridView>
@@ -212,7 +212,7 @@
                 <Label Grid.Column="7" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Center">
                     <TextBlock Text="{x:Static recurso:Etiquetas.lblReceptor}"/>
                 </Label>
-                <ComboBox  IsEnabled="False" Grid.Column="8" Grid.Row="1" Grid.ColumnSpan="2" Name="_cbxReceptor"  Height="20"  ItemsSource="{Binding}"
+                <ComboBox   Grid.Column="8" Grid.Row="1" Grid.ColumnSpan="2" Name="_cbxReceptor"  Height="20"  ItemsSource="{Binding}"
                            SelectedIndex="0" DisplayMemberPath="NombreCompleto">
                 </ComboBox>
                 <Separator Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="9" Margin="0,5,0,5" VerticalAlignment="Top"/>
@@ -224,36 +224,36 @@
                 <Label Grid.Column="1" Grid.Row="4" HorizontalAlignment="Right" VerticalAlignment="Center">
                     <TextBlock Text="{x:Static recurso:Etiquetas.lblDepartamento}"/>
                 </Label>
-                <custom:ByTTextBox  IsEnabled="False"  Grid.ColumnSpan="8" Name="_txtNombreDepartamento" Text="{Binding Path=DescripcionDepartamento}" Grid.Column="2" Grid.Row="4" Height="20"></custom:ByTTextBox>
+                <custom:ByTTextBox    Grid.ColumnSpan="8" Name="_txtNombreDepartamento" Text="{Binding Path=DescripcionDepartamento}" Grid.Column="2" Grid.Row="4" Height="20"></custom:ByTTextBox>
                 <Label Grid.Column="1" Grid.Row="5" HorizontalAlignment="Right" VerticalAlignment="Top">
                     <TextBlock Text="{x:Static recurso:Etiquetas.lblPersona}"/>
                 </Label>
-                <ComboBox  IsEnabled="False" Grid.Column="2" Grid.Row="5" Grid.ColumnSpan="4" Name="_cbxContacto"  Height="20" ItemsSource="{Binding}"
+                <ComboBox   Grid.Column="2" Grid.Row="5" Grid.ColumnSpan="4" Name="_cbxContacto"  Height="20" ItemsSource="{Binding}"
                       DisplayMemberPath="Nombre" SelectedIndex="0" VerticalAlignment="Top">
                 </ComboBox>
 
                 <Label Grid.Column="1" Grid.Row="5" HorizontalAlignment="Right" VerticalAlignment="Bottom">
                     <TextBlock Text="{x:Static recurso:Etiquetas.lblReferencia}"/>
                 </Label>
-                <custom:ByTTextBox IsEnabled="False"  VerticalAlignment="Bottom" Grid.ColumnSpan="8" Name="_txtReferencia" Text="{Binding Path=Referencia}" Grid.Column="2" Grid.Row="5" Height="20"></custom:ByTTextBox>
+                <custom:ByTTextBox   VerticalAlignment="Bottom" Grid.ColumnSpan="8" Name="_txtReferencia" Text="{Binding Path=Referencia}" Grid.Column="2" Grid.Row="5" Height="20"></custom:ByTTextBox>
                 <Label Grid.Column="1" Grid.Row="6" HorizontalAlignment="Right" VerticalAlignment="Center">
                     <TextBlock Text="{x:Static recurso:Etiquetas.lblResumen}"/>
                 </Label>
-                <custom:ByTTextBox IsEnabled="False"   Name="_txtResumen" Text="{Binding Path=DescripcionResumen}" Grid.Column="2" Grid.Row="6" Grid.ColumnSpan="3" Height="20" Margin="0,0,5,0" ></custom:ByTTextBox>
-                <ComboBox IsEnabled="False"  Grid.Column="5" Grid.Row="6" Margin="0" Grid.ColumnSpan="2" Name="_cbxResumen" Height="20"  ItemsSource="{Binding}"
+                <custom:ByTTextBox    Name="_txtResumen" Text="{Binding Path=DescripcionResumen}" Grid.Column="2" Grid.Row="6" Grid.ColumnSpan="3" Height="20" Margin="0,0,5,0" ></custom:ByTTextBox>
+                <ComboBox   Grid.Column="5" Grid.Row="6" Margin="0" Grid.ColumnSpan="2" Name="_cbxResumen" Height="20"  ItemsSource="{Binding}"
                          DisplayMemberPath="Descripcion" SelectedIndex="0">
                 </ComboBox>
                 <Label Grid.Column="7" Grid.Row="6" HorizontalAlignment="Right" VerticalAlignment="Center"  Grid.RowSpan="1">
                     <TextBlock Text="{x:Static recurso:Etiquetas.lblDepartamento}"/>
                 </Label>
-                <ComboBox  IsEnabled="False" Grid.Column="8" Grid.Row="6" Grid.ColumnSpan="2"  Name="_cbxDepartamento" 
+                <ComboBox   Grid.Column="8" Grid.Row="6" Grid.ColumnSpan="2"  Name="_cbxDepartamento" 
                             Height="20" SelectedIndex="0" ItemsSource="{Binding}"  Grid.RowSpan="1" DisplayMemberPath="Descripcion">
                 </ComboBox>
 
                 <Label Grid.Column="1" Grid.Row="7" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,3" Grid.RowSpan="2">
                     <TextBlock Text="{x:Static recurso:Etiquetas.lblTracking}"/>
                 </Label>
-                <custom:ByTTextBox  IsEnabled="False"  Grid.ColumnSpan="2" Name="_txtTracking" Text="{Binding Path=Tracking}" Grid.Column="2" Grid.Row="7" Height="20" Margin="0,5" Grid.RowSpan="2"></custom:ByTTextBox>
+                <custom:ByTTextBox    Grid.ColumnSpan="2" Name="_txtTracking" Text="{Binding Path=Tracking}" Grid.Column="2" Grid.Row="7" Height="20" Margin="0,5" Grid.RowSpan="2"></custom:ByTTextBox>
                 <Label Grid.Column="2" Grid.Row="7" Grid.ColumnSpan="2" HorizontalAlignment="Right" VerticalAlignment="Bottom" Grid.RowSpan="2" Foreground="Gray">
                     <TextBlock Name="_lsbFormato" Text="Formato: " FontSize="10" />
                 </Label>
@@ -264,18 +264,18 @@
                 <Label Grid.Column="1" Grid.Row="9" HorizontalAlignment="Right" VerticalAlignment="Top">
                     <TextBlock Text="{x:Static recurso:Etiquetas.lblAnexos}"/>
                 </Label>
-                <ComboBox  IsEnabled="False" Grid.Column="2" Grid.Row="9" Grid.ColumnSpan="3"  Name="_cbxAnexo" 
+                <ComboBox   Grid.Column="2" Grid.Row="9" Grid.ColumnSpan="3"  Name="_cbxAnexo" 
                           SelectedIndex="0" Height="20" VerticalAlignment="Top" ItemsSource="{Binding}" DisplayMemberPath="Descripcion">
 
                 </ComboBox>
-                <Button IsEnabled="False" Grid.Column="5" Grid.Row="9" Name="_btnMas" VerticalAlignment="Top" Width="25" HorizontalAlignment="Left" Margin="5,0,0,0" Click="_btnMas_Click">
+                <Button  Grid.Column="5" Grid.Row="9" Name="_btnMas" VerticalAlignment="Top" Width="25" HorizontalAlignment="Left" Margin="5,0,0,0" Click="_btnMas_Click">
                     <TextBlock Text="{x:Static recurso:Etiquetas.btnAgregarSimbolo}"></TextBlock>
                 </Button>
-                <Button IsEnabled="False" Grid.Column="5" Grid.Row="9" Name="_btnMenos" VerticalAlignment="Top" Width="25" HorizontalAlignment="Left" Margin="35 0 0 0" Click="_btnMenos_Click">
+                <Button  Grid.Column="5" Grid.Row="9" Name="_btnMenos" VerticalAlignment="Top" Width="25" HorizontalAlignment="Left" Margin="35 0 0 0" Click="_btnMenos_Click">
                     <TextBlock Text="{x:Static recurso:Etiquetas.btnEliminarSimbolo}"></TextBlock>
                 </Button>
 
-                <ListView IsEnabled="False" Grid.Column="2" Grid.Row="9" Grid.ColumnSpan="3" Margin="0,25,0,0" Grid.RowSpan="4" Name="_lstAnexosCarta" ItemsSource="{Binding}" 
+                <ListView  Grid.Column="2" Grid.Row="9" Grid.ColumnSpan="3" Margin="0,25,0,0" Grid.RowSpan="4" Name="_lstAnexosCarta" ItemsSource="{Binding}" 
                       SelectionMode="Single" VerticalAlignment="Top" 
                       Style="{DynamicResource EstiloListView}" Visibility="Collapsed" Height="110" >
                     <ListView.View>
@@ -299,18 +299,18 @@
                 <Label Grid.Column="1" Grid.Row="16" HorizontalAlignment="Right" VerticalAlignment="Top">
                     <TextBlock Text="{x:Static recurso:Etiquetas.lblTitleResponsable}"/>
                 </Label>
-                <ComboBox IsEnabled="False" Grid.Column="2" Grid.Row="16" Grid.ColumnSpan="3" 
+                <ComboBox  Grid.Column="2" Grid.Row="16" Grid.ColumnSpan="3" 
                       Name="_cbxResponsable" Height="20"  SelectedIndex="0"
                       ItemsSource="{Binding}" VerticalAlignment="Top" DisplayMemberPath="NombreCompleto">
                 </ComboBox>
-                <Button IsEnabled="False" Grid.Column="5" Grid.Row="16" Name="_btnMasResponsable" VerticalAlignment="Top" HorizontalAlignment="Left" Width="25" Margin="5,0,0,0" Click="_btnMasResponsable_Click">
+                <Button  Grid.Column="5" Grid.Row="16" Name="_btnMasResponsable" VerticalAlignment="Top" HorizontalAlignment="Left" Width="25" Margin="5,0,0,0" Click="_btnMasResponsable_Click">
                     <TextBlock Text="{x:Static recurso:Etiquetas.btnAgregarSimbolo}"></TextBlock>
                 </Button>
-                <Button IsEnabled="False" Grid.Column="5" Grid.Row="16" Name="_btnMenosResponsable" VerticalAlignment="Top" HorizontalAlignment="Left" Width="25" Margin="35 0 0 0" Click="_btnMenosResponsable_Click">
+                <Button  Grid.Column="5" Grid.Row="16" Name="_btnMenosResponsable" VerticalAlignment="Top" HorizontalAlignment="Left" Width="25" Margin="35 0 0 0" Click="_btnMenosResponsable_Click">
                     <TextBlock Text="{x:Static recurso:Etiquetas.btnEliminarSimbolo}"></TextBlock>
                 </Button>
 
-                <ListView IsEnabled="False" Grid.Column="2" Grid.Row="16" Grid.ColumnSpan="3" Grid.RowSpan="2" Name="_lstResponsables" ItemsSource="{Binding}" 
+                <ListView  Grid.Column="2" Grid.Row="16" Grid.ColumnSpan="3" Grid.RowSpan="2" Name="_lstResponsables" ItemsSource="{Binding}" 
                       SelectionMode="Single" VerticalAlignment="Top" Margin="2,25,0,0"
                       Style="{DynamicResource EstiloListView}" Visibility="Collapsed" Height="90" >
                     <ListView.View>
@@ -335,7 +335,7 @@
                     <TextBlock Text="{x:Static recurso:Etiquetas.lblModificado}"/>
                 </Label>
 
-                <DatePicker IsEnabled="False" Grid.Column="2" Grid.Row="20" Grid.ColumnSpan="1"  Name="_dpkFechaConfirmacion" Focusable="False" BorderBrush="{x:Null}" >
+                <DatePicker  Grid.Column="2" Grid.Row="20" Grid.ColumnSpan="1"  Name="_dpkFechaConfirmacion" Focusable="False" BorderBrush="{x:Null}" >
                     <DatePicker.SelectedDate>
                         <Binding Path="FechaConfirmacion" UpdateSourceTrigger="PropertyChanged"/>
                     </DatePicker.SelectedDate>
@@ -344,7 +344,7 @@
                 <Label Grid.Column="4" Grid.Row="20" HorizontalAlignment="Right" VerticalAlignment="Center">
                     <TextBlock Text="{x:Static recurso:Etiquetas.lblTracking}"/>
                 </Label>
-                <custom:ByTTextBox IsEnabled="False" Grid.ColumnSpan="2" Name="_txtTrackingConfirmacion" Text="{Binding Path=AnexoTracking}" Grid.Column="5" Grid.Row="20" Height="20"></custom:ByTTextBox>
+                <custom:ByTTextBox  Grid.ColumnSpan="2" Name="_txtTrackingConfirmacion" Text="{Binding Path=AnexoTracking}" Grid.Column="5" Grid.Row="20" Height="20"></custom:ByTTextBox>
                 <Label Grid.Column="5" Grid.ColumnSpan="2"  Grid.Row="21" HorizontalAlignment="Right" VerticalAlignment="top" Grid.RowSpan="2" Foreground="Gray">
                     <TextBlock Name="_lsbFormatoConfirmacion" Text="Formato: " FontSize="10" />
                 </Label>
@@ -352,7 +352,7 @@
                 <Label Grid.Column="7" Grid.Row="20" HorizontalAlignment="Right" VerticalAlignment="Center">
                     <TextBlock Text="{x:Static recurso:Etiquetas.lblTrackingGuia}"/>
                 </Label>
-                <ComboBox IsEnabled="False" Grid.Column="8" Grid.Row="20" Grid.ColumnSpan="2" Name="_cbxMedioTrackingConfirmacion" Height="20"  ItemsSource="{Binding}"
+                <ComboBox  Grid.Column="8" Grid.Row="20" Grid.ColumnSpan="2" Name="_cbxMedioTrackingConfirmacion" Height="20"  ItemsSource="{Binding}"
                          SelectionChanged="_cbxMedioTrackingConfirmacion_SelectionChanged" SelectedIndex="0" DisplayMemberPath="Nombre">
                 </ComboBox>
 
@@ -366,7 +366,7 @@
                 <Label Grid.Column="2" Grid.Row="22" HorizontalAlignment="Right" VerticalAlignment="Center">
                     <TextBlock Text="{x:Static recurso:Etiquetas.lblFecha}"/>
                 </Label>
-                <DatePicker IsEnabled="False"  Grid.Column="3" Grid.Row="22" Name="_dpkFechaAnexo" Grid.ColumnSpan="1" Focusable="False" BorderBrush="{x:Null}" VerticalAlignment="Center" >
+                <DatePicker   Grid.Column="3" Grid.Row="22" Name="_dpkFechaAnexo" Grid.ColumnSpan="1" Focusable="False" BorderBrush="{x:Null}" VerticalAlignment="Center" >
                     <DatePicker.SelectedDate>
                         <Binding Path="AnexoFecha" UpdateSourceTrigger="PropertyChanged"/>
                     </DatePicker.SelectedDate>
@@ -375,31 +375,31 @@
                 <!--<Label Grid.Column="6" Grid.Row="22" HorizontalAlignment="Right" VerticalAlignment="Center">
                 <TextBlock Text="{x:Static recurso:Etiquetas.lblMedio}"/>
             </Label>
-            <custom:ByTTextBox IsEnabled="False"   Grid.ColumnSpan="2" Name="_txtMedio" Text="{Binding Path=AnexoMedio}" Grid.Column="7" Grid.Row="22" Height="20"></custom:ByTTextBox>-->
+            <custom:ByTTextBox    Grid.ColumnSpan="2" Name="_txtMedio" Text="{Binding Path=AnexoMedio}" Grid.Column="7" Grid.Row="22" Height="20"></custom:ByTTextBox>-->
 
 
                 <Label Grid.Column="1" Grid.Row="23" HorizontalAlignment="Right" VerticalAlignment="Center">
                     <TextBlock Text="{x:Static recurso:Etiquetas.lblTipoAnexo}"/>
                 </Label>
-                <custom:ByTTextBox IsEnabled="False"  Grid.ColumnSpan="2" Name="_txtTipoAnexo" Text="{Binding Path=DetalleResumen}" Grid.Column="2" Grid.Row="23" Height="20"></custom:ByTTextBox>
+                <custom:ByTTextBox   Grid.ColumnSpan="2" Name="_txtTipoAnexo" Text="{Binding Path=DetalleResumen}" Grid.Column="2" Grid.Row="23" Height="20"></custom:ByTTextBox>
 
                 <Label Grid.Column="1" Grid.Row="24" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.RowSpan="2">
                     <TextBlock Text="{x:Static recurso:Etiquetas.lblAnexos}"/>
                 </Label>
-                <ComboBox IsEnabled="False" Grid.Column="2" Grid.Row="24" Grid.ColumnSpan="3"  Name="_cbxAnexoConfirmacion" Height="20" 
+                <ComboBox  Grid.Column="2" Grid.Row="24" Grid.ColumnSpan="3"  Name="_cbxAnexoConfirmacion" Height="20" 
                          SelectedIndex="0" ItemsSource="{Binding}" Grid.RowSpan="2" DisplayMemberPath="Descripcion">
                     
                 </ComboBox>
-                <Button IsEnabled="False" Grid.Column="5" Grid.Row="24" Name="_btnMasConfirmacion" VerticalAlignment="Center" Width="25" HorizontalAlignment="Left" 
+                <Button  Grid.Column="5" Grid.Row="24" Name="_btnMasConfirmacion" VerticalAlignment="Center" Width="25" HorizontalAlignment="Left" 
                     Margin="5,0,0,0" Click="_btnMasConfirmacion_Click" Grid.RowSpan="2">
                     <TextBlock Text="{x:Static recurso:Etiquetas.btnAgregarSimbolo}"></TextBlock>
                 </Button>
-                <Button IsEnabled="False" Grid.Column="5" Grid.Row="24" Name="_btnMenosConfirmacion" VerticalAlignment="Center" Width="25" HorizontalAlignment="Left" 
+                <Button  Grid.Column="5" Grid.Row="24" Name="_btnMenosConfirmacion" VerticalAlignment="Center" Width="25" HorizontalAlignment="Left" 
                     Margin="35 0 0 0" Click="_btnMenosConfirmacion_Click" Grid.RowSpan="2">
                     <TextBlock Text="{x:Static recurso:Etiquetas.btnEliminarSimbolo}"></TextBlock>
                 </Button>
 
-                <ListView IsEnabled="False" Grid.Column="2" Grid.Row="23" Grid.ColumnSpan="3" Grid.RowSpan="5" Name="_lstAnexosCartaConfirmacion" ItemsSource="{Binding}" 
+                <ListView  Grid.Column="2" Grid.Row="23" Grid.ColumnSpan="3" Grid.RowSpan="5" Name="_lstAnexosCartaConfirmacion" ItemsSource="{Binding}" 
                       SelectionMode="Single" VerticalAlignment="Top" Margin="5,50,0,0"
                       Style="{DynamicResource EstiloListView}" Visibility="Collapsed" Height="110" >
                     <ListView.View>
@@ -448,7 +448,7 @@
             </Button>
             <Button Name="_btnAceptar"  VerticalAlignment="Bottom" Height="25" Width="90" 
                     Click="_btnAceptar_Click"  IsDefault="True">
-                <TextBlock Name="_txbAceptar" Text="{x:Static recurso:Etiquetas.btnModificar}"/>
+                <TextBlock Name="_txbAceptar" Text="{x:Static recurso:Etiquetas.btnAceptar}"/>
             </Button>
             <Button Name="_btnCancelar" VerticalAlignment="Bottom" Height="25" Width="90" Click="_btnCancelar_Click">Regresar</Button>
         </WrapPanel>

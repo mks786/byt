@@ -1603,6 +1603,7 @@ namespace Trascend.Bolet.Cliente.Presentadores
                 System.Diagnostics.Process proc = new System.Diagnostics.Process(); // Declare New Process
                 proc.StartInfo.FileName = nombreArchivoBat;
                 proc.StartInfo.RedirectStandardError = true;
+                proc.StartInfo.CreateNoWindow = true;
                 proc.StartInfo.RedirectStandardOutput = true;
                 proc.StartInfo.UseShellExecute = false;
                 proc.StartInfo.Arguments = parametroA;
@@ -1963,6 +1964,15 @@ namespace Trascend.Bolet.Cliente.Presentadores
                 proc.Start();
                 // Get the output into a string
                 string result = proc.StandardOutput.ReadToEnd();
+
+
+                proc.WaitForExit(2000);
+
+                string errorMessage = proc.StandardError.ReadToEnd();
+                proc.WaitForExit();
+
+                string outputMessage = proc.StandardOutput.ReadToEnd();
+                proc.WaitForExit();
 
                 #region Debug
                 logger.Debug("Resultado del comando de consola '" + accion + "': " + result);

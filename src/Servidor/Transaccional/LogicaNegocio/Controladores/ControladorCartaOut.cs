@@ -200,8 +200,8 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
                 carta.Fecha = cartaOut.FechaIngreso.Value;
 
                 String fechaAux = TraducirFecha(cartaOut.FechaIngreso);
-                carta.FechaAlt = fechaAux;
-                carta.FechaReal = fechaAux;
+                carta.FechaAlt = DateTime.Parse(fechaAux);
+                carta.FechaReal = DateTime.Parse(fechaAux);
 
                 if (cartaOut.TipoEmail.Equals('I'))
                     carta.Acuse = 'S';
