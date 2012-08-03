@@ -45,7 +45,7 @@ namespace Trascend.Bolet.ControlesByT.Ventanas
         private void _btnAceptar_Click(object sender, EventArgs e)
         {
             if (null != this._textBox)
-                this._textBox.Text = this._detalle.Text;
+                this._textBox.Text = this._detalle.Text.Replace(Environment.NewLine,"\r");
             this.Close();
         }
 

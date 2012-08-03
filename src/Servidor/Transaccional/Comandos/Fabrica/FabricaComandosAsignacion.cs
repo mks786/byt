@@ -32,5 +32,15 @@ namespace Trascend.Bolet.Comandos.Fabrica
         {
             return new ComandoConsultarAsignacionesPorUsuario(user);
         }
+
+        /// <summary>
+        /// Metodo que elimina las asignaciones de una carta
+        /// </summary>
+        /// <param name="carta">Carta a eliminar sus asignaciones</param>
+        /// <returns>True en caso de haber sido correcto, false en caso contrario</returns>
+        public static ComandoBase<bool> ObtenerComandoEliminarAsignacionesPorCarta(Carta carta)
+        {
+            return new ComandoEliminarAsignacionesPorCarta(carta);
+        }
     }
 }

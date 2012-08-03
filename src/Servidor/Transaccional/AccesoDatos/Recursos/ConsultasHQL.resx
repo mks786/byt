@@ -909,4 +909,7 @@
   <data name="FiltroObtenerPatenteReferencia" xml:space="preserve">
     <value>p.PrimeraReferencia like '%{0}%'</value>
   </data>
+  <data name="EliminarAsignacionesPorCarta" xml:space="preserve">
+    <value>Delete from Asignacion where Carta.Id ={0}</value>
+  </data>
 </root>

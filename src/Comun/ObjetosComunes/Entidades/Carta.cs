@@ -214,10 +214,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
             }
             set
             {
-                if (null != _fechaAlt)
                     _fechaAlt = value.Value.Date;
-                else
-                    _fechaAlt = null;
             }
         }
 
@@ -268,10 +265,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
             }
             set
             {
-                if (null != _fechaReal)
                     _fechaReal = value.Value.Date;
-                else
-                    _fechaReal = null;
             }
         }
 

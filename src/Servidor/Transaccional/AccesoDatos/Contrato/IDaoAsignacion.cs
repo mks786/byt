@@ -19,5 +19,13 @@ namespace Trascend.Bolet.AccesoDatos.Contrato
         /// <param name="user">El Usuario</param>
         /// <returns>Lista de Asignaciones</returns>
         IList<Asignacion> ObtenerAsignacionesPorUsuario(Usuario user);
+
+        /// <summary>
+        /// Eliminar todas las eliminaciones de una carta
+        /// </summary>
+        /// <param name="carta">Carta a eliminar las asignaciones</param>
+        /// <returns>true en exito, false en caso contrario</returns>
+        bool EliminarAsignacionesPorCarta(Carta carta);
     }
+
 }

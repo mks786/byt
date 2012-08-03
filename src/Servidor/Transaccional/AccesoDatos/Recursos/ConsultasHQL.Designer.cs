@@ -340,6 +340,15 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Delete from Asignacion where Carta.Id ={0}.
+        /// </summary>
+        public static string EliminarAsignacionesPorCarta {
+            get {
+                return ResourceManager.GetString("EliminarAsignacionesPorCarta", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to a.Id = &apos;{0}&apos;.
         /// </summary>
         public static string FiltroObtenerAgenteId {

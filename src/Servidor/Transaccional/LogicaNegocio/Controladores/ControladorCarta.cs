@@ -126,6 +126,16 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
                 auditoria.Tabla = "ENTRADA";
                 auditoria.Fk = carta.Id;
 
+                ComandoBase<IList<Asignacion>> comandoConsultarAsignaciones = FabricaComandosAsignacion.ObtenerComandoConsultarAsignacionesPorCarta(carta);
+                comandoConsultarAsignaciones.Ejecutar();
+                IList<Asignacion> listAsignaciones = comandoConsultarAsignaciones.Receptor.ObjetoAlmacenado;
+
+                if (listAsignaciones.Count != carta.Asignaciones.Count)
+                {
+                    ComandoBase<bool> comandoEliminar = FabricaComandosAsignacion.ObtenerComandoEliminarAsignacionesPorCarta(carta);
+                    comandoEliminar.Ejecutar();
+                }
+
                 ComandoBase<bool> comando = FabricaComandosCarta.ObtenerComandoInsertarOModificar(carta);
                 ComandoBase<bool> comandoAuditoria = FabricaComandosAuditoria.ObtenerComandoInsertarOModificar(auditoria);
                 ComandoBase<bool> comandoAuditoriaContador = FabricaComandosContadorAuditoria.ObtenerComandoInsertarOModificar(contadorAuditoria);

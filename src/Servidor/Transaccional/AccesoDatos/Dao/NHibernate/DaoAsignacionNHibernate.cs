@@ -83,5 +83,37 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
             }
             return asignaciones;
         }
+
+
+        public bool EliminarAsignacionesPorCarta(Carta carta)
+        {
+            bool retorno = false;
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                IQuery query = Session.CreateQuery(string.Format(Recursos.ConsultasHQL.EliminarAsignacionesPorCarta, carta.Id));
+                int a = query.ExecuteUpdate();
+
+
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Saliendo del Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                throw new ApplicationException(Recursos.Errores.exObtenerAsignacionesPorCarta);
+            }
+            finally
+            {
+                Session.Close();
+            }
+            return true;
+        }
     }
 }
