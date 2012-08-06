@@ -432,7 +432,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                     if (!exitoso.Equals(null))
                     {
                         marca.Id = (int)exitoso;
-                        this.Navegar(new ConsultarMarca(marca));
+                        this.Navegar(new ConsultarMarca(marca,null));
                     }
                 }
                 else

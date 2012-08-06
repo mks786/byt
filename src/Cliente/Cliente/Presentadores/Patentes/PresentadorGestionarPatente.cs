@@ -67,7 +67,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
         /// Constructor Predeterminado
         /// </summary>
         /// <param name="ventana">página que satisface el contrato</param>
-        public PresentadorGestionarPatente(IGestionarPatente ventana, object patente)
+        public PresentadorGestionarPatente(IGestionarPatente ventana, object patente,object ventanaPadre)
         {
             try
             {
@@ -77,7 +77,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                 #endregion
 
                 this._ventana = ventana;
-
+                this._ventanaPadre = ventanaPadre;
                 if (patente != null)
                 {
                     this._ventana.Patente = patente;
@@ -488,7 +488,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                 logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
 
-            this.Navegar(new ConsultarPatentes());
+            //this.Navegar(new ConsultarPatentes());
+            this.RegresarVentanaPadre();
 
             #region trace
             if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -623,7 +624,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                         if ((!exitosoEntero.Equals(null)) || (exitoso))
                         {
                             if (_agregar)
-                                this.Navegar(new GestionarPatente(patente));
+                                this.Navegar(new GestionarPatente(patente,null));
                             else
                             {
                                 this._ventana.HabilitarCampos = false;

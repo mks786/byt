@@ -367,11 +367,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Cartas
         /// Constructor con Lista de resultados
         /// </summary>
         /// <param name="cartaSeleccionada"></param>
-        public ConsultarCarta(object cartaSeleccionada, object lista, int posicion)
+        public ConsultarCarta(object cartaSeleccionada, object lista, int posicion,object ventanaPadre)
         {
             InitializeComponent();
             this._cargada = false;
-            this._presentador = new PresentadorConsultarCarta(this, cartaSeleccionada, lista, posicion);
+            this._presentador = new PresentadorConsultarCarta(this, cartaSeleccionada, lista, posicion,ventanaPadre);
         }
 
         private void _btnCancelar_Click(object sender, RoutedEventArgs e)
@@ -379,7 +379,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.Cartas
             if (_precargada)
                 this._presentador.VolverAVentanaPadre();
             else
-                this._presentador.IrConsultarCartas();
+                //this._presentador.IrConsultarCartas();
+                this._presentador.VolverAVentanaPadre();
         }
 
         private void _btnAceptar_Click(object sender, RoutedEventArgs e)
@@ -584,7 +585,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Cartas
         private void Page_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Next)
-            { 
+            {
                 this._presentador.SiguienteCarta();
             }
             else if (e.Key == Key.Prior)

@@ -907,7 +907,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
         #endregion
 
 
-        public ConsultarMarca(object marcaSeleccionada)
+        public ConsultarMarca(object marcaSeleccionada, object ventanaPadre)
         {
             InitializeComponent();
 
@@ -916,12 +916,12 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             this._interesadosCargados = false;
             this._corresponsalesCargados = false;
             this._poderesCargados = false;
-            this._presentador = new PresentadorConsultarMarca(this, marcaSeleccionada);
+            this._presentador = new PresentadorConsultarMarca(this, marcaSeleccionada,ventanaPadre);
         }
 
 
         public ConsultarMarca(object marcaSeleccionada, string tab)
-            : this(marcaSeleccionada)
+            : this(marcaSeleccionada,(Page)null)
         {
             this._presentador.CambiarAModificar();
 

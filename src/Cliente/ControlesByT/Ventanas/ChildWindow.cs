@@ -23,7 +23,16 @@ namespace Trascend.Bolet.ControlesByT.Ventanas
             this._detalle.MaxLength = descripcion.TamanoMaximo;
             this._detalle.ScrollBars = ScrollBars.Vertical;
             this._detalle.ReadOnly = this._textBox.IsReadOnly;
-            this._detalle.Text = this._detalle.Text.Replace("\r", Environment.NewLine);
+            if (this._detalle.Text.Contains("\r"))
+            {
+                this._detalle.Text = this._detalle.Text.Replace("\r", Environment.NewLine);
+            }
+            else if (this._detalle.Text.Contains("\n"))
+            {
+                this._detalle.Text = this._detalle.Text.Replace("\n", Environment.NewLine);
+            }
+
+            
             this._detalle.SelectionStart = this._detalle.Text.Length;
             this._detalle.SelectionLength = 0;
         }
@@ -45,7 +54,17 @@ namespace Trascend.Bolet.ControlesByT.Ventanas
         private void _btnAceptar_Click(object sender, EventArgs e)
         {
             if (null != this._textBox)
-                this._textBox.Text = this._detalle.Text.Replace(Environment.NewLine,"\r");
+            {
+                if (this._detalle.Text.Contains("\r"))
+                {
+                    this._textBox.Text = this._detalle.Text.Replace(Environment.NewLine, "\r");
+                }
+                else if (this._detalle.Text.Contains("\n"))
+                {
+                    this._textBox.Text = this._detalle.Text.Replace(Environment.NewLine, "\n");
+                }
+                //this._textBox.Text = this._detalle.Text.Replace(Environment.NewLine, "\r");
+            }
             this.Close();
         }
 

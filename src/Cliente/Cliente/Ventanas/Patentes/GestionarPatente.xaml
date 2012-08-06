@@ -1331,7 +1331,7 @@
                 <TextBlock Name="_txbAceptar" Text="{x:Static recurso:Etiquetas.btnAceptar}"/>
             </Button>
             <Button Name="_btnCancelar" VerticalAlignment="Bottom" Height="25" Width="90" Click="_btnCancelar_Click">
-                <TextBlock Name="_txbCancelar" Text="{x:Static recurso:Etiquetas.btnCancelar}"/>
+                <TextBlock Name="_txbCancelar" Text="{x:Static recurso:Etiquetas.btnRegresar}"/>
             </Button>
         </WrapPanel>
     </Grid>

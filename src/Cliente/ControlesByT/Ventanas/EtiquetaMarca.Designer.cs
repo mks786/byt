@@ -33,6 +33,7 @@ namespace Trascend.Bolet.ControlesByT.Ventanas
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EtiquetaMarca));
             this._btnAceptar = new System.Windows.Forms.Button();
             this._foto = new System.Windows.Forms.PictureBox();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this._foto)).BeginInit();
             this.SuspendLayout();
             // 
@@ -61,6 +62,19 @@ namespace Trascend.Bolet.ControlesByT.Ventanas
             this._foto.Size = new System.Drawing.Size(268, 213);
             this._foto.TabIndex = 2;
             this._foto.TabStop = false;
+            this._foto.DoubleClick += new System.EventHandler(this._foto_DoubleClick);
+            // 
+            // button1
+            // 
+            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.button1.BackColor = System.Drawing.Color.White;
+            this.button1.Location = new System.Drawing.Point(13, 231);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(85, 23);
+            this.button1.TabIndex = 3;
+            this.button1.Text = "Abrir Imagen";
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this._foto_DoubleClick);
             // 
             // EtiquetaMarca
             // 
@@ -69,6 +83,7 @@ namespace Trascend.Bolet.ControlesByT.Ventanas
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Gainsboro;
             this.ClientSize = new System.Drawing.Size(292, 266);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this._foto);
             this.Controls.Add(this._btnAceptar);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -86,6 +101,7 @@ namespace Trascend.Bolet.ControlesByT.Ventanas
 
         private System.Windows.Forms.Button _btnAceptar;
         private System.Windows.Forms.PictureBox _foto;
+        private System.Windows.Forms.Button button1;
 
     }
 }

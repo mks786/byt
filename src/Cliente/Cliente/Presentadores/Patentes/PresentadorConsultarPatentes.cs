@@ -286,7 +286,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
             {
                 ((Patente) this._ventana.Patente).Anualidades =
                     this._anualidadServicios.ConsultarAnualidadesPorPatente((Patente) this._ventana.Patente);
-                this.Navegar(new GestionarPatente(this._ventana.Patente));
+                this.Navegar(new GestionarPatente(this._ventana.Patente,this._ventana));
             }
 
             #region trace

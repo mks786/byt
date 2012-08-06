@@ -97,7 +97,7 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to MYPTAGENTE.
+        ///   Looks up a localized string similar to COR_ENTRADA.
         /// </summary>
         public static string AgregarCarta {
             get {
@@ -358,7 +358,7 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to MYPTAGENTE.
+        ///   Looks up a localized string similar to COR_ENTRADA.
         /// </summary>
         public static string Carta {
             get {
@@ -502,7 +502,7 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to MYPTAGENTE.
+        ///   Looks up a localized string similar to COR_ENTRADA.
         /// </summary>
         public static string ConsultarCarta {
             get {
@@ -1015,6 +1015,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to MYP_PATENTE.
+        /// </summary>
+        public static string DatosPatente {
+            get {
+                return ResourceManager.GetString("DatosPatente", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to FAC_ASO_TRANF.
         /// </summary>
         public static string DatosTransferencia {
@@ -1042,7 +1051,7 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to MYPTAGENTE.
+        ///   Looks up a localized string similar to COR_ENTRADA.
         /// </summary>
         public static string EliminarCarta {
             get {
@@ -1519,7 +1528,7 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to MYPTAGENTE.
+        ///   Looks up a localized string similar to COR_ENTRADA_M.
         /// </summary>
         public static string ModificarCarta {
             get {
@@ -1726,7 +1735,7 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to MYP_PAISES.
+        ///   Looks up a localized string similar to MYPTPAIS.
         /// </summary>
         public static string Pais {
             get {
@@ -1776,6 +1785,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string Rol {
             get {
                 return ResourceManager.GetString("Rol", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to MYPPSOLICITADA.
+        /// </summary>
+        public static string SolicitudPatente {
+            get {
+                return ResourceManager.GetString("SolicitudPatente", resourceCulture);
             }
         }
         

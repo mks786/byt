@@ -790,7 +790,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 }
 
 
-                this.Navegar(new ConsultarMarca(marcaParaNavegar));
+                this.Navegar(new ConsultarMarca(marcaParaNavegar,this._ventana));
             }
 
             #region trace

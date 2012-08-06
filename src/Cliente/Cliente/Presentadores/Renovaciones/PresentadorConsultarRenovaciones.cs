@@ -655,7 +655,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Renovaciones
 
         public void VolverAMarca()
         {
-            this.Navegar(new ConsultarMarca(this._marcaAFiltrar));
+            this.Navegar(new ConsultarMarca(this._marcaAFiltrar,null));
         }
     }
 }

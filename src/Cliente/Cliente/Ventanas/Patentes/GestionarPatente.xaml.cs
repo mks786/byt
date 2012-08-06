@@ -810,7 +810,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
 
         #endregion
 
-        public GestionarPatente(object patenteSeleccionada)
+        public GestionarPatente(object patenteSeleccionada,object ventanaAVolver)
         {
             InitializeComponent();
 
@@ -818,11 +818,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
             this._asociadosCargados = false;
             this._interesadosCargados = false;
             this._poderesCargados = false;
-            this._presentador = new PresentadorGestionarPatente(this, patenteSeleccionada);
+            this._presentador = new PresentadorGestionarPatente(this, patenteSeleccionada,ventanaAVolver);
         }
 
         public GestionarPatente(object patenteSeleccionada, string tab)
-            : this(patenteSeleccionada)
+            : this(patenteSeleccionada,(Page)null)
         {
             this._presentador.CambiarAModificar();
 

@@ -863,7 +863,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
         /// </summary>
         public void AgregarPatente()
         {
-            this._ventana.Contenedor.Navigate(new GestionarPatente(null));
+            this._ventana.Contenedor.Navigate(new GestionarPatente(null,null));
         }
 
         /// <summary>
@@ -1080,76 +1080,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
                         {
                             switch (itemNivel2.Name)
                             {
+
+
+                                #region Tablas [LISTO]
+
                                 case "_menuItemAgente":
                                     if (objeto.Id.Equals(Recursos.Ids.Agente))
-                                        itemNivel2.Visibility = System.Windows.Visibility.Visible;
-                                    break;
-                                case "_menuItemCambiosDeDomicilio":
-                                    if (objeto.Id.Equals(Recursos.Ids.Marca))
-                                        itemNivel2.Visibility = System.Windows.Visibility.Visible;
-                                    break;
-                                case "_menuItemCesiones":
-                                    if (objeto.Id.Equals(Recursos.Ids.Marca))
-                                        itemNivel2.Visibility = System.Windows.Visibility.Visible;
-                                    break;
-                                case "_menuItemFusiones":
-                                    if (objeto.Id.Equals(Recursos.Ids.Marca))
-                                        itemNivel2.Visibility = System.Windows.Visibility.Visible;
-                                    break;
-                                case "_menuItemCambioDeDomicilio":
-                                    if (objeto.Id.Equals(Recursos.Ids.Marca))
-                                        itemNivel2.Visibility = System.Windows.Visibility.Visible;
-                                    break;
-                                case "_menuItemCambioDeNombre":
-                                    if (objeto.Id.Equals(Recursos.Ids.Marca))
-                                        itemNivel2.Visibility = System.Windows.Visibility.Visible;
-                                    break;
-                                case "_menuItemCambioPeticionario":
-                                    if (objeto.Id.Equals(Recursos.Ids.Marca))
-                                        itemNivel2.Visibility = System.Windows.Visibility.Visible;
-                                    break;
-                                case "_menuItemLicencias":
-                                    if (objeto.Id.Equals(Recursos.Ids.Marca))
-                                        itemNivel2.Visibility = System.Windows.Visibility.Visible;
-                                    break;
-                                case "_menuItemCambiosPeticionario":
-                                    if (objeto.Id.Equals(Recursos.Ids.Marca))
-                                        itemNivel2.Visibility = System.Windows.Visibility.Visible;
-                                    break;
-                                case "_menuItemTraspasos":
-                                    if (objeto.Id.Equals(Recursos.Ids.Marca))
-                                        itemNivel2.Visibility = System.Windows.Visibility.Visible;
-                                    break;
-                                case "_menuItemRenovaciones":
-                                    if (objeto.Id.Equals(Recursos.Ids.Marca))
-                                        itemNivel2.Visibility = System.Windows.Visibility.Visible;
-                                    break;
-                                case "_menuItemRenovacion":
-                                    if (objeto.Id.Equals(Recursos.Ids.Marca))
-                                        itemNivel2.Visibility = System.Windows.Visibility.Visible;
-                                    break;
-                                case "_menuItemRecordatorios":
-                                    if (objeto.Id.Equals(Recursos.Ids.Marca))
-                                        itemNivel2.Visibility = System.Windows.Visibility.Visible;
-                                    break;
-                                case "_menuItemEscritos":
-                                    if (objeto.Id.Equals(Recursos.Ids.Marca))
-                                        itemNivel2.Visibility = System.Windows.Visibility.Visible;
-                                    break;
-                                case "_menuItemMarcasATerceros":
-                                    if (objeto.Id.Equals(Recursos.Ids.Marca))
-                                        itemNivel2.Visibility = System.Windows.Visibility.Visible;
-                                    break;
-                                case "_menuItemTipoBase":
-                                    if (objeto.Id.Equals(Recursos.Ids.Marca))
-                                        itemNivel2.Visibility = System.Windows.Visibility.Visible;
-                                    break;
-                                case "_menuItemEstadosMarca":
-                                    if (objeto.Id.Equals(Recursos.Ids.Marca))
-                                        itemNivel2.Visibility = System.Windows.Visibility.Visible;
-                                    break;
-                                case "_menuItemAbandono":
-                                    if (objeto.Id.Equals(Recursos.Ids.Marca))
                                         itemNivel2.Visibility = System.Windows.Visibility.Visible;
                                     break;
                                 case "_menuItemAsociado":
@@ -1160,12 +1096,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
                                     if (objeto.Id.Equals(Recursos.Ids.Boletin))
                                         itemNivel2.Visibility = System.Windows.Visibility.Visible;
                                     break;
-                                case "_menuItemEntradaAlterna":
-                                    if (objeto.Id.Equals(Recursos.Ids.EntradaAlterna))
+                                case "_menuItemInternacional":
+                                    if (objeto.Id.Equals(Recursos.Ids.Internacional))
                                         itemNivel2.Visibility = System.Windows.Visibility.Visible;
                                     break;
-                                case "_menuItemCarta":
-                                    if (objeto.Id.Equals(Recursos.Ids.Categoria))
+                                case "_menuItemNacional":
+                                    if (objeto.Id.Equals(Recursos.Ids.Nacional))
                                         itemNivel2.Visibility = System.Windows.Visibility.Visible;
                                     break;
                                 case "_menuItemEstado":
@@ -1178,18 +1114,6 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
                                     break;
                                 case "_menuItemInteresado":
                                     if (objeto.Id.Equals(Recursos.Ids.Interesado))
-                                        itemNivel2.Visibility = System.Windows.Visibility.Visible;
-                                    break;
-                                case "_menuItemInternacional":
-                                    if (objeto.Id.Equals(Recursos.Ids.Internacional))
-                                        itemNivel2.Visibility = System.Windows.Visibility.Visible;
-                                    break;
-                                case "_menuItemGestionDeMarcas":
-                                    if (objeto.Id.Equals(Recursos.Ids.Marca))
-                                        itemNivel2.Visibility = System.Windows.Visibility.Visible;
-                                    break;
-                                case "_menuItemNacional":
-                                    if (objeto.Id.Equals(Recursos.Ids.Nacional))
                                         itemNivel2.Visibility = System.Windows.Visibility.Visible;
                                     break;
                                 case "_menuItemObjeto":
@@ -1220,32 +1144,84 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
                                     if (objeto.Id.Equals(Recursos.Ids.TipoInfobol))
                                         itemNivel2.Visibility = System.Windows.Visibility.Visible;
                                     break;
-                                case "_menuItemTransferirPlantilla":
-                                    if (objeto.Id.Equals(Recursos.Ids.Asociado))
-                                        itemNivel2.Visibility = System.Windows.Visibility.Visible;
-                                    break;
                                 case "_menuItemUsuario":
                                     if (objeto.Id.Equals(Recursos.Ids.Usuario))
                                         itemNivel2.Visibility = System.Windows.Visibility.Visible;
                                     break;
-                                case "_menuItemLimitacionDelDistingue":
+
+                                #endregion
+
+
+                                #region Traspasos
+
+                                //case "_menuItemCambiosDeDomicilio":
+                                //    if (objeto.Id.Equals(Recursos.Ids.ConsultarCambiosDeDomicilio))
+                                //        itemNivel2.Visibility = System.Windows.Visibility.Visible;
+                                //    break;
+                                //case "_menuItemCesiones":
+                                //    if (objeto.Id.Equals(Recursos.Ids.ConsultarCesiones))
+                                //        itemNivel2.Visibility = System.Windows.Visibility.Visible;
+                                //    break;
+                                //case "_menuItemFusiones":
+                                //    if (objeto.Id.Equals(Recursos.Ids.ConsultarFusiones))
+                                //        itemNivel2.Visibility = System.Windows.Visibility.Visible;
+                                //    break;
+                                //case "_menuItemCambioDeNombre":
+                                //    if (objeto.Id.Equals(Recursos.Ids.ConsultarCambiosDeNombre))
+                                //        itemNivel2.Visibility = System.Windows.Visibility.Visible;
+                                //    break;
+                                //case "_menuItemCambioPeticionario":
+                                //    if (objeto.Id.Equals(Recursos.Ids.ConsultarCambioPeticionarios))
+                                //        itemNivel2.Visibility = System.Windows.Visibility.Visible;
+                                //    break;
+                                //case "_menuItemLicencias":
+                                //    if (objeto.Id.Equals(Recursos.Ids.ConsultarLicencia))
+                                //        itemNivel2.Visibility = System.Windows.Visibility.Visible;
+                                //    break;
+                                //case "_menuItemCambiosPeticionario":
+                                //    if (objeto.Id.Equals(Recursos.Ids.ConsultarCambioPeticionarios))
+                                //        itemNivel2.Visibility = System.Windows.Visibility.Visible;
+                                //    break;
+
+                                #endregion
+
+
+                                #region Correspondencia
+
+                                case "_menuItemCarta":
+                                    if (objeto.Id.Equals(Recursos.Ids.ConsultarCartas))
+                                        itemNivel2.Visibility = System.Windows.Visibility.Visible;
+                                    break;
+                                case "_menuItemEntradaAlterna":
+                                    if (objeto.Id.Equals(Recursos.Ids.EntradaAlterna))
+                                        itemNivel2.Visibility = System.Windows.Visibility.Visible;
+                                    break;
+                                case "_menuItemTablasCorrespondencia":
                                     if (objeto.Id.Equals(Recursos.Ids.Marca))
                                         itemNivel2.Visibility = System.Windows.Visibility.Visible;
                                     break;
+                                case "_menuItemTransferirPlantilla":
+                                    if (objeto.Id.Equals(Recursos.Ids.Asociado))
+                                        itemNivel2.Visibility = System.Windows.Visibility.Visible;
+                                    break;
+
+
+
+                                #endregion
+
+
+                                #region Patentes
+
                                 case "_menuItemGestionDePatentes":
-                                    if (objeto.Id.Equals(Recursos.Ids.Marca))
+                                    if (objeto.Id.Equals(Recursos.Ids.AgregarPatentes))
                                         itemNivel2.Visibility = System.Windows.Visibility.Visible;
                                     break;
                                 case "_menuItemAnualidadesPatentes":
-                                    if (objeto.Id.Equals(Recursos.Ids.Marca))
-                                        itemNivel2.Visibility = System.Windows.Visibility.Visible;
-                                    break;
-                                case "_menuItemRecordatorioPatente":
-                                    if (objeto.Id.Equals(Recursos.Ids.Marca))
+                                    if (objeto.Id.Equals(Recursos.Ids.ConsultarAnualidad))
                                         itemNivel2.Visibility = System.Windows.Visibility.Visible;
                                     break;
                                 case "_menuItemAbandonoPatente":
-                                    if (objeto.Id.Equals(Recursos.Ids.Marca))
+                                    if (objeto.Id.Equals(Recursos.Ids.ConsultarAbandonosPatente))
                                         itemNivel2.Visibility = System.Windows.Visibility.Visible;
                                     break;
                                 case "_menuItemEscritosPatente":
@@ -1264,12 +1240,67 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
                                     if (objeto.Id.Equals(Recursos.Ids.Marca))
                                         itemNivel2.Visibility = System.Windows.Visibility.Visible;
                                     break;
-                                case "_menuItemTablasCorrespondencia":
+
+                                #endregion
+
+
+                                #region Marcas
+
+                                case "_menuItemGestionDeMarcas":
                                     if (objeto.Id.Equals(Recursos.Ids.Marca))
                                         itemNivel2.Visibility = System.Windows.Visibility.Visible;
                                     break;
+                                case "_menuItemRenovaciones":
+                                    if (objeto.Id.Equals(Recursos.Ids.Marca))
+                                        itemNivel2.Visibility = System.Windows.Visibility.Visible;
+                                    break;
+                                case "_menuItemRenovacion":
+                                    if (objeto.Id.Equals(Recursos.Ids.Marca))
+                                        itemNivel2.Visibility = System.Windows.Visibility.Visible;
+                                    break;
+                                case "_menuItemRecordatorios":
+                                    if (objeto.Id.Equals(Recursos.Ids.Marca))
+                                        itemNivel2.Visibility = System.Windows.Visibility.Visible;
+                                    break;
+                                case "_menuItemAbandono":
+                                    if (objeto.Id.Equals(Recursos.Ids.Marca))
+                                        itemNivel2.Visibility = System.Windows.Visibility.Visible;
+                                    break;
+                                case "_menuItemEscritos":
+                                    if (objeto.Id.Equals(Recursos.Ids.Marca))
+                                        itemNivel2.Visibility = System.Windows.Visibility.Visible;
+                                    break;
+                                case "_menuItemTraspasos":
+                                    if (objeto.Id.Equals(Recursos.Ids.Marca))
+                                        itemNivel2.Visibility = System.Windows.Visibility.Visible;
+                                    break;
+                                case "_menuItemMarcasATerceros":
+                                    if (objeto.Id.Equals(Recursos.Ids.Marca))
+                                        itemNivel2.Visibility = System.Windows.Visibility.Visible;
+                                    break;
+                                case "_menuItemEstadosMarca":
+                                    if (objeto.Id.Equals(Recursos.Ids.Marca))
+                                        itemNivel2.Visibility = System.Windows.Visibility.Visible;
+                                    break;
+                                case "_menuItemTipoBase":
+                                    if (objeto.Id.Equals(Recursos.Ids.Marca))
+                                        itemNivel2.Visibility = System.Windows.Visibility.Visible;
+                                    break;
+
+
+                                #endregion
+
+
+                                #region Extra
+                                //case "_menuItemLimitacionDelDistingue":
+                                //    if (objeto.Id.Equals(Recursos.Ids.Marca))
+                                //        itemNivel2.Visibility = System.Windows.Visibility.Visible;
+                                //    break;
+                                #endregion
                             }
 
+
+                            #region Items Internos de Correspondencia
                             ItemCollection menuNivel3 = itemNivel2.Items;
                             foreach (ItemsControl itemNivel3 in menuNivel3)
                                 switch (itemNivel3.Name)
@@ -1296,6 +1327,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
                                         break;
 
                                 }
+                            #endregion
                         }
                     }
             }

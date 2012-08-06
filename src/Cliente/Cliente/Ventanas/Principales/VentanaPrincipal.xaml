@@ -48,7 +48,7 @@
                     <MenuItem Name="_menuItemAbandonoConsultar" Header="{x:Static resx:Etiquetas.menuItemConsultar}" Click="_menuItemAbandonoConsultar_Click"/>
                     <MenuItem Name="_menuItemAbandonoGestionar" Header="{x:Static resx:Etiquetas.menuItemAgregar}" Click="_menuItemAbandonoGestionar_Click"/>
                 </MenuItem>
-                <MenuItem Name="_menuItemEscritos" Visibility="Collapsed" Header="{x:Static resx:Etiquetas.menuItemEscritos}">                    
+                <MenuItem Name="_menuItemEscritos" Visibility="Collapsed" Header="{x:Static resx:Etiquetas.menuItemEscritos}">
                     <MenuItem Name="_menuItemCopiaCertificada" Header="{x:Static resx:Etiquetas.menuItemEscritosCopiaCertificada}" Click="_menuItemEscritos_Click"/>
                     <MenuItem Name="_menuItemCorreccionErrorMaterial" Header="{x:Static resx:Etiquetas.menuItemEscritosCorreccionErrorMaterial}" Click="_menuItemEscritos_Click"/>
                     <MenuItem Name="_menuItemCorreccionErrorMaterialDistingue" Header="{x:Static resx:Etiquetas.menuItemEscritosCorreccionErrorMaterialDistingue}" Click="_menuItemEscritos_Click"/>
@@ -289,7 +289,7 @@
                 <MenuItem Name="_menuItemPoder" Visibility="Collapsed" Header="{x:Static resx:Etiquetas.menuItemPoder}">
                     <MenuItem Name="_menuItemPoderConsultar" Header="{x:Static resx:Etiquetas.menuItemConsultar}" Click="_menuItemPoderConsultar_Click"/>
                     <MenuItem Name="_menuItemPoderAgregar" Header="{x:Static resx:Etiquetas.menuItemAgregar}" Click="_menuItemPoderAgregar_Click"/>
-                    <MenuItem Name="_menuItemGestionarPoderesXAgentes" Header="{x:Static resx:Etiquetas.menuItemGestionarPoderesXAgentes}" Click="_menuItemGestionarPoderesXAgentes_Click"></MenuItem>
+                    <!--<MenuItem Name="_menuItemGestionarPoderesXAgentes" Header="{x:Static resx:Etiquetas.menuItemGestionarPoderesXAgentes}" Click="_menuItemGestionarPoderesXAgentes_Click"></MenuItem>-->
                     <!--<MenuItem Name="_menuItemPaisModificar" Header="{x:Static resx:Etiquetas.menuItemUsuarioModificar}"></MenuItem>-->
                 </MenuItem>
                 <MenuItem Name="_menuItemResolucion" Visibility="Collapsed" Header="{x:Static resx:Etiquetas.menuItemResolucion}">

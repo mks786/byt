@@ -173,7 +173,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                 logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
 
-            this.Navegar(new GestionarPatente(this._patente));
+            this.Navegar(new GestionarPatente(this._patente,null));
 
             #region trace
             if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))

@@ -130,7 +130,7 @@
     <value>MYPTBOLETIN</value>
   </data>
   <data name="AgregarCarta" xml:space="preserve">
-    <value>MYPTAGENTE</value>
+    <value>COR_ENTRADA</value>
   </data>
   <data name="AgregarEntradaAlterna" xml:space="preserve">
     <value>MYPTAGENTE</value>
@@ -214,7 +214,7 @@
     <value>MYP_MARCAS_BSQ</value>
   </data>
   <data name="Carta" xml:space="preserve">
-    <value>MYPTAGENTE</value>
+    <value>COR_ENTRADA</value>
   </data>
   <data name="Categoria" xml:space="preserve">
     <value>COR_TENTRADA</value>
@@ -247,7 +247,7 @@
     <value>MYP_MNOMM</value>
   </data>
   <data name="ConsultarCarta" xml:space="preserve">
-    <value>MYPTAGENTE</value>
+    <value>COR_ENTRADA</value>
   </data>
   <data name="ConsultarCartas" xml:space="preserve">
     <value>MYPTAGENTE</value>
@@ -412,7 +412,7 @@
     <value>MYPTBOLETIN</value>
   </data>
   <data name="EliminarCarta" xml:space="preserve">
-    <value>MYPTAGENTE</value>
+    <value>COR_ENTRADA</value>
   </data>
   <data name="EliminarDatosTransferencia" xml:space="preserve">
     <value>FAC_ASO_TRANF</value>
@@ -544,7 +544,7 @@
     <value>MYPTBOLETIN</value>
   </data>
   <data name="ModificarCarta" xml:space="preserve">
-    <value>MYPTAGENTE</value>
+    <value>COR_ENTRADA_M</value>
   </data>
   <data name="ModificarDatosTransferencia" xml:space="preserve">
     <value>FAC_ASO_TRANF</value>
@@ -613,7 +613,7 @@
     <value>MYPTAGENTE</value>
   </data>
   <data name="Pais" xml:space="preserve">
-    <value>MYP_PAISES</value>
+    <value>MYPTPAIS</value>
   </data>
   <data name="Poder" xml:space="preserve">
     <value>MYP_PODERES</value>
@@ -701,5 +701,11 @@
   </data>
   <data name="InfoBolMarcaTer" xml:space="preserve">
     <value>MYP_INFOBO_TER</value>
+  </data>
+  <data name="DatosPatente" xml:space="preserve">
+    <value>MYP_PATENTE</value>
+  </data>
+  <data name="SolicitudPatente" xml:space="preserve">
+    <value>MYPPSOLICITADA</value>
   </data>
 </root>
