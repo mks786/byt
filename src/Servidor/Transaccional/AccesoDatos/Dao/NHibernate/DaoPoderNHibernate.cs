@@ -110,7 +110,7 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
                 bool variosFiltros = false;
                 string filtro = "";
                 string cabecera = string.Format(Recursos.ConsultasHQL.CabeceraObtenerPoder);
-                if ((null != poder) && (poder.Id != 0))
+                if ((null != poder) && (poder.Id != 0) && (poder.Id != null))
                 {
                     filtro = string.Format(Recursos.ConsultasHQL.FiltroObtenerPoderId, poder.Id);
                     variosFiltros = true;
