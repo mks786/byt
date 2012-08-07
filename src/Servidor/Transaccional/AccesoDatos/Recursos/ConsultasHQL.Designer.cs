@@ -1438,6 +1438,60 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to p.Anexo=&apos;{0}&apos;.
+        /// </summary>
+        public static string FiltroObtenerPoderPorAnexo {
+            get {
+                return ResourceManager.GetString("FiltroObtenerPoderPorAnexo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to p.Boletin.Id = {0}.
+        /// </summary>
+        public static string FiltroObtenerPoderPorBoletin {
+            get {
+                return ResourceManager.GetString("FiltroObtenerPoderPorBoletin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to p.Facultad =&apos;{0}&apos;.
+        /// </summary>
+        public static string FiltroObtenerPoderPorFacultad {
+            get {
+                return ResourceManager.GetString("FiltroObtenerPoderPorFacultad", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to p.Interesado.Id={0}.
+        /// </summary>
+        public static string FiltroObtenerPoderPorInteresado {
+            get {
+                return ResourceManager.GetString("FiltroObtenerPoderPorInteresado", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to p.NumPoder = &apos;{0}&apos;.
+        /// </summary>
+        public static string FiltroObtenerPoderPorNumPoder {
+            get {
+                return ResourceManager.GetString("FiltroObtenerPoderPorNumPoder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to p.Observacion=&apos;{0}&apos;.
+        /// </summary>
+        public static string FiltroObtenerPoderPorObservacion {
+            get {
+                return ResourceManager.GetString("FiltroObtenerPoderPorObservacion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to to_char(marca.FechaRenovacion,&apos;YYYY&apos;) like &apos;{0}&apos;.
         /// </summary>
         public static string FiltroObtenerRecordatorioVistaAno {

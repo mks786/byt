@@ -862,4 +862,10 @@
   <data name="ConfirmarModificarPatente" xml:space="preserve">
     <value>¿Está seguro que desea modificar la Patente {0}?</value>
   </data>
+  <data name="ErrorExpedienteNoEncontrado" xml:space="preserve">
+    <value>Disculpe, el expediente de la Marca {0} no existe</value>
+  </data>
+  <data name="ErrorSolicitudNoEncontrada" xml:space="preserve">
+    <value>Disculpe, la Solicitud de la Marca {0} no existe</value>
+  </data>
 </root>

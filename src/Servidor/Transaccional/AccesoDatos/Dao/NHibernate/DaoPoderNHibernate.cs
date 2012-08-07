@@ -115,6 +115,55 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
                     filtro = string.Format(Recursos.ConsultasHQL.FiltroObtenerPoderId, poder.Id);
                     variosFiltros = true;
                 }
+
+                if ((null != poder) && (null != poder.NumPoder) && (!poder.NumPoder.Equals("")))
+                {
+                    if (variosFiltros)
+                        filtro += " and ";
+                    filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerPoderPorNumPoder, poder.NumPoder);
+                    variosFiltros = true;
+                }
+
+                if ((null != poder) && (null != poder.Boletin))
+                {
+                    if (variosFiltros)
+                        filtro += " and ";
+                    filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerPoderPorBoletin, poder.Boletin.Id);
+                    variosFiltros = true;
+                }
+
+                if ((null != poder) && (null != poder.Interesado))
+                {
+                    if (variosFiltros)
+                        filtro += " and ";
+                    filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerPoderPorInteresado, poder.Interesado.Id);
+                    variosFiltros = true;
+                }
+
+                if ((null != poder) && (null != poder.Facultad) && (!poder.Facultad.Equals("")))
+                {
+                    if (variosFiltros)
+                        filtro += " and ";
+                    filtro = string.Format(Recursos.ConsultasHQL.FiltroObtenerPoderPorFacultad, poder.Facultad);
+                    variosFiltros = true;
+                }
+
+                if ((null != poder) && (null != poder.Observaciones) && (!poder.Observaciones.Equals("")))
+                {
+                    if (variosFiltros)
+                        filtro += " and ";
+                    filtro = string.Format(Recursos.ConsultasHQL.FiltroObtenerPoderPorObservacion, poder.Observaciones);
+                    variosFiltros = true;
+                }
+
+                if ((null != poder) && (null != poder.Anexo) && (!poder.Anexo.Equals("")))
+                {
+                    if (variosFiltros)
+                        filtro += " and ";
+                    filtro = string.Format(Recursos.ConsultasHQL.FiltroObtenerPoderPorAnexo, poder.Anexo);
+                    variosFiltros = true;
+                }
+
                 if ((null != poder.Fecha) && (!poder.Fecha.Equals(DateTime.MinValue)))
                 {
                     if (variosFiltros)

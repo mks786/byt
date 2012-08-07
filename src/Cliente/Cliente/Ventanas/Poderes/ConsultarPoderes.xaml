@@ -40,9 +40,9 @@
 
             </StackPanel>
         </GroupBox>
-        <GroupBox Grid.Column="0" Grid.Row="0" Margin="5">
+        <GroupBox Grid.Column="0" Grid.Row="0" Margin="5,40,5,5">
             <StackPanel Name="_splFiltro" DataContext="{Binding}" VerticalAlignment="Center">
-                <Separator Margin="0,0,0,5"/>
+                <!--<Separator Margin="0,0,0,5"/>-->
                 <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,180,0">
                     <Label>
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblId}"/>
@@ -184,8 +184,20 @@
                         <GridViewColumn DisplayMemberBinding="{Binding Path=NumPoder}" Width="150">
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="NumPoder" Content="{x:Static recurso:Etiquetas.lsvNumPoder}"/>
                         </GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Boletin.Id}" Width="150">
+                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="Boletin.Id" Content="{x:Static recurso:Etiquetas.lsvBoletin}"/>
+                        </GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Interesado.Nombre}" Width="150">
+                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="Interesado.Nombre" Content="{x:Static recurso:Etiquetas.lsvInteresado}"/>
+                        </GridViewColumn>
                         <GridViewColumn DisplayMemberBinding="{Binding Path=Facultad}" Width="150">
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="Facultad" Content="{x:Static recurso:Etiquetas.lsvFacultad}"/>
+                        </GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Anexo}" Width="150">
+                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="Anexo" Content="{x:Static recurso:Etiquetas.lsvAnexo}"/>
+                        </GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Observaciones}" Width="150">
+                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="Observaciones" Content="{x:Static recurso:Etiquetas.lsvObservacion}"/>
                         </GridViewColumn>
                     </GridView>
                 </ListView.View>

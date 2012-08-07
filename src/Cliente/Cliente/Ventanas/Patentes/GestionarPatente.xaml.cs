@@ -640,6 +640,18 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
             set { this._txbCancelar.Text = value; }
         }
 
+        public void OcultarTabSolicitud()
+        {
+            this._tabSolicitud.Visibility = Visibility.Collapsed;
+            this._tabDatos.IsSelected = true;
+        }
+
+        public void SeleccionarTabSolicitud() 
+        {
+            this._tabSolicitud.IsSelected = true;
+        }
+
+
         public bool HabilitarCampos
         {
             set
@@ -1565,6 +1577,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
         }
 
         #endregion
+
+
 
     }
 }

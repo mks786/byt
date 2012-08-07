@@ -912,4 +912,22 @@
   <data name="EliminarAsignacionesPorCarta" xml:space="preserve">
     <value>Delete from Asignacion where Carta.Id ={0}</value>
   </data>
+  <data name="FiltroObtenerPoderPorAnexo" xml:space="preserve">
+    <value>p.Anexo='{0}'</value>
+  </data>
+  <data name="FiltroObtenerPoderPorBoletin" xml:space="preserve">
+    <value>p.Boletin.Id = {0}</value>
+  </data>
+  <data name="FiltroObtenerPoderPorFacultad" xml:space="preserve">
+    <value>p.Facultad ='{0}'</value>
+  </data>
+  <data name="FiltroObtenerPoderPorInteresado" xml:space="preserve">
+    <value>p.Interesado.Id={0}</value>
+  </data>
+  <data name="FiltroObtenerPoderPorNumPoder" xml:space="preserve">
+    <value>p.NumPoder = '{0}'</value>
+  </data>
+  <data name="FiltroObtenerPoderPorObservacion" xml:space="preserve">
+    <value>p.Observacion='{0}'</value>
+  </data>
 </root>

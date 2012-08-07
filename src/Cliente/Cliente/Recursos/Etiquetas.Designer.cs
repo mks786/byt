@@ -4350,6 +4350,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Boletín.
+        /// </summary>
+        public static string lsvBoletin {
+            get {
+                return ResourceManager.GetString("lsvBoletin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Carta.
         /// </summary>
         public static string lsvCarta {
@@ -4886,6 +4895,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string lsvNumPoder {
             get {
                 return ResourceManager.GetString("lsvNumPoder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Observaciones.
+        /// </summary>
+        public static string lsvObservacion {
+            get {
+                return ResourceManager.GetString("lsvObservacion", resourceCulture);
             }
         }
         

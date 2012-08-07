@@ -182,6 +182,10 @@ namespace Trascend.Bolet.Cliente.Contratos.Patentes
 
         #endregion
 
+        void OcultarTabSolicitud();
+
+        void SeleccionarTabSolicitud();
+
         void Mensaje(string mensaje);
 
         bool HabilitarCampos { set; }

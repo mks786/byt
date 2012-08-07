@@ -1223,6 +1223,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Disculpe, el expediente de la Marca {0} no existe.
+        /// </summary>
+        internal static string ErrorExpedienteNoEncontrado {
+            get {
+                return ResourceManager.GetString("ErrorExpedienteNoEncontrado", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Disculpe debe llenar al menos 1 filtro para la consulta.
         /// </summary>
         internal static string ErrorFiltroIncompleto {
@@ -1417,6 +1426,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         internal static string ErrorSinSobreviviente {
             get {
                 return ResourceManager.GetString("ErrorSinSobreviviente", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Disculpe, la Solicitud de la Marca {0} no existe.
+        /// </summary>
+        internal static string ErrorSolicitudNoEncontrada {
+            get {
+                return ResourceManager.GetString("ErrorSolicitudNoEncontrada", resourceCulture);
             }
         }
         

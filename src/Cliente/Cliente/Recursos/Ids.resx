@@ -478,7 +478,7 @@
     <value>SEGTUSU</value>
   </data>
   <data name="EntradaAlterna" xml:space="preserve">
-    <value>MYPTAGENTE</value>
+    <value>ENTRADA_ALT</value>
   </data>
   <data name="Estado" xml:space="preserve">
     <value>MYP_ESTADOS</value>
@@ -535,7 +535,7 @@
     <value>MYP_MARCAS</value>
   </data>
   <data name="Medio" xml:space="preserve">
-    <value>MEDIO</value>
+    <value>COR_MEDIO</value>
   </data>
   <data name="ModificarAsociado" xml:space="preserve">
     <value>FAC_ASOCIADOS</value>
@@ -707,5 +707,29 @@
   </data>
   <data name="SolicitudPatente" xml:space="preserve">
     <value>MYPPSOLICITADA</value>
+  </data>
+  <data name="EstadosMarca" xml:space="preserve">
+    <value>MYP_ESTADO_TER</value>
+  </data>
+  <data name="MarcasATerceros" xml:space="preserve">
+    <value>MYP_MARCAS_TER</value>
+  </data>
+  <data name="Patentes" xml:space="preserve">
+    <value>MYP_PATENTES</value>
+  </data>
+  <data name="PatentesSolicitud" xml:space="preserve">
+    <value>MYPPSOLICITADA</value>
+  </data>
+  <data name="RecordatorioMarca" xml:space="preserve">
+    <value>RENO_MARCAS</value>
+  </data>
+  <data name="SolicitudMarca" xml:space="preserve">
+    <value>MYPMSOLICITADA</value>
+  </data>
+  <data name="TipoBaseMarca" xml:space="preserve">
+    <value>MYP_TIPO_BASE</value>
+  </data>
+  <data name="Entrada" xml:space="preserve">
+    <value>COR_ENTRADA_N</value>
   </data>
 </root>

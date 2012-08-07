@@ -203,7 +203,7 @@ namespace Trascend.Bolet.Cliente.Contratos.Marcas
 
         bool MensajeAlerta(string mensaje);
 
-        void ArchivoNoEncontrado();
+        void ArchivoNoEncontrado(string mensaje);
 
         string ClaseInternacional { get; }
 
@@ -218,6 +218,8 @@ namespace Trascend.Bolet.Cliente.Contratos.Marcas
         void Mensaje(string tipo, int mensaje);
 
         void mostrarLstPoderSolicitud();
+
+        void OcultarTabSolicitud();
 
         GridViewColumnHeader CurSortCol { get; set; }
 

@@ -34,8 +34,8 @@
             </MenuItem>
             <MenuItem Name="_menuItemMarca" Header="{x:Static resx:Etiquetas.menuItemMarca}">
                 <MenuItem Name="_menuItemGestionDeMarcas" Visibility="Collapsed" Header="{x:Static resx:Etiquetas.menuItemGestionDeMarcas}">
-                    <MenuItem Name="_menuItemMarcasConsultar" Header="{x:Static resx:Etiquetas.menuItemConsultar}" Click="_menuItemMarcasConsultar_Click"/>
-                    <MenuItem Name="_menuItemMarcasAgregar" Header="{x:Static resx:Etiquetas.menuItemAgregar}" Click="_menuItemMarcasAgregar_Click"/>
+                    <MenuItem Visibility="Collapsed" Name="_menuItemMarcasConsultar" Header="{x:Static resx:Etiquetas.menuItemConsultar}" Click="_menuItemMarcasConsultar_Click"/>
+                    <MenuItem Visibility="Collapsed" Name="_menuItemMarcasAgregar" Header="{x:Static resx:Etiquetas.menuItemAgregar}" Click="_menuItemMarcasAgregar_Click"/>
                 </MenuItem>
                 <MenuItem Name="_menuItemRenovaciones" Visibility="Collapsed" Header="{x:Static resx:Etiquetas.menuItemRenovaciones}">
                     <MenuItem Name="_menuItemRenovacion" Header="{x:Static resx:Etiquetas.menuItemRenovacion}" >
@@ -117,8 +117,8 @@
 
             <MenuItem Name="_menuItemPatente" Header="{x:Static resx:Etiquetas.menuItemPatente}">
                 <MenuItem Name="_menuItemGestionDePatentes" Visibility="Collapsed" Header="{x:Static resx:Etiquetas.menuItemPatente}">
-                    <MenuItem Name="_menuItemPatentesConsultar" Header="{x:Static resx:Etiquetas.menuItemConsultar}" Click="_menuItemPatentesConsultar_Click"/>
-                    <MenuItem Name="_menuItemPatentesAgregar" Header="{x:Static resx:Etiquetas.menuItemAgregar}" Click="_menuItemPatentesAgregar_Click"/>
+                    <MenuItem Visibility="Collapsed" Name="_menuItemPatentesConsultar" Header="{x:Static resx:Etiquetas.menuItemConsultar}" Click="_menuItemPatentesConsultar_Click"/>
+                    <MenuItem Visibility="Collapsed" Name="_menuItemPatentesAgregar" Header="{x:Static resx:Etiquetas.menuItemAgregar}" Click="_menuItemPatentesAgregar_Click"/>
                 </MenuItem>
                 <MenuItem Name="_menuItemAnualidadesPatentes" Visibility="Collapsed" Header="{x:Static resx:Etiquetas.menuItemAnualidades}">
                         <MenuItem Name="_menuItemRenovacionesConsultarPatente" Header="{x:Static resx:Etiquetas.menuItemConsultar}" Click="_menuItemAnualidadesConsultarPatente_Click"/>  

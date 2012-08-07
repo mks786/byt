@@ -1249,7 +1249,16 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to MYPTAGENTE.
+        ///   Looks up a localized string similar to COR_ENTRADA_N.
+        /// </summary>
+        public static string Entrada {
+            get {
+                return ResourceManager.GetString("Entrada", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ENTRADA_ALT.
         /// </summary>
         public static string EntradaAlterna {
             get {
@@ -1263,6 +1272,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string Estado {
             get {
                 return ResourceManager.GetString("Estado", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to MYP_ESTADO_TER.
+        /// </summary>
+        public static string EstadosMarca {
+            get {
+                return ResourceManager.GetString("EstadosMarca", resourceCulture);
             }
         }
         
@@ -1501,7 +1519,16 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to MEDIO.
+        ///   Looks up a localized string similar to MYP_MARCAS_TER.
+        /// </summary>
+        public static string MarcasATerceros {
+            get {
+                return ResourceManager.GetString("MarcasATerceros", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to COR_MEDIO.
         /// </summary>
         public static string Medio {
             get {
@@ -1744,11 +1771,38 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to MYP_PATENTES.
+        /// </summary>
+        public static string Patentes {
+            get {
+                return ResourceManager.GetString("Patentes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to MYPPSOLICITADA.
+        /// </summary>
+        public static string PatentesSolicitud {
+            get {
+                return ResourceManager.GetString("PatentesSolicitud", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to MYP_PODERES.
         /// </summary>
         public static string Poder {
             get {
                 return ResourceManager.GetString("Poder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to RENO_MARCAS.
+        /// </summary>
+        public static string RecordatorioMarca {
+            get {
+                return ResourceManager.GetString("RecordatorioMarca", resourceCulture);
             }
         }
         
@@ -1789,11 +1843,29 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to MYPMSOLICITADA.
+        /// </summary>
+        public static string SolicitudMarca {
+            get {
+                return ResourceManager.GetString("SolicitudMarca", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to MYPPSOLICITADA.
         /// </summary>
         public static string SolicitudPatente {
             get {
                 return ResourceManager.GetString("SolicitudPatente", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to MYP_TIPO_BASE.
+        /// </summary>
+        public static string TipoBaseMarca {
+            get {
+                return ResourceManager.GetString("TipoBaseMarca", resourceCulture);
             }
         }
         

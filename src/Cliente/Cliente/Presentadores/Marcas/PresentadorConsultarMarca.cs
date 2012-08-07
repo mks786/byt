@@ -69,7 +69,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
         /// Constructor Predeterminado
         /// </summary>
         /// <param name="ventana">página que satisface el contrato</param>
-        public PresentadorConsultarMarca(IConsultarMarca ventana, object marca,object ventanaPadre)
+        public PresentadorConsultarMarca(IConsultarMarca ventana, object marca, object ventanaPadre)
         {
             try
             {
@@ -183,7 +183,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
 
                 this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleConsultarMarca, "");
 
-                
+                if (!PoseePermisologia(UsuarioLogeado.Rol.Objetos, Recursos.Ids.SolicitudMarca))
+                {
+                    this._ventana.OcultarTabSolicitud();
+                }
+
                 Marca marca = (Marca)this._ventana.Marca;
                 _marca = marca;
                 Anaqua anaqua = new Anaqua();
@@ -234,7 +238,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 this._ventana.Condiciones = condiciones;
 
                 Condicion condicionAuxiliar = new Condicion(((Marca)this._ventana.Marca).NumeroCondiciones);
-                this._ventana.Condicion = this.BuscarCondicion((IList<Condicion>)this._ventana.Condiciones,condicionAuxiliar);
+                this._ventana.Condicion = this.BuscarCondicion((IList<Condicion>)this._ventana.Condiciones, condicionAuxiliar);
 
                 IList<TipoEstado> tipoEstados = this._tipoEstadoServicios.ConsultarTodos();
                 TipoEstado primerDetalle = new TipoEstado();
@@ -249,7 +253,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 this._ventana.Servicios = servicios;
                 this._ventana.Servicio = this.BuscarServicio(servicios, marca.Servicio);
 
-                
+
                 IList<Boletin> boletines = this._boletinServicios.ConsultarTodos();
                 Boletin primerBoletin = new Boletin();
                 primerBoletin.Id = int.MinValue;
@@ -262,7 +266,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 this._ventana.BoletinPublicacion = this.BuscarBoletin(boletines, marca.BoletinPublicacion);
 
                 Interesado interesado = (this._interesadoServicios.ConsultarInteresadoConTodo(marca.Interesado));
-               
+
                 this._ventana.NombreInteresadoDatos = interesado.Nombre;
                 this._ventana.NombreInteresadoSolicitud = interesado.Nombre;
                 this._ventana.InteresadoPaisSolicitud = interesado.Pais.NombreEspanol;
@@ -272,10 +276,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 //Interesado primerInteresado = new Interesado(0);
                 //listaInteresado.Add(primerInteresado);
                 listaInteresado.Add(this._marca.Interesado);
-                
+
                 this._ventana.InteresadosSolicitud = listaInteresado;
                 this._ventana.InteresadosDatos = listaInteresado;
-                
+
                 this._ventana.InteresadoSolicitud = this.BuscarInteresado((IList<Interesado>)this._ventana.InteresadosSolicitud, ((Marca)this._ventana.Marca).Interesado);
                 this._ventana.InteresadoDatos = this.BuscarInteresado((IList<Interesado>)this._ventana.InteresadosDatos, ((Marca)this._ventana.Marca).Interesado);
 
@@ -295,9 +299,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 this._ventana.NombreAsociadoSolicitud = marca.Asociado != null ? marca.Asociado.Nombre : "";
 
                 if (null != marca.Asociado)
-                this._ventana.PintarAsociado(marca.Asociado.TipoCliente.Id);
-                    
-                
+                    this._ventana.PintarAsociado(marca.Asociado.TipoCliente.Id);
+
+
 
                 if (marca.Corresponsal != null)
                 {
@@ -350,7 +354,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 auditoria.Fk = ((Marca)this._ventana.Marca).Id;
                 auditoria.Tabla = "MYP_MARCAS";
                 this._auditorias = this._marcaServicios.AuditoriaPorFkyTabla(auditoria);
-                
+
                 Renovacion renovacion = new Renovacion();
                 renovacion.Marca = marca;
                 IList<Renovacion> renovaciones = this._renovacionServicios.ObtenerRenovacionFiltro(renovacion);
@@ -655,7 +659,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
             }
         }
-        
+
 
         /// <summary>
         /// Método que se ecarga la descripcion de la situacion
@@ -1136,7 +1140,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                         this._ventana.InteresadoCiudadSolicitud = "";
                     }
 
-                    
+
                 }
                 else
                 {
@@ -1199,14 +1203,14 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                         this._ventana.InteresadoCiudadSolicitud = "";
                     }
 
-                    
+
                 }
                 else
                 {
                     Interesado interesadoAux = new Interesado(int.Parse(this._ventana.IdInteresadoSolicitud));
                     _interesadoAnterior = this._interesadoServicios.ConsultarInteresadoConTodo(interesadoAux);
                 }
-                
+
                 this._ventana.ConvertirEnteroMinimoABlanco();
 
                 #region trace
@@ -1255,10 +1259,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                                         : int.Parse(this._ventana.IdInteresadoSolicitudFiltrar);
             }
 
-                if ((!interesado.Nombre.Equals("")) || (interesado.Id != int.MinValue))
-                    interesadosFiltrados = this._interesadoServicios.ObtenerInteresadosFiltro(interesado);
-                else
-                    interesadosFiltrados = new List<Interesado>();
+            if ((!interesado.Nombre.Equals("")) || (interesado.Id != int.MinValue))
+                interesadosFiltrados = this._interesadoServicios.ObtenerInteresadosFiltro(interesado);
+            else
+                interesadosFiltrados = new List<Interesado>();
 
             if (interesadosFiltrados.Count != 0)
             {
@@ -1708,13 +1712,13 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                     .ObtenerPoderesEntreAgenteEInteresado((Agente)this._ventana.Agente, interesadoAux);
 
                 if (_poderesInterseccion.Count() == 0)
-                    this._ventana.Mensaje(Recursos.MensajesConElUsuario.ErrorInteresadoNoPoseePoderesConAgente,0);
+                    this._ventana.Mensaje(Recursos.MensajesConElUsuario.ErrorInteresadoNoPoseePoderesConAgente, 0);
                 else
                 {
                     this._ventana.mostrarLstPoderSolicitud();
                 }
 
-                _poderesInterseccion.Insert(0,new Poder(int.MinValue));
+                _poderesInterseccion.Insert(0, new Poder(int.MinValue));
             }
             else
             {
@@ -1776,8 +1780,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 logger.Error(ex.Message);
                 this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
             }
-                
-            return retorno;           
+
+            return retorno;
         }
 
         #endregion
@@ -2172,7 +2176,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             catch (Win32Exception ex)
             {
                 logger.Error(ex.Message);
-                this._ventana.ArchivoNoEncontrado();
+                this._ventana.ArchivoNoEncontrado(Recursos.MensajesConElUsuario.ErrorCertificadoNoEncontrado);
             }
             catch (Exception ex)
             {
@@ -2203,7 +2207,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             catch (Win32Exception ex)
             {
                 logger.Error(ex.Message);
-                this._ventana.ArchivoNoEncontrado();
+                this._ventana.ArchivoNoEncontrado(string.Format(Recursos.MensajesConElUsuario.ErrorSolicitudNoEncontrada, ((Marca)this._ventana.Marca).Id.ToString()));
             }
             catch (Exception ex)
             {
@@ -2234,7 +2238,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             catch (Win32Exception ex)
             {
                 logger.Error(ex.Message);
-                this._ventana.ArchivoNoEncontrado();
+                this._ventana.ArchivoNoEncontrado(string.Format(Recursos.MensajesConElUsuario.ErrorExpedienteNoEncontrado, ((Marca)this._ventana.Marca).Id.ToString()));
             }
             catch (Exception ex)
             {
@@ -2261,8 +2265,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             Marca marcaAux = ((Marca)this._ventana.Marca);
             if (((Marca)this._ventana.Marca).BEtiqueta)
             {
-                    EtiquetaMarca detalleEtiqueta = new EtiquetaMarca(ConfigurationManager.AppSettings["RutaImagenesDeMarcas"] + marcaAux.Id + ".BMP", marcaAux.Descripcion);
-                    detalleEtiqueta.ShowDialog();
+                EtiquetaMarca detalleEtiqueta = new EtiquetaMarca(ConfigurationManager.AppSettings["RutaImagenesDeMarcas"] + marcaAux.Id + ".BMP", marcaAux.Descripcion);
+                detalleEtiqueta.ShowDialog();
 
             }
         }
@@ -2291,7 +2295,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
         public void IrVentanaAsociado()
         {
             Asociado asociado = ((Asociado)this._ventana.AsociadoSolicitud).Id != int.MinValue ? (Asociado)this._ventana.AsociadoSolicitud : null;
-            Navegar(new ConsultarAsociados(this._ventana,asociado));
+            Navegar(new ConsultarAsociados(this._ventana, asociado));
         }
 
         public string ObtenerIdMarca()

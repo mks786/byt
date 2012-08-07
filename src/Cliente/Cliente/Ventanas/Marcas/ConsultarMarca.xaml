@@ -42,8 +42,8 @@
 
         <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Column="1" Grid.Row="1">
 
-            <TabControl Grid.Column="1" Grid.Row="1" Name="_tbcPestañas" DataContext="{Binding}">
-                <TabItem Header="{x:Static recurso:Etiquetas.tabSolicitud}" Name="_tabSolicitud">
+            <TabControl Grid.Column="1" Grid.Row="1" Name="_tbcPestanas" DataContext="{Binding}">
+                <TabItem Header="{x:Static recurso:Etiquetas.tabSolicitud}" Name="_tabSolicitud" >
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto"/>
@@ -812,7 +812,7 @@
                         </WrapPanel>
                     </Grid>
                 </TabItem>
-                <TabItem Header="{x:Static recurso:Etiquetas.tabDatos}" Name="_tabDatos">
+                <TabItem Header="{x:Static recurso:Etiquetas.tabDatos}" Name="_tabDatos" IsSelected="True">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>

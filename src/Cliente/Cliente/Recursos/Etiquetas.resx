@@ -2769,4 +2769,10 @@ en Prensa:</value>
   <data name="btnVerCorrespondencia" xml:space="preserve">
     <value>Ver Correspondencia</value>
   </data>
+  <data name="lsvBoletin" xml:space="preserve">
+    <value>Boletín</value>
+  </data>
+  <data name="lsvObservacion" xml:space="preserve">
+    <value>Observaciones</value>
+  </data>
 </root>

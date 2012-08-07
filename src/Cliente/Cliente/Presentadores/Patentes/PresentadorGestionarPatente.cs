@@ -195,6 +195,13 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
 
                 if (this._agregar == false)
                 {
+
+
+                    if (!PoseePermisologia(UsuarioLogeado.Rol.Objetos, Recursos.Ids.SolicitudPatente))
+                    {
+                        this._ventana.OcultarTabSolicitud();
+                    }
+
                     _patente = this._patenteServicios.ConsultarPatenteConTodo((Patente)this._ventana.Patente);
                     this._ventana.Patente = _patente;
 
@@ -389,6 +396,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                 }
                 else
                 {
+                    this._ventana.SeleccionarTabSolicitud();
                     this.CargarTipos();
                     this.CargarPresentaciones();
                     this.CargarPaises();

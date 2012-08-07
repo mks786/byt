@@ -2080,5 +2080,18 @@ namespace Trascend.Bolet.Cliente.Presentadores
                 Navegar();
         }
 
+        public bool PoseePermisologia(IList<Objeto> objetos, string objetoBuscado) 
+        {
+            bool retorno = false;
+            foreach (Objeto objeto in objetos)
+            {
+                if (objeto.Id.Equals(objetoBuscado)) 
+                {
+                    retorno = true;
+                }
+            }
+            return retorno;
+        }
+
     }
 }

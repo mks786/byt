@@ -30,6 +30,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Poderes
         private IList<Poder> _poderes;
         private IList<Interesado> _interesados;
 
+        private bool _filtroValido = true;
+
         /// <summary>
         /// Constructor Predeterminado
         /// </summary>
@@ -49,7 +51,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Poderes
             catch (Exception ex)
             {
                 logger.Error(ex.Message);
-                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado,true);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
             }
         }
 
@@ -84,10 +86,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Poderes
                 #endregion
 
                 ActualizarTitulo();
-                
-                this._poderes = this._poderServicios.ConsultarTodos();
-                this._ventana.Resultados = this._poderes;
-                this._ventana.TotalHits = this._poderes.Count.ToString();
+
+                //this._poderes = this._poderServicios.ConsultarTodos();
+                //this._ventana.Resultados = this._poderes;
+                //this._ventana.TotalHits = this._poderes.Count.ToString();
+                this._ventana.TotalHits = "0";
 
                 IList<Boletin> boletines = this._boletinServicios.ConsultarTodos();
                 Boletin primerBoletin = new Boletin();
@@ -95,12 +98,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.Poderes
                 boletines.Insert(0, primerBoletin);
                 this._ventana.Boletines = boletines;
 
-                IList<Interesado> interesados = this._interesadoServicios.ConsultarTodos();
-                Interesado primerInteresado = new Interesado();
-                primerInteresado.Id = int.MinValue;
-                interesados.Insert(0, primerInteresado);
-                this._ventana.Interesados = interesados;
-                this._interesados = interesados;
+                //IList<Interesado> interesados = this._interesadoServicios.ConsultarTodos();
+                //Interesado primerInteresado = new Interesado();
+                //primerInteresado.Id = int.MinValue;
+                //interesados.Insert(0, primerInteresado);
+                //this._ventana.Interesados = interesados;
+                //this._interesados = interesados;
 
                 this._ventana.FocoPredeterminado();
                 #region trace
@@ -140,74 +143,23 @@ namespace Trascend.Bolet.Cliente.Presentadores.Poderes
         /// </summary>
         public void Consultar()
         {
+            IList<Poder> poderes = new List<Poder>();
             try
             {
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
+
+                Poder poder = ObtenerPoderDeFiltro();
+
+                if (_filtroValido)
+                {
+                    poderes = _poderServicios.ObtenerPoderesFiltro(poder);
                 
-                IEnumerable<Poder> poderesFiltrados = this._poderes;
-
-                if (!string.IsNullOrEmpty(this._ventana.Id))
-                {
-                    poderesFiltrados = from p in poderesFiltrados
-                                       where p.Id == Int32.Parse(this._ventana.Id)
-                                       select p;
                 }
-
-                if (!string.IsNullOrEmpty(this._ventana.NumPoder))
-                {
-                    poderesFiltrados = from p in poderesFiltrados
-                                       where p.NumPoder != null &&
-                                       p.NumPoder.ToLower().Contains(this._ventana.NumPoder.ToLower())
-                                       select p;
-                }
-
-                if (this._ventana.Boletin != null && !((Boletin)this._ventana.Boletin).Id.Equals(int.MinValue))
-                {
-                    Boletin boletin = (Boletin)this._ventana.Boletin;
-                    poderesFiltrados = from p in poderesFiltrados
-                                            where p.Boletin != null &&
-                                            p.Boletin.Id.ToString().ToLower().Contains(boletin.Id.ToString().ToLower())
-                                            select p;
-                }
-
-                if (this._ventana.Interesado != null && !((Interesado)this._ventana.Interesado).Id.Equals(int.MinValue))
-                {
-                    Interesado interesado = (Interesado)this._ventana.Interesado;
-                    poderesFiltrados = from p in poderesFiltrados
-                                       where p.Interesado != null &&
-                                       p.Interesado.Id.ToString().ToLower().Contains(interesado.Id.ToString().ToLower())
-                                       select p;
-                }
-
-                if (!string.IsNullOrEmpty(this._ventana.Facultad))
-                {
-                    poderesFiltrados = from p in poderesFiltrados
-                                       where p.Facultad != null &&
-                                       p.Facultad.ToLower().Contains(this._ventana.Facultad.ToLower())
-                                       select p;
-                }
-
-                if (!string.IsNullOrEmpty(this._ventana.Anexo))
-                {
-                    poderesFiltrados = from p in poderesFiltrados
-                                       where p.Anexo != null &&
-                                       p.Anexo.ToLower().Contains(this._ventana.Anexo.ToLower())
-                                       select p;
-                }
-
-                if (!string.IsNullOrEmpty(this._ventana.Observaciones))
-                {
-                    poderesFiltrados = from p in poderesFiltrados
-                                       where p.Observaciones != null &&
-                                       p.Observaciones.ToLower().Contains(this._ventana.Observaciones.ToLower())
-                                       select p;
-                }
-
-                this._ventana.Resultados = poderesFiltrados.ToList<Poder>();
-                this._ventana.TotalHits = poderesFiltrados.ToList<Poder>().Count.ToString();
+                this._ventana.Resultados = poderes;
+                this._ventana.TotalHits = poderes.Count.ToString();
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -219,6 +171,69 @@ namespace Trascend.Bolet.Cliente.Presentadores.Poderes
                 logger.Error(ex.Message);
                 this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
             }
+        }
+
+        private Poder ObtenerPoderDeFiltro()
+        {
+            Poder retorno = new Poder();
+            int filtroValido = 0;
+            _filtroValido = true;
+            try
+            {
+
+                if (!string.IsNullOrEmpty(this._ventana.Id))
+                {
+                    retorno.Id = int.Parse(this._ventana.Id);
+                    filtroValido++;
+                }
+
+                if (!string.IsNullOrEmpty(this._ventana.NumPoder))
+                {
+                    retorno.NumPoder = this._ventana.NumPoder;
+                    filtroValido++;
+                }
+
+                if (this._ventana.Boletin != null && !((Boletin)this._ventana.Boletin).Id.Equals(int.MinValue))
+                {
+                    Boletin boletin = (Boletin)this._ventana.Boletin;
+                    retorno.Boletin = boletin;
+                    filtroValido++;
+                }
+
+                if (this._ventana.Interesado != null && !((Interesado)this._ventana.Interesado).Id.Equals(int.MinValue))
+                {
+                    Interesado interesado = (Interesado)this._ventana.Interesado;
+                    retorno.Interesado = interesado;
+                    filtroValido++;
+                }
+
+                if (!string.IsNullOrEmpty(this._ventana.Facultad))
+                {
+                    retorno.Facultad = this._ventana.Facultad;
+                    filtroValido++;
+                }
+
+                if (!string.IsNullOrEmpty(this._ventana.Anexo))
+                {
+                    retorno.Anexo = this._ventana.Anexo;
+                    filtroValido++;
+                }
+
+                if (!string.IsNullOrEmpty(this._ventana.Observaciones))
+                {
+                    retorno.Observaciones = this._ventana.Observaciones;
+                    filtroValido++;
+                }
+
+                if (filtroValido == 0)
+                    _filtroValido = false;
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+            }
+
+            return retorno;
         }
 
         /// <summary>
@@ -283,32 +298,57 @@ namespace Trascend.Bolet.Cliente.Presentadores.Poderes
                 logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
 
-            IEnumerable<Interesado> interesadosFiltrados = (IList<Interesado>)this._interesados;
-
+            //IEnumerable<Interesado> interesadosFiltrados = (IList<Interesado>)this._interesados;
+            bool filtroInteresadoValido = false;
+            IList<Interesado> interesados = new List<Interesado>();
+            
             if (!string.IsNullOrEmpty(this._ventana.IdInteresadoFiltrar))
             {
-                interesadosFiltrados = from p in interesadosFiltrados
-                                       where p.Id == int.Parse(this._ventana.IdInteresadoFiltrar)
-                                       select p;
+                filtroInteresadoValido = true;
             }
 
             if (!string.IsNullOrEmpty(this._ventana.NombreInteresadoFiltrar))
             {
-                interesadosFiltrados = from p in interesadosFiltrados
-                                       where p.Nombre != null &&
-                                       p.Nombre.ToLower().Contains(this._ventana.NombreInteresadoFiltrar.ToLower())
-                                       select p;
+                filtroInteresadoValido = true;
             }
 
-            if (interesadosFiltrados.ToList<Interesado>().Count != 0)
-                this._ventana.Interesados = interesadosFiltrados.ToList<Interesado>();
-            else
-                this._ventana.Interesados = this._interesados;
+            if (filtroInteresadoValido)
+            {
+                interesados = this._interesadoServicios.ObtenerInteresadosFiltro(CargarInteresadoDeFiltro());
+            }
+            Interesado primerInteresado = new Interesado();
+            primerInteresado.Id = int.MinValue;
+            interesados.Insert(0, primerInteresado);
+
+            this._ventana.Interesados = interesados;
 
             #region trace
             if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
                 logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
+        }
+
+        private Interesado CargarInteresadoDeFiltro()
+        {
+            Interesado retorno = new Interesado();
+            try
+            {
+
+                if (!string.IsNullOrEmpty(this._ventana.IdInteresadoFiltrar))
+                {
+                    retorno.Id = int.Parse(this._ventana.IdInteresadoFiltrar);
+                }
+
+                if (!string.IsNullOrEmpty(this._ventana.NombreInteresadoFiltrar))
+                {
+                    retorno.Nombre = this._ventana.NombreInteresadoFiltrar;
+                }
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+            }
+            return retorno;
         }
 
         /// <summary>
@@ -319,12 +359,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.Poderes
             this._ventana.Id = null;
             this._ventana.NombreInteresadoFiltrar = null;
             this._ventana.IdInteresadoFiltrar = null;
-            this._ventana.Observaciones = null;                       
+            this._ventana.Observaciones = null;
             this._ventana.PoderSeleccionado = null;
             this._ventana.Anexo = null;
             this._ventana.NumPoder = null;
             this._ventana.Facultad = null;
-            
+
             this._ventana.Boletin = ((IList<Boletin>)this._ventana.Boletines)[0];
             this._ventana.Interesado = null;
 

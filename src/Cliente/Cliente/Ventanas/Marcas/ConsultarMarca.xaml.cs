@@ -30,8 +30,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
 
         public object Marca
         {
-            get { return this._tbcPestañas.DataContext; }
-            set { this._tbcPestañas.DataContext = value; }
+            get { return this._tbcPestanas.DataContext; }
+            set { this._tbcPestanas.DataContext = value; }
         }
 
         public string NumPoderDatos
@@ -40,11 +40,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             set { this._txtNumSapi.Text = value; }
         }
 
-        //public string NumPoderSolicitud
-        //{
-        //    get { return this._txtPoderSolicitud.Text; }
-        //    set { this._txtPoderSolicitud.Text = value; }
-        //}
+        public void OcultarTabSolicitud()
+        {
+            this._tabSolicitud.Visibility = Visibility.Collapsed;
+            this._tabDatos.IsSelected = true;
+        }
 
         public string IdPoderDatos
         {
@@ -881,9 +881,9 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
                 MessageBox.Show(mensaje, "Advertencia", MessageBoxButton.OK, MessageBoxImage.Exclamation);
         }
 
-        public void ArchivoNoEncontrado()
+        public void ArchivoNoEncontrado(string mensaje)
         {
-            MessageBox.Show(Recursos.MensajesConElUsuario.ErrorCertificadoNoEncontrado, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            MessageBox.Show(mensaje, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
         }
 
         public GridViewColumnHeader CurSortCol
@@ -925,7 +925,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
         {
             this._presentador.CambiarAModificar();
 
-            foreach (TabItem item in this._tbcPestañas.Items)
+            foreach (TabItem item in this._tbcPestanas.Items)
             {
                 if (item.Header.Equals(tab))
                     item.IsSelected = true;

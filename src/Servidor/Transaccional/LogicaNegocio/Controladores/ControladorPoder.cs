@@ -26,7 +26,7 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
                     logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-                ComandoBase <IList<Poder>> comando = FabricaComandosPoder.ObtenerComandoConsultarTodos();
+                ComandoBase<IList<Poder>> comando = FabricaComandosPoder.ObtenerComandoConsultarTodos();
                 comando.Ejecutar();
                 retorno = comando.Receptor.ObjetoAlmacenado;
 
@@ -63,7 +63,7 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
                 ComandoBase<bool> comandoPoderContador = null;
 
                 // si es una insercion
-                if(poder.Operacion.Equals("CREATE"))
+                if (poder.Operacion.Equals("CREATE"))
                 {
                     ComandoBase<Contador> comandoContadorPoderPoximoValor = FabricaComandosContador.ObtenerComandoConsultarPorId("MYP_PODERES");
                     comandoContadorPoderPoximoValor.Ejecutar();
@@ -79,7 +79,7 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
                 comandoContadorAuditoriaPoximoValor.Ejecutar();
                 ContadorAuditoria contadorAuditoria = comandoContadorAuditoriaPoximoValor.Receptor.ObjetoAlmacenado;
 
-                
+
                 auditoria.Id = contadorAuditoria.ProximoValor++;
                 auditoria.Usuario = ObtenerUsuarioPorHash(hash).Id;
                 auditoria.Fecha = System.DateTime.Now;
@@ -301,9 +301,10 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
                 logger.Error(ex.Message);
                 throw ex;
             }
-
             return retorno;
+
         }
+
 
         /// <summary>
         /// Método que consulta un Poder con uno o mas filtros
