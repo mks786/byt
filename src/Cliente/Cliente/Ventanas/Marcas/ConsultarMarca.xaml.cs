@@ -40,9 +40,10 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             set { this._txtNumSapi.Text = value; }
         }
 
-        public void OcultarTabSolicitud()
+        public void BloquearModificacion()
         {
             this._tabSolicitud.Visibility = Visibility.Collapsed;
+            this._btnAceptar.Visibility = Visibility.Collapsed;
             this._tabDatos.IsSelected = true;
         }
 

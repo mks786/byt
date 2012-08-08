@@ -4368,6 +4368,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Ciudad.
+        /// </summary>
+        public static string lsvCiudad {
+            get {
+                return ResourceManager.GetString("lsvCiudad", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Clase Internacional.
         /// </summary>
         public static string lsvClaseInternacional {
@@ -4544,6 +4553,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string lsvEntrada {
             get {
                 return ResourceManager.GetString("lsvEntrada", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Estado.
+        /// </summary>
+        public static string lsvEstado {
+            get {
+                return ResourceManager.GetString("lsvEstado", resourceCulture);
             }
         }
         

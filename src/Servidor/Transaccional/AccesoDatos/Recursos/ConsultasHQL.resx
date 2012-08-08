@@ -694,7 +694,7 @@
     <comment>Filtro por Tipo Estado</comment>
   </data>
   <data name="FiltroObtenerPatenteCodigoPrioridad" xml:space="preserve">
-    <value>p.CPrioridad = '{0}'</value>
+    <value>p.CPrioridad like '%{0}%'</value>
     <comment>Filtro por Código de Prioridad</comment>
   </data>
   <data name="FiltroObtenerPatenteFechaPrioridad" xml:space="preserve">

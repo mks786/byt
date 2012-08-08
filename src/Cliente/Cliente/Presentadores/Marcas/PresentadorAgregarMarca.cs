@@ -425,7 +425,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                     if (string.IsNullOrEmpty(this._ventana.IdNacional))
                         marca.Nacional = null;
 
-                    
+                    if (marca.TipoEstado.Id.Equals("NGN")) 
+                    {
+                        marca.TipoEstado.Id = string.Empty;
+                    }
 
                     int? exitoso = this._marcaServicios.InsertarOModificarMarca(marca, UsuarioLogeado.Hash);
 

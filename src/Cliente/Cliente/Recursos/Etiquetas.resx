@@ -2775,4 +2775,10 @@ en Prensa:</value>
   <data name="lsvObservacion" xml:space="preserve">
     <value>Observaciones</value>
   </data>
+  <data name="lsvCiudad" xml:space="preserve">
+    <value>Ciudad</value>
+  </data>
+  <data name="lsvEstado" xml:space="preserve">
+    <value>Estado</value>
+  </data>
 </root>

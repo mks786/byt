@@ -219,7 +219,7 @@ namespace Trascend.Bolet.Cliente.Contratos.Marcas
 
         void mostrarLstPoderSolicitud();
 
-        void OcultarTabSolicitud();
+        void BloquearModificacion();
 
         GridViewColumnHeader CurSortCol { get; set; }
 

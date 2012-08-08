@@ -78,14 +78,14 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
             }
         }
 
-        
+
         public void ActualizarTitulo()
         {
             this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleConsultarPatente,
                 Recursos.Ids.ConsultarPatente);
         }
 
-        
+
         /// <summary>
         /// Método que carga los datos iniciales a mostrar en la página
         /// </summary>
@@ -163,7 +163,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
             }
         }
 
-        
+
         /// <summary>
         /// Método que realiza una consulta al servicio, con el fin de filtrar los datos que se muestran 
         /// por pantalla
@@ -183,7 +183,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
 
                 _filtroValido = 0;//Variable utilizada para limitar a que el filtro se ejecute solo cuando 
                 //dos filtros sean utilizados
-                
+
                 Patente patenteAuxiliar = ObtenerPatenteFiltro();
 
                 if (_filtroValido >= 2)
@@ -205,7 +205,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
 
                         flagError = 1;
                         if ((null != patente.Asociado) && (!string.IsNullOrEmpty(patente.Asociado.Nombre)))
-                        {   
+                        {
                             asociadoAuxiliar = patente.Asociado;
                             patenteAuxiliar.Asociado = asociadoAuxiliar;
                         }
@@ -236,9 +236,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                     this._ventana.Mensaje(Recursos.MensajesConElUsuario.ErrorFiltroIncompleto, 0);
 
 
-                Mouse.OverrideCursor = null ;
+                Mouse.OverrideCursor = null;
 
-              
+
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
                     logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
@@ -251,7 +251,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
 
                 if (flagError == 1)
                 {
-                    this.Navegar(Recursos.MensajesConElUsuario.ErrorConsultandoAsociado+" "+patenteError.Asociado.Id, true);
+                    this.Navegar(Recursos.MensajesConElUsuario.ErrorConsultandoAsociado + " " + patenteError.Asociado.Id, true);
                 }
                 else if (flagError == 2)
                 {
@@ -271,7 +271,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
             }
         }
 
-        
+
         /// <summary>
         /// Método que invoca una nueva página "GestionarPatente" y la instancia con el objeto seleccionado
         /// </summary>
@@ -284,9 +284,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
 
             if (this._ventana.Patente != null)
             {
-                ((Patente) this._ventana.Patente).Anualidades =
-                    this._anualidadServicios.ConsultarAnualidadesPorPatente((Patente) this._ventana.Patente);
-                this.Navegar(new GestionarPatente(this._ventana.Patente,this._ventana));
+                ((Patente)this._ventana.Patente).Anualidades =
+                    this._anualidadServicios.ConsultarAnualidadesPorPatente((Patente)this._ventana.Patente);
+                this.Navegar(new GestionarPatente(this._ventana.Patente, this._ventana));
             }
 
             #region trace
@@ -295,7 +295,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
             #endregion
         }
 
-        
+
         /// <summary>
         /// Método que ordena una columna
         /// </summary>
@@ -361,7 +361,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
         /// <returns>Patente cargada con el filtro</returns>
         private Patente ObtenerPatenteFiltro()
         {
-            Patente patenteAuxiliar = ((Patente)this._ventana.PatenteParaFiltrar);
+            Patente patenteAuxiliar = new Patente();
+            patenteAuxiliar.PrimeraReferencia = ((Patente)this._ventana.PatenteParaFiltrar).PrimeraReferencia;
             //Patente patenteAuxiliar = new Patente();
             //patenteAuxiliar.PrimeraReferencia = null != ((Patente)this._ventana.PatenteParaFiltrar).PrimeraReferencia ? ((Patente)this._ventana.PatenteParaFiltrar).PrimeraReferencia : null;
 
@@ -373,9 +374,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-               
+
                 patenteAuxiliar = TomarDatosPatenteFiltro(patenteAuxiliar);
-                    
+
                 if (this._ventana.BoletinesEstaSeleccionado)
                 {
                     patenteAuxiliar = TomarDatosPatenteFiltroBoletines(patenteAuxiliar);
@@ -385,7 +386,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                 {
                     patenteAuxiliar = TomarDatosPatenteFiltroPrioridades(patenteAuxiliar);
                 }
-              
+
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -431,7 +432,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                 patenteAuxiliar.FechaPrioridad = fechaPrioridad;
             }
 
-            if (( null != this._ventana.PaisPrioridad) && (!((Pais)this._ventana.PaisPrioridad).Id.Equals("NGN")))
+            if ((null != this._ventana.PaisPrioridad) && (!((Pais)this._ventana.PaisPrioridad).Id.Equals("NGN")))
             {
                 _filtroValido = 2;
                 patenteAuxiliar.Pais = new Pais();
@@ -439,7 +440,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
             }
             else
                 patenteAuxiliar.Pais = null;
-            
+
             #region trace
             if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
                 logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
@@ -460,7 +461,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                 logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
 
-            
+
 
             if (((Boletin)this._ventana.BoletinConcesion).Id != int.MinValue)
             {
@@ -574,7 +575,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                     patenteAuxiliar.Servicio = null;
 
 
-                if (null != patenteAuxiliar.PrimeraReferencia)
+                if ((null != patenteAuxiliar.PrimeraReferencia) && (!patenteAuxiliar.PrimeraReferencia.Equals("")))
                 {
                     _filtroValido = 2;
                 }
@@ -633,7 +634,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
 
         }
 
-        
+
         /// <summary>
         /// Metodo que cambia el texto del interesado en la interfaz
         /// </summary>
@@ -708,7 +709,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
             #endregion
         }
 
-        
+
         /// <summary>
         /// Metodo que cambia el texto del Asociado en la interfaz
         /// </summary>

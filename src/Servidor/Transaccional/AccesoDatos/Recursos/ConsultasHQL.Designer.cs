@@ -1312,7 +1312,7 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to p.CPrioridad = &apos;{0}&apos;.
+        ///   Looks up a localized string similar to p.CPrioridad like &apos;%{0}%&apos;.
         /// </summary>
         public static string FiltroObtenerPatenteCodigoPrioridad {
             get {

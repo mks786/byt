@@ -6,6 +6,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
     [Serializable]
     public class Asociado
     {
+
         #region Atributos
 
         private int _id;
@@ -540,5 +541,6 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         }
 
         #endregion
+
     }
 }

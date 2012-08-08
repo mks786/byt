@@ -185,7 +185,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
 
                 if (!PoseePermisologia(UsuarioLogeado.Rol.Objetos, Recursos.Ids.SolicitudMarca))
                 {
-                    this._ventana.OcultarTabSolicitud();
+                    this._ventana.BloquearModificacion();
                 }
 
                 Marca marca = (Marca)this._ventana.Marca;

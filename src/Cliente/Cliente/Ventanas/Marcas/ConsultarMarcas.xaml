@@ -190,6 +190,12 @@
                                             <GridViewColumn DisplayMemberBinding="{Binding Path=Nombre}" Width="250">
                                                 <GridViewColumnHeader Click="_Ordenar_Click" Tag="Nombre" Content="{x:Static recurso:Etiquetas.lsvNombre}"/>
                                             </GridViewColumn>
+                                            <GridViewColumn DisplayMemberBinding="{Binding Path=Domicilio}" Width="250">
+                                                <GridViewColumnHeader Click="_Ordenar_Click" Tag="Domicilio" Content="{x:Static recurso:Etiquetas.lsvDomicilio}"/>
+                                            </GridViewColumn>
+                                            <GridViewColumn DisplayMemberBinding="{Binding Path=Pais.NombreEspanol}" Width="250">
+                                                <GridViewColumnHeader Click="_Ordenar_Click" Tag="Pais.NombreEspanol" Content="{x:Static recurso:Etiquetas.lsvPais}"/>
+                                            </GridViewColumn>
                                         </GridView>
                                     </ListView.View>
                                 </ListView>
@@ -249,6 +255,12 @@
                                             </GridViewColumn>
                                             <GridViewColumn DisplayMemberBinding="{Binding Path=Nombre}" Width="250">
                                                 <GridViewColumnHeader Click="_Ordenar_Click" Tag="Nombre" Content="{x:Static recurso:Etiquetas.lsvNombre}"/>
+                                            </GridViewColumn>
+                                            <GridViewColumn DisplayMemberBinding="{Binding Path=Ciudad}" Width="250">
+                                                <GridViewColumnHeader Click="_Ordenar_Click" Tag="Ciudad" Content="{x:Static recurso:Etiquetas.lsvCiudad}"/>
+                                            </GridViewColumn>
+                                            <GridViewColumn DisplayMemberBinding="{Binding Path=Estado}" Width="250">
+                                                <GridViewColumnHeader Click="_Ordenar_Click" Tag="Estado" Content="{x:Static recurso:Etiquetas.lsvEstado}"/>
                                             </GridViewColumn>
                                         </GridView>
                                     </ListView.View>

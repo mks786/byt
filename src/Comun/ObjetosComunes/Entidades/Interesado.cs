@@ -7,7 +7,8 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
 {
     [Serializable]
     public class Interesado
-    {        
+    {
+
         #region Atributos
 
         private int _id;
@@ -184,5 +185,6 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         }
 
         #endregion
+
     }
 }
