@@ -49,7 +49,7 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
         /// <param name="interesado">Interesado a modificar</param>
         /// <param name="hash">Hash del usuario que va a realizar la operacion</param>
         /// <returns>True si la insercion fue exitosa, en caso contrario False</returns>
-        public static bool InsertarOModificar(Interesado interesado, int hash)
+        public static bool InsertarOModificar(ref Interesado interesado, int hash)
         {
             bool exitoso = false;
 

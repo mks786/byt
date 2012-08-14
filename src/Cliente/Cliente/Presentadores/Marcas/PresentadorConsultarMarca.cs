@@ -805,6 +805,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 #endregion
 
 
+                Auditoria auditoria = new Auditoria();
+                auditoria.Fk = ((Marca)this._ventana.Marca).Id;
+                auditoria.Tabla = "MYP_MARCAS";
+                this._auditorias = this._marcaServicios.AuditoriaPorFkyTabla(auditoria);
                 this.Navegar(new ListaAuditorias(_auditorias));
 
 
@@ -2289,7 +2293,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
 
         public void IrRenovacionDeMarca()
         {
-            this.Navegar(new ConsultarRenovaciones(this._ventana.Marca));
+            this.Navegar(new ConsultarRenovaciones(this._ventana.Marca,this._ventana));
         }
 
         public void IrVentanaAsociado()

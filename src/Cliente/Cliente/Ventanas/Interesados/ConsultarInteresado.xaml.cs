@@ -110,16 +110,16 @@ namespace Trascend.Bolet.Cliente.Ventanas.Interesados
 
         #endregion
 
-        public ConsultarInteresado(object interesado)
+        public ConsultarInteresado(object interesado, object ventanaPadre)
         {
             InitializeComponent();
             this._cargada = false;
-            this._presentador = new PresentadorConsultarInteresado(this, interesado);
+            this._presentador = new PresentadorConsultarInteresado(this, interesado, ventanaPadre);
         }
 
         private void _btnRegresar_Click(object sender, RoutedEventArgs e)
         {
-            this._presentador.Regresar();
+            this._presentador.RegresarVentanaPadre();
         }
 
         private void _btnModificar_Click(object sender, RoutedEventArgs e)

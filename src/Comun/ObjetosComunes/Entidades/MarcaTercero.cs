@@ -6,6 +6,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
     [Serializable]
     public class MarcaTercero
     {
+
         #region Atributos
 
         private string _id;
@@ -791,5 +792,6 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         }
 
         #endregion
+
     }
 }

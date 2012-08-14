@@ -162,7 +162,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Poderes
 
                 if (exitoso)
                     if(this._ventana.ConInteresado)
-                        this.Navegar(new ConsultarInteresado(poder.Interesado));
+                        this.Navegar(new ConsultarInteresado(poder.Interesado,null));
                     else
                         this.Navegar(Recursos.MensajesConElUsuario.PoderInsertado, false);
 

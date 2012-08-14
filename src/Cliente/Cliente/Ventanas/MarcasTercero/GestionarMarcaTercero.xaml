@@ -29,9 +29,9 @@
 
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="50"/>
+            <ColumnDefinition Width="25"/>
             <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="50"/>
+            <ColumnDefinition Width="25"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="20"/>
@@ -95,13 +95,13 @@
                     <Label Grid.Column="0" Grid.Row="2" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblTipoDeCaso}"/>
                     </Label>
-                    <ComboBox IsEnabled="False" Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="3" Name="_cbxTipoDeCaso" Height="20" 
+                    <ComboBox IsEnabled="False" Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="5" Name="_cbxTipoDeCaso" Height="20" 
                               ItemsSource="{Binding}" DisplayMemberPath="Descripcion" SelectedIndex="0">
                     </ComboBox>
-                    <Label Grid.Column="4" Grid.Row="2" VerticalAlignment="Center" HorizontalContentAlignment="Right">
+                    <Label Grid.Column="6" Grid.Row="2" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblFechaPresentacion}"/>
                     </Label>
-                    <DatePicker IsEnabled="False" Grid.Column="5" Grid.Row="2" Grid.ColumnSpan="2"  Name="_dpkFechaPublicacion" Focusable="False" BorderBrush="{x:Null}" >
+                    <DatePicker IsEnabled="False" Grid.Column="7" Grid.Row="2" Grid.ColumnSpan="2"  Name="_dpkFechaPublicacion" Focusable="False" BorderBrush="{x:Null}" >
                         <DatePicker.SelectedDate>
                             <Binding Path="FechaPublicacion" UpdateSourceTrigger="PropertyChanged"/>
                         </DatePicker.SelectedDate>
@@ -326,7 +326,7 @@
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblCaso}"/>
                     </Label>
                     <custom:ByTTextBox IsEnabled="False" MaxLength="255" Grid.Column="1" Grid.Row="10" Name="_txtCaso" VerticalAlignment="Center" 
-                         Grid.ColumnSpan="9" Text="{Binding Path=Distingue}"></custom:ByTTextBox>
+                         Grid.ColumnSpan="9" Text="{Binding Path=CasoT}"></custom:ByTTextBox>
                     
                     <!--Fin Del row 10 del grid-->
 
@@ -347,9 +347,9 @@
                     <Separator Grid.Column="0" Grid.Row="15" Grid.ColumnSpan="11" Margin="10 0" VerticalAlignment="Center" />
                 
                     <!-- BYT Inicio-->
-                    <Grid Grid.Column="1" Grid.Row="16" Grid.ColumnSpan="11" Name="_gridByt">
+                    <Grid Grid.Column="0" Grid.Row="16" Grid.ColumnSpan="13" Name="_gridByt">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="25"/>
+                            <ColumnDefinition Width="35"/>
                             <ColumnDefinition Width="25"/>
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="*"/>
@@ -370,22 +370,21 @@
                             <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
 
-
-                        <Label Grid.Column="0" Grid.Row="1" VerticalAlignment="Center" HorizontalContentAlignment="Right">
+                        <Label Grid.Column="0" Grid.Row="1" VerticalAlignment="Center" HorizontalContentAlignment="Left">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblByt}" />
                         </Label>
-                        <CheckBox IsEnabled="False"  Name="_chkByt" Grid.Column="1" Grid.Row="1" VerticalAlignment="Center"
-                         HorizontalAlignment="Center" IsChecked="False" Click="_chkByt_Click">
+                        <CheckBox IsEnabled="False"  Name="_chkByt" Grid.Column="0" Grid.Row="1" VerticalAlignment="Center"
+                         HorizontalAlignment="Left" IsChecked="False" Click="_chkByt_Click" Margin="25,0,0,0">
                         </CheckBox>
 
-                        <WrapPanel Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="11"  Orientation="Horizontal" 
+                        <WrapPanel Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="11"  Orientation="Horizontal" 
                            Margin="0,5,0,0">
                             <Grid Width="640" DataContext="{Binding}" Name="_gridDatosMarca">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*"/>
                                     <ColumnDefinition Width="*"/>
                                     <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="25"/>
                                     <ColumnDefinition Width="*"/>
                                     <ColumnDefinition Width="*"/>
                                     <ColumnDefinition Width="*"/>
@@ -399,11 +398,11 @@
                                     <RowDefinition Height="Auto"/>
                                 </Grid.RowDefinitions>
 
-                                <Label Grid.Column="0" Grid.Row="1">
+                                <Label Grid.Column="0" Grid.Row="1" HorizontalAlignment="Left">
                                     <TextBlock Text="{x:Static recurso:Etiquetas.lblMarca}"/>
                                 </Label>
                                 <custom:ByTTextBox Name="_txtNombreMarca" MaxLength="40"  Text="" IsEnabled="False"
-                             VerticalContentAlignment="Center" Margin="0,0,0,0" Grid.ColumnSpan="3" Grid.Column="1"
+                             VerticalContentAlignment="Center" Margin="40,0,0,0" Grid.ColumnSpan="2" Grid.Column="0"
                              Grid.Row="1" MouseDoubleClick="_txtNombreMarca_MouseDoubleClick" BorderBrush="LightGreen"/>
 
                                 <!--Datos de carga de Marca-->
@@ -457,10 +456,10 @@
                                 </Button>
 
 
-                                <Label Grid.Column="4" Grid.Row="1" Name="lblClaseNac" VerticalAlignment="Center" HorizontalContentAlignment="Right">
+                                <Label Grid.Column="2" Grid.Row="1" Name="lblClaseNac" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                                     <TextBlock Text="{x:Static recurso:Etiquetas.lblClaseNac}"/>
                                 </Label>
-                                <custom:ByTTextBox IsEnabled="False" MaxLength="255" Grid.Column="5" Grid.Row="1" Name="_txtClaseNacionalByt" VerticalAlignment="Center" 
+                                <custom:ByTTextBox IsEnabled="False" MaxLength="255" Grid.Column="3" Grid.Row="1" Name="_txtClaseNacionalByt" VerticalAlignment="Center" 
                          Grid.ColumnSpan="1"  SoloNumero="True"></custom:ByTTextBox>
 
                                 <Label Grid.Column="6" Grid.Row="1" Name="lblClaseInt" VerticalAlignment="Center" HorizontalContentAlignment="Right">

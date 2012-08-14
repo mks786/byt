@@ -9,6 +9,7 @@ using Trascend.Bolet.Cliente.Ventanas.Principales;
 using Trascend.Bolet.ObjetosComunes.ContratosServicios;
 using Trascend.Bolet.ObjetosComunes.Entidades;
 using System.Collections.Generic;
+using Trascend.Bolet.Cliente.Ventanas.Interesados;
 
 namespace Trascend.Bolet.Cliente.Presentadores.Interesados
 {
@@ -136,10 +137,15 @@ namespace Trascend.Bolet.Cliente.Presentadores.Interesados
                 interesado.Corporacion = (Estado)this._ventana.Corporacion;
                 interesado.TipoPersona = ((ListaDatosDominio)this._ventana.TipoPersona).Id[0];
                 interesado.Operacion = "CREATE";
-                bool exitoso = this._interesadoServicios.InsertarOModificar(interesado,UsuarioLogeado.Hash);
+                int? exitoso = this._interesadoServicios.InsertarOModificarInteresado(interesado,UsuarioLogeado.Hash);
 
-                if (exitoso)
-                    this.Navegar(Recursos.MensajesConElUsuario.InteresadoInsertado,false);
+                if (null != exitoso)
+                {
+                    interesado.Id = exitoso.Value;
+                    this.Navegar(new ConsultarInteresado(interesado, null));
+                }
+                else
+                    this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))

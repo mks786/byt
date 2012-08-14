@@ -20,5 +20,13 @@ namespace Trascend.Bolet.ObjetosComunes.ContratosServicios
         /// <param name="renovacion">Renovacion a consultar</param>
         /// <returns>Id de la ultima renovacion de la marca</returns>
         int ConsultarUltimaRenovacion(Renovacion renovacion);
+
+        /// <summary>
+        /// Método que se encarga de insertar una nueva la renovacion
+        /// </summary>
+        /// <param name="renovacion">Renovacion a insertar</param>
+        /// <param name="hash">hash del usuario que realiza la accion</param>
+        /// <returns>codigo de la renovacion insertada</returns>
+        int? InsertarOModificarRenovacion(Renovacion renovacion, int hash);
     }
 }

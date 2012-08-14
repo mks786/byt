@@ -354,6 +354,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Cartas
             this._btnSiguiente.Visibility = System.Windows.Visibility.Collapsed;
             this._btnAnterior.Visibility = System.Windows.Visibility.Collapsed;
             this._presentador = new PresentadorConsultarCarta(this, cartaSeleccionada, null);
+            this._txtFocus.Focus();
         }
 
         public ConsultarCarta(object cartaSeleccionada, object ventana)
@@ -372,6 +373,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Cartas
             InitializeComponent();
             this._cargada = false;
             this._presentador = new PresentadorConsultarCarta(this, cartaSeleccionada, lista, posicion,ventanaPadre);
+            this._txtFocus.Focus();
         }
 
         private void _btnCancelar_Click(object sender, RoutedEventArgs e)
@@ -586,11 +588,15 @@ namespace Trascend.Bolet.Cliente.Ventanas.Cartas
         {
             if (e.Key == Key.Next)
             {
+                this._txtFocus.Focus();
                 this._presentador.SiguienteCarta();
+                this._txtResumen.Focus();
             }
             else if (e.Key == Key.Prior)
             {
+                this._txtFocus.Focus();
                 this._presentador.AnteriorCarta();
+                this._txtResumen.Focus();
             }
         }
 

@@ -477,7 +477,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Interesados
             #endregion
 
             if (this._ventana.InteresadoSeleccionado != null)
-                this.Navegar(new ConsultarInteresado(this._ventana.InteresadoSeleccionado));
+                this.Navegar(new ConsultarInteresado(this._ventana.InteresadoSeleccionado,this._ventana));
 
             #region trace
             if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))

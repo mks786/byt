@@ -32,7 +32,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Interesados
         /// </summary>
         /// <param name="ventana">Página que satisface el contrato</param>
         /// <param name="poder">Poder a mostrar</param>
-        public PresentadorConsultarInteresado(IConsultarInteresado ventana, object interesado)
+        public PresentadorConsultarInteresado(IConsultarInteresado ventana, object interesado, object ventanaPadre)
         {
             try
             {
@@ -42,6 +42,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Interesados
                 #endregion
 
                 this._ventana = ventana;
+                this._ventanaPadre = ventanaPadre;
                 this._ventana.Interesado = interesado;
                 this._interesadoServicios = (IInteresadoServicios)Activator.GetObject(typeof(IInteresadoServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["InteresadoServicios"]);

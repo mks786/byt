@@ -488,7 +488,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
         /// </summary>
         public void GestionarRenovacionMarca()
         {
-            this._ventana.Contenedor.Navigate(new GestionarRenovacion(null));
+            this._ventana.Contenedor.Navigate(new GestionarRenovacion(null,null));
         }
 
         /// <summary>

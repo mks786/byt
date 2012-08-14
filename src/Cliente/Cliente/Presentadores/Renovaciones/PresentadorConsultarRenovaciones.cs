@@ -284,7 +284,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Renovaciones
                 }
 
 
-                this.Navegar(new GestionarRenovacion(renovacionesParaNavegar));
+                this.Navegar(new GestionarRenovacion(renovacionesParaNavegar,(Page)this._ventana));
             }
 
             #region trace
@@ -655,7 +655,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Renovaciones
 
         public void VolverAMarca()
         {
-            this.Navegar(new ConsultarMarca(this._marcaAFiltrar,null));
+            this.RegresarVentanaPadre();
         }
     }
 }

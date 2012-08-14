@@ -35,5 +35,13 @@ namespace Trascend.Bolet.ObjetosComunes.ContratosServicios
         /// <param name="poder">poder a consultar los interesados</param>
         /// <returns>Interesado perteneciente al poder</returns>
         Interesado ObtenerInteresadosDeUnPoder(Poder poder);
+
+        /// <summary>
+        /// Método que se encarga de realizar la insercion de un interesado a base de datos
+        /// </summary>
+        /// <param name="interesado">Interesado a agregar o modificar</param>
+        /// <param name="hash">Codigo hash del usuario que realiza la accion</param>
+        /// <returns>Codigo del interesado insertado</returns>
+        int? InsertarOModificarInteresado(Interesado interesado, int hash);
     }
 }

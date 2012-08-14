@@ -452,5 +452,7 @@
             </Button>
             <Button Name="_btnCancelar" VerticalAlignment="Bottom" Height="25" Width="90" Click="_btnCancelar_Click">Regresar</Button>
         </WrapPanel>
+
+        <custom:ByTTextBox Visibility="Visible" Grid.ColumnSpan="2" Name="_txtFocus" Height="0" Width="0"></custom:ByTTextBox>
     </Grid>
 </Page>

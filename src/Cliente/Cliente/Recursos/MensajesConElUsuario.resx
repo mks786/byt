@@ -778,7 +778,7 @@
     <value>¿Seguro que desea eliminar esta Renovacion?</value>
   </data>
   <data name="UltimaRenovacion" xml:space="preserve">
-    <value>Esta Renovacion no puede ser Eliminada</value>
+    <value>La renovación no puede ser eliminada, primero debe eliminar la renovación mas reciente.</value>
   </data>
   <data name="ErrorAlGenerarTraspaso" xml:space="preserve">
     <value>Disculpe, ha ocurrido un error al generar el traspaso</value>

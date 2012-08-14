@@ -19,6 +19,8 @@ namespace Trascend.Bolet.Cliente.Contratos.Renovaciones
 
         string PeriodoDeGracia { set; get; }
 
+        void BorrarCeros();
+
         #region Marcas
 
         string NombreMarca { set; }
@@ -120,5 +122,7 @@ namespace Trascend.Bolet.Cliente.Contratos.Renovaciones
         void ActivarControlesAlAgregar();
 
         void PintarAsociado(string tipo);
+
+
     }
 }

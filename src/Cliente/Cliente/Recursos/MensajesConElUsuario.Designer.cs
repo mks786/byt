@@ -2276,7 +2276,7 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Esta Renovacion no puede ser Eliminada.
+        ///   Looks up a localized string similar to La renovación no puede ser eliminada, primero debe eliminar la renovación mas reciente..
         /// </summary>
         internal static string UltimaRenovacion {
             get {

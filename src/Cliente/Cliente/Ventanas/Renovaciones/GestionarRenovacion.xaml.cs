@@ -83,12 +83,17 @@ namespace Trascend.Bolet.Cliente.Ventanas.Renovaciones
         {
             get { return this._dpkFechaRenovacion; }
             set { _dpkFechaRenovacion = value; }
-    }
+        }
 
         public string IdMarca
         {
             get { return this._txtIdMarca.Text; }
             set { this._txtIdMarca.Text = value; }
+        }
+
+        public void BorrarCeros()
+        {
+            this._txtIdRenovacion.Text = ""; // cambio el texto del textbox para que no aparezca el "0"
         }
 
         public string IdInteresado
@@ -315,7 +320,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Renovaciones
         {
             get { return this._txtOtros.Text; }
             set { this._txtOtros.Text = value; }
-        }        
+        }
 
         public string ProximaRenovacion
         {
@@ -357,11 +362,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Renovaciones
 
         #endregion
 
-        public GestionarRenovacion(object renovacion)
+        public GestionarRenovacion(object renovacion, Page ventanaPadre)
         {
             InitializeComponent();
             this._cargada = false;
-            this._presentador = new PresentadorGestionarRenovacion(this, renovacion);
+            this._presentador = new PresentadorGestionarRenovacion(this, renovacion,ventanaPadre);
         }
 
         /// <summary>
@@ -374,7 +379,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Renovaciones
             InitializeComponent();
             this._cargada = false;
             this._btnEliminar.Visibility = (System.Windows.Visibility)visibilidad;
-            this._presentador = new PresentadorGestionarRenovacion(this, renovacion);
+            this._presentador = new PresentadorGestionarRenovacion(this, renovacion,null);
         }
 
         public void ActivarControlesAlAgregar()
@@ -383,8 +388,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.Renovaciones
 
             this._btnAceptar.Visibility = System.Windows.Visibility.Visible;
             this._btnEliminar.Visibility = System.Windows.Visibility.Collapsed;
-            this._lblIdRenovacion.Visibility = System.Windows.Visibility.Collapsed;
-            this._txtIdRenovacion.Visibility = System.Windows.Visibility.Collapsed;
+            //this._lblIdRenovacion.Visibility = System.Windows.Visibility.Collapsed;
+            //this._txtIdRenovacion.Visibility = System.Windows.Visibility.Collapsed;
             this._dpkFechaRenovacion.IsEnabled = true;
             this._cbxTipoR.IsEnabled = false;
             this._chkAsientoEnLibro.IsEnabled = true;
@@ -392,6 +397,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.Renovaciones
             this._btnSolicitud.Visibility = System.Windows.Visibility.Collapsed;
             this._btnSolicitudVan.Visibility = System.Windows.Visibility.Collapsed;
             this._btnAnexo.Visibility = System.Windows.Visibility.Collapsed;
+
+
         }
 
         private void _btnAceptar_Click(object sender, RoutedEventArgs e)
@@ -402,7 +409,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Renovaciones
         private void _btnRegresar_Click(object sender, RoutedEventArgs e)
         {
             if (this.TextoBotonRegresar == Recursos.Etiquetas.btnRegresar)
-                this._presentador.Regresar();
+                this._presentador.RegresarVentanaPadre();
             else if (this.TextoBotonRegresar == Recursos.Etiquetas.btnCancelar)
                 this._presentador.Cancelar();
         }

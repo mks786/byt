@@ -79,7 +79,7 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
                 {
                     if (variosFiltros)
                         filtro += " and ";
-                    filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerInteresadoNombre, interesado.Nombre);
+                    filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerInteresadoNombre, interesado.Nombre.ToUpper());
                 }
 
                 if ((null != interesado.TipoPersona) && (! interesado.TipoPersona.Equals(char.MinValue)))

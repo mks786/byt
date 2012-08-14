@@ -49,7 +49,7 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
         /// <param name="renovacion">Renovacion a modificar</param>
         /// <param name="hash">Hash de la renovacion que va a realizar la operacion</param>
         /// <returns>True si la modificación fue exitosa, en caso contrario False</returns>
-        public static bool InsertarOModificar(Renovacion renovacion, int hash)
+        public static bool InsertarOModificar(ref Renovacion renovacion, int hash)
         {
             bool exitoso = false;
 

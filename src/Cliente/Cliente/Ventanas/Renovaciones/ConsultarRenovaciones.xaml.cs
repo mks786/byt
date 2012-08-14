@@ -181,9 +181,10 @@ namespace Trascend.Bolet.Cliente.Ventanas.Renovaciones
         /// <summary>
         /// Constructor para cargar las ventanas de una Marca
         /// </summary>
-        public ConsultarRenovaciones(object marca) :this()
+        public ConsultarRenovaciones(object marca, object ventanaPadre) :this()
         {
             this._presentador = new PresentadorConsultarRenovaciones(this,marca);
+            this._presentador._ventanaPadre = ventanaPadre;
         }
 
         public void ConvertirEnteroMinimoABlanco()

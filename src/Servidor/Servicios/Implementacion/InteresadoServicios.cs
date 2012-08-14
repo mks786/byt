@@ -74,7 +74,7 @@ namespace Trascend.Bolet.Servicios.Implementacion
                     logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-                bool exitoso = ControladorInteresado.InsertarOModificar(interesado, hash);
+                bool exitoso = ControladorInteresado.InsertarOModificar(ref interesado, hash);
 
                 #region trace
                 if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
@@ -276,6 +276,41 @@ namespace Trascend.Bolet.Servicios.Implementacion
                 #endregion
 
                 return interesado;
+            }
+            catch (ApplicationException ex)
+            {
+                logger.Error(ex.Message);
+                throw ex;
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                throw new ApplicationException(Errores.MensajesAlServidor.ErrorInesperadoServidor);
+            }
+
+        }
+
+
+        public int? InsertarOModificarInteresado(Interesado interesado, int hash)
+        {
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                bool exitoso = ControladorInteresado.InsertarOModificar(ref interesado, hash);
+
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Saliendo del Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                if (exitoso)
+                    return interesado.Id;
+                else
+                    return null;
             }
             catch (ApplicationException ex)
             {

@@ -66,7 +66,7 @@
                     <TextBlock Text="{x:Static recurso:Etiquetas.lblCiudad}"/>
                 </Label>
                 <custom:ByTTextBox Grid.Column="1" Grid.Row="1" Name="_txtId" VerticalAlignment="Center"  
-                         HorizontalAlignment="Left" Width="180" Text="{Binding Path=Id}" IsEnabled="False"></custom:ByTTextBox>
+                         HorizontalAlignment="Left" Width="180" Text="{Binding Path=Id}" IsReadOnly="True"></custom:ByTTextBox>
                 
                 <Label Grid.Column="0" Grid.Row="2" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                     <TextBlock Text="{x:Static recurso:Etiquetas.lblTipoPersona}"/>
