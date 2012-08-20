@@ -21,7 +21,7 @@ namespace Trascend.Bolet.Cliente.Contratos.Traspasos.Fusiones
 
         string IdMarca { get; set; }
 
-        string IdInteresadoEntre{ get; set; }
+        string IdInteresadoEntre { get; set; }
 
         string IdInteresadoSobreviviente { get; set; }
 
@@ -95,7 +95,7 @@ namespace Trascend.Bolet.Cliente.Contratos.Traspasos.Fusiones
 
         object Poder { get; set; }
 
-        string IdPoder { set; get; }       
+        string IdPoder { set; get; }
 
         string IdPoderFiltrar { get; }
 
@@ -104,7 +104,7 @@ namespace Trascend.Bolet.Cliente.Contratos.Traspasos.Fusiones
         object PoderesFiltrados { get; set; }
 
         object PoderFiltrado { get; set; }
-        
+
         #endregion
 
         object Boletines { get; set; }
@@ -136,5 +136,9 @@ namespace Trascend.Bolet.Cliente.Contratos.Traspasos.Fusiones
         void ActivarControlesAlAgregar();
 
         void PintarAsociado(string tipo);
+
+        object Corporaciones { get; set; }
+
+        object Corporacion { get; set; }
     }
 }

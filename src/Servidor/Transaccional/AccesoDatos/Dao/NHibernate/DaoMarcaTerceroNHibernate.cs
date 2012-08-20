@@ -33,7 +33,7 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
                 string cabecera = string.Format(Recursos.ConsultasHQL.CabeceraObtenerMarcaTercero);
                 if ((null != marcaTercero) && (marcaTercero.Id != null))
                 {
-                    filtro = string.Format(Recursos.ConsultasHQL.FiltroObtenerMarcaTerceroId, marcaTercero.Id);
+                    filtro = string.Format(Recursos.ConsultasHQL.FiltroObtenerMarcaTerceroId, marcaTercero.Id.ToUpper());
                     variosFiltros = true;
                 }
                 if (null != marcaTercero.CodigoInscripcion)

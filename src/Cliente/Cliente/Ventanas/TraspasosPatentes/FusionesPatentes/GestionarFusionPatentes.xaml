@@ -268,8 +268,8 @@
                         <Label Name="_lblEstadoPatenteTercero" Grid.Column="0" Grid.Row="3" HorizontalAlignment="Right" VerticalAlignment="Center" >
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblEstado}"/>
                         </Label>
-                        <custom:ByTTextBox Text="{Binding Path=Estado.Descripcion}" IsEnabled="False" Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="1" 
-                                           Name="_txtEstadoPatenteTercero" VerticalAlignment="Center" MaxLength="255" IsReadOnly="True" IsTabStop="False" ></custom:ByTTextBox>
+                        <ComboBox Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="1" Name="_cbxCorporacion" Height="20" ItemsSource="{Binding}" DisplayMemberPath="Descripcion">
+                        </ComboBox>
 
                         <Label Name="_lblPaisPatenteTercero" Grid.Column="2" Grid.Row="3" HorizontalAlignment="Right" VerticalAlignment="Center" >
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblPais}"/>
@@ -333,7 +333,7 @@
 
 
                         <custom:ByTTextBox Text="" IsEnabled="False" MaxLength="255" Grid.Column="0" Grid.Row="1" Name="_txtIdInteresadoSobreviviente" VerticalAlignment="Center" 
-                        Grid.ColumnSpan="1" MouseDoubleClick="_txtInteresadoEntre_MouseDoubleClick" Width="50" IsReadOnly="True" IsTabStop="False" Margin="55,3,3,3" BorderBrush="LightGreen"></custom:ByTTextBox>
+                        Grid.ColumnSpan="1" MouseDoubleClick="_txtInteresadoSobreviviente_MouseDoubleClick" Width="50" IsReadOnly="True" IsTabStop="False" Margin="55,3,3,3" BorderBrush="LightGreen"></custom:ByTTextBox>
 
                         
             <custom:ByTTextBox Text="{Binding Path=Nombre}" IsEnabled="False" MaxLength="255" Grid.Column="1" Grid.Row="1" Name="_txtNombreInteresadoSobreviviente" VerticalAlignment="Center" 

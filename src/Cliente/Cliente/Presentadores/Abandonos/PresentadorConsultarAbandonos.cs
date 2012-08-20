@@ -25,11 +25,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Abandonos
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
         private IConsultarAbandonos _ventana;
-        private IMarcaServicios _marcaServicios;        
+        private IMarcaServicios _marcaServicios;
         private IList<Marca> _marcas;
         private IList<Operacion> _abandonos;
         private IOperacionServicios _operacionServicios;
-        
+
         /// <summary>
         /// Constructor Predeterminado
         /// </summary>
@@ -83,7 +83,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Abandonos
 
                 //this._marcas = this._marcaServicios.ConsultarTodos();
                 //this._ventana.Resultados = this._marcas;
-         
+
                 this._ventana.TotalHits = "0";
                 this._ventana.FocoPredeterminado();
 
@@ -131,7 +131,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Abandonos
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-                Mouse.OverrideCursor = Cursors.Wait;                
+                Mouse.OverrideCursor = Cursors.Wait;
                 int filtroValido = 0;//Variable utilizada para limitar a que el filtro se ejecute solo cuando 
                 //dos filtros sean utilizados
 
@@ -168,8 +168,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Abandonos
                     Marca marcaAuxiliar = new Marca();
                     marcaAuxiliar.Id = operacionAuxiliar.CodigoAplicada;
 
-                    this._abandonos = this._operacionServicios.ObtenerOperacionFiltro(operacionAuxiliar);                   
-                    
+                    this._abandonos = this._operacionServicios.ObtenerOperacionFiltro(operacionAuxiliar);
+
                     this._ventana.Resultados = this._abandonos;
                     this._ventana.TotalHits = _abandonos.Count.ToString();
                     if (this._abandonos.Count == 0)
@@ -247,7 +247,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Abandonos
             if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
                 logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
-        }       
+        }
 
         /// <summary>
         /// Método que busca las marcas registradas

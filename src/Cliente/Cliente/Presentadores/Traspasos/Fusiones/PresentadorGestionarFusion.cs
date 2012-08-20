@@ -48,6 +48,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
         private IStatusWebServicios _statusWebServicios;
         private IFusionServicios _fusionesServicios;
         private IPlanillaServicios _planillaServicios;
+        private IEstadoServicios _estadoServicios;
 
         private IList<Asociado> _asociados;
         private IList<Interesado> _interesados;
@@ -140,6 +141,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["FusionServicios"]);
                 this._planillaServicios = (IPlanillaServicios)Activator.GetObject(typeof(IPlanillaServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["PlanillaServicios"]);
+                this._estadoServicios = (IEstadoServicios)Activator.GetObject(typeof(IEstadoServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["EstadoServicios"]);
 
 
                 #endregion
@@ -190,6 +193,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
                     this._ventana.AgenteApoderado = ((Fusion)fusion).Agente;
                     this._ventana.Poder = fusion.Poder;
 
+                    IList<Estado> estados = this._estadoServicios.ConsultarTodos();
+                    this._ventana.Corporaciones = estados;
 
                     CargarMarca();
 

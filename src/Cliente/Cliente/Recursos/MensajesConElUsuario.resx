@@ -775,7 +775,7 @@
     <value>Disculpe el archivo de la memoria no fue encontrado</value>
   </data>
   <data name="ConfirmacionEliminarRenovacion" xml:space="preserve">
-    <value>¿Seguro que desea eliminar esta Renovacion?</value>
+    <value>¿Seguro que desea eliminar esta Renovación?</value>
   </data>
   <data name="UltimaRenovacion" xml:space="preserve">
     <value>La renovación no puede ser eliminada, primero debe eliminar la renovación mas reciente.</value>
@@ -867,5 +867,8 @@
   </data>
   <data name="ErrorSolicitudNoEncontrada" xml:space="preserve">
     <value>Disculpe, la Solicitud de la Marca {0} no existe</value>
+  </data>
+  <data name="AlertaMarcaSinFechaRenovacion" xml:space="preserve">
+    <value>Disculpe, la Marca de Id: {0} no posee fecha de renovación</value>
   </data>
 </root>

@@ -136,5 +136,9 @@ namespace Trascend.Bolet.Cliente.Contratos.TraspasosPatentes.FusionesPatentes
         void ActivarControlesAlAgregar();
 
         void PintarAsociado(string tipo);
+
+        object Corporaciones { get; set; }
+
+        object Corporacion { get; set; }
     }
 }

@@ -198,7 +198,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.FusionesPatentes
                 this._txtIdPatenteTercero.IsEnabled = value;
                 this._txtPaisPatenteTercero.IsEnabled = value;
                 this._txtNacionalidadPatenteTercero.IsEnabled = value;
-                this._txtEstadoPatenteTercero.IsEnabled = value;
+                //this._txtEstadoPatenteTercero.IsEnabled = value;
+                this._cbxCorporacion.IsEnabled = value;
                 this._txtDomicilioPatenteTercero.IsEnabled = value;
 
                 this._txtNombreInteresadoSobreviviente.IsEnabled = value;
@@ -387,6 +388,17 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.FusionesPatentes
                 MessageBox.Show(mensaje, "Advertencia", MessageBoxButton.OK, MessageBoxImage.Exclamation);
         }
 
+        public object Corporaciones
+        {
+            get { return this._cbxCorporacion.DataContext; }
+            set { this._cbxCorporacion.DataContext = value; }
+        }
+
+        public object Corporacion
+        {
+            get { return this._cbxCorporacion.SelectedItem; }
+            set { this._cbxCorporacion.SelectedItem = value; }
+        }
         #endregion
 
         public GestionarFusionPatentes(object fusion)
@@ -683,8 +695,9 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.FusionesPatentes
             
             this._txtPaisPatenteTercero.Visibility = (System.Windows.Visibility)value;
             this._txtNacionalidadPatenteTercero.Visibility = (System.Windows.Visibility)value;
-            this._txtIdPatenteTercero.Visibility = (System.Windows.Visibility)value;            
-            this._txtEstadoPatenteTercero.Visibility = (System.Windows.Visibility)value;
+            this._txtIdPatenteTercero.Visibility = (System.Windows.Visibility)value;
+            //this._txtEstadoPatenteTercero.Visibility = (System.Windows.Visibility)value;
+            this._cbxCorporacion.Visibility = (System.Windows.Visibility)value;
             this._lblY.Visibility = (System.Windows.Visibility)value;
             this._lblEstadoPatenteTercero.Visibility = (System.Windows.Visibility)value;
             this._lblDomicilioPatenteTercero.Visibility = (System.Windows.Visibility)value;

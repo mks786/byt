@@ -183,10 +183,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Renovaciones
                     CargarPoder();
 
                     //ActualizarFechaProxima();
-                    
+
                     this._ventana.ConvertirEnteroMinimoABlanco();
                     this._ventana.BorrarCeros();
-                    
+
                 }
 
                 this._ventana.FocoPredeterminado();
@@ -250,8 +250,19 @@ namespace Trascend.Bolet.Cliente.Presentadores.Renovaciones
             if (null != this._ventana.Marca)
             {
                 renovacion.Marca = ((Marca)this._ventana.Marca).Id != int.MinValue ? (Marca)this._ventana.Marca : null;
+
+                //Se realizó un cambio de la linea 1 a la linea 2, luego se volvió a cambiar de la 2 a la 3
+                /*1*/
                 //renovacion.FechaProxima = DateTime.Parse(this._ventana.ProximaRenovacion);
-                renovacion.FechaProxima = ((Marca)this._ventana.Marca).FechaRenovacion;
+
+                /*2*/
+                //renovacion.FechaProxima = ((Marca)this._ventana.Marca).FechaRenovacion;
+
+                /*3*/
+                if (null != (((Marca)this._ventana.Marca).FechaRenovacion))
+                    renovacion.FechaProxima = ((Marca)this._ventana.Marca).FechaRenovacion.Value.AddYears(int.Parse(ConfigurationManager.AppSettings["PeriodoRenovacion"]));
+                else
+                    renovacion.FechaProxima = null;
             }
 
             if (null != this._ventana.Interesado)
@@ -301,37 +312,41 @@ namespace Trascend.Bolet.Cliente.Presentadores.Renovaciones
                 Renovacion renovacion = CargarRenovacionDeLaPantalla();
                 bool marcaExitoso = false;
                 bool exitoso = false;
-
-                if (null != renovacion.Marca)
+                if (renovacion.FechaProxima != null) 
                 {
-                    int? exitosoIdRenovacion = this._renovacionServicios.InsertarOModificarRenovacion(renovacion, UsuarioLogeado.Hash);
-
-
-                    if (exitosoIdRenovacion != null)
+                    if (null != renovacion.Marca)
                     {
-                        renovacion.Id = exitosoIdRenovacion.Value;
-                        Marca marcaAuxiliar = new Marca();
-                        marcaAuxiliar = ((Renovacion)this._ventana.Renovacion).Marca;
+                        int? exitosoIdRenovacion = this._renovacionServicios.InsertarOModificarRenovacion(renovacion, UsuarioLogeado.Hash);
 
-                        int tiempoConfiguracion = int.Parse(ConfigurationManager.AppSettings["PeriodoRenovacion"].ToString());
 
-                        marcaAuxiliar.FechaRenovacion = marcaAuxiliar.FechaRenovacion != null ? ((DateTime)marcaAuxiliar.FechaRenovacion).AddYears(tiempoConfiguracion) : System.DateTime.Now;
-                        marcaAuxiliar.Operacion = "MODIFY";
-                        marcaAuxiliar.Recordatorio = 0;
+                        if (exitosoIdRenovacion != null)
+                        {
+                            renovacion.Id = exitosoIdRenovacion.Value;
+                            Marca marcaAuxiliar = new Marca();
+                            marcaAuxiliar = ((Renovacion)this._ventana.Renovacion).Marca;
 
-                        marcaExitoso = this._marcaServicios.InsertarOModificar(marcaAuxiliar, UsuarioLogeado.Hash);
-                    }
+                            int tiempoConfiguracion = int.Parse(ConfigurationManager.AppSettings["PeriodoRenovacion"].ToString());
 
-                    if (marcaExitoso)
-                    {
-                        this.Navegar(new GestionarRenovacion(renovacion,null));
-                        //this._ventana.HabilitarCampos = false;
+                            marcaAuxiliar.FechaRenovacion = marcaAuxiliar.FechaRenovacion != null ? ((DateTime)marcaAuxiliar.FechaRenovacion).AddYears(tiempoConfiguracion) : System.DateTime.Now;
+                            marcaAuxiliar.Operacion = "MODIFY";
+                            marcaAuxiliar.Recordatorio = 0;
+
+                            marcaExitoso = this._marcaServicios.InsertarOModificar(marcaAuxiliar, UsuarioLogeado.Hash);
+                        }
+
+                        if (marcaExitoso)
+                        {
+                            this.Navegar(new GestionarRenovacion(renovacion, null));
+                            //this._ventana.HabilitarCampos = false;
+                        }
+                        else
+                            this.Navegar(Recursos.MensajesConElUsuario.RenovacionInsertada, true);
                     }
                     else
-                        this.Navegar(Recursos.MensajesConElUsuario.RenovacionInsertada, true);
+                        this._ventana.Mensaje(Recursos.MensajesConElUsuario.AlertaRenovacionSinMarcas, 0);
                 }
                 else
-                    this._ventana.Mensaje(Recursos.MensajesConElUsuario.AlertaRenovacionSinMarcas, 0);
+                    this._ventana.Mensaje(String.Format(Recursos.MensajesConElUsuario.AlertaMarcaSinFechaRenovacion,renovacion.Marca.Id), 0);
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))

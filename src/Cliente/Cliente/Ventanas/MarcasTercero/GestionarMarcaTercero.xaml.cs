@@ -1384,6 +1384,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.MarcasTercero
             {
                 GestionarVisibilidadDatosDeMarca(Visibility.Visible);
                 GestionarVisibilidadFiltroMarca(Visibility.Collapsed);
+                this._btnAceptar.IsDefault = true;
+                this._btnConsultarMarca.IsDefault = false;
             }
 
         }
@@ -1398,7 +1400,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.MarcasTercero
             if ((bool)this._chkByt.IsChecked)
             {
                 GestionarVisibilidadDatosDeMarca(Visibility.Collapsed);
-
+                this._btnConsultarMarca.IsDefault = true;
+                this._btnAceptar.IsDefault = false;
                 GestionarVisibilidadFiltroMarca(Visibility.Visible);
                 this._txtClaseInternacionalByt.IsEnabled = false;
                 this._txtClaseNacionalByt.IsEnabled = false;
@@ -1410,8 +1413,14 @@ namespace Trascend.Bolet.Cliente.Ventanas.MarcasTercero
             this._txtNombreMarca.Visibility = (System.Windows.Visibility)value;
             this._txtClaseInternacionalByt.Visibility = (System.Windows.Visibility)value;
             this._txtClaseNacionalByt.Visibility = (System.Windows.Visibility)value;
-            this.lblClaseNac.Visibility = (System.Windows.Visibility)value;
-            this.lblClaseInt.Visibility = (System.Windows.Visibility)value;
+
+            this._lblTipoBase.Visibility = (System.Windows.Visibility)value;
+            this._lblClaseInt.Visibility = (System.Windows.Visibility)value;
+            this._lblClaseNac.Visibility = (System.Windows.Visibility)value;
+            this._txtTipoBase.Visibility = (System.Windows.Visibility)value;
+            this._cbxTipoBase.Visibility = (System.Windows.Visibility)value;
+            this._lblPais.Visibility = (System.Windows.Visibility)value;
+            this._cbxPaisPrioridad.Visibility = (System.Windows.Visibility)value;
             //this._chkEtiqueta.Visibility = (System.Windows.Visibility)value;
          }
 

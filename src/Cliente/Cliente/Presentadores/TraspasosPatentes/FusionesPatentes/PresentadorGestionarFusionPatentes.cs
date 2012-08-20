@@ -1028,8 +1028,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.FusionesPatente
                             new Interesado(int.MinValue));
                     }
 
-                    this._ventana.AgenteApoderado = ((Patente)this._ventana.Patente).Agente;
-                    this._ventana.Poder = ((Patente)this._ventana.Patente).Poder;
+                    //this._ventana.AgenteApoderado = ((Patente)this._ventana.Patente).Agente;
+                    //this._ventana.Poder = ((Patente)this._ventana.Patente).Poder;
                     
 
                     if (null != ((Patente)this._ventana.Patente).Asociado)

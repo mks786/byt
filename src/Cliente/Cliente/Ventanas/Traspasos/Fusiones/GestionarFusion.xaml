@@ -284,8 +284,10 @@
                         <Label Name="_lblEstadoMarcaTercero" Grid.Column="0" Grid.Row="3" HorizontalAlignment="Right" VerticalAlignment="Center" >
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblCorp}"/>
                         </Label>
-                        <custom:ByTTextBox Text="{Binding Path=Estado.Descripcion}" IsEnabled="False" Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="1" 
-                                           Name="_txtEstadoMarcaTercero" VerticalAlignment="Center" MaxLength="255" IsReadOnly="True" IsTabStop="False"></custom:ByTTextBox>
+                        <ComboBox Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="1" Name="_cbxCorporacion" Height="20" ItemsSource="{Binding}" DisplayMemberPath="Descripcion">
+                        </ComboBox>
+                        <!--<custom:ByTTextBox Text="{Binding Path=Estado.Descripcion}" IsEnabled="False" Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="1" 
+                                           Name="_txtEstadoMarcaTercero" VerticalAlignment="Center" MaxLength="255" IsReadOnly="True" IsTabStop="False"></custom:ByTTextBox>-->
 
                         <Label Name="_lblPaisMarcaTercero" Grid.Column="2" Grid.Row="3" HorizontalAlignment="Right" VerticalAlignment="Center" >
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblPais}"/>

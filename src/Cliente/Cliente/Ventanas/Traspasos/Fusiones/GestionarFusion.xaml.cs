@@ -211,7 +211,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Fusiones
                 this._txtIdMarcaTercero.IsEnabled = value;
                 this._txtPaisMarcaTercero.IsEnabled = value;
                 this._txtNacionalidadMarcaTercero.IsEnabled = value;
-                this._txtEstadoMarcaTercero.IsEnabled = value;
+                //this._txtEstadoMarcaTercero.IsEnabled = value;
+                this._cbxCorporacion.IsEnabled = value;
                 this._txtDomicilioMarcaTercero.IsEnabled = value;
 
                 this._txtNombreInteresadoSobreviviente.IsEnabled = value;
@@ -394,6 +395,17 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Fusiones
                 MessageBox.Show(mensaje, "Advertencia", MessageBoxButton.OK, MessageBoxImage.Exclamation);
         }
 
+        public object Corporaciones
+        {
+            get { return this._cbxCorporacion.DataContext; }
+            set { this._cbxCorporacion.DataContext = value; }
+        }
+
+        public object Corporacion
+        {
+            get { return this._cbxCorporacion.SelectedItem; }
+            set { this._cbxCorporacion.SelectedItem = value; }
+        }
         #endregion
 
         public GestionarFusion(object fusion)
@@ -690,8 +702,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Fusiones
             
             this._txtPaisMarcaTercero.Visibility = (System.Windows.Visibility)value;
             this._txtNacionalidadMarcaTercero.Visibility = (System.Windows.Visibility)value;
-            this._txtIdMarcaTercero.Visibility = (System.Windows.Visibility)value;            
-            this._txtEstadoMarcaTercero.Visibility = (System.Windows.Visibility)value;
+            this._txtIdMarcaTercero.Visibility = (System.Windows.Visibility)value;
+            //this._txtEstadoMarcaTercero.Visibility = (System.Windows.Visibility)value;
             this._lblY.Visibility = (System.Windows.Visibility)value;
             this._lblEstadoMarcaTercero.Visibility = (System.Windows.Visibility)value;
             this._lblDomicilioMarcaTercero.Visibility = (System.Windows.Visibility)value;
