@@ -25,11 +25,11 @@ namespace Trascend.Bolet.Cliente.Contratos.Poderes
 
         object Interesado { get; set; }
 
-        string Facultad { get; set; }
+        //string Facultad { get; set; }
 
-        string Anexo { get; set; }
+        //string Anexo { get; set; }
 
-        string Observaciones { get; set; }
+        //string Observaciones { get; set; }
 
         GridViewColumnHeader CurSortCol { get; set; }
 

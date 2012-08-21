@@ -289,7 +289,7 @@
                 <MenuItem Name="_menuItemPoder" Visibility="Collapsed" Header="{x:Static resx:Etiquetas.menuItemPoder}">
                     <MenuItem Name="_menuItemPoderConsultar" Header="{x:Static resx:Etiquetas.menuItemConsultar}" Click="_menuItemPoderConsultar_Click"/>
                     <MenuItem Name="_menuItemPoderAgregar" Header="{x:Static resx:Etiquetas.menuItemAgregar}" Click="_menuItemPoderAgregar_Click"/>
-                    <!--<MenuItem Name="_menuItemGestionarPoderesXAgentes" Header="{x:Static resx:Etiquetas.menuItemGestionarPoderesXAgentes}" Click="_menuItemGestionarPoderesXAgentes_Click"></MenuItem>-->
+                    <MenuItem Name="_menuItemGestionarPoderesXAgentes" Header="{x:Static resx:Etiquetas.menuItemGestionarPoderesXAgentes}" Click="_menuItemGestionarPoderesXAgentes_Click"></MenuItem>
                     <!--<MenuItem Name="_menuItemPaisModificar" Header="{x:Static resx:Etiquetas.menuItemUsuarioModificar}"></MenuItem>-->
                 </MenuItem>
                 <MenuItem Name="_menuItemResolucion" Visibility="Collapsed" Header="{x:Static resx:Etiquetas.menuItemResolucion}">

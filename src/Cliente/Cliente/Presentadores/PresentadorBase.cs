@@ -230,19 +230,19 @@ namespace Trascend.Bolet.Cliente.Presentadores
         public IList<Usuario> FiltrarUsuariosRepetidos(IList<Usuario> users)
         {
             IList<Usuario> retorno = new List<Usuario>();
-            int conta=0;
-            string iniciales="";
+            int conta = 0;
+            string iniciales = "";
             if (users.Count != 0)
             {
                 foreach (Usuario usuario in users)
                 {
-                    
+
                     if (conta == 0)//primer usuario de la lista siempre entra
                     {
                         retorno.Add(usuario);
                         iniciales = usuario.Iniciales;
                         conta++;
-                        
+
                     }
                     else//compara siguientes usuarios
                     {
@@ -251,7 +251,7 @@ namespace Trascend.Bolet.Cliente.Presentadores
                         {
                             retorno.Add(usuario);
                             iniciales = usuario.Iniciales;
-                            
+
                         }
                     }
                 }
@@ -1694,14 +1694,14 @@ namespace Trascend.Bolet.Cliente.Presentadores
                     return retorno.Substring(0, retorno.Length - 1);
                 }
                 else
-                     return retorno;
-                
+                    return retorno;
+
             }
             catch (Exception ex)
             {
                 throw new ApplicationException();
             }
-            
+
         }
 
         /// <summary>
@@ -2044,9 +2044,9 @@ namespace Trascend.Bolet.Cliente.Presentadores
             #endregion
 
             if (extensionDeArchivo.Equals(".txt"))
-                    retorno = "text/plain";
+                retorno = "text/plain";
             else if (extensionDeArchivo.Equals(".doc"))
-                    retorno = "application/ms-word";
+                retorno = "application/ms-word";
             else if (extensionDeArchivo.Equals(".zip"))
                 retorno = "application/zip";
             else if (extensionDeArchivo.Equals(".pdf"))
@@ -2072,7 +2072,7 @@ namespace Trascend.Bolet.Cliente.Presentadores
             return retorno;
         }
 
-        public void RegresarVentanaPadre() 
+        public void RegresarVentanaPadre()
         {
             if (_ventanaPadre != null)
                 Navegar((Page)_ventanaPadre);
@@ -2080,14 +2080,23 @@ namespace Trascend.Bolet.Cliente.Presentadores
                 Navegar();
         }
 
-        public bool PoseePermisologia(IList<Objeto> objetos, string objetoBuscado) 
+        public bool PoseePermisologia(IList<Objeto> objetos, string objetoBuscado)
         {
             bool retorno = false;
+            int a = 0;
             foreach (Objeto objeto in objetos)
             {
-                if (objeto.Id.Equals(objetoBuscado)) 
+                try
                 {
-                    retorno = true;
+                    //if ((objeto != null) && (objeto.Id.Equals(objetoBuscado))
+                    if ((objeto.Id.Equals(objetoBuscado)))
+                    {
+                        retorno = true;
+                    }
+                }
+                catch (Exception ex) 
+                {
+                    string av = a.ToString();
                 }
             }
             return retorno;

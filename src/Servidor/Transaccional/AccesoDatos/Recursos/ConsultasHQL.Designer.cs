@@ -1870,7 +1870,7 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Select p from Poder p where p.Interesado.Id = &apos;{0}&apos; order by p.Id desc.
+        ///   Looks up a localized string similar to Select p from Poder p left join fetch p.Interesado as interesado where p.Interesado.Id = &apos;{0}&apos; order by p.Id desc.
         /// </summary>
         public static string ObtenerPoderesPorInteresado {
             get {

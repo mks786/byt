@@ -9,8 +9,6 @@ namespace Trascend.Bolet.Cliente.Contratos.Poderes
 
         bool HabilitarCampos { set; }
 
-        string NombreInteresado { get; set; }
-
         string TextoBotonModificar { get; set; }
 
         object Boletines { get; set; }
@@ -28,5 +26,21 @@ namespace Trascend.Bolet.Cliente.Contratos.Poderes
         SortAdorner CurAdorner { get; set; }
 
         ListView ListaResultados { get; set; }
+
+        string NombreInteresado { set; }
+
+        object Agente { get; set; }
+
+        object Agentes { get; set; }
+
+        object Apoderado { get; set; }
+
+        object Apoderados { get; set; }
+
+        string IdInteresadoConsultar { get; }
+
+        string NombreInteresadoConsultar { get; }
+
+        bool ConfirmarModificacion(string mensaje);
     }
 }

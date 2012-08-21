@@ -168,7 +168,7 @@
     <comment>Obtiene la lista de valores respectiva a la tabla CFG_DOMINIOS con el parametro que se le pase</comment>
   </data>
   <data name="ObtenerPoderesPorInteresado" xml:space="preserve">
-    <value>Select p from Poder p where p.Interesado.Id = '{0}' order by p.Id desc</value>
+    <value>Select p from Poder p left join fetch p.Interesado as interesado where p.Interesado.Id = '{0}' order by p.Id desc</value>
     <comment>Selecciona todas los poderes que posee un interesado</comment>
   </data>
   <data name="ObtenerRolesYObjetos" xml:space="preserve">

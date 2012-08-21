@@ -1266,6 +1266,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Cesiones
         } 
 
         #endregion
-        
+
+
     }
 }

@@ -14,6 +14,7 @@ using System.Windows.Documents;
 using System.ComponentModel;
 using Trascend.Bolet.Cliente.Ayuda;
 using Trascend.Bolet.Cliente.Ventanas.Interesados;
+using Trascend.Bolet.Cliente.Ventanas.Poderes;
 
 namespace Trascend.Bolet.Cliente.Presentadores.Poderes
 {
@@ -23,8 +24,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.Poderes
         private IBoletinServicios _boletinServicios;
         private IPoderServicios _poderServicios;
         private IInteresadoServicios _interesadoServicios;
+        private IAgenteServicios _agentesServicios;
         private static PaginaPrincipal _paginaPrincipal = PaginaPrincipal.ObtenerInstancia;
         private static Logger logger = LogManager.GetCurrentClassLogger();
+
+        private IList<Agente> _agentes;
+        private IList<Agente> _apoderados = new List<Agente>();
 
         /// <summary>
         /// Constructor predeterminado
@@ -43,6 +48,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Poderes
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["BoletinServicios"]);
                 this._interesadoServicios = (IInteresadoServicios)Activator.GetObject(typeof(IInteresadoServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["InteresadoServicios"]);
+                this._agentesServicios = (IAgenteServicios)Activator.GetObject(typeof(IAgenteServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["AgenteServicios"]);
             }
             catch (Exception ex)
             {
@@ -70,6 +77,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Poderes
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["BoletinServicios"]);
                 this._interesadoServicios = (IInteresadoServicios)Activator.GetObject(typeof(IInteresadoServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["InteresadoServicios"]);
+                this._agentesServicios = (IAgenteServicios)Activator.GetObject(typeof(IAgenteServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["AgenteServicios"]);
             }
             catch (Exception ex)
             {
@@ -100,14 +109,19 @@ namespace Trascend.Bolet.Cliente.Presentadores.Poderes
 
                 IList<Boletin> boletines = this._boletinServicios.ConsultarTodos();
                 this._ventana.Boletines = boletines;
-                IList<Interesado> interesados = this._interesadoServicios.ConsultarTodos();
-                this._ventana.Interesados = interesados;
+
+                _agentes = this._agentesServicios.ConsultarTodos();
+                Agente primerAgente = new Agente("NGN");
+                _agentes.Insert(0, primerAgente);
+                this._ventana.Agentes = _agentes;
+
+                this._ventana.Apoderados = new List<Agente>();
 
                 if (this._ventana.ConInteresado)
                 {
-                    this._ventana.Interesado = this.BuscarInteresado(interesados, poder.Interesado);
-                    this._ventana.InteresadoEsEditable = false;
-                    this._ventana.TextoBotonCancelar = Recursos.Etiquetas.btnRegresar;
+                    //this._ventana.Interesado = this.BuscarInteresado(interesados, poder.Interesado);
+                    //this._ventana.InteresadoEsEditable = false;
+                    //this._ventana.TextoBotonCancelar = Recursos.Etiquetas.btnRegresar;
                 }
 
                 #region trace
@@ -158,13 +172,19 @@ namespace Trascend.Bolet.Cliente.Presentadores.Poderes
                 poder.Boletin = (Boletin)this._ventana.Boletin;
                 poder.Interesado = (Interesado)this._ventana.Interesado;
                 poder.Operacion = "CREATE";
-                bool exitoso = this._poderServicios.InsertarOModificar(poder,UsuarioLogeado.Hash);
 
-                if (exitoso)
-                    if(this._ventana.ConInteresado)
-                        this.Navegar(new ConsultarInteresado(poder.Interesado,null));
+                poder.Agentes = this._apoderados;
+
+                int? exitoso = this._poderServicios.InsertarOModificarPoder(poder,UsuarioLogeado.Hash);
+
+                if (exitoso != null)
+                    if (this._ventana.ConInteresado)
+                        this.Navegar(new ConsultarInteresado(poder.Interesado, null));
                     else
-                        this.Navegar(Recursos.MensajesConElUsuario.PoderInsertado, false);
+                    {
+                        poder.Id = exitoso.Value;
+                        this.Navegar(new ConsultarPoder(poder));
+                    }
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -226,6 +246,88 @@ namespace Trascend.Bolet.Cliente.Presentadores.Poderes
             if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
                 logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
+        }
+
+
+        public void OrdenarColumna(GridViewColumnHeader column, ListView ListaResultados)
+        {
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+            String field = column.Tag as String;
+
+            if (this._ventana.CurSortCol != null)
+            {
+                AdornerLayer.GetAdornerLayer(this._ventana.CurSortCol).Remove(this._ventana.CurAdorner);
+                ListaResultados.Items.SortDescriptions.Clear();
+            }
+
+            ListSortDirection newDir = ListSortDirection.Ascending;
+            if (this._ventana.CurSortCol == column && this._ventana.CurAdorner.Direction == newDir)
+                newDir = ListSortDirection.Descending;
+
+            this._ventana.CurSortCol = column;
+            this._ventana.CurAdorner = new SortAdorner(this._ventana.CurSortCol, newDir);
+            AdornerLayer.GetAdornerLayer(this._ventana.CurSortCol).Add(this._ventana.CurAdorner);
+            ListaResultados.Items.SortDescriptions.Add(
+                new SortDescription(field, newDir));
+
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+        }
+
+        public void EliminarAgente()
+        {
+            if (((Agente)this._ventana.Apoderado != null) && !((Agente)this._ventana.Apoderado).Id.Equals("NGN"))
+            {
+                _agentes.Add((Agente)this._ventana.Apoderado);
+                this._ventana.Agentes = null;
+                this._ventana.Agentes = _agentes;
+
+                _apoderados = ((IList<Agente>)this._ventana.Apoderados);
+                _apoderados.Remove((Agente)this._ventana.Apoderado);
+                this._ventana.Apoderados = null;
+                this._ventana.Apoderados = _apoderados;
+
+            }
+        }
+
+        public void AgregarAgente()
+        {
+            if (!((Agente)this._ventana.Agente).Id.Equals("NGN"))
+            {
+                _apoderados = ((IList<Agente>)this._ventana.Apoderados);
+                _apoderados.Insert(0, (Agente)this._ventana.Agente);
+                this._ventana.Apoderados = null;
+                this._ventana.Apoderados = _apoderados;
+
+                //_agentes = ((IList<Agente>)this._ventana.Agentes);
+                _agentes.Remove((Agente)this._ventana.Agente);
+                this._ventana.Agentes = null;
+                this._ventana.Agentes = _agentes;
+            }
+        }
+
+        public void ConsultarInteresadoFiltro()
+        {
+            if ((!this._ventana.NombreInteresadoConsultar.Equals("")) || (!this._ventana.IdInteresadoConsultar.Equals("")))
+            { 
+                Interesado interesadoAFiltrar = new Interesado();
+                interesadoAFiltrar.Id = !this._ventana.IdInteresadoConsultar.Equals("") ? int.Parse(this._ventana.IdInteresadoConsultar) : 0;
+                interesadoAFiltrar.Nombre = !this._ventana.NombreInteresadoConsultar.Equals("") ? this._ventana.NombreInteresadoConsultar : "";
+
+
+                this._ventana.Interesados = this._interesadoServicios.ObtenerInteresadosFiltro(interesadoAFiltrar);
+            }
+        }
+
+        public void CambiarInteresado()
+        {
+            this._ventana.NombreInteresado = ((Interesado)this._ventana.Interesado).Nombre;
         }
     }
 }

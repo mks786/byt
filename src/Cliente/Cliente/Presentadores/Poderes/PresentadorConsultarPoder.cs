@@ -25,12 +25,15 @@ namespace Trascend.Bolet.Cliente.Presentadores.Poderes
         private IBoletinServicios _boletinServicios;
         private IPoderServicios _poderServicios;
         private IInteresadoServicios _interesadoServicios;
+        private IAgenteServicios _agentesServicios;
         private IList<Boletin> _boletines;
         private IList<Interesado> _interesados;
         private bool _conInteresado;
         private static PaginaPrincipal _paginaPrincipal = PaginaPrincipal.ObtenerInstancia;
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
+        private IList<Agente> _agentes;
+        private IList<Agente> _apoderados = new List<Agente>();
         /// <summary>
         /// Constructor predeterminado
         /// </summary>
@@ -48,6 +51,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Poderes
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["BoletinServicios"]);
                 this._interesadoServicios = (IInteresadoServicios)Activator.GetObject(typeof(IInteresadoServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["InteresadoServicios"]);
+                this._agentesServicios = (IAgenteServicios)Activator.GetObject(typeof(IAgenteServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["AgenteServicios"]);
             }
             catch (Exception ex)
             {
@@ -72,15 +77,21 @@ namespace Trascend.Bolet.Cliente.Presentadores.Poderes
                 this._ventana.Poder = poder;
                 this._boletines = ((IList<Boletin>)boletines).ToList<Boletin>();
                 this._interesados = ((IList<Interesado>)interesados).ToList<Interesado>();
-                
+
 
                 this._poderServicios = (IPoderServicios)Activator.GetObject(typeof(IPoderServicios),
-                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["PoderServicios"]); 
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["PoderServicios"]);
+                this._boletinServicios = (IBoletinServicios)Activator.GetObject(typeof(IBoletinServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["BoletinServicios"]);
+                this._interesadoServicios = (IInteresadoServicios)Activator.GetObject(typeof(IInteresadoServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["InteresadoServicios"]);
+                this._agentesServicios = (IAgenteServicios)Activator.GetObject(typeof(IAgenteServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["AgenteServicios"]);
             }
             catch (Exception ex)
             {
                 logger.Error(ex.Message);
-                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado,true);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
             }
         }
 
@@ -103,23 +114,39 @@ namespace Trascend.Bolet.Cliente.Presentadores.Poderes
 
                 Poder poder = (Poder)this._ventana.Poder;
 
-                if (this._conInteresado)
-                {
-                    this._boletines = this._boletinServicios.ConsultarTodos();
-                    this._interesados = this._interesadoServicios.ConsultarTodos();
-                }
-                else
-                {
-                    this._boletines.RemoveAt(0);
-                    this._interesados.RemoveAt(0);
-                }
+                //if (this._conInteresado)
+                //{
+                //    this._boletines = this._boletinServicios.ConsultarTodos();
+                //    //this._interesados = this._interesadoServicios.ConsultarTodos();
+                //}
+                //else
+                //{
+                //    this._boletines.RemoveAt(0);
+                //    this._interesados.RemoveAt(0);
+                //}
 
-                this._ventana.Boletines = this._boletines;
-                this._ventana.Boletin = this.BuscarBoletin(this._boletines, poder.Boletin);
+                _apoderados = poder.Agentes;
 
-                this._ventana.Interesados = this._interesados;
-                this._ventana.Interesado = this.BuscarInteresado(this._interesados, poder.Interesado);
-                this._ventana.NombreInteresado = ((Interesado)this._ventana.Interesado).Nombre;
+                this._ventana.Apoderados = null;
+                this._ventana.Apoderados = _apoderados;
+
+                IList<Boletin> boletines = this._boletinServicios.ConsultarTodos();
+                this._ventana.Boletines = boletines;
+                this._ventana.Boletin = this.BuscarBoletin((IList<Boletin>)this._ventana.Boletines, poder.Boletin);
+
+                _agentes = this._agentesServicios.ConsultarTodos();
+                Agente primerAgente = new Agente("NGN");
+                _agentes.Insert(0, primerAgente);
+                _agentes = LimpiarListaDeAgentes();
+                this._ventana.Agentes = _agentes;
+
+                //this._ventana.Apoderados = new List<Agente>();
+
+                IList<Interesado> interesados = new List<Interesado>();
+                interesados.Add(poder.Interesado);
+                this._ventana.NombreInteresado = poder.Interesado.Nombre;
+                this._ventana.Interesados = interesados;
+                this._ventana.Interesado = poder.Interesado;
                 this._ventana.FocoPredeterminado();
 
                 #region trace
@@ -130,12 +157,39 @@ namespace Trascend.Bolet.Cliente.Presentadores.Poderes
             catch (Exception ex)
             {
                 logger.Error(ex.Message);
-                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado,true);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
             }
             finally
             {
                 Mouse.OverrideCursor = null;
             }
+        }
+
+        private IList<Agente> LimpiarListaDeAgentes()
+        {
+
+            IList<Agente> agentesADevolver = this._agentesServicios.ConsultarTodos();
+
+            IList<int> posicionesABorrar = new List<int>();
+            foreach (Agente apoderado in _apoderados)
+            {
+                int i = 0;
+                foreach (Agente agente in agentesADevolver)
+                {
+                    if (apoderado.Id == agente.Id)
+                    {
+                        posicionesABorrar.Insert(0,i);
+                        //agentesADevolver.Remove(agente);
+                    }
+                    i++;
+                }
+            }
+
+            foreach (int posicion in posicionesABorrar)
+            {
+                agentesADevolver.RemoveAt(posicion);
+            }
+            return agentesADevolver;
         }
 
         /// <summary>
@@ -161,17 +215,25 @@ namespace Trascend.Bolet.Cliente.Presentadores.Poderes
                 //Modifica los datos del Poder
                 else
                 {
-                    Poder poder = (Poder)this._ventana.Poder;
-
-                    poder.Boletin = (Boletin)this._ventana.Boletin;
-                    poder.Interesado = (Interesado)this._ventana.Interesado;
-                    poder.Operacion = "MODIFY";
-                    bool exitoso = this._poderServicios.InsertarOModificar(poder, UsuarioLogeado.Hash);
-                    if (exitoso)
+                    if ((this._ventana.ConfirmarModificacion(string.Format(Recursos.MensajesConElUsuario.ConfirmarModificarPoder,((Poder)this._ventana.Poder).Id))))
                     {
-                        _paginaPrincipal.MensajeUsuario = Recursos.MensajesConElUsuario.PoderModificado;
-                        this.Navegar(_paginaPrincipal);
+                        Poder poder = (Poder)this._ventana.Poder;
+
+                        poder.Boletin = (Boletin)this._ventana.Boletin;
+                        poder.Interesado = (Interesado)this._ventana.Interesado;
+                        poder.Operacion = "MODIFY";
+
+                        poder.Agentes = _apoderados;
+                        bool exitoso = this._poderServicios.InsertarOModificar(poder, UsuarioLogeado.Hash);
+                        if (exitoso)
+                        {
+                            //_paginaPrincipal.MensajeUsuario = Recursos.MensajesConElUsuario.PoderModificado;
+                            //this.Navegar(_paginaPrincipal);
+                            this._ventana.HabilitarCampos = false;
+                            this._ventana.TextoBotonModificar = Recursos.Etiquetas.btnModificar;
+                        }
                     }
+                    
                 }
 
                 #region trace
@@ -201,6 +263,36 @@ namespace Trascend.Bolet.Cliente.Presentadores.Poderes
             }
         }
 
+        public void OrdenarColumna(GridViewColumnHeader column, ListView ListaResultados)
+        {
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+            String field = column.Tag as String;
+
+            if (this._ventana.CurSortCol != null)
+            {
+                AdornerLayer.GetAdornerLayer(this._ventana.CurSortCol).Remove(this._ventana.CurAdorner);
+                ListaResultados.Items.SortDescriptions.Clear();
+            }
+
+            ListSortDirection newDir = ListSortDirection.Ascending;
+            if (this._ventana.CurSortCol == column && this._ventana.CurAdorner.Direction == newDir)
+                newDir = ListSortDirection.Descending;
+
+            this._ventana.CurSortCol = column;
+            this._ventana.CurAdorner = new SortAdorner(this._ventana.CurSortCol, newDir);
+            AdornerLayer.GetAdornerLayer(this._ventana.CurSortCol).Add(this._ventana.CurAdorner);
+            ListaResultados.Items.SortDescriptions.Add(
+                new SortDescription(field, newDir));
+
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+        }
         /// <summary>
         /// Método que elimina un poder de la base de datos
         /// </summary>
@@ -311,7 +403,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Poderes
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-                System.Diagnostics.Process.Start(ConfigurationManager.AppSettings["rutaPoderes"].ToString()+((Poder)this._ventana.Poder).Id+".pdf");
+                System.Diagnostics.Process.Start(ConfigurationManager.AppSettings["rutaPoderes"].ToString() + ((Poder)this._ventana.Poder).Id + ".pdf");
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -380,6 +472,56 @@ namespace Trascend.Bolet.Cliente.Presentadores.Poderes
             if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
                 logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
+        }
+
+        public void EliminarAgente()
+        {
+            if (((Agente)this._ventana.Apoderado != null) && !((Agente)this._ventana.Apoderado).Id.Equals("NGN"))
+            {
+                _agentes.Add((Agente)this._ventana.Apoderado);
+                this._ventana.Agentes = null;
+                this._ventana.Agentes = _agentes;
+
+                _apoderados = ((IList<Agente>)this._ventana.Apoderados);
+                _apoderados.Remove((Agente)this._ventana.Apoderado);
+                this._ventana.Apoderados = null;
+                this._ventana.Apoderados = _apoderados;
+
+            }
+        }
+
+        public void AgregarAgente()
+        {
+            if (!((Agente)this._ventana.Agente).Id.Equals("NGN"))
+            {
+                _apoderados = ((IList<Agente>)this._ventana.Apoderados);
+                _apoderados.Insert(0, (Agente)this._ventana.Agente);
+                this._ventana.Apoderados = null;
+                this._ventana.Apoderados = _apoderados;
+
+                //_agentes = ((IList<Agente>)this._ventana.Agentes);
+                _agentes.Remove((Agente)this._ventana.Agente);
+                this._ventana.Agentes = null;
+                this._ventana.Agentes = _agentes;
+            }
+        }
+
+        public void ConsultarInteresadoFiltro()
+        {
+            if ((!this._ventana.NombreInteresadoConsultar.Equals("")) || (!this._ventana.IdInteresadoConsultar.Equals("")))
+            {
+                Interesado interesadoAFiltrar = new Interesado();
+                interesadoAFiltrar.Id = !this._ventana.IdInteresadoConsultar.Equals("") ? int.Parse(this._ventana.IdInteresadoConsultar) : 0;
+                interesadoAFiltrar.Nombre = !this._ventana.NombreInteresadoConsultar.Equals("") ? this._ventana.NombreInteresadoConsultar : "";
+
+
+                this._ventana.Interesados = this._interesadoServicios.ObtenerInteresadosFiltro(interesadoAFiltrar);
+            }
+        }
+
+        public void CambiarInteresado()
+        {
+            this._ventana.NombreInteresado = ((Interesado)this._ventana.Interesado).Nombre;
         }
     }
 }

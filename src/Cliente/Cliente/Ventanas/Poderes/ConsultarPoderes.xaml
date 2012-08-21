@@ -43,7 +43,7 @@
         <GroupBox Grid.Column="0" Grid.Row="0" Margin="5,40,5,5">
             <StackPanel Name="_splFiltro" DataContext="{Binding}" VerticalAlignment="Center">
                 <!--<Separator Margin="0,0,0,5"/>-->
-                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,180,0">
+                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,60,180,0">
                     <Label>
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblId}"/>
                     </Label>
@@ -138,7 +138,7 @@
                 </WrapPanel>
 
                 <Separator Margin="0,5,0,5"/>
-                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,180,0">
+                <!--<WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,180,0">
                     <Label>
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblFacultad}"/>
                     </Label>
@@ -160,7 +160,7 @@
                          HorizontalAlignment="Left" Width="150" Height="75" Text="{Binding Path=Observaciones}" MaxLength="2000" 
                          TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" AcceptsReturn="True" SpellCheck.IsEnabled="True"
                              GotFocus="_btnConsultarFocus" GotKeyboardFocus="_btnConsultarFocus"></custom:ByTTextBox>
-                </WrapPanel>
+                </WrapPanel>-->
                 <Separator Margin="0,5,0,5"/>
                 <WrapPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,5,0,5">
                     <Button Name="_btnConsultar" Width="100" IsDefault="True" Click="_btnConsultar_Click">

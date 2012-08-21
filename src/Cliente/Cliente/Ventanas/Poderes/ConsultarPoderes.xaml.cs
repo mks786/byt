@@ -63,23 +63,23 @@ namespace Trascend.Bolet.Cliente.Ventanas.Poderes
             set { this._lstInteresados.SelectedItem = value; }
         }
 
-        public string Facultad
-        {
-            get { return this._txtFacultad.Text; }
-            set { this._txtFacultad.Text = value; }
-        }
+        //public string Facultad
+        //{
+        //    get { return this._txtFacultad.Text; }
+        //    set { this._txtFacultad.Text = value; }
+        //}
 
-        public string Anexo
-        {
-            get { return this._txtAnexo.Text; }
-            set { this._txtAnexo.Text = value; }
-        }
+        //public string Anexo
+        //{
+        //    get { return this._txtAnexo.Text; }
+        //    set { this._txtAnexo.Text = value; }
+        //}
 
-        public string Observaciones
-        {
-            get { return this._txtObservaciones.Text; }
-            set { this._txtObservaciones.Text = value; }
-        }
+        //public string Observaciones
+        //{
+        //    get { return this._txtObservaciones.Text; }
+        //    set { this._txtObservaciones.Text = value; }
+        //}
 
         public bool EstaCargada
         {
@@ -219,23 +219,23 @@ namespace Trascend.Bolet.Cliente.Ventanas.Poderes
                 this._cbxBoletin.Focus();
             }
 
-            if (!this._txtFacultad.Text.Equals(""))
-            {
-                todosCamposVacios = false;
-                this._txtFacultad.Focus();
-            }
+            //if (!this._txtFacultad.Text.Equals(""))
+            //{
+            //    todosCamposVacios = false;
+            //    this._txtFacultad.Focus();
+            //}
 
-            if (!this._txtAnexo.Text.Equals(""))
-            {
-                todosCamposVacios = false;
-                this._txtAnexo.Focus();
-            }
+            //if (!this._txtAnexo.Text.Equals(""))
+            //{
+            //    todosCamposVacios = false;
+            //    this._txtAnexo.Focus();
+            //}
 
-            if (!this._txtObservaciones.Text.Equals(""))
-            {
-                todosCamposVacios = false;
-                this._txtObservaciones.Focus();
-            }
+            //if (!this._txtObservaciones.Text.Equals(""))
+            //{
+            //    todosCamposVacios = false;
+            //    this._txtObservaciones.Focus();
+            //}
 
             if (todosCamposVacios)
                 this._txtId.Focus();

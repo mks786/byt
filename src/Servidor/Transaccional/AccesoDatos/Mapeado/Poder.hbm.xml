@@ -19,7 +19,7 @@
       <column name="CINTERESADO"/>
     </many-to-one>
 
-    <bag name="Agentes" table="MYP_APODERADOS">
+    <bag name="Agentes" table="MYP_APODERADOS" lazy="false">
       <key column="CPODER"/>
       <many-to-many column="CAGENTE" class="Agente" not-found="ignore"/>
     </bag>

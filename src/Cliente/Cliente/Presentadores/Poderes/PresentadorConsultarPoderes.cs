@@ -207,23 +207,23 @@ namespace Trascend.Bolet.Cliente.Presentadores.Poderes
                     filtroValido++;
                 }
 
-                if (!string.IsNullOrEmpty(this._ventana.Facultad))
-                {
-                    retorno.Facultad = this._ventana.Facultad;
-                    filtroValido++;
-                }
+                //if (!string.IsNullOrEmpty(this._ventana.Facultad))
+                //{
+                //    retorno.Facultad = this._ventana.Facultad;
+                //    filtroValido++;
+                //}
 
-                if (!string.IsNullOrEmpty(this._ventana.Anexo))
-                {
-                    retorno.Anexo = this._ventana.Anexo;
-                    filtroValido++;
-                }
+                //if (!string.IsNullOrEmpty(this._ventana.Anexo))
+                //{
+                //    retorno.Anexo = this._ventana.Anexo;
+                //    filtroValido++;
+                //}
 
-                if (!string.IsNullOrEmpty(this._ventana.Observaciones))
-                {
-                    retorno.Observaciones = this._ventana.Observaciones;
-                    filtroValido++;
-                }
+                //if (!string.IsNullOrEmpty(this._ventana.Observaciones))
+                //{
+                //    retorno.Observaciones = this._ventana.Observaciones;
+                //    filtroValido++;
+                //}
 
                 if (filtroValido == 0)
                     _filtroValido = false;
@@ -246,7 +246,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Poderes
                 logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
 
-            this.Navegar(new ConsultarPoder(this._ventana.PoderSeleccionado, this._ventana.Boletines, this._ventana.Interesados));
+            this.Navegar(new ConsultarPoder(this._ventana.PoderSeleccionado));
 
             #region trace
             if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -359,11 +359,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Poderes
             this._ventana.Id = null;
             this._ventana.NombreInteresadoFiltrar = null;
             this._ventana.IdInteresadoFiltrar = null;
-            this._ventana.Observaciones = null;
+            //this._ventana.Observaciones = null;
             this._ventana.PoderSeleccionado = null;
-            this._ventana.Anexo = null;
+            //this._ventana.Anexo = null;
             this._ventana.NumPoder = null;
-            this._ventana.Facultad = null;
+            //this._ventana.Facultad = null;
 
             this._ventana.Boletin = ((IList<Boletin>)this._ventana.Boletines)[0];
             this._ventana.Interesado = null;

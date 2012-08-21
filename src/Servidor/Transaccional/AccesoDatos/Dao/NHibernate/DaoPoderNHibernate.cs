@@ -195,7 +195,6 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
             return poderes;
         }
 
-
         public IList<Poder> ObtenerPoderesEntreAgenteEInteresado(Agente agente, Interesado interesado)
         {
             IList<Poder> poderes = null;

@@ -28,7 +28,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Poderes
 
         public void FocoPredeterminado()
         {
-            this._txtNumPoder.Focus();
+            this._txtNumSAPI.Focus();
         }
 
         public object Poder
@@ -49,12 +49,36 @@ namespace Trascend.Bolet.Cliente.Ventanas.Poderes
             set { this._cbxBoletin.SelectedItem = value; }
         }
 
+        public object Agentes
+        {
+            get { return this._cbxAgente.DataContext; }
+            set { this._cbxAgente.DataContext = value; }
+        }
+
+        public object Agente
+        {
+            get { return this._cbxAgente.SelectedItem; }
+            set { this._cbxAgente.SelectedItem = value; }
+        }
+
+        public object Apoderados
+        {
+            get { return this._lstAgentes.DataContext; }
+            set { this._lstAgentes.DataContext = value; }
+        }
+
+        public object Apoderado
+        {
+            get { return this._lstAgentes.SelectedItem; }
+            set { this._lstAgentes.SelectedItem = value; }
+        }
+
         public object Interesados
         {
             get { return this._lstInteresados.DataContext; }
             set { this._lstInteresados.DataContext = value; }
         }
-        
+
         public object Interesado
         {
             get { return this._lstInteresados.SelectedItem; }
@@ -82,6 +106,21 @@ namespace Trascend.Bolet.Cliente.Ventanas.Poderes
             get { return this._conInteresado; }
             set { this._conInteresado = value; }
         }
+
+        public string NombreInteresado{
+            set { this._txtNombreInteresado.Text = value; }
+        }
+
+        public string IdInteresadoConsultar
+        {
+            get { return this._txtIdInteresadoFiltrar.Text; }
+        }
+
+        public string NombreInteresadoConsultar
+        {
+            get { return this._txtNombreInteresadoFiltrar.Text; }
+        }
+
         public GridViewColumnHeader CurSortCol
         {
             get { return _CurSortCol; }
@@ -141,6 +180,99 @@ namespace Trascend.Bolet.Cliente.Ventanas.Poderes
         private void _Ordenar_Click(object sender, RoutedEventArgs e)
         {
             this._presentador.OrdenarColumna(sender as GridViewColumnHeader);
+        }
+
+        private void _cbxAgente_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void _txtIdAgente_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+
+        }
+
+        private void _lstAgentes_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+        }
+
+        private void _OrdenarAgentes_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.OrdenarColumna(sender as GridViewColumnHeader, this._lstAgentes);
+        }
+
+        private void _txtIdAgenteFiltrar_GotFocus(object sender, RoutedEventArgs e)
+        {
+            //this._btnConsultarAgente.IsDefault = true;
+            this._btnAceptar.IsDefault = false;
+        }
+
+        private void _btnConsultarAgente_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void _txtNombreInteresado_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            this._txtIdInteresadoFiltrar.Focus();
+            this._btnConsultarInteresado.IsDefault = true;
+            this._btnAceptar.IsDefault = false;
+
+            MostrarListInteresados();
+        }
+
+        private void MostrarListInteresados()
+        {
+            this._txtNombreInteresado.Visibility = Visibility.Collapsed;
+            this._lblNombreInteresadoFiltrar.Visibility = Visibility.Visible;
+            this._txtNombreInteresadoFiltrar.Visibility = Visibility.Visible;
+            this._lblIdInteresadoFiltrar.Visibility = Visibility.Visible;
+            this._txtIdInteresadoFiltrar.Visibility = Visibility.Visible;
+            this._btnConsultarInteresado.Visibility = Visibility.Visible;
+            this._lstInteresados.Visibility = Visibility.Visible;
+            this._colInteresados.Height = new System.Windows.GridLength(180);
+        }
+
+        private void MostrarNombreInteresado()
+        {
+            this._txtNombreInteresado.Visibility = Visibility.Visible;
+            this._lblNombreInteresadoFiltrar.Visibility = Visibility.Collapsed;
+            this._txtNombreInteresadoFiltrar.Visibility = Visibility.Collapsed;
+            this._lblIdInteresadoFiltrar.Visibility = Visibility.Collapsed;
+            this._txtIdInteresadoFiltrar.Visibility = Visibility.Collapsed;
+            this._btnConsultarInteresado.Visibility = Visibility.Collapsed;
+            this._lstInteresados.Visibility = Visibility.Collapsed;
+            this._colInteresados.Height = new System.Windows.GridLength(30);
+        }
+
+        private void _lstInteresados_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            if (this._lstInteresados.SelectedItem != null) 
+            {
+                _presentador.CambiarInteresado();
+                MostrarNombreInteresado();
+            }
+        }
+
+        private void _txtIdInteresadoFiltrar_GotFocus(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void _btnConsultarInteresado_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.ConsultarInteresadoFiltro();
+        }
+
+        private void _btnAgregarAgente_Click(object sender, RoutedEventArgs e)
+        {
+            _presentador.AgregarAgente();
+        }
+
+        private void _btnQuitarAgente_Click(object sender, RoutedEventArgs e)
+        {
+            _presentador.EliminarAgente();
+
         }
     }
 }

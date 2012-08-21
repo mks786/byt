@@ -218,8 +218,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Poderes
                     this._ventana.Poderes = null;
                     this._ventana.Poderes = poderes;
 
-                    Agente ahhh = (Agente)this._ventana.AgenteSeleccionado;
-                    this._agenteServicios.InsertarOModificar(ahhh, UsuarioLogeado.Hash);
+                    Agente agente = (Agente)this._ventana.AgenteSeleccionado;
+                    this._agenteServicios.InsertarOModificar(agente, UsuarioLogeado.Hash);
                 }
 
                 #region trace

@@ -1034,6 +1034,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ¿Está seguro que desea modificar el poder id: {0}?.
+        /// </summary>
+        internal static string ConfirmarModificarPoder {
+            get {
+                return ResourceManager.GetString("ConfirmarModificarPoder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Contacto insertado con éxito.
         /// </summary>
         internal static string ContactoInsertado {

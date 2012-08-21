@@ -11,15 +11,29 @@ namespace Trascend.Bolet.Cliente.Contratos.Poderes
 
         object Boletin { get; set; }
 
+        string NombreInteresado { set; }
+
         object Interesados { get; set; }
 
         object Interesado { get; set; }
+
+        object Agente { get; set; }
+
+        object Agentes { get; set; }
+
+        object Apoderado { get; set; }
+
+        object Apoderados { get; set; }
 
         bool InteresadoEsEditable { get; set; }
 
         bool ConInteresado { get; set; }
 
         string TextoBotonCancelar { get; set; }
+
+        string IdInteresadoConsultar { get; }
+
+        string NombreInteresadoConsultar { get; }
 
         GridViewColumnHeader CurSortCol { get; set; }
 

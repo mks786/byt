@@ -49,7 +49,7 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
         /// <param name="poder">Poder a modificar</param>
         /// <param name="hash">Hash del usuario que va a realizar la operacion</param>
         /// <returns>True si la insercion fue exitosa, en caso contrario False</returns>
-        public static bool InsertarOModificar(Poder poder, int hash)
+        public static bool InsertarOModificar(ref Poder poder, int hash)
         {
             bool exitoso = false;
 

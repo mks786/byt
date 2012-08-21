@@ -44,5 +44,14 @@ namespace Trascend.Bolet.ObjetosComunes.ContratosServicios
         /// <param name="interesado">Interesado a buscar</param>
         /// <returns>Poderes pertenecientes a los parametros</returns>
         IList<Poder> ObtenerPoderesEntreAgenteEInteresado(Agente agente, Interesado interesado);
+
+
+        /// <summary>
+        /// Servicio que se encarga de insertar el Poder
+        /// </summary>
+        /// <param name="marca">Poder a insertar</param>
+        /// <param name="hash">hash del usuario que ejecuta la insercion</param>
+        /// <returns>Id del Poder insertada</returns>
+        int? InsertarOModificarPoder(Poder poder, int hash);
     }
 }

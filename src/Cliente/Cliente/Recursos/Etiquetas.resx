@@ -2781,4 +2781,13 @@ en Prensa:</value>
   <data name="lsvEstado" xml:space="preserve">
     <value>Estado</value>
   </data>
+  <data name="lblAgentes" xml:space="preserve">
+    <value>Agentes:</value>
+  </data>
+  <data name="lblListaDeAgentesPorPoder" xml:space="preserve">
+    <value>Apoderados:</value>
+  </data>
+  <data name="lblNoSapi" xml:space="preserve">
+    <value>No. SAPI:</value>
+  </data>
 </root>
