@@ -2293,7 +2293,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
 
         public void IrRenovacionDeMarca()
         {
-            this.Navegar(new ConsultarRenovaciones(this._ventana.Marca,this._ventana));
+            this.Navegar(new ConsultarRenovaciones(this._ventana.Marca, this._ventana));
         }
 
         public void IrVentanaAsociado()

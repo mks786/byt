@@ -12,6 +12,12 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
     {
         private static Logger logger = LogManager.GetCurrentClassLogger();
         private ISession _session;
+        //private NHibernateHelper _helper;
+
+        //public DaoBaseNHibernate()
+        //{
+        //    _helper = NHibernateHelper.ObtenerInstanciaNHibernateHelper();
+        //}
 
         /// <summary>
         /// Propiedad para obtener la sesion
@@ -224,5 +230,24 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
 
             return exitoso;
         }
+
+
+
+        ///// <summary>
+        ///// Método que cierra la sesion de la BD
+        ///// </summary>
+        //public void CerrarSesion()
+        //{
+        //    try
+        //    {
+        //        _helper.GetSession().Flush();
+        //        _helper.GetSession().Clear();
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        string a = ex.Message;
+        //        throw;
+        //    }
+        //}
     }
 }

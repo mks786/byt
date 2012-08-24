@@ -5,6 +5,7 @@
                    auto-import="true">
 
   <class name="Marca" table="MYP_MARCAS">
+    
     <id name="Id" column="CMARCA" type="int"/>
     <property name="Descripcion" column="XMARCA" type="string"/>
     <property name="Tipo" column="ITIPO" type="string"/>
@@ -43,7 +44,6 @@
     <property name="Ter" column="ITER" type="char"/>
     <property name="Recordatorio" column="NRECORDATORIO" type="int"/>
 
-
     <property name="Localidad" column="CLOCALIDAD" type="char"/>
     <property name="IdInternacional" column="CMARCAI" type="int"/>
     <property name="Donde" column="CDONDE" type="int"/>
@@ -60,10 +60,6 @@
     <property name="Clasificacion" column="ICLASIFICACION" type="string"/>
     <property name="Clase" column="XCLASE" type="string"/>
 
-    
-    
-    
-    
     <many-to-one name="Agente" class="Agente">
       <column name="CAGENTE"/>
     </many-to-one>
@@ -75,23 +71,10 @@
     <many-to-one name="Corresponsal" class="Corresponsal">
       <column name="CCORRESP"/>
     </many-to-one>
-
-    
-    
-    
-    
-    
     
     <!--<many-to-one name="Carta" class="Carta">
       <column name="CCORRESP"/>
     </many-to-one>-->
-
-    
-    
-    
-    
-    
-    
     
     <many-to-one name="BoletinConcesion" class="Boletin">
       <column name="CBOLETIN_CONCESION"/>

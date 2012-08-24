@@ -221,5 +221,7 @@ namespace Trascend.Bolet.Cliente.Contratos.Patentes
         void ConvertirEnteroMinimoABlanco();
 
         void MostrarLstPoderSolicitud();
+
+        bool ConfirmarAccion(string Titulo, string Mensaje);
     }
 }

@@ -178,7 +178,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Poderes
                 {
                     if (apoderado.Id == agente.Id)
                     {
-                        posicionesABorrar.Insert(0,i);
+                        posicionesABorrar.Insert(0, i);
                         //agentesADevolver.Remove(agente);
                     }
                     i++;
@@ -215,7 +215,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Poderes
                 //Modifica los datos del Poder
                 else
                 {
-                    if ((this._ventana.ConfirmarModificacion(string.Format(Recursos.MensajesConElUsuario.ConfirmarModificarPoder,((Poder)this._ventana.Poder).Id))))
+                    if ((this._ventana.ConfirmarModificacion(string.Format(Recursos.MensajesConElUsuario.ConfirmarModificarPoder, ((Poder)this._ventana.Poder).Id))))
                     {
                         Poder poder = (Poder)this._ventana.Poder;
 
@@ -233,7 +233,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Poderes
                             this._ventana.TextoBotonModificar = Recursos.Etiquetas.btnModificar;
                         }
                     }
-                    
+
                 }
 
                 #region trace

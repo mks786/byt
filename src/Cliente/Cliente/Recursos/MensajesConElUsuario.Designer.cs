@@ -1673,6 +1673,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ¿Está seguro que desea insertar la patente?.
+        /// </summary>
+        internal static string InsertarPatente {
+            get {
+                return ResourceManager.GetString("InsertarPatente", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Interesado eliminado con éxito.
         /// </summary>
         internal static string InteresadoEliminado {

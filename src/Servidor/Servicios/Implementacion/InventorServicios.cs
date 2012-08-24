@@ -65,7 +65,7 @@ namespace Trascend.Bolet.Servicios.Implementacion
         /// <param name="entidad">Entidad a insertar</param>
         /// <param name="hash">Hash del usuario que inserta</param>
         /// <returns>true en caso de ser exitoso, false en caso contrario</returns>
-        public bool InsertarOModificar(Inventor anexo, int hash)
+        public bool InsertarOModificar(Inventor inventor, int hash)
         {
             try
             {
@@ -74,7 +74,7 @@ namespace Trascend.Bolet.Servicios.Implementacion
                     logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-                bool exitoso = ControladorInventor.InsertarOModificar(anexo, hash);
+                bool exitoso = ControladorInventor.InsertarOModificar(inventor, hash);
 
                 #region trace
                 if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
@@ -102,7 +102,7 @@ namespace Trascend.Bolet.Servicios.Implementacion
         /// <param name="entidad">Entidad a eliminar</param>
         /// <param name="hash">hash del usuario que realiza la acción</param>
         /// <returns>true en caso de ser exitoso, false en caso contrario</returns>
-        public bool Eliminar(Inventor anexo, int hash)
+        public bool Eliminar(Inventor inventor, int hash)
         {
             try
             {
@@ -111,7 +111,7 @@ namespace Trascend.Bolet.Servicios.Implementacion
                     logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-                bool exitoso = ControladorInventor.Eliminar(anexo, hash);
+                bool exitoso = ControladorInventor.Eliminar(inventor, hash);
 
                 #region trace
                 if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
@@ -138,7 +138,7 @@ namespace Trascend.Bolet.Servicios.Implementacion
         /// </summary>
         /// <param name="entidad">Entidad a verificar existencia</param>
         /// <returns>True en caso de ser exitoso, false en caso contrario</returns>
-        public bool VerificarExistencia(Inventor anexo)
+        public bool VerificarExistencia(Inventor inventor)
         {
             try
             {
@@ -147,7 +147,7 @@ namespace Trascend.Bolet.Servicios.Implementacion
                     logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-                bool exitoso = ControladorInventor.VerificarExistencia(anexo);
+                bool exitoso = ControladorInventor.VerificarExistencia(inventor);
 
                 #region trace
                 if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))

@@ -461,7 +461,7 @@
                         <Label Grid.Column="0" Grid.Row="17" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblResumen}"/>
                         </Label>
-                        <custom:ByTTextBox  MaxLength="255" Grid.Column="1" Grid.Row="17" Name="_txtResumenSolicitud" VerticalAlignment="Center"
+                        <custom:ByTTextBox  MaxLength="2000" Grid.Column="1" Grid.Row="17" Name="_txtResumenSolicitud" VerticalAlignment="Center"
                                            Grid.ColumnSpan="7" Text="{Binding Path=Resumen}"></custom:ByTTextBox>
 
                         <Label Grid.Column="0" Grid.Row="18" VerticalAlignment="Center" HorizontalContentAlignment="Right">
@@ -906,7 +906,7 @@
                         <Label Grid.Column="0" Grid.Row="11" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblResumen}"/>
                         </Label>
-                        <custom:ByTTextBox  MaxLength="255" Grid.Column="1" Grid.Row="11" Name="_txtResumenDatos" VerticalAlignment="Center"
+                        <custom:ByTTextBox  MaxLength="2000" Grid.Column="1" Grid.Row="11" Name="_txtResumenDatos" VerticalAlignment="Center"
                                            Grid.ColumnSpan="3" Text="{Binding Path=Resumen}"></custom:ByTTextBox>
 
                         <Label Grid.Column="4" Grid.Row="11" VerticalAlignment="Center" HorizontalContentAlignment="Right">
@@ -1102,7 +1102,7 @@
                             <custom:ByTTextBox Grid.Column="6" Grid.Row="0" Grid.RowSpan="5" Name="_txtComentarioDatos" VerticalAlignment="Center"
                                            Text="{Binding Path=Observacion}" Grid.ColumnSpan="6" Margin="10,10,0,0" 
                                            MaxLength="200" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" AcceptsReturn="True"
-                                            SpellCheck.IsEnabled="True"></custom:ByTTextBox>
+                                            SpellCheck.IsEnabled="True" Height="250" Width="300"></custom:ByTTextBox>
 
                             <Label Grid.Column="0" Grid.Row="1" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                                 <TextBlock Text="{x:Static recurso:Etiquetas.lblDetalle}"/>

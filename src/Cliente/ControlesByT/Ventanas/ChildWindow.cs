@@ -63,7 +63,8 @@ namespace Trascend.Bolet.ControlesByT.Ventanas
                 {
                     this._textBox.Text = this._detalle.Text.Replace(Environment.NewLine, "\n");
                 }
-                //this._textBox.Text = this._detalle.Text.Replace(Environment.NewLine, "\r");
+                else
+                    this._textBox.Text = this._detalle.Text;
             }
             this.Close();
         }

@@ -874,4 +874,7 @@
   <data name="ConfirmarModificarPoder" xml:space="preserve">
     <value>¿Está seguro que desea modificar el poder id: {0}?</value>
   </data>
+  <data name="InsertarPatente" xml:space="preserve">
+    <value>¿Está seguro que desea insertar la patente?</value>
+  </data>
 </root>

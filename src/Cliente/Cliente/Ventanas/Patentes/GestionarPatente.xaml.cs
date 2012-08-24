@@ -646,11 +646,20 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
             this._tabDatos.IsSelected = true;
         }
 
-        public void SeleccionarTabSolicitud() 
+        public void SeleccionarTabSolicitud()
         {
             this._tabSolicitud.IsSelected = true;
         }
 
+        public bool ConfirmarAccion(string Titulo, string Mensaje)
+        {
+            bool retorno = false;
+            if (MessageBoxResult.Yes == MessageBox.Show(Mensaje,
+                    Titulo, MessageBoxButton.YesNo, MessageBoxImage.Question))
+                retorno = true;
+
+            return retorno;
+        }
 
         public bool HabilitarCampos
         {
@@ -709,15 +718,15 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
                 this._txtAnualidadDatos.IsEnabled = value;
                 this._txtFechaRenovacionDatos.IsEnabled = value;
                 this._txtDuracion.IsEnabled = value;
-                
+
                 this._txtComentarioDatos.IsEnabled = value;
                 this._txtCodigoRegistroDatos.IsEnabled = value;
                 this._txtCodigoInscripcionDatos.IsEnabled = value;
                 //this._txtUbicacionDatos.IsEnabled = value;
                 //this._txtExpedienteDatos.IsEnabled = value;
-                
+
                 #endregion
-                
+
                 #region Datepicker
 
                 //Solicitud
@@ -822,7 +831,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
 
         #endregion
 
-        public GestionarPatente(object patenteSeleccionada,object ventanaAVolver)
+        public GestionarPatente(object patenteSeleccionada, object ventanaAVolver)
         {
             InitializeComponent();
 
@@ -830,11 +839,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
             this._asociadosCargados = false;
             this._interesadosCargados = false;
             this._poderesCargados = false;
-            this._presentador = new PresentadorGestionarPatente(this, patenteSeleccionada,ventanaAVolver);
+            this._presentador = new PresentadorGestionarPatente(this, patenteSeleccionada, ventanaAVolver);
         }
 
         public GestionarPatente(object patenteSeleccionada, string tab)
-            : this(patenteSeleccionada,(Page)null)
+            : this(patenteSeleccionada, (Page)null)
         {
             this._presentador.CambiarAModificar();
 
@@ -859,7 +868,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
             this._txtIdAsociadoSolicitud.Visibility = System.Windows.Visibility.Collapsed;
             this._lstAsociadosSolicitud.Visibility = System.Windows.Visibility.Visible;
             this._lstAsociadosSolicitud.IsEnabled = true;
-            this._btnConsultarAsociadoSolicitud.Visibility = System.Windows.Visibility.Visible;            
+            this._btnConsultarAsociadoSolicitud.Visibility = System.Windows.Visibility.Visible;
             this._txtNombreAsociadoSolicitud.Visibility = System.Windows.Visibility.Visible;
             this._lblIdAsociadoSolicitud.Visibility = System.Windows.Visibility.Visible;
             this._lblNombreAsociadoSolicitud.Visibility = System.Windows.Visibility.Visible;
@@ -902,7 +911,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
             this._txtIdInteresadoSolicitudFiltrar.Visibility = System.Windows.Visibility.Collapsed;
             this._txtNombreInteresadoSolicitud.Visibility = System.Windows.Visibility.Collapsed;
             this._txtInteresadoSolicitud.Visibility = System.Windows.Visibility.Visible;
-            this._txtIdInteresadoSolicitud.Visibility = System.Windows.Visibility.Visible;            
+            this._txtIdInteresadoSolicitud.Visibility = System.Windows.Visibility.Visible;
             this._lblIdInteresadoSolicitud.Visibility = System.Windows.Visibility.Collapsed;
             this._lblNombreInteresadoSolicitud.Visibility = System.Windows.Visibility.Collapsed;
         }
@@ -1028,13 +1037,13 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
         {
             if (_camposHabilitados)
             {
-                if (MessageBoxResult.Yes == MessageBox.Show(string.Format(Recursos.MensajesConElUsuario.ConfirmarModificarPatente,
-                    _presentador.ObtenerIdCarta()),
-                    "Modificar Patente", MessageBoxButton.YesNo, MessageBoxImage.Question))
-                {
-                    this._presentador.Modificar();
-                    _camposHabilitados = false;
-                }
+                //if (MessageBoxResult.Yes == MessageBox.Show(string.Format(Recursos.MensajesConElUsuario.ConfirmarModificarPatente,
+                //    _presentador.ObtenerIdPatente()),
+                //    "Modificar Patente", MessageBoxButton.YesNo, MessageBoxImage.Question))
+                //{
+                this._presentador.Modificar();
+                _camposHabilitados = false;
+                //}
             }
             else
                 this._presentador.Modificar();
@@ -1195,7 +1204,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
                 this._presentador.CargarAsociados();
             }
 
-            
+
             OcultarLstInteresadoSolicitud();
             OcultarLstPoderSolicitud();
             OcultarLstAgenteSolicitud();
@@ -1223,6 +1232,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
         private void _btnConsultarAsociadoSolicitud_Click(object sender, RoutedEventArgs e)
         {
             this._presentador.BuscarAsociado(0);
+            _asociadosCargados = true;
         }
 
         private void _txtInteresadoSolicitud_MouseDoubleClick(object sender, RoutedEventArgs e)
@@ -1245,13 +1255,14 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
         private void _btnConsultarInteresadoSolicitud_Click(object sender, RoutedEventArgs e)
         {
             this._presentador.BuscarInteresado(0);
+            _interesadosCargados = true;
         }
 
         private void _lstInteresadosSolicitud_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             this._presentador.CambiarInteresadoSolicitud();
             OcultarLstInteresadoSolicitud();
-            
+
             this._btnConsultarInteresadoSolicitud.IsDefault = false;
             this._btnAceptar.IsDefault = true;
         }
@@ -1263,7 +1274,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
 
         private void _txtPoderSolicitud_MouseDoubleClick(object sender, RoutedEventArgs e)
         {
-                this._presentador.CargarPoderes();
+            this._presentador.CargarPoderes();
 
             OcultarLstAsociadoSolicitud();
             OcultarLstInteresadoSolicitud();
@@ -1296,8 +1307,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
 
         private void _txtAgenteSolicitud_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            if (!this._agentesCargados)
-                this._presentador.CargarAgentes();
+            //if (!this._agentesCargados)
+            //    this._presentador.CargarAgentes();
 
             OcultarLstAsociadoSolicitud();
             OcultarLstInteresadoSolicitud();
@@ -1415,7 +1426,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
 
         private void _btnConsultarAsociadoDatos_Click(object sender, RoutedEventArgs e)
         {
-            this._presentador.BuscarAsociado(0);
+            this._presentador.BuscarAsociado(1);
+            _asociadosCargados = true;
         }
 
         private void _txtInteresadoDatos_MouseDoubleClick(object sender, RoutedEventArgs e)
@@ -1436,7 +1448,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
 
         private void _btnConsultarInteresadoDatos_Click(object sender, RoutedEventArgs e)
         {
-            this._presentador.BuscarInteresado(0);
+            this._presentador.BuscarInteresado(1);
+            _interesadosCargados = true;
         }
 
         private void _lstInteresadosDatos_MouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -1468,7 +1481,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
         {
             this._presentador.CambiarPoderDatos();
             OcultarLstPoderDatos();
-            
+
         }
 
         private void _OrdenarPoderDatos_Click(object sender, RoutedEventArgs e)
@@ -1508,7 +1521,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
 
         private void _btnInfoBolDatos_Click(object sender, RoutedEventArgs e)
         {
-            this._presentador.IrInfoBoles();   
+            this._presentador.IrInfoBoles();
         }
 
         private void _btnDisenoDatos_Click(object sender, RoutedEventArgs e)

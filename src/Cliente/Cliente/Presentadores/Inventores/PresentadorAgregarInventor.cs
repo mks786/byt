@@ -176,7 +176,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Inventores
 
         private int IdMayorDeInventorPorPatente()
         {
-            int retorno = 1;
+            int retorno = 0;
             foreach (Inventor inventor in this._patente.Inventores)
             {
                 if (inventor.Id > retorno)

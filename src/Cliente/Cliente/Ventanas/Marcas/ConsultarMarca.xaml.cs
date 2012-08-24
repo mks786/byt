@@ -275,7 +275,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             set
             {
                 #region TextBoxs
-                
+
                 this._txtAsociadoDatos.IsEnabled = value;
                 this._txtAsociadoSolicitud.IsEnabled = value;
                 this._txtBusqueda.IsEnabled = value;
@@ -917,12 +917,12 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             this._interesadosCargados = false;
             this._corresponsalesCargados = false;
             this._poderesCargados = false;
-            this._presentador = new PresentadorConsultarMarca(this, marcaSeleccionada,ventanaPadre);
+            this._presentador = new PresentadorConsultarMarca(this, marcaSeleccionada, ventanaPadre);
         }
 
 
         public ConsultarMarca(object marcaSeleccionada, string tab)
-            : this(marcaSeleccionada,(Page)null)
+            : this(marcaSeleccionada, (Page)null)
         {
             this._presentador.CambiarAModificar();
 
@@ -943,7 +943,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
         {
             this._presentador.DescripcionDetalle();
         }
-        
+
         #region Funciones
 
 
@@ -1034,7 +1034,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             this._txtIdAsociadoSolicitud.Visibility = System.Windows.Visibility.Collapsed;
             this._lstAsociadosSolicitud.Visibility = System.Windows.Visibility.Visible;
             this._lstAsociadosSolicitud.IsEnabled = true;
-            this._btnConsultarAsociadoSolicitud.Visibility = System.Windows.Visibility.Visible;            
+            this._btnConsultarAsociadoSolicitud.Visibility = System.Windows.Visibility.Visible;
             this._txtNombreAsociadoSolicitud.Visibility = System.Windows.Visibility.Visible;
             this._lblIdAsociadoSolicitud.Visibility = System.Windows.Visibility.Visible;
             this._lblNombreAsociadoSolicitud.Visibility = System.Windows.Visibility.Visible;
@@ -1080,7 +1080,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             this._txtIdInteresadoSolicitudFiltrar.Visibility = System.Windows.Visibility.Collapsed;
             this._txtNombreInteresadoSolicitud.Visibility = System.Windows.Visibility.Collapsed;
             this._txtInteresadoSolicitud.Visibility = System.Windows.Visibility.Visible;
-            this._txtIdInteresadoSolicitud.Visibility = System.Windows.Visibility.Visible;            
+            this._txtIdInteresadoSolicitud.Visibility = System.Windows.Visibility.Visible;
             this._lblIdInteresadoSolicitud.Visibility = System.Windows.Visibility.Collapsed;
             this._lblNombreInteresadoSolicitud.Visibility = System.Windows.Visibility.Collapsed;
         }
@@ -1151,7 +1151,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             this._txtIdInteresadoDatosFiltrar.Visibility = System.Windows.Visibility.Visible;
             this._lstInteresadosDatos.Visibility = System.Windows.Visibility.Visible;
             this._lstInteresadosDatos.IsEnabled = true;
-            this._btnConsultarInteresadoDatos.Visibility = System.Windows.Visibility.Visible;            
+            this._btnConsultarInteresadoDatos.Visibility = System.Windows.Visibility.Visible;
             this._txtNombreInteresadoDatos.Visibility = System.Windows.Visibility.Visible;
             this._lblIdInteresadoDatos.Visibility = System.Windows.Visibility.Visible;
             this._lblNombreInteresadoDatos.Visibility = System.Windows.Visibility.Visible;
@@ -1273,8 +1273,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
         {
             this._presentador.Auditoria();
         }
-        
-        
+
+
         #endregion
 
         #region Eventos Solicitudes

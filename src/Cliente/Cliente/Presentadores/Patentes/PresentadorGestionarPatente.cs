@@ -67,7 +67,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
         /// Constructor Predeterminado
         /// </summary>
         /// <param name="ventana">página que satisface el contrato</param>
-        public PresentadorGestionarPatente(IGestionarPatente ventana, object patente,object ventanaPadre)
+        public PresentadorGestionarPatente(IGestionarPatente ventana, object patente, object ventanaPadre)
         {
             try
             {
@@ -611,38 +611,52 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                     this._ventana.TextoBotonModificar = Recursos.Etiquetas.btnAceptar;
                 }
 
-                //Modifica los datos del Pais
+                //Modifica los datos del Patente
                 else
                 {
-                    if (ValidarPoder())
+                    string mensaje = "";
+                    string titulo = "";
+
+                    if (((Patente)this._ventana.Patente).Id == 0)
                     {
-
-                        Patente patente = CargarPatenteDeLaPantalla();
-
-                        if (_agregar)
-                        {
-                            exitosoEntero = this._patenteServicios.InsertarOModificarPatente(patente, UsuarioLogeado.Hash);
-                            patente.Id = (int)exitosoEntero;
-                        }
-                        else
-                        {
-                            exitoso = this._patenteServicios.InsertarOModificar(patente, UsuarioLogeado.Hash);
-                        }
-
-                        if ((!exitosoEntero.Equals(null)) || (exitoso))
-                        {
-                            if (_agregar)
-                                this.Navegar(new GestionarPatente(patente,null));
-                            else
-                            {
-                                this._ventana.HabilitarCampos = false;
-                                this._ventana.TextoBotonModificar = Recursos.Etiquetas.btnModificar;
-
-                            }
-                        }
+                        titulo = "Agregar Patente";
+                        mensaje = Recursos.MensajesConElUsuario.InsertarPatente;
                     }
                     else
-                        this._ventana.Mensaje(Recursos.MensajesConElUsuario.ErrorInteresadoNoPoseePoderesConAgente, 0);
+                    {
+                        titulo = "Modificar Patente";
+                        mensaje = string.Format(Recursos.MensajesConElUsuario.ConfirmarModificarPatente, ((Patente)this._ventana.Patente).Id);
+                    }
+                    if (this._ventana.ConfirmarAccion(titulo,mensaje))
+                        if (ValidarPoder())
+                        {
+
+                            Patente patente = CargarPatenteDeLaPantalla();
+
+                            if (_agregar)
+                            {
+                                exitosoEntero = this._patenteServicios.InsertarOModificarPatente(patente, UsuarioLogeado.Hash);
+                                patente.Id = (int)exitosoEntero;
+                            }
+                            else
+                            {
+                                exitoso = this._patenteServicios.InsertarOModificar(patente, UsuarioLogeado.Hash);
+                            }
+
+                            if ((!exitosoEntero.Equals(null)) || (exitoso))
+                            {
+                                if (_agregar)
+                                    this.Navegar(new GestionarPatente(patente, null));
+                                else
+                                {
+                                    this._ventana.HabilitarCampos = false;
+                                    this._ventana.TextoBotonModificar = Recursos.Etiquetas.btnModificar;
+
+                                }
+                            }
+                        }
+                        else
+                            this._ventana.Mensaje(Recursos.MensajesConElUsuario.ErrorInteresadoNoPoseePoderesConAgente, 0);
                 }
 
                 #region trace
@@ -789,7 +803,6 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                 logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
         }
-
 
         /// <summary>
         /// Método que se encarga de mostrar la ventana con la lista de Auditorías
@@ -1297,8 +1310,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
             {
 
 
-                asociadoABuscar.Id = !this._ventana.IdAsociadoDatosFiltrar.Equals("") ? 0 : int.Parse(this._ventana.IdAsociadoDatosFiltrar);
-                asociadoABuscar.Nombre = !this._ventana.NombreAsociadoDatosFiltrar.Equals("") ? "" : this._ventana.IdAsociadoDatosFiltrar.ToUpper();
+                asociadoABuscar.Id = this._ventana.IdAsociadoDatosFiltrar.Equals("") ? 0 : int.Parse(this._ventana.IdAsociadoDatosFiltrar);
+                asociadoABuscar.Nombre = this._ventana.NombreAsociadoDatosFiltrar.Equals("") ? "" : this._ventana.NombreAsociadoDatosFiltrar.ToUpper();
 
                 IList<Asociado> asociadosFiltrados = this._asociadoServicios.ObtenerAsociadosFiltro(asociadoABuscar);
 
@@ -1427,6 +1440,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                         this._ventana.InteresadoEstadoSolicitud = interesadoAux.Estado != null ? interesadoAux.Estado : "";
                         this._ventana.InteresadoPaisDatos = interesadoAux.Pais != null ? interesadoAux.Pais.NombreEspanol : "";
                         this._ventana.InteresadoEstadoDatos = interesadoAux.Estado != null ? interesadoAux.Estado : "";
+
+                        IList<Poder> poderes = this._poderServicios.ConsultarPoderesPorInteresado(interesadoAux);
+
+                        this._ventana.PoderesSolicitudFiltrar = poderes;
+                        this._ventana.PoderesDatosFiltrar = poderes;
                     }
 
                     this._ventana.ConvertirEnteroMinimoABlanco();
@@ -1691,6 +1709,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                     this._ventana.NumPoderSolicitud = ((Poder)this._ventana.PoderSolicitudFiltrar).NumPoder;
                     this._ventana.PoderSolicitud = ((Poder)this._ventana.PoderSolicitudFiltrar).Id.ToString();
                     this._ventana.PoderDatos = ((Poder)this._ventana.PoderSolicitudFiltrar).Id.ToString();
+
+                    IList<Agente> agentes = this._agenteServicios.ObtenerAgentesDeUnPoder((Poder)this._ventana.PoderSolicitudFiltrar);
+                    this._ventana.AgentesSolicitudFiltrar = null;
+                    this._ventana.AgentesSolicitudFiltrar = agentes;
+                    //this._ventana.AgenteDatosFiltrar = agentes;
                 }
 
                 this._ventana.ConvertirEnteroMinimoABlanco();
@@ -1850,40 +1873,46 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
 
             Mouse.OverrideCursor = Cursors.Wait;
 
-            CargarPoderesEntreInteresadoAgente();
-
-            Patente patente = null != this._ventana.Patente ? (Patente)this._ventana.Patente : new Patente();
-            //IList<Poder> poderes = this._poderServicios.ConsultarTodos();
-            //Poder poder = new Poder();
-            //poder.Id = int.MinValue;
-            //poderes.Insert(0, poder);
-            //this._ventana.PoderesDatosFiltrar = poderes;
-            //this._ventana.PoderesSolicitudFiltrar = poderes;
-
-            if (this._agregar == false)
-            {
-                Poder poder = _patente.Poder;
-
-                this._ventana.PoderSolicitud = poder != null ? poder.Id.ToString() : "";
-                //this._ventana.PoderSolicitud = poder.Id.ToString();
-                this._ventana.NumPoderSolicitud = poder != null ? poder.NumPoder : "";
-
-                this._ventana.PoderDatos = poder != null ? poder.Id.ToString() : "";
-
-                //this._poderesInterseccion.Insert(0, poder);
-                this._ventana.PoderesSolicitudFiltrar = _poderesInterseccion;
-                this._ventana.PoderesDatosFiltrar = _poderesInterseccion;
-
-                this._ventana.PoderSolicitudFiltrar = poder;
-                this._ventana.PoderDatosFiltrar = poder;
 
 
-            }
-            else
-            {
-                this._ventana.PoderesSolicitudFiltrar = _poderesInterseccion;
-                this._ventana.PoderesDatosFiltrar = _poderesInterseccion;
-            }
+
+            //CargarPoderesEntreInteresadoAgente();
+
+            //Patente patente = null != this._ventana.Patente ? (Patente)this._ventana.Patente : new Patente();
+            ////IList<Poder> poderes = this._poderServicios.ConsultarTodos();
+            ////Poder poder = new Poder();
+            ////poder.Id = int.MinValue;
+            ////poderes.Insert(0, poder);
+            ////this._ventana.PoderesDatosFiltrar = poderes;
+            ////this._ventana.PoderesSolicitudFiltrar = poderes;
+
+            //if (this._agregar == false)
+            //{
+            //    Poder poder = _patente.Poder;
+
+            //    this._ventana.PoderSolicitud = poder != null ? poder.Id.ToString() : "";
+            //    //this._ventana.PoderSolicitud = poder.Id.ToString();
+            //    this._ventana.NumPoderSolicitud = poder != null ? poder.NumPoder : "";
+
+            //    this._ventana.PoderDatos = poder != null ? poder.Id.ToString() : "";
+
+            //    //this._poderesInterseccion.Insert(0, poder);
+            //    this._ventana.PoderesSolicitudFiltrar = _poderesInterseccion;
+            //    this._ventana.PoderesDatosFiltrar = _poderesInterseccion;
+
+            //    this._ventana.PoderSolicitudFiltrar = poder;
+            //    this._ventana.PoderDatosFiltrar = poder;
+
+
+            //}
+            //else
+            //{
+            //    this._ventana.PoderesSolicitudFiltrar = _poderesInterseccion;
+            //    this._ventana.PoderesDatosFiltrar = _poderesInterseccion;
+            //}
+
+
+
 
             //this._ventana.PoderesEstanCargados = true;
 
@@ -1905,7 +1934,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
             #endregion
 
             Mouse.OverrideCursor = Cursors.Wait;
-            
+
             _poderesInterseccion = new List<Poder>();
 
             if ((this._ventana.InteresadoSolicitud != null) && (this._ventana.AgenteSolicitudFiltrar != null))
@@ -2094,28 +2123,27 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
         public void CalcularDuracion()
         {
             int duracionAux = 0;
-            
+
             if (((Patente)this._ventana.Patente).FechaTermino != null)
             {
                 if (((Patente)this._ventana.Patente).FechaRegistro != null)
                 {
-                    duracionAux = TimeSpan.Parse((((Patente)this._ventana.Patente).FechaTermino - 
-                        ((Patente)this._ventana.Patente).FechaRegistro).ToString()).Days/365;
+                    duracionAux = TimeSpan.Parse((((Patente)this._ventana.Patente).FechaTermino -
+                        ((Patente)this._ventana.Patente).FechaRegistro).ToString()).Days / 365;
                     this._ventana.Duracion = duracionAux.ToString();
                 }
                 else
                 {
-                    
+
                     duracionAux = TimeSpan.Parse((((Patente)this._ventana.Patente).FechaTermino -
-                        ((Patente)this._ventana.Patente).FechaInscripcion).ToString()).Days/365;
+                        ((Patente)this._ventana.Patente).FechaInscripcion).ToString()).Days / 365;
                     this._ventana.Duracion = duracionAux.ToString();
                 }
-               
+
             }
         }
 
-
-        public string ObtenerIdCarta()
+        public string ObtenerIdPatente()
         {
             return ((Patente)this._ventana.Patente).Id.ToString();
         }

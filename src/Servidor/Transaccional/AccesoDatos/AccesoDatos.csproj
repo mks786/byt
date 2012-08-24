@@ -148,85 +148,85 @@
     <Compile Include="Contrato\IDaoBase.cs" />
     <Compile Include="Contrato\IDaoUsuario.cs" />
     <Compile Include="Contrato\IFabricaDaoBase.cs" />
-    <Compile Include="Dao\NHibernate\DaoInfoBolMarcaTerNHibernate.cs" />
-    <Compile Include="Dao\NHibernate\DaoMemoriaNHibernate.cs" />
-    <Compile Include="Dao\NHibernate\DaoFechaNHibernate.cs" />
-    <Compile Include="Dao\NHibernate\DaoInfoBolPatenteNHibernate.cs" />
-    <Compile Include="Dao\NHibernate\DaoAnualidadNHibernate.cs" />
-    <Compile Include="Dao\NHibernate\DaoInventorNHibernate.cs" />
-    <Compile Include="Dao\NHibernate\DaoCambioPeticionarioPatenteNHibernate.cs" />
-    <Compile Include="Dao\NHibernate\DaoCambioDeNombrePatenteNHibernate.cs" />
-    <Compile Include="Dao\NHibernate\DaoCambioDeDomicilioPatenteNHibernate.cs" />
-    <Compile Include="Dao\NHibernate\DaoCesionPatenteNHibernate.cs" />
-    <Compile Include="Dao\NHibernate\DaoFusionPatenteNHibernate.cs" />
-    <Compile Include="Dao\NHibernate\DaoLicenciaPatenteNHibernate.cs" />
-    <Compile Include="Dao\NHibernate\DaoPatenteNHibernate.cs" />
-    <Compile Include="Dao\NHibernate\DaoMarcaBaseTerceroNHibernate.cs" />
-    <Compile Include="Dao\NHibernate\DaoEstadoMarcaNHibernate.cs" />
-    <Compile Include="Dao\NHibernate\DaoRenovacionNHibernate.cs" />
-    <Compile Include="Dao\NHibernate\DaoPlanillaNHibernate.cs" />
-    <Compile Include="Dao\NHibernate\DaoMarcaTerceroNHibernate.cs" />
-    <Compile Include="Dao\NHibernate\DaoCambioPeticionarioNHibernate.cs" />
-    <Compile Include="Dao\NHibernate\DaoCambioDeDomicilioNHibernate.cs" />
-    <Compile Include="Dao\NHibernate\DaoLicenciaNHibernate.cs" />
-    <Compile Include="Dao\NHibernate\DaoCambioDeNombreNHibernate.cs" />
-    <Compile Include="Dao\NHibernate\DaoCesionNHibernate.cs" />
-    <Compile Include="Dao\NHibernate\DaoFusionNHibernate.cs" />
-    <Compile Include="Dao\NHibernate\DaoStatusWebNHibernate.cs" />
-    <Compile Include="Dao\NHibernate\DaoBusquedaNHibernate.cs" />
-    <Compile Include="Dao\NHibernate\DaoOperacionNHibernate.cs" />
-    <Compile Include="Dao\NHibernate\DaoInfoBolNHibernate.cs" />
-    <Compile Include="Dao\NHibernate\DaoInfoAdicionalNHibernate.cs" />
+    <Compile Include="Dao\NHibernate\DaoAgenteNHibernate.cs" />
     <Compile Include="Dao\NHibernate\DaoAnaquaNHibernate.cs" />
+    <Compile Include="Dao\NHibernate\DaoAnexoNHibernate.cs" />
+    <Compile Include="Dao\NHibernate\DaoAnualidadNHibernate.cs" />
+    <Compile Include="Dao\NHibernate\DaoAsignacionNHibernate.cs" />
+    <Compile Include="Dao\NHibernate\DaoAsociadoNHibernate.cs" />
+    <Compile Include="Dao\NHibernate\DaoAuditoriaNHibernate.cs" />
+    <Compile Include="Dao\NHibernate\DaoBaseNHibernate.cs" />
+    <Compile Include="Dao\NHibernate\DaoBoletinNHibernate.cs" />
+    <Compile Include="Dao\NHibernate\DaoBusquedaNHibernate.cs" />
+    <Compile Include="Dao\NHibernate\DaoCambioDeDomicilioNHibernate.cs" />
+    <Compile Include="Dao\NHibernate\DaoCambioDeDomicilioPatenteNHibernate.cs" />
+    <Compile Include="Dao\NHibernate\DaoCambioDeNombreNHibernate.cs" />
+    <Compile Include="Dao\NHibernate\DaoCambioDeNombrePatenteNHibernate.cs" />
+    <Compile Include="Dao\NHibernate\DaoCambioPeticionarioNHibernate.cs" />
+    <Compile Include="Dao\NHibernate\DaoCambioPeticionarioPatenteNHibernate.cs" />
+    <Compile Include="Dao\NHibernate\DaoCartaNHibernate.cs" />
+    <Compile Include="Dao\NHibernate\DaoCartaOutNHibernate.cs" />
+    <Compile Include="Dao\NHibernate\DaoCategoriaNHibernate.cs" />
+    <Compile Include="Dao\NHibernate\DaoCesionNHibernate.cs" />
+    <Compile Include="Dao\NHibernate\DaoCesionPatenteNHibernate.cs" />
+    <Compile Include="Dao\NHibernate\DaoConceptoNHibernate.cs" />
     <Compile Include="Dao\NHibernate\DaoCondicionNHibernate.cs" />
+    <Compile Include="Dao\NHibernate\DaoContactoNHibernate.cs" />
+    <Compile Include="Dao\NHibernate\DaoContadorAsignacionNHibernate.cs" />
+    <Compile Include="Dao\NHibernate\DaoContadorAuditoriaNHibernate.cs" />
+    <Compile Include="Dao\NHibernate\DaoContadorFacNHibernate.cs" />
+    <Compile Include="Dao\NHibernate\DaoContadorNHibernate.cs" />
     <Compile Include="Dao\NHibernate\DaoCorresponsalNHibernate.cs" />
-    <Compile Include="Dao\NHibernate\DaoTipoBaseNHibernate.cs" />
-    <Compile Include="Dao\NHibernate\DaoTipoEstadoNHibernate.cs" />
-    <Compile Include="Dao\NHibernate\DaoServicioNHibernate.cs" />
-    <Compile Include="Dao\NHibernate\DaoMarcaNHibernate.cs" />
+    <Compile Include="Dao\NHibernate\DaoDatosTransferenciaNHibernate.cs" />
+    <Compile Include="Dao\NHibernate\DaoDepartamentoNHibernate.cs" />
+    <Compile Include="Dao\NHibernate\DaoDetallePagoNHibernate.cs" />
+    <Compile Include="Dao\NHibernate\DaoEntradaAlternaNHibernate.cs" />
+    <Compile Include="Dao\NHibernate\DaoEstadoMarcaNHibernate.cs" />
+    <Compile Include="Dao\NHibernate\DaoEstadoNHibernate.cs" />
+    <Compile Include="Dao\NHibernate\DaoEstatusNHibernate.cs" />
+    <Compile Include="Dao\NHibernate\DaoEtiquetaNHibernate.cs" />
+    <Compile Include="Dao\NHibernate\DaoFechaNHibernate.cs" />
+    <Compile Include="Dao\NHibernate\DaoFusionNHibernate.cs" />
+    <Compile Include="Dao\NHibernate\DaoFusionPatenteNHibernate.cs" />
+    <Compile Include="Dao\NHibernate\DaoIdiomaNHibernate.cs" />
+    <Compile Include="Dao\NHibernate\DaoInfoAdicionalNHibernate.cs" />
+    <Compile Include="Dao\NHibernate\DaoInfoBolMarcaTerNHibernate.cs" />
+    <Compile Include="Dao\NHibernate\DaoInfoBolNHibernate.cs" />
+    <Compile Include="Dao\NHibernate\DaoInfoBolPatenteNHibernate.cs" />
+    <Compile Include="Dao\NHibernate\DaoInteresadoNHibernate.cs" />
+    <Compile Include="Dao\NHibernate\DaoInternacionalNHibernate.cs" />
+    <Compile Include="Dao\NHibernate\DaoInventorNHibernate.cs" />
+    <Compile Include="Dao\NHibernate\DaoJustificacionNHibernate.cs" />
+    <Compile Include="Dao\NHibernate\DaoLicenciaNHibernate.cs" />
+    <Compile Include="Dao\NHibernate\DaoLicenciaPatenteNHibernate.cs" />
     <Compile Include="Dao\NHibernate\DaoListaDatosDominioNHibernate.cs" />
     <Compile Include="Dao\NHibernate\DaoListaDatosValoresNHibernate.cs" />
-    <Compile Include="Dao\NHibernate\DaoAsignacionNHibernate.cs" />
-    <Compile Include="Dao\NHibernate\DaoContadorAsignacionNHibernate.cs" />
-    <Compile Include="Dao\NHibernate\DaoCartaOutNHibernate.cs" />
-    <Compile Include="Dao\NHibernate\DaoEntradaAlternaNHibernate.cs" />
-    <Compile Include="Dao\NHibernate\DaoRemitenteNHibernate.cs" />
-    <Compile Include="Dao\NHibernate\DaoCategoriaNHibernate.cs" />
+    <Compile Include="Dao\NHibernate\DaoMarcaBaseTerceroNHibernate.cs" />
+    <Compile Include="Dao\NHibernate\DaoMarcaNHibernate.cs" />
+    <Compile Include="Dao\NHibernate\DaoMarcaTerceroNHibernate.cs" />
     <Compile Include="Dao\NHibernate\DaoMedioNHibernate.cs" />
-    <Compile Include="Dao\NHibernate\DaoAnexoNHibernate.cs" />
-    <Compile Include="Dao\NHibernate\DaoDatosTransferenciaNHibernate.cs" />
-    <Compile Include="Dao\NHibernate\DaoCartaNHibernate.cs" />
-    <Compile Include="Dao\NHibernate\DaoContactoNHibernate.cs" />
-    <Compile Include="Dao\NHibernate\DaoContadorFacNHibernate.cs" />
-    <Compile Include="Dao\NHibernate\DaoAsociadoNHibernate.cs" />
-    <Compile Include="Dao\NHibernate\DaoJustificacionNHibernate.cs" />
-    <Compile Include="Dao\NHibernate\DaoConceptoNHibernate.cs" />
-    <Compile Include="Dao\NHibernate\DaoDetallePagoNHibernate.cs" />
-    <Compile Include="Dao\NHibernate\DaoResumenNHibernate.cs" />
-    <Compile Include="Dao\NHibernate\DaoTipoClienteNHibernate.cs" />
-    <Compile Include="Dao\NHibernate\DaoTarifaNHibernate.cs" />
+    <Compile Include="Dao\NHibernate\DaoMemoriaNHibernate.cs" />
     <Compile Include="Dao\NHibernate\DaoMonedaNHibernate.cs" />
-    <Compile Include="Dao\NHibernate\DaoIdiomaNHibernate.cs" />
-    <Compile Include="Dao\NHibernate\DaoEtiquetaNHibernate.cs" />
-    <Compile Include="Dao\NHibernate\DaoInteresadoNHibernate.cs" />
-    <Compile Include="Dao\NHibernate\DaoContadorAuditoriaNHibernate.cs" />
-    <Compile Include="Dao\NHibernate\DaoContadorNHibernate.cs" />
-    <Compile Include="Dao\NHibernate\DaoPoderNHibernate.cs" />
-    <Compile Include="Dao\NHibernate\DaoEstatusNHibernate.cs" />
-    <Compile Include="Dao\NHibernate\DaoTipoFechaNHibernate.cs" />
-    <Compile Include="Dao\NHibernate\DaoResolucionNHibernate.cs" />
-    <Compile Include="Dao\NHibernate\DaoTipoInfobolNHibernate.cs" />
-    <Compile Include="Dao\NHibernate\DaoInternacionalNHibernate.cs" />
-    <Compile Include="Dao\NHibernate\DaoBoletinNHibernate.cs" />
     <Compile Include="Dao\NHibernate\DaoNacionalNHibernate.cs" />
-    <Compile Include="Dao\NHibernate\DaoPaisNHibernate.cs" />
-    <Compile Include="Dao\NHibernate\DaoAuditoriaNHibernate.cs" />
-    <Compile Include="Dao\NHibernate\DaoAgenteNHibernate.cs" />
-    <Compile Include="Dao\NHibernate\DaoBaseNHibernate.cs" />
-    <Compile Include="Dao\NHibernate\DaoDepartamentoNHibernate.cs" />
-    <Compile Include="Dao\NHibernate\DaoEstadoNHibernate.cs" />
     <Compile Include="Dao\NHibernate\DaoObjetoNHibernate.cs" />
+    <Compile Include="Dao\NHibernate\DaoOperacionNHibernate.cs" />
+    <Compile Include="Dao\NHibernate\DaoPaisNHibernate.cs" />
+    <Compile Include="Dao\NHibernate\DaoPatenteNHibernate.cs" />
+    <Compile Include="Dao\NHibernate\DaoPlanillaNHibernate.cs" />
+    <Compile Include="Dao\NHibernate\DaoPoderNHibernate.cs" />
+    <Compile Include="Dao\NHibernate\DaoRemitenteNHibernate.cs" />
+    <Compile Include="Dao\NHibernate\DaoRenovacionNHibernate.cs" />
+    <Compile Include="Dao\NHibernate\DaoResolucionNHibernate.cs" />
+    <Compile Include="Dao\NHibernate\DaoResumenNHibernate.cs" />
     <Compile Include="Dao\NHibernate\DaoRolNHibernate.cs" />
+    <Compile Include="Dao\NHibernate\DaoServicioNHibernate.cs" />
+    <Compile Include="Dao\NHibernate\DaoStatusWebNHibernate.cs" />
+    <Compile Include="Dao\NHibernate\DaoTarifaNHibernate.cs" />
+    <Compile Include="Dao\NHibernate\DaoTipoBaseNHibernate.cs" />
+    <Compile Include="Dao\NHibernate\DaoTipoClienteNHibernate.cs" />
+    <Compile Include="Dao\NHibernate\DaoTipoEstadoNHibernate.cs" />
+    <Compile Include="Dao\NHibernate\DaoTipoFechaNHibernate.cs" />
+    <Compile Include="Dao\NHibernate\DaoTipoInfobolNHibernate.cs" />
     <Compile Include="Dao\NHibernate\DaoUsuarioNHibernate.cs" />
     <Compile Include="Fabrica\FabricaDaoBase.cs" />
     <Compile Include="Fabrica\FabricaDaoNHibernate.cs" />
@@ -236,6 +236,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ConsultasHQL.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Recursos\NHibernateConfiguration.Designer.cs">
+      <DependentUpon>NHibernateConfiguration.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="Recursos\Errores.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -259,6 +264,11 @@
     <EmbeddedResource Include="Recursos\ConsultasHQL.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>ConsultasHQL.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Recursos\NHibernateConfiguration.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>NHibernateConfiguration.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Recursos\Errores.resx">
