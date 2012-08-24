@@ -67,6 +67,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Contrato\IDaoInstruccionDeRenovacion.cs" />
     <Compile Include="Contrato\IDaoInfoBolMarcaTer.cs" />
     <Compile Include="Contrato\IDaoMemoria.cs" />
     <Compile Include="Contrato\IDaoFecha.cs" />
@@ -148,6 +149,7 @@
     <Compile Include="Contrato\IDaoBase.cs" />
     <Compile Include="Contrato\IDaoUsuario.cs" />
     <Compile Include="Contrato\IFabricaDaoBase.cs" />
+    <Compile Include="Dao\NHibernate\DaoInstruccionDeRenovacionNHibernate.cs" />
     <Compile Include="Dao\NHibernate\DaoAgenteNHibernate.cs" />
     <Compile Include="Dao\NHibernate\DaoAnaquaNHibernate.cs" />
     <Compile Include="Dao\NHibernate\DaoAnexoNHibernate.cs" />

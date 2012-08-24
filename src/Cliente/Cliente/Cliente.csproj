@@ -119,6 +119,7 @@
     <Compile Include="Contratos\MarcasTercero\IGestionarInfoAdicionalMarcaTercero.cs" />
     <Compile Include="Contratos\MarcasTercero\IGestionarInfoBolMarcaTer.cs" />
     <Compile Include="Contratos\MarcasTercero\IListaInfoBolMarcaTeres.cs" />
+    <Compile Include="Contratos\Marcas\IListaInstruccionesRenovacion.cs" />
     <Compile Include="Contratos\Memorias\IAgregarMemoria.cs" />
     <Compile Include="Contratos\Memorias\IConsultarMemoria.cs" />
     <Compile Include="Contratos\FechasPatente\IAgregarFecha.cs" />
@@ -349,6 +350,8 @@
     <Compile Include="Presentadores\MarcasTercero\PresentadorGestionarInfoAdicionalMarcaTercero.cs" />
     <Compile Include="Presentadores\MarcasTercero\PresentadorGestionarInfoBolMarcaTer.cs" />
     <Compile Include="Presentadores\MarcasTercero\PresentadorListaInfoBolMarcaTeres.cs" />
+    <Compile Include="Presentadores\Marcas\PresentadorListaInstruccionesRenovacion.cs" />
+    <Compile Include="Presentadores\Marcas\PresentadorGestionarIntruccionRenovacion.cs" />
     <Compile Include="Presentadores\Memorias\PresentadorAgregarMemoria.cs" />
     <Compile Include="Presentadores\Memorias\PresentadorConsultarMemoria.cs" />
     <Compile Include="Presentadores\Memorias\PresentadorConsultarMemorias.cs" />
@@ -606,6 +609,9 @@
     </Compile>
     <Compile Include="Ventanas\MarcasTercero\ListaInfoBolMarcaTeres.xaml.cs">
       <DependentUpon>ListaInfoBolMarcaTeres.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Marcas\ListaInstruccionesRenovacion.xaml.cs">
+      <DependentUpon>ListaInstruccionesRenovacion.xaml</DependentUpon>
     </Compile>
     <Compile Include="Ventanas\Memorias\AgregarMemoria.xaml.cs">
       <DependentUpon>AgregarMemoria.xaml</DependentUpon>
@@ -1243,6 +1249,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Ventanas\MarcasTercero\ListaInfoBolMarcaTeres.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\Marcas\ListaInstruccionesRenovacion.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

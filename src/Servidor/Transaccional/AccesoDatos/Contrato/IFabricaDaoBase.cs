@@ -471,5 +471,12 @@ namespace Trascend.Bolet.AccesoDatos.Contrato
          /// </summary>
          /// <returns>Dao Solicitado</returns>
          IDaoFecha ObtenerDaoFecha();
+
+
+         /// <summary>
+         /// Metodo con el que se obtiene el Dao Solicitado
+         /// </summary>
+         /// <returns>Dao Solicitado</returns>
+         IDaoInstruccionDeRenovacion ObtenerDaoInstruccionDeRenovacion();
     }
 }

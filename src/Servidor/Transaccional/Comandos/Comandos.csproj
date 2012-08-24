@@ -379,10 +379,17 @@
     <Compile Include="Comandos\ComandosInfoBolMarcaTer\ComandoEliminarInfoBolMarcaTer.cs" />
     <Compile Include="Comandos\ComandosInfoBolMarcaTer\ComandoInsertarOModificarInfoBolMarcaTer.cs" />
     <Compile Include="Comandos\ComandosInfoBolMarcaTer\ComandoVerificarExistenciaInfoBolMarcaTer.cs" />
+    <Compile Include="Comandos\ComandosInstruccionDeRenovacion\ComandoConsultarInstruccionDeRenovacionPorId.cs" />
+    <Compile Include="Comandos\ComandosInstruccionDeRenovacion\ComandoConsultarInstruccionesDeRenovacionPorMarca.cs" />
+    <Compile Include="Comandos\ComandosInstruccionDeRenovacion\ComandoConsultarTodasInstruccionesDeRenovacion.cs" />
+    <Compile Include="Comandos\ComandosInstruccionDeRenovacion\ComandoEliminarInstruccionDeRenovacion.cs" />
+    <Compile Include="Comandos\ComandosInstruccionDeRenovacion\ComandoInsertarOModificarInstruccionDeRenovacion.cs" />
+    <Compile Include="Comandos\ComandosInstruccionDeRenovacion\ComandoVerificarExistenciaInstruccionDeRenovacion.cs" />
     <Compile Include="Comandos\Receptor.cs" />
     <Compile Include="Comandos\ComandosUsuario\ComandoConsultarTodosUsuarios.cs" />
     <Compile Include="Comandos\ComandosUsuario\ComandoConsultarUsuarioPorID.cs" />
     <Compile Include="Comandos\ComandosUsuario\ComandoInsertarOModificarUsuario.cs" />
+    <Compile Include="Fabrica\FabricaComandosInstruccionDeRenovacion.cs" />
     <Compile Include="Fabrica\FabricaComandosInfoBolMarcaTer.cs" />
     <Compile Include="Fabrica\FabricaComandosMemoria.cs" />
     <Compile Include="Fabrica\FabricaComandosFecha.cs" />

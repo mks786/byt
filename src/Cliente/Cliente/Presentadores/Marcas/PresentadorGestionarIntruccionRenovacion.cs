@@ -4,30 +4,30 @@ using System.Net.Sockets;
 using System.Runtime.Remoting;
 using System.Windows.Input;
 using NLog;
-using Trascend.Bolet.Cliente.Contratos.Agentes;
+using Trascend.Bolet.Cliente.Contratos.Marcas;
 using Trascend.Bolet.Cliente.Ventanas.Principales;
 using Trascend.Bolet.ObjetosComunes.ContratosServicios;
 using Trascend.Bolet.ObjetosComunes.Entidades;
+using System.Threading;
+using Trascend.Bolet.Cliente.Ventanas.Marcas;
 using System.Collections.Generic;
 
-namespace Trascend.Bolet.Cliente.Presentadores.Agentes
+namespace Trascend.Bolet.Cliente.Presentadores.Marcas
 {
-    class PresentadorConsultarAgente : PresentadorBase
+    class PresentadorGestionarIntruccionRenovacion : PresentadorBase
     {
-
-        private IConsultarAgente _ventana;
-        private IAgenteServicios _agenteServicios;
-        private IListaDatosValoresServicios _listaDatosValoresServicios;
-        private IListaDatosDominioServicios _listaDatosDominioServicios;
+        private IGestionarBusqueda _ventana;
         private static PaginaPrincipal _paginaPrincipal = PaginaPrincipal.ObtenerInstancia;
         private static Logger logger = LogManager.GetCurrentClassLogger();
+        private IBusquedaServicios _busquedaServicios;
+        private IListaDatosDominioServicios _listaDatosDominioServicios;
+        private bool _nuevaBusqueda = false;
 
         /// <summary>
         /// Constructor predeterminado
         /// </summary>
         /// <param name="ventana">Página que satisface el contrato</param>
-        /// <param name="agente">Agente a mostrar</param>
-        public PresentadorConsultarAgente(IConsultarAgente ventana, object agente)
+        public PresentadorGestionarIntruccionRenovacion(IGestionarBusqueda ventana, object busqueda)
         {
             try
             {
@@ -37,16 +37,20 @@ namespace Trascend.Bolet.Cliente.Presentadores.Agentes
                 #endregion
 
                 this._ventana = ventana;
-                this._ventana.Agente = agente;
+                this._ventana.Busqueda = null != (Busqueda)busqueda ? (Busqueda)busqueda : new Busqueda();
 
-                //this._ventana.SetEstadoCivil = BuscarEstadoCivil(((Agente)agente).EstadoCivil);
+                if (((Busqueda)busqueda).Id == int.MinValue)
+                    this._nuevaBusqueda = true;
 
-                this._agenteServicios = (IAgenteServicios)Activator.GetObject(typeof(IAgenteServicios),
-                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["AgenteServicios"]);
-                this._listaDatosValoresServicios = (IListaDatosValoresServicios)Activator.GetObject(typeof(IListaDatosValoresServicios),
-                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["ListaDatosValoresServicios"]);
+                this._busquedaServicios = (IBusquedaServicios)Activator.GetObject(typeof(IBusquedaServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["BusquedaServicios"]);
                 this._listaDatosDominioServicios = (IListaDatosDominioServicios)Activator.GetObject(typeof(IListaDatosDominioServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["ListaDatosDominioServicios"]);
+
+                //IList<TipoInfobol> infoboles = this._tipoInfobolServicios.ConsultarTodos();
+                //this._ventana.Tipos = null;
+                //this._ventana.Tipos = infoboles;
+                //this._ventana.Tipo = this.BuscarTipoInfobol(infoboles, ((InfoBol)this._ventana.InfoBol).TipoInfobol);
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -56,7 +60,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Agentes
             catch (Exception ex)
             {
                 logger.Error(ex.Message);
-                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado,true);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
             }
         }
 
@@ -74,20 +78,37 @@ namespace Trascend.Bolet.Cliente.Presentadores.Agentes
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-                this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleConsultarAgente,
-                    Recursos.Ids.ConsultarAgente);
+                this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleGestionalInfoBol,
+                    Recursos.Ids.AgregarInfoBol);
 
-                IList<ListaDatosValores> sexos = this._listaDatosValoresServicios.ConsultarListaDatosValoresPorParametro(new ListaDatosValores(Recursos.Etiquetas.cbiCategoriaSexo));
-                this._ventana.Sexos = sexos;
-                ListaDatosValores sexoAgente = new ListaDatosValores();
-                sexoAgente.Valor = ((Agente)this._ventana.Agente).Sexo.ToString();
-                this._ventana.Sexo = this.BuscarSexo(sexos, sexoAgente);
+                if (this._nuevaBusqueda)
+                {
+                    this._ventana.HabilitarCampos = true;
+                    this._ventana.TextoBotonModificar = Recursos.Etiquetas.btnAceptar;
+                    this._ventana.OcultarControlesAlAgregar();
+                    this._ventana.BorrarValorMinimo();
+                }
 
-                IList<ListaDatosDominio> estadosCiviles = this._listaDatosDominioServicios.ConsultarListaDatosDominioPorParametro(new ListaDatosDominio(Recursos.Etiquetas.cbiCategoriaEstadoCivil));
-                this._ventana.EstadosCivil = estadosCiviles;
-                ListaDatosDominio estadoCivilAgente = new ListaDatosDominio();
-                estadoCivilAgente.Id = ((Agente)this._ventana.Agente).EstadoCivil.ToString();
-                this._ventana.EstadoCivil = this.BuscarEstadoCivil(estadosCiviles, estadoCivilAgente);
+                IList<ListaDatosDominio> tiposBusqueda = this._listaDatosDominioServicios.
+                ConsultarListaDatosDominioPorParametro(new ListaDatosDominio(Recursos.Etiquetas.cbiTipoBusqueda));
+                ListaDatosDominio primerTipoBusqueda = new ListaDatosDominio();
+                primerTipoBusqueda.Id = "NGN";
+                tiposBusqueda.Insert(0, primerTipoBusqueda);
+                this._ventana.TiposBusqueda = tiposBusqueda;
+
+                if (!this._nuevaBusqueda)
+                    this._ventana.TipoBusqueda = this.BuscarTipoBusqueda(((Busqueda)this._ventana.Busqueda).TipoBusqueda, tiposBusqueda);
+
+                //IList<Boletin> boletines = this._boletinServicios.ConsultarTodos();
+                //Boletin primerBoletin = new Boletin();
+                //primerBoletin.Id = int.MinValue;
+                //boletines.Insert(0, primerBoletin);
+                //this._ventana.Boletines = null;
+                //this._ventana.Boletines = boletines;
+
+                //if(!this._nuevaInfoBol)
+                //    this._ventana.Boletin = this.BuscarBoletin(boletines, ((InfoBol)this._ventana.InfoBol).Boletin);
+
 
                 this._ventana.FocoPredeterminado();
 
@@ -96,10 +117,25 @@ namespace Trascend.Bolet.Cliente.Presentadores.Agentes
                     logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
             }
+            catch (ApplicationException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(ex.Message, true);
+            }
+            catch (RemotingException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorRemoting, true);
+            }
+            catch (SocketException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorConexionServidor, true);
+            }
             catch (Exception ex)
             {
                 logger.Error(ex.Message);
-                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado,true);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
             }
             finally
             {
@@ -108,11 +144,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Agentes
         }
 
         /// <summary>
-        /// Método que dependiendo del estado de la página, habilita los campos o 
-        /// modifica los datos del usuario
+        /// Método que realiza toda la lógica para agregar la Busqueda dentro de la base de datos
         /// </summary>
-        public void Modificar()
+        public bool Aceptar()
         {
+            bool exitoso = false;
             try
             {
                 #region trace
@@ -127,21 +163,17 @@ namespace Trascend.Bolet.Cliente.Presentadores.Agentes
                     this._ventana.TextoBotonModificar = Recursos.Etiquetas.btnAceptar;
                 }
 
-                //Modifica los datos del Agente
+                //Agregar o modificar datos
                 else
                 {
-                    Agente agente = (Agente)this._ventana.Agente;
+                    Busqueda busqueda = (Busqueda)this._ventana.Busqueda;
 
-                    if (null != this._ventana.EstadoCivil)
-                        agente.EstadoCivil = ((ListaDatosDominio)this._ventana.EstadoCivil).Id[0];
-                    if (null != this._ventana.Sexo)
-                        agente.Sexo = ((ListaDatosValores)this._ventana.Sexo).Valor[0];
+                    busqueda.TipoBusqueda = ((ListaDatosDominio)this._ventana.TipoBusqueda).Id != "NGN" ? ((ListaDatosDominio)this._ventana.TipoBusqueda).Id[0] : (char?)null;
 
-                    if (this._agenteServicios.InsertarOModificar(agente, UsuarioLogeado.Hash))
-                    {
-                        _paginaPrincipal.MensajeUsuario = Recursos.MensajesConElUsuario.AgenteModificado;
-                        this.Navegar(_paginaPrincipal);
-                    }
+                    exitoso = this._busquedaServicios.InsertarOModificar(busqueda, UsuarioLogeado.Hash);
+                    if (this._nuevaBusqueda)
+                        ((Busqueda)this._ventana.Busqueda).Marca.Busquedas.Add(busqueda);
+
                 }
 
                 #region trace
@@ -169,13 +201,17 @@ namespace Trascend.Bolet.Cliente.Presentadores.Agentes
                 logger.Error(ex.Message);
                 this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
             }
+
+            return exitoso;
         }
 
         /// <summary>
-        /// Método que elimina un agente
+        /// Método que se encarga de eliminar una Busqueda
         /// </summary>
-        public void Eliminar()
+        /// <returns></returns>
+        public bool Eliminar()
         {
+            bool exitoso = false;
             try
             {
                 #region trace
@@ -183,10 +219,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Agentes
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-                if (this._agenteServicios.Eliminar((Agente)this._ventana.Agente, UsuarioLogeado.Hash))
+                ((Busqueda)this._ventana.Busqueda).Marca.Busquedas.Remove((Busqueda)this._ventana.Busqueda);
+
+                if (this._busquedaServicios.Eliminar((Busqueda)this._ventana.Busqueda, UsuarioLogeado.Hash))
                 {
-                    _paginaPrincipal.MensajeUsuario = Recursos.MensajesConElUsuario.AgenteEliminado;
-                    this.Navegar(_paginaPrincipal);
+                    exitoso = true;
                 }
 
                 #region trace
@@ -214,6 +251,26 @@ namespace Trascend.Bolet.Cliente.Presentadores.Agentes
                 logger.Error(ex.Message);
                 this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
             }
+
+            return exitoso;
+        }
+
+        /// <summary>
+        /// Método que se encarga de mostrar la ventana de lista de Busqueda
+        /// </summary>
+        public void irListaBusqueda()
+        {
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+            this.Navegar(new ListaBusquedas(((Busqueda)this._ventana.Busqueda).Marca));
+
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
         }
     }
 }

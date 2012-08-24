@@ -502,5 +502,14 @@ namespace Trascend.Bolet.AccesoDatos.Fabrica
         /// </summary>
         /// <returns>IDaoMemoria</returns>
         public abstract IDaoMemoria ObtenerDaoMemoria();
+
+
+        /// <summary>
+        /// Método que devuelve el DaoMemoria del manejador que se esté utilizando
+        /// </summary>
+        /// <returns>IDaoMemoria</returns>
+        /// 
+        public abstract IDaoInstruccionDeRenovacion ObtenerDaoInstruccionDeRenovacion();
+
     }
 }

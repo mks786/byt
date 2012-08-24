@@ -1,0 +1,205 @@
+﻿<Page x:Class="Trascend.Bolet.Cliente.Ventanas.Marcas.ListaInstruccionesRenovacion"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:custom="clr-namespace:Trascend.Bolet.ControlesByT;assembly=ControlesByT"
+      mc:Ignorable="d" 
+      d:DesignHeight="550" d:DesignWidth="800"
+      xmlns:recurso="clr-namespace:Trascend.Bolet.Cliente.Recursos"
+      xmlns:conv="clr-namespace:Trascend.Bolet.Cliente.Transformadores"
+	Title="{x:Static recurso:Etiquetas.titleConsultarPoderes}" Loaded="Page_Loaded">
+    <Page.Resources>
+        <conv:DosValresAUno x:Key="convertirADosValores"></conv:DosValresAUno>
+        <conv:FechaABlanco x:Key="convertir"></conv:FechaABlanco>
+        <Style TargetType="{x:Type DatePickerTextBox}">
+            <Setter Property="Text" Value="{x:Static recurso:Etiquetas.dpkText}" />
+        </Style>
+    </Page.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="440"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="40"/>
+        </Grid.RowDefinitions>
+
+        <!--Área de Filtrado-->
+        <GroupBox Grid.Column="0" Grid.Row="0" Margin="5" Height="35" VerticalAlignment="Top">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <Label>
+                    <TextBlock FontSize="15" Text="{x:Static recurso:Etiquetas.lblTotalHits}"/>
+                </Label>
+                <Label>
+                    <TextBlock FontSize="15" Name="_lblHits"/>
+                </Label>
+
+            </StackPanel>
+        </GroupBox>
+        <GroupBox Grid.Column="0" Grid.Row="0" Margin="5">
+            <StackPanel Name="_splFiltro" DataContext="{Binding}" VerticalAlignment="Center">
+                <Separator Margin="0,0,0,5"/>
+                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,180,0" >
+                    <Label>
+                        <TextBlock Text="{x:Static recurso:Etiquetas.lblExpedienteMarca}"/>
+                    </Label>
+                    <custom:ByTTextBox IsEnabled="False" Name="_txtIdMarca" Width="130" MaxLength="8"/>
+                </WrapPanel>
+                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,180,0">
+                    <Label>
+                        <TextBlock Text="{x:Static recurso:Etiquetas.lblCodigoBusqueda}"/>
+                    </Label>
+                    <custom:ByTTextBox Name="_txtIdBusqueda" Width="130" MaxLength="15"/>
+                </WrapPanel>
+                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,180,0">
+                    <Label>
+                        <TextBlock Text="{x:Static recurso:Etiquetas.lblTipoBusqueda}"/>
+                    </Label>
+                    <!--Path=Id, Converter={StaticResource convertir}-->
+                    <ComboBox Name="_cbxTipoBusqueda" VerticalAlignment="Center"
+                          ItemsSource="{Binding}" DisplayMemberPath="Descripcion" HorizontalAlignment="Left"
+                          Width="130" SelectedIndex="0"/>
+                </WrapPanel>
+                
+                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,180,0">
+                    <Label>
+                        <TextBlock Text="{x:Static recurso:Etiquetas.lblFechaBusquedaPalabra}"/>
+                    </Label>
+                    <DatePicker HorizontalAlignment="Left"  Name="_dpkFechaBusquedaPalabra" Width="100" Focusable="False" BorderBrush="{x:Null}" SelectedDateChanged="_dpkFechaBusquedaPalabra_SelectedDateChanged">
+                        <DatePicker.SelectedDate>
+                            <Binding Path="FechaBusquedaPalabra" UpdateSourceTrigger="PropertyChanged"/>
+                        </DatePicker.SelectedDate>
+                    </DatePicker>
+                </WrapPanel>
+                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,180,0">
+                    <Label>
+                        <TextBlock Text="{x:Static recurso:Etiquetas.lblFechaConsigPalabra}"/>
+                    </Label>
+                    <DatePicker HorizontalAlignment="Left"  Name="_dpkFechaConsigPalabra" Width="100" Focusable="False" BorderBrush="{x:Null}" SelectedDateChanged="_dpkFechaBusquedaPalabra_SelectedDateChanged">
+                        <DatePicker.SelectedDate>
+                            <Binding Path="FechaConsigPalabra" UpdateSourceTrigger="PropertyChanged"/>
+                        </DatePicker.SelectedDate>
+                    </DatePicker>
+                </WrapPanel>
+                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,180,0">
+                    <Label>
+                        <TextBlock Text="{x:Static recurso:Etiquetas.lblFechaBusquedaDiseno}"/>
+                    </Label>
+                    <DatePicker HorizontalAlignment="Left"  Name="_dpkFechaBusquedaDiseno" Width="100" Focusable="False" BorderBrush="{x:Null}" SelectedDateChanged="_dpkFechaBusquedaPalabra_SelectedDateChanged">
+                        <DatePicker.SelectedDate>
+                            <Binding Path="FechaBusquedaDiseno" UpdateSourceTrigger="PropertyChanged"/>
+                        </DatePicker.SelectedDate>
+                    </DatePicker>
+                </WrapPanel>
+                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,180,0">
+                    <Label>
+                        <TextBlock Text="{x:Static recurso:Etiquetas.lblFechaConsigDiseno}"/>
+                    </Label>
+                    <DatePicker HorizontalAlignment="Left"  Name="_dpkFechaConsigDiseno" Width="100" Focusable="False" BorderBrush="{x:Null}" SelectedDateChanged="_dpkFechaBusquedaPalabra_SelectedDateChanged">
+                        <DatePicker.SelectedDate>
+                            <Binding Path="FechaConsigDiseno" UpdateSourceTrigger="PropertyChanged"/>
+                        </DatePicker.SelectedDate>
+                    </DatePicker>
+                </WrapPanel>
+                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,180,0">
+                    <Label>
+                        <TextBlock Text="{x:Static recurso:Etiquetas.lblFechaResultadoBusqueda}"/>
+                    </Label>
+                    <DatePicker HorizontalAlignment="Left"  Name="_dpkFechaResultadoBusqueda" Width="100" Focusable="False" BorderBrush="{x:Null}" SelectedDateChanged="_dpkFechaBusquedaPalabra_SelectedDateChanged">
+                        <DatePicker.SelectedDate>
+                            <Binding Path="FechaSolicitudPalabra" UpdateSourceTrigger="PropertyChanged"/>
+                        </DatePicker.SelectedDate>
+                    </DatePicker>
+                </WrapPanel>
+                <Separator Margin="0,5,0,5"/>
+                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,5,0,5">
+                    <Button Name="_btnConsultar" Width="100" IsDefault="True" Click="_btnConsultar_Click">
+                        <TextBlock Text="{x:Static recurso:Etiquetas.btnConsultar}"/>
+                    </Button>
+                </WrapPanel>
+                <Separator Margin="0,5,0,5"/>
+            </StackPanel>
+        </GroupBox>
+
+        <!--Resultados-->
+        <GroupBox Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="2" Margin="5">
+            <ListView Name="_lstResultados" ItemsSource="{Binding}" 
+                      MouseDoubleClick="EventoIrGestionarBusqueda" SelectionMode="Single"
+                      Style="{DynamicResource EstiloListView}">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Id}" Width="120">
+                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="Id" Content="{x:Static recurso:Etiquetas.lsvCodigoBusqueda}"/>
+                        </GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=TipoBusquedaDatosDominio.Descripcion}" Width="150">
+                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="TipoBusquedaDatosDominio.Descripcion" Content="{x:Static recurso:Etiquetas.lsvTipoBusqueda}"/>
+                        </GridViewColumn>
+                        <GridViewColumn Width="150">
+                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="FechaSolicitudPalabra" Content="{x:Static recurso:Etiquetas.lsvFechaResultado}"/>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock>
+                                        <TextBlock.Text>
+                                            <Binding Path="FechaSolicitudPalabra" StringFormat="{}{0:dd/MM/yyyy}"/>
+                                        </TextBlock.Text>
+                                    </TextBlock>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Width="150">
+                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="FechaBusquedaPalabra" Content="{x:Static recurso:Etiquetas.lsvFechaBusquedaPalabra}"/>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock>
+                                        <TextBlock.Text>
+                                            <Binding Path="FechaBusquedaPalabra" StringFormat="{}{0:dd/MM/yyyy}"/>
+                                        </TextBlock.Text>
+                                    </TextBlock>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Width="150">
+                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="FechaBusquedaDiseno" Content="{x:Static recurso:Etiquetas.lsvFechaBusquedaDiseno}"/>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock>
+                                        <TextBlock.Text>
+                                            <Binding Path="FechaBusquedaDiseno" StringFormat="{}{0:dd/MM/yyyy}"/>
+                                        </TextBlock.Text>
+                                    </TextBlock>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+            <!--<DataGrid Name="_dataGridResultados" ItemsSource="{Binding}">
+                <DataGrid.Columns>
+                    <DataGridHyperlinkColumn Header="Nombre Completo" 
+                        Binding="{Binding Path=NombreCompleto, ValidatesOnExceptions=True}">
+                    </DataGridHyperlinkColumn>
+                    <DataGridTextColumn Header="Email" 
+                        Binding="{Binding Path=Email, ValidatesOnExceptions=True}">
+                    </DataGridTextColumn>
+                </DataGrid.Columns>
+            </DataGrid>-->
+        </GroupBox>
+
+        <!--Botones Aceptar|Cancelar-->
+        <GroupBox Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="1" BorderBrush="{x:Null}">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom">
+                <Button Name="_btnAgregar" VerticalAlignment="Bottom" Height="25" Width="110" Click="EventoIrGestionarBusqueda">
+                    <TextBlock Text="{x:Static recurso:Etiquetas.btnNuevaBusqueda}"/>
+                </Button>
+                <Button Name="_btnCancelar" Width="100" Click="_btnCancelar_Click">
+                    <TextBlock Text="{x:Static recurso:Etiquetas.btnRegresar}"/>
+                </Button>
+            </StackPanel>
+        </GroupBox>
+
+    </Grid>
+</Page>
