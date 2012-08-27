@@ -20,7 +20,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
 {
     class PresentadorListaInstruccionesRenovacion : PresentadorBase
     {
-        private IListaBusquedas _ventana;
+        private IListaInstruccionesRenovacion _ventana;
         private Marca _marca;
         private static PaginaPrincipal _paginaPrincipal = PaginaPrincipal.ObtenerInstancia;
         private static Logger logger = LogManager.GetCurrentClassLogger();
@@ -32,7 +32,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
         /// Constructor Predeterminado
         /// </summary>
         /// <param name="ventana">página que satisface el contrato</param>
-        public PresentadorListaInstruccionesRenovacion(IListaBusquedas ventana, object marca)
+        public PresentadorListaInstruccionesRenovacion(IListaInstruccionesRenovacion ventana, object marca)
         {
             #region trace
             if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -66,28 +66,16 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-                this._ventana.BusquedaFiltrar = new Busqueda();
-                this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleListaBusqueda,
-                    Recursos.Ids.Busqueda);
+                //this._ventana.BusquedaFiltrar = new Busqueda();
+                this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleInstruccionesDeRenovacion,
+                    Recursos.Ids.InstruccionesDeRenovacion);
 
                 this._ventana.IdMarca = this._marca.Id.ToString();
-                ListaDatosDominio tipoBusqueda = new ListaDatosDominio(Recursos.Etiquetas.cbiTipoBusqueda);
-
-                IList<ListaDatosDominio> lista = this._listaDatosDominioServicios.ConsultarListaDatosDominioPorParametro(tipoBusqueda);
-                ListaDatosDominio primerTipo = new ListaDatosDominio();
-                primerTipo.Id = "NGN";
-                lista.Insert(0, primerTipo);
-                this._ventana.TiposBusqueda = lista;
-
-                foreach (Busqueda busqueda in this._marca.Busquedas)
-                {
-                    busqueda.TipoBusquedaDatosDominio = this.BuscarTipoBusqueda(busqueda.TipoBusqueda, lista);
-                }
 
 
 
-                this._ventana.Resultados = ((Marca)this._marca).Busquedas;
-                this._ventana.TotalHits = ((Marca)this._marca).Busquedas.Count.ToString();
+                this._ventana.Resultados = ((Marca)this._marca).InstruccionesDeRenovacion;
+                this._ventana.TotalHits = ((Marca)this._marca).InstruccionesDeRenovacion.Count.ToString();
                 this._ventana.FocoPredeterminado();
 
                 #region trace
@@ -109,7 +97,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
         /// <summary>
         /// Método que invoca una nueva página "GestionarInfoBol" y la instancia con el objeto seleccionado
         /// </summary>
-        public void IrGestionarBusqueda(bool nuevo)
+        public void IrGestionarInstruccionDeRenovacion(bool nuevo)
         {
             #region trace
             if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -118,15 +106,14 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
 
             if (!nuevo)
             {
-                ((Busqueda)this._ventana.BusquedaSeleccionada).Marca = this._marca;
-                this.Navegar(new GestionarBusqueda(this._ventana.BusquedaSeleccionada));
+                ((InstruccionDeRenovacion)this._ventana.InstruccionSeleccionada).Marca = this._marca;
+                //this.Navegar(new GestionarInstruccionDeRenovacion(this._ventana.InstruccionSeleccionada));
             }
             else
             {
-                Busqueda busqueda = new Busqueda();
-                busqueda.Marca = this._marca;
-                busqueda.Id = int.MinValue;
-                this.Navegar(new GestionarBusqueda(busqueda));
+                InstruccionDeRenovacion instruccion = new InstruccionDeRenovacion();
+                instruccion.Marca = this._marca;
+                //this.Navegar(new GestionarInstruccionDeRenovacion(instruccion));
             }
 
             #region trace
@@ -181,68 +168,68 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-                Busqueda busqueda = (Busqueda)this._ventana.BusquedaFiltrar;
-                busqueda.TipoBusqueda = ((ListaDatosDominio)this._ventana.TipoBusqueda).Id != "NGN" ? ((ListaDatosDominio)this._ventana.TipoBusqueda).Id[0] : (char?) null ;
+                //Busqueda busqueda = (Busqueda)this._ventana.BusquedaFiltrar;
+                //busqueda.TipoBusqueda = ((ListaDatosDominio)this._ventana.TipoBusqueda).Id != "NGN" ? ((ListaDatosDominio)this._ventana.TipoBusqueda).Id[0] : (char?) null ;
 
-                IEnumerable<Busqueda> busquedasFiltradas = this._marca.Busquedas;
+                //IEnumerable<Busqueda> busquedasFiltradas = this._marca.Busquedas;
 
-                if (!string.IsNullOrEmpty(this._ventana.IdBusqueda))
-                {
-                    busquedasFiltradas = from b in busquedasFiltradas
-                                         where b.Id == int.Parse(this._ventana.IdBusqueda)
-                                         select b;
-                }
+                //if (!string.IsNullOrEmpty(this._ventana.IdBusqueda))
+                //{
+                //    busquedasFiltradas = from b in busquedasFiltradas
+                //                         where b.Id == int.Parse(this._ventana.IdBusqueda)
+                //                         select b;
+                //}
 
-                if (!string.IsNullOrEmpty(busqueda.FechaBusquedaDiseno.ToString()))
-                {
-                    busquedasFiltradas = from b in busquedasFiltradas
-                                         where b.FechaBusquedaDiseno != null &&
-                                         b.FechaBusquedaDiseno == busqueda.FechaBusquedaDiseno
-                                         select b;
-                }
+                //if (!string.IsNullOrEmpty(busqueda.FechaBusquedaDiseno.ToString()))
+                //{
+                //    busquedasFiltradas = from b in busquedasFiltradas
+                //                         where b.FechaBusquedaDiseno != null &&
+                //                         b.FechaBusquedaDiseno == busqueda.FechaBusquedaDiseno
+                //                         select b;
+                //}
 
-                if (!string.IsNullOrEmpty(busqueda.FechaBusquedaPalabra.ToString()))
-                {
-                    busquedasFiltradas = from b in busquedasFiltradas
-                                         where b.FechaBusquedaPalabra != null &&
-                                         b.FechaBusquedaPalabra == busqueda.FechaBusquedaPalabra
-                                         select b;
-                }
+                //if (!string.IsNullOrEmpty(busqueda.FechaBusquedaPalabra.ToString()))
+                //{
+                //    busquedasFiltradas = from b in busquedasFiltradas
+                //                         where b.FechaBusquedaPalabra != null &&
+                //                         b.FechaBusquedaPalabra == busqueda.FechaBusquedaPalabra
+                //                         select b;
+                //}
 
-                if (!string.IsNullOrEmpty(busqueda.FechaConsigDiseno.ToString()))
-                {
-                    busquedasFiltradas = from b in busquedasFiltradas
-                                         where b.FechaConsigDiseno != null &&
-                                         b.FechaConsigDiseno == busqueda.FechaConsigDiseno
-                                         select b;
-                }
+                //if (!string.IsNullOrEmpty(busqueda.FechaConsigDiseno.ToString()))
+                //{
+                //    busquedasFiltradas = from b in busquedasFiltradas
+                //                         where b.FechaConsigDiseno != null &&
+                //                         b.FechaConsigDiseno == busqueda.FechaConsigDiseno
+                //                         select b;
+                //}
 
-                if (!string.IsNullOrEmpty(busqueda.FechaConsigPalabra.ToString()))
-                {
-                    busquedasFiltradas = from b in busquedasFiltradas
-                                         where b.FechaConsigPalabra != null &&
-                                         b.FechaConsigPalabra == busqueda.FechaConsigPalabra
-                                         select b;
-                }
+                //if (!string.IsNullOrEmpty(busqueda.FechaConsigPalabra.ToString()))
+                //{
+                //    busquedasFiltradas = from b in busquedasFiltradas
+                //                         where b.FechaConsigPalabra != null &&
+                //                         b.FechaConsigPalabra == busqueda.FechaConsigPalabra
+                //                         select b;
+                //}
 
-                if (!string.IsNullOrEmpty(busqueda.FechaSolicitudPalabra.ToString()))
-                {
-                    busquedasFiltradas = from b in busquedasFiltradas
-                                         where b.FechaSolicitudPalabra != null &&
-                                         b.FechaSolicitudPalabra == busqueda.FechaSolicitudPalabra
-                                         select b;
-                }
+                //if (!string.IsNullOrEmpty(busqueda.FechaSolicitudPalabra.ToString()))
+                //{
+                //    busquedasFiltradas = from b in busquedasFiltradas
+                //                         where b.FechaSolicitudPalabra != null &&
+                //                         b.FechaSolicitudPalabra == busqueda.FechaSolicitudPalabra
+                //                         select b;
+                //}
 
-                if (null != busqueda.TipoBusqueda)
-                {
-                    busquedasFiltradas = from b in busquedasFiltradas
-                                         where b.TipoBusqueda != null &&
-                                         b.TipoBusqueda == busqueda.TipoBusqueda
-                                         select b;
-                }
+                //if (null != busqueda.TipoBusqueda)
+                //{
+                //    busquedasFiltradas = from b in busquedasFiltradas
+                //                         where b.TipoBusqueda != null &&
+                //                         b.TipoBusqueda == busqueda.TipoBusqueda
+                //                         select b;
+                //}
 
-                this._ventana.Resultados = busquedasFiltradas.ToList<Busqueda>();
-                this._ventana.TotalHits = busquedasFiltradas.ToList<Busqueda>().Count.ToString();
+                //this._ventana.Resultados = busquedasFiltradas.ToList<Busqueda>();
+                //this._ventana.TotalHits = busquedasFiltradas.ToList<Busqueda>().Count.ToString();
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))

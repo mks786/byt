@@ -52,6 +52,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
         private IPlanillaServicios _planillaServicios;
         private IInternacionalServicios _internacionalServicios;
         private IRenovacionServicios _renovacionServicios;
+        private IInstruccionDeRenovacionServicios _instruccionDeRenovacionServicios;
 
         private IList<Asociado> _asociados;
         private IList<Poder> _poderesInterseccion;
@@ -135,6 +136,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["InternacionalServicios"]);
                 this._renovacionServicios = (IRenovacionServicios)Activator.GetObject(typeof(IRenovacionServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["RenovacionServicios"]);
+                this._instruccionDeRenovacionServicios = (IInstruccionDeRenovacionServicios)Activator.GetObject(typeof(IInstruccionDeRenovacionServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["InstruccionDeRenovacionServicios"]);
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -197,6 +200,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 marca.InfoBoles = this._infoBolServicios.ConsultarInfoBolesPorMarca(marca);
                 marca.Operaciones = this._operacionServicios.ConsultarOperacionesPorMarca(marca);
                 marca.Busquedas = this._busquedaServicios.ConsultarBusquedasPorMarca(marca);
+                marca.InstruccionesDeRenovacion = this._instruccionDeRenovacionServicios.ConsultarInstruccionesDeRenovacionPorMarca(marca);
 
                 marca.InfoAdicional = this._infoAdicionalServicios.ConsultarPorId(infoAdicional);
                 marca.Anaqua = this._anaquaServicios.ConsultarPorId(anaqua);
@@ -2305,6 +2309,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
         public string ObtenerIdMarca()
         {
             return ((Marca)this._ventana.Marca).Id.ToString();
+        }
+
+        public void VerInstruccionesDeRenovacion()
+        {
+            Navegar(new ListaInstruccionesRenovacion(this._ventana.Marca));
         }
     }
 }

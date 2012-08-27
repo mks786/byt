@@ -2790,4 +2790,10 @@ en Prensa:</value>
   <data name="lblNoSapi" xml:space="preserve">
     <value>No. SAPI:</value>
   </data>
+  <data name="lsvCodigoMarca" xml:space="preserve">
+    <value>Código Marca</value>
+  </data>
+  <data name="titleInstruccionesDeRenovacion" xml:space="preserve">
+    <value>Instruciones de Renovación</value>
+  </data>
 </root>

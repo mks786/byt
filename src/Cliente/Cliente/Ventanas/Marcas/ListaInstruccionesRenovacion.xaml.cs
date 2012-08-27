@@ -11,18 +11,18 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
     /// <summary>
     /// Interaction logic for ListaInstruccionesRenovacion.xaml
     /// </summary>
-    public partial class ListaInstruccionesRenovacion : Page, IListaBusquedas
+    public partial class ListaInstruccionesRenovacion : Page, IListaInstruccionesRenovacion
     {
         private GridViewColumnHeader _CurSortCol = null;
         private SortAdorner _CurAdorner = null;
-        private PresentadorListaBusquedas _presentador;
+        private PresentadorListaInstruccionesRenovacion _presentador;
         private bool _cargada;
         private object _marca;
         private string _tab;
 
-        #region IListaBusquedas
+        #region IListaInstruccionesRenovacion
 
-        public object BusquedaSeleccionada
+        public object InstruccionSeleccionada
         {
             get { return this._lstResultados.SelectedItem; }
         }
@@ -32,23 +32,23 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             get { return this._tab; }
         }
 
-        public object BusquedaFiltrar
-        {
-            get { return this._splFiltro.DataContext; }
-            set { this._splFiltro.DataContext = value; }
-        }
+        //public object BusquedaFiltrar
+        //{
+        //    get { return this._splFiltro.DataContext; }
+        //    set { this._splFiltro.DataContext = value; }
+        //}
 
-        public object TiposBusqueda
-        {
-            get { return this._cbxTipoBusqueda.DataContext; }
-            set { this._cbxTipoBusqueda.DataContext = value; }
-        }
+        //public object TiposBusqueda
+        //{
+        //    get { return this._cbxTipoBusqueda.DataContext; }
+        //    set { this._cbxTipoBusqueda.DataContext = value; }
+        //}
 
-        public object TipoBusqueda
-        {
-            get { return this._cbxTipoBusqueda.SelectedItem; }
-            set { this._cbxTipoBusqueda.SelectedItem = value; }
-        }
+        //public object TipoBusqueda
+        //{
+        //    get { return this._cbxTipoBusqueda.SelectedItem; }
+        //    set { this._cbxTipoBusqueda.SelectedItem = value; }
+        //}
 
         public object Resultados
         {
@@ -62,10 +62,10 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             set { this._txtIdMarca.Text = value; }
         }
 
-        public string IdBusqueda
-        {
-            get { return this._txtIdBusqueda.Text; }
-        }
+        //public string IdBusqueda
+        //{
+        //    get { return this._txtIdBusqueda.Text; }
+        //}
 
 
         public bool EstaCargada
@@ -76,7 +76,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
 
         public void FocoPredeterminado()
         {
-            this._txtIdMarca.Focus();
+        //    this._txtIdMarca.Focus();
         }
 
         public GridViewColumnHeader CurSortCol
@@ -111,7 +111,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
         {
             InitializeComponent();
             this._cargada = false;
-            this._presentador = new PresentadorListaBusquedas(this, marca);
+            this._presentador = new PresentadorListaInstruccionesRenovacion(this, marca);
             this._marca = marca;
         }
 
@@ -129,20 +129,20 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
         private void _btnConsultar_Click(object sender, RoutedEventArgs e)
         {
             this._presentador.Consultar();
-            this._dpkFechaBusquedaDiseno.Text = string.Empty;
-            this._dpkFechaBusquedaPalabra.Text = string.Empty;
-            this._dpkFechaConsigDiseno.Text = string.Empty;
-            this._dpkFechaConsigPalabra.Text = string.Empty;
-            this._dpkFechaResultadoBusqueda.Text = string.Empty;
+            //this._dpkFechaBusquedaDiseno.Text = string.Empty;
+            //this._dpkFechaBusquedaPalabra.Text = string.Empty;
+            //this._dpkFechaConsigDiseno.Text = string.Empty;
+            //this._dpkFechaConsigPalabra.Text = string.Empty;
+            //this._dpkFechaResultadoBusqueda.Text = string.Empty;
             validarCamposVacios();
         }
 
-        private void EventoIrGestionarBusqueda(object sender, EventArgs e)
+        private void EventoIrGestionarInstruccionDeRenovacion(object sender, EventArgs e)
         {
             if (sender.GetType().ToString().Equals("System.Windows.Controls.Button"))
-                this._presentador.IrGestionarBusqueda(true);
+                this._presentador.IrGestionarInstruccionDeRenovacion(true);
             else
-                this._presentador.IrGestionarBusqueda(false);
+                this._presentador.IrGestionarInstruccionDeRenovacion(false);
         }
 
 
@@ -170,20 +170,20 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
         {
             bool todosCamposVacios = true;
 
-            if (!this._txtIdBusqueda.Text.Equals(""))
-            {
-                todosCamposVacios = false;
-                this._txtIdBusqueda.Focus();
-            }
+            //if (!this._txtIdBusqueda.Text.Equals(""))
+            //{
+            //    todosCamposVacios = false;
+            //    this._txtIdBusqueda.Focus();
+            //}
 
-            if ((this._cbxTipoBusqueda.SelectedIndex != 0) && (this._cbxTipoBusqueda.SelectedIndex != -1))
-            {
-                todosCamposVacios = false;
-                this._cbxTipoBusqueda.Focus();
-            }
+            //if ((this._cbxTipoBusqueda.SelectedIndex != 0) && (this._cbxTipoBusqueda.SelectedIndex != -1))
+            //{
+            //    todosCamposVacios = false;
+            //    this._cbxTipoBusqueda.Focus();
+            //}
 
-            if (todosCamposVacios)
-                this._txtIdBusqueda.Focus();
+            //if (todosCamposVacios)
+            //    this._txtIdBusqueda.Focus();
         }
 
 

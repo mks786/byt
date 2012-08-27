@@ -9,13 +9,13 @@ namespace Trascend.Bolet.Cliente.Contratos.Marcas
 
         object Resultados { get; set; }
 
-        object TiposBusqueda { get; set; }
+        //object TiposBusqueda { get; set; }
 
-        object TipoBusqueda { get; set; }
+        //object TipoBusqueda { get; set; }
 
-        object BusquedaFiltrar { get; set; }
+        //object BusquedaFiltrar { get; set; }
 
-        string IdInstruccion { get; }
+        //string IdInstruccion { get; }
 
         string IdMarca { get; set; }
 

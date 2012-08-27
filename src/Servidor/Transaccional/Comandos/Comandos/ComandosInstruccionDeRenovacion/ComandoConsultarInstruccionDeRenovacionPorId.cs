@@ -23,8 +23,8 @@ namespace Trascend.Bolet.Comandos.Comandos.ComandosInstruccionDeRenovacion
         /// </summary>
         public override void Ejecutar()
         {
-            IDaoInstruccionDeRenovacion dao = FabricaDaoBase.ObtenerFabricaDao().ObtenerDaoInstruccionDeRenovacion();
-            this.Receptor = new Receptor<InstruccionDeRenovacion>(dao.ObtenerPorId(this._instruccionDeRenovacion.Id));
+            //IDaoInstruccionDeRenovacion dao = FabricaDaoBase.ObtenerFabricaDao().ObtenerDaoInstruccionDeRenovacion();
+            //this.Receptor = new Receptor<InstruccionDeRenovacion>(dao.ObtenerPorId(this._instruccionDeRenovacion.Id));
         }
     }
 }

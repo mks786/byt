@@ -33,8 +33,8 @@ namespace Trascend.Bolet.Comandos.Comandos.ComandosInstruccionDeRenovacion
                     logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-                IDaoInstruccionDeRenovacion dao = FabricaDaoBase.ObtenerFabricaDao().ObtenerDaoInstruccionDeRenovacion();
-                this.Receptor = new Receptor<bool>(dao.VerificarExistencia(this._instruccionDeRenovacion.Id));
+                //IDaoInstruccionDeRenovacion dao = FabricaDaoBase.ObtenerFabricaDao().ObtenerDaoInstruccionDeRenovacion();
+                //this.Receptor = new Receptor<bool>(dao.VerificarExistencia(this._instruccionDeRenovacion.Id));
 
                 #region trace
                 if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))

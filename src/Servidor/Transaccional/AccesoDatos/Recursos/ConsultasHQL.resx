@@ -930,4 +930,8 @@
   <data name="FiltroObtenerPoderPorObservacion" xml:space="preserve">
     <value>p.Observacion='{0}'</value>
   </data>
+  <data name="ObtenerInstruccionesDeRenovacionPorMarca" xml:space="preserve">
+    <value>Select i from InstruccionDeRenovacion i where i.Marca.Id = '{0}'</value>
+    <comment>Obtiene las busquedas que pertenecen a una marca determinada</comment>
+  </data>
 </root>

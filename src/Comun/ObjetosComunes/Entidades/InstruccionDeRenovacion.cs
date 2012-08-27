@@ -8,10 +8,34 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
     {
         #region Atributos
 
-        private int _id;
         private Marca _marca;
-        private Carta _correspondencia;
+        private Carta _carta;
         private DateTime _fecha;
+
+        #endregion
+
+        #region Override
+
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
+        }
+
+        public override string ToString()
+        {
+            return base.ToString();
+        }
+
+        public override bool Equals(object obj)
+        {
+            bool retorno = false;
+            if ((((InstruccionDeRenovacion)obj)._carta.Id == this._carta.Id) && (((InstruccionDeRenovacion)obj)._marca.Id == this._marca.Id))
+            {
+                retorno = true;
+            }
+
+            return retorno;
+        }
 
         #endregion
 
@@ -24,28 +48,10 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         {
         }
 
-        /// <summary>
-        /// Constructor que inicializa el condigo de la infoBol
-        /// </summary>
-        /// <param name="id">Codigo de la infoBol</param>
-        public InstruccionDeRenovacion(int id)
-        {
-            this._id = id;
-        }
-
         #endregion
 
         #region Propiedades
 
-
-        /// <summary>
-        /// Propiedad que asigna u obtiene el id de la busqueda
-        /// </summary>
-        public virtual int Id
-        {
-            get { return _id; }
-            set { _id = value; }
-        }
 
         /// <summary>
         /// Propiedad que asigna u obtiene el IdMarca de la busqueda
@@ -57,12 +63,21 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         }
 
         /// <summary>
-        /// Propiedad que asigna u obtiene el FechaSolicitudPalabra de la busqueda
+        /// Propiedad que asigna u obtiene el Fecha de la Instruccion de renovacion
         /// </summary>
         public virtual DateTime Fecha
         {
             get { return _fecha; }
             set { _fecha = value; }
+        }
+
+        /// <summary>
+        /// Propiedad que asigna u obtiene la Carta de la Instruccion de renovacion
+        /// </summary>
+        public virtual Carta Carta
+        {
+            get { return _carta; }
+            set { _carta = value; }
         }
 
 

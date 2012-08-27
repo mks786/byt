@@ -65,6 +65,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         private IList<InfoBol> _infoBoles;
         private IList<Operacion> _operaciones;
         private IList<Busqueda> _busquedas;
+        private IList<InstruccionDeRenovacion> _instruccionesDeRenovacion;
         private int? _recordatorio;
 
 
@@ -757,6 +758,15 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         {
             get { return _recordatorio; }
             set { _recordatorio = value; }
+        }
+
+        /// <summary>
+        /// Propiedad que asigna u obtiene la InstruccionesDeRenovacion
+        /// </summary>
+        public virtual IList<InstruccionDeRenovacion> InstruccionesDeRenovacion
+        {
+            get { return _instruccionesDeRenovacion; }
+            set { _instruccionesDeRenovacion = value; }
         }
 
         #endregion

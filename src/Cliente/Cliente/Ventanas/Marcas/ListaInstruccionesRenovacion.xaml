@@ -49,7 +49,7 @@
                     </Label>
                     <custom:ByTTextBox IsEnabled="False" Name="_txtIdMarca" Width="130" MaxLength="8"/>
                 </WrapPanel>
-                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,180,0">
+                <!--<WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,180,0">
                     <Label>
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblCodigoBusqueda}"/>
                     </Label>
@@ -59,7 +59,7 @@
                     <Label>
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblTipoBusqueda}"/>
                     </Label>
-                    <!--Path=Id, Converter={StaticResource convertir}-->
+                    Path=Id, Converter={StaticResource convertir}
                     <ComboBox Name="_cbxTipoBusqueda" VerticalAlignment="Center"
                           ItemsSource="{Binding}" DisplayMemberPath="Descripcion" HorizontalAlignment="Left"
                           Width="130" SelectedIndex="0"/>
@@ -120,7 +120,7 @@
                     <Button Name="_btnConsultar" Width="100" IsDefault="True" Click="_btnConsultar_Click">
                         <TextBlock Text="{x:Static recurso:Etiquetas.btnConsultar}"/>
                     </Button>
-                </WrapPanel>
+                </WrapPanel>-->
                 <Separator Margin="0,5,0,5"/>
             </StackPanel>
         </GroupBox>
@@ -128,51 +128,30 @@
         <!--Resultados-->
         <GroupBox Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="2" Margin="5">
             <ListView Name="_lstResultados" ItemsSource="{Binding}" 
-                      MouseDoubleClick="EventoIrGestionarBusqueda" SelectionMode="Single"
+                      MouseDoubleClick="EventoIrGestionarInstruccionDeRenovacion" SelectionMode="Single"
                       Style="{DynamicResource EstiloListView}">
                 <ListView.View>
                     <GridView>
-                        <GridViewColumn DisplayMemberBinding="{Binding Path=Id}" Width="120">
-                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="Id" Content="{x:Static recurso:Etiquetas.lsvCodigoBusqueda}"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Marca.Id}" Width="120">
+                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="Marca.Id" Content="{x:Static recurso:Etiquetas.lsvCodigoMarca}"/>
                         </GridViewColumn>
-                        <GridViewColumn DisplayMemberBinding="{Binding Path=TipoBusquedaDatosDominio.Descripcion}" Width="150">
-                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="TipoBusquedaDatosDominio.Descripcion" Content="{x:Static recurso:Etiquetas.lsvTipoBusqueda}"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Marca.Descripcion}" Width="120">
+                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="Marca.Descripcion" Content="{x:Static recurso:Etiquetas.lsvMarca}"/>
                         </GridViewColumn>
                         <GridViewColumn Width="150">
-                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="FechaSolicitudPalabra" Content="{x:Static recurso:Etiquetas.lsvFechaResultado}"/>
+                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="Fecha" Content="{x:Static recurso:Etiquetas.lsvFecha}"/>
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <TextBlock>
                                         <TextBlock.Text>
-                                            <Binding Path="FechaSolicitudPalabra" StringFormat="{}{0:dd/MM/yyyy}"/>
+                                            <Binding Path="Fecha" StringFormat="{}{0:dd/MM/yyyy}"/>
                                         </TextBlock.Text>
                                     </TextBlock>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
-                        <GridViewColumn Width="150">
-                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="FechaBusquedaPalabra" Content="{x:Static recurso:Etiquetas.lsvFechaBusquedaPalabra}"/>
-                            <GridViewColumn.CellTemplate>
-                                <DataTemplate>
-                                    <TextBlock>
-                                        <TextBlock.Text>
-                                            <Binding Path="FechaBusquedaPalabra" StringFormat="{}{0:dd/MM/yyyy}"/>
-                                        </TextBlock.Text>
-                                    </TextBlock>
-                                </DataTemplate>
-                            </GridViewColumn.CellTemplate>
-                        </GridViewColumn>
-                        <GridViewColumn Width="150">
-                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="FechaBusquedaDiseno" Content="{x:Static recurso:Etiquetas.lsvFechaBusquedaDiseno}"/>
-                            <GridViewColumn.CellTemplate>
-                                <DataTemplate>
-                                    <TextBlock>
-                                        <TextBlock.Text>
-                                            <Binding Path="FechaBusquedaDiseno" StringFormat="{}{0:dd/MM/yyyy}"/>
-                                        </TextBlock.Text>
-                                    </TextBlock>
-                                </DataTemplate>
-                            </GridViewColumn.CellTemplate>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Carta.Id}" Width="120">
+                            <GridViewColumnHeader Click="_Ordenar_Click" Tag="Carta.Id" Content="{x:Static recurso:Etiquetas.lsvCarta}"/>
                         </GridViewColumn>
                     </GridView>
                 </ListView.View>
@@ -192,7 +171,7 @@
         <!--Botones Aceptar|Cancelar-->
         <GroupBox Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="1" BorderBrush="{x:Null}">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom">
-                <Button Name="_btnAgregar" VerticalAlignment="Bottom" Height="25" Width="110" Click="EventoIrGestionarBusqueda">
+                <Button Name="_btnAgregar" VerticalAlignment="Bottom" Height="25" Width="110" Click="EventoIrGestionarInstruccionDeRenovacion">
                     <TextBlock Text="{x:Static recurso:Etiquetas.btnNuevaBusqueda}"/>
                 </Button>
                 <Button Name="_btnCancelar" Width="100" Click="_btnCancelar_Click">

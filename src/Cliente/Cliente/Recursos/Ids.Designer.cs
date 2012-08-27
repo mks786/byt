@@ -1456,6 +1456,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to MYP_INSTREN.
+        /// </summary>
+        public static string InstruccionesDeRenovacion {
+            get {
+                return ResourceManager.GetString("InstruccionesDeRenovacion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to MYP_INTERESADOS.
         /// </summary>
         public static string Interesado {

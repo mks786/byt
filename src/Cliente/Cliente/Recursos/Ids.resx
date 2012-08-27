@@ -732,4 +732,7 @@
   <data name="Entrada" xml:space="preserve">
     <value>COR_ENTRADA_N</value>
   </data>
+  <data name="InstruccionesDeRenovacion" xml:space="preserve">
+    <value>MYP_INSTREN</value>
+  </data>
 </root>
