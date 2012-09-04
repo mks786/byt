@@ -6,6 +6,7 @@ using System.Windows.Input;
 using NLog;
 using Trascend.Bolet.Cliente.Contratos.Marcas;
 using Trascend.Bolet.Cliente.Ventanas.Principales;
+using Trascend.Bolet.Cliente.Ventanas.Cartas;
 using Trascend.Bolet.ObjetosComunes.ContratosServicios;
 using Trascend.Bolet.ObjetosComunes.Entidades;
 using Trascend.Bolet.Cliente.Ventanas.Marcas;
@@ -25,8 +26,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
         private static PaginaPrincipal _paginaPrincipal = PaginaPrincipal.ObtenerInstancia;
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
-
         private IListaDatosDominioServicios _listaDatosDominioServicios;
+        private ICartaServicios _cartaServicios;
 
         /// <summary>
         /// Constructor Predeterminado
@@ -43,6 +44,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
 
             this._listaDatosDominioServicios = (IListaDatosDominioServicios)Activator.GetObject(typeof(IListaDatosDominioServicios),
                 ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["ListaDatosDominioServicios"]);
+            this._cartaServicios = (ICartaServicios)Activator.GetObject(typeof(ICartaServicios),
+                ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["CartaServicios"]);
 
             this._marca = (Marca)marca;
 
@@ -72,7 +75,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
 
                 this._ventana.IdMarca = this._marca.Id.ToString();
 
-
+                foreach (InstruccionDeRenovacion instruccionDeRenovacion in (((Marca)this._marca).InstruccionesDeRenovacion))
+                {
+                    instruccionDeRenovacion.Marca = this._marca;
+                }
 
                 this._ventana.Resultados = ((Marca)this._marca).InstruccionesDeRenovacion;
                 this._ventana.TotalHits = ((Marca)this._marca).InstruccionesDeRenovacion.Count.ToString();
@@ -107,13 +113,13 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             if (!nuevo)
             {
                 ((InstruccionDeRenovacion)this._ventana.InstruccionSeleccionada).Marca = this._marca;
-                //this.Navegar(new GestionarInstruccionDeRenovacion(this._ventana.InstruccionSeleccionada));
+                this.Navegar(new GestionarInstruccionDeRenovacion(this._ventana.InstruccionSeleccionada));
             }
             else
             {
                 InstruccionDeRenovacion instruccion = new InstruccionDeRenovacion();
                 instruccion.Marca = this._marca;
-                //this.Navegar(new GestionarInstruccionDeRenovacion(instruccion));
+                this.Navegar(new GestionarInstruccionDeRenovacion(instruccion));
             }
 
             #region trace
@@ -259,6 +265,14 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
                 logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
+        }
+
+        public void IrConsultarCarta()
+        {
+            Carta carta = new Carta();
+            carta.Id = ((InstruccionDeRenovacion)this._ventana.InstruccionSeleccionada).Carta.Id;
+            IList<Carta> cartas = this._cartaServicios.ObtenerCartasFiltro(carta);
+            Navegar(new ConsultarCarta(cartas[0], this._ventana));
         }
     }
 }

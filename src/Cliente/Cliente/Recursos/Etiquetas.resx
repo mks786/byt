@@ -2796,4 +2796,16 @@ en Prensa:</value>
   <data name="titleInstruccionesDeRenovacion" xml:space="preserve">
     <value>Instruciones de Renovación</value>
   </data>
+  <data name="btnNuevaInstruccionDeRenovacion" xml:space="preserve">
+    <value>Nueva Instrucción de Renovación</value>
+  </data>
+  <data name="btnInteresado" xml:space="preserve">
+    <value>Interesado:</value>
+  </data>
+  <data name="lblANombreInteresado" xml:space="preserve">
+    <value>A nombre del Interesado:</value>
+  </data>
+  <data name="lblPara" xml:space="preserve">
+    <value>Para:</value>
+  </data>
 </root>

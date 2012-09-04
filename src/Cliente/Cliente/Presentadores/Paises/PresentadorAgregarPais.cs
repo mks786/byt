@@ -104,13 +104,13 @@ namespace Trascend.Bolet.Cliente.Presentadores.Paises
                 logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
 
-            ListaDatosValores listaAux = new ListaDatosValores("CONTINENTE");
-            this._ventana.Regiones = this._listaDatosValoresServicios.ConsultarListaDatosValoresPorParametro(listaAux);
+            //ListaDatosValores listaAux = new ListaDatosValores("CONTINENTE");
+            //this._ventana.Regiones = this._listaDatosValoresServicios.ConsultarListaDatosValoresPorParametro(listaAux);
 
-            ListaDatosValores primerValor = new ListaDatosValores("NGN");
-            primerValor.Descripcion = "";
-            ((IList<ListaDatosValores>)this._ventana.Regiones).Insert(0, primerValor);
-            this._ventana.Region = ((IList<ListaDatosValores>)this._ventana.Regiones)[0];
+            //ListaDatosValores primerValor = new ListaDatosValores("NGN");
+            //primerValor.Descripcion = "";
+            //((IList<ListaDatosValores>)this._ventana.Regiones).Insert(0, primerValor);
+            //this._ventana.Region = ((IList<ListaDatosValores>)this._ventana.Regiones)[0];
 
             #region trace
             if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -130,20 +130,20 @@ namespace Trascend.Bolet.Cliente.Presentadores.Paises
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-                Pais pais = (Pais)this._ventana.Pais;
-                pais.Region = !((ListaDatosValores)this._ventana.Region).Descripcion.Equals("") ? ((ListaDatosValores)this._ventana.Region).Descripcion : null;
+                //Pais pais = (Pais)this._ventana.Pais;
+                //pais.Region = !((ListaDatosValores)this._ventana.Region).Descripcion.Equals("") ? ((ListaDatosValores)this._ventana.Region).Descripcion : null;
 
-                if (!this._paisServicios.VerificarExistencia(pais))
-                {
-                    bool exitoso = this._paisServicios.InsertarOModificar(pais, UsuarioLogeado.Hash);
+                //if (!this._paisServicios.VerificarExistencia(pais))
+                //{
+                //    bool exitoso = this._paisServicios.InsertarOModificar(pais, UsuarioLogeado.Hash);
 
-                    if (exitoso)
-                        this.Navegar(Recursos.MensajesConElUsuario.PaisInsertado, false);
-                }
-                else
-                {
-                    this._ventana.Mensaje(Recursos.MensajesConElUsuario.ErrorPaisRepetido);
-                }
+                //    if (exitoso)
+                //        this.Navegar(Recursos.MensajesConElUsuario.PaisInsertado, false);
+                //}
+                //else
+                //{
+                //    this._ventana.Mensaje(Recursos.MensajesConElUsuario.ErrorPaisRepetido);
+                //}
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))

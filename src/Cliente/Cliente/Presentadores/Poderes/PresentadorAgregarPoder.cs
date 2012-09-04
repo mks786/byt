@@ -183,7 +183,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Poderes
                     else
                     {
                         poder.Id = exitoso.Value;
-                        this.Navegar(new ConsultarPoder(poder));
+                        this.Navegar(new ConsultarPoder(poder,null));
                     }
 
                 #region trace

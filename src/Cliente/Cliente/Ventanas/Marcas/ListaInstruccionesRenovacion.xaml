@@ -171,8 +171,8 @@
         <!--Botones Aceptar|Cancelar-->
         <GroupBox Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="1" BorderBrush="{x:Null}">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom">
-                <Button Name="_btnAgregar" VerticalAlignment="Bottom" Height="25" Width="110" Click="EventoIrGestionarInstruccionDeRenovacion">
-                    <TextBlock Text="{x:Static recurso:Etiquetas.btnNuevaBusqueda}"/>
+                <Button Name="_btnAgregar" VerticalAlignment="Bottom" Height="25" Width="220" Click="EventoIrGestionarInstruccionDeRenovacion">
+                    <TextBlock Text="{x:Static recurso:Etiquetas.btnNuevaInstruccionDeRenovacion}"/>
                 </Button>
                 <Button Name="_btnCancelar" Width="100" Click="_btnCancelar_Click">
                     <TextBlock Text="{x:Static recurso:Etiquetas.btnRegresar}"/>

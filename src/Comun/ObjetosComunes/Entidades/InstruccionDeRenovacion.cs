@@ -29,11 +29,19 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         public override bool Equals(object obj)
         {
             bool retorno = false;
-            if ((((InstruccionDeRenovacion)obj)._carta.Id == this._carta.Id) && (((InstruccionDeRenovacion)obj)._marca.Id == this._marca.Id))
+            try
             {
-                retorno = true;
-            }
 
+                if ((((InstruccionDeRenovacion)obj)._carta.Id == this._carta.Id) && (((InstruccionDeRenovacion)obj)._marca.Id == this._marca.Id))
+                {
+                    retorno = true;
+                }
+
+            }
+            catch(Exception ex)
+            {
+                string a = ex.Message;
+            }
             return retorno;
         }
 

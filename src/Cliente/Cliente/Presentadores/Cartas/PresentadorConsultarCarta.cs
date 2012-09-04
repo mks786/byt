@@ -48,7 +48,6 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
         private bool _precargada = false;
         private bool _listaCartasCargada = false;
         private bool _otraCarta = false;
-        private object _ventanaAVolver = null;
 
         /// <summary>
         /// Constructor predeterminado
@@ -65,7 +64,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
 
                 this._ventana = ventana;
 
-                this._ventanaAVolver = ventanaAVolver;
+                this._ventanaPadre = ventanaAVolver;
                 Carta cartaA = (Carta)carta;
                 //cartaA.FechaAlt = null != cartaA.FechaAlt ? FormatearFecha(cartaA.FechaAlt) : null;
                 //cartaA.FechaReal = null != cartaA.FechaReal ? FormatearFecha(cartaA.FechaReal) : null;
@@ -121,7 +120,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
                 #endregion
 
                 this._ventana = ventana;
-                this._ventanaAVolver = ventanaPadre;
+                this._ventanaPadre = ventanaPadre;
                 this._ventana.Carta = carta;
                 //this._precargada = ventanaAVolver.Equals(null) ? false : true;
                 //this._ventanaAVolver = ventanaAVolver;
@@ -1547,7 +1546,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
 
         public void VolverAVentanaPadre()
         {
-            Navegar((Page)_ventanaAVolver);
+            Navegar((Page)_ventanaPadre);
         }
 
         public void AbrirCorrespondencia()

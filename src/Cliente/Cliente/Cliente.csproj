@@ -119,6 +119,7 @@
     <Compile Include="Contratos\MarcasTercero\IGestionarInfoAdicionalMarcaTercero.cs" />
     <Compile Include="Contratos\MarcasTercero\IGestionarInfoBolMarcaTer.cs" />
     <Compile Include="Contratos\MarcasTercero\IListaInfoBolMarcaTeres.cs" />
+    <Compile Include="Contratos\Marcas\IGestionarInstruccionDeRenovacion.cs" />
     <Compile Include="Contratos\Marcas\IListaInstruccionesRenovacion.cs" />
     <Compile Include="Contratos\Memorias\IAgregarMemoria.cs" />
     <Compile Include="Contratos\Memorias\IConsultarMemoria.cs" />
@@ -610,6 +611,9 @@
     <Compile Include="Ventanas\MarcasTercero\ListaInfoBolMarcaTeres.xaml.cs">
       <DependentUpon>ListaInfoBolMarcaTeres.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Ventanas\Marcas\GestionarInstruccionDeRenovacion.xaml.cs">
+      <DependentUpon>GestionarInstruccionDeRenovacion.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Ventanas\Marcas\ListaInstruccionesRenovacion.xaml.cs">
       <DependentUpon>ListaInstruccionesRenovacion.xaml</DependentUpon>
     </Compile>
@@ -924,6 +928,9 @@
     </Compile>
     <Compile Include="Ventanas\Renovaciones\GestionarRenovacion.xaml.cs">
       <DependentUpon>GestionarRenovacion.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Reportes\Carta1.xaml.cs">
+      <DependentUpon>Carta1.xaml</DependentUpon>
     </Compile>
     <Compile Include="Ventanas\Resumenes\AgregarResumen.xaml.cs">
       <DependentUpon>AgregarResumen.xaml</DependentUpon>
@@ -1249,6 +1256,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Ventanas\MarcasTercero\ListaInfoBolMarcaTeres.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\Marcas\GestionarInstruccionDeRenovacion.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -1653,6 +1664,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Ventanas\Renovaciones\GestionarRenovacion.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\Reportes\Carta1.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

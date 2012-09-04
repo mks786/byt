@@ -11,23 +11,29 @@ using Trascend.Bolet.ObjetosComunes.Entidades;
 using System.Threading;
 using Trascend.Bolet.Cliente.Ventanas.Marcas;
 using System.Collections.Generic;
+using Trascend.Bolet.Cliente.Ventanas.Cartas;
 
 namespace Trascend.Bolet.Cliente.Presentadores.Marcas
 {
     class PresentadorGestionarIntruccionRenovacion : PresentadorBase
     {
-        private IGestionarBusqueda _ventana;
+        private IGestionarInstruccionDeRenovacion _ventana;
         private static PaginaPrincipal _paginaPrincipal = PaginaPrincipal.ObtenerInstancia;
         private static Logger logger = LogManager.GetCurrentClassLogger();
-        private IBusquedaServicios _busquedaServicios;
+
+
+        private IInstruccionDeRenovacionServicios _instruccionDeRenovacionServicios;
         private IListaDatosDominioServicios _listaDatosDominioServicios;
+        private ICartaServicios _cartaServicios;
+
+
         private bool _nuevaBusqueda = false;
 
         /// <summary>
         /// Constructor predeterminado
         /// </summary>
         /// <param name="ventana">Página que satisface el contrato</param>
-        public PresentadorGestionarIntruccionRenovacion(IGestionarBusqueda ventana, object busqueda)
+        public PresentadorGestionarIntruccionRenovacion(IGestionarInstruccionDeRenovacion ventana, object instruccion)
         {
             try
             {
@@ -37,15 +43,28 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 #endregion
 
                 this._ventana = ventana;
-                this._ventana.Busqueda = null != (Busqueda)busqueda ? (Busqueda)busqueda : new Busqueda();
-
-                if (((Busqueda)busqueda).Id == int.MinValue)
+                //this._ventana.InstruccionDeRenovacion = null != (InstruccionDeRenovacion)instruccion ? (InstruccionDeRenovacion)instruccion : new InstruccionDeRenovacion();
+                //if (null != (InstruccionDeRenovacion)instruccion)
+                if (((InstruccionDeRenovacion)instruccion).Carta != null)
+                {
+                    this._ventana.InstruccionDeRenovacion = (InstruccionDeRenovacion)instruccion;
+                }
+                else
+                {
+                    InstruccionDeRenovacion instruccionAux = new InstruccionDeRenovacion();
+                    instruccionAux.Fecha = System.DateTime.Now;
+                    instruccionAux.Marca = ((InstruccionDeRenovacion)instruccion).Marca;
+                    this._ventana.InstruccionDeRenovacion = instruccionAux;
+                }
+                if (((InstruccionDeRenovacion)instruccion).Carta == null)
                     this._nuevaBusqueda = true;
 
-                this._busquedaServicios = (IBusquedaServicios)Activator.GetObject(typeof(IBusquedaServicios),
-                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["BusquedaServicios"]);
+                this._instruccionDeRenovacionServicios = (IInstruccionDeRenovacionServicios)Activator.GetObject(typeof(IInstruccionDeRenovacionServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["InstruccionDeRenovacionServicios"]);
                 this._listaDatosDominioServicios = (IListaDatosDominioServicios)Activator.GetObject(typeof(IListaDatosDominioServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["ListaDatosDominioServicios"]);
+                this._cartaServicios = (ICartaServicios)Activator.GetObject(typeof(ICartaServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["CartaServicios"]);
 
                 //IList<TipoInfobol> infoboles = this._tipoInfobolServicios.ConsultarTodos();
                 //this._ventana.Tipos = null;
@@ -87,17 +106,18 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                     this._ventana.TextoBotonModificar = Recursos.Etiquetas.btnAceptar;
                     this._ventana.OcultarControlesAlAgregar();
                     this._ventana.BorrarValorMinimo();
+                    ((InstruccionDeRenovacion)this._ventana.InstruccionDeRenovacion).Fecha = System.DateTime.Now;
                 }
 
-                IList<ListaDatosDominio> tiposBusqueda = this._listaDatosDominioServicios.
-                ConsultarListaDatosDominioPorParametro(new ListaDatosDominio(Recursos.Etiquetas.cbiTipoBusqueda));
-                ListaDatosDominio primerTipoBusqueda = new ListaDatosDominio();
-                primerTipoBusqueda.Id = "NGN";
-                tiposBusqueda.Insert(0, primerTipoBusqueda);
-                this._ventana.TiposBusqueda = tiposBusqueda;
+                //IList<ListaDatosDominio> tiposBusqueda = this._listaDatosDominioServicios.
+                //ConsultarListaDatosDominioPorParametro(new ListaDatosDominio(Recursos.Etiquetas.cbiTipoBusqueda));
+                //ListaDatosDominio primerTipoBusqueda = new ListaDatosDominio();
+                //primerTipoBusqueda.Id = "NGN";
+                //tiposBusqueda.Insert(0, primerTipoBusqueda);
+                //this._ventana.TiposBusqueda = tiposBusqueda;
 
-                if (!this._nuevaBusqueda)
-                    this._ventana.TipoBusqueda = this.BuscarTipoBusqueda(((Busqueda)this._ventana.Busqueda).TipoBusqueda, tiposBusqueda);
+                //if (!this._nuevaBusqueda)
+                //    this._ventana.TipoBusqueda = this.BuscarTipoBusqueda(((Busqueda)this._ventana.Busqueda).TipoBusqueda, tiposBusqueda);
 
                 //IList<Boletin> boletines = this._boletinServicios.ConsultarTodos();
                 //Boletin primerBoletin = new Boletin();
@@ -166,14 +186,23 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 //Agregar o modificar datos
                 else
                 {
-                    Busqueda busqueda = (Busqueda)this._ventana.Busqueda;
+                    Carta carta = new Carta(int.Parse(this._ventana.IdCorrespondencia));
 
-                    busqueda.TipoBusqueda = ((ListaDatosDominio)this._ventana.TipoBusqueda).Id != "NGN" ? ((ListaDatosDominio)this._ventana.TipoBusqueda).Id[0] : (char?)null;
+                    if (this._cartaServicios.VerificarExistencia(carta))
+                    {
+                        InstruccionDeRenovacion instruccion = (InstruccionDeRenovacion)this._ventana.InstruccionDeRenovacion;
 
-                    exitoso = this._busquedaServicios.InsertarOModificar(busqueda, UsuarioLogeado.Hash);
-                    if (this._nuevaBusqueda)
-                        ((Busqueda)this._ventana.Busqueda).Marca.Busquedas.Add(busqueda);
+                        //busqueda.TipoBusqueda = ((ListaDatosDominio)this._ventana.TipoBusqueda).Id != "NGN" ? ((ListaDatosDominio)this._ventana.TipoBusqueda).Id[0] : (char?)null;
 
+                        instruccion.Carta = this._cartaServicios.ObtenerCartasFiltro(carta)[0];
+                        exitoso = this._instruccionDeRenovacionServicios.InsertarOModificar(instruccion, UsuarioLogeado.Hash);
+                        if (this._nuevaBusqueda)
+                            ((InstruccionDeRenovacion)this._ventana.InstruccionDeRenovacion).Marca.InstruccionesDeRenovacion.Add(instruccion);
+                    }
+                    else 
+                    {
+                        this._ventana.Alerta();
+                    }
                 }
 
                 #region trace
@@ -219,9 +248,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-                ((Busqueda)this._ventana.Busqueda).Marca.Busquedas.Remove((Busqueda)this._ventana.Busqueda);
+                ((InstruccionDeRenovacion)this._ventana.InstruccionDeRenovacion).Marca.InstruccionesDeRenovacion.Remove((InstruccionDeRenovacion)this._ventana.InstruccionDeRenovacion);
 
-                if (this._busquedaServicios.Eliminar((Busqueda)this._ventana.Busqueda, UsuarioLogeado.Hash))
+                if (this._instruccionDeRenovacionServicios.Eliminar((InstruccionDeRenovacion)this._ventana.InstruccionDeRenovacion, UsuarioLogeado.Hash))
                 {
                     exitoso = true;
                 }
@@ -258,19 +287,27 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
         /// <summary>
         /// Método que se encarga de mostrar la ventana de lista de Busqueda
         /// </summary>
-        public void irListaBusqueda()
+        public void IrListaInstruccionesDeRenovacion()
         {
             #region trace
             if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
                 logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
 
-            this.Navegar(new ListaBusquedas(((Busqueda)this._ventana.Busqueda).Marca));
+            this.Navegar(new ListaInstruccionesRenovacion(((InstruccionDeRenovacion)this._ventana.InstruccionDeRenovacion).Marca));
 
             #region trace
             if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
                 logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
+        }
+
+        public void ConsultarCarta()
+        {
+            Carta carta = new Carta();
+            carta.Id = ((InstruccionDeRenovacion)this._ventana.InstruccionDeRenovacion).Carta.Id;
+            IList<Carta> cartas = this._cartaServicios.ObtenerCartasFiltro(carta);
+            Navegar(new ConsultarCarta(cartas[0], this._ventana));
         }
     }
 }

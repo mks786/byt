@@ -21,6 +21,8 @@ using Trascend.Bolet.ControlesByT.Ventanas;
 using System.Text;
 using System.IO;
 using Trascend.Bolet.Cliente.Ventanas.Asociados;
+using Trascend.Bolet.Cliente.Ventanas.Interesados;
+using Trascend.Bolet.Cliente.Ventanas.Poderes;
 
 namespace Trascend.Bolet.Cliente.Presentadores.Marcas
 {
@@ -315,8 +317,17 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
 
                 this._ventana.NumPoderDatos = marca.Poder != null ? marca.Poder.NumPoder : "";
 
-                this._ventana.IdPoderDatos = marca.Poder != null ? marca.Poder.Id.ToString() : "";
-                this._ventana.IdPoderSolicitud = marca.Poder != null ? marca.Poder.Id.ToString() : "";
+                if (marca.Poder != null)
+                {
+                    this._ventana.IdPoderDatos = marca.Poder.Id.ToString();
+                    this._ventana.IdPoderSolicitud = marca.Poder.Id.ToString();
+
+                }
+                else
+                {
+                    this._ventana.IdPoderDatos = "";
+                    this._ventana.IdPoderSolicitud = "";
+                }
 
                 //this._ventana.NumPoderSolicitud = marca.Poder != null ? marca.Poder.NumPoder : "";
 
@@ -2303,7 +2314,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
         public void IrVentanaAsociado()
         {
             Asociado asociado = ((Asociado)this._ventana.AsociadoSolicitud).Id != int.MinValue ? (Asociado)this._ventana.AsociadoSolicitud : null;
-            Navegar(new ConsultarAsociados(this._ventana, asociado));
+            Navegar(new ConsultarAsociado(asociado,this._ventana));
         }
 
         public string ObtenerIdMarca()
@@ -2314,6 +2325,20 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
         public void VerInstruccionesDeRenovacion()
         {
             Navegar(new ListaInstruccionesRenovacion(this._ventana.Marca));
+        }
+
+        public void IrVentanaInteresado()
+        {
+            Interesado interesado = ((Interesado)this._ventana.InteresadoSolicitud).Id != int.MinValue ? (Interesado)this._ventana.InteresadoSolicitud : null;
+            Navegar(new ConsultarInteresado(interesado, this._ventana));
+        }
+
+        public void IrVentanaPoder()
+        {
+            Poder poder = ((Marca)this._ventana.Marca).Poder.Id != int.MinValue ? ((Marca)this._ventana.Marca).Poder : null;
+            Navegar(new ConsultarPoder(poder, this._ventana));
+
+             
         }
     }
 }

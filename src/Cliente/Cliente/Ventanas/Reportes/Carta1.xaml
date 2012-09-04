@@ -1,0 +1,182 @@
+﻿<Page x:Class="Trascend.Bolet.Cliente.Ventanas.Reportes.Carta1"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:custom="clr-namespace:Trascend.Bolet.ControlesByT;assembly=ControlesByT"
+      mc:Ignorable="d" 
+      xmlns:reglas="clr-namespace:Trascend.Bolet.Cliente.Validaciones"
+      d:DesignHeight="550" d:DesignWidth="800"
+      xmlns:recurso="clr-namespace:Trascend.Bolet.Cliente.Recursos" Loaded="Page_Loaded">
+    <Page.Resources>
+        <Style x:Key="ElementInError" TargetType="{x:Type FrameworkElement}">
+            <Style.Triggers>
+                <Trigger Property="Validation.HasError" Value="True">
+                    <Setter Property="ToolTip"
+                    Value="{Binding (Validation.Errors)[0].ErrorContent, RelativeSource={x:Static RelativeSource.Self}}"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Page.Resources>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="50"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="50"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="10"/>
+        </Grid.RowDefinitions>
+
+        <GroupBox Grid.Column="1" Grid.Row="1">
+            <StackPanel Name="_gridDatos"  VerticalAlignment="Center"  HorizontalAlignment="Center"
+                        DataContext="{Binding}">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+
+                    </Grid.RowDefinitions>
+                    <!--Fila 1-->
+                    <Label Grid.Column="6" HorizontalAlignment="Right" VerticalAlignment="Center">
+                        <TextBlock Text="{x:Static recurso:Etiquetas.lblFecha}"/>
+                    </Label>
+                    <DatePicker   Grid.Column="7" Grid.Row="0" 
+                        Name="_dpkFecha" Grid.ColumnSpan="1" Focusable="False" 
+                        BorderBrush="{x:Null}" VerticalAlignment="Center" >
+                        <DatePicker.SelectedDate>
+                            <Binding Path="Fecha" UpdateSourceTrigger="PropertyChanged"/>
+                        </DatePicker.SelectedDate>
+                    </DatePicker>
+                    <!--Fin Fila 1-->
+
+
+                    <!--Fila 2-->
+                    <Label Grid.Column="0" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Center">
+                        <TextBlock Text="{x:Static recurso:Etiquetas.lblMarca}"/>
+                    </Label>
+                    <custom:ByTTextBox  IsReadOnly="True"  Name="_txtIdMarca" Text="{Binding Path=Id}" HorizontalAlignment="Left" Grid.Column="1" Grid.Row="1" 
+                                      Width="50" Height="20"></custom:ByTTextBox>
+                    <custom:ByTTextBox  IsReadOnly="True"  Name="_txtMarca" Text="{Binding Path=Id}" Grid.Column="2" 
+                                        Grid.Row="1" Grid.ColumnSpan="4"
+                                      Height="20"></custom:ByTTextBox>
+
+
+                    <Label Grid.Column="6" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Center">
+                        <TextBlock Text="{x:Static recurso:Etiquetas.lblNumRegistro}"/>
+                    </Label>
+                    <custom:ByTTextBox  IsReadOnly="True"  Name="_txtNoRegistroMarca" Text="{Binding Path=Id}" Grid.Column="7" 
+                                        Grid.Row="1" Grid.ColumnSpan="1"
+                                      Height="20"></custom:ByTTextBox>
+                    <!--Fin Fila 2-->
+
+
+                    <!--Fila 3-->
+                    <Label Grid.Column="0" Grid.Row="2" HorizontalAlignment="Right" VerticalAlignment="Center">
+                        <TextBlock Text="{x:Static recurso:Etiquetas.lblClaseInt}"/>
+                    </Label>
+                    <custom:ByTTextBox  IsReadOnly="True"  Name="_txtClaseInternacional" Text="{Binding Path=Id}" HorizontalAlignment="Left" Grid.Column="1" Grid.Row="2" 
+                                      Width="50" Height="20"></custom:ByTTextBox>
+
+
+                    <Label Grid.Column="2" Grid.Row="2" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.ColumnSpan="1">
+                        <TextBlock Text="{x:Static recurso:Etiquetas.lblANombreInteresado}" />
+                    </Label>
+                    <custom:ByTTextBox  IsReadOnly="True"  Name="_txtInteresado" Text="{Binding Path=Id}"  Grid.Column="3" Grid.Row="2" 
+                                     Grid.ColumnSpan="2"  Height="20" Width="100"></custom:ByTTextBox>
+                    <custom:ByTTextBox  IsReadOnly="True"  Name="_txtPaisInteresado" Text="{Binding Path=Id}"  Grid.Column="6" Grid.Row="2" 
+                                     Grid.ColumnSpan="1"  Height="20"></custom:ByTTextBox>
+                    <custom:ByTTextBox  IsReadOnly="True"  Name="_txtCiudadInteresado" Text="{Binding Path=Id}"  Grid.Column="7" Grid.Row="2" 
+                                     Grid.ColumnSpan="1"  Height="20"></custom:ByTTextBox>
+                    <!--Fin Fila 3-->
+
+
+                    <!--Fila 4-->
+                    <Label Grid.Column="0" Grid.Row="3" HorizontalAlignment="Right" VerticalAlignment="Center">
+                        <TextBlock Text="{x:Static recurso:Etiquetas.lblReferencia}"/>
+                    </Label>
+                    <custom:ByTTextBox  IsReadOnly="True"  Name="_txtReferencia" Text="{Binding Path=Id}" Grid.Column="1" Grid.Row="3" 
+                                Grid.ColumnSpan="5"  Height="20"></custom:ByTTextBox>
+
+                    <Label Grid.Column="6" Grid.Row="3" HorizontalAlignment="Right" VerticalAlignment="Center">
+                        <TextBlock Text="{x:Static recurso:Etiquetas.lblFechaProxima}"/>
+                    </Label>
+                    <DatePicker   Grid.Column="7" Grid.Row="3" 
+                        Name="_dpkFechaProxRenovacion" Grid.ColumnSpan="1" Focusable="False" 
+                        BorderBrush="{x:Null}" VerticalAlignment="Center" >
+                        <DatePicker.SelectedDate>
+                            <Binding Path="Fecha" UpdateSourceTrigger="PropertyChanged"/>
+                        </DatePicker.SelectedDate>
+                    </DatePicker>
+                    <!--Fin Fila 4-->
+
+
+                    <!--Fila 5-->
+                    <Label Grid.Column="0" Grid.Row="4" HorizontalAlignment="Right" VerticalAlignment="Center">
+                        <TextBlock Text="{x:Static recurso:Etiquetas.lblPara}"/>
+                    </Label>
+                    <RadioButton Grid.Column="1" Grid.Row="4" VerticalAlignment="Center" HorizontalAlignment="Right" GroupName="groupPara">
+                        <TextBlock Text="{x:Static recurso:Etiquetas.lblAsociado}"/>
+                    </RadioButton>
+                    <RadioButton Grid.Column="2" Grid.Row="4" VerticalAlignment="Center" HorizontalAlignment="Left" GroupName="groupPara">
+                        <TextBlock Text="{x:Static recurso:Etiquetas.lblInteresado}"/>
+                    </RadioButton>
+                    
+                    <!--Fin Fila 5-->
+
+                </Grid>
+            </StackPanel>
+        </GroupBox>
+
+        <WrapPanel Grid.Column="1" Grid.Row="2" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0,0,5,5" Orientation="Horizontal" Grid.ColumnSpan="2" Width="198">
+            <Button Name="_btnAceptar"  VerticalAlignment="Bottom" Height="25" Width="90" 
+                    Click="_btnAceptar_Click" IsDefault="True">
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding ElementName=_txtId,Path=(Validation.HasError)}" Value="True">
+                                <Setter Property="IsEnabled" Value="False" />
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding ElementName=_txtNombreCompleto,Path=(Validation.HasError)}" Value="True">
+                                <Setter Property="IsEnabled" Value="False" />
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding ElementName=_txtIniciales,Path=(Validation.HasError)}" Value="True">
+                                <Setter Property="IsEnabled" Value="False" />
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding ElementName=_txtEmail,Path=(Validation.HasError)}" Value="True">
+                                <Setter Property="IsEnabled" Value="False" />
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding ElementName=_txtEmailEdo,Path=(Validation.HasError)}" Value="True">
+                                <Setter Property="IsEnabled" Value="False" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+                <TextBlock Name="_txbAceptar" Text="{x:Static recurso:Etiquetas.btnAceptar}"/>
+            </Button>
+            <Button Name="_btnCancelar" VerticalAlignment="Bottom" Height="25" Width="90" Click="_btnCancelar_Click">Cancelar</Button>
+        </WrapPanel>
+    </Grid>
+</Page>

@@ -38,13 +38,14 @@ namespace Trascend.Bolet.Cliente.Presentadores.Poderes
         /// Constructor predeterminado
         /// </summary>
         /// <param name="ventana">Página que satisface el contrato</param>
-        public PresentadorConsultarPoder(IConsultarPoder ventana, object poder)
+        public PresentadorConsultarPoder(IConsultarPoder ventana, object poder,object ventanaPadre)
         {
             try
             {
                 this._ventana = ventana;
                 this._conInteresado = true;
                 this._ventana.Poder = poder;
+                this._ventanaPadre = ventanaPadre;
                 this._poderServicios = (IPoderServicios)Activator.GetObject(typeof(IPoderServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["PoderServicios"]);
                 this._boletinServicios = (IBoletinServicios)Activator.GetObject(typeof(IBoletinServicios),

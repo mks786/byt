@@ -877,4 +877,7 @@
   <data name="InsertarPatente" xml:space="preserve">
     <value>¿Está seguro que desea insertar la patente?</value>
   </data>
+  <data name="ConfirmacionEliminarInstruccion" xml:space="preserve">
+    <value>¿Está seguro que desea eliminar la Instrucción de Renovación?</value>
+  </data>
 </root>

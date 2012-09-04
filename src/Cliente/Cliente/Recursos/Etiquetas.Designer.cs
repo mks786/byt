@@ -449,6 +449,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Interesado:.
+        /// </summary>
+        public static string btnInteresado {
+            get {
+                return ResourceManager.GetString("btnInteresado", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Inventores.
         /// </summary>
         public static string btnInventores {
@@ -562,6 +571,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string btnNuevaBusqueda {
             get {
                 return ResourceManager.GetString("btnNuevaBusqueda", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nueva Instrucción de Renovación.
+        /// </summary>
+        public static string btnNuevaInstruccionDeRenovacion {
+            get {
+                return ResourceManager.GetString("btnNuevaInstruccionDeRenovacion", resourceCulture);
             }
         }
         
@@ -1761,6 +1779,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string lblAno {
             get {
                 return ResourceManager.GetString("lblAno", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A nombre del Interesado:.
+        /// </summary>
+        public static string lblANombreInteresado {
+            get {
+                return ResourceManager.GetString("lblANombreInteresado", resourceCulture);
             }
         }
         
@@ -3482,6 +3509,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string lblPalabra {
             get {
                 return ResourceManager.GetString("lblPalabra", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Para:.
+        /// </summary>
+        public static string lblPara {
+            get {
+                return ResourceManager.GetString("lblPara", resourceCulture);
             }
         }
         

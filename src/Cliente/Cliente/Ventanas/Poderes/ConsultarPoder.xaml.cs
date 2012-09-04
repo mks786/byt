@@ -166,23 +166,23 @@ namespace Trascend.Bolet.Cliente.Ventanas.Poderes
 
         #endregion
 
-        public ConsultarPoder(object poder, object Boletines, object Interesados)
-        {
-            InitializeComponent();
-            this._cargada = false;
-            this._presentador = new PresentadorConsultarPoder(this, poder, Boletines, Interesados);
-        }
+        //public ConsultarPoder(object poder, object Boletines, object Interesados,object ventanaPadre)
+        //{
+        //    InitializeComponent();
+        //    this._cargada = false;
+        //    this._presentador = new PresentadorConsultarPoder(this, poder, Boletines, Interesados);
+        //}
 
-        public ConsultarPoder(object poder)
+        public ConsultarPoder(object poder, object ventanaPadre)
         {
             InitializeComponent();
             this._cargada = false;
-            this._presentador = new PresentadorConsultarPoder(this, poder);
+            this._presentador = new PresentadorConsultarPoder(this, poder,ventanaPadre);
         }
 
         private void _btnRegresar_Click(object sender, RoutedEventArgs e)
         {
-            this._presentador.Regresar();
+            this._presentador.RegresarVentanaPadre();
         }
 
         private void _btnModificar_Click(object sender, RoutedEventArgs e)

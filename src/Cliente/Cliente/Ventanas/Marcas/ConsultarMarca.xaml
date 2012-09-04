@@ -192,9 +192,12 @@
                         <custom:ByTTextBox  MaxLength="70" Grid.Column="9" Grid.Row="2" Name="_txtReferencia" VerticalAlignment="Center" 
                          Grid.ColumnSpan="3" Text="{Binding Path=PrimeraReferencia}"></custom:ByTTextBox>
 
-                        <Label Grid.Column="0" Grid.Row="3" VerticalAlignment="Center" HorizontalContentAlignment="Right">
+                        <!--<Label Grid.Column="0" Grid.Row="3" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblInteresado}"/>
-                        </Label>
+                        </Label>-->
+                        <Button Grid.Column="0" Grid.Row="3" Name="_btnIrInteresados" IsDefault="False" Height="25" HorizontalAlignment="Right" Click="_btnIrInteresados_Click">
+                            <TextBlock Text="{x:Static recurso:Etiquetas.btnInteresado}"/>
+                        </Button>
 
                         <Grid Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="7">
                             <Grid.ColumnDefinitions>
@@ -563,9 +566,12 @@
                               ItemsSource="{Binding}" DisplayMemberPath="Nombre" SelectionChanged="_cbxAgente_SelectionChanged" SelectedIndex="0">
                         </ComboBox>
 
-                        <Label Grid.Column="7" Grid.Row="13" VerticalAlignment="Center" HorizontalContentAlignment="Right">
+                        <!--<Label Grid.Column="7" Grid.Row="13" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblPoder}"/>
-                        </Label>
+                        </Label>-->
+                        <Button Grid.Column="7" Grid.Row="13" Name="_btnIrPoder" IsDefault="False" Height="25" HorizontalAlignment="Right" Click="_btnIrPoder_Click">
+                            <TextBlock Text="{x:Static recurso:Etiquetas.lblPoder}"/>
+                        </Button>
                         <Grid Grid.Column="8" Grid.Row="13" Grid.ColumnSpan="2">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"/>
@@ -1524,18 +1530,18 @@
                         <CheckBox  Margin="3" Grid.Column="8" Grid.ColumnSpan="1" Grid.Row="19" Height="16" VerticalAlignment="Center" 
                                   Name="_chkRenovacionTramitente" IsChecked="{Binding Path=BRenovacionOtroTramitante}"/>
                         
-                        <Button  Grid.Column="8" Grid.Row="19" Grid.ColumnSpan="2" Grid.RowSpan="2" Name="_btnIntRenovacion" Margin="25,6,3,6" Click="_btnIntRenovacion_Click">
-                            <TextBlock Name="_txbIntRenovacion" Text="{x:Static recurso:Etiquetas.btnInstRenovacion}"/>
-                        </Button>
-                        <Button  Grid.Column="10" Grid.Row="19" Grid.ColumnSpan="1" Grid.RowSpan="2" Name="_btnRenovacion" Margin="3,6,3,6" Click="_btnRenovacion_Click">
-                            <TextBlock Name="_txbRenovacion" Text="{x:Static recurso:Etiquetas.btnRenovacion}"/>
-                        </Button>
 
                         <Label Grid.Column="6" Grid.Row="20" Grid.ColumnSpan="2" VerticalAlignment="Center">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblInstruccionesDeRenovacion}"/>
                         </Label>
                         <CheckBox  Margin="3" Grid.Column="8" Grid.ColumnSpan="1" Grid.Row="20" Height="16" VerticalAlignment="Center" 
                                   Name="_chkInstruccionesRenovacion" IsChecked="{Binding Path=BInstruccionesRenovacion}"/>
+                        <Button  Grid.Column="10" Grid.Row="19" Grid.ColumnSpan="1" Grid.RowSpan="2" Name="_btnRenovacion" Margin="3,6,3,6" Click="_btnRenovacion_Click">
+                            <TextBlock Name="_txbRenovacion" Text="{x:Static recurso:Etiquetas.btnRenovacion}"/>
+                        </Button>
+                        <Button  Grid.Column="8" Grid.Row="19" Grid.ColumnSpan="2" Grid.RowSpan="2" Name="_btnIntRenovacion" Margin="25,6,3,6" Click="_btnIntRenovacion_Click">
+                            <TextBlock Name="_txbIntRenovacion" Text="{x:Static recurso:Etiquetas.btnInstRenovacion}"/>
+                        </Button>
                         <!--Fin Fila Trece-->
 
                         <!--Fila Catorce-->
