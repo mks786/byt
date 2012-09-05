@@ -157,6 +157,7 @@
     <Compile Include="Contratos\Patentes\IListaInfoBoles.cs" />
     <Compile Include="Contratos\Patentes\IListaInventores.cs" />
     <Compile Include="Contratos\Patentes\IListaOperaciones.cs" />
+    <Compile Include="Contratos\Reportes\ICarta1.cs" />
     <Compile Include="Contratos\TraspasosPatentes\CambiosDeDomicilioPatentes\IConsultarCambiosDeDomicilioPatentes.cs" />
     <Compile Include="Contratos\TraspasosPatentes\CambiosDeDomicilioPatentes\IGestionarCambioDeDomicilioPatentes.cs" />
     <Compile Include="Contratos\EscritosMarca\IConsignacionDeBusqueda.cs" />
@@ -365,6 +366,7 @@
     <Compile Include="Presentadores\Patentes\PresentadorListaInventores.cs" />
     <Compile Include="Presentadores\Patentes\PresentadorListaMemorias.cs" />
     <Compile Include="Presentadores\Patentes\PresentadorListaOperaciones.cs" />
+    <Compile Include="Presentadores\Reportes\PresentadorCarta1.cs" />
     <Compile Include="Presentadores\TraspasosPatentes\CambiosDeDomicilioPatentes\PresentadorConsultarCambiosDeDomicilioPatentes.cs" />
     <Compile Include="Presentadores\TraspasosPatentes\CambiosDeDomicilioPatentes\PresentadorGestionarCambioDeDomicilioPatentes.cs" />
     <Compile Include="Presentadores\EscritosMarca\PresentadorConsignacionDeBusqueda.cs" />

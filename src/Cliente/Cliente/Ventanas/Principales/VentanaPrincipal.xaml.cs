@@ -468,6 +468,10 @@ namespace Trascend.Bolet.Cliente.Ventanas.Principales
             this._presentador.AgregarEstadosMarcas();
         }
 
+        private void _menuItemCartas_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.IrCarta(((MenuItem)sender).Name);
+        }
 
         #region Escritos
 

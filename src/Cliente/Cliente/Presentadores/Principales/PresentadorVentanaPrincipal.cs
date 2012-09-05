@@ -58,6 +58,7 @@ using Trascend.Bolet.Cliente.Ventanas.EscritosPatente;
 using Trascend.Bolet.Cliente.Ventanas.Logines;
 using Trascend.Bolet.Cliente.Ventanas.Patentes;
 using Trascend.Bolet.Cliente.Ventanas.Anualidades;
+using Trascend.Bolet.Cliente.Ventanas.Reportes;
 using System.Diagnostics;
 using System.Collections.Generic;
 
@@ -776,6 +777,33 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
             }
         }
 
+        public void IrCarta(string nombreBoton)
+        {
+            switch (nombreBoton)
+            {
+                case "_menuItemCarta1":
+                    this._ventana.Contenedor.Navigate(new Carta1());
+                    break;
+                case "_menuItemCarta2":
+                    //this._ventana.Contenedor.Navigate(new CorreccionErrorMaterial());
+                    break;
+                case "_menuItemCarta14":
+                    //this._ventana.Contenedor.Navigate(new CorreccionErrorMaterialDistingue());
+                    break;
+                case "_menuItemCarta15":
+                    //this._ventana.Contenedor.Navigate(new CertificadoDeOrigen());
+                    break;
+                case "_menuItemCarta16M":
+                    //this._ventana.Contenedor.Navigate(new CertificadoDeOrigen());
+                    break;
+                case "_menuItemCarta16P":
+                    //this._ventana.Contenedor.Navigate(new CertificadoDeOrigen());
+                    break;
+                default:
+                    break;
+            }
+        }
+
         /// <summary>
         /// Método que se encarga de realizar el llamado a las pantallas de los escritos
         /// de patentes
@@ -1345,7 +1373,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
                                     if (objeto.Id.Equals(Recursos.Ids.TipoBaseMarca))
                                         itemNivel2.Visibility = System.Windows.Visibility.Visible;
                                     break;
-
+                                case "_menuItemCartas":
+                                    if (objeto.Id.Equals(Recursos.Ids.Marca))
+                                        itemNivel2.Visibility = System.Windows.Visibility.Visible;
+                                    break;
+                                    
 
                                 #endregion
 

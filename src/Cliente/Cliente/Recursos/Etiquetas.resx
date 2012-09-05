@@ -2808,4 +2808,37 @@ en Prensa:</value>
   <data name="lblPara" xml:space="preserve">
     <value>Para:</value>
   </data>
+  <data name="menuItemCarta1" xml:space="preserve">
+    <value>Carta 1</value>
+  </data>
+  <data name="menuItemCarta14" xml:space="preserve">
+    <value>Carta 14</value>
+  </data>
+  <data name="menuItemCarta15" xml:space="preserve">
+    <value>Carta 15</value>
+  </data>
+  <data name="menuItemCarta16M" xml:space="preserve">
+    <value>Carta 16 Marcas</value>
+  </data>
+  <data name="menuItemCarta16P" xml:space="preserve">
+    <value>Carta 1 Patentes</value>
+  </data>
+  <data name="menuItemCarta2" xml:space="preserve">
+    <value>Carta 2</value>
+  </data>
+  <data name="radioAsociado" xml:space="preserve">
+    <value>Asociado</value>
+  </data>
+  <data name="radioInteresado" xml:space="preserve">
+    <value>Interesado</value>
+  </data>
+  <data name="radioMarca" xml:space="preserve">
+    <value>Una marca</value>
+  </data>
+  <data name="radioVariasMarcas" xml:space="preserve">
+    <value>Varias Marcas</value>
+  </data>
+  <data name="menuItemCartas" xml:space="preserve">
+    <value>Cartas</value>
+  </data>
 </root>

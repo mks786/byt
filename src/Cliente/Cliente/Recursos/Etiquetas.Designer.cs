@@ -5358,6 +5358,69 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Carta 1.
+        /// </summary>
+        public static string menuItemCarta1 {
+            get {
+                return ResourceManager.GetString("menuItemCarta1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Carta 14.
+        /// </summary>
+        public static string menuItemCarta14 {
+            get {
+                return ResourceManager.GetString("menuItemCarta14", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Carta 15.
+        /// </summary>
+        public static string menuItemCarta15 {
+            get {
+                return ResourceManager.GetString("menuItemCarta15", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Carta 16 Marcas.
+        /// </summary>
+        public static string menuItemCarta16M {
+            get {
+                return ResourceManager.GetString("menuItemCarta16M", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Carta 1 Patentes.
+        /// </summary>
+        public static string menuItemCarta16P {
+            get {
+                return ResourceManager.GetString("menuItemCarta16P", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Carta 2.
+        /// </summary>
+        public static string menuItemCarta2 {
+            get {
+                return ResourceManager.GetString("menuItemCarta2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cartas.
+        /// </summary>
+        public static string menuItemCartas {
+            get {
+                return ResourceManager.GetString("menuItemCartas", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Categoría.
         /// </summary>
         public static string menuItemCategoria {
@@ -6164,6 +6227,42 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string menuItemUsuario {
             get {
                 return ResourceManager.GetString("menuItemUsuario", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Asociado.
+        /// </summary>
+        public static string radioAsociado {
+            get {
+                return ResourceManager.GetString("radioAsociado", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Interesado.
+        /// </summary>
+        public static string radioInteresado {
+            get {
+                return ResourceManager.GetString("radioInteresado", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Una marca.
+        /// </summary>
+        public static string radioMarca {
+            get {
+                return ResourceManager.GetString("radioMarca", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Varias Marcas.
+        /// </summary>
+        public static string radioVariasMarcas {
+            get {
+                return ResourceManager.GetString("radioVariasMarcas", resourceCulture);
             }
         }
         

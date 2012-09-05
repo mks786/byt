@@ -83,7 +83,7 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
                 {
                     if (variosFiltros)
                         filtro += " and ";
-                    filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerAsociadoNombre, asociado.Nombre);
+                    filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerAsociadoNombre, asociado.Nombre.ToUpper());
                 }
 
                 if (!string.IsNullOrEmpty(asociado.Domicilio))

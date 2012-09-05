@@ -54,10 +54,10 @@
                     <MenuItem Name="_menuItemCorreccionErrorMaterialDistingue" Header="{x:Static resx:Etiquetas.menuItemEscritosCorreccionErrorMaterialDistingue}" Click="_menuItemEscritos_Click"/>
                     <MenuItem Name="_menuItemCertificadoDeOrigen" Header="{x:Static resx:Etiquetas.menuItemEscritosCertificadoDeOrigen}" Click="_menuItemEscritos_Click"/>
                     <MenuItem Name="_menuItemContinuacionDeTramite" Header="{x:Static resx:Etiquetas.menuItemEscritosContinuacionDeTramite}" Click="_menuItemEscritos_Click"/>
-                    <MenuItem Name="_menuItemCorreccionDelDistingue" Header="{x:Static resx:Etiquetas.menuItemEscritosCorreccionDelDistingue}" Click="_menuItemEscritos_Click"/>                    
+                    <MenuItem Name="_menuItemCorreccionDelDistingue" Header="{x:Static resx:Etiquetas.menuItemEscritosCorreccionDelDistingue}" Click="_menuItemEscritos_Click"/>
                     <MenuItem Name="_menuItemCambioDeTramitante" Header="{x:Static resx:Etiquetas.menuItemEscritosCambioDeTramitante}" Click="_menuItemEscritos_Click"/>
                     <MenuItem Name="_menuItemDesistimiento" Header="{x:Static resx:Etiquetas.menuItemEscritosDeDesistimiento}" Click="_menuItemEscritos_Click"/>
-                    <MenuItem Name="_menuItemLimitacionDelDistingue" Header="{x:Static resx:Etiquetas.menuItemEscritosLimitacionDelDistingue}" Click="_menuItemEscritos_Click"/>                                                                                                    
+                    <MenuItem Name="_menuItemLimitacionDelDistingue" Header="{x:Static resx:Etiquetas.menuItemEscritosLimitacionDelDistingue}" Click="_menuItemEscritos_Click"/>
                     <MenuItem Name="_menuItemNumeracionDePoderPorMarca" Header="{x:Static resx:Etiquetas.menuItemEscritosNumeracionDePoderPorMarca}" Click="_menuItemEscritos_Click"/>
                     <MenuItem Name="_menuItemNumeracionDePoderPorInteresado" Header="{x:Static resx:Etiquetas.menuItemEscritosNumeracionDePoderPorInteresado}" Click="_menuItemEscritos_Click"/>
                     <MenuItem Name="_menuItemPrioridadExtranjera" Header="{x:Static resx:Etiquetas.menuItemEscritosPrioridadExtranjera}" Click="_menuItemEscritos_Click"/>
@@ -72,6 +72,14 @@
                     <MenuItem Name="_menuItemRenunciaParcial" Header="{x:Static resx:Etiquetas.menuItemEscritosRenunciaParcial}" Click="_menuItemEscritos_Click"/>
                     <MenuItem Name="_menuItemConsignacionDeBusqueda" Header="{x:Static resx:Etiquetas.menuItemEscritosConsignacionDeBusqueda}" Click="_menuItemEscritos_Click"/>
                     <MenuItem Name="_menuItemNotificacionDeIngresoDePoder" Header="{x:Static resx:Etiquetas.menuItemEscritosNotificacionDeIngresoDePoder}" Click="_menuItemEscritos_Click"/>
+                </MenuItem>
+                <MenuItem Name="_menuItemCartas" Visibility="Collapsed" Header="{x:Static resx:Etiquetas.menuItemCartas}">
+                    <MenuItem Name="_menuItemCarta1" Header="{x:Static resx:Etiquetas.menuItemCarta1}" Click="_menuItemCartas_Click"/>
+                    <MenuItem Name="_menuItemCarta2" Header="{x:Static resx:Etiquetas.menuItemCarta2}" Click="_menuItemCartas_Click"/>
+                    <MenuItem Name="_menuItemCarta14" Header="{x:Static resx:Etiquetas.menuItemCarta14}" Click="_menuItemCartas_Click"/>
+                    <MenuItem Name="_menuItemCarta15" Header="{x:Static resx:Etiquetas.menuItemCarta15}" Click="_menuItemCartas_Click"/>
+                    <MenuItem Name="_menuItemCarta16M" Header="{x:Static resx:Etiquetas.menuItemCarta16M}" Click="_menuItemCartas_Click"/>
+                    <MenuItem Name="_menuItemCarta16P" Header="{x:Static resx:Etiquetas.menuItemCarta16P}" Click="_menuItemCartas_Click"/>
                 </MenuItem>
                 <MenuItem Name="_menuItemTraspasos" Visibility="Collapsed" Header="{x:Static resx:Etiquetas.menuItemTraspasos}" BorderBrush="Gray">
                     <MenuItem Name="_menuItemCesiones" Header="{x:Static resx:Etiquetas.menuItemCesiones}">

@@ -69,7 +69,7 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
                 {
                     if (variosFiltros)
                         filtro += " and ";
-                    filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerMarcaDescripcion, marca.Descripcion);
+                    filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerMarcaDescripcion, marca.Descripcion.ToUpper());
                 }
 
                 if ((null != marca.FechaPublicacion) && (!marca.FechaPublicacion.Equals(DateTime.MinValue)))
