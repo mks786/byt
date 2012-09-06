@@ -31,6 +31,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Reportes
         private static PaginaPrincipal _paginaPrincipal = PaginaPrincipal.ObtenerInstancia;
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
+        private IList<Marca> _marcasAgregadas = new List<Marca>();
+
         /// <summary>
         /// Constructor predeterminado
         /// </summary>
@@ -59,7 +61,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Reportes
             catch (Exception ex)
             {
                 logger.Error(ex.Message);
-                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado,true);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
             }
         }
 
@@ -155,7 +157,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Reportes
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-               
+
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -223,7 +225,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Reportes
         /// </summary>
         public void ConsultarInteresadoOAsociado()
         {
-            if (this._ventana.RadioConsultarInteresado()) 
+            Mouse.OverrideCursor = Cursors.Wait;
+
+            if (this._ventana.RadioConsultarInteresado())
             {
                 Interesado interesadoFiltrar = new Interesado();
 
@@ -238,29 +242,39 @@ namespace Trascend.Bolet.Cliente.Presentadores.Reportes
             {
                 Asociado asociadoFiltrar = new Asociado();
 
-                asociadoFiltrar.Id = this._ventana.IdFiltrar.Equals("") ? int.MinValue : int.Parse(this._ventana.IdFiltrar);
+                asociadoFiltrar.Id = this._ventana.IdFiltrar.Equals("") ? 0 : int.Parse(this._ventana.IdFiltrar);
                 asociadoFiltrar.Nombre = this._ventana.NombreFiltrar.Equals("") ? string.Empty : this._ventana.NombreFiltrar;
 
                 IList<Asociado> asociados = this._asociadoServicios.ObtenerAsociadosFiltro(asociadoFiltrar);
                 this._ventana.Asociados = asociados;
             }
+            Mouse.OverrideCursor = null;
         }
 
         public void ConsultarMarca()
         {
+            Mouse.OverrideCursor = Cursors.Wait;
+
             Marca marcaFiltrar = new Marca();
 
             marcaFiltrar.Id = this._ventana.IdMarcaFiltrar.Equals("") ? 0 : int.Parse(this._ventana.IdMarcaFiltrar);
             marcaFiltrar.Descripcion = this._ventana.NombreMarcaFiltrar.Equals("") ? string.Empty : this._ventana.NombreMarcaFiltrar;
 
-            IList<Marca> marcas = this._marcaServicios.ObtenerMarcasFiltro(marcaFiltrar);
-            this._ventana.Marcas = marcas;
+            if ((marcaFiltrar.Id != 0) || (!marcaFiltrar.Descripcion.Equals(string.Empty)))
+            {
+                IList<Marca> marcas = this._marcaServicios.ObtenerMarcasFiltro(marcaFiltrar);
+                this._ventana.Marcas = marcas;
+            }
+            else
+                this._ventana.Marcas = null;
+
+            Mouse.OverrideCursor = null;
         }
 
         public bool CambiarMarca()
         {
             bool retorno = false;
-            if (this._ventana.Marca != null) 
+            if (this._ventana.Marca != null)
             {
                 this._ventana.MarcaGeneral = this._ventana.Marca;
                 retorno = true;
@@ -274,6 +288,41 @@ namespace Trascend.Bolet.Cliente.Presentadores.Reportes
             if (!((Usuario)this._ventana.Usuario).Id.Equals("NGN"))
             {
                 this._ventana.Departamento(((Usuario)this._ventana.Usuario).Departamento.Descripcion);
+            }
+        }
+
+        public void AgregarMarca()
+        {
+            try
+            {
+                if (this._ventana.Marca != null)
+                {
+                    _marcasAgregadas.Insert(0, ((Marca)this._ventana.Marca));
+                    this._ventana.MarcasAgregadas = null;
+                    this._ventana.MarcasAgregadas = _marcasAgregadas;
+                }
+
+            }
+            catch (Exception ex) 
+            {
+                logger.Error(ex.Message);
+            }
+        }
+
+        public void EliminarMarca()
+        {
+            try
+            {
+                if (this._ventana.MarcaAgregada != null)
+                {
+                    _marcasAgregadas.Remove(((Marca)this._ventana.MarcaAgregada));
+                    this._ventana.MarcasAgregadas = null;
+                    this._ventana.MarcasAgregadas = _marcasAgregadas;
+                }
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
             }
         }
     }

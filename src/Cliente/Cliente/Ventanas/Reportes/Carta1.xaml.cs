@@ -89,6 +89,18 @@ namespace Trascend.Bolet.Cliente.Ventanas.Reportes
             set { this._lstMarcas.DataContext = value; }
         }
 
+        public object MarcaAgregada
+        {
+            get { return this._lstMarcasAgregadas.SelectedItem; }
+            set { this._lstMarcasAgregadas.SelectedItem = value; }
+        }
+
+        public object MarcasAgregadas
+        {
+            get { return this._lstMarcasAgregadas.DataContext; }
+            set { this._lstMarcasAgregadas.DataContext = value; }
+        }
+
         public object Usuario
         {
             get { return this._cbxUsuario.SelectedItem; }
@@ -259,24 +271,31 @@ namespace Trascend.Bolet.Cliente.Ventanas.Reportes
 
         private void _lstMarcas_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            if (this._presentador.CambiarMarca())
+            if (_radioIndividual.IsChecked.Value)
             {
+                if (this._presentador.CambiarMarca())
+                {
 
-                this._lblIdFiltrar.Visibility = Visibility.Collapsed;
-                this._lblNombreFiltrar.Visibility = Visibility.Collapsed;
-                this._txtIdMarcaFiltrar.Visibility = Visibility.Collapsed;
-                this._txtNombreMarcaFiltrar.Visibility = Visibility.Collapsed;
-                this._btnConsultarMarca.Visibility = Visibility.Collapsed;
-                this._lstMarcas.Visibility = Visibility.Collapsed;
+                    this._lblIdFiltrar.Visibility = Visibility.Collapsed;
+                    this._lblNombreFiltrar.Visibility = Visibility.Collapsed;
+                    this._txtIdMarcaFiltrar.Visibility = Visibility.Collapsed;
+                    this._txtNombreMarcaFiltrar.Visibility = Visibility.Collapsed;
+                    this._btnConsultarMarca.Visibility = Visibility.Collapsed;
+                    this._lstMarcas.Visibility = Visibility.Collapsed;
 
-                this._txtIdMarca.Visibility = Visibility.Visible;
-                this._txtMarca.Visibility = Visibility.Visible;
+                    this._txtIdMarca.Visibility = Visibility.Visible;
+                    this._txtMarca.Visibility = Visibility.Visible;
 
-                this.FilaExpandible.Height = new GridLength(30);
+                    this.FilaExpandible.Height = new GridLength(30);
 
-                this._btnConsultar.IsDefault = true;
-                this._btnAceptar.IsDefault = false;
-                this._btnConsultarMarca.IsDefault = false;
+                    this._btnConsultar.IsDefault = true;
+                    this._btnAceptar.IsDefault = false;
+                    this._btnConsultarMarca.IsDefault = false;
+                }
+            }
+            else if (_radioGrupal.IsChecked.Value) 
+            {
+                this._presentador.AgregarMarca();
             }
         }
 
@@ -292,10 +311,10 @@ namespace Trascend.Bolet.Cliente.Ventanas.Reportes
                 this._lblANombreDeInteresado.Visibility = Visibility.Visible;
                 this._lblClaseInternacional.Visibility = Visibility.Visible;
                 this._lblIdAsoIntFiltrar.Visibility = Visibility.Visible;
-                this._lblIdFiltrar.Visibility = Visibility.Visible;
+                //this._lblIdFiltrar.Visibility = Visibility.Visible;
                 this._lblNombreAsoIntFiltrar.Visibility = Visibility.Visible;
                 this._lblNoRegistro.Visibility = Visibility.Visible;
-                this._lblNombreFiltrar.Visibility = Visibility.Visible;
+                //this._lblNombreFiltrar.Visibility = Visibility.Visible;
                 this._lblPara.Visibility = Visibility.Visible;
                 this._lblProxRenovacion.Visibility = Visibility.Visible;
                 this._lblReferencia.Visibility = Visibility.Visible;
@@ -324,6 +343,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Reportes
                 this._lstInteresados.Visibility = Visibility.Visible;
 
                 this._btnConsultar.Visibility = Visibility.Visible;
+                this._btnMas.Visibility = Visibility.Collapsed;
+                this._btnMenos.Visibility = Visibility.Collapsed;
+                this._lstMarcasAgregadas.Visibility = Visibility.Collapsed;
+                this._lblMarcasAgregadas.Visibility = Visibility.Collapsed;
+                this.FilaExpandibleMarcasAgregadas.Height = new GridLength(30);
             }
         }
 
@@ -332,10 +356,10 @@ namespace Trascend.Bolet.Cliente.Ventanas.Reportes
             this._lblANombreDeInteresado.Visibility = Visibility.Collapsed;
             this._lblClaseInternacional.Visibility = Visibility.Collapsed;
             this._lblIdAsoIntFiltrar.Visibility = Visibility.Collapsed;
-            this._lblIdFiltrar.Visibility = Visibility.Collapsed;
+            //this._lblIdFiltrar.Visibility = Visibility.Collapsed;
             this._lblNombreAsoIntFiltrar.Visibility = Visibility.Collapsed;
             this._lblNoRegistro.Visibility = Visibility.Collapsed;
-            this._lblNombreFiltrar.Visibility = Visibility.Collapsed;
+            //this._lblNombreFiltrar.Visibility = Visibility.Collapsed;
             this._lblPara.Visibility = Visibility.Collapsed;
             this._lblProxRenovacion.Visibility = Visibility.Collapsed;
             this._lblReferencia.Visibility = Visibility.Collapsed;
@@ -364,6 +388,27 @@ namespace Trascend.Bolet.Cliente.Ventanas.Reportes
             this._lstInteresados.Visibility = Visibility.Collapsed;
 
             this._btnConsultar.Visibility = Visibility.Collapsed;
+            this._btnMas.Visibility = Visibility.Visible;
+            this._btnMenos.Visibility = Visibility.Visible;
+            this._lstMarcasAgregadas.Visibility = Visibility.Visible;
+            this._lblMarcasAgregadas.Visibility = Visibility.Visible;
+
+            this.FilaExpandibleMarcasAgregadas.Height = new GridLength(120);
+        }
+
+        private void _btnMas_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.AgregarMarca();
+        }
+
+        private void _btnMenos_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.EliminarMarca();
+        }
+
+        private void _lstMarcasAgregadas_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            this._presentador.EliminarMarca();
         }
     }
 }

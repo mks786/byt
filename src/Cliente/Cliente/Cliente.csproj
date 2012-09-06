@@ -55,6 +55,9 @@
     <StartupObject>Trascend.Bolet.Cliente.App</StartupObject>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.ReportSource, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.Shared, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
     <Reference Include="LinFu.DynamicProxy">
       <HintPath>..\..\..\lib\LinFu.DynamicProxy.dll</HintPath>
     </Reference>
@@ -521,6 +524,15 @@
       <DependentUpon>MensajesValidaciones.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Reportes\ReporteCarta1.cs">
+      <DependentUpon>ReporteCarta1.xsd</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reportes\ReporteCarta1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ReporteCarta1.xsd</DependentUpon>
     </Compile>
     <Compile Include="Transformadores\DosValoresAUno.cs" />
     <Compile Include="Transformadores\EnteroMinimoABlanco.cs" />
@@ -1997,6 +2009,17 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
+    <None Include="Reportes\ReporteCarta1.xsc">
+      <DependentUpon>ReporteCarta1.xsd</DependentUpon>
+    </None>
+    <None Include="Reportes\ReporteCarta1.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ReporteCarta1.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Reportes\ReporteCarta1.xss">
+      <DependentUpon>ReporteCarta1.xsd</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.0,Profile=Client">
@@ -2043,6 +2066,9 @@
     <Resource Include="images\logoBoletI.png" />
   </ItemGroup>
   <ItemGroup />
+  <ItemGroup>
+    <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

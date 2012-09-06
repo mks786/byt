@@ -27,6 +27,10 @@ namespace Trascend.Bolet.Cliente.Contratos.Reportes
 
         object Marcas { get; set; }
 
+        object MarcaAgregada { get; set; }
+
+        object MarcasAgregadas { get; set; }
+
         object Usuario { get; set; }
 
         object Usuarios { get; set; }

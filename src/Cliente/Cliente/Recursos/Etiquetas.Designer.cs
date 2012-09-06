@@ -3162,6 +3162,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Marcas agregadas a la Carta:.
+        /// </summary>
+        public static string lblMarcasAgregadas {
+            get {
+                return ResourceManager.GetString("lblMarcasAgregadas", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Marcas agregadas al escrito:.
         /// </summary>
         public static string lblMarcasAgregadasAlEscrito {

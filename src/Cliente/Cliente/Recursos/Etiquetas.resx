@@ -2841,4 +2841,7 @@ en Prensa:</value>
   <data name="menuItemCartas" xml:space="preserve">
     <value>Cartas</value>
   </data>
+  <data name="lblMarcasAgregadas" xml:space="preserve">
+    <value>Marcas agregadas a la Carta:</value>
+  </data>
 </root>
