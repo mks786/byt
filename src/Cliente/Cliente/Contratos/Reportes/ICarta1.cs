@@ -39,6 +39,10 @@ namespace Trascend.Bolet.Cliente.Contratos.Reportes
 
         bool RadioConsultarInteresado();
 
+        bool RadioMuchasMarcas();
+
+        bool RadioUnicaMarca();
+
         string IdFiltrar { get; }
 
         string NombreFiltrar { get; }
@@ -48,6 +52,8 @@ namespace Trascend.Bolet.Cliente.Contratos.Reportes
         string NombreMarcaFiltrar { get; }
 
         void Departamento(string texto);
+
+        void BorrarCeros();
 
         GridViewColumnHeader CurSortCol { get; set; }
 

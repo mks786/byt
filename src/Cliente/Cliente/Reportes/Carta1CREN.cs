@@ -16,14 +16,14 @@ namespace Trascend.Bolet.Cliente.Reportes {
     using CrystalDecisions.CrystalReports.Engine;
     
     
-    public class ReporteCarta1 : ReportClass {
+    public class Carta1CREN : ReportClass {
         
-        public ReporteCarta1() {
+        public Carta1CREN() {
         }
         
         public override string ResourceName {
             get {
-                return "ReporteCarta1.rpt";
+                return "Carta1CREN.rpt";
             }
             set {
                 // Do nothing
@@ -41,7 +41,7 @@ namespace Trascend.Bolet.Cliente.Reportes {
         
         public override string FullResourceName {
             get {
-                return "Trascend.Bolet.Cliente.Reportes.ReporteCarta1.rpt";
+                return "Trascend.Bolet.Cliente.Reportes.Carta1CREN.rpt";
             }
             set {
                 // Do nothing
@@ -90,9 +90,9 @@ namespace Trascend.Bolet.Cliente.Reportes {
     }
     
     [System.Drawing.ToolboxBitmapAttribute(typeof(CrystalDecisions.Shared.ExportOptions), "report.bmp")]
-    public class CachedReporteCarta1 : Component, ICachedReport {
+    public class CachedCarta1CREN : Component, ICachedReport {
         
-        public CachedReporteCarta1() {
+        public CachedCarta1CREN() {
         }
         
         [Browsable(false)]
@@ -129,7 +129,7 @@ namespace Trascend.Bolet.Cliente.Reportes {
         }
         
         public virtual CrystalDecisions.CrystalReports.Engine.ReportDocument CreateReport() {
-            ReporteCarta1 rpt = new ReporteCarta1();
+            Carta1CREN rpt = new Carta1CREN();
             rpt.Site = this.Site;
             return rpt;
         }

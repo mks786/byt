@@ -6762,6 +6762,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Carta 1.
+        /// </summary>
+        public static string titleCarta1 {
+            get {
+                return ResourceManager.GetString("titleCarta1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Consultar Abandonos de Marcas.
         /// </summary>
         public static string titleConsultarAbandonos {

@@ -525,14 +525,26 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Reportes\ReporteCarta1.cs">
-      <DependentUpon>ReporteCarta1.xsd</DependentUpon>
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Reportes\ReporteCarta1.Designer.cs">
+    <Compile Include="Reportes\Carta1CR.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ReporteCarta1.xsd</DependentUpon>
+      <DependentUpon>Carta1CR.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reportes\Carta1DS.cs">
+      <DependentUpon>Carta1DS.xsd</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reportes\Carta1DS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Carta1DS.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Reportes\Carta1CREN.cs">
+      <DependentUpon>Carta1CREN.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="Transformadores\DosValoresAUno.cs" />
     <Compile Include="Transformadores\EnteroMinimoABlanco.cs" />
@@ -1997,6 +2009,14 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>MensajesValidaciones.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\Carta1CR.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>Carta1CR.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\Carta1CREN.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>Carta1CREN.cs</LastGenOutput>
+    </EmbeddedResource>
     <None Include="app.config">
       <SubType>Designer</SubType>
     </None>
@@ -2009,16 +2029,16 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
-    <None Include="Reportes\ReporteCarta1.xsc">
-      <DependentUpon>ReporteCarta1.xsd</DependentUpon>
+    <None Include="Reportes\Carta1DS.xsc">
+      <DependentUpon>Carta1DS.xsd</DependentUpon>
     </None>
-    <None Include="Reportes\ReporteCarta1.xsd">
+    <None Include="Reportes\Carta1DS.xsd">
       <SubType>Designer</SubType>
       <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>ReporteCarta1.Designer.cs</LastGenOutput>
+      <LastGenOutput>Carta1DS.Designer.cs</LastGenOutput>
     </None>
-    <None Include="Reportes\ReporteCarta1.xss">
-      <DependentUpon>ReporteCarta1.xsd</DependentUpon>
+    <None Include="Reportes\Carta1DS.xss">
+      <DependentUpon>Carta1DS.xsd</DependentUpon>
     </None>
   </ItemGroup>
   <ItemGroup>

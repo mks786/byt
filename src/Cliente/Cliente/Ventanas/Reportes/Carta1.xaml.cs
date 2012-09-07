@@ -26,10 +26,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.Reportes
 
         public void FocoPredeterminado()
         {
-            //this._txtId.Focus();
+            this._txtIdMarcaFiltrar.Focus();
         }
-
-
 
         public object Idioma
         {
@@ -75,6 +73,16 @@ namespace Trascend.Bolet.Cliente.Ventanas.Reportes
         public bool RadioConsultarInteresado()
         {
             return this._radioInteresado.IsChecked.Value;
+        }
+
+        public bool RadioMuchasMarcas()
+        {
+            return this._radioGrupal.IsChecked.Value;
+        }
+
+        public bool RadioUnicaMarca()
+        {
+            return this._radioIndividual.IsChecked.Value;
         }
 
         public object Marca
@@ -142,6 +150,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Reportes
         public void Departamento(string texto)
         {
             this._txtDepartamento.Text = texto;
+        }
+
+        public void BorrarCeros()
+        {
+            this._txtIdMarca.Text = "";
         }
         public GridViewColumnHeader CurSortCol
         {

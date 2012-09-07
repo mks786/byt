@@ -20,17 +20,17 @@ namespace Trascend.Bolet.Cliente.Reportes {
     [global::System.ComponentModel.DesignerCategoryAttribute("code")]
     [global::System.ComponentModel.ToolboxItem(true)]
     [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedDataSetSchema")]
-    [global::System.Xml.Serialization.XmlRootAttribute("ReporteCarta1")]
+    [global::System.Xml.Serialization.XmlRootAttribute("Carta1DS")]
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.DataSet")]
-    public partial class ReporteCarta1 : global::System.Data.DataSet {
+    public partial class Carta1DS : global::System.Data.DataSet {
         
-        private DataTableCarta1DataTable tableDataTableCarta1;
+        private DataTable1DataTable tableDataTable1;
         
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public ReporteCarta1() {
+        public Carta1DS() {
             this.BeginInit();
             this.InitClass();
             global::System.ComponentModel.CollectionChangeEventHandler schemaChangedHandler = new global::System.ComponentModel.CollectionChangeEventHandler(this.SchemaChanged);
@@ -41,7 +41,7 @@ namespace Trascend.Bolet.Cliente.Reportes {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        protected ReporteCarta1(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+        protected Carta1DS(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                 base(info, context, false) {
             if ((this.IsBinarySerialized(info, context) == true)) {
                 this.InitVars(false);
@@ -54,8 +54,8 @@ namespace Trascend.Bolet.Cliente.Reportes {
             if ((this.DetermineSchemaSerializationMode(info, context) == global::System.Data.SchemaSerializationMode.IncludeSchema)) {
                 global::System.Data.DataSet ds = new global::System.Data.DataSet();
                 ds.ReadXmlSchema(new global::System.Xml.XmlTextReader(new global::System.IO.StringReader(strSchema)));
-                if ((ds.Tables["DataTableCarta1"] != null)) {
-                    base.Tables.Add(new DataTableCarta1DataTable(ds.Tables["DataTableCarta1"]));
+                if ((ds.Tables["DataTable1"] != null)) {
+                    base.Tables.Add(new DataTable1DataTable(ds.Tables["DataTable1"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -79,9 +79,9 @@ namespace Trascend.Bolet.Cliente.Reportes {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Browsable(false)]
         [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public DataTableCarta1DataTable DataTableCarta1 {
+        public DataTable1DataTable DataTable1 {
             get {
-                return this.tableDataTableCarta1;
+                return this.tableDataTable1;
             }
         }
         
@@ -127,7 +127,7 @@ namespace Trascend.Bolet.Cliente.Reportes {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         public override global::System.Data.DataSet Clone() {
-            ReporteCarta1 cln = ((ReporteCarta1)(base.Clone()));
+            Carta1DS cln = ((Carta1DS)(base.Clone()));
             cln.InitVars();
             cln.SchemaSerializationMode = this.SchemaSerializationMode;
             return cln;
@@ -152,8 +152,8 @@ namespace Trascend.Bolet.Cliente.Reportes {
                 this.Reset();
                 global::System.Data.DataSet ds = new global::System.Data.DataSet();
                 ds.ReadXml(reader);
-                if ((ds.Tables["DataTableCarta1"] != null)) {
-                    base.Tables.Add(new DataTableCarta1DataTable(ds.Tables["DataTableCarta1"]));
+                if ((ds.Tables["DataTable1"] != null)) {
+                    base.Tables.Add(new DataTable1DataTable(ds.Tables["DataTable1"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -188,10 +188,10 @@ namespace Trascend.Bolet.Cliente.Reportes {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         internal void InitVars(bool initTable) {
-            this.tableDataTableCarta1 = ((DataTableCarta1DataTable)(base.Tables["DataTableCarta1"]));
+            this.tableDataTable1 = ((DataTable1DataTable)(base.Tables["DataTable1"]));
             if ((initTable == true)) {
-                if ((this.tableDataTableCarta1 != null)) {
-                    this.tableDataTableCarta1.InitVars();
+                if ((this.tableDataTable1 != null)) {
+                    this.tableDataTable1.InitVars();
                 }
             }
         }
@@ -199,18 +199,18 @@ namespace Trascend.Bolet.Cliente.Reportes {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitClass() {
-            this.DataSetName = "ReporteCarta1";
+            this.DataSetName = "Carta1DS";
             this.Prefix = "";
-            this.Namespace = "http://tempuri.org/ReporteCarta1.xsd";
+            this.Namespace = "http://tempuri.org/Carta1DS.xsd";
             this.EnforceConstraints = true;
             this.SchemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
-            this.tableDataTableCarta1 = new DataTableCarta1DataTable();
-            base.Tables.Add(this.tableDataTableCarta1);
+            this.tableDataTable1 = new DataTable1DataTable();
+            base.Tables.Add(this.tableDataTable1);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        private bool ShouldSerializeDataTableCarta1() {
+        private bool ShouldSerializeDataTable1() {
             return false;
         }
         
@@ -225,7 +225,7 @@ namespace Trascend.Bolet.Cliente.Reportes {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedDataSetSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
-            ReporteCarta1 ds = new ReporteCarta1();
+            Carta1DS ds = new Carta1DS();
             global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
             global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
             global::System.Xml.Schema.XmlSchemaAny any = new global::System.Xml.Schema.XmlSchemaAny();
@@ -270,14 +270,14 @@ namespace Trascend.Bolet.Cliente.Reportes {
         }
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public delegate void DataTableCarta1RowChangeEventHandler(object sender, DataTableCarta1RowChangeEvent e);
+        public delegate void DataTable1RowChangeEventHandler(object sender, DataTable1RowChangeEvent e);
         
         /// <summary>
         ///Represents the strongly named DataTable class.
         ///</summary>
         [global::System.Serializable()]
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class DataTableCarta1DataTable : global::System.Data.TypedTableBase<DataTableCarta1Row> {
+        public partial class DataTable1DataTable : global::System.Data.TypedTableBase<DataTable1Row> {
             
             private global::System.Data.DataColumn columnFechaCarta;
             
@@ -299,8 +299,8 @@ namespace Trascend.Bolet.Cliente.Reportes {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public DataTableCarta1DataTable() {
-                this.TableName = "DataTableCarta1";
+            public DataTable1DataTable() {
+                this.TableName = "DataTable1";
                 this.BeginInit();
                 this.InitClass();
                 this.EndInit();
@@ -308,7 +308,7 @@ namespace Trascend.Bolet.Cliente.Reportes {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            internal DataTableCarta1DataTable(global::System.Data.DataTable table) {
+            internal DataTable1DataTable(global::System.Data.DataTable table) {
                 this.TableName = table.TableName;
                 if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
                     this.CaseSensitive = table.CaseSensitive;
@@ -325,7 +325,7 @@ namespace Trascend.Bolet.Cliente.Reportes {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected DataTableCarta1DataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+            protected DataTable1DataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                     base(info, context) {
                 this.InitVars();
             }
@@ -413,34 +413,34 @@ namespace Trascend.Bolet.Cliente.Reportes {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public DataTableCarta1Row this[int index] {
+            public DataTable1Row this[int index] {
                 get {
-                    return ((DataTableCarta1Row)(this.Rows[index]));
+                    return ((DataTable1Row)(this.Rows[index]));
                 }
             }
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event DataTableCarta1RowChangeEventHandler DataTableCarta1RowChanging;
+            public event DataTable1RowChangeEventHandler DataTable1RowChanging;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event DataTableCarta1RowChangeEventHandler DataTableCarta1RowChanged;
+            public event DataTable1RowChangeEventHandler DataTable1RowChanged;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event DataTableCarta1RowChangeEventHandler DataTableCarta1RowDeleting;
+            public event DataTable1RowChangeEventHandler DataTable1RowDeleting;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event DataTableCarta1RowChangeEventHandler DataTableCarta1RowDeleted;
+            public event DataTable1RowChangeEventHandler DataTable1RowDeleted;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void AddDataTableCarta1Row(DataTableCarta1Row row) {
+            public void AddDataTable1Row(DataTable1Row row) {
                 this.Rows.Add(row);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public DataTableCarta1Row AddDataTableCarta1Row(string FechaCarta, string NombreMarca, string Asociado, string Domicilio, string CodigoRegistroMarca, string ClaseMarca, string Interesado, string Referencia, string FechaRenovacion) {
-                DataTableCarta1Row rowDataTableCarta1Row = ((DataTableCarta1Row)(this.NewRow()));
+            public DataTable1Row AddDataTable1Row(string FechaCarta, string NombreMarca, string Asociado, string Domicilio, string CodigoRegistroMarca, string ClaseMarca, string Interesado, string Referencia, string FechaRenovacion) {
+                DataTable1Row rowDataTable1Row = ((DataTable1Row)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         FechaCarta,
                         NombreMarca,
@@ -451,15 +451,15 @@ namespace Trascend.Bolet.Cliente.Reportes {
                         Interesado,
                         Referencia,
                         FechaRenovacion};
-                rowDataTableCarta1Row.ItemArray = columnValuesArray;
-                this.Rows.Add(rowDataTableCarta1Row);
-                return rowDataTableCarta1Row;
+                rowDataTable1Row.ItemArray = columnValuesArray;
+                this.Rows.Add(rowDataTable1Row);
+                return rowDataTable1Row;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public override global::System.Data.DataTable Clone() {
-                DataTableCarta1DataTable cln = ((DataTableCarta1DataTable)(base.Clone()));
+                DataTable1DataTable cln = ((DataTable1DataTable)(base.Clone()));
                 cln.InitVars();
                 return cln;
             }
@@ -467,7 +467,7 @@ namespace Trascend.Bolet.Cliente.Reportes {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override global::System.Data.DataTable CreateInstance() {
-                return new DataTableCarta1DataTable();
+                return new DataTable1DataTable();
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -509,28 +509,28 @@ namespace Trascend.Bolet.Cliente.Reportes {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public DataTableCarta1Row NewDataTableCarta1Row() {
-                return ((DataTableCarta1Row)(this.NewRow()));
+            public DataTable1Row NewDataTable1Row() {
+                return ((DataTable1Row)(this.NewRow()));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
-                return new DataTableCarta1Row(builder);
+                return new DataTable1Row(builder);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override global::System.Type GetRowType() {
-                return typeof(DataTableCarta1Row);
+                return typeof(DataTable1Row);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanged(e);
-                if ((this.DataTableCarta1RowChanged != null)) {
-                    this.DataTableCarta1RowChanged(this, new DataTableCarta1RowChangeEvent(((DataTableCarta1Row)(e.Row)), e.Action));
+                if ((this.DataTable1RowChanged != null)) {
+                    this.DataTable1RowChanged(this, new DataTable1RowChangeEvent(((DataTable1Row)(e.Row)), e.Action));
                 }
             }
             
@@ -538,8 +538,8 @@ namespace Trascend.Bolet.Cliente.Reportes {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanging(e);
-                if ((this.DataTableCarta1RowChanging != null)) {
-                    this.DataTableCarta1RowChanging(this, new DataTableCarta1RowChangeEvent(((DataTableCarta1Row)(e.Row)), e.Action));
+                if ((this.DataTable1RowChanging != null)) {
+                    this.DataTable1RowChanging(this, new DataTable1RowChangeEvent(((DataTable1Row)(e.Row)), e.Action));
                 }
             }
             
@@ -547,8 +547,8 @@ namespace Trascend.Bolet.Cliente.Reportes {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleted(e);
-                if ((this.DataTableCarta1RowDeleted != null)) {
-                    this.DataTableCarta1RowDeleted(this, new DataTableCarta1RowChangeEvent(((DataTableCarta1Row)(e.Row)), e.Action));
+                if ((this.DataTable1RowDeleted != null)) {
+                    this.DataTable1RowDeleted(this, new DataTable1RowChangeEvent(((DataTable1Row)(e.Row)), e.Action));
                 }
             }
             
@@ -556,14 +556,14 @@ namespace Trascend.Bolet.Cliente.Reportes {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleting(e);
-                if ((this.DataTableCarta1RowDeleting != null)) {
-                    this.DataTableCarta1RowDeleting(this, new DataTableCarta1RowChangeEvent(((DataTableCarta1Row)(e.Row)), e.Action));
+                if ((this.DataTable1RowDeleting != null)) {
+                    this.DataTable1RowDeleting(this, new DataTable1RowChangeEvent(((DataTable1Row)(e.Row)), e.Action));
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void RemoveDataTableCarta1Row(DataTableCarta1Row row) {
+            public void RemoveDataTable1Row(DataTable1Row row) {
                 this.Rows.Remove(row);
             }
             
@@ -572,7 +572,7 @@ namespace Trascend.Bolet.Cliente.Reportes {
             public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
                 global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
                 global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                ReporteCarta1 ds = new ReporteCarta1();
+                Carta1DS ds = new Carta1DS();
                 global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
                 any1.Namespace = "http://www.w3.org/2001/XMLSchema";
                 any1.MinOccurs = new decimal(0);
@@ -590,7 +590,7 @@ namespace Trascend.Bolet.Cliente.Reportes {
                 type.Attributes.Add(attribute1);
                 global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
-                attribute2.FixedValue = "DataTableCarta1DataTable";
+                attribute2.FixedValue = "DataTable1DataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
                 global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
@@ -634,15 +634,15 @@ namespace Trascend.Bolet.Cliente.Reportes {
         /// <summary>
         ///Represents strongly named DataRow class.
         ///</summary>
-        public partial class DataTableCarta1Row : global::System.Data.DataRow {
+        public partial class DataTable1Row : global::System.Data.DataRow {
             
-            private DataTableCarta1DataTable tableDataTableCarta1;
+            private DataTable1DataTable tableDataTable1;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            internal DataTableCarta1Row(global::System.Data.DataRowBuilder rb) : 
+            internal DataTable1Row(global::System.Data.DataRowBuilder rb) : 
                     base(rb) {
-                this.tableDataTableCarta1 = ((DataTableCarta1DataTable)(this.Table));
+                this.tableDataTable1 = ((DataTable1DataTable)(this.Table));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -650,14 +650,14 @@ namespace Trascend.Bolet.Cliente.Reportes {
             public string FechaCarta {
                 get {
                     try {
-                        return ((string)(this[this.tableDataTableCarta1.FechaCartaColumn]));
+                        return ((string)(this[this.tableDataTable1.FechaCartaColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'FechaCarta\' in table \'DataTableCarta1\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'FechaCarta\' in table \'DataTable1\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableDataTableCarta1.FechaCartaColumn] = value;
+                    this[this.tableDataTable1.FechaCartaColumn] = value;
                 }
             }
             
@@ -666,14 +666,14 @@ namespace Trascend.Bolet.Cliente.Reportes {
             public string NombreMarca {
                 get {
                     try {
-                        return ((string)(this[this.tableDataTableCarta1.NombreMarcaColumn]));
+                        return ((string)(this[this.tableDataTable1.NombreMarcaColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'NombreMarca\' in table \'DataTableCarta1\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'NombreMarca\' in table \'DataTable1\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableDataTableCarta1.NombreMarcaColumn] = value;
+                    this[this.tableDataTable1.NombreMarcaColumn] = value;
                 }
             }
             
@@ -682,14 +682,14 @@ namespace Trascend.Bolet.Cliente.Reportes {
             public string Asociado {
                 get {
                     try {
-                        return ((string)(this[this.tableDataTableCarta1.AsociadoColumn]));
+                        return ((string)(this[this.tableDataTable1.AsociadoColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Asociado\' in table \'DataTableCarta1\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'Asociado\' in table \'DataTable1\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableDataTableCarta1.AsociadoColumn] = value;
+                    this[this.tableDataTable1.AsociadoColumn] = value;
                 }
             }
             
@@ -698,14 +698,14 @@ namespace Trascend.Bolet.Cliente.Reportes {
             public string Domicilio {
                 get {
                     try {
-                        return ((string)(this[this.tableDataTableCarta1.DomicilioColumn]));
+                        return ((string)(this[this.tableDataTable1.DomicilioColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Domicilio\' in table \'DataTableCarta1\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'Domicilio\' in table \'DataTable1\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableDataTableCarta1.DomicilioColumn] = value;
+                    this[this.tableDataTable1.DomicilioColumn] = value;
                 }
             }
             
@@ -714,14 +714,14 @@ namespace Trascend.Bolet.Cliente.Reportes {
             public string CodigoRegistroMarca {
                 get {
                     try {
-                        return ((string)(this[this.tableDataTableCarta1.CodigoRegistroMarcaColumn]));
+                        return ((string)(this[this.tableDataTable1.CodigoRegistroMarcaColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'CodigoRegistroMarca\' in table \'DataTableCarta1\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'CodigoRegistroMarca\' in table \'DataTable1\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableDataTableCarta1.CodigoRegistroMarcaColumn] = value;
+                    this[this.tableDataTable1.CodigoRegistroMarcaColumn] = value;
                 }
             }
             
@@ -730,14 +730,14 @@ namespace Trascend.Bolet.Cliente.Reportes {
             public string ClaseMarca {
                 get {
                     try {
-                        return ((string)(this[this.tableDataTableCarta1.ClaseMarcaColumn]));
+                        return ((string)(this[this.tableDataTable1.ClaseMarcaColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'ClaseMarca\' in table \'DataTableCarta1\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'ClaseMarca\' in table \'DataTable1\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableDataTableCarta1.ClaseMarcaColumn] = value;
+                    this[this.tableDataTable1.ClaseMarcaColumn] = value;
                 }
             }
             
@@ -746,14 +746,14 @@ namespace Trascend.Bolet.Cliente.Reportes {
             public string Interesado {
                 get {
                     try {
-                        return ((string)(this[this.tableDataTableCarta1.InteresadoColumn]));
+                        return ((string)(this[this.tableDataTable1.InteresadoColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Interesado\' in table \'DataTableCarta1\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'Interesado\' in table \'DataTable1\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableDataTableCarta1.InteresadoColumn] = value;
+                    this[this.tableDataTable1.InteresadoColumn] = value;
                 }
             }
             
@@ -762,14 +762,14 @@ namespace Trascend.Bolet.Cliente.Reportes {
             public string Referencia {
                 get {
                     try {
-                        return ((string)(this[this.tableDataTableCarta1.ReferenciaColumn]));
+                        return ((string)(this[this.tableDataTable1.ReferenciaColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Referencia\' in table \'DataTableCarta1\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'Referencia\' in table \'DataTable1\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableDataTableCarta1.ReferenciaColumn] = value;
+                    this[this.tableDataTable1.ReferenciaColumn] = value;
                 }
             }
             
@@ -778,123 +778,123 @@ namespace Trascend.Bolet.Cliente.Reportes {
             public string FechaRenovacion {
                 get {
                     try {
-                        return ((string)(this[this.tableDataTableCarta1.FechaRenovacionColumn]));
+                        return ((string)(this[this.tableDataTable1.FechaRenovacionColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'FechaRenovacion\' in table \'DataTableCarta1\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'FechaRenovacion\' in table \'DataTable1\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableDataTableCarta1.FechaRenovacionColumn] = value;
+                    this[this.tableDataTable1.FechaRenovacionColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsFechaCartaNull() {
-                return this.IsNull(this.tableDataTableCarta1.FechaCartaColumn);
+                return this.IsNull(this.tableDataTable1.FechaCartaColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetFechaCartaNull() {
-                this[this.tableDataTableCarta1.FechaCartaColumn] = global::System.Convert.DBNull;
+                this[this.tableDataTable1.FechaCartaColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsNombreMarcaNull() {
-                return this.IsNull(this.tableDataTableCarta1.NombreMarcaColumn);
+                return this.IsNull(this.tableDataTable1.NombreMarcaColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetNombreMarcaNull() {
-                this[this.tableDataTableCarta1.NombreMarcaColumn] = global::System.Convert.DBNull;
+                this[this.tableDataTable1.NombreMarcaColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsAsociadoNull() {
-                return this.IsNull(this.tableDataTableCarta1.AsociadoColumn);
+                return this.IsNull(this.tableDataTable1.AsociadoColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetAsociadoNull() {
-                this[this.tableDataTableCarta1.AsociadoColumn] = global::System.Convert.DBNull;
+                this[this.tableDataTable1.AsociadoColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsDomicilioNull() {
-                return this.IsNull(this.tableDataTableCarta1.DomicilioColumn);
+                return this.IsNull(this.tableDataTable1.DomicilioColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetDomicilioNull() {
-                this[this.tableDataTableCarta1.DomicilioColumn] = global::System.Convert.DBNull;
+                this[this.tableDataTable1.DomicilioColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsCodigoRegistroMarcaNull() {
-                return this.IsNull(this.tableDataTableCarta1.CodigoRegistroMarcaColumn);
+                return this.IsNull(this.tableDataTable1.CodigoRegistroMarcaColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetCodigoRegistroMarcaNull() {
-                this[this.tableDataTableCarta1.CodigoRegistroMarcaColumn] = global::System.Convert.DBNull;
+                this[this.tableDataTable1.CodigoRegistroMarcaColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsClaseMarcaNull() {
-                return this.IsNull(this.tableDataTableCarta1.ClaseMarcaColumn);
+                return this.IsNull(this.tableDataTable1.ClaseMarcaColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetClaseMarcaNull() {
-                this[this.tableDataTableCarta1.ClaseMarcaColumn] = global::System.Convert.DBNull;
+                this[this.tableDataTable1.ClaseMarcaColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsInteresadoNull() {
-                return this.IsNull(this.tableDataTableCarta1.InteresadoColumn);
+                return this.IsNull(this.tableDataTable1.InteresadoColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetInteresadoNull() {
-                this[this.tableDataTableCarta1.InteresadoColumn] = global::System.Convert.DBNull;
+                this[this.tableDataTable1.InteresadoColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsReferenciaNull() {
-                return this.IsNull(this.tableDataTableCarta1.ReferenciaColumn);
+                return this.IsNull(this.tableDataTable1.ReferenciaColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetReferenciaNull() {
-                this[this.tableDataTableCarta1.ReferenciaColumn] = global::System.Convert.DBNull;
+                this[this.tableDataTable1.ReferenciaColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsFechaRenovacionNull() {
-                return this.IsNull(this.tableDataTableCarta1.FechaRenovacionColumn);
+                return this.IsNull(this.tableDataTable1.FechaRenovacionColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetFechaRenovacionNull() {
-                this[this.tableDataTableCarta1.FechaRenovacionColumn] = global::System.Convert.DBNull;
+                this[this.tableDataTable1.FechaRenovacionColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -902,22 +902,22 @@ namespace Trascend.Bolet.Cliente.Reportes {
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public class DataTableCarta1RowChangeEvent : global::System.EventArgs {
+        public class DataTable1RowChangeEvent : global::System.EventArgs {
             
-            private DataTableCarta1Row eventRow;
+            private DataTable1Row eventRow;
             
             private global::System.Data.DataRowAction eventAction;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public DataTableCarta1RowChangeEvent(DataTableCarta1Row row, global::System.Data.DataRowAction action) {
+            public DataTable1RowChangeEvent(DataTable1Row row, global::System.Data.DataRowAction action) {
                 this.eventRow = row;
                 this.eventAction = action;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public DataTableCarta1Row Row {
+            public DataTable1Row Row {
                 get {
                     return this.eventRow;
                 }

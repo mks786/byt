@@ -13,6 +13,10 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.ComponentModel;
 using Trascend.Bolet.Cliente.Ayuda;
+using CrystalDecisions.CrystalReports.Engine;
+using DataTable = System.Data.DataTable;
+using System.Data;
+using CrystalDecisions.Shared;
 
 namespace Trascend.Bolet.Cliente.Presentadores.Reportes
 {
@@ -32,6 +36,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Reportes
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
         private IList<Marca> _marcasAgregadas = new List<Marca>();
+
 
         /// <summary>
         /// Constructor predeterminado
@@ -65,6 +70,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Reportes
             }
         }
 
+
         /// <summary>
         /// Método que carga los datos iniciales a mostrar en la página
         /// </summary>
@@ -79,14 +85,16 @@ namespace Trascend.Bolet.Cliente.Presentadores.Reportes
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-                this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleAgregarPais,
-                Recursos.Ids.AgregarUsuario);
+                this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleCarta1,
+                "");
 
                 this._ventana.MarcaGeneral = new Marca();
 
                 this.CargarComboBoxs();
 
                 this._ventana.FocoPredeterminado();
+
+                this._ventana.BorrarCeros();
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -119,6 +127,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Reportes
             }
         }
 
+
         /// <summary>
         /// Método que carga las regiones iniciales
         /// </summary>
@@ -145,11 +154,14 @@ namespace Trascend.Bolet.Cliente.Presentadores.Reportes
             #endregion
         }
 
+
         /// <summary>
         /// Método que realiza toda la lógica para agregar al País dentro de la base de datos
         /// </summary>
         public void Aceptar()
         {
+            Mouse.OverrideCursor = Cursors.Wait;
+
             try
             {
                 #region trace
@@ -157,7 +169,45 @@ namespace Trascend.Bolet.Cliente.Presentadores.Reportes
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
+                if (ValidarVentana())
+                {
+                    if (this._ventana.RadioMuchasMarcas())
+                    {
 
+                    }
+                    else if (this._ventana.RadioUnicaMarca())
+                    {
+                        StructReporteCarta1 estructuraDeDatos = ObtenerEstructuraCarta1();
+
+                        ReportDocument reporte = new ReportDocument();
+                        //reporte.Load();
+
+                        reporte.Load(GetRutaReporte());
+
+                        DataTable datos = new DataTable("DataTable1");
+                        datos.Columns.Add("FechaCarta");
+                        datos.Columns.Add("NombreMarca");
+                        datos.Columns.Add("Asociado");
+                        datos.Columns.Add("Domicilio");
+                        datos.Columns.Add("CodigoRegistroMarca");
+                        datos.Columns.Add("ClaseMarca");
+                        datos.Columns.Add("Interesado");
+                        datos.Columns.Add("Referencia");
+                        datos.Columns.Add("FechaRenovacion");
+
+                        datos = ArmarReporte(datos, estructuraDeDatos);
+
+                        //reporte.PrintOptions.PrinterName = ConfigurationManager.AppSettings["ImpresoraReportes"];
+
+                        DataSet ds = new DataSet();
+                        ds.Tables.Add(datos);
+                        reporte.SetDataSource(datos);
+                        reporte.PrintToPrinter(1, false, 1, 0);
+                    }
+                }
+                
+
+                Mouse.OverrideCursor = null;
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -185,6 +235,67 @@ namespace Trascend.Bolet.Cliente.Presentadores.Reportes
                 this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
             }
         }
+
+
+        /// <summary>
+        /// Método que se encarga de validar que la ventana este correcta para su uso
+        /// </summary>
+        /// <returns></returns>
+        private bool ValidarVentana()
+        {
+
+            //realizar validación de la ventana
+            return true;
+
+        }
+
+
+        /// <summary>
+        /// Método que se encarga de devolver la ruta del reporte
+        /// </summary>
+        /// <returns></returns>
+        private string GetRutaReporte()
+        {
+            string retorno = "";
+            if (((Idioma)this._ventana.Idioma).Id.Equals("ES"))
+
+                retorno = "../../Reportes/Carta1CR.rpt";
+
+            else if (((Idioma)this._ventana.Idioma).Id.Equals("IN"))
+
+                retorno = "../../Reportes/Carta1CREN.rpt";
+
+            return retorno;
+
+        }
+
+
+        /// <summary>
+        /// Método qeu se encarga de devolver la estructura determinada para el reporte
+        /// </summary>
+        /// <param name="datos"></param>
+        /// <param name="estructuraDeDatos"></param>
+        /// <returns></returns>
+        private DataTable ArmarReporte(DataTable datos, StructReporteCarta1 estructuraDeDatos)
+        {
+            DataRow filaDatos = datos.NewRow();
+
+            filaDatos["FechaCarta"] = estructuraDeDatos.FechaCarta;
+            filaDatos["NombreMarca"] = estructuraDeDatos.Marca;
+            filaDatos["CodigoRegistroMarca"] = estructuraDeDatos.CodigoRegistro;
+            filaDatos["Asociado"] = estructuraDeDatos.Asociado;
+            filaDatos["Domicilio"] = estructuraDeDatos.DomicilioAsociado;
+            filaDatos["ClaseMarca"] = estructuraDeDatos.ClaseMarca;
+            filaDatos["Interesado"] = estructuraDeDatos.Interesado;
+            filaDatos["Referencia"] = estructuraDeDatos.Referencia;
+            filaDatos["FechaRenovacion"] = estructuraDeDatos.FechaRenovacion;
+
+            datos.Rows.Add(filaDatos);
+
+            return datos;
+
+        }
+
 
         /// <summary>
         /// Método que ordena una columna
@@ -220,6 +331,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Reportes
             #endregion
         }
 
+
         /// <summary>
         /// Método que se encarga de hacer la consulta de un asociado o interesado dependiendo del checkbox seleccionado
         /// </summary>
@@ -251,6 +363,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Reportes
             Mouse.OverrideCursor = null;
         }
 
+
+        /// <summary>
+        /// Método que consulta la marca deseada en la ventana
+        /// </summary>
         public void ConsultarMarca()
         {
             Mouse.OverrideCursor = Cursors.Wait;
@@ -271,6 +387,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Reportes
             Mouse.OverrideCursor = null;
         }
 
+
+        /// <summary>
+        /// Método que cambia la marca seleccionada
+        /// </summary>
+        /// <returns></returns>
         public bool CambiarMarca()
         {
             bool retorno = false;
@@ -283,6 +404,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Reportes
             return retorno;
         }
 
+
+        /// <summary>
+        /// Método que capta el evento al cambiar de usuario en el combo de la ventana
+        /// </summary>
         public void CambiarUsuario()
         {
             if (!((Usuario)this._ventana.Usuario).Id.Equals("NGN"))
@@ -291,6 +416,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Reportes
             }
         }
 
+
+        /// <summary>
+        /// Método que agrega una marca a la lista de marcas agregadas
+        /// </summary>
         public void AgregarMarca()
         {
             try
@@ -303,12 +432,16 @@ namespace Trascend.Bolet.Cliente.Presentadores.Reportes
                 }
 
             }
-            catch (Exception ex) 
+            catch (Exception ex)
             {
                 logger.Error(ex.Message);
             }
         }
 
+
+        /// <summary>
+        /// Método que elimina una marca de la lista de marcas agregadas
+        /// </summary>
         public void EliminarMarca()
         {
             try
@@ -325,5 +458,104 @@ namespace Trascend.Bolet.Cliente.Presentadores.Reportes
                 logger.Error(ex.Message);
             }
         }
+
+
+        /// <summary>
+        /// Método que devuelve la estructura determinada para el deporte con sus atributos
+        /// </summary>
+        /// <returns></returns>
+        private StructReporteCarta1 ObtenerEstructuraCarta1()
+        {
+            StructReporteCarta1 retorno = new StructReporteCarta1();
+
+            retorno.FechaCarta = System.DateTime.Today.ToShortDateString();
+            retorno.Marca = ((Marca)this._ventana.Marca).Descripcion;
+            retorno.CodigoRegistro = ((Marca)this._ventana.Marca).CodigoRegistro;
+            retorno.ClaseMarca = ((Marca)this._ventana.Marca).Internacional.Id.ToString();
+            retorno.FechaRenovacion = ((Marca)this._ventana.Marca).FechaRenovacion.Value.ToShortDateString();
+            retorno.Interesado = ((Marca)this._ventana.Marca).Interesado.Nombre;
+            retorno.Asociado = ((Marca)this._ventana.Marca).Asociado.Nombre;
+            retorno.Referencia = ((Marca)this._ventana.Marca).PrimeraReferencia;
+            retorno.DomicilioAsociado = ((Marca)this._ventana.Marca).Asociado.Domicilio;
+
+            return retorno;
+        }
+
+        #region Estructuras
+
+        struct StructReporteCarta1
+        {
+            private string _fechaCarta;
+
+            private string _marca;
+            private string _fechaRenovacion;
+            private string _codigoRegistro;
+            private string _referencia;
+            private string _claseMarca;
+
+            private string _interesado;
+            private string _domicilioAsociado;
+
+            private string _asociado;
+
+
+
+            public string FechaCarta
+            {
+                get { return _fechaCarta; }
+                set { _fechaCarta = value; }
+            }
+
+            public string Marca
+            {
+                get { return _marca; }
+                set { _marca = value; }
+            }
+
+            public string FechaRenovacion
+            {
+                get { return _fechaRenovacion; }
+                set { _fechaRenovacion = value; }
+            }
+
+            public string CodigoRegistro
+            {
+                get { return _codigoRegistro; }
+                set { _codigoRegistro = value; }
+            }
+
+            public string Referencia
+            {
+                get { return _referencia; }
+                set { _referencia = value; }
+            }
+
+            public string ClaseMarca
+            {
+                get { return _claseMarca; }
+                set { _claseMarca = value; }
+            }
+
+            public string Interesado
+            {
+                get { return _interesado; }
+                set { _interesado = value; }
+            }
+
+            public string DomicilioAsociado
+            {
+                get { return _domicilioAsociado; }
+                set { _domicilioAsociado = value; }
+            }
+
+            public string Asociado
+            {
+                get { return _asociado; }
+                set { _asociado = value; }
+            }
+
+        }
+
+        #endregion
     }
 }

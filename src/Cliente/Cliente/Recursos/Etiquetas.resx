@@ -2844,4 +2844,7 @@ en Prensa:</value>
   <data name="lblMarcasAgregadas" xml:space="preserve">
     <value>Marcas agregadas a la Carta:</value>
   </data>
+  <data name="titleCarta1" xml:space="preserve">
+    <value>Carta 1</value>
+  </data>
 </root>
