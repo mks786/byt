@@ -20,9 +20,9 @@ using CrystalDecisions.Shared;
 
 namespace Trascend.Bolet.Cliente.Presentadores.Reportes
 {
-    class PresentadorCarta1 : PresentadorBase
+    class PresentadorCarta14 : PresentadorBase
     {
-        private ICarta1 _ventana;
+        private ICarta14 _ventana;
 
         private IPaisServicios _paisServicios;
         private IListaDatosValoresServicios _listaDatosValoresServicios;
@@ -36,13 +36,14 @@ namespace Trascend.Bolet.Cliente.Presentadores.Reportes
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
         private IList<Marca> _marcasAgregadas = new List<Marca>();
+        private string _nuestraReferencia;
 
 
         /// <summary>
         /// Constructor predeterminado
         /// </summary>
         /// <param name="ventana">Página que satisface el contrato</param>
-        public PresentadorCarta1(ICarta1 ventana)
+        public PresentadorCarta14(ICarta14 ventana)
         {
             try
             {
@@ -173,21 +174,20 @@ namespace Trascend.Bolet.Cliente.Presentadores.Reportes
                 if (ValidarVentana())
                 {
                     ReportDocument reporte = new ReportDocument();
-                    IList<StructReporteCarta1> estructuraDeDatos = new List<StructReporteCarta1>();
+                    IList<StructReporteCarta14> estructuraDeDatos = new List<StructReporteCarta14>();
                     //reporte.Load();
 
                     reporte.Load(GetRutaReporte());
 
                     DataTable datos = new DataTable("DataTable1");
-                    datos.Columns.Add("NombreMarca");
-                    datos.Columns.Add("CodigoRegistroMarca");
-                    datos.Columns.Add("FechaRenovacion");
-                    datos.Columns.Add("ClaseMarca");
-                    datos.Columns.Add("Interesado");
+                    datos.Columns.Add("Marca");
+                    datos.Columns.Add("CodigoSolicitud");
+                    datos.Columns.Add("Pais");
                     datos.Columns.Add("Asociado");
-                    datos.Columns.Add("Domicilio");
+                    datos.Columns.Add("DomicilioAsociado");
                     datos.Columns.Add("FechaCarta");
-                    datos.Columns.Add("Referencia");
+                    datos.Columns.Add("SuReferencia");
+                    datos.Columns.Add("NuestraReferencia");
 
                     if (this._ventana.RadioMuchasMarcas())
                     {
@@ -195,7 +195,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Reportes
                     }
                     else if (this._ventana.RadioUnicaMarca())
                     {
-                        StructReporteCarta1 estructura = ObtenerEstructuraCarta1();
+                        StructReporteCarta14 estructura = ObtenerEstructuraCarta1();
                         estructuraDeDatos.Add(estructura);
                     }
 
@@ -263,11 +263,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Reportes
             string retorno = "";
             if (((Idioma)this._ventana.Idioma).Id.Equals("ES"))
 
-                retorno = "../../Reportes/Carta1CR.rpt";
+                retorno = "../../Reportes/Carta14CR.rpt";
 
             else if (((Idioma)this._ventana.Idioma).Id.Equals("IN"))
 
-                retorno = "../../Reportes/Carta1CREN.rpt";
+                retorno = "../../Reportes/Carta14CREN.rpt";
 
             return retorno;
 
@@ -280,21 +280,20 @@ namespace Trascend.Bolet.Cliente.Presentadores.Reportes
         /// <param name="datos"></param>
         /// <param name="estructuraDeDatos"></param>
         /// <returns></returns>
-        private DataTable ArmarReporte(DataTable datos, IList<StructReporteCarta1> estructurasDeDatos)
+        private DataTable ArmarReporte(DataTable datos, IList<StructReporteCarta14> estructurasDeDatos)
         {
-            foreach (StructReporteCarta1 structura in estructurasDeDatos)
+            foreach (StructReporteCarta14 structura in estructurasDeDatos)
             {
                 DataRow filaDatos = datos.NewRow();
 
                 filaDatos["FechaCarta"] = structura.FechaCarta;
-                filaDatos["NombreMarca"] = structura.Marca;
-                filaDatos["CodigoRegistroMarca"] = structura.CodigoRegistro;
+                filaDatos["Marca"] = structura.Marca;
+                filaDatos["CodigoSolicitud"] = structura.CodigoSolicitud;
                 filaDatos["Asociado"] = structura.Asociado;
-                filaDatos["Domicilio"] = structura.DomicilioAsociado;
-                filaDatos["ClaseMarca"] = structura.ClaseMarca;
-                filaDatos["Interesado"] = structura.Interesado;
-                filaDatos["Referencia"] = structura.Referencia;
-                filaDatos["FechaRenovacion"] = structura.FechaRenovacion;
+                filaDatos["DomicilioAsociado"] = structura.DomicilioAsociado;
+                filaDatos["Pais"] = structura.Pais;
+                filaDatos["SuReferencia"] = structura.SuReferencia;
+                filaDatos["NuestraReferencia"] = structura.NuestraReferencia;
 
                 datos.Rows.Add(filaDatos);
             }
@@ -418,6 +417,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Reportes
 
                 this._ventana.Interesados = interesados;
                 this._ventana.Interesado = ((Marca)this._ventana.Marca).Interesado;
+
+                _nuestraReferencia = ((Marca)this._ventana.Marca).Id + " /CO/ " + ((Marca)this._ventana.Marca).BoletinConcesion.Id;
+
+                this._ventana.NuestraReferencia = _nuestraReferencia;
                 retorno = true;
             }
 
@@ -484,30 +487,35 @@ namespace Trascend.Bolet.Cliente.Presentadores.Reportes
         /// Método que devuelve la estructura determinada para el deporte con sus atributos
         /// </summary>
         /// <returns></returns>
-        private StructReporteCarta1 ObtenerEstructuraCarta1()
+        private StructReporteCarta14 ObtenerEstructuraCarta1()
         {
-            StructReporteCarta1 retorno = new StructReporteCarta1();
+            StructReporteCarta14 retorno = new StructReporteCarta14();
 
             retorno.FechaCarta = this._ventana.Fecha;
             retorno.Marca = !((Marca)this._ventana.Marca).Descripcion.Equals(string.Empty) ?
                 ((Marca)this._ventana.Marca).Descripcion : string.Empty;
 
-            retorno.CodigoRegistro = null != ((Marca)this._ventana.Marca).CodigoRegistro && !((Marca)this._ventana.Marca).CodigoRegistro.Equals(string.Empty) ?
-                ((Marca)this._ventana.Marca).CodigoRegistro : string.Empty;
+            retorno.CodigoSolicitud = null != ((Marca)this._ventana.Marca).CodigoInscripcion && !((Marca)this._ventana.Marca).CodigoInscripcion.Equals(string.Empty) ?
+                ((Marca)this._ventana.Marca).CodigoInscripcion : string.Empty;
 
-            retorno.ClaseMarca = ((Marca)this._ventana.Marca).Internacional != null ?
-                ((Marca)this._ventana.Marca).Internacional.Id.ToString() : string.Empty;
+            if (((Idioma)this._ventana.Idioma).Id.Equals("ES"))
+                retorno.Pais = ((Asociado)this._ventana.Asociado) != null &&
+                        ((Asociado)this._ventana.Asociado).Pais != null &&
+                        !((Asociado)this._ventana.Asociado).Pais.NombreEspanol.Equals(string.Empty) ?
+                        ((Asociado)this._ventana.Asociado).Pais.NombreEspanol : string.Empty;
 
-            retorno.FechaRenovacion = null != ((Marca)this._ventana.Marca).FechaRenovacion && !((Marca)this._ventana.Marca).FechaRenovacion.Equals(string.Empty) ? 
-                ((Marca)this._ventana.Marca).FechaRenovacion.Value.ToShortDateString() : string.Empty;
-
-            retorno.Interesado = ((Interesado)this._ventana.Interesado) != null ?
-                ((Interesado)this._ventana.Interesado).Nombre : string.Empty;
+            else if (((Idioma)this._ventana.Idioma).Id.Equals("IN"))
+                retorno.Pais = ((Asociado)this._ventana.Asociado) != null &&
+                        ((Asociado)this._ventana.Asociado).Pais != null &&
+                        !((Asociado)this._ventana.Asociado).Pais.NombreIngles.Equals(string.Empty) ?
+                        ((Asociado)this._ventana.Asociado).Pais.NombreIngles : string.Empty;
 
             retorno.Asociado = ((Asociado)this._ventana.Asociado) != null ?
                 ((Asociado)this._ventana.Asociado).Nombre : string.Empty;
 
-            retorno.Referencia = ((Marca)this._ventana.Marca).PrimeraReferencia;
+            retorno.SuReferencia = ((Marca)this._ventana.Marca).PrimeraReferencia;
+
+            retorno.NuestraReferencia = _nuestraReferencia;
 
             retorno.DomicilioAsociado = ((Asociado)this._ventana.Asociado) != null ?
                 ((Asociado)this._ventana.Asociado).Domicilio : string.Empty;
@@ -519,9 +527,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Reportes
         /// Método que se encarga de armar la lista de estructuras para hacer el reporte para varias marcas
         /// </summary>
         /// <returns></returns>
-        private IList<StructReporteCarta1> ObtenerEstructuraCartas1()
+        private IList<StructReporteCarta14> ObtenerEstructuraCartas1()
         {
-            IList<StructReporteCarta1> retorno = new List<StructReporteCarta1>();
+            IList<StructReporteCarta14> retorno = new List<StructReporteCarta14>();
 
             try
             {
@@ -529,28 +537,26 @@ namespace Trascend.Bolet.Cliente.Presentadores.Reportes
                 {
                     foreach (Marca marca in this._marcasAgregadas)
                     {
-                        StructReporteCarta1 estructura = new StructReporteCarta1();
+                        StructReporteCarta14 estructura = new StructReporteCarta14();
 
                         estructura.FechaCarta = this._ventana.Fecha;
                         estructura.Marca = !marca.Descripcion.Equals(string.Empty) ?
                             marca.Descripcion : string.Empty;
 
-                        estructura.CodigoRegistro =null != marca.CodigoRegistro && !marca.CodigoRegistro.Equals(string.Empty) ?
-                            marca.CodigoRegistro : string.Empty;
+                        estructura.CodigoSolicitud = null != marca.CodigoInscripcion && !marca.CodigoInscripcion.Equals(string.Empty) ?
+                            marca.CodigoInscripcion : string.Empty;
 
-                        estructura.ClaseMarca = marca.Internacional != null ?
-                            marca.Internacional.Id.ToString() : string.Empty;
-
-                        estructura.FechaRenovacion = null != marca.FechaRenovacion && !marca.FechaRenovacion.Equals(string.Empty) ?
-                            marca.FechaRenovacion.Value.ToShortDateString() : string.Empty;
-
-                        estructura.Interesado = marca.Interesado != null ?
+                        estructura.Pais = marca.Interesado != null ?
                             marca.Interesado.Nombre : string.Empty;
+                        if (((Idioma)this._ventana.Idioma).Id.Equals("ES"))
+                            estructura.Asociado = marca.Asociado != null && marca.Asociado.Pais != null && !marca.Asociado.Pais.NombreEspanol.Equals(string.Empty) ?
+                                marca.Asociado.Pais.NombreEspanol : string.Empty;
+                        else if (((Idioma)this._ventana.Idioma).Id.Equals("EN"))
+                            estructura.Asociado = marca.Asociado != null && marca.Asociado.Pais != null && !marca.Asociado.Pais.NombreIngles.Equals(string.Empty) ?
+                                marca.Asociado.Pais.NombreIngles : string.Empty;
 
-                        estructura.Asociado = marca.Asociado != null ?
-                            marca.Asociado.Nombre : string.Empty;
-
-                        estructura.Referencia = marca.PrimeraReferencia;
+                        estructura.SuReferencia = marca.PrimeraReferencia;
+                        estructura.NuestraReferencia = _nuestraReferencia;
 
                         estructura.DomicilioAsociado = marca.Asociado != null ?
                             marca.Asociado.Domicilio : string.Empty;
@@ -563,24 +569,23 @@ namespace Trascend.Bolet.Cliente.Presentadores.Reportes
             {
                 logger.Error(ex.Message);
             }
-            
+
 
             return retorno;
         }
 
         #region Estructuras
 
-        struct StructReporteCarta1
+        struct StructReporteCarta14
         {
             private string _fechaCarta;
 
             private string _marca;
-            private string _fechaRenovacion;
-            private string _codigoRegistro;
-            private string _referencia;
-            private string _claseMarca;
+            private string _codigoSolicitud;
+            private string _suReferencia;
+            private string _nuestraReferencia;
+            private string _pais;
 
-            private string _interesado;
             private string _domicilioAsociado;
 
             private string _asociado;
@@ -599,34 +604,28 @@ namespace Trascend.Bolet.Cliente.Presentadores.Reportes
                 set { _marca = value; }
             }
 
-            public string FechaRenovacion
+            public string CodigoSolicitud
             {
-                get { return _fechaRenovacion; }
-                set { _fechaRenovacion = value; }
+                get { return _codigoSolicitud; }
+                set { _codigoSolicitud = value; }
             }
 
-            public string CodigoRegistro
+            public string SuReferencia
             {
-                get { return _codigoRegistro; }
-                set { _codigoRegistro = value; }
+                get { return _suReferencia; }
+                set { _suReferencia = value; }
             }
 
-            public string Referencia
+            public string NuestraReferencia
             {
-                get { return _referencia; }
-                set { _referencia = value; }
+                get { return _nuestraReferencia; }
+                set { _nuestraReferencia = value; }
             }
 
-            public string ClaseMarca
+            public string Pais
             {
-                get { return _claseMarca; }
-                set { _claseMarca = value; }
-            }
-
-            public string Interesado
-            {
-                get { return _interesado; }
-                set { _interesado = value; }
+                get { return _pais; }
+                set { _pais = value; }
             }
 
             public string DomicilioAsociado

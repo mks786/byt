@@ -9,9 +9,9 @@ namespace Trascend.Bolet.Cliente.Ventanas.Reportes
     /// <summary>
     /// Interaction logic for ConsultarUsuario.xaml
     /// </summary>
-    public partial class Carta1 : Page, ICarta1
+    public partial class Carta2 : Page, ICarta2
     {
-        private PresentadorCarta1 _presentador;
+        private PresentadorCarta2 _presentador;
         private bool _cargada;
         private GridViewColumnHeader _CurSortCol = null;
         private SortAdorner _CurAdorner = null;
@@ -177,11 +177,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Reportes
 
         #endregion
 
-        public Carta1()
+        public Carta2()
         {
             InitializeComponent();
             this._cargada = false;
-            this._presentador = new PresentadorCarta1(this);
+            this._presentador = new PresentadorCarta2(this);
         }
 
         private void _btnCancelar_Click(object sender, RoutedEventArgs e)

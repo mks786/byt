@@ -1,4 +1,4 @@
-﻿<Page x:Class="Trascend.Bolet.Cliente.Ventanas.Reportes.Carta1"
+﻿<Page x:Class="Trascend.Bolet.Cliente.Ventanas.Reportes.Carta14"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -54,6 +54,7 @@
                         <RowDefinition Name="FilaExpandible" Height="Auto"/>
                         <RowDefinition Height="30"/>
                         <RowDefinition Name="FilaExpandibleMarcasAgregadas" Height="Auto"/>
+                        <RowDefinition Height="30"/>
                         <RowDefinition Height="30"/>
                         <RowDefinition Height="30"/>
                         <RowDefinition Height="30"/>
@@ -222,24 +223,37 @@
                     <!--Fin Fila 4-->
 
 
+
+
+
+                    <Label Name="_lblReferenciaNuestra" Grid.Column="0" Grid.Row="4" HorizontalAlignment="Right" VerticalAlignment="Center">
+                        <TextBlock Text="{x:Static recurso:Etiquetas.lblReferenciaNuestra}"/>
+                    </Label>
+                    <custom:ByTTextBox  IsReadOnly="True"  Name="_txtReferenciaNuestra" Text="{Binding Path=PrimeraReferencia}" Grid.Column="1" Grid.Row="4" 
+                                Grid.ColumnSpan="5"  Height="20"></custom:ByTTextBox>
+
+
+
+
+
                     <!--Fila 5-->
-                    <Label Name="_lblPara" Grid.Column="0" Grid.Row="4" HorizontalAlignment="Right" VerticalAlignment="Center">
+                    <Label Name="_lblPara" Grid.Column="0" Grid.Row="5" HorizontalAlignment="Right" VerticalAlignment="Center">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblPara}"/>
                     </Label>
-                    <RadioButton Checked="_radioAsociado_Checked" Name="_radioAsociado" IsChecked="True" Grid.Column="1" Grid.Row="4" VerticalAlignment="Center" HorizontalAlignment="Right" GroupName="groupPara">
+                    <RadioButton Checked="_radioAsociado_Checked" Name="_radioAsociado" IsChecked="True" Grid.Column="1" Grid.Row="5" VerticalAlignment="Center" HorizontalAlignment="Right" GroupName="groupPara">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblAsociado}"/>
                     </RadioButton>
-                    <RadioButton Checked="_radioInteresado_Checked" Name="_radioInteresado" Grid.Column="2" Grid.Row="4" VerticalAlignment="Center" HorizontalAlignment="Left" GroupName="groupPara">
+                    <RadioButton Visibility="Collapsed" Checked="_radioInteresado_Checked" Name="_radioInteresado" Grid.Column="2" Grid.Row="5" VerticalAlignment="Center" HorizontalAlignment="Left" GroupName="groupPara">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblInteresado}"/>
                     </RadioButton>
 
 
-                    <Label Name="_lblIdioma" Grid.Column="6" Grid.Row="4" HorizontalAlignment="Right" VerticalAlignment="Center">
+                    <Label Name="_lblIdioma" Grid.Column="6" Grid.Row="5" HorizontalAlignment="Right" VerticalAlignment="Center">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblIdioma}"/>
 
                     </Label>
 
-                    <ComboBox   Grid.Column="7" Grid.Row="4" Name="_cbxIdioma" Grid.ColumnSpan="2" Height="20" 
+                    <ComboBox   Grid.Column="7" Grid.Row="5" Name="_cbxIdioma" Grid.ColumnSpan="2" Height="20" 
                           ItemsSource="{Binding}" SelectedIndex="0" SelectionChanged="_cbxIdioma_SelectionChanged" DisplayMemberPath="Descripcion">
 
                     </ComboBox>
@@ -247,18 +261,18 @@
 
 
                     <!--Fila 6-->
-                    <Label Name="_lblIdAsoIntFiltrar" Grid.Column="0" Grid.Row="5" HorizontalAlignment="Right" VerticalAlignment="Center">
+                    <Label Name="_lblIdAsoIntFiltrar" Grid.Column="0" Grid.Row="6" HorizontalAlignment="Right" VerticalAlignment="Center">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblId}"/>
                     </Label>
-                    <custom:ByTTextBox GotKeyboardFocus="_txtIdFiltrar_GotKeyboardFocus" GotFocus="_txtIdFiltrar_GotKeyboardFocus" Name="_txtIdFiltrar" Grid.Column="1" Grid.Row="5" 
+                    <custom:ByTTextBox GotKeyboardFocus="_txtIdFiltrar_GotKeyboardFocus" GotFocus="_txtIdFiltrar_GotKeyboardFocus" Name="_txtIdFiltrar" Grid.Column="1" Grid.Row="6" 
                                 Grid.ColumnSpan="1"  Height="20"></custom:ByTTextBox>
-                    <Label Name="_lblNombreAsoIntFiltrar" Grid.Column="2" Grid.Row="5" HorizontalAlignment="Left" VerticalAlignment="Center">
+                    <Label Name="_lblNombreAsoIntFiltrar" Grid.Column="2" Grid.Row="6" HorizontalAlignment="Left" VerticalAlignment="Center">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblNombre}"/>
                     </Label>
-                    <custom:ByTTextBox GotKeyboardFocus="_txtIdFiltrar_GotKeyboardFocus" GotFocus="_txtIdFiltrar_GotKeyboardFocus" Name="_txtNombreFiltrar" Grid.Column="2" Grid.Row="5" 
+                    <custom:ByTTextBox GotKeyboardFocus="_txtIdFiltrar_GotKeyboardFocus" GotFocus="_txtIdFiltrar_GotKeyboardFocus" Name="_txtNombreFiltrar" Grid.Column="2" Grid.Row="6" 
                                 Grid.ColumnSpan="2"  Height="20" Margin="60,0,0,0"></custom:ByTTextBox>
 
-                    <Button Name="_btnConsultar" VerticalAlignment="Center" Grid.Column="4" Grid.Row="5" Height="25" Click="_btnConsultar_Click">
+                    <Button Name="_btnConsultar" VerticalAlignment="Center" Grid.Column="4" Grid.Row="6" Height="25" Click="_btnConsultar_Click">
                         <TextBlock Text="{x:Static recurso:Etiquetas.btnConsultar}"/>
                     </Button>
                     <!--Fin Fila 6-->
@@ -266,7 +280,7 @@
 
                     <!--Fila 7-->
 
-                    <ListView Width="505" Grid.Column="0" Grid.Row="6" Grid.ColumnSpan="6" Grid.RowSpan="4" Name="_lstAsociados" ItemsSource="{Binding}" 
+                    <ListView Width="505" Grid.Column="0" Grid.Row="7" Grid.ColumnSpan="6" Grid.RowSpan="4" Name="_lstAsociados" ItemsSource="{Binding}" 
                       SelectionMode="Single" MouseDoubleClick="_lstAsociados_MouseDoubleClick"
                       Style="{DynamicResource EstiloListView}">
                         <ListView.View>
@@ -293,7 +307,7 @@
                         </ListView.View>
                     </ListView>
 
-                    <ListView Width="505"  Visibility="Collapsed" Grid.Column="0" Grid.Row="6" Grid.ColumnSpan="6" Grid.RowSpan="4" Name="_lstInteresados" ItemsSource="{Binding}" 
+                    <ListView Width="505"  Visibility="Collapsed" Grid.Column="0" Grid.Row="7" Grid.ColumnSpan="6" Grid.RowSpan="4" Name="_lstInteresados" ItemsSource="{Binding}" 
                       SelectionMode="Single" MouseDoubleClick="_lstInteresados_MouseDoubleClick"
                       Style="{DynamicResource EstiloListView}" >
                         <ListView.View>
@@ -327,14 +341,14 @@
 
                     <!--Fila 9-->
 
-                    <Label Name="_lblUsuario" Grid.Column="0" Grid.Row="10" HorizontalAlignment="Right" VerticalAlignment="Center">
+                    <Label Name="_lblUsuario" Grid.Column="0" Grid.Row="11" HorizontalAlignment="Right" VerticalAlignment="Center">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblLogin}"/>
                     </Label>
 
-                    <ComboBox   Grid.Column="1" Grid.Row="10" Name="_cbxUsuario" Grid.ColumnSpan="2" Height="20" 
+                    <ComboBox   Grid.Column="1" Grid.Row="11" Name="_cbxUsuario" Grid.ColumnSpan="2" Height="20" 
                           ItemsSource="{Binding}" SelectedIndex="0" SelectionChanged="_cbxUsuario_SelectionChanged" DisplayMemberPath="NombreCompleto">
                     </ComboBox>
-                    <custom:ByTTextBox  IsReadOnly="True"  Name="_txtDepartamento" Grid.Column="3" Grid.Row="10" 
+                    <custom:ByTTextBox  IsReadOnly="True"  Name="_txtDepartamento" Grid.Column="3" Grid.Row="11" 
                                 Grid.ColumnSpan="2" Width="170" Height="20" ></custom:ByTTextBox>
 
                     <!--Fin Fila 9-->

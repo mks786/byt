@@ -7,7 +7,7 @@ using Trascend.Bolet.Cliente.Ayuda;
 
 namespace Trascend.Bolet.Cliente.Contratos.Reportes
 {
-    interface ICarta1 : IPaginaBase
+    interface ICarta14 : IPaginaBase
     {
         object MarcaGeneral { get; set; }
 
@@ -56,6 +56,8 @@ namespace Trascend.Bolet.Cliente.Contratos.Reportes
         void BorrarCeros();
 
         string Fecha { get; set; }
+
+        string NuestraReferencia { set; }
 
         GridViewColumnHeader CurSortCol { get; set; }
 

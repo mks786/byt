@@ -2847,4 +2847,7 @@ en Prensa:</value>
   <data name="titleCarta1" xml:space="preserve">
     <value>Carta 1</value>
   </data>
+  <data name="lblReferenciaNuestra" xml:space="preserve">
+    <value>Nuestra Referencia:</value>
+  </data>
 </root>

@@ -160,6 +160,8 @@
     <Compile Include="Contratos\Patentes\IListaInfoBoles.cs" />
     <Compile Include="Contratos\Patentes\IListaInventores.cs" />
     <Compile Include="Contratos\Patentes\IListaOperaciones.cs" />
+    <Compile Include="Contratos\Reportes\ICarta14.cs" />
+    <Compile Include="Contratos\Reportes\ICarta2.cs" />
     <Compile Include="Contratos\Reportes\ICarta1.cs" />
     <Compile Include="Contratos\TraspasosPatentes\CambiosDeDomicilioPatentes\IConsultarCambiosDeDomicilioPatentes.cs" />
     <Compile Include="Contratos\TraspasosPatentes\CambiosDeDomicilioPatentes\IGestionarCambioDeDomicilioPatentes.cs" />
@@ -369,6 +371,8 @@
     <Compile Include="Presentadores\Patentes\PresentadorListaInventores.cs" />
     <Compile Include="Presentadores\Patentes\PresentadorListaMemorias.cs" />
     <Compile Include="Presentadores\Patentes\PresentadorListaOperaciones.cs" />
+    <Compile Include="Presentadores\Reportes\PresentadorCarta14.cs" />
+    <Compile Include="Presentadores\Reportes\PresentadorCarta2.cs" />
     <Compile Include="Presentadores\Reportes\PresentadorCarta1.cs" />
     <Compile Include="Presentadores\TraspasosPatentes\CambiosDeDomicilioPatentes\PresentadorConsultarCambiosDeDomicilioPatentes.cs" />
     <Compile Include="Presentadores\TraspasosPatentes\CambiosDeDomicilioPatentes\PresentadorGestionarCambioDeDomicilioPatentes.cs" />
@@ -525,6 +529,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="Reportes\Carta14DS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Carta14DS.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Reportes\Carta1CR.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -542,6 +551,39 @@
     </Compile>
     <Compile Include="Reportes\Carta1CREN.cs">
       <DependentUpon>Carta1CREN.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Reportes\Carta2CR.cs">
+      <DependentUpon>Carta2CR.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Reportes\Carta2CREN.cs">
+      <DependentUpon>Carta2CREN.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Reportes\Carta2DS.cs">
+      <DependentUpon>Carta2DS.xsd</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reportes\Carta2DS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Carta2DS.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Reportes\Carta14CR.cs">
+      <DependentUpon>Carta14CR.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Reportes\Carta14CREN.cs">
+      <DependentUpon>Carta14CREN.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
       <SubType>Component</SubType>
       <DesignTime>True</DesignTime>
@@ -957,6 +999,12 @@
     </Compile>
     <Compile Include="Ventanas\Reportes\Carta1.xaml.cs">
       <DependentUpon>Carta1.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Reportes\Carta2.xaml.cs">
+      <DependentUpon>Carta2.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Reportes\Carta14.xaml.cs">
+      <DependentUpon>Carta14.xaml</DependentUpon>
     </Compile>
     <Compile Include="Ventanas\Resumenes\AgregarResumen.xaml.cs">
       <DependentUpon>AgregarResumen.xaml</DependentUpon>
@@ -1697,6 +1745,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Ventanas\Reportes\Carta2.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\Reportes\Carta14.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Ventanas\Resumenes\AgregarResumen.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -2017,6 +2073,22 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>Carta1CREN.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\Carta2CR.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>Carta2CR.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\Carta2CREN.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>Carta2CREN.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\Carta14CR.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>Carta14CR.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\Carta14CREN.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>Carta14CREN.cs</LastGenOutput>
+    </EmbeddedResource>
     <None Include="app.config">
       <SubType>Designer</SubType>
     </None>
@@ -2029,6 +2101,17 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
+    <None Include="Reportes\Carta14DS.xsc">
+      <DependentUpon>Carta14DS.xsd</DependentUpon>
+    </None>
+    <None Include="Reportes\Carta14DS.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Carta14DS.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Reportes\Carta14DS.xss">
+      <DependentUpon>Carta14DS.xsd</DependentUpon>
+    </None>
     <None Include="Reportes\Carta1DS.xsc">
       <DependentUpon>Carta1DS.xsd</DependentUpon>
     </None>
@@ -2039,6 +2122,17 @@
     </None>
     <None Include="Reportes\Carta1DS.xss">
       <DependentUpon>Carta1DS.xsd</DependentUpon>
+    </None>
+    <None Include="Reportes\Carta2DS.xsc">
+      <DependentUpon>Carta2DS.xsd</DependentUpon>
+    </None>
+    <None Include="Reportes\Carta2DS.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Carta2DS.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Reportes\Carta2DS.xss">
+      <DependentUpon>Carta2DS.xsd</DependentUpon>
     </None>
   </ItemGroup>
   <ItemGroup>

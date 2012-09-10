@@ -3711,6 +3711,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Nuestra Referencia:.
+        /// </summary>
+        public static string lblReferenciaNuestra {
+            get {
+                return ResourceManager.GetString("lblReferenciaNuestra", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Región:.
         /// </summary>
         public static string lblRegion {

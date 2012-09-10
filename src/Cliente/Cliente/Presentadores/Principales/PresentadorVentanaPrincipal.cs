@@ -785,10 +785,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
                     this._ventana.Contenedor.Navigate(new Carta1());
                     break;
                 case "_menuItemCarta2":
-                    //this._ventana.Contenedor.Navigate(new CorreccionErrorMaterial());
+                    this._ventana.Contenedor.Navigate(new Carta2());
                     break;
                 case "_menuItemCarta14":
-                    //this._ventana.Contenedor.Navigate(new CorreccionErrorMaterialDistingue());
+                    this._ventana.Contenedor.Navigate(new Carta14());
                     break;
                 case "_menuItemCarta15":
                     //this._ventana.Contenedor.Navigate(new CertificadoDeOrigen());

@@ -9,14 +9,14 @@ namespace Trascend.Bolet.Cliente.Ventanas.Reportes
     /// <summary>
     /// Interaction logic for ConsultarUsuario.xaml
     /// </summary>
-    public partial class Carta1 : Page, ICarta1
+    public partial class Carta14 : Page, ICarta14
     {
-        private PresentadorCarta1 _presentador;
+        private PresentadorCarta14 _presentador;
         private bool _cargada;
         private GridViewColumnHeader _CurSortCol = null;
         private SortAdorner _CurAdorner = null;
 
-        #region ICarta1
+        #region ICarta14
 
         public bool EstaCargada
         {
@@ -132,6 +132,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Reportes
             set { this._dpkFecha.Text = value; }
         }
 
+        public string NuestraReferencia
+        {
+            set { this._txtReferenciaNuestra.Text = value; }
+        }
+
         public string NombreFiltrar
         {
             get { return this._txtNombreFiltrar.Text; }
@@ -177,11 +182,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Reportes
 
         #endregion
 
-        public Carta1()
+        public Carta14()
         {
             InitializeComponent();
             this._cargada = false;
-            this._presentador = new PresentadorCarta1(this);
+            this._presentador = new PresentadorCarta14(this);
         }
 
         private void _btnCancelar_Click(object sender, RoutedEventArgs e)

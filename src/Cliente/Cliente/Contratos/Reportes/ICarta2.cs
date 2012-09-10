@@ -7,7 +7,7 @@ using Trascend.Bolet.Cliente.Ayuda;
 
 namespace Trascend.Bolet.Cliente.Contratos.Reportes
 {
-    interface ICarta1 : IPaginaBase
+    interface ICarta2 : IPaginaBase
     {
         object MarcaGeneral { get; set; }
 
