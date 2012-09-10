@@ -790,8 +790,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
                 case "_menuItemCarta14":
                     this._ventana.Contenedor.Navigate(new Carta14());
                     break;
-                case "_menuItemCarta15":
-                    //this._ventana.Contenedor.Navigate(new CertificadoDeOrigen());
+                case "_menuItemCarta16":
+                    this._ventana.Contenedor.Navigate(new Carta16());
                     break;
                 case "_menuItemCarta16M":
                     //this._ventana.Contenedor.Navigate(new CertificadoDeOrigen());

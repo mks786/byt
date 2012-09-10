@@ -77,7 +77,7 @@
                     <MenuItem Name="_menuItemCarta1" Header="{x:Static resx:Etiquetas.menuItemCarta1}" Click="_menuItemCartas_Click"/>
                     <MenuItem Name="_menuItemCarta2" Header="{x:Static resx:Etiquetas.menuItemCarta2}" Click="_menuItemCartas_Click"/>
                     <MenuItem Name="_menuItemCarta14" Header="{x:Static resx:Etiquetas.menuItemCarta14}" Click="_menuItemCartas_Click"/>
-                    <MenuItem Name="_menuItemCarta15" Header="{x:Static resx:Etiquetas.menuItemCarta15}" Click="_menuItemCartas_Click"/>
+                    <MenuItem Name="_menuItemCarta16" Header="{x:Static resx:Etiquetas.menuItemCarta16}" Click="_menuItemCartas_Click"/>
                     <MenuItem Name="_menuItemCarta16M" Header="{x:Static resx:Etiquetas.menuItemCarta16M}" Click="_menuItemCartas_Click"/>
                     <MenuItem Name="_menuItemCarta16P" Header="{x:Static resx:Etiquetas.menuItemCarta16P}" Click="_menuItemCartas_Click"/>
                 </MenuItem>

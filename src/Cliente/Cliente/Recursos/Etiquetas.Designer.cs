@@ -5394,11 +5394,11 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Carta 15.
+        ///   Looks up a localized string similar to Carta 16.
         /// </summary>
-        public static string menuItemCarta15 {
+        public static string menuItemCarta16 {
             get {
-                return ResourceManager.GetString("menuItemCarta15", resourceCulture);
+                return ResourceManager.GetString("menuItemCarta16", resourceCulture);
             }
         }
         
