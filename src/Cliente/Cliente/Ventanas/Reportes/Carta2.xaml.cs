@@ -175,6 +175,20 @@ namespace Trascend.Bolet.Cliente.Ventanas.Reportes
             set { _CurAdorner = value; }
         }
 
+        public void MensajeAlerta(string mensaje)
+        {
+            MessageBox.Show(mensaje,
+                "Alerta", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                
+        }
+
+        public void MensajeExito(string mensaje)
+        {
+            MessageBox.Show(mensaje,
+                   "Reporte exitoso", MessageBoxButton.OK, MessageBoxImage.Information);
+        }
+
+
         #endregion
 
         public Carta2()
@@ -313,7 +327,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Reportes
                     this._btnConsultarMarca.IsDefault = false;
                 }
             }
-            else if (_radioGrupal.IsChecked.Value) 
+            else if (_radioGrupal.IsChecked.Value)
             {
                 this._presentador.AgregarMarca();
             }

@@ -9,14 +9,14 @@ namespace Trascend.Bolet.Cliente.Ventanas.Reportes
     /// <summary>
     /// Interaction logic for ConsultarUsuario.xaml
     /// </summary>
-    public partial class Carta14 : Page, ICarta14
+    public partial class Carta16M : Page, ICarta16M
     {
-        private PresentadorCarta14 _presentador;
+        private PresentadorCarta16M _presentador;
         private bool _cargada;
         private GridViewColumnHeader _CurSortCol = null;
         private SortAdorner _CurAdorner = null;
 
-        #region ICarta14
+        #region ICarta1
 
         public bool EstaCargada
         {
@@ -132,11 +132,6 @@ namespace Trascend.Bolet.Cliente.Ventanas.Reportes
             set { this._dpkFecha.Text = value; }
         }
 
-        public string NuestraReferencia
-        {
-            set { this._txtReferenciaNuestra.Text = value; }
-        }
-
         public string NombreFiltrar
         {
             get { return this._txtNombreFiltrar.Text; }
@@ -195,11 +190,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Reportes
 
         #endregion
 
-        public Carta14()
+        public Carta16M()
         {
             InitializeComponent();
             this._cargada = false;
-            this._presentador = new PresentadorCarta14(this);
+            this._presentador = new PresentadorCarta16M(this);
         }
 
         private void _btnCancelar_Click(object sender, RoutedEventArgs e)
@@ -358,9 +353,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Reportes
                 this._lblReferencia.Visibility = Visibility.Visible;
                 this._lblUsuario.Visibility = Visibility.Visible;
                 this._lblIdioma.Visibility = Visibility.Visible;
-                this._lblReferenciaNuestra.Visibility = Visibility.Visible;
 
-                this._txtReferenciaNuestra.Visibility = Visibility.Visible;
                 this._txtCiudadInteresado.Visibility = Visibility.Visible;
                 this._txtClaseInternacional.Visibility = Visibility.Visible;
                 this._txtDepartamento.Visibility = Visibility.Visible;
@@ -405,9 +398,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Reportes
             this._lblReferencia.Visibility = Visibility.Collapsed;
             this._lblUsuario.Visibility = Visibility.Collapsed;
             //this._lblIdioma.Visibility = Visibility.Collapsed;
-            this._lblReferenciaNuestra.Visibility = Visibility.Collapsed;
 
-            this._txtReferenciaNuestra.Visibility = Visibility.Collapsed;
             this._txtCiudadInteresado.Visibility = Visibility.Collapsed;
             this._txtClaseInternacional.Visibility = Visibility.Collapsed;
             this._txtDepartamento.Visibility = Visibility.Collapsed;

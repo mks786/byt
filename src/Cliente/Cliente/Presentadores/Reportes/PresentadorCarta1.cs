@@ -208,8 +208,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Reportes
                     ds.Tables.Add(datos);
                     reporte.SetDataSource(datos);
                     reporte.PrintToPrinter(1, false, 1, 0);
+                    this._ventana.MensajeExito(Recursos.MensajesConElUsuario.ExitosoReporte);
                 }
-
+                else
+                {
+                }
 
                 Mouse.OverrideCursor = null;
 
@@ -249,6 +252,25 @@ namespace Trascend.Bolet.Cliente.Presentadores.Reportes
         {
 
             //realizar validación de la ventana
+            bool retorno = true;
+
+            
+            if (((Idioma)this._ventana.Idioma).Id.Equals("NGN"))
+            {
+                retorno = false;
+                this._ventana.MensajeAlerta(Recursos.MensajesConElUsuario.AlertaCartaSinIdioma);
+            }
+            else if ((((Marca)this._ventana.MarcaGeneral).Id == 0) && (this._ventana.RadioUnicaMarca()))
+            {
+                retorno = false;
+                this._ventana.MensajeAlerta(Recursos.MensajesConElUsuario.AlertaCartaSinMarca);
+            }
+            else if ((this._marcasAgregadas.Count == 0) && (this._ventana.RadioMuchasMarcas()))
+            {
+                retorno = false;
+                this._ventana.MensajeAlerta(Recursos.MensajesConElUsuario.AlertaCartaSinMarcas);
+            }
+            return retorno;
             return true;
 
         }
@@ -492,8 +514,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Reportes
             retorno.Marca = !((Marca)this._ventana.Marca).Descripcion.Equals(string.Empty) ?
                 ((Marca)this._ventana.Marca).Descripcion : string.Empty;
 
-            retorno.CodigoRegistro = null != ((Marca)this._ventana.Marca).CodigoRegistro && !((Marca)this._ventana.Marca).CodigoRegistro.Equals(string.Empty) ?
-                ((Marca)this._ventana.Marca).CodigoRegistro : string.Empty;
+            retorno.CodigoRegistro = null != ((Marca)this._ventana.Marca).CodigoInscripcion && !((Marca)this._ventana.Marca).CodigoInscripcion.Equals(string.Empty) ?
+                ((Marca)this._ventana.Marca).CodigoInscripcion : string.Empty;
 
             retorno.ClaseMarca = ((Marca)this._ventana.Marca).Internacional != null ?
                 ((Marca)this._ventana.Marca).Internacional.Id.ToString() : string.Empty;
@@ -535,8 +557,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Reportes
                         estructura.Marca = !marca.Descripcion.Equals(string.Empty) ?
                             marca.Descripcion : string.Empty;
 
-                        estructura.CodigoRegistro =null != marca.CodigoRegistro && !marca.CodigoRegistro.Equals(string.Empty) ?
-                            marca.CodigoRegistro : string.Empty;
+                        estructura.CodigoRegistro = null != marca.CodigoInscripcion && !marca.CodigoInscripcion.Equals(string.Empty) ?
+                            marca.CodigoInscripcion : string.Empty;
 
                         estructura.ClaseMarca = marca.Internacional != null ?
                             marca.Internacional.Id.ToString() : string.Empty;

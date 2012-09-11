@@ -133,6 +133,42 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Disculpe, debe seleccionar un Asociado.
+        /// </summary>
+        internal static string AlertaCartaSinAsociado {
+            get {
+                return ResourceManager.GetString("AlertaCartaSinAsociado", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Disculpe debe seleccionar el idioma del reporte: español o inglés.
+        /// </summary>
+        internal static string AlertaCartaSinIdioma {
+            get {
+                return ResourceManager.GetString("AlertaCartaSinIdioma", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Disculpe debe seleccionar una Marca.
+        /// </summary>
+        internal static string AlertaCartaSinMarca {
+            get {
+                return ResourceManager.GetString("AlertaCartaSinMarca", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Disculpe debe agregar al menos una (1) Marca a la lista de Marcas.
+        /// </summary>
+        internal static string AlertaCartaSinMarcas {
+            get {
+                return ResourceManager.GetString("AlertaCartaSinMarcas", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Disculpe el Escrito debe tener un agente seleccionado.
         /// </summary>
         internal static string AlertaEscritoSinAgente {
@@ -1633,6 +1669,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         internal static string ExitoGenerandoInformacionRecordatorio {
             get {
                 return ResourceManager.GetString("ExitoGenerandoInformacionRecordatorio", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Su reporte ha sido generado exitosamente.
+        /// </summary>
+        internal static string ExitosoReporte {
+            get {
+                return ResourceManager.GetString("ExitosoReporte", resourceCulture);
             }
         }
         

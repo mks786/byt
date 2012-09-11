@@ -880,4 +880,19 @@
   <data name="ConfirmacionEliminarInstruccion" xml:space="preserve">
     <value>¿Está seguro que desea eliminar la Instrucción de Renovación?</value>
   </data>
+  <data name="AlertaCartaSinAsociado" xml:space="preserve">
+    <value>Disculpe, debe seleccionar un Asociado</value>
+  </data>
+  <data name="AlertaCartaSinIdioma" xml:space="preserve">
+    <value>Disculpe debe seleccionar el idioma del reporte: español o inglés</value>
+  </data>
+  <data name="AlertaCartaSinMarca" xml:space="preserve">
+    <value>Disculpe debe seleccionar una Marca</value>
+  </data>
+  <data name="AlertaCartaSinMarcas" xml:space="preserve">
+    <value>Disculpe debe agregar al menos una (1) Marca a la lista de Marcas</value>
+  </data>
+  <data name="ExitosoReporte" xml:space="preserve">
+    <value>Su reporte ha sido generado exitosamente</value>
+  </data>
 </root>

@@ -36,7 +36,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Reportes
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
         private IList<Marca> _marcasAgregadas = new List<Marca>();
-        private string _nuestraReferencia;
+        private string _nuestraReferencia = "";
 
 
         /// <summary>
@@ -87,7 +87,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Reportes
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-                this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleCarta1,
+                this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleCarta14,
                 "");
 
                 this._ventana.Fecha = System.DateTime.Now.ToShortDateString();
@@ -208,6 +208,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Reportes
                     ds.Tables.Add(datos);
                     reporte.SetDataSource(datos);
                     reporte.PrintToPrinter(1, false, 1, 0);
+                    this._ventana.MensajeExito(Recursos.MensajesConElUsuario.ExitosoReporte);
                 }
 
 
@@ -247,9 +248,25 @@ namespace Trascend.Bolet.Cliente.Presentadores.Reportes
         /// <returns></returns>
         private bool ValidarVentana()
         {
+            bool retorno = true;
 
             //realizar validación de la ventana
-            return true;
+            if (((Idioma)this._ventana.Idioma).Id.Equals("NGN"))
+            {
+                this._ventana.MensajeAlerta(Recursos.MensajesConElUsuario.AlertaCartaSinIdioma);
+                retorno = false;
+            }
+            else if ((((Marca)this._ventana.MarcaGeneral).Id == 0) && (this._ventana.RadioUnicaMarca()))
+            {
+                this._ventana.MensajeAlerta(Recursos.MensajesConElUsuario.AlertaCartaSinMarca);
+                retorno = false;
+            }
+            else if ((this._marcasAgregadas.Count == 0) && (this._ventana.RadioMuchasMarcas()))
+            {
+                this._ventana.MensajeAlerta(Recursos.MensajesConElUsuario.AlertaCartaSinMarcas);
+                retorno = false;
+            }
+            return retorno;
 
         }
 
@@ -418,7 +435,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Reportes
                 this._ventana.Interesados = interesados;
                 this._ventana.Interesado = ((Marca)this._ventana.Marca).Interesado;
 
-                _nuestraReferencia = ((Marca)this._ventana.Marca).Id + " /CO/ " + ((Marca)this._ventana.Marca).BoletinConcesion.Id;
+                string noBoletin = null != ((Marca)this._ventana.Marca).BoletinConcesion ?
+                    ((Marca)this._ventana.Marca).BoletinConcesion.Id.ToString() : string.Empty;
+                _nuestraReferencia = ((Marca)this._ventana.Marca).Id + " /CO/ " + noBoletin;
 
                 this._ventana.NuestraReferencia = _nuestraReferencia;
                 retorno = true;
@@ -546,17 +565,20 @@ namespace Trascend.Bolet.Cliente.Presentadores.Reportes
                         estructura.CodigoSolicitud = null != marca.CodigoInscripcion && !marca.CodigoInscripcion.Equals(string.Empty) ?
                             marca.CodigoInscripcion : string.Empty;
 
-                        estructura.Pais = marca.Interesado != null ?
-                            marca.Interesado.Nombre : string.Empty;
+                        estructura.Asociado = marca.Asociado != null ?
+                            marca.Asociado.Nombre : string.Empty;
+
                         if (((Idioma)this._ventana.Idioma).Id.Equals("ES"))
-                            estructura.Asociado = marca.Asociado != null && marca.Asociado.Pais != null && !marca.Asociado.Pais.NombreEspanol.Equals(string.Empty) ?
+                            estructura.Pais = marca.Asociado != null && marca.Asociado.Pais != null && !marca.Asociado.Pais.NombreEspanol.Equals(string.Empty) ?
                                 marca.Asociado.Pais.NombreEspanol : string.Empty;
-                        else if (((Idioma)this._ventana.Idioma).Id.Equals("EN"))
-                            estructura.Asociado = marca.Asociado != null && marca.Asociado.Pais != null && !marca.Asociado.Pais.NombreIngles.Equals(string.Empty) ?
+                        else if (((Idioma)this._ventana.Idioma).Id.Equals("IN"))
+                            estructura.Pais = marca.Asociado != null && marca.Asociado.Pais != null && !marca.Asociado.Pais.NombreIngles.Equals(string.Empty) ?
                                 marca.Asociado.Pais.NombreIngles : string.Empty;
 
                         estructura.SuReferencia = marca.PrimeraReferencia;
-                        estructura.NuestraReferencia = _nuestraReferencia;
+
+                        string noBoletin = null != marca.BoletinConcesion ? marca.BoletinConcesion.Id.ToString() : string.Empty;
+                        estructura.NuestraReferencia = marca.Id + " /CO/ " + noBoletin;
 
                         estructura.DomicilioAsociado = marca.Asociado != null ?
                             marca.Asociado.Domicilio : string.Empty;

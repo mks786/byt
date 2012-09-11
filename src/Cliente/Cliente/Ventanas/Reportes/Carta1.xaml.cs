@@ -175,6 +175,19 @@ namespace Trascend.Bolet.Cliente.Ventanas.Reportes
             set { _CurAdorner = value; }
         }
 
+        public void MensajeAlerta(string mensaje)
+        {
+            MessageBox.Show(mensaje,
+                "Alerta", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+
+        }
+
+        public void MensajeExito(string mensaje)
+        {
+            MessageBox.Show(mensaje,
+                   "Reporte exitoso", MessageBoxButton.OK, MessageBoxImage.Information);
+        }
+
         #endregion
 
         public Carta1()

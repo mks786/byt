@@ -86,7 +86,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Reportes
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-                this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleCarta1,
+                this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleCarta2,
                 "");
 
                 this._ventana.Fecha = System.DateTime.Now.ToShortDateString();
@@ -208,6 +208,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Reportes
                     ds.Tables.Add(datos);
                     reporte.SetDataSource(datos);
                     reporte.PrintToPrinter(1, false, 1, 0);
+                    this._ventana.MensajeExito(Recursos.MensajesConElUsuario.ExitosoReporte);
                 }
 
 
@@ -247,10 +248,25 @@ namespace Trascend.Bolet.Cliente.Presentadores.Reportes
         /// <returns></returns>
         private bool ValidarVentana()
         {
+            bool retorno = true;
 
             //realizar validación de la ventana
-            return true;
-
+            if (((Idioma)this._ventana.Idioma).Id.Equals("NGN"))
+            {
+                this._ventana.MensajeAlerta(Recursos.MensajesConElUsuario.AlertaCartaSinIdioma);
+                retorno = false;
+            }
+            else if ((((Marca)this._ventana.MarcaGeneral).Id == 0) && (this._ventana.RadioUnicaMarca()))
+            {
+                this._ventana.MensajeAlerta(Recursos.MensajesConElUsuario.AlertaCartaSinMarca);
+                retorno = false;
+            }
+            else if ((this._marcasAgregadas.Count == 0) && (this._ventana.RadioMuchasMarcas()))
+            {
+                this._ventana.MensajeAlerta(Recursos.MensajesConElUsuario.AlertaCartaSinMarcas);
+                retorno = false;
+            }
+            return retorno;
         }
 
 

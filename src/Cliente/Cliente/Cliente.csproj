@@ -160,6 +160,7 @@
     <Compile Include="Contratos\Patentes\IListaInfoBoles.cs" />
     <Compile Include="Contratos\Patentes\IListaInventores.cs" />
     <Compile Include="Contratos\Patentes\IListaOperaciones.cs" />
+    <Compile Include="Contratos\Reportes\ICarta16M.cs" />
     <Compile Include="Contratos\Reportes\ICarta16.cs" />
     <Compile Include="Contratos\Reportes\ICarta14.cs" />
     <Compile Include="Contratos\Reportes\ICarta2.cs" />
@@ -372,6 +373,7 @@
     <Compile Include="Presentadores\Patentes\PresentadorListaInventores.cs" />
     <Compile Include="Presentadores\Patentes\PresentadorListaMemorias.cs" />
     <Compile Include="Presentadores\Patentes\PresentadorListaOperaciones.cs" />
+    <Compile Include="Presentadores\Reportes\PresentadorCarta16M.cs" />
     <Compile Include="Presentadores\Reportes\PresentadorCarta16.cs" />
     <Compile Include="Presentadores\Reportes\PresentadorCarta14.cs" />
     <Compile Include="Presentadores\Reportes\PresentadorCarta2.cs" />
@@ -541,6 +543,15 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Carta16DS.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Reportes\Carta16MDS.cs">
+      <DependentUpon>Carta16MDS.xsd</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reportes\Carta16MDS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Carta16MDS.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Reportes\Carta1CR.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -603,6 +614,18 @@
     </Compile>
     <Compile Include="Reportes\Carta16CREN.cs">
       <DependentUpon>Carta16CREN.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Reportes\Carta16MCR.cs">
+      <DependentUpon>Carta16MCR.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Reportes\Carta16MCREN.cs">
+      <DependentUpon>Carta16MCREN.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
       <SubType>Component</SubType>
       <DesignTime>True</DesignTime>
@@ -1027,6 +1050,9 @@
     </Compile>
     <Compile Include="Ventanas\Reportes\Carta16.xaml.cs">
       <DependentUpon>Carta16.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Reportes\Carta16M.xaml.cs">
+      <DependentUpon>Carta16M.xaml</DependentUpon>
     </Compile>
     <Compile Include="Ventanas\Resumenes\AgregarResumen.xaml.cs">
       <DependentUpon>AgregarResumen.xaml</DependentUpon>
@@ -1779,6 +1805,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Ventanas\Reportes\Carta16M.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Ventanas\Resumenes\AgregarResumen.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -2123,6 +2153,14 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>Carta16CREN.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\Carta16MCR.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>Carta16MCR.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\Carta16MCREN.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>Carta16MCREN.cs</LastGenOutput>
+    </EmbeddedResource>
     <None Include="app.config">
       <SubType>Designer</SubType>
     </None>
@@ -2156,6 +2194,17 @@
     </None>
     <None Include="Reportes\Carta16DS.xss">
       <DependentUpon>Carta16DS.xsd</DependentUpon>
+    </None>
+    <None Include="Reportes\Carta16MDS.xsc">
+      <DependentUpon>Carta16MDS.xsd</DependentUpon>
+    </None>
+    <None Include="Reportes\Carta16MDS.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Carta16MDS.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Reportes\Carta16MDS.xss">
+      <DependentUpon>Carta16MDS.xsd</DependentUpon>
     </None>
     <None Include="Reportes\Carta1DS.xsc">
       <DependentUpon>Carta1DS.xsd</DependentUpon>

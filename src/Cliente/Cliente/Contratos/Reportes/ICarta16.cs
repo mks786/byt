@@ -47,6 +47,10 @@ namespace Trascend.Bolet.Cliente.Contratos.Reportes
 
         void BorrarCeros();
 
+        void MensajeAlerta(string mensaje);
+
+        void MensajeExito(string mensaje);
+
         string Fecha { get; set; }
 
         GridViewColumnHeader CurSortCol { get; set; }

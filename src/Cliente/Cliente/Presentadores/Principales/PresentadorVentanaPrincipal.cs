@@ -794,7 +794,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
                     this._ventana.Contenedor.Navigate(new Carta16());
                     break;
                 case "_menuItemCarta16M":
-                    //this._ventana.Contenedor.Navigate(new CertificadoDeOrigen());
+                    this._ventana.Contenedor.Navigate(new Carta16M());
                     break;
                 case "_menuItemCarta16P":
                     //this._ventana.Contenedor.Navigate(new CertificadoDeOrigen());
