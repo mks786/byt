@@ -892,6 +892,12 @@
   <data name="AlertaCartaSinMarcas" xml:space="preserve">
     <value>Disculpe debe agregar al menos una (1) Marca a la lista de Marcas</value>
   </data>
+  <data name="AlertaCartaSinPatente" xml:space="preserve">
+    <value>Disculpe debe seleccionar una Patente</value>
+  </data>
+  <data name="AlertaCartaSinPatentes" xml:space="preserve">
+    <value>Disculpe debe agregar al menos una (1) Patente a la lista de Patentes</value>
+  </data>
   <data name="ExitosoReporte" xml:space="preserve">
     <value>Su reporte ha sido generado exitosamente</value>
   </data>

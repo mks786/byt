@@ -22,34 +22,34 @@ using System.Globalization;
 
 namespace Trascend.Bolet.Cliente.Presentadores.Reportes
 {
-    class PresentadorCarta1 : PresentadorBase
+    class PresentadorCarta16P : PresentadorBase
     {
-        private ICarta1 _ventana;
+        private ICarta16P _ventana;
 
         private IPaisServicios _paisServicios;
         private IListaDatosValoresServicios _listaDatosValoresServicios;
         private IIdiomaServicios _idiomaServicios;
         private IUsuarioServicios _usuarioServicios;
-        private IMarcaServicios _marcaServicios;
+        private IPatenteServicios _PatenteServicios;
         private IInteresadoServicios _interesadoServicios;
         private IAsociadoServicios _asociadoServicios;
 
         private static PaginaPrincipal _paginaPrincipal = PaginaPrincipal.ObtenerInstancia;
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
-        private IList<Marca> _marcasAgregadas = new List<Marca>();
+        private IList<Patente> _PatentesAgregadas = new List<Patente>();
 
 
         /// <summary>
         /// Constructor predeterminado
         /// </summary>
         /// <param name="ventana">Página que satisface el contrato</param>
-        public PresentadorCarta1(ICarta1 ventana)
+        public PresentadorCarta16P(ICarta16P ventana)
         {
             try
             {
                 this._ventana = ventana;
-                this._ventana.MarcaGeneral = new Marca();
+                this._ventana.PatenteGeneral = new Patente();
 
                 this._paisServicios = (IPaisServicios)Activator.GetObject(typeof(IPaisServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["PaisServicios"]);
@@ -59,8 +59,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Reportes
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["IdiomaServicios"]);
                 this._usuarioServicios = (IUsuarioServicios)Activator.GetObject(typeof(IUsuarioServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["UsuarioServicios"]);
-                this._marcaServicios = (IMarcaServicios)Activator.GetObject(typeof(IMarcaServicios),
-                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["MarcaServicios"]);
+                this._PatenteServicios = (IPatenteServicios)Activator.GetObject(typeof(IPatenteServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["PatenteServicios"]);
                 this._interesadoServicios = (IInteresadoServicios)Activator.GetObject(typeof(IInteresadoServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["InteresadoServicios"]);
                 this._asociadoServicios = (IAsociadoServicios)Activator.GetObject(typeof(IAsociadoServicios),
@@ -181,21 +181,21 @@ namespace Trascend.Bolet.Cliente.Presentadores.Reportes
                     reporte.Load(GetRutaReporte());
 
                     DataTable datos = new DataTable("DataTable1");
-                    datos.Columns.Add("NombreMarca");
-                    datos.Columns.Add("CodigoRegistroMarca");
-                    datos.Columns.Add("FechaRenovacion");
-                    datos.Columns.Add("ClaseMarca");
-                    datos.Columns.Add("Interesado");
+                    datos.Columns.Add("Patente");
+                    datos.Columns.Add("CodigoRegistro");
+                    datos.Columns.Add("FechaRegistro");
+                    datos.Columns.Add("Clase");
+                    datos.Columns.Add("Pais");
                     datos.Columns.Add("Asociado");
-                    datos.Columns.Add("Domicilio");
+                    datos.Columns.Add("DomicilioAsociado");
                     datos.Columns.Add("FechaCarta");
                     datos.Columns.Add("Referencia");
 
-                    if (this._ventana.RadioMuchasMarcas())
+                    if (this._ventana.RadioMuchasPatentes())
                     {
                         estructuraDeDatos = ObtenerEstructuraCartas1();
                     }
-                    else if (this._ventana.RadioUnicaMarca())
+                    else if (this._ventana.RadioUnicaPatente())
                     {
                         StructReporteCarta1 estructura = ObtenerEstructuraCarta1();
                         estructuraDeDatos.Add(estructura);
@@ -262,15 +262,15 @@ namespace Trascend.Bolet.Cliente.Presentadores.Reportes
                 retorno = false;
                 this._ventana.MensajeAlerta(Recursos.MensajesConElUsuario.AlertaCartaSinIdioma);
             }
-            else if ((((Marca)this._ventana.MarcaGeneral).Id == 0) && (this._ventana.RadioUnicaMarca()))
+            else if ((((Patente)this._ventana.PatenteGeneral).Id == 0) && (this._ventana.RadioUnicaPatente()))
             {
                 retorno = false;
-                this._ventana.MensajeAlerta(Recursos.MensajesConElUsuario.AlertaCartaSinMarca);
+                this._ventana.MensajeAlerta(Recursos.MensajesConElUsuario.AlertaCartaSinPatente);
             }
-            else if ((this._marcasAgregadas.Count == 0) && (this._ventana.RadioMuchasMarcas()))
+            else if ((this._PatentesAgregadas.Count == 0) && (this._ventana.RadioMuchasPatentes()))
             {
                 retorno = false;
-                this._ventana.MensajeAlerta(Recursos.MensajesConElUsuario.AlertaCartaSinMarcas);
+                this._ventana.MensajeAlerta(Recursos.MensajesConElUsuario.AlertaCartaSinPatentes);
             }
             return retorno;
             return true;
@@ -287,11 +287,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Reportes
             string retorno = "";
             if (((Idioma)this._ventana.Idioma).Id.Equals("ES"))
 
-                retorno = "../../Reportes/Carta1CR.rpt";
+                retorno = "../../Reportes/Carta16MCR.rpt";
 
             else if (((Idioma)this._ventana.Idioma).Id.Equals("IN"))
 
-                retorno = "../../Reportes/Carta1CREN.rpt";
+                retorno = "../../Reportes/Carta16MCREN.rpt";
 
             return retorno;
 
@@ -311,14 +311,14 @@ namespace Trascend.Bolet.Cliente.Presentadores.Reportes
                 DataRow filaDatos = datos.NewRow();
 
                 filaDatos["FechaCarta"] = structura.FechaCarta;
-                filaDatos["NombreMarca"] = structura.Marca;
-                filaDatos["CodigoRegistroMarca"] = structura.CodigoRegistro;
+                filaDatos["Patente"] = structura.Patente;
+                filaDatos["CodigoRegistro"] = structura.CodigoRegistro;
                 filaDatos["Asociado"] = structura.Asociado;
-                filaDatos["Domicilio"] = structura.DomicilioAsociado;
-                filaDatos["ClaseMarca"] = structura.ClaseMarca;
-                filaDatos["Interesado"] = structura.Interesado;
+                filaDatos["DomicilioAsociado"] = structura.DomicilioAsociado;
+                filaDatos["Clase"] = structura.ClasePatente;
+                filaDatos["Pais"] = structura.Pais;
                 filaDatos["Referencia"] = structura.Referencia;
-                filaDatos["FechaRenovacion"] = structura.FechaRenovacion;
+                filaDatos["FechaRegistro"] = structura.FechaRegistro;
 
                 datos.Rows.Add(filaDatos);
             }
@@ -397,51 +397,51 @@ namespace Trascend.Bolet.Cliente.Presentadores.Reportes
 
 
         /// <summary>
-        /// Método que consulta la marca deseada en la ventana
+        /// Método que consulta la Patente deseada en la ventana
         /// </summary>
-        public void ConsultarMarca()
+        public void ConsultarPatente()
         {
             Mouse.OverrideCursor = Cursors.Wait;
 
-            Marca marcaFiltrar = new Marca();
+            Patente PatenteFiltrar = new Patente();
 
-            marcaFiltrar.Id = this._ventana.IdMarcaFiltrar.Equals("") ? 0 : int.Parse(this._ventana.IdMarcaFiltrar);
-            marcaFiltrar.Descripcion = this._ventana.NombreMarcaFiltrar.Equals("") ? string.Empty : this._ventana.NombreMarcaFiltrar;
+            PatenteFiltrar.Id = this._ventana.IdPatenteFiltrar.Equals("") ? 0 : int.Parse(this._ventana.IdPatenteFiltrar);
+            PatenteFiltrar.Descripcion = this._ventana.NombrePatenteFiltrar.Equals("") ? string.Empty : this._ventana.NombrePatenteFiltrar;
 
-            if ((marcaFiltrar.Id != 0) || (!marcaFiltrar.Descripcion.Equals(string.Empty)))
+            if ((PatenteFiltrar.Id != 0) || (!PatenteFiltrar.Descripcion.Equals(string.Empty)))
             {
-                IList<Marca> marcas = this._marcaServicios.ObtenerMarcasFiltro(marcaFiltrar);
-                this._ventana.Marcas = marcas;
+                IList<Patente> Patentes = this._PatenteServicios.ObtenerPatentesFiltro(PatenteFiltrar);
+                this._ventana.Patentes = Patentes;
             }
             else
-                this._ventana.Marcas = null;
+                this._ventana.Patentes = null;
 
             Mouse.OverrideCursor = null;
         }
 
 
         /// <summary>
-        /// Método que cambia la marca seleccionada
+        /// Método que cambia la Patente seleccionada
         /// </summary>
         /// <returns></returns>
-        public bool CambiarMarca()
+        public bool CambiarPatente()
         {
             bool retorno = false;
-            if (this._ventana.Marca != null)
+            if (this._ventana.Patente != null)
             {
-                this._ventana.MarcaGeneral = this._ventana.Marca;
+                this._ventana.PatenteGeneral = this._ventana.Patente;
 
                 IList<Asociado> asociados = new List<Asociado>();
-                asociados.Add(((Marca)this._ventana.Marca).Asociado);
+                asociados.Add(((Patente)this._ventana.Patente).Asociado);
 
                 this._ventana.Asociados = asociados;
-                this._ventana.Asociado = ((Marca)this._ventana.Marca).Asociado;
+                this._ventana.Asociado = ((Patente)this._ventana.Patente).Asociado;
 
                 IList<Interesado> interesados = new List<Interesado>();
-                interesados.Add(((Marca)this._ventana.Marca).Interesado);
+                interesados.Add(((Patente)this._ventana.Patente).Interesado);
 
                 this._ventana.Interesados = interesados;
-                this._ventana.Interesado = ((Marca)this._ventana.Marca).Interesado;
+                this._ventana.Interesado = ((Patente)this._ventana.Patente).Interesado;
                 retorno = true;
             }
 
@@ -462,17 +462,17 @@ namespace Trascend.Bolet.Cliente.Presentadores.Reportes
 
 
         /// <summary>
-        /// Método que agrega una marca a la lista de marcas agregadas
+        /// Método que agrega una Patente a la lista de Patentes agregadas
         /// </summary>
-        public void AgregarMarca()
+        public void AgregarPatente()
         {
             try
             {
-                if (this._ventana.Marca != null)
+                if (this._ventana.Patente != null)
                 {
-                    _marcasAgregadas.Insert(0, ((Marca)this._ventana.Marca));
-                    this._ventana.MarcasAgregadas = null;
-                    this._ventana.MarcasAgregadas = _marcasAgregadas;
+                    _PatentesAgregadas.Insert(0, ((Patente)this._ventana.Patente));
+                    this._ventana.PatentesAgregadas = null;
+                    this._ventana.PatentesAgregadas = _PatentesAgregadas;
                 }
 
             }
@@ -484,17 +484,17 @@ namespace Trascend.Bolet.Cliente.Presentadores.Reportes
 
 
         /// <summary>
-        /// Método que elimina una marca de la lista de marcas agregadas
+        /// Método que elimina una Patente de la lista de Patentes agregadas
         /// </summary>
-        public void EliminarMarca()
+        public void EliminarPatente()
         {
             try
             {
-                if (this._ventana.MarcaAgregada != null)
+                if (this._ventana.PatenteAgregada != null)
                 {
-                    _marcasAgregadas.Remove(((Marca)this._ventana.MarcaAgregada));
-                    this._ventana.MarcasAgregadas = null;
-                    this._ventana.MarcasAgregadas = _marcasAgregadas;
+                    _PatentesAgregadas.Remove(((Patente)this._ventana.PatenteAgregada));
+                    this._ventana.PatentesAgregadas = null;
+                    this._ventana.PatentesAgregadas = _PatentesAgregadas;
                 }
             }
             catch (Exception ex)
@@ -522,31 +522,36 @@ namespace Trascend.Bolet.Cliente.Presentadores.Reportes
             }
             else if (((Idioma)this._ventana.Idioma).Id.Equals("IN"))
             {
-                Thread.CurrentThread.CurrentCulture = new CultureInfo("en-US");
+                Thread.CurrentThread.CurrentCulture = new CultureInfo("en-EN");
             }
 
 
             retorno.FechaCarta = fechaAux.ToLongDateString();
+            retorno.Patente = !((Patente)this._ventana.Patente).Descripcion.Equals(string.Empty) ?
+                ((Patente)this._ventana.Patente).Descripcion : string.Empty;
 
-            retorno.Marca = !((Marca)this._ventana.Marca).Descripcion.Equals(string.Empty) ?
-                ((Marca)this._ventana.Marca).Descripcion : string.Empty;
+            retorno.CodigoRegistro = null != ((Patente)this._ventana.Patente).CodigoInscripcion && !((Patente)this._ventana.Patente).CodigoInscripcion.Equals(string.Empty) ?
+                ((Patente)this._ventana.Patente).CodigoInscripcion : string.Empty;
 
-            retorno.CodigoRegistro = null != ((Marca)this._ventana.Marca).CodigoInscripcion && !((Marca)this._ventana.Marca).CodigoInscripcion.Equals(string.Empty) ?
-                ((Marca)this._ventana.Marca).CodigoInscripcion : string.Empty;
+            retorno.FechaRegistro = null != ((Patente)this._ventana.Patente).FechaInscripcion && !((Patente)this._ventana.Patente).FechaInscripcion.Equals(string.Empty) ?
+                ((Patente)this._ventana.Patente).FechaInscripcion.Value.ToShortDateString() : string.Empty;
 
-            retorno.ClaseMarca = ((Marca)this._ventana.Marca).Internacional != null ?
-                ((Marca)this._ventana.Marca).Internacional.Id.ToString() : string.Empty;
+            if (((Idioma)this._ventana.Idioma).Id.Equals("ES"))
+                retorno.Pais = ((Asociado)this._ventana.Asociado) != null &&
+                        ((Asociado)this._ventana.Asociado).Pais != null &&
+                        !((Asociado)this._ventana.Asociado).Pais.NombreEspanol.Equals(string.Empty) ?
+                        ((Asociado)this._ventana.Asociado).Pais.NombreEspanol : string.Empty;
 
-            retorno.FechaRenovacion = null != ((Marca)this._ventana.Marca).FechaRenovacion && !((Marca)this._ventana.Marca).FechaRenovacion.Equals(string.Empty) ? 
-                ((Marca)this._ventana.Marca).FechaRenovacion.Value.ToShortDateString() : string.Empty;
-
-            retorno.Interesado = ((Interesado)this._ventana.Interesado) != null ?
-                ((Interesado)this._ventana.Interesado).Nombre : string.Empty;
+            else if (((Idioma)this._ventana.Idioma).Id.Equals("IN"))
+                retorno.Pais = ((Asociado)this._ventana.Asociado) != null &&
+                        ((Asociado)this._ventana.Asociado).Pais != null &&
+                        !((Asociado)this._ventana.Asociado).Pais.NombreIngles.Equals(string.Empty) ?
+                        ((Asociado)this._ventana.Asociado).Pais.NombreIngles : string.Empty;
 
             retorno.Asociado = ((Asociado)this._ventana.Asociado) != null ?
                 ((Asociado)this._ventana.Asociado).Nombre : string.Empty;
 
-            retorno.Referencia = ((Marca)this._ventana.Marca).PrimeraReferencia;
+            retorno.Referencia = ((Patente)this._ventana.Patente).PrimeraReferencia;
 
             retorno.DomicilioAsociado = ((Asociado)this._ventana.Asociado) != null ?
                 ((Asociado)this._ventana.Asociado).Domicilio : string.Empty;
@@ -555,7 +560,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Reportes
         }
 
         /// <summary>
-        /// Método que se encarga de armar la lista de estructuras para hacer el reporte para varias marcas
+        /// Método que se encarga de armar la lista de estructuras para hacer el reporte para varias Patentes
         /// </summary>
         /// <returns></returns>
         private IList<StructReporteCarta1> ObtenerEstructuraCartas1()
@@ -564,14 +569,13 @@ namespace Trascend.Bolet.Cliente.Presentadores.Reportes
 
             try
             {
-                if (this._marcasAgregadas.Count > 0)
+                if (this._PatentesAgregadas.Count > 0)
                 {
-                    foreach (Marca marca in this._marcasAgregadas)
+                    foreach (Patente Patente in this._PatentesAgregadas)
                     {
                         StructReporteCarta1 estructura = new StructReporteCarta1();
 
-
-                        DateTime fechaAux = new DateTime(int.Parse(this._ventana.Fecha.Substring(6,4)),
+                        DateTime fechaAux = new DateTime(int.Parse(this._ventana.Fecha.Substring(6, 4)),
                            int.Parse(this._ventana.Fecha.Substring(3, 2)),
                             int.Parse(this._ventana.Fecha.Substring(0, 2)));
 
@@ -583,32 +587,38 @@ namespace Trascend.Bolet.Cliente.Presentadores.Reportes
                         {
                             Thread.CurrentThread.CurrentCulture = new CultureInfo("en-EN");
                         }
-                        
-                        
+
+
                         estructura.FechaCarta = fechaAux.ToLongDateString();
+                        estructura.Patente = !Patente.Descripcion.Equals(string.Empty) ?
+                            Patente.Descripcion : string.Empty;
 
-                        estructura.Marca = !marca.Descripcion.Equals(string.Empty) ?
-                            marca.Descripcion : string.Empty;
+                        estructura.CodigoRegistro = null != Patente.CodigoInscripcion && !Patente.CodigoInscripcion.Equals(string.Empty) ?
+                            Patente.CodigoInscripcion : string.Empty;
 
-                        estructura.CodigoRegistro = null != marca.CodigoInscripcion && !marca.CodigoInscripcion.Equals(string.Empty) ?
-                            marca.CodigoInscripcion : string.Empty;
 
-                        estructura.ClaseMarca = marca.Internacional != null ?
-                            marca.Internacional.Id.ToString() : string.Empty;
+                        estructura.FechaRegistro = null != Patente.FechaInscripcion && !Patente.FechaInscripcion.Equals(string.Empty) ?
+                            Patente.FechaInscripcion.Value.ToShortDateString() : string.Empty;
 
-                        estructura.FechaRenovacion = null != marca.FechaRenovacion && !marca.FechaRenovacion.Equals(string.Empty) ?
-                            marca.FechaRenovacion.Value.ToShortDateString() : string.Empty;
+                        if (((Idioma)this._ventana.Idioma).Id.Equals("ES"))
+                            estructura.Pais = Patente.Asociado != null &&
+                                    Patente.Asociado.Pais != null &&
+                                    !Patente.Asociado.Pais.NombreEspanol.Equals(string.Empty) ?
+                                    Patente.Asociado.Pais.NombreEspanol : string.Empty;
 
-                        estructura.Interesado = marca.Interesado != null ?
-                            marca.Interesado.Nombre : string.Empty;
+                        else if (((Idioma)this._ventana.Idioma).Id.Equals("IN"))
+                            estructura.Pais = Patente.Asociado != null &&
+                                    Patente.Asociado.Pais != null &&
+                                    !Patente.Asociado.Pais.NombreIngles.Equals(string.Empty) ?
+                                    Patente.Asociado.Pais.NombreIngles : string.Empty;
 
-                        estructura.Asociado = marca.Asociado != null ?
-                            marca.Asociado.Nombre : string.Empty;
+                        estructura.Asociado = Patente.Asociado != null ?
+                            Patente.Asociado.Nombre : string.Empty;
 
-                        estructura.Referencia = marca.PrimeraReferencia;
+                        estructura.Referencia = Patente.PrimeraReferencia;
 
-                        estructura.DomicilioAsociado = marca.Asociado != null ?
-                            marca.Asociado.Domicilio : string.Empty;
+                        estructura.DomicilioAsociado = Patente.Asociado != null ?
+                            Patente.Asociado.Domicilio : string.Empty;
 
                         retorno.Add(estructura);
                     }
@@ -629,16 +639,16 @@ namespace Trascend.Bolet.Cliente.Presentadores.Reportes
         {
             private string _fechaCarta;
 
-            private string _marca;
-            private string _fechaRenovacion;
+            private string _Patente;
+            private string _fechaRegistro;
             private string _codigoRegistro;
             private string _referencia;
-            private string _claseMarca;
-
-            private string _interesado;
+            private string _clasePatente;
             private string _domicilioAsociado;
 
             private string _asociado;
+
+            private string _pais;
 
 
 
@@ -648,16 +658,16 @@ namespace Trascend.Bolet.Cliente.Presentadores.Reportes
                 set { _fechaCarta = value; }
             }
 
-            public string Marca
+            public string Patente
             {
-                get { return _marca; }
-                set { _marca = value; }
+                get { return _Patente; }
+                set { _Patente = value; }
             }
 
-            public string FechaRenovacion
+            public string FechaRegistro
             {
-                get { return _fechaRenovacion; }
-                set { _fechaRenovacion = value; }
+                get { return _fechaRegistro; }
+                set { _fechaRegistro = value; }
             }
 
             public string CodigoRegistro
@@ -672,16 +682,16 @@ namespace Trascend.Bolet.Cliente.Presentadores.Reportes
                 set { _referencia = value; }
             }
 
-            public string ClaseMarca
+            public string ClasePatente
             {
-                get { return _claseMarca; }
-                set { _claseMarca = value; }
+                get { return _clasePatente; }
+                set { _clasePatente = value; }
             }
 
-            public string Interesado
+            public string Pais
             {
-                get { return _interesado; }
-                set { _interesado = value; }
+                get { return _pais; }
+                set { _pais = value; }
             }
 
             public string DomicilioAsociado

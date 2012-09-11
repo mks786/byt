@@ -2850,6 +2850,12 @@ en Prensa:</value>
   <data name="lblReferenciaNuestra" xml:space="preserve">
     <value>Nuestra Referencia:</value>
   </data>
+  <data name="lblAccion" xml:space="preserve">
+    <value>Acción:</value>
+  </data>
+  <data name="lblDestinatario" xml:space="preserve">
+    <value>Destinatario:</value>
+  </data>
   <data name="titleCarta14" xml:space="preserve">
     <value>Carta 14</value>
   </data>

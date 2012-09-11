@@ -160,6 +160,7 @@
     <Compile Include="Contratos\Patentes\IListaInfoBoles.cs" />
     <Compile Include="Contratos\Patentes\IListaInventores.cs" />
     <Compile Include="Contratos\Patentes\IListaOperaciones.cs" />
+    <Compile Include="Contratos\Reportes\ICarta16P.cs" />
     <Compile Include="Contratos\Reportes\ICarta16M.cs" />
     <Compile Include="Contratos\Reportes\ICarta16.cs" />
     <Compile Include="Contratos\Reportes\ICarta14.cs" />
@@ -373,6 +374,7 @@
     <Compile Include="Presentadores\Patentes\PresentadorListaInventores.cs" />
     <Compile Include="Presentadores\Patentes\PresentadorListaMemorias.cs" />
     <Compile Include="Presentadores\Patentes\PresentadorListaOperaciones.cs" />
+    <Compile Include="Presentadores\Reportes\PresentadorCarta16P.cs" />
     <Compile Include="Presentadores\Reportes\PresentadorCarta16M.cs" />
     <Compile Include="Presentadores\Reportes\PresentadorCarta16.cs" />
     <Compile Include="Presentadores\Reportes\PresentadorCarta14.cs" />

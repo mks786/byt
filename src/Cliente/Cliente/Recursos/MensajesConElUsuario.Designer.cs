@@ -169,6 +169,24 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Disculpe debe seleccionar una Patente.
+        /// </summary>
+        internal static string AlertaCartaSinPatente {
+            get {
+                return ResourceManager.GetString("AlertaCartaSinPatente", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Disculpe debe agregar al menos una (1) Patente a la lista de Patentes.
+        /// </summary>
+        internal static string AlertaCartaSinPatentes {
+            get {
+                return ResourceManager.GetString("AlertaCartaSinPatentes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Disculpe el Escrito debe tener un agente seleccionado.
         /// </summary>
         internal static string AlertaEscritoSinAgente {

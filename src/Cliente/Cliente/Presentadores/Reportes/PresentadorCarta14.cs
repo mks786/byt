@@ -17,6 +17,8 @@ using CrystalDecisions.CrystalReports.Engine;
 using DataTable = System.Data.DataTable;
 using System.Data;
 using CrystalDecisions.Shared;
+using System.Threading;
+using System.Globalization;
 
 namespace Trascend.Bolet.Cliente.Presentadores.Reportes
 {
@@ -510,7 +512,21 @@ namespace Trascend.Bolet.Cliente.Presentadores.Reportes
         {
             StructReporteCarta14 retorno = new StructReporteCarta14();
 
-            retorno.FechaCarta = this._ventana.Fecha;
+            DateTime fechaAux = new DateTime(int.Parse(this._ventana.Fecha.Substring(6, 4)),
+               int.Parse(this._ventana.Fecha.Substring(3, 2)),
+                int.Parse(this._ventana.Fecha.Substring(0, 2)));
+
+            if (((Idioma)this._ventana.Idioma).Id.Equals("ES"))
+            {
+                Thread.CurrentThread.CurrentCulture = new CultureInfo("es-ES");
+            }
+            else if (((Idioma)this._ventana.Idioma).Id.Equals("IN"))
+            {
+                Thread.CurrentThread.CurrentCulture = new CultureInfo("en-EN");
+            }
+
+
+            retorno.FechaCarta = fechaAux.ToLongDateString();
             retorno.Marca = !((Marca)this._ventana.Marca).Descripcion.Equals(string.Empty) ?
                 ((Marca)this._ventana.Marca).Descripcion : string.Empty;
 
@@ -558,7 +574,22 @@ namespace Trascend.Bolet.Cliente.Presentadores.Reportes
                     {
                         StructReporteCarta14 estructura = new StructReporteCarta14();
 
-                        estructura.FechaCarta = this._ventana.Fecha;
+                        DateTime fechaAux = new DateTime(int.Parse(this._ventana.Fecha.Substring(6, 4)),
+                           int.Parse(this._ventana.Fecha.Substring(3, 2)),
+                            int.Parse(this._ventana.Fecha.Substring(0, 2)));
+
+                        if (((Idioma)this._ventana.Idioma).Id.Equals("ES"))
+                        {
+                            Thread.CurrentThread.CurrentCulture = new CultureInfo("es-ES");
+                        }
+                        else if (((Idioma)this._ventana.Idioma).Id.Equals("IN"))
+                        {
+                            Thread.CurrentThread.CurrentCulture = new CultureInfo("en-EN");
+                        }
+
+
+                        estructura.FechaCarta = fechaAux.ToLongDateString();
+
                         estructura.Marca = !marca.Descripcion.Equals(string.Empty) ?
                             marca.Descripcion : string.Empty;
 
