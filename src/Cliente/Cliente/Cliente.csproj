@@ -554,6 +554,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Carta16MDS.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Reportes\Carta16PDS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Carta16PDS.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Reportes\Carta1CR.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -628,6 +633,18 @@
     </Compile>
     <Compile Include="Reportes\Carta16MCREN.cs">
       <DependentUpon>Carta16MCREN.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Reportes\Carta16PCR.cs">
+      <DependentUpon>Carta16PCR.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Reportes\Carta16PCREN.cs">
+      <DependentUpon>Carta16PCREN.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
       <SubType>Component</SubType>
       <DesignTime>True</DesignTime>
@@ -1055,6 +1072,9 @@
     </Compile>
     <Compile Include="Ventanas\Reportes\Carta16M.xaml.cs">
       <DependentUpon>Carta16M.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Reportes\Carta16P.xaml.cs">
+      <DependentUpon>Carta16P.xaml</DependentUpon>
     </Compile>
     <Compile Include="Ventanas\Resumenes\AgregarResumen.xaml.cs">
       <DependentUpon>AgregarResumen.xaml</DependentUpon>
@@ -1811,6 +1831,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Ventanas\Reportes\Carta16P.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Ventanas\Resumenes\AgregarResumen.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -2163,6 +2187,14 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>Carta16MCREN.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\Carta16PCR.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>Carta16PCR.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\Carta16PCREN.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>Carta16PCREN.cs</LastGenOutput>
+    </EmbeddedResource>
     <None Include="app.config">
       <SubType>Designer</SubType>
     </None>
@@ -2207,6 +2239,17 @@
     </None>
     <None Include="Reportes\Carta16MDS.xss">
       <DependentUpon>Carta16MDS.xsd</DependentUpon>
+    </None>
+    <None Include="Reportes\Carta16PDS.xsc">
+      <DependentUpon>Carta16PDS.xsd</DependentUpon>
+    </None>
+    <None Include="Reportes\Carta16PDS.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Carta16PDS.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Reportes\Carta16PDS.xss">
+      <DependentUpon>Carta16PDS.xsd</DependentUpon>
     </None>
     <None Include="Reportes\Carta1DS.xsc">
       <DependentUpon>Carta1DS.xsd</DependentUpon>

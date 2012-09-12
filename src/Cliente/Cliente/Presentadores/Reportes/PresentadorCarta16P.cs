@@ -181,10 +181,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Reportes
                     reporte.Load(GetRutaReporte());
 
                     DataTable datos = new DataTable("DataTable1");
-                    datos.Columns.Add("Patente");
-                    datos.Columns.Add("CodigoRegistro");
-                    datos.Columns.Add("FechaRegistro");
-                    datos.Columns.Add("Clase");
+                    datos.Columns.Add("CodigoSolicitud");
+                    datos.Columns.Add("FechaSolicitud");
+                    datos.Columns.Add("NuestraReferencia");
                     datos.Columns.Add("Pais");
                     datos.Columns.Add("Asociado");
                     datos.Columns.Add("DomicilioAsociado");
@@ -256,7 +255,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Reportes
             //realizar validación de la ventana
             bool retorno = true;
 
-            
+
             if (((Idioma)this._ventana.Idioma).Id.Equals("NGN"))
             {
                 retorno = false;
@@ -272,8 +271,19 @@ namespace Trascend.Bolet.Cliente.Presentadores.Reportes
                 retorno = false;
                 this._ventana.MensajeAlerta(Recursos.MensajesConElUsuario.AlertaCartaSinPatentes);
             }
+            else if ((this._ventana.RadioConsultarAsociado()) && (this._ventana.Asociado == null) 
+                && (this._ventana.RadioUnicaPatente()))
+            {
+                retorno = false;
+                this._ventana.MensajeAlerta(Recursos.MensajesConElUsuario.AlertaCartaSinAsociado);
+            }
+            else if ((this._ventana.RadioConsultarInteresado()) && (this._ventana.Interesado == null) 
+                && (this._ventana.RadioUnicaPatente()))
+            {
+                retorno = false;
+                this._ventana.MensajeAlerta(Recursos.MensajesConElUsuario.AlertaCartaSinInteresado);
+            }
             return retorno;
-            return true;
 
         }
 
@@ -287,11 +297,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Reportes
             string retorno = "";
             if (((Idioma)this._ventana.Idioma).Id.Equals("ES"))
 
-                retorno = "../../Reportes/Carta16MCR.rpt";
+                retorno = "../../Reportes/Carta16PCR.rpt";
 
             else if (((Idioma)this._ventana.Idioma).Id.Equals("IN"))
 
-                retorno = "../../Reportes/Carta16MCREN.rpt";
+                retorno = "../../Reportes/Carta16PCREN.rpt";
 
             return retorno;
 
@@ -311,14 +321,13 @@ namespace Trascend.Bolet.Cliente.Presentadores.Reportes
                 DataRow filaDatos = datos.NewRow();
 
                 filaDatos["FechaCarta"] = structura.FechaCarta;
-                filaDatos["Patente"] = structura.Patente;
-                filaDatos["CodigoRegistro"] = structura.CodigoRegistro;
+                filaDatos["CodigoSolicitud"] = structura.CodigoSolicitud;
                 filaDatos["Asociado"] = structura.Asociado;
                 filaDatos["DomicilioAsociado"] = structura.DomicilioAsociado;
-                filaDatos["Clase"] = structura.ClasePatente;
+                filaDatos["NuestraReferencia"] = structura.NuestraReferencia;
                 filaDatos["Pais"] = structura.Pais;
                 filaDatos["Referencia"] = structura.Referencia;
-                filaDatos["FechaRegistro"] = structura.FechaRegistro;
+                filaDatos["FechaSolicitud"] = structura.FechaSolicitud;
 
                 datos.Rows.Add(filaDatos);
             }
@@ -392,6 +401,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Reportes
                 IList<Asociado> asociados = this._asociadoServicios.ObtenerAsociadosFiltro(asociadoFiltrar);
                 this._ventana.Asociados = asociados;
             }
+
             Mouse.OverrideCursor = null;
         }
 
@@ -522,18 +532,16 @@ namespace Trascend.Bolet.Cliente.Presentadores.Reportes
             }
             else if (((Idioma)this._ventana.Idioma).Id.Equals("IN"))
             {
-                Thread.CurrentThread.CurrentCulture = new CultureInfo("en-EN");
+                Thread.CurrentThread.CurrentCulture = new CultureInfo("en-US");
             }
 
 
             retorno.FechaCarta = fechaAux.ToLongDateString();
-            retorno.Patente = !((Patente)this._ventana.Patente).Descripcion.Equals(string.Empty) ?
-                ((Patente)this._ventana.Patente).Descripcion : string.Empty;
 
-            retorno.CodigoRegistro = null != ((Patente)this._ventana.Patente).CodigoInscripcion && !((Patente)this._ventana.Patente).CodigoInscripcion.Equals(string.Empty) ?
+            retorno.CodigoSolicitud = null != ((Patente)this._ventana.Patente).CodigoInscripcion && !((Patente)this._ventana.Patente).CodigoInscripcion.Equals(string.Empty) ?
                 ((Patente)this._ventana.Patente).CodigoInscripcion : string.Empty;
 
-            retorno.FechaRegistro = null != ((Patente)this._ventana.Patente).FechaInscripcion && !((Patente)this._ventana.Patente).FechaInscripcion.Equals(string.Empty) ?
+            retorno.FechaSolicitud = null != ((Patente)this._ventana.Patente).FechaInscripcion && !((Patente)this._ventana.Patente).FechaInscripcion.Equals(string.Empty) ?
                 ((Patente)this._ventana.Patente).FechaInscripcion.Value.ToShortDateString() : string.Empty;
 
             if (((Idioma)this._ventana.Idioma).Id.Equals("ES"))
@@ -553,11 +561,14 @@ namespace Trascend.Bolet.Cliente.Presentadores.Reportes
 
             retorno.Referencia = ((Patente)this._ventana.Patente).PrimeraReferencia;
 
+            retorno.NuestraReferencia = ((Patente)this._ventana.Patente).Id.ToString();
+
             retorno.DomicilioAsociado = ((Asociado)this._ventana.Asociado) != null ?
                 ((Asociado)this._ventana.Asociado).Domicilio : string.Empty;
 
             return retorno;
         }
+
 
         /// <summary>
         /// Método que se encarga de armar la lista de estructuras para hacer el reporte para varias Patentes
@@ -585,19 +596,17 @@ namespace Trascend.Bolet.Cliente.Presentadores.Reportes
                         }
                         else if (((Idioma)this._ventana.Idioma).Id.Equals("IN"))
                         {
-                            Thread.CurrentThread.CurrentCulture = new CultureInfo("en-EN");
+                            Thread.CurrentThread.CurrentCulture = new CultureInfo("en-US");
                         }
 
 
                         estructura.FechaCarta = fechaAux.ToLongDateString();
-                        estructura.Patente = !Patente.Descripcion.Equals(string.Empty) ?
-                            Patente.Descripcion : string.Empty;
 
-                        estructura.CodigoRegistro = null != Patente.CodigoInscripcion && !Patente.CodigoInscripcion.Equals(string.Empty) ?
+                        estructura.CodigoSolicitud = null != Patente.CodigoInscripcion && !Patente.CodigoInscripcion.Equals(string.Empty) ?
                             Patente.CodigoInscripcion : string.Empty;
 
 
-                        estructura.FechaRegistro = null != Patente.FechaInscripcion && !Patente.FechaInscripcion.Equals(string.Empty) ?
+                        estructura.FechaSolicitud = null != Patente.FechaInscripcion && !Patente.FechaInscripcion.Equals(string.Empty) ?
                             Patente.FechaInscripcion.Value.ToShortDateString() : string.Empty;
 
                         if (((Idioma)this._ventana.Idioma).Id.Equals("ES"))
@@ -617,6 +626,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Reportes
 
                         estructura.Referencia = Patente.PrimeraReferencia;
 
+                        estructura.NuestraReferencia = Patente.Id.ToString();
+
                         estructura.DomicilioAsociado = Patente.Asociado != null ?
                             Patente.Asociado.Domicilio : string.Empty;
 
@@ -628,10 +639,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Reportes
             {
                 logger.Error(ex.Message);
             }
-            
+
 
             return retorno;
         }
+
 
         #region Estructuras
 
@@ -639,11 +651,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Reportes
         {
             private string _fechaCarta;
 
-            private string _Patente;
-            private string _fechaRegistro;
-            private string _codigoRegistro;
+            private string _fechaSolicitud;
+            private string _codigoSolicitud;
             private string _referencia;
-            private string _clasePatente;
+            private string _nuestraReferencia;
             private string _domicilioAsociado;
 
             private string _asociado;
@@ -658,34 +669,28 @@ namespace Trascend.Bolet.Cliente.Presentadores.Reportes
                 set { _fechaCarta = value; }
             }
 
-            public string Patente
+            public string NuestraReferencia
             {
-                get { return _Patente; }
-                set { _Patente = value; }
+                get { return _nuestraReferencia; }
+                set { _nuestraReferencia = value; }
             }
 
-            public string FechaRegistro
+            public string FechaSolicitud
             {
-                get { return _fechaRegistro; }
-                set { _fechaRegistro = value; }
+                get { return _fechaSolicitud; }
+                set { _fechaSolicitud = value; }
             }
 
-            public string CodigoRegistro
+            public string CodigoSolicitud
             {
-                get { return _codigoRegistro; }
-                set { _codigoRegistro = value; }
+                get { return _codigoSolicitud; }
+                set { _codigoSolicitud = value; }
             }
 
             public string Referencia
             {
                 get { return _referencia; }
                 set { _referencia = value; }
-            }
-
-            public string ClasePatente
-            {
-                get { return _clasePatente; }
-                set { _clasePatente = value; }
             }
 
             public string Pais

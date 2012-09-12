@@ -151,6 +151,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Disculpe, debe seleccionar un Interesado.
+        /// </summary>
+        internal static string AlertaCartaSinInteresado {
+            get {
+                return ResourceManager.GetString("AlertaCartaSinInteresado", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Disculpe debe seleccionar una Marca.
         /// </summary>
         internal static string AlertaCartaSinMarca {

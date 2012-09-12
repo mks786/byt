@@ -3567,6 +3567,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Patentes agregadas a la Carta:.
+        /// </summary>
+        public static string lblPatentesAgregadas {
+            get {
+                return ResourceManager.GetString("lblPatentesAgregadas", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Patentes agregadas al escrito:.
         /// </summary>
         public static string lblPatentesAgregadasAlEscrito {
@@ -5430,7 +5439,7 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Carta 1 Patentes.
+        ///   Looks up a localized string similar to Carta 16 Patentes.
         /// </summary>
         public static string menuItemCarta16P {
             get {
@@ -6294,11 +6303,29 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Una Patente.
+        /// </summary>
+        public static string radioPatente {
+            get {
+                return ResourceManager.GetString("radioPatente", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Varias Marcas.
         /// </summary>
         public static string radioVariasMarcas {
             get {
                 return ResourceManager.GetString("radioVariasMarcas", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Varias Patentes.
+        /// </summary>
+        public static string radioVariasPatentes {
+            get {
+                return ResourceManager.GetString("radioVariasPatentes", resourceCulture);
             }
         }
         

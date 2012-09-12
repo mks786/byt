@@ -268,6 +268,18 @@ namespace Trascend.Bolet.Cliente.Presentadores.Reportes
                 this._ventana.MensajeAlerta(Recursos.MensajesConElUsuario.AlertaCartaSinMarcas);
                 retorno = false;
             }
+            else if ((this._ventana.RadioConsultarAsociado()) && (this._ventana.Asociado == null)
+                && (this._ventana.RadioUnicaMarca()))
+            {
+                retorno = false;
+                this._ventana.MensajeAlerta(Recursos.MensajesConElUsuario.AlertaCartaSinAsociado);
+            }
+            else if ((this._ventana.RadioConsultarInteresado()) && (this._ventana.Interesado == null)
+                && (this._ventana.RadioUnicaMarca()))
+            {
+                retorno = false;
+                this._ventana.MensajeAlerta(Recursos.MensajesConElUsuario.AlertaCartaSinInteresado);
+            }
             return retorno;
 
         }
@@ -522,7 +534,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Reportes
             }
             else if (((Idioma)this._ventana.Idioma).Id.Equals("IN"))
             {
-                Thread.CurrentThread.CurrentCulture = new CultureInfo("en-EN");
+                Thread.CurrentThread.CurrentCulture = new CultureInfo("en-US");
             }
 
 
@@ -584,7 +596,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Reportes
                         }
                         else if (((Idioma)this._ventana.Idioma).Id.Equals("IN"))
                         {
-                            Thread.CurrentThread.CurrentCulture = new CultureInfo("en-EN");
+                            Thread.CurrentThread.CurrentCulture = new CultureInfo("en-US");
                         }
 
 

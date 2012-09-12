@@ -901,4 +901,7 @@
   <data name="ExitosoReporte" xml:space="preserve">
     <value>Su reporte ha sido generado exitosamente</value>
   </data>
+  <data name="AlertaCartaSinInteresado" xml:space="preserve">
+    <value>Disculpe, debe seleccionar un Interesado</value>
+  </data>
 </root>

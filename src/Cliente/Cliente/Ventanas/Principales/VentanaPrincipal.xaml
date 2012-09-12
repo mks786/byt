@@ -32,6 +32,14 @@
                 <MenuItem Name="_menuItemCopiar" Header="{x:Static resx:Etiquetas.menuItemCopiar}" Command="ApplicationCommands.Copy"/>
                 <MenuItem Name="_menuItemPegar" Header="{x:Static resx:Etiquetas.menuItemPegar}" Command="ApplicationCommands.Paste"/>
             </MenuItem>
+            <MenuItem Name="_menuItemCartas" Header="{x:Static resx:Etiquetas.menuItemCartas}">
+                <MenuItem Name="_menuItemCarta1" Header="{x:Static resx:Etiquetas.menuItemCarta1}" Click="_menuItemCartas_Click"/>
+                <MenuItem Name="_menuItemCarta2" Header="{x:Static resx:Etiquetas.menuItemCarta2}" Click="_menuItemCartas_Click"/>
+                <MenuItem Name="_menuItemCarta14" Header="{x:Static resx:Etiquetas.menuItemCarta14}" Click="_menuItemCartas_Click"/>
+                <MenuItem Name="_menuItemCarta16" Header="{x:Static resx:Etiquetas.menuItemCarta16}" Click="_menuItemCartas_Click"/>
+                <MenuItem Name="_menuItemCarta16M" Header="{x:Static resx:Etiquetas.menuItemCarta16M}" Click="_menuItemCartas_Click"/>
+                <MenuItem Name="_menuItemCarta16P" Header="{x:Static resx:Etiquetas.menuItemCarta16P}" Click="_menuItemCartas_Click"/>
+            </MenuItem>
             <MenuItem Name="_menuItemMarca" Header="{x:Static resx:Etiquetas.menuItemMarca}">
                 <MenuItem Name="_menuItemGestionDeMarcas" Visibility="Collapsed" Header="{x:Static resx:Etiquetas.menuItemGestionDeMarcas}">
                     <MenuItem Visibility="Collapsed" Name="_menuItemMarcasConsultar" Header="{x:Static resx:Etiquetas.menuItemConsultar}" Click="_menuItemMarcasConsultar_Click"/>
@@ -73,14 +81,7 @@
                     <MenuItem Name="_menuItemConsignacionDeBusqueda" Header="{x:Static resx:Etiquetas.menuItemEscritosConsignacionDeBusqueda}" Click="_menuItemEscritos_Click"/>
                     <MenuItem Name="_menuItemNotificacionDeIngresoDePoder" Header="{x:Static resx:Etiquetas.menuItemEscritosNotificacionDeIngresoDePoder}" Click="_menuItemEscritos_Click"/>
                 </MenuItem>
-                <MenuItem Name="_menuItemCartas" Visibility="Collapsed" Header="{x:Static resx:Etiquetas.menuItemCartas}">
-                    <MenuItem Name="_menuItemCarta1" Header="{x:Static resx:Etiquetas.menuItemCarta1}" Click="_menuItemCartas_Click"/>
-                    <MenuItem Name="_menuItemCarta2" Header="{x:Static resx:Etiquetas.menuItemCarta2}" Click="_menuItemCartas_Click"/>
-                    <MenuItem Name="_menuItemCarta14" Header="{x:Static resx:Etiquetas.menuItemCarta14}" Click="_menuItemCartas_Click"/>
-                    <MenuItem Name="_menuItemCarta16" Header="{x:Static resx:Etiquetas.menuItemCarta16}" Click="_menuItemCartas_Click"/>
-                    <MenuItem Name="_menuItemCarta16M" Header="{x:Static resx:Etiquetas.menuItemCarta16M}" Click="_menuItemCartas_Click"/>
-                    <MenuItem Name="_menuItemCarta16P" Header="{x:Static resx:Etiquetas.menuItemCarta16P}" Click="_menuItemCartas_Click"/>
-                </MenuItem>
+                
                 <MenuItem Name="_menuItemTraspasos" Visibility="Collapsed" Header="{x:Static resx:Etiquetas.menuItemTraspasos}" BorderBrush="Gray">
                     <MenuItem Name="_menuItemCesiones" Header="{x:Static resx:Etiquetas.menuItemCesiones}">
                         <MenuItem Name="_menuItemCesionesConsultar" Header="{x:Static resx:Etiquetas.menuItemConsultar}" Click="_menuItemCesionesConsultar_Click"/>

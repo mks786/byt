@@ -2821,7 +2821,7 @@ en Prensa:</value>
     <value>Carta 16 Marcas</value>
   </data>
   <data name="menuItemCarta16P" xml:space="preserve">
-    <value>Carta 1 Patentes</value>
+    <value>Carta 16 Patentes</value>
   </data>
   <data name="menuItemCarta2" xml:space="preserve">
     <value>Carta 2</value>
@@ -2870,5 +2870,14 @@ en Prensa:</value>
   </data>
   <data name="titleCarta2" xml:space="preserve">
     <value>Carta 2</value>
+  </data>
+  <data name="lblPatentesAgregadas" xml:space="preserve">
+    <value>Patentes agregadas a la Carta:</value>
+  </data>
+  <data name="radioPatente" xml:space="preserve">
+    <value>Una Patente</value>
+  </data>
+  <data name="radioVariasPatentes" xml:space="preserve">
+    <value>Varias Patentes</value>
   </data>
 </root>

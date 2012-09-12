@@ -476,7 +476,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Reportes
             }
             else if (((Idioma)this._ventana.Idioma).Id.Equals("IN"))
             {
-                Thread.CurrentThread.CurrentCulture = new CultureInfo("en-EN");
+                Thread.CurrentThread.CurrentCulture = new CultureInfo("en-US");
             }
 
 
@@ -517,7 +517,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Reportes
                         }
                         else if (((Idioma)this._ventana.Idioma).Id.Equals("IN"))
                         {
-                            Thread.CurrentThread.CurrentCulture = new CultureInfo("en-EN");
+                            Thread.CurrentThread.CurrentCulture = new CultureInfo("en-US");
                         }
 
 
