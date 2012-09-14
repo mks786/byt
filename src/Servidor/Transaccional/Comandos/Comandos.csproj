@@ -385,6 +385,14 @@
     <Compile Include="Comandos\ComandosInstruccionDeRenovacion\ComandoEliminarInstruccionDeRenovacion.cs" />
     <Compile Include="Comandos\ComandosInstruccionDeRenovacion\ComandoInsertarOModificarInstruccionDeRenovacion.cs" />
     <Compile Include="Comandos\ComandosInstruccionDeRenovacion\ComandoVerificarExistenciaInstruccionDeRenovacion.cs" />
+    <Compile Include="Comandos\ComandosFusionMarcaTercero\ComandoConsultarTodosFusionMarcaTerceros.cs" />
+    <Compile Include="Comandos\ComandosFusionMarcaTercero\ComandoEliminarFusionMarcaTercero.cs" />
+    <Compile Include="Comandos\ComandosFusionMarcaTercero\ComandoInsertarOModificarFusionMarcaTercero.cs" />
+    <Compile Include="Comandos\ComandosFusionMarcaTercero\ComandoVerificarExistenciaFusionMarcaTercero.cs" />
+    <Compile Include="Comandos\ComandosFusionPatenteTercero\ComandoConsultarTodosFusionMarcaTerceros.cs" />
+    <Compile Include="Comandos\ComandosFusionPatenteTercero\ComandoEliminarFusionMarcaTercero.cs" />
+    <Compile Include="Comandos\ComandosFusionPatenteTercero\ComandoInsertarOModificarFusionMarcaTercero.cs" />
+    <Compile Include="Comandos\ComandosFusionPatenteTercero\ComandoVerificarExistenciaFusionMarcaTercero.cs" />
     <Compile Include="Comandos\Receptor.cs" />
     <Compile Include="Comandos\ComandosUsuario\ComandoConsultarTodosUsuarios.cs" />
     <Compile Include="Comandos\ComandosUsuario\ComandoConsultarUsuarioPorID.cs" />

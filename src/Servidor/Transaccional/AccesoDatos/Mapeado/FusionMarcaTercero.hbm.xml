@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+                   assembly="Trascend.Bolet.ObjetosComunes"
+                   namespace="Trascend.Bolet.ObjetosComunes.Entidades">
+
+  <class name="Agente" table="MYP_MTERCEROS">
+    <id name="Id" column="CAGENTE" type="string"/>
+    <property name="Nombre" column="XAGENTE" type="string"/>
+    <property name="Domicilio" column="XDOMICILIO" type="string"/>
+    <property name="Telefono" column="XTELEFONO" type="string"/>
+    <property name="EstadoCivil" column="ICIVIL" type="char"/>
+    <property name="Sexo" column="SEXO" type="char"/>
+    <property name="NumeroAbogado" column="CABOGADO" type="string"/>
+    <property name="NumeroImpresoAbogado" column="CINPREABOGADO" type="string"/>
+    <property name="NumeroPropiedad" column="CPROPIEDAD" type="string"/>
+    <property name="CCI" column="CCI" type="string"/>
+
+
+
+    <many-to-one name="Pais" class="Pais">
+      <column name="CPAIS"/>
+    </many-to-one>
+
+
+    <many-to-one name="Pais" class="Pais">
+      <column name="CPAIS"/>
+    </many-to-one>
+
+
+  </class>
+</hibernate-mapping>
+
+

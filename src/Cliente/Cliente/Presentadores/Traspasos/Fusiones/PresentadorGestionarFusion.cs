@@ -154,6 +154,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
             }
         }
 
+
         public void ActualizarTitulo()
         {
 
@@ -164,6 +165,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
                 this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleGestionarFusion,
                 Recursos.Ids.GestionarFusion);
         }
+
 
         /// <summary>
         /// Método que carga los datos iniciales a mostrar en la página
@@ -248,10 +250,15 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
             }
         }
 
+
+        /// <summary>
+        /// Método que lleva a la ventana de consultar Marcas
+        /// </summary>
         public void IrConsultarMarcas()
         {
             this.Navegar(new ConsultarMarcas());
         }
+
 
         /// <summary>
         /// Método que carga el Interesado registrado
@@ -324,6 +331,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
 
         }
 
+
         /// <summary>
         /// Método que carga la Marca registrada
         /// </summary>
@@ -371,6 +379,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
 
         }
 
+
         /// <summary>
         /// Método que carga los Id de la cesion
         /// </summary>
@@ -398,7 +407,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
                 this._ventana.AgenteApoderado = ((Fusion)this._ventana.Fusion).Agente;
                 this._ventana.IdApoderado = ((Fusion)this._ventana.Fusion).Agente.Id;
             }
-         
+
 
 
         }
@@ -427,6 +436,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
             #endregion
 
         }
+
 
         /// <summary>
         /// Método que carga el Apoderado registrado
@@ -462,6 +472,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
 
         }
 
+
         /// <summary>
         /// Método que carga el poder resgistrado
         /// </summary>
@@ -496,6 +507,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
 
         }
 
+
         /// <summary>
         /// Método que dependiendo del estado de la pagina carga una fusion seleccionada
         /// o una nueva
@@ -509,7 +521,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
 
             Fusion fusion = (Fusion)this._ventana.Fusion;
 
-            if ((null != this._ventana.MarcaFiltrada)&&(((Marca)this._ventana.MarcaFiltrada).Id != int.MinValue))
+            if ((null != this._ventana.MarcaFiltrada) && (((Marca)this._ventana.MarcaFiltrada).Id != int.MinValue))
             {
                 fusion.Marca = (Marca)this._ventana.MarcaFiltrada;
                 fusion.InteresadoEntre = ((Marca)this._ventana.MarcaFiltrada).Interesado;
@@ -518,11 +530,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
             }
 
             if (null != this._ventana.InteresadoEntreFiltrado)
-                fusion.InteresadoEntre = ((Interesado)this._ventana.InteresadoEntreFiltrado).Id != int.MinValue ? 
+                fusion.InteresadoEntre = ((Interesado)this._ventana.InteresadoEntreFiltrado).Id != int.MinValue ?
                                                             (Interesado)this._ventana.InteresadoEntreFiltrado : null;
 
             if (null != this._ventana.InteresadoSobrevivienteFiltrado)
-                fusion.InteresadoSobreviviente = ((Interesado)this._ventana.InteresadoSobrevivienteFiltrado).Id != int.MinValue ? 
+                fusion.InteresadoSobreviviente = ((Interesado)this._ventana.InteresadoSobrevivienteFiltrado).Id != int.MinValue ?
                                                                     (Interesado)this._ventana.InteresadoSobrevivienteFiltrado : null;
 
             if (null != this._ventana.AgenteApoderadoFiltrado)
@@ -534,9 +546,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
                                                     (Poder)this._ventana.PoderFiltrado : null;
 
             if (null != this._ventana.Boletin)
-                fusion.Boletin = ((Boletin)this._ventana.Boletin).Id != int.MinValue ? 
-                                                        (Boletin)this._ventana.Boletin : null;     
- 
+                fusion.Boletin = ((Boletin)this._ventana.Boletin).Id != int.MinValue ?
+                                                        (Boletin)this._ventana.Boletin : null;
+
 
             #region Comentado
             //marca.Operacion = "MODIFY";
@@ -594,6 +606,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
             return fusion;
         }
 
+
         /// <summary>
         /// Método que habilita los campos
         /// </summary>
@@ -603,6 +616,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
             this._ventana.TextoBotonModificar = Recursos.Etiquetas.btnAceptar;
         }
 
+
         /// <summary>
         /// Método que dependiendo del estado de la página, habilita los campos o 
         /// modifica los datos del usuario
@@ -610,7 +624,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
         public void Modificar()
         {
             Mouse.OverrideCursor = Cursors.Wait;
-           
+
             try
             {
                 #region trace
@@ -698,6 +712,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
             }
         }
 
+
         /// <summary>
         /// Metodo que se encarga de eliminar una Fusion
         /// </summary>
@@ -749,6 +764,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
             }
         }
 
+
         /// <summary>
         /// Metodo que nos muestra la lista de auditorias
         /// </summary>
@@ -792,6 +808,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
             }
         }
 
+
         /// <summary>
         /// Método que ordena una columna
         /// </summary>
@@ -825,6 +842,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
                 logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
         }
+
 
         /// <summary>
         /// Método que Carga la lista de agentes y la lista de interesados
@@ -922,6 +940,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
 
         }
 
+
         /// <summary>
         /// Método llena la lista de agentes
         /// </summary>
@@ -946,7 +965,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
 
         }
 
+
         #region Marcas
+
 
         /// <summary>
         /// Método Muestra las marcas consultadas
@@ -1015,6 +1036,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
             }
         }
 
+
         /// <summary>
         /// Método que cambia la marca
         /// </summary>
@@ -1035,22 +1057,22 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
                 if (this._ventana.MarcaFiltrada != null)
                 {
                     this._ventana.Marca = this._ventana.MarcaFiltrada;
-                    this._ventana.IdMarca = ((Marca) this._ventana.MarcaFiltrada).Id.ToString();
+                    this._ventana.IdMarca = ((Marca)this._ventana.MarcaFiltrada).Id.ToString();
                     this._ventana.NombreMarca = ((Marca)this._ventana.MarcaFiltrada).Descripcion;
                     this._marcas.RemoveAt(0);
                     this._marcas.Add((Marca)this._ventana.MarcaFiltrada);
                     if (null != ((Marca)this._ventana.Marca).Interesado)
                     {
-                        this._ventana.InteresadoEntre = ((Marca) this._ventana.Marca).Interesado;
+                        this._ventana.InteresadoEntre = ((Marca)this._ventana.Marca).Interesado;
                         this._ventana.IdInteresadoEntre = ((Marca)this._ventana.Marca).Interesado.Id.ToString();
                     }
                     if (null != ((Marca)this._ventana.Marca).Agente)
                     {
                         this._ventana.AgenteApoderado = ((Marca)this._ventana.Marca).Agente;
-                        this._ventana.IdApoderado = ((Marca) this._ventana.Marca).Agente.Id.ToString();
+                        this._ventana.IdApoderado = ((Marca)this._ventana.Marca).Agente.Id.ToString();
                     }
                     this._ventana.Poder = ((Marca)this._ventana.Marca).Poder;
-                    
+
 
                     if (null != ((Marca)this._ventana.Marca).Asociado)
                         this._ventana.PintarAsociado(((Marca)this._ventana.Marca).Asociado.TipoCliente.Id);
@@ -1106,9 +1128,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
             return retorno;
         }
 
+
         #endregion
 
+
         #region InteresadoEntre
+
 
         /// <summary>
         /// Método carga los interesados 
@@ -1174,6 +1199,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
             }
         }
 
+
         /// <summary>
         /// Método que cambia los interesados
         /// </summary>
@@ -1231,7 +1257,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
             return retorno;
         }
 
+
         #endregion
+
 
         #region InteresadoSobreviviente
 
@@ -1556,7 +1584,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
 
         #endregion
 
+
         #region Agente Apoderado
+
 
         /// <summary>
         /// Método que consulta los apoderados
@@ -1625,6 +1655,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
                 this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
             }
         }
+
 
         /// <summary>
         /// Método que permite cambiar el apoderado
@@ -1736,6 +1767,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
             return retorno;
         }
 
+
         /// <summary>
         /// Método que borra la lista de agentes
         /// </summary>
@@ -1761,6 +1793,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
 
         }
 
+
         /// <summary>
         /// Método que revisa y valida el cambio de Agente
         /// </summary>
@@ -1784,7 +1817,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
             return retorno;
         }
 
+
         #endregion
+
 
         #region Poder
 
@@ -1862,6 +1897,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
                 this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
             }
         }
+
 
         /// <summary>
         /// Método que cambia el poder
@@ -1956,6 +1992,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
             return retorno;
         }
 
+
         /// <summary>
         /// Método que borra la lista de poderes
         /// </summary>
@@ -1981,6 +2018,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
 
         }
 
+
         /// <summary>
         /// Método que revisa y valida el cambio de poder
         /// </summary>
@@ -2004,6 +2042,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
             return retorno;
         }
 
+
         /// <summary>
         /// Método que carga la lista de poderes
         /// </summary>
@@ -2026,6 +2065,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
             #endregion
 
         }
+
 
         /// <summary>
         /// Método que valida la lista de poderes a mostrar
@@ -2081,9 +2121,14 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
             return retorno;
         }
 
+
         #endregion
 
 
+        /// <summary>
+        /// Método que se encarga de ir a imprimir dependiendo del botón
+        /// </summary>
+        /// <param name="nombreBoton"></param>
         public void IrImprimir(string nombreBoton)
         {
             try
@@ -2110,6 +2155,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
             }
         }
 
+
+        /// <summary>
+        /// Imprime el reporte de la carpeta
+        /// </summary>
         private void ImprimirCarpeta()
         {
             if (ValidarMarcaAntesDeImprimirCarpeta())
@@ -2127,11 +2176,20 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
             }
         }
 
+
+        /// <summary>
+        /// Valida la marca antes de imprimir la carpeta
+        /// </summary>
+        /// <returns></returns>
         private bool ValidarMarcaAntesDeImprimirCarpeta()
         {
             return true;
         }
 
+
+        /// <summary>
+        /// Imprime el reporte de anexo
+        /// </summary>
         private void ImprimirAnexo()
         {
             if (ValidarMarcaAntesDeImprimirCarpeta())
@@ -2149,11 +2207,20 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
             }
         }
 
+
+        /// <summary>
+        /// Método que se encarga de validar la marca antes de imprimir el anexo
+        /// </summary>
+        /// <returns></returns>
         private bool ValidarMarcaAntesDeImprimirAnexo()
         {
             return true;
         }
 
+
+        /// <summary>
+        /// Método que se encarga de imprimir la planilla
+        /// </summary>
         private void ImprimirPlanilla()
         {
             if (ValidarMarcaAntesDeImprimirCarpeta())
@@ -2171,9 +2238,15 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
             }
         }
 
+
+        /// <summary>
+        /// Método que se encarga de validar la marca antes de imprimir la planilla
+        /// </summary>
+        /// <returns></returns>
         private bool ValidarMarcaAntesDeImprimirPlanilla()
         {
             return true;
         }
+
     }
 }

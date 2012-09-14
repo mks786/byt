@@ -478,5 +478,19 @@ namespace Trascend.Bolet.AccesoDatos.Contrato
          /// </summary>
          /// <returns>Dao Solicitado</returns>
          IDaoInstruccionDeRenovacion ObtenerDaoInstruccionDeRenovacion();
+
+
+         /// <summary>
+         /// Metodo con el que se obtiene el Dao Solicitado
+         /// </summary>
+         /// <returns>Dao Solicitado</returns>
+         IDaoFusionMarcaTercero ObtenerDaoFusionMarcaTercero();
+
+
+         /// <summary>
+         /// Metodo con el que se obtiene el Dao Solicitado
+         /// </summary>
+         /// <returns>Dao Solicitado</returns>
+         IDaoFusionPatenteTercero ObtenerDaoFusionPatenteTercero();
     }
 }

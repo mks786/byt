@@ -511,5 +511,20 @@ namespace Trascend.Bolet.AccesoDatos.Fabrica
         /// 
         public abstract IDaoInstruccionDeRenovacion ObtenerDaoInstruccionDeRenovacion();
 
+
+        /// <summary>
+        /// Método que devuelve el DaoMemoria del manejador que se esté utilizando
+        /// </summary>
+        /// <returns>IDaoMemoria</returns>
+        /// 
+        public abstract IDaoFusionMarcaTercero ObtenerDaoFusionMarcaTercero();
+
+
+        /// <summary>
+        /// Método que devuelve el DaoMemoria del manejador que se esté utilizando
+        /// </summary>
+        /// <returns>IDaoMemoria</returns>
+        /// 
+        public abstract IDaoFusionPatenteTercero ObtenerDaoFusionPatenteTercero();
     }
 }

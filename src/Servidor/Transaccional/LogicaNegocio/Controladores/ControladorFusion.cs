@@ -43,6 +43,7 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
             return retorno;
         }
 
+
         /// <summary>
         /// Método que modifica un los datos de un Usuario
         /// </summary>
@@ -159,6 +160,7 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
             return exitoso;
         }
 
+
         /// <summary>
         /// Método que consulta un Fusion por su Id
         /// </summary>
@@ -191,6 +193,7 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
             }
             return retorno;
         }
+
 
         /// <summary>
         /// Método que elimina un fusion
@@ -226,6 +229,7 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
             return exitoso;
         }
 
+
         /// <summary>
         /// Verifica si el fusion existe
         /// </summary>
@@ -258,6 +262,7 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
 
             return existe;
         }
+
 
         /// <summary>
         /// Consulta los Fusion que cumplan con los filtros establecidos en el objeto enviado
@@ -292,5 +297,6 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
 
             return retorno;
         }
+
     }
 }

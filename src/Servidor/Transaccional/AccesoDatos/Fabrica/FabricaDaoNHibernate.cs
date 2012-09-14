@@ -7,6 +7,7 @@ namespace Trascend.Bolet.AccesoDatos.Fabrica
     {
         private static FabricaDaoNHibernate _instancia;
 
+
         /// <summary>
         /// Propiedad que devuelve la instancia de la clase
         /// </summary>
@@ -22,6 +23,7 @@ namespace Trascend.Bolet.AccesoDatos.Fabrica
             }
         }
 
+
         /// <summary>
         /// Constructor predeterminado
         /// </summary>
@@ -29,6 +31,7 @@ namespace Trascend.Bolet.AccesoDatos.Fabrica
         {
             /*Singleton*/
         }
+
 
         /// <summary>
         /// Método que devuelve el DaoAuditoria
@@ -39,6 +42,7 @@ namespace Trascend.Bolet.AccesoDatos.Fabrica
             return new DaoAuditoriaNHibernate();
         }
 
+
         /// <summary>
         /// Método que devuelve el DaoAgente
         /// </summary>
@@ -47,6 +51,7 @@ namespace Trascend.Bolet.AccesoDatos.Fabrica
         {
             return new DaoAgenteNHibernate();
         }
+
 
         /// <summary>
         /// Método que devuelve el DaoDepartamento
@@ -57,6 +62,7 @@ namespace Trascend.Bolet.AccesoDatos.Fabrica
             return new DaoDepartamentoNHibernate();
         }
 
+
         /// <summary>
         /// Método que devuelve el DaoEstado
         /// </summary>
@@ -65,6 +71,7 @@ namespace Trascend.Bolet.AccesoDatos.Fabrica
         {
             return new DaoEstadoNHibernate();
         }
+
 
         /// <summary>
         /// Método que devuelve el DaoEstadoMarca
@@ -75,6 +82,7 @@ namespace Trascend.Bolet.AccesoDatos.Fabrica
             return new DaoEstadoMarcaNHibernate();
         }
 
+
         /// <summary>
         /// Método que devuelve el DaoEstatus
         /// </summary>
@@ -83,6 +91,7 @@ namespace Trascend.Bolet.AccesoDatos.Fabrica
         {
             return new DaoEstatusNHibernate();
         }
+
 
         /// <summary>
         /// Método que devuelve el DaoInternacional
@@ -93,6 +102,7 @@ namespace Trascend.Bolet.AccesoDatos.Fabrica
             return new DaoInternacionalNHibernate();
         }
 
+
         /// <summary>
         /// Método que devuelve el DaoNacional
         /// </summary>
@@ -101,6 +111,7 @@ namespace Trascend.Bolet.AccesoDatos.Fabrica
         {
             return new DaoNacionalNHibernate();
         }
+
 
         /// <summary>
         /// Método que devuelve el DaoObjeto
@@ -111,6 +122,7 @@ namespace Trascend.Bolet.AccesoDatos.Fabrica
             return new DaoObjetoNHibernate();
         }
 
+
         /// <summary>
         /// Método que devuelve el DaoPais
         /// </summary>
@@ -119,6 +131,7 @@ namespace Trascend.Bolet.AccesoDatos.Fabrica
         {
             return new DaoPaisNHibernate();
         }
+
 
         /// <summary>
         /// Método que devuelve el DaoResolucion
@@ -139,6 +152,7 @@ namespace Trascend.Bolet.AccesoDatos.Fabrica
             return new DaoRolNHibernate();
         }
 
+
         /// <summary>
         /// Método que devuelve el DaoTipoBase
         /// </summary>
@@ -147,6 +161,8 @@ namespace Trascend.Bolet.AccesoDatos.Fabrica
         {
             return new DaoTipoBaseNHibernate();
         }
+
+
         /// <summary>
         /// Método que devuelve el DaoTipoFecha
         /// </summary>
@@ -155,6 +171,7 @@ namespace Trascend.Bolet.AccesoDatos.Fabrica
         {
             return new DaoTipoFechaNHibernate();
         }
+
 
         /// <summary>
         /// Método que devuelve el DaoTipoInfobol
@@ -165,6 +182,7 @@ namespace Trascend.Bolet.AccesoDatos.Fabrica
             return new DaoTipoInfobolNHibernate();
         }
 
+
         /// <summary>
         /// Método que devuelve el DaoUsuario
         /// </summary>
@@ -173,6 +191,7 @@ namespace Trascend.Bolet.AccesoDatos.Fabrica
         {
             return new DaoUsuarioNHibernate();
         }
+
 
         /// <summary>
         /// Método que devuelve el DaoBoletin
@@ -183,6 +202,7 @@ namespace Trascend.Bolet.AccesoDatos.Fabrica
             return new DaoBoletinNHibernate();
         }
 
+
         /// <summary>
         /// Método que devuelve el DaoPoder
         /// </summary>
@@ -191,6 +211,7 @@ namespace Trascend.Bolet.AccesoDatos.Fabrica
         {
             return new DaoPoderNHibernate();
         }
+
 
         /// <summary>
         /// Método que devuelve el DaoContador
@@ -201,6 +222,7 @@ namespace Trascend.Bolet.AccesoDatos.Fabrica
             return new DaoContadorNHibernate();
         }
 
+
         /// <summary>
         /// Método que devuelve el DaoContadorAuditoria
         /// </summary>
@@ -209,6 +231,7 @@ namespace Trascend.Bolet.AccesoDatos.Fabrica
         {
             return new DaoContadorAuditoriaNHibernate();
         }
+
 
         /// <summary>
         /// Método que devuelve el DaoContadorAsignacion
@@ -219,6 +242,7 @@ namespace Trascend.Bolet.AccesoDatos.Fabrica
             return new DaoContadorAsignacionNHibernate();
         }
 
+
         /// <summary>
         /// Método que devuelve el DaoInteresado
         /// </summary>
@@ -227,6 +251,7 @@ namespace Trascend.Bolet.AccesoDatos.Fabrica
         {
             return new DaoInteresadoNHibernate();
         }
+
 
         /// <summary>
         /// Método que devuelve el DaoEtiqueta
@@ -237,6 +262,7 @@ namespace Trascend.Bolet.AccesoDatos.Fabrica
             return new DaoEtiquetaNHibernate();
         }
 
+
         /// <summary>
         /// Método que devuelve el DaoIdioma
         /// </summary>
@@ -245,6 +271,7 @@ namespace Trascend.Bolet.AccesoDatos.Fabrica
         {
             return new DaoIdiomaNHibernate();
         }
+
 
         /// <summary>
         /// Método que devuelve el DaoMoneda
@@ -255,6 +282,7 @@ namespace Trascend.Bolet.AccesoDatos.Fabrica
             return new DaoMonedaNHibernate();
         }
 
+
         /// <summary>
         /// Método que devuelve el DaoTarifa
         /// </summary>
@@ -263,6 +291,7 @@ namespace Trascend.Bolet.AccesoDatos.Fabrica
         {
             return new DaoTarifaNHibernate();
         }
+
 
         /// <summary>
         /// Método que devuelve el DaoTipoCliente
@@ -273,6 +302,7 @@ namespace Trascend.Bolet.AccesoDatos.Fabrica
             return new DaoTipoClienteNHibernate();
         }
 
+
         /// <summary>
         /// Método que devuelve el DaoDetallePago
         /// </summary>
@@ -281,6 +311,7 @@ namespace Trascend.Bolet.AccesoDatos.Fabrica
         {
             return new DaoDetallePagoNHibernate();
         }
+
 
         /// <summary>
         /// Método que devuelve el DaoAsociado
@@ -291,6 +322,7 @@ namespace Trascend.Bolet.AccesoDatos.Fabrica
             return new DaoAsociadoNHibernate();
         }
 
+
         /// <summary>
         /// Método que devuelve el DaoContadorFac
         /// </summary>
@@ -299,6 +331,7 @@ namespace Trascend.Bolet.AccesoDatos.Fabrica
         {
             return new DaoContadorFacNHibernate();
         }
+
 
         /// <summary>
         /// Método que devuelve el DaoConcepto
@@ -309,6 +342,7 @@ namespace Trascend.Bolet.AccesoDatos.Fabrica
             return new DaoConceptoNHibernate();
         }
 
+
         /// <summary>
         /// Método que devuelve el DaoJustificacion
         /// </summary>
@@ -317,6 +351,7 @@ namespace Trascend.Bolet.AccesoDatos.Fabrica
         {
             return new DaoJustificacionNHibernate();
         }
+
 
         /// <summary>
         /// Método que devuelve el DaoContacto
@@ -327,6 +362,7 @@ namespace Trascend.Bolet.AccesoDatos.Fabrica
             return new DaoContactoNHibernate();
         }
 
+
         /// <summary>
         /// Método que devuelve el DaoCarta
         /// </summary>
@@ -335,6 +371,7 @@ namespace Trascend.Bolet.AccesoDatos.Fabrica
         {
             return new DaoCartaNHibernate();
         }
+
 
         /// <summary>
         /// Método que devuelve el DaoDatosTransferencia
@@ -345,6 +382,7 @@ namespace Trascend.Bolet.AccesoDatos.Fabrica
             return new DaoDatosTransferenciaNHibernate();
         }
 
+
         /// <summary>
         /// Método que devuelve el DaoResumen
         /// </summary>
@@ -353,6 +391,7 @@ namespace Trascend.Bolet.AccesoDatos.Fabrica
         {
             return new DaoResumenNHibernate();
         }
+
 
         /// <summary>
         /// Método que devuelve el DaoAnexo
@@ -363,6 +402,7 @@ namespace Trascend.Bolet.AccesoDatos.Fabrica
             return new DaoAnexoNHibernate();
         }
 
+
         /// <summary>
         /// Método que devuelve el DaoRemitente
         /// </summary>
@@ -371,6 +411,7 @@ namespace Trascend.Bolet.AccesoDatos.Fabrica
         {
             return new DaoRemitenteNHibernate();
         }
+
 
         /// <summary>
         /// Método que devuelve el DaoMedio
@@ -381,6 +422,7 @@ namespace Trascend.Bolet.AccesoDatos.Fabrica
             return new DaoMedioNHibernate();
         }
 
+
         /// <summary>
         /// Método que devuelve el DaoCategoria
         /// </summary>
@@ -389,6 +431,7 @@ namespace Trascend.Bolet.AccesoDatos.Fabrica
         {
             return new DaoCategoriaNHibernate();
         }
+
 
         /// <summary>
         /// Método que devuelve el DaoCartaOut
@@ -399,6 +442,7 @@ namespace Trascend.Bolet.AccesoDatos.Fabrica
             return new DaoCartaOutNHibernate();
         }
 
+
         /// <summary>
         /// Método que devuelve el DaoEntradaAlterna
         /// </summary>
@@ -407,6 +451,7 @@ namespace Trascend.Bolet.AccesoDatos.Fabrica
         {
             return new DaoEntradaAlternaNHibernate();
         }
+
 
         /// <summary>
         /// Método que devuelve el DaoEntradaAlterna
@@ -417,6 +462,7 @@ namespace Trascend.Bolet.AccesoDatos.Fabrica
             return new DaoAsignacionNHibernate();
         }
 
+
         /// <summary>
         /// Método que devuelve el DaoListaDatosValores
         /// </summary>
@@ -425,6 +471,7 @@ namespace Trascend.Bolet.AccesoDatos.Fabrica
         {
             return new DaoListaDatosValoresNHibernate();
         }
+
 
         /// <summary>
         /// Método que devuelve el ListaDatosDominio
@@ -435,6 +482,7 @@ namespace Trascend.Bolet.AccesoDatos.Fabrica
             return new DaoListaDatosDominioNHibernate();
         }
 
+
         /// <summary>
         /// Método que devuelve el DaoMarca
         /// </summary>
@@ -443,6 +491,7 @@ namespace Trascend.Bolet.AccesoDatos.Fabrica
         {
             return new DaoMarcaNHibernate();
         }
+
 
         /// <summary>
         /// Método que devuelve el DaoCorresponsal
@@ -453,6 +502,7 @@ namespace Trascend.Bolet.AccesoDatos.Fabrica
             return new DaoCorresponsalNHibernate();
         }
 
+
         /// <summary>
         /// Método que devuelve el DaoServicio
         /// </summary>
@@ -461,6 +511,7 @@ namespace Trascend.Bolet.AccesoDatos.Fabrica
         {
             return new DaoServicioNHibernate();
         }
+
 
         /// <summary>
         /// Método que devuelve el DaoTipoEstado
@@ -471,6 +522,7 @@ namespace Trascend.Bolet.AccesoDatos.Fabrica
             return new DaoTipoEstadoNHibernate();
         }
 
+
         /// <summary>
         /// Método que devuelve el DaoCondicion
         /// </summary>
@@ -479,6 +531,7 @@ namespace Trascend.Bolet.AccesoDatos.Fabrica
         {
             return new DaoCondicionNHibernate();
         }
+
 
         /// <summary>
         /// Método que devuelve el DaoAnaqua
@@ -489,6 +542,7 @@ namespace Trascend.Bolet.AccesoDatos.Fabrica
             return new DaoAnaquaNHibernate();
         }
 
+
         /// <summary>
         /// Método que devuelve el DaoInfoAdicional
         /// </summary>
@@ -497,6 +551,7 @@ namespace Trascend.Bolet.AccesoDatos.Fabrica
         {
             return new DaoInfoAdicionalNHibernate();
         }
+
 
         /// <summary>
         /// Método que devuelve el DaoInfoBol
@@ -507,6 +562,7 @@ namespace Trascend.Bolet.AccesoDatos.Fabrica
             return new DaoInfoBolNHibernate();
         }
 
+
         /// <summary>
         /// Método que devuelve el DaoInfoBol
         /// </summary>
@@ -515,6 +571,7 @@ namespace Trascend.Bolet.AccesoDatos.Fabrica
         {
             return new DaoInfoBolMarcaTerNHibernate();
         }
+
 
         /// <summary>
         /// Método que devuelve el DaoInfoBolPatente
@@ -525,6 +582,7 @@ namespace Trascend.Bolet.AccesoDatos.Fabrica
             return new DaoInfoBolPatenteNHibernate();
         }
 
+
         /// <summary>
         /// Método que devuelve el DaoBusqueda
         /// </summary>
@@ -533,6 +591,7 @@ namespace Trascend.Bolet.AccesoDatos.Fabrica
         {
             return new DaoBusquedaNHibernate();
         }
+
 
         /// <summary>
         /// Método que devuelve el DaoOperacion
@@ -543,6 +602,7 @@ namespace Trascend.Bolet.AccesoDatos.Fabrica
             return new DaoOperacionNHibernate();
         }
 
+
         /// <summary>
         /// Método que devuelve el DaoStatusWeb
         /// </summary>
@@ -551,6 +611,7 @@ namespace Trascend.Bolet.AccesoDatos.Fabrica
         {
             return new DaoStatusWebNHibernate();
         }
+
 
         /// <summary>
         /// Método que devuelve el DaoCesion
@@ -561,6 +622,7 @@ namespace Trascend.Bolet.AccesoDatos.Fabrica
             return new DaoCesionNHibernate();
         }
 
+
         /// <summary>
         /// Método que devuelve el DaoCesionPatente
         /// </summary>
@@ -569,6 +631,7 @@ namespace Trascend.Bolet.AccesoDatos.Fabrica
         {
             return new DaoCesionPatenteNHibernate();
         }
+
 
         /// <summary>
         /// Método que devuelve el DaoFusion
@@ -579,6 +642,7 @@ namespace Trascend.Bolet.AccesoDatos.Fabrica
             return new DaoFusionNHibernate();
         }
 
+
         /// <summary>
         /// Método que devuelve el DaoFusionPatente
         /// </summary>
@@ -587,6 +651,7 @@ namespace Trascend.Bolet.AccesoDatos.Fabrica
         {
             return new DaoFusionPatenteNHibernate();
         }
+
 
         /// <summary>
         /// Método que devuelve el DaoCambioDeDomicilio
@@ -597,6 +662,7 @@ namespace Trascend.Bolet.AccesoDatos.Fabrica
             return new DaoCambioDeDomicilioNHibernate();
         }
 
+
         /// <summary>
         /// Método que devuelve el DaoCambioPeticionario
         /// </summary>
@@ -605,6 +671,7 @@ namespace Trascend.Bolet.AccesoDatos.Fabrica
         {
             return new DaoCambioPeticionarioNHibernate();
         }
+
 
         /// <summary>
         /// Método que devuelve el DaoCambioNombre
@@ -615,6 +682,7 @@ namespace Trascend.Bolet.AccesoDatos.Fabrica
             return new DaoCambioDeNombreNHibernate();
         }
 
+
         /// <summary>
         /// Método que devuelve el DaoCambioDeDomicilioPatente
         /// </summary>
@@ -623,6 +691,7 @@ namespace Trascend.Bolet.AccesoDatos.Fabrica
         {
             return new DaoCambioDeDomicilioPatenteNHibernate();
         }
+
 
         /// <summary>
         /// Método que devuelve el DaoCambioNombrePatente
@@ -633,6 +702,7 @@ namespace Trascend.Bolet.AccesoDatos.Fabrica
             return new DaoCambioDeNombrePatenteNHibernate();
         }
 
+
         /// <summary>
         /// Método que devuelve el DaoCambioPeticionarioPatente
         /// </summary>
@@ -641,6 +711,7 @@ namespace Trascend.Bolet.AccesoDatos.Fabrica
         {
             return new DaoCambioPeticionarioPatenteNHibernate();
         }
+
 
         /// <summary>
         /// Método que devuelve el DaoLicencia
@@ -651,6 +722,7 @@ namespace Trascend.Bolet.AccesoDatos.Fabrica
             return new DaoLicenciaNHibernate();
         }
 
+
         /// <summary>
         /// Método que devuelve el DaoLicenciaPatente
         /// </summary>
@@ -659,6 +731,8 @@ namespace Trascend.Bolet.AccesoDatos.Fabrica
         {
             return new DaoLicenciaPatenteNHibernate();
         }
+
+
         /// <summary>
         /// Método que devuelve el DaoMarcaTercero
         /// </summary>
@@ -668,6 +742,7 @@ namespace Trascend.Bolet.AccesoDatos.Fabrica
             return new DaoMarcaTerceroNHibernate();
         }
 
+
         /// <summary>
         /// Método que devuelve el DaoMarcabaseTercero
         /// </summary>
@@ -676,6 +751,8 @@ namespace Trascend.Bolet.AccesoDatos.Fabrica
         {
             return new DaoMarcaBaseTerceroNHibernate();
         }
+
+
         /// <summary>
         /// Método que devuelve el DaoPlanilla
         /// </summary>
@@ -684,6 +761,7 @@ namespace Trascend.Bolet.AccesoDatos.Fabrica
         {
             return new DaoPlanillaNHibernate();
         }
+
 
         /// <summary>
         /// Método que devuelve el DaoRenovacion
@@ -694,6 +772,7 @@ namespace Trascend.Bolet.AccesoDatos.Fabrica
             return new DaoRenovacionNHibernate();
         }
 
+
         /// <summary>
         /// Método que devuelve el DaoPatente
         /// </summary>
@@ -702,6 +781,7 @@ namespace Trascend.Bolet.AccesoDatos.Fabrica
         {
             return new DaoPatenteNHibernate();
         }
+
 
         /// <summary>
         /// Método que devuelve el DaoInventor
@@ -712,6 +792,7 @@ namespace Trascend.Bolet.AccesoDatos.Fabrica
             return new DaoInventorNHibernate();
         }
 
+
         /// <summary>
         /// Método que devuelve el DaoFecha
         /// </summary>
@@ -720,6 +801,7 @@ namespace Trascend.Bolet.AccesoDatos.Fabrica
         {
             return new DaoFechaNHibernate();
         }
+
 
         /// <summary>
         /// Método que devuelve el DaoAnualidad
@@ -730,6 +812,7 @@ namespace Trascend.Bolet.AccesoDatos.Fabrica
             return new DaoAnualidadNHibernate();
         }
 
+
         /// <summary>
         /// Método que devuelve el DaoMemoria
         /// </summary>
@@ -738,6 +821,7 @@ namespace Trascend.Bolet.AccesoDatos.Fabrica
         {
             return new DaoMemoriaNHibernate();
         }
+
 
         /// <summary>
         /// Método que devuelve el DaoMemoria
@@ -748,6 +832,24 @@ namespace Trascend.Bolet.AccesoDatos.Fabrica
             return new DaoInstruccionDeRenovacionNHibernate();
         }
 
-        
+
+        /// <summary>
+        /// Método que devuelve el DaoMemoria
+        /// </summary>
+        /// <returns>IDaoMemoria</returns>
+        public override IDaoFusionMarcaTercero ObtenerDaoFusionMarcaTercero()
+        {
+            return new DaoFusionMarcaTerceroNHibernate();
+        }
+
+
+        /// <summary>
+        /// Método que devuelve el DaoMemoria
+        /// </summary>
+        /// <returns>IDaoMemoria</returns>
+        public override IDaoFusionPatenteTercero ObtenerDaoFusionPatenteTercero()
+        {
+            return new DaoFusionPatenteTerceroNHibernate();
+        }
     }
 }

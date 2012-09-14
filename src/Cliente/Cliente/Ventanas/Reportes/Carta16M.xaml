@@ -93,7 +93,7 @@
                     <Label Name="_lblIdFiltrar" Visibility="Collapsed" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Top">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblId}"/>
                     </Label>
-                    <custom:ByTTextBox Visibility="Collapsed"  Name="_txtIdMarcaFiltrar" HorizontalAlignment="Left" Grid.Column="2" Grid.Row="1" 
+                    <custom:ByTTextBox SoloNumero="True" Filtro="True" Visibility="Collapsed"  Name="_txtIdMarcaFiltrar" HorizontalAlignment="Left" Grid.Column="2" Grid.Row="1" 
                                         Width="50" Height="20" VerticalAlignment="Top"></custom:ByTTextBox>
                     <Label Name="_lblNombreFiltrar" Visibility="Collapsed" Grid.Column="3" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblNombre}"/>
@@ -250,7 +250,7 @@
                     <Label Name="_lblIdAsoIntFiltrar" Grid.Column="0" Grid.Row="5" HorizontalAlignment="Right" VerticalAlignment="Center">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblId}"/>
                     </Label>
-                    <custom:ByTTextBox GotKeyboardFocus="_txtIdFiltrar_GotKeyboardFocus" GotFocus="_txtIdFiltrar_GotKeyboardFocus" Name="_txtIdFiltrar" Grid.Column="1" Grid.Row="5" 
+                    <custom:ByTTextBox SoloNumero="True" Filtro="True" GotKeyboardFocus="_txtIdFiltrar_GotKeyboardFocus" GotFocus="_txtIdFiltrar_GotKeyboardFocus" Name="_txtIdFiltrar" Grid.Column="1" Grid.Row="5" 
                                 Grid.ColumnSpan="1"  Height="20"></custom:ByTTextBox>
                     <Label Name="_lblNombreAsoIntFiltrar" Grid.Column="2" Grid.Row="5" HorizontalAlignment="Left" VerticalAlignment="Center">
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblNombre}"/>
