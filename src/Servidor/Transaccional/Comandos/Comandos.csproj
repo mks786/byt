@@ -105,6 +105,7 @@
     <Compile Include="Comandos\ComandosEstadoMarca\ComandoEliminarEstadoMarca.cs" />
     <Compile Include="Comandos\ComandosEstadoMarca\ComandoInsertarOModificarEstadoMarca.cs" />
     <Compile Include="Comandos\ComandosEstadoMarca\ComandoVerificarExistenciaEstadoMarca.cs" />
+    <Compile Include="Comandos\ComandosFusionMarcaTercero\ComandoConsultarFusionMarcaTerceroPorFusion.cs" />
     <Compile Include="Comandos\ComandosFusion\ComandoConsultarFusionesFiltro.cs" />
     <Compile Include="Comandos\ComandosInfoBol\ComandoConsultarInfoBolesPorMarca.cs" />
     <Compile Include="Comandos\ComandosInfoBol\ComandoConsultarInteresadosDeUnPoder.cs" />
@@ -397,6 +398,7 @@
     <Compile Include="Comandos\ComandosUsuario\ComandoConsultarTodosUsuarios.cs" />
     <Compile Include="Comandos\ComandosUsuario\ComandoConsultarUsuarioPorID.cs" />
     <Compile Include="Comandos\ComandosUsuario\ComandoInsertarOModificarUsuario.cs" />
+    <Compile Include="Fabrica\FabricaComandosFusionMarcaTercero.cs" />
     <Compile Include="Fabrica\FabricaComandosInstruccionDeRenovacion.cs" />
     <Compile Include="Fabrica\FabricaComandosInfoBolMarcaTer.cs" />
     <Compile Include="Fabrica\FabricaComandosMemoria.cs" />

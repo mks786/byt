@@ -140,5 +140,17 @@ namespace Trascend.Bolet.Cliente.Contratos.Traspasos.Fusiones
         object Corporaciones { get; set; }
 
         object Corporacion { get; set; }
+
+        string NombreMarcaTercero { get; set; }
+
+        string DomicilioMarcaTercero { get; set; }
+
+        object NacionalidadMarcaTercero { get; set; }
+
+        object PaisMarcaTercero { get; set; }
+
+        object NacionalidadesMarcaTercero { get; set; }
+
+        object PaisesMarcaTercero { get; set; }
     }
 }

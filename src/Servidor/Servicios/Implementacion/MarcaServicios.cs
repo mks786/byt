@@ -358,7 +358,6 @@ namespace Trascend.Bolet.Servicios.Implementacion
         }
 
 
-
         /// <summary>
         /// Servicio que se encarga de consultar la vista de recordatorios de marca
         /// </summary>

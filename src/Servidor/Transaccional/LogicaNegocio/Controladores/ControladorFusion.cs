@@ -96,6 +96,9 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
                     comando.Ejecutar();
                     comandoOperacion.Ejecutar();
 
+                    ComandoBase<bool> comandoFMT = FabricaComandosFusionMarcaTercero.ObtenerComandoInsertarOModificar(fusion.FusionMarcaTercero);
+                    comandoFMT.Ejecutar();
+
                     fusion.Marca.Interesado = fusion.InteresadoSobreviviente;
                     fusion.Marca.Agente = fusion.Agente;
                     fusion.Marca.Poder = fusion.Poder;
@@ -129,6 +132,10 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
                 {
                     ComandoBase<bool> comando = FabricaComandosFusion.ObtenerComandoInsertarOModificar(fusion);
                     comando.Ejecutar();
+
+                    ComandoBase<bool> comandoFMT = FabricaComandosFusionMarcaTercero.ObtenerComandoInsertarOModificar(fusion.FusionMarcaTercero);
+                    comandoFMT.Ejecutar();
+
                     exitoso = comando.Receptor.ObjetoAlmacenado;
                 }
 
@@ -168,7 +175,7 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
         /// <returns>El Fusion solicitado</returns>
         public static Fusion ConsultarPorId(Fusion fusion)
         {
-            Fusion retorno;
+            Fusion retorno = fusion;
 
             try
             {
@@ -177,9 +184,11 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
                     logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-                ComandoBase<Fusion> comando = FabricaComandosFusion.ObtenerComandoConsultarPorID(fusion);
-                comando.Ejecutar();
-                retorno = comando.Receptor.ObjetoAlmacenado;
+
+                ComandoBase<FusionMarcaTercero> comandoFusion = FabricaComandosFusionMarcaTercero.ObtenerComandoConsultarPorID(retorno);
+                comandoFusion.Ejecutar();
+
+                retorno.FusionMarcaTercero = comandoFusion.Receptor.ObjetoAlmacenado;
 
                 #region trace
                 if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))

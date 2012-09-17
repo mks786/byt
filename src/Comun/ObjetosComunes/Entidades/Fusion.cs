@@ -6,6 +6,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
     [Serializable]
     public class Fusion
     {
+
         #region Atributos
 
         private int _id;
@@ -26,8 +27,10 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         private Marca _marca;
         private Interesado _interesadoEntre;
         private Interesado _interesadoSobreviviente;
+        private FusionMarcaTercero _fusionMarcaTercero;
 
         #endregion
+
 
         #region Constructores
 
@@ -46,6 +49,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         }
 
         #endregion
+
 
         #region Propiedades
 
@@ -211,6 +215,16 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
             set { _interesadoSobreviviente = value; }
         }
 
+        /// <summary>
+        /// Propiedad que asigna u obtiene el FusionMarcaTercero de la Fusion
+        /// </summary>
+        public virtual FusionMarcaTercero FusionMarcaTercero
+        {
+            get { return _fusionMarcaTercero; }
+            set { _fusionMarcaTercero = value; }
+        }
+
         #endregion
+
     }
 }

@@ -6,6 +6,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
     [Serializable]
     public class FusionPatente
     {
+
         #region Atributos
 
         private int _id;
@@ -26,8 +27,10 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         private Patente _patente;
         private Interesado _interesadoEntre;
         private Interesado _interesadoSobreviviente;
+        private FusionPatenteTercero _fusionPatenteTercero;
 
         #endregion
+
 
         #region Constructores
 
@@ -46,6 +49,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         }
 
         #endregion
+
 
         #region Propiedades
 
@@ -211,6 +215,16 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
             set { _interesadoSobreviviente = value; }
         }
 
+        /// <summary>
+        /// Propiedad que asigna u obtiene el FusionPatenteTercero de la Fusion
+        /// </summary>
+        public virtual FusionPatenteTercero FusionPatenteTercero
+        {
+            get { return _fusionPatenteTercero; }
+            set { _fusionPatenteTercero = value; }
+        }
+
         #endregion
+
     }
 }

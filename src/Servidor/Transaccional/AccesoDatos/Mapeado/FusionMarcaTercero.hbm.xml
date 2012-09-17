@@ -3,27 +3,25 @@
                    assembly="Trascend.Bolet.ObjetosComunes"
                    namespace="Trascend.Bolet.ObjetosComunes.Entidades">
 
-  <class name="Agente" table="MYP_MTERCEROS">
-    <id name="Id" column="CAGENTE" type="string"/>
-    <property name="Nombre" column="XAGENTE" type="string"/>
+  <class name="FusionMarcaTercero" table="MYP_MTERCEROS">
+    <id name="Id" column="CTERCERO" type="int"/>
     <property name="Domicilio" column="XDOMICILIO" type="string"/>
-    <property name="Telefono" column="XTELEFONO" type="string"/>
-    <property name="EstadoCivil" column="ICIVIL" type="char"/>
-    <property name="Sexo" column="SEXO" type="char"/>
-    <property name="NumeroAbogado" column="CABOGADO" type="string"/>
-    <property name="NumeroImpresoAbogado" column="CINPREABOGADO" type="string"/>
-    <property name="NumeroPropiedad" column="CPROPIEDAD" type="string"/>
-    <property name="CCI" column="CCI" type="string"/>
+    <property name="Nombre" column="XNOMBRE" type="string"/>
 
+    <many-to-one name="Nacionalidad" class="Pais" lazy="false">
+      <column name="CNACIONALIDAD"/>
+    </many-to-one>
 
-
-    <many-to-one name="Pais" class="Pais">
+    <many-to-one name="Pais" class="Pais" lazy="false">
       <column name="CPAIS"/>
     </many-to-one>
 
+    <many-to-one name="Estado" class="Estado" lazy="false">
+      <column name="CESTADO"/>
+    </many-to-one>
 
-    <many-to-one name="Pais" class="Pais">
-      <column name="CPAIS"/>
+    <many-to-one name="Fusion" class="Fusion" lazy="false">
+      <column name="CFUSION"/>
     </many-to-one>
 
 

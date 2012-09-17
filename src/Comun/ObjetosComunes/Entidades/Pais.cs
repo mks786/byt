@@ -6,6 +6,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
     [Serializable]
     public class Pais
     {
+
         #region Atributos
 
         private int _id;
@@ -16,6 +17,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         private string _region;
 
         #endregion
+
 
         #region Constructores
 
@@ -34,6 +36,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         }
 
         #endregion
+
 
         #region Propiedades
 
@@ -92,5 +95,6 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         }
 
         #endregion
+
     }
 }

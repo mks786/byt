@@ -1672,6 +1672,24 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Select m from FusionMarcaTercero m where m.Fusion.Id = {0}.
+        /// </summary>
+        public static string ObtenerFusionMarcaTercero {
+            get {
+                return ResourceManager.GetString("ObtenerFusionMarcaTercero", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select m from FusionPatenteTercero m where m.Fusion.Id = {0}.
+        /// </summary>
+        public static string ObtenerFusionPatenteTercero {
+            get {
+                return ResourceManager.GetString("ObtenerFusionPatenteTercero", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select i from InfoAdicinal i where i.Id = &apos;{0}&apos;.
         /// </summary>
         public static string ObtenerInfoAdicinalPorId {

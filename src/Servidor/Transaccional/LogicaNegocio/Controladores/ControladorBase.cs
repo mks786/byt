@@ -44,7 +44,7 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
                 _usuarios.Add(usuario);
             }
 
-            System.Console.WriteLine("Usuario agregado: " + usuario.Hash);
+            System.Console.WriteLine("Usuario "+ usuario.NombreCompleto+" acaba de iniciar sesión: "+usuario.Departamento.Descripcion+", " + usuario.Hash);
             return usuario;
         }
 
@@ -78,7 +78,7 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
                 {
                     EliminarUsuarioXML(usuario);
                     _usuarios.Remove(usuario);
-                    System.Console.WriteLine("Usuario eliminado: " + usuario.Hash);
+                    System.Console.WriteLine("Usuario "+usuario.NombreCompleto+" eliminado: " +usuario.Departamento.Descripcion+", "+ usuario.Hash);
                     break;
                 }
         }

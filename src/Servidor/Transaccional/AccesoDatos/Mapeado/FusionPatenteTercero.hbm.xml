@@ -3,22 +3,23 @@
                    assembly="Trascend.Bolet.ObjetosComunes"
                    namespace="Trascend.Bolet.ObjetosComunes.Entidades">
 
-  <class name="Agente" table="MYP_PTERCEROS">
-    <id name="Id" column="CAGENTE" type="string"/>
-    <property name="Nombre" column="XAGENTE" type="string"/>
-    <property name="Domicilio" column="XDOMICILIO" type="string"/>
-    <property name="Telefono" column="XTELEFONO" type="string"/>
-    <property name="EstadoCivil" column="ICIVIL" type="char"/>
-    <property name="Sexo" column="SEXO" type="char"/>
-    <property name="NumeroAbogado" column="CABOGADO" type="string"/>
-    <property name="NumeroImpresoAbogado" column="CINPREABOGADO" type="string"/>
-    <property name="NumeroPropiedad" column="CPROPIEDAD" type="string"/>
-    <property name="CCI" column="CCI" type="string"/>
+  <class name="FusionPatenteTercero" table="MYP_PTERCEROS">
 
-    <bag name="Poderes" table="MYP_APODERADOS">
-      <key column="CAGENTE"/>
-      <many-to-many column="CPODER" class="Poder" not-found="ignore"/>
-    </bag>
+    <id name="Id" column="CTERCERO" type="string"/>
+    <property name="Domicilio" column="XDOMICILIO" type="string"/>
+    <property name="Nombre" column="XNOMBRE" type="string"/>
+
+    <many-to-one name="Nacionalidad" class="Pais">
+      <column name="CNACIONALIDAD"/>
+    </many-to-one>
+
+    <many-to-one name="Pais" class="Pais">
+      <column name="CPAIS"/>
+    </many-to-one>
+
+    <many-to-one name="Estado" class="Estado">
+      <column name="CESTADO"/>
+    </many-to-one>
     
   </class>
 </hibernate-mapping>

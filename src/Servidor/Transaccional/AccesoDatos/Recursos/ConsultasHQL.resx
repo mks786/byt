@@ -934,4 +934,10 @@
     <value>Select i from InstruccionDeRenovacion i where i.Marca.Id = '{0}'</value>
     <comment>Obtiene las busquedas que pertenecen a una marca determinada</comment>
   </data>
+  <data name="ObtenerFusionMarcaTercero" xml:space="preserve">
+    <value>Select m from FusionMarcaTercero m where m.Fusion.Id = {0}</value>
+  </data>
+  <data name="ObtenerFusionPatenteTercero" xml:space="preserve">
+    <value>Select m from FusionPatenteTercero m where m.Fusion.Id = {0}</value>
+  </data>
 </root>

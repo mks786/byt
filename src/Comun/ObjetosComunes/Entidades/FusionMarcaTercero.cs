@@ -4,8 +4,9 @@ using System.Collections.Generic;
 namespace Trascend.Bolet.ObjetosComunes.Entidades
 {
     [Serializable]
-    public class FusionPatenteTercero
+    public class FusionMarcaTercero
     {
+
         #region Atributos
 
         private int _id;
@@ -19,23 +20,25 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
                 
         #endregion
 
+
         #region Constructores
 
         /// <summary>
         /// Constructor predeterminado
         /// </summary>
-        public FusionPatenteTercero() { }
+        public FusionMarcaTercero() { }
 
         /// <summary>
         /// Constructor que inicializa el Id del Anexo
         /// </summary>
         /// <param name="id">Id del Anexo</param>
-        public FusionPatenteTercero(int id)
+        public FusionMarcaTercero(int id)
         {
             this._id = id;
         }
 
         #endregion
+
 
         #region Propiedades
 
@@ -103,5 +106,6 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         }
 
         #endregion
+
     }
 }

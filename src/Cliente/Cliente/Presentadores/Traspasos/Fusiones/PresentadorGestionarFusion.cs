@@ -79,6 +79,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
                 {
                     this._ventana.Fusion = fusion;
                     _agregar = false;
+
+                    this._ventana.DomicilioMarcaTercero = ((Fusion)fusion).FusionMarcaTercero.Domicilio;
+                    this._ventana.PaisMarcaTercero = ((Fusion)fusion).FusionMarcaTercero.Pais.NombreEspanol;
+                    this._ventana.NacionalidadMarcaTercero = ((Fusion)fusion).FusionMarcaTercero.Nacionalidad.NombreEspanol;
+                    this._ventana.NombreMarcaTercero = ((Fusion)fusion).FusionMarcaTercero.Nombre;
                 }
                 else
                 {
@@ -191,12 +196,23 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
                     if (((Fusion)fusion).Marca != null)
                         this._ventana.Marca = this._marcaServicios.ConsultarMarcaConTodo(((Fusion)fusion).Marca);
 
+
+
                     this._ventana.NombreMarca = ((Marca)this._ventana.Marca).Descripcion;
                     this._ventana.AgenteApoderado = ((Fusion)fusion).Agente;
                     this._ventana.Poder = fusion.Poder;
 
                     IList<Estado> estados = this._estadoServicios.ConsultarTodos();
                     this._ventana.Corporaciones = estados;
+                    this._ventana.Corporacion = this.BuscarEstado(estados,fusion.FusionMarcaTercero.Estado);
+
+                    IList<Pais> paisesMT = this._paisServicios.ConsultarTodos();
+                    this._ventana.PaisesMarcaTercero = paisesMT;
+                    this._ventana.PaisMarcaTercero = this.BuscarPais(paisesMT, fusion.FusionMarcaTercero.Pais);
+
+                    IList<Pais> nacionalidadesMT = this._paisServicios.ConsultarTodos();
+                    this._ventana.NacionalidadesMarcaTercero = nacionalidadesMT;
+                    this._ventana.NacionalidadMarcaTercero = this.BuscarPais(nacionalidadesMT, fusion.FusionMarcaTercero.Nacionalidad);
 
                     CargarMarca();
 
@@ -659,6 +675,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
 
                         if (null != fusion.InteresadoSobreviviente)
                         {
+
+                            fusion = TomarValoresFusionMarcaTercero(fusion);
                             int? exitoso = this._fusionesServicios.InsertarOModificarFusion(fusion, UsuarioLogeado.Hash);
                             if ((!exitoso.Equals(null)) && (this._agregar == false))
                             {
@@ -675,7 +693,6 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
                         }
                         else
                             this._ventana.Mensaje(Recursos.MensajesConElUsuario.ErrorSinSobreviviente, 1);
-
                     }
                     else
                         this._ventana.Mensaje(Recursos.MensajesConElUsuario.ErrorTraspasoSinMarca, 1);
@@ -710,6 +727,18 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
             {
                 Mouse.OverrideCursor = null;
             }
+        }
+
+        private Fusion TomarValoresFusionMarcaTercero(Fusion fusion)
+        {
+            Fusion retorno = fusion;
+
+            retorno.FusionMarcaTercero.Domicilio = this._ventana.DomicilioMarcaTercero;
+            retorno.FusionMarcaTercero.Pais = ((Pais)this._ventana.PaisMarcaTercero);
+            retorno.FusionMarcaTercero.Nacionalidad = (Pais)this._ventana.NacionalidadMarcaTercero;
+            retorno.FusionMarcaTercero.Nombre = this._ventana.NombreMarcaTercero;
+
+            return retorno;
         }
 
 

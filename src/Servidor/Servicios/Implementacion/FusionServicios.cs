@@ -55,7 +55,32 @@ namespace Trascend.Bolet.Servicios.Implementacion
         /// <returns></returns>
         public Fusion ConsultarPorId(Fusion entidad)
         {
-            throw new NotImplementedException();
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                Fusion fusion = ControladorFusion.ConsultarPorId(entidad);
+
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Saliendo del Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                return fusion;
+            }
+            catch (ApplicationException ex)
+            {
+                logger.Error(ex.Message);
+                throw ex;
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                throw new ApplicationException(Errores.MensajesAlServidor.ErrorInesperadoServidor);
+            }
         }
 
 
@@ -207,9 +232,6 @@ namespace Trascend.Bolet.Servicios.Implementacion
             }
         }
 
-
-
-        
 
         /// <summary>
         /// Servicio que se encarga de insertar cambioDomicilio

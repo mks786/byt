@@ -265,7 +265,7 @@
                                     </GridViewColumn>
                                 </GridView>
                             </ListView.View>
-                        </ListView>                 
+                        </ListView>
 
                         <!--Datos Interesado-->
 
@@ -276,38 +276,38 @@
                         <Label Name="_lblNombreMarcaTercero" Grid.Column="0" Grid.Row="2" HorizontalAlignment="Right" VerticalAlignment="Center" >
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblNombre}"/>
                         </Label>
-                        <custom:ByTTextBox Text="" IsEnabled="False" Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="6"  Name="_txtIdMarcaTercero"
-                                           VerticalAlignment="Center" IsReadOnly="True" IsTabStop="False" MaxLength="255" ></custom:ByTTextBox>
+                        <custom:ByTTextBox Text="" IsEnabled="False" Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="6"  Name="_txtNombreMarcaTercero" 
+                                           VerticalAlignment="Center"   MaxLength="255" ></custom:ByTTextBox>
                         <!--Fin Primera Fila-->
 
                         <!--Segunda Fila-->
                         <Label Name="_lblEstadoMarcaTercero" Grid.Column="0" Grid.Row="3" HorizontalAlignment="Right" VerticalAlignment="Center" >
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblCorp}"/>
                         </Label>
-                        <ComboBox Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="1" Name="_cbxCorporacion" Height="20" ItemsSource="{Binding}" DisplayMemberPath="Descripcion">
+                        <ComboBox IsEnabled="False" Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="1" Name="_cbxCorporacion" Height="20" ItemsSource="{Binding}" DisplayMemberPath="Descripcion">
                         </ComboBox>
                         <!--<custom:ByTTextBox Text="{Binding Path=Estado.Descripcion}" IsEnabled="False" Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="1" 
-                                           Name="_txtEstadoMarcaTercero" VerticalAlignment="Center" MaxLength="255" IsReadOnly="True" IsTabStop="False"></custom:ByTTextBox>-->
+                                           Name="_txtEstadoMarcaTercero" VerticalAlignment="Center" MaxLength="255" IsReadOnly="True" ></custom:ByTTextBox>-->
 
                         <Label Name="_lblPaisMarcaTercero" Grid.Column="2" Grid.Row="3" HorizontalAlignment="Right" VerticalAlignment="Center" >
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblPais}"/>
                         </Label>
-                        <custom:ByTTextBox Text="{Binding Path=Pais.NombreEspanol}" IsEnabled="False" Grid.Column="3" Grid.Row="3" Grid.ColumnSpan="1"
-                                           Name="_txtPaisMarcaTercero" VerticalAlignment="Center" IsReadOnly="True" IsTabStop="False" MaxLength="255" ></custom:ByTTextBox>
+                        <ComboBox IsEnabled="False" Grid.Column="3" Grid.Row="3" Grid.ColumnSpan="1" Name="_cbxPaisMarcaTercero" Height="20" ItemsSource="{Binding}" DisplayMemberPath="NombreEspanol">
+                        </ComboBox>
 
                         <Label Name="_lblNacionalidadMarcaTercero" Grid.Column="4" Grid.Row="3" HorizontalAlignment="Right" VerticalAlignment="Center" >
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblNacionalidad}"/>
                         </Label>
-                        <custom:ByTTextBox Text="{Binding Path=Nacionalidad.Nacionalidad}" IsEnabled="False" Grid.Column="5" Grid.Row="3" Grid.ColumnSpan="1"
-                                           Name="_txtNacionalidadMarcaTercero" VerticalAlignment="Center" IsReadOnly="True" IsTabStop="False" MaxLength="255" ></custom:ByTTextBox>
+                        <ComboBox IsEnabled="False" Grid.Column="5" Grid.Row="3" Grid.ColumnSpan="1" Name="_cbxNacionalidadMarcaTercero" Height="20" ItemsSource="{Binding}" DisplayMemberPath="Nacionalidad">
+                        </ComboBox>
                         <!--Fin Segunda Fila-->
 
                         <!--Tercera Fila-->
                         <Label Name="_lblDomicilioMarcaTercero" Grid.Column="0" Grid.Row="4" HorizontalAlignment="Right" VerticalAlignment="Center" >
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblDomicilio}"/>
                         </Label>
-                        <custom:ByTTextBox Text="{Binding Path=Domicilio}" IsEnabled="False" Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="6" 
-                                           Name="_txtDomicilioMarcaTercero" VerticalAlignment="Center" IsReadOnly="True" IsTabStop="False" MaxLength="255" ></custom:ByTTextBox>
+                        <custom:ByTTextBox Text="" IsEnabled="False" Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="6" 
+                                           Name="_txtDomicilioMarcaTercero" VerticalAlignment="Center"   MaxLength="255" ></custom:ByTTextBox>
                         <!--Fin Tercera Fila-->
 
                         <!--Filtro MarcaTercero-->
@@ -663,7 +663,7 @@
                         <Button Name="_btnCarpeta" Grid.Row="0" Grid.Column="2" VerticalAlignment="Bottom" Height="25" Width="90"
                     Click="_btnCarpeta_Click">
                             <TextBlock Name="_txbCarpeta" Text="{x:Static recurso:Etiquetas.btnCarpeta}"/>
-                        </Button>                    
+                        </Button>
 
                     </Grid>
                 </WrapPanel>

@@ -65,6 +65,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
                 Recursos.Ids.ConsultarFusiones);
         }
 
+
         /// <summary>
         /// Método que carga los datos iniciales a mostrar en la página
         /// </summary>
@@ -131,6 +132,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
                 Mouse.OverrideCursor = null;
             }
         }
+
 
         /// <summary>
         /// Método que realiza una consulta al servicio, con el fin de filtrar los datos que se muestran 
@@ -218,6 +220,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
             }
         }
 
+
         /// <summary>
         /// Método que invoca una nueva página "ConsultarFusion" y la instancia con el objeto seleccionado
         /// </summary>
@@ -230,7 +233,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
 
             if (this._ventana.FusionSeleccionada != null)
             {
-                this.Navegar(new GestionarFusion(this._ventana.FusionSeleccionada));
+                Fusion fusion = this._fusionServicios.ConsultarPorId((Fusion)this._ventana.FusionSeleccionada);
+                this.Navegar(new GestionarFusion(fusion));
             }
 
             #region trace
@@ -238,6 +242,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
                 logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
         }
+
 
         /// <summary>
         /// Método que ordena una columna
@@ -272,6 +277,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
                 logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
         }
+
 
         /// <summary>
         /// Método que Carga las Marcas registradas
@@ -329,6 +335,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
             }
         }
 
+
         /// <summary>
         /// Método que permite seleccionar marca
         /// </summary>
@@ -353,6 +360,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
             return retorno;
         }
 
+
         /// <summary>
         /// Método que limpia los campos de búsqueda
         /// </summary>
@@ -370,5 +378,6 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
             this._ventana.Resultados = null;
             this._ventana.TotalHits = "0";
         }
+
     }
 }

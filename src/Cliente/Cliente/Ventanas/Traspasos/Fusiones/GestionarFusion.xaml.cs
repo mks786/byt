@@ -208,9 +208,9 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Fusiones
                 this._txtIdApoderado.IsEnabled = value;
                 this._txtIdMarca.IsEnabled = value;
 
-                this._txtIdMarcaTercero.IsEnabled = value;
-                this._txtPaisMarcaTercero.IsEnabled = value;
-                this._txtNacionalidadMarcaTercero.IsEnabled = value;
+                this._txtNombreMarcaTercero.IsEnabled = value;
+                this._cbxPaisMarcaTercero.IsEnabled = value;
+                this._cbxNacionalidadMarcaTercero.IsEnabled = value;
                 //this._txtEstadoMarcaTercero.IsEnabled = value;
                 this._cbxCorporacion.IsEnabled = value;
                 this._txtDomicilioMarcaTercero.IsEnabled = value;
@@ -406,7 +406,46 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Fusiones
             get { return this._cbxCorporacion.SelectedItem; }
             set { this._cbxCorporacion.SelectedItem = value; }
         }
+
+
+        public string NombreMarcaTercero
+        {
+            get { return this._txtNombreMarcaTercero.Text;}
+            set { this._txtNombreMarcaTercero.Text = value; }
+        }
+
+        public string DomicilioMarcaTercero
+        {
+            get { return this._txtDomicilioMarcaTercero.Text; }
+            set { this._txtDomicilioMarcaTercero.Text = value; }
+        }
+
+        public object NacionalidadMarcaTercero
+        {
+            get { return this._cbxNacionalidadMarcaTercero.SelectedItem; }
+            set { this._cbxNacionalidadMarcaTercero.SelectedItem = value; }
+        }
+
+        public object NacionalidadesMarcaTercero
+        {
+            get { return this._cbxNacionalidadMarcaTercero.DataContext; }
+            set { this._cbxNacionalidadMarcaTercero.DataContext = value; }
+        }
+
+        public object PaisMarcaTercero
+        {
+            get { return this._cbxPaisMarcaTercero.SelectedItem; }
+            set { this._cbxPaisMarcaTercero.SelectedItem = value; }
+        }
+
+        public object PaisesMarcaTercero
+        {
+            get { return this._cbxPaisMarcaTercero.DataContext; }
+            set { this._cbxPaisMarcaTercero.DataContext = value; }
+        }
+
         #endregion
+
 
         public GestionarFusion(object fusion)
         {
@@ -414,6 +453,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Fusiones
             this._cargada = false;
             this._presentador = new PresentadorGestionarFusion(this, fusion);
         }
+
 
         /// <summary>
         /// Constructor para la consulta desde operaciones
@@ -428,6 +468,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Fusiones
             this._btnEliminar.Visibility = (System.Windows.Visibility)visibilidad;
             this._presentador = new PresentadorGestionarFusion(this, fusion);
         }
+
 
         public void PintarAsociado(string tipo)
         {
@@ -456,6 +497,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Fusiones
 
 
         }
+
+
         public void ActivarControlesAlAgregar()
         {
             this._btnEliminar.Visibility = System.Windows.Visibility.Collapsed;
@@ -465,13 +508,15 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Fusiones
 
             this._btnAnexo.Visibility = System.Windows.Visibility.Collapsed;
             this._btnCarpeta.Visibility = System.Windows.Visibility.Collapsed;
-            this._btnPlanilla.Visibility = System.Windows.Visibility.Collapsed;            
+            this._btnPlanilla.Visibility = System.Windows.Visibility.Collapsed;
         }
+
 
         private void _btnModificar_Click(object sender, RoutedEventArgs e)
         {
             this._presentador.Modificar();
         }
+
 
         private void _btnRegresar_Click(object sender, RoutedEventArgs e)
         {            
@@ -480,6 +525,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Fusiones
             else if (this.TextoBotonRegresar == Recursos.Etiquetas.btnCancelar)
                 this._presentador.Cancelar();
         }
+
 
         private void _btnEliminar_Click(object sender, RoutedEventArgs e)
         {
@@ -490,30 +536,36 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Fusiones
             }
         }
 
+
         private void _btnPlanilla_Click(object sender, RoutedEventArgs e)
         {
             this._presentador.IrImprimir(((Button)sender).Name);
         }
+
 
         private void _btnPlanillaVan_Click(object sender, RoutedEventArgs e)
         {
             this._presentador.IrImprimir(((Button)sender).Name);
         }
 
+
         private void _btnPlanillaVienen_Click(object sender, RoutedEventArgs e)
         {
             this._presentador.IrImprimir(((Button)sender).Name);
         }
+
 
         private void _btnAnexo_Click(object sender, RoutedEventArgs e)
         {
             this._presentador.IrImprimir(((Button)sender).Name);
         }
 
+
         private void _btnCarpeta_Click(object sender, RoutedEventArgs e)
         {
             this._presentador.IrImprimir(((Button)sender).Name);
         }
+
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
@@ -523,6 +575,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Fusiones
                 EstaCargada = true;
             }
         }
+
 
         public void ConvertirEnteroMinimoABlanco()
     {           
@@ -547,6 +600,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Fusiones
                     this.IdMarca = "";
             }    
         }
+
 
         #region Eventos Marcas
 
@@ -631,6 +685,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Fusiones
 
         #endregion
 
+
         #region Eventos Interesado Entre
 
         private void _btnConsultarInteresadoEntre_Click(object sender, RoutedEventArgs e)
@@ -672,8 +727,6 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Fusiones
             //escondo el filtro de InteresadoSobreviviente
             GestionarVisibilidadDatosDeInteresadoSobreviviente(Visibility.Visible);
             GestionarVisibilidadFiltroInteresadoSobreviviente(Visibility.Collapsed);
-
-            
         }
 
         private void _txtInteresadoEntreFiltrar_GotFocus(object sender, RoutedEventArgs e)
@@ -700,9 +753,9 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Fusiones
             this._txtCiudadInteresadoEntre.Visibility = (System.Windows.Visibility)value;
             this._txtDomicilioMarcaTercero.Visibility = (System.Windows.Visibility)value;
             
-            this._txtPaisMarcaTercero.Visibility = (System.Windows.Visibility)value;
-            this._txtNacionalidadMarcaTercero.Visibility = (System.Windows.Visibility)value;
-            this._txtIdMarcaTercero.Visibility = (System.Windows.Visibility)value;
+            this._cbxPaisMarcaTercero.Visibility = (System.Windows.Visibility)value;
+            this._cbxNacionalidadMarcaTercero.Visibility = (System.Windows.Visibility)value;
+            this._txtNombreMarcaTercero.Visibility = (System.Windows.Visibility)value;
             //this._txtEstadoMarcaTercero.Visibility = (System.Windows.Visibility)value;
             this._lblY.Visibility = (System.Windows.Visibility)value;
             this._lblEstadoMarcaTercero.Visibility = (System.Windows.Visibility)value;
@@ -710,11 +763,10 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Fusiones
             this._lblPaisMarcaTercero.Visibility = (System.Windows.Visibility)value;
             this._lblNacionalidadMarcaTercero.Visibility = (System.Windows.Visibility)value;
             this._lblNombreMarcaTercero.Visibility = (System.Windows.Visibility)value;
-            
-
         }
 
         #endregion
+
 
         #region Eventos Interesado Sobreviviente
 
@@ -804,6 +856,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Fusiones
 
         #endregion
 
+
         #region Eventos Agente Apoderado
 
         private void _btnConsultarApoderado_Click(object sender, RoutedEventArgs e)
@@ -889,6 +942,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Fusiones
         }
 
         #endregion
+
 
         #region Poderes
 
@@ -996,5 +1050,6 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Fusiones
         }
 
         #endregion
+
     }
 }
