@@ -19,6 +19,7 @@ using System.Data;
 using CrystalDecisions.Shared;
 using System.Threading;
 using System.Globalization;
+using System.Diagnostics;
 
 namespace Trascend.Bolet.Cliente.Presentadores.Reportes
 {
@@ -209,8 +210,15 @@ namespace Trascend.Bolet.Cliente.Presentadores.Reportes
                     DataSet ds = new DataSet();
                     ds.Tables.Add(datos);
                     reporte.SetDataSource(datos);
-                    reporte.PrintToPrinter(1, false, 1, 0);
+                    //reporte.PrintToPrinter(1, false, 1, 0);
+
                     this._ventana.MensajeExito(Recursos.MensajesConElUsuario.ExitosoReporte);
+                    string ruta = Environment.CurrentDirectory + "\\Reportes\\reporteCarta14.pdf";
+                    reporte.ExportToDisk(ExportFormatType.PortableDocFormat, ruta);
+                    Process.Start(Environment.CurrentDirectory + "\\Reportes\\reporteCarta14.pdf");
+
+                    reporte.Dispose();
+                    reporte.Close();
                 }
 
 
@@ -294,11 +302,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Reportes
             string retorno = "";
             if (((Idioma)this._ventana.Idioma).Id.Equals("ES"))
 
-                retorno = "../../Reportes/Carta14CR.rpt";
+                retorno = Environment.CurrentDirectory + ConfigurationManager.AppSettings["rutaCarta14"];
 
             else if (((Idioma)this._ventana.Idioma).Id.Equals("IN"))
-
-                retorno = "../../Reportes/Carta14CREN.rpt";
+                
+                retorno = Environment.CurrentDirectory + ConfigurationManager.AppSettings["rutaCarta14EN"];
 
             return retorno;
 

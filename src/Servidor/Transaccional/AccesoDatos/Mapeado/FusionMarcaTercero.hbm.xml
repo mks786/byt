@@ -4,7 +4,12 @@
                    namespace="Trascend.Bolet.ObjetosComunes.Entidades">
 
   <class name="FusionMarcaTercero" table="MYP_MTERCEROS">
-    <id name="Id" column="CTERCERO" type="int"/>
+    
+    <composite-id>
+      <key-property name="Id" column="CTERCERO"/>
+      <key-many-to-one name="Fusion" column="CFUSION" class="Fusion"/>
+    </composite-id>
+    
     <property name="Domicilio" column="XDOMICILIO" type="string"/>
     <property name="Nombre" column="XNOMBRE" type="string"/>
 
@@ -19,11 +24,6 @@
     <many-to-one name="Estado" class="Estado" lazy="false">
       <column name="CESTADO"/>
     </many-to-one>
-
-    <many-to-one name="Fusion" class="Fusion" lazy="false">
-      <column name="CFUSION"/>
-    </many-to-one>
-
 
   </class>
 </hibernate-mapping>

@@ -19,6 +19,7 @@ using System.Data;
 using CrystalDecisions.Shared;
 using System.Threading;
 using System.Globalization;
+using System.Diagnostics;
 
 namespace Trascend.Bolet.Cliente.Presentadores.Reportes
 {
@@ -191,11 +192,19 @@ namespace Trascend.Bolet.Cliente.Presentadores.Reportes
 
                     //reporte.PrintOptions.PrinterName = ConfigurationManager.AppSettings["ImpresoraReportes"];
 
+
                     DataSet ds = new DataSet();
                     ds.Tables.Add(datos);
                     reporte.SetDataSource(datos);
-                    reporte.PrintToPrinter(1, false, 1, 0);
+                    //reporte.PrintToPrinter(1, false, 1, 0);
+
                     this._ventana.MensajeExito(Recursos.MensajesConElUsuario.ExitosoReporte);
+                    string ruta = Environment.CurrentDirectory + "\\Reportes\\reporteCarta16.pdf";
+                    reporte.ExportToDisk(ExportFormatType.PortableDocFormat, ruta);
+                    Process.Start(Environment.CurrentDirectory + "\\Reportes\\reporteCarta16.pdf");
+
+                    reporte.Dispose();
+                    reporte.Close();
                 }
 
 
@@ -205,6 +214,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Reportes
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
                     logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
+            }
+            catch (CrystalReportsException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(ex.Message, true);
             }
             catch (ApplicationException ex)
             {
@@ -261,12 +275,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.Reportes
         {
             string retorno = "";
             if (((Idioma)this._ventana.Idioma).Id.Equals("ES"))
-
-                retorno = "../../Reportes/Carta16CR.rpt";
+                
+                retorno = Environment.CurrentDirectory + ConfigurationManager.AppSettings["rutaCarta16"];
 
             else if (((Idioma)this._ventana.Idioma).Id.Equals("IN"))
-
-                retorno = "../../Reportes/Carta16CREN.rpt";
+                
+                retorno = Environment.CurrentDirectory + ConfigurationManager.AppSettings["rutaCarta16EN"];
 
             return retorno;
 

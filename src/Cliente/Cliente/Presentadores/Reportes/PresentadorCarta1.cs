@@ -19,6 +19,7 @@ using System.Data;
 using CrystalDecisions.Shared;
 using System.Threading;
 using System.Globalization;
+using System.Diagnostics;
 
 namespace Trascend.Bolet.Cliente.Presentadores.Reportes
 {
@@ -206,14 +207,19 @@ namespace Trascend.Bolet.Cliente.Presentadores.Reportes
 
                     //reporte.PrintOptions.PrinterName = ConfigurationManager.AppSettings["ImpresoraReportes"];
 
+
                     DataSet ds = new DataSet();
                     ds.Tables.Add(datos);
                     reporte.SetDataSource(datos);
-                    reporte.PrintToPrinter(1, false, 1, 0);
+                    //reporte.PrintToPrinter(1, false, 1, 0);
+
                     this._ventana.MensajeExito(Recursos.MensajesConElUsuario.ExitosoReporte);
-                }
-                else
-                {
+                    string ruta = Environment.CurrentDirectory + "\\Reportes\\reporteCarta1.pdf";
+                    reporte.ExportToDisk(ExportFormatType.PortableDocFormat, ruta);
+                    Process.Start(Environment.CurrentDirectory + "\\Reportes\\reporteCarta1.pdf");
+
+                    reporte.Dispose();
+                    reporte.Close();
                 }
 
                 Mouse.OverrideCursor = null;
@@ -222,6 +228,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Reportes
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
                     logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
+            }
+            catch (CrystalReportsException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(ex.Message, true);
             }
             catch (ApplicationException ex)
             {
@@ -245,7 +256,6 @@ namespace Trascend.Bolet.Cliente.Presentadores.Reportes
             }
         }
 
-
         /// <summary>
         /// Método que se encarga de validar que la ventana este correcta para su uso
         /// </summary>
@@ -256,7 +266,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Reportes
             //realizar validación de la ventana
             bool retorno = true;
 
-            
+
             if (((Idioma)this._ventana.Idioma).Id.Equals("NGN"))
             {
                 retorno = false;
@@ -298,11 +308,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Reportes
             string retorno = "";
             if (((Idioma)this._ventana.Idioma).Id.Equals("ES"))
 
-                retorno = "../../Reportes/Carta1CR.rpt";
+                retorno = Environment.CurrentDirectory + ConfigurationManager.AppSettings["rutaCarta1"];
 
             else if (((Idioma)this._ventana.Idioma).Id.Equals("IN"))
 
-                retorno = "../../Reportes/Carta1CREN.rpt";
+                retorno = Environment.CurrentDirectory + ConfigurationManager.AppSettings["rutaCarta1EN"];
 
             return retorno;
 
@@ -548,7 +558,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Reportes
             retorno.ClaseMarca = ((Marca)this._ventana.Marca).Internacional != null ?
                 ((Marca)this._ventana.Marca).Internacional.Id.ToString() : string.Empty;
 
-            retorno.FechaRenovacion = null != ((Marca)this._ventana.Marca).FechaRenovacion && !((Marca)this._ventana.Marca).FechaRenovacion.Equals(string.Empty) ? 
+            retorno.FechaRenovacion = null != ((Marca)this._ventana.Marca).FechaRenovacion && !((Marca)this._ventana.Marca).FechaRenovacion.Equals(string.Empty) ?
                 ((Marca)this._ventana.Marca).FechaRenovacion.Value.ToShortDateString() : string.Empty;
 
             retorno.Interesado = ((Interesado)this._ventana.Interesado) != null ?
@@ -582,7 +592,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Reportes
                         StructReporteCarta1 estructura = new StructReporteCarta1();
 
 
-                        DateTime fechaAux = new DateTime(int.Parse(this._ventana.Fecha.Substring(6,4)),
+                        DateTime fechaAux = new DateTime(int.Parse(this._ventana.Fecha.Substring(6, 4)),
                            int.Parse(this._ventana.Fecha.Substring(3, 2)),
                             int.Parse(this._ventana.Fecha.Substring(0, 2)));
 
@@ -594,8 +604,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Reportes
                         {
                             Thread.CurrentThread.CurrentCulture = new CultureInfo("en-US");
                         }
-                        
-                        
+
+
                         estructura.FechaCarta = fechaAux.ToLongDateString();
 
                         estructura.Marca = !marca.Descripcion.Equals(string.Empty) ?
@@ -629,7 +639,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Reportes
             {
                 logger.Error(ex.Message);
             }
-            
+
 
             return retorno;
         }

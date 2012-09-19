@@ -40,6 +40,49 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         #endregion
 
 
+        #region Overrides
+
+
+        /// <summary>
+        /// Sobreescritura del Método Equals debido a que la clase tiene id compuesto
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        public override bool Equals(object obj)
+        {
+            if (obj == null)
+                return false;
+            var t = obj as FusionMarcaTercero;
+            if (t == null)
+                return false;
+            if ((Id == (t.Id)) && (Fusion.Id == (t.Fusion.Id)))
+                return true;
+            return false;
+
+        }
+
+        /// <summary>
+        /// Sobreescritura del Método GetHashCode debido a que la clase tiene id compuesto
+        /// </summary>
+        /// <returns></returns>
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
+        }
+
+        /// <summary>
+        /// Sobreescritura del Método ToString debido a que la clase tiene id compuesto
+        /// </summary>
+        /// <returns></returns>
+        public override string ToString()
+        {
+            return base.ToString();
+        }
+
+
+        #endregion
+
+
         #region Propiedades
 
         /// <summary>

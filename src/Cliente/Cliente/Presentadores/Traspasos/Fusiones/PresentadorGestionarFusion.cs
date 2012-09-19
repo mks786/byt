@@ -188,6 +188,15 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
 
                 ActualizarTitulo();
 
+                IList<Estado> estados = this._estadoServicios.ConsultarTodos();
+                this._ventana.Corporaciones = estados;
+
+                IList<Pais> paisesMT = this._paisServicios.ConsultarTodos();
+                this._ventana.PaisesMarcaTercero = paisesMT;
+
+                IList<Pais> nacionalidadesMT = this._paisServicios.ConsultarTodos();
+                this._ventana.NacionalidadesMarcaTercero = nacionalidadesMT;
+
                 if (_agregar == false)
                 {
 
@@ -202,16 +211,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
                     this._ventana.AgenteApoderado = ((Fusion)fusion).Agente;
                     this._ventana.Poder = fusion.Poder;
 
-                    IList<Estado> estados = this._estadoServicios.ConsultarTodos();
-                    this._ventana.Corporaciones = estados;
                     this._ventana.Corporacion = this.BuscarEstado(estados,fusion.FusionMarcaTercero.Estado);
 
-                    IList<Pais> paisesMT = this._paisServicios.ConsultarTodos();
-                    this._ventana.PaisesMarcaTercero = paisesMT;
                     this._ventana.PaisMarcaTercero = this.BuscarPais(paisesMT, fusion.FusionMarcaTercero.Pais);
 
-                    IList<Pais> nacionalidadesMT = this._paisServicios.ConsultarTodos();
-                    this._ventana.NacionalidadesMarcaTercero = nacionalidadesMT;
                     this._ventana.NacionalidadMarcaTercero = this.BuscarPais(nacionalidadesMT, fusion.FusionMarcaTercero.Nacionalidad);
 
                     CargarMarca();
@@ -733,6 +736,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
         {
             Fusion retorno = fusion;
 
+            retorno.FusionMarcaTercero = null != retorno.FusionMarcaTercero ? retorno.FusionMarcaTercero : new FusionMarcaTercero();
             retorno.FusionMarcaTercero.Domicilio = this._ventana.DomicilioMarcaTercero;
             retorno.FusionMarcaTercero.Pais = ((Pais)this._ventana.PaisMarcaTercero);
             retorno.FusionMarcaTercero.Nacionalidad = (Pais)this._ventana.NacionalidadMarcaTercero;
