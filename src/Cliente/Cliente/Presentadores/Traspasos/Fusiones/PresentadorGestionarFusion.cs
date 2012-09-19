@@ -732,10 +732,23 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
             }
         }
 
+
+        /// <summary>
+        /// Toma los valores de la fusion Tercero
+        /// </summary>
+        /// <param name="fusion"></param>
+        /// <returns></returns>
         private Fusion TomarValoresFusionMarcaTercero(Fusion fusion)
         {
             Fusion retorno = fusion;
 
+            if (null == retorno.FusionMarcaTercero)
+            {
+                retorno.FusionMarcaTercero = new FusionMarcaTercero();
+                retorno.FusionMarcaTercero.Id = 0;
+            }
+
+            retorno.FusionMarcaTercero.Fusion = new Fusion(retorno.Id);
             retorno.FusionMarcaTercero = null != retorno.FusionMarcaTercero ? retorno.FusionMarcaTercero : new FusionMarcaTercero();
             retorno.FusionMarcaTercero.Domicilio = this._ventana.DomicilioMarcaTercero;
             retorno.FusionMarcaTercero.Pais = ((Pais)this._ventana.PaisMarcaTercero);

@@ -96,6 +96,7 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
                     comando.Ejecutar();
                     comandoOperacion.Ejecutar();
 
+                    fusion.FusionMarcaTercero.Fusion.Id = fusion.Id;
                     ComandoBase<bool> comandoFMT = FabricaComandosFusionMarcaTercero.ObtenerComandoInsertarOModificar(fusion.FusionMarcaTercero);
                     comandoFMT.Ejecutar();
 

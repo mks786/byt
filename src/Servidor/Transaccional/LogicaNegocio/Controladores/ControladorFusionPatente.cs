@@ -95,6 +95,9 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
                     comando.Ejecutar();
                     comandoOperacion.Ejecutar();
 
+                    ComandoBase<bool> comandoFMT = FabricaComandosFusionPatenteTercero.ObtenerComandoInsertarOModificar(fusion.FusionPatenteTercero);
+                    comandoFMT.Ejecutar();
+
                     ComandoBase<Patente> comandoMarca = FabricaComandosPatente.ObtenerComandoConsultarPatenteConTodo(fusion.Patente);
                     comandoMarca.Ejecutar();
                     Patente patente = comandoMarca.Receptor.ObjetoAlmacenado;
