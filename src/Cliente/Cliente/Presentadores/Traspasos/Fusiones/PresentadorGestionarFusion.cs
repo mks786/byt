@@ -81,8 +81,6 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
                     _agregar = false;
 
                     this._ventana.DomicilioMarcaTercero = ((Fusion)fusion).FusionMarcaTercero.Domicilio;
-                    this._ventana.PaisMarcaTercero = ((Fusion)fusion).FusionMarcaTercero.Pais.NombreEspanol;
-                    this._ventana.NacionalidadMarcaTercero = ((Fusion)fusion).FusionMarcaTercero.Nacionalidad.NombreEspanol;
                     this._ventana.NombreMarcaTercero = ((Fusion)fusion).FusionMarcaTercero.Nombre;
                 }
                 else
@@ -211,11 +209,14 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
                     this._ventana.AgenteApoderado = ((Fusion)fusion).Agente;
                     this._ventana.Poder = fusion.Poder;
 
-                    this._ventana.Corporacion = this.BuscarEstado(estados,fusion.FusionMarcaTercero.Estado);
+                    if (null != fusion.FusionMarcaTercero.Estado)
+                        this._ventana.Corporacion = this.BuscarEstado(estados, fusion.FusionMarcaTercero.Estado);
 
-                    this._ventana.PaisMarcaTercero = this.BuscarPais(paisesMT, fusion.FusionMarcaTercero.Pais);
+                    if (null != fusion.FusionMarcaTercero.Pais)
+                        this._ventana.PaisMarcaTercero = this.BuscarPais(paisesMT, fusion.FusionMarcaTercero.Pais);
 
-                    this._ventana.NacionalidadMarcaTercero = this.BuscarPais(nacionalidadesMT, fusion.FusionMarcaTercero.Nacionalidad);
+                    if (null != fusion.FusionMarcaTercero.Nacionalidad)
+                        this._ventana.NacionalidadMarcaTercero = this.BuscarPais(nacionalidadesMT, fusion.FusionMarcaTercero.Nacionalidad);
 
                     CargarMarca();
 
@@ -754,6 +755,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
             retorno.FusionMarcaTercero.Pais = ((Pais)this._ventana.PaisMarcaTercero);
             retorno.FusionMarcaTercero.Nacionalidad = (Pais)this._ventana.NacionalidadMarcaTercero;
             retorno.FusionMarcaTercero.Nombre = this._ventana.NombreMarcaTercero;
+            retorno.FusionMarcaTercero.Estado = (Estado)this._ventana.Corporacion;
 
             return retorno;
         }
@@ -2103,7 +2105,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
                 this._poderesSobreviviente = this._poderServicios.ConsultarPoderesPorInteresado(fusion.InteresadoSobreviviente);
 
             if (fusion.Agente != null)
-                this._poderesApoderado = this._poderServicios.ConsultarPoderesPorAgente(fusion.Agente);
+                this._poderesApoderado = this._poderServicios.ObtenerPoderesEntreAgenteEInteresado(fusion.Agente, fusion.InteresadoSobreviviente);
 
             #region trace
             if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))

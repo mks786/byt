@@ -114,6 +114,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.FusionesPatentes
 
         #endregion
 
+
         /// <summary>
         /// Constructor predeterminado
         /// </summary>
@@ -124,10 +125,12 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.FusionesPatentes
             this._presentador = new PresentadorConsultarFusionesPatentes(this);
         }
 
+
         private void _btnCancelar_Click(object sender, RoutedEventArgs e)
         {
             this._presentador.Cancelar();
         }
+
 
         private void _btnConsultar_Click(object sender, RoutedEventArgs e)
         {
@@ -137,15 +140,18 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.FusionesPatentes
             validarCamposVacios();
         }
 
+
         private void _lstResultados_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             this._presentador.IrConsultarFusion();
         }
 
+
         private void _Ordenar_Click(object sender, RoutedEventArgs e)
         {
             this._presentador.OrdenarColumna(sender as GridViewColumnHeader);
         }
+
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
@@ -158,10 +164,12 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.FusionesPatentes
                 this._presentador.ActualizarTitulo();
         }
 
+
         private void _btnConsultarPatente_Click(object sender, RoutedEventArgs e)
         {
             this._presentador.BuscarPatente();
         }
+
 
         private void _btnConsultarPatenteFocus(object sender, RoutedEventArgs e)
         {
@@ -170,12 +178,14 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.FusionesPatentes
             //this._btnConsultarInteresado.IsDefault = false;
         }
 
+
         private void _btnConsultarFocus(object sender, RoutedEventArgs e)
         {
             this._btnConsultar.IsDefault = true;
             this._btnConsultarPatente.IsDefault = false;
             //this._btnConsultarInteresado.IsDefault = false;
         }
+
 
         /// <summary>
         /// Método que se encarga de posicionar el cursor en los campos del filto
@@ -211,16 +221,19 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.FusionesPatentes
                 this._txtId.Focus();
         }
 
+
         private void _dpkFecha_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
         {
 
         }
+
 
         private void _txtPatenteNombre_GotFocus(object sender, RoutedEventArgs e)
         {
             GestionarVisibilidadDatosDePatente(Visibility.Collapsed);
             GestionarVisibilidadFiltroPatente(Visibility.Visible);
         }
+
 
         private void _lstPatentes_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
@@ -230,6 +243,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.FusionesPatentes
                 GestionarVisibilidadFiltroPatente(Visibility.Collapsed);
             }
         }
+
 
         private void GestionarVisibilidadFiltroPatente(object value)
         {
@@ -241,10 +255,12 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.FusionesPatentes
             this._lblNombre.Visibility = (System.Windows.Visibility)value;
         }
 
+
         private void GestionarVisibilidadDatosDePatente(object value)
         {
             this._txtPatenteNombre.Visibility = (System.Windows.Visibility)value;
         }
+
 
         private void _btnLimpiarCampos_Click(object sender, RoutedEventArgs e)
         {

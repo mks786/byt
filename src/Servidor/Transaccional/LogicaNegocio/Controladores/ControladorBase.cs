@@ -78,7 +78,7 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
                 {
                     EliminarUsuarioXML(usuario);
                     _usuarios.Remove(usuario);
-                    System.Console.WriteLine("Usuario "+usuario.NombreCompleto+" eliminado: " +usuario.Departamento.Descripcion+", "+ usuario.Hash);
+                    System.Console.WriteLine("Usuario eliminado: "+ usuario.Hash);
                     break;
                 }
         }

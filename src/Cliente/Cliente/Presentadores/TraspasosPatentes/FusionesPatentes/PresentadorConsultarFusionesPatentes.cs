@@ -65,6 +65,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.FusionesPatente
                 Recursos.Ids.ConsultarFusionPatente);
         }
 
+
         /// <summary>
         /// Método que carga los datos iniciales a mostrar en la página
         /// </summary>
@@ -131,6 +132,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.FusionesPatente
                 Mouse.OverrideCursor = null;
             }
         }
+
 
         /// <summary>
         /// Método que realiza una consulta al servicio, con el fin de filtrar los datos que se muestran 
@@ -218,6 +220,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.FusionesPatente
             }
         }
 
+
         /// <summary>
         /// Método que invoca una nueva página "ConsultarFusion" y la instancia con el objeto seleccionado
         /// </summary>
@@ -230,7 +233,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.FusionesPatente
 
             if (this._ventana.FusionSeleccionada != null)
             {
-                this.Navegar(new GestionarFusionPatentes(this._ventana.FusionSeleccionada));
+                FusionPatente fusion = this._fusionServicios.ConsultarPorId((FusionPatente)this._ventana.FusionSeleccionada);
+                this.Navegar(new GestionarFusionPatentes(fusion));
             }
 
             #region trace
@@ -238,6 +242,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.FusionesPatente
                 logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
         }
+
 
         /// <summary>
         /// Método que ordena una columna
@@ -272,6 +277,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.FusionesPatente
                 logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
         }
+
 
         /// <summary>
         /// Método que Carga las Patentes registradas
@@ -329,6 +335,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.FusionesPatente
             }
         }
 
+
         /// <summary>
         /// Método que permite seleccionar patente
         /// </summary>
@@ -352,6 +359,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.FusionesPatente
 
             return retorno;
         }
+
 
         /// <summary>
         /// Método que limpia los campos de búsqueda

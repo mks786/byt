@@ -55,7 +55,32 @@ namespace Trascend.Bolet.Servicios.Implementacion
         /// <returns></returns>
         public FusionPatente ConsultarPorId(FusionPatente entidad)
         {
-            throw new NotImplementedException();
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                FusionPatente fusion = ControladorFusionPatente.ConsultarPorId(entidad);
+
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Saliendo del Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+                return fusion;
+            }
+            catch (ApplicationException ex)
+            {
+                logger.Error(ex.Message);
+                throw ex;
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                throw new ApplicationException(Errores.MensajesAlServidor.ErrorInesperadoServidor);
+            }
         }
 
 

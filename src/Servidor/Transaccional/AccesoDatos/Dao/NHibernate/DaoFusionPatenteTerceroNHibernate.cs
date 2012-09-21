@@ -12,7 +12,7 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
 
-        public FusionPatenteTercero ConsultarFusionMarcaTerceroPorFusion(Fusion fusion)
+        public FusionPatenteTercero ConsultarFusionPatenteTerceroPorFusion(FusionPatente fusion)
         {
             FusionPatenteTercero retorno = new FusionPatenteTercero();
             try

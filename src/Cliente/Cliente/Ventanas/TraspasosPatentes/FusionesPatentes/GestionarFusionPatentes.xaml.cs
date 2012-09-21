@@ -195,10 +195,10 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.FusionesPatentes
                 this._txtPaisInteresadoEntre.IsEnabled = value;
                 this._txtCiudadInteresadoEntre.IsEnabled = value;
 
-                this._txtIdPatenteTercero.IsEnabled = value;
-                this._txtPaisPatenteTercero.IsEnabled = value;
-                this._txtNacionalidadPatenteTercero.IsEnabled = value;
-                //this._txtEstadoPatenteTercero.IsEnabled = value;
+                this._txtIdPatenteTerceroFiltrar.IsEnabled = value;
+                this._cbxPaisPatenteTercero.IsEnabled = value;
+                this._cbxNacionalidadPatenteTercero.IsEnabled = value;
+                this._txtNombrePatenteTercero.IsEnabled = value;
                 this._cbxCorporacion.IsEnabled = value;
                 this._txtDomicilioPatenteTercero.IsEnabled = value;
 
@@ -398,6 +398,42 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.FusionesPatentes
         {
             get { return this._cbxCorporacion.SelectedItem; }
             set { this._cbxCorporacion.SelectedItem = value; }
+        }
+
+        public string NombrePatenteTercero
+        {
+            get { return this._txtNombrePatenteTercero.Text; }
+            set { this._txtNombrePatenteTercero.Text = value; }
+        }
+
+        public string DomicilioPatenteTercero
+        {
+            get { return this._txtDomicilioPatenteTercero.Text; }
+            set { this._txtDomicilioPatenteTercero.Text = value; }
+        }
+
+        public object NacionalidadPatenteTercero
+        {
+            get { return this._cbxNacionalidadPatenteTercero.SelectedItem; }
+            set { this._cbxNacionalidadPatenteTercero.SelectedItem = value; }
+        }
+
+        public object NacionalidadesPatenteTercero
+        {
+            get { return this._cbxNacionalidadPatenteTercero.DataContext; }
+            set { this._cbxNacionalidadPatenteTercero.DataContext = value; }
+        }
+
+        public object PaisPatenteTercero
+        {
+            get { return this._cbxPaisPatenteTercero.SelectedItem; }
+            set { this._cbxPaisPatenteTercero.SelectedItem = value; }
+        }
+
+        public object PaisesPatenteTercero
+        {
+            get { return this._cbxPaisPatenteTercero.DataContext; }
+            set { this._cbxPaisPatenteTercero.DataContext = value; }
         }
         #endregion
 
@@ -693,9 +729,9 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.FusionesPatentes
             this._txtCiudadInteresadoEntre.Visibility = (System.Windows.Visibility)value;
             this._txtDomicilioPatenteTercero.Visibility = (System.Windows.Visibility)value;
             
-            this._txtPaisPatenteTercero.Visibility = (System.Windows.Visibility)value;
-            this._txtNacionalidadPatenteTercero.Visibility = (System.Windows.Visibility)value;
-            this._txtIdPatenteTercero.Visibility = (System.Windows.Visibility)value;
+            this._cbxPaisPatenteTercero.Visibility = (System.Windows.Visibility)value;
+            this._cbxNacionalidadPatenteTercero.Visibility = (System.Windows.Visibility)value;
+            this._txtIdPatenteTerceroFiltrar.Visibility = (System.Windows.Visibility)value;
             //this._txtEstadoPatenteTercero.Visibility = (System.Windows.Visibility)value;
             this._cbxCorporacion.Visibility = (System.Windows.Visibility)value;
             this._lblY.Visibility = (System.Windows.Visibility)value;

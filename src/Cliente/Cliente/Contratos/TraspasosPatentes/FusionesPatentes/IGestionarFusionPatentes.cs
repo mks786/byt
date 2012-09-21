@@ -140,5 +140,17 @@ namespace Trascend.Bolet.Cliente.Contratos.TraspasosPatentes.FusionesPatentes
         object Corporaciones { get; set; }
 
         object Corporacion { get; set; }
+
+        string NombrePatenteTercero { get; set; }
+
+        string DomicilioPatenteTercero { get; set; }
+
+        object NacionalidadPatenteTercero { get; set; }
+
+        object PaisPatenteTercero { get; set; }
+
+        object NacionalidadesPatenteTercero { get; set; }
+
+        object PaisesPatenteTercero { get; set; }
     }
 }

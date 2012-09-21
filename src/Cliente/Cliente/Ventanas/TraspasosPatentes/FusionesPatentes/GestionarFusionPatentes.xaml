@@ -260,48 +260,50 @@
                         <Label Name="_lblNombrePatenteTercero" Grid.Column="0" Grid.Row="2" HorizontalAlignment="Right" VerticalAlignment="Center" >
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblNombre}"/>
                         </Label>
-                        <custom:ByTTextBox Text="" IsEnabled="False" Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="6"  Name="_txtIdPatenteTercero"
-                                           VerticalAlignment="Center" IsReadOnly="True" IsTabStop="False"  MaxLength="255" ></custom:ByTTextBox>
+                        <custom:ByTTextBox Text="" IsEnabled="False" Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="6"  Name="_txtNombrePatenteTercero" 
+                                           VerticalAlignment="Center"   MaxLength="255" ></custom:ByTTextBox>
                         <!--Fin Primera Fila-->
 
                         <!--Segunda Fila-->
                         <Label Name="_lblEstadoPatenteTercero" Grid.Column="0" Grid.Row="3" HorizontalAlignment="Right" VerticalAlignment="Center" >
-                            <TextBlock Text="{x:Static recurso:Etiquetas.lblEstado}"/>
+                            <TextBlock Text="{x:Static recurso:Etiquetas.lblCorp}"/>
                         </Label>
-                        <ComboBox Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="1" Name="_cbxCorporacion" Height="20" ItemsSource="{Binding}" DisplayMemberPath="Descripcion">
+                        <ComboBox IsEnabled="False" Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="1" Name="_cbxCorporacion" Height="20" ItemsSource="{Binding}" DisplayMemberPath="Descripcion">
                         </ComboBox>
+                        <!--<custom:ByTTextBox Text="{Binding Path=Estado.Descripcion}" IsEnabled="False" Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="1" 
+                                           Name="_txtEstadoMarcaTercero" VerticalAlignment="Center" MaxLength="255" IsReadOnly="True" ></custom:ByTTextBox>-->
 
                         <Label Name="_lblPaisPatenteTercero" Grid.Column="2" Grid.Row="3" HorizontalAlignment="Right" VerticalAlignment="Center" >
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblPais}"/>
                         </Label>
-                        <custom:ByTTextBox Text="{Binding Path=Pais.NombreEspanol}" IsEnabled="False" Grid.Column="3" Grid.Row="3" Grid.ColumnSpan="1"
-                                           Name="_txtPaisPatenteTercero" VerticalAlignment="Center" IsReadOnly="True" IsTabStop="False"  MaxLength="255" ></custom:ByTTextBox>
+                        <ComboBox IsEnabled="False" Grid.Column="3" Grid.Row="3" Grid.ColumnSpan="1" Name="_cbxPaisPatenteTercero" Height="20" ItemsSource="{Binding}" DisplayMemberPath="NombreEspanol">
+                        </ComboBox>
 
                         <Label Name="_lblNacionalidadPatenteTercero" Grid.Column="4" Grid.Row="3" HorizontalAlignment="Right" VerticalAlignment="Center" >
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblNacionalidad}"/>
                         </Label>
-                        <custom:ByTTextBox Text="{Binding Path=Nacionalidad.Nacionalidad}" IsEnabled="False" Grid.Column="5" Grid.Row="3" Grid.ColumnSpan="1"
-                                           Name="_txtNacionalidadPatenteTercero" VerticalAlignment="Center" IsReadOnly="True" IsTabStop="False"  MaxLength="255" ></custom:ByTTextBox>
+                        <ComboBox IsEnabled="False" Grid.Column="5" Grid.Row="3" Grid.ColumnSpan="1" Name="_cbxNacionalidadPatenteTercero" Height="20" ItemsSource="{Binding}" DisplayMemberPath="Nacionalidad">
+                        </ComboBox>
                         <!--Fin Segunda Fila-->
 
                         <!--Tercera Fila-->
                         <Label Name="_lblDomicilioPatenteTercero" Grid.Column="0" Grid.Row="4" HorizontalAlignment="Right" VerticalAlignment="Center" >
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblDomicilio}"/>
                         </Label>
-                        <custom:ByTTextBox Text="{Binding Path=Domicilio}" IsEnabled="False" Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="6" 
-                                           Name="_txtDomicilioPatenteTercero" VerticalAlignment="Center" IsReadOnly="True" IsTabStop="False"  MaxLength="255" ></custom:ByTTextBox>
+                        <custom:ByTTextBox Text="" IsEnabled="False" Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="6" 
+                                           Name="_txtDomicilioPatenteTercero" VerticalAlignment="Center"   MaxLength="255" ></custom:ByTTextBox>
                         <!--Fin Tercera Fila-->
 
-                        <!--Filtro PatenteTercero-->
+                        <!--Filtro MarcaTercero-->
                         <!--Primera Fila-->
                         <custom:ByTTextBox IsEnabled="False" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2"  Name="_txtIdPatenteTerceroFiltrar" VerticalAlignment="Center" 
                          MaxLength="255" Visibility="Collapsed" SoloNumero="True"></custom:ByTTextBox>
 
                         <!--Fin Primera Fila-->
 
-                        <!--Filtro PatenteTercero-->
+                        <!--Filtro MarcaTercero-->
 
-                        <!--Fin Datos Patente Tercero-->
+                        <!--Fin Datos Marca Tercero-->
                     </Grid>
 
 

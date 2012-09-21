@@ -48,6 +48,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.FusionesPatente
         private IStatusWebServicios _statusWebServicios;
         private IFusionPatenteServicios _fusionesServicios;
         private IPlanillaServicios _planillaServicios;
+        private IEstadoServicios _estadoServicios;
 
         private IList<Asociado> _asociados;
         private IList<Interesado> _interesados;
@@ -78,6 +79,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.FusionesPatente
                 {
                     this._ventana.FusionPatente = fusion;
                     _agregar = false;
+
+                    this._ventana.DomicilioPatenteTercero = ((FusionPatente)fusion).FusionPatenteTercero.Domicilio;
+                    this._ventana.NombrePatenteTercero = ((FusionPatente)fusion).FusionPatenteTercero.Nombre;
                 }
                 else
                 {
@@ -140,6 +144,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.FusionesPatente
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["FusionPatenteServicios"]);
                 this._planillaServicios = (IPlanillaServicios)Activator.GetObject(typeof(IPlanillaServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["PlanillaServicios"]);
+                this._estadoServicios = (IEstadoServicios)Activator.GetObject(typeof(IEstadoServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["EstadoServicios"]);
 
 
                 #endregion
@@ -178,6 +184,15 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.FusionesPatente
 
                 ActualizarTitulo();
 
+                IList<Estado> estados = this._estadoServicios.ConsultarTodos();
+                this._ventana.Corporaciones = estados;
+
+                IList<Pais> paisesMT = this._paisServicios.ConsultarTodos();
+                this._ventana.PaisesPatenteTercero = paisesMT;
+
+                IList<Pais> nacionalidadesMT = this._paisServicios.ConsultarTodos();
+                this._ventana.NacionalidadesPatenteTercero = nacionalidadesMT;
+
                 if (_agregar == false)
                 {
 
@@ -189,6 +204,15 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.FusionesPatente
                     this._ventana.NombrePatente = ((Patente)this._ventana.Patente).Descripcion;
                     this._ventana.AgenteApoderado = ((FusionPatente)fusion).Agente;
                     this._ventana.Poder = fusion.Poder;
+
+                    if (null != fusion.FusionPatenteTercero.Estado)
+                        this._ventana.Corporacion = this.BuscarEstado(estados, fusion.FusionPatenteTercero.Estado);
+
+                    if (null != fusion.FusionPatenteTercero.Pais)
+                        this._ventana.PaisPatenteTercero = this.BuscarPais(paisesMT, fusion.FusionPatenteTercero.Pais);
+
+                    if (null != fusion.FusionPatenteTercero.Nacionalidad)
+                        this._ventana.NacionalidadPatenteTercero = this.BuscarPais(nacionalidadesMT, fusion.FusionPatenteTercero.Nacionalidad);
 
 
                     CargarPatente();
@@ -247,7 +271,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.FusionesPatente
 
         public void IrConsultarPatentes()
         {
-       //OJO     this.Navegar(new ConsultarPatentes());
+            //OJO     this.Navegar(new ConsultarPatentes());
         }
 
         /// <summary>
@@ -349,7 +373,6 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.FusionesPatente
             #endregion
 
         }
-
 
 
         /// <summary>
@@ -510,13 +533,13 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.FusionesPatente
                                                 (Agente)this._ventana.AgenteApoderadoFiltrado : null;
 
             if (null != this._ventana.PoderFiltrado)
-                fusion.Poder = ((Poder)this._ventana.PoderFiltrado).Id != int.MinValue ? 
+                fusion.Poder = ((Poder)this._ventana.PoderFiltrado).Id != int.MinValue ?
                                                 (Poder)this._ventana.PoderFiltrado : null;
 
             if (null != this._ventana.Boletin)
                 fusion.Boletin = ((Boletin)this._ventana.Boletin).Id != int.MinValue ?
-                                                    (Boletin)this._ventana.Boletin : null;     
- 
+                                                    (Boletin)this._ventana.Boletin : null;
+
             #region Comentado
             //patente.Operacion = "MODIFY";
             //if (null != this._ventana.Agente)
@@ -607,11 +630,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.FusionesPatente
                 else if (this._ventana.TextoBotonModificar == Recursos.Etiquetas.btnAceptar)
                 {
                     FusionPatente fusion = CargarFusionDeLaPantalla();
-                    fusion.Patente = (Patente) this._ventana.Patente;
+                    fusion.Patente = (Patente)this._ventana.Patente;
 
                     if (null != fusion.Patente)
                     {
 
+                        fusion = TomarValoresFusionPatenteTercero(fusion);
                         int? exitoso = this._fusionesServicios.InsertarOModificarFusion(fusion, UsuarioLogeado.Hash);
 
                         if ((!exitoso.Equals(null)) && (this._agregar == false))
@@ -661,6 +685,33 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.FusionesPatente
             {
                 Mouse.OverrideCursor = null;
             }
+        }
+
+
+        /// <summary>
+        /// Toma los valores de la fusion Tercero
+        /// </summary>
+        /// <param name="fusion"></param>
+        /// <returns></returns>
+        private FusionPatente TomarValoresFusionPatenteTercero(FusionPatente fusion)
+        {
+            FusionPatente retorno = fusion;
+
+            if (null == retorno.FusionPatenteTercero)
+            {
+                retorno.FusionPatenteTercero = new FusionPatenteTercero();
+                retorno.FusionPatenteTercero.Id = 0;
+            }
+
+            retorno.FusionPatenteTercero.Fusion = new FusionPatente(retorno.Id);
+            retorno.FusionPatenteTercero = null != retorno.FusionPatenteTercero ? retorno.FusionPatenteTercero : new FusionPatenteTercero();
+            retorno.FusionPatenteTercero.Domicilio = this._ventana.DomicilioPatenteTercero;
+            retorno.FusionPatenteTercero.Pais = ((Pais)this._ventana.PaisPatenteTercero);
+            retorno.FusionPatenteTercero.Nacionalidad = (Pais)this._ventana.NacionalidadPatenteTercero;
+            retorno.FusionPatenteTercero.Nombre = this._ventana.NombrePatenteTercero;
+            retorno.FusionPatenteTercero.Estado = (Estado)this._ventana.Corporacion;
+
+            return retorno;
         }
 
         /// <summary>
@@ -1030,7 +1081,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.FusionesPatente
 
                     //this._ventana.AgenteApoderado = ((Patente)this._ventana.Patente).Agente;
                     //this._ventana.Poder = ((Patente)this._ventana.Patente).Poder;
-                    
+
 
                     if (null != ((Patente)this._ventana.Patente).Asociado)
                         this._ventana.PintarAsociado(((Patente)this._ventana.Patente).Asociado.TipoCliente.Id);
@@ -1051,7 +1102,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.FusionesPatente
                     retorno = true;
                 }
 
-                
+
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))

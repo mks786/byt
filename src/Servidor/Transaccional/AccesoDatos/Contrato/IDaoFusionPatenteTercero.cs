@@ -4,6 +4,6 @@ namespace Trascend.Bolet.AccesoDatos.Contrato
 {
     public interface IDaoFusionPatenteTercero : IDaoBase<FusionPatenteTercero, int>
     {
-        FusionPatenteTercero ConsultarFusionMarcaTerceroPorFusion(Fusion fusion);
+        FusionPatenteTercero ConsultarFusionPatenteTerceroPorFusion(FusionPatente fusion);
     }
 }

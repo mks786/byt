@@ -95,6 +95,7 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
                     comando.Ejecutar();
                     comandoOperacion.Ejecutar();
 
+                    fusion.FusionPatenteTercero.Fusion.Id = fusion.Id;
                     ComandoBase<bool> comandoFMT = FabricaComandosFusionPatenteTercero.ObtenerComandoInsertarOModificar(fusion.FusionPatenteTercero);
                     comandoFMT.Ejecutar();
 
@@ -119,6 +120,10 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
                 }
                 else
                 {
+                    fusion.FusionPatenteTercero.Fusion.Id = fusion.Id;
+                    ComandoBase<bool> comandoFMT = FabricaComandosFusionPatenteTercero.ObtenerComandoInsertarOModificar(fusion.FusionPatenteTercero);
+                    comandoFMT.Ejecutar();
+
                     ComandoBase<bool> comando = FabricaComandosFusionPatente.ObtenerComandoInsertarOModificar(fusion);
                     comando.Ejecutar();
                     exitoso = comando.Receptor.ObjetoAlmacenado;
@@ -144,7 +149,7 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
         /// <returns>El FusionPatente solicitado</returns>
         public static FusionPatente ConsultarPorId(FusionPatente fusion)
         {
-            FusionPatente retorno;
+            FusionPatente retorno = fusion;
 
             try
             {
@@ -153,9 +158,11 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
                     logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-                ComandoBase<FusionPatente> comando = FabricaComandosFusionPatente.ObtenerComandoConsultarPorID(fusion);
-                comando.Ejecutar();
-                retorno = comando.Receptor.ObjetoAlmacenado;
+
+                ComandoBase<FusionPatenteTercero> comandoFusion = FabricaComandosFusionPatenteTercero.ObtenerComandoConsultarPorID(retorno);
+                comandoFusion.Ejecutar();
+
+                retorno.FusionPatenteTercero = comandoFusion.Receptor.ObjetoAlmacenado;
 
                 #region trace
                 if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))

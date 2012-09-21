@@ -56,7 +56,6 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Fusiones
             set { this._cbxBoletin.SelectedItem = value; }
         }
 
-
         public string IdAsociadoFiltrar
         {
             get { throw new System.NotImplementedException(); }
@@ -407,7 +406,6 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Fusiones
             set { this._cbxCorporacion.SelectedItem = value; }
         }
 
-
         public string NombreMarcaTercero
         {
             get { return this._txtNombreMarcaTercero.Text;}
@@ -752,9 +750,10 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Fusiones
             this._txtPaisInteresadoEntre.Visibility = (System.Windows.Visibility)value;
             this._txtCiudadInteresadoEntre.Visibility = (System.Windows.Visibility)value;
             this._txtDomicilioMarcaTercero.Visibility = (System.Windows.Visibility)value;
-            
+
             this._cbxPaisMarcaTercero.Visibility = (System.Windows.Visibility)value;
             this._cbxNacionalidadMarcaTercero.Visibility = (System.Windows.Visibility)value;
+            this._cbxCorporacion.Visibility = (System.Windows.Visibility)value;
             this._txtNombreMarcaTercero.Visibility = (System.Windows.Visibility)value;
             //this._txtEstadoMarcaTercero.Visibility = (System.Windows.Visibility)value;
             this._lblY.Visibility = (System.Windows.Visibility)value;

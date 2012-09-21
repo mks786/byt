@@ -7,7 +7,7 @@
 
     <composite-id>
       <key-property name="Id" column="CTERCERO"/>
-      <key-many-to-one name="Fusion" column="CFUSION" class="Fusion"/>
+      <key-many-to-one name="Fusion" column="CFUSION" class="FusionPatente"/>
     </composite-id>
 
     <property name="Domicilio" column="XDOMICILIO" type="string"/>

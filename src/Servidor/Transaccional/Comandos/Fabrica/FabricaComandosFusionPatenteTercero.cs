@@ -41,7 +41,7 @@ namespace Trascend.Bolet.Comandos.Fabrica
         /// Método que devuelve el Comando para consultar un Fusion por su ID
         /// </summary>
         /// <returns></returns>
-        public static ComandoBase<FusionPatenteTercero> ObtenerComandoConsultarPorID(Fusion fusion)
+        public static ComandoBase<FusionPatenteTercero> ObtenerComandoConsultarPorID(FusionPatente fusion)
         {
             return new ComandoConsultarFusionPatenteTerceroPorFusion(fusion);
         }

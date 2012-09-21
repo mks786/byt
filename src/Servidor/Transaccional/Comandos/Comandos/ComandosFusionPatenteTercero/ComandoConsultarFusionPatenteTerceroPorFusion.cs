@@ -11,10 +11,10 @@ namespace Trascend.Bolet.Comandos.Comandos.ComandosFusionPatenteTercero
     public class ComandoConsultarFusionPatenteTerceroPorFusion : ComandoBase<FusionPatenteTercero>
     {
         private static Logger logger = LogManager.GetCurrentClassLogger();
-        private Fusion _parametroEntrada;
+        private FusionPatente _parametroEntrada;
 
 
-        public ComandoConsultarFusionPatenteTerceroPorFusion(Fusion fusion)
+        public ComandoConsultarFusionPatenteTerceroPorFusion(FusionPatente fusion)
         {
             this._parametroEntrada = fusion;
         }
@@ -32,7 +32,7 @@ namespace Trascend.Bolet.Comandos.Comandos.ComandosFusionPatenteTercero
                 #endregion
 
                 IDaoFusionPatenteTercero dao = FabricaDaoBase.ObtenerFabricaDao().ObtenerDaoFusionPatenteTercero();
-                this.Receptor = new Receptor<FusionPatenteTercero>(dao.ConsultarFusionMarcaTerceroPorFusion(this._parametroEntrada));
+                this.Receptor = new Receptor<FusionPatenteTercero>(dao.ConsultarFusionPatenteTerceroPorFusion(this._parametroEntrada));
 
                 #region trace
                 if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
