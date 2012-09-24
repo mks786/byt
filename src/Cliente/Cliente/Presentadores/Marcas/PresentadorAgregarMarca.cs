@@ -32,6 +32,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
         private IBoletinServicios _boletinServicios;
         private IPaisServicios _paisServicios;
         private IListaDatosDominioServicios _listaDatosDominioServicios;
+        private IListaDatosValoresServicios _listaDatosValoresServicios;
         private IInteresadoServicios _interesadoServicios;
         private IInternacionalServicios _internacionalServicios;
         private IServicioServicios _servicioServicios;
@@ -46,7 +47,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
         private IList<Auditoria> _auditorias;
         private IList<Poder> _poderesInterseccion;
 
-      
+
 
         /// <summary>
         /// Constructor Predeterminado
@@ -94,6 +95,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["PaisServicios"]);
                 this._listaDatosDominioServicios = (IListaDatosDominioServicios)Activator.GetObject(typeof(IListaDatosDominioServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["ListaDatosDominioServicios"]);
+                this._listaDatosValoresServicios = (IListaDatosValoresServicios)Activator.GetObject(typeof(IListaDatosValoresServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["ListaDatosValoresServicios"]);
                 this._interesadoServicios = (IInteresadoServicios)Activator.GetObject(typeof(IInteresadoServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["InteresadoServicios"]);
                 this._servicioServicios = (IServicioServicios)Activator.GetObject(typeof(IServicioServicios),
@@ -294,8 +297,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 this._ventana.BoletinConcesion = this.BuscarBoletin(boletines, primerBoletin);
                 this._ventana.BoletinPublicacion = this.BuscarBoletin(boletines, primerBoletin);
 
-               // Interesado interesado = (this._interesadoServicios.ConsultarInteresadoConTodo(marca.Interesado));
-               
+                // Interesado interesado = (this._interesadoServicios.ConsultarInteresadoConTodo(marca.Interesado));
+
 
                 //IList<Boletin> boletines = this._boletinServicios.ConsultarTodos();
                 //Boletin primerBoletin = new Boletin();
@@ -332,6 +335,29 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 poderes.Insert(0, primerPoder);
                 this._ventana.PoderesDatos = poderes;
                 this._ventana.PoderesSolicitud = poderes;
+
+
+                #region Internacional
+
+                IList<Pais> paisesInternacionales = this._paisServicios.ConsultarTodos();
+                Pais primerPaisInt = new Pais();
+                primerPais.Id = int.MinValue;
+                paises.Insert(0, primerPais);
+                this._ventana.PaisesInternacionales = paises;
+                this._ventana.PaisesInternacionalesDatos = paises;
+
+                IList<ListaDatosValores> localidades = this._listaDatosValoresServicios.
+                    ConsultarListaDatosValoresPorParametro(new ListaDatosValores(Recursos.Etiquetas.cbiLocalidadMarca));
+
+                ListaDatosValores primerLocalidad = new ListaDatosValores();
+                primeraCondicion.Descripcion = string.Empty;
+                primeraCondicion.Id = int.MinValue;
+
+                localidades.Insert(0, primerLocalidad);
+                this._ventana.TipoClaseInternacionales = localidades;
+                this._ventana.TipoClaseInternacionalesDatos = localidades;
+
+                #endregion
 
                 if (_esMarcaDuplicada)
                     CargarDatosDeMarcaDuplicada();
@@ -425,17 +451,22 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                     if (string.IsNullOrEmpty(this._ventana.IdNacional))
                         marca.Nacional = null;
 
-                    if (marca.TipoEstado.Id.Equals("NGN")) 
+                    if (marca.TipoEstado.Id.Equals("NGN"))
                     {
                         marca.TipoEstado.Id = string.Empty;
                     }
+
+                    if (!this._ventana.EsMarcaNacional)
+                        marca = AgregarDatosInternacionales(marca);
+                    else
+                        marca.LocalidadMarca = "N";
 
                     int? exitoso = this._marcaServicios.InsertarOModificarMarca(marca, UsuarioLogeado.Hash);
 
                     if (!exitoso.Equals(null))
                     {
                         marca.Id = (int)exitoso;
-                        this.Navegar(new ConsultarMarca(marca,null));
+                        this.Navegar(new ConsultarMarca(marca, null));
                     }
                 }
                 else
@@ -468,6 +499,39 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 logger.Error(ex.Message);
                 this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
             }
+        }
+
+        private Marca AgregarDatosInternacionales(Marca marca)
+        {
+            try
+            {
+                marca.LocalidadMarca = "I";
+                marca.ClasificacionInternacional = ((ListaDatosValores)this._ventana.TipoClaseInternacionalDatos).Valor;
+                marca.PaisInternacional = (Pais)this._ventana.PaisInternacional;
+                marca.AsociadoInternacional = (Asociado)this._ventana.AsociadoInternacional;
+            }
+            catch (ApplicationException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(ex.Message, true);
+            }
+            catch (RemotingException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorRemoting, true);
+            }
+            catch (SocketException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorConexionServidor, true);
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
+            }
+
+            return marca;
         }
 
         /// <summary>
@@ -713,7 +777,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
 
-            Asociado primerAsociado= new Asociado(int.MinValue);
+            Asociado primerAsociado = new Asociado(int.MinValue);
 
 
             Asociado asociado = new Asociado();
@@ -721,7 +785,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             if (filtrarEn == 0)
             {
                 asociado.Nombre = this._ventana.NombreAsociadoSolicitudFiltrar.ToUpper();
-                asociado.Id = this._ventana.IdAsociadoSolicitudFiltrar.Equals("")? 0
+                asociado.Id = this._ventana.IdAsociadoSolicitudFiltrar.Equals("") ? 0
                                   : int.Parse(this._ventana.IdAsociadoSolicitudFiltrar);
             }
             else
@@ -822,10 +886,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                     this._ventana.IdInteresadoDatos = ((Interesado)this._ventana.InteresadoSolicitud).Id.ToString();
                     this._ventana.InteresadoPaisSolicitud = interesadoAux.Pais != null ? interesadoAux.Pais.NombreEspanol : "";
                     this._ventana.InteresadoCiudadSolicitud = interesadoAux.Ciudad != null ? interesadoAux.Ciudad : "";
-                    
+
 
                 }
-                
+
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -972,7 +1036,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             if (filtrarEn == 0)
             {
                 interesado.Nombre = this._ventana.NombreInteresadoSolicitudFiltrar.ToUpper();
-                interesado.Id = this._ventana.IdInteresadoSolicitudFiltrar.Equals("")? 0
+                interesado.Id = this._ventana.IdInteresadoSolicitudFiltrar.Equals("") ? 0
                                     : int.Parse(this._ventana.IdInteresadoSolicitudFiltrar);
 
 
@@ -981,7 +1045,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             {
                 interesado.Nombre = this._ventana.NombreInteresadoDatosFiltrar.ToUpper();
                 interesado.Id = this._ventana.IdInteresadoDatosFiltrar.Equals("") ? 0
-                                    : int.Parse(this._ventana.IdInteresadoDatosFiltrar); 
+                                    : int.Parse(this._ventana.IdInteresadoDatosFiltrar);
 
             }
             if ((!interesado.Nombre.Equals("")) || (interesado.Id != 0))
@@ -1124,7 +1188,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
 
         public void BuscarCorresponsal(int filtrarEn)
         {
-            
+
             #region trace
             if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
                 logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
@@ -1196,7 +1260,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             #endregion
 
 
- 
+
 
         }
 
@@ -1364,7 +1428,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
 
             Mouse.OverrideCursor = Cursors.Wait;
 
-            if ((this._ventana.InteresadoSolicitud != null) && (this._ventana.Agente!= null))
+            if ((this._ventana.InteresadoSolicitud != null) && (this._ventana.Agente != null))
             {
                 _poderesInterseccion = this._poderServicios
                     .ObtenerPoderesEntreAgenteEInteresado((Agente)this._ventana.Agente, (Interesado)this._ventana.InteresadoSolicitud);
@@ -1479,6 +1543,134 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
                 logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
+        }
+
+        public bool ConsultarAsociado()
+        {
+            bool retorno = false;
+
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+
+                if ((!this._ventana.IdAsociadoInternacionalFiltrar.Equals(string.Empty)) || (!this._ventana.NombreAsociadoInternacionalFiltrar.Equals(string.Empty)))
+                {
+                    Asociado asociadoAux = new Asociado();
+                    asociadoAux.Id = !this._ventana.IdAsociadoInternacionalFiltrar.Equals(string.Empty) ? int.Parse(this._ventana.IdAsociadoInternacionalFiltrar) : 0;
+                    asociadoAux.Nombre = !this._ventana.NombreAsociadoInternacionalFiltrar.Equals(string.Empty) ? this._ventana.NombreAsociadoInternacionalFiltrar : string.Empty;
+
+                    IList<Asociado> resultados = this._asociadoServicios.ObtenerAsociadosFiltro(asociadoAux);
+
+                    this._ventana.AsociadosInternacionalesDatos = resultados;
+                    this._ventana.AsociadosInternacionales = resultados;
+
+                    retorno = true;
+                }
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
+            }
+
+            return retorno;
+        }
+
+        public bool ConsultarAsociadoDatos()
+        {
+            bool retorno = false;
+
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+
+                if ((!this._ventana.IdAsociadoInternacionalFiltrarDatos.Equals(string.Empty)) || (!this._ventana.NombreAsociadoInternacionalFiltrarDatos.Equals(string.Empty)))
+                {
+                    Asociado asociadoAux = new Asociado();
+                    asociadoAux.Id = !this._ventana.IdAsociadoInternacionalFiltrarDatos.Equals(string.Empty) ? int.Parse(this._ventana.IdAsociadoInternacionalFiltrarDatos) : 0;
+                    asociadoAux.Nombre = !this._ventana.NombreAsociadoInternacionalFiltrarDatos.Equals(string.Empty) ? this._ventana.NombreAsociadoInternacionalFiltrarDatos : string.Empty;
+
+                    IList<Asociado> resultados = this._asociadoServicios.ObtenerAsociadosFiltro(asociadoAux);
+
+                    this._ventana.AsociadosInternacionalesDatos = resultados;
+                    this._ventana.AsociadosInternacionales = resultados;
+
+                    retorno = true;
+                }
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
+            }
+
+            return retorno;
+        }
+
+        public bool CambiarAsociadoInternacionalSolicitud()
+        {
+            bool retorno = false;
+
+            try
+            {
+                if (this._ventana.AsociadoInternacional != null)
+                {
+                    this._ventana.TextoAsociadoInternacional = ((Asociado)this._ventana.AsociadoInternacional).Nombre;
+                    this._ventana.AsociadoInternacionalDatos = this._ventana.AsociadoInternacional;
+                    this._ventana.AsociadoInternacional = this._ventana.AsociadoInternacional;
+
+                    retorno = true;
+                }
+            }
+            catch(Exception ex)
+            {
+                logger.Error(ex.Message);
+            }
+
+            return retorno;
+        }
+
+        public bool CambiarAsociadoInternacionalDatos()
+        {
+            bool retorno = false;
+
+            try
+            {
+                if (this._ventana.AsociadoInternacionalDatos != null)
+                {
+                    this._ventana.TextoAsociadoInternacional = ((Asociado)this._ventana.AsociadoInternacionalDatos).Nombre;
+                    this._ventana.AsociadoInternacional = this._ventana.AsociadoInternacional;
+                    this._ventana.AsociadoInternacionalDatos = this._ventana.AsociadoInternacional;
+
+                    retorno = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+            }
+
+            return retorno;
         }
     }
 }

@@ -43,19 +43,19 @@
         <GroupBox Grid.Column="0" Grid.Row="0" Margin="5">
             <StackPanel Name="_splFiltro" DataContext="{Binding}" VerticalAlignment="Center">
                 <Separator Margin="0,0,0,5"/>
-                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,180,0" >
+                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,120,0" >
                     <Label>
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblExpedienteMarca}"/>
                     </Label>
                     <custom:ByTTextBox IsEnabled="False" Name="_txtIdMarca" Width="130" MaxLength="8"/>
                 </WrapPanel>
-                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,180,0">
+                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,120,0">
                     <Label>
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblCodigoBusqueda}"/>
                     </Label>
                     <custom:ByTTextBox Name="_txtIdBusqueda" Width="130" MaxLength="15"/>
                 </WrapPanel>
-                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,180,0">
+                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,120,0">
                     <Label>
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblTipoBusqueda}"/>
                     </Label>
@@ -65,7 +65,7 @@
                           Width="130" SelectedIndex="0"/>
                 </WrapPanel>
                 
-                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,180,0">
+                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,120,0">
                     <Label>
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblFechaBusquedaPalabra}"/>
                     </Label>
@@ -75,7 +75,7 @@
                         </DatePicker.SelectedDate>
                     </DatePicker>
                 </WrapPanel>
-                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,180,0">
+                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,120,0">
                     <Label>
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblFechaConsigPalabra}"/>
                     </Label>
@@ -85,7 +85,7 @@
                         </DatePicker.SelectedDate>
                     </DatePicker>
                 </WrapPanel>
-                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,180,0">
+                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,120,0">
                     <Label>
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblFechaBusquedaDiseno}"/>
                     </Label>
@@ -95,7 +95,7 @@
                         </DatePicker.SelectedDate>
                     </DatePicker>
                 </WrapPanel>
-                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,180,0">
+                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,120,0">
                     <Label>
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblFechaConsigDiseno}"/>
                     </Label>
@@ -105,7 +105,7 @@
                         </DatePicker.SelectedDate>
                     </DatePicker>
                 </WrapPanel>
-                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,180,0">
+                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,120,0">
                     <Label>
                         <TextBlock Text="{x:Static recurso:Etiquetas.lblFechaResultadoBusqueda}"/>
                     </Label>

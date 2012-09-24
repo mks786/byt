@@ -61,6 +61,16 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         private IList<InfoBolPatente> _infoBoles;
         private IList<Memoria> _memorias;
 
+        //Región internacional
+
+        private ListaDatosValores _localidadInternacional;
+        private Asociado _asociadoInternacional;
+        private int _codigoMarcaInternacional;
+        private int _correlativoExpediente;
+        private string _referenciaAsociadoInternacional;
+
+        //Fin Región internacional
+
         #endregion
 
         #region Constructores
@@ -628,6 +638,45 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
             get { return _memorias; }
             set { _memorias = value; }
         }
+
+
+
+        //Región Internacional
+
+
+
+        public virtual ListaDatosValores LocalidadInternacional
+        {
+            get { return _localidadInternacional; }
+            set { _localidadInternacional = value; }
+        }
+
+        public virtual Asociado AsociadoInternacional1
+        {
+            get { return _asociadoInternacional; }
+            set { _asociadoInternacional = value; }
+        }
+
+        public virtual int CodigoMarcaInternacional
+        {
+            get { return _codigoMarcaInternacional; }
+            set { _codigoMarcaInternacional = value; }
+        }
+
+        public virtual int CorrelativoExpediente
+        {
+            get { return _correlativoExpediente; }
+            set { _correlativoExpediente = value; }
+        }
+
+        public virtual string ReferenciaAsociadoInternacional
+        {
+            get { return _referenciaAsociadoInternacional; }
+            set { _referenciaAsociadoInternacional = value; }
+        }
+
+        //Fin Región Internacional
+
 
         #endregion
     }

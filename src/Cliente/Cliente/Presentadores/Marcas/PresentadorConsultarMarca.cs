@@ -41,6 +41,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
         private IBoletinServicios _boletinServicios;
         private IPaisServicios _paisServicios;
         private IListaDatosDominioServicios _listaDatosDominioServicios;
+        private IListaDatosValoresServicios _listaDatosValoresServicios;
         private IInteresadoServicios _interesadoServicios;
         private IServicioServicios _servicioServicios;
         private ITipoEstadoServicios _tipoEstadoServicios;
@@ -110,6 +111,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["PaisServicios"]);
                 this._listaDatosDominioServicios = (IListaDatosDominioServicios)Activator.GetObject(typeof(IListaDatosDominioServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["ListaDatosDominioServicios"]);
+                this._listaDatosValoresServicios = (IListaDatosValoresServicios)Activator.GetObject(typeof(IListaDatosValoresServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["ListaDatosValoresServicios"]);
                 this._interesadoServicios = (IInteresadoServicios)Activator.GetObject(typeof(IInteresadoServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["InteresadoServicios"]);
                 this._servicioServicios = (IServicioServicios)Activator.GetObject(typeof(IServicioServicios),
@@ -153,6 +156,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             }
         }
 
+
         /// <summary>
         /// Método que actualiza el título de la ventana
         /// </summary>
@@ -171,6 +175,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
         }
+
 
         /// <summary>
         /// Método que carga los datos iniciales a mostrar en la página
@@ -195,6 +200,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
 
                 Marca marca = (Marca)this._ventana.Marca;
                 _marca = marca;
+
+                if (marca.LocalidadMarca.Equals("I"))
+                    this._ventana.MarcarRadioMarcaNacional(false);
+                else
+                    this._ventana.MarcarRadioMarcaNacional(true);
+
                 Anaqua anaqua = new Anaqua();
                 anaqua.IdMarca = marca.Id;
                 InfoAdicional infoAdicional = new InfoAdicional("M." + marca.Id);
@@ -307,8 +318,6 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 if (null != marca.Asociado)
                     this._ventana.PintarAsociado(marca.Asociado.TipoCliente.Id);
 
-
-
                 if (marca.Corresponsal != null)
                 {
                     this._ventana.DescripcionCorresponsalSolicitud = marca.Corresponsal.GetType().Equals(typeof(Corresponsal)) ? marca.Corresponsal.Descripcion : "";
@@ -401,6 +410,55 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 //    this._ventana.DeshabilitarBotonModificar();
                 //}
 
+                #region Internacional
+
+                IList<Pais> paisesInternacionales = this._paisServicios.ConsultarTodos();
+                Pais primerPaisInt = new Pais();
+                primerPais.Id = int.MinValue;
+                paisesInternacionales.Insert(0, primerPais);
+                this._ventana.PaisesInternacionales = paisesInternacionales;
+                this._ventana.PaisesInternacionalesDatos = paisesInternacionales;
+
+                if (null != marca.PaisInternacional)
+                {
+                    Pais paisABuscar = new Pais(marca.PaisInternacional.Id);
+                    this._ventana.PaisInternacional = this.BuscarPais(paisesInternacionales, paisABuscar);
+                    this._ventana.PaisInternacionalDatos = this.BuscarPais(paisesInternacionales, paisABuscar);
+                }
+
+                IList<ListaDatosValores> localidades = this._listaDatosValoresServicios.
+                    ConsultarListaDatosValoresPorParametro(new ListaDatosValores(Recursos.Etiquetas.cbiLocalidadMarca));
+
+                ListaDatosValores primerLocalidad = new ListaDatosValores();
+                primerLocalidad.Descripcion = string.Empty;
+                primerLocalidad.Valor = "NGN";
+
+                localidades.Insert(0, primerLocalidad);
+                this._ventana.TipoClaseInternacionales = localidades;
+                this._ventana.TipoClaseInternacionalesDatos = localidades;
+
+                if ((null != marca. LocalidadMarca) && (!marca.LocalidadMarca.Equals("")))
+                {
+                    ListaDatosValores localidadABuscar = new ListaDatosValores(marca.LocalidadMarca);
+                    this._ventana.TipoClaseInternacional = this.BuscarLocalidad(localidades, localidadABuscar);
+                    this._ventana.TipoClaseInternacionalDatos = this.BuscarLocalidad(localidades, localidadABuscar);
+                }
+
+                if (null != marca.AsociadoInternacional)
+                {
+                    IList<Asociado> asociados = new List<Asociado>();
+                    asociados.Add(marca.AsociadoInternacional);
+
+                    this._ventana.AsociadosInternacionales = asociados;
+                    this._ventana.AsociadoInternacional = marca.AsociadoInternacional;
+
+                    this._ventana.AsociadosInternacionalesDatos = asociados;
+                    this._ventana.AsociadoInternacionalDatos = marca.AsociadoInternacional;
+
+                    this._ventana.TextoAsociadoInternacional = marca.AsociadoInternacional.Nombre;
+                }
+                #endregion
+
                 this._ventana.BorrarCeros();
 
                 this._ventana.FocoPredeterminado();
@@ -420,6 +478,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 Mouse.OverrideCursor = null;
             }
         }
+
 
         /// <summary>
         /// Método que carga la ventana de consulta marcas
@@ -441,6 +500,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
         }
+
 
         /// <summary>
         /// Método que guardar los datos de la ventana y los almacena en las variables
@@ -531,6 +591,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             #endregion
         }
 
+
         /// <summary>
         /// Método que se encarga de cambiar el boton y habilitar los campos de la ventana para
         /// su modificación
@@ -550,6 +611,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
         }
+
 
         /// <summary>
         /// Método que dependiendo del estado de la página, habilita los campos o 
@@ -577,6 +639,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                     if (ValidarPoder())
                     {
                         Marca marca = CargarMarcaDeLaPantalla();
+
+                        if (!this._ventana.EsMarcaNacional)
+                            marca = AgregarDatosInternacionales(marca);
+                        else
+                            marca.LocalidadMarca = "N";
 
                         if (marca.Interesado != null)
                         {
@@ -629,6 +696,40 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
             }
         }
+
+        private Marca AgregarDatosInternacionales(Marca marca)
+        {
+            try
+            {
+                marca.LocalidadMarca = "I";
+                marca.ClasificacionInternacional = ((ListaDatosValores)this._ventana.TipoClaseInternacionalDatos).Valor;
+                marca.PaisInternacional = (Pais)this._ventana.PaisInternacional;
+                marca.AsociadoInternacional = (Asociado)this._ventana.AsociadoInternacional;
+            }
+            catch (ApplicationException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(ex.Message, true);
+            }
+            catch (RemotingException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorRemoting, true);
+            }
+            catch (SocketException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorConexionServidor, true);
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
+            }
+
+            return marca;
+        }
+
 
         /// <summary>
         /// Metodo que se encarga de eliminar una Marca
@@ -695,6 +796,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             #endregion
         }
 
+
         /// <summary>
         /// Método que se ecarga la descripcion de la situacion
         /// </summary>
@@ -734,6 +836,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             #endregion
         }
 
+
         /// <summary>
         /// Método que se encarga de mostrar la ventana de InfoBoles
         /// </summary>
@@ -751,6 +854,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
         }
+
 
         /// <summary>
         /// Método que se encarga de mostrar la ventana de las operaciones de la Marca
@@ -770,6 +874,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             #endregion
         }
 
+
         /// <summary>
         /// Método que se encarga de mostrar la ventana de Anaqua de la Marca
         /// </summary>
@@ -787,6 +892,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
         }
+
 
         /// <summary>
         /// Método que se encarga de mostrar la ventana de la lista de búsquedas de la marca
@@ -806,6 +912,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
         }
+
 
         /// <summary>
         /// Método que se encarga de mostrar la ventana con la lista de Auditorías
@@ -854,6 +961,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             }
         }
 
+
         /// <summary>
         /// Método que ordena una columna
         /// </summary>
@@ -888,6 +996,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             #endregion
         }
 
+
         /// <summary>
         /// Método que se encarga de duplicar la marca
         /// </summary>
@@ -906,6 +1015,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             #endregion
 
         }
+
 
         /// <summary>
         /// Metodo que abre el explorador de internet predeterminado del sistema a una página determinada
@@ -932,6 +1042,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
             }
         }
+
 
         #region Metodos de los filtros de asociados
 
@@ -1110,6 +1221,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
         }
 
         #endregion
+
 
         #region Metodos de los filtros de interesados
 
@@ -1389,6 +1501,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
 
         #endregion
 
+
         #region Metodos de los filtros de corresponsales
 
         /// <summary>
@@ -1580,6 +1693,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
         }
 
         #endregion
+
 
         #region Metodos de la lista de poderes
 
@@ -2147,6 +2261,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
 
         #endregion
 
+
         /// <summary>
         ///Método que realiza el llamado al explorador para abrir el cartel de la marca
         /// </summary>
@@ -2172,6 +2287,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
             }
         }
+
 
         /// <summary>
         /// Método que se encarga de abrir el certificado de la marca en formato .pdf
@@ -2204,6 +2320,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             }
         }
 
+
         /// <summary>
         /// Método que se encarga de abrir el Solicitud de la marca en formato .pdf
         /// </summary>
@@ -2234,6 +2351,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
             }
         }
+
 
         /// <summary>
         /// Método que se encarga de abrir el expediente de la marca en formato .pdf
@@ -2266,6 +2384,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             }
         }
 
+
         /// <summary>
         /// Método que consulta la clase internacional y lo pega en distingue
         /// </summary>
@@ -2279,6 +2398,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             this._ventana.DistingueDatos = internacionalAux.Descripcion;
         }
 
+
         public void MostrarEtiqueta()
         {
             Marca marcaAux = ((Marca)this._ventana.Marca);
@@ -2289,6 +2409,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
 
             }
         }
+
 
         public void MostrarDistingueIngles()
         {
@@ -2301,31 +2422,37 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             }
         }
 
+
         public void BuscarCarta(int p)
         {
             throw new NotImplementedException();
         }
+
 
         public void IrRenovacionDeMarca()
         {
             this.Navegar(new ConsultarRenovaciones(this._ventana.Marca, this._ventana));
         }
 
+
         public void IrVentanaAsociado()
         {
             Asociado asociado = ((Asociado)this._ventana.AsociadoSolicitud).Id != int.MinValue ? (Asociado)this._ventana.AsociadoSolicitud : null;
-            Navegar(new ConsultarAsociado(asociado,this._ventana));
+            Navegar(new ConsultarAsociado(asociado, this._ventana));
         }
+
 
         public string ObtenerIdMarca()
         {
             return ((Marca)this._ventana.Marca).Id.ToString();
         }
 
+
         public void VerInstruccionesDeRenovacion()
         {
             Navegar(new ListaInstruccionesRenovacion(this._ventana.Marca));
         }
+
 
         public void IrVentanaInteresado()
         {
@@ -2333,12 +2460,143 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             Navegar(new ConsultarInteresado(interesado, this._ventana));
         }
 
+
         public void IrVentanaPoder()
         {
             Poder poder = ((Marca)this._ventana.Marca).Poder.Id != int.MinValue ? ((Marca)this._ventana.Marca).Poder : null;
             Navegar(new ConsultarPoder(poder, this._ventana));
+        }
 
-             
+
+        public bool ConsultarAsociado()
+        {
+            bool retorno = false;
+
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+
+                if ((!this._ventana.IdAsociadoInternacionalFiltrar.Equals(string.Empty)) || (!this._ventana.NombreAsociadoInternacionalFiltrar.Equals(string.Empty)))
+                {
+                    Asociado asociadoAux = new Asociado();
+                    asociadoAux.Id = !this._ventana.IdAsociadoInternacionalFiltrar.Equals(string.Empty) ? int.Parse(this._ventana.IdAsociadoInternacionalFiltrar) : 0;
+                    asociadoAux.Nombre = !this._ventana.NombreAsociadoInternacionalFiltrar.Equals(string.Empty) ? this._ventana.NombreAsociadoInternacionalFiltrar : string.Empty;
+
+                    IList<Asociado> resultados = this._asociadoServicios.ObtenerAsociadosFiltro(asociadoAux);
+
+                    this._ventana.AsociadosInternacionalesDatos = resultados;
+                    this._ventana.AsociadosInternacionales = resultados;
+
+                    retorno = true;
+                }
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
+            }
+
+            return retorno;
+        }
+
+
+        public bool ConsultarAsociadoDatos()
+        {
+            bool retorno = false;
+
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+
+                if ((!this._ventana.IdAsociadoInternacionalFiltrarDatos.Equals(string.Empty)) || (!this._ventana.NombreAsociadoInternacionalFiltrarDatos.Equals(string.Empty)))
+                {
+                    Asociado asociadoAux = new Asociado();
+                    asociadoAux.Id = !this._ventana.IdAsociadoInternacionalFiltrarDatos.Equals(string.Empty) ? int.Parse(this._ventana.IdAsociadoInternacionalFiltrarDatos) : 0;
+                    asociadoAux.Nombre = !this._ventana.NombreAsociadoInternacionalFiltrarDatos.Equals(string.Empty) ? this._ventana.NombreAsociadoInternacionalFiltrarDatos : string.Empty;
+
+                    IList<Asociado> resultados = this._asociadoServicios.ObtenerAsociadosFiltro(asociadoAux);
+
+                    this._ventana.AsociadosInternacionalesDatos = resultados;
+                    this._ventana.AsociadosInternacionales = resultados;
+
+                    retorno = true;
+                }
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
+            }
+
+            return retorno;
+        }
+
+
+        public bool CambiarAsociadoInternacionalSolicitud()
+        {
+            bool retorno = false;
+
+            try
+            {
+                if (this._ventana.AsociadoInternacional != null)
+                {
+                    this._ventana.TextoAsociadoInternacional = ((Asociado)this._ventana.AsociadoInternacional).Nombre;
+                    this._ventana.AsociadoInternacionalDatos = this._ventana.AsociadoInternacional;
+                    this._ventana.AsociadoInternacional = this._ventana.AsociadoInternacional;
+
+                    retorno = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+            }
+
+            return retorno;
+        }
+
+
+        public bool CambiarAsociadoInternacionalDatos()
+        {
+            bool retorno = false;
+
+            try
+            {
+                if (this._ventana.AsociadoInternacionalDatos != null)
+                {
+                    this._ventana.TextoAsociadoInternacional = ((Asociado)this._ventana.AsociadoInternacionalDatos).Nombre;
+                    this._ventana.AsociadoInternacional = this._ventana.AsociadoInternacionalDatos;
+                    this._ventana.AsociadoInternacionalDatos = this._ventana.AsociadoInternacionalDatos;
+
+                    retorno = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+            }
+
+            return retorno;
         }
     }
 }

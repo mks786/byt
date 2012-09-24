@@ -34,6 +34,20 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             set { this._tbcPestanas.DataContext = value; }
         }
 
+        public void MarcarRadioMarcaNacional(bool esNacional)
+        {
+            if (esNacional)
+            {
+                this._radioExtranjero.IsChecked = false;
+                this._radioNacional.IsChecked = true;
+            }
+            else
+            {
+                this._radioExtranjero.IsChecked = true;
+                this._radioNacional.IsChecked = false;
+            }
+        }
+
         public string NumPoderDatos
         {
             get { return this._txtNumSapi.Text; }
@@ -316,8 +330,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
                 this._txtIdSolicitud.IsEnabled = value;
                 this._txtInteresadoDatos.IsEnabled = value;
                 this._txtInteresadoSolicitud.IsEnabled = value;
-                this._txtLocalidad.IsEnabled = value;
-                this._txtLocalidadDatos.IsEnabled = value;
+                this._cbxLocalidadSolicitud.IsEnabled = value;
+                this._cbxLocalidadDatos.IsEnabled = value;
                 this._txtNombreAsociadoDatos.IsEnabled = value;
                 this._txtNombreAsociadoSolicitud.IsEnabled = value;
                 this._txtNombreInteresadoDatos.IsEnabled = value;
@@ -343,8 +357,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
 
                 this._cbxTipoClaseNacional.IsEnabled = value;
                 this._cbxAgente.IsEnabled = value;
-                this._cbxAsociadoInteresadoDatos.IsEnabled = value;
-                this._cbxAsocInt.IsEnabled = value;
+                this._txtAsociadoInternacionalSolicitud.IsEnabled = value;
+                this._txtAsociadoInternacionalDatos.IsEnabled = value;
                 this._cbxBoletinConcesion.IsEnabled = value;
                 this._cbxBoletinPublicacion.IsEnabled = value;
                 //this._cbxCartaOrden.IsEnabled = value;
@@ -355,8 +369,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
                 this._cbxMarcaOrigen.IsEnabled = value;
                 this._cbxMarcaOrigenSolicitud.IsEnabled = value;
                 this._cbxOrdenPublicacion.IsEnabled = value;
-                this._cbxPais.IsEnabled = value;
-                this._cbxPaisDatos.IsEnabled = value;
+                this._cbxPaisIntSolicitud.IsEnabled = value;
+                this._cbxPaisIntSolicitud.IsEnabled = value;
                 this._cbxPaisPrioridad.IsEnabled = value;
                 this._cbxSector.IsEnabled = value;
                 this._cbxSituacion.IsEnabled = value;
@@ -471,6 +485,116 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
 
                 #endregion
             }
+        }
+
+        public string IdAsociadoInternacionalFiltrar
+        {
+            get { return this._txtIdAsociadoIntFiltrar.Text; }
+            set { this._txtIdAsociadoIntFiltrar.Text = value; }
+        }
+
+        public string NombreAsociadoInternacionalFiltrar
+        {
+            get { return this._txtNombreAsociadoIntFiltrar.Text; }
+            set { this._txtNombreAsociadoIntFiltrar.Text = value; }
+        }
+
+        public object AsociadosInternacionales
+        {
+            get { return this._lstAsociadosInternacionalesSolicitud.DataContext; }
+            set { this._lstAsociadosInternacionalesSolicitud.DataContext = value; }
+        }
+
+        public object AsociadoInternacional
+        {
+            get { return this._lstAsociadosInternacionalesSolicitud.SelectedItem; }
+            set { this._lstAsociadosInternacionalesSolicitud.SelectedItem = value; }
+        }
+
+        public string IdAsociadoInternacionalFiltrarDatos
+        {
+            get { return this._txtIdAsociadoIntDatosFiltrar.Text; }
+            set { this._txtIdAsociadoIntDatosFiltrar.Text = value; }
+        }
+
+        public string NombreAsociadoInternacionalFiltrarDatos
+        {
+            get { return this._txtNombreAsociadoIntDatosFiltrar.Text; }
+            set { this._txtNombreAsociadoIntDatosFiltrar.Text = value; }
+        }
+
+        public object AsociadosInternacionalesDatos
+        {
+            get { return this._lstAsociadosInternacionalesDatos.DataContext; }
+            set { this._lstAsociadosInternacionalesDatos.DataContext = value; }
+        }
+
+        public object AsociadoInternacionalDatos
+        {
+            get { return this._lstAsociadosInternacionalesDatos.SelectedItem; }
+            set { this._lstAsociadosInternacionalesDatos.SelectedItem = value; }
+        }
+
+        public string TextoAsociadoInternacional
+        {
+            set
+            {
+                this._txtAsociadoInternacionalDatos.Text = value;
+                this._txtAsociadoInternacionalSolicitud.Text = value;
+            }
+        }
+
+        public object PaisesInternacionales
+        {
+            get { return this._cbxPaisIntSolicitud.DataContext; }
+            set { this._cbxPaisIntSolicitud.DataContext = value; }
+        }
+
+        public object PaisInternacional
+        {
+            get { return this._cbxPaisIntSolicitud.SelectedItem; }
+            set { this._cbxPaisIntSolicitud.SelectedItem = value; }
+        }
+
+        public object PaisesInternacionalesDatos
+        {
+            get { return this._cbxPaisIntDatos.DataContext; }
+            set { this._cbxPaisIntDatos.DataContext = value; }
+        }
+
+        public object PaisInternacionalDatos
+        {
+            get { return this._cbxPaisIntDatos.SelectedItem; }
+            set { this._cbxPaisIntDatos.SelectedItem = value; }
+        }
+
+        public object TipoClaseInternacionales
+        {
+            get { return this._cbxLocalidadSolicitud.DataContext; }
+            set { this._cbxLocalidadSolicitud.DataContext = value; }
+        }
+
+        public object TipoClaseInternacional
+        {
+            get { return this._cbxLocalidadSolicitud.SelectedItem; }
+            set { this._cbxLocalidadSolicitud.SelectedItem = value; }
+        }
+
+        public object TipoClaseInternacionalesDatos
+        {
+            get { return this._cbxLocalidadDatos.DataContext; }
+            set { this._cbxLocalidadDatos.DataContext = value; }
+        }
+
+        public object TipoClaseInternacionalDatos
+        {
+            get { return this._cbxLocalidadDatos.SelectedItem; }
+            set { this._cbxLocalidadDatos.SelectedItem = value; }
+        }
+
+        public bool EsMarcaNacional
+        {
+            get { return this._radioNacional.IsChecked.Value; }
         }
 
         public string IdAsociadoSolicitudFiltrar
@@ -939,10 +1063,12 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             this._presentador.DescripcionSituacion();
         }
 
+
         private void _cbxDetalle_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             this._presentador.DescripcionDetalle();
         }
+
 
         #region Funciones
 
@@ -1202,6 +1328,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
 
         #endregion
 
+
         #region Eventos generales
 
 
@@ -1276,6 +1403,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
 
 
         #endregion
+
 
         #region Eventos Solicitudes
 
@@ -1555,6 +1683,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
 
         #endregion
 
+
         #region Eventos Datos
 
 
@@ -1750,6 +1879,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
         #endregion
 
 
+
         private void _impresion_Click(object sender, RoutedEventArgs e)
         {
             this._presentador.IrImprimir(((Button)sender).Name);
@@ -1779,20 +1909,24 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             this._presentador.IrRenovacionDeMarca();
         }
 
+
         private void _cbxAgente_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             ocultarLstPoderSolicutud();
         }
+
 
         private void _btnIrAsociados_Click(object sender, RoutedEventArgs e)
         {
             this._presentador.IrVentanaAsociado();
         }
 
+
         private void _btnVerExpediente_Click(object sender, RoutedEventArgs e)
         {
             this._presentador.VerExpediente();
         }
+
 
         private void _btnVerSolicitud_Click(object sender, RoutedEventArgs e)
         {
@@ -1806,19 +1940,145 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             this._presentador.VerCertificado();
         }
 
+
         private void _btnIntRenovacion_Click(object sender, RoutedEventArgs e)
         {
             this._presentador.VerInstruccionesDeRenovacion();
         }
+
 
         private void _btnIrInteresados_Click(object sender, RoutedEventArgs e)
         {
             this._presentador.IrVentanaInteresado();
         }
 
+
         private void _btnIrPoder_Click(object sender, RoutedEventArgs e)
         {
             this._presentador.IrVentanaPoder();
         }
+
+
+        private void _lstAsociadosInternacionalesSolicitud_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            if (this._presentador.CambiarAsociadoInternacionalSolicitud())
+            {
+
+                this._txtAsociadoInternacionalSolicitud.Visibility = Visibility.Visible;
+
+                this._lblNombreAsociadoIntFiltrar.Visibility = Visibility.Collapsed;
+                this._lblIdAsociadoIntFiltrar.Visibility = Visibility.Collapsed;
+                this._btnConsultarAsociadoInternacionalSolicitud.Visibility = Visibility.Collapsed;
+                this._txtIdAsociadoIntFiltrar.Visibility = Visibility.Collapsed;
+                this._txtNombreAsociadoIntFiltrar.Visibility = Visibility.Collapsed;
+
+                this._lstAsociadosInternacionalesSolicitud.Visibility = Visibility.Collapsed;
+
+                this._btnAceptar.IsDefault = false;
+                this._btnConsultarAsociadoInternacionalSolicitud.IsDefault = false;
+            }
+        }
+
+
+        private void _txtAsociadoInternacionalSolicitud_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            this._txtAsociadoInternacionalSolicitud.Visibility = Visibility.Collapsed;
+
+            this._lblNombreAsociadoIntFiltrar.Visibility = Visibility.Visible;
+            this._lblIdAsociadoIntFiltrar.Visibility = Visibility.Visible;
+            this._btnConsultarAsociadoInternacionalSolicitud.Visibility = Visibility.Visible;
+            this._txtIdAsociadoIntFiltrar.Visibility = Visibility.Visible;
+            this._txtNombreAsociadoIntFiltrar.Visibility = Visibility.Visible;
+
+            this._lstAsociadosInternacionalesSolicitud.Visibility = Visibility.Visible;
+
+            this._btnAceptar.IsDefault = false;
+            this._btnConsultarAsociadoInternacionalSolicitud.IsDefault = true;
+        }
+
+
+        private void _txtAsociadoInternacionalDatos_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            this._txtAsociadoInternacionalDatos.Visibility = Visibility.Collapsed;
+
+            this._lblNombreAsociadoIntDatosFiltrar.Visibility = Visibility.Visible;
+            this._lblIdAsociadoIntDatosFiltrar.Visibility = Visibility.Visible;
+            this._btnConsultarAsociadoInternacionalDatos.Visibility = Visibility.Visible;
+            this._txtIdAsociadoIntDatosFiltrar.Visibility = Visibility.Visible;
+            this._txtNombreAsociadoIntDatosFiltrar.Visibility = Visibility.Visible;
+
+            this._lstAsociadosInternacionalesDatos.Visibility = Visibility.Visible;
+
+            this._btnAceptar.IsDefault = false;
+            this._btnConsultarAsociadoInternacionalDatos.IsDefault = true;
+        }
+
+
+        private void _btnConsultarAsociadoInternacionalSolicitud_Click(object sender, RoutedEventArgs e)
+        {
+            if (this._presentador.ConsultarAsociado())
+            {
+            }
+            else
+            { }
+        }
+
+
+        private void _btnConsultarAsociadoInternacionalDatos_Click(object sender, RoutedEventArgs e)
+        {
+            if (this._presentador.ConsultarAsociadoDatos())
+            {
+            }
+            else
+            { }
+        }
+
+
+        private void _lstAsociadosInternacionalesDatos_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+
+            if (this._presentador.CambiarAsociadoInternacionalDatos())
+            {
+                this._txtAsociadoInternacionalDatos.Visibility = Visibility.Visible;
+
+                this._lblNombreAsociadoIntDatosFiltrar.Visibility = Visibility.Collapsed;
+                this._lblIdAsociadoIntDatosFiltrar.Visibility = Visibility.Collapsed;
+                this._btnConsultarAsociadoInternacionalDatos.Visibility = Visibility.Collapsed;
+                this._txtIdAsociadoIntDatosFiltrar.Visibility = Visibility.Collapsed;
+                this._txtNombreAsociadoIntDatosFiltrar.Visibility = Visibility.Collapsed;
+
+                this._lstAsociadosInternacionalesDatos.Visibility = Visibility.Collapsed;
+
+
+
+                this._btnAceptar.IsDefault = true;
+                this._btnConsultarAsociadoInternacionalDatos.IsDefault = false;
+            }
+        }
+
+
+        private void _cbxPaisIntSolicitud_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            this._cbxPaisIntDatos.SelectedIndex = _cbxPaisIntSolicitud.SelectedIndex;
+        }
+
+
+        private void _cbxPaisIntDatos_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            this._cbxPaisIntSolicitud.SelectedIndex = _cbxPaisIntDatos.SelectedIndex;
+        }
+
+
+        private void _cbxLocalidadDatos_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            this._cbxLocalidadSolicitud.SelectedIndex = _cbxLocalidadDatos.SelectedIndex;
+        }
+
+
+        private void _cbxLocalidadSolicitud_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            this._cbxLocalidadDatos.SelectedIndex = _cbxLocalidadSolicitud.SelectedIndex;
+        }
+
     }
 }

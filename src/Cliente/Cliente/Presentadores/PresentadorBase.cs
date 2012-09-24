@@ -615,6 +615,29 @@ namespace Trascend.Bolet.Cliente.Presentadores
         }
 
         /// <summary>
+        /// Método que busca un Pais dentro de una lista de paises
+        /// </summary>
+        /// <param name="paises">Lista de paises</param>
+        /// <param name="localidadBuscado">pais a buscar</param>
+        /// <returns>pais dentro de la lista</returns>
+        public ListaDatosValores BuscarLocalidad(IList<ListaDatosValores> localidades, ListaDatosValores localidadBuscado)
+        {
+            ListaDatosValores retorno = null;
+
+            if (localidadBuscado != null)
+                foreach (ListaDatosValores localidad in localidades)
+                {
+                    if (localidad.Valor == localidadBuscado.Id)
+                    {
+                        retorno = localidad;
+                        break;
+                    }
+                }
+
+            return retorno;
+        }
+
+        /// <summary>
         /// Método que busca un estado dentro de una lista de estados
         /// </summary>
         /// <param name="estados">Lista de estados</param>

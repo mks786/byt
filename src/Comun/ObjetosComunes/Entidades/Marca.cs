@@ -68,72 +68,19 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         private IList<InstruccionDeRenovacion> _instruccionesDeRenovacion;
         private int? _recordatorio;
 
+        //Región internacional
 
-        private char _localidad;
-
-        public virtual char Localidad
-        {
-            get { return _localidad; }
-            set { _localidad = value; }
-        }
-
-        private int? _idInternacional;
-
-        public virtual int? IdInternacional
-        {
-            get { return _idInternacional; }
-            set { _idInternacional = value; }
-        }
-
-        private int? _donde;
-
-        public virtual int? Donde
-        {
-            get { return _donde; }
-            set { _donde = value; }
-        }
-
-        private Pais _paisInternacional;
-
-        public virtual Pais PaisInternacional
-        {
-            get { return _paisInternacional; }
-            set { _paisInternacional = value; }
-        }
-
+        private string _clasesInternacionales;
+        private string _clasificacionInternacional;
+        private string _localidadMarca;
         private Asociado _asociadoInternacional;
+        private Pais _paisInternacional;
+        private int _codigoMarcaInternacional;
+        private int _correlativoExpediente;
+        private string _referenciaAsociadoInternacional;
+        private string _referenciaInteresadoInternacional;
 
-        public virtual Asociado AsociadoInternacional
-        {
-            get { return _asociadoInternacional; }
-            set { _asociadoInternacional = value; }
-        }
-
-        private string _casoInteresado;
-
-        public virtual string CasoInteresado
-        {
-            get { return _casoInteresado; }
-            set { _casoInteresado = value; }
-        }
-
-        private string _clasificacion;
-
-        public virtual string Clasificacion
-        {
-            get { return _clasificacion; }
-            set { _clasificacion = value; }
-        }
-
-        private string _clase;
-
-        public virtual string Clase
-        {
-            get { return _clase; }
-            set { _clase = value; }
-        }
-
-
+        //Fin Región internacional
 
         #endregion
 
@@ -768,6 +715,68 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
             get { return _instruccionesDeRenovacion; }
             set { _instruccionesDeRenovacion = value; }
         }
+
+
+
+        //Región Internacional
+
+
+
+        public virtual string ClasesInternacionales
+        {
+            get { return _clasesInternacionales; }
+            set { _clasesInternacionales = value; }
+        }
+
+        public virtual string LocalidadMarca
+        {
+            get { return _localidadMarca; }
+            set { _localidadMarca = value; }
+        }
+
+        public virtual Asociado AsociadoInternacional
+        {
+            get { return _asociadoInternacional; }
+            set { _asociadoInternacional = value; }
+        }
+
+        public virtual Pais PaisInternacional
+        {
+            get { return _paisInternacional; }
+            set { _paisInternacional = value; }
+        }
+
+        public virtual int CodigoMarcaInternacional
+        {
+            get { return _codigoMarcaInternacional; }
+            set { _codigoMarcaInternacional = value; }
+        }
+
+        public virtual int CorrelativoExpediente
+        {
+            get { return _correlativoExpediente; }
+            set { _correlativoExpediente = value; }
+        }
+
+        public virtual string ReferenciaAsociadoInternacional
+        {
+            get { return _referenciaAsociadoInternacional; }
+            set { _referenciaAsociadoInternacional = value; }
+        }
+
+        public virtual string ClasificacionInternacional
+        {
+            get { return _clasificacionInternacional; }
+            set { _clasificacionInternacional = value; }
+        }
+
+        public virtual string ReferenciaInteresadoInternacional
+        {
+            get { return _referenciaInteresadoInternacional; }
+            set { _referenciaInteresadoInternacional = value; }
+        }
+
+        //Fin Región Internacional
 
         #endregion
     }

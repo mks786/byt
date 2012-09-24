@@ -157,6 +157,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.FusionesPatente
             }
         }
 
+
         public void ActualizarTitulo()
         {
 
@@ -167,6 +168,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.FusionesPatente
                 this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleGestionarFusionPatente,
                 Recursos.Ids.GestionarFusionPatente);
         }
+
 
         /// <summary>
         /// Método que carga los datos iniciales a mostrar en la página
@@ -269,10 +271,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.FusionesPatente
             }
         }
 
+
         public void IrConsultarPatentes()
         {
             //OJO     this.Navegar(new ConsultarPatentes());
         }
+
 
         /// <summary>
         /// Método que carga el Interesado registrado
@@ -350,6 +354,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.FusionesPatente
 
         }
 
+
         /// <summary>
         /// Método que carga los boletines registrados
         /// </summary>
@@ -426,6 +431,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.FusionesPatente
 
         }
 
+
         /// <summary>
         /// Método que carga el Apoderado registrado
         /// </summary>
@@ -463,6 +469,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.FusionesPatente
 
         }
 
+
         /// <summary>
         /// Método que carga el poder resgistrado
         /// </summary>
@@ -498,6 +505,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.FusionesPatente
             #endregion
 
         }
+
 
         /// <summary>
         /// Método que dependiendo del estado de la pagina carga una fusion seleccionada
@@ -596,6 +604,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.FusionesPatente
             return fusion;
         }
 
+
         /// <summary>
         /// Método que habilita los campos
         /// </summary>
@@ -604,6 +613,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.FusionesPatente
             this._ventana.HabilitarCampos = true;
             this._ventana.TextoBotonModificar = Recursos.Etiquetas.btnAceptar;
         }
+
 
         /// <summary>
         /// Método que dependiendo del estado de la página, habilita los campos o 
@@ -714,6 +724,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.FusionesPatente
             return retorno;
         }
 
+
         /// <summary>
         /// Metodo que se encarga de eliminar una FusionPatente
         /// </summary>
@@ -765,6 +776,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.FusionesPatente
             }
         }
 
+
         /// <summary>
         /// Metodo que nos muestra la lista de auditorias
         /// </summary>
@@ -808,6 +820,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.FusionesPatente
             }
         }
 
+
         /// <summary>
         /// Método que ordena una columna
         /// </summary>
@@ -841,6 +854,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.FusionesPatente
                 logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
         }
+
 
         /// <summary>
         /// Método que Carga la lista de agentes y la lista de interesados
@@ -938,6 +952,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.FusionesPatente
 
         }
 
+
         /// <summary>
         /// Método llena la lista de agentes
         /// </summary>
@@ -962,7 +977,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.FusionesPatente
 
         }
 
+
         #region Patentes
+
 
         /// <summary>
         /// Método Muestra las patentes consultadas
@@ -1030,6 +1047,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.FusionesPatente
                 Mouse.OverrideCursor = null;
             }
         }
+
 
         /// <summary>
         /// Método que cambia la patente
@@ -1138,7 +1156,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.FusionesPatente
             return retorno;
         }
 
+
         #endregion
+
 
         #region InteresadoEntre
 
@@ -1206,6 +1226,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.FusionesPatente
             }
         }
 
+
         /// <summary>
         /// Método que cambia los interesados
         /// </summary>
@@ -1263,9 +1284,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.FusionesPatente
             return retorno;
         }
 
+
         #endregion
 
+
         #region InteresadoSobreviviente
+
 
         /// <summary>
         /// Método que Valida el interesado seleccionado
@@ -1348,6 +1372,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.FusionesPatente
 
         }
 
+
         /// <summary>
         /// Método que muestra los interesados
         /// </summary>
@@ -1417,6 +1442,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.FusionesPatente
                 Mouse.OverrideCursor = null;
             }
         }
+
 
         /// <summary>
         /// Método que cambia los interesados
@@ -1537,6 +1563,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.FusionesPatente
             return retorno;
         }
 
+
         /// <summary>
         /// Método que borra la lista de interesados
         /// </summary>
@@ -1561,6 +1588,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.FusionesPatente
             #endregion
 
         }
+
 
         /// <summary>
         /// Método que revisa y valida el cambio de interesado
@@ -1587,7 +1615,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.FusionesPatente
 
         #endregion
 
+
         #region Agente Apoderado
+
 
         /// <summary>
         /// Método que consulta los apoderados
@@ -1656,6 +1686,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.FusionesPatente
                 this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
             }
         }
+
 
         /// <summary>
         /// Método que permite cambiar el apoderado
@@ -1762,6 +1793,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.FusionesPatente
             return retorno;
         }
 
+
         /// <summary>
         /// Método que borra la lista de agentes
         /// </summary>
@@ -1787,6 +1819,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.FusionesPatente
 
         }
 
+
         /// <summary>
         /// Método que revisa y valida el cambio de Agente
         /// </summary>
@@ -1810,9 +1843,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.FusionesPatente
             return retorno;
         }
 
+
         #endregion
 
+
         #region Poder
+
 
         /// <summary>
         /// Método que consulta los poderess
@@ -1888,6 +1924,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.FusionesPatente
                 this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
             }
         }
+
 
         /// <summary>
         /// Método que cambia el poder
@@ -1982,6 +2019,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.FusionesPatente
             return retorno;
         }
 
+
         /// <summary>
         /// Método que borra la lista de poderes
         /// </summary>
@@ -2007,6 +2045,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.FusionesPatente
 
         }
 
+
         /// <summary>
         /// Método que revisa y valida el cambio de poder
         /// </summary>
@@ -2030,6 +2069,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.FusionesPatente
             return retorno;
         }
 
+
         /// <summary>
         /// Método que carga la lista de poderes
         /// </summary>
@@ -2052,6 +2092,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.FusionesPatente
             #endregion
 
         }
+
 
         /// <summary>
         /// Método que valida la lista de poderes a mostrar
@@ -2107,6 +2148,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.FusionesPatente
             return retorno;
         }
 
+
         #endregion
 
 
@@ -2136,6 +2178,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.FusionesPatente
             }
         }
 
+
         //private void ImprimirCarpeta()
         //{
         //    if (ValidarPatenteAntesDeImprimirCarpeta())
@@ -2153,10 +2196,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.FusionesPatente
         //    }
         //}
 
+
         private bool ValidarPatenteAntesDeImprimirCarpeta()
         {
             return true;
         }
+
 
         private void ImprimirAnexo()
         {
@@ -2175,10 +2220,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.FusionesPatente
             }
         }
 
+
         private bool ValidarPatenteAntesDeImprimirAnexo()
         {
             return true;
         }
+
 
         private void ImprimirPlanilla()
         {
@@ -2197,9 +2244,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.FusionesPatente
             }
         }
 
+
         private bool ValidarPatenteAntesDeImprimirPlanilla()
         {
             return true;
         }
+
     }
 }

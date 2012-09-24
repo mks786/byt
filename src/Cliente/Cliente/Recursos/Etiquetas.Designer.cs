@@ -1251,6 +1251,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to LOCALIDADMARCAINT.
+        /// </summary>
+        public static string cbiLocalidadMarca {
+            get {
+                return ResourceManager.GetString("cbiLocalidadMarca", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Marcas.
         /// </summary>
         public static string cbiMarcas {
@@ -2126,6 +2135,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Clase:.
+        /// </summary>
+        public static string lblClase {
+            get {
+                return ResourceManager.GetString("lblClase", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Clase Int:.
         /// </summary>
         public static string lblClaseInt {
@@ -2140,6 +2158,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string lblClaseNac {
             get {
                 return ResourceManager.GetString("lblClaseNac", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Clasificación:.
+        /// </summary>
+        public static string lblClasificacion {
+            get {
+                return ResourceManager.GetString("lblClasificacion", resourceCulture);
             }
         }
         
@@ -3743,6 +3770,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string lblReferenciaNuestra {
             get {
                 return ResourceManager.GetString("lblReferenciaNuestra", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ref. Int:.
+        /// </summary>
+        public static string lblRefInteresado {
+            get {
+                return ResourceManager.GetString("lblRefInteresado", resourceCulture);
             }
         }
         

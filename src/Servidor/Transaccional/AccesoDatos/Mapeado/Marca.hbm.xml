@@ -5,7 +5,7 @@
                    auto-import="true">
 
   <class name="Marca" table="MYP_MARCAS">
-    
+
     <id name="Id" column="CMARCA" type="int"/>
     <property name="Descripcion" column="XMARCA" type="string"/>
     <property name="Tipo" column="ITIPO" type="string"/>
@@ -44,22 +44,6 @@
     <property name="Ter" column="ITER" type="char"/>
     <property name="Recordatorio" column="NRECORDATORIO" type="int"/>
 
-    <property name="Localidad" column="CLOCALIDAD" type="char"/>
-    <property name="IdInternacional" column="CMARCAI" type="int"/>
-    <property name="Donde" column="CDONDE" type="int"/>
-    
-    <many-to-one name="PaisInternacional" class="Pais">
-      <column name="CPAIS_INT"/>
-    </many-to-one>
-    
-    <many-to-one name="AsociadoInternacional" class="Asociado">
-      <column name="CASOCIADO_I"/>
-    </many-to-one>
-    
-    <property name="CasoInteresado" column="XCASO_INTERESADO" type="string"/>
-    <property name="Clasificacion" column="ICLASIFICACION" type="string"/>
-    <property name="Clase" column="XCLASE" type="string"/>
-
     <many-to-one name="Agente" class="Agente">
       <column name="CAGENTE"/>
     </many-to-one>
@@ -71,11 +55,11 @@
     <many-to-one name="Corresponsal" class="Corresponsal">
       <column name="CCORRESP"/>
     </many-to-one>
-    
+
     <!--<many-to-one name="Carta" class="Carta">
       <column name="CCORRESP"/>
     </many-to-one>-->
-    
+
     <many-to-one name="BoletinConcesion" class="Boletin">
       <column name="CBOLETIN_CONCESION"/>
     </many-to-one>
@@ -120,6 +104,26 @@
       <column name="CTESTADO"/>
     </many-to-one>
 
+
+    <!--Internacional-->
+
+    <property name="ReferenciaInteresadoInternacional" column="XCASO_INTERESADO" type="string"/>
+    <property name="ClasesInternacionales" column="XCLASE" type="string"/>
+    <property name="CodigoMarcaInternacional" column="CMARCAI" type="int"/>
+    <property name="CorrelativoExpediente" column="CDONDE" type="int"/>
+    <property name="LocalidadMarca" column="CLOCALIDAD" type="string"/>
+    <property name="ClasificacionInternacional" column="ICLASIFICACION" type="string"/>
+
+    <many-to-one name="PaisInternacional" class="Pais" lazy="false">
+      <column name="CPAIS_INT"/>
+    </many-to-one>
+
+    <many-to-one name="AsociadoInternacional" class="Asociado" lazy="false">
+      <column name="CASOCIADO_I"/>
+    </many-to-one>
+
+    <!--Fin Internacional-->
+
   </class>
 
 
@@ -143,6 +147,7 @@
     </return>
     exec P1 :usr, :way, :cod
   </sql-query>-->
+  
 
 </hibernate-mapping>
 

@@ -5,7 +5,7 @@ namespace Trascend.Bolet.Cliente.Contratos.Marcas
 {
     interface IAgregarMarca : IPaginaBase
     {
-        object Marca { get; set; }        
+        object Marca { get; set; }
 
         string IdAsociadoSolicitudFiltrar { get; }
 
@@ -184,6 +184,42 @@ namespace Trascend.Bolet.Cliente.Contratos.Marcas
         void ocultarLstPoderSolicutud();
 
         void Mensaje(string mensaje, int opcion);
+
+        string IdAsociadoInternacionalFiltrar { get; set; }
+
+        string NombreAsociadoInternacionalFiltrar { get; set; }
+
+        object AsociadosInternacionales { get; set; }
+
+        object AsociadoInternacional { get; set; }
+
+        string IdAsociadoInternacionalFiltrarDatos { get; set; }
+
+        string NombreAsociadoInternacionalFiltrarDatos { get; set; }
+
+        object AsociadosInternacionalesDatos { get; set; }
+
+        object AsociadoInternacionalDatos { get; set; }
+
+        string TextoAsociadoInternacional { set; }
+
+        object PaisesInternacionales { get; set; }
+
+        object PaisInternacional { get; set; }
+
+        object PaisesInternacionalesDatos { get; set; }
+
+        object PaisInternacionalDatos { get; set; }
+
+        object TipoClaseInternacionales { get; set; }
+
+        object TipoClaseInternacional { get; set; }
+
+        object TipoClaseInternacionalesDatos { get; set; }
+
+        object TipoClaseInternacionalDatos { get; set; }
+
+        bool EsMarcaNacional { get; }
 
         GridViewColumnHeader CurSortCol { get; set; }
 

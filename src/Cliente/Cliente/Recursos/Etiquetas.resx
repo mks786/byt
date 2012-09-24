@@ -2880,4 +2880,16 @@ en Prensa:</value>
   <data name="radioVariasPatentes" xml:space="preserve">
     <value>Varias Patentes</value>
   </data>
+  <data name="cbiLocalidadMarca" xml:space="preserve">
+    <value>LOCALIDADMARCAINT</value>
+  </data>
+  <data name="lblClase" xml:space="preserve">
+    <value>Clase:</value>
+  </data>
+  <data name="lblClasificacion" xml:space="preserve">
+    <value>Clasificación:</value>
+  </data>
+  <data name="lblRefInteresado" xml:space="preserve">
+    <value>Ref. Int:</value>
+  </data>
 </root>

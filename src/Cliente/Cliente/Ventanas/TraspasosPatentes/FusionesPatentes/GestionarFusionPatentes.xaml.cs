@@ -494,7 +494,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.FusionesPatentes
 
             this._btnAnexo.Visibility = System.Windows.Visibility.Collapsed;
             //this._btnCarpeta.Visibility = System.Windows.Visibility.Collapsed;
-            this._btnPlanilla.Visibility = System.Windows.Visibility.Collapsed;            
+            this._btnPlanilla.Visibility = System.Windows.Visibility.Collapsed;
         }
 
         private void _btnModificar_Click(object sender, RoutedEventArgs e)
@@ -503,7 +503,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.FusionesPatentes
         }
 
         private void _btnRegresar_Click(object sender, RoutedEventArgs e)
-        {            
+        {
             if (this.TextoBotonRegresar == Recursos.Etiquetas.btnRegresar)
                 this._presentador.Regresar();
             else if (this.TextoBotonRegresar == Recursos.Etiquetas.btnCancelar)
@@ -702,7 +702,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.FusionesPatentes
             GestionarVisibilidadDatosDeInteresadoSobreviviente(Visibility.Visible);
             GestionarVisibilidadFiltroInteresadoSobreviviente(Visibility.Collapsed);
 
-            
+
         }
 
         private void _txtInteresadoEntreFiltrar_GotFocus(object sender, RoutedEventArgs e)
@@ -722,13 +722,13 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.FusionesPatentes
         }
 
         private void GestionarVisibilidadDatosDeInteresadoEntre(object value)
-        {                        
+        {
             this._txtNombreInteresadoEntre.Visibility = (System.Windows.Visibility)value;
             this._txtIdInteresadoEntre.Visibility = (System.Windows.Visibility)value;
             this._txtPaisInteresadoEntre.Visibility = (System.Windows.Visibility)value;
             this._txtCiudadInteresadoEntre.Visibility = (System.Windows.Visibility)value;
             this._txtDomicilioPatenteTercero.Visibility = (System.Windows.Visibility)value;
-            
+
             this._cbxPaisPatenteTercero.Visibility = (System.Windows.Visibility)value;
             this._cbxNacionalidadPatenteTercero.Visibility = (System.Windows.Visibility)value;
             this._txtIdPatenteTerceroFiltrar.Visibility = (System.Windows.Visibility)value;
@@ -740,7 +740,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.FusionesPatentes
             this._lblPaisPatenteTercero.Visibility = (System.Windows.Visibility)value;
             this._lblNacionalidadPatenteTercero.Visibility = (System.Windows.Visibility)value;
             this._lblNombrePatenteTercero.Visibility = (System.Windows.Visibility)value;
-            
+
 
         }
 
@@ -799,7 +799,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.FusionesPatentes
             GestionarVisibilidadDatosDePoder(Visibility.Visible);
             GestionarVisibilidadFiltroPoder(Visibility.Collapsed);
 
-            
+
         }
 
         private void _txtInteresadoSobrevivienteFiltrar_GotFocus(object sender, RoutedEventArgs e)
@@ -827,8 +827,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.FusionesPatentes
         }
 
         public void GestionarBotonConsultarInteresado(bool value)
-        {                          
-            this._btnConsultarInteresadoSobreviviente.IsEnabled = value;           
+        {
+            this._btnConsultarInteresadoSobreviviente.IsEnabled = value;
         }
 
 
@@ -839,10 +839,10 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.FusionesPatentes
         private void _btnConsultarApoderado_Click(object sender, RoutedEventArgs e)
         {
             this._presentador.ConsultarApoderados();
-        }       
+        }
 
         private void _lstApoderados_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
-        {          
+        {
             if (this._presentador.CambiarApoderado())
             {
                 GestionarVisibilidadDatosDeAgenteApoderado(Visibility.Visible);
@@ -864,7 +864,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.FusionesPatentes
         {
             this._presentador.OrdenarColumna(sender as GridViewColumnHeader, this._lstApoderados);
         }
-        
+
         private void _txtApoderadoFiltrar_GotFocus(object sender, RoutedEventArgs e)
         {
             this._btnConsultarApoderado.IsDefault = true;
@@ -899,12 +899,12 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.FusionesPatentes
         private void GestionarVisibilidadFiltroAgenteApoderado(object value)
         {
             this._lblIdApoderadoFiltrar.Visibility = (System.Windows.Visibility)value;
-            this._lblNombreApoderadoFiltrar.Visibility = (System.Windows.Visibility)value; 
+            this._lblNombreApoderadoFiltrar.Visibility = (System.Windows.Visibility)value;
             this._txtNombreApoderadoFiltrar.Visibility = (System.Windows.Visibility)value;
             this._txtIdApoderadoFiltrar.Visibility = (System.Windows.Visibility)value;
             this._lstApoderados.Visibility = (System.Windows.Visibility)value;
             this._btnConsultarApoderado.Visibility = (System.Windows.Visibility)value;
-            
+
         }
 
         private void GestionarVisibilidadDatosDeAgenteApoderado(object value)
@@ -914,8 +914,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.FusionesPatentes
         }
 
         public void GestionarBotonConsultarApoderado(bool value)
-        {                           
-            this._btnConsultarApoderado.IsEnabled = value;           
+        {
+            this._btnConsultarApoderado.IsEnabled = value;
         }
 
         #endregion
@@ -932,8 +932,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.FusionesPatentes
                 this._presentador.ConsultarInteresadosSobreviviente();
             else if (((Button)sender).Name.Equals("_btnConsultarApoderado"))
                 this._presentador.ConsultarApoderados();
-            else if (((Button)sender).Name.Equals("_btnConsultarPoder"))            
-                this._presentador.ConsultarPoderes();           
+            else if (((Button)sender).Name.Equals("_btnConsultarPoder"))
+                this._presentador.ConsultarPoderes();
         }
 
         private void _txtPoderFiltrar_GotFocus(object sender, RoutedEventArgs e)
@@ -962,9 +962,9 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.FusionesPatentes
             GestionarVisibilidadFiltroAgenteApoderado(Visibility.Collapsed);
 
             //Muestro el filtro de Poder
-            GestionarVisibilidadDatosDePoder(Visibility.Collapsed);            
-            GestionarVisibilidadFiltroPoder(Visibility.Visible);            
-           
+            GestionarVisibilidadDatosDePoder(Visibility.Collapsed);
+            GestionarVisibilidadFiltroPoder(Visibility.Visible);
+
         }
 
         private void _OrdenarPoderes_Click(object sender, RoutedEventArgs e)
@@ -991,11 +991,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.FusionesPatentes
                     this._btnConsultarInteresadoSobreviviente.IsEnabled = true;
                 }
             }
-        }       
+        }
 
         public void GestionarBotonConsultarPoder(bool value)
-        {                
-            this._btnConsultarPoder.IsEnabled = value;          
+        {
+            this._btnConsultarPoder.IsEnabled = value;
         }
 
         private void GestionarVisibilidadFiltroPoder(object value)
