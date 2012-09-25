@@ -1630,7 +1630,7 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Nacional.
+        ///   Looks up a localized string similar to Nacional/Internacional.
         /// </summary>
         public static string chkNacional {
             get {
@@ -1855,7 +1855,7 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Asociado Internacional.
+        ///   Looks up a localized string similar to Asoc. Int:.
         /// </summary>
         public static string lblAsociadoInternacional {
             get {
@@ -2005,6 +2005,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string lblCambio {
             get {
                 return ResourceManager.GetString("lblCambio", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Campos Internacionales:.
+        /// </summary>
+        public static string lblCamposInternacionales {
+            get {
+                return ResourceManager.GetString("lblCamposInternacionales", resourceCulture);
             }
         }
         
@@ -2216,7 +2225,7 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Código Internacional:.
+        ///   Looks up a localized string similar to Código Int:.
         /// </summary>
         public static string lblCodigoInt {
             get {
@@ -3761,6 +3770,33 @@ namespace Trascend.Bolet.Cliente.Recursos {
         public static string lblReferencia {
             get {
                 return ResourceManager.GetString("lblReferencia", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ref. Asoc. Int.:.
+        /// </summary>
+        public static string lblReferenciaAsoc {
+            get {
+                return ResourceManager.GetString("lblReferenciaAsoc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ref. Asoc.:.
+        /// </summary>
+        public static string lblReferenciaDeAsociado {
+            get {
+                return ResourceManager.GetString("lblReferenciaDeAsociado", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ref. Int:.
+        /// </summary>
+        public static string lblReferenciaInt {
+            get {
+                return ResourceManager.GetString("lblReferenciaInt", resourceCulture);
             }
         }
         

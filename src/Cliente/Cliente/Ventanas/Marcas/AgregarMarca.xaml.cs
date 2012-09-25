@@ -154,6 +154,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             get { return this._radioNacional.IsChecked.Value; }
         }
 
+        public string ClaseInternacional 
+        {
+            get { return this._txtClaseIntSolicitud.Text; }
+        }
+
         public string IdInternacional
         {
             get { return this._txtClaseInternacionalSolicitud.Text; }
@@ -639,6 +644,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             this._txtClaseInternacionalDatos.Text = this._txtClaseInternacionalDatos.Text.Equals("0") ? "" : this._txtClaseInternacionalDatos.Text;
             this._txtClaseNacional.Text = this._txtClaseNacional.Text.Equals("0") ? "" : this._txtClaseNacional.Text;
             this._txtClaseNacionalDatos.Text = this._txtClaseNacionalDatos.Text.Equals("0") ? "" : this._txtClaseNacionalDatos.Text;
+
+            this._txtCod.Text = this._txtCod.Text.Equals("0") ? "" : this._txtCod.Text;
+            this._txtNum.Text = this._txtNum.Text.Equals("0") ? "" : this._txtNum.Text;
+            this._txtCodIntlDatos.Text = this._txtCodIntlDatos.Text.Equals("0") ? "" : this._txtCodIntlDatos.Text;
+            this._txtNumIntlDatos.Text = this._txtNumIntlDatos.Text.Equals("0") ? "" : this._txtNumIntlDatos.Text;
         }
 
         public void Mensaje(string mensaje, int opcion)

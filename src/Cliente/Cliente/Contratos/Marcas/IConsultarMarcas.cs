@@ -148,5 +148,25 @@ namespace Trascend.Bolet.Cliente.Contratos.Marcas
         void GestionarVisibilidadFiltroMarca(object value);
 
         void LimpiarCampos();
+
+        #region Filtro Internacional
+
+        string IdInternacional { get; }
+
+        string IdCorrelativoInternacional { get; }
+
+        string ReferenciaInteresado { get; }
+
+        string ReferenciaAsociado { get; }
+
+        object AsociadosInternacionales { get; set; }
+
+        object AsociadoInternacional { get; set; }
+
+        object TiposBusqueda { get; set; }
+
+        object TipoBusqueda { get; set; }
+
+        #endregion
     }
 }

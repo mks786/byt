@@ -221,6 +221,8 @@ namespace Trascend.Bolet.Cliente.Contratos.Marcas
 
         bool EsMarcaNacional { get; }
 
+        string ClaseInternacional { get; }
+
         GridViewColumnHeader CurSortCol { get; set; }
 
         SortAdorner CurAdorner { get; set; }

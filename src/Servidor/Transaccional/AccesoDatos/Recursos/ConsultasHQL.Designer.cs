@@ -1069,6 +1069,24 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to m.CorrelativoExpediente = {0}.
+        /// </summary>
+        public static string FiltroObtenerMarcaIntIdCorrelativoExp {
+            get {
+                return ResourceManager.GetString("FiltroObtenerMarcaIntIdCorrelativoExp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to m.CodigoMarcaInternacional = {0}.
+        /// </summary>
+        public static string FiltroObtenerMarcaIntIdInternacional {
+            get {
+                return ResourceManager.GetString("FiltroObtenerMarcaIntIdInternacional", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to m.Nacional.Id = {0}.
         /// </summary>
         public static string FiltroObtenerMarcaNacional {
@@ -1096,6 +1114,15 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to m.PaisInternacional.Id ={0}.
+        /// </summary>
+        public static string FiltroObtenerMarcaPaisInternacional {
+            get {
+                return ResourceManager.GetString("FiltroObtenerMarcaPaisInternacional", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to m.CPrioridad = {0}.
         /// </summary>
         public static string FiltroObtenerMarcaPrioridad {
@@ -1119,6 +1146,24 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         public static string FiltroObtenerMarcaReferencia {
             get {
                 return ResourceManager.GetString("FiltroObtenerMarcaReferencia", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to upper(m.ReferenciaAsociadoInternacional) like &apos;%{0}%&apos;.
+        /// </summary>
+        public static string FiltroObtenerMarcaReferenciaAsociadoInternacional {
+            get {
+                return ResourceManager.GetString("FiltroObtenerMarcaReferenciaAsociadoInternacional", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to upper(m.ReferenciaInteresadoInternacional) like &apos;%{0}%&apos;.
+        /// </summary>
+        public static string FiltroObtenerMarcaReferenciaInteresadoInternacional {
+            get {
+                return ResourceManager.GetString("FiltroObtenerMarcaReferenciaInteresadoInternacional", resourceCulture);
             }
         }
         

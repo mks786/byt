@@ -940,4 +940,21 @@
   <data name="ObtenerFusionPatenteTercero" xml:space="preserve">
     <value>Select m from FusionPatenteTercero m where m.Fusion.Id = {0}</value>
   </data>
+  <data name="FiltroObtenerMarcaIntIdCorrelativoExp" xml:space="preserve">
+    <value>m.CorrelativoExpediente = {0}</value>
+  </data>
+  <data name="FiltroObtenerMarcaIntIdInternacional" xml:space="preserve">
+    <value>m.CodigoMarcaInternacional = {0}</value>
+  </data>
+  <data name="FiltroObtenerMarcaPaisInternacional" xml:space="preserve">
+    <value>m.PaisInternacional.Id ={0}</value>
+  </data>
+  <data name="FiltroObtenerMarcaReferenciaAsociadoInternacional" xml:space="preserve">
+    <value>upper(m.ReferenciaAsociadoInternacional) like '%{0}%'</value>
+    <comment>Filtra marca por referencia de asociado internacional</comment>
+  </data>
+  <data name="FiltroObtenerMarcaReferenciaInteresadoInternacional" xml:space="preserve">
+    <value>upper(m.ReferenciaInteresadoInternacional) like '%{0}%'</value>
+    <comment>Filtra marca por referencia de asociado internacional</comment>
+  </data>
 </root>

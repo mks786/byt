@@ -257,6 +257,58 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
 
                 #endregion
 
+                #region Filtro de Marca Internacional
+
+                if (marca.LocalidadMarca.Equals("I"))
+                {
+
+                    if (marca.CodigoMarcaInternacional != 0)
+                    {
+                        if (variosFiltros)
+                            filtro += " and ";
+                        filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerMarcaIntIdInternacional, marca.CodigoMarcaInternacional);
+                        variosFiltros = true;
+                        
+                    }
+
+                    if (marca.CorrelativoExpediente != 0)
+                    {
+                        if (variosFiltros)
+                            filtro += " and ";
+                        filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerMarcaIntIdCorrelativoExp, marca.CorrelativoExpediente);
+                        variosFiltros = true;
+                    }
+
+                    if (marca.PaisInternacional != null)
+                    {
+                        if (variosFiltros)
+                            filtro += " and ";
+                        filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerMarcaPaisInternacional, marca.PaisInternacional.Id);
+                        variosFiltros = true;
+                    }
+
+
+
+                    //Descomentar cuando se agregue el campo a la bd
+
+                    //if (!marca.ReferenciaAsociadoInternacional.Equals(string.Empty))
+                    //{
+                    //    if (variosFiltros)
+                    //        filtro += " and ";
+                    //    filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerMarcaReferenciaAsociadoInternacional, marca.ReferenciaAsociadoInternacional.ToUpper());
+                    //    variosFiltros = true;
+                    //}
+
+                    if (!string.IsNullOrEmpty(marca.ReferenciaInteresadoInternacional))
+                    {
+                        if (variosFiltros)
+                            filtro += " and ";
+                        filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerMarcaReferenciaInteresadoInternacional, marca.ReferenciaInteresadoInternacional.ToUpper());
+                        variosFiltros = true;
+                    }
+                }
+
+                #endregion
                 IQuery query = Session.CreateQuery(cabecera + filtro);
                 Marcas = query.List<Marca>();
 

@@ -1376,6 +1376,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Disculpe, para insertar una Marca Internacional debe seleccionar la Clasificación, el País y su Clase.
+        /// </summary>
+        internal static string ErrorMarcaInternacional {
+            get {
+                return ResourceManager.GetString("ErrorMarcaInternacional", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Disculpe, el Id de la Memoria está repetido.
         /// </summary>
         internal static string ErrorMemoriaRepetida {

@@ -351,6 +351,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
                 this._txtSaldoVencido.IsEnabled = value;
                 this._txtTotalDeuda.IsEnabled = value;
 
+                this._txtClaseInternacionalIDatos.IsEnabled = value;
+                this._txtClaseInternacionalSolicitud.IsEnabled = value;
+                this._txtReferenciaInteresado.IsEnabled = value;
+                this._txtReferenciaInteresadoDatos.IsEnabled = value;
+
                 #endregion
 
                 #region ComboBoxs
@@ -384,6 +389,9 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
                 this._cbxBoletinConcesion.IsEnabled = value;
                 this._cbxBoletinPublicacion.IsEnabled = value;
                 this._cbxOrdenPublicacion.IsEnabled = value;
+
+                this._cbxPaisIntDatos.IsEnabled = value;
+                this._cbxPaisIntSolicitud.IsEnabled = value;
 
                 #endregion
 
@@ -971,11 +979,21 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             this._txtClaseInternacional.Text = this._txtClaseInternacional.Text.Equals("0") ? "" : this._txtClaseInternacional.Text;
             this._txtClaseNacional.Text = this._txtClaseNacional.Text.Equals("0") ? "" : this._txtClaseNacional.Text;
             this._txtClaseNacionalDatos.Text = this._txtClaseNacionalDatos.Text.Equals("0") ? "" : this._txtClaseNacionalDatos.Text;
+
+            this._txtCod.Text = this._txtCod.Text.Equals("0") ? "" : this._txtCod.Text;
+            this._txtNum.Text = this._txtNum.Text.Equals("0") ? "" : this._txtNum.Text;
+            this._txtCodIntlDatos.Text = this._txtCodIntlDatos.Text.Equals("0") ? "" : this._txtCodIntlDatos.Text;
+            this._txtNumIntlDatos.Text = this._txtNumIntlDatos.Text.Equals("0") ? "" : this._txtNumIntlDatos.Text;
         }
 
         public void DeshabilitarBotonModificar()
         {
             this._btnAceptar.IsEnabled = false;
+        }
+
+        public string ClaseInternacionalMarca
+        {
+            get { return this._txtClaseInternacionalSolicitud.Text; }
         }
 
         public string ClaseInternacional

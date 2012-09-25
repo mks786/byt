@@ -344,8 +344,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
 
         public bool InternacionalEstaSeleccionado
         {
-            get { return this._chkInternacional.IsChecked.Value; }
-            set { this._chkInternacional.IsChecked = value; }
+            get { return true; }
+            set { }
         }
 
         public bool NacionalEstaSeleccionado
@@ -420,11 +420,65 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             set { this._splFiltro.DataContext = value; }
         }
 
+        #region Filtro Internacional
+
+        public string IdInternacional
+        {
+            get { return this._txtCodigoInternacional.Text; }
+        }
+
+        public string IdCorrelativoInternacional
+        {
+            get { return this._txtCodigoInternacional2.Text; }
+        }
+
+        public string ReferenciaInteresado
+        {
+            get { return this._txtReferenciaInteresado.Text; }
+        }
+
+        public string ReferenciaAsociado
+        {
+            get { return this._txtReferenciaAsociado.Text; }
+        }
+
+        public object AsociadosInternacionales
+        {
+            get { throw new System.NotImplementedException(); }
+            set { throw new System.NotImplementedException(); }
+        }
+
+        public object AsociadoInternacional
+        {
+            get { throw new System.NotImplementedException(); }
+            set { throw new System.NotImplementedException(); }
+        }
+
+        public object TiposBusqueda
+        {
+            get { return this._cbxTipoBusqueda.DataContext; }
+            set
+            {
+                this._cbxTipoBusqueda.DataContext = value;
+                this._cbxTipoBusqueda.SelectedIndex = 1;
+            }
+        }
+
+        public object TipoBusqueda
+        {
+            get { return this._cbxTipoBusqueda.SelectedItem; }
+            set { this._cbxTipoBusqueda.SelectedItem = value; }
+        }
+
+        #endregion
+
         public void LimpiarCampos()
         {
             this._txtClaseInternacional.Text = "";
             this._txtClaseNacional.Text = "";
+            //this._txtIdInternacional.Text = "";
         }
+
 
         #endregion
 
@@ -701,20 +755,20 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
 
         private void _chkInternacional_Click(object sender, RoutedEventArgs e)
         {
-            GestionarVisibilidadFiltroInternacional(this._chkInternacional.IsChecked.Value);
-            if (this._chkInternacional.IsChecked.Value)
-            {
-                this._chkNacional.IsChecked = !this._chkInternacional.IsChecked.Value;
-                GestionarVisibilidadFiltroNacional(!this._chkInternacional.IsChecked.Value);
-            }
+            //GestionarVisibilidadFiltroInternacional(this._chkInternacional.IsChecked.Value);
+            //if (this._chkInternacional.IsChecked.Value)
+            //{
+            //    this._chkNacional.IsChecked = !this._chkInternacional.IsChecked.Value;
+            //    GestionarVisibilidadFiltroNacional(!this._chkInternacional.IsChecked.Value);
+            //}
         }
 
         public void GestionarVisibilidadFiltroInternacional(bool visibilidad)
         {
             if (visibilidad)
             {
-                this._lblIdInternacional.Visibility = Visibility.Visible;
-                this._txtIdInternacional.Visibility = Visibility.Visible;
+                //this._lblIdInternacional.Visibility = Visibility.Visible;
+                //this._txtIdInternacional.Visibility = Visibility.Visible;
 
                 this._lblCodigoInternacional.Visibility = Visibility.Visible;
                 this._txtCodigoInternacional.Visibility = Visibility.Visible;
@@ -723,19 +777,16 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
                 this._lblPaisInternacional.Visibility = Visibility.Visible;
                 this._cbxPaisInternacional.Visibility = Visibility.Visible;
 
-                this._lblReferenciaInternacional.Visibility = Visibility.Visible;
-                this._txtReferenciaInternacional.Visibility = Visibility.Visible;
+                this._lblReferenciaInteresado.Visibility = Visibility.Visible;
+                this._txtReferenciaInteresado.Visibility = Visibility.Visible;
 
-                this._lblReferenciaInternacional.Visibility = Visibility.Visible;
-                this._txtReferenciaInternacional.Visibility = Visibility.Visible;
-
-                this._lblAsociadoInternacional.Visibility = Visibility.Visible;
-                this._txtAsociadoInternacional.Visibility = Visibility.Visible;
+                this._lblReferenciaAsociado.Visibility = Visibility.Visible;
+                this._txtReferenciaAsociado.Visibility = Visibility.Visible;
             }
             else
             {
-                this._lblIdInternacional.Visibility = Visibility.Collapsed;
-                this._txtIdInternacional.Visibility = Visibility.Collapsed;
+                //this._lblIdInternacional.Visibility = Visibility.Collapsed;
+                //this._txtIdInternacional.Visibility = Visibility.Collapsed;
 
                 this._lblCodigoInternacional.Visibility = Visibility.Collapsed;
                 this._txtCodigoInternacional.Visibility = Visibility.Collapsed;
@@ -744,14 +795,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
                 this._lblPaisInternacional.Visibility = Visibility.Collapsed;
                 this._cbxPaisInternacional.Visibility = Visibility.Collapsed;
 
-                this._lblReferenciaInternacional.Visibility = Visibility.Collapsed;
-                this._txtReferenciaInternacional.Visibility = Visibility.Collapsed;
+                this._lblReferenciaInteresado.Visibility = Visibility.Collapsed;
+                this._txtReferenciaInteresado.Visibility = Visibility.Collapsed;
 
-                this._lblReferenciaInternacional.Visibility = Visibility.Collapsed;
-                this._txtReferenciaInternacional.Visibility = Visibility.Collapsed;
-
-                this._lblAsociadoInternacional.Visibility = Visibility.Collapsed;
-                this._txtAsociadoInternacional.Visibility = Visibility.Collapsed;
+                this._lblReferenciaAsociado.Visibility = Visibility.Collapsed;
+                this._txtReferenciaAsociado.Visibility = Visibility.Collapsed;
             }
         }
 
@@ -761,8 +809,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
 
             if (this._chkNacional.IsChecked.Value)
             {
-                this._chkInternacional.IsChecked = !this._chkNacional.IsChecked.Value;
-                GestionarVisibilidadFiltroInternacional(!this._chkNacional.IsChecked.Value);
+                //this._chkInternacional.IsChecked = !this._chkNacional.IsChecked.Value;
+                //GestionarVisibilidadFiltroInternacional(!this._chkNacional.IsChecked.Value);
             }
         }
 
@@ -796,7 +844,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
                 this._txtNombreInteresado.Visibility = Visibility.Collapsed;
                 this._lblNombreInteresado.Visibility = Visibility.Collapsed;
                 this._lblIdInteresado.Visibility = Visibility.Collapsed;
-                
+
                 this._lstAsociados.Visibility = Visibility.Collapsed;
                 this._btnConsultarAsociado.Visibility = Visibility.Collapsed;
                 this._txtIdAsociado.Visibility = Visibility.Collapsed;
@@ -812,7 +860,23 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
 
                 this.GestionarVisibilidadFiltroMarca(Visibility.Collapsed);
                 this.GestionarVisibilidadDatosDeMarca(Visibility.Visible);
-                
+
+                //this._lblIdInternacional.Visibility = Visibility.Visible;
+                //this._txtIdInternacional.Visibility = Visibility.Visible;
+
+                this._lblCodigoInternacional.Visibility = Visibility.Visible;
+                this._txtCodigoInternacional.Visibility = Visibility.Visible;
+                this._txtCodigoInternacional2.Visibility = Visibility.Visible;
+
+                this._lblPaisInternacional.Visibility = Visibility.Visible;
+                this._cbxPaisInternacional.Visibility = Visibility.Visible;
+
+                this._lblReferenciaInteresado.Visibility = Visibility.Visible;
+                this._txtReferenciaInteresado.Visibility = Visibility.Visible;
+
+                this._lblReferenciaAsociado.Visibility = Visibility.Visible;
+                this._txtReferenciaAsociado.Visibility = Visibility.Visible;
+
 
                 this.GestionarVisibilidadFiltroCorresponsal(false);
             }
@@ -837,6 +901,23 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
                 this._lblInteresado.Visibility = Visibility.Collapsed;
 
                 this._nacional.Visibility = Visibility.Collapsed;
+
+
+                //this._lblIdInternacional.Visibility = Visibility.Collapsed;
+                //this._txtIdInternacional.Visibility = Visibility.Collapsed;
+
+                this._lblCodigoInternacional.Visibility = Visibility.Collapsed;
+                this._txtCodigoInternacional.Visibility = Visibility.Collapsed;
+                this._txtCodigoInternacional2.Visibility = Visibility.Collapsed;
+
+                this._lblPaisInternacional.Visibility = Visibility.Collapsed;
+                this._cbxPaisInternacional.Visibility = Visibility.Collapsed;
+
+                this._lblReferenciaInteresado.Visibility = Visibility.Collapsed;
+                this._txtReferenciaInteresado.Visibility = Visibility.Collapsed;
+
+                this._lblReferenciaAsociado.Visibility = Visibility.Collapsed;
+                this._txtReferenciaAsociado.Visibility = Visibility.Collapsed;
             }
         }
 
@@ -929,8 +1010,28 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
         {
             if (e.Key == Key.F4)
             { this._presentador.Consultar(); }
-                
+
         }
 
+        private void _cbxTipoBusqueda_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (this._cbxTipoBusqueda.SelectedIndex == 0)
+            {
+                HabilitarZonaInternacional(true);
+            }
+            else if (this._cbxTipoBusqueda.SelectedIndex == 1)
+            {
+                HabilitarZonaInternacional(false);
+            }
+        }
+
+        private void HabilitarZonaInternacional(bool valor)
+        {
+            this._txtCodigoInternacional.IsEnabled = valor;
+            this._txtCodigoInternacional2.IsEnabled = valor;
+            this._cbxPaisInternacional.IsEnabled = valor;
+            this._txtReferenciaInteresado.IsEnabled = valor;
+            this._txtReferenciaAsociado.IsEnabled = valor;
+        }
     }
 }

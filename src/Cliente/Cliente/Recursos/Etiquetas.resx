@@ -2109,7 +2109,7 @@ de Gracia</value>
     <value>Instrucciones de Renovación</value>
   </data>
   <data name="chkNacional" xml:space="preserve">
-    <value>Nacional</value>
+    <value>Nacional/Internacional</value>
   </data>
   <data name="chkRenovadaPorOtroTramitante" xml:space="preserve">
     <value>Renovada Por Otro Tramitante</value>
@@ -2118,10 +2118,10 @@ de Gracia</value>
     <value>TYR</value>
   </data>
   <data name="lblAsociadoInternacional" xml:space="preserve">
-    <value>Asociado Internacional</value>
+    <value>Asoc. Int:</value>
   </data>
   <data name="lblCodigoInt" xml:space="preserve">
-    <value>Código Internacional:</value>
+    <value>Código Int:</value>
   </data>
   <data name="lsvAnexo" xml:space="preserve">
     <value>Anexo</value>
@@ -2890,6 +2890,18 @@ en Prensa:</value>
     <value>Clasificación:</value>
   </data>
   <data name="lblRefInteresado" xml:space="preserve">
+    <value>Ref. Int:</value>
+  </data>
+  <data name="lblCamposInternacionales" xml:space="preserve">
+    <value>Campos Internacionales:</value>
+  </data>
+  <data name="lblReferenciaAsoc" xml:space="preserve">
+    <value>Ref. Asoc. Int.:</value>
+  </data>
+  <data name="lblReferenciaDeAsociado" xml:space="preserve">
+    <value>Ref. Asoc.:</value>
+  </data>
+  <data name="lblReferenciaInt" xml:space="preserve">
     <value>Ref. Int:</value>
   </data>
 </root>

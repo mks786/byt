@@ -259,6 +259,8 @@ namespace Trascend.Bolet.Cliente.Contratos.Marcas
 
         void MarcarRadioMarcaNacional(bool esNacional);
 
+        string ClaseInternacionalMarca { get; }
+
         GridViewColumnHeader CurSortCol { get; set; }
 
         SortAdorner CurAdorner { get; set; }

@@ -124,6 +124,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             }
         }
 
+
         /// <summary>
         /// Método que se encarga de duplicar una marca ya existente
         /// </summary>
@@ -202,6 +203,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             }
         }
 
+
         /// <summary>
         /// Método que se encarga de actualizar el título de la ventana
         /// </summary>
@@ -220,6 +222,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
         }
+
 
         /// <summary>
         /// Método que carga los datos iniciales a mostrar en la página
@@ -350,8 +353,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                     ConsultarListaDatosValoresPorParametro(new ListaDatosValores(Recursos.Etiquetas.cbiLocalidadMarca));
 
                 ListaDatosValores primerLocalidad = new ListaDatosValores();
-                primeraCondicion.Descripcion = string.Empty;
-                primeraCondicion.Id = int.MinValue;
+                primerLocalidad.Descripcion = string.Empty;
+                primerLocalidad.Valor = "NGN";
 
                 localidades.Insert(0, primerLocalidad);
                 this._ventana.TipoClaseInternacionales = localidades;
@@ -381,6 +384,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 Mouse.OverrideCursor = null;
             }
         }
+
 
         /// <summary>
         /// Método que realiza toda la lógica para agregar la Marca dentro de la base de datos
@@ -422,7 +426,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                         marca.Servicio = !((Servicio)this._ventana.Servicio).Id.Equals("NGN") ? ((Servicio)this._ventana.Servicio) : null;
 
                     if (null != this._ventana.Detalle)
-                        marca.TipoEstado = !((TipoEstado)this._ventana.Detalle).Id.Equals("") ? ((TipoEstado)this._ventana.Detalle) : null;
+                        marca.TipoEstado = !((TipoEstado)this._ventana.Detalle).Id.Equals("NGN") ? ((TipoEstado)this._ventana.Detalle) : null;
 
                     if (null != this._ventana.PoderSolicitud)
                         marca.Poder = ((Poder)this._ventana.PoderSolicitud).Id != int.MinValue ? ((Poder)this._ventana.PoderSolicitud) : null;
@@ -451,22 +455,30 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                     if (string.IsNullOrEmpty(this._ventana.IdNacional))
                         marca.Nacional = null;
 
-                    if (marca.TipoEstado.Id.Equals("NGN"))
+                    //if (marca.TipoEstado.Id.Equals("NGN"))
+                    //{
+                    //    marca.TipoEstado.Id = string.Empty;
+                    //}
+
+                    if (ValidarMarcaInternacional())
                     {
-                        marca.TipoEstado.Id = string.Empty;
+
+                        if (!this._ventana.EsMarcaNacional)
+                            marca = AgregarDatosInternacionales(marca);
+                        else
+                            marca.LocalidadMarca = "N";
+
+                        int? exitoso = this._marcaServicios.InsertarOModificarMarca(marca, UsuarioLogeado.Hash);
+
+                        if (!exitoso.Equals(null))
+                        {
+                            marca.Id = (int)exitoso;
+                            this.Navegar(new ConsultarMarca(marca, null));
+                        }
                     }
-
-                    if (!this._ventana.EsMarcaNacional)
-                        marca = AgregarDatosInternacionales(marca);
                     else
-                        marca.LocalidadMarca = "N";
-
-                    int? exitoso = this._marcaServicios.InsertarOModificarMarca(marca, UsuarioLogeado.Hash);
-
-                    if (!exitoso.Equals(null))
                     {
-                        marca.Id = (int)exitoso;
-                        this.Navegar(new ConsultarMarca(marca, null));
+                        this._ventana.Mensaje(Recursos.MensajesConElUsuario.ErrorMarcaInternacional, 0);
                     }
                 }
                 else
@@ -501,6 +513,34 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             }
         }
 
+
+        /// <summary>
+        /// Método que se encarga de validar que los campos necesarios sean correctos para el ingreso de la marca
+        /// </summary>
+        /// <returns></returns>
+        private bool ValidarMarcaInternacional()
+        {
+            bool retorno = true;
+
+            if (!this._ventana.EsMarcaNacional)
+                if (((Pais)this._ventana.PaisInternacional).Id == int.MinValue)
+                    retorno = false;
+                else
+                    if (((ListaDatosValores)this._ventana.TipoClaseInternacional).Valor.Equals("NGN"))
+                        retorno = false;
+                    else
+                        if (this._ventana.ClaseInternacional.Equals(string.Empty))
+                            retorno = false;
+
+            return retorno;
+        }
+
+
+        /// <summary>
+        /// Método que se encarga de agregar los datos pertenecientes a las marcas internacionales a la marca
+        /// </summary>
+        /// <param name="marca"></param>
+        /// <returns></returns>
         private Marca AgregarDatosInternacionales(Marca marca)
         {
             try
@@ -533,6 +573,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
 
             return marca;
         }
+
 
         /// <summary>
         /// Método que ordena una columna
@@ -568,6 +609,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             #endregion
         }
 
+
         /// <summary>
         /// Metodo que abre el explorador de internet predeterminado del sistema a una página determinada
         /// </summary>
@@ -594,6 +636,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             }
         }
 
+
         /// <summary>
         /// Método que se ecarga la descripcion de la situacion
         /// </summary>
@@ -616,6 +659,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
 
 
         #region Metodos de los filtros de asociados
+
 
         /// <summary>
         /// Método que cambia el asociado solicitud seleccionado
@@ -658,6 +702,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             }
         }
 
+
         /// <summary>
         /// Método que cambia el asociado datos seleccionado
         /// </summary>
@@ -699,6 +744,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 this._ventana.NombreAsociadoDatos = "";
             }
         }
+
 
         /// <summary>
         /// Método que se encarga de buscar un asociado
@@ -823,6 +869,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             #endregion
         }
 
+
         /// <summary>
         /// Método que se encarga de cargar los asociados
         /// </summary>
@@ -859,7 +906,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             #endregion
         }
 
+
         #endregion
+
 
         #region Metodos de los filtros de interesados
 
@@ -905,6 +954,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             }
         }
 
+
         /// <summary>
         /// Método que se encarga de cambiar interesado datos
         /// </summary>
@@ -944,6 +994,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 this._ventana.InteresadoCiudadSolicitud = "";
             }
         }
+
 
         /// <summary>
         /// Método que filtra interesado
@@ -1078,6 +1129,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
 
         }
 
+
         /// <summary>
         /// Método que carga los interesados
         /// </summary>
@@ -1112,7 +1164,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             #endregion
         }
 
+
         #endregion
+
 
         #region Metodos de los filtros de corresponsales
 
@@ -1153,6 +1207,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             }
         }
 
+
         public void CambiarCorresponsalDatos()
         {
             try
@@ -1185,6 +1240,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 this._ventana.DescripcionCorresponsalSolicitud = "";
             }
         }
+
 
         public void BuscarCorresponsal(int filtrarEn)
         {
@@ -1264,6 +1320,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
 
         }
 
+
         public void CargarCorresponsales()
         {
             #region trace
@@ -1299,7 +1356,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             #endregion
         }
 
+
         #endregion
+
 
         #region Metodos de la lista de poderes
 
@@ -1336,6 +1395,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             }
         }
 
+
         /// <summary>
         /// Método que cambia poder datos
         /// </summary>
@@ -1369,6 +1429,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 this._ventana.NumPoderDatos = "";
             }
         }
+
 
         /// <summary>
         /// Método que carga los poderes
@@ -1419,6 +1480,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             #endregion
         }
 
+        /// <summary>
+        /// Método que carga los poderes existentes entre un agente y un interesado
+        /// </summary>
         private void CargarPoderesEntreInteresadoAgente()
         {
             #region trace
@@ -1513,6 +1577,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
 
         #endregion
 
+
         /// <summary>
         /// Método que consulta la clase internacional y lo pega en distingue
         /// </summary>
@@ -1525,6 +1590,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             this._ventana.DistingueSolicitud = internacionalAux.Descripcion;
             this._ventana.DistingueDatos = internacionalAux.Descripcion;
         }
+
 
         /// <summary>
         /// Método que se ecarga la descripcion de la situacion
@@ -1545,6 +1611,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             #endregion
         }
 
+
+        /// <summary>
+        /// Método que consulta al asociado
+        /// </summary>
+        /// <returns></returns>
         public bool ConsultarAsociado()
         {
             bool retorno = false;
@@ -1586,6 +1657,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             return retorno;
         }
 
+
+        /// <summary>
+        /// Método que consulta el asociado desde la pestana de datos
+        /// </summary>
+        /// <returns></returns>
         public bool ConsultarAsociadoDatos()
         {
             bool retorno = false;
@@ -1627,6 +1703,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             return retorno;
         }
 
+
+        /// <summary>
+        /// Método que consulta el asociado desde la pestana de solicitud
+        /// </summary>
+        /// <returns></returns>
         public bool CambiarAsociadoInternacionalSolicitud()
         {
             bool retorno = false;
@@ -1650,6 +1731,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             return retorno;
         }
 
+
+        /// <summary>
+        /// Método que se encarga de cambiar el asociado internacional
+        /// </summary>
+        /// <returns></returns>
         public bool CambiarAsociadoInternacionalDatos()
         {
             bool retorno = false;
@@ -1672,5 +1758,6 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
 
             return retorno;
         }
+
     }
 }

@@ -34,6 +34,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
         private IPaisServicios _paisServicios;
         private ICondicionServicios _condicionServicios;
         private IBoletinServicios _boletinServicios;
+        private IListaDatosValoresServicios _listaDatosValoresServicios;
 
         private IList<Marca> _marcas;
         private IList<Asociado> _asociados;
@@ -43,7 +44,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
         private int _filtroValido;//Variable utilizada para limitar a que el filtro se ejecute solo cuando 
         //dos filtros sean utilizados
 
-        
+
         /// <summary>
         /// Constructor Predeterminado
         /// </summary>
@@ -82,6 +83,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["CondicionServicios"]);
                 this._boletinServicios = (IBoletinServicios)Activator.GetObject(typeof(IBoletinServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["BoletinServicios"]);
+                this._listaDatosValoresServicios = (IListaDatosValoresServicios)Activator.GetObject(typeof(IBoletinServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["ListaDatosValoresServicios"]);
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -95,7 +98,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             }
         }
 
-        
+
         /// <summary>
         /// Método que se encarga de actualizar el títutlo de la ventana
         /// </summary>
@@ -115,7 +118,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             #endregion
         }
 
-        
+
         /// <summary>
         /// Método que carga los datos iniciales a mostrar en la página
         /// </summary>
@@ -160,6 +163,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 paises.Insert(0, primerPais);
                 this._ventana.Paises = paises;
                 this._ventana.PaisesPrioridad = paises;
+
+                IList<ListaDatosValores> tiposBusqueda = this._listaDatosValoresServicios.
+                                ConsultarListaDatosValoresPorParametro(new ListaDatosValores(Recursos.Etiquetas.cbiLocalidadMarca));
+                this._ventana.TiposBusqueda = tiposBusqueda;
 
                 IList<TipoEstado> tipoEstados = this._tipoEstadoServicios.ConsultarTodos();
                 TipoEstado primerDetalle = new TipoEstado();
@@ -222,7 +229,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             }
         }
 
-        
+
         /// <summary>
         /// Método que realiza una consulta al servicio, con el fin de filtrar los datos que se muestran 
         /// por pantalla
@@ -308,7 +315,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             }
         }
 
-        
+
         /// <summary>
         /// Método que devuelve la marca que se utilizara para realizar el filtrado
         /// </summary>
@@ -326,10 +333,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
 
                 if (ValidarBusquedaDeMarcas())
                 {
-                    if (this._ventana.InternacionalEstaSeleccionado) 
-                    {
-                        marcaAuxiliar = TomarDatosMarcaFiltroInternacional(marcaAuxiliar);
-                    }
+                    //if (this._ventana.InternacionalEstaSeleccionado) 
+                    //{
+                    //    marcaAuxiliar = TomarDatosMarcaFiltroInternacional(marcaAuxiliar);
+                    //}
 
                     if (this._ventana.NacionalEstaSeleccionado)
                     {
@@ -376,7 +383,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             return marcaAuxiliar;
         }
 
-        
+
         /// <summary>
         /// Método que devuelve la marca con los datos del check TYR
         /// </summary>
@@ -447,7 +454,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             return marcaAuxiliar;
         }
 
-        
+
         /// <summary>
         /// Método que devuelve la marca con los datos del check Prioridades
         /// </summary>
@@ -492,7 +499,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             return marcaAuxiliar;
         }
 
-        
+
         /// <summary>
         /// Método que devuelve la marca con los datos del check Indicadores
         /// </summary>
@@ -512,7 +519,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             return marcaAuxiliar;
         }
 
-        
+
         /// <summary>
         /// Método que devuelve la marca con los datos del check Boletines
         /// </summary>
@@ -525,7 +532,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
 
-            
+
 
             if (((Boletin)this._ventana.BoletinConcesion).Id != int.MinValue)
             {
@@ -545,16 +552,16 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             else
                 marcaAuxiliar.BoletinPublicacion = null;
 
-            
+
             if (((Boletin)this._ventana.BoletinOrdenPublicacion).Id != int.MinValue)
             {
                 marcaAuxiliar.BoletinOrdenPublicacion = new Boletin();
                 marcaAuxiliar.BoletinOrdenPublicacion = ((Boletin)this._ventana.BoletinOrdenPublicacion);
-            _filtroValido = 2;
+                _filtroValido = 2;
             }
             else
                 marcaAuxiliar.BoletinOrdenPublicacion = null;
-            
+
 
             #region trace
             if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -564,7 +571,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             return marcaAuxiliar;
         }
 
-        
+
         /// <summary>
         /// Método que devuelve la marca con los datos del check Nacional
         /// </summary>
@@ -579,6 +586,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
 
             try
             {
+                marcaAuxiliar.LocalidadMarca = ((ListaDatosValores)this._ventana.TipoBusqueda).Valor;
+
                 if (!this._ventana.Id.Equals(""))
                 {
                     _filtroValido = 2;
@@ -689,6 +698,43 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                     _filtroValido = 2;
                 }
 
+                if (marcaAuxiliar.LocalidadMarca.Equals("I"))
+                {
+                    if (!this._ventana.IdInternacional.Equals(string.Empty))
+                    {
+                        _filtroValido = 2;
+                        marcaAuxiliar.CodigoMarcaInternacional = int.Parse(this._ventana.IdInternacional);
+                    }
+                    else { marcaAuxiliar.CodigoMarcaInternacional = 0; }
+
+                    if (!this._ventana.IdCorrelativoInternacional.Equals(string.Empty))
+                    {
+                        _filtroValido = 2;
+                        marcaAuxiliar.CorrelativoExpediente = int.Parse(this._ventana.IdCorrelativoInternacional);
+                    }
+                    else { marcaAuxiliar.CorrelativoExpediente = 0; }
+
+                    if ((this._ventana.Pais != null) && !((Pais)this._ventana.Pais).Id.Equals("NGN"))
+                    {
+                        _filtroValido = 2;
+                        marcaAuxiliar.PaisInternacional = new Pais();
+                        marcaAuxiliar.PaisInternacional = ((Pais)this._ventana.Pais);
+                    }
+                    else { marcaAuxiliar.PaisInternacional = null; }
+
+                    if (!this._ventana.ReferenciaAsociado.Equals(string.Empty))
+                    {
+                        _filtroValido = 2;
+                        marcaAuxiliar.ReferenciaAsociadoInternacional = this._ventana.ReferenciaAsociado;
+                    }
+
+                    if (!this._ventana.ReferenciaInteresado.Equals(string.Empty))
+                    {
+                        _filtroValido = 2;
+                        marcaAuxiliar.ReferenciaInteresadoInternacional = this._ventana.ReferenciaInteresado;
+                    }
+                }
+
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
                     logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
@@ -715,6 +761,30 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
 
+            //if (!this._ventana.IdMarcaInternacional.Equals(string.Empty))
+            //{
+            //    _filtroValido = 2;
+            //    marcaAuxiliar.Id = int.Parse(this._ventana.IdMarcaInternacional);
+            //}
+
+            if (!this._ventana.IdInternacional.Equals(string.Empty))
+            {
+                _filtroValido = 2;
+                marcaAuxiliar.CodigoMarcaInternacional = int.Parse(this._ventana.IdInternacional);
+            }
+
+            if (!this._ventana.IdCorrelativoInternacional.Equals(string.Empty))
+            {
+                _filtroValido = 2;
+                marcaAuxiliar.CorrelativoExpediente = int.Parse(this._ventana.IdCorrelativoInternacional);
+            }
+
+            if (!this._ventana.IdCorrelativoInternacional.Equals(string.Empty))
+            {
+                _filtroValido = 2;
+                marcaAuxiliar.CorrelativoExpediente = int.Parse(this._ventana.IdCorrelativoInternacional);
+            }
+
 
             #region trace
 
@@ -725,7 +795,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             return marcaAuxiliar;
         }
 
-        
+
         /// <summary>
         /// Método que valida que la pantalla de busqueda se encuentre seleccionado al menos un check
         /// </summary>
@@ -762,7 +832,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             return retorno;
         }
 
-        
+
         /// <summary>
         /// Método que invoca una nueva página "ConsultarPoder" y la instancia con el objeto seleccionado
         /// </summary>
@@ -790,7 +860,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 }
 
 
-                this.Navegar(new ConsultarMarca(marcaParaNavegar,this._ventana));
+                this.Navegar(new ConsultarMarca(marcaParaNavegar, this._ventana));
             }
 
             #region trace
@@ -799,7 +869,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             #endregion
         }
 
-        
+
         /// <summary>
         /// Método que ordena una columna
         /// </summary>
@@ -834,7 +904,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             #endregion
         }
 
-        
+
         //public void BuscarAsociado()
         //{
         //    IEnumerable<Asociado> asociadosFiltrados = (IList<Asociado>)this._asociados;
@@ -885,7 +955,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
         //        this._ventana.Interesados = this._interesados;
         //}
 
-        
+
         /// <summary>
         /// Método que limpia los campos de búsqueda
         /// </summary>
@@ -919,7 +989,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             this._ventana.Id = null;
             this._ventana.DescripcionFiltrar = null;
             this._ventana.Fecha = null;
-      
+
             this._ventana.AsociadoFiltro = null;
             this._ventana.IdAsociadoFiltrar = null;
             this._ventana.NombreAsociadoFiltrar = null;
@@ -945,11 +1015,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
 
             this._ventana.ClaseNacional = null;
             this._ventana.ClaseInternacional = null;
-            this._ventana.Servicio = this.BuscarServicio((IList<Servicio>)this._ventana.Servicios, new Servicio("NGN"));            
+            this._ventana.Servicio = this.BuscarServicio((IList<Servicio>)this._ventana.Servicios, new Servicio("NGN"));
             //this._ventana.Detalle = this.BuscarDetalle((IList<TipoEstado>)this._ventana.Detalles, new TipoEstado("NGN"));
             this._ventana.Detalle = ((IList<TipoEstado>)this._ventana.Detalles)[0];
 
-            #endregion            
+            #endregion
 
             #region TYR
 
@@ -957,7 +1027,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             this._ventana.CodigoRegistro = null;
             this._ventana.FechaRegistro = "";
             this._ventana.RenovadoPorOtroTramitante = false;
-            this._ventana.Condicion = this.BuscarCondicion((IList<Condicion>) this._ventana.Condiciones, new Condicion(int.MinValue));
+            this._ventana.Condicion = this.BuscarCondicion((IList<Condicion>)this._ventana.Condiciones, new Condicion(int.MinValue));
             this._ventana.ExpCambioPendiente = null;
             this._ventana.InstruccionesDeRenovacion = false;
 
@@ -979,13 +1049,13 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             this._ventana.PrioridadFecha = "";
             this._ventana.PaisPrioridad = BuscarPais((IList<Pais>)this._ventana.Paises, new Pais(int.MinValue));
 
-            #endregion            
+            #endregion
 
             #region Indicadores
 
-            this._ventana.IndicadoresEstaSeleccionado = false;            
+            this._ventana.IndicadoresEstaSeleccionado = false;
 
-            #endregion            
+            #endregion
 
             #region trace
             if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -993,9 +1063,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             #endregion
         }
 
+
         #region Interesado
 
-        
+
         /// <summary>
         /// Método que se encarga de buscar el interesado definido en el filtro
         /// </summary>
@@ -1038,7 +1109,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
 
         }
 
-        
+
         /// <summary>
         /// Metodo que cambia el texto del interesado en la interfaz
         /// </summary>
@@ -1069,9 +1140,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
 
         #endregion
 
+
         #region Asociado
 
-        
+
         /// <summary>
         /// Método que se encarga de buscar el asociado definido en el filtro
         /// </summary>
@@ -1116,7 +1188,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             #endregion
         }
 
-        
+
         /// <summary>
         /// Metodo que cambia el texto del Asociado en la interfaz
         /// </summary>
@@ -1146,9 +1218,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
 
         #endregion
 
+
         #region Corresponsal
 
-        
+
         /// <summary>
         /// Método que se encarga de buscar el asociado definido en el filtro
         /// </summary>
@@ -1190,7 +1263,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             #endregion
         }
 
-        
+
         /// <summary>
         /// Metodo que cambia el texto del Corresponsal en la interfaz
         /// </summary>
@@ -1220,9 +1293,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
 
         #endregion
 
+
         #region Marca
 
-        
+
         public void BuscarMarca()
         {
             try
@@ -1276,7 +1350,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             }
         }
 
-        
+
         public bool ElegirMarca()
         {
             bool retorno = false;
@@ -1289,6 +1363,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             return retorno;
         }
 
+
         #endregion
+
     }
 }

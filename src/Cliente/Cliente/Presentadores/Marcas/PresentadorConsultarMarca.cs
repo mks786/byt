@@ -437,7 +437,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 this._ventana.TipoClaseInternacionales = localidades;
                 this._ventana.TipoClaseInternacionalesDatos = localidades;
 
-                if ((null != marca. LocalidadMarca) && (!marca.LocalidadMarca.Equals("")))
+                if ((null != marca.LocalidadMarca) && (!marca.LocalidadMarca.Equals("")))
                 {
                     ListaDatosValores localidadABuscar = new ListaDatosValores(marca.LocalidadMarca);
                     this._ventana.TipoClaseInternacional = this.BuscarLocalidad(localidades, localidadABuscar);
@@ -640,28 +640,36 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                     {
                         Marca marca = CargarMarcaDeLaPantalla();
 
-                        if (!this._ventana.EsMarcaNacional)
-                            marca = AgregarDatosInternacionales(marca);
-                        else
-                            marca.LocalidadMarca = "N";
-
-                        if (marca.Interesado != null)
+                        if (ValidarMarcaInternacional())
                         {
-                            bool exitoso = this._marcaServicios.InsertarOModificar(marca, UsuarioLogeado.Hash);
 
-                            if (exitoso)
+                            if (!this._ventana.EsMarcaNacional)
+                                marca = AgregarDatosInternacionales(marca);
+                            else
+                                marca.LocalidadMarca = "N";
+
+                            if (marca.Interesado != null)
                             {
-                                this._ventana.HabilitarCampos = false;
-                                this._ventana.TextoBotonModificar = Recursos.Etiquetas.btnModificar;
+                                bool exitoso = this._marcaServicios.InsertarOModificar(marca, UsuarioLogeado.Hash);
 
-                                //if (marca.Servicio.Id.Equals("AB"))
-                                //{
-                                //    this._ventana.DeshabilitarBotonModificar();
-                                //}
+                                if (exitoso)
+                                {
+                                    this._ventana.HabilitarCampos = false;
+                                    this._ventana.TextoBotonModificar = Recursos.Etiquetas.btnModificar;
+
+                                    //if (marca.Servicio.Id.Equals("AB"))
+                                    //{
+                                    //    this._ventana.DeshabilitarBotonModificar();
+                                    //}
+                                }
                             }
+                            else
+                                this._ventana.Mensaje(Recursos.MensajesConElUsuario.ErrorSinInteresado, 0);
                         }
                         else
-                            this._ventana.Mensaje(Recursos.MensajesConElUsuario.ErrorSinInteresado, 0);
+                        {
+                            this._ventana.Mensaje(Recursos.MensajesConElUsuario.ErrorMarcaInternacional, 0);
+                        }
                     }
                     else
                     {
@@ -697,6 +705,34 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             }
         }
 
+
+        /// <summary>
+        /// Método que se encarga de validar la marca internacional antes de modificarla
+        /// </summary>
+        /// <returns></returns>
+        private bool ValidarMarcaInternacional()
+        {
+            bool retorno = true;
+
+            if (!this._ventana.EsMarcaNacional)
+                if (((Pais)this._ventana.PaisInternacional).Id == int.MinValue)
+                    retorno = false;
+                else
+                    if (((ListaDatosValores)this._ventana.TipoClaseInternacional).Valor.Equals("NGN"))
+                        retorno = false;
+                    else
+                        if (this._ventana.ClaseInternacionalMarca.Equals(string.Empty))
+                            retorno = false;
+
+            return retorno;
+        }
+
+
+        /// <summary>
+        /// Método que se encarga de agregarle los datos pertenecientes a las marcas internacionales
+        /// </summary>
+        /// <param name="marca"></param>
+        /// <returns></returns>
         private Marca AgregarDatosInternacionales(Marca marca)
         {
             try
@@ -1087,6 +1123,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             }
         }
 
+
         /// <summary>
         /// Método que cambia asociado datos
         /// </summary>
@@ -1127,6 +1164,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 this._ventana.NombreAsociadoDatos = "";
             }
         }
+
 
         /// <summary>
         /// Método que filtra un asociado
@@ -1186,6 +1224,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             #endregion
         }
 
+
         /// <summary>
         /// Método que carga los asociados
         /// </summary>
@@ -1219,6 +1258,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
         }
+
 
         #endregion
 
@@ -1295,6 +1335,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             }
         }
 
+
         /// <summary>
         /// Método que cambia interesado datos
         /// </summary>
@@ -1357,6 +1398,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 this._ventana.InteresadoCiudadSolicitud = "";
             }
         }
+
 
         /// <summary>
         /// Método que filtra un interesado
@@ -1459,6 +1501,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             #endregion
         }
 
+
         /// <summary>
         /// Método que carga los interesados
         /// </summary>
@@ -1498,6 +1541,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
         }
+
 
         #endregion
 
@@ -1541,6 +1585,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             }
         }
 
+
         /// <summary>
         /// Método que cambia corresponsal datos
         /// </summary>
@@ -1577,6 +1622,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 this._ventana.DescripcionCorresponsalSolicitud = "";
             }
         }
+
 
         /// <summary>
         /// Método que filtra un corresponsal
@@ -1655,6 +1701,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             #endregion
         }
 
+
         /// <summary>
         /// Método que carga los corresponsales
         /// </summary>
@@ -1697,6 +1744,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
 
         #region Metodos de la lista de poderes
 
+
         /// <summary>
         /// Método que cambia poder solicitud
         /// </summary>
@@ -1731,6 +1779,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             }
         }
 
+
         /// <summary>
         /// Método que cambia poder datos
         /// </summary>
@@ -1764,6 +1813,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 this._ventana.IdPoderDatos = "";
             }
         }
+
 
         /// <summary>
         /// Método que carga los poderes

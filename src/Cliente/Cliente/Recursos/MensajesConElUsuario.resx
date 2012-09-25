@@ -904,4 +904,7 @@
   <data name="AlertaCartaSinInteresado" xml:space="preserve">
     <value>Disculpe, debe seleccionar un Interesado</value>
   </data>
+  <data name="ErrorMarcaInternacional" xml:space="preserve">
+    <value>Disculpe, para insertar una Marca Internacional debe seleccionar la Clasificación, el País y su Clase</value>
+  </data>
 </root>
