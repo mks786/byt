@@ -657,7 +657,6 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
         }
 
 
-
         #region Metodos de los filtros de asociados
 
 

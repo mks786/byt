@@ -259,7 +259,7 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
 
                 #region Filtro de Marca Internacional
 
-                if (marca.LocalidadMarca.Equals("I"))
+                if ((marca.LocalidadMarca != null) && (marca.LocalidadMarca.Equals("I")))
                 {
 
                     if (marca.CodigoMarcaInternacional != 0)
