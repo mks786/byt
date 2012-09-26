@@ -47,6 +47,7 @@ namespace Trascend.Bolet.Servicios.Implementacion
             return marcas;
         }
 
+
         /// <summary>
         /// Servicio que consulta una entidad por su Id
         /// </summary>
@@ -394,7 +395,6 @@ namespace Trascend.Bolet.Servicios.Implementacion
             }
 
         }
-
 
 
         /// <summary>

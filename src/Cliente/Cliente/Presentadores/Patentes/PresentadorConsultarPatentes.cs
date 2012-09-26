@@ -21,8 +21,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
 {
     class PresentadorConsultarPatentes : PresentadorBase
     {
+
         private static PaginaPrincipal _paginaPrincipal = PaginaPrincipal.ObtenerInstancia;
         private static Logger logger = LogManager.GetCurrentClassLogger();
+
 
         private IConsultarPatentes _ventana;
         private IPatenteServicios _patenteServicios;
@@ -36,10 +38,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
         private IPaisServicios _paisServicios;
         private IListaDatosValoresServicios _listaDatosValoresServicios;
 
+
         private IList<Patente> _patentes;
         private IList<CesionPatente> _cesiones;
         private IList<Asociado> _asociados;
         private IList<Asociado> _interesados;
+
 
         private int _filtroValido;//Variable utilizada para limitar a que el filtro se ejecute solo cuando 
 
@@ -507,6 +511,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
             return patenteAuxiliar;
         }
 
+
         /// <summary>
         /// Método que devuelve la patente con los datos del filtro
         /// </summary>
@@ -714,7 +719,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
 
         }
 
+
         #endregion
+
 
         #region Asociado
 
@@ -789,5 +796,6 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
         }
 
         #endregion
+
     }
 }

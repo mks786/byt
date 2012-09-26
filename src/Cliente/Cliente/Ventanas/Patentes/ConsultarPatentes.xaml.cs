@@ -12,10 +12,12 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
     /// </summary>
     public partial class ConsultarPatentes : Page, IConsultarPatentes
     {
+
         private GridViewColumnHeader _CurSortCol = null;
         private SortAdorner _CurAdorner = null;
         private PresentadorConsultarPatentes _presentador;
         private bool _cargada;
+
 
         #region IConsultarCesiones
 
@@ -44,13 +46,13 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
             get { return this._txtDescripcion.Text; }
             set { this._txtDescripcion.Text = value; }
         }
- 
+
         public string Solicitud
         {
             get { return this._txtSolicitud.Text; }
             set { this._txtSolicitud.Text = value; }
         }
-        
+
         public object Patente
         {
             get { return this._lstResultados.SelectedItem; }
@@ -275,8 +277,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
             get { return this._lstResultados; }
             set { this._lstResultados = value; }
         }
-   
-   
+
+
         public void Mensaje(string mensaje, int opcion)
         {
             if (opcion == 0)
@@ -368,6 +370,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
 
         #endregion
 
+
         /// <summary>
         /// Constructor predeterminado
         /// </summary>
@@ -379,10 +382,12 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
             this._presentador = new PresentadorConsultarPatentes(this);
         }
 
+
         private void _btnCancelar_Click(object sender, RoutedEventArgs e)
         {
             this._presentador.Cancelar();
         }
+
 
         private void _btnConsultar_Click(object sender, RoutedEventArgs e)
         {
@@ -392,15 +397,18 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
             validarCamposVacios();
         }
 
+
         private void _lstResultados_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             this._presentador.IrGestionarPatente();
         }
 
+
         private void _Ordenar_Click(object sender, RoutedEventArgs e)
         {
             this._presentador.OrdenarColumna(sender as GridViewColumnHeader);
         }
+
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
@@ -413,15 +421,18 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
                 this._presentador.ActualizarTitulo();
         }
 
+
         private void _btnConsultarPatente_Click(object sender, RoutedEventArgs e)
         {
             this._presentador.BuscarPatente();
         }
 
+
         private void _dpkFecha_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
         {
 
         }
+
 
         private void _btnTransferir_Click(object sender, RoutedEventArgs e)
         {
@@ -431,8 +442,9 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
 
         public void LimpiarCampos()
         {
-            
+
         }
+
 
         /// <summary>
         /// Método que se encarga de posicionar el cursor en los campos del filto
@@ -462,6 +474,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
                 this._txtId.Focus();
         }
 
+
         private void _btnConsultarFocus(object sender, RoutedEventArgs e)
         {
             this._btnConsultar.IsDefault = true;
@@ -479,14 +492,14 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
             GestionarVisibilidadFiltroInteresado(false);
         }
 
-        
+
         private void _lstAsociados_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             if (this._presentador.CambiarAsociado())
                 GestionarVisibilidadFiltroAsociado(false);
         }
 
-        
+
         private void GestionarVisibilidadFiltroAsociado(bool visibilidad)
         {
             if (visibilidad)
@@ -513,13 +526,13 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
             }
         }
 
-        
+
         private void _btnConsultarAsociado_Click(object sender, RoutedEventArgs e)
         {
             this._presentador.BuscarAsociado();
         }
 
-        
+
         private void _btnConsultarAsociadoFocus(object sender, RoutedEventArgs e)
         {
             this._btnConsultar.IsDefault = false;
@@ -527,15 +540,19 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
             this._btnConsultarInteresado.IsDefault = false;
         }
 
+
         #endregion
 
+
         #region Interesado
+
 
         private void _txtInteresado_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             GestionarVisibilidadFiltroAsociado(false);
             GestionarVisibilidadFiltroInteresado(true);
         }
+
 
         private void GestionarVisibilidadFiltroInteresado(bool visibilidad)
         {
@@ -564,16 +581,19 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
             }
         }
 
+
         private void _lstInteresados_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             if (this._presentador.CambiarInteresado())
                 GestionarVisibilidadFiltroInteresado(false);
         }
 
+
         private void _btnConsultarInteresado_Click(object sender, RoutedEventArgs e)
         {
             this._presentador.BuscarInteresado();
         }
+
 
         private void _btnConsultarInteresadoFocus(object sender, RoutedEventArgs e)
         {
@@ -582,9 +602,12 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
             this._btnConsultarInteresado.IsDefault = true;
         }
 
+
         #endregion
 
+
         #region Checks
+
 
         public void _chkBoletines_Click(object sender, RoutedEventArgs e)
         {
@@ -594,6 +617,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
                 this._boletines.Visibility = Visibility.Collapsed;
         }
 
+
         public void _chkPrioridad_Click(object sender, RoutedEventArgs e)
         {
             if (this._chkPrioridad.IsChecked.Value)
@@ -602,17 +626,17 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
                 this._prioridad.Visibility = Visibility.Collapsed;
         }
 
+
         #endregion
+
 
         private void Page_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.Key == Key.F4) 
+            if (e.Key == Key.F4)
             {
                 this._presentador.Consultar();
             }
         }
-
-
 
 
         private void _cbxTipoBusqueda_SelectionChanged(object sender, SelectionChangedEventArgs e)

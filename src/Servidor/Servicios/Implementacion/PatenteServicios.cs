@@ -10,6 +10,7 @@ namespace Trascend.Bolet.Servicios.Implementacion
 {
     class PatenteServicios : MarshalByRefObject, IPatenteServicios
     {
+
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
 
@@ -46,6 +47,7 @@ namespace Trascend.Bolet.Servicios.Implementacion
             }
             return patentes;
         }
+
 
         /// <summary>
         /// Servicio que consulta una entidad por su Id

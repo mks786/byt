@@ -10,7 +10,9 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
 {
     class DaoPatenteNHibernate : DaoBaseNHibernate<Patente, int>, IDaoPatente
     {
+
         private static Logger logger = LogManager.GetCurrentClassLogger();
+
 
         /// <summary>
         /// Método que obtiene las patentes que cumplan con un filtro determinado
@@ -38,7 +40,7 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
                     variosFiltros = true;
                 }
 
-                if ((null != Patente) && (!Patente.LocalidadPatente.Equals(string.Empty)))
+                if ((null != Patente) && (Patente.LocalidadPatente != null) && (!Patente.LocalidadPatente.Equals(string.Empty)))
                 {
                     if (!Patente.LocalidadPatente.Equals("N"))
                     {
@@ -236,6 +238,7 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
             return Patentes;
         }
 
+
         /// <summary>
         /// Método que obtiene una patente con todos sus objetos
         /// </summary>
@@ -278,6 +281,7 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
             return retorno;
         }
 
+
         /// <summary>
         /// Método que obtiene las fechas de una patente
         /// </summary>
@@ -313,6 +317,7 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
 
             return retorno;
         }
+
 
     }
 }

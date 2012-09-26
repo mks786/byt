@@ -10,6 +10,7 @@ namespace Trascend.Bolet.Comandos.Comandos.ComandosPatente
 {
     class ComandoConsultarPatentesFiltro : ComandoBase<IList<Patente>>
     {
+
         private static Logger logger = LogManager.GetCurrentClassLogger();
         private Patente _patente;
 
@@ -22,6 +23,7 @@ namespace Trascend.Bolet.Comandos.Comandos.ComandosPatente
         {
             this._patente = patente;
         }
+
 
         /// <summary>
         /// Método que ejecuta el comando

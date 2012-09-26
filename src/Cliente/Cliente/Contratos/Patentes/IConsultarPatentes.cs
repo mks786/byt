@@ -102,6 +102,8 @@ namespace Trascend.Bolet.Cliente.Contratos.Patentes
         void Mensaje(string mensaje, int opcion);
 
         string TotalHits { set; }
+
+
         #region Filtro Internacional
 
         string IdInternacional { get; }
@@ -125,6 +127,7 @@ namespace Trascend.Bolet.Cliente.Contratos.Patentes
         object PaisInt { get; set; }
 
         #endregion
+
 
         void LimpiarCampos();
     }

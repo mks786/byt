@@ -12,10 +12,12 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
     /// </summary>
     public partial class ConsultarMarcas : Page, IConsultarMarcas
     {
+
         private GridViewColumnHeader _CurSortCol = null;
         private SortAdorner _CurAdorner = null;
         private PresentadorConsultarMarcas _presentador;
         private bool _cargada;
+
 
         #region IConsultarMarcas
 

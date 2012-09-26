@@ -12,7 +12,9 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
 {
     public class ControladorPatente : ControladorBase
     {
+
         private static Logger logger = LogManager.GetCurrentClassLogger();
+
 
         /// <summary>
         /// Método que inserta o modifica una Patente
@@ -88,6 +90,7 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
             return exitoso;
         }
 
+
         /// <summary>
         /// Método que elimina una Patente
         /// </summary>
@@ -122,6 +125,7 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
             return exitoso;
         }
 
+
         /// <summary>
         /// Método que consulta la lista de todos las Patentes
         /// </summary>
@@ -154,6 +158,7 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
 
             return retorno;
         }
+
 
         /// <summary>
         /// Método que consulta la lista de todos las fechas de Patentes
@@ -188,6 +193,7 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
             return retorno;
         }
 
+
         /// <summary>
         /// Verifica si la Patente existe
         /// </summary>
@@ -221,6 +227,7 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
             return existe;
         }
 
+
         public static IList<Patente> ConsultarPatentesFiltro(Patente patente)
         {
             IList<Patente> retorno;
@@ -249,6 +256,7 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
 
             return retorno;
         }
+
 
         /// <summary>
         /// Método que consulta una patente con todas sus dependencias
@@ -286,6 +294,7 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
 
             return retorno;
         }
+
 
     }
 }

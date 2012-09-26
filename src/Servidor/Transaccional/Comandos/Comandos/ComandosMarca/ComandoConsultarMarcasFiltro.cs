@@ -10,6 +10,7 @@ namespace Trascend.Bolet.Comandos.Comandos.ComandosMarca
 {
     class ComandoConsultarMarcasFiltro : ComandoBase<IList<Marca>>
     {
+
         private static Logger logger = LogManager.GetCurrentClassLogger();
         private Marca _marca;
 
@@ -22,6 +23,7 @@ namespace Trascend.Bolet.Comandos.Comandos.ComandosMarca
         {
             this._marca = marca;
         }
+
 
         /// <summary>
         /// Método que ejecuta el comando

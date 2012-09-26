@@ -12,6 +12,7 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
 {
     class DaoMarcaNHibernate : DaoBaseNHibernate<Marca, int>, IDaoMarca
     {
+
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
 
@@ -42,7 +43,7 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
                     variosFiltros = true;
                 }
 
-                if ((null != marca) && (!marca.LocalidadMarca.Equals(string.Empty)))
+                if ((null != marca) && (marca.LocalidadMarca != null) && (!marca.LocalidadMarca.Equals(string.Empty)))
                 {
                     if (!marca.LocalidadMarca.Equals("N"))
                     {
@@ -211,6 +212,7 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
 
                 #endregion
 
+
                 #region Filtros Marca Boletines
 
                 if ((null != marca.BoletinPublicacion) && (!marca.BoletinPublicacion.Id.Equals("")))
@@ -238,6 +240,7 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
                 }
 
                 #endregion
+
 
                 #region Filtro Marca Prioridad
 

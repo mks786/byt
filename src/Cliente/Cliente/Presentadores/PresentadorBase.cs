@@ -17,9 +17,11 @@ namespace Trascend.Bolet.Cliente.Presentadores
 {
     class PresentadorBase
     {
+
         private static IVentanaPrincipal _ventanaPrincipal = VentanaPrincipal.ObtenerInstancia;
         private static IPaginaPrincipal _paginaPrincipal = PaginaPrincipal.ObtenerInstancia;
         private static Usuario _usuarioLogeado;
+
 
         private IPlanillaServicios _planillaServicios;
         private IMarcaServicios _marcaServicios;
@@ -28,9 +30,12 @@ namespace Trascend.Bolet.Cliente.Presentadores
         private IInteresadoServicios _interesadoServicios;
         private IPoderServicios _poderServicios;
 
+
         public object _ventanaPadre = null;
 
+
         private static Logger logger = LogManager.GetCurrentClassLogger();
+
 
         public PresentadorBase()
         {
@@ -49,6 +54,7 @@ namespace Trascend.Bolet.Cliente.Presentadores
 
         }
 
+
         /// <summary>
         /// Propiedad que representa el usuario logeado en el sistema
         /// </summary>
@@ -57,6 +63,7 @@ namespace Trascend.Bolet.Cliente.Presentadores
             get { return _usuarioLogeado; }
             set { _usuarioLogeado = value; }
         }
+
 
         /// <summary>
         /// Método que permite navegar hasta la página principal
@@ -67,6 +74,7 @@ namespace Trascend.Bolet.Cliente.Presentadores
             _paginaPrincipal.MensajeUsuario = "";
             _ventanaPrincipal.Contenedor.Navigate(_paginaPrincipal);
         }
+
 
         /// <summary>
         /// Método que permite navegar hasta la página principal y 
@@ -83,6 +91,7 @@ namespace Trascend.Bolet.Cliente.Presentadores
             _ventanaPrincipal.Contenedor.Navigate(_paginaPrincipal);
         }
 
+
         /// <summary>
         /// Método que permite navegar a una página específica
         /// </summary>
@@ -92,6 +101,7 @@ namespace Trascend.Bolet.Cliente.Presentadores
             _ventanaPrincipal.Contenedor.Navigate(pagina);
         }
 
+
         /// <summary>
         /// Método que permite navegar hasta la página principal
         /// </summary>
@@ -99,6 +109,7 @@ namespace Trascend.Bolet.Cliente.Presentadores
         {
             this.Navegar();
         }
+
 
         /// <summary>
         /// Método que verifica si se puede regresar a la página anterior,
@@ -114,6 +125,7 @@ namespace Trascend.Bolet.Cliente.Presentadores
 
         }
 
+
         /// <summary>
         /// Método que actualiza el título de la ventana principal
         /// </summary>
@@ -127,6 +139,7 @@ namespace Trascend.Bolet.Cliente.Presentadores
                 tituloAColocar += " (" + id + ")";
             ventanaPrincipal.Title = tituloAColocar;
         }
+
 
         /// <summary>
         /// Método que busca un Rol dentro de una lista de roles
@@ -151,6 +164,7 @@ namespace Trascend.Bolet.Cliente.Presentadores
             return retorno;
         }
 
+
         /// <summary>
         /// Método que busca un Departamento dentro de una lista de Departamentos
         /// </summary>
@@ -173,6 +187,7 @@ namespace Trascend.Bolet.Cliente.Presentadores
 
             return retorno;
         }
+
 
         /// <summary>
         /// Método que busca un Departamento dentro de una lista de usuarios
@@ -198,6 +213,7 @@ namespace Trascend.Bolet.Cliente.Presentadores
             return retorno;
         }
 
+
         /// <summary>
         /// Método que busca un Interesado dentro de una lista de interesados
         /// </summary>
@@ -220,6 +236,7 @@ namespace Trascend.Bolet.Cliente.Presentadores
 
             return retorno;
         }
+
 
 
         /// <summary>
@@ -260,6 +277,7 @@ namespace Trascend.Bolet.Cliente.Presentadores
             return retorno;
         }
 
+
         /// <summary>
         /// Método que busca un Boletin dentro de una lista de Boletines
         /// </summary>
@@ -282,6 +300,7 @@ namespace Trascend.Bolet.Cliente.Presentadores
 
             return retorno;
         }
+
 
         /// <summary>
         /// Método que busca un Corresponsal dentro de una lista de Corresponsales
@@ -306,6 +325,7 @@ namespace Trascend.Bolet.Cliente.Presentadores
             return retorno;
         }
 
+
         /// <summary>
         /// Método que busca un Asociado dentro de una lista de Asociados
         /// </summary>
@@ -329,6 +349,7 @@ namespace Trascend.Bolet.Cliente.Presentadores
             return retorno;
         }
 
+
         /// <summary>
         /// Busca la el sexo (género) correspondiente a la inicial que se le esté pasando
         /// </summary>
@@ -350,6 +371,7 @@ namespace Trascend.Bolet.Cliente.Presentadores
 
             return retorno;
         }
+
 
         /// <summary>
         /// Busca la el formato documento correspondiente a la inicial que se le esté pasando
@@ -373,6 +395,7 @@ namespace Trascend.Bolet.Cliente.Presentadores
             return retorno;
         }
 
+
         /// <summary>
         /// Busca la la Condición correspondiente a la inicial que se le esté pasando
         /// </summary>
@@ -394,6 +417,7 @@ namespace Trascend.Bolet.Cliente.Presentadores
 
             return retorno;
         }
+
 
         /// <summary>
         /// Busca la el Tipo renovación correspondiente a la inicial que se le esté pasando
@@ -418,6 +442,7 @@ namespace Trascend.Bolet.Cliente.Presentadores
             return retorno;
         }
 
+
         /// <summary>
         /// Busca el recordatorio correspondiente a la inicial que se le esté pasando
         /// </summary>
@@ -441,6 +466,7 @@ namespace Trascend.Bolet.Cliente.Presentadores
             return retorno;
         }
 
+
         /// <summary>
         /// Busca el tipode persona correspondiente a la inicial que se le esté pasando
         /// </summary>
@@ -458,6 +484,7 @@ namespace Trascend.Bolet.Cliente.Presentadores
 
             return retorno;
         }
+
 
         /// <summary>
         /// Busca la presentacion de patente correspondiente a la inicial que se le esté pasando
@@ -477,6 +504,7 @@ namespace Trascend.Bolet.Cliente.Presentadores
             return retorno;
         }
 
+
         /// <summary>
         /// Busca el tipo de patente correspondiente a la inicial que se le esté pasando
         /// </summary>
@@ -494,6 +522,7 @@ namespace Trascend.Bolet.Cliente.Presentadores
 
             return retorno;
         }
+
 
         /// <summary>
         /// Busca el tipode persona correspondiente a la inicial que se le esté pasando
@@ -513,6 +542,7 @@ namespace Trascend.Bolet.Cliente.Presentadores
             return retorno;
         }
 
+
         /// <summary>
         /// Busca el tomo de entre una lista de valores
         /// </summary>
@@ -530,6 +560,7 @@ namespace Trascend.Bolet.Cliente.Presentadores
 
             return retorno;
         }
+
 
         /// <summary>
         /// Busca el tipo de destinatario correspondiente a la inicial que se le esté pasando
@@ -549,6 +580,7 @@ namespace Trascend.Bolet.Cliente.Presentadores
 
             return retorno;
         }
+
 
         /// <summary>
         /// Busca el estado civil correspondiente a la inicial que se le esté pasando
@@ -572,6 +604,7 @@ namespace Trascend.Bolet.Cliente.Presentadores
             return retorno;
         }
 
+
         /// <summary>
         /// Busca el tipo de remitente correspondiente a la inicial que se le esté pasando
         /// </summary>
@@ -590,6 +623,7 @@ namespace Trascend.Bolet.Cliente.Presentadores
 
             return retorno;
         }
+
 
         /// <summary>
         /// Método que busca un Pais dentro de una lista de paises
@@ -614,6 +648,7 @@ namespace Trascend.Bolet.Cliente.Presentadores
             return retorno;
         }
 
+
         /// <summary>
         /// Método que busca un Pais dentro de una lista de paises
         /// </summary>
@@ -636,6 +671,7 @@ namespace Trascend.Bolet.Cliente.Presentadores
 
             return retorno;
         }
+
 
         /// <summary>
         /// Método que busca un estado dentro de una lista de estados
@@ -660,6 +696,7 @@ namespace Trascend.Bolet.Cliente.Presentadores
             return retorno;
         }
 
+
         /// <summary>
         /// Método que busca un estadoMarca dentro de una lista de estadosMarca
         /// </summary>
@@ -682,6 +719,7 @@ namespace Trascend.Bolet.Cliente.Presentadores
 
             return retorno;
         }
+
 
         /// <summary>
         /// Método que busca un TipoBase dentro de una lista de tipoBase
@@ -706,6 +744,7 @@ namespace Trascend.Bolet.Cliente.Presentadores
             return retorno;
         }
 
+
         /// <summary>
         /// Método que busca un estado dentro de una lista de Idiomas
         /// </summary>
@@ -728,6 +767,7 @@ namespace Trascend.Bolet.Cliente.Presentadores
 
             return retorno;
         }
+
 
         /// <summary>
         /// Método que busca un estado dentro de una lista de remitentes
@@ -752,6 +792,7 @@ namespace Trascend.Bolet.Cliente.Presentadores
             return retorno;
         }
 
+
         /// <summary>
         /// Método que busca un estado dentro de una lista de remitentes
         /// </summary>
@@ -774,6 +815,7 @@ namespace Trascend.Bolet.Cliente.Presentadores
 
             return retorno;
         }
+
 
         /// <summary>
         /// Método que busca un Receptor dentro de una lista de receptores
@@ -798,6 +840,7 @@ namespace Trascend.Bolet.Cliente.Presentadores
             return retorno;
         }
 
+
         /// <summary>
         /// Método que busca un Contacto dentro de una lista de contactos
         /// </summary>
@@ -820,6 +863,7 @@ namespace Trascend.Bolet.Cliente.Presentadores
 
             return retorno;
         }
+
 
         /// <summary>
         /// Método que busca un Resumen dentro de una lista de Resumenes
@@ -844,6 +888,7 @@ namespace Trascend.Bolet.Cliente.Presentadores
             return retorno;
         }
 
+
         /// <summary>
         /// Método que busca un remitente dentro de una lista de remitentes
         /// </summary>
@@ -866,6 +911,7 @@ namespace Trascend.Bolet.Cliente.Presentadores
 
             return retorno;
         }
+
 
         /// <summary>
         /// Método que busca un estado dentro de una lista de categorias
@@ -890,6 +936,7 @@ namespace Trascend.Bolet.Cliente.Presentadores
             return retorno;
         }
 
+
         /// <summary>
         /// Método que busca un estado dentro de una lista de Monedas
         /// </summary>
@@ -913,6 +960,7 @@ namespace Trascend.Bolet.Cliente.Presentadores
             return retorno;
         }
 
+
         /// <summary>
         /// Metodo que carga 1 comboBox de Minutos y 1 ComboBox de horas
         /// </summary>
@@ -931,6 +979,7 @@ namespace Trascend.Bolet.Cliente.Presentadores
                 ((ComboBox)minutos).Items.Add(i.ToString());
             }
         }
+
 
         /// <summary>
         /// Método que busca un estado dentro de una lista de TipoClientes
@@ -955,6 +1004,7 @@ namespace Trascend.Bolet.Cliente.Presentadores
             return retorno;
         }
 
+
         /// <summary>
         /// Método que busca un estado dentro de una lista de TipoInfoboles
         /// </summary>
@@ -977,6 +1027,7 @@ namespace Trascend.Bolet.Cliente.Presentadores
 
             return retorno;
         }
+
 
         /// <summary>
         /// Método que busca un estado dentro de una lista de Tarifas
@@ -1001,6 +1052,7 @@ namespace Trascend.Bolet.Cliente.Presentadores
             return retorno;
         }
 
+
         /// <summary>
         /// Método que busca un estado dentro de una lista de Etiquetas
         /// </summary>
@@ -1024,6 +1076,7 @@ namespace Trascend.Bolet.Cliente.Presentadores
             return retorno;
         }
 
+
         /// <summary>
         /// Método que busca un estado dentro de una lista de DetallesPagos
         /// </summary>
@@ -1046,6 +1099,7 @@ namespace Trascend.Bolet.Cliente.Presentadores
 
             return retorno;
         }
+
 
         /// <summary>
         /// Método que busca un detalle estado dentro de una lista de Detalles
@@ -1071,6 +1125,7 @@ namespace Trascend.Bolet.Cliente.Presentadores
             return retorno;
         }
 
+
         /// <summary>
         /// Metodo que deshabilita las fechas en un calendario desde el dia 1 hasta el dia pasado por parametro
         /// </summary>
@@ -1086,6 +1141,7 @@ namespace Trascend.Bolet.Cliente.Presentadores
 
             calendario.BlackoutDates.Add(new CalendarDateRange(new DateTime(0001, 1, 1), dia));
         }
+
 
         /// <summary>
         /// Método que busca un concepto dentro de una lista de conceptos
@@ -1110,6 +1166,7 @@ namespace Trascend.Bolet.Cliente.Presentadores
             return retorno;
         }
 
+
         /// <summary>
         /// Método que busca una carta dentro de una lista de Cartas
         /// </summary>
@@ -1132,6 +1189,7 @@ namespace Trascend.Bolet.Cliente.Presentadores
 
             return retorno;
         }
+
 
         /// <summary>
         /// Método que busca una tipofecha dentro de una lista de tipofecha
@@ -1156,6 +1214,7 @@ namespace Trascend.Bolet.Cliente.Presentadores
             return retorno;
         }
 
+
         /// <summary>
         /// Método que busca un Sector dentro de una lista de Sectores
         /// </summary>
@@ -1178,6 +1237,7 @@ namespace Trascend.Bolet.Cliente.Presentadores
 
             return retorno;
         }
+
 
         /// <summary>
         /// Método que busca un tipo de marca dentro de una lista de tipos de marca
@@ -1202,6 +1262,7 @@ namespace Trascend.Bolet.Cliente.Presentadores
             return retorno;
         }
 
+
         /// <summary>
         /// Método que busca Tipo de Reproduccion dentro de una lista de Reproducciones
         /// </summary>
@@ -1224,6 +1285,7 @@ namespace Trascend.Bolet.Cliente.Presentadores
 
             return retorno;
         }
+
 
         /// <summary>
         /// Método que busca un id en el texto que va en el Combobox
@@ -1251,6 +1313,7 @@ namespace Trascend.Bolet.Cliente.Presentadores
 
             return retorno;
         }
+
 
         /// <summary>
         /// Método que busca un id en el texto que va en el Combobox
@@ -1291,6 +1354,7 @@ namespace Trascend.Bolet.Cliente.Presentadores
             return retorno;
         }
 
+
         /// <summary>
         /// Método que busca un id en el texto que va en el Combobox
         /// </summary>
@@ -1316,6 +1380,7 @@ namespace Trascend.Bolet.Cliente.Presentadores
             }
             return retorno;
         }
+
 
         /// <summary>
         /// Método que busca un id en el texto que va en el Combobox
@@ -1355,6 +1420,7 @@ namespace Trascend.Bolet.Cliente.Presentadores
             return retorno;
         }
 
+
         /// <summary>
         /// Método que verifica el formato
         /// </summary>
@@ -1386,6 +1452,7 @@ namespace Trascend.Bolet.Cliente.Presentadores
             return trackingCorrecto;
         }
 
+
         /// <summary>
         /// Método que busca un Agente dentro de una lista de Agentes
         /// </summary>
@@ -1412,6 +1479,7 @@ namespace Trascend.Bolet.Cliente.Presentadores
             return retorno;
         }
 
+
         /// <summary>
         /// Método que busca un Poder dentro de una lista de Poderes
         /// </summary>
@@ -1434,6 +1502,7 @@ namespace Trascend.Bolet.Cliente.Presentadores
 
             return retorno;
         }
+
 
         /// <summary>
         /// Método que busca un Servicio dentro de una lista de Boletines
@@ -1458,6 +1527,7 @@ namespace Trascend.Bolet.Cliente.Presentadores
             return retorno;
         }
 
+
         /// <summary>
         /// Método que busca un ListaDominio dentro de una lista de ListaDominio
         /// </summary>
@@ -1480,6 +1550,7 @@ namespace Trascend.Bolet.Cliente.Presentadores
 
             return retorno;
         }
+
 
         /// <summary>
         /// Método que busca un ListaDatosValores dentro de una lista de ListaDatosValores
@@ -1504,6 +1575,7 @@ namespace Trascend.Bolet.Cliente.Presentadores
             return retorno;
         }
 
+
         /// <summary>
         /// Metodo que abre una ventana del explorador predeterminado a una URL determinada
         /// </summary>
@@ -1512,6 +1584,7 @@ namespace Trascend.Bolet.Cliente.Presentadores
         {
             Process.Start(URL);
         }
+
 
         /// <summary>
         /// Método que busca un StatusWeb dentro de una lista de StatusWebs
@@ -1536,6 +1609,7 @@ namespace Trascend.Bolet.Cliente.Presentadores
             return retorno;
         }
 
+
         /// <summary>
         /// Método que busca una patente dentro de una lista de patentes
         /// </summary>
@@ -1558,6 +1632,7 @@ namespace Trascend.Bolet.Cliente.Presentadores
 
             return retorno;
         }
+
 
         /// <summary>
         /// Método que busca una marca dentro de una lista de marcas
@@ -1582,6 +1657,7 @@ namespace Trascend.Bolet.Cliente.Presentadores
             return retorno;
         }
 
+
         /// <summary>
         /// Método que busca un ListaDatosValores dentro de una lista de ListaDatosValores
         /// </summary>
@@ -1602,6 +1678,7 @@ namespace Trascend.Bolet.Cliente.Presentadores
             }
             return retorno;
         }
+
 
         /// <summary>
         /// Metodo que recibe el nombre del archivo .bat a ejecutar
@@ -1668,6 +1745,7 @@ namespace Trascend.Bolet.Cliente.Presentadores
             }
         }
 
+
         public void LlamarProcedimientoDeBaseDeDatos(ParametroProcedimiento parametro, string tituloVentana)
         {
             try
@@ -1695,6 +1773,7 @@ namespace Trascend.Bolet.Cliente.Presentadores
             }
         }
 
+
         /// <summary>
         /// Método que arma el string en el formato necesario para llamar a los .BAT de los escritos
         /// </summary>
@@ -1717,6 +1796,7 @@ namespace Trascend.Bolet.Cliente.Presentadores
             }
             return retorno.Substring(0, retorno.Length - 1);
         }
+
 
         /// <summary>
         /// Método que arma el string en el formato necesario para llamar a los .BAT de los escritos
@@ -1748,6 +1828,7 @@ namespace Trascend.Bolet.Cliente.Presentadores
 
         }
 
+
         /// <summary>
         /// Método que arma el string en el formato necesario para llamar a los .BAT de los escritos
         /// </summary>
@@ -1770,6 +1851,7 @@ namespace Trascend.Bolet.Cliente.Presentadores
             }
             return retorno.Substring(0, retorno.Length - 1);
         }
+
 
         /// <summary>
         /// Método que valida que un agente este en el poder de la lista de marcas
@@ -1840,6 +1922,7 @@ namespace Trascend.Bolet.Cliente.Presentadores
             return retorno;
         }
 
+
         /// <summary>
         /// Método que valida que un agente este en el poder de la lista de Patentes
         /// </summary>
@@ -1908,6 +1991,7 @@ namespace Trascend.Bolet.Cliente.Presentadores
             }
             return retorno;
         }
+
 
         /// <summary>
         /// Método que valida que un agente tenga poderes relacionados con la lista de interesados
@@ -1987,6 +2071,7 @@ namespace Trascend.Bolet.Cliente.Presentadores
             }
             return retorno;
         }
+
 
         /// <summary>
         /// Ejecuta un comando en consola sin abrirla
@@ -2073,6 +2158,7 @@ namespace Trascend.Bolet.Cliente.Presentadores
             return retorno;
         }
 
+
         /// <summary>
         /// Método que devuelve la extension de un archivo
         /// </summary>
@@ -2104,6 +2190,7 @@ namespace Trascend.Bolet.Cliente.Presentadores
             return retorno;
         }
 
+
         public string FormatearFecha(string fecha)
         {
             string retorno = "";
@@ -2116,6 +2203,10 @@ namespace Trascend.Bolet.Cliente.Presentadores
             return retorno;
         }
 
+
+        /// <summary>
+        /// Método que se encarga de navegar a la ventana padre
+        /// </summary>
         public void RegresarVentanaPadre()
         {
             if (_ventanaPadre != null)
@@ -2124,6 +2215,13 @@ namespace Trascend.Bolet.Cliente.Presentadores
                 Navegar();
         }
 
+
+        /// <summary>
+        /// Método que se encarga de buscar si un usuario tiene una permisología en específico
+        /// </summary>
+        /// <param name="objetos"></param>
+        /// <param name="objetoBuscado"></param>
+        /// <returns></returns>
         public bool PoseePermisologia(IList<Objeto> objetos, string objetoBuscado)
         {
             bool retorno = false;
@@ -2138,7 +2236,7 @@ namespace Trascend.Bolet.Cliente.Presentadores
                         retorno = true;
                     }
                 }
-                catch (Exception ex) 
+                catch (Exception ex)
                 {
                     string av = a.ToString();
                 }

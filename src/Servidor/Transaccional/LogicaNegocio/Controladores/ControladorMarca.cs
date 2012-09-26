@@ -12,7 +12,9 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
 {
     public class ControladorMarca : ControladorBase
     {
+
         private static Logger logger = LogManager.GetCurrentClassLogger();
+
 
         /// <summary>
         /// Método que inserta o modifica una Marca
@@ -89,6 +91,7 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
             return exitoso;
         }
 
+
         /// <summary>
         /// Método que elimina una Marca
         /// </summary>
@@ -123,6 +126,7 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
             return exitoso;
         }
 
+
         /// <summary>
         /// Método que consulta la lista de todos las Marcas
         /// </summary>
@@ -155,6 +159,7 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
 
             return retorno;
         }
+
 
         /// <summary>
         /// Verifica si la Marca existe
@@ -189,6 +194,7 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
             return existe;
         }
 
+
         public static IList<Marca> ConsultarMarcasFiltro(Marca marca)
         {
             IList<Marca> retorno;
@@ -217,6 +223,7 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
 
             return retorno;
         }
+
 
         /// <summary>
         /// Metodo que obtiene el marcas por fecha de renovacion
@@ -252,6 +259,7 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
 
             return retorno;
         }
+
 
         /// <summary>
         /// Método que consulta una marca con todas sus dependencias
@@ -329,7 +337,6 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
 
             return retorno;
         }
-
 
 
         /// <summary>

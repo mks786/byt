@@ -78,7 +78,7 @@
 
                         </WrapPanel>
                         <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,180,0">
-                       
+
                             <Label Name="_lblFecha">
                                 <TextBlock Text="{x:Static recurso:Etiquetas.lblFecha}"/>
                             </Label>
@@ -90,17 +90,17 @@
                                     <Binding Path="FechaInscripcion" UpdateSourceTrigger="PropertyChanged"/>
                                 </DatePicker.SelectedDate>
                             </custom:ByTDatePicker>
-                            
+
                             <!--<custom:ByTTextBox Name="_dpkFecha" Width="150" MaxLength="40" Filtro="True" 
                                         Text="{Binding Path=FechaInscripcion}"/>-->
                         </WrapPanel>
-                           
-                            <!--<DatePicker Name="_dpkFecha" Width="75" Focusable="False" BorderBrush="{x:Null}" SelectedDateChanged="_dpkFecha_SelectedDateChanged">
+
+                        <!--<DatePicker Name="_dpkFecha" Width="75" Focusable="False" BorderBrush="{x:Null}" SelectedDateChanged="_dpkFecha_SelectedDateChanged">
                                 <DatePicker.SelectedDate>
                                     <Binding Path="FechaInscripcion" UpdateSourceTrigger="PropertyChanged"/>
                                 </DatePicker.SelectedDate>
                             </DatePicker>-->
-                        
+
                         <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,180,0">
                             <Label Name="_lblPatente">
                                 <TextBlock Text="{x:Static recurso:Etiquetas.lblPatente}"/>
@@ -253,8 +253,8 @@
                             <custom:ByTTextBox Name="_txtPrimeraReferencia" Width="150" MaxLength="40" Filtro="True" 
                                        GotFocus="_btnConsultarFocus" GotKeyboardFocus="_btnConsultarFocus" Text="{Binding Path=PrimeraReferencia}"/>
                         </WrapPanel>
-                        
-                        
+
+
                         <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,180,0">
                             <Label VerticalAlignment="Center" HorizontalContentAlignment="Right">
                                 <TextBlock Text="{x:Static recurso:Etiquetas.lblSituacion}"/>
@@ -444,7 +444,7 @@
                             <custom:ByTTextBox Name="_dpkPrioridadFecha" Width="150" MaxLength="40" Filtro="True" 
                                         Text="{Binding Path=FechaPrioridad}"/>
                         </WrapPanel>-->
-                        
+
                         <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,180,0">
 
                             <Label>
@@ -493,7 +493,7 @@
                         <GridViewColumn DisplayMemberBinding="{Binding Path=Id}" Width="120">
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="Id" Content="{x:Static recurso:Etiquetas.lsvId}"/>
                         </GridViewColumn>
-                       
+
                         <GridViewColumn DisplayMemberBinding="{Binding Path=CodigoInscripcion}" Width="120">
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="CodigoInscripcion" Content="{x:Static recurso:Etiquetas.lsvSolicitud}"/>
                         </GridViewColumn>
@@ -512,11 +512,11 @@
                         <GridViewColumn DisplayMemberBinding="{Binding Path=Interesado.Id}" Width="150">
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="Interesado.Id" Content="{x:Static recurso:Etiquetas.lsvCodigoInteresado}"/>
                         </GridViewColumn>
-                        
+
                         <GridViewColumn DisplayMemberBinding="{Binding Path=Interesado.Nombre}" Width="250">
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="Interesado.Nombre" Content="{x:Static recurso:Etiquetas.lsvInteresado}"/>
                         </GridViewColumn>
-                        
+
                         <GridViewColumn DisplayMemberBinding="{Binding Path=FechaPublicacion, StringFormat=dd/MM/yyyy}" Width="180">
 
                             <GridViewColumnHeader Click="_Ordenar_Click" Tag="FechaPublicacion" Content="{x:Static recurso:Etiquetas.lsvFecha}"/>
