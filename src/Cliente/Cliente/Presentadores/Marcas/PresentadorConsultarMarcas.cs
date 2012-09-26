@@ -167,6 +167,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 IList<ListaDatosValores> tiposBusqueda = this._listaDatosValoresServicios.
                                 ConsultarListaDatosValoresPorParametro(new ListaDatosValores(Recursos.Etiquetas.cbiLocalidadMarca));
                 this._ventana.TiposBusqueda = tiposBusqueda;
+                this._ventana.TipoBusqueda = this.BuscarTipoDeBusqueda(tiposBusqueda);
 
                 IList<TipoEstado> tipoEstados = this._tipoEstadoServicios.ConsultarTodos();
                 TipoEstado primerDetalle = new TipoEstado();

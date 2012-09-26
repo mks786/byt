@@ -957,4 +957,27 @@
     <value>upper(m.ReferenciaInteresadoInternacional) like '%{0}%'</value>
     <comment>Filtra marca por referencia de asociado internacional</comment>
   </data>
+  <data name="FiltroObtenerMarcaLocalidad" xml:space="preserve">
+    <value>m.LocalidadMarca = '{0}'</value>
+  </data>
+  <data name="FiltroObtenerPatenteIntIdCorrelativoExp" xml:space="preserve">
+    <value>p.CorrelativoExpediente = {0}</value>
+  </data>
+  <data name="FiltroObtenerPatenteIntIdInternacional" xml:space="preserve">
+    <value>p.CodigoPatenteInternacional = {0}</value>
+  </data>
+  <data name="FiltroObtenerPatenteLocalidad" xml:space="preserve">
+    <value>p.LocalidadPatente = '{0}'</value>
+  </data>
+  <data name="FiltroObtenerPatentePaisInternacional" xml:space="preserve">
+    <value>p.PaisInternacional.Id ={0}</value>
+  </data>
+  <data name="FiltroObtenerPatenteReferenciaAsociadoInternacional" xml:space="preserve">
+    <value>upper(p.ReferenciaAsociadoInternacional) like '%{0}%'</value>
+    <comment>Filtra marca por referencia de asociado internacional</comment>
+  </data>
+  <data name="FiltroObtenerPatenteReferenciaInteresadoInternacional" xml:space="preserve">
+    <value>upper(p.ReferenciaInteresadoInternacional) like '%{0}%'</value>
+    <comment>Filtra marca por referencia de asociado internacional</comment>
+  </data>
 </root>

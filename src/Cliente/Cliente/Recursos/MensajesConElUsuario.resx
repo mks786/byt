@@ -907,4 +907,7 @@
   <data name="ErrorMarcaInternacional" xml:space="preserve">
     <value>Disculpe, para insertar una Marca Internacional debe seleccionar la Clasificación, el País y su Clase</value>
   </data>
+  <data name="ErrorPatenteInternacional" xml:space="preserve">
+    <value>Disculpe, para agregar o modificar una Patente Internacional debe seleccionar un País Internacional</value>
+  </data>
 </root>

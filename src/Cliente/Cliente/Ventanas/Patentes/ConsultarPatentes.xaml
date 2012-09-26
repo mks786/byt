@@ -53,6 +53,15 @@
 
                     <!--Patente-->
                     <StackPanel Name="_nacional">
+
+
+                        <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,180,0">
+                            <Label  Name="_lblTipoBusqueda" >
+                                <TextBlock Text="{x:Static recurso:Etiquetas.lblLocalidad}"/>
+                            </Label>
+                            <ComboBox SelectionChanged="_cbxTipoBusqueda_SelectionChanged" Name="_cbxTipoBusqueda" Width="150" ItemsSource="{Binding}" DisplayMemberPath="Descripcion" >
+                            </ComboBox>
+                        </WrapPanel>
                         <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,180,0">
                             <Label Name="_lblId">
                                 <TextBlock Text="{x:Static recurso:Etiquetas.lblId}"/>
@@ -262,6 +271,81 @@
                               ItemsSource="{Binding}" DisplayMemberPath="Descripcion" SelectedIndex="0">
                             </ComboBox>
                         </WrapPanel>
+                        <!--Campos Internacionales-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                        <WrapPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,5,180,0">
+                            <Label Name="_lblCamposInternacionales">
+                                <TextBlock Text="{x:Static recurso:Etiquetas.lblCamposInternacionales}"/>
+                            </Label>
+                        </WrapPanel>
+                        <!--<WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,180,0">
+                            <Label  Name="_lblIdInternacional">
+                                <TextBlock Text="{x:Static recurso:Etiquetas.lblId}"/>
+                            </Label>
+                            <custom:ByTTextBox IsEnabled="false"  Name="_txtIdInternacional" Width="150" MaxLength="40" SoloNumero="True" Filtro="True" 
+                                       GotFocus="_btnConsultarFocus" GotKeyboardFocus="_btnConsultarFocus" Text="{Binding Path=Id}" />
+                        </WrapPanel>-->
+                        <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,180,0">
+                            <Label  Name="_lblCodigoInternacional">
+                                <TextBlock Text="{x:Static recurso:Etiquetas.lblCodigoInt}"/>
+                            </Label>
+                            <custom:ByTTextBox  IsEnabled="false"  Name="_txtCodigoInternacional" Width="75" MaxLength="8"
+                             GotFocus="_btnConsultarFocus" GotKeyboardFocus="_btnConsultarFocus"/>
+                            <custom:ByTTextBox  IsEnabled="false"  Name="_txtCodigoInternacional2" Width="75" MaxLength="8"
+                             GotFocus="_btnConsultarFocus" GotKeyboardFocus="_btnConsultarFocus"/>
+                        </WrapPanel>
+
+                        <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,180,0">
+                            <Label  Name="_lblPaisInternacional" >
+                                <TextBlock Text="{x:Static recurso:Etiquetas.lblPais}"/>
+                            </Label>
+                            <ComboBox  IsEnabled="false"  Name="_cbxPaisInternacional" Width="150" ItemsSource="{Binding}" DisplayMemberPath="NombreEspanol" >
+                            </ComboBox>
+                        </WrapPanel>
+
+                        <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,180,0">
+                            <Label  Name="_lblReferenciaInteresado">
+                                <TextBlock Text="{x:Static recurso:Etiquetas.lblReferenciaInt}"/>
+                            </Label>
+                            <custom:ByTTextBox  IsEnabled="false"  Name="_txtReferenciaInteresado" Width="150" MaxLength="40"
+                             GotFocus="_btnConsultarFocus" GotKeyboardFocus="_btnConsultarFocus"/>
+                        </WrapPanel>
+
+                        <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,180,0">
+                            <Label  Name="_lblReferenciaAsociado">
+                                <TextBlock Text="{x:Static recurso:Etiquetas.lblReferenciaAsoc}"/>
+                            </Label>
+                            <custom:ByTTextBox   IsEnabled="false" Name="_txtReferenciaAsociado" Width="150" MaxLength="40"
+                             GotFocus="_btnConsultarFocus" GotKeyboardFocus="_btnConsultarFocus"/>
+                        </WrapPanel>
+
+
+
+
+
+
+
+
+
+
+
+
+
+                        <!--Campos Internacionales-->
                     </StackPanel>
 
                     <Separator Margin="0,5,0,5"/>

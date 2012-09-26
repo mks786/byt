@@ -1421,6 +1421,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Disculpe, para agregar o modificar una Patente Internacional debe seleccionar un País Internacional.
+        /// </summary>
+        internal static string ErrorPatenteInternacional {
+            get {
+                return ResourceManager.GetString("ErrorPatenteInternacional", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Archivo del poder no encontrado..
         /// </summary>
         internal static string ErrorPoderNoEncontrado {

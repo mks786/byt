@@ -1087,6 +1087,15 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to m.LocalidadMarca = &apos;{0}&apos;.
+        /// </summary>
+        public static string FiltroObtenerMarcaLocalidad {
+            get {
+                return ResourceManager.GetString("FiltroObtenerMarcaLocalidad", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to m.Nacional.Id = {0}.
         /// </summary>
         public static string FiltroObtenerMarcaNacional {
@@ -1420,6 +1429,42 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to p.CorrelativoExpediente = {0}.
+        /// </summary>
+        public static string FiltroObtenerPatenteIntIdCorrelativoExp {
+            get {
+                return ResourceManager.GetString("FiltroObtenerPatenteIntIdCorrelativoExp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to p.CodigoPatenteInternacional = {0}.
+        /// </summary>
+        public static string FiltroObtenerPatenteIntIdInternacional {
+            get {
+                return ResourceManager.GetString("FiltroObtenerPatenteIntIdInternacional", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to p.LocalidadPatente = &apos;{0}&apos;.
+        /// </summary>
+        public static string FiltroObtenerPatenteLocalidad {
+            get {
+                return ResourceManager.GetString("FiltroObtenerPatenteLocalidad", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to p.PaisInternacional.Id ={0}.
+        /// </summary>
+        public static string FiltroObtenerPatentePaisInternacional {
+            get {
+                return ResourceManager.GetString("FiltroObtenerPatentePaisInternacional", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to p.Pais.Id = &apos;{0}&apos;.
         /// </summary>
         public static string FiltroObtenerPatentePaisPrioridad {
@@ -1434,6 +1479,24 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         public static string FiltroObtenerPatenteReferencia {
             get {
                 return ResourceManager.GetString("FiltroObtenerPatenteReferencia", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to upper(p.ReferenciaAsociadoInternacional) like &apos;%{0}%&apos;.
+        /// </summary>
+        public static string FiltroObtenerPatenteReferenciaAsociadoInternacional {
+            get {
+                return ResourceManager.GetString("FiltroObtenerPatenteReferenciaAsociadoInternacional", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to upper(p.ReferenciaInteresadoInternacional) like &apos;%{0}%&apos;.
+        /// </summary>
+        public static string FiltroObtenerPatenteReferenciaInteresadoInternacional {
+            get {
+                return ResourceManager.GetString("FiltroObtenerPatenteReferenciaInteresadoInternacional", resourceCulture);
             }
         }
         

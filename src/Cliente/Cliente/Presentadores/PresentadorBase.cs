@@ -1583,6 +1583,27 @@ namespace Trascend.Bolet.Cliente.Presentadores
         }
 
         /// <summary>
+        /// Método que busca un ListaDatosValores dentro de una lista de ListaDatosValores
+        /// </summary>
+        /// <param name="servicios">Lista de ListaDatosValores</param>
+        /// <param name="servicioBuscado">ListaDatosValores a buscar</param>
+        /// <returns>ListaDatosValores dentro de la lista</returns>
+        public ListaDatosValores BuscarTipoDeBusqueda(IList<ListaDatosValores> tiposBusquedas)
+        {
+            ListaDatosValores retorno = null;
+
+            foreach (ListaDatosValores tipoBusqueda in tiposBusquedas)
+            {
+                if (tipoBusqueda.Valor == "N")
+                {
+                    retorno = tipoBusqueda;
+                    break;
+                }
+            }
+            return retorno;
+        }
+
+        /// <summary>
         /// Metodo que recibe el nombre del archivo .bat a ejecutar
         /// </summary>
         /// <param name="nombreArchivo">nombre del archivo a ejecutar</param>

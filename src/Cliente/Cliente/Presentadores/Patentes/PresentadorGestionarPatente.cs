@@ -696,27 +696,33 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                                 patente = AgregarDatosInternacionales(patente);
                             else
                                 patente.LocalidadPatente = "N";
-
-                            if (_agregar)
+                            if (ValidarPatenteInternacional())
                             {
-                                exitosoEntero = this._patenteServicios.InsertarOModificarPatente(patente, UsuarioLogeado.Hash);
-                                patente.Id = (int)exitosoEntero;
+                                if (_agregar)
+                                {
+                                    exitosoEntero = this._patenteServicios.InsertarOModificarPatente(patente, UsuarioLogeado.Hash);
+                                    patente.Id = (int)exitosoEntero;
+                                }
+                                else
+                                {
+                                    exitoso = this._patenteServicios.InsertarOModificar(patente, UsuarioLogeado.Hash);
+                                }
+
+                                if ((!exitosoEntero.Equals(null)) || (exitoso))
+                                {
+                                    if (_agregar)
+                                        this.Navegar(new GestionarPatente(patente, null));
+                                    else
+                                    {
+                                        this._ventana.HabilitarCampos = false;
+                                        this._ventana.TextoBotonModificar = Recursos.Etiquetas.btnModificar;
+
+                                    }
+                                }
                             }
                             else
                             {
-                                exitoso = this._patenteServicios.InsertarOModificar(patente, UsuarioLogeado.Hash);
-                            }
-
-                            if ((!exitosoEntero.Equals(null)) || (exitoso))
-                            {
-                                if (_agregar)
-                                    this.Navegar(new GestionarPatente(patente, null));
-                                else
-                                {
-                                    this._ventana.HabilitarCampos = false;
-                                    this._ventana.TextoBotonModificar = Recursos.Etiquetas.btnModificar;
-
-                                }
+                                this._ventana.Mensaje(Recursos.MensajesConElUsuario.ErrorPatenteInternacional, 0);
                             }
                         }
                         else

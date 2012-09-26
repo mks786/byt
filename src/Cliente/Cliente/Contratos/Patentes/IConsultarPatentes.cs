@@ -102,6 +102,29 @@ namespace Trascend.Bolet.Cliente.Contratos.Patentes
         void Mensaje(string mensaje, int opcion);
 
         string TotalHits { set; }
+        #region Filtro Internacional
+
+        string IdInternacional { get; }
+
+        string IdCorrelativoInternacional { get; }
+
+        string ReferenciaInteresado { get; }
+
+        string ReferenciaAsociado { get; }
+
+        object AsociadosInternacionales { get; set; }
+
+        object AsociadoInternacional { get; set; }
+
+        object TiposBusqueda { get; set; }
+
+        object TipoBusqueda { get; set; }
+
+        object PaisesInt { get; set; }
+
+        object PaisInt { get; set; }
+
+        #endregion
 
         void LimpiarCampos();
     }

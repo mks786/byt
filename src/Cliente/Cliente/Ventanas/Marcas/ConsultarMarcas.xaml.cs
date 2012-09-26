@@ -536,7 +536,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             set
             {
                 this._cbxTipoBusqueda.DataContext = value;
-                this._cbxTipoBusqueda.SelectedIndex = 1;
+                //this._cbxTipoBusqueda.SelectedIndex = 1;
             }
         }
 

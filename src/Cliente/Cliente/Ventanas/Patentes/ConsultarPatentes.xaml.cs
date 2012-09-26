@@ -290,6 +290,82 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
             set { this._lblHits.Text = value; }
         }
 
+
+        #region Filtro Internacional
+
+
+        public string IdInternacional
+        {
+            get { return this._txtCodigoInternacional.Text; }
+        }
+
+
+        public string IdCorrelativoInternacional
+        {
+            get { return this._txtCodigoInternacional2.Text; }
+        }
+
+
+        public string ReferenciaInteresado
+        {
+            get { return this._txtReferenciaInteresado.Text; }
+        }
+
+
+        public string ReferenciaAsociado
+        {
+            get { return this._txtReferenciaAsociado.Text; }
+        }
+
+
+        public object AsociadosInternacionales
+        {
+            get { throw new System.NotImplementedException(); }
+            set { throw new System.NotImplementedException(); }
+        }
+
+
+        public object AsociadoInternacional
+        {
+            get { throw new System.NotImplementedException(); }
+            set { throw new System.NotImplementedException(); }
+        }
+
+
+        public object TiposBusqueda
+        {
+            get { return this._cbxTipoBusqueda.DataContext; }
+            set
+            {
+                this._cbxTipoBusqueda.DataContext = value;
+                //this._cbxTipoBusqueda.SelectedIndex = 1;
+            }
+        }
+
+
+        public object TipoBusqueda
+        {
+            get { return this._cbxTipoBusqueda.SelectedItem; }
+            set { this._cbxTipoBusqueda.SelectedItem = value; }
+        }
+
+
+        public object PaisesInt
+        {
+            get { return this._cbxPaisInternacional.DataContext; }
+            set { this._cbxPaisInternacional.DataContext = value; }
+        }
+
+
+        public object PaisInt
+        {
+            get { return this._cbxPaisInternacional.SelectedItem; }
+            set { this._cbxPaisInternacional.SelectedItem = value; }
+        }
+
+
+        #endregion
+
         #endregion
 
         /// <summary>
@@ -534,6 +610,31 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
             {
                 this._presentador.Consultar();
             }
+        }
+
+
+
+
+        private void _cbxTipoBusqueda_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (this._cbxTipoBusqueda.SelectedIndex == 0)
+            {
+                HabilitarZonaInternacional(true);
+            }
+            else if (this._cbxTipoBusqueda.SelectedIndex == 1)
+            {
+                HabilitarZonaInternacional(false);
+            }
+        }
+
+
+        private void HabilitarZonaInternacional(bool valor)
+        {
+            this._txtCodigoInternacional.IsEnabled = valor;
+            this._txtCodigoInternacional2.IsEnabled = valor;
+            this._cbxPaisInternacional.IsEnabled = valor;
+            this._txtReferenciaInteresado.IsEnabled = valor;
+            this._txtReferenciaAsociado.IsEnabled = valor;
         }
 
 

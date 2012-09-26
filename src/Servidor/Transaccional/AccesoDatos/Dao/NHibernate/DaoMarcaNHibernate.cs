@@ -42,6 +42,17 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
                     variosFiltros = true;
                 }
 
+                if ((null != marca) && (!marca.LocalidadMarca.Equals(string.Empty)))
+                {
+                    if (!marca.LocalidadMarca.Equals("N"))
+                    {
+                        if (variosFiltros)
+                            filtro += " and ";
+                        filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerMarcaLocalidad, marca.LocalidadMarca);
+                        variosFiltros = true;
+                    }
+                }
+
                 if ((null != marca.Asociado) && (!marca.Asociado.Id.Equals("")))
                 {
                     if (variosFiltros)
@@ -257,6 +268,7 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
 
                 #endregion
 
+
                 #region Filtro de Marca Internacional
 
                 if ((marca.LocalidadMarca != null) && (marca.LocalidadMarca.Equals("I")))
@@ -287,7 +299,7 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
                         variosFiltros = true;
                     }
 
-                    if (!marca.ReferenciaAsociadoInternacional.Equals(string.Empty))
+                    if (!string.IsNullOrEmpty(marca.ReferenciaAsociadoInternacional))
                     {
                         if (variosFiltros)
                             filtro += " and ";
@@ -305,6 +317,8 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
                 }
 
                 #endregion
+
+
                 IQuery query = Session.CreateQuery(cabecera + filtro);
                 Marcas = query.List<Marca>();
 

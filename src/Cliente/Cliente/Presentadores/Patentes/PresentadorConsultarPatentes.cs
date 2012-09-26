@@ -34,6 +34,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
         private IServicioServicios _servicioServicios;
         private ITipoEstadoServicios _tipoEstadoServicios;
         private IPaisServicios _paisServicios;
+        private IListaDatosValoresServicios _listaDatosValoresServicios;
 
         private IList<Patente> _patentes;
         private IList<CesionPatente> _cesiones;
@@ -70,6 +71,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["TipoEstadoServicios"]);
                 this._paisServicios = (IPaisServicios)Activator.GetObject(typeof(IPaisServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["PaisServicios"]);
+                this._listaDatosValoresServicios = (IListaDatosValoresServicios)Activator.GetObject(typeof(IListaDatosValoresServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["ListaDatosValoresServicios"]);
             }
             catch (Exception ex)
             {
@@ -128,6 +131,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                 primerPais.Id = int.MinValue;
                 paises.Insert(0, primerPais);
                 this._ventana.Paises = paises;
+
+                IList<ListaDatosValores> tiposBusqueda = this._listaDatosValoresServicios.
+                                ConsultarListaDatosValoresPorParametro(new ListaDatosValores(Recursos.Etiquetas.cbiLocalidadMarca));
+                this._ventana.TiposBusqueda = tiposBusqueda;
+                this._ventana.TipoBusqueda = this.BuscarTipoDeBusqueda(tiposBusqueda);
 
                 this._ventana.TotalHits = "0";
                 this._ventana.FocoPredeterminado();
@@ -513,6 +521,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
 
             try
             {
+                patenteAuxiliar.LocalidadPatente = ((ListaDatosValores)this._ventana.TipoBusqueda).Valor;
+
                 if (!this._ventana.Id.Equals(""))
                 {
                     _filtroValido = 2;
@@ -578,6 +588,43 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                 if ((null != patenteAuxiliar.PrimeraReferencia) && (!patenteAuxiliar.PrimeraReferencia.Equals("")))
                 {
                     _filtroValido = 2;
+                } 
+                
+                if (patenteAuxiliar.LocalidadPatente.Equals("I"))
+                {
+                    if (!this._ventana.IdInternacional.Equals(string.Empty))
+                    {
+                        _filtroValido = 2;
+                        patenteAuxiliar.CodigoPatenteInternacional = int.Parse(this._ventana.IdInternacional);
+                    }
+                    else { patenteAuxiliar.CodigoPatenteInternacional = 0; }
+
+                    if (!this._ventana.IdCorrelativoInternacional.Equals(string.Empty))
+                    {
+                        _filtroValido = 2;
+                        patenteAuxiliar.CorrelativoExpediente = int.Parse(this._ventana.IdCorrelativoInternacional);
+                    }
+                    else { patenteAuxiliar.CorrelativoExpediente = 0; }
+
+                    if ((this._ventana.PaisInt != null) && !((Pais)this._ventana.PaisInt).Id.Equals("NGN"))
+                    {
+                        _filtroValido = 2;
+                        patenteAuxiliar.PaisInternacional = new Pais();
+                        patenteAuxiliar.PaisInternacional = ((Pais)this._ventana.PaisInt);
+                    }
+                    else { patenteAuxiliar.PaisInternacional = null; }
+
+                    if (!this._ventana.ReferenciaAsociado.Equals(string.Empty))
+                    {
+                        _filtroValido = 2;
+                        patenteAuxiliar.ReferenciaAsociadoInternacional = this._ventana.ReferenciaAsociado;
+                    }
+
+                    if (!this._ventana.ReferenciaInteresado.Equals(string.Empty))
+                    {
+                        _filtroValido = 2;
+                        patenteAuxiliar.ReferenciaInteresadoInternacional = this._ventana.ReferenciaInteresado;
+                    }
                 }
 
                 #region trace
@@ -586,6 +633,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                 #endregion
             }
             catch (ApplicationException ex)
+            {
+                logger.Debug(ex.Message);
+            }
+            catch (Exception ex)
             {
                 logger.Debug(ex.Message);
             }

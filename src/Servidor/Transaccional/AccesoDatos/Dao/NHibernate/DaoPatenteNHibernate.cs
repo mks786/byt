@@ -38,6 +38,17 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
                     variosFiltros = true;
                 }
 
+                if ((null != Patente) && (!Patente.LocalidadPatente.Equals(string.Empty)))
+                {
+                    if (!Patente.LocalidadPatente.Equals("N"))
+                    {
+                        if (variosFiltros)
+                            filtro += " and ";
+                        filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerPatenteLocalidad, Patente.LocalidadPatente);
+                        variosFiltros = true;
+                    }
+                }
+
                 if (!string.IsNullOrEmpty(Patente.Descripcion))
                 {
                     if (variosFiltros)
@@ -151,6 +162,58 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
                     filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerPatenteReferencia, Patente.PrimeraReferencia);
                     variosFiltros = true;
                 }
+
+
+
+
+                #region Filtro de Marca Internacional
+
+                if ((Patente.LocalidadPatente != null) && (Patente.LocalidadPatente.Equals("I")))
+                {
+
+                    if (Patente.CodigoPatenteInternacional != 0)
+                    {
+                        if (variosFiltros)
+                            filtro += " and ";
+                        filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerPatenteIntIdInternacional, Patente.CodigoPatenteInternacional);
+                        variosFiltros = true;
+
+                    }
+
+                    if (Patente.CorrelativoExpediente != 0)
+                    {
+                        if (variosFiltros)
+                            filtro += " and ";
+                        filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerPatenteIntIdCorrelativoExp, Patente.CorrelativoExpediente);
+                        variosFiltros = true;
+                    }
+
+                    if (Patente.PaisInternacional != null)
+                    {
+                        if (variosFiltros)
+                            filtro += " and ";
+                        filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerPatentePaisInternacional, Patente.PaisInternacional.Id);
+                        variosFiltros = true;
+                    }
+
+                    if (!string.IsNullOrEmpty(Patente.ReferenciaAsociadoInternacional))
+                    {
+                        if (variosFiltros)
+                            filtro += " and ";
+                        filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerPatenteReferenciaAsociadoInternacional, Patente.ReferenciaAsociadoInternacional.ToUpper());
+                        variosFiltros = true;
+                    }
+
+                    if (!string.IsNullOrEmpty(Patente.ReferenciaInteresadoInternacional))
+                    {
+                        if (variosFiltros)
+                            filtro += " and ";
+                        filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerPatenteReferenciaInteresadoInternacional, Patente.ReferenciaInteresadoInternacional.ToUpper());
+                        variosFiltros = true;
+                    }
+                }
+
+                #endregion
 
                 IQuery query = Session.CreateQuery(cabecera + filtro);
                 Patentes = query.List<Patente>();
