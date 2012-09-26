@@ -223,5 +223,37 @@ namespace Trascend.Bolet.Cliente.Contratos.Patentes
         void MostrarLstPoderSolicitud();
 
         bool ConfirmarAccion(string Titulo, string Mensaje);
+
+        string IdAsociadoInternacionalFiltrar { get; set; }
+
+        string NombreAsociadoInternacionalFiltrar { get; set; }
+
+        object AsociadosInternacionales { get; set; }
+
+        object AsociadoInternacional { get; set; }
+
+        string IdAsociadoInternacionalFiltrarDatos { get; set; }
+
+        string NombreAsociadoInternacionalFiltrarDatos { get; set; }
+
+        object AsociadosInternacionalesDatos { get; set; }
+
+        object AsociadoInternacionalDatos { get; set; }
+
+        string TextoAsociadoInternacional { set; }
+
+        object PaisesInternacionales { get; set; }
+
+        object PaisInternacional { get; set; }
+
+        object PaisesInternacionalesDatos { get; set; }
+
+        object PaisInternacionalDatos { get; set; }
+
+        bool EsPatenteNacional { get; }
+
+        void MarcarRadioPatenteNacional(bool esNacional);
+
+        void BorrarCeros();
     }
 }

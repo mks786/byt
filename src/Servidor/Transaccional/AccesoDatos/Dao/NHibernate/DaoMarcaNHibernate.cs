@@ -287,17 +287,13 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
                         variosFiltros = true;
                     }
 
-
-
-                    //Descomentar cuando se agregue el campo a la bd
-
-                    //if (!marca.ReferenciaAsociadoInternacional.Equals(string.Empty))
-                    //{
-                    //    if (variosFiltros)
-                    //        filtro += " and ";
-                    //    filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerMarcaReferenciaAsociadoInternacional, marca.ReferenciaAsociadoInternacional.ToUpper());
-                    //    variosFiltros = true;
-                    //}
+                    if (!marca.ReferenciaAsociadoInternacional.Equals(string.Empty))
+                    {
+                        if (variosFiltros)
+                            filtro += " and ";
+                        filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerMarcaReferenciaAsociadoInternacional, marca.ReferenciaAsociadoInternacional.ToUpper());
+                        variosFiltros = true;
+                    }
 
                     if (!string.IsNullOrEmpty(marca.ReferenciaInteresadoInternacional))
                     {

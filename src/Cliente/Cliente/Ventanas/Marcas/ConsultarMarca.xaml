@@ -1365,7 +1365,7 @@
                         </Label>
                         
                         <custom:ByTTextBox  Grid.Column="9" Grid.Row="9" Grid.ColumnSpan="4" Margin="3" Name="_txtReferenciaDatos" VerticalAlignment="Center"  
-                          Text=""></custom:ByTTextBox>
+                          Text="{Binding Path=ReferenciaAsociadoInternacional}"></custom:ByTTextBox>
                         <!--Fin Sexta Fila-->
 
                         <!--Fin Nuevo-->

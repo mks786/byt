@@ -210,7 +210,7 @@
                                                BorderBrush="LightGreen"></custom:ByTTextBox>
 
                             <custom:ByTTextBox  MaxLength="255" Grid.Column="1" Grid.Row="1" Name="_txtInteresadoSolicitud" VerticalAlignment="Center" 
-                         Grid.ColumnSpan="6" MouseDoubleClick="_txtInteresadoSolicitud_GotFocus" IsReadOnly="True"                            
+                         Grid.ColumnSpan="6" MouseDoubleClick="_txtInteresadoSolicitud_GotFocus" IsReadOnly="True"
                          ToolTip="{Binding ElementName=_txtInteresadoSolicitud, Path=(Validation.Errors)[0].ErrorContent}"
                                             BorderBrush="LightGreen">
                                 <custom:ByTTextBox.Text>
@@ -439,7 +439,7 @@
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblReferencia}"/>
                         </Label>
                         <custom:ByTTextBox  MaxLength="70" Grid.Column="9" Grid.Row="6" Name="_txtReferenciaAsocInt" VerticalAlignment="Center" 
-                         Grid.ColumnSpan="3" ></custom:ByTTextBox>
+                         Grid.ColumnSpan="3" Text="{Binding Path=ReferenciaAsociadoInternacional}"></custom:ByTTextBox>
 
                         <Separator Grid.Column="0" Grid.Row="7" Grid.ColumnSpan="12" Margin="10 0" VerticalAlignment="Bottom" />
 
@@ -1267,7 +1267,7 @@
                         </Label>
 
                         <custom:ByTTextBox  Grid.Column="9" Grid.Row="9" Grid.ColumnSpan="4" Margin="3" Name="_txtReferenciaDatos" VerticalAlignment="Center"  
-                          Text=""></custom:ByTTextBox>
+                          Text="{Binding Path=ReferenciaAsociadoInternacional}"></custom:ByTTextBox>
                         <!--Fin Sexta Fila-->
 
                         <!--Fin Nuevo-->
@@ -1536,7 +1536,7 @@
                         </Label>
                         <CheckBox  Margin="3" Grid.Column="8" Grid.ColumnSpan="1" Grid.Row="19" Height="16" VerticalAlignment="Center" Name="_chkRenovacionTramitente"
                                    IsChecked="{Binding Path=BRenovacionOtroTramitante}"/>
-                        
+
                         <Button Visibility="Hidden" Grid.Column="8" Grid.Row="19" Grid.ColumnSpan="2" Grid.RowSpan="2" Name="_btnIntRenovacion" Margin="25,6,3,6">
                             <TextBlock Name="_txbIntRenovacion" Text="{x:Static recurso:Etiquetas.btnNoRegistro}"/>
                         </Button>

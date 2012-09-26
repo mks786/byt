@@ -68,7 +68,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         private IList<InstruccionDeRenovacion> _instruccionesDeRenovacion;
         private int? _recordatorio;
 
-        //Región internacional
+        #region Internacional
 
         private string _clasesInternacionales;
         private string _clasificacionInternacional;
@@ -80,7 +80,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         private string _referenciaAsociadoInternacional;
         private string _referenciaInteresadoInternacional;
 
-        //Fin Región internacional
+        #endregion
 
         #endregion
 
@@ -98,7 +98,8 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         /// Constructor que inicializa el id de la marca
         /// </summary>
         /// <param name="id">Id de la marca</param>
-        public Marca(int id) : this()
+        public Marca(int id)
+            : this()
         {
             this._id = id;
         }
@@ -718,9 +719,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
 
 
 
-        //Región Internacional
-
-
+        #region Internacional
 
         public virtual string ClasesInternacionales
         {
@@ -775,8 +774,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
             get { return _referenciaInteresadoInternacional; }
             set { _referenciaInteresadoInternacional = value; }
         }
-
-        //Fin Región Internacional
+        #endregion
 
         #endregion
     }

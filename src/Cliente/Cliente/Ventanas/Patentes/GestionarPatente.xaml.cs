@@ -14,10 +14,12 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
     /// </summary>
     public partial class GestionarPatente : Page, IGestionarPatente
     {
+
         private GridViewColumnHeader _CurSortCol = null;
         private SortAdorner _CurAdorner = null;
         private PresentadorGestionarPatente _presentador;
         private bool _cargada;
+
 
         private bool _asociadosCargados;
         private bool _interesadosCargados;
@@ -25,6 +27,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
         private bool _poderesCargados;
         private bool _agentesCargados;
         private bool _camposHabilitados = true;
+
 
         #region IGestionarPatente
 
@@ -34,7 +37,9 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
             set { this._tbcPestanas.DataContext = value; }
         }
 
+
         #region Solicitud
+
 
         public string PoderSolicitud
         {
@@ -42,11 +47,13 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
             set { this._txtPoderSolicitud.Text = value; }
         }
 
+
         public string NumPoderSolicitud
         {
             get { return this._txtFomentoSolicitud.Text; }
             set { this._txtFomentoSolicitud.Text = value; }
         }
+
 
         public object PoderesSolicitudFiltrar
         {
@@ -54,11 +61,13 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
             set { this._lstPoderesSolicitud.DataContext = value; }
         }
 
+
         public object PoderSolicitudFiltrar
         {
             get { return this._lstPoderesSolicitud.SelectedItem; }
             set { this._lstPoderesSolicitud.SelectedItem = value; }
         }
+
 
         public string AgenteSolicitud
         {
@@ -66,11 +75,13 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
             set { this._txtAgenteSolicitud.Text = value; }
         }
 
+
         public string IdAgenteSolicitud
         {
             get { return this._txtIdAgenteSolicitud.Text; }
             set { this._txtIdAgenteSolicitud.Text = value; }
         }
+
 
         public object AgentesSolicitudFiltrar
         {
@@ -78,11 +89,13 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
             set { this._lstAgentesSolicitud.DataContext = value; }
         }
 
+
         public object AgenteSolicitudFiltrar
         {
             get { return this._lstAgentesSolicitud.SelectedItem; }
             set { this._lstAgentesSolicitud.SelectedItem = value; }
         }
+
 
         public object PaisSolicitud
         {
@@ -90,11 +103,13 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
             set { this._cbxPaisSolicitud.SelectedItem = value; }
         }
 
+
         public object PaisesSolicitud
         {
             get { return this._cbxPaisSolicitud.DataContext; }
             set { this._cbxPaisSolicitud.DataContext = value; }
         }
+
 
         public object TiposPatenteSolicitud
         {
@@ -102,11 +117,13 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
             set { this._cbxTipoSolicitud.DataContext = value; }
         }
 
+
         public object TipoPatenteSolicitud
         {
             get { return this._cbxTipoSolicitud.SelectedItem; }
             set { this._cbxTipoSolicitud.SelectedItem = value; }
         }
+
 
         public object PresentacionesPatenteSolicitud
         {
@@ -114,16 +131,19 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
             set { this._cbxPresentacionSolicitud.DataContext = value; }
         }
 
+
         public object PresentacionPatenteSolicitud
         {
             get { return this._cbxPresentacionSolicitud.SelectedItem; }
             set { this._cbxPresentacionSolicitud.SelectedItem = value; }
         }
 
+
         public string IdAsociadoSolicitudFiltrar
         {
             get { return this._txtIdAsociadoSolicitudFiltrar.Text; }
         }
+
 
         public string IdAsociadoSolicitud
         {
@@ -131,10 +151,12 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
             set { this._txtIdAsociadoSolicitud.Text = value; }
         }
 
+
         public string NombreAsociadoSolicitudFiltrar
         {
             get { return this._txtNombreAsociadoSolicitud.Text; }
         }
+
 
         public string NombreAsociadoSolicitud
         {
@@ -142,11 +164,13 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
             set { this._txtAsociadoSolicitud.Text = value; }
         }
 
+
         public object AsociadosSolicitud
         {
             get { return this._lstAsociadosSolicitud.DataContext; }
             set { this._lstAsociadosSolicitud.DataContext = value; }
         }
+
 
         public object AsociadoSolicitud
         {
@@ -158,10 +182,12 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
             }
         }
 
+
         public string IdInteresadoSolicitudFiltrar
         {
             get { return this._txtIdInteresadoSolicitudFiltrar.Text; }
         }
+
 
         public string IdInteresadoSolicitud
         {
@@ -169,11 +195,13 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
             set { this._txtIdInteresadoSolicitud.Text = value; }
         }
 
+
         public string InteresadoPaisSolicitud
         {
             get { return this._txtPaisSolicitud.Text; }
             set { this._txtPaisSolicitud.Text = value; }
         }
+
 
         public string InteresadoEstadoSolicitud
         {
@@ -181,10 +209,12 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
             set { this._txtEstadoSolicitud.Text = value; }
         }
 
+
         public string NombreInteresadoSolicitudFiltrar
         {
             get { return this._txtNombreInteresadoSolicitud.Text; }
         }
+
 
         public string NombreInteresadoSolicitud
         {
@@ -192,11 +222,13 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
             set { this._txtInteresadoSolicitud.Text = value; }
         }
 
+
         public object InteresadosSolicitud
         {
             get { return this._lstInteresadosSolicitud.DataContext; }
             set { this._lstInteresadosSolicitud.DataContext = value; }
         }
+
 
         public object InteresadoSolicitud
         {
@@ -207,6 +239,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
                 //this._lstInteresadosSolicitud.ScrollIntoView(value);
             }
         }
+
 
         public void PintarAsociado(string tipo)
         {
@@ -236,45 +269,55 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
             this._txtAsociadoSolicitud.Background = color;
         }
 
+
         public void PintarInfoAdicionalSolicitud()
         {
             this._btnInfoAdicionalSolicitud.Background = Brushes.LightGreen;
         }
+
 
         public void PintarInventoresSolicitud()
         {
             this._btnInventoresSolicitud.Background = Brushes.LightGreen;
         }
 
+
         public void PintarDisenoSolicitud()
         {
             this._btnDisenoSolicitud.Background = Brushes.LightGreen;
         }
+
 
         //public void PintarDisenoReporteSolicitud()
         //{
         //    this._btnDisenoReporteSolicitud.Background = Brushes.LightGreen;
         //}
 
+
         public void PintarCasoEspecialSolicitud()
         {
             this._btnCasoEspecialSolicitud.Background = Brushes.LightGreen;
         }
+
 
         public void PintarDocumentosSolicitud()
         {
             this._btnDocumentosSolicitud.Background = Brushes.LightGreen;
         }
 
+
         public void PintarImprimirEdoDeCuenta()
         {
         }
+
 
         public void PintarSaldos()
         {
         }
 
+
         #endregion
+
 
         #region Datos
 
@@ -284,11 +327,13 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
             set { this._txtPoderDatos.Text = value; }
         }
 
+
         public object PoderesDatosFiltrar
         {
             get { return this._lstPoderesDatos.DataContext; }
             set { this._lstPoderesDatos.DataContext = value; }
         }
+
 
         public object PoderDatosFiltrar
         {
@@ -296,11 +341,13 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
             set { this._lstPoderesDatos.SelectedItem = value; }
         }
 
+
         public object PaisDatos
         {
             get { return this._cbxPaisDatos.SelectedItem; }
             set { this._cbxPaisDatos.SelectedItem = value; }
         }
+
 
         public object PaisesDatos
         {
@@ -308,11 +355,13 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
             set { this._cbxPaisDatos.DataContext = value; }
         }
 
+
         public object TiposPatenteDatos
         {
             get { return this._cbxTipoDatos.DataContext; }
             set { this._cbxTipoDatos.DataContext = value; }
         }
+
 
         public object TipoPatenteDatos
         {
@@ -320,11 +369,13 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
             set { this._cbxTipoDatos.SelectedItem = value; }
         }
 
+
         public object PresentacionesPatenteDatos
         {
             get { return this._cbxPresentacionDatos.DataContext; }
             set { this._cbxPresentacionDatos.DataContext = value; }
         }
+
 
         public object PresentacionPatenteDatos
         {
@@ -332,11 +383,13 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
             set { this._cbxPresentacionDatos.SelectedItem = value; }
         }
 
+
         public object StatusesWebDatos
         {
             get { return this._cbxEstatusWebDatos.DataContext; }
             set { this._cbxEstatusWebDatos.DataContext = value; }
         }
+
 
         public object StatusWebDatos
         {
@@ -344,11 +397,13 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
             set { this._cbxEstatusWebDatos.SelectedItem = value; }
         }
 
+
         public object BoletinesOrdenPublicacionDatos
         {
             get { return this._cbxOrdenPublicacionDatos.DataContext; }
             set { this._cbxOrdenPublicacionDatos.DataContext = value; }
         }
+
 
         public object BoletinOrdenPublicacionDatos
         {
@@ -356,11 +411,13 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
             set { this._cbxOrdenPublicacionDatos.SelectedItem = value; }
         }
 
+
         public object BoletinesPublicacionDatos
         {
             get { return this._cbxBoletinPublicacionDatos.DataContext; }
             set { this._cbxBoletinPublicacionDatos.DataContext = value; }
         }
+
 
         public object BoletinPublicacionDatos
         {
@@ -368,11 +425,13 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
             set { this._cbxBoletinPublicacionDatos.SelectedItem = value; }
         }
 
+
         public object BoletinesConcesionDatos
         {
             get { return this._cbxBoletinConcesionDatos.DataContext; }
             set { this._cbxBoletinConcesionDatos.DataContext = value; }
         }
+
 
         public object BoletinConcesionDatos
         {
@@ -380,11 +439,13 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
             set { this._cbxBoletinConcesionDatos.SelectedItem = value; }
         }
 
+
         public object SituacionesDatos
         {
             get { return this._cbxSituacionDatos.DataContext; }
             set { this._cbxSituacionDatos.DataContext = value; }
         }
+
 
         public object SituacionDatos
         {
@@ -392,11 +453,13 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
             set { this._cbxSituacionDatos.SelectedItem = value; }
         }
 
+
         public object DetallesDatos
         {
             get { return this._cbxDetalleDatos.DataContext; }
             set { this._cbxDetalleDatos.DataContext = value; }
         }
+
 
         public object DetalleDatos
         {
@@ -404,11 +467,13 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
             set { this._cbxDetalleDatos.SelectedItem = value; }
         }
 
+
         public string AbandonoDatos
         {
             get { return this._txtAbandonoDatos.Text; }
             set { this._txtAbandonoDatos.Text = value; }
         }
+
 
         public string AnualidadDatos
         {
@@ -416,10 +481,12 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
             set { this._txtAnualidadDatos.Text = value; }
         }
 
+
         public string IdAsociadoDatosFiltrar
         {
             get { return this._txtIdAsociadoDatosFiltrar.Text; }
         }
+
 
         public string IdAsociadoDatos
         {
@@ -427,10 +494,12 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
             set { this._txtIdAsociadoDatos.Text = value; }
         }
 
+
         public string NombreAsociadoDatosFiltrar
         {
             get { return this._txtNombreAsociadoDatos.Text; }
         }
+
 
         public string NombreAsociadoDatos
         {
@@ -438,11 +507,13 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
             set { this._txtAsociadoDatos.Text = value; }
         }
 
+
         public object AsociadosDatos
         {
             get { return this._lstAsociadosDatos.DataContext; }
             set { this._lstAsociadosDatos.DataContext = value; }
         }
+
 
         public object AsociadoDatos
         {
@@ -454,10 +525,12 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
             }
         }
 
+
         public string IdInteresadoDatosFiltrar
         {
             get { return this._txtIdInteresadoDatosFiltrar.Text; }
         }
+
 
         public string IdInteresadoDatos
         {
@@ -465,11 +538,13 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
             set { this._txtIdInteresadoDatos.Text = value; }
         }
 
+
         public string InteresadoPaisDatos
         {
             get { return this._txtPaisDatos.Text; }
             set { this._txtPaisDatos.Text = value; }
         }
+
 
         public string InteresadoEstadoDatos
         {
@@ -477,10 +552,12 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
             set { this._txtEstadoDatos.Text = value; }
         }
 
+
         public string NombreInteresadoDatosFiltrar
         {
             get { return this._txtNombreInteresadoDatos.Text; }
         }
+
 
         public string NombreInteresadoDatos
         {
@@ -488,11 +565,13 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
             set { this._txtInteresadoDatos.Text = value; }
         }
 
+
         public object InteresadosDatos
         {
             get { return this._lstInteresadosDatos.DataContext; }
             set { this._lstInteresadosDatos.DataContext = value; }
         }
+
 
         public object InteresadoDatos
         {
@@ -504,11 +583,13 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
             }
         }
 
+
         public string FechaTermino
         {
             get { return this._txtFechaRenovacionDatos.Text; }
             set { this._txtFechaRenovacionDatos.Text = value; }
         }
+
 
         public string Duracion
         {
@@ -516,42 +597,51 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
             set { this._txtDuracion.Text = value; }
         }
 
+
         public void PintarInventoresDatos()
         {
             this._btnInventoresDatos.Background = Brushes.LightGreen;
         }
+
 
         public void PintarInfoBolDatos()
         {
             this._btnInfoBolDatos.Background = Brushes.LightGreen;
         }
 
+
         public void PintarDisenoDatos()
         {
             this._btnDisenoDatos.Background = Brushes.LightGreen;
         }
+
 
         public void PintarAuditoriaDatos()
         {
             this._btnAuditoriaDatos.Background = Brushes.LightGreen;
         }
 
+
         public void PintarMemoriaDatos()
         {
             this._btnVerMemoriaDatos.Background = Brushes.LightGreen;
         }
+
 
         public void PintarFechasDatos()
         {
             this._btnFechasDatos.Background = Brushes.LightGreen;
         }
 
+
         public void PintarOperacionesDatos()
         {
             this._btnOperacionDatos.Background = Brushes.LightGreen;
         }
 
+
         #endregion
+
 
         public bool AsociadosEstanCargados
         {
@@ -559,11 +649,13 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
             set { this._asociadosCargados = value; }
         }
 
+
         public bool InteresadosEstanCargados
         {
             get { return this._interesadosCargados; }
             set { this._interesadosCargados = value; }
         }
+
 
         public bool CorresponsalesEstanCargados
         {
@@ -571,10 +663,12 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
             set { this._corresponsalesCargados = value; }
         }
 
+
         public string SituacionDescripcion
         {
             set { this._txtSituacionDescripcion.Text = value; }
         }
+
 
         public bool PoderesEstanCargados
         {
@@ -582,21 +676,25 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
             set { this._poderesCargados = value; }
         }
 
+
         public bool AgentesEstanCargados
         {
             get { return this._agentesCargados; }
             set { this._agentesCargados = value; }
         }
 
+
         public void ArchivoNoEncontrado()
         {
             MessageBox.Show(Recursos.MensajesConElUsuario.ErrorCertificadoNoEncontrado, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
         }
 
+
         public void Mensaje(string mensaje)
         {
             throw new System.NotImplementedException();
         }
+
 
         public bool MensajeAlerta(string mensaje)
         {
@@ -609,6 +707,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
             return retorno;
         }
 
+
         public void Mensaje(string mensaje, int opcion)
         {
             if (opcion == 0)
@@ -617,16 +716,19 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
                 MessageBox.Show(mensaje, "Advertencia", MessageBoxButton.OK, MessageBoxImage.Exclamation);
         }
 
+
         public bool EstaCargada
         {
             get { return this._cargada; }
             set { this._cargada = value; }
         }
 
+
         public void FocoPredeterminado()
         {
             this._txtDescripcionSolicitud.Focus();
         }
+
 
         public string TextoBotonModificar
         {
@@ -634,11 +736,13 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
             set { this._txbAceptar.Text = value; }
         }
 
+
         public string TextoBotonRegresar
         {
             get { return this._txbCancelar.Text; }
             set { this._txbCancelar.Text = value; }
         }
+
 
         public void OcultarTabSolicitud()
         {
@@ -646,10 +750,12 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
             this._tabDatos.IsSelected = true;
         }
 
+
         public void SeleccionarTabSolicitud()
         {
             this._tabSolicitud.IsSelected = true;
         }
+
 
         public bool ConfirmarAccion(string Titulo, string Mensaje)
         {
@@ -660,6 +766,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
 
             return retorno;
         }
+
 
         public bool HabilitarCampos
         {
@@ -817,11 +924,13 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
             }
         }
 
+
         public GridViewColumnHeader CurSortCol
         {
             get { return _CurSortCol; }
             set { _CurSortCol = value; }
         }
+
 
         public SortAdorner CurAdorner
         {
@@ -829,7 +938,132 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
             set { _CurAdorner = value; }
         }
 
+
+        public string IdAsociadoInternacionalFiltrar
+        {
+            get { return this._txtIdAsociadoIntFiltrar.Text; }
+            set { this._txtIdAsociadoIntFiltrar.Text = value; }
+        }
+
+
+        public string NombreAsociadoInternacionalFiltrar
+        {
+            get { return this._txtNombreAsociadoIntFiltrar.Text; }
+            set { this._txtNombreAsociadoIntFiltrar.Text = value; }
+        }
+
+
+        public object AsociadosInternacionales
+        {
+            get { return this._lstAsociadosInternacionalesSolicitud.DataContext; }
+            set { this._lstAsociadosInternacionalesSolicitud.DataContext = value; }
+        }
+
+
+        public object AsociadoInternacional
+        {
+            get { return this._lstAsociadosInternacionalesSolicitud.SelectedItem; }
+            set { this._lstAsociadosInternacionalesSolicitud.SelectedItem = value; }
+        }
+
+
+        public string IdAsociadoInternacionalFiltrarDatos
+        {
+            get { return this._txtIdAsociadoIntFiltrarDatos.Text; }
+            set { this._txtIdAsociadoIntFiltrarDatos.Text = value; }
+        }
+
+
+        public string NombreAsociadoInternacionalFiltrarDatos
+        {
+            get { return this._txtNombreAsociadoIntFiltrarDatos.Text; }
+            set { this._txtNombreAsociadoIntFiltrarDatos.Text = value; }
+        }
+
+
+        public object AsociadosInternacionalesDatos
+        {
+            get { return this._lstAsociadosInternacionalesDatos.DataContext; }
+            set { this._lstAsociadosInternacionalesDatos.DataContext = value; }
+        }
+
+
+        public object AsociadoInternacionalDatos
+        {
+            get { return this._lstAsociadosInternacionalesDatos.SelectedItem; }
+            set { this._lstAsociadosInternacionalesDatos.SelectedItem = value; }
+        }
+
+
+        public string TextoAsociadoInternacional
+        {
+            set
+            {
+                this._txtAsociadoInternacionalDatos.Text = value;
+                this._txtAsociadoInternacionalSolicitud.Text = value;
+            }
+
+        }
+
+
+        public object PaisesInternacionales
+        {
+            get { return this._cbxPaisIntSolicitud.DataContext; }
+            set { this._cbxPaisIntSolicitud.DataContext = value; }
+        }
+
+
+        public object PaisInternacional
+        {
+            get { return this._cbxPaisIntSolicitud.SelectedItem; }
+            set { this._cbxPaisIntSolicitud.SelectedItem = value; }
+        }
+
+
+        public object PaisesInternacionalesDatos
+        {
+            get { return this._cbxPaisIntDatos.DataContext; }
+            set { this._cbxPaisIntDatos.DataContext = value; }
+        }
+
+
+        public object PaisInternacionalDatos
+        {
+            get { return this._cbxPaisIntDatos.SelectedItem; }
+            set { this._cbxPaisIntDatos.SelectedItem = value; }
+        }
+
+
+        public bool EsPatenteNacional
+        {
+            get { return this._radioNacional.IsChecked.Value; }
+        }
+
+
+        public void MarcarRadioPatenteNacional(bool esNacional)
+        {
+            if (esNacional)
+            {
+                this._radioExtranjero.IsChecked = false;
+                this._radioNacional.IsChecked = true;
+            }
+            else
+            {
+                this._radioExtranjero.IsChecked = true;
+                this._radioNacional.IsChecked = false;
+            }
+        }
+
+        public void BorrarCeros()
+        {
+            this._txtCod.Text = this._txtCod.Text.Equals("0") ? string.Empty : this._txtCod.Text;
+            this._txtCodDatos.Text = this._txtCodDatos.Text.Equals("0") ? string.Empty : this._txtCodDatos.Text;
+            this._txtNum.Text = this._txtNum.Text.Equals("0") ? string.Empty : this._txtNum.Text;
+            this._txtNumDatos.Text = this._txtNumDatos.Text.Equals("0") ? string.Empty : this._txtNumDatos.Text;
+        }
+
         #endregion
+
 
         public GestionarPatente(object patenteSeleccionada, object ventanaAVolver)
         {
@@ -1591,7 +1825,157 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
 
         #endregion
 
+        //private void _txtAsociadoInternacionalSolicitud_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        //{
 
+        //}
+
+        //private void _lstAsociadosInternacionalesSolicitud_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        //{
+
+        //}
+
+        //private void _cbxPaisIntSolicitud_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        //{
+
+        //}
+
+        //private void _btnConsultarAsociadoInternacionalSolicitud_Click(object sender, RoutedEventArgs e)
+        //{
+
+        //}
+
+        //private void _txtAsociadoInternacionalDatos_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        //{
+
+        //}
+
+        //private void _btnConsultarAsociadoInternacionalDatos_Click(object sender, RoutedEventArgs e)
+        //{
+
+        //}
+
+        //private void _lstAsociadosInternacionalesDatos_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        //{
+
+        //}
+
+        //private void _cbxPaisIntDatos_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        //{
+
+        //}
+
+
+
+
+        private void _lstAsociadosInternacionalesSolicitud_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            if (this._presentador.CambiarAsociadoInternacionalSolicitud())
+            {
+
+                this._txtAsociadoInternacionalSolicitud.Visibility = Visibility.Visible;
+
+                this._lblNombreAsociadoIntFiltrar.Visibility = Visibility.Collapsed;
+                this._lblIdAsociadoIntFiltrar.Visibility = Visibility.Collapsed;
+                this._btnConsultarAsociadoInternacionalSolicitud.Visibility = Visibility.Collapsed;
+                this._txtIdAsociadoIntFiltrar.Visibility = Visibility.Collapsed;
+                this._txtNombreAsociadoIntFiltrar.Visibility = Visibility.Collapsed;
+
+                this._lstAsociadosInternacionalesSolicitud.Visibility = Visibility.Collapsed;
+
+                this._btnAceptar.IsDefault = false;
+                this._btnConsultarAsociadoInternacionalSolicitud.IsDefault = false;
+            }
+        }
+
+
+        private void _txtAsociadoInternacionalSolicitud_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            this._txtAsociadoInternacionalSolicitud.Visibility = Visibility.Collapsed;
+
+            this._lblNombreAsociadoIntFiltrar.Visibility = Visibility.Visible;
+            this._lblIdAsociadoIntFiltrar.Visibility = Visibility.Visible;
+            this._btnConsultarAsociadoInternacionalSolicitud.Visibility = Visibility.Visible;
+            this._txtIdAsociadoIntFiltrar.Visibility = Visibility.Visible;
+            this._txtNombreAsociadoIntFiltrar.Visibility = Visibility.Visible;
+
+            this._lstAsociadosInternacionalesSolicitud.Visibility = Visibility.Visible;
+
+            this._btnAceptar.IsDefault = false;
+            this._btnConsultarAsociadoInternacionalSolicitud.IsDefault = true;
+        }
+
+
+        private void _txtAsociadoInternacionalDatos_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            this._txtAsociadoInternacionalDatos.Visibility = Visibility.Collapsed;
+
+            this._lblNombreAsociadoIntFiltrarDatos.Visibility = Visibility.Visible;
+            this._lblIdAsociadoIntFiltrarDatos.Visibility = Visibility.Visible;
+            this._btnConsultarAsociadoInternacionalDatos.Visibility = Visibility.Visible;
+            this._txtIdAsociadoIntFiltrarDatos.Visibility = Visibility.Visible;
+            this._txtNombreAsociadoIntFiltrarDatos.Visibility = Visibility.Visible;
+
+            this._lstAsociadosInternacionalesDatos.Visibility = Visibility.Visible;
+
+            this._btnAceptar.IsDefault = false;
+            this._btnConsultarAsociadoInternacionalDatos.IsDefault = true;
+        }
+
+
+        private void _btnConsultarAsociadoInternacionalSolicitud_Click(object sender, RoutedEventArgs e)
+        {
+            if (this._presentador.ConsultarAsociado())
+            {
+            }
+            else
+            { }
+        }
+
+
+        private void _btnConsultarAsociadoInternacionalDatos_Click(object sender, RoutedEventArgs e)
+        {
+            if (this._presentador.ConsultarAsociadoDatos())
+            {
+            }
+            else
+            { }
+        }
+
+
+        private void _lstAsociadosInternacionalesDatos_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+
+            if (this._presentador.CambiarAsociadoInternacionalDatos())
+            {
+                this._txtAsociadoInternacionalDatos.Visibility = Visibility.Visible;
+
+                this._lblNombreAsociadoIntFiltrarDatos.Visibility = Visibility.Collapsed;
+                this._lblIdAsociadoIntFiltrarDatos.Visibility = Visibility.Collapsed;
+                this._btnConsultarAsociadoInternacionalDatos.Visibility = Visibility.Collapsed;
+                this._txtIdAsociadoIntFiltrarDatos.Visibility = Visibility.Collapsed;
+                this._txtNombreAsociadoIntFiltrarDatos.Visibility = Visibility.Collapsed;
+
+                this._lstAsociadosInternacionalesDatos.Visibility = Visibility.Collapsed;
+
+
+
+                this._btnAceptar.IsDefault = true;
+                this._btnConsultarAsociadoInternacionalDatos.IsDefault = false;
+            }
+        }
+
+
+        private void _cbxPaisIntSolicitud_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            this._cbxPaisIntDatos.SelectedIndex = _cbxPaisIntSolicitud.SelectedIndex;
+        }
+
+
+        private void _cbxPaisIntDatos_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            this._cbxPaisIntSolicitud.SelectedIndex = _cbxPaisIntDatos.SelectedIndex;
+        }
 
     }
 }

@@ -103,6 +103,27 @@
       </composite-element>
     </bag>
 
+
+    <!--Internacional-->
+
+    <property name="ReferenciaInteresadoInternacional" column="XCASO_INTERESADO" type="string"/>
+    <property name="ReferenciaAsociadoInternacional" column="XCASO_ASOINTE" type="string"/>
+    <property name="CodigoPatenteInternacional" column="CPATENTEI" type="int"/>
+    <property name="CorrelativoExpediente" column="CDONDE" type="int"/>
+    <property name="LocalidadPatente" column="CLOCALIDAD" type="string"/>
+
+    <many-to-one name="PaisInternacional" class="Pais" lazy="false">
+      <column name="CPAIS_INT"/>
+    </many-to-one>
+
+    <many-to-one name="AsociadoInternacional" class="Asociado" lazy="false">
+      <column name="CASOCIADO_I"/>
+    </many-to-one>
+
+    <!--Fin Internacional-->
+
+
+
   </class>
 </hibernate-mapping>
 

@@ -16,7 +16,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
     {
         private GridViewColumnHeader _CurSortCol = null;
         private SortAdorner _CurAdorner = null;
+
+
         private PresentadorConsultarMarca _presentador;
+
+
         private bool _cargada;
 
         private bool _asociadosCargados;
@@ -28,11 +32,13 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
 
         #region IConsultarMarca
 
+
         public object Marca
         {
             get { return this._tbcPestanas.DataContext; }
             set { this._tbcPestanas.DataContext = value; }
         }
+
 
         public void MarcarRadioMarcaNacional(bool esNacional)
         {
@@ -48,11 +54,13 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             }
         }
 
+
         public string NumPoderDatos
         {
             get { return this._txtNumSapi.Text; }
             set { this._txtNumSapi.Text = value; }
         }
+
 
         public void BloquearModificacion()
         {
@@ -61,11 +69,13 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             this._tabDatos.IsSelected = true;
         }
 
+
         public string IdPoderDatos
         {
             get { return this._txtPoderDatos.Text; }
             set { this._txtPoderDatos.Text = value; }
         }
+
 
         public string IdPoderSolicitud
         {
@@ -73,15 +83,18 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             set { this._txtPoderSolicitud.Text = value; }
         }
 
+
         public string SituacionDescripcion
         {
             set { this._txtSituacionDescripcion.Text = value; }
         }
 
+
         public string DetalleDescripcion
         {
             set { this._txtDetalleDescripcion.Text = value; }
         }
+
 
         public object PoderesSolicitud
         {
@@ -89,11 +102,13 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             set { this._lstPoderesSolicitud.DataContext = value; }
         }
 
+
         public object PoderSolicitud
         {
             get { return this._lstPoderesSolicitud.SelectedItem; }
             set { this._lstPoderesSolicitud.SelectedItem = value; }
         }
+
 
         public object PoderesDatos
         {
@@ -101,11 +116,13 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             set { this._lstPoderesDatos.DataContext = value; }
         }
 
+
         public object PoderDatos
         {
             get { return this._lstPoderesDatos.SelectedItem; }
             set { this._lstPoderesDatos.SelectedItem = value; }
         }
+
 
         public object Agentes
         {
@@ -113,11 +130,13 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             set { this._cbxAgente.DataContext = value; }
         }
 
+
         public object Agente
         {
             get { return this._cbxAgente.SelectedItem; }
             set { this._cbxAgente.SelectedItem = value; }
         }
+
 
         public object TiposClaseNacional
         {
@@ -125,11 +144,13 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             set { this._cbxTipoClaseNacional.DataContext = value; }
         }
 
+
         public object TipoClaseNacional
         {
             get { return this._cbxTipoClaseNacional.SelectedItem; }
             set { this._cbxTipoClaseNacional.SelectedItem = value; }
         }
+
 
         public object BoletinesOrdenPublicacion
         {
@@ -137,11 +158,13 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             set { this._cbxOrdenPublicacion.DataContext = value; }
         }
 
+
         public object BoletinOrdenPublicacion
         {
             get { return this._cbxOrdenPublicacion.SelectedItem; }
             set { this._cbxOrdenPublicacion.SelectedItem = value; }
         }
+
 
         public object BoletinesPublicacion
         {
@@ -149,11 +172,13 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             set { this._cbxBoletinPublicacion.DataContext = value; }
         }
 
+
         public object BoletinPublicacion
         {
             get { return this._cbxBoletinPublicacion.SelectedItem; }
             set { this._cbxBoletinPublicacion.SelectedItem = value; }
         }
+
 
         public object BoletinesConcesion
         {
@@ -161,11 +186,13 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             set { this._cbxBoletinConcesion.DataContext = value; }
         }
 
+
         public object BoletinConcesion
         {
             get { return this._cbxBoletinConcesion.SelectedItem; }
             set { this._cbxBoletinConcesion.SelectedItem = value; }
         }
+
 
         public object Servicios
         {
@@ -173,11 +200,13 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             set { this._cbxSituacion.DataContext = value; }
         }
 
+
         public object Servicio
         {
             get { return this._cbxSituacion.SelectedItem; }
             set { this._cbxSituacion.SelectedItem = value; }
         }
+
 
         public object Detalles
         {
@@ -185,11 +214,13 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             set { this._cbxDetalleDatos.DataContext = value; }
         }
 
+
         public object Detalle
         {
             get { return this._cbxDetalleDatos.SelectedItem; }
             set { this._cbxDetalleDatos.SelectedItem = value; }
         }
+
 
         public object Condicion
         {
@@ -197,11 +228,13 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             set { this._cbxCondiciones.SelectedItem = value; }
         }
 
+
         public object Condiciones
         {
             get { return this._cbxCondiciones.DataContext; }
             set { this._cbxCondiciones.DataContext = value; }
         }
+
 
         public object PaisSolicitud
         {
@@ -209,11 +242,13 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             set { this._cbxPaisPrioridad.SelectedItem = value; }
         }
 
+
         public object PaisesSolicitud
         {
             get { return this._cbxPaisPrioridad.DataContext; }
             set { this._cbxPaisPrioridad.DataContext = value; }
         }
+
 
         public object TipoMarcasSolicitud
         {
@@ -221,11 +256,13 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             set { this._cbxTipoMarcaSolicitud.DataContext = value; }
         }
 
+
         public object TipoMarcaSolicitud
         {
             get { return this._cbxTipoMarcaSolicitud.SelectedItem; }
             set { this._cbxTipoMarcaSolicitud.SelectedItem = value; }
         }
+
 
         public object TipoMarcasDatos
         {
@@ -233,16 +270,19 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             set { this._cbxTipoMarcaDatos.DataContext = value; }
         }
 
+
         public object TipoMarcaDatos
         {
             get { return this._cbxTipoMarcaDatos.SelectedItem; }
             set { this._cbxTipoMarcaDatos.SelectedItem = value; }
         }
 
+
         public void Mensaje(string mensaje)
         {
             throw new System.NotImplementedException();
         }
+
 
         public bool MensajeAlerta(string mensaje)
         {
@@ -255,16 +295,19 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             return retorno;
         }
 
+
         public bool EstaCargada
         {
             get { return this._cargada; }
             set { this._cargada = value; }
         }
 
+
         public void FocoPredeterminado()
         {
             this._txtDescripcionSolicitud.Focus();
         }
+
 
         public string TextoBotonModificar
         {
@@ -272,17 +315,20 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             set { this._txbAceptar.Text = value; }
         }
 
+
         public string IdInternacional
         {
             get { return this._txtClaseInternacional.Text; }
             set { this._txtClaseInternacional.Text = value; }
         }
 
+
         public string IdNacional
         {
             get { return this._txtClaseNacionalDatos.Text; }
             set { this._txtClaseNacionalDatos.Text = value; }
         }
+
 
         public bool HabilitarCampos
         {
@@ -495,11 +541,13 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             }
         }
 
+
         public string IdAsociadoInternacionalFiltrar
         {
             get { return this._txtIdAsociadoIntFiltrar.Text; }
             set { this._txtIdAsociadoIntFiltrar.Text = value; }
         }
+
 
         public string NombreAsociadoInternacionalFiltrar
         {
@@ -507,11 +555,13 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             set { this._txtNombreAsociadoIntFiltrar.Text = value; }
         }
 
+
         public object AsociadosInternacionales
         {
             get { return this._lstAsociadosInternacionalesSolicitud.DataContext; }
             set { this._lstAsociadosInternacionalesSolicitud.DataContext = value; }
         }
+
 
         public object AsociadoInternacional
         {
@@ -519,11 +569,13 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             set { this._lstAsociadosInternacionalesSolicitud.SelectedItem = value; }
         }
 
+
         public string IdAsociadoInternacionalFiltrarDatos
         {
             get { return this._txtIdAsociadoIntDatosFiltrar.Text; }
             set { this._txtIdAsociadoIntDatosFiltrar.Text = value; }
         }
+
 
         public string NombreAsociadoInternacionalFiltrarDatos
         {
@@ -531,17 +583,20 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             set { this._txtNombreAsociadoIntDatosFiltrar.Text = value; }
         }
 
+
         public object AsociadosInternacionalesDatos
         {
             get { return this._lstAsociadosInternacionalesDatos.DataContext; }
             set { this._lstAsociadosInternacionalesDatos.DataContext = value; }
         }
 
+
         public object AsociadoInternacionalDatos
         {
             get { return this._lstAsociadosInternacionalesDatos.SelectedItem; }
             set { this._lstAsociadosInternacionalesDatos.SelectedItem = value; }
         }
+
 
         public string TextoAsociadoInternacional
         {
@@ -552,11 +607,13 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             }
         }
 
+
         public object PaisesInternacionales
         {
             get { return this._cbxPaisIntSolicitud.DataContext; }
             set { this._cbxPaisIntSolicitud.DataContext = value; }
         }
+
 
         public object PaisInternacional
         {
@@ -564,11 +621,13 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             set { this._cbxPaisIntSolicitud.SelectedItem = value; }
         }
 
+
         public object PaisesInternacionalesDatos
         {
             get { return this._cbxPaisIntDatos.DataContext; }
             set { this._cbxPaisIntDatos.DataContext = value; }
         }
+
 
         public object PaisInternacionalDatos
         {
@@ -576,11 +635,13 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             set { this._cbxPaisIntDatos.SelectedItem = value; }
         }
 
+
         public object TipoClaseInternacionales
         {
             get { return this._cbxLocalidadSolicitud.DataContext; }
             set { this._cbxLocalidadSolicitud.DataContext = value; }
         }
+
 
         public object TipoClaseInternacional
         {
@@ -588,11 +649,13 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             set { this._cbxLocalidadSolicitud.SelectedItem = value; }
         }
 
+
         public object TipoClaseInternacionalesDatos
         {
             get { return this._cbxLocalidadDatos.DataContext; }
             set { this._cbxLocalidadDatos.DataContext = value; }
         }
+
 
         public object TipoClaseInternacionalDatos
         {
@@ -600,15 +663,18 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             set { this._cbxLocalidadDatos.SelectedItem = value; }
         }
 
+
         public bool EsMarcaNacional
         {
             get { return this._radioNacional.IsChecked.Value; }
         }
 
+
         public string IdAsociadoSolicitudFiltrar
         {
             get { return this._txtIdAsociadoSolicitudFiltrar.Text; }
         }
+
 
         public string IdAsociadoSolicitud
         {
@@ -616,10 +682,12 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             set { this._txtIdAsociadoSolicitud.Text = value; }
         }
 
+
         public string IdAsociadoDatosFiltrar
         {
             get { return this._txtIdAsociadoDatosFiltrar.Text; }
         }
+
 
         public string IdAsociadoDatos
         {
@@ -627,15 +695,18 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             set { this._txtIdAsociadoDatos.Text = value; }
         }
 
+
         public string NombreAsociadoSolicitudFiltrar
         {
             get { return this._txtNombreAsociadoSolicitud.Text; }
         }
 
+
         public string NombreAsociadoDatosFiltrar
         {
             get { return this._txtNombreAsociadoDatos.Text; }
         }
+
 
         public string NombreAsociadoSolicitud
         {
@@ -643,17 +714,20 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             set { this._txtAsociadoSolicitud.Text = value; }
         }
 
+
         public string NombreAsociadoDatos
         {
             get { return this._txtAsociadoDatos.Text; }
             set { this._txtAsociadoDatos.Text = value; }
         }
 
+
         public object AsociadosSolicitud
         {
             get { return this._lstAsociadosSolicitud.DataContext; }
             set { this._lstAsociadosSolicitud.DataContext = value; }
         }
+
 
         public object AsociadoSolicitud
         {
@@ -665,11 +739,13 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             }
         }
 
+
         public object AsociadosDatos
         {
             get { return this._lstAsociadosDatos.DataContext; }
             set { this._lstAsociadosDatos.DataContext = value; }
         }
+
 
         public object AsociadoDatos
         {
@@ -681,10 +757,12 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             }
         }
 
+
         public string IdInteresadoSolicitudFiltrar
         {
             get { return this._txtIdInteresadoSolicitudFiltrar.Text; }
         }
+
 
         public string IdInteresadoSolicitud
         {
@@ -692,15 +770,18 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             set { this._txtIdInteresadoSolicitud.Text = value; }
         }
 
+
         public string IdInteresadoDatosFiltrar
         {
             get { return this._txtIdInteresadoDatosFiltrar.Text; }
         }
 
+
         public string IdInteresadoDatos
         {
             set { this._txtIdInteresadoDatos.Text = value; }
         }
+
 
         public string InteresadoPaisSolicitud
         {
@@ -708,21 +789,25 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             set { this._txtPaisSolicitud.Text = value; }
         }
 
+
         public string InteresadoCiudadSolicitud
         {
             get { return this._txtCiudadSolicitud.Text; }
             set { this._txtCiudadSolicitud.Text = value; }
         }
 
+
         public string NombreInteresadoSolicitudFiltrar
         {
             get { return this._txtNombreInteresadoSolicitud.Text; }
         }
 
+
         public string NombreInteresadoDatosFiltrar
         {
             get { return this._txtNombreInteresadoDatos.Text; }
         }
+
 
         public string NombreInteresadoSolicitud
         {
@@ -730,17 +815,20 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             set { this._txtInteresadoSolicitud.Text = value; }
         }
 
+
         public string NombreInteresadoDatos
         {
             get { return this._txtInteresadoDatos.Text; }
             set { this._txtInteresadoDatos.Text = value; }
         }
 
+
         public object InteresadosSolicitud
         {
             get { return this._lstInteresadosSolicitud.DataContext; }
             set { this._lstInteresadosSolicitud.DataContext = value; }
         }
+
 
         public object InteresadoSolicitud
         {
@@ -752,11 +840,13 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             }
         }
 
+
         public object InteresadosDatos
         {
             get { return this._lstInteresadosDatos.DataContext; }
             set { this._lstInteresadosDatos.DataContext = value; }
         }
+
 
         public object InteresadoDatos
         {
@@ -768,10 +858,12 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             }
         }
 
+
         public string IdCorresponsalSolicitudFiltrar
         {
             get { return this._txtIdCorresponsalSolicitudFiltrar.Text; }
         }
+
 
         public string IdCorresponsalSolicitud
         {
@@ -779,10 +871,12 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             set { this._txtIdCorresponsalSolicitud.Text = value; }
         }
 
+
         public string IdCorresponsalDatosFiltrar
         {
             get { return this._txtIdCorresponsalDatosFiltrar.Text; }
         }
+
 
         public string IdCorresponsalDatos
         {
@@ -790,15 +884,18 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             set { this._txtIdCorresponsalDatos.Text = value; }
         }
 
+
         public string DescripcionCorresponsalSolicitudFiltrar
         {
             get { return this._txtDescripcionCorresponsalSolicitud.Text; }
         }
 
+
         public string DescripcionCorresponsalDatosFiltrar
         {
             get { return this._txtDescripcionCorresponsalDatos.Text; }
         }
+
 
         public string DescripcionCorresponsalSolicitud
         {
@@ -806,11 +903,13 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             set { this._txtCorresponsalSolicitud.Text = value; }
         }
 
+
         public string DescripcionCorresponsalDatos
         {
             get { return this._txtCorresponsalDatos.Text; }
             set { this._txtCorresponsalDatos.Text = value; }
         }
+
 
         public object CorresponsalesSolicitud
         {
@@ -818,11 +917,13 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             set { this._lstCorresponsalesSolicitud.DataContext = value; }
         }
 
+
         public object CorresponsalSolicitud
         {
             get { return this._lstCorresponsalesSolicitud.SelectedItem; }
             set { this._lstCorresponsalesSolicitud.SelectedItem = value; }
         }
+
 
         public object CorresponsalesDatos
         {
@@ -830,11 +931,13 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             set { this._lstCorresponsalesDatos.DataContext = value; }
         }
 
+
         public object CorresponsalDatos
         {
             get { return this._lstCorresponsalesDatos.SelectedItem; }
             set { this._lstCorresponsalesDatos.SelectedItem = value; }
         }
+
 
         public bool AsociadosEstanCargados
         {
@@ -842,11 +945,13 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             set { this._asociadosCargados = value; }
         }
 
+
         public bool InteresadosEstanCargados
         {
             get { return this._interesadosCargados; }
             set { this._interesadosCargados = value; }
         }
+
 
         public bool CorresponsalesEstanCargados
         {
@@ -854,11 +959,13 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             set { this._corresponsalesCargados = value; }
         }
 
+
         public bool PoderesEstanCargados
         {
             get { return this._poderesCargados; }
             set { this._poderesCargados = value; }
         }
+
 
         public object Sector
         {
@@ -866,11 +973,13 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             set { this._cbxSector.SelectedItem = value; }
         }
 
+
         public object Sectores
         {
             get { return this._cbxSector.DataContext; }
             set { this._cbxSector.DataContext = value; }
         }
+
 
         public object StatusWeb
         {
@@ -878,11 +987,13 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             set { this._cbxEstadoDatos.SelectedItem = value; }
         }
 
+
         public object StatusWebs
         {
             get { return this._cbxEstadoDatos.DataContext; }
             set { this._cbxEstadoDatos.DataContext = value; }
         }
+
 
         public object DetalleDatos
         {
@@ -890,11 +1001,13 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             set { this._cbxDetalleDatos.SelectedItem = value; }
         }
 
+
         public object DetallesDatos
         {
             get { return this._cbxDetalleDatos.DataContext; }
             set { this._cbxDetalleDatos.DataContext = value; }
         }
+
 
         public object TipoReproduccion
         {
@@ -902,11 +1015,13 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             set { this._cbxTipoReproduccion.SelectedItem = value; }
         }
 
+
         public object TipoReproducciones
         {
             get { return this._cbxTipoReproduccion.DataContext; }
             set { this._cbxTipoReproduccion.DataContext = value; }
         }
+
 
         public void PintarInfoAdicional()
         {
@@ -914,20 +1029,24 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             this._btnInfoAdicionalSolicitud.Background = Brushes.LightGreen;
         }
 
+
         public void PintarAnaqua()
         {
             this._btnAnaqua.Background = Brushes.LightGreen;
         }
+
 
         public void PintarInfoBoles()
         {
             this._btnInfobol.Background = Brushes.LightGreen;
         }
 
+
         public void PintarOperaciones()
         {
             this._btnOperacionesDatos.Background = Brushes.LightGreen;
         }
+
 
         public void PintarBusquedas()
         {
@@ -935,15 +1054,18 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             this._btnBusquedaSolicitud.Background = Brushes.LightGreen;
         }
 
+
         public void PintarAuditoria()
         {
             this._btnAuditoria.Background = Brushes.LightGreen;
         }
 
+
         public void PintarRenovacion()
         {
             this._btnRenovacion.Background = Brushes.LightGreen;
         }
+
 
         public void PintarAsociado(string tipo)
         {
@@ -973,6 +1095,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             this._txtAsociadoSolicitud.Background = color;
         }
 
+
         public void BorrarCeros()
         {
             this._txtClaseInternacional.Text = this._txtClaseInternacional.Text.Equals("0") ? "" : this._txtClaseInternacional.Text;
@@ -986,35 +1109,42 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             this._txtNumIntlDatos.Text = this._txtNumIntlDatos.Text.Equals("0") ? "" : this._txtNumIntlDatos.Text;
         }
 
+
         public void DeshabilitarBotonModificar()
         {
             this._btnAceptar.IsEnabled = false;
         }
+
 
         public string ClaseInternacionalMarca
         {
             get { return this._txtClaseInternacionalSolicitud.Text; }
         }
 
+
         public string ClaseInternacional
         {
             get { return this._txtClaseInternacional.Text; }
         }
+
 
         public string ClaseNacional
         {
             get { return this._txtClaseNacional.Text; }
         }
 
+
         public string DistingueDatos
         {
             set { this._txtDistingueDatos.Text = value; }
         }
 
+
         public string DistingueSolicitud
         {
             set { this._txtDistingue.Text = value; }
         }
+
 
         public void Mensaje(string mensaje, int opcion)
         {
@@ -1024,10 +1154,12 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
                 MessageBox.Show(mensaje, "Advertencia", MessageBoxButton.OK, MessageBoxImage.Exclamation);
         }
 
+
         public void ArchivoNoEncontrado(string mensaje)
         {
             MessageBox.Show(mensaje, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
         }
+
 
         public GridViewColumnHeader CurSortCol
         {
@@ -1035,17 +1167,20 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
             set { _CurSortCol = value; }
         }
 
+
         public SortAdorner CurAdorner
         {
             get { return _CurAdorner; }
             set { _CurAdorner = value; }
         }
 
+
         public void PintarEtiqueta()
         {
             this._btnEtiquetaSolicitud.Background = Brushes.LightGreen;
             this._btnEtiqueta.Background = Brushes.LightGreen;
         }
+
 
         #endregion
 

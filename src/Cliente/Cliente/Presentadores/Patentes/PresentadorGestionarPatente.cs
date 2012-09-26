@@ -25,10 +25,13 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
 {
     class PresentadorGestionarPatente : PresentadorBase
     {
+
         private static PaginaPrincipal _paginaPrincipal = PaginaPrincipal.ObtenerInstancia;
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
+
         private IGestionarPatente _ventana;
+
 
         private IPatenteServicios _patenteServicios;
         private IAsociadoServicios _asociadoServicios;
@@ -50,6 +53,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
         private IInventorServicios _inventorServicios;
         private IMemoriaServicios _memoriaServicios;
 
+
         private IList<Asociado> _asociados;
         private IList<Interesado> _interesados;
         private IList<Inventor> _inventores;
@@ -58,10 +62,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
         private IList<Anualidad> _anualidades;
         private IList<Poder> _poderesInterseccion;
 
+
         private Patente _patente;
         private bool _cargarPoderInicial = false;
 
         private bool _agregar;
+
 
         /// <summary>
         /// Constructor Predeterminado
@@ -150,6 +156,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
             }
         }
 
+
         /// <summary>
         /// Método que actualiza el título de la ventana
         /// </summary>
@@ -177,6 +184,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
             #endregion
         }
 
+
         /// <summary>
         /// Método que carga los datos iniciales a mostrar en la página
         /// </summary>
@@ -193,6 +201,19 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
 
                 ActualizarTitulo();
 
+
+
+                #region Internacional
+
+                IList<Pais> paisesInternacionales = this._paisServicios.ConsultarTodos();
+                Pais primerPaisInt = new Pais();
+                primerPaisInt.Id = int.MinValue;
+                paisesInternacionales.Insert(0, primerPaisInt);
+                this._ventana.PaisesInternacionales = paisesInternacionales;
+                this._ventana.PaisesInternacionalesDatos = paisesInternacionales;
+
+                #endregion
+
                 if (this._agregar == false)
                 {
 
@@ -204,6 +225,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
 
                     _patente = this._patenteServicios.ConsultarPatenteConTodo((Patente)this._ventana.Patente);
                     this._ventana.Patente = _patente;
+
+                    if (_patente.LocalidadPatente != null)
+                        this._ventana.MarcarRadioPatenteNacional(_patente.LocalidadPatente.Equals("N"));
 
                     DateTime fechaTerminoAux = null != ((Patente)this._ventana.Patente).FechaTermino ? (DateTime)((Patente)this._ventana.Patente).FechaTermino
                         : DateTime.MinValue;
@@ -387,6 +411,29 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                     this._ventana.NombreAsociadoDatos = _patente.Asociado != null ? _patente.Asociado.Nombre : "";
                     this._ventana.NombreAsociadoSolicitud = _patente.Asociado != null ? _patente.Asociado.Nombre : "";
 
+
+                    if (null != _patente.PaisInternacional)
+                    {
+                        Pais paisABuscar = new Pais(_patente.PaisInternacional.Id);
+                        this._ventana.PaisInternacional = this.BuscarPais(paisesInternacionales, paisABuscar);
+                        this._ventana.PaisInternacionalDatos = this.BuscarPais(paisesInternacionales, paisABuscar);
+                    }
+
+                    if (null != _patente.AsociadoInternacional)
+                    {
+                        IList<Asociado> asociados = new List<Asociado>();
+                        asociados.Add(_patente.AsociadoInternacional);
+
+                        this._ventana.AsociadosInternacionales = asociados;
+                        this._ventana.AsociadoInternacional = _patente.AsociadoInternacional;
+
+                        this._ventana.AsociadosInternacionalesDatos = asociados;
+                        this._ventana.AsociadoInternacionalDatos = _patente.AsociadoInternacional;
+
+                        this._ventana.TextoAsociadoInternacional = _patente.AsociadoInternacional.Nombre;
+                    }
+
+
                     if (null != _patente.Asociado)
                         this._ventana.PintarAsociado(_patente.Asociado.TipoCliente.Id);
 
@@ -406,6 +453,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                     this.CargarBoletines();
                 }
 
+                this._ventana.BorrarCeros();
                 this._ventana.FocoPredeterminado();
 
                 #region trace
@@ -424,6 +472,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
             }
         }
 
+
         private void CargarBoletines()
         {
             IList<Boletin> boletines = this._boletinServicios.ConsultarTodos();
@@ -435,6 +484,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
             this._ventana.BoletinesConcesionDatos = boletines;
         }
 
+
         private void CargarStatusWeb()
         {
             IList<StatusWeb> statusWebs = this._statusWebServicios.ConsultarTodos();
@@ -443,6 +493,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
             statusWebs.Insert(0, primerStatus);
             this._ventana.StatusesWebDatos = statusWebs;
         }
+
 
         private void CargarDetalles()
         {
@@ -453,6 +504,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
             this._ventana.DetallesDatos = tipoEstados;
         }
 
+
         private void CargarSituaciones()
         {
             IList<Servicio> servicios = this._servicioServicios.ConsultarTodos();
@@ -462,6 +514,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
             Servicio servicioAux = new Servicio("PS");
             this._ventana.SituacionDatos = this.BuscarServicio((IList<Servicio>)this._ventana.SituacionesDatos, servicioAux);
         }
+
 
         private void CargarPresentaciones()
         {
@@ -475,6 +528,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
 
         }
 
+
         private void CargarTipos()
         {
             IList<ListaDatosDominio> tipoPatente = this._listaDatosDominioServicios.
@@ -485,6 +539,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
             this._ventana.TiposPatenteSolicitud = tipoPatente;
             this._ventana.TiposPatenteDatos = tipoPatente;
         }
+
 
         /// <summary>
         /// Método que carga la ventana de consulta marcas
@@ -504,6 +559,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                 logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
         }
+
 
         /// <summary>
         /// Método que guardar los datos de la ventana y los almacena en las variables
@@ -568,6 +624,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
             #endregion
         }
 
+
         /// <summary>
         /// Método que se encarga de cambiar el boton y habilitar los campos de la ventana para
         /// su modificación
@@ -587,6 +644,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                 logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
         }
+
 
         /// <summary>
         /// Método que dependiendo del estado de la página, habilita los campos o 
@@ -627,11 +685,17 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                         titulo = "Modificar Patente";
                         mensaje = string.Format(Recursos.MensajesConElUsuario.ConfirmarModificarPatente, ((Patente)this._ventana.Patente).Id);
                     }
-                    if (this._ventana.ConfirmarAccion(titulo,mensaje))
+                    if (this._ventana.ConfirmarAccion(titulo, mensaje))
                         if (ValidarPoder())
                         {
 
                             Patente patente = CargarPatenteDeLaPantalla();
+
+
+                            if (!this._ventana.EsPatenteNacional)
+                                patente = AgregarDatosInternacionales(patente);
+                            else
+                                patente.LocalidadPatente = "N";
 
                             if (_agregar)
                             {
@@ -686,6 +750,61 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
             }
         }
 
+
+        /// <summary>
+        /// Método que se encarga de validar la marca internacional antes de modificarla
+        /// </summary>
+        /// <returns></returns>
+        private bool ValidarPatenteInternacional()
+        {
+            bool retorno = true;
+
+            if (!this._ventana.EsPatenteNacional)
+                if (((Pais)this._ventana.PaisInternacional).Id == int.MinValue)
+                    retorno = false;
+
+            return retorno;
+        }
+
+
+        /// <summary>
+        /// Método que se encarga de agregarle los datos pertenecientes a las marcas internacionales
+        /// </summary>
+        /// <param name="patente"></param>
+        /// <returns></returns>
+        private Patente AgregarDatosInternacionales(Patente patente)
+        {
+            try
+            {
+                patente.LocalidadPatente = "I";
+                patente.PaisInternacional = (Pais)this._ventana.PaisInternacional;
+                patente.AsociadoInternacional = (Asociado)this._ventana.AsociadoInternacional;
+            }
+            catch (ApplicationException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(ex.Message, true);
+            }
+            catch (RemotingException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorRemoting, true);
+            }
+            catch (SocketException ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorConexionServidor, true);
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
+            }
+
+            return patente;
+        }
+
+
         /// <summary>
         /// Metodo que se encarga de eliminar una Patente
         /// </summary>
@@ -731,6 +850,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
             }
         }
 
+
         /// <summary>
         /// Método que se encarga de mostrar la ventana de información adicional
         /// </summary>
@@ -750,6 +870,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
             #endregion
         }
 
+
         /// <summary>
         /// Método que se encarga de mostrar la ventana de las operaciones de la Patente
         /// </summary>
@@ -767,6 +888,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                 logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
         }
+
 
         /// <summary>
         /// Método que se encarga de mostrar la ventana de InfoBoles
@@ -786,6 +908,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
             #endregion
         }
 
+
         /// <summary>
         /// Método que se ecarga la descripcion de la situacion
         /// </summary>
@@ -803,6 +926,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                 logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
         }
+
 
         /// <summary>
         /// Método que se encarga de mostrar la ventana con la lista de Auditorías
@@ -847,6 +971,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
             }
         }
 
+
         /// <summary>
         /// Método que se encarga de mostrar la ventana de las fechas de la Patente
         /// </summary>
@@ -855,6 +980,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
 
             this.Navegar(new ListaFechas(CargarPatenteDeLaPantalla()));
         }
+
 
         /// <summary>
         /// Método que se encarga de mostrar la ventana de los inventores de la Patente
@@ -873,6 +999,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                 logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
         }
+
 
         /// <summary>
         /// Método que se encarga de llamar a las memoria en el servidor
@@ -930,6 +1057,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
             }
         }
 
+
         /// <summary>
         /// Método que se encarga de mostrar la ventana de las memorias de la Patente
         /// </summary>
@@ -938,6 +1066,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
             //this.Navegar(new ConsultarMemoria(this._memoriaServicios.ConsultarMemoriasPorPatente((Patente)this._ventana.Patente)));
             this.Navegar(new ListaMemorias(this._ventana.Patente));
         }
+
 
         /// <summary>
         /// Método que se encarga de llamar a las memoria en el servidor
@@ -993,6 +1122,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                 this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
             }
         }
+
 
         /// <summary>
         /// Método que se encarga de llamar a los titulos en el servidor
@@ -1050,6 +1180,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
 
         }
 
+
         /// <summary>
         /// Método que se encarga de llamar a las solicitudes en el servidor
         /// </summary>
@@ -1105,6 +1236,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
             }
         }
 
+
         public void CargarPaises()
         {
             IList<Pais> paises = this._paisServicios.ConsultarTodos();
@@ -1114,6 +1246,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
             this._ventana.PaisesSolicitud = paises;
             this._ventana.PaisesDatos = paises;
         }
+
 
         /// <summary>
         /// Método que se encarga de mostrar la ventana de la lista de búsquedas de la patente
@@ -1133,6 +1266,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                 logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
         }
+
 
         /// <summary>
         /// Método que ordena una columna
@@ -1168,7 +1302,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
             #endregion
         }
 
+
         #region Metodos de los filtros de asociados
+
 
         /// <summary>
         /// Método que cambia asociado solicitud
@@ -1213,6 +1349,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
             }
         }
 
+
         /// <summary>
         /// Método que cambia asociado datos
         /// </summary>
@@ -1253,6 +1390,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                 //this._ventana.NombreAsociadoDatos = "";
             }
         }
+
 
         /// <summary>
         /// Método que filtra un asociado
@@ -1368,6 +1506,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
             #endregion
         }
 
+
         /// <summary>
         /// Método que carga los asociados
         /// </summary>
@@ -1409,9 +1548,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
             #endregion
         }
 
+
         #endregion
 
+
         #region Metodos de los filtros de interesados
+
 
         /// <summary>
         /// Método que cambia interesado solicitud
@@ -1465,6 +1607,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
             }
         }
 
+
         /// <summary>
         /// Método que cambia interesado datos
         /// </summary>
@@ -1511,6 +1654,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                 this._ventana.InteresadoEstadoSolicitud = "";
             }
         }
+
 
         /// <summary>
         /// Método que filtra un interesado
@@ -1639,6 +1783,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
             #endregion
         }
 
+
         /// <summary>
         /// Método que carga los interesados
         /// </summary>
@@ -1688,9 +1833,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
             #endregion
         }
 
+
         #endregion
 
+
         #region Metodos de la lista de poderes
+
 
         /// <summary>
         /// Método que cambia poder solicitud
@@ -1762,6 +1910,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
             }
         }
 
+
         /// <summary>
         /// Método que cambia Agente Datos
         /// </summary>
@@ -1793,6 +1942,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                 //this._ventana.NumPoderDatos = "";
             }
         }
+
 
         /// <summary>
         /// Método que cambia poder datos
@@ -1827,6 +1977,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
             }
         }
 
+
         /// <summary>
         /// Método que carga los agentes
         /// </summary>
@@ -1860,6 +2011,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                 logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
         }
+
 
         /// <summary>
         /// Método que carga los poderes
@@ -1923,7 +2075,6 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                 logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
         }
-
 
 
         private void CargarPoderesEntreInteresadoAgente()
@@ -2025,6 +2176,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
 
         #endregion
 
+
         /// <summary>
         /// Metodo que abre el explorador de internet predeterminado del sistema a una página determinada
         /// </summary>
@@ -2078,6 +2230,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
             }
         }
 
+
         /// <summary>
         /// Método que se encarga de abrir el certificado de la patente en formato .pdf
         /// </summary>
@@ -2109,6 +2262,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
             }
         }
 
+
         public void MostrarDiseno()
         {
             Patente patenteAux = ((Patente)this._ventana.Patente);
@@ -2119,6 +2273,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
 
             }
         }
+
 
         public void CalcularDuracion()
         {
@@ -2143,9 +2298,158 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
             }
         }
 
+
         public string ObtenerIdPatente()
         {
             return ((Patente)this._ventana.Patente).Id.ToString();
+        }
+
+
+        /// <summary>
+        /// Método que consulta al asociado
+        /// </summary>
+        /// <returns></returns>
+        public bool ConsultarAsociado()
+        {
+            bool retorno = false;
+
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+
+                if ((!this._ventana.IdAsociadoInternacionalFiltrar.Equals(string.Empty)) || (!this._ventana.NombreAsociadoInternacionalFiltrar.Equals(string.Empty)))
+                {
+                    Asociado asociadoAux = new Asociado();
+                    asociadoAux.Id = !this._ventana.IdAsociadoInternacionalFiltrar.Equals(string.Empty) ? int.Parse(this._ventana.IdAsociadoInternacionalFiltrar) : 0;
+                    asociadoAux.Nombre = !this._ventana.NombreAsociadoInternacionalFiltrar.Equals(string.Empty) ? this._ventana.NombreAsociadoInternacionalFiltrar : string.Empty;
+
+                    IList<Asociado> resultados = this._asociadoServicios.ObtenerAsociadosFiltro(asociadoAux);
+
+                    this._ventana.AsociadosInternacionalesDatos = resultados;
+                    this._ventana.AsociadosInternacionales = resultados;
+
+                    retorno = true;
+                }
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
+            }
+
+            return retorno;
+        }
+
+
+        /// <summary>
+        /// Método que consulta el asociado desde la pestana de datos
+        /// </summary>
+        /// <returns></returns>
+        public bool ConsultarAsociadoDatos()
+        {
+            bool retorno = false;
+
+            try
+            {
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+
+                if ((!this._ventana.IdAsociadoInternacionalFiltrarDatos.Equals(string.Empty)) || (!this._ventana.NombreAsociadoInternacionalFiltrarDatos.Equals(string.Empty)))
+                {
+                    Asociado asociadoAux = new Asociado();
+                    asociadoAux.Id = !this._ventana.IdAsociadoInternacionalFiltrarDatos.Equals(string.Empty) ? int.Parse(this._ventana.IdAsociadoInternacionalFiltrarDatos) : 0;
+                    asociadoAux.Nombre = !this._ventana.NombreAsociadoInternacionalFiltrarDatos.Equals(string.Empty) ? this._ventana.NombreAsociadoInternacionalFiltrarDatos : string.Empty;
+
+                    IList<Asociado> resultados = this._asociadoServicios.ObtenerAsociadosFiltro(asociadoAux);
+
+                    this._ventana.AsociadosInternacionalesDatos = resultados;
+                    this._ventana.AsociadosInternacionales = resultados;
+
+                    retorno = true;
+                }
+
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
+
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
+            }
+
+            return retorno;
+        }
+
+
+        /// <summary>
+        /// Método que consulta el asociado desde la pestana de solicitud
+        /// </summary>
+        /// <returns></returns>
+        public bool CambiarAsociadoInternacionalSolicitud()
+        {
+            bool retorno = false;
+
+            try
+            {
+                if (this._ventana.AsociadoInternacional != null)
+                {
+                    this._ventana.TextoAsociadoInternacional = ((Asociado)this._ventana.AsociadoInternacional).Nombre;
+                    this._ventana.AsociadoInternacionalDatos = this._ventana.AsociadoInternacional;
+                    this._ventana.AsociadoInternacional = this._ventana.AsociadoInternacional;
+
+                    retorno = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+            }
+
+            return retorno;
+        }
+
+
+        /// <summary>
+        /// Método que se encarga de cambiar el asociado internacional
+        /// </summary>
+        /// <returns></returns>
+        public bool CambiarAsociadoInternacionalDatos()
+        {
+            bool retorno = false;
+
+            try
+            {
+                if (this._ventana.AsociadoInternacionalDatos != null)
+                {
+                    this._ventana.TextoAsociadoInternacional = ((Asociado)this._ventana.AsociadoInternacionalDatos).Nombre;
+                    this._ventana.AsociadoInternacional = this._ventana.AsociadoInternacional;
+                    this._ventana.AsociadoInternacionalDatos = this._ventana.AsociadoInternacional;
+
+                    retorno = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+            }
+
+            return retorno;
         }
     }
 }

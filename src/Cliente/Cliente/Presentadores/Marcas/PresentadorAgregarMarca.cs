@@ -20,10 +20,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
 {
     class PresentadorAgregarMarca : PresentadorBase
     {
+
         private static PaginaPrincipal _paginaPrincipal = PaginaPrincipal.ObtenerInstancia;
         private static Logger logger = LogManager.GetCurrentClassLogger();
         private IAgregarMarca _ventana;
         private bool _esMarcaDuplicada = false;
+
 
         private IMarcaServicios _marcaServicios;
         private IAsociadoServicios _asociadoServicios;
@@ -41,12 +43,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
         private ICondicionServicios _condicionServicios;
         private IStatusWebServicios _statusWebServicios;
 
+
         private IList<Asociado> _asociados;
         private IList<Interesado> _interesados;
         private IList<Corresponsal> _corresponsales;
         private IList<Auditoria> _auditorias;
         private IList<Poder> _poderesInterseccion;
-
 
 
         /// <summary>
@@ -229,6 +231,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
         /// </summary>
         public void CargarPagina()
         {
+
             Mouse.OverrideCursor = Cursors.Wait;
 
             try
@@ -238,7 +241,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
+
                 this.ActualizarTitulo();
+
 
                 IList<ListaDatosDominio> tiposMarcas = this._listaDatosDominioServicios.
                     ConsultarListaDatosDominioPorParametro(new ListaDatosDominio(Recursos.Etiquetas.cbiCategoriaMarca));
@@ -344,10 +349,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
 
                 IList<Pais> paisesInternacionales = this._paisServicios.ConsultarTodos();
                 Pais primerPaisInt = new Pais();
-                primerPais.Id = int.MinValue;
-                paises.Insert(0, primerPais);
-                this._ventana.PaisesInternacionales = paises;
-                this._ventana.PaisesInternacionalesDatos = paises;
+                primerPaisInt.Id = int.MinValue;
+                paisesInternacionales.Insert(0, primerPaisInt);
+                this._ventana.PaisesInternacionales = paisesInternacionales;
+                this._ventana.PaisesInternacionalesDatos = paisesInternacionales;
 
                 IList<ListaDatosValores> localidades = this._listaDatosValoresServicios.
                     ConsultarListaDatosValoresPorParametro(new ListaDatosValores(Recursos.Etiquetas.cbiLocalidadMarca));

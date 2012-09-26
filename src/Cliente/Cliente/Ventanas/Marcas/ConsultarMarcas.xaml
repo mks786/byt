@@ -100,6 +100,7 @@
                                     <Binding Path="FechaInscripcion" UpdateSourceTrigger="PropertyChanged"/>
                                 </DatePicker.SelectedDate>
                             </DatePicker>-->
+
                         </WrapPanel>
                         <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,60,0">
                             <Label Name="_lblMarca">

@@ -108,6 +108,7 @@
     <!--Internacional-->
 
     <property name="ReferenciaInteresadoInternacional" column="XCASO_INTERESADO" type="string"/>
+    <property name="ReferenciaAsociadoInternacional" column="XCASO_ASOINTE" type="string"/>
     <property name="ClasesInternacionales" column="XCLASE" type="string"/>
     <property name="CodigoMarcaInternacional" column="CMARCAI" type="int"/>
     <property name="CorrelativoExpediente" column="CDONDE" type="int"/>
