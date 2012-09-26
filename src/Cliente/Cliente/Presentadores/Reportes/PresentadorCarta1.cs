@@ -214,9 +214,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Reportes
                     //reporte.PrintToPrinter(1, false, 1, 0);
 
                     this._ventana.MensajeExito(Recursos.MensajesConElUsuario.ExitosoReporte);
-                    string ruta = Environment.CurrentDirectory + "\\Reportes\\reporteCarta1.pdf";
-                    reporte.ExportToDisk(ExportFormatType.PortableDocFormat, ruta);
-                    Process.Start(Environment.CurrentDirectory + "\\Reportes\\reporteCarta1.pdf");
+                    string ruta = Environment.CurrentDirectory + "\\Reportes\\reporteCarta1.doc";
+                    reporte.ExportToDisk(ExportFormatType.WordForWindows, ruta);
+                    Process.Start(Environment.CurrentDirectory + "\\Reportes\\reporteCarta1.doc");
 
                     reporte.Dispose();
                     reporte.Close();
@@ -575,6 +575,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Reportes
             return retorno;
         }
 
+
         /// <summary>
         /// Método que se encarga de armar la lista de estructuras para hacer el reporte para varias marcas
         /// </summary>
@@ -643,6 +644,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Reportes
 
             return retorno;
         }
+
 
         #region Estructuras
 

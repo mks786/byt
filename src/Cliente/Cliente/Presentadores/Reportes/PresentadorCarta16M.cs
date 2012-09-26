@@ -214,9 +214,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Reportes
                     //reporte.PrintToPrinter(1, false, 1, 0);
 
                     this._ventana.MensajeExito(Recursos.MensajesConElUsuario.ExitosoReporte);
-                    string ruta = Environment.CurrentDirectory + "\\Reportes\\reporteCarta16M.pdf";
-                    reporte.ExportToDisk(ExportFormatType.PortableDocFormat, ruta);
-                    Process.Start(Environment.CurrentDirectory + "\\Reportes\\reporteCarta16M.pdf");
+                    string ruta = Environment.CurrentDirectory + "\\Reportes\\reporteCarta16M.doc";
+                    reporte.ExportToDisk(ExportFormatType.WordForWindows, ruta);
+                    Process.Start(Environment.CurrentDirectory + "\\Reportes\\reporteCarta16M.doc");
 
                     reporte.Dispose();
                     reporte.Close();

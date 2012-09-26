@@ -42,8 +42,8 @@
 
         <ScrollViewer HorizontalScrollBarVisibility="Auto" Margin="-4,39,4,1" Grid.RowSpan="2" Grid.ColumnSpan="2">
             <!--Área de Filtrado-->
-            <GroupBox Grid.Column="0" Grid.Row="0" Margin="5,45,5,5">
-                <StackPanel Name="_splFiltro" DataContext="{Binding}" VerticalAlignment="Center" Height="1300" Width="300">
+            <GroupBox Grid.Column="0" Grid.Row="0" Margin="5,45,5,5" Height="Auto">
+                <StackPanel Name="_splFiltro" DataContext="{Binding}" VerticalAlignment="Center" Width="300">
 
                     <Separator Margin="0,0,0,5"/>
 
