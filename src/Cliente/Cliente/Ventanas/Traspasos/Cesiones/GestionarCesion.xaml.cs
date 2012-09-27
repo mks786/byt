@@ -21,6 +21,25 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Cesiones
 
         #region IGestionarCesion
 
+        public void EsMarcaNacional(bool marcaNacional)
+        {
+            if (marcaNacional)
+            {
+                this._radioExtranjero.IsChecked = !marcaNacional;
+                this._radioNacional.IsChecked = marcaNacional;
+            }
+            else
+            {
+                this._radioExtranjero.IsChecked = !marcaNacional;
+                this._radioNacional.IsChecked = marcaNacional;
+            }
+        }
+
+        public string TipoClase
+        {
+            set { this._txtClasificacionInt.Text = value; }
+        }
+
         public bool EstaCargada
         {
             get { return this._cargada; }
@@ -118,43 +137,43 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Cesiones
         public object InteresadoCedente
         {
             get { return this._gridDatosCedente.DataContext; }
-            set { this._gridDatosCedente.DataContext = value; }            
+            set { this._gridDatosCedente.DataContext = value; }
         }
-        
+
         public object InteresadoCesionario
         {
             get { return this._gridDatosCesionario.DataContext; }
-            set { this._gridDatosCesionario.DataContext = value; }            
+            set { this._gridDatosCesionario.DataContext = value; }
         }
 
         public string IdMarca
         {
-            get {return this._txtIdMarca.Text; }
-            set { this._txtIdMarca.Text = value; } 
+            get { return this._txtIdMarca.Text; }
+            set { this._txtIdMarca.Text = value; }
         }
 
         public string IdCesionario
         {
-            get {return this._txtIdCesionario.Text; }
+            get { return this._txtIdCesionario.Text; }
             set { this._txtIdCesionario.Text = value; }
         }
 
         public string IdCedente
         {
-            get {return this._txtIdCedente.Text; }
+            get { return this._txtIdCedente.Text; }
             set { this._txtIdCedente.Text = value; }
 
         }
 
         public string IdApoderadoCesionario
         {
-            get {return this._txtIdApoderadoCesionario.Text; }
+            get { return this._txtIdApoderadoCesionario.Text; }
             set { this._txtIdApoderadoCesionario.Text = value; }
         }
 
         public string IdApoderadoCedente
         {
-            get {return this._txtIdApoderadoCedente.Text; }
+            get { return this._txtIdApoderadoCedente.Text; }
             set { this._txtIdApoderadoCedente.Text = value; }
         }
 
@@ -167,20 +186,20 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Cesiones
         public object ApoderadoCesionario
         {
             get { return this._gridDatosApoderadoCesionario.DataContext; }
-            set { this._gridDatosApoderadoCesionario.DataContext = value; }            
+            set { this._gridDatosApoderadoCesionario.DataContext = value; }
         }
-    
+
         public object PoderCedente
         {
             get { return this._gridDatosPoderCedente.DataContext; }
-            set { this._gridDatosPoderCedente.DataContext = value; }            
+            set { this._gridDatosPoderCedente.DataContext = value; }
         }
-        
+
         public object PoderCesionario
         {
             get { return this._gridDatosPoderCesionario.DataContext; }
             set { this._gridDatosPoderCesionario.DataContext = value; }
-        }  
+        }
 
         public object MarcasFiltradas
         {
@@ -223,13 +242,13 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Cesiones
             get { return this._lstPoderesCesionario.DataContext; }
             set { this._lstPoderesCesionario.DataContext = value; }
         }
-         
+
         public object Cesion
         {
             get { return this._gridDatos.DataContext; }
             set { this._gridDatos.DataContext = value; }
         }
-        
+
         public object MarcaFiltrada
         {
             get { return this._lstMarcas.SelectedItem; }
@@ -305,10 +324,10 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Cesiones
                 this._txtNumRegistro.IsEnabled = value;
                 this._chkEtiqueta.IsEnabled = value;
                 this._txtTipo.IsEnabled = value;
-                this._txtUbicacion.IsEnabled = value;                                
+                this._txtUbicacion.IsEnabled = value;
                 this._btnConsultarMarca.IsEnabled = value;
                 this._dpkFechaCesion.IsEnabled = value;
-                
+
                 this._txtNombreCedente.IsEnabled = value;
                 this._txtPaisCedente.IsEnabled = value;
                 this._txtNacionalidadCedente.IsEnabled = value;
@@ -316,8 +335,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Cesiones
                 this._txtNombreCedenteFiltrar.IsEnabled = value;
                 this._txtNombreApoderadoCedente.IsEnabled = value;
                 this._txtNombreApoderadoCedenteFiltrar.IsEnabled = value;
-                this._txtIdApoderadoCedenteFiltrar.IsEnabled = value;                                
-                this._txtIdPoderCedente.IsEnabled = value;                
+                this._txtIdApoderadoCedenteFiltrar.IsEnabled = value;
+                this._txtIdPoderCedente.IsEnabled = value;
                 this._txtIdPoderCedenteFiltrar.IsEnabled = value;
                 this._txtAnexoPoderCedente.IsEnabled = value;
                 this._txtBoletinPoderCedente.IsEnabled = value;
@@ -330,26 +349,36 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Cesiones
                 this._txtNombreCesionarioFiltrar.IsEnabled = value;
                 this._txtNombreApoderadoCesionario.IsEnabled = value;
                 this._txtIdApoderadoCesionarioFiltrar.IsEnabled = value;
-                this._txtNombreApoderadoCesionarioFiltrar.IsEnabled = value;                               
+                this._txtNombreApoderadoCesionarioFiltrar.IsEnabled = value;
                 this._txtIdPoderCesionario.IsEnabled = value;
                 this._txtIdPoderCesionarioFiltrar.IsEnabled = value;
 
                 this._txtAnexoPoderCesionario.IsEnabled = value;
                 this._txtBoletinPoderCesionario.IsEnabled = value;
-                this._txtFacultadPoderCesionario.IsEnabled = value;                
+                this._txtFacultadPoderCesionario.IsEnabled = value;
                 this._txtNumPoderCesionario.IsEnabled = value;
-                this._txtFechaPoderCesionario.IsEnabled = value;  
+                this._txtFechaPoderCesionario.IsEnabled = value;
                 this._txtPaisCesionario.IsEnabled = value;
                 this._txtNacionalidadCesionario.IsEnabled = value;
 
                 this._txtObservacionCesion.IsEnabled = value;
                 this._txtOtrosCesion.IsEnabled = value;
-                this._txtReferenciaCesion.IsEnabled = value;                                
-                this._txtAnexoCesion.IsEnabled = value;                              
+                this._txtReferenciaCesion.IsEnabled = value;
+                this._txtAnexoCesion.IsEnabled = value;
                 this._txtComentarioCesion.IsEnabled = value;
                 this._chkAsientoEnLibro.IsEnabled = value;
                 this._cbxBoletin.IsEnabled = value;
-               
+
+                #region Internacional
+
+                this._txtIdMarcaInt.IsEnabled = value;
+                this._txtIdMarcaIntCor.IsEnabled = value;
+                this._txtPaisInt.IsEnabled = value;
+                this._txtClaseInternacionalSolicitud.IsEnabled = value;
+                this._txtClasificacionInt.IsEnabled = value;
+
+                #endregion
+
             }
         }
 
@@ -520,7 +549,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Cesiones
             this._btnCarpeta.Visibility = System.Windows.Visibility.Collapsed;
             this._btnPlanilla.Visibility = System.Windows.Visibility.Collapsed;
             this._btnPlanillaVan.Visibility = System.Windows.Visibility.Collapsed;
-            this._btnPlanillaVienen.Visibility = System.Windows.Visibility.Collapsed;            
+            this._btnPlanillaVienen.Visibility = System.Windows.Visibility.Collapsed;
         }
 
         private void _btnModificar_Click(object sender, RoutedEventArgs e)
@@ -529,7 +558,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Cesiones
         }
 
         private void _btnRegresar_Click(object sender, RoutedEventArgs e)
-        {   
+        {
             if (this.TextoBotonRegresar == Recursos.Etiquetas.btnRegresar)
                 this._presentador.Regresar();
             else if (this.TextoBotonRegresar == Recursos.Etiquetas.btnCancelar)
@@ -555,13 +584,13 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Cesiones
         }
 
         private void _btnConsultar(object sender, RoutedEventArgs e)
-        {           
+        {
             if (((Button)sender).Name.Equals("_btnConsultarMarca"))
                 this._presentador.ConsultarMarcas();
             else if (((Button)sender).Name.Equals("_btnConsultarCedente"))
-                this._presentador.ConsultarCedentes();  
+                this._presentador.ConsultarCedentes();
             else if (((Button)sender).Name.Equals("_btnConsultarApoderadoCedente"))
-                this._presentador.ConsultarApoderadosCedente();  
+                this._presentador.ConsultarApoderadosCedente();
             else if (((Button)sender).Name.Equals("_btnConsultarPoderCedente"))
                 this._presentador.ConsultarPoderesCedente();
             else if (((Button)sender).Name.Equals("_btnConsultarCesionario"))
@@ -569,9 +598,9 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Cesiones
             else if (((Button)sender).Name.Equals("_btnConsultarApoderadoCesionario"))
                 this._presentador.ConsultarApoderadosCesionario();
             else if (((Button)sender).Name.Equals("_btnConsultarPoderCesionario"))
-                this._presentador.ConsultarPoderesCesionario();            
-        }       
-        
+                this._presentador.ConsultarPoderesCesionario();
+        }
+
         private void _btnPlanillaVienen_Click(object sender, RoutedEventArgs e)
         {
             this._presentador.IrImprimir(((Button)sender).Name);
@@ -754,7 +783,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Cesiones
         {
             this._btnConsultarMarca.IsDefault = true;
             this._btnModificar.IsDefault = false;
-        }      
+        }
 
         #endregion
 
@@ -769,13 +798,13 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Cesiones
 
                 if (this._presentador.VerificarCambioInteresado("Cedente"))
                 {
-                    this._btnConsultarPoderCedente.IsEnabled = false;                    
+                    this._btnConsultarPoderCedente.IsEnabled = false;
                 }
                 else
                 {
-                    this._btnConsultarPoderCedente.IsEnabled = true;                    
+                    this._btnConsultarPoderCedente.IsEnabled = true;
                 }
-                
+
             }
 
         }
@@ -942,7 +971,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Cesiones
         {
             this._btnConsultarPoderCedente.IsDefault = true;
             this._btnModificar.IsDefault = false;
-        }        
+        }
 
         private void GestionarVisibilidadDatosDeCedente(object value)
         {
@@ -1011,7 +1040,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Cesiones
 
         }
 
-        
+
 
         #endregion
 
@@ -1069,7 +1098,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Cesiones
                 {
                     this._btnConsultarApoderadoCesionario.IsEnabled = true;
                     this._btnConsultarCesionario.IsEnabled = true;
-                }                
+                }
             }
         }
 
@@ -1263,7 +1292,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Cesiones
         {
             this._btnConsultarPoderCesionario.IsDefault = true;
             this._btnModificar.IsDefault = false;
-        } 
+        }
 
         #endregion
 

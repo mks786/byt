@@ -21,6 +21,25 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.CambiosDeNombre
 
         #region IConsultarFusion
 
+        public void EsMarcaNacional(bool marcaNacional)
+        {
+            if (marcaNacional)
+            {
+                this._radioExtranjero.IsChecked = !marcaNacional;
+                this._radioNacional.IsChecked = marcaNacional;
+            }
+            else
+            {
+                this._radioExtranjero.IsChecked = !marcaNacional;
+                this._radioNacional.IsChecked = marcaNacional;
+            }
+        }
+
+        public string TipoClase
+        {
+            set { this._txtClasificacionInt.Text = value; }
+        }
+
         public bool EstaCargada
         {
             get { return this._cargada; }
@@ -222,6 +241,16 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.CambiosDeNombre
                 this._txtComentario.IsEnabled = value;
                 this._chkAsientoEnLibro.IsEnabled = value;
                 this._cbxBoletinPublicacion.IsEnabled = value;
+
+                #region Internacional
+
+                this._txtIdMarcaInt.IsEnabled = value;
+                this._txtIdMarcaIntCor.IsEnabled = value;
+                this._txtPaisInt.IsEnabled = value;
+                this._txtClaseInternacionalSolicitud.IsEnabled = value;
+                this._txtClasificacionInt.IsEnabled = value;
+
+                #endregion
             }
         }
 
@@ -452,7 +481,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.CambiosDeNombre
             this._btnCarpeta.Visibility = System.Windows.Visibility.Collapsed;
             this._btnPlanilla.Visibility = System.Windows.Visibility.Collapsed;
             this._btnPlanillaVan.Visibility = System.Windows.Visibility.Collapsed;
-            this._btnPlanillaVienen.Visibility = System.Windows.Visibility.Collapsed;            
+            this._btnPlanillaVienen.Visibility = System.Windows.Visibility.Collapsed;
         }
 
         private void _btnModificar_Click(object sender, RoutedEventArgs e)
@@ -461,7 +490,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.CambiosDeNombre
         }
 
         private void _btnRegresar_Click(object sender, RoutedEventArgs e)
-        {            
+        {
             if (this.TextoBotonRegresar == Recursos.Etiquetas.btnRegresar)
                 this._presentador.Regresar();
             else if (this.TextoBotonRegresar == Recursos.Etiquetas.btnCancelar)
@@ -785,7 +814,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.CambiosDeNombre
         {
             this._presentador.ConsultarApoderados();
         }
-      
+
         private void _lstApoderados_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             if (this._presentador.CambiarApoderado())

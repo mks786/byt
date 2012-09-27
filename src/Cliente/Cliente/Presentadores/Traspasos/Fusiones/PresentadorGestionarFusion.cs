@@ -49,6 +49,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
         private IFusionServicios _fusionesServicios;
         private IPlanillaServicios _planillaServicios;
         private IEstadoServicios _estadoServicios;
+        private IListaDatosValoresServicios _listaDatosValoresServicios;
 
         private IList<Asociado> _asociados;
         private IList<Interesado> _interesados;
@@ -146,6 +147,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["PlanillaServicios"]);
                 this._estadoServicios = (IEstadoServicios)Activator.GetObject(typeof(IEstadoServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["EstadoServicios"]);
+                this._listaDatosValoresServicios = (IListaDatosValoresServicios)Activator.GetObject(typeof(IListaDatosValoresServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["ListaDatosValoresServicios"]);
 
 
                 #endregion
@@ -208,6 +211,22 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
                     this._ventana.NombreMarca = ((Marca)this._ventana.Marca).Descripcion;
                     this._ventana.AgenteApoderado = ((Fusion)fusion).Agente;
                     this._ventana.Poder = fusion.Poder;
+
+                    if (((Marca)this._ventana.Marca).LocalidadMarca != null)
+                    {
+                        this._ventana.EsMarcaNacional(((Marca)this._ventana.Marca).LocalidadMarca.Equals("N"));
+
+                        if (((Marca)this._ventana.Marca).LocalidadMarca.Equals("I"))
+                        {
+                            ListaDatosValores itemBuscado = new ListaDatosValores();
+                            itemBuscado.Valor = ((Marca)this._ventana.Marca).ClasificacionInternacional;
+                            IList<ListaDatosValores> items = this._listaDatosValoresServicios.
+                                ConsultarListaDatosValoresPorParametro(new ListaDatosValores(Recursos.Etiquetas.cbiLocalidadMarca));
+                            this._ventana.TipoClase = this.BuscarListaDeDatosValores(items, itemBuscado).Descripcion;
+                        }
+                    }
+                    else
+                        this._ventana.EsMarcaNacional(true);
 
                     if (null != fusion.FusionMarcaTercero.Estado)
                         this._ventana.Corporacion = this.BuscarEstado(estados, fusion.FusionMarcaTercero.Estado);
@@ -1109,6 +1128,23 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
                     this._ventana.NombreMarca = ((Marca)this._ventana.MarcaFiltrada).Descripcion;
                     this._marcas.RemoveAt(0);
                     this._marcas.Add((Marca)this._ventana.MarcaFiltrada);
+
+                    if (((Marca)this._ventana.Marca).LocalidadMarca != null)
+                    {
+                        this._ventana.EsMarcaNacional(((Marca)this._ventana.Marca).LocalidadMarca.Equals("N"));
+
+                        if (((Marca)this._ventana.Marca).LocalidadMarca.Equals("I"))
+                        {
+                            ListaDatosValores itemBuscado = new ListaDatosValores();
+                            itemBuscado.Valor = ((Marca)this._ventana.Marca).ClasificacionInternacional;
+                            IList<ListaDatosValores> items = this._listaDatosValoresServicios.
+                                ConsultarListaDatosValoresPorParametro(new ListaDatosValores(Recursos.Etiquetas.cbiLocalidadMarca));
+                            this._ventana.TipoClase = this.BuscarListaDeDatosValores(items, itemBuscado).Descripcion;
+                        }
+                    }
+                    else
+                        this._ventana.EsMarcaNacional(true);
+
                     if (null != ((Marca)this._ventana.Marca).Interesado)
                     {
                         this._ventana.InteresadoEntre = ((Marca)this._ventana.Marca).Interesado;

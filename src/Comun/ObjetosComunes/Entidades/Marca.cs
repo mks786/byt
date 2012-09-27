@@ -6,6 +6,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
     [Serializable]
     public class Marca
     {
+
         #region Atributos
 
         private int _id;
@@ -84,6 +85,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
 
         #endregion
 
+
         #region Constructores
 
         /// <summary>
@@ -105,6 +107,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         }
 
         #endregion
+
 
         #region Propiedades
 
@@ -777,5 +780,6 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         #endregion
 
         #endregion
+
     }
 }

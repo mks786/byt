@@ -25,8 +25,13 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Licencias
         {
             get { return this._cargada; }
             set { this._cargada = value; }
-        }           
-     
+        }
+
+        public string TipoClase 
+        {
+            set { this._txtClasificacionInt.Text = value; }
+        }
+
         public string IdLicencianteFiltrar
         {
             get { return this._txtIdLicencianteFiltrar.Text; }
@@ -154,13 +159,13 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Licencias
         public object InteresadoLicenciante
         {
             get { return this._gridDatosLicenciante.DataContext; }
-            set { this._gridDatosLicenciante.DataContext = value; }            
+            set { this._gridDatosLicenciante.DataContext = value; }
         }
-        
+
         public object InteresadoLicenciatario
         {
             get { return this._gridDatosLicenciatario.DataContext; }
-            set { this._gridDatosLicenciatario.DataContext = value; }            
+            set { this._gridDatosLicenciatario.DataContext = value; }
         }
 
         public object ApoderadoLicenciante
@@ -172,13 +177,13 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Licencias
         public object ApoderadoLicenciatario
         {
             get { return this._gridDatosApoderadoLicenciatario.DataContext; }
-            set { this._gridDatosApoderadoLicenciatario.DataContext = value; }            
+            set { this._gridDatosApoderadoLicenciatario.DataContext = value; }
         }
-    
+
         public object PoderLicenciante
         {
             get { return this._gridDatosPoderLicenciante.DataContext; }
-            set { this._gridDatosPoderLicenciante.DataContext = value; }            
+            set { this._gridDatosPoderLicenciante.DataContext = value; }
         }
 
 
@@ -186,7 +191,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Licencias
         {
             get { return this._gridDatosPoderLicenciatario.DataContext; }
             set { this._gridDatosPoderLicenciatario.DataContext = value; }
-        }  
+        }
 
         public object MarcasFiltradas
         {
@@ -229,13 +234,13 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Licencias
             get { return this._lstPoderesLicenciatario.DataContext; }
             set { this._lstPoderesLicenciatario.DataContext = value; }
         }
-         
+
         public object Licencia
         {
             get { return this._gridDatos.DataContext; }
             set { this._gridDatos.DataContext = value; }
         }
-        
+
         public object MarcaFiltrada
         {
             get { return this._lstMarcas.SelectedItem; }
@@ -305,9 +310,9 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Licencias
                 this._txtNumRegistro.IsEnabled = value;
                 this._chkEtiqueta.IsEnabled = value;
                 this._txtTipo.IsEnabled = value;
-                this._txtUbicacion.IsEnabled = value;                                
+                this._txtUbicacion.IsEnabled = value;
                 this._btnConsultarMarca.IsEnabled = value;
-                
+
                 this._txtNombreLicenciante.IsEnabled = value;
                 this._txtPaisLicenciante.IsEnabled = value;
                 this._txtNacionalidadLicenciante.IsEnabled = value;
@@ -315,8 +320,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Licencias
                 this._txtNombreLicencianteFiltrar.IsEnabled = value;
                 this._txtNombreApoderadoLicenciante.IsEnabled = value;
                 this._txtNombreApoderadoLicencianteFiltrar.IsEnabled = value;
-                this._txtIdApoderadoLicencianteFiltrar.IsEnabled = value;                                
-                this._txtIdPoderLicenciante.IsEnabled = value;                
+                this._txtIdApoderadoLicencianteFiltrar.IsEnabled = value;
+                this._txtIdPoderLicenciante.IsEnabled = value;
                 this._txtIdPoderLicencianteFiltrar.IsEnabled = value;
                 this._txtAnexoPoderLicenciante.IsEnabled = value;
                 this._txtBoletinPoderLicenciante.IsEnabled = value;
@@ -336,25 +341,35 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Licencias
                 this._txtNombreLicenciatarioFiltrar.IsEnabled = value;
                 this._txtNombreApoderadoLicenciatario.IsEnabled = value;
                 this._txtIdApoderadoLicenciatarioFiltrar.IsEnabled = value;
-                this._txtNombreApoderadoLicenciatarioFiltrar.IsEnabled = value;                               
+                this._txtNombreApoderadoLicenciatarioFiltrar.IsEnabled = value;
                 this._txtIdPoderLicenciatario.IsEnabled = value;
                 this._txtIdPoderLicenciatarioFiltrar.IsEnabled = value;
 
                 this._txtAnexoPoderLicenciatario.IsEnabled = value;
                 this._txtBoletinPoderLicenciatario.IsEnabled = value;
-                this._txtFacultadPoderLicenciatario.IsEnabled = value;                
+                this._txtFacultadPoderLicenciatario.IsEnabled = value;
                 this._txtNumPoderLicenciatario.IsEnabled = value;
-                this._txtFechaPoderLicenciatario.IsEnabled = value;  
+                this._txtFechaPoderLicenciatario.IsEnabled = value;
                 this._txtPaisLicenciatario.IsEnabled = value;
                 this._txtNacionalidadLicenciatario.IsEnabled = value;
 
                 this._txtObservacionLicencia.IsEnabled = value;
                 this._txtOtrosLicencia.IsEnabled = value;
-                this._txtReferenciaLicencia.IsEnabled = value;                                
-                this._txtAnexoLicencia.IsEnabled = value;                              
+                this._txtReferenciaLicencia.IsEnabled = value;
+                this._txtAnexoLicencia.IsEnabled = value;
                 this._txtComentarioLicencia.IsEnabled = value;
                 this._chkAsientoEnLibro.IsEnabled = value;
                 this._cbxBoletin.IsEnabled = value;
+
+                #region Internacional
+
+                this._txtIdMarcaInt.IsEnabled = value;
+                this._txtIdMarcaIntCor.IsEnabled = value;
+                this._txtPaisInt.IsEnabled = value;
+                this._txtClaseInternacionalSolicitud.IsEnabled = value;
+                this._txtClasificacionInt.IsEnabled = value;
+
+                #endregion
             }
         }
 
@@ -459,6 +474,20 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Licencias
                 MessageBox.Show(mensaje, "Advertencia", MessageBoxButton.OK, MessageBoxImage.Exclamation);
         }
 
+        public void EsMarcaNacional(bool marcaNacional)
+        {
+            if (marcaNacional)
+            {
+                this._radioExtranjero.IsChecked = !marcaNacional;
+                this._radioNacional.IsChecked = marcaNacional;
+            }
+            else
+            {
+                this._radioExtranjero.IsChecked = !marcaNacional;
+                this._radioNacional.IsChecked = marcaNacional;
+            }
+        }
+
         #endregion
 
         public GestionarLicencia(object Licencia)
@@ -529,7 +558,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Licencias
         }
 
         private void _btnRegresar_Click(object sender, RoutedEventArgs e)
-        {            
+        {
             if (this.TextoBotonRegresar == Recursos.Etiquetas.btnRegresar)
                 this._presentador.Regresar();
             else if (this.TextoBotonRegresar == Recursos.Etiquetas.btnCancelar)
@@ -555,13 +584,13 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Licencias
         }
 
         private void _btnConsultar(object sender, RoutedEventArgs e)
-        {           
+        {
             if (((Button)sender).Name.Equals("_btnConsultarMarca"))
                 this._presentador.ConsultarMarcas();
             else if (((Button)sender).Name.Equals("_btnConsultarLicenciante"))
-                this._presentador.ConsultarLicenciantes();  
+                this._presentador.ConsultarLicenciantes();
             else if (((Button)sender).Name.Equals("_btnConsultarApoderadoLicenciante"))
-                this._presentador.ConsultarApoderadosLicenciante();  
+                this._presentador.ConsultarApoderadosLicenciante();
             else if (((Button)sender).Name.Equals("_btnConsultarPoderLicenciante"))
                 this._presentador.ConsultarPoderesLicenciante();
             else if (((Button)sender).Name.Equals("_btnConsultarLicenciatario"))
@@ -569,9 +598,9 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Licencias
             else if (((Button)sender).Name.Equals("_btnConsultarApoderadoLicenciatario"))
                 this._presentador.ConsultarApoderadosLicenciatario();
             else if (((Button)sender).Name.Equals("_btnConsultarPoderLicenciatario"))
-                this._presentador.ConsultarPoderesLicenciatario();            
-        }       
-        
+                this._presentador.ConsultarPoderesLicenciatario();
+        }
+
         private void _btnPlanillaVienen_Click(object sender, RoutedEventArgs e)
         {
             this._presentador.IrImprimir(((Button)sender).Name);
@@ -584,7 +613,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Licencias
 
         private void _btnPlanilla_Click(object sender, RoutedEventArgs e)
         {
-            this._presentador.IrImprimir(((Button)sender).Name); 
+            this._presentador.IrImprimir(((Button)sender).Name);
         }
 
         private void _btnCarpeta_Click(object sender, RoutedEventArgs e)
@@ -632,7 +661,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Licencias
                     if (int.Parse(this.IdMarca) == int.MinValue)
                         this.IdMarca = "";
                 }
-               
+
             }
         }
 
@@ -752,7 +781,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Licencias
         {
             this._btnConsultarMarca.IsDefault = true;
             this._btnModificar.IsDefault = false;
-        }      
+        }
 
         #endregion
 
@@ -760,7 +789,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Licencias
 
         private void _lstLicenciantes_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-          
+
             if (this._presentador.CambiarLicenciante())
             {
                 GestionarVisibilidadDatosDeLicenciante(Visibility.Visible);
@@ -799,7 +828,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Licencias
         }
 
         private void _lstApoderadosLicenciante_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
-        {           
+        {
             if (this._presentador.CambiarApoderadoLicenciante())
             {
                 GestionarVisibilidadDatosDeApoderadoLicenciante(Visibility.Visible);
@@ -1251,9 +1280,9 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Licencias
         {
             this._btnConsultarPoderLicenciatario.IsDefault = true;
             this._btnModificar.IsDefault = false;
-        } 
+        }
 
         #endregion
-    
+
     }
 }

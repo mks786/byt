@@ -27,6 +27,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.CambiosDeDomicilio
             set { this._cargada = value; }
         }
 
+        public string TipoClase
+        {
+            set { this._txtClasificacionInt.Text = value; }
+        }
+
         public object CambioDeDomicilio
         {
             get
@@ -231,6 +236,16 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.CambiosDeDomicilio
                 _lblIdPoderFiltrar.IsEnabled = value;
                 _txtIdPoderFiltrar.IsEnabled = value;
                 _dpkFechaPoderFiltrar.IsEnabled = value;
+
+                #region Internacional
+
+                this._txtIdMarcaInt.IsEnabled = value;
+                this._txtIdMarcaIntCor.IsEnabled = value;
+                this._txtPaisInt.IsEnabled = value;
+                this._txtClaseInternacionalSolicitud.IsEnabled = value;
+                this._txtClasificacionInt.IsEnabled = value;
+
+                #endregion
             }
         }
 
@@ -384,6 +399,20 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.CambiosDeDomicilio
                 MessageBox.Show(mensaje, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             else
                 MessageBox.Show(mensaje, "Advertencia", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+        }
+
+        public void EsMarcaNacional(bool marcaNacional)
+        {
+            if (marcaNacional)
+            {
+                this._radioExtranjero.IsChecked = !marcaNacional;
+                this._radioNacional.IsChecked = marcaNacional;
+            }
+            else
+            {
+                this._radioExtranjero.IsChecked = !marcaNacional;
+                this._radioNacional.IsChecked = marcaNacional;
+            }
         }
 
         #endregion

@@ -47,6 +47,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Licencias
         private IBusquedaServicios _busquedaServicios;
         private IStatusWebServicios _statusWebServicios;
         private ILicenciaServicios _licenciaServicios;
+        private IListaDatosValoresServicios _listaDatosValoresServicios;
 
 
         private IList<Interesado> _interesadosLicenciante;
@@ -73,7 +74,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Licencias
             try
             {
 
-                this._ventana = ventana;               
+                this._ventana = ventana;
 
                 if (licencia != null)
                 {
@@ -142,6 +143,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Licencias
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["StatusWebServicios"]);
                 this._licenciaServicios = (ILicenciaServicios)Activator.GetObject(typeof(ILicenciaServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["LicenciaServicios"]);
+                this._listaDatosValoresServicios = (IListaDatosValoresServicios)Activator.GetObject(typeof(IListaDatosValoresServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["ListaDatosValoresServicios"]);
 
 
                 #endregion
@@ -154,7 +157,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Licencias
         }
 
         public void ActualizarTitulo()
-        {            
+        {
             if (_agregar == true)
                 this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleAgregarLicencia,
                 Recursos.Ids.GestionarLicencias);
@@ -196,6 +199,22 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Licencias
                     this._ventana.ApoderadoLicenciatario = licencia.AgenteLicenciatario;
                     this._ventana.PoderLicenciante = licencia.PoderLicenciante;
                     this._ventana.PoderLicenciatario = licencia.PoderLicenciatario;
+
+                    if (((Marca)this._ventana.Marca).LocalidadMarca != null)
+                    {
+                        this._ventana.EsMarcaNacional(((Marca)this._ventana.Marca).LocalidadMarca.Equals("N"));
+
+                        if (((Marca)this._ventana.Marca).LocalidadMarca.Equals("I"))
+                        {
+                            ListaDatosValores itemBuscado = new ListaDatosValores();
+                            itemBuscado.Valor = ((Marca)this._ventana.Marca).ClasificacionInternacional;
+                            IList<ListaDatosValores> items = this._listaDatosValoresServicios.
+                                ConsultarListaDatosValoresPorParametro(new ListaDatosValores(Recursos.Etiquetas.cbiLocalidadMarca));
+                            this._ventana.TipoClase = this.BuscarListaDeDatosValores(items, itemBuscado).Descripcion;
+                        }
+                    }
+                    else
+                        this._ventana.EsMarcaNacional(true);
 
 
                     CargaBoletines();
@@ -458,7 +477,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Licencias
                     this._ventana.PoderLicencianteFiltrado = this.BuscarPoder((IList<Poder>)this._ventana.PoderesLicencianteFiltrados, (Poder)this._ventana.PoderLicenciante);
                 }
                 else
-                {                    
+                {
                     this._ventana.PoderesLicencianteFiltrados = this._poderesLicenciante;
                     this._ventana.PoderLicencianteFiltrado = primerPoder;
                     this._ventana.ConvertirEnteroMinimoABlanco("Licenciante");
@@ -478,14 +497,14 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Licencias
                     this._ventana.PoderLicenciatarioFiltrado = this.BuscarPoder((IList<Poder>)this._ventana.PoderesLicenciatarioFiltrados, (Poder)this._ventana.PoderLicenciatario);
                 }
                 else
-                {                    
+                {
                     this._ventana.PoderesLicenciatarioFiltrados = this._poderesLicenciatario;
                     this._ventana.PoderLicenciatarioFiltrado = primerPoder;
-                    this._ventana.ConvertirEnteroMinimoABlanco("Licenciatario");                    
+                    this._ventana.ConvertirEnteroMinimoABlanco("Licenciatario");
                 }
 
                 this._ventana.ConvertirEnteroMinimoABlanco("Licenciatario");
-            }            
+            }
         }
 
         /// <summary>
@@ -503,17 +522,17 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Licencias
 
             if ((null != this._ventana.MarcaFiltrada) && (((Marca)this._ventana.MarcaFiltrada).Id != int.MinValue))
             {
-                licencia.Marca = (Marca) this._ventana.MarcaFiltrada;
+                licencia.Marca = (Marca)this._ventana.MarcaFiltrada;
                 licencia.InteresadoLicenciante = ((Marca)this._ventana.MarcaFiltrada).Interesado;
                 licencia.AgenteLicenciante = ((Marca)this._ventana.MarcaFiltrada).Agente;
                 licencia.PoderLicenciante = ((Marca)this._ventana.MarcaFiltrada).Poder;
             }
             if (null != this._ventana.InteresadoLicenciante)
-                licencia.InteresadoLicenciante = ((Interesado)this._ventana.InteresadoLicenciante).Id != int.MinValue ? 
+                licencia.InteresadoLicenciante = ((Interesado)this._ventana.InteresadoLicenciante).Id != int.MinValue ?
                                                                     (Interesado)this._ventana.InteresadoLicenciante : null;
 
             if (null != this._ventana.InteresadoLicenciatario)
-                licencia.InteresadoLicenciatario = ((Interesado)this._ventana.InteresadoLicenciatario).Id != int.MinValue ? 
+                licencia.InteresadoLicenciatario = ((Interesado)this._ventana.InteresadoLicenciatario).Id != int.MinValue ?
                                                                     (Interesado)this._ventana.InteresadoLicenciatario : null;
 
             if (null != this._ventana.ApoderadoLicencianteFiltrado)
@@ -521,7 +540,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Licencias
                                                             (Agente)this._ventana.ApoderadoLicencianteFiltrado : null;
 
             if (null != this._ventana.ApoderadoLicenciatarioFiltrado)
-                licencia.AgenteLicenciatario = !((Agente)this._ventana.ApoderadoLicenciatarioFiltrado).Id.Equals("") ? 
+                licencia.AgenteLicenciatario = !((Agente)this._ventana.ApoderadoLicenciatarioFiltrado).Id.Equals("") ?
                                                             (Agente)this._ventana.ApoderadoLicenciatarioFiltrado : null;
 
             if (null != this._ventana.PoderLicencianteFiltrado)
@@ -529,11 +548,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Licencias
                                                                 (Poder)this._ventana.PoderLicencianteFiltrado : null;
 
             if (null != this._ventana.PoderLicenciatarioFiltrado)
-                licencia.PoderLicenciatario = ((Poder)this._ventana.PoderLicenciatarioFiltrado).Id != int.MinValue ? 
+                licencia.PoderLicenciatario = ((Poder)this._ventana.PoderLicenciatarioFiltrado).Id != int.MinValue ?
                                                                     (Poder)this._ventana.PoderLicenciatarioFiltrado : null;
 
             if (null != this._ventana.Boletin)
-                licencia.Boletin = ((Boletin)this._ventana.Boletin).Id != int.MinValue ? 
+                licencia.Boletin = ((Boletin)this._ventana.Boletin).Id != int.MinValue ?
                                                         (Boletin)this._ventana.Boletin : null;
 
             #region trace
@@ -561,7 +580,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Licencias
         public void Modificar()
         {
             Mouse.OverrideCursor = Cursors.Wait;
-         
+
             try
             {
                 #region trace
@@ -760,7 +779,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Licencias
 
             if (licencia.AgenteLicenciatario != null)
                 this._poderesApoderadosLicenciatario = this._poderServicios.ConsultarPoderesPorAgente(licencia.AgenteLicenciatario);
-     
+
             #region trace
             if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
                 logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
@@ -1205,7 +1224,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Licencias
                 logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
 
-        }    
+        }
 
         #region Marca
 
@@ -1265,7 +1284,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Licencias
         /// Metodo que Consulta las Marcas
         /// </summary>
         public void ConsultarMarcas()
-        { 
+        {
             Mouse.OverrideCursor = Cursors.Wait;
 
             try
@@ -1277,7 +1296,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Licencias
 
                 Marca primeraMarca = new Marca(int.MinValue);
 
-               
+
                 Marca marca = new Marca();
                 IList<Marca> marcasFiltradas;
                 marca.Descripcion = this._ventana.NombreMarcaFiltrar.ToUpper();
@@ -1301,7 +1320,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Licencias
                     this._ventana.MarcaFiltrada = primeraMarca;
                     this._ventana.Mensaje(Recursos.MensajesConElUsuario.NoHayResultados, 1);
                 }
-             
+
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
                     logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
@@ -1355,18 +1374,35 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Licencias
                     this._ventana.Marca = this._ventana.MarcaFiltrada;
                     this._ventana.IdMarca = ((Marca)this._ventana.MarcaFiltrada).Id.ToString();
                     this._ventana.NombreMarca = ((Marca)this._ventana.MarcaFiltrada).Descripcion;
+
+                    if (((Marca)this._ventana.Marca).LocalidadMarca != null)
+                    {
+                        this._ventana.EsMarcaNacional(((Marca)this._ventana.Marca).LocalidadMarca.Equals("N"));
+
+                        if (((Marca)this._ventana.Marca).LocalidadMarca.Equals("I"))
+                        {
+                            ListaDatosValores itemBuscado = new ListaDatosValores();
+                            itemBuscado.Valor = ((Marca)this._ventana.Marca).ClasificacionInternacional;
+                            IList<ListaDatosValores> items = this._listaDatosValoresServicios.
+                                ConsultarListaDatosValoresPorParametro(new ListaDatosValores(Recursos.Etiquetas.cbiLocalidadMarca));
+                            this._ventana.TipoClase = this.BuscarListaDeDatosValores(items, itemBuscado).Descripcion;
+                        }
+                    }
+                    else
+                        this._ventana.EsMarcaNacional(true);
+
                     if (null != ((Marca)this._ventana.Marca).Interesado)
                     {
-                        this._ventana.InteresadoLicenciante = ((Marca) this._ventana.Marca).Interesado;
+                        this._ventana.InteresadoLicenciante = ((Marca)this._ventana.Marca).Interesado;
                         this._ventana.IdLicenciante = ((Marca)this._ventana.Marca).Interesado.Id.ToString();
                     }
                     if (null != ((Marca)this._ventana.Marca).Agente)
                     {
-                        this._ventana.ApoderadoLicenciante = ((Marca) this._ventana.Marca).Agente;
-                        this._ventana.IdApoderadoLicenciante = ((Marca) this._ventana.Marca).Id.ToString();
+                        this._ventana.ApoderadoLicenciante = ((Marca)this._ventana.Marca).Agente;
+                        this._ventana.IdApoderadoLicenciante = ((Marca)this._ventana.Marca).Id.ToString();
                     }
                     this._ventana.PoderLicenciante = ((Marca)this._ventana.Marca).Poder;
-                    
+
 
                     if (null != ((Marca)this._ventana.Marca).Asociado)
                         this._ventana.PintarAsociado(((Marca)this._ventana.Marca).Asociado.TipoCliente.Id);
@@ -1442,7 +1478,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Licencias
                 {
                     if (((Poder)this._ventana.PoderLicencianteFiltrado).Id != int.MinValue)
                     {
-                        LlenarListaAgenteEInteresado((Poder)this._ventana.PoderLicenciante,"Licenciante", true);
+                        LlenarListaAgenteEInteresado((Poder)this._ventana.PoderLicenciante, "Licenciante", true);
 
                         this._ventana.GestionarBotonConsultarInteresados("Licenciante", false);
                         this._ventana.GestionarBotonConsultarApoderados("Licenciante", false);
@@ -1522,7 +1558,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Licencias
                 #endregion
 
                 Interesado primerInteresado = new Interesado(int.MinValue);
-                
+
                 Interesado interesado = new Interesado();
                 IList<Interesado> interesadosFiltrados;
                 interesado.Nombre = this._ventana.NombreLicencianteFiltrar.ToUpper();
@@ -1582,7 +1618,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Licencias
         /// Metodo que Consulta posibles Apoderados
         /// </summary>
         public void ConsultarApoderadosLicenciante()
-        { 
+        {
             Mouse.OverrideCursor = Cursors.Wait;
 
             try
@@ -1594,7 +1630,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Licencias
 
                 Agente primerAgente = new Agente("");
 
-               
+
                 Agente apoderadoLicenciante = new Agente();
                 IList<Agente> agentesLicencianteFiltrados;
                 apoderadoLicenciante.Nombre = this._ventana.NombreApoderadoLicencianteFiltrar.ToUpper();
@@ -1665,7 +1701,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Licencias
                 #endregion
 
                 Poder primerPoder = new Poder(int.MinValue);
-                
+
                 Poder poderLicenciante = new Poder();
                 IList<Poder> poderesLicencianteFiltrados;
 
@@ -2049,7 +2085,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Licencias
             }
 
             return retorno;
-        }        
+        }
 
         #endregion
 
@@ -2141,7 +2177,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Licencias
         /// Metodo que carga los licenciatarios
         /// </summary>
         public void ConsultarLicenciatarios()
-        { 
+        {
             Mouse.OverrideCursor = Cursors.Wait;
 
             try
@@ -2152,7 +2188,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Licencias
                 #endregion
 
                 Interesado primerInteresado = new Interesado(int.MinValue);
-             
+
                 Interesado licenciaario = new Interesado();
                 IList<Interesado> licenciaariosFiltrados;
                 licenciaario.Nombre = this._ventana.NombreLicenciatarioFiltrar.ToUpper();
@@ -2222,7 +2258,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Licencias
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-                Agente primerAgente = new Agente("");             
+                Agente primerAgente = new Agente("");
                 Agente apoderadoLicenciatario = new Agente();
                 IList<Agente> agentesLicenciatarioFiltrados;
                 apoderadoLicenciatario.Nombre = this._ventana.NombreApoderadoLicenciatarioFiltrar.ToUpper();
@@ -2282,7 +2318,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Licencias
         /// Metodo que carga los poderes
         /// </summary>
         public void ConsultarPoderesLicenciatario()
-        {                
+        {
             Mouse.OverrideCursor = Cursors.Wait;
 
             try
@@ -2676,11 +2712,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Licencias
             }
 
             return retorno;
-        }        
+        }
 
-        #endregion        
+        #endregion
 
-        
+
         public void IrImprimir(string nombreBoton)
         {
             try

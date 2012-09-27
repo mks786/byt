@@ -136,5 +136,9 @@ namespace Trascend.Bolet.Cliente.Contratos.Traspasos.CambiosDeDomicilio
         void ActivarControlesAlAgregar();
 
         void PintarAsociado(string tipo);
+
+        void EsMarcaNacional(bool marcaNacional);
+
+        string TipoClase { set; }
     }
 }

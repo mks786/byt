@@ -47,6 +47,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Cesiones
         private IBusquedaServicios _busquedaServicios;
         private IStatusWebServicios _statusWebServicios;
         private ICesionServicios _cesionServicios;
+        private IListaDatosValoresServicios _listaDatosValoresServicios;
 
         private IList<Interesado> _interesadosCedente;
         private IList<Interesado> _interesadosCesionario;
@@ -141,6 +142,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Cesiones
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["StatusWebServicios"]);
                 this._cesionServicios = (ICesionServicios)Activator.GetObject(typeof(ICesionServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["CesionServicios"]);
+                this._listaDatosValoresServicios = (IListaDatosValoresServicios)Activator.GetObject(typeof(IListaDatosValoresServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["ListaDatosValoresServicios"]);
 
             }
             catch (Exception ex)
@@ -193,6 +196,22 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Cesiones
                     this._ventana.PoderCedente = cesion.PoderCedente;
                     this._ventana.PoderCesionario = cesion.PoderCesionario;
 
+                    if (((Marca)this._ventana.Marca).LocalidadMarca != null)
+                    {
+                        this._ventana.EsMarcaNacional(((Marca)this._ventana.Marca).LocalidadMarca.Equals("N"));
+
+                        if (((Marca)this._ventana.Marca).LocalidadMarca.Equals("I"))
+                        {
+                            ListaDatosValores itemBuscado = new ListaDatosValores();
+                            itemBuscado.Valor = ((Marca)this._ventana.Marca).ClasificacionInternacional;
+                            IList<ListaDatosValores> items = this._listaDatosValoresServicios.
+                                ConsultarListaDatosValoresPorParametro(new ListaDatosValores(Recursos.Etiquetas.cbiLocalidadMarca));
+                            this._ventana.TipoClase = this.BuscarListaDeDatosValores(items, itemBuscado).Descripcion;
+                        }
+                    }
+                    else
+                        this._ventana.EsMarcaNacional(true);
+
                     CargaBoletines();
 
                     this._ventana.Boletin = this.BuscarBoletin((IList<Boletin>)this._ventana.Boletines, cesion.BoletinPublicacion);
@@ -212,7 +231,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Cesiones
                     CargarPoder("Cesionario");
 
                     CargarId();
-  
+
                     LlenarListasPoderes((Cesion)this._ventana.Cesion);
 
                     ValidarCedente();
@@ -277,14 +296,14 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Cesiones
 
             if ((Marca)this._ventana.Marca != null)
             {
-                this._ventana.IdMarca = (((Marca) this._ventana.MarcaFiltrada).Id).ToString();
+                this._ventana.IdMarca = (((Marca)this._ventana.MarcaFiltrada).Id).ToString();
             }
 
             if (null != ((Cesion)this._ventana.Cesion).Cedente)
-                {
-                    this._ventana.InteresadoCedente = ((Cesion)this._ventana.Cesion).Cedente;
-                    this._ventana.IdCedente = ((Cesion)this._ventana.Cesion).Cedente.Id.ToString();
-                }
+            {
+                this._ventana.InteresadoCedente = ((Cesion)this._ventana.Cesion).Cedente;
+                this._ventana.IdCedente = ((Cesion)this._ventana.Cesion).Cedente.Id.ToString();
+            }
 
             if (null != ((Cesion)this._ventana.Cesion).Cesionario)
             {
@@ -292,18 +311,18 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Cesiones
                 this._ventana.IdCesionario = ((Cesion)this._ventana.Cesion).Cesionario.Id.ToString();
             }
             if (null != ((Cesion)this._ventana.Cesion).AgenteCedente)
-                {
-                    this._ventana.ApoderadoCedente = ((Cesion)this._ventana.Cesion).AgenteCedente;
-                    this._ventana.IdApoderadoCedente = ((Cesion)this._ventana.Cesion).AgenteCedente.Id;
-                }
+            {
+                this._ventana.ApoderadoCedente = ((Cesion)this._ventana.Cesion).AgenteCedente;
+                this._ventana.IdApoderadoCedente = ((Cesion)this._ventana.Cesion).AgenteCedente.Id;
+            }
             if (null != ((Cesion)this._ventana.Cesion).AgenteCesionario)
             {
                 this._ventana.ApoderadoCesionario = ((Cesion)this._ventana.Cesion).AgenteCesionario;
-                this._ventana.IdApoderadoCesionario= ((Cesion)this._ventana.Cesion).AgenteCesionario.Id;
+                this._ventana.IdApoderadoCesionario = ((Cesion)this._ventana.Cesion).AgenteCesionario.Id;
             }
-           
 
-            
+
+
 
         }
 
@@ -481,27 +500,27 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Cesiones
                                                     (Interesado)this._ventana.CedenteFiltrado : null;
 
             if (null != this._ventana.CesionarioFiltrado)
-                cesion.Cesionario = ((Interesado)this._ventana.CesionarioFiltrado).Id != int.MinValue ? 
+                cesion.Cesionario = ((Interesado)this._ventana.CesionarioFiltrado).Id != int.MinValue ?
                                                         (Interesado)this._ventana.CesionarioFiltrado : null;
 
             if (null != this._ventana.ApoderadoCedenteFiltrado)
-                cesion.AgenteCedente = !((Agente)this._ventana.ApoderadoCedenteFiltrado).Id.Equals("") ? 
+                cesion.AgenteCedente = !((Agente)this._ventana.ApoderadoCedenteFiltrado).Id.Equals("") ?
                                                         (Agente)this._ventana.ApoderadoCedenteFiltrado : null;
 
             if (null != this._ventana.ApoderadoCesionarioFiltrado)
-                cesion.AgenteCesionario = !((Agente)this._ventana.ApoderadoCesionarioFiltrado).Id.Equals("") ? 
+                cesion.AgenteCesionario = !((Agente)this._ventana.ApoderadoCesionarioFiltrado).Id.Equals("") ?
                                                         (Agente)this._ventana.ApoderadoCesionarioFiltrado : null;
 
             if (null != this._ventana.PoderCedenteFiltrado)
-                cesion.PoderCedente = ((Poder)this._ventana.PoderCedenteFiltrado).Id != int.MinValue ? 
+                cesion.PoderCedente = ((Poder)this._ventana.PoderCedenteFiltrado).Id != int.MinValue ?
                                                                 (Poder)this._ventana.PoderCedenteFiltrado : null;
 
             if (null != this._ventana.PoderCesionarioFiltrado)
-                cesion.PoderCesionario = ((Poder)this._ventana.PoderCesionarioFiltrado).Id != int.MinValue ? 
+                cesion.PoderCesionario = ((Poder)this._ventana.PoderCesionarioFiltrado).Id != int.MinValue ?
                                                             (Poder)this._ventana.PoderCesionarioFiltrado : null;
 
             if (null != this._ventana.Boletin)
-                cesion.BoletinPublicacion = ((Boletin)this._ventana.Boletin).Id != int.MinValue ? 
+                cesion.BoletinPublicacion = ((Boletin)this._ventana.Boletin).Id != int.MinValue ?
                                                                 (Boletin)this._ventana.Boletin : null;
 
             return cesion;
@@ -523,7 +542,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Cesiones
         public void Modificar()
         {
             Mouse.OverrideCursor = Cursors.Wait;
-            
+
             try
             {
                 #region trace
@@ -1219,17 +1238,33 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Cesiones
                     this._ventana.IdMarca = (((Marca)this._ventana.MarcaFiltrada).Id).ToString();
                     if (null != ((Marca)this._ventana.Marca).Interesado)
                     {
-                        this._ventana.InteresadoCedente = ((Marca) this._ventana.Marca).Interesado;
-                        this._ventana.IdCedente = ((Marca) this._ventana.Marca).Interesado.Id.ToString();
+                        this._ventana.InteresadoCedente = ((Marca)this._ventana.Marca).Interesado;
+                        this._ventana.IdCedente = ((Marca)this._ventana.Marca).Interesado.Id.ToString();
                     }
                     if (null != ((Marca)this._ventana.Marca).Agente)
                     {
-                        this._ventana.ApoderadoCedente = ((Marca) this._ventana.Marca).Agente;
-                        this._ventana.IdApoderadoCedente = ((Marca) this._ventana.Marca).Agente.Id;
+                        this._ventana.ApoderadoCedente = ((Marca)this._ventana.Marca).Agente;
+                        this._ventana.IdApoderadoCedente = ((Marca)this._ventana.Marca).Agente.Id;
                     }
                     if (null != ((Marca)this._ventana.Marca).Poder)
-                         this._ventana.PoderCedente = ((Marca)this._ventana.Marca).Poder;
-                    
+                        this._ventana.PoderCedente = ((Marca)this._ventana.Marca).Poder;
+
+
+                    if (((Marca)this._ventana.Marca).LocalidadMarca != null)
+                    {
+                        this._ventana.EsMarcaNacional(((Marca)this._ventana.Marca).LocalidadMarca.Equals("N"));
+
+                        if (((Marca)this._ventana.Marca).LocalidadMarca.Equals("I"))
+                        {
+                            ListaDatosValores itemBuscado = new ListaDatosValores();
+                            itemBuscado.Valor = ((Marca)this._ventana.Marca).ClasificacionInternacional;
+                            IList<ListaDatosValores> items = this._listaDatosValoresServicios.
+                                ConsultarListaDatosValoresPorParametro(new ListaDatosValores(Recursos.Etiquetas.cbiLocalidadMarca));
+                            this._ventana.TipoClase = this.BuscarListaDeDatosValores(items, itemBuscado).Descripcion;
+                        }
+                    }
+                    else
+                        this._ventana.EsMarcaNacional(true);
 
                     if (null != ((Marca)this._ventana.Marca).Asociado)
                         this._ventana.PintarAsociado(((Marca)this._ventana.Marca).Asociado.TipoCliente.Id);

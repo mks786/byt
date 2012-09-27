@@ -152,5 +152,7 @@ namespace Trascend.Bolet.Cliente.Contratos.TraspasosPatentes.FusionesPatentes
         object NacionalidadesPatenteTercero { get; set; }
 
         object PaisesPatenteTercero { get; set; }
+
+        void EsPatenteNacional(bool marcaNacional);
     }
 }

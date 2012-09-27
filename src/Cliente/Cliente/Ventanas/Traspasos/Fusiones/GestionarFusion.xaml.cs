@@ -20,6 +20,25 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Fusiones
 
         #region IConsultarFusion
 
+        public void EsMarcaNacional(bool marcaNacional)
+        {
+            if (marcaNacional)
+            {
+                this._radioExtranjero.IsChecked = !marcaNacional;
+                this._radioNacional.IsChecked = marcaNacional;
+            }
+            else
+            {
+                this._radioExtranjero.IsChecked = !marcaNacional;
+                this._radioNacional.IsChecked = marcaNacional;
+            }
+        }
+
+        public string TipoClase
+        {
+            set { this._txtClasificacionInt.Text = value; }
+        }
+
         public bool EstaCargada
         {
             get { return this._cargada; }
@@ -244,6 +263,16 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Fusiones
                 this._txtIdPoderFiltrar.IsEnabled = value;
                 this._dpkFechaPoderFiltrar.IsEnabled = value;
 
+                #region Internacional
+
+                this._txtIdMarcaInt.IsEnabled = value;
+                this._txtIdMarcaIntCor.IsEnabled = value;
+                this._txtPaisInt.IsEnabled = value;
+                this._txtClaseInternacionalSolicitud.IsEnabled = value;
+                this._txtClasificacionInt.IsEnabled = value;
+
+                #endregion
+
             }
         }
 
@@ -408,7 +437,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Fusiones
 
         public string NombreMarcaTercero
         {
-            get { return this._txtNombreMarcaTercero.Text;}
+            get { return this._txtNombreMarcaTercero.Text; }
             set { this._txtNombreMarcaTercero.Text = value; }
         }
 
@@ -458,7 +487,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Fusiones
         /// </summary>
         /// <param name="fusion">la fusion a mostrar</param>
         /// <param name="visibilidad">parametro que indica la visibilidad de los botones</param>
-        public GestionarFusion(object fusion,object visibilidad)
+        public GestionarFusion(object fusion, object visibilidad)
         {
             InitializeComponent();
             this._cargada = false;
@@ -517,7 +546,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Fusiones
 
 
         private void _btnRegresar_Click(object sender, RoutedEventArgs e)
-        {            
+        {
             if (this.TextoBotonRegresar == Recursos.Etiquetas.btnRegresar)
                 this._presentador.Regresar();
             else if (this.TextoBotonRegresar == Recursos.Etiquetas.btnCancelar)
@@ -576,7 +605,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Fusiones
 
 
         public void ConvertirEnteroMinimoABlanco()
-    {           
+        {
             if (!this.IdPoder.Equals(""))
             {
                 if (int.Parse(this.IdPoder) == int.MinValue)
@@ -596,7 +625,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Fusiones
             {
                 if (int.Parse(this.IdMarca) == int.MinValue)
                     this.IdMarca = "";
-            }    
+            }
         }
 
 
@@ -744,7 +773,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Fusiones
         }
 
         private void GestionarVisibilidadDatosDeInteresadoEntre(object value)
-        {                        
+        {
             this._txtNombreInteresadoEntre.Visibility = (System.Windows.Visibility)value;
             this._txtIdInteresadoEntre.Visibility = (System.Windows.Visibility)value;
             this._txtPaisInteresadoEntre.Visibility = (System.Windows.Visibility)value;
@@ -820,7 +849,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Fusiones
             GestionarVisibilidadDatosDePoder(Visibility.Visible);
             GestionarVisibilidadFiltroPoder(Visibility.Collapsed);
 
-            
+
         }
 
         private void _txtInteresadoSobrevivienteFiltrar_GotFocus(object sender, RoutedEventArgs e)
@@ -848,8 +877,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Fusiones
         }
 
         public void GestionarBotonConsultarInteresado(bool value)
-        {                          
-            this._btnConsultarInteresadoSobreviviente.IsEnabled = value;           
+        {
+            this._btnConsultarInteresadoSobreviviente.IsEnabled = value;
         }
 
 
@@ -861,10 +890,10 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Fusiones
         private void _btnConsultarApoderado_Click(object sender, RoutedEventArgs e)
         {
             this._presentador.ConsultarApoderados();
-        }       
+        }
 
         private void _lstApoderados_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
-        {          
+        {
             if (this._presentador.CambiarApoderado())
             {
                 GestionarVisibilidadDatosDeAgenteApoderado(Visibility.Visible);
@@ -886,7 +915,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Fusiones
         {
             this._presentador.OrdenarColumna(sender as GridViewColumnHeader, this._lstApoderados);
         }
-        
+
         private void _txtApoderadoFiltrar_GotFocus(object sender, RoutedEventArgs e)
         {
             this._btnConsultarApoderado.IsDefault = true;
@@ -921,12 +950,12 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Fusiones
         private void GestionarVisibilidadFiltroAgenteApoderado(object value)
         {
             this._lblIdApoderadoFiltrar.Visibility = (System.Windows.Visibility)value;
-            this._lblNombreApoderadoFiltrar.Visibility = (System.Windows.Visibility)value; 
+            this._lblNombreApoderadoFiltrar.Visibility = (System.Windows.Visibility)value;
             this._txtNombreApoderadoFiltrar.Visibility = (System.Windows.Visibility)value;
             this._txtIdApoderadoFiltrar.Visibility = (System.Windows.Visibility)value;
             this._lstApoderados.Visibility = (System.Windows.Visibility)value;
             this._btnConsultarApoderado.Visibility = (System.Windows.Visibility)value;
-            
+
         }
 
         private void GestionarVisibilidadDatosDeAgenteApoderado(object value)
@@ -936,8 +965,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Fusiones
         }
 
         public void GestionarBotonConsultarApoderado(bool value)
-        {                           
-            this._btnConsultarApoderado.IsEnabled = value;           
+        {
+            this._btnConsultarApoderado.IsEnabled = value;
         }
 
         #endregion
@@ -955,8 +984,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Fusiones
                 this._presentador.ConsultarInteresadosSobreviviente();
             else if (((Button)sender).Name.Equals("_btnConsultarApoderado"))
                 this._presentador.ConsultarApoderados();
-            else if (((Button)sender).Name.Equals("_btnConsultarPoder"))            
-                this._presentador.ConsultarPoderes();           
+            else if (((Button)sender).Name.Equals("_btnConsultarPoder"))
+                this._presentador.ConsultarPoderes();
         }
 
         private void _txtPoderFiltrar_GotFocus(object sender, RoutedEventArgs e)
@@ -985,9 +1014,9 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Fusiones
             GestionarVisibilidadFiltroAgenteApoderado(Visibility.Collapsed);
 
             //Muestro el filtro de Poder
-            GestionarVisibilidadDatosDePoder(Visibility.Collapsed);            
-            GestionarVisibilidadFiltroPoder(Visibility.Visible);            
-           
+            GestionarVisibilidadDatosDePoder(Visibility.Collapsed);
+            GestionarVisibilidadFiltroPoder(Visibility.Visible);
+
         }
 
         private void _OrdenarPoderes_Click(object sender, RoutedEventArgs e)
@@ -1014,11 +1043,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Fusiones
                     this._btnConsultarInteresadoSobreviviente.IsEnabled = true;
                 }
             }
-        }       
+        }
 
         public void GestionarBotonConsultarPoder(bool value)
-        {                
-            this._btnConsultarPoder.IsEnabled = value;          
+        {
+            this._btnConsultarPoder.IsEnabled = value;
         }
 
         private void GestionarVisibilidadFiltroPoder(object value)

@@ -23,11 +23,25 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.CambiosPeticionarioP
         {
             get { return this._cargada; }
             set { this._cargada = value; }
-        }           
-     
+        }
+
         public string IdAnteriorFiltrar
         {
             get { return this._txtIdAnteriorFiltrar.Text; }
+        }
+
+        public void EsPatenteNacional(bool patenteNacional)
+        {
+            if (patenteNacional)
+            {
+                this._radioExtranjero.IsChecked = !patenteNacional;
+                this._radioNacional.IsChecked = patenteNacional;
+            }
+            else
+            {
+                this._radioExtranjero.IsChecked = !patenteNacional;
+                this._radioNacional.IsChecked = patenteNacional;
+            }
         }
 
 
@@ -117,13 +131,13 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.CambiosPeticionarioP
         public object InteresadoAnterior
         {
             get { return this._gridDatosAnterior.DataContext; }
-            set { this._gridDatosAnterior.DataContext = value; }            
+            set { this._gridDatosAnterior.DataContext = value; }
         }
-        
+
         public object InteresadoActual
         {
             get { return this._gridDatosActual.DataContext; }
-            set { this._gridDatosActual.DataContext = value; }            
+            set { this._gridDatosActual.DataContext = value; }
         }
 
         public object ApoderadoAnterior
@@ -135,20 +149,20 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.CambiosPeticionarioP
         public object ApoderadoActual
         {
             get { return this._gridDatosApoderadoActual.DataContext; }
-            set { this._gridDatosApoderadoActual.DataContext = value; }            
+            set { this._gridDatosApoderadoActual.DataContext = value; }
         }
-    
+
         public object PoderAnterior
         {
             get { return this._gridDatosPoderAnterior.DataContext; }
-            set { this._gridDatosPoderAnterior.DataContext = value; }            
+            set { this._gridDatosPoderAnterior.DataContext = value; }
         }
-        
+
         public object PoderActual
         {
             get { return this._gridDatosPoderActual.DataContext; }
             set { this._gridDatosPoderActual.DataContext = value; }
-        }  
+        }
 
         public object PatentesFiltradas
         {
@@ -191,13 +205,13 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.CambiosPeticionarioP
             get { return this._lstPoderesActual.DataContext; }
             set { this._lstPoderesActual.DataContext = value; }
         }
-         
+
         public object CambioPeticionarioPatente
         {
             get { return this._gridDatos.DataContext; }
             set { this._gridDatos.DataContext = value; }
         }
-        
+
         public object PatenteFiltrada
         {
             get { return this._lstPatentes.SelectedItem; }
@@ -265,7 +279,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.CambiosPeticionarioP
                 this._txtTipo.IsEnabled = value;
                 this._btnConsultarPatente.IsEnabled = value;
                 this._dpkFechaCambioPeticionario.IsEnabled = value;
-                
+
                 this._txtNombreAnterior.IsEnabled = value;
                 this._txtIdAnterior.IsEnabled = value;
                 this._txtPaisAnterior.IsEnabled = value;
@@ -275,8 +289,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.CambiosPeticionarioP
                 this._txtNombreApoderadoAnterior.IsEnabled = value;
                 this._txtIdApoderadoAnterior.IsEnabled = value;
                 this._txtNombreApoderadoAnteriorFiltrar.IsEnabled = value;
-                this._txtIdApoderadoAnteriorFiltrar.IsEnabled = value;                                
-                this._txtIdPoderAnterior.IsEnabled = value;                
+                this._txtIdApoderadoAnteriorFiltrar.IsEnabled = value;
+                this._txtIdPoderAnterior.IsEnabled = value;
                 this._txtIdPoderAnteriorFiltrar.IsEnabled = value;
                 //this._txtAnexoPoderAnterior.IsEnabled = value;
                 //this._txtBoletinPoderAnterior.IsEnabled = value;
@@ -291,21 +305,21 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.CambiosPeticionarioP
                 this._txtNombreApoderadoActual.IsEnabled = value;
                 this._txtIdApoderadoActual.IsEnabled = value;
                 this._txtIdApoderadoActualFiltrar.IsEnabled = value;
-                this._txtNombreApoderadoActualFiltrar.IsEnabled = value;                               
+                this._txtNombreApoderadoActualFiltrar.IsEnabled = value;
                 this._txtIdPoderActual.IsEnabled = value;
                 this._txtIdPoderActualFiltrar.IsEnabled = value;
 
                 this._txtAnexoPoderActual.IsEnabled = value;
                 this._cbxBoletin.IsEnabled = value;
-                this._txtFacultadPoderActual.IsEnabled = value;                
+                this._txtFacultadPoderActual.IsEnabled = value;
                 this._txtNumPoderActual.IsEnabled = value;
-                this._txtFechaPoderActual.IsEnabled = value;  
+                this._txtFechaPoderActual.IsEnabled = value;
                 this._txtPaisActual.IsEnabled = value;
                 this._txtNacionalidadActual.IsEnabled = value;
 
-                this._txtObservacionCambioPeticionario.IsEnabled = value;                
+                this._txtObservacionCambioPeticionario.IsEnabled = value;
                 this._txtComentarioCambioPeticionario.IsEnabled = value;
-                this._txtObservacionCambioPeticionario.IsEnabled = value;                
+                this._txtObservacionCambioPeticionario.IsEnabled = value;
                 this._txtComentarioCambioPeticionario.IsEnabled = value;
                 this._chkAsientoEnLibro.IsEnabled = value;
             }
@@ -528,13 +542,13 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.CambiosPeticionarioP
         }
 
         private void _btnConsultar(object sender, RoutedEventArgs e)
-        {           
+        {
             if (((Button)sender).Name.Equals("_btnConsultarPatente"))
                 this._presentador.ConsultarPatentes();
             else if (((Button)sender).Name.Equals("_btnConsultarAnterior"))
-                this._presentador.ConsultarAnteriors();  
+                this._presentador.ConsultarAnteriors();
             else if (((Button)sender).Name.Equals("_btnConsultarApoderadoAnterior"))
-                this._presentador.ConsultarApoderadosAnterior();  
+                this._presentador.ConsultarApoderadosAnterior();
             else if (((Button)sender).Name.Equals("_btnConsultarPoderAnterior"))
                 this._presentador.ConsultarPoderesAnterior();
             else if (((Button)sender).Name.Equals("_btnConsultarActual"))
@@ -542,9 +556,9 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.CambiosPeticionarioP
             else if (((Button)sender).Name.Equals("_btnConsultarApoderadoActual"))
                 this._presentador.ConsultarApoderadosActual();
             else if (((Button)sender).Name.Equals("_btnConsultarPoderActual"))
-                this._presentador.ConsultarPoderesActual();            
-        }       
-        
+                this._presentador.ConsultarPoderesActual();
+        }
+
         //private void _btnPlanillaVienen_Click(object sender, RoutedEventArgs e)
         //{
         //    this._presentador.IrImprimir(((Button)sender).Name);
@@ -699,7 +713,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.CambiosPeticionarioP
         {
             this._btnConsultarPatente.IsDefault = true;
             this._btnModificar.IsDefault = false;
-        }      
+        }
 
         #endregion
 
@@ -714,13 +728,13 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.CambiosPeticionarioP
 
                 if (this._presentador.VerificarCambioInteresado("Anterior"))
                 {
-                    this._btnConsultarPoderAnterior.IsEnabled = false;                    
+                    this._btnConsultarPoderAnterior.IsEnabled = false;
                 }
                 else
                 {
-                    this._btnConsultarPoderAnterior.IsEnabled = true;                    
+                    this._btnConsultarPoderAnterior.IsEnabled = true;
                 }
-                
+
             }
 
         }
@@ -760,7 +774,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.CambiosPeticionarioP
 
             GestionarVisibilidadDatosDePoderActual(Visibility.Visible);
         }
- 
+
         private void GestionarVisibilidadDatosDeAnterior(object value)
         {
             this._lblNombreAnterior.Visibility = (System.Windows.Visibility)value;
@@ -768,7 +782,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.CambiosPeticionarioP
             this._txtIdAnterior.Visibility = (System.Windows.Visibility)value;
             this._txtPaisAnterior.Visibility = (System.Windows.Visibility)value;
             this._txtNacionalidadAnterior.Visibility = (System.Windows.Visibility)value;
-        }     
+        }
 
         private void GestionarVisibilidadFiltroAnterior(object value)
         {
@@ -780,17 +794,17 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.CambiosPeticionarioP
             this._lstAnteriors.Visibility = (System.Windows.Visibility)value;
             this._btnConsultarAnterior.Visibility = (System.Windows.Visibility)value;
 
-        }    
+        }
 
         private void _txtAnteriorFiltrar_GotFocus(object sender, RoutedEventArgs e)
         {
             this._btnConsultarAnterior.IsDefault = true;
             this._btnModificar.IsDefault = false;
         }
-       
+
         #endregion
 
-        #region Apoderado Anterior       
+        #region Apoderado Anterior
 
         private void _lstApoderadosAnterior_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
@@ -864,13 +878,13 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.CambiosPeticionarioP
             this._btnConsultarApoderadoAnterior.Visibility = (System.Windows.Visibility)value;
 
         }
-      
+
         private void _txtApoderadoAnteriorFiltrar_GotFocus(object sender, RoutedEventArgs e)
         {
             this._btnConsultarApoderadoAnterior.IsDefault = true;
             this._btnModificar.IsDefault = false;
-        }              
-       
+        }
+
         #endregion
 
         #region Poder Anterior
@@ -962,9 +976,9 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.CambiosPeticionarioP
         {
             this._btnConsultarPoderAnterior.IsDefault = true;
             this._btnModificar.IsDefault = false;
-        }  
+        }
 
-        #endregion        
+        #endregion
 
         #region Actual
 
@@ -985,12 +999,12 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.CambiosPeticionarioP
                 }
             }
         }
-       
+
         private void _OrdenarActual_Click(object sender, RoutedEventArgs e)
         {
             this._presentador.OrdenarColumna(sender as GridViewColumnHeader, this._lstActuals);
         }
-      
+
         private void _txtNombreActual_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             GestionarVisibilidadDatosDeActual(Visibility.Collapsed);
@@ -1021,7 +1035,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.CambiosPeticionarioP
 
             GestionarVisibilidadDatosDePoderActual(Visibility.Visible);
         }
-        
+
         private void GestionarVisibilidadDatosDeActual(object value)
         {
             this._lblNombreActual.Visibility = (System.Windows.Visibility)value;
@@ -1030,7 +1044,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.CambiosPeticionarioP
             this._txtPaisActual.Visibility = (System.Windows.Visibility)value;
             this._txtNacionalidadActual.Visibility = (System.Windows.Visibility)value;
         }
-     
+
         private void GestionarVisibilidadFiltroActual(object value)
         {
             this._lblActualFiltrar.Visibility = (System.Windows.Visibility)value;
@@ -1041,13 +1055,13 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.CambiosPeticionarioP
             this._lstActuals.Visibility = (System.Windows.Visibility)value;
             this._btnConsultarActual.Visibility = (System.Windows.Visibility)value;
         }
-       
+
         private void _txtActualFiltrar_GotFocus(object sender, RoutedEventArgs e)
         {
             this._btnConsultarActual.IsDefault = true;
             this._btnModificar.IsDefault = false;
         }
-       
+
         #endregion
 
         #region Apoderado Actual
@@ -1222,7 +1236,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.CambiosPeticionarioP
         {
             this._btnConsultarPoderActual.IsDefault = true;
             this._btnModificar.IsDefault = false;
-        } 
+        }
 
         #endregion
 

@@ -5,8 +5,8 @@ namespace Trascend.Bolet.Cliente.Contratos.Traspasos.CambiosDePeticionario
 {
     interface IGestionarCambioDePeticionario : IPaginaBase
     {
-        object CambioPeticionario { get; set; }               
-        
+        object CambioPeticionario { get; set; }
+
         //ListView Marcas
 
         string IdMarcaFiltrar { get; }
@@ -18,7 +18,7 @@ namespace Trascend.Bolet.Cliente.Contratos.Traspasos.CambiosDePeticionario
         object MarcaFiltrada { get; set; }
 
         //-----------
-        
+
         //ListView Anterior
         string IdAnteriorFiltrar { get; }
 
@@ -27,7 +27,7 @@ namespace Trascend.Bolet.Cliente.Contratos.Traspasos.CambiosDePeticionario
         object AnteriorsFiltrados { get; set; }
 
         object AnteriorFiltrado { get; set; }
-       
+
         //----------------
 
         //ListView Actual
@@ -47,7 +47,7 @@ namespace Trascend.Bolet.Cliente.Contratos.Traspasos.CambiosDePeticionario
         string IdApoderadoAnteriorFiltrar { get; }
 
         string NombreApoderadoAnteriorFiltrar { get; }
-        
+
         object ApoderadosAnteriorFiltrados { get; set; }
 
         object ApoderadoAnteriorFiltrado { get; set; }
@@ -89,14 +89,14 @@ namespace Trascend.Bolet.Cliente.Contratos.Traspasos.CambiosDePeticionario
         object PoderActualFiltrado { get; set; }
 
         //----------------
-  
+
 
         bool HabilitarCampos { set; }
 
         string Region { get; set; }
 
         string TextoBotonModificar { get; set; }
-        
+
         string TextoBotonRegresar { get; set; }
 
         string NombreMarca { set; }
@@ -129,7 +129,7 @@ namespace Trascend.Bolet.Cliente.Contratos.Traspasos.CambiosDePeticionario
 
         string NacionalidadAnterior { set; }
 
-        string NacionalidadActual { set; }        
+        string NacionalidadActual { set; }
 
         object Marca { get; set; }
 
@@ -160,13 +160,17 @@ namespace Trascend.Bolet.Cliente.Contratos.Traspasos.CambiosDePeticionario
         void ConvertirEnteroMinimoABlanco();
 
         void GestionarBotonConsultarInteresados(string tipo, bool value);
-        
+
         void GestionarBotonConsultarApoderados(string tipo, bool value);
-        
-        void GestionarBotonConsultarPoderes(string tipo, bool value);       
+
+        void GestionarBotonConsultarPoderes(string tipo, bool value);
 
         void ActivarControlesAlAgregar();
 
         void PintarAsociado(string tipo);
+
+        void EsMarcaNacional(bool marcaNacional);
+
+        string TipoClase { set; }
     }
 }

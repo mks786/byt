@@ -5,7 +5,7 @@ namespace Trascend.Bolet.Cliente.Contratos.TraspasosPatentes.CambiosDeDomicilioP
 {
     interface IGestionarCambioDeDomicilioPatentes : IPaginaBase
     {
-        object CambioDeDomicilioPatente { get; set; }        
+        object CambioDeDomicilioPatente { get; set; }
 
         string IdAsociadoFiltrar { get; }
 
@@ -115,7 +115,6 @@ namespace Trascend.Bolet.Cliente.Contratos.TraspasosPatentes.CambiosDeDomicilioP
 
         string TextoBotonRegresar { get; set; }
 
-
         GridViewColumnHeader CurSortCol { get; set; }
 
         SortAdorner CurAdorner { get; set; }
@@ -130,6 +129,8 @@ namespace Trascend.Bolet.Cliente.Contratos.TraspasosPatentes.CambiosDeDomicilioP
 
         void GestionarBotonConsultarPoder(bool value);
 
-        void ActivarControlesAlAgregar();       
+        void ActivarControlesAlAgregar();
+
+        void EsPatenteNacional(bool marcaNacional);
     }
 }

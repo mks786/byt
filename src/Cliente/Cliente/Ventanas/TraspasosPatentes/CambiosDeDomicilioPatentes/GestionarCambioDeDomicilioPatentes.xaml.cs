@@ -37,6 +37,19 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.CambiosDeDomicilioPa
             }
         }
 
+        public void EsPatenteNacional(bool patenteNacional)
+        {
+            if (patenteNacional)
+            {
+                this._radioExtranjero.IsChecked = !patenteNacional;
+                this._radioNacional.IsChecked = patenteNacional;
+            }
+            else
+            {
+                this._radioExtranjero.IsChecked = !patenteNacional;
+                this._radioNacional.IsChecked = patenteNacional;
+            }
+        }
 
         public object Boletines
         {
@@ -54,7 +67,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.CambiosDeDomicilioPa
         {
             get { throw new System.NotImplementedException(); }
         }
-        
+
         public string NombreAsociadoFiltrar
         {
             get { throw new System.NotImplementedException(); }
@@ -184,7 +197,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.CambiosDeDomicilioPa
                 _txtPaisInteresadoAnterior.IsEnabled = value;
                 _txtCiudadInteresadoAnterior.IsEnabled = value;
                 _txtDomicilioInteresadoAnterior.IsEnabled = value;
-                
+
                 _txtNombreInteresadoActual.IsEnabled = value;
                 _txtIdInteresadoActual.IsEnabled = value;
                 _txtNombreInteresadoActualFiltrar.IsEnabled = value;
@@ -192,7 +205,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.CambiosDeDomicilioPa
                 _txtPaisInteresadoActual.IsEnabled = value;
                 _txtCiudadInteresadoActual.IsEnabled = value;
                 _txtDomicilioInteresadoActual.IsEnabled = value;
-                
+
                 _txtNombreApoderado.IsEnabled = value;
                 _txtIdApoderado.IsEnabled = value;
                 _txtNombreApoderadoFiltrar.IsEnabled = value;
@@ -211,7 +224,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.CambiosDeDomicilioPa
                 _txtFacultadPoder.IsEnabled = value;
                 _txtFechaPoder.IsEnabled = value;
                 _txtNumPoder.IsEnabled = value;
-                             
+
                 _lblPoderFiltrar.IsEnabled = value;
                 _lblIdPoderFiltrar.IsEnabled = value;
                 _lblIdPoderFiltrar.IsEnabled = value;
@@ -381,7 +394,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.CambiosDeDomicilioPa
             this._presentador = new PresentadorGestionarCambioDeDomicilioPatentes(this, cambioDeDomicilio);
         }
 
-        
+
         /// <summary>
         /// Constructor para la consulta desde operaciones
         /// </summary>
@@ -644,7 +657,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.CambiosDeDomicilioPa
         }
 
         private void _lstInteresadosActual_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
-        {            
+        {
             if (this._presentador.CambiarInteresadoActual())
             {
                 GestionarVisibilidadDatosDeInteresadoActual(Visibility.Visible);
@@ -725,7 +738,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.CambiosDeDomicilioPa
         {
             this._presentador.ConsultarApoderados();
         }
-      
+
         private void _lstApoderados_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             if (this._presentador.CambiarApoderado())

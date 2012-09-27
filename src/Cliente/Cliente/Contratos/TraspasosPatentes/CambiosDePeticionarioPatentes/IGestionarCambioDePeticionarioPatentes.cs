@@ -166,5 +166,7 @@ namespace Trascend.Bolet.Cliente.Contratos.TraspasosPatentes.CambiosDePeticionar
         void ActivarControlesAlAgregar();
 
         void ConvertirEnteroMinimoABlanco();
+
+        void EsPatenteNacional(bool marcaNacional);
     }
 }

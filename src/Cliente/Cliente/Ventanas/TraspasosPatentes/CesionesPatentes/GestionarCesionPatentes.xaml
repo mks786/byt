@@ -35,6 +35,9 @@
             <RowDefinition Height="10"/>
         </Grid.RowDefinitions>
 
+        <RadioButton Grid.Column="1" Name="_radioNacional" IsChecked="True" GroupName="GrupoTipoMarca" VerticalAlignment="Center" Margin="350,0,0,0">Patente Nacional</RadioButton>
+        <RadioButton Grid.Column="1" Name="_radioExtranjero" GroupName="GrupoTipoMarca" Margin="460,0,0,0" VerticalAlignment="Center">Patente Extranjero</RadioButton>
+
         <GroupBox Grid.Column="1" Grid.Row="1">
             <StackPanel Name="_gridDatos"  VerticalAlignment="Center"  HorizontalAlignment="Center"
                         DataContext="{Binding}" Orientation="Vertical">
@@ -96,6 +99,8 @@
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
@@ -195,6 +200,24 @@
                         <!--Fin Campo-->
 
                         <!--Fin datos de la Patente-->
+                        <!--Datos de Patente Internacional-->
+                        <Separator Grid.Row="3" Grid.ColumnSpan="7" VerticalAlignment="Bottom"/>
+
+                        <Label Name="_lblMarcaIntId" Grid.Column="0" Grid.Row="4" HorizontalAlignment="Right" VerticalAlignment="Center" >
+                            <TextBlock Text="{x:Static recurso:Etiquetas.lblCodigoInt}"/>
+                        </Label>
+                        <custom:ByTTextBox IsReadOnly="True" IsTabStop="False" IsEnabled="False"  Grid.Column="1" Grid.Row="4" Name="_txtIdMarcaInt" VerticalAlignment="Center" Width="40" HorizontalAlignment="Left"
+                         MaxLength="255" Text="{Binding Path=CodigoPatenteInternacional}" ></custom:ByTTextBox>
+                        <custom:ByTTextBox IsReadOnly="True" IsTabStop="False" IsEnabled="False"  Grid.Column="1" Grid.Row="4" Name="_txtIdMarcaIntCor" VerticalAlignment="Center"  Grid.ColumnSpan="1" Margin="40,0,0,0"
+                         MaxLength="255" Text="{Binding Path=CorrelativoExpediente}" ></custom:ByTTextBox>
+
+                        <Label Grid.Column="2" Grid.Row="4" VerticalAlignment="Center" HorizontalContentAlignment="Right">
+                            <TextBlock Text="{x:Static recurso:Etiquetas.lblPais}"/>
+                        </Label>
+                        <custom:ByTTextBox IsReadOnly="True"  IsTabStop="False" IsEnabled="False" Grid.Column="3" Grid.Row="4" Name="_txtPaisInt" VerticalAlignment="Center" 
+                         Grid.ColumnSpan="1" Text="{Binding Path=PaisInternacional.NombreEspanol}"></custom:ByTTextBox>
+
+                        <!--Fin Datos de Patente Internacional-->
                     </Grid>
                 </WrapPanel>
 

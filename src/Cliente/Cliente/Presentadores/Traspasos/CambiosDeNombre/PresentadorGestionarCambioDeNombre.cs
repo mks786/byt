@@ -22,11 +22,14 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeNombre
 {
     class PresentadorGestionarCambioDeNombre : PresentadorBase
     {
+
         private static PaginaPrincipal _paginaPrincipal = PaginaPrincipal.ObtenerInstancia;
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
+
         private bool _agregar = true;
         private IGestionarCambioDeNombre _ventana;
+
 
         private IMarcaServicios _marcaServicios;
         private IAnaquaServicios _anaquaServicios;
@@ -47,6 +50,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeNombre
         private IBusquedaServicios _busquedaServicios;
         private IStatusWebServicios _statusWebServicios;
         private ICambioDeNombreServicios _cambioDeNombreServicios;
+        private IListaDatosValoresServicios _listaDatosValoresServicios;
+
 
         private IList<Asociado> _asociados;
         private IList<Interesado> _interesados;
@@ -58,9 +63,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeNombre
         private IList<Agente> _agentesApoderados;
         private IList<Poder> _poderes;
 
+
         private IList<Poder> _poderesInterseccion;
         private IList<Poder> _poderesInteresadoActual;
         private IList<Poder> _poderesApoderado;
+
 
         /// <summary>
         /// Constructor Predeterminado
@@ -70,7 +77,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeNombre
         {
             try
             {
-                this._ventana = ventana;                
+                this._ventana = ventana;
 
                 if (CambioDeNombre != null)
                 {
@@ -82,7 +89,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeNombre
                     CambioDeNombre cambioNombreAgregar = new CambioDeNombre();
                     this._ventana.CambioDeNombre = cambioNombreAgregar;
 
-                    ((CambioDeNombre)this._ventana.CambioDeNombre).Fecha= DateTime.Now;
+                    ((CambioDeNombre)this._ventana.CambioDeNombre).Fecha = DateTime.Now;
                     this._ventana.Marca = null;
                     this._ventana.Poder = null;
                     this._ventana.InteresadoAnterior = null;
@@ -137,6 +144,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeNombre
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["StatusWebServicios"]);
                 this._cambioDeNombreServicios = (ICambioDeNombreServicios)Activator.GetObject(typeof(ICambioDeNombreServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["CambioDeNombreServicios"]);
+                this._listaDatosValoresServicios = (IListaDatosValoresServicios)Activator.GetObject(typeof(IListaDatosValoresServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["ListaDatosValoresServicios"]);
 
                 #endregion
             }
@@ -147,6 +156,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeNombre
             }
         }
 
+
         public void ActualizarTitulo()
         {
             if (_agregar == true)
@@ -156,6 +166,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeNombre
                 this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleGestionarCambiosDeNombre,
                 Recursos.Ids.GestionarCambioDeNombre);
         }
+
 
         /// <summary>
         /// Método que carga los datos iniciales a mostrar en la página
@@ -187,6 +198,23 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeNombre
                     this._ventana.IdAgenteApoderado = this._ventana.AgenteApoderado != null ? ((Agente)this._ventana.AgenteApoderado).Id : "";
                     this._ventana.Poder = CambioDeNombre.Poder;
 
+
+
+                    if (((Marca)this._ventana.Marca).LocalidadMarca != null)
+                    {
+                        this._ventana.EsMarcaNacional(((Marca)this._ventana.Marca).LocalidadMarca.Equals("N"));
+
+                        if (((Marca)this._ventana.Marca).LocalidadMarca.Equals("I"))
+                        {
+                            ListaDatosValores itemBuscado = new ListaDatosValores();
+                            itemBuscado.Valor = ((Marca)this._ventana.Marca).ClasificacionInternacional;
+                            IList<ListaDatosValores> items = this._listaDatosValoresServicios.
+                                ConsultarListaDatosValoresPorParametro(new ListaDatosValores(Recursos.Etiquetas.cbiLocalidadMarca));
+                            this._ventana.TipoClase = this.BuscarListaDeDatosValores(items, itemBuscado).Descripcion;
+                        }
+                    }
+                    else
+                        this._ventana.EsMarcaNacional(true);
 
                     CargarMarca();
 
@@ -240,6 +268,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeNombre
             }
         }
 
+
         private void CargaBoletines()
         {
             Boletin primerBoletin = new Boletin(int.MinValue);
@@ -248,6 +277,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeNombre
             this._ventana.Boletines = boletines;
 
         }
+
 
         private void CargarInteresado(string tipo)
         {
@@ -307,12 +337,14 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeNombre
 
                 }
             }
-        }                       
+        }
+
 
         public void IrConsultarMarcas()
         {
             this.Navegar(new ConsultarMarcas());
         }
+
 
         public CambioDeNombre CargarCambioDeNombreDeLaPantalla()
         {
@@ -321,30 +353,30 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeNombre
 
             if ((null != this._ventana.MarcaFiltrada) && (((Marca)this._ventana.MarcaFiltrada).Id != int.MinValue))
             {
-                cambioDeNombre.Marca = (Marca) this._ventana.MarcaFiltrada;
+                cambioDeNombre.Marca = (Marca)this._ventana.MarcaFiltrada;
                 cambioDeNombre.InteresadoAnterior = ((Marca)this._ventana.MarcaFiltrada).Interesado;
                 cambioDeNombre.Agente = ((Marca)this._ventana.MarcaFiltrada).Agente;
                 cambioDeNombre.Poder = ((Marca)this._ventana.MarcaFiltrada).Poder;
             }
 
             if (null != this._ventana.InteresadoAnterior)
-                cambioDeNombre.InteresadoAnterior = ((Interesado)this._ventana.InteresadoAnterior).Id != int.MinValue ? 
+                cambioDeNombre.InteresadoAnterior = ((Interesado)this._ventana.InteresadoAnterior).Id != int.MinValue ?
                                                                     (Interesado)this._ventana.InteresadoAnterior : null;
 
             if (null != this._ventana.InteresadoActual)
-                cambioDeNombre.InteresadoActual = ((Interesado)this._ventana.InteresadoActual).Id != int.MinValue ? 
+                cambioDeNombre.InteresadoActual = ((Interesado)this._ventana.InteresadoActual).Id != int.MinValue ?
                                                                     (Interesado)this._ventana.InteresadoActual : null;
 
             if (null != this._ventana.AgenteApoderado)
-                cambioDeNombre.Agente = !((Agente)this._ventana.AgenteApoderado).Id.Equals("") ? 
+                cambioDeNombre.Agente = !((Agente)this._ventana.AgenteApoderado).Id.Equals("") ?
                                                             (Agente)this._ventana.AgenteApoderado : null;
 
             if (null != this._ventana.Poder)
-                cambioDeNombre.Poder = ((Poder)this._ventana.Poder).Id != int.MinValue ? 
+                cambioDeNombre.Poder = ((Poder)this._ventana.Poder).Id != int.MinValue ?
                                                         (Poder)this._ventana.Poder : null;
 
             if (null != this._ventana.Boletin)
-                cambioDeNombre.Boletin = ((Boletin)this._ventana.Boletin).Id != int.MinValue ?  
+                cambioDeNombre.Boletin = ((Boletin)this._ventana.Boletin).Id != int.MinValue ?
                                                             (Boletin)this._ventana.Boletin : null;
 
             (cambioDeNombre.Marca).BEtiqueta = ((CambioDeNombre)this._ventana.CambioDeNombre).Marca.BEtiqueta;
@@ -352,11 +384,13 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeNombre
             return cambioDeNombre;
         }
 
+
         public void CambiarAModificar()
         {
             this._ventana.HabilitarCampos = true;
             this._ventana.TextoBotonModificar = Recursos.Etiquetas.btnAceptar;
         }
+
 
         /// <summary>
         /// Método que dependiendo del estado de la página, habilita los campos o 
@@ -459,6 +493,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeNombre
             }
         }
 
+
         /// <summary>
         /// Metodo que se encarga de eliminar un Cambio De Nombre
         /// </summary>
@@ -510,6 +545,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeNombre
             }
         }
 
+
         public void Auditoria()
         {
             try
@@ -550,6 +586,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeNombre
             }
         }
 
+
         /// <summary>
         /// Método que ordena una columna
         /// </summary>
@@ -584,6 +621,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeNombre
             #endregion
         }
 
+
         public void LlenarListaAgenteEInteresado(Poder poder, bool cargaInicial)
         {
             try
@@ -591,7 +629,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeNombre
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
-                #endregion                
+                #endregion
 
                 Interesado interesado = new Interesado();
                 IList<Agente> agentesInteresadoFiltrados;
@@ -677,6 +715,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeNombre
 
         }
 
+
         private void LlenarListaAgente(Poder poder)
         {
             Agente primerAgente = new Agente("");
@@ -687,7 +726,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeNombre
             this._ventana.AgenteApoderadoFiltrado = primerAgente;
         }
 
+
         #region Marcas
+
 
         private void CargarMarca()
         {
@@ -721,6 +762,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeNombre
             }
         }
 
+
         public void ConsultarMarcas()
         {
             Mouse.OverrideCursor = Cursors.Wait;
@@ -734,7 +776,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeNombre
 
                 Marca primeraMarca = new Marca(int.MinValue);
 
-                
+
                 Marca marca = new Marca();
                 IList<Marca> marcasFiltradas;
                 marca.Descripcion = this._ventana.NombreMarcaFiltrar.ToUpper();
@@ -758,7 +800,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeNombre
                     this._ventana.MarcaFiltrada = primeraMarca;
                     this._ventana.Mensaje(Recursos.MensajesConElUsuario.NoHayResultados, 1);
                 }
-                
+
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
                     logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
@@ -788,7 +830,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeNombre
             {
                 Mouse.OverrideCursor = null;
             }
-        }        
+        }
+
 
         public bool CambiarMarca()
         {
@@ -812,6 +855,23 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeNombre
                     this._marcas.RemoveAt(0);
                     this._marcas.Add((Marca)this._ventana.MarcaFiltrada);
                     this._ventana.InteresadoAnterior = ((Marca)this._ventana.Marca).Interesado;
+
+
+                    if (((Marca)this._ventana.Marca).LocalidadMarca != null)
+                    {
+                        this._ventana.EsMarcaNacional(((Marca)this._ventana.Marca).LocalidadMarca.Equals("N"));
+
+                        if (((Marca)this._ventana.Marca).LocalidadMarca.Equals("I"))
+                        {
+                            ListaDatosValores itemBuscado = new ListaDatosValores();
+                            itemBuscado.Valor = ((Marca)this._ventana.Marca).ClasificacionInternacional;
+                            IList<ListaDatosValores> items = this._listaDatosValoresServicios.
+                                ConsultarListaDatosValoresPorParametro(new ListaDatosValores(Recursos.Etiquetas.cbiLocalidadMarca));
+                            this._ventana.TipoClase = this.BuscarListaDeDatosValores(items, itemBuscado).Descripcion;
+                        }
+                    }
+                    else
+                        this._ventana.EsMarcaNacional(true);
 
                     if (((Marca)this._ventana.Marca).Interesado != null)
                         this._ventana.IdInteresadoAnterior = (((Marca)this._ventana.Marca).Interesado).Id.ToString();
@@ -837,7 +897,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeNombre
 
                     this._ventana.AgenteApoderado = ((Marca)this._ventana.Marca).Agente;
                     this._ventana.Poder = ((Marca)this._ventana.Marca).Poder;
-                    
+
 
                     if (null != ((Marca)this._ventana.Marca).Asociado)
                         this._ventana.PintarAsociado(((Marca)this._ventana.Marca).Asociado.TipoCliente.Id);
@@ -883,9 +943,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeNombre
             return retorno;
         }
 
+
         #endregion
 
+
         #region InteresadoAnterior
+
 
         public void ConsultarInteresadosAnterior()
         {
@@ -900,7 +963,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeNombre
 
                 Interesado primerInteresado = new Interesado(int.MinValue);
 
-                
+
                 Interesado interesado = new Interesado();
                 IList<Interesado> interesadosFiltrados;
                 interesado.Nombre = this._ventana.NombreInteresadoAnteriorFiltrar.ToUpper();
@@ -956,10 +1019,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeNombre
             }
         }
 
+
         public bool CambiarInteresadoAnterior()
         {
             Mouse.OverrideCursor = Cursors.Wait;
-       
+
             bool retorno = false;
 
             try
@@ -1016,9 +1080,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeNombre
             return retorno;
         }
 
+
         #endregion
 
+
         #region InteresadoActual
+
 
         private void ValidarInteresado()
         {
@@ -1088,6 +1155,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeNombre
             }
         }
 
+
         public void ConsultarInteresadosActual()
         {
             Mouse.OverrideCursor = Cursors.Wait;
@@ -1101,7 +1169,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeNombre
 
                 Interesado primerInteresado = new Interesado(int.MinValue);
 
-                
+
                 Interesado interesado = new Interesado();
                 IList<Interesado> interesadosFiltrados;
                 interesado.Nombre = this._ventana.NombreInteresadoActualFiltrar.ToUpper();
@@ -1124,7 +1192,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeNombre
                     this._ventana.InteresadosActualFiltrados = this._interesadosActual;
                     this._ventana.InteresadoActualFiltrado = primerInteresado;
                     this._ventana.Mensaje(Recursos.MensajesConElUsuario.NoHayResultados, 1);
-                }               
+                }
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -1155,7 +1223,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeNombre
             {
                 Mouse.OverrideCursor = null;
             }
-        }        
+        }
+
 
         public bool CambiarInteresadoActual()
         {
@@ -1274,6 +1343,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeNombre
             return retorno;
         }
 
+
         public bool VerificarCambioInteresado()
         {
             bool retorno = false;
@@ -1283,6 +1353,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeNombre
 
             return retorno;
         }
+
 
         public void LimpiarListaInteresado()
         {
@@ -1295,9 +1366,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeNombre
             this._ventana.InteresadoActual = this._ventana.InteresadoActualFiltrado;
         }
 
+
         #endregion
 
+
         #region Agente Apoderado
+
 
         private void CargarApoderado()
         {
@@ -1321,6 +1395,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeNombre
 
         }
 
+
         public void ConsultarApoderados()
         {
             Mouse.OverrideCursor = Cursors.Wait;
@@ -1334,7 +1409,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeNombre
 
                 Agente primerAgente = new Agente("");
 
-                
+
                 Agente apoderadoInteresado = new Agente();
                 IList<Agente> agentesInteresadoFiltrados;
                 apoderadoInteresado.Nombre = this._ventana.NombreAgenteApoderadoFiltrar.ToUpper();
@@ -1358,7 +1433,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeNombre
                     this._ventana.AgenteApoderadoFiltrado = primerAgente;
                     this._ventana.Mensaje(Recursos.MensajesConElUsuario.NoHayResultados, 1);
                 }
-             
+
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
                     logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
@@ -1389,6 +1464,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeNombre
                 Mouse.OverrideCursor = null;
             }
         }
+
 
         public bool CambiarApoderado()
         {
@@ -1497,6 +1573,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeNombre
             return retorno;
         }
 
+
         public bool VerificarCambioAgente()
         {
             bool retorno = false;
@@ -1506,6 +1583,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeNombre
 
             return retorno;
         }
+
 
         public void LimpiarListaAgente()
         {
@@ -1519,9 +1597,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeNombre
 
         }
 
+
         #endregion
 
+
         #region Poder
+
 
         private void CargarPoder()
         {
@@ -1540,9 +1621,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeNombre
             {
                 this._ventana.PoderesFiltrados = this._poderes;
                 this._ventana.PoderFiltrado = this.BuscarPoder(this._poderes, this._poderes[0]);
-                this._ventana.ConvertirEnteroMinimoABlanco(); 
+                this._ventana.ConvertirEnteroMinimoABlanco();
             }
         }
+
 
         public void ConsultarPoderes()
         {
@@ -1557,7 +1639,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeNombre
 
                 Poder pimerPoder = new Poder(int.MinValue);
 
-                
+
                 Poder poder = new Poder();
                 IList<Poder> poderesFiltrados;
 
@@ -1586,7 +1668,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeNombre
                     this._ventana.PoderesFiltrados = this._poderes;
                     this._ventana.PoderFiltrado = pimerPoder;
                     this._ventana.Mensaje(Recursos.MensajesConElUsuario.NoHayResultados, 1);
-                }                
+                }
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -1618,6 +1700,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeNombre
                 Mouse.OverrideCursor = null;
             }
         }
+
 
         public bool CambiarPoder()
         {
@@ -1707,7 +1790,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeNombre
             }
 
             return retorno;
-        }        
+        }
+
 
         public void LlenarListasPoderes(CambioDeNombre cambioDeNombre)
         {
@@ -1718,11 +1802,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeNombre
                 this._poderesApoderado = this._poderServicios.ConsultarPoderesPorAgente(cambioDeNombre.Agente);
         }
 
+
         public bool ValidarListaDePoderes(IList<Poder> listaPoderesA, IList<Poder> listaPoderesB)
-        {           
+        {
 
             bool retorno = false;
-            IList<Poder> listaIntereseccionInteresado = new List<Poder>();            
+            IList<Poder> listaIntereseccionInteresado = new List<Poder>();
             Poder primerPoder = new Poder(int.MinValue);
 
             Poder poderActual = new Poder();
@@ -1755,10 +1840,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeNombre
                 }
                 else
                     retorno = false;
-            }           
+            }
 
             return retorno;
         }
+
 
         public bool VerificarCambioPoder()
         {
@@ -1769,6 +1855,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeNombre
 
             return retorno;
         }
+
 
         public void LimpiarListaPoder()
         {
@@ -1782,7 +1869,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeNombre
 
         }
 
+
         #endregion
+
 
         public void IrImprimir(string nombreBoton)
         {
@@ -1816,6 +1905,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeNombre
             }
         }
 
+
         private void ImprimirPlanillaVienen()
         {
             if (ValidarMarcaAntesDeImprimirCarpeta())
@@ -1828,6 +1918,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeNombre
                 this.LlamarProcedimientoDeBaseDeDatos(parametro, Recursos.Etiquetas.btnPlanillaVienen);
             }
         }
+
 
         private void ImprimirPlanillaVan()
         {
@@ -1842,6 +1933,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeNombre
             }
         }
 
+
         private void ImprimirCarpeta()
         {
             if (ValidarMarcaAntesDeImprimirCarpeta())
@@ -1855,10 +1947,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeNombre
             }
         }
 
+
         private bool ValidarMarcaAntesDeImprimirCarpeta()
         {
             return true;
         }
+
 
         private void ImprimirAnexo()
         {
@@ -1873,10 +1967,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeNombre
             }
         }
 
+
         private bool ValidarMarcaAntesDeImprimirAnexo()
         {
             return true;
         }
+
 
         private void ImprimirPlanilla()
         {
@@ -1891,9 +1987,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeNombre
             }
         }
 
+
         private bool ValidarMarcaAntesDeImprimirPlanilla()
         {
             return true;
         }
+
     }
 }

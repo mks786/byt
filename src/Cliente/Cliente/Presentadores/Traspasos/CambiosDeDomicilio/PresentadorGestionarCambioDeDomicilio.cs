@@ -36,6 +36,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeDomicilio
         private IBoletinServicios _boletinServicios;
         private IPaisServicios _paisServicios;
         private IListaDatosDominioServicios _listaDatosDominioServicios;
+        private IListaDatosValoresServicios _listaDatosValoresServicios;
         private IInteresadoServicios _interesadoServicios;
         private IServicioServicios _servicioServicios;
         private ITipoEstadoServicios _tipoEstadoServicios;
@@ -114,6 +115,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeDomicilio
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["PaisServicios"]);
                 this._listaDatosDominioServicios = (IListaDatosDominioServicios)Activator.GetObject(typeof(IListaDatosDominioServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["ListaDatosDominioServicios"]);
+                this._listaDatosValoresServicios = (IListaDatosValoresServicios)Activator.GetObject(typeof(IListaDatosValoresServicios),
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["ListaDatosValoresServicios"]);
                 this._interesadoServicios = (IInteresadoServicios)Activator.GetObject(typeof(IInteresadoServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["InteresadoServicios"]);
                 this._servicioServicios = (IServicioServicios)Activator.GetObject(typeof(IServicioServicios),
@@ -158,6 +161,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeDomicilio
                 Recursos.Ids.GestionarCambioDeDomicilio);
         }
 
+
         /// <summary>
         /// Método que carga los datos iniciales a mostrar en la página
         /// </summary>
@@ -181,9 +185,29 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeDomicilio
                     if (((CambioDeDomicilio)cambioDeDomicilio).Marca != null)
                         this._ventana.Marca = this._marcaServicios.ConsultarMarcaConTodo(((CambioDeDomicilio)cambioDeDomicilio).Marca);
 
+
+
                     this._ventana.NombreMarca = ((Marca)this._ventana.Marca).Descripcion;
                     this._ventana.AgenteApoderado = ((CambioDeDomicilio)cambioDeDomicilio).Agente;
                     this._ventana.Poder = cambioDeDomicilio.Poder;
+
+
+
+                    if (((Marca)this._ventana.Marca).LocalidadMarca != null)
+                    {
+                        this._ventana.EsMarcaNacional(((Marca)this._ventana.Marca).LocalidadMarca.Equals("N"));
+
+                        if (((Marca)this._ventana.Marca).LocalidadMarca.Equals("I"))
+                        {
+                            ListaDatosValores itemBuscado = new ListaDatosValores();
+                            itemBuscado.Valor = ((Marca)this._ventana.Marca).ClasificacionInternacional;
+                            IList<ListaDatosValores> items = this._listaDatosValoresServicios.
+                                ConsultarListaDatosValoresPorParametro(new ListaDatosValores(Recursos.Etiquetas.cbiLocalidadMarca));
+                            this._ventana.TipoClase = this.BuscarListaDeDatosValores(items, itemBuscado).Descripcion;
+                        }
+                    }
+                    else
+                        this._ventana.EsMarcaNacional(true);
 
                     CargarMarca();
 
@@ -235,6 +259,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeDomicilio
                 Mouse.OverrideCursor = null;
             }
         }
+
 
         private void CargarInteresado(string tipo)
         {
@@ -300,10 +325,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeDomicilio
             }
         }
 
+
         public void IrConsultarMarcas()
         {
             this.Navegar(new ConsultarMarcas());
         }
+
 
         public CambioDeDomicilio CargarCambioDeDomicilioDeLaPantalla()
         {
@@ -341,11 +368,13 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeDomicilio
             return cambioDeDomicilio;
         }
 
+
         public void CambiarAModificar()
         {
             this._ventana.HabilitarCampos = true;
             this._ventana.TextoBotonModificar = Recursos.Etiquetas.btnAceptar;
         }
+
 
         /// <summary>
         /// Método que dependiendo del estado de la página, habilita los campos o 
@@ -454,6 +483,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeDomicilio
                 Mouse.OverrideCursor = null;
             }
         }
+
 
         /// <summary>
         /// Metodo que se encarga de eliminar un Cambio de Domicilio
@@ -572,6 +602,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeDomicilio
             }
         }
 
+
         /// <summary>
         /// Método que ordena una columna
         /// </summary>
@@ -605,6 +636,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeDomicilio
                 logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
         }
+
 
         public void LlenarListaAgenteEInteresado(Poder poder, bool cargaInicial)
         {
@@ -703,6 +735,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeDomicilio
 
         }
 
+
         private void LlenarListaAgente(Poder poder)
         {
             Agente primerAgente = new Agente("");
@@ -713,7 +746,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeDomicilio
             this._ventana.AgenteApoderadoFiltrado = primerAgente;
         }
 
+
         #region Marcas
+
 
         private void CargarMarca()
         {
@@ -748,6 +783,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeDomicilio
             }
 
         }
+
 
         public void ConsultarMarcas()
         {
@@ -821,6 +857,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeDomicilio
             }
         }
 
+
         public bool CambiarMarca()
         {
             Mouse.OverrideCursor = Cursors.Wait;
@@ -840,6 +877,23 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeDomicilio
                     this._ventana.Marca = this._ventana.MarcaFiltrada;
                     this._ventana.NombreMarca = ((Marca)this._ventana.MarcaFiltrada).Descripcion;
                     this._ventana.IdMarca = ((Marca)this._ventana.MarcaFiltrada).Id.ToString();
+
+                    if (((Marca)this._ventana.Marca).LocalidadMarca != null)
+                    {
+                        this._ventana.EsMarcaNacional(((Marca)this._ventana.Marca).LocalidadMarca.Equals("N"));
+
+                        if (((Marca)this._ventana.Marca).LocalidadMarca.Equals("I"))
+                        {
+                            ListaDatosValores itemBuscado = new ListaDatosValores();
+                            itemBuscado.Valor = ((Marca)this._ventana.Marca).ClasificacionInternacional;
+                            IList<ListaDatosValores> items = this._listaDatosValoresServicios.
+                                ConsultarListaDatosValoresPorParametro(new ListaDatosValores(Recursos.Etiquetas.cbiLocalidadMarca));
+                            this._ventana.TipoClase = this.BuscarListaDeDatosValores(items, itemBuscado).Descripcion;
+                        }
+                    }
+                    else
+                        this._ventana.EsMarcaNacional(true);
+
                     this._marcas.RemoveAt(0);
                     this._marcas.Add((Marca)this._ventana.MarcaFiltrada);
                     this._ventana.InteresadoAnterior = ((Marca)this._ventana.Marca).Interesado;
@@ -914,9 +968,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeDomicilio
             return retorno;
         }
 
+
         #endregion
 
+
         #region InteresadoAnterior
+
 
         public void ConsultarInteresadosAnterior()
         {
@@ -986,6 +1043,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeDomicilio
             }
         }
 
+
         public bool CambiarInteresadoAnterior()
         {
             Mouse.OverrideCursor = Cursors.Wait;
@@ -1046,9 +1104,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeDomicilio
             return retorno;
         }
 
+
         #endregion
 
+
         #region InteresadoActual
+
 
         private void ValidarInteresado()
         {
@@ -1117,6 +1178,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeDomicilio
                 }
             }
         }
+
 
         public void ConsultarInteresadosActual()
         {
@@ -1187,6 +1249,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeDomicilio
                 Mouse.OverrideCursor = null;
             }
         }
+
 
         public bool CambiarInteresadoActual()
         {
@@ -1305,6 +1368,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeDomicilio
             return retorno;
         }
 
+
         public bool VerificarCambioInteresado()
         {
             bool retorno = false;
@@ -1314,6 +1378,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeDomicilio
 
             return retorno;
         }
+
 
         public void LimpiarListaInteresado()
         {
@@ -1326,9 +1391,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeDomicilio
             this._ventana.InteresadoActual = this._ventana.InteresadoActualFiltrado;
         }
 
+
         #endregion
 
+
         #region Agente Apoderado
+
 
         private void CargarApoderado()
         {
@@ -1353,6 +1421,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeDomicilio
             }
 
         }
+
 
         public void ConsultarApoderados()
         {
@@ -1422,6 +1491,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeDomicilio
                 Mouse.OverrideCursor = null;
             }
         }
+
 
         public bool CambiarApoderado()
         {
@@ -1530,6 +1600,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeDomicilio
             return retorno;
         }
 
+
         public bool VerificarCambioAgente()
         {
             bool retorno = false;
@@ -1539,6 +1610,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeDomicilio
 
             return retorno;
         }
+
 
         public void LimpiarListaAgente()
         {
@@ -1552,9 +1624,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeDomicilio
 
         }
 
+
         #endregion
 
+
         #region Poder
+
 
         private void CargarPoder()
         {
@@ -1577,6 +1652,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeDomicilio
 
 
         }
+
 
         public void ConsultarPoderes()
         {
@@ -1652,6 +1728,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeDomicilio
                 Mouse.OverrideCursor = null;
             }
         }
+
 
         public bool CambiarPoder()
         {
@@ -1743,6 +1820,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeDomicilio
             return retorno;
         }
 
+
         public void LlenarListasPoderes(CambioDeDomicilio cambioDeDomicilio)
         {
             if (cambioDeDomicilio.InteresadoActual != null)
@@ -1751,6 +1829,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeDomicilio
             if (cambioDeDomicilio.Agente != null)
                 this._poderesApoderado = this._poderServicios.ConsultarPoderesPorAgente(cambioDeDomicilio.Agente);
         }
+
 
         public bool ValidarListaDePoderes(IList<Poder> listaPoderesA, IList<Poder> listaPoderesB)
         {
@@ -1797,6 +1876,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeDomicilio
             return retorno;
         }
 
+
         public bool VerificarCambioPoder()
         {
             bool retorno = false;
@@ -1806,6 +1886,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeDomicilio
 
             return retorno;
         }
+
 
         public void LimpiarListaPoder()
         {
@@ -1819,7 +1900,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeDomicilio
 
         }
 
+
         #endregion
+
 
         public void IrImprimir(string nombreBoton)
         {
@@ -1857,6 +1940,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeDomicilio
             }
         }
 
+
         private void ImprimirPlanillaVienen()
         {
             if (ValidarMarcaAntesDeImprimirCarpeta())
@@ -1869,6 +1953,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeDomicilio
                 this.LlamarProcedimientoDeBaseDeDatos(parametro, Recursos.Etiquetas.btnPlanillaVienen);
             }
         }
+
 
         private void ImprimirPlanillaVan()
         {
@@ -1883,6 +1968,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeDomicilio
             }
         }
 
+
         private void ImprimirCarpeta()
         {
             if (ValidarMarcaAntesDeImprimirCarpeta())
@@ -1896,10 +1982,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeDomicilio
             }
         }
 
+
         private bool ValidarMarcaAntesDeImprimirCarpeta()
         {
             return true;
         }
+
 
         private void ImprimirAnexo()
         {
@@ -1914,10 +2002,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeDomicilio
             }
         }
 
+
         private bool ValidarMarcaAntesDeImprimirAnexo()
         {
             return true;
         }
+
 
         private void ImprimirPlanilla()
         {
@@ -1932,10 +2022,13 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeDomicilio
             }
         }
 
+
         private bool ValidarMarcaAntesDeImprimirPlanilla()
         {
             return true;
         }
+
+
         private void ImprimirVanDir()
         {
             if (ValidarMarcaAntesDeImprimirCarpeta())
@@ -1949,11 +2042,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeDomicilio
             }
         }
 
+
         private bool ValidarMarcaAntesDeImprimirVanDir()
         {
             return true;
         }
-
 
 
     }

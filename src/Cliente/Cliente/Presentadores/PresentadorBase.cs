@@ -1555,19 +1555,19 @@ namespace Trascend.Bolet.Cliente.Presentadores
         /// <summary>
         /// Método que busca un ListaDatosValores dentro de una lista de ListaDatosValores
         /// </summary>
-        /// <param name="servicios">Lista de ListaDatosValores</param>
-        /// <param name="servicioBuscado">ListaDatosValores a buscar</param>
+        /// <param name="items">Lista de ListaDatosValores</param>
+        /// <param name="itemBuscado">ListaDatosValores a buscar</param>
         /// <returns>ListaDatosValores dentro de la lista</returns>
-        public ListaDatosValores BuscarListaDeDatosValores(IList<ListaDatosValores> servicios, ListaDatosValores servicioBuscado)
+        public ListaDatosValores BuscarListaDeDatosValores(IList<ListaDatosValores> items, ListaDatosValores itemBuscado)
         {
             ListaDatosValores retorno = null;
 
-            if (servicioBuscado != null)
-                foreach (ListaDatosValores servicio in servicios)
+            if (itemBuscado != null)
+                foreach (ListaDatosValores item in items)
                 {
-                    if (servicio.Valor == servicioBuscado.Valor)
+                    if (item.Valor == itemBuscado.Valor)
                     {
-                        retorno = servicio;
+                        retorno = item;
                         break;
                     }
                 }

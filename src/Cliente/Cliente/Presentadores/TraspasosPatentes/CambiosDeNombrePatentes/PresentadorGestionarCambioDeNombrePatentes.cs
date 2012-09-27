@@ -69,7 +69,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CambiosDeNombre
         {
             try
             {
-                this._ventana = ventana;                
+                this._ventana = ventana;
 
                 if (CambioDeNombrePatente != null)
                 {
@@ -81,7 +81,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CambiosDeNombre
                     CambioDeNombrePatente cambioNombreAgregar = new CambioDeNombrePatente();
                     this._ventana.CambioDeNombrePatente = cambioNombreAgregar;
 
-                    ((CambioDeNombrePatente)this._ventana.CambioDeNombrePatente).Fecha= DateTime.Now;
+                    ((CambioDeNombrePatente)this._ventana.CambioDeNombrePatente).Fecha = DateTime.Now;
                     this._ventana.Patente = null;
                     this._ventana.Poder = null;
                     this._ventana.InteresadoAnterior = null;
@@ -182,6 +182,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CambiosDeNombre
                     this._ventana.NombrePatente = ((Patente)this._ventana.Patente).Descripcion;
                     this._ventana.AgenteApoderado = ((CambioDeNombrePatente)CambioDeNombrePatente).Agente;
                     this._ventana.Poder = CambioDeNombrePatente.Poder;
+
+                    if (((Patente)this._ventana.Patente).LocalidadPatente != null)
+                        this._ventana.EsPatenteNacional(((Patente)this._ventana.Patente).LocalidadPatente.Equals("N"));
+                    else
+                        this._ventana.EsPatenteNacional(true);
 
 
                     CargarPatente();
@@ -322,7 +327,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CambiosDeNombre
 
                 }
             }
-        }                       
+        }
 
         //public void IrConsultarPatentes()
         //{
@@ -336,7 +341,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CambiosDeNombre
 
             if ((null != this._ventana.PatenteFiltrada) && (((Patente)this._ventana.PatenteFiltrada).Id != int.MinValue))
             {
-                cambioDeNombre.Patente = (Patente) this._ventana.PatenteFiltrada;
+                cambioDeNombre.Patente = (Patente)this._ventana.PatenteFiltrada;
                 cambioDeNombre.InteresadoAnterior = ((Patente)this._ventana.PatenteFiltrada).Interesado;
                 cambioDeNombre.Agente = ((Patente)this._ventana.PatenteFiltrada).Agente;
                 cambioDeNombre.Poder = ((Patente)this._ventana.PatenteFiltrada).Poder;
@@ -345,7 +350,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CambiosDeNombre
             }
 
             if (null != this._ventana.InteresadoAnterior)
-                cambioDeNombre.InteresadoAnterior = ((Interesado)this._ventana.InteresadoAnterior).Id != int.MinValue ? 
+                cambioDeNombre.InteresadoAnterior = ((Interesado)this._ventana.InteresadoAnterior).Id != int.MinValue ?
                                                                     (Interesado)this._ventana.InteresadoAnterior : null;
 
             if (null != this._ventana.InteresadoActual)
@@ -353,17 +358,17 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CambiosDeNombre
                                                                         (Interesado)this._ventana.InteresadoActual : null;
 
             if (null != this._ventana.AgenteApoderado)
-                cambioDeNombre.Agente = !((Agente)this._ventana.AgenteApoderado).Id.Equals("") ? 
+                cambioDeNombre.Agente = !((Agente)this._ventana.AgenteApoderado).Id.Equals("") ?
                                                                               (Agente)this._ventana.AgenteApoderado : null;
 
             if (null != this._ventana.Poder)
-                cambioDeNombre.Poder = ((Poder)this._ventana.Poder).Id != int.MinValue ? 
+                cambioDeNombre.Poder = ((Poder)this._ventana.Poder).Id != int.MinValue ?
                                                         (Poder)this._ventana.Poder : null;
 
             if (null != this._ventana.Boletin)
-                cambioDeNombre.Boletin = ((Boletin)this._ventana.Boletin).Id != int.MinValue ? 
-                                                            (Boletin)this._ventana.Boletin : null;     
- 
+                cambioDeNombre.Boletin = ((Boletin)this._ventana.Boletin).Id != int.MinValue ?
+                                                            (Boletin)this._ventana.Boletin : null;
+
             return cambioDeNombre;
         }
 
@@ -399,7 +404,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CambiosDeNombre
                 else if (this._ventana.TextoBotonModificar == Recursos.Etiquetas.btnAceptar)
                 {
                     CambioDeNombrePatente cambioDeNombre = CargarCambioDeNombreDeLaPantalla();
-                    cambioDeNombre.Patente = (Patente) this._ventana.Patente;
+                    cambioDeNombre.Patente = (Patente)this._ventana.Patente;
 
                     if (null != cambioDeNombre.Patente)
                     {
@@ -588,7 +593,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CambiosDeNombre
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
-                #endregion                
+                #endregion
 
                 Interesado interesado = new Interesado();
                 IList<Agente> agentesInteresadoFiltrados;
@@ -720,7 +725,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CambiosDeNombre
 
                 Patente primeraPatente = new Patente(int.MinValue);
 
-                
+
                 Patente patente = new Patente();
                 IList<Patente> patentesFiltradas;
                 patente.Descripcion = this._ventana.NombrePatenteFiltrar.ToUpper();
@@ -744,7 +749,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CambiosDeNombre
                     this._ventana.PatenteFiltrada = primeraPatente;
                     this._ventana.Mensaje(Recursos.MensajesConElUsuario.NoHayResultados, 1);
                 }
-                
+
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
                     logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
@@ -774,7 +779,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CambiosDeNombre
             {
                 Mouse.OverrideCursor = null;
             }
-        }        
+        }
 
         public bool CambiarPatente()
         {
@@ -798,8 +803,14 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CambiosDeNombre
                     this._patentes.RemoveAt(0);
                     this._patentes.Add((Patente)this._ventana.PatenteFiltrada);
                     this._ventana.InteresadoAnterior = ((Patente)this._ventana.Patente).Interesado;
-                    
-                    if(((Patente)this._ventana.Patente).Interesado != null)
+
+
+                    if (((Patente)this._ventana.Patente).LocalidadPatente != null)
+                        this._ventana.EsPatenteNacional(((Patente)this._ventana.Patente).LocalidadPatente.Equals("N"));
+                    else
+                        this._ventana.EsPatenteNacional(true);
+
+                    if (((Patente)this._ventana.Patente).Interesado != null)
                         this._ventana.IdInteresadoAnterior = (((Patente)this._ventana.Patente).Interesado).Id.ToString();
 
                     IList<Interesado> listaAux = new List<Interesado>();
@@ -823,7 +834,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CambiosDeNombre
 
                     this._ventana.AgenteApoderado = ((Patente)this._ventana.Patente).Agente;
                     this._ventana.Poder = ((Patente)this._ventana.Patente).Poder;
-                    
+
 
                     this._ventana.ConvertirEnteroMinimoABlanco();
 
@@ -881,7 +892,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CambiosDeNombre
 
                 Interesado primerInteresado = new Interesado(int.MinValue);
 
-                
+
                 Interesado interesado = new Interesado();
                 IList<Interesado> interesadosFiltrados;
                 interesado.Nombre = this._ventana.NombreInteresadoAnteriorFiltrar.ToUpper();
@@ -940,7 +951,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CambiosDeNombre
         public bool CambiarInteresadoAnterior()
         {
             Mouse.OverrideCursor = Cursors.Wait;
-       
+
             bool retorno = false;
 
             try
@@ -1082,7 +1093,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CambiosDeNombre
 
                 Interesado primerInteresado = new Interesado(int.MinValue);
 
-                
+
                 Interesado interesado = new Interesado();
                 IList<Interesado> interesadosFiltrados;
                 interesado.Nombre = this._ventana.NombreInteresadoActualFiltrar.ToUpper();
@@ -1105,7 +1116,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CambiosDeNombre
                     this._ventana.InteresadosActualFiltrados = this._interesadosActual;
                     this._ventana.InteresadoActualFiltrado = primerInteresado;
                     this._ventana.Mensaje(Recursos.MensajesConElUsuario.NoHayResultados, 1);
-                }               
+                }
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -1136,7 +1147,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CambiosDeNombre
             {
                 Mouse.OverrideCursor = null;
             }
-        }        
+        }
 
         public bool CambiarInteresadoActual()
         {
@@ -1318,7 +1329,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CambiosDeNombre
 
                 Agente primerAgente = new Agente("");
 
-                
+
                 Agente apoderadoInteresado = new Agente();
                 IList<Agente> agentesInteresadoFiltrados;
                 apoderadoInteresado.Nombre = this._ventana.NombreAgenteApoderadoFiltrar.ToUpper();
@@ -1342,7 +1353,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CambiosDeNombre
                     this._ventana.AgenteApoderadoFiltrado = primerAgente;
                     this._ventana.Mensaje(Recursos.MensajesConElUsuario.NoHayResultados, 1);
                 }
-             
+
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
                     logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
@@ -1540,7 +1551,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CambiosDeNombre
 
                 Poder pimerPoder = new Poder(int.MinValue);
 
-                
+
                 Poder poder = new Poder();
                 IList<Poder> poderesFiltrados;
 
@@ -1569,7 +1580,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CambiosDeNombre
                     this._ventana.PoderesFiltrados = this._poderes;
                     this._ventana.PoderFiltrado = pimerPoder;
                     this._ventana.Mensaje(Recursos.MensajesConElUsuario.NoHayResultados, 1);
-                }                
+                }
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -1690,7 +1701,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CambiosDeNombre
             }
 
             return retorno;
-        }        
+        }
 
         public void LlenarListasPoderes(CambioDeNombrePatente cambioDeNombre)
         {
@@ -1702,10 +1713,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CambiosDeNombre
         }
 
         public bool ValidarListaDePoderes(IList<Poder> listaPoderesA, IList<Poder> listaPoderesB)
-        {           
+        {
 
             bool retorno = false;
-            IList<Poder> listaIntereseccionInteresado = new List<Poder>();            
+            IList<Poder> listaIntereseccionInteresado = new List<Poder>();
             Poder primerPoder = new Poder(int.MinValue);
 
             Poder poderActual = new Poder();
@@ -1738,7 +1749,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CambiosDeNombre
                 }
                 else
                     retorno = false;
-            }           
+            }
 
             return retorno;
         }

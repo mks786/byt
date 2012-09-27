@@ -130,5 +130,7 @@ namespace Trascend.Bolet.Cliente.Contratos.TraspasosPatentes.CambiosDeNombrePate
         void GestionarBotonConsultarPoder(bool value);
 
         void ActivarControlesAlAgregar();
+
+        void EsPatenteNacional(bool marcaNacional);
     }
 }

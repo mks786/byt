@@ -26,6 +26,20 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.FusionesPatentes
             set { this._cargada = value; }
         }
 
+        public void EsPatenteNacional(bool patenteNacional)
+        {
+            if (patenteNacional)
+            {
+                this._radioExtranjero.IsChecked = !patenteNacional;
+                this._radioNacional.IsChecked = patenteNacional;
+            }
+            else
+            {
+                this._radioExtranjero.IsChecked = !patenteNacional;
+                this._radioNacional.IsChecked = patenteNacional;
+            }
+        }
+
         public string Expediente
         {
             get { return this._txtExpediente.Text; }

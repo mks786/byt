@@ -25,6 +25,20 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.CambiosDeNombrePaten
             set { this._cargada = value; }
         }
 
+        public void EsPatenteNacional(bool patenteNacional)
+        {
+            if (patenteNacional)
+            {
+                this._radioExtranjero.IsChecked = !patenteNacional;
+                this._radioNacional.IsChecked = patenteNacional;
+            }
+            else
+            {
+                this._radioExtranjero.IsChecked = !patenteNacional;
+                this._radioNacional.IsChecked = patenteNacional;
+            }
+        }
+
         public object CambioDeNombrePatente
         {
             get
@@ -380,7 +394,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.CambiosDeNombrePaten
             this._presentador = new PresentadorGestionarCambioDeNombrePatentes(this, cambioDeNombre);
         }
 
-                
+
         /// <summary>
         /// Constructor para la consulta desde operaciones
         /// </summary>
@@ -405,7 +419,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.CambiosDeNombrePaten
             this._btnAnexo.Visibility = System.Windows.Visibility.Collapsed;
             this._btnPlanilla.Visibility = System.Windows.Visibility.Collapsed;
             this._btnPlanillaVan.Visibility = System.Windows.Visibility.Collapsed;
-            this._btnPlanillaVienen.Visibility = System.Windows.Visibility.Collapsed;            
+            this._btnPlanillaVienen.Visibility = System.Windows.Visibility.Collapsed;
         }
 
         private void _btnModificar_Click(object sender, RoutedEventArgs e)
@@ -414,7 +428,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.CambiosDeNombrePaten
         }
 
         private void _btnRegresar_Click(object sender, RoutedEventArgs e)
-        {            
+        {
             if (this.TextoBotonRegresar == Recursos.Etiquetas.btnRegresar)
                 this._presentador.Regresar();
             else if (this.TextoBotonRegresar == Recursos.Etiquetas.btnCancelar)
@@ -726,7 +740,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.CambiosDeNombrePaten
         {
             this._presentador.ConsultarApoderados();
         }
-      
+
         private void _lstApoderados_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             if (this._presentador.CambiarApoderado())
