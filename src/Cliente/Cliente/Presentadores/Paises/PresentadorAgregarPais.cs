@@ -14,11 +14,13 @@ namespace Trascend.Bolet.Cliente.Presentadores.Paises
 {
     class PresentadorAgregarPais : PresentadorBase
     {
+
         private IAgregarPais _ventana;
         private IPaisServicios _paisServicios;
         private IListaDatosValoresServicios _listaDatosValoresServicios;
         private static PaginaPrincipal _paginaPrincipal = PaginaPrincipal.ObtenerInstancia;
         private static Logger logger = LogManager.GetCurrentClassLogger();
+
 
         /// <summary>
         /// Constructor predeterminado
@@ -38,9 +40,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Paises
             catch (Exception ex)
             {
                 logger.Error(ex.Message);
-                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado,true);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
             }
         }
+
 
         /// <summary>
         /// Método que carga los datos iniciales a mostrar en la página
@@ -94,6 +97,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Paises
             }
         }
 
+
         /// <summary>
         /// Método que carga las regiones iniciales
         /// </summary>
@@ -117,6 +121,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Paises
                 logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
         }
+
 
         /// <summary>
         /// Método que realiza toda la lógica para agregar al País dentro de la base de datos
@@ -171,5 +176,6 @@ namespace Trascend.Bolet.Cliente.Presentadores.Paises
                 this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
             }
         }
+
     }
 }

@@ -21,10 +21,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
 {
     class PresentadorListaContactos : PresentadorBase
     {
+
         private IListaContactos _ventana;
         private Asociado _asociado;
         private static PaginaPrincipal _paginaPrincipal = PaginaPrincipal.ObtenerInstancia;
         private static Logger logger = LogManager.GetCurrentClassLogger();
+
 
         /// <summary>
         /// Constructor Predeterminado
@@ -46,6 +48,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
                 logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
         }
+
 
         /// <summary>
         /// Método que carga los datos iniciales a mostrar en la página
@@ -84,6 +87,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
             }
         }
 
+
         /// <summary>
         /// Método que invoca una nueva página "Consultar Justificación" y la instancia con el objeto seleccionado
         /// </summary>
@@ -104,6 +108,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
                 logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
         }
+
 
         /// <summary>
         /// Método que ordena una columna
@@ -139,6 +144,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
             #endregion
         }
 
+
         /// <summary>
         /// Metodo que invoca una ventana de Agregar contacto de un Asociado
         /// </summary>
@@ -156,5 +162,6 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
                 logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
         }
+
     }
 }

@@ -12,6 +12,7 @@ namespace Trascend.Bolet.Servidor
         [STAThread]
         static void Main(string[] args)
         {
+
             RemotingConfiguration.Configure(_archivo, false);
             Console.WriteLine("Se han cargado " + ConfiguracionServicios.CargarUsuarios() + " sesiones de archivo XML");
             Console.WriteLine("Configuracion cargada...");

@@ -22,6 +22,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Agentes
         private static PaginaPrincipal _paginaPrincipal = PaginaPrincipal.ObtenerInstancia;
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
+
         /// <summary>
         /// Constructor predeterminado
         /// </summary>
@@ -56,9 +57,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Agentes
             catch (Exception ex)
             {
                 logger.Error(ex.Message);
-                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado,true);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
             }
         }
+
 
         /// <summary>
         /// Método que carga los datos iniciales a mostrar en la página
@@ -99,13 +101,14 @@ namespace Trascend.Bolet.Cliente.Presentadores.Agentes
             catch (Exception ex)
             {
                 logger.Error(ex.Message);
-                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado,true);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
             }
             finally
             {
                 Mouse.OverrideCursor = null;
             }
         }
+
 
         /// <summary>
         /// Método que dependiendo del estado de la página, habilita los campos o 
@@ -171,6 +174,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Agentes
             }
         }
 
+
         /// <summary>
         /// Método que elimina un agente
         /// </summary>
@@ -215,5 +219,6 @@ namespace Trascend.Bolet.Cliente.Presentadores.Agentes
                 this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
             }
         }
+
     }
 }

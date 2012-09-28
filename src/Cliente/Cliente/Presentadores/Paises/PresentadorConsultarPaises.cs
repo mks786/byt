@@ -20,13 +20,16 @@ namespace Trascend.Bolet.Cliente.Presentadores.Paises
 {
     class PresentadorConsultarPaises : PresentadorBase
     {
+
         private static PaginaPrincipal _paginaPrincipal = PaginaPrincipal.ObtenerInstancia;
         private static Logger logger = LogManager.GetCurrentClassLogger();
+
 
         private IConsultarPaises _ventana;
         private IPaisServicios _paisServicios;
         private IListaDatosValoresServicios _listaDatosValoresServicios;
         private IList<Pais> _paises;
+
 
         /// <summary>
         /// Constructor Predeterminado
@@ -45,9 +48,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Paises
             catch (Exception ex)
             {
                 logger.Error(ex.Message);
-                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado,true);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
             }
         }
+
 
         /// <summary>
         /// Método que se encarga de actualizar el título de la ventana
@@ -68,6 +72,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Paises
             #endregion
         }
 
+
         /// <summary>
         /// Método que carga los datos iniciales a mostrar en la página
         /// </summary>
@@ -83,7 +88,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Paises
                 #endregion
 
                 ActualizarTitulo();
-                
+
                 this._paises = this._paisServicios.ConsultarTodos();
                 this._ventana.Resultados = this._paises;
                 this._ventana.TotalHits = this._paises.Count.ToString();
@@ -123,18 +128,20 @@ namespace Trascend.Bolet.Cliente.Presentadores.Paises
             }
         }
 
+
         /// <summary>
         /// Método que carga las regiones iniciales
         /// </summary>
         private void CargarRegiones()
         {
-            ListaDatosValores listaAux = new ListaDatosValores("CONTINENTE");            
+            ListaDatosValores listaAux = new ListaDatosValores("CONTINENTE");
             this._ventana.Regiones = this._listaDatosValoresServicios.ConsultarListaDatosValoresPorParametro(listaAux);
 
             ListaDatosValores primerValor = new ListaDatosValores("NGN");
             primerValor.Descripcion = "";
             ((IList<ListaDatosValores>)this._ventana.Regiones).Insert(0, primerValor);
         }
+
 
         /// <summary>
         /// Método que realiza una consulta al servicio, con el fin de filtrar los datos que se muestran 
@@ -149,56 +156,56 @@ namespace Trascend.Bolet.Cliente.Presentadores.Paises
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-                Pais pais = (Pais) this._ventana.PaisFiltrar;
+                Pais pais = (Pais)this._ventana.PaisFiltrar;
                 pais.Region = !((ListaDatosValores)this._ventana.Region).Descripcion.Equals("") ? ((ListaDatosValores)this._ventana.Region).Descripcion : null;
 
                 IEnumerable<Pais> paisesFiltrados = this._paises;
 
-               if (!string.IsNullOrEmpty(this._ventana.Id))
+                if (!string.IsNullOrEmpty(this._ventana.Id))
                 {
                     paisesFiltrados = from a in paisesFiltrados
                                       where a.Id.ToString().Contains(this._ventana.Id)
-                                       select a;
+                                      select a;
                 }
 
                 if (!string.IsNullOrEmpty(pais.Codigo))
                 {
                     paisesFiltrados = from p in paisesFiltrados
-                                       where p.Codigo != null && 
-                                       p.Codigo.ToLower().Contains(pais.Codigo.ToLower())
-                                       select p;
+                                      where p.Codigo != null &&
+                                      p.Codigo.ToLower().Contains(pais.Codigo.ToLower())
+                                      select p;
                 }
 
                 if (!string.IsNullOrEmpty(pais.NombreIngles))
                 {
                     paisesFiltrados = from p in paisesFiltrados
-                                      where p.NombreIngles != null && 
+                                      where p.NombreIngles != null &&
                                       p.NombreIngles.ToLower().Contains(pais.NombreIngles.ToLower())
-                                       select p;
+                                      select p;
                 }
 
                 if (!string.IsNullOrEmpty(pais.NombreEspanol))
                 {
                     paisesFiltrados = from p in paisesFiltrados
-                                      where p.NombreEspanol != null && 
+                                      where p.NombreEspanol != null &&
                                       p.NombreEspanol.ToLower().Contains(pais.NombreEspanol.ToLower())
-                                       select p;
+                                      select p;
                 }
 
                 if (!string.IsNullOrEmpty(pais.Nacionalidad))
                 {
                     paisesFiltrados = from p in paisesFiltrados
-                                      where p.Nacionalidad != null && 
+                                      where p.Nacionalidad != null &&
                                       p.Nacionalidad.ToLower().Contains(pais.Nacionalidad.ToLower())
-                                       select p;
+                                      select p;
                 }
 
                 if (!string.IsNullOrEmpty(pais.Region))
                 {
                     paisesFiltrados = from p in paisesFiltrados
-                                      where p.Region != null && 
+                                      where p.Region != null &&
                                       p.Region.ToLower().Contains(pais.Region.ToLower())
-                                       select p;
+                                      select p;
                 }
 
                 this._ventana.Resultados = paisesFiltrados.ToList<Pais>();
@@ -215,6 +222,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Paises
                 this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
             }
         }
+
 
         /// <summary>
         /// Método que invoca una nueva página "ConsultarPais" y la instancia con el objeto seleccionado
@@ -233,6 +241,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Paises
                 logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
         }
+
 
         /// <summary>
         /// Método que ordena una columna
@@ -268,6 +277,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Paises
             #endregion
         }
 
+
         public void LimpiarCampos()
         {
             #region trace
@@ -279,7 +289,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Paises
             this._ventana.PaisFiltrar = new Pais();
             this._ventana.PaisSeleccionado = null;
             this._ventana.Region = ((IList<ListaDatosValores>)this._ventana.Regiones)[0];
-            
+
 
             this._ventana.Resultados = this._paises;
             this._ventana.TotalHits = this._paises.Count.ToString();

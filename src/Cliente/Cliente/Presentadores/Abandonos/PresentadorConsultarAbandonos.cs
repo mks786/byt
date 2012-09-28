@@ -21,14 +21,17 @@ namespace Trascend.Bolet.Cliente.Presentadores.Abandonos
 {
     class PresentadorConsultarAbandonos : PresentadorBase
     {
+
         private static PaginaPrincipal _paginaPrincipal = PaginaPrincipal.ObtenerInstancia;
         private static Logger logger = LogManager.GetCurrentClassLogger();
+
 
         private IConsultarAbandonos _ventana;
         private IMarcaServicios _marcaServicios;
         private IList<Marca> _marcas;
         private IList<Operacion> _abandonos;
         private IOperacionServicios _operacionServicios;
+
 
         /// <summary>
         /// Constructor Predeterminado
@@ -51,11 +54,13 @@ namespace Trascend.Bolet.Cliente.Presentadores.Abandonos
             }
         }
 
+
         public void ActualizarTitulo()
         {
             this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleConsultarAbandonos,
                 Recursos.Ids.ConsultarAbandonos);
         }
+
 
         /// <summary>
         /// Método que carga los datos iniciales a mostrar en la página
@@ -117,6 +122,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Abandonos
                 Mouse.OverrideCursor = null;
             }
         }
+
 
         /// <summary>
         /// Método que realiza una consulta al servicio, con el fin de filtrar los datos que se muestran 
@@ -194,6 +200,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Abandonos
             }
         }
 
+
         /// <summary>
         /// Método que invoca una nueva página "ConsultarAbandonos" y la instancia con el objeto seleccionado
         /// </summary>
@@ -214,6 +221,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Abandonos
                 logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
         }
+
 
         /// <summary>
         /// Método que ordena una columna
@@ -249,6 +257,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Abandonos
             #endregion
         }
 
+
         /// <summary>
         /// Método que busca las marcas registradas
         /// </summary>
@@ -274,6 +283,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Abandonos
             Mouse.OverrideCursor = null;
         }
 
+
         /// <summary>
         /// Método que permite seleccionar marcas
         /// </summary>
@@ -291,6 +301,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Abandonos
 
             return retorno;
         }
+
 
         /// <summary>
         /// Método que limpia los campos de búsqueda

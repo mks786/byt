@@ -20,8 +20,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
 {
     class PresentadorConsultarAsociados : PresentadorBase
     {
+
         private static PaginaPrincipal _paginaPrincipal = PaginaPrincipal.ObtenerInstancia;
         private static Logger logger = LogManager.GetCurrentClassLogger();
+
 
         private IConsultarAsociados _ventana;
         private IAsociadoServicios _asociadoServicios;
@@ -35,15 +37,18 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
         private IListaDatosDominioServicios _listaDatosDominioServicios;
         private IList<Asociado> _asociados;
 
+
         private Asociado _asociadoPrecargado;
 
+
         private int _filtroValido;
+
 
         /// <summary>
         /// Constructor Predeterminado
         /// </summary>
         /// <param name="ventana">página que satisface el contrato</param>
-        public PresentadorConsultarAsociados(IConsultarAsociados ventana,object ventanaPadre, object asociado)
+        public PresentadorConsultarAsociados(IConsultarAsociados ventana, object ventanaPadre, object asociado)
         {
             try
             {
@@ -83,9 +88,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
             catch (Exception ex)
             {
                 logger.Error(ex.Message);
-                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado,true);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
             }
         }
+
 
         public void ActualizarTitulo()
         {
@@ -102,6 +108,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
                 logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
         }
+
 
         /// <summary>
         /// Método que carga los datos iniciales a mostrar en la página
@@ -125,7 +132,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
                 //this._ventana.AsociadoFiltrar = new Asociado();
 
 
-                if (null != _ventanaPadre) 
+                if (null != _ventanaPadre)
                 {
                     IList<Asociado> asociados = new List<Asociado>();
                     asociados.Add(_asociadoPrecargado);
@@ -218,6 +225,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
             }
         }
 
+
         /// <summary>
         /// Método que realiza una consulta al servicio, con el fin de filtrar los datos que se muestran 
         /// por pantalla
@@ -230,7 +238,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
-                
+
                 this._filtroValido = 0;
 
                 Asociado asociado = this.CargarDatosFiltro();
@@ -360,6 +368,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
             }
         }
 
+
         private Asociado CargarDatosFiltro()
         {
             #region trace
@@ -442,6 +451,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
             #endregion
         }
 
+
         /// <summary>
         /// Método que invoca una nueva página "ConsultarAsociado" y la instancia con el objeto seleccionado
         /// </summary>
@@ -452,7 +462,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
                 logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
 
-            if(this._ventana.AsociadoSeleccionado != null)
+            if (this._ventana.AsociadoSeleccionado != null)
                 this.Navegar(new ConsultarAsociado(this._ventana.AsociadoSeleccionado, this._ventana));
 
             #region trace
@@ -460,6 +470,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
                 logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
         }
+
 
         /// <summary>
         /// Método que ordena una columna
@@ -495,6 +506,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
             #endregion
         }
 
+
         /// <summary>
         /// Método que limpia los campos de búsqueda
         /// </summary>
@@ -514,10 +526,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
             this._ventana.NombreAsociado = null;
             this._ventana.DomicilioAsociado = null;
 
-            this._ventana.Moneda = this.BuscarMoneda((IList<Moneda>)this._ventana.Monedas,new Moneda("NGN"));
+            this._ventana.Moneda = this.BuscarMoneda((IList<Moneda>)this._ventana.Monedas, new Moneda("NGN"));
             this._ventana.Pais = this.BuscarPais((IList<Pais>)this._ventana.Paises, new Pais(int.MinValue));
             this._ventana.Etiqueta = this.BuscarEtiqueta((IList<Etiqueta>)this._ventana.Etiquetas, new Etiqueta("NGN"));
-            
+
             this._ventana.TipoPersona = ((IList<ListaDatosDominio>)this._ventana.TipoPersonas)[0];
             this._ventana.Idioma = this.BuscarIdioma((IList<Idioma>)this._ventana.Idiomas, new Idioma("NGN"));
             this._ventana.TipoCliente = this.BuscarTipoCliente((IList<TipoCliente>)this._ventana.TiposClientes, new TipoCliente("NGN"));
@@ -529,6 +541,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
                 logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
         }
+
 
     }
 }

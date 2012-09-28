@@ -20,8 +20,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Anualidades
 {
     class PresentadorConsultarAnualidades : PresentadorBase
     {
+
         private static PaginaPrincipal _paginaPrincipal = PaginaPrincipal.ObtenerInstancia;
         private static Logger logger = LogManager.GetCurrentClassLogger();
+
 
         private IConsultarAnualidades _ventana;
         private IAnualidadServicios _anualidadServicios;
@@ -31,6 +33,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Anualidades
         private IList<Patente> _patentes;
         private IList<Asociado> _asociados;
         private IList<Interesado> _interesados;
+
 
         /// <summary>
         /// Constructor Predeterminado
@@ -57,11 +60,13 @@ namespace Trascend.Bolet.Cliente.Presentadores.Anualidades
             }
         }
 
+
         public void ActualizarTitulo()
         {
             this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleConsultarAnualidades,
                 Recursos.Ids.ConsultarAnualidad);
         }
+
 
         /// <summary>
         /// Método que carga los datos iniciales a mostrar en la página
@@ -126,6 +131,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Anualidades
             }
         }
 
+
         /// <summary>
         /// Método que realiza una consulta al servicio, con el fin de filtrar los datos que se muestran 
         /// por pantalla
@@ -149,7 +155,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Anualidades
                 if (!this._ventana.Id.Equals(""))
                 {
                     filtroValido = 2;
-                    PatenteAuxiliar.Id = int.Parse(this._ventana.Id); 
+                    PatenteAuxiliar.Id = int.Parse(this._ventana.Id);
                 }
 
                 if ((null != this._ventana.Asociado) && (((Asociado)this._ventana.Asociado).Id != int.MinValue))
@@ -243,6 +249,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Anualidades
             }
         }
 
+
         /// <summary>
         /// Método que invoca una nueva página "ConsultarPoder" y la instancia con el objeto seleccionado
         /// </summary>
@@ -273,10 +280,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Anualidades
                 ((Patente)this._ventana.AnualidadSeleccionada).Anualidades =
                         this._anualidadServicios.ConsultarAnualidadesPorPatente((Patente)this._ventana.AnualidadSeleccionada);
                 this.Navegar(new GestionarAnualidades(this._ventana.AnualidadSeleccionada));
-                
 
 
-              
+
+
             }
 
             #region trace
@@ -284,6 +291,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Anualidades
                 logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
         }
+
 
         /// <summary>
         /// Método que ordena una columna
@@ -318,6 +326,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Anualidades
                 logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
         }
+
 
         //public void BuscarAsociado()
         //{
@@ -369,6 +378,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Anualidades
         //        this._ventana.Interesados = this._interesados;
         //}
 
+
         /// <summary>
         /// Método que se encarga de buscar el asociado definido en el filtro
         /// </summary>
@@ -392,9 +402,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Anualidades
             if ((asociadoABuscar.Id != 0) || !(asociadoABuscar.Nombre.Equals("")))
             {
                 IList<Asociado> asociados = this._asociadoServicios.ObtenerAsociadosFiltro(asociadoABuscar);
-                asociados.Insert(0,new Asociado(int.MinValue));
+                asociados.Insert(0, new Asociado(int.MinValue));
                 this._ventana.Asociados = asociados;
-                    
+
             }
             else
             {
@@ -409,6 +419,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Anualidades
                 logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
         }
+
 
         /// <summary>
         /// Metodo que cambia el texto del Asociado en la interfaz
@@ -426,7 +437,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Anualidades
             if (this._ventana.Asociado != null)
             {
                 this._ventana.AsociadoFiltro = ((Asociado)this._ventana.Asociado).Nombre;
-                retorno =  true;
+                retorno = true;
             }
 
             #region trace
@@ -436,6 +447,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Anualidades
 
             return retorno;
         }
+
 
         public void LimpiarCampos()
         {
@@ -454,5 +466,6 @@ namespace Trascend.Bolet.Cliente.Presentadores.Anualidades
             this._ventana.TotalHits = "0";
 
         }
+
     }
 }

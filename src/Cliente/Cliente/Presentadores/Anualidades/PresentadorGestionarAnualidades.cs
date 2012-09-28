@@ -21,12 +21,15 @@ namespace Trascend.Bolet.Cliente.Presentadores.Anualidades
 {
     class PresentadorGestionarAnualidades : PresentadorBase
     {
+
         private static PaginaPrincipal _paginaPrincipal = PaginaPrincipal.ObtenerInstancia;
         private static Logger logger = LogManager.GetCurrentClassLogger();
+
 
         private bool _agregar = true;
         int _idAnualidad = 0;
         private IGestionarAnualidades _ventana;
+
 
         private IPatenteServicios _marcaServicios;
         private IAnaquaServicios _anaquaServicios;
@@ -50,10 +53,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Anualidades
         private IPlanillaServicios _planillaServicios;
         private IAnualidadServicios _anualidadServicios;
 
+
         private IList<Asociado> _asociados;
         private IList<Interesado> _interesados;
         private IList<Patente> _patentes;
-
 
 
         /// <summary>
@@ -81,7 +84,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Anualidades
 
                     this._ventana.TextoBotonRegresar = Recursos.Etiquetas.btnCancelar;
 
-                   
+
                 }
 
                 #region Servicios
@@ -139,6 +142,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Anualidades
             }
         }
 
+
         public void ActualizarTitulo()
         {
 
@@ -149,6 +153,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Anualidades
                 this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleGestionarAnualidad,
                 Recursos.Ids.GestionarAnualidad);
         }
+
 
         /// <summary>
         /// Método que carga los datos iniciales a mostrar en la página
@@ -177,7 +182,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Anualidades
                     this._ventana.Anualidades = patente.Anualidades;
                     this._ventana.Referencia = patente.PrimeraReferencia;
                     this._ventana.RegistroCodigo = patente.CodigoRegistro;
-                 //   this._ventana.RegistroFecha = patente.FechaRegistro;
+                    //   this._ventana.RegistroFecha = patente.FechaRegistro;
 
 
                     CargarPatente();
@@ -210,10 +215,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.Anualidades
             }
         }
 
+
         public void IrConsultarPatentes()
         {
-       //OJO     this.Navegar(new ConsultarPatentes());
+            //OJO     this.Navegar(new ConsultarPatentes());
         }
+
 
         /// <summary>
         /// Método que carga la Patente registrada
@@ -246,7 +253,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Anualidades
                 this._ventana.PatentesFiltradas = this._patentes;
                 this._ventana.PatenteFiltrada = primeraPatente;
             }
-  
+
 
             #region trace
             if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -254,6 +261,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Anualidades
             #endregion
 
         }
+
 
         /// <summary>
         /// Método que dependiendo del estado de la pagina carga una patente seleccionada
@@ -324,6 +332,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Anualidades
             return patente;
         }
 
+
         /// <summary>
         /// Método que habilita los campos
         /// </summary>
@@ -332,6 +341,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Anualidades
             this._ventana.HabilitarCampos = true;
             this._ventana.TextoBotonModificar = Recursos.Etiquetas.btnAceptar;
         }
+
 
         /// <summary>
         /// Método que dependiendo del estado de la página, habilita los campos o 
@@ -399,6 +409,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Anualidades
             }
         }
 
+
         /// <summary>
         /// Método que ordena una columna
         /// </summary>
@@ -435,6 +446,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Anualidades
 
 
         #region Patentes
+
 
         /// <summary>
         /// Método Muestra las marcas consultadas
@@ -503,6 +515,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Anualidades
             }
         }
 
+
         /// <summary>
         /// Método que cambia la marca
         /// </summary>
@@ -568,10 +581,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.Anualidades
             return retorno;
         }
 
+
         #endregion
 
 
         #region Asociados
+
 
         public void CambiarAsociadoSolicitud()
         {
@@ -591,6 +606,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Anualidades
                 //this._ventana.NombreAsociadoDatos = "";
             }
         }
+
 
         public void BuscarAsociado(int filtrarEn)
         {
@@ -651,6 +667,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Anualidades
             //}
         }
 
+
         public void CargarAsociados()
         {
             Mouse.OverrideCursor = Cursors.Wait;
@@ -665,7 +682,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Anualidades
             this._ventana.AsociadoSolicitud = this.BuscarAsociado(asociados, patente.Asociado);
             //this._ventana.AsociadoDatos = this.BuscarAsociado(asociados, marcaTercero.Asociado);
             //this._ventana.NombreAsociadoDatos = ((MarcaTercero)this._ventana.MarcaTercero).Asociado.Nombre;
-            if (((Patente)this._ventana.Patente).Asociado !=null)
+            if (((Patente)this._ventana.Patente).Asociado != null)
                 this._ventana.NombreAsociadoSolicitud = ((Patente)this._ventana.Patente).Asociado.Nombre;
             this._asociados = asociados;
             this._ventana.AsociadosEstanCargados = true;
@@ -676,7 +693,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Anualidades
 
         #endregion
 
+
         #region Interesados
+
 
         public void CambiarInteresadoSolicitud()
         {
@@ -697,6 +716,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Anualidades
                 //this._ventana.NombreInteresadoDatos = "";
             }
         }
+
 
         public void BuscarInteresado(int filtrarEn)
         {
@@ -755,6 +775,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Anualidades
             //}
         }
 
+
         public void CargarInteresados()
         {
             Mouse.OverrideCursor = Cursors.Wait;
@@ -772,8 +793,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Anualidades
             //this._ventana.InteresadoDatos = interesado;
             //interesado = this._interesadoServicios.ConsultarInteresadoConTodo(interesado);
             //this._ventana.NombreInteresadoDatos = ((MarcaTercero)this._ventana.MarcaTercero).Interesado.Nombre;
-            if (((Patente)this._ventana.Patente).Interesado!=null)
-                 this._ventana.NombreInteresadoSolicitud = ((Patente)this._ventana.Patente).Interesado.Nombre;
+            if (((Patente)this._ventana.Patente).Interesado != null)
+                this._ventana.NombreInteresadoSolicitud = ((Patente)this._ventana.Patente).Interesado.Nombre;
             this._interesados = interesados;
 
             this._ventana.InteresadosEstanCargados = true;
@@ -782,10 +803,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Anualidades
         }
 
 
-
         #endregion
 
+
         #region Boletines y situacion
+
 
         /// <summary>
         /// Método que carga los combobox con la data
@@ -820,7 +842,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Anualidades
             primerServicio.Id = "NGN";
             servicios.Insert(0, primerServicio);
             this._ventana.Situaciones = servicios;
-           // this._ventana.ISituaciones = servicios;
+            // this._ventana.ISituaciones = servicios;
             if (!_agregar)
                 this._ventana.Situacion = this.BuscarServicio(servicios, patente.Servicio);
 
@@ -839,9 +861,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.Anualidades
 
         }
 
+
         #endregion
 
+
         #region Anualidad
+
 
         /// <summary>
         /// Método que carga lista de Anualidad
@@ -862,7 +887,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Anualidades
                 this._ventana.Anualidades = null;
                 this._ventana.Anualidades = patente.Anualidades;
                 retorno = true;
-                
+
             }
 
             #region trace
@@ -872,6 +897,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Anualidades
 
             return retorno;
         }
+
 
         /// Método que carga lista de Anualidad
         /// </summary>
@@ -888,36 +914,36 @@ namespace Trascend.Bolet.Cliente.Presentadores.Anualidades
 
             bool retorno = false;
 
-                if (null == ((Patente)this._ventana.Patente).Anualidades)
-                    anulidades = new List<Anualidad>();
-                else
-                    anulidades = ((Patente)this._ventana.Patente).Anualidades;
+            if (null == ((Patente)this._ventana.Patente).Anualidades)
+                anulidades = new List<Anualidad>();
+            else
+                anulidades = ((Patente)this._ventana.Patente).Anualidades;
 
-                    this._idAnualidad = conta;
-                    Anualidad aux = new Anualidad();
-                    aux.Asociado = ((Patente)this._ventana.Patente).Asociado;
-                    aux.Id = conta;
-                    aux.Recibo = this._ventana.Recibo;
-                    if (this._ventana.FechaAnualidad != "")
-                        aux.FechaAnualidad = DateTime.Parse(this._ventana.FechaAnualidad);
-                    aux.Voucher = this._ventana.Voucher;
-                    if (this._ventana.FechaVoucher != "")
-                        aux.FechaVoucher = DateTime.Parse(this._ventana.FechaVoucher);
-                    if (this._ventana.ISituacion != null)
-                        aux.Situacion = ((ListaDatosDominio)this._ventana.ISituacion).Id;
-                    if (this._ventana.Factura != "")
-                        aux.Factura = int.Parse(this._ventana.Factura);
-                    aux.IFactura = "T";
-                    aux.Patente = ((Patente)this._ventana.Patente);
-                    anulidades.Add(aux);
-                
-                
-                ((Patente)this._ventana.Patente).Anualidades = anulidades;
-                this._ventana.Anualidades = anulidades.ToList<Anualidad>();
-                // this._patentesBaseTercero.Remove((MarcaBaseTercero)this._ventana.MarcaTercero);
-                // ((MarcaTercero)this._ventana.MarcaTercero).MarcasBaseTercero = this._patentesBaseTercero.ToList<MarcaBaseTercero>();
-                retorno = true;
-            
+            this._idAnualidad = conta;
+            Anualidad aux = new Anualidad();
+            aux.Asociado = ((Patente)this._ventana.Patente).Asociado;
+            aux.Id = conta;
+            aux.Recibo = this._ventana.Recibo;
+            if (this._ventana.FechaAnualidad != "")
+                aux.FechaAnualidad = DateTime.Parse(this._ventana.FechaAnualidad);
+            aux.Voucher = this._ventana.Voucher;
+            if (this._ventana.FechaVoucher != "")
+                aux.FechaVoucher = DateTime.Parse(this._ventana.FechaVoucher);
+            if (this._ventana.ISituacion != null)
+                aux.Situacion = ((ListaDatosDominio)this._ventana.ISituacion).Id;
+            if (this._ventana.Factura != "")
+                aux.Factura = int.Parse(this._ventana.Factura);
+            aux.IFactura = "T";
+            aux.Patente = ((Patente)this._ventana.Patente);
+            anulidades.Add(aux);
+
+
+            ((Patente)this._ventana.Patente).Anualidades = anulidades;
+            this._ventana.Anualidades = anulidades.ToList<Anualidad>();
+            // this._patentesBaseTercero.Remove((MarcaBaseTercero)this._ventana.MarcaTercero);
+            // ((MarcaTercero)this._ventana.MarcaTercero).MarcasBaseTercero = this._patentesBaseTercero.ToList<MarcaBaseTercero>();
+            retorno = true;
+
 
             #region trace
             if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -926,6 +952,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Anualidades
 
             return retorno;
         }
+
 
         /// Método que Modifica lista de Anualidad
         /// </summary>
@@ -945,10 +972,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Anualidades
             {
                 bool retorno = false;
 
-                if (null == ((Patente) this._ventana.Patente).Anualidades)
+                if (null == ((Patente)this._ventana.Patente).Anualidades)
                     anulidades = new List<Anualidad>();
                 else
-                    anulidades = ((Patente) this._ventana.Patente).Anualidades;
+                    anulidades = ((Patente)this._ventana.Patente).Anualidades;
 
                 int contador = 0;
 
@@ -979,7 +1006,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Anualidades
 
 
 
-                ((Patente) this._ventana.Patente).Anualidades = anulidades;
+                ((Patente)this._ventana.Patente).Anualidades = anulidades;
                 this._ventana.Anualidades = anulidades.ToList<Anualidad>();
 
                 #region trace
@@ -992,6 +1019,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Anualidades
             }
             return true;
         }
+
 
         /// <summary>
         /// Metodo que deshabilita los Anulidadaes
@@ -1014,7 +1042,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Anualidades
                 else
                     anualidades = ((Patente)this._ventana.Patente).Anualidades;
 
-                
+
                 anualidades.Remove((Anualidad)this._ventana.Anualidad);
                 ((Patente)this._ventana.Patente).Anualidades = anualidades;
                 this._ventana.Anualidades = anualidades.ToList<Anualidad>();
@@ -1031,6 +1059,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Anualidades
 
             return respuesta;
         }
+
 
         /// <summary>
         /// Método que carga la anualdiad seleccionada
@@ -1058,7 +1087,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Anualidades
 
             if (!nuevo)
             {
-                Anualidad anuSelect = ((Anualidad) this._ventana.Anualidad);
+                Anualidad anuSelect = ((Anualidad)this._ventana.Anualidad);
                 domi.Id = anuSelect.Situacion;
                 this._ventana.Recibo = anuSelect.Recibo;
                 this._ventana.FechaAnualidad = anuSelect.FechaAnualidad.ToString();
@@ -1085,12 +1114,14 @@ namespace Trascend.Bolet.Cliente.Presentadores.Anualidades
                 logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
 
-           
+
         }
 
 
-
         #endregion
+
+
+
         public void IrImprimir(string nombreBoton)
         {
             try
@@ -1117,6 +1148,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Anualidades
             }
         }
 
+
         //private void ImprimirCarpeta()
         //{
         //    if (ValidarPatenteAntesDeImprimirCarpeta())
@@ -1134,10 +1166,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.Anualidades
         //    }
         //}
 
+
         private bool ValidarPatenteAntesDeImprimirCarpeta()
         {
             return true;
         }
+
 
         private void ImprimirAnexo()
         {
@@ -1156,10 +1190,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.Anualidades
             }
         }
 
+
         private bool ValidarPatenteAntesDeImprimirAnexo()
         {
             return true;
         }
+
 
         private void ImprimirPlanilla()
         {
@@ -1178,9 +1214,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Anualidades
             }
         }
 
+
         private bool ValidarPatenteAntesDeImprimirPlanilla()
         {
             return true;
         }
+
     }
 }

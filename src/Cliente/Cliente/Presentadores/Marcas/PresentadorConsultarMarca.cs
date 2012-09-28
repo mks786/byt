@@ -201,7 +201,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 Marca marca = (Marca)this._ventana.Marca;
                 _marca = marca;
 
-                if (marca.LocalidadMarca.Equals("I"))
+                if ((!string.IsNullOrEmpty(marca.LocalidadMarca)) && (marca.LocalidadMarca.Equals("I")))
                     this._ventana.MarcarRadioMarcaNacional(false);
                 else
                     this._ventana.MarcarRadioMarcaNacional(true);

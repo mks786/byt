@@ -13,12 +13,14 @@ namespace Trascend.Bolet.Cliente.Presentadores.Agentes
 {
     class PresentadorAgregarAgente : PresentadorBase
     {
+
         private IAgregarAgente _ventana;
         private IAgenteServicios _agenteServicios;
         private IListaDatosValoresServicios _listaDatosValoresServicios;
         private IListaDatosDominioServicios _listaDatosDominioServicios;
         private static PaginaPrincipal _paginaPrincipal = PaginaPrincipal.ObtenerInstancia;
         private static Logger logger = LogManager.GetCurrentClassLogger();
+
 
         /// <summary>
         /// Constructor predeterminado
@@ -51,9 +53,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Agentes
             catch (Exception ex)
             {
                 logger.Error(ex.Message);
-                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado,true);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
             }
         }
+
 
         /// <summary>
         /// Método que carga los datos iniciales a mostrar en la página
@@ -111,6 +114,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Agentes
             }
         }
 
+
         /// <summary>
         /// Método que realiza toda la lógica para agregar al Usuario dentro de la base de datos
         /// </summary>
@@ -129,11 +133,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Agentes
                 agente.Sexo = ((ListaDatosValores)this._ventana.Sexo).Valor[0];
 
                 if (!this._agenteServicios.VerificarExistencia(agente))
-                {                    
-                    bool exitoso = this._agenteServicios.InsertarOModificar(agente,UsuarioLogeado.Hash);
+                {
+                    bool exitoso = this._agenteServicios.InsertarOModificar(agente, UsuarioLogeado.Hash);
 
                     if (exitoso)
-                        this.Navegar(Recursos.MensajesConElUsuario.AgenteInsertado,false);
+                        this.Navegar(Recursos.MensajesConElUsuario.AgenteInsertado, false);
                 }
                 else
                 {
@@ -167,5 +171,6 @@ namespace Trascend.Bolet.Cliente.Presentadores.Agentes
                 this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
             }
         }
+
     }
 }

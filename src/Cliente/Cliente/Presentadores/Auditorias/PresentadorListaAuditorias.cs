@@ -20,10 +20,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.Agentes
 {
     class PresentadorListaAuditorias : PresentadorBase
     {
+
         private static PaginaPrincipal _paginaPrincipal = PaginaPrincipal.ObtenerInstancia;
         private static Logger logger = LogManager.GetCurrentClassLogger();
         private IListaAuditorias _ventana;
         private IList<Auditoria> _auditorias;
+
 
         /// <summary>
         /// Constructor Predeterminado
@@ -44,6 +46,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Agentes
                 logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
         }
+
 
         /// <summary>
         /// Método que carga los datos iniciales a mostrar en la página
@@ -82,6 +85,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Agentes
             }
         }
 
+
         /// <summary>
         /// Método que ordena una columna
         /// </summary>
@@ -115,5 +119,6 @@ namespace Trascend.Bolet.Cliente.Presentadores.Agentes
                 logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
         }
+
     }
 }

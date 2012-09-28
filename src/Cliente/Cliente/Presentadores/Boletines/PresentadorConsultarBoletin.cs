@@ -13,10 +13,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.Boletines
 {
     class PresentadorConsultarBoletin : PresentadorBase
     {
+
         private IConsultarBoletin _ventana;
         private IBoletinServicios _boletinServicios;
         private static PaginaPrincipal _paginaPrincipal = PaginaPrincipal.ObtenerInstancia;
         private static Logger logger = LogManager.GetCurrentClassLogger();
+
 
         /// <summary>
         /// Constructor predeterminado
@@ -48,6 +50,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Boletines
                 this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
             }
         }
+
 
         /// <summary>
         /// Método que carga los datos iniciales a mostrar en la página
@@ -86,6 +89,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Boletines
                 Mouse.OverrideCursor = null;
             }
         }
+
 
         /// <summary>
         /// Método que dependiendo del boletin de la página, habilita los campos o 
@@ -145,6 +149,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Boletines
             }
         }
 
+
         /// <summary>
         /// Método que elimina un Boletín
         /// </summary>
@@ -189,5 +194,6 @@ namespace Trascend.Bolet.Cliente.Presentadores.Boletines
                 this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
             }
         }
+
     }
 }

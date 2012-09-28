@@ -18,6 +18,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
 {
     class PresentadorConsultarAsociado : PresentadorBase
     {
+
         private IConsultarAsociado _ventana;
         private IAsociadoServicios _asociadoServicios;
         private IDetallePagoServicios _detallePagoServicios;
@@ -33,6 +34,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
         private static PaginaPrincipal _paginaPrincipal = PaginaPrincipal.ObtenerInstancia;
         private IList<Auditoria> _auditorias;
         private static Logger logger = LogManager.GetCurrentClassLogger();
+
 
         /// <summary>
         /// Constructor predeterminado
@@ -86,6 +88,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
             }
         }
 
+
         /// <summary>
         /// Método que carga los datos iniciales a mostrar en la página
         /// </summary>
@@ -110,7 +113,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
                 asociado.Contactos = this._contactoServicios.ConsultarContactosPorAsociado(asociado);
                 asociado.DatosTransferencias = this._datosTransferenciaServicios.ConsultarDatosTransferenciaPorAsociado(asociado);
 
-                
+
 
                 IList<Pais> paises = this._paisServicios.ConsultarTodos();
                 this._ventana.Paises = paises;
@@ -155,8 +158,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
 
                 IList<ListaDatosDominio> tiposPersona = this._listaDatosDominioServicios.ConsultarListaDatosDominioPorParametro(new ListaDatosDominio("PERSONA"));
                 this._ventana.TipoPersonas = tiposPersona;
-                
-                this._ventana.TipoPersona = BuscarTipoPersona(asociado.TipoPersona,(IList<ListaDatosDominio>)this._ventana.TipoPersonas);
+
+                this._ventana.TipoPersona = BuscarTipoPersona(asociado.TipoPersona, (IList<ListaDatosDominio>)this._ventana.TipoPersonas);
 
                 _auditorias = this._asociadoServicios.AuditoriaPorFkyTabla(auditoria);
 
@@ -188,6 +191,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
                 Mouse.OverrideCursor = null;
             }
         }
+
 
         /// <summary>
         /// Método que dependiendo del estado de la página, habilita los campos o 
@@ -263,6 +267,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
             }
         }
 
+
         /// <summary>
         /// Método que elimina un asociado
         /// </summary>
@@ -307,6 +312,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
             }
         }
 
+
         /// <summary>
         /// Método que muestra la ventana de Justificaciones de un Asociado
         /// </summary>
@@ -326,6 +332,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
 
         }
 
+
         /// <summary>
         /// Método que muestra la ventana de Contactos de un Asociado
         /// </summary>
@@ -336,13 +343,14 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
                 logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
 
-            this.Navegar(new ListaContactos(this._ventana.Asociado,this._ventana));
+            this.Navegar(new ListaContactos(this._ventana.Asociado, this._ventana));
 
             #region trace
             if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
                 logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
         }
+
 
         /// <summary>
         /// Método que muestra la ventana de transferencia de un Asociado
@@ -361,6 +369,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
                 logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
         }
+
 
         /// <summary>
         /// Método que muestra la ventana de Auditoría de un Asociado
@@ -403,6 +412,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
             }
         }
 
+
         /// <summary>
         /// Metodo que muestra el expediente de un asociado en PDF
         /// </summary>
@@ -434,9 +444,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
             }
         }
 
-        public void IrACorrespondencia() 
+
+
+        public void IrACorrespondencia()
         {
-            Navegar(new ConsultarCartas(this._ventana,this._ventana.Asociado));
+            Navegar(new ConsultarCartas(this._ventana, this._ventana.Asociado));
         }
     }
 }

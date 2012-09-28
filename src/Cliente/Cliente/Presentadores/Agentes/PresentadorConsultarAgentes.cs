@@ -20,14 +20,17 @@ namespace Trascend.Bolet.Cliente.Presentadores.Agentes
 {
     class PresentadorConsultarAgentes : PresentadorBase
     {
+
         private static PaginaPrincipal _paginaPrincipal = PaginaPrincipal.ObtenerInstancia;
         private static Logger logger = LogManager.GetCurrentClassLogger();
+
 
         private IConsultarAgentes _ventana;
         private IAgenteServicios _agenteServicios;
         private IListaDatosValoresServicios _listaDatosValoresServicios;
         private IListaDatosDominioServicios _listaDatosDominioServicios;
         private IList<Agente> _agentes;
+
 
         /// <summary>
         /// Constructor Predeterminado
@@ -58,9 +61,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Agentes
             catch (Exception ex)
             {
                 logger.Error(ex.Message);
-                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado,true);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
             }
         }
+
 
         /// <summary>
         /// Método que actualiza el título de la ventana a Consultar Agente
@@ -75,6 +79,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Agentes
             this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleConsultarAgentes,
             Recursos.Ids.ConsultarAgentes);
         }
+
 
         /// <summary>
         /// Método que carga los datos iniciales a mostrar en la página
@@ -142,6 +147,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Agentes
             }
         }
 
+
         /// <summary>
         /// Método que realiza una consulta al servicio, con el fin de filtrar los datos que se muestran 
         /// por pantalla
@@ -155,7 +161,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Agentes
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-                Agente agente = (Agente) this._ventana.AgenteFiltrar;
+                Agente agente = (Agente)this._ventana.AgenteFiltrar;
 
                 IEnumerable<Agente> agentesFiltrados = this._agentes;
 
@@ -169,7 +175,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Agentes
                 if (!string.IsNullOrEmpty(agente.Nombre))
                 {
                     agentesFiltrados = from a in agentesFiltrados
-                                       where a.Nombre != null && 
+                                       where a.Nombre != null &&
                                        a.Nombre.ToLower().Contains(agente.Nombre.ToLower())
                                        select a;
                 }
@@ -177,7 +183,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Agentes
                 if (!string.IsNullOrEmpty(agente.Domicilio))
                 {
                     agentesFiltrados = from a in agentesFiltrados
-                                       where a.Domicilio != null && 
+                                       where a.Domicilio != null &&
                                        a.Domicilio.ToLower().Contains(agente.Domicilio.ToLower())
                                        select a;
                 }
@@ -207,7 +213,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Agentes
                 if (!string.IsNullOrEmpty(agente.NumeroAbogado))
                 {
                     agentesFiltrados = from a in agentesFiltrados
-                                       where a.NumeroAbogado != null && 
+                                       where a.NumeroAbogado != null &&
                                        a.NumeroAbogado.ToLower().Contains(agente.NumeroAbogado.ToLower())
                                        select a;
                 }
@@ -215,7 +221,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Agentes
                 if (!string.IsNullOrEmpty(agente.NumeroImpresoAbogado))
                 {
                     agentesFiltrados = from a in agentesFiltrados
-                                       where a.NumeroImpresoAbogado != null && 
+                                       where a.NumeroImpresoAbogado != null &&
                                        a.NumeroImpresoAbogado.ToLower().Contains(agente.NumeroImpresoAbogado.ToLower())
                                        select a;
                 }
@@ -223,7 +229,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Agentes
                 if (!string.IsNullOrEmpty(agente.NumeroPropiedad))
                 {
                     agentesFiltrados = from a in agentesFiltrados
-                                       where a.NumeroPropiedad != null && 
+                                       where a.NumeroPropiedad != null &&
                                        a.NumeroPropiedad.ToLower().Contains(agente.NumeroPropiedad.ToLower())
                                        select a;
                 }
@@ -231,7 +237,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Agentes
                 if (!string.IsNullOrEmpty(agente.CCI))
                 {
                     agentesFiltrados = from a in agentesFiltrados
-                                       where a.CCI != null && 
+                                       where a.CCI != null &&
                                        a.CCI.ToLower().Contains(agente.CCI.ToLower())
                                        select a;
                 }
@@ -251,6 +257,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Agentes
             }
         }
 
+
         /// <summary>
         /// Método que invoca una nueva página "ConsultarAgente" y la instancia con el objeto seleccionado
         /// </summary>
@@ -268,6 +275,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Agentes
                 logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
         }
+
 
         /// <summary>
         /// Método que ordena una columna
@@ -303,6 +311,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Agentes
             #endregion
         }
 
+
         /// <summary>
         /// Método que limpia los campos de búsqueda
         /// </summary>
@@ -314,16 +323,17 @@ namespace Trascend.Bolet.Cliente.Presentadores.Agentes
             #endregion
 
             this._ventana.AgenteFiltrar = new Agente();
-            this._ventana.EstadoCivil = ((IList<ListaDatosDominio>)this._ventana.EstadosCivil)[0];            
+            this._ventana.EstadoCivil = ((IList<ListaDatosDominio>)this._ventana.EstadosCivil)[0];
             this._ventana.Sexo = this.BuscarSexo((IList<ListaDatosValores>)this._ventana.Sexos, new ListaDatosValores("NGN"));
 
             this._ventana.Resultados = this._agentes;
             this._ventana.TotalHits = (this._agentes).Count.ToString();
-            
+
             #region trace
             if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
                 logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
         }
+
     }
 }

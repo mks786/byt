@@ -19,13 +19,15 @@ using Trascend.Bolet.Cliente.Ventanas.Boletines;
 
 namespace Trascend.Bolet.Cliente.Presentadores.Boletines
 {
-    class PresentadorConsultarBoletines: PresentadorBase
+    class PresentadorConsultarBoletines : PresentadorBase
     {
+
         private IConsultarBoletines _ventana;
         private IBoletinServicios _boletinServicios;
         private static PaginaPrincipal _paginaPrincipal = PaginaPrincipal.ObtenerInstancia;
         private IList<Boletin> _boletines;
         private static Logger logger = LogManager.GetCurrentClassLogger();
+
 
         /// <summary>
         /// Constructor Predeterminado
@@ -56,6 +58,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Boletines
             }
         }
 
+
         /// <summary>
         /// Método que actualiza el título de la ventana a Consultar Boletines
         /// </summary>
@@ -74,6 +77,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Boletines
                 logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
         }
+
 
         /// <summary>
         /// Método que carga los datos iniciales a mostrar en la página
@@ -125,6 +129,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Boletines
                 Mouse.OverrideCursor = null;
             }
         }
+
 
         /// <summary>
         /// Método que realiza una consulta al servicio, con el fin de filtrar los datos que se muestran 
@@ -179,6 +184,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Boletines
             }
         }
 
+
         /// <summary>
         /// Método que invoca una nueva página "ConsultarBoletin" y la instancia con el boletin seleccionado
         /// </summary>
@@ -197,6 +203,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Boletines
                 logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
         }
+
 
         /// <summary>
         /// Método que ordena una columna
@@ -231,5 +238,6 @@ namespace Trascend.Bolet.Cliente.Presentadores.Boletines
                 logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
         }
+
     }
 }

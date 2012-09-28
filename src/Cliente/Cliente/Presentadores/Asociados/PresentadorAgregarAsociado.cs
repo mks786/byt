@@ -15,6 +15,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
 {
     class PresentadorAgregarAsociado : PresentadorBase
     {
+
         private IAgregarAsociado _ventana;
         private IAsociadoServicios _asociadoServicios;
         private IDetallePagoServicios _detallePagoServicios;
@@ -27,6 +28,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
         private IPaisServicios _paisServicios;
         private static PaginaPrincipal _paginaPrincipal = PaginaPrincipal.ObtenerInstancia;
         private static Logger logger = LogManager.GetCurrentClassLogger();
+
 
         /// <summary>
         /// Constructor predeterminado
@@ -70,9 +72,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
             catch (Exception ex)
             {
                 logger.Error(ex.Message);
-                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado,true);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
             }
         }
+
 
         /// <summary>
         /// Método que carga los datos iniciales a mostrar en la página
@@ -104,7 +107,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
                 this._ventana.Etiquetas = etiquetas;
 
                 IList<Tarifa> tarifas = this._tarifaServicios.ConsultarTodos();
-                Tarifa primeraTarifa= new Tarifa();
+                Tarifa primeraTarifa = new Tarifa();
                 primeraTarifa.Id = "NGN";
                 tarifas.Insert(0, primeraTarifa);
                 this._ventana.Tarifas = tarifas;
@@ -153,6 +156,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
             }
         }
 
+
         /// <summary>
         /// Método que realiza toda la lógica para agregar al Usuario dentro de la base de datos
         /// </summary>
@@ -177,15 +181,15 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
                 asociado.Etiqueta = !((Etiqueta)this._ventana.Etiqueta).Id.Equals("NGN") ? (Etiqueta)this._ventana.Etiqueta : null;
                 asociado.DetallePago = !((DetallePago)this._ventana.DetallePago).Id.Equals("NGN") ? (DetallePago)this._ventana.DetallePago : null;
 
-               bool exitoso = this._asociadoServicios.InsertarOModificar(asociado, UsuarioLogeado.Hash);
-                
-               if (exitoso)
+                bool exitoso = this._asociadoServicios.InsertarOModificar(asociado, UsuarioLogeado.Hash);
+
+                if (exitoso)
                     this.Navegar(Recursos.MensajesConElUsuario.AsociadoInsertado, false);
 
-               #region trace
-               if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
-                   logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
-               #endregion
+                #region trace
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
             }
             catch (ApplicationException ex)
             {
@@ -208,5 +212,6 @@ namespace Trascend.Bolet.Cliente.Presentadores.Asociados
                 this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
             }
         }
+
     }
 }

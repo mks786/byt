@@ -20,11 +20,13 @@ namespace Trascend.Bolet.Cliente.Presentadores.Anexos
 {
     class PresentadorConsultarAnexos : PresentadorBase
     {
+
         private static PaginaPrincipal _paginaPrincipal = PaginaPrincipal.ObtenerInstancia;
         private static Logger logger = LogManager.GetCurrentClassLogger();
         private IConsultarAnexos _ventana;
         private IAnexoServicios _anexoServicios;
         private IList<Anexo> _anexos;
+
 
         /// <summary>
         /// Constructor Predeterminado
@@ -55,6 +57,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Anexos
             }
         }
 
+
         /// <summary>
         /// Metodo que se encarga de cambiar el titulo de la ventana
         /// </summary>
@@ -72,6 +75,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Anexos
                 logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
         }
+
 
         /// <summary>
         /// Método que carga los datos iniciales a mostrar en la página
@@ -126,6 +130,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Anexos
             }
         }
 
+
         /// <summary>
         /// Método que realiza una consulta al servicio, con el fin de filtrar los datos que se muestran 
         /// por pantalla
@@ -173,8 +178,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Anexos
             }
         }
 
-        ///<summary>
-        //Método que invoca una nueva página "ConsultarAnexo" y la instancia con el objeto seleccionado
+
+        /// <summary>
+        /// Método que invoca una nueva página "ConsultarAnexo" y la instancia con el objeto seleccionado
         /// </summary>
         public void IrConsultarAnexo()
         {
@@ -190,6 +196,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Anexos
                 logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
         }
+
 
         /// <summary>
         /// Método que ordena una columna
@@ -224,5 +231,6 @@ namespace Trascend.Bolet.Cliente.Presentadores.Anexos
                 logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
         }
+
     }
 }

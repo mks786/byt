@@ -21,14 +21,17 @@ namespace Trascend.Bolet.Cliente.Presentadores.AbandonosPatente
 {
     class PresentadorGestionarAbandonoPatente : PresentadorBase
     {
+
         private static PaginaPrincipal _paginaPrincipal = PaginaPrincipal.ObtenerInstancia;
         private static Logger logger = LogManager.GetCurrentClassLogger();
+
 
         public bool _agregar = true;
         private IGestionarAbandonoPatente _ventana;
 
-        private IPatenteServicios _patenteServicios;        
-        private IAsociadoServicios _asociadoServicios;                
+
+        private IPatenteServicios _patenteServicios;
+        private IAsociadoServicios _asociadoServicios;
         private IPaisServicios _paisServicios;
         private IInteresadoServicios _interesadoServicios;
         private IServicioServicios _servicioServicios;
@@ -36,10 +39,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.AbandonosPatente
         private IListaDatosValoresServicios _listaDatosValoresServicios;
         private IBoletinServicios _boletinServicios;
 
-        private IList<Asociado> _asociados;        
-        private IList<Patente> _patentes;        
-        private IList<Interesado> _interesados;               
-       
+
+        private IList<Asociado> _asociados;
+        private IList<Patente> _patentes;
+        private IList<Interesado> _interesados;
+
         /// <summary>
         /// Constructor Predeterminado
         /// </summary>
@@ -64,15 +68,15 @@ namespace Trascend.Bolet.Cliente.Presentadores.AbandonosPatente
                     this._ventana.Operacion = abandonoAgregar;
 
                     ((Operacion)this._ventana.Operacion).Fecha = DateTime.Now;
-                    this._ventana.Patente = null;                            
-                    this._ventana.Interesado = null;                                             
+                    this._ventana.Patente = null;
+                    this._ventana.Interesado = null;
 
                     this._ventana.TextoBotonRegresar = Recursos.Etiquetas.btnCancelar;
-                                       
+
                     this._ventana.ActivarControlesAlAgregar();
 
-                    
-                    
+
+
                 }
 
                 #region Servicios
@@ -101,6 +105,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.AbandonosPatente
             }
         }
 
+
         public void ActualizarTitulo()
         {
             if (_agregar == true)
@@ -110,6 +115,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.AbandonosPatente
                 this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleGestionarAbandonoPatente,
                 Recursos.Ids.GestionarAbandonoPatente);
         }
+
 
         /// <summary>
         /// Método que carga los datos iniciales a mostrar en la página
@@ -137,9 +143,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.AbandonosPatente
                     if (((Operacion)operacion).Patente != null)
                         this._ventana.Patente = this._patenteServicios.ConsultarPatenteConTodo(((Operacion)operacion).Patente);
 
-                    this._ventana.NombrePatente = ((Patente)this._ventana.Patente).Descripcion;                  
+                    this._ventana.NombrePatente = ((Patente)this._ventana.Patente).Descripcion;
 
-                    CargarPatente();                  
+                    CargarPatente();
 
                     CargarInteresado();
 
@@ -157,7 +163,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.AbandonosPatente
 
                     CargarAsociado();
 
-                    CargaBoletines();              
+                    CargaBoletines();
                 }
 
                 this._ventana.ConvertirEnteroMinimoABlanco();
@@ -179,14 +185,16 @@ namespace Trascend.Bolet.Cliente.Presentadores.AbandonosPatente
                 Mouse.OverrideCursor = null;
             }
         }
-       
+
+
         /// <summary>
         /// Método que carga la ventana de Consultar Abandonos
         /// </summary>
         public void IrConsultarAbandonos()
         {
-           this.Navegar(new ConsultarAbandonosPatente());
+            this.Navegar(new ConsultarAbandonosPatente());
         }
+
 
         /// <summary>
         /// Método que carga los datos de Operacion Abandono para agregar en la Base de Datos
@@ -217,6 +225,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.AbandonosPatente
             return operacion;
         }
 
+
         /// <summary>
         /// Método que carga los boletines registrados
         /// </summary>
@@ -227,6 +236,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.AbandonosPatente
             boletines.Insert(0, primerBoletin);
             this._ventana.Boletines = boletines;
         }
+
 
         /// <summary>
         /// Método que dependiendo del estado de la página, habilita los campos o 
@@ -243,16 +253,16 @@ namespace Trascend.Bolet.Cliente.Presentadores.AbandonosPatente
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-                Operacion operacion = CargarAbandonoDeLaPantalla();              
-               
+                Operacion operacion = CargarAbandonoDeLaPantalla();
+
                 bool exitoso = this._operacionServicios.InsertarOModificar(operacion, UsuarioLogeado.Hash);
 
 
-                if (exitoso)                               
-                    this.Navegar(Recursos.MensajesConElUsuario.AbandonoInsertado, false);                
+                if (exitoso)
+                    this.Navegar(Recursos.MensajesConElUsuario.AbandonoInsertado, false);
                 else
                     this.Navegar(Recursos.MensajesConElUsuario.AbandonoInsertado, true);
-                
+
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -284,6 +294,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.AbandonosPatente
                 Mouse.OverrideCursor = null;
             }
         }
+
 
         /// <summary>
         /// Metodo que se encarga de eliminar una Abandono
@@ -334,7 +345,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.AbandonosPatente
             {
                 Mouse.OverrideCursor = null;
             }
-        }   
+        }
+
 
         /// <summary>
         /// Método que ordena una columna
@@ -368,9 +380,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.AbandonosPatente
             if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
                 logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
-        }       
+        }
+
 
         #region Patentes
+
 
         /// <summary>
         /// Método que carga los datos iniciales de Patente a mostrar en la página
@@ -393,16 +407,17 @@ namespace Trascend.Bolet.Cliente.Presentadores.AbandonosPatente
             {
                 this._ventana.PatentesFiltradas = this._patentes;
                 this._ventana.PatenteFiltrada = primeraPatente;
-            }                           
-                 
+            }
+
         }
+
 
         /// <summary>
         /// Método que se encarga de consultar una Patente en Base de datos
         /// </summary>
         public void ConsultarPatentes()
         {
- 
+
             Mouse.OverrideCursor = Cursors.Wait;
 
             try
@@ -414,7 +429,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.AbandonosPatente
 
                 Patente primeraPatente = new Patente(int.MinValue);
 
-               
+
                 Patente patente = new Patente();
                 IList<Patente> patentesFiltradas;
                 patente.Descripcion = this._ventana.NombrePatenteFiltrar.ToUpper();
@@ -470,7 +485,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.AbandonosPatente
             {
                 Mouse.OverrideCursor = null;
             }
-        }        
+        }
+
 
         /// <summary>
         /// Método que se encarga en cambiar la Patente seleccionada en la lista filtrada
@@ -511,8 +527,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.AbandonosPatente
                             this._interesados.Add(interesado);
                             this._ventana.Interesado = interesado;
 
-                            
-                            
+
+
                             listaInteresadoAux.Add(interesado);
 
                             this._ventana.InteresadosFiltrados = listaInteresadoAux;
@@ -545,8 +561,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.AbandonosPatente
                         }
 
                     }
-                        this._patentes.RemoveAt(0);
-                        this._patentes.Add((Patente)this._ventana.PatenteFiltrada);
+                    this._patentes.RemoveAt(0);
+                    this._patentes.Add((Patente)this._ventana.PatenteFiltrada);
 
                     retorno = true;
 
@@ -592,9 +608,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.AbandonosPatente
             return retorno;
         }
 
-        #endregion       
+
+        #endregion
+
 
         #region Interesado
+
 
         /// <summary>
         /// Método que carga los datos iniciales de Interesado a mostrar en la página
@@ -626,7 +645,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.AbandonosPatente
                 this._ventana.InteresadoFiltrado = primerInteresado;
 
             }
-        }             
+        }
+
 
         /// <summary>
         /// Método que se encarga de consultar un Intesesado en Base de datos
@@ -643,7 +663,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.AbandonosPatente
                 #endregion
 
                 Interesado primerInteresado = new Interesado(int.MinValue);
-                
+
                 Interesado interesado = new Interesado();
                 IList<Interesado> interesadosFiltrados;
                 interesado.Nombre = this._ventana.NombreInteresadoFiltrar.ToUpper();
@@ -700,6 +720,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.AbandonosPatente
                 Mouse.OverrideCursor = null;
             }
         }
+
 
         /// <summary>
         /// Método que se encarga en cambiar el Interesado seleccionada en la lista filtrada
@@ -763,7 +784,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.AbandonosPatente
 
             return retorno;
         }
-        
+
+
         /// <summary>
         /// Método que se encarga de limpiar las lista de Interesados
         /// </summary>
@@ -778,9 +800,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.AbandonosPatente
             this._ventana.Interesado = this._ventana.InteresadoFiltrado;
         }
 
-        #endregion       
+
+        #endregion
+
 
         #region Asociado
+
 
         /// <summary>
         /// Método que se encarga de consultar un Asociado en Base de datos
@@ -858,6 +883,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.AbandonosPatente
             }
         }
 
+
         /// <summary>
         /// Método que carga los datos iniciales de Asociado a mostrar en la página
         /// </summary>
@@ -867,13 +893,13 @@ namespace Trascend.Bolet.Cliente.Presentadores.AbandonosPatente
             Asociado primerAsociado = new Asociado(int.MinValue);
             this._asociados.Add(primerAsociado);
 
-            if ( ((Operacion)this._ventana.Operacion).Asociado != null)
+            if (((Operacion)this._ventana.Operacion).Asociado != null)
             {
                 this._asociados.Add(((Operacion)this._ventana.Operacion).Asociado);
-                this._ventana.AsociadosFiltrados = this._asociados;                
+                this._ventana.AsociadosFiltrados = this._asociados;
                 this._ventana.AsociadoFiltrado = ((Operacion)this._ventana.Operacion).Asociado;
                 this._ventana.NombreAsociado = ((Operacion)this._ventana.Operacion).Asociado.Nombre;
-                
+
                 if (null != ((Patente)this._ventana.Patente).Asociado)
                     this._ventana.PintarAsociado(((Patente)this._ventana.Patente).Asociado.TipoCliente.Id);
                 else
@@ -886,6 +912,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.AbandonosPatente
             }
 
         }
+
 
         /// <summary>
         /// Método que se encarga en cambiar el Asociado seleccionada en la lista filtrada
@@ -956,7 +983,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.AbandonosPatente
             return retorno;
         }
 
+
         #endregion
+
 
     }
 }

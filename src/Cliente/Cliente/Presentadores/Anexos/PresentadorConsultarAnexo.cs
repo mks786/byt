@@ -14,10 +14,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.Anexos
     class PresentadorConsultarAnexo : PresentadorBase
     {
 
+
         private IConsultarAnexo _ventana;
         private IAnexoServicios _anexoServicios;
         private static PaginaPrincipal _paginaPrincipal = PaginaPrincipal.ObtenerInstancia;
         private static Logger logger = LogManager.GetCurrentClassLogger();
+
 
         /// <summary>
         /// Constructor predeterminado
@@ -47,9 +49,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Anexos
             catch (Exception ex)
             {
                 logger.Error(ex.Message);
-                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado,true);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
             }
         }
+
 
         /// <summary>
         /// Método que carga los datos iniciales a mostrar en la página
@@ -65,7 +68,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Anexos
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-                this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleConsultarAnexo,"");
+                this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleConsultarAnexo, "");
                 this._ventana.FocoPredeterminado();
 
                 #region trace
@@ -76,13 +79,14 @@ namespace Trascend.Bolet.Cliente.Presentadores.Anexos
             catch (Exception ex)
             {
                 logger.Error(ex.Message);
-                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado,true);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
             }
             finally
             {
                 Mouse.OverrideCursor = null;
             }
         }
+
 
         /// <summary>
         /// Método que dependiendo del estado de la página, habilita los campos o 
@@ -143,6 +147,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Anexos
             }
         }
 
+
         /// <summary>
         /// Metodo que se encarga de eliminar un Anexo
         /// </summary>
@@ -187,5 +192,6 @@ namespace Trascend.Bolet.Cliente.Presentadores.Anexos
                 this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
             }
         }
+
     }
 }

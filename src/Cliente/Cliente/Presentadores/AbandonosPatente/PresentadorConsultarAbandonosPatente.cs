@@ -21,15 +21,18 @@ namespace Trascend.Bolet.Cliente.Presentadores.AbandonosPatente
 {
     class PresentadorConsultarAbandonosPatente : PresentadorBase
     {
+
         private static PaginaPrincipal _paginaPrincipal = PaginaPrincipal.ObtenerInstancia;
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
+
         private IConsultarAbandonosPatente _ventana;
-        private IPatenteServicios _patenteServicios;        
+        private IPatenteServicios _patenteServicios;
         private IList<Patente> _patentes;
         private IList<Operacion> _abandonos;
         private IOperacionServicios _operacionServicios;
-        
+
+
         /// <summary>
         /// Constructor Predeterminado
         /// </summary>
@@ -51,11 +54,13 @@ namespace Trascend.Bolet.Cliente.Presentadores.AbandonosPatente
             }
         }
 
+
         public void ActualizarTitulo()
         {
             this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleConsultarAbandonosPatente,
                 Recursos.Ids.ConsultarAbandonosPatente);
         }
+
 
         /// <summary>
         /// Método que carga los datos iniciales a mostrar en la página
@@ -114,6 +119,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.AbandonosPatente
             }
         }
 
+
         /// <summary>
         /// Método que realiza una consulta al servicio, con el fin de filtrar los datos que se muestran 
         /// por pantalla
@@ -127,7 +133,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.AbandonosPatente
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-                Mouse.OverrideCursor = Cursors.Wait;                
+                Mouse.OverrideCursor = Cursors.Wait;
                 int filtroValido = 0;//Variable utilizada para limitar a que el filtro se ejecute solo cuando 
                 //dos filtros sean utilizados
 
@@ -165,7 +171,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.AbandonosPatente
                     patenteAuxiliar.Id = operacionAuxiliar.CodigoAplicada;
 
                     this._abandonos = this._operacionServicios.ObtenerOperacionFiltro(operacionAuxiliar);
-                    
+
                     this._ventana.Resultados = this._abandonos;
                     this._ventana.TotalHits = _abandonos.Count.ToString();
                     if (this._abandonos.Count == 0)
@@ -190,6 +196,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.AbandonosPatente
             }
         }
 
+
         /// <summary>
         /// Método que invoca una nueva página "ConsultarAbandonos" y la instancia con el objeto seleccionado
         /// </summary>
@@ -210,6 +217,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.AbandonosPatente
                 logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
         }
+
 
         /// <summary>
         /// Método que ordena una columna
@@ -243,7 +251,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.AbandonosPatente
             if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
                 logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
-        }       
+        }
+
 
         /// <summary>
         /// Método que busca las patentes registradas
@@ -254,9 +263,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.AbandonosPatente
             Patente patente = new Patente();
             IList<Patente> patentesFiltradas;
             patente.Descripcion = this._ventana.NombrePatenteFiltrar.ToUpper();
-            
+
             patente.Id = this._ventana.IdPatenteFiltrar.Equals("") ? 0 : int.Parse(this._ventana.IdPatenteFiltrar);
-            
+
             if ((!patente.Descripcion.Equals("")) || (patente.Id != 0))
                 patentesFiltradas = this._patenteServicios.ObtenerPatentesFiltro(patente);
             else
@@ -272,6 +281,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.AbandonosPatente
             Mouse.OverrideCursor = null;
         }
 
+
         /// <summary>
         /// Método que permite seleccionar patente
         /// </summary>
@@ -286,5 +296,6 @@ namespace Trascend.Bolet.Cliente.Presentadores.AbandonosPatente
 
             return retorno;
         }
+
     }
 }

@@ -13,10 +13,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.Boletines
 {
     class PresentadorAgregarBoletin : PresentadorBase
     {
+
         private IAgregarBoletin _ventana;
         private IBoletinServicios _boletinServicios;
         private static PaginaPrincipal _paginaPrincipal = PaginaPrincipal.ObtenerInstancia;
         private static Logger logger = LogManager.GetCurrentClassLogger();
+
 
         /// <summary>
         /// Constructor predeterminado
@@ -49,9 +51,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Boletines
             catch (Exception ex)
             {
                 logger.Error(ex.Message);
-                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado,true);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
             }
         }
+
 
         /// <summary>
         /// Método que carga los datos iniciales a mostrar en la página
@@ -78,13 +81,14 @@ namespace Trascend.Bolet.Cliente.Presentadores.Boletines
             catch (Exception ex)
             {
                 logger.Error(ex.Message);
-                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado,true);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
             }
             finally
             {
                 Mouse.OverrideCursor = null;
             }
         }
+
 
         /// <summary>
         /// Método que agrega un Boletin
@@ -138,5 +142,6 @@ namespace Trascend.Bolet.Cliente.Presentadores.Boletines
                 this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
             }
         }
+
     }
 }

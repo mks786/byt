@@ -21,14 +21,17 @@ namespace Trascend.Bolet.Cliente.Presentadores.Abandonos
 {
     class PresentadorGestionarAbandono : PresentadorBase
     {
+
         private static PaginaPrincipal _paginaPrincipal = PaginaPrincipal.ObtenerInstancia;
         private static Logger logger = LogManager.GetCurrentClassLogger();
+
 
         public bool _agregar = true;
         private IGestionarAbandono _ventana;
 
-        private IMarcaServicios _marcaServicios;        
-        private IAsociadoServicios _asociadoServicios;                
+
+        private IMarcaServicios _marcaServicios;
+        private IAsociadoServicios _asociadoServicios;
         private IPaisServicios _paisServicios;
         private IInteresadoServicios _interesadoServicios;
         private IServicioServicios _servicioServicios;
@@ -36,16 +39,17 @@ namespace Trascend.Bolet.Cliente.Presentadores.Abandonos
         private IListaDatosValoresServicios _listaDatosValoresServicios;
         private IBoletinServicios _boletinServicios;
 
-        private IList<Asociado> _asociados;        
-        private IList<Marca> _marcas;        
-        private IList<Interesado> _interesados;               
-       
-        
+
+        private IList<Asociado> _asociados;
+        private IList<Marca> _marcas;
+        private IList<Interesado> _interesados;
+
+
         /// <summary>
         /// Constructor Predeterminado
         /// </summary>
         /// <param name="ventana">página que satisface el contrato</param>
-        public PresentadorGestionarAbandono (IGestionarAbandono ventana, object abandono)
+        public PresentadorGestionarAbandono(IGestionarAbandono ventana, object abandono)
         {
             try
             {
@@ -64,15 +68,15 @@ namespace Trascend.Bolet.Cliente.Presentadores.Abandonos
                     this._ventana.Operacion = abandonoAgregar;
 
                     ((Operacion)this._ventana.Operacion).Fecha = DateTime.Now;
-                    this._ventana.Marca = null;                            
-                    this._ventana.Interesado = null;                                             
+                    this._ventana.Marca = null;
+                    this._ventana.Interesado = null;
 
                     this._ventana.TextoBotonRegresar = Recursos.Etiquetas.btnCancelar;
-                                       
+
                     this._ventana.ActivarControlesAlAgregar();
 
-                    
-                    
+
+
                 }
 
                 #region Servicios
@@ -101,7 +105,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Abandonos
             }
         }
 
-        
+
         public void ActualizarTitulo()
         {
             if (_agregar == true)
@@ -112,7 +116,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Abandonos
                 Recursos.Ids.GestionarAbandono);
         }
 
-        
+
         /// <summary>
         /// Método que carga los datos iniciales a mostrar en la página
         /// </summary>
@@ -139,9 +143,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Abandonos
                     if (((Operacion)operacion).Marca != null)
                         this._ventana.Marca = this._marcaServicios.ConsultarMarcaConTodo(((Operacion)operacion).Marca);
 
-                    this._ventana.NombreMarca = ((Marca)this._ventana.Marca).Descripcion;                  
+                    this._ventana.NombreMarca = ((Marca)this._ventana.Marca).Descripcion;
 
-                    CargarMarca();                  
+                    CargarMarca();
 
                     CargarInteresado();
 
@@ -183,19 +187,19 @@ namespace Trascend.Bolet.Cliente.Presentadores.Abandonos
             }
         }
 
-        
+
         public bool EsAgregar()
         {
             return _agregar;
         }
 
-        
+
         /// <summary>
         /// Método que carga la ventana de Consultar Abandonos
         /// </summary>
         public void IrConsultarAbandonos()
         {
-           this.Navegar(new ConsultarAbandonos());
+            this.Navegar(new ConsultarAbandonos());
         }
 
 
@@ -228,7 +232,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Abandonos
             return operacion;
         }
 
-        
+
         /// <summary>
         /// Método que carga los boletines registrados
         /// </summary>
@@ -275,7 +279,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Abandonos
                 {
                     this._ventana.Mensaje(Recursos.MensajesConElUsuario.MarcaEstaAbandonada, 0);
                 }
-                
+
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -358,7 +362,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Abandonos
             {
                 Mouse.OverrideCursor = null;
             }
-        }   
+        }
 
 
         /// <summary>
@@ -393,7 +397,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Abandonos
             if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
                 logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
-        }       
+        }
+
 
         #region Marcas
 
@@ -417,8 +422,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Abandonos
             {
                 this._ventana.MarcasFiltradas = this._marcas;
                 this._ventana.MarcaFiltrada = primeraMarca;
-            }                           
-                 
+            }
+
         }
 
 
@@ -427,7 +432,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Abandonos
         /// </summary>
         public void ConsultarMarcas()
         {
- 
+
             Mouse.OverrideCursor = Cursors.Wait;
 
             try
@@ -439,7 +444,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Abandonos
 
                 Marca primeraMarca = new Marca(int.MinValue);
 
-               
+
                 Marca marca = new Marca();
                 IList<Marca> marcasFiltradas;
                 marca.Descripcion = this._ventana.NombreMarcaFiltrar.ToUpper();
@@ -495,7 +500,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Abandonos
             {
                 Mouse.OverrideCursor = null;
             }
-        }        
+        }
 
 
         /// <summary>
@@ -613,7 +618,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Abandonos
             return retorno;
         }
 
-        #endregion       
+        #endregion
+
 
         #region Interesado
 
@@ -647,12 +653,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.Abandonos
                     this._ventana.Interesado = primerInteresado;
                 else
                     this._ventana.IdInteresado = "";
-                
+
                 this._ventana.InteresadosFiltrados = this._interesados;
                 this._ventana.InteresadoFiltrado = primerInteresado;
 
             }
-        }             
+        }
 
 
         /// <summary>
@@ -670,7 +676,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Abandonos
                 #endregion
 
                 Interesado primerInteresado = new Interesado(int.MinValue);
-                
+
                 Interesado interesado = new Interesado();
                 IList<Interesado> interesadosFiltrados;
                 interesado.Nombre = this._ventana.NombreInteresadoFiltrar.ToUpper();
@@ -791,7 +797,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Abandonos
 
             return retorno;
         }
-        
+
 
         /// <summary>
         /// Método que se encarga de limpiar las lista de Interesados
@@ -807,7 +813,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Abandonos
             this._ventana.Interesado = this._ventana.InteresadoFiltrado;
         }
 
-        #endregion       
+        #endregion
+
 
         #region Asociado
 
@@ -898,11 +905,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Abandonos
             Asociado primerAsociado = new Asociado(int.MinValue);
             this._asociados.Add(primerAsociado);
 
-            if (((Operacion)this._ventana.Operacion).Asociado != null) 
+            if (((Operacion)this._ventana.Operacion).Asociado != null)
             {
                 this._ventana.Asociado = this._asociadoServicios.ConsultarAsociadoConTodo(((Operacion)this._ventana.Operacion).Asociado);
                 this._asociados.Add(((Operacion)this._ventana.Operacion).Asociado);
-                this._ventana.AsociadosFiltrados = this._asociados;                
+                this._ventana.AsociadosFiltrados = this._asociados;
                 this._ventana.AsociadoFiltrado = ((Operacion)this._ventana.Operacion).Asociado;
                 this._ventana.NombreAsociado = ((Asociado)this._ventana.Asociado).Nombre;
 
