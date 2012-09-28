@@ -40,7 +40,6 @@
             <RowDefinition Height="10"/>
         </Grid.RowDefinitions>
 
-
         <RadioButton Grid.Column="1" Name="_radioNacional" IsChecked="True" GroupName="GrupoTipoMarca" VerticalAlignment="Center">Marca Nacional</RadioButton>
         <RadioButton Grid.Column="1" Name="_radioExtranjero" GroupName="GrupoTipoMarca" Margin="110,0,0,0" VerticalAlignment="Center">Marca Extranjero</RadioButton>
         

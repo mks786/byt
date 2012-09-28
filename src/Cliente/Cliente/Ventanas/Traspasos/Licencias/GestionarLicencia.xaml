@@ -36,8 +36,8 @@
         </Grid.RowDefinitions>
 
 
-        <RadioButton Grid.Column="1" Name="_radioNacional" IsChecked="True" GroupName="GrupoTipoMarca" VerticalAlignment="Center" Margin="350,0,0,0">Marca Nacional</RadioButton>
-        <RadioButton Grid.Column="1" Name="_radioExtranjero" GroupName="GrupoTipoMarca" Margin="460,0,0,0" VerticalAlignment="Center">Marca Extranjero</RadioButton>
+        <RadioButton IsEnabled="False" Grid.Column="1" Name="_radioNacional" IsChecked="True" GroupName="GrupoTipoMarca" VerticalAlignment="Center" Margin="350,0,0,0">Marca Nacional</RadioButton>
+        <RadioButton IsEnabled="False" Grid.Column="1" Name="_radioExtranjero" GroupName="GrupoTipoMarca" Margin="460,0,0,0" VerticalAlignment="Center">Marca Extranjero</RadioButton>
 
         <GroupBox Grid.Column="1" Grid.Row="1">
             <StackPanel Name="_gridDatos"  VerticalAlignment="Center"  HorizontalAlignment="Center"
