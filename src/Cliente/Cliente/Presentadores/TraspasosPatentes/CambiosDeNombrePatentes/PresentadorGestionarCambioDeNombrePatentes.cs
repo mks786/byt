@@ -184,7 +184,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CambiosDeNombre
                     this._ventana.Poder = CambioDeNombrePatente.Poder;
 
                     if (((Patente)this._ventana.Patente).LocalidadPatente != null)
-                        this._ventana.EsPatenteNacional(((Patente)this._ventana.Patente).LocalidadPatente.Equals("N"));
+                        this._ventana.EsPatenteNacional(!((Patente)this._ventana.Patente).LocalidadPatente.Equals("I"));
                     else
                         this._ventana.EsPatenteNacional(true);
 
@@ -806,7 +806,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CambiosDeNombre
 
 
                     if (((Patente)this._ventana.Patente).LocalidadPatente != null)
-                        this._ventana.EsPatenteNacional(((Patente)this._ventana.Patente).LocalidadPatente.Equals("N"));
+                        this._ventana.EsPatenteNacional(!((Patente)this._ventana.Patente).LocalidadPatente.Equals("I"));
                     else
                         this._ventana.EsPatenteNacional(true);
 

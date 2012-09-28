@@ -153,6 +153,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.LicenciasPatent
             }
         }
 
+
         public void ActualizarTitulo()
         {
             if (_agregar == true)
@@ -162,6 +163,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.LicenciasPatent
                 this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleGestionarLicenciaPatente,
                 Recursos.Ids.GestionarLicenciaPatente);
         }
+
 
         /// <summary>
         /// Método que carga los datos iniciales a mostrar en la página
@@ -193,10 +195,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.LicenciasPatent
                     this._ventana.PoderLicenciatario = licencia.PoderLicenciatario;
 
                     if (((Patente)this._ventana.Patente).LocalidadPatente != null)
-                        this._ventana.EsPatenteNacional(((Patente)this._ventana.Patente).LocalidadPatente.Equals("N"));
+                        this._ventana.EsPatenteNacional(!((Patente)this._ventana.Patente).LocalidadPatente.Equals("I"));
                     else
                         this._ventana.EsPatenteNacional(true);
-                    
+
 
 
                     CargaBoletines();
@@ -264,6 +266,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.LicenciasPatent
             }
         }
 
+
         /// <summary>
         /// Método que carga los boletines registrados
         /// </summary>
@@ -285,6 +288,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.LicenciasPatent
             #endregion
 
         }
+
 
         /// <summary>
         /// Método que carga los interesados implicados
@@ -362,6 +366,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.LicenciasPatent
 
         }
 
+
         /// <summary>
         /// Método que carga los Apoderados implicados
         /// </summary>
@@ -411,6 +416,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.LicenciasPatent
             }
         }
 
+
         /// <summary>
         /// Método que carga los Poderes
         /// </summary>
@@ -455,6 +461,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.LicenciasPatent
 
             }
         }
+
 
         /// <summary>
         /// Método que dependiendo del estado de la pagina carga una licencia registrada
@@ -512,6 +519,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.LicenciasPatent
             return licencia;
         }
 
+
         /// <summary>
         /// Método que habilita los campos
         /// </summary>
@@ -520,6 +528,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.LicenciasPatent
             this._ventana.HabilitarCampos = true;
             this._ventana.TextoBotonModificar = Recursos.Etiquetas.btnAceptar;
         }
+
 
         /// <summary>
         /// Método que dependiendo del estado de la página, habilita los campos o 
@@ -602,6 +611,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.LicenciasPatent
             }
         }
 
+
         /// <summary>
         /// Metodo que se encarga de eliminar una Patente
         /// </summary>
@@ -653,6 +663,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.LicenciasPatent
             }
         }
 
+
         /// <summary>
         /// Método que ordena una columna
         /// </summary>
@@ -687,6 +698,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.LicenciasPatent
             #endregion
         }
 
+
         /// <summary>
         /// Carga la lista de poderes por interesado
         /// </summary>
@@ -715,6 +727,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.LicenciasPatent
             #endregion
 
         }
+
 
         /// <summary>
         /// Valida la lista de poderes por interesado
@@ -785,6 +798,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.LicenciasPatent
 
             return retorno;
         }
+
 
         /// <summary>
         /// Carga la lista de Agentes y la lista de interesados
@@ -931,6 +945,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.LicenciasPatent
 
         }
 
+
         /// <summary>
         /// Carga la lista de Agentes
         /// </summary>
@@ -964,6 +979,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.LicenciasPatent
 
         }
 
+
         /// <summary>
         /// Verifica si se cambio el Interesado
         /// </summary>
@@ -994,6 +1010,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.LicenciasPatent
 
             return retorno;
         }
+
 
         /// <summary>
         /// Verifica si se cambio el Agente
@@ -1026,6 +1043,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.LicenciasPatent
             return retorno;
         }
 
+
         /// <summary>
         /// Verifica si se cambio el Poder
         /// </summary>
@@ -1054,6 +1072,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.LicenciasPatent
 
             return false;
         }
+
 
         /// <summary>
         /// Vacia la lista de Interesados
@@ -1087,6 +1106,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.LicenciasPatent
             #endregion
 
         }
+
 
         /// <summary>
         /// Vacia la lista de Agentes
@@ -1122,6 +1142,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.LicenciasPatent
 
         }
 
+
         /// <summary>
         /// Vacia la lista de Poderes
         /// </summary>
@@ -1154,6 +1175,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.LicenciasPatent
             #endregion
 
         }
+
 
         #region Patente
 
@@ -1309,7 +1331,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.LicenciasPatent
                     this._ventana.InteresadoLicenciante = ((Patente)this._ventana.Patente).Interesado;
 
                     if (((Patente)this._ventana.Patente).LocalidadPatente != null)
-                        this._ventana.EsPatenteNacional(((Patente)this._ventana.Patente).LocalidadPatente.Equals("N"));
+                        this._ventana.EsPatenteNacional(!((Patente)this._ventana.Patente).LocalidadPatente.Equals("I"));
                     else
                         this._ventana.EsPatenteNacional(true);
 
@@ -1395,6 +1417,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.LicenciasPatent
         }
 
         #endregion
+
 
         #region Licenciante
 
@@ -2024,6 +2047,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.LicenciasPatent
         }
 
         #endregion
+
 
         #region Licenciatario
 

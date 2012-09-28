@@ -194,7 +194,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CesionesPatente
                     this._ventana.PoderCesionario = cesion.PoderCesionario;
 
                     if (((Patente)this._ventana.Patente).LocalidadPatente != null)
-                        this._ventana.EsPatenteNacional(((Patente)this._ventana.Patente).LocalidadPatente.Equals("N"));
+                        this._ventana.EsPatenteNacional(!((Patente)this._ventana.Patente).LocalidadPatente.Equals("I"));
                     else
                         this._ventana.EsPatenteNacional(true);
 
@@ -1190,7 +1190,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CesionesPatente
                     this._ventana.InteresadoCedente = ((Patente)this._ventana.Patente).Interesado;
 
                     if (((Patente)this._ventana.Patente).LocalidadPatente != null)
-                        this._ventana.EsPatenteNacional(((Patente)this._ventana.Patente).LocalidadPatente.Equals("N"));
+                        this._ventana.EsPatenteNacional(!((Patente)this._ventana.Patente).LocalidadPatente.Equals("I"));
                     else
                         this._ventana.EsPatenteNacional(true);
 

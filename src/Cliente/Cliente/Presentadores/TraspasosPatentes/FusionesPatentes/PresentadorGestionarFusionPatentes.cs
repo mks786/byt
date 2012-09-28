@@ -208,7 +208,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.FusionesPatente
                     this._ventana.Poder = fusion.Poder;
 
                     if (((Patente)this._ventana.Patente).LocalidadPatente != null)
-                        this._ventana.EsPatenteNacional(((Patente)this._ventana.Patente).LocalidadPatente.Equals("N"));
+                        this._ventana.EsPatenteNacional(!((Patente)this._ventana.Patente).LocalidadPatente.Equals("I"));
                     else
                         this._ventana.EsPatenteNacional(true);
 
@@ -1081,7 +1081,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.FusionesPatente
                     this._ventana.InteresadoEntre = ((Patente)this._ventana.Patente).Interesado;
 
                     if (((Patente)this._ventana.Patente).LocalidadPatente != null)
-                        this._ventana.EsPatenteNacional(((Patente)this._ventana.Patente).LocalidadPatente.Equals("N"));
+                        this._ventana.EsPatenteNacional(!((Patente)this._ventana.Patente).LocalidadPatente.Equals("I"));
                     else
                         this._ventana.EsPatenteNacional(true);
 

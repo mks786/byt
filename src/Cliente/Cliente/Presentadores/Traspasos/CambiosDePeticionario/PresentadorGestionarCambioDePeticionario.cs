@@ -189,7 +189,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDePeticionario
 
                     if (((Marca)this._ventana.Marca).LocalidadMarca != null)
                     {
-                        this._ventana.EsMarcaNacional(((Marca)this._ventana.Marca).LocalidadMarca.Equals("N"));
+                        this._ventana.EsMarcaNacional(!((Marca)this._ventana.Marca).LocalidadMarca.Equals("I"));
 
                         if (((Marca)this._ventana.Marca).LocalidadMarca.Equals("I"))
                         {
@@ -1146,7 +1146,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDePeticionario
 
                     if (((Marca)this._ventana.Marca).LocalidadMarca != null)
                     {
-                        this._ventana.EsMarcaNacional(((Marca)this._ventana.Marca).LocalidadMarca.Equals("N"));
+                        this._ventana.EsMarcaNacional(!((Marca)this._ventana.Marca).LocalidadMarca.Equals("I"));
 
                         if (((Marca)this._ventana.Marca).LocalidadMarca.Equals("I"))
                         {
