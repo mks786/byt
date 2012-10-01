@@ -16,6 +16,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
 {
     class PresentadorGestionarInfoAdicional : PresentadorBase
     {
+
         private IGestionarInfoAdicional _ventana;
         private Patente _patente;
         private static PaginaPrincipal _paginaPrincipal = PaginaPrincipal.ObtenerInstancia;
@@ -23,6 +24,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
         private IInfoAdicionalServicios _infoAdicionalServicios;
         private IList<Auditoria> _auditorias;
         private bool _nuevaInfoAdicional = false;
+
 
         /// <summary>
         /// Constructor predeterminado
@@ -43,8 +45,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
 
                 if (null == ((Patente)patente).InfoAdicional)
                     this._nuevaInfoAdicional = true;
-      
-                 
+
+
                 this._infoAdicionalServicios = (IInfoAdicionalServicios)Activator.GetObject(typeof(IInfoAdicionalServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["InfoAdicionalServicios"]);
 
@@ -59,6 +61,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                 this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
             }
         }
+
 
         /// <summary>
         /// Método que carga los datos iniciales a mostrar en la página
@@ -129,6 +132,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
             }
         }
 
+
         /// <summary>
         /// Método que realiza toda la lógica para agregar la InfoAdicional dentro de la base de datos
         /// </summary>
@@ -155,7 +159,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                 else
                 {
                     InfoAdicional infoAdicional = (InfoAdicional)this._ventana.InfoAdicional;
-                    
+
                     infoAdicional.Operacion = this._nuevaInfoAdicional ? "CREATE" : "MODIFY";
 
                     this._patente.InfoAdicional = infoAdicional;
@@ -192,6 +196,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
 
             return exitoso;
         }
+
 
         /// <summary>
         /// Método que se encarga de mostrar ventana de lista de Auditorías
@@ -236,6 +241,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
             }
         }
 
+
         /// <summary>
         /// Método que invoca una nueva página "GestionarPatente" y la instancia con el objeto seleccionado
         /// </summary>
@@ -253,5 +259,6 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                 logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
         }
+
     }
 }

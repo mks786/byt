@@ -20,6 +20,9 @@ using Trascend.Bolet.Cliente.Ventanas.Auditorias;
 using Trascend.Bolet.ControlesByT.Ventanas;
 using System.Text;
 using System.IO;
+using Trascend.Bolet.Cliente.Ventanas.Poderes;
+using Trascend.Bolet.Cliente.Ventanas.Interesados;
+using Trascend.Bolet.Cliente.Ventanas.Asociados;
 
 namespace Trascend.Bolet.Cliente.Presentadores.Patentes
 {
@@ -412,6 +415,16 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                     this._ventana.NombreAsociadoSolicitud = _patente.Asociado != null ? _patente.Asociado.Nombre : "";
 
 
+                    if (_patente.Asociado != null)
+                    {
+                        IList<Asociado> asociados = new List<Asociado>();
+                        asociados.Add(_patente.Asociado);
+                        this._ventana.AsociadosDatos = asociados;
+                        this._ventana.AsociadosSolicitud = asociados;
+                        this._ventana.AsociadoDatos = _patente.Asociado != null ? _patente.Asociado : null;
+                        this._ventana.AsociadoSolicitud = _patente.Asociado != null ? _patente.Asociado : null;
+                    }
+                    this._ventana.AsociadoDatos = _patente.Asociado;
                     if (null != _patente.PaisInternacional)
                     {
                         Pais paisABuscar = new Pais(_patente.PaisInternacional.Id);
@@ -443,6 +456,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                 }
                 else
                 {
+
+                    this._ventana.CambiarLabelsPorBotones();
                     this._ventana.SeleccionarTabSolicitud();
                     this.CargarTipos();
                     this.CargarPresentaciones();
@@ -2456,6 +2471,30 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
             }
 
             return retorno;
+        }
+
+
+        public void IrVentanaAsociado()
+        {
+            if (this._ventana.AsociadoSolicitud != null)
+            {
+                Asociado asociado = ((Asociado)this._ventana.AsociadoSolicitud).Id != int.MinValue ? (Asociado)this._ventana.AsociadoSolicitud : null;
+                Navegar(new ConsultarAsociado(asociado, this._ventana));
+            }
+        }
+
+
+        public void IrVentanaInteresado()
+        {
+            Interesado interesado = ((Interesado)this._ventana.InteresadoSolicitud).Id != int.MinValue ? (Interesado)this._ventana.InteresadoSolicitud : null;
+            Navegar(new ConsultarInteresado(interesado, this._ventana));
+        }
+
+
+        public void IrVentanaPoder()
+        {
+            Poder poder = ((Patente)this._ventana.Patente).Poder.Id != int.MinValue ? ((Patente)this._ventana.Patente).Poder : null;
+            Navegar(new ConsultarPoder(poder, this._ventana));
         }
     }
 }

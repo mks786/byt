@@ -25,7 +25,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Reportes
 {
     class PresentadorCarta16P : PresentadorBase
     {
+
         private ICarta16P _ventana;
+
 
         private IPaisServicios _paisServicios;
         private IListaDatosValoresServicios _listaDatosValoresServicios;
@@ -35,8 +37,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Reportes
         private IInteresadoServicios _interesadoServicios;
         private IAsociadoServicios _asociadoServicios;
 
+
         private static PaginaPrincipal _paginaPrincipal = PaginaPrincipal.ObtenerInstancia;
         private static Logger logger = LogManager.GetCurrentClassLogger();
+
 
         private IList<Patente> _PatentesAgregadas = new List<Patente>();
 
@@ -284,13 +288,13 @@ namespace Trascend.Bolet.Cliente.Presentadores.Reportes
                 retorno = false;
                 this._ventana.MensajeAlerta(Recursos.MensajesConElUsuario.AlertaCartaSinPatentes);
             }
-            else if ((this._ventana.RadioConsultarAsociado()) && (this._ventana.Asociado == null) 
+            else if ((this._ventana.RadioConsultarAsociado()) && (this._ventana.Asociado == null)
                 && (this._ventana.RadioUnicaPatente()))
             {
                 retorno = false;
                 this._ventana.MensajeAlerta(Recursos.MensajesConElUsuario.AlertaCartaSinAsociado);
             }
-            else if ((this._ventana.RadioConsultarInteresado()) && (this._ventana.Interesado == null) 
+            else if ((this._ventana.RadioConsultarInteresado()) && (this._ventana.Interesado == null)
                 && (this._ventana.RadioUnicaPatente()))
             {
                 retorno = false;
@@ -313,7 +317,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Reportes
                 retorno = Environment.CurrentDirectory + ConfigurationManager.AppSettings["rutaCarta16P"];
 
             else if (((Idioma)this._ventana.Idioma).Id.Equals("IN"))
-                
+
                 retorno = Environment.CurrentDirectory + ConfigurationManager.AppSettings["rutaCarta16PEN"];
 
             return retorno;

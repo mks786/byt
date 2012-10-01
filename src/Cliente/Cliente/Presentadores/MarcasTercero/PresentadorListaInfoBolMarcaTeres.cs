@@ -20,10 +20,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
 {
     class PresentadorListaInfoBolMarcaTeres : PresentadorBase
     {
+
         private IListaInfoBolMarcaTeres _ventana;
         private MarcaTercero _marca;
         private static PaginaPrincipal _paginaPrincipal = PaginaPrincipal.ObtenerInstancia;
         private static Logger logger = LogManager.GetCurrentClassLogger();
+
 
         /// <summary>
         /// Constructor Predeterminado
@@ -44,6 +46,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
                 logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
         }
+
 
         /// <summary>
         /// Método que carga los datos iniciales a mostrar en la página
@@ -82,6 +85,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
             }
         }
 
+
         /// <summary>
         /// Método que invoca una nueva página "GestionarInfoBolMarcaTer" y la instancia con el objeto seleccionado
         /// </summary>
@@ -111,6 +115,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
             #endregion
         }
 
+
         /// <summary>
         /// Método que invoca una nueva página "ConsultarMarca" y la instancia con el objeto seleccionado
         /// </summary>
@@ -128,6 +133,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
                 logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
         }
+
 
         /// <summary>
         /// Método que ordena una columna

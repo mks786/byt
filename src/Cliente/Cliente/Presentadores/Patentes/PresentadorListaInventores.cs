@@ -21,13 +21,16 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
 {
     class PresentadorListaInventores : PresentadorBase
     {
+
         private IListaInventores _ventana;
         private Patente _patente;
         private static PaginaPrincipal _paginaPrincipal = PaginaPrincipal.ObtenerInstancia;
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
+
         private IPatenteServicios _patenteServicios;
         private IInventorServicios _inventorServicios;
+
 
         /// <summary>
         /// Constructor Predeterminado
@@ -53,6 +56,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                 logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
         }
+
 
         /// <summary>
         /// Método que carga los datos iniciales a mostrar en la página
@@ -114,6 +118,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
             #endregion
         }
 
+
         /// <summary>
         /// Método que ordena una columna
         /// </summary>
@@ -148,6 +153,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
             #endregion
         }
 
+
         /// <summary>
         /// Metodo que invoca una ventana de Agregar contacto de un Patente
         /// </summary>
@@ -166,6 +172,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
             #endregion
         }
 
+
         public void IrConsultarPatente()
         {
             #region trace
@@ -173,12 +180,13 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                 logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
 
-            this.Navegar(new GestionarPatente(this._patente,null));
+            this.Navegar(new GestionarPatente(this._patente, null));
 
             #region trace
             if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
                 logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
         }
+
     }
 }

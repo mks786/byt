@@ -20,18 +20,22 @@ namespace Trascend.Bolet.Cliente.Presentadores.Memorias
 {
     class PresentadorListaMemorias : PresentadorBase
     {
+
         private IListaMemorias _ventana;
         private Patente _patente;
         private static PaginaPrincipal _paginaPrincipal = PaginaPrincipal.ObtenerInstancia;
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
+
         private IPatenteServicios _patenteServicios;
         private IMemoriaServicios _memoriaServicios;
         private IListaDatosValoresServicios _listaDatosValoresServicios;
 
+
         private IList<Memoria> _memorias;
         private IList<ListaDatosValores> _tiposMensaje;
         private ListaDatosValores _formatoDocumento;
+
 
         /// <summary>
         /// Constructor Predeterminado
@@ -59,6 +63,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Memorias
                 logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
         }
+
 
         /// <summary>
         /// Método que carga los datos iniciales a mostrar en la página
@@ -108,6 +113,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Memorias
             }
         }
 
+
         /// <summary>
         /// Método que invoca una nueva página "Consultar Justificación" y la instancia con el objeto seleccionado
         /// </summary>
@@ -118,13 +124,14 @@ namespace Trascend.Bolet.Cliente.Presentadores.Memorias
                 logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
 
-            this.Navegar(new ConsultarMemoria(this._ventana.MemoriaSeleccionada,this._patente));
+            this.Navegar(new ConsultarMemoria(this._ventana.MemoriaSeleccionada, this._patente));
 
             #region trace
             if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
                 logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
         }
+
 
         /// <summary>
         /// Método que invoca una nueva página "AgregarMemoria" y la instancia con el objeto seleccionado
@@ -143,6 +150,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Memorias
                 logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
         }
+
 
         /// <summary>
         /// Método que ordena una columna
@@ -178,10 +186,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.Memorias
             #endregion
         }
 
+
         public void ActualizarTitulo()
         {
 
         }
+
 
         public void Consultar()
         {
@@ -233,5 +243,6 @@ namespace Trascend.Bolet.Cliente.Presentadores.Memorias
                 logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
         }
+
     }
 }

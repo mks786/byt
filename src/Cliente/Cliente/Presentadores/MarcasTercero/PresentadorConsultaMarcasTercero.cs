@@ -20,10 +20,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
 {
     class PresentadorConsultaMarcasTercero : PresentadorBase
     {
+
         private static PaginaPrincipal _paginaPrincipal = PaginaPrincipal.ObtenerInstancia;
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
         private IConsultaMarcasTercero _ventana;
+
 
         private IMarcaTerceroServicios _marcaServicios;
         private IAsociadoServicios _asociadoServicios;
@@ -38,13 +40,16 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
         private IListaDatosValoresServicios _listaDatosValoresServicios;
         private IMarcaBaseTerceroServicios _marcaBaseTerceroServicios;
 
+
         private IList<MarcaTercero> _marcas;
         private IList<Asociado> _asociados;
         private IList<Interesado> _interesados;
         private IList<Corresponsal> _corresponsales;
 
+
         private int _filtroValido;//Variable utilizada para limitar a que el filtro se ejecute solo cuando 
         //dos filtros sean utilizados
+
 
         /// <summary>
         /// Constructor Predeterminado
@@ -103,6 +108,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
             }
         }
 
+
         /// <summary>
         /// Método que se encarga de actualizar el títutlo de la ventana
         /// </summary>
@@ -121,6 +127,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
                 logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
         }
+
 
         /// <summary>
         /// Método que carga los datos iniciales a mostrar en la página
@@ -222,6 +229,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
             }
         }
 
+
         /// <summary>
         /// Método que realiza una consulta al servicio, con el fin de filtrar los datos que se muestran 
         /// por pantalla
@@ -265,10 +273,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
 
                             if ((marca.Asociado != null) && (!string.IsNullOrEmpty(marca.Asociado.Nombre)))
                             {
-                            
-                                    asociadoAuxiliar.Nombre = marca.Asociado.Nombre;
-                                    MarcaTerceroAuxiliar.Asociado = asociadoAuxiliar;
-                                 
+
+                                asociadoAuxiliar.Nombre = marca.Asociado.Nombre;
+                                MarcaTerceroAuxiliar.Asociado = asociadoAuxiliar;
+
                             }
                         }
                         catch (NHibernate.LazyInitializationException ex)
@@ -281,16 +289,16 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
                         try
                         {
 
-                      
+
 
                             if ((marca.Interesado != null) && (!string.IsNullOrEmpty(marca.Interesado.Nombre)))
                             {
-                           
-                                    interesadoAuxiliar.Nombre = marca.Interesado.Nombre;
-                                    MarcaTerceroAuxiliar.Interesado = interesadoAuxiliar;
-                            
-                        
-                            
+
+                                interesadoAuxiliar.Nombre = marca.Interesado.Nombre;
+                                MarcaTerceroAuxiliar.Interesado = interesadoAuxiliar;
+
+
+
                             }
                         }
                         catch (NHibernate.LazyInitializationException ex)
@@ -304,13 +312,13 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
                         MarcaTerceroAuxiliar.CodigoInscripcion = marca.CodigoInscripcion;
 
                         MarcaTerceroAuxiliar.FechaPublicacion = marca.FechaPublicacion != null ? marca.FechaPublicacion : null;
-                        if(!NullFK)
+                        if (!NullFK)
                             marcasDesinfladas.Add(MarcaTerceroAuxiliar);
 
                     }
-                   // marcasDesinfladas = _marcas;
+                    // marcasDesinfladas = _marcas;
                     this._ventana.Resultados = marcasDesinfladas;
-                   // this._ventana.Resultados = _marcas;
+                    // this._ventana.Resultados = _marcas;
                     this._ventana.TotalHits = marcasDesinfladas.Count.ToString();
                     if (marcasDesinfladas.Count == 0)
                         this._ventana.Mensaje(Recursos.MensajesConElUsuario.NoHayResultados, 1);
@@ -334,13 +342,14 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
             }
         }
 
+
         /// <summary>
         /// Método que devuelve la marca que se utilizara para realizar el filtrado
         /// </summary>
         /// <returns>MarcaTercero cargada con el filtro</returns>
         private MarcaTercero ObtenerMarcaTerceroFiltro()
         {
-          //  MarcaTercero marcaAuxiliar = ((MarcaTercero)this._ventana.MarcaTerceroParaFiltrar);
+            //  MarcaTercero marcaAuxiliar = ((MarcaTercero)this._ventana.MarcaTerceroParaFiltrar);
             MarcaTercero marcaAuxiliar = new MarcaTercero();
             try
             {
@@ -386,6 +395,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
             }
             return marcaAuxiliar;
         }
+
 
         /// <summary>
         /// Método que devuelve la marca con los datos del check TYR
@@ -458,6 +468,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
             return marcaAuxiliar;
         }
 
+
         /// <summary>
         /// Método que devuelve la marca con los datos del check Prioridades
         /// </summary>
@@ -478,6 +489,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
             return marcaAuxiliar;
         }
 
+
         /// <summary>
         /// Método que devuelve la marca con los datos del check Indicadores
         /// </summary>
@@ -496,6 +508,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
             #endregion
             return marcaAuxiliar;
         }
+
 
         /// <summary>
         /// Método que devuelve la marca con los datos del check Boletines
@@ -530,6 +543,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
             return marcaAuxiliar;
         }
 
+
         /// <summary>
         /// Método que devuelve la marca con los datos del check Nacional
         /// </summary>
@@ -548,7 +562,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
                 {
                     _filtroValido = 2;
                     marcaAuxiliar.Id = this._ventana.Id.ToUpper();
-        
+
                 }
 
                 if (this._ventana.Solicitud != "")
@@ -614,7 +628,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
                     marcaAuxiliar.EstadoMarca = ((EstadoMarca)this._ventana.Detalle).Id;
                 }
 
-                if ((null!=this._ventana.TipoDeCaso)&&((ListaDatosValores)this._ventana.TipoDeCaso).Id != "NGN")
+                if ((null != this._ventana.TipoDeCaso) && ((ListaDatosValores)this._ventana.TipoDeCaso).Id != "NGN")
                 {
                     _filtroValido = 2;
                     marcaAuxiliar.CasoT = ((ListaDatosValores)this._ventana.TipoDeCaso).Valor;
@@ -639,6 +653,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
             return marcaAuxiliar;
         }
 
+
         /// <summary>
         /// Método que devuelve la marca con los datos del check Internacional
         /// </summary>
@@ -661,6 +676,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
             return marcaAuxiliar;
         }
 
+
         /// <summary>
         /// Método que valida que la pantalla de busqueda se encuentre seleccionado al menos un check
         /// </summary>
@@ -675,12 +691,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
 
             bool retorno = true;
 
-                if (!this._ventana.NacionalEstaSeleccionado)
+            if (!this._ventana.NacionalEstaSeleccionado)
 
-                    if (!this._ventana.BoletinesEstaSeleccionado)
+                if (!this._ventana.BoletinesEstaSeleccionado)
 
 
-                                    retorno = false;
+                    retorno = false;
 
             #region trace
             if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -689,6 +705,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
 
             return retorno;
         }
+
+
         /// <summary>
         /// Método que invoca una nueva página "ConsultarPoder" y la instancia con el objeto seleccionado
         /// </summary>
@@ -715,7 +733,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
                     }
                     cont++;
                 }
-               MarcaBaseTercero MarcaABuscar = new MarcaBaseTercero();
+                MarcaBaseTercero MarcaABuscar = new MarcaBaseTercero();
                 MarcaABuscar.MarcaTercero = new MarcaTercero(marcaTerceroParaNavegar.Id);
                 MarcaABuscar.MarcaTercero.Anexo = marcaTerceroParaNavegar.Anexo;
                 marcaTerceroParaNavegar.MarcasBaseTercero = _marcaBaseTerceroServicios.ConsultarMarcasBasePorId(MarcaABuscar);
@@ -728,6 +746,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
                 logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
         }
+
 
         /// <summary>
         /// Método que ordena una columna
@@ -762,6 +781,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
                 logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
         }
+
 
         //public void BuscarAsociado()
         //{
@@ -813,6 +833,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
         //        this._ventana.Interesados = this._interesados;
         //}
 
+
         /// <summary>
         /// Método que limpia los campos de búsqueda
         /// </summary>
@@ -837,7 +858,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
             this._ventana.Id = null;
             this._ventana.DescripcionFiltrar = null;
             this._ventana.Fecha = null;
-      
+
             this._ventana.AsociadoFiltro = null;
             this._ventana.IdAsociadoFiltrar = null;
             this._ventana.NombreAsociadoFiltrar = null;
@@ -849,16 +870,16 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
             this._ventana.Interesados = null;
             this._ventana.ClaseInternacional = "";
             this._ventana.ClaseNacional = "";
-             this._ventana.Distingue = "";
-             this._ventana.Solicitud = "";
+            this._ventana.Distingue = "";
+            this._ventana.Solicitud = "";
 
 
 
-            this._ventana.Servicio = this.BuscarServicio((IList<Servicio>)this._ventana.Servicios, new Servicio("NGN"));            
+            this._ventana.Servicio = this.BuscarServicio((IList<Servicio>)this._ventana.Servicios, new Servicio("NGN"));
             //this._ventana.Detalle = this.BuscarDetalle((IList<TipoEstado>)this._ventana.Detalles, new TipoEstado("NGN"));
             this._ventana.Detalle = ((IList<EstadoMarca>)this._ventana.Detalles)[0];
 
-            #endregion            
+            #endregion
 
             #region Boletines
 
@@ -873,6 +894,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
                 logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
         }
+
 
         #region Interesado
 
@@ -942,6 +964,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
         }
 
         #endregion
+
 
         #region Asociado
 

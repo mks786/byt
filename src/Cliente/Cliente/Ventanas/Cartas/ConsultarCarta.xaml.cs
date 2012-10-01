@@ -583,7 +583,12 @@ namespace Trascend.Bolet.Cliente.Ventanas.Cartas
         }
 
 
+        private void _btnIrAsociados_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.IrVentanaAsociado();
+        }
 
+        
         private void Page_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Next)

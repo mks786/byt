@@ -28,10 +28,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
 {
     class PresentadorConsultarMarca : PresentadorBase
     {
+
         private static PaginaPrincipal _paginaPrincipal = PaginaPrincipal.ObtenerInstancia;
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
         private IConsultarMarca _ventana;
+
 
         private IMarcaServicios _marcaServicios;
         private IAnaquaServicios _anaquaServicios;
@@ -57,17 +59,22 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
         private IRenovacionServicios _renovacionServicios;
         private IInstruccionDeRenovacionServicios _instruccionDeRenovacionServicios;
 
+
         private IList<Asociado> _asociados;
         private IList<Poder> _poderesInterseccion;
         private IList<Interesado> _interesados;
         private IList<Corresponsal> _corresponsales;
         private IList<Auditoria> _auditorias;
 
+
         private Interesado _interesadoAnterior;
+
 
         private Marca _marca;
 
+
         private object _ventanaPadre = null;
+
 
         /// <summary>
         /// Constructor Predeterminado
@@ -2485,13 +2492,6 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
         }
 
 
-        public void IrVentanaAsociado()
-        {
-            Asociado asociado = ((Asociado)this._ventana.AsociadoSolicitud).Id != int.MinValue ? (Asociado)this._ventana.AsociadoSolicitud : null;
-            Navegar(new ConsultarAsociado(asociado, this._ventana));
-        }
-
-
         public string ObtenerIdMarca()
         {
             return ((Marca)this._ventana.Marca).Id.ToString();
@@ -2501,6 +2501,13 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
         public void VerInstruccionesDeRenovacion()
         {
             Navegar(new ListaInstruccionesRenovacion(this._ventana.Marca));
+        }
+
+
+        public void IrVentanaAsociado()
+        {
+            Asociado asociado = ((Asociado)this._ventana.AsociadoSolicitud).Id != int.MinValue ? (Asociado)this._ventana.AsociadoSolicitud : null;
+            Navegar(new ConsultarAsociado(asociado, this._ventana));
         }
 
 

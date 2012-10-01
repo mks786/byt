@@ -305,7 +305,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Reportes
                 retorno = Environment.CurrentDirectory + ConfigurationManager.AppSettings["rutaCarta14"];
 
             else if (((Idioma)this._ventana.Idioma).Id.Equals("IN"))
-                
+
                 retorno = Environment.CurrentDirectory + ConfigurationManager.AppSettings["rutaCarta14EN"];
 
             return retorno;

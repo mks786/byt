@@ -28,10 +28,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
 {
     class PresentadorListaOperaciones : PresentadorBase
     {
+
         private IListaOperaciones _ventana;
         private Patente _patente;
         private static PaginaPrincipal _paginaPrincipal = PaginaPrincipal.ObtenerInstancia;
         private static Logger logger = LogManager.GetCurrentClassLogger();
+
 
         private IListaDatosValoresServicios _listaDatosValoresServicios;
         private ILicenciaPatenteServicios _licenciaServicios;
@@ -41,6 +43,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
         private ICambioDeNombrePatenteServicios _cambioNombreServicios;
         private ICambioPeticionarioPatenteServicios _peticionarioServicios;
         private IOperacionServicios _operacionServicios;
+
+
         /// <summary>
         /// Constructor Predeterminado
         /// </summary>
@@ -83,6 +87,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
             #endregion
         }
 
+
         /// <summary>
         /// Método que carga los datos iniciales a mostrar en la página
         /// </summary>
@@ -119,6 +124,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                 Mouse.OverrideCursor = null;
             }
         }
+
 
         /// <summary>
         /// Método que invoca una nueva página "GestionarOperacion" y la instancia con el objeto seleccionado
@@ -212,7 +218,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
 
                         Operacion operacion = this._operacionServicios.
                                                         ConsultarPorId((Operacion)this._ventana.OperacionSeleccionado);
-                        operacion.Patente= new Patente(((Operacion)this._ventana.OperacionSeleccionado).CodigoAplicada);
+                        operacion.Patente = new Patente(((Operacion)this._ventana.OperacionSeleccionado).CodigoAplicada);
                         this.Navegar(new GestionarAbandonoPatente(operacion, Visibility.Collapsed));
 
 
@@ -229,6 +235,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                 logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
         }
+
 
         /// <summary>
         /// Método que ordena una columna
@@ -263,5 +270,6 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                 logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
         }
+
     }
 }

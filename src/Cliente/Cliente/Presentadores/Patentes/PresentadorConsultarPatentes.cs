@@ -593,8 +593,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                 if ((null != patenteAuxiliar.PrimeraReferencia) && (!patenteAuxiliar.PrimeraReferencia.Equals("")))
                 {
                     _filtroValido = 2;
-                } 
-                
+                }
+
                 if (patenteAuxiliar.LocalidadPatente.Equals("I"))
                 {
                     if (!this._ventana.IdInternacional.Equals(string.Empty))

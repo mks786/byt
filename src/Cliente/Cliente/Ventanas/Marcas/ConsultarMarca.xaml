@@ -987,6 +987,9 @@
                         <Label Grid.Column="0" Grid.Row="1" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblAsociado}"/>
                         </Label>
+                        <Button Grid.Column="0" Grid.Row="1" Name="_btnIrAsociadosDatos" IsDefault="False" Height="25" HorizontalAlignment="Right" Click="_btnIrAsociados_Click">
+                            <TextBlock Text="{x:Static recurso:Etiquetas.btnAsociado}"/>
+                        </Button>
 
                         <Grid Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="7">
                             <Grid.ColumnDefinitions>
@@ -1062,6 +1065,9 @@
                         <Label Grid.Column="0" Grid.Row="5" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblInteresado}"/>
                         </Label>
+                        <Button Grid.Column="0" Grid.Row="5" Name="_btnIrInteresadosDatos" IsDefault="False" Height="25" HorizontalAlignment="Right" Click="_btnIrInteresados_Click">
+                            <TextBlock Text="{x:Static recurso:Etiquetas.btnInteresado}"/>
+                        </Button>
 
                         <Grid Grid.Column="1" Grid.Row="5" Grid.ColumnSpan="7" VerticalAlignment="Center">
                             <Grid.ColumnDefinitions>
@@ -1127,9 +1133,12 @@
                             </ListView>
                         </Grid>
 
-                        <Label Grid.Column="8" Grid.Row="5" VerticalAlignment="Center" HorizontalContentAlignment="Right">
+                        <!--<Label Grid.Column="8" Grid.Row="5" VerticalAlignment="Center" HorizontalContentAlignment="Right">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblPoder}"/>
-                        </Label>
+                        </Label>-->
+                        <Button Grid.Column="8" Grid.Row="5" Name="_btnIrPoderDatos" IsDefault="False" Height="25" HorizontalAlignment="Right" Click="_btnIrPoder_Click">
+                            <TextBlock Text="{x:Static recurso:Etiquetas.lblPoder}"/>
+                        </Button>
                         <Grid Grid.Column="9" Grid.Row="5" Grid.ColumnSpan="3" Margin="3" VerticalAlignment="Center">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"/>

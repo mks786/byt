@@ -270,7 +270,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Reportes
             //realizar validación de la ventana
             bool retorno = true;
 
-            
+
             if (((Idioma)this._ventana.Idioma).Id.Equals("NGN"))
             {
                 retorno = false;
@@ -311,7 +311,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Reportes
         {
             string retorno = "";
             if (((Idioma)this._ventana.Idioma).Id.Equals("ES"))
-                
+
                 retorno = Environment.CurrentDirectory + ConfigurationManager.AppSettings["rutaCarta16M"];
 
             else if (((Idioma)this._ventana.Idioma).Id.Equals("IN"))
@@ -588,6 +588,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Reportes
             return retorno;
         }
 
+
         /// <summary>
         /// Método que se encarga de armar la lista de estructuras para hacer el reporte para varias marcas
         /// </summary>
@@ -603,7 +604,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Reportes
                     foreach (Marca marca in this._marcasAgregadas)
                     {
                         StructReporteCarta1 estructura = new StructReporteCarta1();
-                        
+
                         DateTime fechaAux = new DateTime(int.Parse(this._ventana.Fecha.Substring(6, 4)),
                int.Parse(this._ventana.Fecha.Substring(3, 2)),
                 int.Parse(this._ventana.Fecha.Substring(0, 2)));
@@ -659,7 +660,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Reportes
             {
                 logger.Error(ex.Message);
             }
-            
+
 
             return retorno;
         }
@@ -680,8 +681,6 @@ namespace Trascend.Bolet.Cliente.Presentadores.Reportes
             private string _asociado;
 
             private string _pais;
-
-
 
             public string FechaCarta
             {

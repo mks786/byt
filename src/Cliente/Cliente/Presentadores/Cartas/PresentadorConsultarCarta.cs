@@ -13,6 +13,7 @@ using System.Collections.Generic;
 using System.Windows.Controls;
 using Trascend.Bolet.Cliente.Ventanas.Auditorias;
 using Trascend.Bolet.Cliente.Ventanas.Cartas;
+using Trascend.Bolet.Cliente.Ventanas.Asociados;
 
 namespace Trascend.Bolet.Cliente.Presentadores.Cartas
 {
@@ -1568,6 +1569,16 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
         public string ObtenerIdCarta()
         {
             return ((Carta)this._ventana.Carta).Id.ToString();
+        }
+
+
+        public void IrVentanaAsociado()
+        {
+            if (this._ventana.Asociado != null)
+            {
+                Asociado asociado = ((Asociado)this._ventana.Asociado).Id != int.MinValue ? (Asociado)this._ventana.Asociado : null;
+                Navegar(new ConsultarAsociado(asociado, this._ventana));
+            }
         }
     }
 }

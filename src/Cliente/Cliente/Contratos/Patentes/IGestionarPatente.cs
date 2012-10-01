@@ -255,5 +255,7 @@ namespace Trascend.Bolet.Cliente.Contratos.Patentes
         void MarcarRadioPatenteNacional(bool esNacional);
 
         void BorrarCeros();
+
+        void CambiarLabelsPorBotones();
     }
 }

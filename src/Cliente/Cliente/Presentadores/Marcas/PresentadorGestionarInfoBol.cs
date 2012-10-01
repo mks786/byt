@@ -20,6 +20,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
 {
     class PresentadorGestionarInfoBol : PresentadorBase
     {
+
         private IGestionarInfoBol _ventana;
         private static PaginaPrincipal _paginaPrincipal = PaginaPrincipal.ObtenerInstancia;
         private static Logger logger = LogManager.GetCurrentClassLogger();
@@ -31,6 +32,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
         private IList<TipoInfobol> _infoboles;
         private bool _nuevaInfoBol = false;
         private bool _tieneListaCambios = false;
+
 
         /// <summary>
         /// Constructor predeterminado
@@ -77,6 +79,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
             }
         }
+
 
         /// <summary>
         /// Método que carga los datos iniciales a mostrar en la página
@@ -158,6 +161,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             }
         }
 
+
         /// <summary>
         /// Método que realiza toda la lógica para agregar el InfoBol dentro de la base de datos
         /// </summary>
@@ -188,7 +192,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                     infoBol.TimeStamp = System.DateTime.Now;
                     infoBol.Usuario = UsuarioLogeado;
                     infoBol.Cambio = !string.IsNullOrEmpty(this._ventana.TextoCambio) ? int.Parse(this._ventana.TextoCambio) : 0;
-                    
+
                     if (this._nuevaInfoBol)
                     {
                         infoBol.TipoInfobol = (TipoInfobol)this._ventana.Tipo;
@@ -227,6 +231,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
 
             return exitoso;
         }
+
 
         /// <summary>
         /// Método que se encarga de eliminar un InfoBol
@@ -278,6 +283,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             return exitoso;
         }
 
+
         /// <summary>
         /// Método que ordena una columna
         /// </summary>
@@ -312,6 +318,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             #endregion
         }
 
+
         /// <summary>
         /// Métodos que se encarga de mostrar la ventana de lista de InfoBol
         /// </summary>
@@ -329,7 +336,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
         }
-       
+
+
         /// <summary>
         /// Método que se encarga de cambiar el Cambio de la ventana
         /// </summary>
@@ -358,6 +366,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             }
         }
 
+
         /// <summary>
         /// Metodo que devuelve la listaCambio
         /// </summary>
@@ -369,14 +378,15 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
 
-		
+
             #region trace
             if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
                 logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
 
-            return this._tieneListaCambios;           
+            return this._tieneListaCambios;
         }
+
 
         /// <summary>
         /// Método que se encarga de cargar los datos de Cambio
@@ -395,7 +405,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                  ((TipoInfobol)this._ventana.Tipo).Id.Equals("RT.FU") || ((TipoInfobol)this._ventana.Tipo).Id.Equals("RT.TP") ||
                  ((TipoInfobol)this._ventana.Tipo).Id.Equals("RT.REN") || ((TipoInfobol)this._ventana.Tipo).Id.Equals("RT.LU"))
             {
-                if(((TipoInfobol)this._ventana.Tipo).Id.Equals("RT.TP")){
+                if (((TipoInfobol)this._ventana.Tipo).Id.Equals("RT.TP"))
+                {
                     operacion.Servicio = new Servicio("CS");
                 }
                 else if (((TipoInfobol)this._ventana.Tipo).Id.Equals("RT.REN"))
@@ -404,7 +415,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 }
                 else
                 {
-                    operacion.Servicio = new Servicio(((TipoInfobol)this._ventana.Tipo).Id.Substring(((TipoInfobol)this._ventana.Tipo).Id.Length-2));
+                    operacion.Servicio = new Servicio(((TipoInfobol)this._ventana.Tipo).Id.Substring(((TipoInfobol)this._ventana.Tipo).Id.Length - 2));
                 }
 
                 this._ventana.Cambios = null;
@@ -424,5 +435,6 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
         }
+
     }
 }

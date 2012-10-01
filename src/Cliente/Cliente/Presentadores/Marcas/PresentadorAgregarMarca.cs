@@ -1727,7 +1727,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                     retorno = true;
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 logger.Error(ex.Message);
             }

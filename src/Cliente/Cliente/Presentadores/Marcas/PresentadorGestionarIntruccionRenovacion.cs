@@ -17,6 +17,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
 {
     class PresentadorGestionarIntruccionRenovacion : PresentadorBase
     {
+
         private IGestionarInstruccionDeRenovacion _ventana;
         private static PaginaPrincipal _paginaPrincipal = PaginaPrincipal.ObtenerInstancia;
         private static Logger logger = LogManager.GetCurrentClassLogger();
@@ -28,6 +29,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
 
 
         private bool _nuevaBusqueda = false;
+
 
         /// <summary>
         /// Constructor predeterminado
@@ -82,6 +84,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
             }
         }
+
 
         /// <summary>
         /// Método que carga los datos iniciales a mostrar en la página
@@ -163,6 +166,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             }
         }
 
+
         /// <summary>
         /// Método que realiza toda la lógica para agregar la Busqueda dentro de la base de datos
         /// </summary>
@@ -199,7 +203,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                         if (this._nuevaBusqueda)
                             ((InstruccionDeRenovacion)this._ventana.InstruccionDeRenovacion).Marca.InstruccionesDeRenovacion.Add(instruccion);
                     }
-                    else 
+                    else
                     {
                         this._ventana.Alerta();
                     }
@@ -233,6 +237,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
 
             return exitoso;
         }
+
 
         /// <summary>
         /// Método que se encarga de eliminar una Busqueda
@@ -284,6 +289,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             return exitoso;
         }
 
+
         /// <summary>
         /// Método que se encarga de mostrar la ventana de lista de Busqueda
         /// </summary>
@@ -302,6 +308,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             #endregion
         }
 
+
         public void ConsultarCarta()
         {
             Carta carta = new Carta();
@@ -309,5 +316,6 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             IList<Carta> cartas = this._cartaServicios.ObtenerCartasFiltro(carta);
             Navegar(new ConsultarCarta(cartas[0], this._ventana));
         }
+
     }
 }

@@ -21,13 +21,16 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
 {
     class PresentadorListaInstruccionesRenovacion : PresentadorBase
     {
+
         private IListaInstruccionesRenovacion _ventana;
         private Marca _marca;
         private static PaginaPrincipal _paginaPrincipal = PaginaPrincipal.ObtenerInstancia;
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
+
         private IListaDatosDominioServicios _listaDatosDominioServicios;
         private ICartaServicios _cartaServicios;
+
 
         /// <summary>
         /// Constructor Predeterminado
@@ -54,6 +57,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
         }
+
 
         /// <summary>
         /// Método que carga los datos iniciales a mostrar en la página
@@ -100,6 +104,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             }
         }
 
+
         /// <summary>
         /// Método que invoca una nueva página "GestionarInfoBol" y la instancia con el objeto seleccionado
         /// </summary>
@@ -127,6 +132,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
         }
+
 
         /// <summary>
         /// Método que ordena una columna
@@ -161,6 +167,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
         }
+
 
         /// <summary>
         /// Método que se encarga de consultar una Busqueda
@@ -249,6 +256,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             }
         }
 
+
         /// <summary>
         /// Método que invoca una nueva página "ConsultarMarca" y la instancia con el objeto seleccionado
         /// </summary>
@@ -259,13 +267,14 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
 
-            this.Navegar(new ConsultarMarca(this._marca,this._ventana.Tab));
+            this.Navegar(new ConsultarMarca(this._marca, this._ventana.Tab));
 
             #region trace
             if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
                 logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
         }
+
 
         public void IrConsultarCarta()
         {
@@ -274,5 +283,6 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             IList<Carta> cartas = this._cartaServicios.ObtenerCartasFiltro(carta);
             Navegar(new ConsultarCarta(cartas[0], this._ventana));
         }
+
     }
 }

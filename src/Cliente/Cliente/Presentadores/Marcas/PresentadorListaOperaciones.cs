@@ -31,10 +31,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
 {
     class PresentadorListaOperaciones : PresentadorBase
     {
+
         private IListaOperaciones _ventana;
         private Marca _marca;
         private static PaginaPrincipal _paginaPrincipal = PaginaPrincipal.ObtenerInstancia;
         private static Logger logger = LogManager.GetCurrentClassLogger();
+
 
         private IListaDatosValoresServicios _listaDatosValoresServicios;
         private ILicenciaServicios _licenciaServicios;
@@ -43,8 +45,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
         private ICambioDeDomicilioServicios _cambioDomicilioServicios;
         private IRenovacionServicios _renovacionServicios;
         private ICambioDeNombreServicios _cambioNombreServicios;
-        private  ICambioPeticionarioServicios _peticionarioServicios;
+        private ICambioPeticionarioServicios _peticionarioServicios;
         private IOperacionServicios _operacionServicios;
+
 
         /// <summary>
         /// Constructor Predeterminado
@@ -89,6 +92,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             #endregion
         }
 
+
         /// <summary>
         /// Método que carga los datos iniciales a mostrar en la página
         /// </summary>
@@ -126,6 +130,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             }
         }
 
+
         /// <summary>
         /// Método que invoca una nueva página "GestionarOperacion" y la instancia con el objeto seleccionado
         /// </summary>
@@ -136,12 +141,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
 
-          
+
             if (this._ventana.OperacionSeleccionado != null)
             {
                 string idServicio = ((Operacion)this._ventana.OperacionSeleccionado).Servicio.Id;
                 //es el id de con el que se consigue el objeto al se enviara
-                int idGenerico = ((Operacion) this._ventana.OperacionSeleccionado).Interno;
+                int idGenerico = ((Operacion)this._ventana.OperacionSeleccionado).Interno;
 
                 #region Comentado codigo con Assembly
                 //ListaDatosValores listaValor = new ListaDatosValores();
@@ -165,14 +170,14 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
 
                 switch (idServicio)
                 {
-                   //redirecciona a Cesion
+                    //redirecciona a Cesion
                     case "CS":
                         Cesion cesion = new Cesion();
                         cesion.Id = idGenerico;
                         this.Navegar(new GestionarCesion(this._cesionServicios.
                                                 ObtenerCesionFiltro(cesion)[0], Visibility.Collapsed));
-                        
-                    break;
+
+                        break;
 
                     //redirecciona a Fusion
                     case "FU":
@@ -180,23 +185,23 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                         fusion.Id = idGenerico;
                         this.Navegar(new GestionarFusion((this._fusionServicios.
                                                         ObtenerFusionFiltro(fusion)[0]), Visibility.Collapsed));
-                    break;
+                        break;
 
                     //redirecciona a CambioDeDomicilio
                     case "CD":
-                         CambioDeDomicilio cambioDeDomicilio = new CambioDeDomicilio();
-                         cambioDeDomicilio.Id = idGenerico;
-                         this.Navegar(new GestionarCambioDeDomicilio(this._cambioDomicilioServicios.
-                                            ObtenerCambioDeDomicilioFiltro(cambioDeDomicilio)[0], Visibility.Collapsed));
-                    break;
+                        CambioDeDomicilio cambioDeDomicilio = new CambioDeDomicilio();
+                        cambioDeDomicilio.Id = idGenerico;
+                        this.Navegar(new GestionarCambioDeDomicilio(this._cambioDomicilioServicios.
+                                           ObtenerCambioDeDomicilioFiltro(cambioDeDomicilio)[0], Visibility.Collapsed));
+                        break;
 
                     //redirecciona a CambioDeNombre
                     case "CN":
-                         CambioDeNombre cambioDeNombre = new CambioDeNombre();
-                         cambioDeNombre.Id = idGenerico;
-                         this.Navegar(new GestionarCambioDeNombre(this._cambioNombreServicios.
-                                                ObtenerCambioDeNombreFiltro(cambioDeNombre)[0], Visibility.Collapsed));
-                    break;
+                        CambioDeNombre cambioDeNombre = new CambioDeNombre();
+                        cambioDeNombre.Id = idGenerico;
+                        this.Navegar(new GestionarCambioDeNombre(this._cambioNombreServicios.
+                                               ObtenerCambioDeNombreFiltro(cambioDeNombre)[0], Visibility.Collapsed));
+                        break;
 
                     //redirecciona a Renovacion
                     case "RN":
@@ -204,7 +209,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                         renovacion.Id = idGenerico;
                         this.Navegar(new GestionarRenovacion(this._renovacionServicios.
                                                 ObtenerRenovacionFiltro(renovacion)[0], Visibility.Collapsed));
-                    break;
+                        break;
 
                     //redirecciona a Licencia
                     case "LU":
@@ -212,7 +217,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                         licencia.Id = idGenerico;
                         this.Navegar(new GestionarLicencia(this._licenciaServicios.
                                                             ObtenerLicenciaFiltro(licencia)[0], Visibility.Collapsed));
-                    break;
+                        break;
 
                     //redirecciona a CambioPeticionario
                     case "CT":
@@ -220,26 +225,26 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                         cambioPeticionario.Id = idGenerico;
                         this.Navegar(new GestionarCambioPeticionario(this._peticionarioServicios.
                                             ObtenerCambioPeticionarioFiltro(cambioPeticionario)[0], Visibility.Collapsed));
-                    break;
+                        break;
 
                     //redirecciona a Abandono
                     case "AB":
-                
+
                         Operacion operacion = this._operacionServicios.
                                                         ConsultarPorId((Operacion)this._ventana.OperacionSeleccionado);
                         operacion.Marca = new Marca(((Operacion)this._ventana.OperacionSeleccionado).CodigoAplicada);
                         this.Navegar(new GestionarAbandono(operacion, Visibility.Collapsed));
 
 
-                    break;
+                        break;
 
                 }
 
-       
+
 
 
             }
-                
+
             //this.Navegar(new GestionarOperacion(this._ventana.OperacionSeleccionado));
 
             #region trace
@@ -247,6 +252,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
         }
+
 
         /// <summary>
         /// Método que ordena una columna
@@ -281,5 +287,6 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
         }
+
     }
 }

@@ -20,10 +20,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
 {
     class PresentadorListaInfoBoles : PresentadorBase
     {
+
         private IListaInfoBoles _ventana;
         private Patente _patente;
         private static PaginaPrincipal _paginaPrincipal = PaginaPrincipal.ObtenerInstancia;
         private static Logger logger = LogManager.GetCurrentClassLogger();
+
 
         /// <summary>
         /// Constructor Predeterminado
@@ -44,6 +46,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                 logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
         }
+
 
         /// <summary>
         /// Método que carga los datos iniciales a mostrar en la página
@@ -82,6 +85,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
             }
         }
 
+
         /// <summary>
         /// Método que invoca una nueva página "GestionarInfoBol" y la instancia con el objeto seleccionado
         /// </summary>
@@ -111,6 +115,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
             #endregion
         }
 
+
         /// <summary>
         /// Método que invoca una nueva página "ConsultarMarca" y la instancia con el objeto seleccionado
         /// </summary>
@@ -121,13 +126,14 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                 logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
 
-            this.Navegar(new GestionarPatente(this._patente,Recursos.Etiquetas.tabDatos));
+            this.Navegar(new GestionarPatente(this._patente, Recursos.Etiquetas.tabDatos));
 
             #region trace
             if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
                 logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
         }
+
 
         /// <summary>
         /// Método que ordena una columna
@@ -162,5 +168,6 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                 logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
         }
+
     }
 }

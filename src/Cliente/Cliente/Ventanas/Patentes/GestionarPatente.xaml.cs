@@ -1977,5 +1977,47 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
             this._cbxPaisIntSolicitud.SelectedIndex = _cbxPaisIntDatos.SelectedIndex;
         }
 
+
+        private void _btnIrInteresados_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.IrVentanaInteresado();
+        }
+
+
+        private void _btnIrPoder_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.IrVentanaPoder();
+        }
+
+
+        private void _btnIrAsociados_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.IrVentanaAsociado();
+        }
+
+
+
+        public void CambiarLabelsPorBotones()
+        {
+            this._lblAsociado.Visibility = Visibility.Visible;
+            this._btnIrAsociados.Visibility = Visibility.Collapsed;
+
+            this._lblAsociadoDatos.Visibility = Visibility.Visible;
+            this._btnIrAsociadosDatos.Visibility = Visibility.Collapsed;
+
+
+            this._lblInteresado.Visibility = Visibility.Visible;
+            this._btnIrInteresados.Visibility = Visibility.Collapsed;
+
+            this._lblInteresadoDatos.Visibility = Visibility.Visible;
+            this._btnIrInteresadosDatos.Visibility = Visibility.Collapsed;
+
+
+            this._lblPoder.Visibility = Visibility.Visible;
+            this._btnIrPoder.Visibility = Visibility.Collapsed;
+
+            this._lblPoderDatos.Visibility = Visibility.Visible;
+            this._btnIrPoderDatos.Visibility = Visibility.Collapsed;
+        }
     }
 }

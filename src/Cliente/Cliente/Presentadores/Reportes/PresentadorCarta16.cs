@@ -275,11 +275,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Reportes
         {
             string retorno = "";
             if (((Idioma)this._ventana.Idioma).Id.Equals("ES"))
-                
+
                 retorno = Environment.CurrentDirectory + ConfigurationManager.AppSettings["rutaCarta16"];
 
             else if (((Idioma)this._ventana.Idioma).Id.Equals("IN"))
-                
+
                 retorno = Environment.CurrentDirectory + ConfigurationManager.AppSettings["rutaCarta16EN"];
 
             return retorno;

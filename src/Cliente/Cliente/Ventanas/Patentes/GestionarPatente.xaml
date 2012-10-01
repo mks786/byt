@@ -124,9 +124,12 @@
                             </custom:ByTTextBox.Text>
                         </custom:ByTTextBox>
 
-                        <Label Grid.Column="0" Grid.Row="2" VerticalAlignment="Center" HorizontalContentAlignment="Right">
+                        <Label Visibility="Collapsed" Grid.Column="0" Grid.Row="2" VerticalAlignment="Center" HorizontalContentAlignment="Right" Name="_lblAsociado">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblAsociado}"/>
                         </Label>
+                        <Button Grid.Column="0" Grid.Row="2" Name="_btnIrAsociados" IsDefault="False" Height="25" HorizontalAlignment="Right" Click="_btnIrAsociados_Click">
+                            <TextBlock Text="{x:Static recurso:Etiquetas.btnAsociado}"/>
+                        </Button>
 
                         <Grid Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="7">
                             <Grid.ColumnDefinitions>
@@ -191,9 +194,12 @@
                             </ListView>
                         </Grid>
 
-                        <Label Grid.Column="0" Grid.Row="3" VerticalAlignment="Center" HorizontalContentAlignment="Right">
+                        <Label Visibility="Collapsed" Grid.Column="0" Grid.Row="3" VerticalAlignment="Center" HorizontalContentAlignment="Right" Name="_lblInteresado">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblInteresado}"/>
                         </Label>
+                        <Button Grid.Column="0" Grid.Row="3" Name="_btnIrInteresados" IsDefault="False" Height="25" HorizontalAlignment="Right" Click="_btnIrInteresados_Click">
+                            <TextBlock Text="{x:Static recurso:Etiquetas.btnInteresado}"/>
+                        </Button>
 
                         <Grid Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="7">
                             <Grid.ColumnDefinitions>
@@ -494,9 +500,12 @@
                         <!--Nuevo-->
                         <!--Undécima Fila-->
 
-                        <Label Grid.Column="0" Grid.Row="13" VerticalAlignment="Center" HorizontalContentAlignment="Right">
+                        <Label Visibility="Collapsed" Grid.Column="0" Grid.Row="13" VerticalAlignment="Center" HorizontalContentAlignment="Right" Name="_lblPoder">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblPoder}"/>
                         </Label>
+                        <Button Grid.Column="0" Grid.Row="13" Name="_btnIrPoder" IsDefault="False" Height="25" HorizontalAlignment="Right" Click="_btnIrPoder_Click">
+                            <TextBlock Text="{x:Static recurso:Etiquetas.lblPoder}"/>
+                        </Button>
                         <custom:ByTTextBox  MaxLength="255" Grid.Column="1" Grid.Row="13" Name="_txtPoderSolicitud" VerticalAlignment="Center" BorderBrush="LightGreen" 
                          Grid.ColumnSpan="4" MouseDoubleClick="_txtPoderSolicitud_MouseDoubleClick" IsReadOnly="True" Text="{Binding Path=Poder.Id}"></custom:ByTTextBox>
 
@@ -762,9 +771,12 @@
                             </custom:ByTTextBox.Text>
                         </custom:ByTTextBox>
 
-                        <Label Grid.Column="0" Grid.Row="2" VerticalAlignment="Center" HorizontalContentAlignment="Right">
+                        <Label Grid.Column="0" Grid.Row="2" VerticalAlignment="Center" HorizontalContentAlignment="Right" Name="_lblAsociadoDatos">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblAsociado}"/>
                         </Label>
+                        <Button Grid.Column="0" Grid.Row="2" Name="_btnIrAsociadosDatos" IsDefault="False" Height="25" HorizontalAlignment="Right" Click="_btnIrAsociados_Click">
+                            <TextBlock Text="{x:Static recurso:Etiquetas.btnAsociado}"/>
+                        </Button>
 
                         <Grid Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="7">
                             <Grid.ColumnDefinitions>
@@ -829,9 +841,12 @@
                             </ListView>
                         </Grid>
 
-                        <Label Grid.Column="0" Grid.Row="3" VerticalAlignment="Center" HorizontalContentAlignment="Right">
+                        <Label Visibility="Collapsed" Grid.Column="0" Grid.Row="3" VerticalAlignment="Center" HorizontalContentAlignment="Right" Name="_lblInteresadoDatos">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblInteresado}"/>
                         </Label>
+                        <Button Grid.Column="0" Grid.Row="3" Name="_btnIrInteresadosDatos" IsDefault="False" Height="25" HorizontalAlignment="Right" Click="_btnIrInteresados_Click">
+                            <TextBlock Text="{x:Static recurso:Etiquetas.btnInteresado}"/>
+                        </Button>
 
                         <Grid Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="7">
                             <Grid.ColumnDefinitions>
@@ -1012,9 +1027,12 @@
                         <Separator Margin="10 0" Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="12" VerticalAlignment="Bottom"/>
 
                         <!--Cuarta Fila-->
-                        <Label Grid.Column="0" Grid.Row="5" VerticalAlignment="Center" HorizontalContentAlignment="Right">
+                        <Label Visibility="Collapsed" Grid.Column="0" Grid.Row="5" VerticalAlignment="Center" HorizontalContentAlignment="Right" Name="_lblPoderDatos">
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblPoder}"/>
                         </Label>
+                        <Button Grid.Column="0" Grid.Row="5" Name="_btnIrPoderDatos" IsDefault="False" Height="25" HorizontalAlignment="Right" Click="_btnIrPoder_Click">
+                            <TextBlock Text="{x:Static recurso:Etiquetas.lblPoder}"/>
+                        </Button>
                         <custom:ByTTextBox  MaxLength="255" Grid.Column="1" Grid.Row="5" Name="_txtPoderDatos" VerticalAlignment="Center" BorderBrush="LightGreen"
                          Grid.ColumnSpan="4" MouseDoubleClick="_txtPoderDatos_MouseDoubleClick" IsReadOnly="True" Text="{Binding Path=Poder.Id}"></custom:ByTTextBox>
 

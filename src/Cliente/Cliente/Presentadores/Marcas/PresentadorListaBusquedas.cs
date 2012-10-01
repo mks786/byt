@@ -20,6 +20,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
 {
     class PresentadorListaBusquedas : PresentadorBase
     {
+
         private IListaBusquedas _ventana;
         private Marca _marca;
         private static PaginaPrincipal _paginaPrincipal = PaginaPrincipal.ObtenerInstancia;
@@ -27,6 +28,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
 
 
         private IListaDatosDominioServicios _listaDatosDominioServicios;
+
 
         /// <summary>
         /// Constructor Predeterminado
@@ -51,6 +53,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
         }
+
 
         /// <summary>
         /// Método que carga los datos iniciales a mostrar en la página
@@ -106,6 +109,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             }
         }
 
+
         /// <summary>
         /// Método que invoca una nueva página "GestionarInfoBol" y la instancia con el objeto seleccionado
         /// </summary>
@@ -134,6 +138,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
         }
+
 
         /// <summary>
         /// Método que ordena una columna
@@ -169,6 +174,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             #endregion
         }
 
+
         /// <summary>
         /// Método que se encarga de consultar una Busqueda
         /// </summary>
@@ -182,7 +188,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 #endregion
 
                 Busqueda busqueda = (Busqueda)this._ventana.BusquedaFiltrar;
-                busqueda.TipoBusqueda = ((ListaDatosDominio)this._ventana.TipoBusqueda).Id != "NGN" ? ((ListaDatosDominio)this._ventana.TipoBusqueda).Id[0] : (char?) null ;
+                busqueda.TipoBusqueda = ((ListaDatosDominio)this._ventana.TipoBusqueda).Id != "NGN" ? ((ListaDatosDominio)this._ventana.TipoBusqueda).Id[0] : (char?)null;
 
                 IEnumerable<Busqueda> busquedasFiltradas = this._marca.Busquedas;
 
@@ -256,6 +262,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             }
         }
 
+
         /// <summary>
         /// Método que invoca una nueva página "ConsultarMarca" y la instancia con el objeto seleccionado
         /// </summary>
@@ -266,12 +273,13 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
                 logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
 
-            this.Navegar(new ConsultarMarca(this._marca,this._ventana.Tab));
+            this.Navegar(new ConsultarMarca(this._marca, this._ventana.Tab));
 
             #region trace
             if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
                 logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
         }
+
     }
 }

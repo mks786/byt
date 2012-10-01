@@ -16,6 +16,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
 {
     class PresentadorGestionarInfoAdicionalMarcaTercero : PresentadorBase
     {
+
         private IGestionarInfoAdicionalMarcaTercero _ventana;
         private MarcaTercero _marca;
         private static PaginaPrincipal _paginaPrincipal = PaginaPrincipal.ObtenerInstancia;
@@ -23,6 +24,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
         private IInfoAdicionalServicios _infoAdicionalServicios;
         private IList<Auditoria> _auditorias;
         private bool _nuevaInfoAdicional = false;
+
 
         /// <summary>
         /// Constructor predeterminado
@@ -43,8 +45,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
 
                 if (null == ((MarcaTercero)marca).InfoAdicional)
                     this._nuevaInfoAdicional = true;
-      
-                 
+
+
                 this._infoAdicionalServicios = (IInfoAdicionalServicios)Activator.GetObject(typeof(IInfoAdicionalServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["InfoAdicionalServicios"]);
 
@@ -59,6 +61,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
                 this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
             }
         }
+
 
         /// <summary>
         /// Método que carga los datos iniciales a mostrar en la página
@@ -86,12 +89,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
                 }
 
                 Auditoria auditoria = new Auditoria();
-                string validarTam =((InfoAdicional)this._ventana.InfoAdicional).Id;
+                string validarTam = ((InfoAdicional)this._ventana.InfoAdicional).Id;
                 int id;
-                if(validarTam[3]=='-')
-                     id = int.Parse(((InfoAdicional)this._ventana.InfoAdicional).Id.Substring(4));
+                if (validarTam[3] == '-')
+                    id = int.Parse(((InfoAdicional)this._ventana.InfoAdicional).Id.Substring(4));
                 else
-                     id = int.Parse(((InfoAdicional)this._ventana.InfoAdicional).Id.Substring(4));
+                    id = int.Parse(((InfoAdicional)this._ventana.InfoAdicional).Id.Substring(4));
                 auditoria.Fk = id;
                 auditoria.Tabla = "MYP_ADICIONAL";
 
@@ -134,6 +137,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
             }
         }
 
+
         /// <summary>
         /// Método que realiza toda la lógica para agregar la InfoAdicional dentro de la base de datos
         /// </summary>
@@ -160,7 +164,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
                 else
                 {
                     InfoAdicional infoAdicional = (InfoAdicional)this._ventana.InfoAdicional;
-                    
+
                     infoAdicional.Operacion = this._nuevaInfoAdicional ? "CREATE" : "MODIFY";
 
                     this._marca.InfoAdicional = infoAdicional;
@@ -197,6 +201,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
 
             return exitoso;
         }
+
 
         /// <summary>
         /// Método que se encarga de mostrar ventana de lista de Auditorías
@@ -241,6 +246,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
             }
         }
 
+
         /// <summary>
         /// Método que invoca una nueva página "ConsultarMarca" y la instancia con el objeto seleccionado
         /// </summary>
@@ -258,5 +264,6 @@ namespace Trascend.Bolet.Cliente.Presentadores.MarcasTercero
                 logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
         }
+
     }
 }
