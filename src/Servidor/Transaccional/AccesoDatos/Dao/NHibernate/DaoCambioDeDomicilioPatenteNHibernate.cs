@@ -21,7 +21,7 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
         public IList<CambioDeDomicilioPatente> ObtenerCambiosDeDomicilioPatenteFiltro(CambioDeDomicilioPatente cambioDeDomicilio)
         {
             IList<CambioDeDomicilioPatente> CambioDeDomicilios = null;
-            
+
             try
             {
                 #region trace
@@ -32,13 +32,13 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
                 bool variosFiltros = false;
                 string filtro = "";
                 string cabecera = string.Format(Recursos.ConsultasHQL.CabeceraObtenerCambioDeDomicilioPatente);
-                
+
                 if ((null != cambioDeDomicilio) && (cambioDeDomicilio.Id != 0))
                 {
                     filtro = string.Format(Recursos.ConsultasHQL.FiltroObtenerCambioDeDomicilioPatenteId, cambioDeDomicilio.Id);
                     variosFiltros = true;
                 }
-                
+
                 if ((null != cambioDeDomicilio.Patente) && (!cambioDeDomicilio.Patente.Id.Equals("")))
                 {
                     if (variosFiltros)
@@ -46,7 +46,7 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
                     filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerCambioDeDomicilioPatenteIdPatente, cambioDeDomicilio.Patente.Id);
                     variosFiltros = true;
                 }
-                
+
                 //if ((null != cambioDeDomicilio.Interesado) && (!cambioDeDomicilio.Interesado.Id.Equals("")))
                 //{
                 //    if (variosFiltros)

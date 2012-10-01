@@ -10,6 +10,7 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
 {
     public abstract class DaoBaseNHibernate<T, Id> : IDaoBase<T, Id>
     {
+
         private static Logger logger = LogManager.GetCurrentClassLogger();
         private ISession _session;
         //private NHibernateHelper _helper;
@@ -18,6 +19,7 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
         //{
         //    _helper = NHibernateHelper.ObtenerInstanciaNHibernateHelper();
         //}
+
 
         /// <summary>
         /// Propiedad para obtener la sesion
@@ -33,6 +35,7 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
 
             set { _session = value; }
         }
+
 
         /// <summary>
         /// Método que obtiene todos los registros de la entidad
@@ -58,6 +61,7 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
 
             return listaEntidad;
         }
+
 
         /// <summary>
         /// Método que obtiene todos los registros de la entidad ordenada en el orden especificado
@@ -90,6 +94,7 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
             return listaEntidad;
         }
 
+
         /// <summary>
         /// Método que obtiene el elemento de la entidad por su id
         /// </summary>
@@ -115,6 +120,7 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
 
             return entidad;
         }
+
 
         /// <summary>
         /// Método que verifica si existe una entidad
@@ -146,6 +152,7 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
             return existe;
         }
 
+
         /// <summary>
         /// Método que obtiene el elemento de la entidad por su id y 
         /// lo bloquea hasta que sea actualizado
@@ -172,6 +179,7 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
 
             return entidad;
         }
+
 
         /// <summary>
         /// Método que inserta o modifica una entidad
@@ -201,6 +209,7 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
 
             return exitoso;
         }
+
 
         /// <summary>
         /// Elimina la Entidad que se envio

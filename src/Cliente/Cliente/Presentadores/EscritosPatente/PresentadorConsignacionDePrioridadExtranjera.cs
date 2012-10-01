@@ -18,22 +18,28 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosPatente
 {
     class PresentadorConsignacionDePrioridadExtranjera : PresentadorBase
     {
+
         private IConsignacionDePrioridadExtranjera _ventana;
+
 
         private IAgenteServicios _agenteServicios;
         private IPatenteServicios _patenteservicios;
         private IBoletinServicios _boletinServicios;
         private IListaDatosValoresServicios _listaDatosValoresServicios;
 
+
         private static PaginaPrincipal _paginaPrincipal = PaginaPrincipal.ObtenerInstancia;
         private static Logger logger = LogManager.GetCurrentClassLogger();
+
 
         Agente primerAgente = new Agente();
         Patente primerPatente = new Patente(int.MinValue);
 
+
         private IList<Agente> _Agentes;
         private IList<Patente> _patentes;
         private IList<Patente> _patentesAgregadas = new List<Patente>();
+
 
         /// <summary>
         /// Constructor predeterminado
@@ -62,11 +68,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosPatente
             }
         }
 
+
         /// <summary>
         /// Método que carga los datos iniciales a mostrar en la página
         /// </summary>
         public void CargarPagina()
-        {           
+        {
             try
             {
                 Mouse.OverrideCursor = Cursors.Wait;
@@ -106,6 +113,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosPatente
             }
         }
 
+
         /// <summary>
         /// Metodo que genera el string de codigos a enviar al .BAT
         /// </summary>
@@ -127,10 +135,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosPatente
             string StringLlleno = "";
             StringLlleno += DateTime.Parse(this._ventana.Fecha).ToShortDateString() + "  ";
             if (null != this._ventana.TipoEscrito)
-                StringLlleno += ((ListaDatosValores) this._ventana.TipoEscrito).Valor + "  ";
+                StringLlleno += ((ListaDatosValores)this._ventana.TipoEscrito).Valor + "  ";
             if (null != ((Agente)this._ventana.Agente))
                 StringLlleno += ((Agente)this._ventana.Agente).Id;
-            
+
             this._ventana.String = StringLlleno + "  " + parametroPatentes;
 
             #region trace
@@ -141,6 +149,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosPatente
             return StringLlleno;
 
         }
+
 
         /// <summary>
         /// Método que realiza toda la lógica para agregar al País dentro de la base de datos
@@ -160,7 +169,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosPatente
                     this.EjecutarArchivoBAT(ConfigurationManager.AppSettings["RutaBatEscrito"].ToString()
                         + "\\" + ConfigurationManager.AppSettings["EscritoConsignacionDePrioridadExtranjera"].ToString(),
                         DateTime.Parse(this._ventana.Fecha).ToShortDateString()
-                        + " " + ((ListaDatosValores)this._ventana.TipoEscrito).Valor + " " + 
+                        + " " + ((ListaDatosValores)this._ventana.TipoEscrito).Valor + " " +
                         ((Agente)this._ventana.AgenteFiltrado).Id + " " + parametroPatentes);
                 }
 
@@ -168,7 +177,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosPatente
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
-            }             
+            }
             catch (ApplicationException ex)
             {
                 logger.Error(ex.Message);
@@ -190,6 +199,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosPatente
                 this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
             }
         }
+
 
         /// <summary>
         /// Metodo de hacer las validaciones necesarias antes de ejecutar el .bat
@@ -243,6 +253,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosPatente
             return retorno;
         }
 
+
         /// <summary>
         /// Método que carga los tipo escrito registrados
         /// </summary>
@@ -263,6 +274,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosPatente
             #endregion
 
         }
+
 
         /// <summary>
         /// Método que ordena una columna
@@ -298,6 +310,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosPatente
             #endregion
         }
 
+
         #region Agente
 
         /// <summary>
@@ -305,7 +318,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosPatente
         /// </summary>
         /// <returns></returns>
         public bool CambiarAgente()
-        {           
+        {
             bool retorno = false;
 
             try
@@ -373,14 +386,14 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosPatente
             #endregion
 
             this._Agentes = new List<Agente>();
-            this._Agentes = this._agenteServicios.ObtenerAgentesSinPoderesFiltro(new Agente("MP"));            
+            this._Agentes = this._agenteServicios.ObtenerAgentesSinPoderesFiltro(new Agente("MP"));
             this._Agentes.Insert(0, this.primerAgente);
             this._ventana.AgentesFiltrados = this._Agentes;
             this._ventana.AgenteFiltrado = this.BuscarAgente(this._Agentes, this._Agentes[1]);
 
             this._ventana.Agente = this._Agentes[1];
-            
-                        
+
+
             #region trace
             if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
                 logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
@@ -391,7 +404,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosPatente
         /// Método que consulta los agentes que cumplan con el filtro
         /// </summary>
         public void ConsultarAgente()
-        {            
+        {
             try
             {
                 Mouse.OverrideCursor = Cursors.Wait;
@@ -448,6 +461,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosPatente
 
         #endregion
 
+
         #region Patente
 
         /// <summary>
@@ -455,7 +469,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosPatente
         /// </summary>
         /// <returns></returns>
         public bool CambiarPatente()
-        {            
+        {
             bool retorno = false;
 
             try
@@ -472,7 +486,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosPatente
                     if (((Patente)this._ventana.PatenteFiltrado).Id != int.MinValue)
                     {
                         this._ventana.Patente =
-                            this._patenteservicios.ConsultarPatenteConTodo((Patente)this._ventana.PatenteFiltrado);                        
+                            this._patenteservicios.ConsultarPatenteConTodo((Patente)this._ventana.PatenteFiltrado);
                     }
                     this._ventana.NombrePatente = ((Patente)this._ventana.PatenteFiltrado).Descripcion;
                     retorno = true;
@@ -540,7 +554,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosPatente
         /// Método que se encarga de realizar la consulta de las marcas
         /// </summary>
         public void ConsultarPatente()
-        {            
+        {
             try
             {
                 Mouse.OverrideCursor = Cursors.Wait;
@@ -717,5 +731,6 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosPatente
         }
 
         #endregion
+
     }
 }

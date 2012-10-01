@@ -10,7 +10,9 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
 {
     class DaoRenovacionNHibernate : DaoBaseNHibernate<Renovacion, int>, IDaoRenovacion
     {
+
         private static Logger logger = LogManager.GetCurrentClassLogger();
+
 
         /// <summary>
         /// Método que consulta las Renovaciones dependiendo de un filtro
@@ -85,6 +87,7 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
             return renovaciones;
         }
 
+
         /// <summary>
         /// Método que obtiene la última renovacion
         /// </summary>
@@ -102,10 +105,10 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
 
                 bool variosFiltros = false;
                 string filtro = "";
-                string cabecera = string.Format(Recursos.ConsultasHQL.ObtenerUltimaRenovacion,renovacion.Marca.Id);
+                string cabecera = string.Format(Recursos.ConsultasHQL.ObtenerUltimaRenovacion, renovacion.Marca.Id);
 
 
-                
+
                 IQuery query = Session.CreateQuery(cabecera + filtro);
 
                 renovaciones = query.UniqueResult<int>();

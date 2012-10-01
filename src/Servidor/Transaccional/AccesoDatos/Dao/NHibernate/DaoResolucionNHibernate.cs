@@ -9,7 +9,9 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
 {
     class DaoResolucionNHibernate : DaoBaseNHibernate<Resolucion, string>, IDaoResolucion
     {
+
         private static Logger logger = LogManager.GetCurrentClassLogger();
+
 
         /// <summary>
         /// Método que verifica la existencia de una resolución
@@ -48,6 +50,6 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
             }
 
             return existe;
-        }                
+        }
     }
 }

@@ -18,22 +18,28 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
 {
     class PresentadorReingresoDePoderYPrioridad : PresentadorBase
     {
+
         private IReingresoDePoderYPrioridad _ventana;
+
 
         private IAgenteServicios _agenteServicios;
         private IMarcaServicios _marcaServicios;
         private IBoletinServicios _boletinServicios;
         private IListaDatosValoresServicios _listaDatosValoresServicios;
 
+
         private static PaginaPrincipal _paginaPrincipal = PaginaPrincipal.ObtenerInstancia;
         private static Logger logger = LogManager.GetCurrentClassLogger();
+
 
         Agente primerAgente = new Agente();
         Marca primerMarca = new Marca(int.MinValue);
 
+
         private IList<Agente> _Agentes;
         private IList<Marca> _marcas;
         private IList<Marca> _marcasAgregadas = new List<Marca>();
+
 
         /// <summary>
         /// Constructor predeterminado
@@ -60,6 +66,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
                 this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
             }
         }
+
 
         /// <summary>
         /// Método que carga los datos iniciales a mostrar en la página
@@ -105,6 +112,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
             }
         }
 
+
         /// <summary>
         /// Metodo que genera el string de codigos a enviar al .BAT
         /// </summary>
@@ -137,8 +145,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
                 StringLlleno += ((ListaDatosValores)this._ventana.TipoDePoder).Valor + "  ";
             if (null != this._ventana.TipoDePrioridad)
                 StringLlleno += ((ListaDatosValores)this._ventana.TipoDePrioridad).Valor + "  ";
-            if (this._ventana.Fecha!="")
-                StringLlleno += DateTime.Parse(this._ventana.Fecha).ToShortDateString()+" ";
+            if (this._ventana.Fecha != "")
+                StringLlleno += DateTime.Parse(this._ventana.Fecha).ToShortDateString() + " ";
             if (null != ((Agente)this._ventana.Agente))
                 StringLlleno += ((Agente)this._ventana.Agente).Id + "  ";
             this._ventana.String = StringLlleno + "  " + parametroMarcas;
@@ -151,6 +159,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
             return StringLlleno;
 
         }
+
 
 
         /// <summary>
@@ -167,7 +176,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
 
                 if (ValidarEscrito())
                 {
-              
+
                     string parametroMarcas = ArmarStringParametroMarcas(this._marcasAgregadas);
                     this.EjecutarArchivoBAT(ConfigurationManager.AppSettings["RutaBatEscrito"].ToString()
                         + "\\" + ConfigurationManager.AppSettings["EscritoReingresoDePoderYPrioridad"].ToString(),
@@ -206,6 +215,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
             }
         }
 
+
         /// <summary>
         /// Método que hace las validaciones antes de generar el escrito
         /// </summary>
@@ -235,7 +245,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
                                     {
                                         if (ValidarPrioridadDeMarcas())
                                         {
-                                            retorno = true;}
+                                            retorno = true;
+                                        }
                                         else
                                         {
                                             this._ventana.MensajeAlerta(string.Format(Recursos.MensajesConElUsuario.EscritoSinPrioridad));
@@ -286,6 +297,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
             return retorno;
         }
 
+
         private bool ValidarPrioridadDeMarcas()
         {
             bool retorno = true;
@@ -295,8 +307,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
                 if (marca.CPrioridad == null)
                     retorno = false;
             }
-                return retorno;
+            return retorno;
         }
+
 
         /// <summary>
         /// Método que ordena una columna
@@ -331,6 +344,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
                 logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
         }
+
 
         #region Agente
 
@@ -482,6 +496,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
 
         #endregion
 
+
         #region Marca
 
         /// <summary>
@@ -506,7 +521,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
                     if (((Marca)this._ventana.MarcaFiltrado).Id != int.MinValue)
                     {
                         this._ventana.Marca =
-                            this._marcaServicios.ConsultarMarcaConTodo((Marca)this._ventana.MarcaFiltrado);                        
+                            this._marcaServicios.ConsultarMarcaConTodo((Marca)this._ventana.MarcaFiltrado);
                     }
                     this._ventana.NombreMarca = ((Marca)this._ventana.MarcaFiltrado).Descripcion;
                     retorno = true;
@@ -750,7 +765,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
 
         }
 
-        #endregion        
+        #endregion
+
 
         #region Boletines, Numerales, Poder, Prioridad y resolucion
 
@@ -835,5 +851,6 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
         }
 
         #endregion
+
     }
 }

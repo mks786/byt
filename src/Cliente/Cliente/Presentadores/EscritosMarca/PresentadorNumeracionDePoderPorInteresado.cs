@@ -20,18 +20,23 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
     {
         private INumeracionDePoderPorInteresado _ventana;
 
-        private IAgenteServicios _agenteServicios;        
+
+        private IAgenteServicios _agenteServicios;
         private IInteresadoServicios _interesadoServicios;
+
 
         private static PaginaPrincipal _paginaPrincipal = PaginaPrincipal.ObtenerInstancia;
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
+
         Agente primerAgente = new Agente();
         Interesado primerInteresado = new Interesado(int.MinValue);
+
 
         private IList<Agente> _Agentes;
         private IList<Interesado> _interesados;
         private IList<Interesado> _interesadosAgregados = new List<Interesado>();
+
 
         /// <summary>
         /// Constructor predeterminado
@@ -44,7 +49,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
                 this._ventana = ventana;
                 //this._ventana.Escrito = new Pais();
                 this._agenteServicios = (IAgenteServicios)Activator.GetObject(typeof(IAgenteServicios),
-                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["AgenteServicios"]);               
+                    ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["AgenteServicios"]);
                 this._interesadoServicios = (IInteresadoServicios)Activator.GetObject(typeof(IInteresadoServicios),
                     ConfigurationManager.AppSettings["RutaServidor"] + ConfigurationManager.AppSettings["InteresadoServicios"]);
             }
@@ -55,11 +60,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
             }
         }
 
+
         /// <summary>
         /// Método que carga los datos iniciales a mostrar en la página
         /// </summary>
         public void CargarPagina()
-        {           
+        {
             try
             {
                 Mouse.OverrideCursor = Cursors.Wait;
@@ -98,6 +104,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
             }
         }
 
+
         /// <summary>
         /// Metodo que genera el string de codigos a enviar al .BAT
         /// </summary>
@@ -130,13 +137,14 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
 
         }
 
+
         /// <summary>
         /// Método que hace el llamado a generar el escrito
         /// </summary>
         public void Aceptar()
         {
 
-             try
+            try
             {
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -155,7 +163,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
-            }                                        
+            }
             catch (ApplicationException ex)
             {
                 logger.Error(ex.Message);
@@ -177,6 +185,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
                 this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
             }
         }
+
 
         /// <summary>
         /// Metodo de hacer las validaciones necesarias antes de ejecutar el .bat
@@ -214,7 +223,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
             else
             {
                 this._ventana.MensajeAlerta(Recursos.MensajesConElUsuario.AlertaEscritoSinAgente);
-            }                                                               
+            }
 
             #region trace
             if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -223,6 +232,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
 
             return retorno;
         }
+
 
         /// <summary>
         /// Método que ordena una columna
@@ -258,6 +268,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
             #endregion
         }
 
+
         #region Agente
 
         /// <summary>
@@ -265,7 +276,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
         /// </summary>
         /// <returns></returns>
         public bool CambiarAgente()
-        {            
+        {
             bool retorno = false;
 
             try
@@ -351,7 +362,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
         /// Método que consulta los agentes que cumplan con el filtro
         /// </summary>
         public void ConsultarAgente()
-        {            
+        {
             try
             {
                 Mouse.OverrideCursor = Cursors.Wait;
@@ -408,6 +419,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
 
         #endregion
 
+
         #region Interesado
 
         /// <summary>
@@ -415,7 +427,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
         /// </summary>
         /// <returns></returns>
         public bool CambiarInteresado()
-        {           
+        {
             bool retorno = false;
 
             try
@@ -432,7 +444,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
                     if (((Interesado)this._ventana.InteresadoFiltrado).Id != int.MinValue)
                     {
                         this._ventana.Interesado =
-                            this._interesadoServicios.ConsultarInteresadoConTodo((Interesado)this._ventana.InteresadoFiltrado);                        
+                            this._interesadoServicios.ConsultarInteresadoConTodo((Interesado)this._ventana.InteresadoFiltrado);
                     }
                     this._ventana.NombreInteresado = ((Interesado)this._ventana.InteresadoFiltrado).Nombre;
                     retorno = true;
@@ -499,7 +511,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
         /// Método que se encarga de realizar la consulta de los interesados
         /// </summary>
         public void ConsultarInteresado()
-        {           
+        {
             try
             {
                 Mouse.OverrideCursor = Cursors.Wait;
@@ -671,5 +683,6 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
         }
 
         #endregion
+
     }
 }

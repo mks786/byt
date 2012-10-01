@@ -72,13 +72,13 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
                 bool variosFiltros = false;
                 string filtro = "";
                 string cabecera = string.Format(Recursos.ConsultasHQL.CabeceraObtenerAsociado);
-                
+
                 if ((null != asociado) && (asociado.Id != 0))
                 {
                     filtro = string.Format(Recursos.ConsultasHQL.FiltroObtenerAsociadoId, asociado.Id);
                     variosFiltros = true;
                 }
-                
+
                 if (!string.IsNullOrEmpty(asociado.Nombre))
                 {
                     if (variosFiltros)

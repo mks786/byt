@@ -15,11 +15,13 @@ namespace Trascend.Bolet.Cliente.Presentadores.DatosTransferencias
 {
     class PresentadorConsultarDatosTransferencia : PresentadorBase
     {
+
         private IConsultarDatosTransferencia _ventana;
         private IDatosTransferenciaServicios _datosTransferenciaServicios;
         private IAsociadoServicios _asociadoServicios;
         private static PaginaPrincipal _paginaPrincipal = PaginaPrincipal.ObtenerInstancia;
         private static Logger logger = LogManager.GetCurrentClassLogger();
+
 
         /// <summary>
         /// Constructor predeterminado
@@ -42,15 +44,17 @@ namespace Trascend.Bolet.Cliente.Presentadores.DatosTransferencias
                 this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
             }
         }
+
+
         /// <summary>
         /// Método que carga los datos iniciales a mostrar en la página
         /// </summary>
         public void CargarPagina()
         {
             try
-            {            
+            {
                 Mouse.OverrideCursor = Cursors.Wait;
-            
+
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
@@ -69,13 +73,14 @@ namespace Trascend.Bolet.Cliente.Presentadores.DatosTransferencias
             catch (Exception ex)
             {
                 logger.Error(ex.Message);
-                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado,true);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
             }
             finally
             {
                 Mouse.OverrideCursor = null;
             }
         }
+
 
         /// <summary>
         /// Método que dependiendo del estado de la página, habilita los campos o 
@@ -133,6 +138,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.DatosTransferencias
                 this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
             }
         }
+
 
         /// <summary>
         /// Método que se encarga de eliminar un DatosTransferencia

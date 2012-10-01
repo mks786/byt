@@ -29,7 +29,7 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
                     logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-                IQuery query = Session.CreateQuery(string.Format(Recursos.ConsultasHQL.ObtenerInfoBolesMarcaTerPorMarcas, marca.Id.ToUpper(),marca.Anexo));
+                IQuery query = Session.CreateQuery(string.Format(Recursos.ConsultasHQL.ObtenerInfoBolesMarcaTerPorMarcas, marca.Id.ToUpper(), marca.Anexo));
                 InfoBolMarcaTeres = query.List<InfoBolMarcaTer>();
 
                 #region trace
@@ -48,6 +48,6 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
             }
 
             return InfoBolMarcaTeres;
-        }        
+        }
     }
 }

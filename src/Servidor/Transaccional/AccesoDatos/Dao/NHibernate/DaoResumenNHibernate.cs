@@ -9,6 +9,6 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
 {
     class DaoResumenNHibernate : DaoBaseNHibernate<Resumen, string>, IDaoResumen
     {
-        private static Logger logger = LogManager.GetCurrentClassLogger();        
+        private static Logger logger = LogManager.GetCurrentClassLogger();
     }
 }

@@ -18,22 +18,28 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
 {
     class PresentadorReingresoDeNombreDeMarca : PresentadorBase
     {
+
         private IReingresoDeNombreDeMarca _ventana;
+
 
         private IAgenteServicios _agenteServicios;
         private IMarcaServicios _marcaServicios;
         private IBoletinServicios _boletinServicios;
         private IListaDatosValoresServicios _listaDatosValoresServicios;
 
+
         private static PaginaPrincipal _paginaPrincipal = PaginaPrincipal.ObtenerInstancia;
         private static Logger logger = LogManager.GetCurrentClassLogger();
+
 
         Agente primerAgente = new Agente();
         Marca primerMarca = new Marca(int.MinValue);
 
+
         private IList<Agente> _Agentes;
         private IList<Marca> _marcas;
         private IList<Marca> _marcasAgregadas = new List<Marca>();
+
 
         /// <summary>
         /// Constructor predeterminado
@@ -60,6 +66,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
                 this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
             }
         }
+
 
         /// <summary>
         /// Método que carga los datos iniciales a mostrar en la página
@@ -104,6 +111,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
                 Mouse.OverrideCursor = null;
             }
         }
+
 
         /// <summary>
         /// Metodo que genera el string de codigos a enviar al .BAT
@@ -159,25 +167,25 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
-                
+
                 if (ValidarEscrito())
                 {
-                   
+
                     string parametroMarcas = ArmarStringParametroMarcas(this._marcasAgregadas);
                     this.EjecutarArchivoBAT(ConfigurationManager.AppSettings["RutaBatEscrito"].ToString()
                         + "\\" + ConfigurationManager.AppSettings["EscritoReingresoDeNombreDeMarca"].ToString(),
                         ((Boletin)this._ventana.Boletin).Id + " " + ((Resolucion)this._ventana.Resolucion).Id
                         + " " + ((ListaDatosValores)this._ventana.CantidadNumeralSelec).Valor + " " + this._ventana.Numerales
-                        + " " + this._ventana.CalificativoNombreMarca + " " + ((Agente)this._ventana.AgenteFiltrado).Id 
-                        + " " + parametroMarcas);                  
-                    
+                        + " " + this._ventana.CalificativoNombreMarca + " " + ((Agente)this._ventana.AgenteFiltrado).Id
+                        + " " + parametroMarcas);
+
                 }
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
                     logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
-                
+
             }
             catch (ApplicationException ex)
             {
@@ -200,6 +208,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
                 this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
             }
         }
+
 
         /// <summary>
         /// Método que se encarga de validar antes de generar el escrito
@@ -230,7 +239,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
                                     {
                                         retorno = true;
                                     }
-                                    else 
+                                    else
                                     {
                                         this._ventana.MensajeAlerta(string.Format(Recursos.MensajesConElUsuario.AlertaEscritoSinCalificativoDeMarca));
 
@@ -275,6 +284,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
             return retorno;
         }
 
+
         /// <summary>
         /// Método que ordena una columna
         /// </summary>
@@ -308,6 +318,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
                 logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
         }
+
 
         #region Agente
 
@@ -459,6 +470,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
 
         #endregion
 
+
         #region Marca
 
         /// <summary>
@@ -483,7 +495,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
                     if (((Marca)this._ventana.MarcaFiltrado).Id != int.MinValue)
                     {
                         this._ventana.Marca =
-                            this._marcaServicios.ConsultarMarcaConTodo((Marca)this._ventana.MarcaFiltrado);                        
+                            this._marcaServicios.ConsultarMarcaConTodo((Marca)this._ventana.MarcaFiltrado);
                     }
                     this._ventana.NombreMarca = ((Marca)this._ventana.MarcaFiltrado).Descripcion;
                     retorno = true;
@@ -727,7 +739,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
         }
 
         #endregion
-       
+
+
         #region Boletines Numerales y Resoluciones
 
         /// <summary>
@@ -762,7 +775,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
                 logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
 
-            IList<ListaDatosValores> numerales = 
+            IList<ListaDatosValores> numerales =
                 this._listaDatosValoresServicios.ConsultarListaDatosValoresPorParametro(new ListaDatosValores(Recursos.Etiquetas.cbiCategoriaNumerales));
             this._ventana.CantidadNumerales = numerales;
 
@@ -786,7 +799,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
             if (((Boletin)this._ventana.Boletin).Id != int.MinValue)
             {
                 IList<Resolucion> resoluciones = this._boletinServicios.ConsultarResolucionesDeBoletin((Boletin)this._ventana.Boletin);
-                
+
                 if (resoluciones.Count != 0)
                 {
                     this._ventana.Resoluciones = resoluciones;
@@ -812,5 +825,6 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
         }
 
         #endregion
+
     }
 }

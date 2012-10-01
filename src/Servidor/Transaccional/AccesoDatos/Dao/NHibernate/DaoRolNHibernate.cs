@@ -10,7 +10,9 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
 {
     public class DaoRolNHibernate : DaoBaseNHibernate<Rol, string>, IDaoRol
     {
+
         private static Logger logger = LogManager.GetCurrentClassLogger();
+
 
         /// <summary>
         /// Método que obtiene los roles y los objetos asociados por los mismos
@@ -48,6 +50,6 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
 
             return roles;
         }
-        
+
     }
 }

@@ -9,6 +9,7 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
 {
     public class DaoPlanillaNHibernate : DaoBaseNHibernate<Planilla, int>, IDaoPlanilla
     {
+
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
 
@@ -27,7 +28,7 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
                     logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-                IQuery query = Session.GetNamedQuery(parametro.PaqueteProcedimiento+parametro.NombreProcedimiento);
+                IQuery query = Session.GetNamedQuery(parametro.PaqueteProcedimiento + parametro.NombreProcedimiento);
                 query.SetParameter<string>("usr", parametro.Usuario.Iniciales);
                 query.SetParameter<int>("way", parametro.Via);
                 query.SetParameter<int>("cod", parametro.Id);

@@ -248,12 +248,13 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
             return idConsultado;
         }
 
+
         /// <summary>
         /// Metodo queobtiene el ultimo anexo de la MarcaTercero
         /// </summary>
         /// <param name="maxAnexo">El ultimo Anexo</param>
         /// <returns>El ultimo anexo de la marcatercero</returns>
-        public bool ObtenerClaseInternacionalMarcaTercero(int ClaseInt,string idMarcaT,int anexo)
+        public bool ObtenerClaseInternacionalMarcaTercero(int ClaseInt, string idMarcaT, int anexo)
         {
             bool retorno = true;
 
@@ -271,10 +272,10 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
 
                 foreach (MarcaTercero aux in MarcasTercero)
                 {
-                   
-                        if (aux.Internacional.Id == ClaseInt)
-                            retorno = false;
-                    
+
+                    if (aux.Internacional.Id == ClaseInt)
+                        retorno = false;
+
                 }
 
                 #region trace
@@ -294,7 +295,6 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
 
             return retorno;
         }
-
 
 
         //public Marca ObtenerMarcaConTodo(Marca marca)

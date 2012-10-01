@@ -112,27 +112,27 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
                 if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
                     logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
-            bool variosFiltros = false;
-            string filtro = "";
-            string cabecera = string.Format(Recursos.ConsultasHQL.CabeceraObtenerAgenteDesinflados);
-            if ((null != agente) && (!string.IsNullOrEmpty(agente.Id)))
-            {
-                filtro = string.Format(Recursos.ConsultasHQL.FiltroObtenerAgenteId, agente.Id);
-                variosFiltros = true;
-            }
-            if (!string.IsNullOrEmpty(agente.Nombre))
-            {
-                if (variosFiltros)
-                    filtro += " and ";
-                filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerAgenteNombre, agente.Nombre);
-            }
-            IQuery query = Session.CreateQuery(cabecera + filtro);
-            agentes = query.List<Agente>();
+                bool variosFiltros = false;
+                string filtro = "";
+                string cabecera = string.Format(Recursos.ConsultasHQL.CabeceraObtenerAgenteDesinflados);
+                if ((null != agente) && (!string.IsNullOrEmpty(agente.Id)))
+                {
+                    filtro = string.Format(Recursos.ConsultasHQL.FiltroObtenerAgenteId, agente.Id);
+                    variosFiltros = true;
+                }
+                if (!string.IsNullOrEmpty(agente.Nombre))
+                {
+                    if (variosFiltros)
+                        filtro += " and ";
+                    filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerAgenteNombre, agente.Nombre);
+                }
+                IQuery query = Session.CreateQuery(cabecera + filtro);
+                agentes = query.List<Agente>();
 
-            #region trace
-            if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
-                logger.Debug("Saliendo del Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
-            #endregion
+                #region trace
+                if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+                    logger.Debug("Saliendo del Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
             }
             catch (Exception ex)
             {

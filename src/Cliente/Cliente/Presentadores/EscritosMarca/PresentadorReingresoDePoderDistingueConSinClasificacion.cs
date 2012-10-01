@@ -18,22 +18,28 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
 {
     class PresentadorReingresoDePoderDistingueConSinClasificacion : PresentadorBase
     {
+
         private IReingresoDePoderDistingueConSinClasificacion _ventana;
+
 
         private IAgenteServicios _agenteServicios;
         private IMarcaServicios _marcaServicios;
         private IBoletinServicios _boletinServicios;
         private IListaDatosValoresServicios _listaDatosValoresServicios;
 
+
         private static PaginaPrincipal _paginaPrincipal = PaginaPrincipal.ObtenerInstancia;
         private static Logger logger = LogManager.GetCurrentClassLogger();
+
 
         Agente primerAgente = new Agente();
         Marca primerMarca = new Marca(int.MinValue);
 
+
         private IList<Agente> _Agentes;
         private IList<Marca> _marcas;
         private IList<Marca> _marcasAgregadas = new List<Marca>();
+
 
         /// <summary>
         /// Constructor predeterminado
@@ -60,6 +66,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
                 this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
             }
         }
+
 
         /// <summary>
         /// Método que carga los datos iniciales a mostrar en la página
@@ -105,6 +112,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
             }
         }
 
+
         /// <summary>
         /// Metodo que genera el string de codigos a enviar al .BAT
         /// </summary>
@@ -139,7 +147,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
                 StringLlleno += ((ListaDatosValores)this._ventana.TipoDeDistingue).Valor + "  ";
             if (null != this._ventana.Reclasificacion)
                 StringLlleno += ((ListaDatosValores)this._ventana.Reclasificacion).Valor + "  ";
-            
+
             if (null != ((Agente)this._ventana.Agente))
                 StringLlleno += ((Agente)this._ventana.Agente).Id + "  ";
             this._ventana.String = StringLlleno + "  " + parametroMarcas;
@@ -167,16 +175,16 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
                 #endregion
 
                 if (ValidarEscrito())
-                {                  
+                {
                     string parametroMarcas = ArmarStringParametroMarcas(this._marcasAgregadas);
                     this.EjecutarArchivoBAT(ConfigurationManager.AppSettings["RutaBatEscrito"].ToString()
                         + "\\" + ConfigurationManager.AppSettings["EscritoReingresoDePoderDistingueConSinClasificacion"].ToString(),
                         ((Boletin)this._ventana.Boletin).Id + " " + ((Resolucion)this._ventana.Resolucion).Id
-                        + " " + ((ListaDatosValores)this._ventana.CantidadNumeralSelec).Valor 
-                        + " " + this._ventana.Numerales +" "+ ((ListaDatosValores)this._ventana.TipoDePoder).Valor
+                        + " " + ((ListaDatosValores)this._ventana.CantidadNumeralSelec).Valor
+                        + " " + this._ventana.Numerales + " " + ((ListaDatosValores)this._ventana.TipoDePoder).Valor
                         + " " + ((ListaDatosValores)this._ventana.TipoDeDistingue).Valor
                         + " " + ((ListaDatosValores)this._ventana.Reclasificacion).Valor
-                        + " " +((Agente)this._ventana.AgenteFiltrado).Id + " " + parametroMarcas);                    
+                        + " " + ((Agente)this._ventana.AgenteFiltrado).Id + " " + parametroMarcas);
                 }
 
                 #region trace
@@ -205,6 +213,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
                 this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
             }
         }
+
 
         /// <summary>
         /// Método que hace las validaciones necesarias antes de generar escrito
@@ -272,6 +281,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
             return retorno;
         }
 
+
         /// <summary>
         /// Método que ordena una columna
         /// </summary>
@@ -305,6 +315,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
                 logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
         }
+
 
         #region Agente
 
@@ -456,6 +467,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
 
         #endregion
 
+
         #region Marca
 
         /// <summary>
@@ -480,7 +492,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
                     if (((Marca)this._ventana.MarcaFiltrado).Id != int.MinValue)
                     {
                         this._ventana.Marca =
-                            this._marcaServicios.ConsultarMarcaConTodo((Marca)this._ventana.MarcaFiltrado);                        
+                            this._marcaServicios.ConsultarMarcaConTodo((Marca)this._ventana.MarcaFiltrado);
                     }
                     this._ventana.NombreMarca = ((Marca)this._ventana.MarcaFiltrado).Descripcion;
                     retorno = true;
@@ -725,7 +737,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
         }
 
         #endregion
-       
+
+
         #region Boletines y Numerales
 
         /// <summary>
@@ -760,7 +773,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
                 logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
 
-            IList<ListaDatosValores> numerales = 
+            IList<ListaDatosValores> numerales =
                 this._listaDatosValoresServicios.ConsultarListaDatosValoresPorParametro(new ListaDatosValores(Recursos.Etiquetas.cbiCategoriaNumerales));
             this._ventana.CantidadNumerales = numerales;
 

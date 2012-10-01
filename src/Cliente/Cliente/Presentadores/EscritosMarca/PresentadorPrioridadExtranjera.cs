@@ -24,16 +24,20 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
         private IMarcaServicios _marcaServicios;
         private IListaDatosValoresServicios _listaDatosValoresServicios;
 
+
         private static PaginaPrincipal _paginaPrincipal = PaginaPrincipal.ObtenerInstancia;
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
+
         Agente primerAgente = new Agente();
         Marca primerMarca = new Marca(int.MinValue);
+
 
         private IList<ListaDatosValores> _listaDetallePrioridad;
         private IList<Agente> _Agentes;
         private IList<Marca> _marcas;
         private IList<Marca> _marcasAgregadas = new List<Marca>();
+
 
         /// <summary>
         /// Constructor predeterminado
@@ -59,11 +63,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
             }
         }
 
+
         /// <summary>
         /// Método que carga los datos iniciales a mostrar en la página
         /// </summary>
         public void CargarPagina()
-        {           
+        {
             try
             {
                 Mouse.OverrideCursor = Cursors.Wait;
@@ -103,6 +108,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
             }
         }
 
+
         /// <summary>
         /// Método que carga los datos iniciales de TipoDetallePrioridad a mostrar en la página
         /// </summary>
@@ -116,7 +122,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
             ListaDatosValores filtro = new ListaDatosValores(Recursos.Etiquetas.cbiDetallePrioridad);
             _listaDetallePrioridad =
                 this._listaDatosValoresServicios.ConsultarListaDatosValoresPorParametro(filtro);
-            
+
             this._ventana.TipoDetallePrioridades = _listaDetallePrioridad;
             this._ventana.TipoDetallePrioridad = this.BuscarRecordatorio(_listaDetallePrioridad, _listaDetallePrioridad[0]);
 
@@ -125,6 +131,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
                 logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
         }
+
 
         /// <summary>
         /// Metodo que genera el string de codigos a enviar al .BAT
@@ -145,7 +152,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
             }
 
             string StringLlleno = "";
-            if(null!=this._ventana.TipoDetallePrioridad)
+            if (null != this._ventana.TipoDetallePrioridad)
                 StringLlleno += ((ListaDatosValores)this._ventana.TipoDetallePrioridad).Valor + "  ";
             if (null != ((Agente)this._ventana.Agente))
                 StringLlleno += ((Agente)this._ventana.Agente).Id + "  ";
@@ -160,25 +167,26 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
 
         }
 
+
         /// <summary>
         /// Método que arma el parametro y hace el llamado al .bat
         /// </summary>
         public void Aceptar()
         {
-             try
+            try
             {
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
-                
+
                 if (ValidarEscrito())
                 {
                     string parametroMarcas = ArmarStringParametroMarcas(this._marcasAgregadas);
                     this.EjecutarArchivoBAT(ConfigurationManager.AppSettings["RutaBatEscrito"].ToString()
                         + "\\" + ConfigurationManager.AppSettings["EscritoPrioridadExtranjera"].ToString(),
                         ((ListaDatosValores)this._ventana.TipoDetallePrioridad).Valor
-                        +" "+((Agente)this._ventana.AgenteFiltrado).Id 
+                        + " " + ((Agente)this._ventana.AgenteFiltrado).Id
                         + " " + parametroMarcas);
                 }
 
@@ -186,7 +194,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
-            }              
+            }
             catch (ApplicationException ex)
             {
                 logger.Error(ex.Message);
@@ -208,6 +216,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
                 this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
             }
         }
+
 
         /// <summary>
         /// Metodo de hacer las validaciones necesarias antes de ejecutar el .bat
@@ -254,6 +263,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
             return retorno;
         }
 
+
         /// <summary>
         /// Método que ordena una columna
         /// </summary>
@@ -288,6 +298,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
             #endregion
         }
 
+
         #region Agente
 
         /// <summary>
@@ -295,7 +306,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
         /// </summary>
         /// <returns>true si cambio, false en caso contrario</returns>
         public bool CambiarAgente()
-        {            
+        {
             bool retorno = false;
 
             try
@@ -381,7 +392,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
         /// Método que consulta los agentes que cumplan con el filtro
         /// </summary>
         public void ConsultarAgente()
-        {            
+        {
             try
             {
                 Mouse.OverrideCursor = Cursors.Wait;
@@ -438,6 +449,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
 
         #endregion
 
+
         #region Marca
 
         /// <summary>
@@ -445,7 +457,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
         /// </summary>
         /// <returns>true si cambio, false en caso contrario</returns>
         public bool CambiarMarca()
-        {           
+        {
             bool retorno = false;
 
             try
@@ -461,14 +473,14 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
                 {
                     if (null != ((Marca)this._ventana.MarcaFiltrado).CPrioridad)
                     {
-                    if (((Marca)this._ventana.MarcaFiltrado).Id != int.MinValue)
-                    {
-                        this._ventana.Marca =
-                            this._marcaServicios.ConsultarMarcaConTodo((Marca)this._ventana.MarcaFiltrado);                        
-                    }
-                    this._ventana.NombreMarca = ((Marca)this._ventana.MarcaFiltrado).Descripcion;
-                    
-                    retorno = true;
+                        if (((Marca)this._ventana.MarcaFiltrado).Id != int.MinValue)
+                        {
+                            this._ventana.Marca =
+                                this._marcaServicios.ConsultarMarcaConTodo((Marca)this._ventana.MarcaFiltrado);
+                        }
+                        this._ventana.NombreMarca = ((Marca)this._ventana.MarcaFiltrado).Descripcion;
+
+                        retorno = true;
                     }
                     else
                     {
@@ -539,7 +551,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
         /// Método que se encarga de realizar la consulta de las marcas
         /// </summary>
         public void ConsultarMarca()
-        {           
+        {
             try
             {
                 Mouse.OverrideCursor = Cursors.Wait;
@@ -716,5 +728,6 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
         }
 
         #endregion
+
     }
 }

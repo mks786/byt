@@ -63,6 +63,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
             }
         }
 
+
         /// <summary>
         /// Método que carga los datos iniciales a mostrar en la página
         /// </summary>
@@ -74,13 +75,13 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
             {
                 this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleEscritoReingresoDeClasificacion,
                     "");
-                
+
                 CargarAgente();
-                
+
                 CargarMarca();
-                
+
                 CargaBoletines();
-                
+
                 CargaNumerales();
 
                 GenerarString();
@@ -113,6 +114,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
             }
         }
 
+
         /// <summary>
         /// Metodo que genera el string de codigos a enviar al .BAT
         /// </summary>
@@ -132,15 +134,15 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
             }
 
             string StringLlleno = "";
-            if(null!=this._ventana.Boletin)
+            if (null != this._ventana.Boletin)
             {
                 StringLlleno += ((Boletin)this._ventana.Boletin).Id + "  ";
                 StringLlleno += ((Resolucion)this._ventana.Resolucion).Id + "  ";
             }
             if (null != this._ventana.CantidadNumeral)
             {
-                StringLlleno += ((ListaDatosValores) this._ventana.CantidadNumeral).Valor + "  ";
-                StringLlleno += this._ventana.Numerales+ "  ";
+                StringLlleno += ((ListaDatosValores)this._ventana.CantidadNumeral).Valor + "  ";
+                StringLlleno += this._ventana.Numerales + "  ";
             }
             if (null != ((Agente)this._ventana.Agente))
                 StringLlleno += ((Agente)this._ventana.Agente).Id + "  ";
@@ -160,7 +162,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
         /// Método que arma el string hace el llamado al método para generar el escrito
         /// </summary>
         public void Aceptar()
-        {                        
+        {
             try
             {
                 #region trace
@@ -168,21 +170,21 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-              
+
                 if (ValidarEscrito())
                 {
                     string parametroMarcas = ArmarStringParametroMarcas(this._marcasAgregadas);
-                                this.EjecutarArchivoBAT(ConfigurationManager.AppSettings["RutaBatEscrito"].ToString()
-                                  + "\\" + ConfigurationManager.AppSettings["EscritoReingresoDeClasificacion"].ToString(),
-                                 ((Boletin)this._ventana.Boletin).Id+" "+((Resolucion)this._ventana.Resolucion).Id
-                                 +" "+((ListaDatosValores)this._ventana.CantidadNumeral).Valor+" "+this._ventana.Numerales
-                                 +" "+((Agente)this._ventana.AgenteFiltrado).Id + " " + parametroMarcas);
+                    this.EjecutarArchivoBAT(ConfigurationManager.AppSettings["RutaBatEscrito"].ToString()
+                      + "\\" + ConfigurationManager.AppSettings["EscritoReingresoDeClasificacion"].ToString(),
+                     ((Boletin)this._ventana.Boletin).Id + " " + ((Resolucion)this._ventana.Resolucion).Id
+                     + " " + ((ListaDatosValores)this._ventana.CantidadNumeral).Valor + " " + this._ventana.Numerales
+                     + " " + ((Agente)this._ventana.AgenteFiltrado).Id + " " + parametroMarcas);
                 }
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
                     logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
-                #endregion           
+                #endregion
 
             }
             catch (ApplicationException ex)
@@ -207,6 +209,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
             }
         }
 
+
         /// <summary>
         /// Metodo de hacer las validaciones necesarias antes de ejecutar el .bat
         /// </summary>
@@ -229,9 +232,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
                         if (((Boletin)this._ventana.Boletin != null) && (((Boletin)this._ventana.Boletin).Id != int.MinValue))
                         {
                             if (this._ventana.Resolucion != null)
-                            {    
+                            {
                                 if (!this._ventana.Numerales.Equals(""))
-                                {                                
+                                {
                                     retorno = true;
                                 }
                                 else
@@ -273,6 +276,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
             return retorno;
         }
 
+
         /// <summary>
         /// Método que ordena una columna
         /// </summary>
@@ -306,6 +310,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
                 logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
         }
+
 
         #region Agente
 
@@ -457,6 +462,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
 
         #endregion
 
+
         #region Marca
 
         /// <summary>
@@ -531,7 +537,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
             if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
                 logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
-			
+
             this._marcas = new List<Marca>();
 
             this._marcas.Add(this.primerMarca);
@@ -727,6 +733,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
 
         #endregion
 
+
         #region Boletines
 
         /// <summary>
@@ -760,7 +767,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
                 logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
 
-            IList<ListaDatosValores> numerales = 
+            IList<ListaDatosValores> numerales =
                 this._listaDatosValoresServicios.ConsultarListaDatosValoresPorParametro(new ListaDatosValores(Recursos.Etiquetas.cbiCategoriaNumerales));
             this._ventana.CantidadNumerales = numerales;
             this._ventana.CantidadNumeral = numerales[0];
@@ -784,7 +791,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
 
             if (((Boletin)this._ventana.Boletin).Id != int.MinValue)
             {
-                IList<Resolucion> resoluciones = this._boletinServicios.ConsultarResolucionesDeBoletin((Boletin)this._ventana.Boletin);              
+                IList<Resolucion> resoluciones = this._boletinServicios.ConsultarResolucionesDeBoletin((Boletin)this._ventana.Boletin);
                 this._ventana.Resoluciones = resoluciones;
                 this._ventana.Resolucion = resoluciones[0];
             }
@@ -800,6 +807,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
             #endregion
         }
 
-        #endregion             
+        #endregion
+
     }
 }

@@ -13,12 +13,14 @@ namespace Trascend.Bolet.Cliente.Presentadores.Contactos
 {
     class PresentadorAgregarContacto : PresentadorBase
     {
+
         private IAgregarContacto _ventana;
         private IContactoServicios _contactoServicios;
         private IAsociadoServicios _asociadoServicios;
         private ICartaServicios _cartaServicios;
         private Asociado _asociado;
         private static Logger logger = LogManager.GetCurrentClassLogger();
+
 
         /// <summary>
         /// Constructor predeterminado
@@ -48,24 +50,25 @@ namespace Trascend.Bolet.Cliente.Presentadores.Contactos
             }
         }
 
+
         /// <summary>
         /// Método que carga los datos iniciales a mostrar en la página
         /// </summary>
         public void CargarPagina()
         {
             try
-            {                            
+            {
                 #region trace
-            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
-                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
-            #endregion
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
 
                 Mouse.OverrideCursor = Cursors.Wait;
 
                 this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleAgregarContacto,
                         Recursos.Ids.Contacto);
-                    this._ventana.borrarId();
-                    this._ventana.FocoPredeterminado();
+                this._ventana.borrarId();
+                this._ventana.FocoPredeterminado();
 
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -97,6 +100,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Contactos
                 Mouse.OverrideCursor = null;
             }
         }
+
 
         /// <summary>
         /// Método que realiza toda la lógica para agregar al contacto dentro de la base de datos
@@ -139,7 +143,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Contactos
                 if (exitoso)
                 {
                     this._asociado.Contactos.Insert(0, contacto);
-                    this.Navegar(new ListaContactos(this._asociado,null));
+                    this.Navegar(new ListaContactos(this._asociado, null));
                 }
 
                 #region trace
@@ -169,5 +173,6 @@ namespace Trascend.Bolet.Cliente.Presentadores.Contactos
                 this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
             }
         }
+
     }
 }

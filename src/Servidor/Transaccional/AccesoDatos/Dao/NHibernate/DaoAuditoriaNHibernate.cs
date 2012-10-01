@@ -29,10 +29,10 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
                 #endregion
 
                 IQuery query;
-                if(auditoria.Tabla!="MYP_MARCAS_TER")
+                if (auditoria.Tabla != "MYP_MARCAS_TER")
                     query = Session.CreateQuery(string.Format(Recursos.ConsultasHQL.ObtenerAuditoriaPorFKYTabla, auditoria.Fk, auditoria.Tabla));
                 else
-                    query = Session.CreateQuery(string.Format(Recursos.ConsultasHQL.ObtenerAuditoriaPorFKYTablaMarcaTer, auditoria.Fks, auditoria.Tabla,auditoria.Fk));
+                    query = Session.CreateQuery(string.Format(Recursos.ConsultasHQL.ObtenerAuditoriaPorFKYTablaMarcaTer, auditoria.Fks, auditoria.Tabla, auditoria.Fk));
 
                 retorno = query.List<Auditoria>();
 

@@ -68,13 +68,13 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
                 bool variosFiltros = false;
                 string filtro = "";
                 string cabecera = string.Format(Recursos.ConsultasHQL.CabeceraObtenerInteresado);
-                
+
                 if ((null != interesado) && (interesado.Id != 0))
                 {
                     filtro = string.Format(Recursos.ConsultasHQL.FiltroObtenerInteresadoId, interesado.Id);
                     variosFiltros = true;
                 }
-                
+
                 if (!string.IsNullOrEmpty(interesado.Nombre))
                 {
                     if (variosFiltros)
@@ -82,14 +82,14 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
                     filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerInteresadoNombre, interesado.Nombre.ToUpper());
                 }
 
-                if ((null != interesado.TipoPersona) && (! interesado.TipoPersona.Equals(char.MinValue)))
+                if ((null != interesado.TipoPersona) && (!interesado.TipoPersona.Equals(char.MinValue)))
                 {
                     if (variosFiltros)
                         filtro += " and ";
                     filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerInteresadoTipoPersona, interesado.TipoPersona);
                 }
 
-                if ((null != interesado.Ciudad) && (! interesado.Ciudad.Equals("")))
+                if ((null != interesado.Ciudad) && (!interesado.Ciudad.Equals("")))
                 {
                     if (variosFiltros)
                         filtro += " and ";
@@ -103,7 +103,7 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
                     filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerInteresadoEstado, interesado.Estado);
                 }
 
-                if ((null != interesado.Pais) && (! interesado.Pais.Id.Equals("")))
+                if ((null != interesado.Pais) && (!interesado.Pais.Id.Equals("")))
                 {
                     if (variosFiltros)
                         filtro += " and ";

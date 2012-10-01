@@ -18,22 +18,28 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
 {
     class PresentadorReingresoDePoderYReclasificacion : PresentadorBase
     {
+
         private IReingresoDePoderYReclasificacion _ventana;
+
 
         private IAgenteServicios _agenteServicios;
         private IMarcaServicios _marcaServicios;
         private IBoletinServicios _boletinServicios;
         private IListaDatosValoresServicios _listaDatosValoresServicios;
 
+
         private static PaginaPrincipal _paginaPrincipal = PaginaPrincipal.ObtenerInstancia;
         private static Logger logger = LogManager.GetCurrentClassLogger();
+
 
         Agente primerAgente = new Agente();
         Marca primerMarca = new Marca(int.MinValue);
 
+
         private IList<Agente> _Agentes;
         private IList<Marca> _marcas;
         private IList<Marca> _marcasAgregadas = new List<Marca>();
+
 
         /// <summary>
         /// Constructor predeterminado
@@ -60,6 +66,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
                 this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
             }
         }
+
 
         /// <summary>
         /// Método que carga los datos iniciales a mostrar en la página
@@ -104,6 +111,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
                 Mouse.OverrideCursor = null;
             }
         }
+
 
         /// <summary>
         /// Metodo que genera el string de codigos a enviar al .BAT
@@ -167,7 +175,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
 
                 if (ValidarEscrito())
                 {
-                   
+
                     string parametroMarcas = ArmarStringParametroMarcas(this._marcasAgregadas);
                     this.EjecutarArchivoBAT(ConfigurationManager.AppSettings["RutaBatEscrito"].ToString()
                         + "\\" + ConfigurationManager.AppSettings["EscritoReingresoDePoderYReclasificacion"].ToString(),
@@ -175,9 +183,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
                         + " " + ((ListaDatosValores)this._ventana.CantidadNumeralSelec).Valor
                         + " " + this._ventana.Numerales + " " + ((ListaDatosValores)this._ventana.TipoDePoder).Valor
                         + " " + ((ListaDatosValores)this._ventana.Reclasificacion).Valor
-                        + " " + ((ListaDatosValores)this._ventana.TipoDeEtiqueta).Valor                                     
+                        + " " + ((ListaDatosValores)this._ventana.TipoDeEtiqueta).Valor
                         + " " + ((Agente)this._ventana.AgenteFiltrado).Id + " " + parametroMarcas);
-           
+
                 }
 
                 #region trace
@@ -206,6 +214,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
                 this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
             }
         }
+
 
         /// <summary>
         /// Método que se encarga de hacer las validaciones para generar el escrito
@@ -273,6 +282,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
             return retorno;
         }
 
+
         /// <summary>
         /// Método que ordena una columna
         /// </summary>
@@ -306,6 +316,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
                 logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
         }
+
 
         #region Agente
 
@@ -456,6 +467,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
         }
 
         #endregion
+
 
         #region Marca
 
@@ -726,6 +738,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
         }
 
         #endregion
+
 
         #region Boletines
 

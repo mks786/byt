@@ -21,7 +21,7 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
         public IList<CambioDeDomicilio> ObtenerCambiosDeDomicilioFiltro(CambioDeDomicilio cambioDeDomicilio)
         {
             IList<CambioDeDomicilio> CambioDeDomicilios = null;
-            
+
             try
             {
                 #region trace

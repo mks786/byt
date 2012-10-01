@@ -14,12 +14,14 @@ namespace Trascend.Bolet.Cliente.Presentadores.Contactos
 {
     class PresentadorConsultarContacto : PresentadorBase
     {
+
         private IConsultarContacto _ventana;
         private IAsociadoServicios _asociadoServicios;
         private ICartaServicios _cartaServicios;
         private IContactoServicios _contactoServicios;
         private static PaginaPrincipal _paginaPrincipal = PaginaPrincipal.ObtenerInstancia;
         private static Logger logger = LogManager.GetCurrentClassLogger();
+
 
         /// <summary>
         /// Constructor predeterminado
@@ -50,6 +52,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Contactos
                 this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
             }
         }
+
 
         /// <summary>
         /// Método que carga los datos iniciales a mostrar en la página
@@ -84,6 +87,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Contactos
                 Mouse.OverrideCursor = null;
             }
         }
+
 
         /// <summary>
         /// Método que dependiendo del estado de la página, habilita los campos o 
@@ -132,7 +136,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Contactos
                         exitoso = this._contactoServicios.InsertarOModificar(contacto, UsuarioLogeado.Hash);
                     }
                     if (exitoso)
-                        this.Navegar(new ListaContactos(((Contacto)this._ventana.Contacto).Asociado,null));
+                        this.Navegar(new ListaContactos(((Contacto)this._ventana.Contacto).Asociado, null));
                 }
                 #region trace
                 if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -161,6 +165,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Contactos
             }
         }
 
+
         /// <summary>
         /// Método que se activa al presionar el boton de eliminar al contacto. Es el encargado de eliminar el
         /// contacto
@@ -178,7 +183,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Contactos
                 {
                     Asociado asociado = ((Contacto)this._ventana.Contacto).Asociado;
                     asociado.Contactos.Remove((Contacto)this._ventana.Contacto);
-                    this.Navegar(new ListaContactos(asociado,null));
+                    this.Navegar(new ListaContactos(asociado, null));
                 }
 
                 #region trace

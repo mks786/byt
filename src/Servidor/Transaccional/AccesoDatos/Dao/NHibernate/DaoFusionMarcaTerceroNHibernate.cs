@@ -11,6 +11,7 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
     {
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
+
         public FusionMarcaTercero FusionConsultarFusionMarcaTerceroPorFusion(Fusion fusion)
         {
             FusionMarcaTercero retorno = new FusionMarcaTercero();

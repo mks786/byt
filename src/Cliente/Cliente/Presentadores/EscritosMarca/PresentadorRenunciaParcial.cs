@@ -18,20 +18,26 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
 {
     class PresentadorRenunciaParcial : PresentadorBase
     {
+
         private IRenunciaParcial _ventana;
+
 
         private IAgenteServicios _agenteServicios;
         private IMarcaServicios _marcaServicios;
 
+
         private static PaginaPrincipal _paginaPrincipal = PaginaPrincipal.ObtenerInstancia;
         private static Logger logger = LogManager.GetCurrentClassLogger();
+
 
         Agente primerAgente = new Agente();
         Marca primerMarca = new Marca(int.MinValue);
 
+
         private IList<Agente> _Agentes;
         private IList<Marca> _marcas;
         private IList<Marca> _marcasAgregadas = new List<Marca>();
+
 
         /// <summary>
         /// Constructor predeterminado
@@ -54,6 +60,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
                 this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
             }
         }
+
 
         /// <summary>
         /// Método que carga los datos iniciales a mostrar en la página
@@ -144,11 +151,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
                 #endregion
 
                 if (ValidarEscrito())
-                {               
+                {
                     string parametroMarcas = ArmarStringParametroMarcas(this._marcasAgregadas);
                     this.EjecutarArchivoBAT(ConfigurationManager.AppSettings["RutaBatEscrito"].ToString()
                         + "\\" + ConfigurationManager.AppSettings["EscritoRenunciaParcial"].ToString(),
-                        ((Agente)this._ventana.AgenteFiltrado).Id + " " + parametroMarcas);                             
+                        ((Agente)this._ventana.AgenteFiltrado).Id + " " + parametroMarcas);
                 }
 
                 #region trace
@@ -177,6 +184,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
                 this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
             }
         }
+
 
         /// <summary>
         /// Método que se encarga de hacer las validaciones antes de generar el escrito
@@ -223,6 +231,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
             return retorno;
         }
 
+
         /// <summary>
         /// Método que ordena una columna
         /// </summary>
@@ -257,7 +266,9 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
             #endregion
         }
 
+
         #region Agente
+
 
         /// <summary>
         /// Método que se encarga de cambiar un agente
@@ -321,6 +332,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
             return retorno;
         }
 
+
         /// <summary>
         /// Método que se encarga de Cargar el agente al iniciar la pantalla
         /// </summary>
@@ -345,6 +357,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
                 logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
         }
+
 
         /// <summary>
         /// Método que consulta los agentes que cumplan con el filtro
@@ -405,9 +418,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
             }
         }
 
+
         #endregion
 
+
         #region Marca
+
 
         /// <summary>
         /// Método que se encarga de cambiar la marca seleccionada
@@ -431,7 +447,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
                     if (((Marca)this._ventana.MarcaFiltrado).Id != int.MinValue)
                     {
                         this._ventana.Marca =
-                            this._marcaServicios.ConsultarMarcaConTodo((Marca)this._ventana.MarcaFiltrado);                        
+                            this._marcaServicios.ConsultarMarcaConTodo((Marca)this._ventana.MarcaFiltrado);
                     }
                     this._ventana.NombreMarca = ((Marca)this._ventana.MarcaFiltrado).Descripcion;
                     retorno = true;
@@ -471,6 +487,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
             return retorno;
         }
 
+
         /// <summary>
         /// Método que realiza la carga inicial de las marcas
         /// </summary>
@@ -480,7 +497,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
             if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
                 logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
-       
+
             this._marcas = new List<Marca>();
 
             this._marcas.Add(this.primerMarca);
@@ -493,6 +510,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
                 logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
         }
+
 
         /// <summary>
         /// Método que se encarga de realizar la consulta de las marcas
@@ -552,6 +570,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
                 Mouse.OverrideCursor = null;
             }
         }
+
 
         /// <summary>
         /// Método que se encarga de agregar la marca seleccionada a la lista de marcas agregadas
@@ -616,6 +635,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
 
         }
 
+
         /// <summary>
         /// Método que se encarga de eliminar la marca seleccionada de la lista de marcas agregadas
         /// </summary>
@@ -674,6 +694,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosMarca
 
         }
 
+
         #endregion
+
     }
 }

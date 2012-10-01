@@ -18,18 +18,23 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosPatente
 {
     class PresentadorReconsideracionPerimidaVariante : PresentadorBase
     {
+
         private IReconsideracionPerimidaVariante _ventana;
+
 
         private IAgenteServicios _agenteServicios;
         private IPatenteServicios _patenteservicios;
         private IBoletinServicios _boletinServicios;
         private IListaDatosValoresServicios _listaDatosValoresServicios;
 
+
         private static PaginaPrincipal _paginaPrincipal = PaginaPrincipal.ObtenerInstancia;
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
+
         Agente primerAgente = new Agente();
         Patente primerPatente = new Patente(int.MinValue);
+
 
         private IList<Agente> _Agentes;
         private IList<Patente> _patentes;
@@ -63,6 +68,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosPatente
                 this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
             }
         }
+
 
         /// <summary>
         /// Método que carga los datos iniciales a mostrar en la página
@@ -108,6 +114,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosPatente
                 Mouse.OverrideCursor = null;
             }
         }
+
 
         /// <summary>
         /// Metodo que genera el string de codigos a enviar al .BAT
@@ -212,6 +219,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosPatente
             }
         }
 
+
         /// <summary>
         /// Metodo de hacer las validaciones necesarias antes de ejecutar el .bat
         /// </summary>
@@ -256,6 +264,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosPatente
 
             return retorno;
         }
+
 
         #region Boletin y Resolucion
 
@@ -380,6 +389,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosPatente
 
         }
 
+
         /// <summary>
         /// Método que ordena una columna
         /// </summary>
@@ -413,6 +423,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosPatente
                 logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
         }
+
 
         #region Agente
 
@@ -563,6 +574,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosPatente
         }
 
         #endregion
+
 
         #region Patente
 
@@ -833,5 +845,6 @@ namespace Trascend.Bolet.Cliente.Presentadores.EscritosPatente
         }
 
         #endregion
+
     }
 }

@@ -19,11 +19,13 @@ namespace Trascend.Bolet.Cliente.Presentadores.DatosTransferencias
 {
     class PresentadorAgregarDatosTransferencia : PresentadorBase
     {
+
         private IAgregarDatosTransferencia _ventana;
         private IDatosTransferenciaServicios _datosTransferenciaServicios;
         private IAsociadoServicios _asociadoServicios;
         private static PaginaPrincipal _paginaPrincipal = PaginaPrincipal.ObtenerInstancia;
         private static Logger logger = LogManager.GetCurrentClassLogger();
+
 
         /// <summary>
         /// Constructor predeterminado
@@ -45,9 +47,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.DatosTransferencias
             catch (Exception ex)
             {
                 logger.Error(ex.Message);
-                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado,true);
+                this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
             }
         }
+
 
         /// <summary>
         /// Método que carga los datos iniciales a mostrar en la página
@@ -55,15 +58,15 @@ namespace Trascend.Bolet.Cliente.Presentadores.DatosTransferencias
         public void CargarPagina()
         {
             try
-            {                
+            {
                 #region trace
-            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
-                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
-            #endregion
+                if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                    logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+                #endregion
 
                 Mouse.OverrideCursor = Cursors.Wait;
 
-            
+
                 this.ActualizarTituloVentanaPrincipal(Recursos.Etiquetas.titleAgregarJustificacion,
                 Recursos.Ids.AgregarJustificacion);
                 this._ventana.FocoPredeterminado();
@@ -99,6 +102,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.DatosTransferencias
                 Mouse.OverrideCursor = null;
             }
         }
+
 
         /// <summary>
         /// Método que realiza toda la lógica para agregar los DatosTransferencia dentro de la base de datos
@@ -150,6 +154,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.DatosTransferencias
                 this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
             }
         }
+
 
 
     }

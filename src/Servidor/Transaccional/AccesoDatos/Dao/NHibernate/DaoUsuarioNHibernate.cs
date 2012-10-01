@@ -12,6 +12,7 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
     {
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
+
         /// <summary>
         /// Método que autentica un usuario
         /// </summary>
@@ -48,12 +49,13 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
             return retorno;
         }
 
+
         /// <summary>
         /// Metodo que obtiene el usuario solicitado por sus iniciales
         /// </summary>
         /// <param name="iniciales">String de iniciales</param>
         /// <returns>El usuario con esas iniciales</returns>
-        public Usuario ObtenerUsuarioPorIniciales(string iniciales) 
+        public Usuario ObtenerUsuarioPorIniciales(string iniciales)
         {
             Usuario retorno = new Usuario();
             try
@@ -63,9 +65,9 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
                     logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
-                IQuery query = Session.CreateQuery(string.Format(Recursos.ConsultasHQL.ObtenerUsuarioPorIniciales,iniciales));
+                IQuery query = Session.CreateQuery(string.Format(Recursos.ConsultasHQL.ObtenerUsuarioPorIniciales, iniciales));
                 IList<Usuario> resultado = query.List<Usuario>();
-                
+
                 //Error de BD ya que no hay constraints por lo tanto el sistema trata de traerse el 
                 //responsable de la carta por FK y este no existe
                 retorno = resultado.Count != 0 ? resultado[0] : null;
@@ -85,7 +87,7 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
                 Session.Close();
             }
 
-            return retorno;   
+            return retorno;
         }
     }
 }

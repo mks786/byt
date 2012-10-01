@@ -141,7 +141,7 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
                     variosFiltros = true;
                 }
 
-                if ((null != marca.CodigoInscripcion ))
+                if ((null != marca.CodigoInscripcion))
                 {
                     if (variosFiltros)
                         filtro += " and ";
@@ -283,7 +283,7 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
                             filtro += " and ";
                         filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerMarcaIntIdInternacional, marca.CodigoMarcaInternacional);
                         variosFiltros = true;
-                        
+
                     }
 
                     if (marca.CorrelativoExpediente != 0)
@@ -400,13 +400,13 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
                 string filtro = "";
                 string cabecera = string.Format(Recursos.ConsultasHQL.CabeceraObtenerMarca);
 
-               
+
                 string fecha = String.Format("{0:dd/MM/yy}", fechas[0]);
                 string fecha2 = String.Format("{0:dd/MM/yy}", fechas[1]);
                 filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerMarcaFechaRenovacion, fecha, fecha2);
 
                 variosFiltros = true;
-               
+
 
                 if (null != marca.Recordatorio)
                 {
@@ -445,7 +445,7 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
         public IList<RecordatorioVista> ObtenerRecordatoriosVista(RecordatorioVista recordatorio, DateTime[] fechas)
         {
             IList<RecordatorioVista> recordatorios = null;
-            
+
             try
             {
                 #region trace
@@ -466,40 +466,40 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
                 //            .Add(Restrictions.Eq("Recordatorio", recordatorio.Marca.Recordatorio))
                 //        .List<RecordatorioVista>();
 
-           
+
 
                 //}
                 //else
                 //{
 
-                    bool variosFiltros = true;
-                    string filtro = "";
-                    string cabecera = string.Format(Recursos.ConsultasHQL.CabeceraObtenerRecordatorioVista);
+                bool variosFiltros = true;
+                string filtro = "";
+                string cabecera = string.Format(Recursos.ConsultasHQL.CabeceraObtenerRecordatorioVista);
 
-                    //string fechaMesI = String.Format("{0:MM}", fechas[0]);
-                    string fechaMesF = String.Format("{0:MM}", fechas[1]);
+                //string fechaMesI = String.Format("{0:MM}", fechas[0]);
+                string fechaMesF = String.Format("{0:MM}", fechas[1]);
 
-                    //string fechaAnoI = String.Format("{0:yyyy}", fechas[0]);
-                    string fechaAnoF = String.Format("{0:yyyy}", fechas[1]);
+                //string fechaAnoI = String.Format("{0:yyyy}", fechas[0]);
+                string fechaAnoF = String.Format("{0:yyyy}", fechas[1]);
 
-                    filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerRecordatorioVistaMes, fechaMesF);
+                filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerRecordatorioVistaMes, fechaMesF);
 
-                    filtro += " and ";
-                    filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerRecordatorioVistaAno, fechaAnoF);
+                filtro += " and ";
+                filtro += string.Format(Recursos.ConsultasHQL.FiltroObtenerRecordatorioVistaAno, fechaAnoF);
 
 
-                    //recordatorios = Session.CreateCriteria(typeof(RecordatorioVista))
-                    //    .SetFetchMode("Asociado", FetchMode.Join)
-                    //    .SetFetchMode("Asociado.Pais", FetchMode.Join)
-                    //    .SetFetchMode("Asociado.Idioma", FetchMode.Join)
-                    //    .CreateCriteria("Marca")
-                    //        .SetFetchMode("Nacional", FetchMode.Join)
-                    //        .Add(Restrictions.("FechaRenovacion", fechas[0], fechas[1]))
- 
-                    //        .List<RecordatorioVista>();
+                //recordatorios = Session.CreateCriteria(typeof(RecordatorioVista))
+                //    .SetFetchMode("Asociado", FetchMode.Join)
+                //    .SetFetchMode("Asociado.Pais", FetchMode.Join)
+                //    .SetFetchMode("Asociado.Idioma", FetchMode.Join)
+                //    .CreateCriteria("Marca")
+                //        .SetFetchMode("Nacional", FetchMode.Join)
+                //        .Add(Restrictions.("FechaRenovacion", fechas[0], fechas[1]))
 
-                    IQuery query = Session.CreateQuery(cabecera + filtro);
-                    recordatorios = query.List<RecordatorioVista>();
+                //        .List<RecordatorioVista>();
+
+                IQuery query = Session.CreateQuery(cabecera + filtro);
+                recordatorios = query.List<RecordatorioVista>();
 
 
 
@@ -583,7 +583,7 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
 
                 }
 
-                    
+
                 IQuery query = Session.CreateQuery(cabecera + filtro);
                 recordatorios = query.List<RecordatorioVista>();
 
@@ -609,22 +609,22 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
                 //            .CreateCriteria("Marca")
 
 
-              
 
 
-                    //DateTime anoDateI = new DateTime();
-                    //anoDateI = DateTime.Parse("01/01/" + ano);
 
-                    //DateTime anoDateF = new DateTime();
-                    //anoDateF = DateTime.Parse("31/01/"+ano);
+                //DateTime anoDateI = new DateTime();
+                //anoDateI = DateTime.Parse("01/01/" + ano);
 
-                
+                //DateTime anoDateF = new DateTime();
+                //anoDateF = DateTime.Parse("31/01/"+ano);
 
-                    //mes = "01/" + mes;
 
-                    //DateTime mesDate = new DateTime();
-                    //mesDate = DateTime.Parse(mes);
-               
+
+                //mes = "01/" + mes;
+
+                //DateTime mesDate = new DateTime();
+                //mesDate = DateTime.Parse(mes);
+
 
 
 
@@ -678,7 +678,7 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
                 //.List<RecordatorioVista>();
 
 
-                
+
 
 
                 #region trace

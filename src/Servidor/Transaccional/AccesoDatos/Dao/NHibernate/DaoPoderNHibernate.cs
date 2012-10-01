@@ -11,7 +11,9 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
 {
     public class DaoPoderNHibernate : DaoBaseNHibernate<Poder, int>, IDaoPoder
     {
+
         private static Logger logger = LogManager.GetCurrentClassLogger();
+
 
         /// <summary>
         /// Método que obtiene los poderes por un interesado
@@ -50,6 +52,7 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
 
             return poderes;
         }
+
 
         /// <summary>
         /// Método que obtiene los Poderes por un Agente
@@ -91,6 +94,7 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
 
             return poderes;
         }
+
 
         /// <summary>
         /// Método que obtiene un poder con uno o mas filtros
@@ -195,6 +199,7 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
             return poderes;
         }
 
+
         public IList<Poder> ObtenerPoderesEntreAgenteEInteresado(Agente agente, Interesado interesado)
         {
             IList<Poder> poderes = null;
@@ -230,5 +235,6 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
             }
             return poderes;
         }
+
     }
 }

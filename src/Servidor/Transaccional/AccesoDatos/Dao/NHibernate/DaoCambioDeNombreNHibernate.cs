@@ -32,7 +32,7 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
                 bool variosFiltros = false;
                 string filtro = "";
                 string cabecera = string.Format(Recursos.ConsultasHQL.CabeceraObtenerCambioDeNombre);
-                
+
                 if ((null != cambioDeNombre) && (cambioDeNombre.Id != 0))
                 {
                     filtro = string.Format(Recursos.ConsultasHQL.FiltroObtenerCambioDeNombreId, cambioDeNombre.Id);
@@ -94,6 +94,6 @@ namespace Trascend.Bolet.AccesoDatos.Dao.NHibernate
 
     }
 
-    
+
 
 }
