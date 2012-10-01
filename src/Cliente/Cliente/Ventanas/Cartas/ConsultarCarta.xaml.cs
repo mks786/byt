@@ -357,6 +357,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Cartas
             this._txtFocus.Focus();
         }
 
+
         public ConsultarCarta(object cartaSeleccionada, object ventana)
             : this(cartaSeleccionada)
         {
@@ -364,17 +365,19 @@ namespace Trascend.Bolet.Cliente.Ventanas.Cartas
             this._presentador = new PresentadorConsultarCarta(this, cartaSeleccionada, ventana);
         }
 
+
         /// <summary>
         /// Constructor con Lista de resultados
         /// </summary>
         /// <param name="cartaSeleccionada"></param>
-        public ConsultarCarta(object cartaSeleccionada, object lista, int posicion,object ventanaPadre)
+        public ConsultarCarta(object cartaSeleccionada, object lista, int posicion, object ventanaPadre)
         {
             InitializeComponent();
             this._cargada = false;
-            this._presentador = new PresentadorConsultarCarta(this, cartaSeleccionada, lista, posicion,ventanaPadre);
+            this._presentador = new PresentadorConsultarCarta(this, cartaSeleccionada, lista, posicion, ventanaPadre);
             this._txtFocus.Focus();
         }
+
 
         private void _btnCancelar_Click(object sender, RoutedEventArgs e)
         {
@@ -384,6 +387,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Cartas
                 //this._presentador.IrConsultarCartas();
                 this._presentador.VolverAVentanaPadre();
         }
+
 
         private void _btnAceptar_Click(object sender, RoutedEventArgs e)
         {
@@ -401,6 +405,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Cartas
                 this._presentador.Modificar();
         }
 
+
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
             if (!EstaCargada)
@@ -416,6 +421,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Cartas
             }
         }
 
+
         private void _txtAsociado_GotFocus(object sender, RoutedEventArgs e)
         {
             this._txtAsociado.Visibility = System.Windows.Visibility.Collapsed;
@@ -429,6 +435,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Cartas
             this._lblNombreAsociado.Visibility = System.Windows.Visibility.Visible;
             this._btnConsultarAsociado.IsDefault = true;
         }
+
 
         private void _lstAsociados_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
@@ -445,10 +452,12 @@ namespace Trascend.Bolet.Cliente.Ventanas.Cartas
 
         }
 
+
         private void _btnConsultarAsociado_Click(object sender, RoutedEventArgs e)
         {
             this._presentador.BuscarAsociado();
         }
+
 
         private void _btnMas_Click(object sender, RoutedEventArgs e)
         {
@@ -457,6 +466,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Cartas
                 this._lstAnexosCarta.Visibility = System.Windows.Visibility.Visible;
 
         }
+
 
         private void _btnMenos_Click(object sender, RoutedEventArgs e)
         {
@@ -467,6 +477,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Cartas
 
         }
 
+
         private void _btnMasConfirmacion_Click(object sender, RoutedEventArgs e)
         {
 
@@ -474,6 +485,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Cartas
                 this._lstAnexosCartaConfirmacion.Visibility = System.Windows.Visibility.Visible;
 
         }
+
 
         private void _btnMenosConfirmacion_Click(object sender, RoutedEventArgs e)
         {
@@ -484,20 +496,25 @@ namespace Trascend.Bolet.Cliente.Ventanas.Cartas
 
         }
 
+
         private void _cbxMedio_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             this._presentador.CambiarFormatoTracking();
         }
+
 
         private void _cbxMedioTrackingConfirmacion_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             this._presentador.CambiarFormatoTrackingConfirmacion();
         }
 
+
         private void _btnAuditoria_Click(object sender, RoutedEventArgs e)
         {
             this._presentador.Auditoria();
         }
+
+
         private void _btnMasResponsable_Click(object sender, RoutedEventArgs e)
         {
             if ((this._presentador.AgregarResponsable()) && (this._lstResponsables.Visibility == System.Windows.Visibility.Collapsed))
@@ -513,6 +530,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Cartas
             }
         }
 
+
         private void _btnEliminar_Click(object sender, RoutedEventArgs e)
         {
             if (MessageBoxResult.Yes == MessageBox.Show(Recursos.MensajesConElUsuario.ConfirmacionEliminarCarta,
@@ -521,6 +539,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Cartas
                 this._presentador.EliminarCarta();
             }
         }
+
 
         private void _btnSiguiente_Click(object sender, RoutedEventArgs e)
         {
@@ -547,6 +566,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Cartas
                 this._lstAnexosCartaConfirmacion.Visibility = System.Windows.Visibility.Visible;
         }
 
+
         private void _btnAnterior_Click(object sender, RoutedEventArgs e)
         {
             this._presentador.AnteriorCarta();
@@ -572,10 +592,12 @@ namespace Trascend.Bolet.Cliente.Ventanas.Cartas
                 this._lstAnexosCartaConfirmacion.Visibility = System.Windows.Visibility.Visible;
         }
 
+
         private void _cbxAcuse_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
         }
+
 
         private void _btnAbrirCorrespondencia_Click(object sender, RoutedEventArgs e)
         {
@@ -588,7 +610,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Cartas
             this._presentador.IrVentanaAsociado();
         }
 
-        
+
         private void Page_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Next)

@@ -19,6 +19,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
 {
     class PresentadorConsultarCarta : PresentadorBase
     {
+
         private IConsultarCarta _ventana;
         private ICartaServicios _cartaServicios;
         private IResumenServicios _resumenServicios;
@@ -46,9 +47,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
         private IList<Carta> _cartasARecorrer;
         private int _posicion = 1;
 
+
         private bool _precargada = false;
         private bool _listaCartasCargada = false;
         private bool _otraCarta = false;
+
 
         /// <summary>
         /// Constructor predeterminado
@@ -107,11 +110,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
             }
         }
 
+
         /// <summary>
         /// Constructor Con Lista de Resultados
         /// </summary>
         /// <param name="ventana">Página que satisface el contrato</param>
-        public PresentadorConsultarCarta(IConsultarCarta ventana, object carta, object cartasConsultadas, int posicion,object ventanaPadre)
+        public PresentadorConsultarCarta(IConsultarCarta ventana, object carta, object cartasConsultadas, int posicion, object ventanaPadre)
         {
             try
             {
@@ -354,6 +358,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
             }
         }
 
+
         /// <summary>
         /// Método que carga lista de anexos de la carta
         /// </summary>
@@ -381,6 +386,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
 
             return retorno;
         }
+
 
         /// <summary>
         /// Método que limpia lista de anexos de carta
@@ -420,6 +426,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
             #endregion
         }
 
+
         /// <summary>
         /// Método que carga los anexos confirmación de cartas
         /// </summary>
@@ -447,6 +454,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
 
             return retorno;
         }
+
 
         /// <summary>
         /// Método que limpia lista de anexos confirmación de carta
@@ -485,6 +493,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
                 logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
         }
+
 
         //public bool CargarResponsables()    
         //{
@@ -550,6 +559,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
 
         //    return trackingCorrecto;
         //}
+
 
         /// <summary>
         /// Método que realiza toda la lógica para agregar al Usuario dentro de la base de datos
@@ -653,6 +663,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
                 this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
             }
         }
+
 
         /// <summary>
         /// Método que permite pasar a la carta siguiente
@@ -763,6 +774,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
                 this.Navegar(Recursos.MensajesConElUsuario.ErrorInesperado, true);
             }
         }
+
 
         /// <summary>
         /// Método que permite pasar a la carta anterior
@@ -910,6 +922,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
             }
         }
 
+
         /// <summary>
         /// Método que se encarga de buscar un asociado con filtros
         /// </summary>
@@ -968,6 +981,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
             #endregion
         }
 
+
         /// <summary>
         /// Método que se encarga de agregar un anexo a carta
         /// </summary>
@@ -1004,6 +1018,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
             return retorno;
         }
 
+
         /// <summary>
         /// Método que se encarga de agregar un anexo confirmación a carta
         /// </summary>
@@ -1039,6 +1054,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
 
             return retorno;
         }
+
 
         /// <summary>
         /// Metodo que deshabilita los anexos de carta
@@ -1080,6 +1096,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
             return respuesta;
         }
 
+
         /// <summary>
         /// Método que deshabilita los anexos confirmación de carta
         /// </summary>
@@ -1120,6 +1137,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
             return respuesta;
         }
 
+
         /// <summary>
         /// Método que cambia el formato de la pantalla entre vacío a
         /// contenido
@@ -1139,6 +1157,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
             #endregion
         }
 
+
         /// <summary>
         /// Método que cambia el formato confirmación de la pantalla entre vacío       
         /// a contenido
@@ -1157,6 +1176,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
                 logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
         }
+
 
         /// <summary>
         /// Método que registra una operación de la entrada para ser auditada
@@ -1206,6 +1226,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
             }
         }
 
+
         /// <summary>
         /// Método que agrega un responsable a una carta
         /// </summary>
@@ -1252,6 +1273,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
             return retorno;
         }
 
+
         /// <summary>
         /// Metodo que convierte una lista de asignaciones a usuarios
         /// </summary>
@@ -1277,6 +1299,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
 
             return usuarios;
         }
+
 
         /// <summary>
         /// Método que deshabilita un responsable de la carta
@@ -1318,6 +1341,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
 
             return retorno;
         }
+
 
         /// <summary>
         /// Método que elimina un responsable de la carta
@@ -1373,6 +1397,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
             return asignaciones;
         }
 
+
         /// <summary>
         /// Método que se encarga de cargar los responsables de una carta
         /// </summary>
@@ -1401,6 +1426,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
 
             return retorno;
         }
+
 
         /// <summary>
         /// Método que se encarga de limpiar la lista de responsables
@@ -1437,6 +1463,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
             #endregion
         }
 
+
         /// <summary>
         /// Método que carga la ventana de consultar cartas
         /// </summary>
@@ -1457,6 +1484,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
                 logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
         }
+
 
         //public bool AgregarResponsable()
         //{
@@ -1504,6 +1532,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
         //    return respuesta;
         //}
 
+
         public void EliminarCarta()
         {
             try
@@ -1545,10 +1574,12 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
             }
         }
 
+
         public void VolverAVentanaPadre()
         {
             Navegar((Page)_ventanaPadre);
         }
+
 
         public void AbrirCorrespondencia()
         {
@@ -1561,10 +1592,11 @@ namespace Trascend.Bolet.Cliente.Presentadores.Cartas
             int codigoEntrada = ((Carta)this._ventana.Carta).Id;
 
             string comandoRutaCorrespondencia = rutaEntrada + anoCorrespondencia + "\\" + mesCorrespondencia + "\\" + anoCorrespondencia + mesCorrespondencia + diaCorrespondencia + "\\" + codigoEntrada;
-            this.EjecutarArchivoBAT(ConfigurationManager.AppSettings["RutaBatCorrespondencia"].ToString() +ConfigurationManager.AppSettings["ArchivoBatCorrespondencia"].ToString(), ConfigurationManager.AppSettings["RutaBatCorrespondencia"].ToString()+comandoRutaCorrespondencia + ".TIF" + " " +ConfigurationManager.AppSettings["RutaBatCorrespondencia"].ToString()+ comandoRutaCorrespondencia + ".MSG");
+            this.EjecutarArchivoBAT(ConfigurationManager.AppSettings["RutaBatCorrespondencia"].ToString() + ConfigurationManager.AppSettings["ArchivoBatCorrespondencia"].ToString(), ConfigurationManager.AppSettings["RutaBatCorrespondencia"].ToString() + comandoRutaCorrespondencia + ".TIF" + " " + ConfigurationManager.AppSettings["RutaBatCorrespondencia"].ToString() + comandoRutaCorrespondencia + ".MSG");
 
             //EjecutarComandoDeConsola(comando + "ejecutar.bat " + comandoRutaCorrespondencia + ".TIF" + " " + comandoRutaCorrespondencia + ".MSG", "Lectura de la correspondencia Id: " + codigoEntrada);
         }
+
 
         public string ObtenerIdCarta()
         {
