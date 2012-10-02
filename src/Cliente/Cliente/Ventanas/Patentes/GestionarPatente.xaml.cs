@@ -1,6 +1,7 @@
 ﻿using System.Windows.Controls;
 using Trascend.Bolet.Cliente.Contratos.Patentes;
 using Trascend.Bolet.Cliente.Presentadores.Patentes;
+using Trascend.Bolet.Cliente.Ventanas.ReportesPatentes;
 using System.Windows;
 using System.Windows.Input;
 using Trascend.Bolet.Cliente.Ayuda;
@@ -1615,7 +1616,8 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
 
         private void _btnDocumentosSolicitud_Click(object sender, RoutedEventArgs e)
         {
-
+            ReportesBotones reporte = new ReportesBotones();
+            reporte.ShowDialog();
         }
 
         private void _btnCasoEspecialSolicitud_Click(object sender, RoutedEventArgs e)

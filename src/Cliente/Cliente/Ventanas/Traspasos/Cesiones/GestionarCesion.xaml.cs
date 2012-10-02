@@ -503,13 +503,20 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Cesiones
         /// </summary>
         /// <param name="cesion">la cesion a mostrar</param>
         /// <param name="visibilidad">parametro que indica la visibilidad de los botones</param>
-        public GestionarCesion(object cesion, object visibilidad)
+        public GestionarCesion(object cesion, object parametro)
         {
             InitializeComponent();
             this._cargada = false;
-            this._btnModificar.Visibility = (System.Windows.Visibility)visibilidad;
-            this._btnEliminar.Visibility = (System.Windows.Visibility)visibilidad;
             this._presentador = new PresentadorGestionarCesion(this, cesion);
+            if (parametro.GetType() == typeof(System.Windows.Visibility))
+            {
+                this._btnModificar.Visibility = (System.Windows.Visibility)parametro;
+                this._btnEliminar.Visibility = (System.Windows.Visibility)parametro;
+            }
+            else if (parametro.GetType() == typeof(ConsultarCesiones))
+            {
+                _presentador._ventanaPadre = parametro;
+            }
         }
 
         public void PintarAsociado(string tipo)
@@ -560,7 +567,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Cesiones
         private void _btnRegresar_Click(object sender, RoutedEventArgs e)
         {
             if (this.TextoBotonRegresar == Recursos.Etiquetas.btnRegresar)
-                this._presentador.Regresar();
+                this._presentador.RegresarVentanaPadre();
             else if (this.TextoBotonRegresar == Recursos.Etiquetas.btnCancelar)
                 this._presentador.Cancelar();
         }

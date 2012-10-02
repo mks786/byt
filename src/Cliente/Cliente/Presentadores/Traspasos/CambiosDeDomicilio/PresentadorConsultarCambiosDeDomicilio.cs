@@ -232,7 +232,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeDomicilio
 
             if (this._ventana.CambioDeDomicilioSeleccionada != null)
             {
-                this.Navegar(new GestionarCambioDeDomicilio(this._ventana.CambioDeDomicilioSeleccionada));
+                this.Navegar(new GestionarCambioDeDomicilio(this._ventana.CambioDeDomicilioSeleccionada,this._ventana));
             }
 
             #region trace

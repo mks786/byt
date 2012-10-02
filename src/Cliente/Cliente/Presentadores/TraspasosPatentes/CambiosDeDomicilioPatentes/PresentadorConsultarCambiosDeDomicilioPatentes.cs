@@ -231,7 +231,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CambiosDeDomici
 
             if (this._ventana.CambioDeDomicilioSeleccionada != null)
             {
-                this.Navegar(new GestionarCambioDeDomicilioPatentes(this._ventana.CambioDeDomicilioSeleccionada));
+                this.Navegar(new GestionarCambioDeDomicilioPatentes(this._ventana.CambioDeDomicilioSeleccionada,this._ventana));
             }
 
             #region trace

@@ -220,7 +220,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.CesionesPatente
 
             if (this._ventana.CesionSeleccionada != null)
             {
-                this.Navegar(new GestionarCesionPatentes(this._ventana.CesionSeleccionada));
+                this.Navegar(new GestionarCesionPatentes(this._ventana.CesionSeleccionada,this._ventana));
             }
 
             #region trace

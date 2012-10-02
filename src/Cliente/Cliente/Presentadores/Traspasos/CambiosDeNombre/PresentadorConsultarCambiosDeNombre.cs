@@ -230,7 +230,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeNombre
 
             if (this._ventana.CambioDeNombreSeleccionada != null)
             {
-                this.Navegar(new GestionarCambioDeNombre(this._ventana.CambioDeNombreSeleccionada));
+                this.Navegar(new GestionarCambioDeNombre(this._ventana.CambioDeNombreSeleccionada,this._ventana));
             }
 
             #region trace

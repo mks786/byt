@@ -458,13 +458,20 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.CambiosPeticionarioP
         /// </summary>
         /// <param name="cambioPeticionario">la cambioPeticionario a mostrar</param>
         /// <param name="visibilidad">parametro que indica la visibilidad de los botones</param>
-        public GestionarCambioPeticionarioPatentes(object cambioPeticionario, object visibilidad)
+        public GestionarCambioPeticionarioPatentes(object cambioPeticionario, object parametro)
         {
             InitializeComponent();
             this._cargada = false;
-            this._btnModificar.Visibility = (System.Windows.Visibility)visibilidad;
-            this._btnEliminar.Visibility = (System.Windows.Visibility)visibilidad;
             this._presentador = new PresentadorGestionarCambioDePeticionarioPatentes(this, cambioPeticionario);
+            if (parametro.GetType() == typeof(System.Windows.Visibility))
+            {
+                this._btnModificar.Visibility = (System.Windows.Visibility)parametro;
+                this._btnEliminar.Visibility = (System.Windows.Visibility)parametro;
+            }
+            else if (parametro.GetType() == typeof(ConsultarCambiosPeticionarioPatentes))
+            {
+                _presentador._ventanaPadre = parametro;
+            }
         }
 
         public void ActivarControlesAlAgregar()
@@ -518,7 +525,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.CambiosPeticionarioP
         private void _btnRegresar_Click(object sender, RoutedEventArgs e)
         {
             if (this.TextoBotonRegresar == Recursos.Etiquetas.btnRegresar)
-                this._presentador.Regresar();
+                this._presentador.RegresarVentanaPadre();
             else if (this.TextoBotonRegresar == Recursos.Etiquetas.btnCancelar)
                 this._presentador.Cancelar();
         }

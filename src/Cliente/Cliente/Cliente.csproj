@@ -722,6 +722,9 @@
     <Compile Include="Ventanas\Auditorias\ListaAuditorias.xaml.cs">
       <DependentUpon>ListaAuditorias.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Ventanas\Base\Comodin.xaml.cs">
+      <DependentUpon>Comodin.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Ventanas\CartasOuts\ConsultarCartasOuts.xaml.cs">
       <DependentUpon>ConsultarCartasOuts.xaml</DependentUpon>
     </Compile>
@@ -1079,6 +1082,9 @@
     <Compile Include="Ventanas\Renovaciones\GestionarRenovacion.xaml.cs">
       <DependentUpon>GestionarRenovacion.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Ventanas\ReportesPatentes\ReportesBotones.xaml.cs">
+      <DependentUpon>ReportesBotones.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Ventanas\Reportes\Carta1.xaml.cs">
       <DependentUpon>Carta1.xaml</DependentUpon>
     </Compile>
@@ -1353,6 +1359,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Ventanas\Auditorias\ListaAuditorias.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Ventanas\Base\Comodin.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -1831,6 +1841,10 @@
     <Page Include="Ventanas\Renovaciones\GestionarRenovacion.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\ReportesPatentes\ReportesBotones.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Ventanas\Reportes\Carta1.xaml">
       <Generator>MSBuild:Compile</Generator>

@@ -3,6 +3,7 @@ using Trascend.Bolet.Cliente.Contratos.Cartas;
 using Trascend.Bolet.Cliente.Presentadores.Cartas;
 using System.Windows;
 using System.Windows.Input;
+using Trascend.Bolet.Cliente.Ventanas.Base;
 
 namespace Trascend.Bolet.Cliente.Ventanas.Cartas
 {
@@ -442,6 +443,12 @@ namespace Trascend.Bolet.Cliente.Ventanas.Cartas
         private void _cbxAcuse_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
+        }
+
+        private void _btnPersona_Click(object sender, RoutedEventArgs e)
+        {
+            Comodin ventana = new Comodin(new ConsultarCartas());
+            ventana.ShowDialog();
         }
 
 

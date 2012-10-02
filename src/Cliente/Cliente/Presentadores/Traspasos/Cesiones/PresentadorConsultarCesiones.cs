@@ -220,7 +220,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Cesiones
 
             if (this._ventana.CesionSeleccionada != null)
             {
-                this.Navegar(new GestionarCesion(this._ventana.CesionSeleccionada));
+                this.Navegar(new GestionarCesion(this._ventana.CesionSeleccionada,this._ventana));
             }
 
             #region trace

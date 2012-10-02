@@ -1457,6 +1457,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Ha ocurrido un error al intentar borrar los archivos de C:\bolyter.
+        /// </summary>
+        internal static string ErrorReporte {
+            get {
+                return ResourceManager.GetString("ErrorReporte", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to La resolucion que intenta introducir ya existe.
         /// </summary>
         internal static string ErrorResolucionRepetido {

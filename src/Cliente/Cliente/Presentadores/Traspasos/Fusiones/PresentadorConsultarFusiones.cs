@@ -234,7 +234,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
             if (this._ventana.FusionSeleccionada != null)
             {
                 Fusion fusion = this._fusionServicios.ConsultarPorId((Fusion)this._ventana.FusionSeleccionada);
-                this.Navegar(new GestionarFusion(fusion));
+                this.Navegar(new GestionarFusion(fusion,this._ventana));
             }
 
             #region trace

@@ -4,6 +4,7 @@ using Trascend.Bolet.Cliente.Contratos.TraspasosPatentes.LicenciasPatentes;
 using Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.LicenciasPatentes;
 using Trascend.Bolet.Cliente.Ayuda;
 using System.Windows.Media;
+using Trascend.Bolet.Cliente.Contratos;
 
 namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.LicenciasPatentes
 {
@@ -485,13 +486,21 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.LicenciasPatentes
         /// </summary>
         /// <param name="LicenciaPatente">la LicenciaPatente a mostrar</param>
         /// <param name="visibilidad">parametro que indica la visibilidad de los botones</param>
-        public GestionarLicenciaPatentes(object LicenciaPatente, object visibilidad)
+        public GestionarLicenciaPatentes(object LicenciaPatente, object parametro)
         {
             InitializeComponent();
             this._cargada = false;
-            this._btnModificar.Visibility = (System.Windows.Visibility)visibilidad;
-            this._btnEliminar.Visibility = (System.Windows.Visibility)visibilidad;
             this._presentador = new PresentadorGestionarLicenciaPatentes(this, LicenciaPatente);
+
+            if (parametro.GetType() == typeof(System.Windows.Visibility))
+            {
+                this._btnModificar.Visibility = (System.Windows.Visibility)parametro;
+                this._btnEliminar.Visibility = (System.Windows.Visibility)parametro;
+            }
+            else if (parametro.GetType() == typeof(ConsultarLicenciasPatentes))
+            {
+                _presentador._ventanaPadre = parametro;
+            }
         }
 
         public void PintarAsociado(string tipo)
@@ -543,7 +552,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.LicenciasPatentes
         private void _btnRegresar_Click(object sender, RoutedEventArgs e)
         {
             if (this.TextoBotonRegresar == Recursos.Etiquetas.btnRegresar)
-                this._presentador.Regresar();
+                this._presentador.RegresarVentanaPadre();
             else if (this.TextoBotonRegresar == Recursos.Etiquetas.btnCancelar)
                 this._presentador.Cancelar();
         }

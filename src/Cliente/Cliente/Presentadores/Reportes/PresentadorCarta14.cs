@@ -144,9 +144,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Reportes
             #endregion
 
             IList<Idioma> idiomas = this._idiomaServicios.ConsultarTodos();
-            Idioma primerIdioma = new Idioma("NGN");
-            idiomas.Insert(0, primerIdioma);
             this._ventana.Idiomas = idiomas;
+            this._ventana.Idioma = this.BuscarIdioma(idiomas, new Idioma("ES"));
 
             IList<Usuario> usuarios = this._usuarioServicios.ConsultarTodos();
             Usuario primerUsuario = new Usuario("NGN");
@@ -212,13 +211,20 @@ namespace Trascend.Bolet.Cliente.Presentadores.Reportes
                     reporte.SetDataSource(datos);
                     //reporte.PrintToPrinter(1, false, 1, 0);
 
-                    this._ventana.MensajeExito(Recursos.MensajesConElUsuario.ExitosoReporte);
-                    string ruta = Environment.CurrentDirectory + "\\Reportes\\reporteCarta14.doc";
-                    reporte.ExportToDisk(ExportFormatType.WordForWindows, ruta);
-                    Process.Start(Environment.CurrentDirectory + "\\Reportes\\reporteCarta14.doc");
+                    if (BorrarArchivosEnDirectorio(ConfigurationManager.AppSettings["rutaCartas"], ".doc"))
+                    {
+                        this._ventana.MensajeExito(Recursos.MensajesConElUsuario.ExitosoReporte);
+                        string ruta = ConfigurationManager.AppSettings["rutaCartas"] + "\\reporteCarta14.doc";
+                        reporte.ExportToDisk(ExportFormatType.WordForWindows, ruta);
+                        Process.Start(ConfigurationManager.AppSettings["rutaCartas"] + "\\reporteCarta14.doc");
 
-                    reporte.Dispose();
-                    reporte.Close();
+                        reporte.Dispose();
+                        reporte.Close();
+                    }
+                    else
+                    {
+                        this._ventana.MensajeAlerta(Recursos.MensajesConElUsuario.ErrorReporte);
+                    }
                 }
 
 

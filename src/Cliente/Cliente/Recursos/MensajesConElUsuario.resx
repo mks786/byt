@@ -910,4 +910,7 @@
   <data name="ErrorPatenteInternacional" xml:space="preserve">
     <value>Disculpe, para agregar o modificar una Patente Internacional debe seleccionar un País Internacional</value>
   </data>
+  <data name="ErrorReporte" xml:space="preserve">
+    <value>Ha ocurrido un error al intentar borrar los archivos de C:\bolyter</value>
+  </data>
 </root>

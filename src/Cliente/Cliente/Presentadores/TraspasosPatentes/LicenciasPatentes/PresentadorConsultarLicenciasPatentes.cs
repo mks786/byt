@@ -211,7 +211,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.LicenciasPatent
         /// <summary>
         /// Método que invoca una nueva página "ConsultarLicencia" y la instancia con el objeto seleccionado
         /// </summary>
-        public void IrConsultarLicencia()
+        public void  ConsultarLicencia()
         {
             #region trace
             if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
@@ -220,7 +220,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.LicenciasPatent
 
             if (this._ventana.LicenciaSeleccionada != null)
             {
-                this.Navegar(new GestionarLicenciaPatentes(this._ventana.LicenciaSeleccionada));
+                this.Navegar(new GestionarLicenciaPatentes(this._ventana.LicenciaSeleccionada,this._ventana));
             }
 
             #region trace
@@ -388,6 +388,28 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.LicenciasPatent
 
             this._ventana.Resultados = null;
             this._ventana.TotalHits = "0";
+        }
+
+
+        /// <summary>
+        /// Método que invoca una nueva página "ConsultarLicencia" y la instancia con el objeto seleccionado
+        /// </summary>
+        public void IrConsultarLicencia()
+        {
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Entrando al metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
+
+            if (this._ventana.LicenciaSeleccionada != null)
+            {
+                this.Navegar(new GestionarLicenciaPatentes(this._ventana.LicenciaSeleccionada, this._ventana));
+            }
+
+            #region trace
+            if (ConfigurationManager.AppSettings["ambiente"].ToString().Equals("desarrollo"))
+                logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+            #endregion
         }
     }
 }

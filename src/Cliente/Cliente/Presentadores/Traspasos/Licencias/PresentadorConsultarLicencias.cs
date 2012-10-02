@@ -220,7 +220,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Licencias
 
             if (this._ventana.LicenciaSeleccionada != null)
             {
-                this.Navegar(new GestionarLicencia(this._ventana.LicenciaSeleccionada));
+                this.Navegar(new GestionarLicencia(this._ventana.LicenciaSeleccionada,this._ventana));
             }
 
             #region trace

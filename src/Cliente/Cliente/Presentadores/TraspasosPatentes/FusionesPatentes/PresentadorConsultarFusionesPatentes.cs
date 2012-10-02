@@ -234,7 +234,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.FusionesPatente
             if (this._ventana.FusionSeleccionada != null)
             {
                 FusionPatente fusion = this._fusionServicios.ConsultarPorId((FusionPatente)this._ventana.FusionSeleccionada);
-                this.Navegar(new GestionarFusionPatentes(fusion));
+                this.Navegar(new GestionarFusionPatentes(fusion,this._ventana));
             }
 
             #region trace

@@ -220,7 +220,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDePeticionario
 
             if (this._ventana.CambioPeticionarioSeleccionada != null)
             {
-                this.Navegar(new GestionarCambioPeticionario(this._ventana.CambioPeticionarioSeleccionada));
+                this.Navegar(new GestionarCambioPeticionario(this._ventana.CambioPeticionarioSeleccionada,this._ventana));
             }
 
             #region trace

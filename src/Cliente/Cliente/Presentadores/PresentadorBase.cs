@@ -12,6 +12,7 @@ using NLog;
 using System.Windows.Input;
 using System.Net.Sockets;
 using System.Runtime.Remoting;
+using System.IO;
 
 namespace Trascend.Bolet.Cliente.Presentadores
 {
@@ -2244,5 +2245,38 @@ namespace Trascend.Bolet.Cliente.Presentadores
             return retorno;
         }
 
+
+        public bool BorrarArchivosEnDirectorio(string ruta, string terminacion)
+        {
+            bool retorno = false;
+            try
+            {
+                DirectoryInfo directorio = new DirectoryInfo(ruta);
+
+                foreach (FileInfo archivo in directorio.GetFiles())
+                {
+                    if ((archivo.Name.EndsWith(terminacion)) || (archivo.Name.EndsWith(terminacion + "x")))
+                    {
+                        archivo.Delete();
+                    }
+                }
+            }
+            catch (IOException ex)
+            {
+                logger.Error(ex.Message);
+                retorno = false;
+            }
+            catch (UnauthorizedAccessException ex)
+            {
+                logger.Error(ex.Message);
+                retorno = false;
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                retorno = false;
+            }
+            return retorno;
+        }
     }
 }
