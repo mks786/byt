@@ -2506,22 +2506,31 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
 
         public void IrVentanaAsociado()
         {
-            Asociado asociado = ((Asociado)this._ventana.AsociadoSolicitud).Id != int.MinValue ? (Asociado)this._ventana.AsociadoSolicitud : null;
-            Navegar(new ConsultarAsociado(asociado, this._ventana));
+            if ((Asociado)this._ventana.AsociadoSolicitud != null)
+            {
+                Asociado asociado = ((Asociado)this._ventana.AsociadoSolicitud).Id != int.MinValue ? (Asociado)this._ventana.AsociadoSolicitud : null;
+                Navegar(new ConsultarAsociado(asociado, this._ventana));
+            }
         }
 
 
         public void IrVentanaInteresado()
         {
-            Interesado interesado = ((Interesado)this._ventana.InteresadoSolicitud).Id != int.MinValue ? (Interesado)this._ventana.InteresadoSolicitud : null;
-            Navegar(new ConsultarInteresado(interesado, this._ventana));
+            if ((Interesado)this._ventana.InteresadoSolicitud != null)
+            {
+                Interesado interesado = ((Interesado)this._ventana.InteresadoSolicitud).Id != int.MinValue ? (Interesado)this._ventana.InteresadoSolicitud : null;
+                Navegar(new ConsultarInteresado(interesado, this._ventana));
+            }
         }
 
 
         public void IrVentanaPoder()
         {
-            Poder poder = ((Marca)this._ventana.Marca).Poder.Id != int.MinValue ? ((Marca)this._ventana.Marca).Poder : null;
-            Navegar(new ConsultarPoder(poder, this._ventana));
+            if ((Poder)this._ventana.PoderSolicitud != null)
+            {
+                Poder poder = ((Marca)this._ventana.Marca).Poder.Id != int.MinValue ? ((Marca)this._ventana.Marca).Poder : null;
+                Navegar(new ConsultarPoder(poder, this._ventana));
+            }
         }
 
 

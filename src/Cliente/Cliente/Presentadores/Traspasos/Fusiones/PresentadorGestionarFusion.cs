@@ -17,6 +17,7 @@ using Trascend.Bolet.Cliente.Ventanas.Marcas;
 using Trascend.Bolet.ObjetosComunes.ContratosServicios;
 using Trascend.Bolet.ObjetosComunes.Entidades;
 using Trascend.Bolet.Cliente.Ventanas.Auditorias;
+using Trascend.Bolet.Cliente.Ventanas.Asociados;
 
 namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
 {
@@ -2330,6 +2331,16 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.Fusiones
         private bool ValidarMarcaAntesDeImprimirPlanilla()
         {
             return true;
+        }
+
+
+        public void IrVentanaAsociado()
+        {
+            if ((null != (Marca)this._ventana.Marca) && (((Marca)this._ventana.Marca).Asociado != null))
+            {
+                Asociado asociado = ((Marca)this._ventana.Marca).Asociado.Id != int.MinValue ? ((Marca)this._ventana.Marca).Asociado : null;
+                Navegar(new ConsultarAsociado(asociado, this._ventana));
+            }
         }
 
     }

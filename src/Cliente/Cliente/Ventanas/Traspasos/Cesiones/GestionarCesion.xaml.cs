@@ -702,6 +702,12 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Cesiones
             }
         }
 
+
+        private void _btnIrAsociados_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.IrVentanaAsociado();
+        }
+
         #region Marca
 
         private void _lstMarcas_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
@@ -777,6 +783,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Cesiones
             this._txtIdMarcaFiltrar.Visibility = (System.Windows.Visibility)value;
             this._lstMarcas.Visibility = (System.Windows.Visibility)value;
             this._btnConsultarMarca.Visibility = (System.Windows.Visibility)value;
+            this._btnIrAsociados.Visibility = (System.Windows.Visibility)value;
         }
 
         private void _txtMarcaFiltrar_GotFocus(object sender, RoutedEventArgs e)

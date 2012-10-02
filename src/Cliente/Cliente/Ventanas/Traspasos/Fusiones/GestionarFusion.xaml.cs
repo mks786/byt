@@ -629,6 +629,12 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Fusiones
         }
 
 
+        private void _btnIrAsociados_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.IrVentanaAsociado();
+        }
+
+
         #region Eventos Marcas
 
         private void _btnConsultarMarca_Click(object sender, RoutedEventArgs e)
@@ -682,6 +688,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.Fusiones
             this._txtIdMarcaFiltrar.Visibility = (System.Windows.Visibility)value;
             this._lstMarcas.Visibility = (System.Windows.Visibility)value;
             this._btnConsultarMarca.Visibility = (System.Windows.Visibility)value;
+            this._btnIrAsociados.Visibility = (System.Windows.Visibility)value;
         }
 
         private void GestionarVisibilidadDatosDeMarca(object value)

@@ -1673,5 +1673,23 @@ namespace Trascend.Bolet.Cliente.Ventanas.Marcas
         {
             this._cbxLocalidadDatos.SelectedIndex = _cbxLocalidadSolicitud.SelectedIndex;
         }
+
+
+        private void _btnIrInteresados_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.IrVentanaInteresado();
+        }
+
+
+        private void _btnIrPoder_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.IrVentanaPoder();
+        }
+
+
+        private void _btnIrAsociados_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.IrVentanaAsociado();
+        }
     }
 }

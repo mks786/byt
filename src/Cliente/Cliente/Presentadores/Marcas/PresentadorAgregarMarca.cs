@@ -15,6 +15,9 @@ using Trascend.Bolet.Cliente.Ventanas.Principales;
 using Trascend.Bolet.Cliente.Ventanas.Marcas;
 using Trascend.Bolet.ObjetosComunes.ContratosServicios;
 using Trascend.Bolet.ObjetosComunes.Entidades;
+using Trascend.Bolet.Cliente.Ventanas.Asociados;
+using Trascend.Bolet.Cliente.Ventanas.Interesados;
+using Trascend.Bolet.Cliente.Ventanas.Poderes;
 
 namespace Trascend.Bolet.Cliente.Presentadores.Marcas
 {
@@ -1761,6 +1764,36 @@ namespace Trascend.Bolet.Cliente.Presentadores.Marcas
             }
 
             return retorno;
+        }
+
+
+        public void IrVentanaAsociado()
+        {
+            if ((Asociado)this._ventana.AsociadoSolicitud != null)
+            {
+                Asociado asociado = ((Asociado)this._ventana.AsociadoSolicitud).Id != int.MinValue ? (Asociado)this._ventana.AsociadoSolicitud : null;
+                Navegar(new ConsultarAsociado(asociado, this._ventana));
+            }
+        }
+
+
+        public void IrVentanaInteresado()
+        {
+            if ((Interesado)this._ventana.InteresadoSolicitud != null)
+            {
+                Interesado interesado = ((Interesado)this._ventana.InteresadoSolicitud).Id != int.MinValue ? (Interesado)this._ventana.InteresadoSolicitud : null;
+                Navegar(new ConsultarInteresado(interesado, this._ventana));
+            }
+        }
+
+
+        public void IrVentanaPoder()
+        {
+            if ((Poder)this._ventana.PoderSolicitud != null)
+            {
+                Poder poder = ((Marca)this._ventana.Marca).Poder.Id != int.MinValue ? ((Marca)this._ventana.Marca).Poder : null;
+                Navegar(new ConsultarPoder(poder, this._ventana));
+            }
         }
 
     }

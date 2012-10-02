@@ -17,6 +17,7 @@ using Trascend.Bolet.Cliente.Ventanas.Marcas;
 using Trascend.Bolet.ObjetosComunes.ContratosServicios;
 using Trascend.Bolet.ObjetosComunes.Entidades;
 using Trascend.Bolet.Cliente.Ventanas.Auditorias;
+using Trascend.Bolet.Cliente.Ventanas.Asociados;
 
 namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeDomicilio
 {
@@ -383,7 +384,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeDomicilio
         public void Modificar()
         {
             Mouse.OverrideCursor = Cursors.Wait;
-            
+
             try
             {
                 #region trace
@@ -760,8 +761,8 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeDomicilio
             {
                 IList<ListaDatosDominio> tipoClasesNacional = this._listaDatosDominioServicios.
                     ConsultarListaDatosDominioPorParametro(new ListaDatosDominio(Recursos.Etiquetas.cbiCategoriaTipoClaseNacional));
-               
-                
+
+
                 //this._ventana.TiposClaseNacional = tipoClasesNacional;
                 ListaDatosDominio listaDatoAux = this.BuscarClaseNacional(tipoClasesNacional, ((Marca)this._ventana.Marca).Tipo);
                 this._ventana.TipoClaseNacional = listaDatoAux.Descripcion;
@@ -922,7 +923,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeDomicilio
 
                     this._ventana.AgenteApoderado = ((Marca)this._ventana.Marca).Agente;
                     this._ventana.Poder = ((Marca)this._ventana.Marca).Poder;
-                    
+
 
                     if (null != ((Marca)this._ventana.Marca).Asociado)
                         this._ventana.PintarAsociado(((Marca)this._ventana.Marca).Asociado.TipoCliente.Id);
@@ -2046,6 +2047,16 @@ namespace Trascend.Bolet.Cliente.Presentadores.Traspasos.CambiosDeDomicilio
         private bool ValidarMarcaAntesDeImprimirVanDir()
         {
             return true;
+        }
+
+
+        public void IrVentanaAsociado()
+        {
+            if ((null != (Marca)this._ventana.Marca) && (((Marca)this._ventana.Marca).Asociado != null))
+            {
+                Asociado asociado = ((Marca)this._ventana.Marca).Asociado.Id != int.MinValue ? ((Marca)this._ventana.Marca).Asociado : null;
+                Navegar(new ConsultarAsociado(asociado, this._ventana));
+            }
         }
 
 

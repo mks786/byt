@@ -457,7 +457,7 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
                 else
                 {
 
-                    this._ventana.CambiarLabelsPorBotones();
+                    //this._ventana.CambiarLabelsPorBotones();
                     this._ventana.SeleccionarTabSolicitud();
                     this.CargarTipos();
                     this.CargarPresentaciones();
@@ -2486,15 +2486,21 @@ namespace Trascend.Bolet.Cliente.Presentadores.Patentes
 
         public void IrVentanaInteresado()
         {
-            Interesado interesado = ((Interesado)this._ventana.InteresadoSolicitud).Id != int.MinValue ? (Interesado)this._ventana.InteresadoSolicitud : null;
-            Navegar(new ConsultarInteresado(interesado, this._ventana));
+            if (this._ventana.InteresadoSolicitud != null)
+            {
+                Interesado interesado = ((Interesado)this._ventana.InteresadoSolicitud).Id != int.MinValue ? (Interesado)this._ventana.InteresadoSolicitud : null;
+                Navegar(new ConsultarInteresado(interesado, this._ventana));
+            }
         }
 
 
         public void IrVentanaPoder()
         {
-            Poder poder = ((Patente)this._ventana.Patente).Poder.Id != int.MinValue ? ((Patente)this._ventana.Patente).Poder : null;
-            Navegar(new ConsultarPoder(poder, this._ventana));
+            if (this._ventana.PoderSolicitud != null)
+            {
+                Poder poder = ((Patente)this._ventana.Patente).Poder.Id != int.MinValue ? ((Patente)this._ventana.Patente).Poder : null;
+                Navegar(new ConsultarPoder(poder, this._ventana));
+            }
         }
     }
 }

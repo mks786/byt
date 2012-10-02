@@ -17,6 +17,7 @@ using Trascend.Bolet.Cliente.Ventanas.Marcas;
 using Trascend.Bolet.ObjetosComunes.ContratosServicios;
 using Trascend.Bolet.ObjetosComunes.Entidades;
 using Trascend.Bolet.Cliente.Ventanas.Auditorias;
+using Trascend.Bolet.Cliente.Ventanas.Asociados;
 
 namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.LicenciasPatentes
 {
@@ -1174,6 +1175,16 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.LicenciasPatent
                 logger.Debug("Saliendo del metodo {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
             #endregion
 
+        }
+
+
+        public void IrVentanaAsociado()
+        {
+            if (((Patente)this._ventana.Patente != null) && (((Patente)this._ventana.Patente).Asociado != null))
+            {
+                Asociado asociado = ((Patente)this._ventana.Patente).Asociado.Id != int.MinValue ? ((Patente)this._ventana.Patente).Asociado : null;
+                Navegar(new ConsultarAsociado(asociado, this._ventana));
+            }
         }
 
 
@@ -2788,5 +2799,6 @@ namespace Trascend.Bolet.Cliente.Presentadores.TraspasosPatentes.LicenciasPatent
         //{
         //    return true;
         //}
+
     }
 }

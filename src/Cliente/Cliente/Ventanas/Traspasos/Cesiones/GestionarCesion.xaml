@@ -212,9 +212,12 @@
                         <!--Fin Campo-->
 
                         <!--Campo-->
-                        <Label Name="_lblAsociado" Grid.Column="4" Grid.Row="2" HorizontalAlignment="Right" VerticalAlignment="Center" >
+                        <Label Visibility="Collapsed" Name="_lblAsociado" Grid.Column="4" Grid.Row="2" HorizontalAlignment="Right" VerticalAlignment="Center" >
                             <TextBlock Text="{x:Static recurso:Etiquetas.lblAsociado}"/>
                         </Label>
+                        <Button Grid.Column="4" Grid.Row="2" Name="_btnIrAsociados" IsDefault="False" Height="25" HorizontalAlignment="Right" Click="_btnIrAsociados_Click">
+                            <TextBlock Text="{x:Static recurso:Etiquetas.btnAsociado}"/>
+                        </Button>
                         <custom:ByTTextBox IsReadOnly="True" IsTabStop="False" Margin="0,0,50,0"   IsEnabled="False"  Grid.Column="5" Grid.Row="2" Name="_txtIdAsociado" VerticalAlignment="Center"  Grid.ColumnSpan="1"
                          MaxLength="255" Text="{Binding Path=Asociado.Id}" ></custom:ByTTextBox>
                         <custom:ByTTextBox IsReadOnly="True" IsTabStop="False"   IsEnabled="False" Margin="-40,0,0,0" Grid.Column="6" Grid.Row="2" Name="_txtAsociado" VerticalAlignment="Center"  Grid.ColumnSpan="2"

@@ -620,6 +620,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.CambiosDeDomicilio
             this._txtIdMarcaFiltrar.Visibility = (System.Windows.Visibility)value;
             this._lstMarcas.Visibility = (System.Windows.Visibility)value;
             this._btnConsultarMarca.Visibility = (System.Windows.Visibility)value;
+            this._btnIrAsociados.Visibility = (System.Windows.Visibility)value;
         }
 
         private void GestionarVisibilidadDatosDeMarca(object value)
@@ -646,6 +647,12 @@ namespace Trascend.Bolet.Cliente.Ventanas.Traspasos.CambiosDeDomicilio
         {
             this._btnConsultarMarca.IsDefault = true;
             this._btnModificar.IsDefault = false;
+        }
+
+
+        private void _btnIrAsociados_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.IrVentanaAsociado();
         }
 
         #endregion

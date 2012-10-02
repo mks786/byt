@@ -661,7 +661,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.FusionesPatentes
             this._txtNumRegistro.Visibility = (System.Windows.Visibility)value;
             this._lblTipo.Visibility = (System.Windows.Visibility)value;
             this._txtTipo.Visibility = (System.Windows.Visibility)value;
-            this._lblAsociado.Visibility = (System.Windows.Visibility)value;
+            this._btnIrAsociados.Visibility = (System.Windows.Visibility)value;
             this._txtAsociado.Visibility = (System.Windows.Visibility)value;
             this._txtIdAsociado.Visibility = (System.Windows.Visibility)value;
         }
@@ -1040,5 +1040,11 @@ namespace Trascend.Bolet.Cliente.Ventanas.TraspasosPatentes.FusionesPatentes
         }
 
         #endregion
+
+
+        private void _btnIrAsociados_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.IrVentanaAsociado();
+        }
     }
 }
