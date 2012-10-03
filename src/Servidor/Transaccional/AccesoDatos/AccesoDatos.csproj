@@ -67,6 +67,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Contrato\IDaoReportePatente.cs" />
     <Compile Include="Contrato\IDaoFusionPatenteTercero.cs" />
     <Compile Include="Contrato\IDaoFusionMarcaTercero.cs" />
     <Compile Include="Contrato\IDaoInstruccionDeRenovacion.cs" />
@@ -151,6 +152,7 @@
     <Compile Include="Contrato\IDaoBase.cs" />
     <Compile Include="Contrato\IDaoUsuario.cs" />
     <Compile Include="Contrato\IFabricaDaoBase.cs" />
+    <Compile Include="Dao\NHibernate\DaoReportePatenteNHibernate.cs" />
     <Compile Include="Dao\NHibernate\DaoFusionPatenteTerceroNHibernate.cs" />
     <Compile Include="Dao\NHibernate\DaoFusionMarcaTerceroNHibernate.cs" />
     <Compile Include="Dao\NHibernate\DaoInstruccionDeRenovacionNHibernate.cs" />
@@ -661,6 +663,11 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Mapeado\FusionPatenteTercero.hbm.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Mapeado\ReportePatente.hbm.xml">
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>

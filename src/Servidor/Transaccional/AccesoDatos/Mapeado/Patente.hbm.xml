@@ -58,7 +58,7 @@
       <column name="CINTERESADO"/>
     </many-to-one>
 
-    <many-to-one name="Pais" class="Pais">
+    <many-to-one name="Pais" class="Pais" lazy="false">
       <column name="CPAIS_PRIORIDAD"/>
     </many-to-one>
 

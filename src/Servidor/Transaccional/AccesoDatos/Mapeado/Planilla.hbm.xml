@@ -10,8 +10,8 @@
 
   </class>
 
-<!--Procedimientos PCK_MYP_MARCAS-->
-  
+  <!--Procedimientos PCK_MYP_MARCAS-->
+
   <sql-query name="PCK_MYP_MARCASP1">
 
     <query-param name="usr" type="string" />
@@ -372,12 +372,12 @@
     {  begin ? :=Pck_General.PID(:s); end; }
 
   </sql-query>
-  
+
   <!-- Procedimientos PCK_MYP_RENOVACIONES-->
 
   <!--Solicitud-->
   <sql-query name="PCK_MYP_RENOVACIONESP1">
-    
+
 
     <query-param name="usr" type="string" />
     <query-param name="way" type="int" />
@@ -419,13 +419,13 @@
     begin PCK_MYP_RENOVACIONES.P4(:usr, :way, :cod); end;
 
   </sql-query>
-  
+
   <!-- Fin procedimientos PCK_MYP_RENOVACIONES-->
 
   <!-- Procedimientos Traspasos Patentes-->
-  
+
   <!--Procedimientos Cambio de Domicilio Patente-->
-  
+
   <sql-query name="PCK_MYP_PDOMICILIOSP1">
 
     <query-param name="usr" type="string" />
@@ -467,7 +467,7 @@
   </sql-query>
 
   <!--Fin Procedimientos Cambio de Domicilio Patente-->
-  
+
   <!--Procedimientos Cambio de Nombre Patente-->
 
   <sql-query name="PCK_MYP_PNOMBRESP1">
@@ -576,6 +576,6 @@
   </sql-query>
   <!--FIn Procedimientos PCK_MYP_PFUSIONES-->
   <!--Fin Procedimientos Cambio de nombre Patente-->
-  
+
   <!-- Fin Procedimientos Traspasos Patentes-->
 </hibernate-mapping>

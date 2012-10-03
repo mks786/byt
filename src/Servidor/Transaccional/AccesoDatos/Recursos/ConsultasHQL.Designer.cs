@@ -349,6 +349,15 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Delete from ReportePatente where CodigoPatente = {0}.
+        /// </summary>
+        public static string EliminarReportePatentePorCodigoPatente {
+            get {
+                return ResourceManager.GetString("EliminarReportePatentePorCodigoPatente", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to a.Id = &apos;{0}&apos;.
         /// </summary>
         public static string FiltroObtenerAgenteId {
@@ -2010,6 +2019,15 @@ namespace Trascend.Bolet.AccesoDatos.Recursos {
         public static string ObtenerPoderesPorInteresado {
             get {
                 return ResourceManager.GetString("ObtenerPoderesPorInteresado", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select p from ReportePatente p where p.CodigoPatente = {0}.
+        /// </summary>
+        public static string ObtenerReportePatentePorCodigoPatente {
+            get {
+                return ResourceManager.GetString("ObtenerReportePatentePorCodigoPatente", resourceCulture);
             }
         }
         

@@ -123,6 +123,7 @@
     <Compile Include="Controladores\ControladorFecha.cs" />
     <Compile Include="Controladores\ControladorInfoBolMarcaTer.cs" />
     <Compile Include="Controladores\ControladorInstruccionDeRenovacion.cs" />
+    <Compile Include="Controladores\ControladorReportePatente.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ContratosServicios\IReportePatenteServicios.cs" />
     <Compile Include="ContratosServicios\IInstruccionDeRenovacionServicios.cs" />
     <Compile Include="ContratosServicios\IInfoBolMarcaTerServicios.cs" />
     <Compile Include="ContratosServicios\IMemoriaServicios.cs" />
@@ -142,6 +143,7 @@
     <Compile Include="Entidades\CambioPeticionarioPatente.cs" />
     <Compile Include="Entidades\CesionPatente.cs" />
     <Compile Include="Entidades\Anualidad.cs" />
+    <Compile Include="Entidades\ReportePatente.cs" />
     <Compile Include="Entidades\FusionMarcaTercero.cs" />
     <Compile Include="Entidades\FusionPatenteTercero.cs" />
     <Compile Include="Entidades\InstruccionDeRenovacion.cs" />

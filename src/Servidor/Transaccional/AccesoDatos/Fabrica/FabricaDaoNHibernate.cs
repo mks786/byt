@@ -851,5 +851,15 @@ namespace Trascend.Bolet.AccesoDatos.Fabrica
         {
             return new DaoFusionPatenteTerceroNHibernate();
         }
+
+
+        /// <summary>
+        /// Método que devuelve el DaoMemoria
+        /// </summary>
+        /// <returns>IDaoMemoria</returns>
+        public override IDaoReportePatente ObtenerDaoReportePatente()
+        {
+            return new DaoReportePatenteNHibernate();
+        }
     }
 }

@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+                   assembly="Trascend.Bolet.ObjetosComunes"
+                   namespace="Trascend.Bolet.ObjetosComunes.Entidades">
+
+  <class name="ReportePatente" table="MYP_TMPPREG">
+
+    <id name="Id" column="SESSIONID" type="int"/>
+
+    <property name="CodigoPatente" column="CPATENTE" type="int"/>
+    <property name="Inventores1" column="XINVENTORES1" type="string"/>
+    <property name="Inventores2" column="XINVENTORES2" type="string"/>
+    <property name="Resumen1" column="XRESUMEN1" type="string"/>
+    <property name="Resumen2" column="XRESUMEN2" type="string"/>
+    <property name="NombrePatente1" column="XPATENTE1" type="string"/>
+    <property name="NombrePatente2" column="XPATENTE2" type="string"/>
+    <property name="Omision1" column="XOMISION1" type="string"/>
+    <property name="Omision2" column="XOMISION2" type="string"/>
+
+  </class>
+
+  <!--Procedimientos rp_pregi-->
+
+  <sql-query name="rp_pregiPLANILLA1">
+
+    <query-param name="pcpatente" type="int" />
+
+    begin rp_pregi.PLANILLA1(:pcpatente); end;
+
+  </sql-query>
+
+  <sql-query name="rp_pregiPLANILLA2">
+
+    <query-param name="pcpatente" type="int" />
+
+    begin rp_pregi.PLANILLA2(:pcpatente); end;
+
+  </sql-query>
+
+  <sql-query name="rp_pregiPLANILLA3">
+
+    <query-param name="pcpatente" type="int" />
+
+    begin rp_pregi.PLANILLA3(:pcpatente); end;
+
+  </sql-query>
+
+  <sql-query name="rp_pregiPLANILLA4">
+
+    <query-param name="pcpatente" type="int" />
+
+    begin rp_pregi.PLANILLA4(:pcpatente); end;
+
+  </sql-query>
+
+  <sql-query name="rp_pregiPLANILLA5">
+
+    <query-param name="pcpatente" type="int" />
+
+    begin rp_pregi.PLANILLA5(:pcpatente); end;
+
+  </sql-query>
+
+  <!--Fin Procedimientos rp_pregi-->
+</hibernate-mapping>

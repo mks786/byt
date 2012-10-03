@@ -1,0 +1,12 @@
+﻿<Window x:Class="Trascend.Bolet.Cliente.Ventanas.ReportesPatentes.ReportesBotones"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Reportes" Height="228" Width="300" ResizeMode="NoResize">
+    <Grid Height="197">
+        <Button Content="Solicitud" Height="42" Margin="45,12,158,0" Name="_btnSolicitudVan" VerticalAlignment="Top" Click="_btnSolicitudVan_Click"/>
+        <Button Content="Vienen" Height="42" Margin="161,12,42,0" Name="_btnSolicitudVienen" VerticalAlignment="Top" Click="_btnSolicitudVienen_Click"/>
+        <Button Content="Datos" Height="39" Margin="45,74,158,0" Name="_btnDatosVan" VerticalAlignment="Top" Click="_btnDatosVan_Click"/>
+        <Button Content="Vienen" Height="39" Margin="161,74,42,0" Name="_btnDatosVienen" VerticalAlignment="Top" Click="_btnDatosVienen_Click"/>
+        <Button Content="Planilla" Height="45" Margin="45,128,42,0" Name="_btnPlanilla" VerticalAlignment="Top" Click="_btnPlanilla_Click"/>
+    </Grid>
+</Window>

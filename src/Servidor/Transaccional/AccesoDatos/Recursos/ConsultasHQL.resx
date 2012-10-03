@@ -980,4 +980,10 @@
     <value>upper(p.ReferenciaInteresadoInternacional) like '%{0}%'</value>
     <comment>Filtra marca por referencia de asociado internacional</comment>
   </data>
+  <data name="EliminarReportePatentePorCodigoPatente" xml:space="preserve">
+    <value>Delete from ReportePatente where CodigoPatente = {0}</value>
+  </data>
+  <data name="ObtenerReportePatentePorCodigoPatente" xml:space="preserve">
+    <value>Select p from ReportePatente p where p.CodigoPatente = {0}</value>
+  </data>
 </root>

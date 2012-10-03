@@ -2248,7 +2248,7 @@ namespace Trascend.Bolet.Cliente.Presentadores
 
         public bool BorrarArchivosEnDirectorio(string ruta, string terminacion)
         {
-            bool retorno = false;
+            bool retorno = true;
             try
             {
                 DirectoryInfo directorio = new DirectoryInfo(ruta);

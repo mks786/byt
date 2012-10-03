@@ -1616,7 +1616,7 @@ namespace Trascend.Bolet.Cliente.Ventanas.Patentes
 
         private void _btnDocumentosSolicitud_Click(object sender, RoutedEventArgs e)
         {
-            ReportesBotones reporte = new ReportesBotones();
+            ReportesBotones reporte = new ReportesBotones(this.Patente);
             reporte.ShowDialog();
         }
 

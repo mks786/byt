@@ -149,6 +149,7 @@
     <Compile Include="Comandos\ComandosRenovacion\ComandoConsultarRenovacionesFiltro.cs" />
     <Compile Include="Comandos\ComandosRenovacion\ComandoVerificarExistenciaRenovacion.cs" />
     <Compile Include="Comandos\ComandosRenovacion\ComandoConsultarUltimaRenovacion.cs" />
+    <Compile Include="Comandos\ComandosReportePatente\ComandoConsultarReportePatentePorCodigoPatente.cs" />
     <Compile Include="Comandos\ComandosResumen\ComandoVerificarExistenciaResumen.cs" />
     <Compile Include="Comandos\ComandosCarta\ComandoVerificarExistenciaCarta.cs" />
     <Compile Include="Comandos\ComandosConcepto\ComandoConsultarTodosConceptos.cs" />
@@ -395,10 +396,15 @@
     <Compile Include="Comandos\ComandosFusionPatenteTercero\ComandoEliminarFusionPatenteTercero.cs" />
     <Compile Include="Comandos\ComandosFusionPatenteTercero\ComandoInsertarOModificarFusionPatenteTercero.cs" />
     <Compile Include="Comandos\ComandosFusionPatenteTercero\ComandoVerificarExistenciaFusionPatenteTercero.cs" />
+    <Compile Include="Comandos\ComandosReportePatente\ComandoConsultarReportePatentePorId.cs" />
+    <Compile Include="Comandos\ComandosReportePatente\ComandoConsultarReportePatentePorUsuario.cs" />
+    <Compile Include="Comandos\ComandosReportePatente\ComandoEjecutarProcedimiento.cs" />
+    <Compile Include="Comandos\ComandosReportePatente\ComandoEliminarReportePatente.cs" />
     <Compile Include="Comandos\Receptor.cs" />
     <Compile Include="Comandos\ComandosUsuario\ComandoConsultarTodosUsuarios.cs" />
     <Compile Include="Comandos\ComandosUsuario\ComandoConsultarUsuarioPorID.cs" />
     <Compile Include="Comandos\ComandosUsuario\ComandoInsertarOModificarUsuario.cs" />
+    <Compile Include="Fabrica\FabricaComandosReportePatente.cs" />
     <Compile Include="Fabrica\FabricaComandosFusionPatenteTercero.cs" />
     <Compile Include="Fabrica\FabricaComandosFusionMarcaTercero.cs" />
     <Compile Include="Fabrica\FabricaComandosInstruccionDeRenovacion.cs" />
