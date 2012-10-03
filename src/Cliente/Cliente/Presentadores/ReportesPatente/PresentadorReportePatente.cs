@@ -566,18 +566,19 @@ namespace Trascend.Bolet.Cliente.Presentadores.ReportesPatente
 
             retorno.FechaInscripcion = _patente.FechaInscripcion.Value.Day + "          " + _patente.FechaInscripcion.Value.ToString("MMMM") + "           " + _patente.FechaInscripcion.Value.Year.ToString().Substring(2, 2);
 
-            if (!string.IsNullOrEmpty(reportePatente.Inventores2))
+            if ((null != reportePatente) && (!string.IsNullOrEmpty(reportePatente.Inventores2)))
                 retorno.CamposVienen += reportePatente.Inventores2;
 
-            if (!string.IsNullOrEmpty(reportePatente.NombrePatente2))
+            if ((null != reportePatente) && (!string.IsNullOrEmpty(reportePatente.NombrePatente2)))
                 retorno.CamposVienen += Environment.NewLine + Environment.NewLine + reportePatente.NombrePatente2;
 
-            if (!string.IsNullOrEmpty(reportePatente.Resumen2))
+            if ((null != reportePatente) && (!string.IsNullOrEmpty(reportePatente.Resumen2)))
                 retorno.CamposVienen += Environment.NewLine + Environment.NewLine + reportePatente.Resumen2;
 
 
             return retorno;
         }
+
 
         /// <summary>
         /// Método que se encarga de armar el string de Sitio, sumando distintos campos de los interesados
