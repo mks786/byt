@@ -254,6 +254,11 @@
                     <MenuItem Name="_menuItemAsociadoAgregar" Header="{x:Static resx:Etiquetas.menuItemAgregar}" Click="_menuItemAsociadoAgregar_Click"/>
                     <!--<MenuItem Name="_menuItemUsuarioModificar" Header="{x:Static resx:Etiquetas.menuItemUsuarioModificar}"></MenuItem>-->
                 </MenuItem>
+                <MenuItem Name="_menuItemCorresponsal" Visibility="Collapsed" Header="{x:Static resx:Etiquetas.menuItemCorresponsal}">
+                    <MenuItem Name="_menuItemCorresponsalConsultar" Header="{x:Static resx:Etiquetas.menuItemConsultar}" Click="_menuItemCorresponsalConsultar_Click"/>
+                    <MenuItem Name="_menuItemCorresponsalAgregar" Header="{x:Static resx:Etiquetas.menuItemAgregar}" Click="_menuItemCorresponsalAgregar_Click"/>
+                    <!--<MenuItem Name="_menuItemUsuarioModificar" Header="{x:Static resx:Etiquetas.menuItemUsuarioModificar}"></MenuItem>-->
+                </MenuItem>
                 <MenuItem Name="_menuItemBoletin" Visibility="Collapsed" Header="{x:Static resx:Etiquetas.menuItemBoletin}">
                     <MenuItem Name="_menuItemBoletinConsultar" Header="{x:Static resx:Etiquetas.menuItemConsultar}" Click="_menuItemBoletinConsultar_Click"/>
                     <MenuItem Name="_menuItemBoletinAgregar" Header="{x:Static resx:Etiquetas.menuItemAgregar}" Click="_menuItemBoletinAgregar_Click"/>

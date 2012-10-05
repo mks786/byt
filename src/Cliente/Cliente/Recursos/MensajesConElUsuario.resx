@@ -913,4 +913,13 @@
   <data name="ErrorReporte" xml:space="preserve">
     <value>Ha ocurrido un error al intentar borrar los archivos de C:\bolyter</value>
   </data>
+  <data name="CorresponsalEliminado" xml:space="preserve">
+    <value>El corresponsal ha sido eliminado con éxito</value>
+  </data>
+  <data name="CorresponsalInsertado" xml:space="preserve">
+    <value>El Corresponsal ha sido insertado con éxito</value>
+  </data>
+  <data name="ErrorCorresponsalRepetido" xml:space="preserve">
+    <value>Disculpe el Id del corresponsal se encuentra repetido</value>
+  </data>
 </root>

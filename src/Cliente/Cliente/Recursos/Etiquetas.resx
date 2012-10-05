@@ -2904,4 +2904,7 @@ en Prensa:</value>
   <data name="lblReferenciaInt" xml:space="preserve">
     <value>Ref. Int:</value>
   </data>
+  <data name="menuItemCorresponsal" xml:space="preserve">
+    <value>Corresponsal</value>
+  </data>
 </root>

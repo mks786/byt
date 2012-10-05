@@ -1133,6 +1133,24 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to El corresponsal ha sido eliminado con éxito.
+        /// </summary>
+        internal static string CorresponsalEliminado {
+            get {
+                return ResourceManager.GetString("CorresponsalEliminado", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to El Corresponsal ha sido insertado con éxito.
+        /// </summary>
+        internal static string CorresponsalInsertado {
+            get {
+                return ResourceManager.GetString("CorresponsalInsertado", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Entrada alterna eliminado con éxito.
         /// </summary>
         internal static string EntradaAlternaEliminado {
@@ -1282,6 +1300,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         internal static string ErrorCorrespondenciaNoEncontrada {
             get {
                 return ResourceManager.GetString("ErrorCorrespondenciaNoEncontrada", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Disculpe el Id del corresponsal se encuentra repetido.
+        /// </summary>
+        internal static string ErrorCorresponsalRepetido {
+            get {
+                return ResourceManager.GetString("ErrorCorresponsalRepetido", resourceCulture);
             }
         }
         

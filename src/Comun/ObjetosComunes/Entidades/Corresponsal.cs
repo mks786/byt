@@ -6,6 +6,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
     [Serializable]
     public class Corresponsal
     {
+
         #region Atributos
 
         private int _id;
@@ -19,7 +20,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         private string _fax1;
         private string _fax2;
         private string _fax3;
-        private int _porcentajeDescuento;
+        private float _porcentajeDescuento;
         private string _observacion;
         private char _activo;
         private char _persona;
@@ -43,8 +44,10 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         private TipoCliente _tipoCliente;
         private Etiqueta _etiqueta;
         private DetallePago _detallePago;
+        private string _operacion;
 
         #endregion
+
 
         #region Constructores
 
@@ -63,6 +66,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         }
 
         #endregion
+
 
         #region Propiedades
 
@@ -168,7 +172,7 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
         /// <summary>
         /// Propiedad que asigna u obtiene el Porcentaje del Descuento
         /// </summary>
-        public virtual int PorcentajeDescuento
+        public virtual float PorcentajeDescuento
         {
             get { return _porcentajeDescuento; }
             set { _porcentajeDescuento = value; }
@@ -385,6 +389,13 @@ namespace Trascend.Bolet.ObjetosComunes.Entidades
             set { _detallePago = value; }
         }
 
+        public virtual string Operacion
+        {
+            get { return _operacion; }
+            set { _operacion = value; }
+        }
+
         #endregion
+
     }
 }

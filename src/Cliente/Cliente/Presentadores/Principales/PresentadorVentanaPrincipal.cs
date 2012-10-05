@@ -59,6 +59,7 @@ using Trascend.Bolet.Cliente.Ventanas.Logines;
 using Trascend.Bolet.Cliente.Ventanas.Patentes;
 using Trascend.Bolet.Cliente.Ventanas.Anualidades;
 using Trascend.Bolet.Cliente.Ventanas.Reportes;
+using Trascend.Bolet.Cliente.Ventanas.Corresponsales;
 using System.Diagnostics;
 using System.Collections.Generic;
 
@@ -357,6 +358,22 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
         public void AgregarAsociado()
         {
             this._ventana.Contenedor.Navigate(new AgregarAsociado());
+        }
+
+        /// <summary>
+        /// Método que coloca la página "ConsultarCorresponsals" en el Frame principal
+        /// </summary>
+        public void ConsultarCorresponsales()
+        {
+            this._ventana.Contenedor.Navigate(new ConsultarCorresponsales());
+        }
+
+        /// <summary>
+        /// Método que coloca la página "AgregarCorresponsal" en el Frame principal
+        /// </summary>
+        public void AgregarCorresponsal()
+        {
+            this._ventana.Contenedor.Navigate(new AgregarCorresponsal(null,null));
         }
 
         /// <summary>
@@ -1117,6 +1134,10 @@ namespace Trascend.Bolet.Cliente.Presentadores.Principales
                                         itemNivel2.Visibility = System.Windows.Visibility.Visible;
                                     break;
                                 case "_menuItemAsociado":
+                                    if (objeto.Id.Equals(Recursos.Ids.Asociado))
+                                        itemNivel2.Visibility = System.Windows.Visibility.Visible;
+                                    break;
+                                case "_menuItemCorresponsal":
                                     if (objeto.Id.Equals(Recursos.Ids.Asociado))
                                         itemNivel2.Visibility = System.Windows.Visibility.Visible;
                                     break;

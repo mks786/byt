@@ -316,6 +316,16 @@ namespace Trascend.Bolet.Cliente.Ventanas.Principales
             this._presentador.AgregarAsociado();
         }
 
+        private void _menuItemCorresponsalConsultar_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.ConsultarCorresponsales();
+        }
+
+        private void _menuItemCorresponsalAgregar_Click(object sender, RoutedEventArgs e)
+        {
+            this._presentador.AgregarCorresponsal();
+        }
+
         #endregion
 
         #region Marcas

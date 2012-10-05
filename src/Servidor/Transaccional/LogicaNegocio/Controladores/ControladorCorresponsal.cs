@@ -43,16 +43,45 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
             return retorno;
         }
 
-        /// <summary>
-        /// Método que inserta o modifica un Corresponsal al sistema
-        /// </summary>
-        /// <param name="corresponsal">Corresponsal a modificar</param>
-        /// <param name="hash">Hash del usuario que va a realizar la operacion</param>
-        /// <returns>True si la modificación fue exitosa, en caso contrario False</returns>
+
+        ///// <summary>
+        ///// Método que inserta o modifica un Corresponsal al sistema
+        ///// </summary>
+        ///// <param name="corresponsal">Corresponsal a modificar</param>
+        ///// <param name="hash">Hash del usuario que va a realizar la operacion</param>
+        ///// <returns>True si la modificación fue exitosa, en caso contrario False</returns>
+        //public static bool InsertarOModificar(Corresponsal corresponsal, int hash)
+        //{
+        //    bool exitoso = false;
+
+        //    try
+        //    {
+        //        #region trace
+        //        if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+        //            logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+        //        #endregion
+
+        //        ComandoBase<bool> comando = FabricaComandosCorresponsal.ObtenerComandoInsertarOModificar(corresponsal);
+        //        comando.Ejecutar();
+        //        exitoso = comando.Receptor.ObjetoAlmacenado;
+
+        //        #region trace
+        //        if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
+        //            logger.Debug("Saliendo del Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
+        //        #endregion
+        //    }
+        //    catch (ApplicationException ex)
+        //    {
+        //        logger.Error(ex.Message);
+        //        throw ex;
+        //    }
+        //    return exitoso;
+        //}
+
+
         public static bool InsertarOModificar(Corresponsal corresponsal, int hash)
         {
             bool exitoso = false;
-
             try
             {
                 #region trace
@@ -60,9 +89,48 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
                     logger.Debug("Entrando al Método {0}", (new System.Diagnostics.StackFrame()).GetMethod().Name);
                 #endregion
 
+                ComandoBase<bool> comandoInteresadoContador = null;
+
+                // si es una insercion
+                if (corresponsal.Operacion.Equals("CREATE"))
+                {
+                    ComandoBase<ContadorFac> comandoContadorInteresadoProximoValor = FabricaComandosContadorFac.ObtenerComandoConsultarPorId("FAC_CORRESPONSAL");
+                    comandoContadorInteresadoProximoValor.Ejecutar();
+                    ContadorFac contador = comandoContadorInteresadoProximoValor.Receptor.ObjetoAlmacenado;
+                    corresponsal.Id = contador.ProximoValor++;
+                    comandoInteresadoContador = FabricaComandosContadorFac.ObtenerComandoInsertarOModificar(contador);
+                }
+
+
+                Auditoria auditoria = new Auditoria();
+                ComandoBase<ContadorAuditoria> comandoContadorAuditoriaPoximoValor = FabricaComandosContadorAuditoria.ObtenerComandoConsultarPorId("SEG_AUDITORIA");
+
+                comandoContadorAuditoriaPoximoValor.Ejecutar();
+                ContadorAuditoria contadorAuditoria = comandoContadorAuditoriaPoximoValor.Receptor.ObjetoAlmacenado;
+
+
+                auditoria.Id = contadorAuditoria.ProximoValor++;
+                auditoria.Usuario = ObtenerUsuarioPorHash(hash).Id;
+                auditoria.Fecha = System.DateTime.Now;
+                auditoria.Operacion = corresponsal.Operacion;
+                auditoria.Tabla = "FAC_CORRESPONSAL";
+                auditoria.Fk = corresponsal.Id;
+
                 ComandoBase<bool> comando = FabricaComandosCorresponsal.ObtenerComandoInsertarOModificar(corresponsal);
+                ComandoBase<bool> comandoAuditoria = FabricaComandosAuditoria.ObtenerComandoInsertarOModificar(auditoria);
+                ComandoBase<bool> comandoAuditoriaContador = FabricaComandosContadorAuditoria.ObtenerComandoInsertarOModificar(contadorAuditoria);
+
                 comando.Ejecutar();
                 exitoso = comando.Receptor.ObjetoAlmacenado;
+
+                if (exitoso)
+                {
+                    comandoAuditoria.Ejecutar();
+                    comandoAuditoriaContador.Ejecutar();
+
+                    if (comandoInteresadoContador != null)
+                        comandoInteresadoContador.Ejecutar();
+                }
 
                 #region trace
                 if (ConfigurationManager.AppSettings["Ambiente"].ToString().Equals("Desarrollo"))
@@ -76,6 +144,7 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
             }
             return exitoso;
         }
+
 
         /// <summary>
         /// Método que consulta un Corresponsal por su Id
@@ -109,6 +178,7 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
             }
             return retorno;
         }
+
 
         /// <summary>
         /// Método que elimina un Corresponsal
@@ -144,6 +214,7 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
             return exitoso;
         }
 
+
         /// <summary>
         /// Verifica si el Corresponsal existe
         /// </summary>
@@ -176,5 +247,6 @@ namespace Trascend.Bolet.LogicaNegocio.Controladores
 
             return existe;
         }
+
     }
 }

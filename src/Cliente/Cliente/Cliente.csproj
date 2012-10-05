@@ -127,6 +127,8 @@
     <Compile Include="Contratos\CartasOuts\IConsultarCartasOuts.cs" />
     <Compile Include="Contratos\AbandonosPatente\IConsultarAbandonosPatente.cs" />
     <Compile Include="Contratos\AbandonosPatente\IGestionarAbandonoPatente.cs" />
+    <Compile Include="Contratos\Corresponsales\IAgregarCorresponsal.cs" />
+    <Compile Include="Contratos\Corresponsales\IConsultarCorresponsales.cs" />
     <Compile Include="Contratos\MarcasTercero\IConsultaMarcasTercero.cs" />
     <Compile Include="Contratos\MarcasTercero\IGestionarInfoAdicionalMarcaTercero.cs" />
     <Compile Include="Contratos\MarcasTercero\IGestionarInfoBolMarcaTer.cs" />
@@ -342,6 +344,8 @@
     <Compile Include="Presentadores\CartasOuts\PresentadorConsultarCartasOuts.cs" />
     <Compile Include="Presentadores\AbandonosPatente\PresentadorConsultarAbandonosPatente.cs" />
     <Compile Include="Presentadores\AbandonosPatente\PresentadorGestionarAbandonoPatente.cs" />
+    <Compile Include="Presentadores\Corresponsales\PresentadorAgregarCorresponsal.cs" />
+    <Compile Include="Presentadores\Corresponsales\PresentadorConsultarCorresponsales.cs" />
     <Compile Include="Presentadores\FechasPatente\PresentadorAgregarFecha.cs" />
     <Compile Include="Presentadores\FechasPatente\PresentadorConsultarFecha.cs" />
     <Compile Include="Presentadores\EscritosPatente\PresentadorOficioDeJuramento.cs" />
@@ -788,6 +792,12 @@
     </Compile>
     <Compile Include="Ventanas\AbandonosPatente\GestionarAbandonoPatente.xaml.cs">
       <DependentUpon>GestionarAbandonoPatente.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Corresponsales\AgregarCorresponsal.xaml.cs">
+      <DependentUpon>AgregarCorresponsal.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Corresponsales\ConsultarCorresponsales.xaml.cs">
+      <DependentUpon>ConsultarCorresponsales.xaml</DependentUpon>
     </Compile>
     <Compile Include="Ventanas\MarcasTercero\ConsultaMarcasTercero.xaml.cs">
       <DependentUpon>ConsultaMarcasTercero.xaml</DependentUpon>
@@ -1457,6 +1467,14 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Ventanas\AbandonosPatente\GestionarAbandonoPatente.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\Corresponsales\AgregarCorresponsal.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\Corresponsales\ConsultarCorresponsales.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

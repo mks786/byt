@@ -5583,6 +5583,15 @@ namespace Trascend.Bolet.Cliente.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Corresponsal.
+        /// </summary>
+        public static string menuItemCorresponsal {
+            get {
+                return ResourceManager.GetString("menuItemCorresponsal", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cortar.
         /// </summary>
         public static string menuItemCortar {
